@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-39:word:session",
+      "interactionId": "en:lesson-10:session-39:word:both",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — session",
+      "prompt": "Карточка слова — both",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-39:word:session:audio"
+        "en:lesson-10:session-39:word:both:audio"
       ],
-      "accessibilityLabel": "Карточка слова — session",
+      "accessibilityLabel": "Карточка слова — both",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-39:word:session:audio",
-          "transcript": "session"
+          "audioTargetId": "en:lesson-10:session-39:word:both:audio",
+          "transcript": "both"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-39:word:session:r1",
-            "targetText": "session",
+            "responseId": "en:lesson-10:session-39:word:both:r1",
+            "targetText": "both",
             "meaningByLocale": {
-              "ru": "«занятие». We have a session every Friday. — «У нас занятие каждую пятницу». Выделенный период для определённой деятельности.",
-              "uk": "«заняття». We have a session every Friday. — «У нас заняття щоп’ятниці». Виділений період для певної діяльності."
+              "ru": "«оба». Both chairs are free. — «Оба стула свободны».",
+              "uk": "«обидва». Both chairs are free. — «Обидва стільці вільні»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "session",
+          "word": "both",
           "definitionByLocale": {
-            "ru": "«занятие». We have a session every Friday. — «У нас занятие каждую пятницу». Выделенный период для определённой деятельности.",
-            "uk": "«заняття». We have a session every Friday. — «У нас заняття щоп’ятниці». Виділений період для певної діяльності."
+            "ru": "«оба». Both chairs are free. — «Оба стула свободны».",
+            "uk": "«обидва». Both chairs are free. — «Обидва стільці вільні»."
           }
         }
       },
@@ -52,25 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце",
+      "prompt": "Вы видите два свободных стула. Скажите: «Оба стула свободны»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце",
+      "accessibilityLabel": "Вы видите два свободных стула. Скажите: «Оба стула свободны»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have a session every Friday.",
+        "targetPhrase": "Both chairs are free.",
         "localizedMeaning": {
-          "ru": "Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце",
-          "uk": "Команда займається щоп’ятниці. Скажіть: «У нас заняття щоп’ятниці». Поставте every Friday у кінці"
+          "ru": "Вы видите два свободных стула. Скажите: «Оба стула свободны»",
+          "uk": "Ви бачите два вільні стільці. Скажіть: «Обидва стільці вільні»"
         },
         "orderedTokens": [
-          "We",
-          "have",
-          "a",
-          "session",
-          "every",
-          "Friday"
+          "Both",
+          "chairs",
+          "are",
+          "free"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -91,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i02:r1",
-          "text": "The session starts at ten."
+          "text": "Both cups are clean."
         },
         {
           "responseId": "en:lesson-10:session-39:i02:r2",
-          "text": "The session starts at nine."
+          "text": "Both cups are empty."
         },
         {
           "responseId": "en:lesson-10:session-39:i02:r3",
-          "text": "The meeting starts at ten."
+          "text": "Both plates are clean."
         }
       ],
       "mediaIds": [],
@@ -111,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-39:i02:audio",
-          "transcript": "The session starts at ten."
+          "transcript": "Both cups are clean."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-39:i02:r1",
-            "targetText": "The session starts at ten.",
+            "targetText": "Both cups are clean.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i02:r2",
-            "targetText": "The session starts at nine.",
+            "targetText": "Both cups are empty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i02:r3",
-            "targetText": "The meeting starts at ten.",
+            "targetText": "Both plates are clean.",
             "meaningByLocale": null
           }
         ],
@@ -138,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The session starts at ten.",
-              "uk": "У записі звучить The session starts at ten."
+              "ru": "В записи звучит Both cups are clean.",
+              "uk": "У записі звучить Both cups are clean."
             }
           },
           {
@@ -147,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The session starts at ten.",
-              "uk": "У записі звучить The session starts at ten."
+              "ru": "В записи звучит Both cups are clean.",
+              "uk": "У записі звучить Both cups are clean."
             }
           }
         ],
@@ -163,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Это регулярное занятие. Выберите форму have",
+      "prompt": "Выберите связку для двух стульев",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i03:r1",
-          "text": "have"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-39:i03:r2",
-          "text": "has"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-39:i03:r3",
-          "text": "having"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Это регулярное занятие. Выберите форму have",
+      "accessibilityLabel": "Выберите связку для двух стульев",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это регулярное занятие. Выберите форму have",
-          "uk": "Це регулярне заняття. Виберіть форму have"
+          "ru": "Выберите связку для двух стульев",
+          "uk": "Виберіть зв’язку для двох стільців"
         },
-        "gappedTargetPhrase": "We ___ a session every Friday.",
+        "gappedTargetPhrase": "Both chairs ___ free.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-39:i03:r1",
-            "text": "have"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-39:i03:r2",
-            "text": "has"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-39:i03:r3",
-            "text": "having"
+            "text": "am"
           }
         ],
-        "testedDimension": "Это регулярное занятие. Выберите форму have",
+        "testedDimension": "Выберите связку для двух стульев",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-39:i03:r2",
             "correct": false,
-            "testedDimension": "Это регулярное занятие. Выберите форму have",
+            "testedDimension": "Выберите связку для двух стульев",
             "feedbackByLocale": {
-              "ru": "С we нужна have.",
-              "uk": "З we потрібна have."
+              "ru": "Множественное число: are.",
+              "uk": "Множина: are."
             }
           },
           {
             "responseId": "en:lesson-10:session-39:i03:r3",
             "correct": false,
-            "testedDimension": "Это регулярное занятие. Выберите форму have",
+            "testedDimension": "Выберите связку для двух стульев",
             "feedbackByLocale": {
-              "ru": "Для регулярной ситуации здесь нужна have.",
-              "uk": "Для регулярної ситуації тут потрібна have."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -227,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-39:word:facilitator",
+      "interactionId": "en:lesson-10:session-39:word:each",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — facilitator",
+      "prompt": "Карточка слова — each",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-39:word:facilitator:audio"
+        "en:lesson-10:session-39:word:each:audio"
       ],
-      "accessibilityLabel": "Карточка слова — facilitator",
+      "accessibilityLabel": "Карточка слова — each",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-39:word:facilitator:audio",
-          "transcript": "facilitator"
+          "audioTargetId": "en:lesson-10:session-39:word:each:audio",
+          "transcript": "each"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-39:word:facilitator:r1",
-            "targetText": "facilitator",
+            "responseId": "en:lesson-10:session-39:word:each:r1",
+            "targetText": "each",
             "meaningByLocale": {
-              "ru": "«ведущий групповой работы». The facilitator is listening. — «Ведущий групповой работы слушает». Он помогает участникам обсуждать вопросы и работать вместе.",
-              "uk": "«ведучий групової роботи». The facilitator is listening. — «Ведучий групової роботи слухає». Він допомагає учасникам обговорювати питання й працювати разом."
+              "ru": "«каждый». Each person has a cup. — «У каждого человека есть чашка».",
+              "uk": "«кожний». Each person has a cup. — «У кожної людини є чашка»."
             }
           }
         ],
@@ -260,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "facilitator",
+          "word": "each",
           "definitionByLocale": {
-            "ru": "«ведущий групповой работы». The facilitator is listening. — «Ведущий групповой работы слушает». Он помогает участникам обсуждать вопросы и работать вместе.",
-            "uk": "«ведучий групової роботи». The facilitator is listening. — «Ведучий групової роботи слухає». Він допомагає учасникам обговорювати питання й працювати разом."
+            "ru": "«каждый». Each person has a cup. — «У каждого человека есть чашка».",
+            "uk": "«кожний». Each person has a cup. — «У кожної людини є чашка»."
           }
         }
       },
@@ -275,23 +273,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»",
+      "prompt": "Чашек хватило всем. Скажите: «У каждого человека есть чашка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»",
+      "accessibilityLabel": "Чашек хватило всем. Скажите: «У каждого человека есть чашка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The facilitator is listening.",
+        "targetPhrase": "Each person has a cup.",
         "localizedMeaning": {
-          "ru": "Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»",
-          "uk": "Учасниця висловлює ідею, ведучий зараз слухає її. Скажіть: «Ведучий групової роботи слухає»"
+          "ru": "Чашек хватило всем. Скажите: «У каждого человека есть чашка»",
+          "uk": "Чашок вистачило всім. Скажіть: «У кожної людини є чашка»"
         },
         "orderedTokens": [
-          "The",
-          "facilitator",
-          "is",
-          "listening"
+          "Each",
+          "person",
+          "has",
+          "a",
+          "cup"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +311,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i05:r1",
-          "text": "The facilitator is asking a question."
+          "text": "Each child has a plate."
         },
         {
           "responseId": "en:lesson-10:session-39:i05:r2",
-          "text": "The facilitator is answering a question."
+          "text": "Each child has a cup."
         },
         {
           "responseId": "en:lesson-10:session-39:i05:r3",
-          "text": "The student is asking a question."
+          "text": "Each person has a plate."
         }
       ],
       "mediaIds": [],
@@ -332,23 +331,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-39:i05:audio",
-          "transcript": "The facilitator is asking a question."
+          "transcript": "Each child has a plate."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-39:i05:r1",
-            "targetText": "The facilitator is asking a question.",
+            "targetText": "Each child has a plate.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i05:r2",
-            "targetText": "The facilitator is answering a question.",
+            "targetText": "Each child has a cup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i05:r3",
-            "targetText": "The student is asking a question.",
+            "targetText": "Each person has a plate.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +358,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The facilitator is asking a question.",
-              "uk": "У записі звучить The facilitator is asking a question."
+              "ru": "В записи звучит Each child has a plate.",
+              "uk": "У записі звучить Each child has a plate."
             }
           },
           {
@@ -368,8 +367,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The facilitator is asking a question.",
-              "uk": "У записі звучить The facilitator is asking a question."
+              "ru": "В записи звучит Each child has a plate.",
+              "uk": "У записі звучить Each child has a plate."
             }
           }
         ],
@@ -384,63 +383,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Один ведущий сейчас слушает участницу. Выберите связку",
+      "prompt": "Выберите форму have после each person",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i06:r1",
-          "text": "is"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-10:session-39:i06:r2",
-          "text": "are"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-10:session-39:i06:r3",
-          "text": "am"
+          "text": "having"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Один ведущий сейчас слушает участницу. Выберите связку",
+      "accessibilityLabel": "Выберите форму have после each person",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Один ведущий сейчас слушает участницу. Выберите связку",
-          "uk": "Один ведучий зараз слухає учасницю. Виберіть зв’язку"
+          "ru": "Выберите форму have после each person",
+          "uk": "Виберіть форму have після each person"
         },
-        "gappedTargetPhrase": "The facilitator ___ listening.",
+        "gappedTargetPhrase": "Each person ___ a cup.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-39:i06:r1",
-            "text": "is"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-39:i06:r2",
-            "text": "are"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-39:i06:r3",
-            "text": "am"
+            "text": "having"
           }
         ],
-        "testedDimension": "Один ведущий сейчас слушает участницу. Выберите связку",
+        "testedDimension": "Выберите форму have после each person",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-39:i06:r2",
             "correct": false,
-            "testedDimension": "Один ведущий сейчас слушает участницу. Выберите связку",
+            "testedDimension": "Выберите форму have после each person",
             "feedbackByLocale": {
-              "ru": "С одним ведущим нужна is.",
-              "uk": "З одним ведучим потрібна is."
+              "ru": "Each person: единственное число, нужна has.",
+              "uk": "Each person: однина, потрібна has."
             }
           },
           {
             "responseId": "en:lesson-10:session-39:i06:r3",
             "correct": false,
-            "testedDimension": "Один ведущий сейчас слушает участницу. Выберите связку",
+            "testedDimension": "Выберите форму have после each person",
             "feedbackByLocale": {
-              "ru": "Am используется с I; здесь нужна is.",
-              "uk": "Am уживається з I; тут потрібна is."
+              "ru": "Здесь говорим о наличии чашки: has.",
+              "uk": "Тут говоримо про наявність чашки: has."
             }
           }
         ]
@@ -448,32 +447,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-39:word:breakout",
+      "interactionId": "en:lesson-10:session-39:word:other",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — breakout",
+      "prompt": "Карточка слова — other",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-39:word:breakout:audio"
+        "en:lesson-10:session-39:word:other:audio"
       ],
-      "accessibilityLabel": "Карточка слова — breakout",
+      "accessibilityLabel": "Карточка слова — other",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-39:word:breakout:audio",
-          "transcript": "breakout"
+          "audioTargetId": "en:lesson-10:session-39:word:other:audio",
+          "transcript": "other"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-39:word:breakout:r1",
-            "targetText": "breakout",
+            "responseId": "en:lesson-10:session-39:word:other:r1",
+            "targetText": "other",
             "meaningByLocale": {
-              "ru": "«работа в отдельной малой группе». We are in a breakout group. — «Мы в отдельной малой группе». На тренинге участников временно делят на группы для обсуждения; здесь breakout употребляется перед group.",
-              "uk": "«робота в окремій малій групі». We are in a breakout group. — «Ми в окремій малій групі». На тренінгу учасників тимчасово ділять на групи для обговорення; тут breakout уживається перед group."
+              "ru": "«другой». the other chair — «другой стул», второй из двух.",
+              "uk": "«інший». the other chair — «інший стілець», другий із двох."
             }
           }
         ],
@@ -481,10 +480,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "breakout",
+          "word": "other",
           "definitionByLocale": {
-            "ru": "«работа в отдельной малой группе». We are in a breakout group. — «Мы в отдельной малой группе». На тренинге участников временно делят на группы для обсуждения; здесь breakout употребляется перед group.",
-            "uk": "«робота в окремій малій групі». We are in a breakout group. — «Ми в окремій малій групі». На тренінгу учасників тимчасово ділять на групи для обговорення; тут breakout уживається перед group."
+            "ru": "«другой». the other chair — «другой стул», второй из двух.",
+            "uk": "«інший». the other chair — «інший стілець», другий із двох."
           }
         }
       },
@@ -496,25 +495,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»",
+      "prompt": "Из двух стульев вам больше нравится тот, что дальше от двери. Скажите: «Я предпочитаю другой стул»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»",
+      "accessibilityLabel": "Из двух стульев вам больше нравится тот, что дальше от двери. Скажите: «Я предпочитаю другой стул»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are in a breakout group.",
+        "targetPhrase": "I prefer the other chair.",
         "localizedMeaning": {
-          "ru": "Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»",
-          "uk": "Учасників поділили для короткого обговорення. Скажіть колезі: «Ми в окремій малій групі»"
+          "ru": "Из двух стульев вам больше нравится тот, что дальше от двери. Скажите: «Я предпочитаю другой стул»",
+          "uk": "Із двох стільців вам більше подобається той, що далі від дверей. Скажіть: «Я віддаю перевагу іншому стільцю»"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "in",
-          "a",
-          "breakout",
-          "group"
+          "I",
+          "prefer",
+          "the",
+          "other",
+          "chair"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -535,15 +533,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i08:r1",
-          "text": "Our breakout group has four people."
+          "text": "The other chair is free."
         },
         {
           "responseId": "en:lesson-10:session-39:i08:r2",
-          "text": "Our breakout group has five people."
+          "text": "The other table is free."
         },
         {
           "responseId": "en:lesson-10:session-39:i08:r3",
-          "text": "Your breakout group has four people."
+          "text": "The other chair is wet."
         }
       ],
       "mediaIds": [],
@@ -555,23 +553,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-39:i08:audio",
-          "transcript": "Our breakout group has four people."
+          "transcript": "The other chair is free."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-39:i08:r1",
-            "targetText": "Our breakout group has four people.",
+            "targetText": "The other chair is free.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i08:r2",
-            "targetText": "Our breakout group has five people.",
+            "targetText": "The other table is free.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i08:r3",
-            "targetText": "Your breakout group has four people.",
+            "targetText": "The other chair is wet.",
             "meaningByLocale": null
           }
         ],
@@ -582,8 +580,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our breakout group has four people.",
-              "uk": "У записі звучить Our breakout group has four people."
+              "ru": "В записи звучит The other chair is free.",
+              "uk": "У записі звучить The other chair is free."
             }
           },
           {
@@ -591,8 +589,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our breakout group has four people.",
-              "uk": "У записі звучить Our breakout group has four people."
+              "ru": "В записи звучит The other chair is free.",
+              "uk": "У записі звучить The other chair is free."
             }
           }
         ],
@@ -607,15 +605,15 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+      "prompt": "Выберите связку: один другой стул",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i09:r1",
-          "text": "are"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-39:i09:r2",
-          "text": "is"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-39:i09:r3",
@@ -624,46 +622,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+      "accessibilityLabel": "Выберите связку: один другой стул",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы вместе с коллегами в малой группе. Выберите связку с we",
-          "uk": "Ви разом із колегами в малій групі. Виберіть зв’язку з we"
+          "ru": "Выберите связку: один другой стул",
+          "uk": "Виберіть зв’язку: один інший стілець"
         },
-        "gappedTargetPhrase": "We ___ in a breakout group.",
+        "gappedTargetPhrase": "The other chair ___ free.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-39:i09:r1",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-39:i09:r2",
-            "text": "is"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-39:i09:r3",
             "text": "am"
           }
         ],
-        "testedDimension": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+        "testedDimension": "Выберите связку: один другой стул",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-39:i09:r2",
             "correct": false,
-            "testedDimension": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+            "testedDimension": "Выберите связку: один другой стул",
             "feedbackByLocale": {
-              "ru": "С we нужна are.",
-              "uk": "З we потрібна are."
+              "ru": "Один стул: is.",
+              "uk": "Один стілець: is."
             }
           },
           {
             "responseId": "en:lesson-10:session-39:i09:r3",
             "correct": false,
-            "testedDimension": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+            "testedDimension": "Выберите связку: один другой стул",
             "feedbackByLocale": {
-              "ru": "Am используется с I; с we нужна are.",
-              "uk": "Am уживається з I; з we потрібна are."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -671,32 +669,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-39:word:debrief",
+      "interactionId": "en:lesson-10:session-39:word:anyone",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — debrief",
+      "prompt": "Карточка слова — anyone",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-39:word:debrief:audio"
+        "en:lesson-10:session-39:word:anyone:audio"
       ],
-      "accessibilityLabel": "Карточка слова — debrief",
+      "accessibilityLabel": "Карточка слова — anyone",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-39:word:debrief:audio",
-          "transcript": "debrief"
+          "audioTargetId": "en:lesson-10:session-39:word:anyone:audio",
+          "transcript": "anyone"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-39:word:debrief:r1",
-            "targetText": "debrief",
+            "responseId": "en:lesson-10:session-39:word:anyone:r1",
+            "targetText": "anyone",
             "meaningByLocale": {
-              "ru": "«разбор итогов». We are having a debrief. — «Мы проводим разбор итогов». Обсуждение выполненного задания и того, чему удалось научиться.",
-              "uk": "«розбір підсумків». We are having a debrief. — «Ми проводимо розбір підсумків». Обговорення виконаного завдання й того, чого вдалося навчитися."
+              "ru": "«кто-нибудь» в вопросе. Is anyone sitting here? — «Здесь кто-нибудь сидит?»",
+              "uk": "«хто-небудь» у запитанні. Is anyone sitting here? — «Тут хто-небудь сидить?»"
             }
           }
         ],
@@ -704,10 +702,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "debrief",
+          "word": "anyone",
           "definitionByLocale": {
-            "ru": "«разбор итогов». We are having a debrief. — «Мы проводим разбор итогов». Обсуждение выполненного задания и того, чему удалось научиться.",
-            "uk": "«розбір підсумків». We are having a debrief. — «Ми проводимо розбір підсумків». Обговорення виконаного завдання й того, чого вдалося навчитися."
+            "ru": "«кто-нибудь» в вопросе. Is anyone sitting here? — «Здесь кто-нибудь сидит?»",
+            "uk": "«хто-небудь» у запитанні. Is anyone sitting here? — «Тут хто-небудь сидить?»"
           }
         }
       },
@@ -719,24 +717,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»",
+      "prompt": "Перед тем как сесть, спросите посетителя рядом: «Здесь кто-нибудь сидит?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»",
+      "accessibilityLabel": "Перед тем как сесть, спросите посетителя рядом: «Здесь кто-нибудь сидит?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are having a debrief.",
+        "targetPhrase": "Is anyone sitting here?",
         "localizedMeaning": {
-          "ru": "Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»",
-          "uk": "Ви завершили вправу й зараз обговорюєте, як усе пройшло. Скажіть: «Ми проводимо розбір підсумків»"
+          "ru": "Перед тем как сесть, спросите посетителя рядом: «Здесь кто-нибудь сидит?»",
+          "uk": "Перш ніж сісти, запитайте відвідувача поруч: «Тут хто-небудь сидить?»"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "having",
-          "a",
-          "debrief"
+          "Is",
+          "anyone",
+          "sitting",
+          "here"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,15 +754,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i11:r1",
-          "text": "The debrief is after lunch."
+          "text": "Is anyone waiting outside?"
         },
         {
           "responseId": "en:lesson-10:session-39:i11:r2",
-          "text": "The debrief is before lunch."
+          "text": "Is anyone waiting inside?"
         },
         {
           "responseId": "en:lesson-10:session-39:i11:r3",
-          "text": "The session is after lunch."
+          "text": "Is anyone eating outside?"
         }
       ],
       "mediaIds": [],
@@ -777,23 +774,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-39:i11:audio",
-          "transcript": "The debrief is after lunch."
+          "transcript": "Is anyone waiting outside?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-39:i11:r1",
-            "targetText": "The debrief is after lunch.",
+            "targetText": "Is anyone waiting outside?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i11:r2",
-            "targetText": "The debrief is before lunch.",
+            "targetText": "Is anyone waiting inside?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-39:i11:r3",
-            "targetText": "The session is after lunch.",
+            "targetText": "Is anyone eating outside?",
             "meaningByLocale": null
           }
         ],
@@ -804,8 +801,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The debrief is after lunch.",
-              "uk": "У записі звучить The debrief is after lunch."
+              "ru": "В записи звучит Is anyone waiting outside?",
+              "uk": "У записі звучить Is anyone waiting outside?"
             }
           },
           {
@@ -813,8 +810,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The debrief is after lunch.",
-              "uk": "У записі звучить The debrief is after lunch."
+              "ru": "В записи звучит Is anyone waiting outside?",
+              "uk": "У записі звучить Is anyone waiting outside?"
             }
           }
         ],
@@ -829,63 +826,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+      "prompt": "Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i12:r1",
-          "text": "having"
+          "text": "Is"
         },
         {
           "responseId": "en:lesson-10:session-39:i12:r2",
-          "text": "have"
+          "text": "Are"
         },
         {
           "responseId": "en:lesson-10:session-39:i12:r3",
-          "text": "has"
+          "text": "Am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+      "accessibilityLabel": "Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
-          "uk": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having"
+          "ru": "Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас",
+          "uk": "Виберіть допоміжне дієслово перед anyone у запитанні про дію зараз"
         },
-        "gappedTargetPhrase": "We are ___ a debrief.",
+        "gappedTargetPhrase": "___ anyone sitting here?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-39:i12:r1",
-            "text": "having"
+            "text": "Is"
           },
           {
             "responseId": "en:lesson-10:session-39:i12:r2",
-            "text": "have"
+            "text": "Are"
           },
           {
             "responseId": "en:lesson-10:session-39:i12:r3",
-            "text": "has"
+            "text": "Am"
           }
         ],
-        "testedDimension": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+        "testedDimension": "Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-39:i12:r2",
             "correct": false,
-            "testedDimension": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+            "testedDimension": "Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас",
             "feedbackByLocale": {
-              "ru": "После are для текущего обсуждения нужна having.",
-              "uk": "Після are для поточного обговорення потрібна having."
+              "ru": "С anyone нужна is.",
+              "uk": "З anyone потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-39:i12:r3",
             "correct": false,
-            "testedDimension": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+            "testedDimension": "Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас",
             "feedbackByLocale": {
-              "ru": "После are нужна having, не has.",
-              "uk": "Після are потрібна having, не has."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -898,58 +895,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-39:i13:p1",
-            "target": "session",
+            "target": "both",
             "meaningByLocale": {
-              "ru": "занятие",
-              "uk": "заняття"
+              "ru": "оба",
+              "uk": "обидва"
             }
           },
           {
             "pairId": "en:lesson-10:session-39:i13:p2",
-            "target": "facilitator",
+            "target": "each",
             "meaningByLocale": {
-              "ru": "ведущий групповой работы",
-              "uk": "ведучий групової роботи"
+              "ru": "каждый",
+              "uk": "кожний"
             }
           },
           {
             "pairId": "en:lesson-10:session-39:i13:p3",
-            "target": "breakout",
+            "target": "other",
             "meaningByLocale": {
-              "ru": "работа в отдельной малой группе",
-              "uk": "робота в окремій малій групі"
+              "ru": "другой",
+              "uk": "інший"
             }
           },
           {
             "pairId": "en:lesson-10:session-39:i13:p4",
-            "target": "debrief",
+            "target": "anyone",
             "meaningByLocale": {
-              "ru": "разбор итогов",
-              "uk": "розбір підсумків"
+              "ru": "кто-нибудь",
+              "uk": "хто-небудь"
             }
           }
         ],
         "leftColumn": [
-          "session",
-          "facilitator",
-          "breakout",
-          "debrief"
+          "both",
+          "each",
+          "other",
+          "anyone"
         ],
         "rightColumn": [
-          "занятие",
-          "ведущий групповой работы",
-          "работа в отдельной малой группе",
-          "разбор итогов"
+          "оба",
+          "каждый",
+          "другой",
+          "кто-нибудь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -971,26 +968,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-39:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-39:i14:audio",
-          "transcript": "The facilitator is listening."
+          "transcript": "Each person has a cup."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The facilitator is listening.",
+        "hiddenTargetPhrase": "Each person has a cup.",
         "orderedTokens": [
-          "The",
-          "facilitator",
-          "is",
-          "listening"
+          "Each",
+          "person",
+          "has",
+          "a",
+          "cup"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1004,24 +1002,60 @@
     {
       "interactionId": "en:lesson-10:session-39:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Коллега спрашивает, как часто команда занимается. Скажите: «У нас занятие каждую пятницу»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-39:i15:audio"
       ],
-      "accessibilityLabel": "Коллега спрашивает, как часто команда занимается. Скажите: «У нас занятие каждую пятницу»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-39:i15:audio",
+          "transcript": "Is anyone sitting here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is anyone sitting here?",
+        "orderedTokens": [
+          "Is",
+          "anyone",
+          "sitting",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг ищет два места. Покажите на свободные стулья и скажите: «Оба стула свободны»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Друг ищет два места. Покажите на свободные стулья и скажите: «Оба стула свободны»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-39:i15:audio",
-          "transcript": "We have a session every Friday."
+          "audioTargetId": "en:lesson-10:session-39:i16:audio",
+          "transcript": "Both chairs are free."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We have a session every Friday.",
+        "targetPhrase": "Both chairs are free.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1035,70 +1069,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-39:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The facilitator is listening.",
-        "localizedMeaning": {
-          "ru": "Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»",
-          "uk": "Ведучий мовчить і уважно слухає учасника. Скажіть: «Ведучий групової роботи слухає»"
-        },
-        "orderedTokens": [
-          "The",
-          "facilitator",
-          "is",
-          "listening"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-39:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Упражнение закончено. Вы обсуждаете с командой, что получилось. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Мы проводим разбор итогов»",
+      "prompt": "Вы хотите присесть. Спросите посетителя рядом: «Здесь кто-нибудь сидит?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-39:i17:audio"
       ],
-      "accessibilityLabel": "Упражнение закончено. Вы обсуждаете с командой, что получилось. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Мы проводим разбор итогов»",
+      "accessibilityLabel": "Вы хотите присесть. Спросите посетителя рядом: «Здесь кто-нибудь сидит?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-39:i17:audio",
-          "transcript": "We are having a debrief."
+          "transcript": "Is anyone sitting here?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are having a debrief.",
+        "targetPhrase": "Is anyone sitting here?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1115,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "51897a2e4773876b49d733ccb5ab8958252984bf087c7bdcfa8a911e4ddc331d"
+  "learnerFingerprint": "bbf9d58437ee6720b248bd2d1cfac57e5bca8ab9318358e5a083b125e48dcff9"
 }

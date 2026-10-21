@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-40",
   "learningOutcomeByLocale": {
-    "ru": "We have a reunion every year; The alumni are arriving; We are celebrating the centenary",
-    "uk": "We have a reunion every year; The alumni are arriving; We are celebrating the centenary"
+    "ru": "I often fry eggs; I am heating the soup; This soup smells good",
+    "uk": "I often fry eggs; I am heating the soup; This soup smells good"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Встречаемся снова",
-        "uk": "Зустрічаємося знову"
+        "ru": "Завтрак по утрам",
+        "uk": "Сніданок уранці"
       },
       "bodyByLocale": {
-        "ru": "Reunion — «встреча после разлуки», например встреча бывших однокурсников. Вы собираетесь каждый год: We have a reunion every year — «У нас встреча выпускников каждый год». Это привычка: используем Present Simple.",
-        "uk": "Reunion — «зустріч після розлуки», наприклад зустріч колишніх однокурсників. Ви збираєтеся щороку: We have a reunion every year — «У нас зустріч випускників щороку». Це звичка: використовуємо Present Simple."
+        "ru": "Друг спрашивает, что вы обычно готовите на завтрак. Fry — «жарить»: I often fry eggs — «Я часто жарю яйца». Often означает повторяющееся действие, поэтому fry без am. Сейчас вы можете вовсе не стоять у плиты.",
+        "uk": "Друг запитує, що ви зазвичай готуєте на сніданок. Fry — «смажити»: I often fry eggs — «Я часто смажу яйця». Often означає повторювану дію, тому fry без am. Зараз ви можете взагалі не стояти біля плити."
       },
       "question": {
         "interactionId": "en:lesson-10:session-40:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-40:intro1:r1",
-              "text": "We have a reunion every year."
+              "text": "I often fry eggs."
             },
             {
               "responseId": "en:lesson-10:session-40:intro1:r2",
-              "text": "We has a reunion every year."
+              "text": "I often fries eggs."
             },
             {
               "responseId": "en:lesson-10:session-40:intro1:r3",
-              "text": "We having a reunion every year."
+              "text": "I often frying eggs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-40:intro1:r1",
-              "text": "We have a reunion every year."
+              "text": "I often fry eggs."
             },
             {
               "responseId": "en:lesson-10:session-40:intro1:r2",
-              "text": "We has a reunion every year."
+              "text": "I often fries eggs."
             },
             {
               "responseId": "en:lesson-10:session-40:intro1:r3",
-              "text": "We having a reunion every year."
+              "text": "I often frying eggs."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Гости прибывают",
-        "uk": "Гості прибувають"
+        "ru": "Разогреваю обед",
+        "uk": "Розігріваю обід"
       },
       "bodyByLocale": {
-        "ru": "Alumni — «выпускники учебного заведения». Слово во множественном числе; здесь смешанная группа выпускников университета. Они сейчас прибывают: The alumni are arriving — «Выпускники прибывают». Используем are + arriving. У arrive перед ing убираем e.",
-        "uk": "Alumni — «випускники навчального закладу». Слово в множині; тут змішана група випускників університету. Вони зараз прибувають: The alumni are arriving — «Випускники прибувають». Використовуємо are + arriving. У arrive перед ing прибираємо e."
+        "ru": "Суп приготовлен, но успел остыть. Вы поставили кастрюлю на плиту. Heat — «нагревать, разогревать»: I am heating the soup — «Я разогреваю суп». Действие идёт прямо сейчас: am + heating. У heat окончание ing добавляется без изменения основы.",
+        "uk": "Суп готовий, але встиг охолонути. Ви поставили каструлю на плиту. Heat — «нагрівати, розігрівати»: I am heating the soup — «Я розігріваю суп». Дія триває саме зараз: am + heating. До heat закінчення ing додається без зміни основи."
       },
       "question": {
         "interactionId": "en:lesson-10:session-40:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-40:intro2:r1",
-              "text": "The alumni are arriving."
+              "text": "I am heating the soup."
             },
             {
               "responseId": "en:lesson-10:session-40:intro2:r2",
-              "text": "The alumni is arriving."
+              "text": "I heating the soup."
             },
             {
               "responseId": "en:lesson-10:session-40:intro2:r3",
-              "text": "The alumni are arriveing."
+              "text": "I am heat the soup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-40:intro2:r1",
-              "text": "The alumni are arriving."
+              "text": "I am heating the soup."
             },
             {
               "responseId": "en:lesson-10:session-40:intro2:r2",
-              "text": "The alumni is arriving."
+              "text": "I heating the soup."
             },
             {
               "responseId": "en:lesson-10:session-40:intro2:r3",
-              "text": "The alumni are arriveing."
+              "text": "I am heat the soup."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сто лет университету",
-        "uk": "Сто років університету"
+        "ru": "За столом",
+        "uk": "За столом"
       },
       "bodyByLocale": {
-        "ru": "Centenary — «столетие», сотая годовщина события; это британское слово. Университету сегодня сто лет, и вы на празднике: We are celebrating the centenary — «Мы празднуем столетие». Это действие в текущей ситуации: are + celebrating.",
-        "uk": "Centenary — «століття», сота річниця події; це британське слово. Університету сьогодні сто років, і ви на святі: We are celebrating the centenary — «Ми святкуємо століття». Це дія в поточній ситуації: are + celebrating."
+        "ru": "Сестра спрашивает, почему вы не отвечаете. Chew — «жевать»: I am chewing — «Я жую». Это действие сейчас. Суп на столе приятно пахнет. Smell — «пахнуть»: This soup smells good — «Этот суп хорошо пахнет». Здесь smell описывает свойство супа, поэтому smells, не is smelling. После единственного числа soup добавляем s.",
+        "uk": "Сестра запитує, чому ви не відповідаєте. Chew — «жувати»: I am chewing — «Я жую». Це дія зараз. Суп на столі приємно пахне. Smell — «пахнути»: This soup smells good — «Цей суп добре пахне». Тут smell описує властивість супу, тому smells, не is smelling. Після однини soup додаємо s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-40:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-40:intro3:r1",
-              "text": "We are celebrating the centenary."
+              "text": "This soup smells good."
             },
             {
               "responseId": "en:lesson-10:session-40:intro3:r2",
-              "text": "We is celebrating the centenary."
+              "text": "This soup smell good."
             },
             {
               "responseId": "en:lesson-10:session-40:intro3:r3",
-              "text": "We are celebrate the centenary."
+              "text": "This soup is smell good."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-40:intro3:r1",
-              "text": "We are celebrating the centenary."
+              "text": "This soup smells good."
             },
             {
               "responseId": "en:lesson-10:session-40:intro3:r2",
-              "text": "We is celebrating the centenary."
+              "text": "This soup smell good."
             },
             {
               "responseId": "en:lesson-10:session-40:intro3:r3",
-              "text": "We are celebrate the centenary."
+              "text": "This soup is smell good."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "afe3dbf46d2da49494b72a605de8ebd51f863804e98ab1c8b8f3a256a16d18bc"
+  "introFingerprint": "6f3e58b1d96b3c90e56c715157eb308419c04aa2dd1581df48c35b101b38133e"
 }

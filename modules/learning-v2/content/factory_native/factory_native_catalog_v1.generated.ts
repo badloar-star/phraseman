@@ -3803,16 +3803,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 39,
-    sourceFingerprint: "6a31d5b57fdcea72fad0fca09386265301d8d722c9a489bc80f35bef5d85d86d",
+    sourceFingerprint: "bc063a05ae65d3fd520951c3f46554573a11245207f43984a8127584048953a8",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We have a session every Friday; The facilitator is listening; We are having a debrief","uk":"We have a session every Friday; The facilitator is listening; We are having a debrief"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Both chairs are free; Each person has a cup; Is anyone sitting here","uk":"Both chairs are free; Each person has a cup; Is anyone sitting here"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 40,
-    sourceFingerprint: "064ff9b7b65ff9020c8312d0db0ac39c21a9adc43a2a0436762670403154a57e",
+    sourceFingerprint: "57729b868bfc415f38e1b9f882065f54afc19c63141f25a97a0ae0586740fbd8",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We have a reunion every year; The alumni are arriving; We are celebrating the centenary","uk":"We have a reunion every year; The alumni are arriving; We are celebrating the centenary"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I often fry eggs; I am heating the soup; This soup smells good","uk":"I often fry eggs; I am heating the soup; This soup smells good"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

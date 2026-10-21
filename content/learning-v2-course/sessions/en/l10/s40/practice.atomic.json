@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-40:word:reunion",
+        "interactionId": "en:lesson-10:session-40:word:fry",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — reunion",
+        "prompt": "Карточка слова — fry",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:reunion:audio"
+          "en:lesson-10:session-40:word:fry:audio"
         ],
-        "accessibilityLabel": "Карточка слова — reunion",
+        "accessibilityLabel": "Карточка слова — fry",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:reunion:audio",
-            "transcript": "reunion"
+            "audioTargetId": "en:lesson-10:session-40:word:fry:audio",
+            "transcript": "fry"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:reunion:r1",
-              "targetText": "reunion",
+              "responseId": "en:lesson-10:session-40:word:fry:r1",
+              "targetText": "fry",
               "meaningByLocale": {
-                "ru": "«встреча после разлуки». We have a reunion every year. — «У нас встреча выпускников каждый год». Здесь встреча бывших однокурсников.",
-                "uk": "«зустріч після розлуки». We have a reunion every year. — «У нас зустріч випускників щороку». Тут зустріч колишніх однокурсників."
+                "ru": "«жарить». I often fry eggs. — «Я часто жарю яйца».",
+                "uk": "«смажити». I often fry eggs. — «Я часто смажу яйця»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "reunion",
+            "word": "fry",
             "definitionByLocale": {
-              "ru": "«встреча после разлуки». We have a reunion every year. — «У нас встреча выпускников каждый год». Здесь встреча бывших однокурсников.",
-              "uk": "«зустріч після розлуки». We have a reunion every year. — «У нас зустріч випускників щороку». Тут зустріч колишніх однокурсників."
+              "ru": "«жарить». I often fry eggs. — «Я часто жарю яйца».",
+              "uk": "«смажити». I often fry eggs. — «Я часто смажу яйця»."
             }
           }
         },
@@ -52,25 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Бывшие однокурсники собираются ежегодно. Скажите: «У нас встреча выпускников каждый год». Поставьте every year в конце",
+        "prompt": "Расскажите о завтраках: «Я часто жарю яйца». Поставьте often перед fry",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Бывшие однокурсники собираются ежегодно. Скажите: «У нас встреча выпускников каждый год». Поставьте every year в конце",
+        "accessibilityLabel": "Расскажите о завтраках: «Я часто жарю яйца». Поставьте often перед fry",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We have a reunion every year.",
+          "targetPhrase": "I often fry eggs.",
           "localizedMeaning": {
-            "ru": "Бывшие однокурсники собираются ежегодно. Скажите: «У нас встреча выпускников каждый год». Поставьте every year в конце",
-            "uk": "Колишні однокурсники збираються щороку. Скажіть: «У нас зустріч випускників щороку». Поставте every year у кінці"
+            "ru": "Расскажите о завтраках: «Я часто жарю яйца». Поставьте often перед fry",
+            "uk": "Розкажіть про сніданки: «Я часто смажу яйця». Поставте often перед fry"
           },
           "orderedTokens": [
-            "We",
-            "have",
-            "a",
-            "reunion",
-            "every",
-            "year"
+            "I",
+            "often",
+            "fry",
+            "eggs"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -91,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i02:r1",
-            "text": "The reunion is in the hall."
+            "text": "We often fry potatoes."
           },
           {
             "responseId": "en:lesson-10:session-40:i02:r2",
-            "text": "The reunion is in the garden."
+            "text": "We often fry eggs."
           },
           {
             "responseId": "en:lesson-10:session-40:i02:r3",
-            "text": "The ceremony is in the hall."
+            "text": "They often fry potatoes."
           }
         ],
         "mediaIds": [],
@@ -111,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i02:audio",
-            "transcript": "The reunion is in the hall."
+            "transcript": "We often fry potatoes."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i02:r1",
-              "targetText": "The reunion is in the hall.",
+              "targetText": "We often fry potatoes.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i02:r2",
-              "targetText": "The reunion is in the garden.",
+              "targetText": "We often fry eggs.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i02:r3",
-              "targetText": "The ceremony is in the hall.",
+              "targetText": "They often fry potatoes.",
               "meaningByLocale": null
             }
           ],
@@ -138,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The reunion is in the hall.",
-                "uk": "У записі звучить The reunion is in the hall."
+                "ru": "В записи звучит We often fry potatoes.",
+                "uk": "У записі звучить We often fry potatoes."
               }
             },
             {
@@ -147,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The reunion is in the hall.",
-                "uk": "У записі звучить The reunion is in the hall."
+                "ru": "В записи звучит We often fry potatoes.",
+                "uk": "У записі звучить We often fry potatoes."
               }
             }
           ],
@@ -163,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Это ежегодная встреча. Выберите форму have",
+        "prompt": "Выберите форму fry для привычки после I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i03:r1",
-            "text": "have"
+            "text": "fry"
           },
           {
             "responseId": "en:lesson-10:session-40:i03:r2",
-            "text": "has"
+            "text": "fries"
           },
           {
             "responseId": "en:lesson-10:session-40:i03:r3",
-            "text": "having"
+            "text": "frying"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Это ежегодная встреча. Выберите форму have",
+        "accessibilityLabel": "Выберите форму fry для привычки после I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это ежегодная встреча. Выберите форму have",
-            "uk": "Це щорічна зустріч. Виберіть форму have"
+            "ru": "Выберите форму fry для привычки после I",
+            "uk": "Виберіть форму fry для звички після I"
           },
-          "gappedTargetPhrase": "We ___ a reunion every year.",
+          "gappedTargetPhrase": "I often ___ eggs.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i03:r1",
-              "text": "have"
+              "text": "fry"
             },
             {
               "responseId": "en:lesson-10:session-40:i03:r2",
-              "text": "has"
+              "text": "fries"
             },
             {
               "responseId": "en:lesson-10:session-40:i03:r3",
-              "text": "having"
+              "text": "frying"
             }
           ],
-          "testedDimension": "Это ежегодная встреча. Выберите форму have",
+          "testedDimension": "Выберите форму fry для привычки после I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i03:r2",
               "correct": false,
-              "testedDimension": "Это ежегодная встреча. Выберите форму have",
+              "testedDimension": "Выберите форму fry для привычки после I",
               "feedbackByLocale": {
-                "ru": "С we нужна have.",
-                "uk": "З we потрібна have."
+                "ru": "После I нужна fry без s.",
+                "uk": "Після I потрібна fry без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i03:r3",
               "correct": false,
-              "testedDimension": "Это ежегодная встреча. Выберите форму have",
+              "testedDimension": "Выберите форму fry для привычки после I",
               "feedbackByLocale": {
-                "ru": "Для привычки здесь нужна have.",
-                "uk": "Для звички тут потрібна have."
+                "ru": "Для привычки здесь нужна fry.",
+                "uk": "Для звички тут потрібна fry."
               }
             }
           ]
@@ -227,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:word:alumni",
+        "interactionId": "en:lesson-10:session-40:word:heat",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — alumni",
+        "prompt": "Карточка слова — heat",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:alumni:audio"
+          "en:lesson-10:session-40:word:heat:audio"
         ],
-        "accessibilityLabel": "Карточка слова — alumni",
+        "accessibilityLabel": "Карточка слова — heat",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:alumni:audio",
-            "transcript": "alumni"
+            "audioTargetId": "en:lesson-10:session-40:word:heat:audio",
+            "transcript": "heat"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:alumni:r1",
-              "targetText": "alumni",
+              "responseId": "en:lesson-10:session-40:word:heat:r1",
+              "targetText": "heat",
               "meaningByLocale": {
-                "ru": "«выпускники учебного заведения». The alumni are arriving. — «Выпускники прибывают». Множественное число; здесь смешанная группа выпускников университета.",
-                "uk": "«випускники навчального закладу». The alumni are arriving. — «Випускники прибувають». Множина; тут змішана група випускників університету."
+                "ru": "«нагревать, разогревать». I am heating the soup. — «Я разогреваю суп».",
+                "uk": "«нагрівати, розігрівати». I am heating the soup. — «Я розігріваю суп»."
               }
             }
           ],
@@ -260,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "alumni",
+            "word": "heat",
             "definitionByLocale": {
-              "ru": "«выпускники учебного заведения». The alumni are arriving. — «Выпускники прибывают». Множественное число; здесь смешанная группа выпускников университета.",
-              "uk": "«випускники навчального закладу». The alumni are arriving. — «Випускники прибувають». Множина; тут змішана група випускників університету."
+              "ru": "«нагревать, разогревать». I am heating the soup. — «Я разогреваю суп».",
+              "uk": "«нагрівати, розігрівати». I am heating the soup. — «Я розігріваю суп»."
             }
           }
         },
@@ -275,23 +273,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "К университету сейчас подходят бывшие студенты. Скажите: «Выпускники прибывают»",
+        "prompt": "Расскажите о привычке: «Я разогреваю суп каждый день». Поставьте every day в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "К университету сейчас подходят бывшие студенты. Скажите: «Выпускники прибывают»",
+        "accessibilityLabel": "Расскажите о привычке: «Я разогреваю суп каждый день». Поставьте every day в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The alumni are arriving.",
+          "targetPhrase": "I heat soup every day.",
           "localizedMeaning": {
-            "ru": "К университету сейчас подходят бывшие студенты. Скажите: «Выпускники прибывают»",
-            "uk": "До університету зараз підходять колишні студенти. Скажіть: «Випускники прибувають»"
+            "ru": "Расскажите о привычке: «Я разогреваю суп каждый день». Поставьте every day в конце",
+            "uk": "Розкажіть про звичку: «Я розігріваю суп щодня». Поставте every day наприкінці"
           },
           "orderedTokens": [
-            "The",
-            "alumni",
-            "are",
-            "arriving"
+            "I",
+            "heat",
+            "soup",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -312,15 +311,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i05:r1",
-            "text": "The alumni are talking in the hall."
+            "text": "She is heating the milk."
           },
           {
             "responseId": "en:lesson-10:session-40:i05:r2",
-            "text": "The alumni are waiting in the hall."
+            "text": "She is heating the soup."
           },
           {
             "responseId": "en:lesson-10:session-40:i05:r3",
-            "text": "The alumni are talking in the garden."
+            "text": "He is heating the milk."
           }
         ],
         "mediaIds": [],
@@ -332,23 +331,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i05:audio",
-            "transcript": "The alumni are talking in the hall."
+            "transcript": "She is heating the milk."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i05:r1",
-              "targetText": "The alumni are talking in the hall.",
+              "targetText": "She is heating the milk.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i05:r2",
-              "targetText": "The alumni are waiting in the hall.",
+              "targetText": "She is heating the soup.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i05:r3",
-              "targetText": "The alumni are talking in the garden.",
+              "targetText": "He is heating the milk.",
               "meaningByLocale": null
             }
           ],
@@ -359,8 +358,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The alumni are talking in the hall.",
-                "uk": "У записі звучить The alumni are talking in the hall."
+                "ru": "В записи звучит She is heating the milk.",
+                "uk": "У записі звучить She is heating the milk."
               }
             },
             {
@@ -368,8 +367,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The alumni are talking in the hall.",
-                "uk": "У записі звучить The alumni are talking in the hall."
+                "ru": "В записи звучит She is heating the milk.",
+                "uk": "У записі звучить She is heating the milk."
               }
             }
           ],
@@ -384,63 +383,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с alumni во множественном числе",
+        "prompt": "Суп на плите сейчас. Выберите форму heat",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i06:r1",
-            "text": "are"
+            "text": "heating"
           },
           {
             "responseId": "en:lesson-10:session-40:i06:r2",
-            "text": "is"
+            "text": "heat"
           },
           {
             "responseId": "en:lesson-10:session-40:i06:r3",
-            "text": "am"
+            "text": "heats"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с alumni во множественном числе",
+        "accessibilityLabel": "Суп на плите сейчас. Выберите форму heat",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с alumni во множественном числе",
-            "uk": "Виберіть зв’язку з alumni у множині"
+            "ru": "Суп на плите сейчас. Выберите форму heat",
+            "uk": "Суп на плиті зараз. Виберіть форму heat"
           },
-          "gappedTargetPhrase": "The alumni ___ arriving.",
+          "gappedTargetPhrase": "I am ___ the soup.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i06:r1",
-              "text": "are"
+              "text": "heating"
             },
             {
               "responseId": "en:lesson-10:session-40:i06:r2",
-              "text": "is"
+              "text": "heat"
             },
             {
               "responseId": "en:lesson-10:session-40:i06:r3",
-              "text": "am"
+              "text": "heats"
             }
           ],
-          "testedDimension": "Выберите связку с alumni во множественном числе",
+          "testedDimension": "Суп на плите сейчас. Выберите форму heat",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите связку с alumni во множественном числе",
+              "testedDimension": "Суп на плите сейчас. Выберите форму heat",
               "feedbackByLocale": {
-                "ru": "Alumni — множественное число, нужна are.",
-                "uk": "Alumni — множина, потрібна are."
+                "ru": "После am нужна heating.",
+                "uk": "Після am потрібна heating."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите связку с alumni во множественном числе",
+              "testedDimension": "Суп на плите сейчас. Выберите форму heat",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна are.",
-                "uk": "Am уживається з I; тут потрібна are."
+                "ru": "После am нужна heating, не heats.",
+                "uk": "Після am потрібна heating, не heats."
               }
             }
           ]
@@ -448,32 +447,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:word:memento",
+        "interactionId": "en:lesson-10:session-40:word:chew",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — memento",
+        "prompt": "Карточка слова — chew",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:memento:audio"
+          "en:lesson-10:session-40:word:chew:audio"
         ],
-        "accessibilityLabel": "Карточка слова — memento",
+        "accessibilityLabel": "Карточка слова — chew",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:memento:audio",
-            "transcript": "memento"
+            "audioTargetId": "en:lesson-10:session-40:word:chew:audio",
+            "transcript": "chew"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:memento:r1",
-              "targetText": "memento",
+              "responseId": "en:lesson-10:session-40:word:chew:r1",
+              "targetText": "chew",
               "meaningByLocale": {
-                "ru": "«предмет на память». This photo is a memento. — «Эта фотография — предмет на память». Она напоминает о встрече; значение близко к keepsake из занятия 10.35.",
-                "uk": "«предмет на згадку». This photo is a memento. — «Ця фотографія — предмет на згадку». Вона нагадує про зустріч; значення близьке до keepsake із заняття 10.35."
+                "ru": "«жевать». I am chewing. — «Я жую».",
+                "uk": "«жувати». I am chewing. — «Я жую»."
               }
             }
           ],
@@ -481,10 +480,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "memento",
+            "word": "chew",
             "definitionByLocale": {
-              "ru": "«предмет на память». This photo is a memento. — «Эта фотография — предмет на память». Она напоминает о встрече; значение близко к keepsake из занятия 10.35.",
-              "uk": "«предмет на згадку». This photo is a memento. — «Ця фотографія — предмет на згадку». Вона нагадує про зустріч; значення близьке до keepsake із заняття 10.35."
+              "ru": "«жевать». I am chewing. — «Я жую».",
+              "uk": "«жувати». I am chewing. — «Я жую»."
             }
           }
         },
@@ -496,24 +495,22 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы сохраните общую фотографию после встречи. Скажите: «Эта фотография — предмет на память»",
+        "prompt": "Вы не торопитесь за едой. Расскажите о привычке: «Я жую медленно». Поставьте slowly в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сохраните общую фотографию после встречи. Скажите: «Эта фотография — предмет на память»",
+        "accessibilityLabel": "Вы не торопитесь за едой. Расскажите о привычке: «Я жую медленно». Поставьте slowly в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This photo is a memento.",
+          "targetPhrase": "I chew slowly.",
           "localizedMeaning": {
-            "ru": "Вы сохраните общую фотографию после встречи. Скажите: «Эта фотография — предмет на память»",
-            "uk": "Ви збережете спільну фотографію після зустрічі. Скажіть: «Ця фотографія — предмет на згадку»"
+            "ru": "Вы не торопитесь за едой. Расскажите о привычке: «Я жую медленно». Поставьте slowly в конце",
+            "uk": "Ви не поспішаєте під час їжі. Розкажіть про звичку: «Я жую повільно». Поставте slowly наприкінці"
           },
           "orderedTokens": [
-            "This",
-            "photo",
-            "is",
-            "a",
-            "memento"
+            "I",
+            "chew",
+            "slowly"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,15 +531,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i08:r1",
-            "text": "I keep the badge as a memento."
+            "text": "He is chewing."
           },
           {
             "responseId": "en:lesson-10:session-40:i08:r2",
-            "text": "I keep the letter as a memento."
+            "text": "She is chewing."
           },
           {
             "responseId": "en:lesson-10:session-40:i08:r3",
-            "text": "We keep the badge as a memento."
+            "text": "He is cooking."
           }
         ],
         "mediaIds": [],
@@ -554,23 +551,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i08:audio",
-            "transcript": "I keep the badge as a memento."
+            "transcript": "He is chewing."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i08:r1",
-              "targetText": "I keep the badge as a memento.",
+              "targetText": "He is chewing.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i08:r2",
-              "targetText": "I keep the letter as a memento.",
+              "targetText": "She is chewing.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i08:r3",
-              "targetText": "We keep the badge as a memento.",
+              "targetText": "He is cooking.",
               "meaningByLocale": null
             }
           ],
@@ -581,8 +578,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep the badge as a memento.",
-                "uk": "У записі звучить I keep the badge as a memento."
+                "ru": "В записи звучит He is chewing.",
+                "uk": "У записі звучить He is chewing."
               }
             },
             {
@@ -590,8 +587,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep the badge as a memento.",
-                "uk": "У записі звучить I keep the badge as a memento."
+                "ru": "В записи звучит He is chewing.",
+                "uk": "У записі звучить He is chewing."
               }
             }
           ],
@@ -606,63 +603,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Речь об одной фотографии. Выберите связку",
+        "prompt": "Действие идёт сейчас. Выберите форму chew",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i09:r1",
-            "text": "is"
+            "text": "chewing"
           },
           {
             "responseId": "en:lesson-10:session-40:i09:r2",
-            "text": "are"
+            "text": "chew"
           },
           {
             "responseId": "en:lesson-10:session-40:i09:r3",
-            "text": "am"
+            "text": "chews"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Речь об одной фотографии. Выберите связку",
+        "accessibilityLabel": "Действие идёт сейчас. Выберите форму chew",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одной фотографии. Выберите связку",
-            "uk": "Ідеться про одну фотографію. Виберіть зв’язку"
+            "ru": "Действие идёт сейчас. Выберите форму chew",
+            "uk": "Дія триває зараз. Виберіть форму chew"
           },
-          "gappedTargetPhrase": "This photo ___ a memento.",
+          "gappedTargetPhrase": "I am ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i09:r1",
-              "text": "is"
+              "text": "chewing"
             },
             {
               "responseId": "en:lesson-10:session-40:i09:r2",
-              "text": "are"
+              "text": "chew"
             },
             {
               "responseId": "en:lesson-10:session-40:i09:r3",
-              "text": "am"
+              "text": "chews"
             }
           ],
-          "testedDimension": "Речь об одной фотографии. Выберите связку",
+          "testedDimension": "Действие идёт сейчас. Выберите форму chew",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i09:r2",
               "correct": false,
-              "testedDimension": "Речь об одной фотографии. Выберите связку",
+              "testedDimension": "Действие идёт сейчас. Выберите форму chew",
               "feedbackByLocale": {
-                "ru": "Одна фотография: is.",
-                "uk": "Одна фотографія: is."
+                "ru": "После am нужна chewing.",
+                "uk": "Після am потрібна chewing."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i09:r3",
               "correct": false,
-              "testedDimension": "Речь об одной фотографии. Выберите связку",
+              "testedDimension": "Действие идёт сейчас. Выберите форму chew",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "После am нужна chewing, не chews.",
+                "uk": "Після am потрібна chewing, не chews."
               }
             }
           ]
@@ -670,32 +667,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:word:centenary",
+        "interactionId": "en:lesson-10:session-40:word:smell",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — centenary",
+        "prompt": "Карточка слова — smell",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:centenary:audio"
+          "en:lesson-10:session-40:word:smell:audio"
         ],
-        "accessibilityLabel": "Карточка слова — centenary",
+        "accessibilityLabel": "Карточка слова — smell",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:centenary:audio",
-            "transcript": "centenary"
+            "audioTargetId": "en:lesson-10:session-40:word:smell:audio",
+            "transcript": "smell"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:centenary:r1",
-              "targetText": "centenary",
+              "responseId": "en:lesson-10:session-40:word:smell:r1",
+              "targetText": "smell",
               "meaningByLocale": {
-                "ru": "«столетие». We are celebrating the centenary. — «Мы празднуем столетие». Здесь сотая годовщина открытия университета; британское употребление.",
-                "uk": "«століття». We are celebrating the centenary. — «Ми святкуємо століття». Тут сота річниця відкриття університету; британське вживання."
+                "ru": "«пахнуть». This soup smells good. — «Этот суп хорошо пахнет».",
+                "uk": "«пахнути». This soup smells good. — «Цей суп добре пахне»."
               }
             }
           ],
@@ -703,10 +700,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "centenary",
+            "word": "smell",
             "definitionByLocale": {
-              "ru": "«столетие». We are celebrating the centenary. — «Мы празднуем столетие». Здесь сотая годовщина открытия университета; британское употребление.",
-              "uk": "«століття». We are celebrating the centenary. — «Ми святкуємо століття». Тут сота річниця відкриття університету; британське вживання."
+              "ru": "«пахнуть». This soup smells good. — «Этот суп хорошо пахнет».",
+              "uk": "«пахнути». This soup smells good. — «Цей суп добре пахне»."
             }
           }
         },
@@ -718,24 +715,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сегодня университету сто лет. Вы на празднике. Скажите: «Мы празднуем столетие»",
+        "prompt": "Вам нравится запах яблок на столе. Скажите: «Эти яблоки хорошо пахнут»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сегодня университету сто лет. Вы на празднике. Скажите: «Мы празднуем столетие»",
+        "accessibilityLabel": "Вам нравится запах яблок на столе. Скажите: «Эти яблоки хорошо пахнут»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are celebrating the centenary.",
+          "targetPhrase": "These apples smell good.",
           "localizedMeaning": {
-            "ru": "Сегодня университету сто лет. Вы на празднике. Скажите: «Мы празднуем столетие»",
-            "uk": "Сьогодні університету сто років. Ви на святі. Скажіть: «Ми святкуємо століття»"
+            "ru": "Вам нравится запах яблок на столе. Скажите: «Эти яблоки хорошо пахнут»",
+            "uk": "Вам подобається запах яблук на столі. Скажіть: «Ці яблука добре пахнуть»"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "celebrating",
-            "the",
-            "centenary"
+            "These",
+            "apples",
+            "smell",
+            "good"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -756,15 +752,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i11:r1",
-            "text": "The centenary is in May."
+            "text": "The bread smells good."
           },
           {
             "responseId": "en:lesson-10:session-40:i11:r2",
-            "text": "The centenary is in June."
+            "text": "The soup smells good."
           },
           {
             "responseId": "en:lesson-10:session-40:i11:r3",
-            "text": "The reunion is in May."
+            "text": "The bread smells bad."
           }
         ],
         "mediaIds": [],
@@ -776,23 +772,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i11:audio",
-            "transcript": "The centenary is in May."
+            "transcript": "The bread smells good."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i11:r1",
-              "targetText": "The centenary is in May.",
+              "targetText": "The bread smells good.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i11:r2",
-              "targetText": "The centenary is in June.",
+              "targetText": "The soup smells good.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i11:r3",
-              "targetText": "The reunion is in May.",
+              "targetText": "The bread smells bad.",
               "meaningByLocale": null
             }
           ],
@@ -803,8 +799,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The centenary is in May.",
-                "uk": "У записі звучить The centenary is in May."
+                "ru": "В записи звучит The bread smells good.",
+                "uk": "У записі звучить The bread smells good."
               }
             },
             {
@@ -812,8 +808,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The centenary is in May.",
-                "uk": "У записі звучить The centenary is in May."
+                "ru": "В записи звучит The bread smells good.",
+                "uk": "У записі звучить The bread smells good."
               }
             }
           ],
@@ -828,63 +824,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы участвуете в празднике сейчас. Выберите форму celebrating",
+        "prompt": "Опишите запах супа. Выберите форму smell",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i12:r1",
-            "text": "celebrating"
+            "text": "smells"
           },
           {
             "responseId": "en:lesson-10:session-40:i12:r2",
-            "text": "celebrate"
+            "text": "smell"
           },
           {
             "responseId": "en:lesson-10:session-40:i12:r3",
-            "text": "celebrates"
+            "text": "smelling"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы участвуете в празднике сейчас. Выберите форму celebrating",
+        "accessibilityLabel": "Опишите запах супа. Выберите форму smell",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы участвуете в празднике сейчас. Выберите форму celebrating",
-            "uk": "Ви берете участь у святі зараз. Виберіть форму celebrating"
+            "ru": "Опишите запах супа. Выберите форму smell",
+            "uk": "Опишіть запах супу. Виберіть форму smell"
           },
-          "gappedTargetPhrase": "We are ___ the centenary.",
+          "gappedTargetPhrase": "This soup ___ good.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i12:r1",
-              "text": "celebrating"
+              "text": "smells"
             },
             {
               "responseId": "en:lesson-10:session-40:i12:r2",
-              "text": "celebrate"
+              "text": "smell"
             },
             {
               "responseId": "en:lesson-10:session-40:i12:r3",
-              "text": "celebrates"
+              "text": "smelling"
             }
           ],
-          "testedDimension": "Вы участвуете в празднике сейчас. Выберите форму celebrating",
+          "testedDimension": "Опишите запах супа. Выберите форму smell",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i12:r2",
               "correct": false,
-              "testedDimension": "Вы участвуете в празднике сейчас. Выберите форму celebrating",
+              "testedDimension": "Опишите запах супа. Выберите форму smell",
               "feedbackByLocale": {
-                "ru": "После are нужна celebrating.",
-                "uk": "Після are потрібна celebrating."
+                "ru": "После this soup нужна smells с s.",
+                "uk": "Після this soup потрібна smells із s."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i12:r3",
               "correct": false,
-              "testedDimension": "Вы участвуете в празднике сейчас. Выберите форму celebrating",
+              "testedDimension": "Опишите запах супа. Выберите форму smell",
               "feedbackByLocale": {
-                "ru": "Для текущего действия нужна celebrating.",
-                "uk": "Для поточної дії потрібна celebrating."
+                "ru": "Описываем запах: smells.",
+                "uk": "Описуємо запах: smells."
               }
             }
           ]
@@ -897,58 +893,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-40:i13:p1",
-              "target": "reunion",
+              "target": "fry",
               "meaningByLocale": {
-                "ru": "встреча после разлуки",
-                "uk": "зустріч після розлуки"
+                "ru": "жарить",
+                "uk": "смажити"
               }
             },
             {
               "pairId": "en:lesson-10:session-40:i13:p2",
-              "target": "alumni",
+              "target": "heat",
               "meaningByLocale": {
-                "ru": "выпускники учебного заведения",
-                "uk": "випускники навчального закладу"
+                "ru": "разогревать",
+                "uk": "розігрівати"
               }
             },
             {
               "pairId": "en:lesson-10:session-40:i13:p3",
-              "target": "memento",
+              "target": "chew",
               "meaningByLocale": {
-                "ru": "предмет на память",
-                "uk": "предмет на згадку"
+                "ru": "жевать",
+                "uk": "жувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-40:i13:p4",
-              "target": "centenary",
+              "target": "smell",
               "meaningByLocale": {
-                "ru": "столетие",
-                "uk": "століття"
+                "ru": "пахнуть",
+                "uk": "пахнути"
               }
             }
           ],
           "leftColumn": [
-            "reunion",
-            "alumni",
-            "memento",
-            "centenary"
+            "fry",
+            "heat",
+            "chew",
+            "smell"
           ],
           "rightColumn": [
-            "встреча после разлуки",
-            "выпускники учебного заведения",
-            "предмет на память",
-            "столетие"
+            "жарить",
+            "разогревать",
+            "жевать",
+            "пахнуть"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -970,26 +966,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-40:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i14:audio",
-            "transcript": "The alumni are arriving."
+            "transcript": "I am heating the soup."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "The alumni are arriving.",
+          "hiddenTargetPhrase": "I am heating the soup.",
           "orderedTokens": [
-            "The",
-            "alumni",
-            "are",
-            "arriving"
+            "I",
+            "am",
+            "heating",
+            "the",
+            "soup"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1003,24 +1000,60 @@
       {
         "interactionId": "en:lesson-10:session-40:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, как часто вы встречаетесь с однокурсниками. Скажите: «У нас встреча выпускников каждый год»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-40:i15:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, как часто вы встречаетесь с однокурсниками. Скажите: «У нас встреча выпускников каждый год»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-40:i15:audio",
+            "transcript": "This soup smells good."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This soup smells good.",
+          "orderedTokens": [
+            "This",
+            "soup",
+            "smells",
+            "good"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, чем вы заняты у плиты. Скажите: «Я разогреваю суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, чем вы заняты у плиты. Скажите: «Я разогреваю суп»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:i15:audio",
-            "transcript": "We have a reunion every year."
+            "audioTargetId": "en:lesson-10:session-40:i16:audio",
+            "transcript": "I am heating the soup."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We have a reunion every year.",
+          "targetPhrase": "I am heating the soup.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1034,71 +1067,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Вы показываете общую фотографию, которую сохраните. Скажите: «Эта фотография — предмет на память»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вы показываете общую фотографию, которую сохраните. Скажите: «Эта фотография — предмет на память»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "This photo is a memento.",
-          "localizedMeaning": {
-            "ru": "Вы показываете общую фотографию, которую сохраните. Скажите: «Эта фотография — предмет на память»",
-            "uk": "Ви показуєте спільну фотографію, яку збережете. Скажіть: «Ця фотографія — предмет на згадку»"
-          },
-          "orderedTokens": [
-            "This",
-            "photo",
-            "is",
-            "a",
-            "memento"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-40:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы на празднике в честь ста лет университета. Друг звонит и спрашивает, чем вы заняты. Скажите: «Мы празднуем столетие»",
+        "prompt": "Сестра поставила суп на стол. Сделайте комплимент его запаху: «Этот суп хорошо пахнет»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-40:i17:audio"
         ],
-        "accessibilityLabel": "Вы на празднике в честь ста лет университета. Друг звонит и спрашивает, чем вы заняты. Скажите: «Мы празднуем столетие»",
+        "accessibilityLabel": "Сестра поставила суп на стол. Сделайте комплимент его запаху: «Этот суп хорошо пахнет»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i17:audio",
-            "transcript": "We are celebrating the centenary."
+            "transcript": "This soup smells good."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are celebrating the centenary.",
+          "targetPhrase": "This soup smells good.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1111,32 +1102,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-40:word:reunion",
+        "interactionId": "en:lesson-10:session-40:word:fry",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — reunion",
+        "prompt": "Картка слова — fry",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:reunion:audio"
+          "en:lesson-10:session-40:word:fry:audio"
         ],
-        "accessibilityLabel": "Картка слова — reunion",
+        "accessibilityLabel": "Картка слова — fry",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:reunion:audio",
-            "transcript": "reunion"
+            "audioTargetId": "en:lesson-10:session-40:word:fry:audio",
+            "transcript": "fry"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:reunion:r1",
-              "targetText": "reunion",
+              "responseId": "en:lesson-10:session-40:word:fry:r1",
+              "targetText": "fry",
               "meaningByLocale": {
-                "ru": "«встреча после разлуки». We have a reunion every year. — «У нас встреча выпускников каждый год». Здесь встреча бывших однокурсников.",
-                "uk": "«зустріч після розлуки». We have a reunion every year. — «У нас зустріч випускників щороку». Тут зустріч колишніх однокурсників."
+                "ru": "«жарить». I often fry eggs. — «Я часто жарю яйца».",
+                "uk": "«смажити». I often fry eggs. — «Я часто смажу яйця»."
               }
             }
           ],
@@ -1144,10 +1135,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "reunion",
+            "word": "fry",
             "definitionByLocale": {
-              "ru": "«встреча после разлуки». We have a reunion every year. — «У нас встреча выпускников каждый год». Здесь встреча бывших однокурсников.",
-              "uk": "«зустріч після розлуки». We have a reunion every year. — «У нас зустріч випускників щороку». Тут зустріч колишніх однокурсників."
+              "ru": "«жарить». I often fry eggs. — «Я часто жарю яйца».",
+              "uk": "«смажити». I often fry eggs. — «Я часто смажу яйця»."
             }
           }
         },
@@ -1159,25 +1150,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колишні однокурсники збираються щороку. Скажіть: «У нас зустріч випускників щороку». Поставте every year у кінці",
+        "prompt": "Розкажіть про сніданки: «Я часто смажу яйця». Поставте often перед fry",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колишні однокурсники збираються щороку. Скажіть: «У нас зустріч випускників щороку». Поставте every year у кінці",
+        "accessibilityLabel": "Розкажіть про сніданки: «Я часто смажу яйця». Поставте often перед fry",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We have a reunion every year.",
+          "targetPhrase": "I often fry eggs.",
           "localizedMeaning": {
-            "ru": "Бывшие однокурсники собираются ежегодно. Скажите: «У нас встреча выпускников каждый год». Поставьте every year в конце",
-            "uk": "Колишні однокурсники збираються щороку. Скажіть: «У нас зустріч випускників щороку». Поставте every year у кінці"
+            "ru": "Расскажите о завтраках: «Я часто жарю яйца». Поставьте often перед fry",
+            "uk": "Розкажіть про сніданки: «Я часто смажу яйця». Поставте often перед fry"
           },
           "orderedTokens": [
-            "We",
-            "have",
-            "a",
-            "reunion",
-            "every",
-            "year"
+            "I",
+            "often",
+            "fry",
+            "eggs"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1198,15 +1187,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i02:r1",
-            "text": "The reunion is in the hall."
+            "text": "We often fry potatoes."
           },
           {
             "responseId": "en:lesson-10:session-40:i02:r2",
-            "text": "The reunion is in the garden."
+            "text": "We often fry eggs."
           },
           {
             "responseId": "en:lesson-10:session-40:i02:r3",
-            "text": "The ceremony is in the hall."
+            "text": "They often fry potatoes."
           }
         ],
         "mediaIds": [],
@@ -1218,23 +1207,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i02:audio",
-            "transcript": "The reunion is in the hall."
+            "transcript": "We often fry potatoes."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i02:r1",
-              "targetText": "The reunion is in the hall.",
+              "targetText": "We often fry potatoes.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i02:r2",
-              "targetText": "The reunion is in the garden.",
+              "targetText": "We often fry eggs.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i02:r3",
-              "targetText": "The ceremony is in the hall.",
+              "targetText": "They often fry potatoes.",
               "meaningByLocale": null
             }
           ],
@@ -1245,8 +1234,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The reunion is in the hall.",
-                "uk": "У записі звучить The reunion is in the hall."
+                "ru": "В записи звучит We often fry potatoes.",
+                "uk": "У записі звучить We often fry potatoes."
               }
             },
             {
@@ -1254,8 +1243,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The reunion is in the hall.",
-                "uk": "У записі звучить The reunion is in the hall."
+                "ru": "В записи звучит We often fry potatoes.",
+                "uk": "У записі звучить We often fry potatoes."
               }
             }
           ],
@@ -1270,63 +1259,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Це щорічна зустріч. Виберіть форму have",
+        "prompt": "Виберіть форму fry для звички після I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i03:r1",
-            "text": "have"
+            "text": "fry"
           },
           {
             "responseId": "en:lesson-10:session-40:i03:r2",
-            "text": "has"
+            "text": "fries"
           },
           {
             "responseId": "en:lesson-10:session-40:i03:r3",
-            "text": "having"
+            "text": "frying"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Це щорічна зустріч. Виберіть форму have",
+        "accessibilityLabel": "Виберіть форму fry для звички після I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Это ежегодная встреча. Выберите форму have",
-            "uk": "Це щорічна зустріч. Виберіть форму have"
+            "ru": "Выберите форму fry для привычки после I",
+            "uk": "Виберіть форму fry для звички після I"
           },
-          "gappedTargetPhrase": "We ___ a reunion every year.",
+          "gappedTargetPhrase": "I often ___ eggs.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i03:r1",
-              "text": "have"
+              "text": "fry"
             },
             {
               "responseId": "en:lesson-10:session-40:i03:r2",
-              "text": "has"
+              "text": "fries"
             },
             {
               "responseId": "en:lesson-10:session-40:i03:r3",
-              "text": "having"
+              "text": "frying"
             }
           ],
-          "testedDimension": "Це щорічна зустріч. Виберіть форму have",
+          "testedDimension": "Виберіть форму fry для звички після I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i03:r2",
               "correct": false,
-              "testedDimension": "Це щорічна зустріч. Виберіть форму have",
+              "testedDimension": "Виберіть форму fry для звички після I",
               "feedbackByLocale": {
-                "ru": "С we нужна have.",
-                "uk": "З we потрібна have."
+                "ru": "После I нужна fry без s.",
+                "uk": "Після I потрібна fry без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i03:r3",
               "correct": false,
-              "testedDimension": "Це щорічна зустріч. Виберіть форму have",
+              "testedDimension": "Виберіть форму fry для звички після I",
               "feedbackByLocale": {
-                "ru": "Для привычки здесь нужна have.",
-                "uk": "Для звички тут потрібна have."
+                "ru": "Для привычки здесь нужна fry.",
+                "uk": "Для звички тут потрібна fry."
               }
             }
           ]
@@ -1334,32 +1323,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:word:alumni",
+        "interactionId": "en:lesson-10:session-40:word:heat",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — alumni",
+        "prompt": "Картка слова — heat",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:alumni:audio"
+          "en:lesson-10:session-40:word:heat:audio"
         ],
-        "accessibilityLabel": "Картка слова — alumni",
+        "accessibilityLabel": "Картка слова — heat",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:alumni:audio",
-            "transcript": "alumni"
+            "audioTargetId": "en:lesson-10:session-40:word:heat:audio",
+            "transcript": "heat"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:alumni:r1",
-              "targetText": "alumni",
+              "responseId": "en:lesson-10:session-40:word:heat:r1",
+              "targetText": "heat",
               "meaningByLocale": {
-                "ru": "«выпускники учебного заведения». The alumni are arriving. — «Выпускники прибывают». Множественное число; здесь смешанная группа выпускников университета.",
-                "uk": "«випускники навчального закладу». The alumni are arriving. — «Випускники прибувають». Множина; тут змішана група випускників університету."
+                "ru": "«нагревать, разогревать». I am heating the soup. — «Я разогреваю суп».",
+                "uk": "«нагрівати, розігрівати». I am heating the soup. — «Я розігріваю суп»."
               }
             }
           ],
@@ -1367,10 +1356,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "alumni",
+            "word": "heat",
             "definitionByLocale": {
-              "ru": "«выпускники учебного заведения». The alumni are arriving. — «Выпускники прибывают». Множественное число; здесь смешанная группа выпускников университета.",
-              "uk": "«випускники навчального закладу». The alumni are arriving. — «Випускники прибувають». Множина; тут змішана група випускників університету."
+              "ru": "«нагревать, разогревать». I am heating the soup. — «Я разогреваю суп».",
+              "uk": "«нагрівати, розігрівати». I am heating the soup. — «Я розігріваю суп»."
             }
           }
         },
@@ -1382,23 +1371,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "До університету зараз підходять колишні студенти. Скажіть: «Випускники прибувають»",
+        "prompt": "Розкажіть про звичку: «Я розігріваю суп щодня». Поставте every day наприкінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "До університету зараз підходять колишні студенти. Скажіть: «Випускники прибувають»",
+        "accessibilityLabel": "Розкажіть про звичку: «Я розігріваю суп щодня». Поставте every day наприкінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The alumni are arriving.",
+          "targetPhrase": "I heat soup every day.",
           "localizedMeaning": {
-            "ru": "К университету сейчас подходят бывшие студенты. Скажите: «Выпускники прибывают»",
-            "uk": "До університету зараз підходять колишні студенти. Скажіть: «Випускники прибувають»"
+            "ru": "Расскажите о привычке: «Я разогреваю суп каждый день». Поставьте every day в конце",
+            "uk": "Розкажіть про звичку: «Я розігріваю суп щодня». Поставте every day наприкінці"
           },
           "orderedTokens": [
-            "The",
-            "alumni",
-            "are",
-            "arriving"
+            "I",
+            "heat",
+            "soup",
+            "every",
+            "day"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1419,15 +1409,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i05:r1",
-            "text": "The alumni are talking in the hall."
+            "text": "She is heating the milk."
           },
           {
             "responseId": "en:lesson-10:session-40:i05:r2",
-            "text": "The alumni are waiting in the hall."
+            "text": "She is heating the soup."
           },
           {
             "responseId": "en:lesson-10:session-40:i05:r3",
-            "text": "The alumni are talking in the garden."
+            "text": "He is heating the milk."
           }
         ],
         "mediaIds": [],
@@ -1439,23 +1429,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i05:audio",
-            "transcript": "The alumni are talking in the hall."
+            "transcript": "She is heating the milk."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i05:r1",
-              "targetText": "The alumni are talking in the hall.",
+              "targetText": "She is heating the milk.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i05:r2",
-              "targetText": "The alumni are waiting in the hall.",
+              "targetText": "She is heating the soup.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i05:r3",
-              "targetText": "The alumni are talking in the garden.",
+              "targetText": "He is heating the milk.",
               "meaningByLocale": null
             }
           ],
@@ -1466,8 +1456,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The alumni are talking in the hall.",
-                "uk": "У записі звучить The alumni are talking in the hall."
+                "ru": "В записи звучит She is heating the milk.",
+                "uk": "У записі звучить She is heating the milk."
               }
             },
             {
@@ -1475,8 +1465,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The alumni are talking in the hall.",
-                "uk": "У записі звучить The alumni are talking in the hall."
+                "ru": "В записи звучит She is heating the milk.",
+                "uk": "У записі звучить She is heating the milk."
               }
             }
           ],
@@ -1491,63 +1481,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з alumni у множині",
+        "prompt": "Суп на плиті зараз. Виберіть форму heat",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i06:r1",
-            "text": "are"
+            "text": "heating"
           },
           {
             "responseId": "en:lesson-10:session-40:i06:r2",
-            "text": "is"
+            "text": "heat"
           },
           {
             "responseId": "en:lesson-10:session-40:i06:r3",
-            "text": "am"
+            "text": "heats"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з alumni у множині",
+        "accessibilityLabel": "Суп на плиті зараз. Виберіть форму heat",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с alumni во множественном числе",
-            "uk": "Виберіть зв’язку з alumni у множині"
+            "ru": "Суп на плите сейчас. Выберите форму heat",
+            "uk": "Суп на плиті зараз. Виберіть форму heat"
           },
-          "gappedTargetPhrase": "The alumni ___ arriving.",
+          "gappedTargetPhrase": "I am ___ the soup.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i06:r1",
-              "text": "are"
+              "text": "heating"
             },
             {
               "responseId": "en:lesson-10:session-40:i06:r2",
-              "text": "is"
+              "text": "heat"
             },
             {
               "responseId": "en:lesson-10:session-40:i06:r3",
-              "text": "am"
+              "text": "heats"
             }
           ],
-          "testedDimension": "Виберіть зв’язку з alumni у множині",
+          "testedDimension": "Суп на плиті зараз. Виберіть форму heat",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з alumni у множині",
+              "testedDimension": "Суп на плиті зараз. Виберіть форму heat",
               "feedbackByLocale": {
-                "ru": "Alumni — множественное число, нужна are.",
-                "uk": "Alumni — множина, потрібна are."
+                "ru": "После am нужна heating.",
+                "uk": "Після am потрібна heating."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з alumni у множині",
+              "testedDimension": "Суп на плиті зараз. Виберіть форму heat",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна are.",
-                "uk": "Am уживається з I; тут потрібна are."
+                "ru": "После am нужна heating, не heats.",
+                "uk": "Після am потрібна heating, не heats."
               }
             }
           ]
@@ -1555,32 +1545,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:word:memento",
+        "interactionId": "en:lesson-10:session-40:word:chew",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — memento",
+        "prompt": "Картка слова — chew",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:memento:audio"
+          "en:lesson-10:session-40:word:chew:audio"
         ],
-        "accessibilityLabel": "Картка слова — memento",
+        "accessibilityLabel": "Картка слова — chew",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:memento:audio",
-            "transcript": "memento"
+            "audioTargetId": "en:lesson-10:session-40:word:chew:audio",
+            "transcript": "chew"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:memento:r1",
-              "targetText": "memento",
+              "responseId": "en:lesson-10:session-40:word:chew:r1",
+              "targetText": "chew",
               "meaningByLocale": {
-                "ru": "«предмет на память». This photo is a memento. — «Эта фотография — предмет на память». Она напоминает о встрече; значение близко к keepsake из занятия 10.35.",
-                "uk": "«предмет на згадку». This photo is a memento. — «Ця фотографія — предмет на згадку». Вона нагадує про зустріч; значення близьке до keepsake із заняття 10.35."
+                "ru": "«жевать». I am chewing. — «Я жую».",
+                "uk": "«жувати». I am chewing. — «Я жую»."
               }
             }
           ],
@@ -1588,10 +1578,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "memento",
+            "word": "chew",
             "definitionByLocale": {
-              "ru": "«предмет на память». This photo is a memento. — «Эта фотография — предмет на память». Она напоминает о встрече; значение близко к keepsake из занятия 10.35.",
-              "uk": "«предмет на згадку». This photo is a memento. — «Ця фотографія — предмет на згадку». Вона нагадує про зустріч; значення близьке до keepsake із заняття 10.35."
+              "ru": "«жевать». I am chewing. — «Я жую».",
+              "uk": "«жувати». I am chewing. — «Я жую»."
             }
           }
         },
@@ -1603,24 +1593,22 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви збережете спільну фотографію після зустрічі. Скажіть: «Ця фотографія — предмет на згадку»",
+        "prompt": "Ви не поспішаєте під час їжі. Розкажіть про звичку: «Я жую повільно». Поставте slowly наприкінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви збережете спільну фотографію після зустрічі. Скажіть: «Ця фотографія — предмет на згадку»",
+        "accessibilityLabel": "Ви не поспішаєте під час їжі. Розкажіть про звичку: «Я жую повільно». Поставте slowly наприкінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This photo is a memento.",
+          "targetPhrase": "I chew slowly.",
           "localizedMeaning": {
-            "ru": "Вы сохраните общую фотографию после встречи. Скажите: «Эта фотография — предмет на память»",
-            "uk": "Ви збережете спільну фотографію після зустрічі. Скажіть: «Ця фотографія — предмет на згадку»"
+            "ru": "Вы не торопитесь за едой. Расскажите о привычке: «Я жую медленно». Поставьте slowly в конце",
+            "uk": "Ви не поспішаєте під час їжі. Розкажіть про звичку: «Я жую повільно». Поставте slowly наприкінці"
           },
           "orderedTokens": [
-            "This",
-            "photo",
-            "is",
-            "a",
-            "memento"
+            "I",
+            "chew",
+            "slowly"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1641,15 +1629,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i08:r1",
-            "text": "I keep the badge as a memento."
+            "text": "He is chewing."
           },
           {
             "responseId": "en:lesson-10:session-40:i08:r2",
-            "text": "I keep the letter as a memento."
+            "text": "She is chewing."
           },
           {
             "responseId": "en:lesson-10:session-40:i08:r3",
-            "text": "We keep the badge as a memento."
+            "text": "He is cooking."
           }
         ],
         "mediaIds": [],
@@ -1661,23 +1649,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i08:audio",
-            "transcript": "I keep the badge as a memento."
+            "transcript": "He is chewing."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i08:r1",
-              "targetText": "I keep the badge as a memento.",
+              "targetText": "He is chewing.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i08:r2",
-              "targetText": "I keep the letter as a memento.",
+              "targetText": "She is chewing.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i08:r3",
-              "targetText": "We keep the badge as a memento.",
+              "targetText": "He is cooking.",
               "meaningByLocale": null
             }
           ],
@@ -1688,8 +1676,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep the badge as a memento.",
-                "uk": "У записі звучить I keep the badge as a memento."
+                "ru": "В записи звучит He is chewing.",
+                "uk": "У записі звучить He is chewing."
               }
             },
             {
@@ -1697,8 +1685,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep the badge as a memento.",
-                "uk": "У записі звучить I keep the badge as a memento."
+                "ru": "В записи звучит He is chewing.",
+                "uk": "У записі звучить He is chewing."
               }
             }
           ],
@@ -1713,63 +1701,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ідеться про одну фотографію. Виберіть зв’язку",
+        "prompt": "Дія триває зараз. Виберіть форму chew",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i09:r1",
-            "text": "is"
+            "text": "chewing"
           },
           {
             "responseId": "en:lesson-10:session-40:i09:r2",
-            "text": "are"
+            "text": "chew"
           },
           {
             "responseId": "en:lesson-10:session-40:i09:r3",
-            "text": "am"
+            "text": "chews"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ідеться про одну фотографію. Виберіть зв’язку",
+        "accessibilityLabel": "Дія триває зараз. Виберіть форму chew",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одной фотографии. Выберите связку",
-            "uk": "Ідеться про одну фотографію. Виберіть зв’язку"
+            "ru": "Действие идёт сейчас. Выберите форму chew",
+            "uk": "Дія триває зараз. Виберіть форму chew"
           },
-          "gappedTargetPhrase": "This photo ___ a memento.",
+          "gappedTargetPhrase": "I am ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i09:r1",
-              "text": "is"
+              "text": "chewing"
             },
             {
               "responseId": "en:lesson-10:session-40:i09:r2",
-              "text": "are"
+              "text": "chew"
             },
             {
               "responseId": "en:lesson-10:session-40:i09:r3",
-              "text": "am"
+              "text": "chews"
             }
           ],
-          "testedDimension": "Ідеться про одну фотографію. Виберіть зв’язку",
+          "testedDimension": "Дія триває зараз. Виберіть форму chew",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i09:r2",
               "correct": false,
-              "testedDimension": "Ідеться про одну фотографію. Виберіть зв’язку",
+              "testedDimension": "Дія триває зараз. Виберіть форму chew",
               "feedbackByLocale": {
-                "ru": "Одна фотография: is.",
-                "uk": "Одна фотографія: is."
+                "ru": "После am нужна chewing.",
+                "uk": "Після am потрібна chewing."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i09:r3",
               "correct": false,
-              "testedDimension": "Ідеться про одну фотографію. Виберіть зв’язку",
+              "testedDimension": "Дія триває зараз. Виберіть форму chew",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "После am нужна chewing, не chews.",
+                "uk": "Після am потрібна chewing, не chews."
               }
             }
           ]
@@ -1777,32 +1765,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:word:centenary",
+        "interactionId": "en:lesson-10:session-40:word:smell",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — centenary",
+        "prompt": "Картка слова — smell",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-40:word:centenary:audio"
+          "en:lesson-10:session-40:word:smell:audio"
         ],
-        "accessibilityLabel": "Картка слова — centenary",
+        "accessibilityLabel": "Картка слова — smell",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:word:centenary:audio",
-            "transcript": "centenary"
+            "audioTargetId": "en:lesson-10:session-40:word:smell:audio",
+            "transcript": "smell"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-40:word:centenary:r1",
-              "targetText": "centenary",
+              "responseId": "en:lesson-10:session-40:word:smell:r1",
+              "targetText": "smell",
               "meaningByLocale": {
-                "ru": "«столетие». We are celebrating the centenary. — «Мы празднуем столетие». Здесь сотая годовщина открытия университета; британское употребление.",
-                "uk": "«століття». We are celebrating the centenary. — «Ми святкуємо століття». Тут сота річниця відкриття університету; британське вживання."
+                "ru": "«пахнуть». This soup smells good. — «Этот суп хорошо пахнет».",
+                "uk": "«пахнути». This soup smells good. — «Цей суп добре пахне»."
               }
             }
           ],
@@ -1810,10 +1798,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "centenary",
+            "word": "smell",
             "definitionByLocale": {
-              "ru": "«столетие». We are celebrating the centenary. — «Мы празднуем столетие». Здесь сотая годовщина открытия университета; британское употребление.",
-              "uk": "«століття». We are celebrating the centenary. — «Ми святкуємо століття». Тут сота річниця відкриття університету; британське вживання."
+              "ru": "«пахнуть». This soup smells good. — «Этот суп хорошо пахнет».",
+              "uk": "«пахнути». This soup smells good. — «Цей суп добре пахне»."
             }
           }
         },
@@ -1825,24 +1813,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Сьогодні університету сто років. Ви на святі. Скажіть: «Ми святкуємо століття»",
+        "prompt": "Вам подобається запах яблук на столі. Скажіть: «Ці яблука добре пахнуть»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Сьогодні університету сто років. Ви на святі. Скажіть: «Ми святкуємо століття»",
+        "accessibilityLabel": "Вам подобається запах яблук на столі. Скажіть: «Ці яблука добре пахнуть»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are celebrating the centenary.",
+          "targetPhrase": "These apples smell good.",
           "localizedMeaning": {
-            "ru": "Сегодня университету сто лет. Вы на празднике. Скажите: «Мы празднуем столетие»",
-            "uk": "Сьогодні університету сто років. Ви на святі. Скажіть: «Ми святкуємо століття»"
+            "ru": "Вам нравится запах яблок на столе. Скажите: «Эти яблоки хорошо пахнут»",
+            "uk": "Вам подобається запах яблук на столі. Скажіть: «Ці яблука добре пахнуть»"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "celebrating",
-            "the",
-            "centenary"
+            "These",
+            "apples",
+            "smell",
+            "good"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1863,15 +1850,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i11:r1",
-            "text": "The centenary is in May."
+            "text": "The bread smells good."
           },
           {
             "responseId": "en:lesson-10:session-40:i11:r2",
-            "text": "The centenary is in June."
+            "text": "The soup smells good."
           },
           {
             "responseId": "en:lesson-10:session-40:i11:r3",
-            "text": "The reunion is in May."
+            "text": "The bread smells bad."
           }
         ],
         "mediaIds": [],
@@ -1883,23 +1870,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i11:audio",
-            "transcript": "The centenary is in May."
+            "transcript": "The bread smells good."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-40:i11:r1",
-              "targetText": "The centenary is in May.",
+              "targetText": "The bread smells good.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i11:r2",
-              "targetText": "The centenary is in June.",
+              "targetText": "The soup smells good.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-40:i11:r3",
-              "targetText": "The reunion is in May.",
+              "targetText": "The bread smells bad.",
               "meaningByLocale": null
             }
           ],
@@ -1910,8 +1897,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The centenary is in May.",
-                "uk": "У записі звучить The centenary is in May."
+                "ru": "В записи звучит The bread smells good.",
+                "uk": "У записі звучить The bread smells good."
               }
             },
             {
@@ -1919,8 +1906,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The centenary is in May.",
-                "uk": "У записі звучить The centenary is in May."
+                "ru": "В записи звучит The bread smells good.",
+                "uk": "У записі звучить The bread smells good."
               }
             }
           ],
@@ -1935,63 +1922,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви берете участь у святі зараз. Виберіть форму celebrating",
+        "prompt": "Опишіть запах супу. Виберіть форму smell",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-40:i12:r1",
-            "text": "celebrating"
+            "text": "smells"
           },
           {
             "responseId": "en:lesson-10:session-40:i12:r2",
-            "text": "celebrate"
+            "text": "smell"
           },
           {
             "responseId": "en:lesson-10:session-40:i12:r3",
-            "text": "celebrates"
+            "text": "smelling"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви берете участь у святі зараз. Виберіть форму celebrating",
+        "accessibilityLabel": "Опишіть запах супу. Виберіть форму smell",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы участвуете в празднике сейчас. Выберите форму celebrating",
-            "uk": "Ви берете участь у святі зараз. Виберіть форму celebrating"
+            "ru": "Опишите запах супа. Выберите форму smell",
+            "uk": "Опишіть запах супу. Виберіть форму smell"
           },
-          "gappedTargetPhrase": "We are ___ the centenary.",
+          "gappedTargetPhrase": "This soup ___ good.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-40:i12:r1",
-              "text": "celebrating"
+              "text": "smells"
             },
             {
               "responseId": "en:lesson-10:session-40:i12:r2",
-              "text": "celebrate"
+              "text": "smell"
             },
             {
               "responseId": "en:lesson-10:session-40:i12:r3",
-              "text": "celebrates"
+              "text": "smelling"
             }
           ],
-          "testedDimension": "Ви берете участь у святі зараз. Виберіть форму celebrating",
+          "testedDimension": "Опишіть запах супу. Виберіть форму smell",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-40:i12:r2",
               "correct": false,
-              "testedDimension": "Ви берете участь у святі зараз. Виберіть форму celebrating",
+              "testedDimension": "Опишіть запах супу. Виберіть форму smell",
               "feedbackByLocale": {
-                "ru": "После are нужна celebrating.",
-                "uk": "Після are потрібна celebrating."
+                "ru": "После this soup нужна smells с s.",
+                "uk": "Після this soup потрібна smells із s."
               }
             },
             {
               "responseId": "en:lesson-10:session-40:i12:r3",
               "correct": false,
-              "testedDimension": "Ви берете участь у святі зараз. Виберіть форму celebrating",
+              "testedDimension": "Опишіть запах супу. Виберіть форму smell",
               "feedbackByLocale": {
-                "ru": "Для текущего действия нужна celebrating.",
-                "uk": "Для поточної дії потрібна celebrating."
+                "ru": "Описываем запах: smells.",
+                "uk": "Описуємо запах: smells."
               }
             }
           ]
@@ -2004,58 +1991,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-40:i13:p1",
-              "target": "reunion",
+              "target": "fry",
               "meaningByLocale": {
-                "ru": "встреча после разлуки",
-                "uk": "зустріч після розлуки"
+                "ru": "жарить",
+                "uk": "смажити"
               }
             },
             {
               "pairId": "en:lesson-10:session-40:i13:p2",
-              "target": "alumni",
+              "target": "heat",
               "meaningByLocale": {
-                "ru": "выпускники учебного заведения",
-                "uk": "випускники навчального закладу"
+                "ru": "разогревать",
+                "uk": "розігрівати"
               }
             },
             {
               "pairId": "en:lesson-10:session-40:i13:p3",
-              "target": "memento",
+              "target": "chew",
               "meaningByLocale": {
-                "ru": "предмет на память",
-                "uk": "предмет на згадку"
+                "ru": "жевать",
+                "uk": "жувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-40:i13:p4",
-              "target": "centenary",
+              "target": "smell",
               "meaningByLocale": {
-                "ru": "столетие",
-                "uk": "століття"
+                "ru": "пахнуть",
+                "uk": "пахнути"
               }
             }
           ],
           "leftColumn": [
-            "reunion",
-            "alumni",
-            "memento",
-            "centenary"
+            "fry",
+            "heat",
+            "chew",
+            "smell"
           ],
           "rightColumn": [
-            "зустріч після розлуки",
-            "випускники навчального закладу",
-            "предмет на згадку",
-            "століття"
+            "смажити",
+            "розігрівати",
+            "жувати",
+            "пахнути"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2077,26 +2064,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-40:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i14:audio",
-            "transcript": "The alumni are arriving."
+            "transcript": "I am heating the soup."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "The alumni are arriving.",
+          "hiddenTargetPhrase": "I am heating the soup.",
           "orderedTokens": [
-            "The",
-            "alumni",
-            "are",
-            "arriving"
+            "I",
+            "am",
+            "heating",
+            "the",
+            "soup"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2110,24 +2098,60 @@
       {
         "interactionId": "en:lesson-10:session-40:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, як часто ви зустрічаєтеся з однокурсниками. Скажіть: «У нас зустріч випускників щороку»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-40:i15:audio"
         ],
-        "accessibilityLabel": "Друг запитує, як часто ви зустрічаєтеся з однокурсниками. Скажіть: «У нас зустріч випускників щороку»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-40:i15:audio",
+            "transcript": "This soup smells good."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This soup smells good.",
+          "orderedTokens": [
+            "This",
+            "soup",
+            "smells",
+            "good"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, чим ви зайняті біля плити. Скажіть: «Я розігріваю суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, чим ви зайняті біля плити. Скажіть: «Я розігріваю суп»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-40:i15:audio",
-            "transcript": "We have a reunion every year."
+            "audioTargetId": "en:lesson-10:session-40:i16:audio",
+            "transcript": "I am heating the soup."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We have a reunion every year.",
+          "targetPhrase": "I am heating the soup.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2141,71 +2165,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-40:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Ви показуєте спільну фотографію, яку збережете. Скажіть: «Ця фотографія — предмет на згадку»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Ви показуєте спільну фотографію, яку збережете. Скажіть: «Ця фотографія — предмет на згадку»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "This photo is a memento.",
-          "localizedMeaning": {
-            "ru": "Вы показываете общую фотографию, которую сохраните. Скажите: «Эта фотография — предмет на память»",
-            "uk": "Ви показуєте спільну фотографію, яку збережете. Скажіть: «Ця фотографія — предмет на згадку»"
-          },
-          "orderedTokens": [
-            "This",
-            "photo",
-            "is",
-            "a",
-            "memento"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-40:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви на святі на честь ста років університету. Друг телефонує й запитує, чим ви зайняті. Скажіть: «Ми святкуємо століття»",
+        "prompt": "Сестра поставила суп на стіл. Зробіть комплімент його запаху: «Цей суп добре пахне»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-40:i17:audio"
         ],
-        "accessibilityLabel": "Ви на святі на честь ста років університету. Друг телефонує й запитує, чим ви зайняті. Скажіть: «Ми святкуємо століття»",
+        "accessibilityLabel": "Сестра поставила суп на стіл. Зробіть комплімент його запаху: «Цей суп добре пахне»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-40:i17:audio",
-            "transcript": "We are celebrating the centenary."
+            "transcript": "This soup smells good."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are celebrating the centenary.",
+          "targetPhrase": "This soup smells good.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2219,83 +2201,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-40:word:reunion",
-      "correctText": "reunion",
+      "interactionId": "en:lesson-10:session-40:word:fry",
+      "correctText": "fry",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i01",
-      "correctText": "We have a reunion every year.",
+      "correctText": "I often fry eggs.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i02",
-      "correctText": "The reunion is in the hall.",
+      "correctText": "We often fry potatoes.",
       "correctResponseId": "en:lesson-10:session-40:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-40:i03",
-      "correctText": "have",
+      "correctText": "fry",
       "correctResponseId": "en:lesson-10:session-40:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-40:word:alumni",
-      "correctText": "alumni",
+      "interactionId": "en:lesson-10:session-40:word:heat",
+      "correctText": "heat",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i04",
-      "correctText": "The alumni are arriving.",
+      "correctText": "I heat soup every day.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i05",
-      "correctText": "The alumni are talking in the hall.",
+      "correctText": "She is heating the milk.",
       "correctResponseId": "en:lesson-10:session-40:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-40:i06",
-      "correctText": "are",
+      "correctText": "heating",
       "correctResponseId": "en:lesson-10:session-40:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-40:word:memento",
-      "correctText": "memento",
+      "interactionId": "en:lesson-10:session-40:word:chew",
+      "correctText": "chew",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i07",
-      "correctText": "This photo is a memento.",
+      "correctText": "I chew slowly.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i08",
-      "correctText": "I keep the badge as a memento.",
+      "correctText": "He is chewing.",
       "correctResponseId": "en:lesson-10:session-40:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-40:i09",
-      "correctText": "is",
+      "correctText": "chewing",
       "correctResponseId": "en:lesson-10:session-40:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-40:word:centenary",
-      "correctText": "centenary",
+      "interactionId": "en:lesson-10:session-40:word:smell",
+      "correctText": "smell",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i10",
-      "correctText": "We are celebrating the centenary.",
+      "correctText": "These apples smell good.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i11",
-      "correctText": "The centenary is in May.",
+      "correctText": "The bread smells good.",
       "correctResponseId": "en:lesson-10:session-40:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-40:i12",
-      "correctText": "celebrating",
+      "correctText": "smells",
       "correctResponseId": "en:lesson-10:session-40:i12:r1"
     },
     {
@@ -2305,22 +2287,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-40:i14",
-      "correctText": "The alumni are arriving.",
+      "correctText": "I am heating the soup.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i15",
-      "correctText": "We have a reunion every year.",
+      "correctText": "This soup smells good.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i16",
-      "correctText": "This photo is a memento.",
+      "correctText": "I am heating the soup.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-40:i17",
-      "correctText": "We are celebrating the centenary.",
+      "correctText": "This soup smells good.",
       "correctResponseId": null
     }
   ]

@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 39 — На тренінгу
+# Англійська · Урок 10 · Заняття 39 — Столик для друзів
 
-**Ситуація.** Розповісти про регулярні заняття команди та про те, що відбувається на тренінгу зараз.
+**Ситуація.** Улаштуватися за столиком, вибрати стілець і перевірити, чи всім вистачило чашок.
 
-**Що ви опануєте:** We have a session every Friday; The facilitator is listening; We are having a debrief
-**Нові слова:** session, facilitator, breakout, debrief
+**Що ви опануєте:** Both chairs are free; Each person has a cup; Is anyone sitting here
+**Нові слова:** both, each, other, anyone
 
 ## Інтро 1
 
-### Заняття щотижня
+### Два вільні стільці
 
-Session — «заняття», виділений період для певної діяльності. У вашої команди заняття щоп’ятниці: We have a session every Friday — «У нас заняття щоп’ятниці». Every Friday указує на повторення, тому використовуємо Present Simple.
+Ви з другом знайшли столик із двома вільними стільцями. Both — «обидва»: Both chairs are free — «Обидва стільці вільні». Both стосується двох предметів. Chairs — множина, тому are.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We have a session every Friday.**
-- ❌ We has a session every Friday. — *З we потрібна have.*
-- ❌ We having a session every Friday. — *Для регулярного заняття тут потрібна have.*
+- ✅ **Both chairs are free.**
+- ❌ Both chairs is free. — *Два стільці: are, не is.*
+- ❌ Both chair are free. — *Після both тут потрібна chairs у множині.*
 
 ---
 
 ## Інтро 2
 
-### Ведучий слухає
+### Чашка для кожного
 
-Facilitator — «ведучий групової роботи»: людина, яка допомагає учасникам обговорювати питання й працювати разом. Зараз учасниця пояснює ідею, а ведучий слухає: The facilitator is listening — «Ведучий групової роботи слухає». Це дія зараз: is + listening.
+До вас приєдналися друзі. Ви розставили чашки й перевіряєте: Each person has a cup — «У кожної людини є чашка». Each — «кожний»: ми розглядаємо людей по одному. Тому person в однині й has, а не have.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The facilitator is listening.**
-- ❌ The facilitator listening. — *Перед listening потрібне is.*
-- ❌ The facilitator are listening. — *Один ведучий: is.*
+- ✅ **Each person has a cup.**
+- ❌ Each person have a cup. — *З each person потрібна has.*
+- ❌ Each people has a cup. — *Після each тут потрібна person в однині.*
 
 ---
 
 ## Інтро 3
 
-### Обговорюємо виконане
+### Інший стілець
 
-Debrief — «розбір підсумків»: обговорення того, що сталося під час завдання. Вправу завершено, ви зараз розбираєте результати: We are having a debrief — «Ми проводимо розбір підсумків». Тут have позначає проведення обговорення, а не володіння річчю. Тому are having підходить для поточної дії.
+Один із двох стільців стоїть біля шумних дверей. Інший вам подобається більше: I prefer the other chair — «Я віддаю перевагу іншому стільцю». Other — «інший»; the other chair тут — другий із двох відомих стільців. Перш ніж сісти, уточніть у відвідувача поруч: Is anyone sitting here? — «Тут хто-небудь сидить?» Anyone — «хто-небудь» у запитанні. Ви запитуєте про місце, зайняте зараз: is + sitting.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We are having a debrief.**
-- ❌ We is having a debrief. — *З we потрібна are.*
-- ❌ We are have a debrief. — *Після are потрібна having.*
+- ✅ **Is anyone sitting here?**
+- ❌ Are anyone sitting here? — *З anyone потрібна is.*
+- ❌ Is anyone sit here? — *Після is потрібна sitting.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — session**
-<!-- interaction_id: en:lesson-10:session-39:word:session; family: word_card -->
-> **session** — «заняття». We have a session every Friday. — «У нас заняття щоп’ятниці». Виділений період для певної діяльності.
+**1 · Картка слова — both**
+<!-- interaction_id: en:lesson-10:session-39:word:both; family: word_card -->
+> **both** — «обидва». Both chairs are free. — «Обидва стільці вільні».
 
-**2 · Команда займається щоп’ятниці. Скажіть: «У нас заняття щоп’ятниці». Поставте every Friday у кінці**
+**2 · Ви бачите два вільні стільці. Скажіть: «Обидва стільці вільні»**
 <!-- interaction_id: en:lesson-10:session-39:i01; family: phrase_builder -->
-Плитки: `Friday` `every` `session` `a` `have` `We` → **We have a session every Friday.**
+Плитки: `free` `are` `chairs` `Both` → **Both chairs are free.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-39:i02; family: listen_choose -->
-🔊 *The session starts at ten.* → **The session starts at ten.** · The session starts at nine. · The meeting starts at ten.
-- The session starts at nine. — *У записі звучить The session starts at ten.*
-- The meeting starts at ten. — *У записі звучить The session starts at ten.*
+🔊 *Both cups are clean.* → **Both cups are clean.** · Both cups are empty. · Both plates are clean.
+- Both cups are empty. — *У записі звучить Both cups are clean.*
+- Both plates are clean. — *У записі звучить Both cups are clean.*
 
-**4 · Це регулярне заняття. Виберіть форму have**
+**4 · Виберіть зв’язку для двох стільців**
 <!-- interaction_id: en:lesson-10:session-39:i03; family: context_gap_grammar -->
-We ___ a session every Friday. → **have** · has · having
-- has — *З we потрібна have.*
-- having — *Для регулярної ситуації тут потрібна have.*
+Both chairs ___ free. → **are** · is · am
+- is — *Множина: are.*
+- am — *Am уживається з I.*
 
-**5 · Картка слова — facilitator**
-<!-- interaction_id: en:lesson-10:session-39:word:facilitator; family: word_card -->
-> **facilitator** — «ведучий групової роботи». The facilitator is listening. — «Ведучий групової роботи слухає». Він допомагає учасникам обговорювати питання й працювати разом.
+**5 · Картка слова — each**
+<!-- interaction_id: en:lesson-10:session-39:word:each; family: word_card -->
+> **each** — «кожний». Each person has a cup. — «У кожної людини є чашка».
 
-**6 · Учасниця висловлює ідею, ведучий зараз слухає її. Скажіть: «Ведучий групової роботи слухає»**
+**6 · Чашок вистачило всім. Скажіть: «У кожної людини є чашка»**
 <!-- interaction_id: en:lesson-10:session-39:i04; family: phrase_builder -->
-Плитки: `listening` `is` `facilitator` `The` → **The facilitator is listening.**
+Плитки: `cup` `a` `has` `person` `Each` → **Each person has a cup.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-39:i05; family: listen_choose -->
-🔊 *The facilitator is asking a question.* → **The facilitator is asking a question.** · The facilitator is answering a question. · The student is asking a question.
-- The facilitator is answering a question. — *У записі звучить The facilitator is asking a question.*
-- The student is asking a question. — *У записі звучить The facilitator is asking a question.*
+🔊 *Each child has a plate.* → **Each child has a plate.** · Each child has a cup. · Each person has a plate.
+- Each child has a cup. — *У записі звучить Each child has a plate.*
+- Each person has a plate. — *У записі звучить Each child has a plate.*
 
-**8 · Один ведучий зараз слухає учасницю. Виберіть зв’язку**
+**8 · Виберіть форму have після each person**
 <!-- interaction_id: en:lesson-10:session-39:i06; family: context_gap_grammar -->
-The facilitator ___ listening. → **is** · are · am
-- are — *З одним ведучим потрібна is.*
-- am — *Am уживається з I; тут потрібна is.*
+Each person ___ a cup. → **has** · have · having
+- have — *Each person: однина, потрібна has.*
+- having — *Тут говоримо про наявність чашки: has.*
 
-**9 · Картка слова — breakout**
-<!-- interaction_id: en:lesson-10:session-39:word:breakout; family: word_card -->
-> **breakout** — «робота в окремій малій групі». We are in a breakout group. — «Ми в окремій малій групі». На тренінгу учасників тимчасово ділять на групи для обговорення; тут breakout уживається перед group.
+**9 · Картка слова — other**
+<!-- interaction_id: en:lesson-10:session-39:word:other; family: word_card -->
+> **other** — «інший». the other chair — «інший стілець», другий із двох.
 
-**10 · Учасників поділили для короткого обговорення. Скажіть колезі: «Ми в окремій малій групі»**
+**10 · Із двох стільців вам більше подобається той, що далі від дверей. Скажіть: «Я віддаю перевагу іншому стільцю»**
 <!-- interaction_id: en:lesson-10:session-39:i07; family: phrase_builder -->
-Плитки: `group` `breakout` `a` `in` `are` `We` → **We are in a breakout group.**
+Плитки: `chair` `other` `the` `prefer` `I` → **I prefer the other chair.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-39:i08; family: listen_choose -->
-🔊 *Our breakout group has four people.* → **Our breakout group has four people.** · Our breakout group has five people. · Your breakout group has four people.
-- Our breakout group has five people. — *У записі звучить Our breakout group has four people.*
-- Your breakout group has four people. — *У записі звучить Our breakout group has four people.*
+🔊 *The other chair is free.* → **The other chair is free.** · The other table is free. · The other chair is wet.
+- The other table is free. — *У записі звучить The other chair is free.*
+- The other chair is wet. — *У записі звучить The other chair is free.*
 
-**12 · Ви разом із колегами в малій групі. Виберіть зв’язку з we**
+**12 · Виберіть зв’язку: один інший стілець**
 <!-- interaction_id: en:lesson-10:session-39:i09; family: context_gap_grammar -->
-We ___ in a breakout group. → **are** · is · am
-- is — *З we потрібна are.*
-- am — *Am уживається з I; з we потрібна are.*
+The other chair ___ free. → **is** · are · am
+- are — *Один стілець: is.*
+- am — *Am уживається з I.*
 
-**13 · Картка слова — debrief**
-<!-- interaction_id: en:lesson-10:session-39:word:debrief; family: word_card -->
-> **debrief** — «розбір підсумків». We are having a debrief. — «Ми проводимо розбір підсумків». Обговорення виконаного завдання й того, чого вдалося навчитися.
+**13 · Картка слова — anyone**
+<!-- interaction_id: en:lesson-10:session-39:word:anyone; family: word_card -->
+> **anyone** — «хто-небудь» у запитанні. Is anyone sitting here? — «Тут хто-небудь сидить?»
 
-**14 · Ви завершили вправу й зараз обговорюєте, як усе пройшло. Скажіть: «Ми проводимо розбір підсумків»**
+**14 · Перш ніж сісти, запитайте відвідувача поруч: «Тут хто-небудь сидить?»**
 <!-- interaction_id: en:lesson-10:session-39:i10; family: phrase_builder -->
-Плитки: `debrief` `a` `having` `are` `We` → **We are having a debrief.**
+Плитки: `here` `sitting` `anyone` `Is` → **Is anyone sitting here?**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-39:i11; family: listen_choose -->
-🔊 *The debrief is after lunch.* → **The debrief is after lunch.** · The debrief is before lunch. · The session is after lunch.
-- The debrief is before lunch. — *У записі звучить The debrief is after lunch.*
-- The session is after lunch. — *У записі звучить The debrief is after lunch.*
+🔊 *Is anyone waiting outside?* → **Is anyone waiting outside?** · Is anyone waiting inside? · Is anyone eating outside?
+- Is anyone waiting inside? — *У записі звучить Is anyone waiting outside?*
+- Is anyone eating outside? — *У записі звучить Is anyone waiting outside?*
 
-**16 · Ви зараз обговорюєте підсумки вправи. Виберіть форму having**
+**16 · Виберіть допоміжне дієслово перед anyone у запитанні про дію зараз**
 <!-- interaction_id: en:lesson-10:session-39:i12; family: context_gap_grammar -->
-We are ___ a debrief. → **having** · have · has
-- have — *Після are для поточного обговорення потрібна having.*
-- has — *Після are потрібна having, не has.*
+___ anyone sitting here? → **Is** · Are · Am
+- Are — *З anyone потрібна is.*
+- Am — *Am уживається з I.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-39:i13; family: speed_match -->
-session — заняття · facilitator — ведучий групової роботи · breakout — робота в окремій малій групі · debrief — розбір підсумків
+both — обидва · each — кожний · other — інший · anyone — хто-небудь
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-39:i14; family: listen_build_dictation -->
-🔊 *The facilitator is listening.* Плитки: `listening` `is` `facilitator` `The` → **The facilitator is listening.**
+🔊 *Each person has a cup.* Плитки: `cup` `a` `has` `person` `Each` → **Each person has a cup.**
 
-**19 · Колега запитує, як часто команда займається. Скажіть: «У нас заняття щоп’ятниці»**
-<!-- interaction_id: en:lesson-10:session-39:i15; family: scripted_repeat_compare -->
-🎙 **We have a session every Friday.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-39:i15; family: listen_build_dictation -->
+🔊 *Is anyone sitting here?* Плитки: `here` `sitting` `anyone` `Is` → **Is anyone sitting here?**
 
-**20 · Ведучий мовчить і уважно слухає учасника. Скажіть: «Ведучий групової роботи слухає»**
-<!-- interaction_id: en:lesson-10:session-39:i16; family: phrase_builder -->
-Плитки: `listening` `is` `facilitator` `The` → **The facilitator is listening.**
+**20 · Друг шукає два місця. Покажіть на вільні стільці й скажіть: «Обидва стільці вільні»**
+<!-- interaction_id: en:lesson-10:session-39:i16; family: scripted_repeat_compare -->
+🎙 **Both chairs are free.**
 
-**21 · Вправу завершено. Ви обговорюєте з командою, що вдалося. Колега запитує, чим ви зараз зайняті. Скажіть: «Ми проводимо розбір підсумків»**
-<!-- interaction_id: en:lesson-10:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are having a debrief.**
+**21 · Ви хочете присісти. Запитайте відвідувача поруч: «Тут хто-небудь сидить?»**
+<!-- interaction_id: en:lesson-10:session-39:i17; family: scripted_repeat_compare -->
+🎙 **Is anyone sitting here?**
 

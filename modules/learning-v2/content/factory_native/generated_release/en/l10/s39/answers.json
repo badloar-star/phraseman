@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-39:word:session",
-    "correctText": "session",
+    "interactionId": "en:lesson-10:session-39:word:both",
+    "correctText": "both",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i01",
-    "correctText": "We have a session every Friday.",
+    "correctText": "Both chairs are free.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i02",
-    "correctText": "The session starts at ten.",
+    "correctText": "Both cups are clean.",
     "correctResponseId": "en:lesson-10:session-39:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-39:i03",
-    "correctText": "have",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-39:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-39:word:facilitator",
-    "correctText": "facilitator",
+    "interactionId": "en:lesson-10:session-39:word:each",
+    "correctText": "each",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i04",
-    "correctText": "The facilitator is listening.",
+    "correctText": "Each person has a cup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i05",
-    "correctText": "The facilitator is asking a question.",
+    "correctText": "Each child has a plate.",
     "correctResponseId": "en:lesson-10:session-39:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-39:i06",
-    "correctText": "is",
+    "correctText": "has",
     "correctResponseId": "en:lesson-10:session-39:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-39:word:breakout",
-    "correctText": "breakout",
+    "interactionId": "en:lesson-10:session-39:word:other",
+    "correctText": "other",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i07",
-    "correctText": "We are in a breakout group.",
+    "correctText": "I prefer the other chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i08",
-    "correctText": "Our breakout group has four people.",
+    "correctText": "The other chair is free.",
     "correctResponseId": "en:lesson-10:session-39:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-39:i09",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-39:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-39:word:debrief",
-    "correctText": "debrief",
+    "interactionId": "en:lesson-10:session-39:word:anyone",
+    "correctText": "anyone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i10",
-    "correctText": "We are having a debrief.",
+    "correctText": "Is anyone sitting here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i11",
-    "correctText": "The debrief is after lunch.",
+    "correctText": "Is anyone waiting outside?",
     "correctResponseId": "en:lesson-10:session-39:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-39:i12",
-    "correctText": "having",
+    "correctText": "Is",
     "correctResponseId": "en:lesson-10:session-39:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-39:i13",
-    "correctText": "en:lesson-10:session-39:i13:p1=session\nen:lesson-10:session-39:i13:p2=facilitator\nen:lesson-10:session-39:i13:p3=breakout\nen:lesson-10:session-39:i13:p4=debrief",
+    "correctText": "en:lesson-10:session-39:i13:p1=both\nen:lesson-10:session-39:i13:p2=each\nen:lesson-10:session-39:i13:p3=other\nen:lesson-10:session-39:i13:p4=anyone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i14",
-    "correctText": "The facilitator is listening.",
+    "correctText": "Each person has a cup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i15",
-    "correctText": "We have a session every Friday.",
+    "correctText": "Is anyone sitting here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i16",
-    "correctText": "The facilitator is listening.",
+    "correctText": "Both chairs are free.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-39:i17",
-    "correctText": "We are having a debrief.",
+    "correctText": "Is anyone sitting here?",
     "correctResponseId": null
   }
 ]

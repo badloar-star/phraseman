@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 40 — Встреча выпускников
+# Английский · Урок 10 · Занятие 40 — Готовим и пробуем еду
 
-**Ситуация.** Повторить привычные и текущие действия на встрече выпускников университета.
+**Ситуация.** Рассказать, как готовите завтрак, разогреваете обед и едите.
 
-**Что вы освоите:** We have a reunion every year; The alumni are arriving; We are celebrating the centenary
-**Новые слова:** reunion, alumni, memento, centenary
+**Что вы освоите:** I often fry eggs; I am heating the soup; This soup smells good
+**Новые слова:** fry, heat, chew, smell
 
 ## Интро 1
 
-### Встречаемся снова
+### Завтрак по утрам
 
-Reunion — «встреча после разлуки», например встреча бывших однокурсников. Вы собираетесь каждый год: We have a reunion every year — «У нас встреча выпускников каждый год». Это привычка: используем Present Simple.
+Друг спрашивает, что вы обычно готовите на завтрак. Fry — «жарить»: I often fry eggs — «Я часто жарю яйца». Often означает повторяющееся действие, поэтому fry без am. Сейчас вы можете вовсе не стоять у плиты.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We have a reunion every year.**
-- ❌ We has a reunion every year. — *С we нужна have.*
-- ❌ We having a reunion every year. — *Для привычки здесь нужна have.*
+- ✅ **I often fry eggs.**
+- ❌ I often fries eggs. — *После I нужна fry, без s.*
+- ❌ I often frying eggs. — *Для привычки нужна fry.*
 
 ---
 
 ## Интро 2
 
-### Гости прибывают
+### Разогреваю обед
 
-Alumni — «выпускники учебного заведения». Слово во множественном числе; здесь смешанная группа выпускников университета. Они сейчас прибывают: The alumni are arriving — «Выпускники прибывают». Используем are + arriving. У arrive перед ing убираем e.
+Суп приготовлен, но успел остыть. Вы поставили кастрюлю на плиту. Heat — «нагревать, разогревать»: I am heating the soup — «Я разогреваю суп». Действие идёт прямо сейчас: am + heating. У heat окончание ing добавляется без изменения основы.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The alumni are arriving.**
-- ❌ The alumni is arriving. — *Alumni — множественное число, нужна are.*
-- ❌ The alumni are arriveing. — *Правильно arriving, без e.*
+- ✅ **I am heating the soup.**
+- ❌ I heating the soup. — *Перед heating нужна am.*
+- ❌ I am heat the soup. — *После am нужна heating.*
 
 ---
 
 ## Интро 3
 
-### Сто лет университету
+### За столом
 
-Centenary — «столетие», сотая годовщина события; это британское слово. Университету сегодня сто лет, и вы на празднике: We are celebrating the centenary — «Мы празднуем столетие». Это действие в текущей ситуации: are + celebrating.
+Сестра спрашивает, почему вы не отвечаете. Chew — «жевать»: I am chewing — «Я жую». Это действие сейчас. Суп на столе приятно пахнет. Smell — «пахнуть»: This soup smells good — «Этот суп хорошо пахнет». Здесь smell описывает свойство супа, поэтому smells, не is smelling. После единственного числа soup добавляем s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are celebrating the centenary.**
-- ❌ We is celebrating the centenary. — *С we нужна are.*
-- ❌ We are celebrate the centenary. — *После are нужна celebrating.*
+- ✅ **This soup smells good.**
+- ❌ This soup smell good. — *После this soup нужна smells с s.*
+- ❌ This soup is smell good. — *Здесь нужна smells без is.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — reunion**
-<!-- interaction_id: en:lesson-10:session-40:word:reunion; family: word_card -->
-> **reunion** — «встреча после разлуки». We have a reunion every year. — «У нас встреча выпускников каждый год». Здесь встреча бывших однокурсников.
+**1 · Карточка слова — fry**
+<!-- interaction_id: en:lesson-10:session-40:word:fry; family: word_card -->
+> **fry** — «жарить». I often fry eggs. — «Я часто жарю яйца».
 
-**2 · Бывшие однокурсники собираются ежегодно. Скажите: «У нас встреча выпускников каждый год». Поставьте every year в конце**
+**2 · Расскажите о завтраках: «Я часто жарю яйца». Поставьте often перед fry**
 <!-- interaction_id: en:lesson-10:session-40:i01; family: phrase_builder -->
-Плитки: `year` `every` `reunion` `a` `have` `We` → **We have a reunion every year.**
+Плитки: `eggs` `fry` `often` `I` → **I often fry eggs.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-40:i02; family: listen_choose -->
-🔊 *The reunion is in the hall.* → **The reunion is in the hall.** · The reunion is in the garden. · The ceremony is in the hall.
-- The reunion is in the garden. — *В записи звучит The reunion is in the hall.*
-- The ceremony is in the hall. — *В записи звучит The reunion is in the hall.*
+🔊 *We often fry potatoes.* → **We often fry potatoes.** · We often fry eggs. · They often fry potatoes.
+- We often fry eggs. — *В записи звучит We often fry potatoes.*
+- They often fry potatoes. — *В записи звучит We often fry potatoes.*
 
-**4 · Это ежегодная встреча. Выберите форму have**
+**4 · Выберите форму fry для привычки после I**
 <!-- interaction_id: en:lesson-10:session-40:i03; family: context_gap_grammar -->
-We ___ a reunion every year. → **have** · has · having
-- has — *С we нужна have.*
-- having — *Для привычки здесь нужна have.*
+I often ___ eggs. → **fry** · fries · frying
+- fries — *После I нужна fry без s.*
+- frying — *Для привычки здесь нужна fry.*
 
-**5 · Карточка слова — alumni**
-<!-- interaction_id: en:lesson-10:session-40:word:alumni; family: word_card -->
-> **alumni** — «выпускники учебного заведения». The alumni are arriving. — «Выпускники прибывают». Множественное число; здесь смешанная группа выпускников университета.
+**5 · Карточка слова — heat**
+<!-- interaction_id: en:lesson-10:session-40:word:heat; family: word_card -->
+> **heat** — «нагревать, разогревать». I am heating the soup. — «Я разогреваю суп».
 
-**6 · К университету сейчас подходят бывшие студенты. Скажите: «Выпускники прибывают»**
+**6 · Расскажите о привычке: «Я разогреваю суп каждый день». Поставьте every day в конце**
 <!-- interaction_id: en:lesson-10:session-40:i04; family: phrase_builder -->
-Плитки: `arriving` `are` `alumni` `The` → **The alumni are arriving.**
+Плитки: `day` `every` `soup` `heat` `I` → **I heat soup every day.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-40:i05; family: listen_choose -->
-🔊 *The alumni are talking in the hall.* → **The alumni are talking in the hall.** · The alumni are waiting in the hall. · The alumni are talking in the garden.
-- The alumni are waiting in the hall. — *В записи звучит The alumni are talking in the hall.*
-- The alumni are talking in the garden. — *В записи звучит The alumni are talking in the hall.*
+🔊 *She is heating the milk.* → **She is heating the milk.** · She is heating the soup. · He is heating the milk.
+- She is heating the soup. — *В записи звучит She is heating the milk.*
+- He is heating the milk. — *В записи звучит She is heating the milk.*
 
-**8 · Выберите связку с alumni во множественном числе**
+**8 · Суп на плите сейчас. Выберите форму heat**
 <!-- interaction_id: en:lesson-10:session-40:i06; family: context_gap_grammar -->
-The alumni ___ arriving. → **are** · is · am
-- is — *Alumni — множественное число, нужна are.*
-- am — *Am используется с I; здесь нужна are.*
+I am ___ the soup. → **heating** · heat · heats
+- heat — *После am нужна heating.*
+- heats — *После am нужна heating, не heats.*
 
-**9 · Карточка слова — memento**
-<!-- interaction_id: en:lesson-10:session-40:word:memento; family: word_card -->
-> **memento** — «предмет на память». This photo is a memento. — «Эта фотография — предмет на память». Она напоминает о встрече; значение близко к keepsake из занятия 10.35.
+**9 · Карточка слова — chew**
+<!-- interaction_id: en:lesson-10:session-40:word:chew; family: word_card -->
+> **chew** — «жевать». I am chewing. — «Я жую».
 
-**10 · Вы сохраните общую фотографию после встречи. Скажите: «Эта фотография — предмет на память»**
+**10 · Вы не торопитесь за едой. Расскажите о привычке: «Я жую медленно». Поставьте slowly в конце**
 <!-- interaction_id: en:lesson-10:session-40:i07; family: phrase_builder -->
-Плитки: `memento` `a` `is` `photo` `This` → **This photo is a memento.**
+Плитки: `slowly` `chew` `I` → **I chew slowly.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-40:i08; family: listen_choose -->
-🔊 *I keep the badge as a memento.* → **I keep the badge as a memento.** · I keep the letter as a memento. · We keep the badge as a memento.
-- I keep the letter as a memento. — *В записи звучит I keep the badge as a memento.*
-- We keep the badge as a memento. — *В записи звучит I keep the badge as a memento.*
+🔊 *He is chewing.* → **He is chewing.** · She is chewing. · He is cooking.
+- She is chewing. — *В записи звучит He is chewing.*
+- He is cooking. — *В записи звучит He is chewing.*
 
-**12 · Речь об одной фотографии. Выберите связку**
+**12 · Действие идёт сейчас. Выберите форму chew**
 <!-- interaction_id: en:lesson-10:session-40:i09; family: context_gap_grammar -->
-This photo ___ a memento. → **is** · are · am
-- are — *Одна фотография: is.*
-- am — *Am используется с I; здесь нужна is.*
+I am ___. → **chewing** · chew · chews
+- chew — *После am нужна chewing.*
+- chews — *После am нужна chewing, не chews.*
 
-**13 · Карточка слова — centenary**
-<!-- interaction_id: en:lesson-10:session-40:word:centenary; family: word_card -->
-> **centenary** — «столетие». We are celebrating the centenary. — «Мы празднуем столетие». Здесь сотая годовщина открытия университета; британское употребление.
+**13 · Карточка слова — smell**
+<!-- interaction_id: en:lesson-10:session-40:word:smell; family: word_card -->
+> **smell** — «пахнуть». This soup smells good. — «Этот суп хорошо пахнет».
 
-**14 · Сегодня университету сто лет. Вы на празднике. Скажите: «Мы празднуем столетие»**
+**14 · Вам нравится запах яблок на столе. Скажите: «Эти яблоки хорошо пахнут»**
 <!-- interaction_id: en:lesson-10:session-40:i10; family: phrase_builder -->
-Плитки: `centenary` `the` `celebrating` `are` `We` → **We are celebrating the centenary.**
+Плитки: `good` `smell` `apples` `These` → **These apples smell good.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-40:i11; family: listen_choose -->
-🔊 *The centenary is in May.* → **The centenary is in May.** · The centenary is in June. · The reunion is in May.
-- The centenary is in June. — *В записи звучит The centenary is in May.*
-- The reunion is in May. — *В записи звучит The centenary is in May.*
+🔊 *The bread smells good.* → **The bread smells good.** · The soup smells good. · The bread smells bad.
+- The soup smells good. — *В записи звучит The bread smells good.*
+- The bread smells bad. — *В записи звучит The bread smells good.*
 
-**16 · Вы участвуете в празднике сейчас. Выберите форму celebrating**
+**16 · Опишите запах супа. Выберите форму smell**
 <!-- interaction_id: en:lesson-10:session-40:i12; family: context_gap_grammar -->
-We are ___ the centenary. → **celebrating** · celebrate · celebrates
-- celebrate — *После are нужна celebrating.*
-- celebrates — *Для текущего действия нужна celebrating.*
+This soup ___ good. → **smells** · smell · smelling
+- smell — *После this soup нужна smells с s.*
+- smelling — *Описываем запах: smells.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-40:i13; family: speed_match -->
-reunion — встреча после разлуки · alumni — выпускники учебного заведения · memento — предмет на память · centenary — столетие
+fry — жарить · heat — разогревать · chew — жевать · smell — пахнуть
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-40:i14; family: listen_build_dictation -->
-🔊 *The alumni are arriving.* Плитки: `arriving` `are` `alumni` `The` → **The alumni are arriving.**
+🔊 *I am heating the soup.* Плитки: `soup` `the` `heating` `am` `I` → **I am heating the soup.**
 
-**19 · Друг спрашивает, как часто вы встречаетесь с однокурсниками. Скажите: «У нас встреча выпускников каждый год»**
-<!-- interaction_id: en:lesson-10:session-40:i15; family: scripted_repeat_compare -->
-🎙 **We have a reunion every year.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-40:i15; family: listen_build_dictation -->
+🔊 *This soup smells good.* Плитки: `good` `smells` `soup` `This` → **This soup smells good.**
 
-**20 · Вы показываете общую фотографию, которую сохраните. Скажите: «Эта фотография — предмет на память»**
-<!-- interaction_id: en:lesson-10:session-40:i16; family: phrase_builder -->
-Плитки: `memento` `a` `is` `photo` `This` → **This photo is a memento.**
+**20 · Друг спрашивает, чем вы заняты у плиты. Скажите: «Я разогреваю суп»**
+<!-- interaction_id: en:lesson-10:session-40:i16; family: scripted_repeat_compare -->
+🎙 **I am heating the soup.**
 
-**21 · Вы на празднике в честь ста лет университета. Друг звонит и спрашивает, чем вы заняты. Скажите: «Мы празднуем столетие»**
-<!-- interaction_id: en:lesson-10:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are celebrating the centenary.**
+**21 · Сестра поставила суп на стол. Сделайте комплимент его запаху: «Этот суп хорошо пахнет»**
+<!-- interaction_id: en:lesson-10:session-40:i17; family: scripted_repeat_compare -->
+🎙 **This soup smells good.**
 

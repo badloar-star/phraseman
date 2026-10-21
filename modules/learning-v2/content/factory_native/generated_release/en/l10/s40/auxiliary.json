@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-40:intro1:r2": {
-          "ru": "С we нужна have.",
-          "uk": "З we потрібна have."
+          "ru": "После I нужна fry, без s.",
+          "uk": "Після I потрібна fry, без s."
         },
         "en:lesson-10:session-40:intro1:r3": {
-          "ru": "Для привычки здесь нужна have.",
-          "uk": "Для звички тут потрібна have."
+          "ru": "Для привычки нужна fry.",
+          "uk": "Для звички потрібна fry."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-40:intro2:r2": {
-          "ru": "Alumni — множественное число, нужна are.",
-          "uk": "Alumni — множина, потрібна are."
+          "ru": "Перед heating нужна am.",
+          "uk": "Перед heating потрібна am."
         },
         "en:lesson-10:session-40:intro2:r3": {
-          "ru": "Правильно arriving, без e.",
-          "uk": "Правильно arriving, без e."
+          "ru": "После am нужна heating.",
+          "uk": "Після am потрібна heating."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-40:intro3:r2": {
-          "ru": "С we нужна are.",
-          "uk": "З we потрібна are."
+          "ru": "После this soup нужна smells с s.",
+          "uk": "Після this soup потрібна smells із s."
         },
         "en:lesson-10:session-40:intro3:r3": {
-          "ru": "После are нужна celebrating.",
-          "uk": "Після are потрібна celebrating."
+          "ru": "Здесь нужна smells без is.",
+          "uk": "Тут потрібна smells без is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e6d32e3e5bc603cfe96260aef53056b3a295278bef00f50b2f7999b416bb352d"
+  "auxiliaryFingerprint": "16e7ca2cd28a81ea3bfee2956cfca57f8d84154b1295e75d8306e2c6bc5e4dc4"
 }

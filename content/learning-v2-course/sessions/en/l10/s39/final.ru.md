@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 39 — На тренинге
+# Английский · Урок 10 · Занятие 39 — Столик для друзей
 
-**Ситуация.** Рассказать о регулярных занятиях команды и о том, что происходит на тренинге сейчас.
+**Ситуация.** Устроиться за столиком, выбрать стул и проверить, всем ли хватило чашек.
 
-**Что вы освоите:** We have a session every Friday; The facilitator is listening; We are having a debrief
-**Новые слова:** session, facilitator, breakout, debrief
+**Что вы освоите:** Both chairs are free; Each person has a cup; Is anyone sitting here
+**Новые слова:** both, each, other, anyone
 
 ## Интро 1
 
-### Занятие каждую неделю
+### Два свободных стула
 
-Session — «занятие», выделенный период для определённой деятельности. У вашей команды занятие каждую пятницу: We have a session every Friday — «У нас занятие каждую пятницу». Every Friday указывает на повторение, поэтому используем Present Simple.
+Вы с другом нашли столик с двумя свободными стульями. Both — «оба»: Both chairs are free — «Оба стула свободны». Both относится к двум предметам. Chairs — множественное число, поэтому are.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We have a session every Friday.**
-- ❌ We has a session every Friday. — *С we нужна have.*
-- ❌ We having a session every Friday. — *Для регулярного занятия здесь нужна have.*
+- ✅ **Both chairs are free.**
+- ❌ Both chairs is free. — *Два стула: are, не is.*
+- ❌ Both chair are free. — *После both здесь нужна chairs во множественном числе.*
 
 ---
 
 ## Интро 2
 
-### Ведущий слушает
+### Чашка для каждого
 
-Facilitator — «ведущий групповой работы»: человек, который помогает участникам обсуждать вопросы и работать вместе. Сейчас участница объясняет идею, а ведущий слушает: The facilitator is listening — «Ведущий групповой работы слушает». Это действие сейчас: is + listening.
+К вам присоединились друзья. Вы расставили чашки и проверяете: Each person has a cup — «У каждого человека есть чашка». Each — «каждый»: мы рассматриваем людей по одному. Поэтому person в единственном числе и has, а не have.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The facilitator is listening.**
-- ❌ The facilitator listening. — *Перед listening нужен is.*
-- ❌ The facilitator are listening. — *Один ведущий: is.*
+- ✅ **Each person has a cup.**
+- ❌ Each person have a cup. — *С each person нужна has.*
+- ❌ Each people has a cup. — *После each здесь нужна person в единственном числе.*
 
 ---
 
 ## Интро 3
 
-### Обсуждаем выполненное
+### Другой стул
 
-Debrief — «разбор итогов»: обсуждение того, что произошло во время задания. Упражнение закончено, вы сейчас разбираете результаты: We are having a debrief — «Мы проводим разбор итогов». Здесь have обозначает проведение обсуждения, а не владение вещью. Поэтому are having подходит для текущего действия.
+Один из двух стульев стоит у шумной двери. Другой вам нравится больше: I prefer the other chair — «Я предпочитаю другой стул». Other — «другой»; the other chair здесь — второй из двух известных стульев. Перед тем как сесть, уточните у посетителя рядом: Is anyone sitting here? — «Здесь кто-нибудь сидит?» Anyone — «кто-нибудь» в вопросе. Вы спрашиваете о месте, занятом сейчас: is + sitting.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are having a debrief.**
-- ❌ We is having a debrief. — *С we нужна are.*
-- ❌ We are have a debrief. — *После are нужна having.*
+- ✅ **Is anyone sitting here?**
+- ❌ Are anyone sitting here? — *С anyone нужна is.*
+- ❌ Is anyone sit here? — *После is нужна sitting.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — session**
-<!-- interaction_id: en:lesson-10:session-39:word:session; family: word_card -->
-> **session** — «занятие». We have a session every Friday. — «У нас занятие каждую пятницу». Выделенный период для определённой деятельности.
+**1 · Карточка слова — both**
+<!-- interaction_id: en:lesson-10:session-39:word:both; family: word_card -->
+> **both** — «оба». Both chairs are free. — «Оба стула свободны».
 
-**2 · Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце**
+**2 · Вы видите два свободных стула. Скажите: «Оба стула свободны»**
 <!-- interaction_id: en:lesson-10:session-39:i01; family: phrase_builder -->
-Плитки: `Friday` `every` `session` `a` `have` `We` → **We have a session every Friday.**
+Плитки: `free` `are` `chairs` `Both` → **Both chairs are free.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-39:i02; family: listen_choose -->
-🔊 *The session starts at ten.* → **The session starts at ten.** · The session starts at nine. · The meeting starts at ten.
-- The session starts at nine. — *В записи звучит The session starts at ten.*
-- The meeting starts at ten. — *В записи звучит The session starts at ten.*
+🔊 *Both cups are clean.* → **Both cups are clean.** · Both cups are empty. · Both plates are clean.
+- Both cups are empty. — *В записи звучит Both cups are clean.*
+- Both plates are clean. — *В записи звучит Both cups are clean.*
 
-**4 · Это регулярное занятие. Выберите форму have**
+**4 · Выберите связку для двух стульев**
 <!-- interaction_id: en:lesson-10:session-39:i03; family: context_gap_grammar -->
-We ___ a session every Friday. → **have** · has · having
-- has — *С we нужна have.*
-- having — *Для регулярной ситуации здесь нужна have.*
+Both chairs ___ free. → **are** · is · am
+- is — *Множественное число: are.*
+- am — *Am используется с I.*
 
-**5 · Карточка слова — facilitator**
-<!-- interaction_id: en:lesson-10:session-39:word:facilitator; family: word_card -->
-> **facilitator** — «ведущий групповой работы». The facilitator is listening. — «Ведущий групповой работы слушает». Он помогает участникам обсуждать вопросы и работать вместе.
+**5 · Карточка слова — each**
+<!-- interaction_id: en:lesson-10:session-39:word:each; family: word_card -->
+> **each** — «каждый». Each person has a cup. — «У каждого человека есть чашка».
 
-**6 · Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»**
+**6 · Чашек хватило всем. Скажите: «У каждого человека есть чашка»**
 <!-- interaction_id: en:lesson-10:session-39:i04; family: phrase_builder -->
-Плитки: `listening` `is` `facilitator` `The` → **The facilitator is listening.**
+Плитки: `cup` `a` `has` `person` `Each` → **Each person has a cup.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-39:i05; family: listen_choose -->
-🔊 *The facilitator is asking a question.* → **The facilitator is asking a question.** · The facilitator is answering a question. · The student is asking a question.
-- The facilitator is answering a question. — *В записи звучит The facilitator is asking a question.*
-- The student is asking a question. — *В записи звучит The facilitator is asking a question.*
+🔊 *Each child has a plate.* → **Each child has a plate.** · Each child has a cup. · Each person has a plate.
+- Each child has a cup. — *В записи звучит Each child has a plate.*
+- Each person has a plate. — *В записи звучит Each child has a plate.*
 
-**8 · Один ведущий сейчас слушает участницу. Выберите связку**
+**8 · Выберите форму have после each person**
 <!-- interaction_id: en:lesson-10:session-39:i06; family: context_gap_grammar -->
-The facilitator ___ listening. → **is** · are · am
-- are — *С одним ведущим нужна is.*
-- am — *Am используется с I; здесь нужна is.*
+Each person ___ a cup. → **has** · have · having
+- have — *Each person: единственное число, нужна has.*
+- having — *Здесь говорим о наличии чашки: has.*
 
-**9 · Карточка слова — breakout**
-<!-- interaction_id: en:lesson-10:session-39:word:breakout; family: word_card -->
-> **breakout** — «работа в отдельной малой группе». We are in a breakout group. — «Мы в отдельной малой группе». На тренинге участников временно делят на группы для обсуждения; здесь breakout употребляется перед group.
+**9 · Карточка слова — other**
+<!-- interaction_id: en:lesson-10:session-39:word:other; family: word_card -->
+> **other** — «другой». the other chair — «другой стул», второй из двух.
 
-**10 · Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»**
+**10 · Из двух стульев вам больше нравится тот, что дальше от двери. Скажите: «Я предпочитаю другой стул»**
 <!-- interaction_id: en:lesson-10:session-39:i07; family: phrase_builder -->
-Плитки: `group` `breakout` `a` `in` `are` `We` → **We are in a breakout group.**
+Плитки: `chair` `other` `the` `prefer` `I` → **I prefer the other chair.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-39:i08; family: listen_choose -->
-🔊 *Our breakout group has four people.* → **Our breakout group has four people.** · Our breakout group has five people. · Your breakout group has four people.
-- Our breakout group has five people. — *В записи звучит Our breakout group has four people.*
-- Your breakout group has four people. — *В записи звучит Our breakout group has four people.*
+🔊 *The other chair is free.* → **The other chair is free.** · The other table is free. · The other chair is wet.
+- The other table is free. — *В записи звучит The other chair is free.*
+- The other chair is wet. — *В записи звучит The other chair is free.*
 
-**12 · Вы вместе с коллегами в малой группе. Выберите связку с we**
+**12 · Выберите связку: один другой стул**
 <!-- interaction_id: en:lesson-10:session-39:i09; family: context_gap_grammar -->
-We ___ in a breakout group. → **are** · is · am
-- is — *С we нужна are.*
-- am — *Am используется с I; с we нужна are.*
+The other chair ___ free. → **is** · are · am
+- are — *Один стул: is.*
+- am — *Am используется с I.*
 
-**13 · Карточка слова — debrief**
-<!-- interaction_id: en:lesson-10:session-39:word:debrief; family: word_card -->
-> **debrief** — «разбор итогов». We are having a debrief. — «Мы проводим разбор итогов». Обсуждение выполненного задания и того, чему удалось научиться.
+**13 · Карточка слова — anyone**
+<!-- interaction_id: en:lesson-10:session-39:word:anyone; family: word_card -->
+> **anyone** — «кто-нибудь» в вопросе. Is anyone sitting here? — «Здесь кто-нибудь сидит?»
 
-**14 · Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»**
+**14 · Перед тем как сесть, спросите посетителя рядом: «Здесь кто-нибудь сидит?»**
 <!-- interaction_id: en:lesson-10:session-39:i10; family: phrase_builder -->
-Плитки: `debrief` `a` `having` `are` `We` → **We are having a debrief.**
+Плитки: `here` `sitting` `anyone` `Is` → **Is anyone sitting here?**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-39:i11; family: listen_choose -->
-🔊 *The debrief is after lunch.* → **The debrief is after lunch.** · The debrief is before lunch. · The session is after lunch.
-- The debrief is before lunch. — *В записи звучит The debrief is after lunch.*
-- The session is after lunch. — *В записи звучит The debrief is after lunch.*
+🔊 *Is anyone waiting outside?* → **Is anyone waiting outside?** · Is anyone waiting inside? · Is anyone eating outside?
+- Is anyone waiting inside? — *В записи звучит Is anyone waiting outside?*
+- Is anyone eating outside? — *В записи звучит Is anyone waiting outside?*
 
-**16 · Вы сейчас обсуждаете итоги упражнения. Выберите форму having**
+**16 · Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас**
 <!-- interaction_id: en:lesson-10:session-39:i12; family: context_gap_grammar -->
-We are ___ a debrief. → **having** · have · has
-- have — *После are для текущего обсуждения нужна having.*
-- has — *После are нужна having, не has.*
+___ anyone sitting here? → **Is** · Are · Am
+- Are — *С anyone нужна is.*
+- Am — *Am используется с I.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-39:i13; family: speed_match -->
-session — занятие · facilitator — ведущий групповой работы · breakout — работа в отдельной малой группе · debrief — разбор итогов
+both — оба · each — каждый · other — другой · anyone — кто-нибудь
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-39:i14; family: listen_build_dictation -->
-🔊 *The facilitator is listening.* Плитки: `listening` `is` `facilitator` `The` → **The facilitator is listening.**
+🔊 *Each person has a cup.* Плитки: `cup` `a` `has` `person` `Each` → **Each person has a cup.**
 
-**19 · Коллега спрашивает, как часто команда занимается. Скажите: «У нас занятие каждую пятницу»**
-<!-- interaction_id: en:lesson-10:session-39:i15; family: scripted_repeat_compare -->
-🎙 **We have a session every Friday.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-39:i15; family: listen_build_dictation -->
+🔊 *Is anyone sitting here?* Плитки: `here` `sitting` `anyone` `Is` → **Is anyone sitting here?**
 
-**20 · Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»**
-<!-- interaction_id: en:lesson-10:session-39:i16; family: phrase_builder -->
-Плитки: `listening` `is` `facilitator` `The` → **The facilitator is listening.**
+**20 · Друг ищет два места. Покажите на свободные стулья и скажите: «Оба стула свободны»**
+<!-- interaction_id: en:lesson-10:session-39:i16; family: scripted_repeat_compare -->
+🎙 **Both chairs are free.**
 
-**21 · Упражнение закончено. Вы обсуждаете с командой, что получилось. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Мы проводим разбор итогов»**
-<!-- interaction_id: en:lesson-10:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are having a debrief.**
+**21 · Вы хотите присесть. Спросите посетителя рядом: «Здесь кто-нибудь сидит?»**
+<!-- interaction_id: en:lesson-10:session-39:i17; family: scripted_repeat_compare -->
+🎙 **Is anyone sitting here?**
 

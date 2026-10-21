@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-39",
   "learningOutcomeByLocale": {
-    "ru": "We have a session every Friday; The facilitator is listening; We are having a debrief",
-    "uk": "We have a session every Friday; The facilitator is listening; We are having a debrief"
+    "ru": "Both chairs are free; Each person has a cup; Is anyone sitting here",
+    "uk": "Both chairs are free; Each person has a cup; Is anyone sitting here"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Занятие каждую неделю",
-        "uk": "Заняття щотижня"
+        "ru": "Два свободных стула",
+        "uk": "Два вільні стільці"
       },
       "bodyByLocale": {
-        "ru": "Session — «занятие», выделенный период для определённой деятельности. У вашей команды занятие каждую пятницу: We have a session every Friday — «У нас занятие каждую пятницу». Every Friday указывает на повторение, поэтому используем Present Simple.",
-        "uk": "Session — «заняття», виділений період для певної діяльності. У вашої команди заняття щоп’ятниці: We have a session every Friday — «У нас заняття щоп’ятниці». Every Friday указує на повторення, тому використовуємо Present Simple."
+        "ru": "Вы с другом нашли столик с двумя свободными стульями. Both — «оба»: Both chairs are free — «Оба стула свободны». Both относится к двум предметам. Chairs — множественное число, поэтому are.",
+        "uk": "Ви з другом знайшли столик із двома вільними стільцями. Both — «обидва»: Both chairs are free — «Обидва стільці вільні». Both стосується двох предметів. Chairs — множина, тому are."
       },
       "question": {
         "interactionId": "en:lesson-10:session-39:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-39:intro1:r1",
-              "text": "We have a session every Friday."
+              "text": "Both chairs are free."
             },
             {
               "responseId": "en:lesson-10:session-39:intro1:r2",
-              "text": "We has a session every Friday."
+              "text": "Both chairs is free."
             },
             {
               "responseId": "en:lesson-10:session-39:intro1:r3",
-              "text": "We having a session every Friday."
+              "text": "Both chair are free."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-39:intro1:r1",
-              "text": "We have a session every Friday."
+              "text": "Both chairs are free."
             },
             {
               "responseId": "en:lesson-10:session-39:intro1:r2",
-              "text": "We has a session every Friday."
+              "text": "Both chairs is free."
             },
             {
               "responseId": "en:lesson-10:session-39:intro1:r3",
-              "text": "We having a session every Friday."
+              "text": "Both chair are free."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ведущий слушает",
-        "uk": "Ведучий слухає"
+        "ru": "Чашка для каждого",
+        "uk": "Чашка для кожного"
       },
       "bodyByLocale": {
-        "ru": "Facilitator — «ведущий групповой работы»: человек, который помогает участникам обсуждать вопросы и работать вместе. Сейчас участница объясняет идею, а ведущий слушает: The facilitator is listening — «Ведущий групповой работы слушает». Это действие сейчас: is + listening.",
-        "uk": "Facilitator — «ведучий групової роботи»: людина, яка допомагає учасникам обговорювати питання й працювати разом. Зараз учасниця пояснює ідею, а ведучий слухає: The facilitator is listening — «Ведучий групової роботи слухає». Це дія зараз: is + listening."
+        "ru": "К вам присоединились друзья. Вы расставили чашки и проверяете: Each person has a cup — «У каждого человека есть чашка». Each — «каждый»: мы рассматриваем людей по одному. Поэтому person в единственном числе и has, а не have.",
+        "uk": "До вас приєдналися друзі. Ви розставили чашки й перевіряєте: Each person has a cup — «У кожної людини є чашка». Each — «кожний»: ми розглядаємо людей по одному. Тому person в однині й has, а не have."
       },
       "question": {
         "interactionId": "en:lesson-10:session-39:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-39:intro2:r1",
-              "text": "The facilitator is listening."
+              "text": "Each person has a cup."
             },
             {
               "responseId": "en:lesson-10:session-39:intro2:r2",
-              "text": "The facilitator listening."
+              "text": "Each person have a cup."
             },
             {
               "responseId": "en:lesson-10:session-39:intro2:r3",
-              "text": "The facilitator are listening."
+              "text": "Each people has a cup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-39:intro2:r1",
-              "text": "The facilitator is listening."
+              "text": "Each person has a cup."
             },
             {
               "responseId": "en:lesson-10:session-39:intro2:r2",
-              "text": "The facilitator listening."
+              "text": "Each person have a cup."
             },
             {
               "responseId": "en:lesson-10:session-39:intro2:r3",
-              "text": "The facilitator are listening."
+              "text": "Each people has a cup."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обсуждаем выполненное",
-        "uk": "Обговорюємо виконане"
+        "ru": "Другой стул",
+        "uk": "Інший стілець"
       },
       "bodyByLocale": {
-        "ru": "Debrief — «разбор итогов»: обсуждение того, что произошло во время задания. Упражнение закончено, вы сейчас разбираете результаты: We are having a debrief — «Мы проводим разбор итогов». Здесь have обозначает проведение обсуждения, а не владение вещью. Поэтому are having подходит для текущего действия.",
-        "uk": "Debrief — «розбір підсумків»: обговорення того, що сталося під час завдання. Вправу завершено, ви зараз розбираєте результати: We are having a debrief — «Ми проводимо розбір підсумків». Тут have позначає проведення обговорення, а не володіння річчю. Тому are having підходить для поточної дії."
+        "ru": "Один из двух стульев стоит у шумной двери. Другой вам нравится больше: I prefer the other chair — «Я предпочитаю другой стул». Other — «другой»; the other chair здесь — второй из двух известных стульев. Перед тем как сесть, уточните у посетителя рядом: Is anyone sitting here? — «Здесь кто-нибудь сидит?» Anyone — «кто-нибудь» в вопросе. Вы спрашиваете о месте, занятом сейчас: is + sitting.",
+        "uk": "Один із двох стільців стоїть біля шумних дверей. Інший вам подобається більше: I prefer the other chair — «Я віддаю перевагу іншому стільцю». Other — «інший»; the other chair тут — другий із двох відомих стільців. Перш ніж сісти, уточніть у відвідувача поруч: Is anyone sitting here? — «Тут хто-небудь сидить?» Anyone — «хто-небудь» у запитанні. Ви запитуєте про місце, зайняте зараз: is + sitting."
       },
       "question": {
         "interactionId": "en:lesson-10:session-39:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-39:intro3:r1",
-              "text": "We are having a debrief."
+              "text": "Is anyone sitting here?"
             },
             {
               "responseId": "en:lesson-10:session-39:intro3:r2",
-              "text": "We is having a debrief."
+              "text": "Are anyone sitting here?"
             },
             {
               "responseId": "en:lesson-10:session-39:intro3:r3",
-              "text": "We are have a debrief."
+              "text": "Is anyone sit here?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-39:intro3:r1",
-              "text": "We are having a debrief."
+              "text": "Is anyone sitting here?"
             },
             {
               "responseId": "en:lesson-10:session-39:intro3:r2",
-              "text": "We is having a debrief."
+              "text": "Are anyone sitting here?"
             },
             {
               "responseId": "en:lesson-10:session-39:intro3:r3",
-              "text": "We are have a debrief."
+              "text": "Is anyone sit here?"
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bee3334eb4cf84c006a50a25eeee954fae6b6932ad63bde920a3234352f29919"
+  "introFingerprint": "d37e88577b88448af0c889ce6383c20c5d83a686d2d9206663c85c94739ed6c5"
 }

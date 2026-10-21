@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-40:word:reunion",
-    "correctText": "reunion",
+    "interactionId": "en:lesson-10:session-40:word:fry",
+    "correctText": "fry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i01",
-    "correctText": "We have a reunion every year.",
+    "correctText": "I often fry eggs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i02",
-    "correctText": "The reunion is in the hall.",
+    "correctText": "We often fry potatoes.",
     "correctResponseId": "en:lesson-10:session-40:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-40:i03",
-    "correctText": "have",
+    "correctText": "fry",
     "correctResponseId": "en:lesson-10:session-40:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-40:word:alumni",
-    "correctText": "alumni",
+    "interactionId": "en:lesson-10:session-40:word:heat",
+    "correctText": "heat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i04",
-    "correctText": "The alumni are arriving.",
+    "correctText": "I heat soup every day.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i05",
-    "correctText": "The alumni are talking in the hall.",
+    "correctText": "She is heating the milk.",
     "correctResponseId": "en:lesson-10:session-40:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-40:i06",
-    "correctText": "are",
+    "correctText": "heating",
     "correctResponseId": "en:lesson-10:session-40:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-40:word:memento",
-    "correctText": "memento",
+    "interactionId": "en:lesson-10:session-40:word:chew",
+    "correctText": "chew",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i07",
-    "correctText": "This photo is a memento.",
+    "correctText": "I chew slowly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i08",
-    "correctText": "I keep the badge as a memento.",
+    "correctText": "He is chewing.",
     "correctResponseId": "en:lesson-10:session-40:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-40:i09",
-    "correctText": "is",
+    "correctText": "chewing",
     "correctResponseId": "en:lesson-10:session-40:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-40:word:centenary",
-    "correctText": "centenary",
+    "interactionId": "en:lesson-10:session-40:word:smell",
+    "correctText": "smell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i10",
-    "correctText": "We are celebrating the centenary.",
+    "correctText": "These apples smell good.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i11",
-    "correctText": "The centenary is in May.",
+    "correctText": "The bread smells good.",
     "correctResponseId": "en:lesson-10:session-40:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-40:i12",
-    "correctText": "celebrating",
+    "correctText": "smells",
     "correctResponseId": "en:lesson-10:session-40:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-40:i13",
-    "correctText": "en:lesson-10:session-40:i13:p1=reunion\nen:lesson-10:session-40:i13:p2=alumni\nen:lesson-10:session-40:i13:p3=memento\nen:lesson-10:session-40:i13:p4=centenary",
+    "correctText": "en:lesson-10:session-40:i13:p1=fry\nen:lesson-10:session-40:i13:p2=heat\nen:lesson-10:session-40:i13:p3=chew\nen:lesson-10:session-40:i13:p4=smell",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i14",
-    "correctText": "The alumni are arriving.",
+    "correctText": "I am heating the soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i15",
-    "correctText": "We have a reunion every year.",
+    "correctText": "This soup smells good.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i16",
-    "correctText": "This photo is a memento.",
+    "correctText": "I am heating the soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-40:i17",
-    "correctText": "We are celebrating the centenary.",
+    "correctText": "This soup smells good.",
     "correctResponseId": null
   }
 ]

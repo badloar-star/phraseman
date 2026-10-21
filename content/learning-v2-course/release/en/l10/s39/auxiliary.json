@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-39:intro1:r2": {
-          "ru": "С we нужна have.",
-          "uk": "З we потрібна have."
+          "ru": "Два стула: are, не is.",
+          "uk": "Два стільці: are, не is."
         },
         "en:lesson-10:session-39:intro1:r3": {
-          "ru": "Для регулярного занятия здесь нужна have.",
-          "uk": "Для регулярного заняття тут потрібна have."
+          "ru": "После both здесь нужна chairs во множественном числе.",
+          "uk": "Після both тут потрібна chairs у множині."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-39:intro2:r2": {
-          "ru": "Перед listening нужен is.",
-          "uk": "Перед listening потрібне is."
+          "ru": "С each person нужна has.",
+          "uk": "З each person потрібна has."
         },
         "en:lesson-10:session-39:intro2:r3": {
-          "ru": "Один ведущий: is.",
-          "uk": "Один ведучий: is."
+          "ru": "После each здесь нужна person в единственном числе.",
+          "uk": "Після each тут потрібна person в однині."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-39:intro3:r2": {
-          "ru": "С we нужна are.",
-          "uk": "З we потрібна are."
+          "ru": "С anyone нужна is.",
+          "uk": "З anyone потрібна is."
         },
         "en:lesson-10:session-39:intro3:r3": {
-          "ru": "После are нужна having.",
-          "uk": "Після are потрібна having."
+          "ru": "После is нужна sitting.",
+          "uk": "Після is потрібна sitting."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5a5b0843f3be8dfcc65591622c3f1f469277c2fa65e462467e745715760fcae6"
+  "auxiliaryFingerprint": "54ad3e6a4a667fbbba216d2c7e0453f81c459e1aec881b4945cd7fc52f3a4759"
 }

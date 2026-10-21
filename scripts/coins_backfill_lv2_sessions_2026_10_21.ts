@@ -16,6 +16,7 @@ import * as admin from '../functions/node_modules/firebase-admin';
 import { commitStarOperations, prepareStarOperations, type StarOpRequest } from '../functions/src/stars_ledger';
 import { arenaSeasonWindow } from '../functions/src/arena_v2_core';
 import { getWeekKey } from '../functions/src/progress_events';
+import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 const PROJECT_ID = 'phraseman-ea0b3';
 const PAGE = 300;
@@ -62,8 +63,12 @@ async function collectCandidates(db: admin.firestore.Firestore): Promise<{ candi
       if (rows.length === 0 || rows.some((r) => r.disposition !== 'completed' || !(Number(r.learnerAttempts) >= 1))) {
         skips.not_all_completed += 1; continue;
       }
-      const runes = rows.reduce((sum, r) => sum + interactionRunes({ learnerAttempts: Number(r.learnerAttempts), hintUsed: r.hintUsed === true }), 0);
+      const baseRunes = rows.reduce((sum, r) => sum + interactionRunes({ learnerAttempts: Number(r.learnerAttempts), hintUsed: r.hintUsed === true }), 0);
       const earnedAtMs = doc.createTime ? doc.createTime.toMillis() : 0;
+      // зачем (Ревизор к b3ac3348d, п.2): курс начисляет с удвоением «суперворскресенья» по времени начисления
+      // (learning_session_rune_reward_composite_v1.ts:754-756) — та же функция, включая отмену удвоения (D147).
+      const runes = applySuperSundayRuneMultiplier(baseRunes, earnedAtMs);
+      if (runes !== baseRunes) log('super_sunday', { baseRunes, runes });
       const sessionKey = `lv2_en_${lesson}_${session}`;
       const sessions = firstRuns.get(uid) ?? new Map<string, { runes: number; earnedAtMs: number }>();
       firstRuns.set(uid, sessions);
@@ -124,8 +129,9 @@ async function creditUser(db: admin.firestore.Firestore, uid: string, rows: read
       if (todo.length === 0) return { outcome: 'nothing_left' as const, coins: 0, sessions: 0 };
       const ops = todo.map(ledgerOperation);
       const coins = ops.reduce((sum, op) => sum + op.delta, 0);
-      if (!APPLY) return { outcome: 'applied' as const, coins, sessions: ops.length };
       const nowMs = Date.now();
+      // зачем (Ревизор к b3ac3348d, п.1): подготовка журнала только читает — зовём её и в сухом режиме, чтобы проверить
+      // настоящие решения журнала (validate, meta, конфликт квитанции), а не только подсчёт.
       const prepared = await prepareStarOperations(tx, db, uid, userSnap, ops, {
         nowMs,
         activeSeasonId: arenaSeasonWindow(nowMs).seasonId,
@@ -134,6 +140,12 @@ async function creditUser(db: admin.firestore.Firestore, uid: string, rows: read
         authUid: ADMIN_AUTH_UID,
         deviceId: null,
       });
+      const preparedApplied = prepared.outcomes.filter((outcome) => outcome.status === 'applied');
+      if (preparedApplied.length !== ops.length || preparedApplied.reduce((sum, outcome) => sum + outcome.appliedDelta, 0) !== coins) {
+        log('prepare_rejected', { outcomes: prepared.outcomes.map((o) => ({ status: o.status, errorCode: o.errorCode ?? null, delta: o.appliedDelta })) });
+        throw new Error('coins_backfill_prepare_mismatch');
+      }
+      if (!APPLY) return { outcome: 'applied' as const, coins, sessions: ops.length };
       const result = commitStarOperations(tx, prepared);
       const applied = result.outcomes.filter((outcome) => outcome.status === 'applied');
       if (applied.length !== ops.length || applied.reduce((sum, outcome) => sum + outcome.appliedDelta, 0) !== coins) {

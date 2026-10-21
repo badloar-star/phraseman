@@ -236,7 +236,9 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
   expect(runtime).toContain("setIntroDone(false)");
   expect(runtime).toContain("setPracticeIndex(0)");
   expect(runtime).toContain("key={sessionRunIdRef.current}");
-  expect(runtime).not.toMatch(/restore.*practiceIndex|resume.*practiceIndex/iu);
+  // зачем (№22б, решение владельца 21.10): прежний запрет восстанавливать место отменён — эпизод пишется на телефон и
+  // продолжается «с задания N из M». Восстановление идёт ТОЛЬКО через модуль сохранения эпизода (сторож — episode_exit_resume_contract).
+  expect(runtime).toContain("loadLearningV2EpisodeResumeV1({ owner: resumeOwner");
   // зачем (05.10): подготовка занятия переехала из плеера на вкладку «Уроки» (1d70c8fc5): карта готовит занятие до
   // перехода, плеер получает готовый handle и берёт из него материал. Завершение больше не требует handle —
   // у авторского предпросмотра его нет; обязательны прогон и его сводка.
@@ -248,14 +250,21 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
     "if (!run || finishing || finishingRef.current || !runSummary) return;",
   );
   expect(runtime).toContain(
-    "resolveLearningV2CourseSessionSelectableAudioV1({",
+    "resolveLearningV2CourseSessionSelectableDeviceSpeechTextV1(",
   );
-  expect(runtime).toContain(
-    "resolveLearningV2CourseSessionFullPhraseAudioV1({",
-  );
+  expect(runtime).toContain("systemTtsOnly: true");
+  // зачем (21.10, D47 отменено словом владельца 18.10 — звук «бандл + Storage»): плеер снова играет записанные клипы
+  // (сначала запись, голос телефона — запасной путь). Прежний запрет этих вызовов сторожил отменённое решение.
+  expect(runtime).toContain("resolveLearningV2CourseSessionSelectableAudioV1(");
+  expect(runtime).toContain("resolveLearningV2CourseSessionFullPhraseAudioV1(");
+  // №22 (владелец 21.10): короткая отлучка в фон эпизод не сбрасывает, дольше — прежний перезапуск попытки.
+  expect(runtime).toContain("LEARNING_V2_BACKGROUND_KEEP_MS = 5 * 60 * 1000");
+  // №22б: дольше 5 минут — предложить «Продолжить с задания N из M», а без пройденных заданий — начать заново.
+  expect(runtime).toMatch(/awayMs <= LEARNING_V2_BACKGROUND_KEEP_MS[\s\S]{0,700}if \(!keep\) \{[\s\S]{0,160}offerInMemoryResumeRef\.current\(\);[\s\S]{0,60}else restartInterruptedRun\(\);/u);
+  expect(runtime).toContain("[V2-RESUME] returned_from_background");
   expect(runtime).toContain("playSelectableAudio(option.responseId)");
   expect(runtime).not.toContain("loadCurrentLearningV2CourseReleasedSessionV2");
-  expect(lessons).toContain('runtimeMode: "direct_v1"');
+  expect(source("app/learning_v2_session_launch_v1.ts")).toContain("runtimeMode: 'direct_v1'");
   expect(runtime).not.toMatch(
     /activity_released_session_submission|server_active_release_answer_sequence/u,
   );
@@ -263,6 +272,7 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
     "submitLearningV2ActivityReleasedSessionV2",
   );
   expect(source("functions-content/index.ts")).toContain("learningV2CourseReleasedSessionGetV3");
+  expect(source("functions-content/index.ts")).toContain("learningV2CourseReleasedSessionGetV4");
   expect(functionsIndex).not.toContain("server_active_release_answer_sequence");
 });
 

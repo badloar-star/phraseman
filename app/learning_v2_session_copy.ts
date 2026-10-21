@@ -95,10 +95,10 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       context_gap_grammar: "Точная грамматика",
       scripted_repeat_compare: "Повтори и сравни",
     },
-    unavailable: "Сессия недоступна",
+    unavailable: "Эпизод недоступен",
     captureFailed: "Не удалось записать ответ. Попробуй ещё раз — попытка не потрачена",
     retry: "Повторить",
-    close: "Закрыть сессию",
+    close: "Закрыть эпизод",
     introCheck: (n) => `Проверка интро · вопрос ${n} из 3`,
     independent: "Самостоятельно",
     supportFades: "Поддержка постепенно исчезает",
@@ -138,11 +138,11 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     hint: "Подсказка",
     hintFallback: "Попробуй ещё раз без раскрытия ответа",
     skipTask: "Пропустить это задание",
-    skipHint: "Задание получит ноль звёзд, сессия продолжится",
+    skipHint: "Задание получит ноль звёзд, эпизод продолжится",
     skip: "Пропустить",
     attempt: "попытка",
     check: "Проверить",
-    finish: "Завершить сессию",
+    finish: "Завершить эпизод",
     next: "Дальше",
     map: "На карту",
     scorePossible: "из 36 возможных",
@@ -154,10 +154,10 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       "Награда за повтор подтвердится отдельно и появится в общем балансе автоматически.",
     stored:
       "Результат сохранён — он появится на всех твоих устройствах.",
-    perfectBody: "Идеальная сессия — ты собрал все звёзды результата.",
+    perfectBody: "Идеальный эпизод — все звёзды результата твои.",
     improveBody: (n) => `Можно улучшить результат ещё на ${n} ${ruStar(n)}.`,
     cardProgress: (n) => `${n} из 12`,
-    starsProgress: (n) => `Собрано ${n} из 36 звёзд в этой сессии`,
+    starsProgress: (n) => `Собрано ${n} из 36 звёзд в этом эпизоде`,
     answer: (l, t) => `Ответ ${l}: ${t}`,
     attemptLabel: (n) => `попытка ${n}`,
     starWord: ruStar,
@@ -176,14 +176,14 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     },
   },
   uk: makeCopy({
-    unavailable: "Сесія недоступна",
-    close: "Закрити сесію",
+    unavailable: "Епізод недоступний",
+    close: "Закрити епізод",
     independent: "Самостійно",
     supportFades: "Підтримка поступово зникає",
     hint: "Підказка",
     skip: "Пропустити",
     check: "Перевірити",
-    finish: "Завершити сесію",
+    finish: "Завершити епізод",
     next: "Далі",
     map: "На мапу",
     perfect: "Ідеально",
@@ -202,10 +202,10 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       context_gap_grammar: "Precise grammar",
       scripted_repeat_compare: "Repeat and compare",
     },
-    unavailable: "Session unavailable",
+    unavailable: "Episode unavailable",
     captureFailed: "We couldn't record your answer. Try again — this attempt wasn't used up",
     retry: "Try again",
-    close: "Close session",
+    close: "Close episode",
     introCheck: (n) => `Intro check · question ${n} of 3`,
     independent: "On your own",
     supportFades: "Support fades away gradually",
@@ -245,11 +245,11 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     hint: "Hint",
     hintFallback: "Try again without revealing the answer",
     skipTask: "Skip this task",
-    skipHint: "This task will get zero stars and the session will continue",
+    skipHint: "This task will get zero stars and the episode will continue",
     skip: "Skip",
     attempt: "attempt",
     check: "Check",
-    finish: "Finish session",
+    finish: "Finish episode",
     next: "Next",
     map: "To map",
     scorePossible: "out of 36 possible",
@@ -261,10 +261,10 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       "The repeat reward will be confirmed separately and added to your total balance automatically.",
     stored:
       "Result saved — it’ll show up on all your devices.",
-    perfectBody: "Perfect session — you collected every star.",
+    perfectBody: "Perfect episode — you collected every star.",
     improveBody: (n) => `You can still improve your result by ${n} ${enStar(n)}.`,
     cardProgress: (n) => `${n} of 12`,
-    starsProgress: (n) => `Collected ${n} of 36 stars in this session`,
+    starsProgress: (n) => `Collected ${n} of 36 stars in this episode`,
     answer: (l, t) => `Answer ${l}: ${t}`,
     attemptLabel: (n) => `attempt ${n}`,
     starWord: enStar,
@@ -283,14 +283,14 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     },
   },
   es: makeCopy({
-    unavailable: "Sesión no disponible",
-    close: "Cerrar sesión",
+    unavailable: "Episodio no disponible",
+    close: "Cerrar episodio",
     independent: "Sin ayuda",
     supportFades: "La ayuda desaparece poco a poco",
     hint: "Pista",
     skip: "Saltar",
     check: "Comprobar",
-    finish: "Terminar sesión",
+    finish: "Terminar episodio",
     next: "Siguiente",
     map: "Al mapa",
     perfect: "Perfecto",
@@ -300,14 +300,14 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     language: "es",
   }),
   "pt-BR": makeCopy({
-    unavailable: "Sessão indisponível",
-    close: "Fechar sessão",
+    unavailable: "Episódio indisponível",
+    close: "Fechar episódio",
     independent: "Sem ajuda",
     supportFades: "A ajuda diminui aos poucos",
     hint: "Dica",
     skip: "Pular",
     check: "Verificar",
-    finish: "Concluir sessão",
+    finish: "Concluir episódio",
     next: "Avançar",
     map: "Ir ao mapa",
     perfect: "Perfeito",
@@ -317,14 +317,14 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     language: "pt-BR",
   }),
   vi: makeCopy({
-    unavailable: "Không thể mở phiên học",
-    close: "Đóng phiên học",
+    unavailable: "Không mở được tập này",
+    close: "Đóng tập",
     independent: "Tự làm",
     supportFades: "Hỗ trợ giảm dần",
     hint: "Gợi ý",
     skip: "Bỏ qua",
     check: "Kiểm tra",
-    finish: "Kết thúc phiên",
+    finish: "Kết thúc tập",
     next: "Tiếp",
     map: "Về bản đồ",
     perfect: "Hoàn hảo",
@@ -334,14 +334,14 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     language: "vi",
   }),
   id: makeCopy({
-    unavailable: "Sesi tidak tersedia",
-    close: "Tutup sesi",
+    unavailable: "Episode tidak tersedia",
+    close: "Tutup episode",
     independent: "Mandiri",
     supportFades: "Bantuan berkurang perlahan",
     hint: "Petunjuk",
     skip: "Lewati",
     check: "Periksa",
-    finish: "Selesaikan sesi",
+    finish: "Selesaikan episode",
     next: "Lanjut",
     map: "Ke peta",
     perfect: "Sempurna",
@@ -351,14 +351,14 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     language: "id",
   }),
   tr: makeCopy({
-    unavailable: "Oturum kullanılamıyor",
-    close: "Oturumu kapat",
+    unavailable: "Bölüm açılamıyor",
+    close: "Bölümü kapat",
     independent: "Bağımsız",
     supportFades: "Destek kademeli olarak azalır",
     hint: "İpucu",
     skip: "Atla",
     check: "Kontrol et",
-    finish: "Oturumu bitir",
+    finish: "Bölümü bitir",
     next: "İleri",
     map: "Haritaya dön",
     perfect: "Kusursuz",
@@ -368,14 +368,14 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     language: "tr",
   }),
   pl: makeCopy({
-    unavailable: "Sesja jest niedostępna",
-    close: "Zamknij sesję",
+    unavailable: "Odcinek jest niedostępny",
+    close: "Zamknij odcinek",
     independent: "Samodzielnie",
     supportFades: "Pomoc stopniowo znika",
     hint: "Podpowiedź",
     skip: "Pomiń",
     check: "Sprawdź",
-    finish: "Zakończ sesję",
+    finish: "Zakończ odcinek",
     next: "Dalej",
     map: "Do mapy",
     perfect: "Idealnie",
@@ -396,7 +396,7 @@ function ruTier(value: number): string {
     : value >= 30
       ? "СИЯЮЩИЙ РЕЗУЛЬТАТ"
       : value >= 24
-        ? "СИЛЬНАЯ СЕССИЯ"
+        ? "СИЛЬНЫЙ ЭПИЗОД"
         : value >= 12
           ? "ХОРОШАЯ ОСНОВА"
           : "ПУТЬ НАЧАТ";
@@ -413,7 +413,7 @@ function enTier(value: number): string {
     : value >= 30
       ? "SHINING RESULT"
       : value >= 24
-        ? "STRONG SESSION"
+        ? "STRONG EPISODE"
         : value >= 12
           ? "GOOD FOUNDATION"
           : "JOURNEY STARTED";
@@ -861,13 +861,13 @@ function makeCopy(
       "Pomiń to zadanie",
     ),
     skipHint: phrase(
-      "Завдання отримає нуль зірок, сесія продовжиться",
-      "La tarea recibirá cero estrellas y la sesión continuará",
-      "A tarefa receberá zero estrelas e a sessão continuará",
-      "Bài tập nhận 0 sao và phiên học tiếp tục",
-      "Tugas mendapat nol bintang dan sesi berlanjut",
-      "Görev sıfır yıldız alır ve oturum devam eder",
-      "Zadanie otrzyma zero gwiazdek, a sesja będzie kontynuowana",
+      "Завдання отримає нуль зірок, епізод продовжиться",
+      "La tarea recibirá cero estrellas y el episodio continuará",
+      "A tarefa receberá zero estrelas e o episódio continuará",
+      "Bài tập nhận 0 sao và tập học tiếp tục",
+      "Tugas mendapat nol bintang dan episode berlanjut",
+      "Görev sıfır yıldız alır ve bölüm devam eder",
+      "Zadanie otrzyma zero gwiazdek, a odcinek będzie kontynuowany",
     ),
     skip: base.skip,
     attempt: phrase(
@@ -915,13 +915,13 @@ function makeCopy(
       "Wynik zapisano na urządzeniu i zostanie zsynchronizowany automatycznie.",
     ),
     perfectBody: phrase(
-      "Ідеальна сесія — зібрано всі зірки.",
-      "Sesión perfecta: conseguiste todas las estrellas.",
-      "Sessão perfeita: você ganhou todas as estrelas.",
-      "Phiên học hoàn hảo — bạn đã nhận đủ sao.",
-      "Sesi sempurna — semua bintang terkumpul.",
-      "Kusursuz oturum — tüm yıldızları topladın.",
-      "Idealna sesja — zdobyto wszystkie gwiazdki.",
+      "Ідеальний епізод — зібрано всі зірки.",
+      "Episodio perfecto: conseguiste todas las estrellas.",
+      "Episódio perfeito: você ganhou todas as estrelas.",
+      "Tập học hoàn hảo — bạn đã nhận đủ sao.",
+      "Episode sempurna — semua bintang terkumpul.",
+      "Kusursuz bölüm — tüm yıldızları topladın.",
+      "Idealny odcinek — zdobyto wszystkie gwiazdki.",
     ),
     improveBody: (n) =>
       phrase(
@@ -945,13 +945,13 @@ function makeCopy(
       ),
     starsProgress: (n) =>
       phrase(
-        `Зібрано ${n} із 36 зірок у цій сесії`,
-        `${n} de 36 estrellas en esta sesión`,
-        `${n} de 36 estrelas nesta sessão`,
-        `Đã nhận ${n}/36 sao trong phiên này`,
-        `${n} dari 36 bintang di sesi ini`,
-        `Bu oturumda 36 yıldızın ${n} tanesi toplandı`,
-        `Zdobyto ${n} z 36 gwiazdek w tej sesji`,
+        `Зібрано ${n} із 36 зірок у цьому епізоді`,
+        `${n} de 36 estrellas en este episodio`,
+        `${n} de 36 estrelas neste episódio`,
+        `Đã nhận ${n}/36 sao trong tập này`,
+        `${n} dari 36 bintang di episode ini`,
+        `Bu bölümde 36 yıldızın ${n} tanesi toplandı`,
+        `Zdobyto ${n} z 36 gwiazdek w tym odcinku`,
       ),
     answer: (l, text) =>
       phrase(
@@ -1052,13 +1052,13 @@ function makeCopy(
             )
           : n >= 24
             ? phrase(
-                "СИЛЬНА СЕСІЯ",
-                "SESIÓN SÓLIDA",
-                "SESSÃO FORTE",
-                "PHIÊN HỌC TỐT",
-                "SESI KUAT",
-                "GÜÇLÜ OTURUM",
-                "MOCNA SESJA",
+                "СИЛЬНИЙ ЕПІЗОД",
+                "EPISODIO SÓLIDO",
+                "EPISÓDIO FORTE",
+                "TẬP HỌC TỐT",
+                "EPISODE KUAT",
+                "GÜÇLÜ BÖLÜM",
+                "MOCNY ODCINEK",
               )
             : n >= 12
               ? phrase(
@@ -1109,6 +1109,7 @@ function makeCopy(
   };
 }
 
+// зачем (№7, решение владельца 21.10): «Эпизод» вместо «Сессия» в ru/uk; остальные 7 языков — по списку Переводчика.
 export function learningV2SessionCopy(lang: Lang): SessionCopy {
   return copies[lang];
 }

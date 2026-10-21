@@ -37,9 +37,12 @@ export type LessonExitSheetProps = Readonly<{
   /** «Выйти» — прежний выход из урока (beginLessonExit + abandon + навигация). */
   onLeave: () => void;
   testID?: string;
+  /** «episode» — эпизод Learning V2: продолжается с места (№22), фраза про энергию не нужна. */
+  variant?: 'lesson' | 'episode';
 }>;
 
-function LessonExitSheet({ lang, visible, energyNote, onContinue, onLeave, testID = 'lesson-exit-sheet' }: LessonExitSheetProps) {
+function LessonExitSheet({ lang, visible, energyNote, onContinue, onLeave, testID = 'lesson-exit-sheet', variant = 'lesson' }: LessonExitSheetProps) {
+  const episode = variant === 'episode';
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const coinRank = useMyCoinRank();
@@ -60,7 +63,9 @@ function LessonExitSheet({ lang, visible, energyNote, onContinue, onLeave, testI
   }, [visible]);
 
   const minutes = Math.round(ENERGY_FREE_REENTRY_WINDOW_MS / 60_000);
-  const body = energyNote
+  const body = episode
+    ? lessonExitText(lang, 'bodyEpisode')
+    : energyNote
     ? `${lessonExitText(lang, 'body')} ${lessonExitText(lang, 'energy', { min: minutes, cost: ENERGY_SESSION_COST })}`
     : lessonExitText(lang, 'body');
 
@@ -74,14 +79,14 @@ function LessonExitSheet({ lang, visible, energyNote, onContinue, onLeave, testI
         <View style={s.head}>
           <MomentCoin rank={coinRank} size={60} mood={mood} emote={emote} shadow={false} testID={`${testID}-coin`} />
           <View style={s.copy}>
-            <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]}>{lessonExitText(lang, 'title')}</Text>
+            <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]}>{lessonExitText(lang, episode ? 'titleEpisode' : 'title')}</Text>
             <Text style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{body}</Text>
           </View>
         </View>
       )}
     >
       <View style={s.acts}>
-        <V2Button label={lessonExitText(lang, 'keep')} onPress={onContinue} testID={`${testID}-continue`} />
+        <V2Button label={lessonExitText(lang, episode ? 'stay' : 'keep')} onPress={onContinue} testID={`${testID}-continue`} />
         <View style={s.gap} />
         <V2Button label={lessonExitText(lang, 'leave')} variant="secondary" onPress={onLeave} testID={`${testID}-leave`} />
       </View>

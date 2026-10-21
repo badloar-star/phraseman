@@ -39,15 +39,15 @@ export function horizonResultGlassCopy(lang: Lang): HorizonResultGlassCopy {
     vi: "Bài", id: "Pelajaran", tr: "Ders", pl: "Lekcja",
   });
   const sessionWord = triLang(lang, {
-    ru: "Занятие", uk: "Заняття", en: "Session", es: "Sesión", "pt-BR": "Sessão",
-    vi: "Buổi", id: "Sesi", tr: "Oturum", pl: "Sesja",
+    ru: "Эпизод", uk: "Епізод", en: "Episode", es: "Episodio", "pt-BR": "Episódio",
+    vi: "Tập", id: "Episode", tr: "Bölüm", pl: "Odcinek",
   });
   const ofWord = triLang(lang, {
     ru: "из", uk: "з", en: "of", es: "de", "pt-BR": "de", vi: "/", id: "dari", tr: "/", pl: "z",
   });
   const chapterWord = triLang(lang, {
     ru: "Глава", uk: "Розділ", en: "Chapter", es: "Capítulo", "pt-BR": "Capítulo",
-    vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział",
+    vi: "Chương", id: "Bab", tr: "Ünite", pl: "Rozdział",
   });
   const checkWord = triLang(lang, {
     ru: "Проверка", uk: "Перевірка", en: "Check", es: "Repaso", "pt-BR": "Revisão",
@@ -55,12 +55,12 @@ export function horizonResultGlassCopy(lang: Lang): HorizonResultGlassCopy {
   });
   return {
     sessionDone: triLang(lang, {
-      ru: "Занятие пройдено", uk: "Заняття пройдено", en: "Session complete", es: "Sesión completada",
-      "pt-BR": "Sessão concluída", vi: "Đã xong buổi học", id: "Sesi selesai", tr: "Oturum tamamlandı", pl: "Sesja ukończona",
+      ru: "Эпизод пройден", uk: "Епізод пройдено", en: "Episode complete", es: "Episodio completado",
+      "pt-BR": "Episódio concluído", vi: "Đã xong tập", id: "Episode selesai", tr: "Bölüm tamamlandı", pl: "Odcinek ukończony",
     }),
     chapterDone: triLang(lang, {
       ru: "Глава закрыта", uk: "Розділ закрито", en: "Chapter complete", es: "Capítulo cerrado",
-      "pt-BR": "Capítulo concluído", vi: "Đã xong chương", id: "Bab selesai", tr: "Bölüm kapandı", pl: "Rozdział zamknięty",
+      "pt-BR": "Capítulo concluído", vi: "Đã xong chương", id: "Bab selesai", tr: "Ünite tamamlandı", pl: "Rozdział zamknięty",
     }),
     lessonDone: triLang(lang, {
       ru: "Урок завершён", uk: "Урок завершено", en: "Lesson complete", es: "Lección completada",

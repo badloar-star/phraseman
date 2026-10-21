@@ -29,6 +29,8 @@ type Props = Readonly<{
   limit: number;
   onTryPlus: () => void;
   onStartAnyway: () => void;
+  /** «Не могу говорить» — голосовые задания 15 минут засчитываются пропущенными (решение владельца 21.10). */
+  onCantSpeak?: () => void;
 }>;
 
 // зачем (сторож motion_hybrid_contract, разбор красных 18.10; CLAUDE.md «гейт: анимации как на макетах»): шторка выходила своими таймингами 320/220/200 мс и кривой (.32,.72,0,1);
@@ -78,21 +80,22 @@ type HeadsupCopy = Readonly<{
 // тексты — по макету (владелец 17.10, «на ты»); вычитаны Переводчиком 17.10
 // зачем (переводчик 17.10): K ∈ {0, 1, 2}; при K = 1 (и при 0 в pl) глагол вступления меняется вместе со словом, иначе «осталось 1 попытка»
 const copyFor = (lang: Lang): HeadsupCopy => triLang(lang, {
-  ru: { title: 'Голоса на всё занятие не хватит', lead: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталось ', leadByForm: { one: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталась ', few: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталось ', many: 'В этом занятии есть задания с голосом, а на сегодня у тебя осталось ' }, tail: ' — закончить не получится. С Plus лимита на голос нет.', today: 'Голос на сегодня', of: 'из', plus: 'Попробовать Plus', start: 'Начать всё равно' },
-  uk: { title: 'Голосу на все заняття не вистачить', lead: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилося ', leadByForm: { one: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилася ', few: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилося ', many: 'У цьому занятті є завдання з голосом, а на сьогодні в тебе залишилося ' }, tail: ' — завершити не вийде. З Plus ліміту на голос немає.', today: 'Голос на сьогодні', of: 'з', plus: 'Спробувати Plus', start: 'Почати все одно' },
-  en: { title: 'Not enough voice attempts for this session', lead: 'This session has voice tasks, and you have ', tail: ' left today — not enough to finish. Plus has no voice limit.', today: 'Voice today', of: 'of', plus: 'Try Plus', start: 'Start anyway' },
-  es: { title: 'Te faltan intentos de voz para esta sesión', lead: 'Esta sesión tiene tareas de voz y hoy te quedan ', leadByForm: { one: 'Esta sesión tiene tareas de voz y hoy te queda ', few: 'Esta sesión tiene tareas de voz y hoy te quedan ', many: 'Esta sesión tiene tareas de voz y hoy te quedan ' }, tail: ': no podrás terminarla. Con Plus no hay límite de voz.', today: 'Voz hoy', of: 'de', plus: 'Probar Plus', start: 'Empezar igualmente' },
-  'pt-BR': { title: 'Faltam tentativas de voz para esta sessão', lead: 'Esta sessão tem tarefas de voz e hoje você tem ', tail: ' — não dá para terminar. Com o Plus não há limite de voz.', today: 'Voz hoje', of: 'de', plus: 'Experimentar o Plus', start: 'Começar mesmo assim' },
-  vi: { title: 'Không đủ lượt nói cho cả buổi học', lead: 'Buổi học này có bài nói, nhưng hôm nay bạn chỉ còn ', tail: ' — không đủ để học hết. Với Plus, nói không giới hạn.', today: 'Lượt nói hôm nay', of: '/', plus: 'Dùng thử Plus', start: 'Vẫn bắt đầu' },
-  id: { title: 'Percobaan suara tak cukup untuk sesi ini', lead: 'Sesi ini punya tugas suara, dan hari ini kamu punya ', tail: ' — tidak cukup sampai selesai. Dengan Plus, suara tanpa batas.', today: 'Suara hari ini', of: 'dari', plus: 'Coba Plus', start: 'Tetap mulai' },
-  tr: { title: 'Ses hakkın bu derse yetmeyecek', lead: 'Bu derste sesli görevler var, bugün ise ', tail: ' kaldı — bitirmeye yetmez. Plus ile ses sınırı yok.', today: 'Bugünkü ses', of: '/', plus: "Plus'ı dene", start: 'Yine de başla' },
-  pl: { title: 'Głosu nie starczy na całą lekcję', lead: 'W tej lekcji są zadania głosowe, a na dziś zostało ci ', leadByForm: { one: 'W tej lekcji są zadania głosowe, a na dziś została ci ', few: 'W tej lekcji są zadania głosowe, a na dziś zostały ci ', many: 'W tej lekcji są zadania głosowe, a na dziś zostało ci ' }, tail: ' — nie dasz rady skończyć. Z Plus nie ma limitu głosu.', today: 'Głos na dziś', of: 'z', plus: 'Wypróbuj Plus', start: 'Zacznij mimo to' },
+  ru: { title: 'Голоса на весь эпизод не хватит', lead: 'В этом эпизоде есть задания с голосом, а на сегодня у тебя осталось ', leadByForm: { one: 'В этом эпизоде есть задания с голосом, а на сегодня у тебя осталась ', few: 'В этом эпизоде есть задания с голосом, а на сегодня у тебя осталось ', many: 'В этом эпизоде есть задания с голосом, а на сегодня у тебя осталось ' }, tail: ' — закончить не получится. С Plus лимита на голос нет.', today: 'Голос на сегодня', of: 'из', plus: 'Попробовать Plus', start: 'Начать всё равно' },
+  uk: { title: 'Голосу на весь епізод не вистачить', lead: 'У цьому епізоді є завдання з голосом, а на сьогодні в тебе залишилося ', leadByForm: { one: 'У цьому епізоді є завдання з голосом, а на сьогодні в тебе залишилася ', few: 'У цьому епізоді є завдання з голосом, а на сьогодні в тебе залишилося ', many: 'У цьому епізоді є завдання з голосом, а на сьогодні в тебе залишилося ' }, tail: ' — завершити не вийде. З Plus ліміту на голос немає.', today: 'Голос на сьогодні', of: 'з', plus: 'Спробувати Plus', start: 'Почати все одно' },
+  en: { title: 'Not enough voice attempts for this episode', lead: 'This episode has voice tasks, and you have ', tail: ' left today — not enough to finish. Plus has no voice limit.', today: 'Voice today', of: 'of', plus: 'Try Plus', start: 'Start anyway' },
+  es: { title: 'Te faltan intentos de voz para este episodio', lead: 'Este episodio tiene tareas de voz y hoy te quedan ', leadByForm: { one: 'Este episodio tiene tareas de voz y hoy te queda ', few: 'Este episodio tiene tareas de voz y hoy te quedan ', many: 'Este episodio tiene tareas de voz y hoy te quedan ' }, tail: ': no podrás terminarlo. Con Plus no hay límite de voz.', today: 'Voz hoy', of: 'de', plus: 'Probar Plus', start: 'Empezar igualmente' },
+  'pt-BR': { title: 'Faltam tentativas de voz para este episódio', lead: 'Este episódio tem tarefas de voz e hoje você tem ', tail: ' — não dá para terminar. Com o Plus não há limite de voz.', today: 'Voz hoje', of: 'de', plus: 'Experimentar o Plus', start: 'Começar mesmo assim' },
+  vi: { title: 'Không đủ lượt nói cho cả tập học', lead: 'Tập học này có bài nói, nhưng hôm nay bạn chỉ còn ', tail: ' — không đủ để học hết. Với Plus, nói không giới hạn.', today: 'Lượt nói hôm nay', of: '/', plus: 'Dùng thử Plus', start: 'Vẫn bắt đầu' },
+  id: { title: 'Percobaan suara tak cukup untuk episode ini', lead: 'Episode ini punya tugas suara, dan hari ini kamu punya ', tail: ' — tidak cukup sampai selesai. Dengan Plus, suara tanpa batas.', today: 'Suara hari ini', of: 'dari', plus: 'Coba Plus', start: 'Tetap mulai' },
+  tr: { title: 'Ses hakkın bu bölüme yetmeyecek', lead: 'Bu bölümde sesli görevler var, bugün ise ', tail: ' kaldı — bitirmeye yetmez. Plus ile ses sınırı yok.', today: 'Bugünkü ses', of: '/', plus: "Plus'ı dene", start: 'Yine de başla' },
+  pl: { title: 'Głosu nie starczy na cały odcinek', lead: 'W tym odcinku są zadania głosowe, a na dziś zostało ci ', leadByForm: { one: 'W tym odcinku są zadania głosowe, a na dziś została ci ', few: 'W tym odcinku są zadania głosowe, a na dziś zostały ci ', many: 'W tym odcinku są zadania głosowe, a na dziś zostało ci ' }, tail: ' — nie dasz rady skończyć. Z Plus nie ma limitu głosu.', today: 'Głos na dziś', of: 'z', plus: 'Wypróbuj Plus', start: 'Zacznij mimo to' },
 });
 
 /** Вступление с глаголом в нужной форме для K. */
 const leadFor = (lang: Lang, copy: HeadsupCopy, n: number): string => copy.leadByForm?.[pluralFormFor(lang, n)] ?? copy.lead;
 
-function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlus, onStartAnyway }: Props) {
+function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlus, onStartAnyway, onCantSpeak }: Props) {
+  const cantSpeakLabel = triLang(lang, { ru: 'Не могу говорить', uk: 'Не можу говорити', en: "Can't speak now", es: 'Ahora no puedo hablar', 'pt-BR': 'Não posso falar agora', vi: 'Không thể nói lúc này', id: 'Tidak bisa bicara sekarang', tr: 'Şu an konuşamam', pl: 'Nie mogę teraz mówić' });
   const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
@@ -223,6 +226,16 @@ function LearningV2VoiceHeadsupSheet({ visible, lang, remaining, limit, onTryPlu
           >
             <Text style={[styles.ghostText, { color: g.secondary }]} maxFontSizeMultiplier={1.3}>{copy.start}</Text>
           </Pressable>
+          {onCantSpeak ? (
+            <Pressable
+              onPress={() => { void hapticTap(); closeThen(onCantSpeak); }}
+              accessibilityRole="button"
+              style={({ pressed }) => [styles.ghost, pressed && styles.pressed]}
+              testID="learning-v2-voice-headsup-cant-speak"
+            >
+              <Text style={[styles.ghostText, { color: g.secondary }]} maxFontSizeMultiplier={1.3}>{cantSpeakLabel}</Text>
+            </Pressable>
+          ) : null}
         </Animated.View>
       </View>
     </Modal>

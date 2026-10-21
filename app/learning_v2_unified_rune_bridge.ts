@@ -16,7 +16,14 @@ export async function creditLearningV2SessionRunesToUnifiedWallet(input: Readonl
   runes: number;
 }>): Promise<void> {
   const runes = Math.floor(input.runes);
-  const sessionKey = `lv2_${input.targetLanguage}_${String(input.lessonOrdinal ?? 'x')}_${String(input.sessionOrdinal ?? 'x')}`
+  // зачем (Ревизор к 40ecaaa65): пустой номер урока/занятия давал ключ с «x» — все такие занятия делили ОДИН ключ и
+  // начислялись один раз на всех. Без обоих номеров не начисляем вовсе и пишем причину.
+  const ordinalOk = (value: unknown) => (typeof value === 'number' && Number.isFinite(value)) || (typeof value === 'string' && value.trim() !== '');
+  if (!ordinalOk(input.lessonOrdinal) || !ordinalOk(input.sessionOrdinal)) {
+    console.warn('[COINS-AWARD] unified:skip', JSON.stringify({ reason: 'missing_ordinal', targetLanguage: input.targetLanguage, lessonOrdinal: input.lessonOrdinal ?? null, sessionOrdinal: input.sessionOrdinal ?? null, runes })); // guard-ok: ранний выход с причиной
+    return;
+  }
+  const sessionKey = `lv2_${input.targetLanguage}_${String(input.lessonOrdinal)}_${String(input.sessionOrdinal)}`
     .replace(/[^A-Za-z0-9_-]/gu, '_');
   console.warn('[COINS-AWARD] unified:enter', JSON.stringify({ sessionKey, runes })); // guard-ok: трасса начисления
   if (!Number.isSafeInteger(runes) || runes <= 0) {

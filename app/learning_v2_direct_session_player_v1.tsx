@@ -5,7 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Crypto from "expo-crypto";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { Image } from "expo-image";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { usePremium } from "../components/PremiumContext";
 import {
   VOICE_LIMIT_PAYWALL_CONTEXT,
@@ -23,6 +23,7 @@ import React, {
 } from "react";
 import {
   AppState,
+  BackHandler,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -83,6 +84,21 @@ import {
   learningV2StarEligibleCompletionsV1,
 } from "./learning_v2_device_voice_skip_v1";
 import { resolveLearningV2FinishCompletionsV1 } from "./learning_v2_finish_completions_v1";
+import {
+  clearLearningV2EpisodeResumeV1,
+  loadLearningV2EpisodeResumeV1,
+  saveLearningV2EpisodeResumeV1,
+  LEARNING_V2_EPISODE_RESUME_SCHEMA_V1,
+  type LearningV2EpisodeResumeRecordV1,
+} from "./learning_v2_episode_resume_v1";
+import LessonExitSheet from "../components/lesson_exit/LessonExitSheet";
+import { lessonExitText } from "../components/lesson_exit/lesson_exit_strings";
+import {
+  activateLearningV2CantSpeakV1,
+  hydrateLearningV2CantSpeakV1,
+  learningV2CantSpeakUntilV1,
+  type LearningV2CantSpeakReasonV1,
+} from "./learning_v2_cant_speak_v1";
 import { useEnergy, useEnergySessionIntent } from "../components/EnergyContext";
 import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
 import { useAudio } from "../hooks/use-audio";
@@ -264,6 +280,12 @@ import { LearningV2SessionUnavailable, learningV2SessionUnavailableDefaultHint }
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+/** №25 (владелец 21.10): после стольких неудач голосового задания появляется «Пропустить» без штрафа. */
+export const LEARNING_V2_VOICE_SKIP_AFTER_FAILURES = 2;
+
+/** №22 (владелец 21.10): отлучка в фон не дольше этого срока не сбрасывает эпизод. */
+export const LEARNING_V2_BACKGROUND_KEEP_MS = 5 * 60 * 1000;
+
 const FACTORY_NATIVE_SESSION_IDS = new Set(
   factoryNativeLearningV2AvailabilityV1().sessions.map((row) => row.courseSessionId),
 );
@@ -649,6 +671,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   );
   const [orderedIds, setOrderedIds] = useState<readonly string[]>([]);
   const [transcript, setTranscript] = useState("");
+  // зачем (№25): счёт неудачных голосовых попыток по заданию — для «Пропустить» после LEARNING_V2_VOICE_SKIP_AFTER_FAILURES.
+  const [voiceFailuresByInteraction, setVoiceFailuresByInteraction] = useState<Readonly<Record<string, number>>>({});
   const [voiceAttemptResult, setVoiceAttemptResult] =
     useState<LearningV2VoiceAttemptResult | null>(null);
   const [voiceAttemptSubmitted, setVoiceAttemptSubmitted] = useState(false);
@@ -758,6 +782,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const sessionStageRef = useRef<"intro" | "practice" | "finale">("intro");
   const telemetryStartSentRef = useRef(false);
   const interruptedWhileBackgroundedRef = useRef(false);
+  const backgroundedAtRef = useRef<number | null>(null);
   const finishingRef = useRef(false);
   const completionsRef = useRef(
     new Map<string, LearningV2CourseSessionInteractionCompletionV1>(),
@@ -1372,9 +1397,10 @@ export default function LearningV2DirectSessionPlayerV1() {
   const practiceEncounterKey = practiceEncounterIds.join("\u0000");
   const practiceActivated = introDone && newWordFlow.kind !== "presenting";
   const speechNa = useSpeechUnavailableOnDevice();
+  const voiceFailuresHere = practice ? (voiceFailuresByInteraction[practice.interactionId] ?? 0) : 0;
   const voiceSkipOnDevice =
     showVoiceFooter &&
-    speechNa &&
+    (speechNa || voiceFailuresHere >= LEARNING_V2_VOICE_SKIP_AFTER_FAILURES) &&
     practiceActivated &&
     result !== "correct" &&
     sessionAttempts.state.phase === "active";
@@ -1612,6 +1638,11 @@ export default function LearningV2DirectSessionPlayerV1() {
     });
     interruptedWhileBackgroundedRef.current = false;
     finishingRef.current = false;
+    setVoiceFailuresByInteraction({});
+    // зачем (№22б): «Начать заново» и долгий фон без выбора продолжения — сохранённый эпизод больше не нужен.
+    resumedWithoutChargeRef.current = false;
+    setResumeOffer(null);
+    void clearResumeRef.current("restart_run");
     setIntroDone(false);
     setPracticeIndex(0);
     runeAwardLedgerRef.current.reset();
@@ -1675,6 +1706,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       // entering background invalidates the partial run explicitly.
       if (nextState === "background" && !finishingRef.current) {
         interruptedWhileBackgroundedRef.current = true;
+        backgroundedAtRef.current = Date.now();
         return;
       }
       if (
@@ -1683,11 +1715,28 @@ export default function LearningV2DirectSessionPlayerV1() {
         !finishingRef.current
       ) {
         interruptedWhileBackgroundedRef.current = false;
-        restartInterruptedRun();
+        // зачем (№22, решение владельца 21.10, отзыв тестера «выход/блокировка экрана — начинай сначала»): короткая отлучка
+        // (блокировка экрана, звонок, другое приложение) до LEARNING_V2_BACKGROUND_KEEP_MS эпизод НЕ сбрасывает —
+        // человек продолжает с того же задания. Дольше — прежний честный перезапуск попытки.
+        const awayMs = backgroundedAtRef.current === null ? null : Date.now() - backgroundedAtRef.current;
+        backgroundedAtRef.current = null;
+        const keep = awayMs !== null && awayMs <= LEARNING_V2_BACKGROUND_KEEP_MS;
+        console.log("[V2-RESUME] returned_from_background", JSON.stringify({
+          lesson: lessonOrdinal,
+          session: sessionOrdinal,
+          awayMs,
+          limitMs: LEARNING_V2_BACKGROUND_KEEP_MS,
+          decision: keep ? "keep_run" : "restart_run",
+        })); // guard-ok: одна строка на возврат из фона
+        // зачем (№22б): дольше 5 минут — не сбрасываем молча, а спрашиваем «Продолжить с задания N из M» / «Начать заново».
+        if (!keep) {
+          if (completionsRef.current.size > 0) offerInMemoryResumeRef.current();
+          else restartInterruptedRun();
+        }
       }
     });
     return () => subscription.remove();
-  }, [restartInterruptedRun]);
+  }, [lessonOrdinal, restartInterruptedRun, sessionOrdinal]);
 
   const settleSessionRuneAward = useCallback((count: 1 | 2 | 3 | 4 | 6) => {
     setSessionRunes((value) => value + count);
@@ -1831,9 +1880,18 @@ export default function LearningV2DirectSessionPlayerV1() {
         void hapticError();
         return;
       }
+      // зачем (№25, владелец 21.10; отзыв тестера «сердечки тратятся на голосовых из-за плохого распознавания»): ошибка
+      // голосового задания сердечко НЕ снимает (technical_error не уменьшает попытки, session_attempts_domain.ts) — подсказка
+      // и повтор, после LEARNING_V2_VOICE_SKIP_AFTER_FAILURES неудач кнопка «Пропустить» без штрафа (как пропуск на устройстве).
+      const voicePractice = learningV2ShowsVoiceFooterV1(practice);
+      if (voicePractice) {
+        const failures = (voiceFailuresByInteraction[practice.interactionId] ?? 0) + 1;
+        setVoiceFailuresByInteraction((current) => ({ ...current, [practice.interactionId]: (current[practice.interactionId] ?? 0) + 1 }));
+        console.log("[V2-VOICE-NO-HEART] voice_wrong_no_heart", JSON.stringify({ interactionId: practice.interactionId, failures, skipAfter: LEARNING_V2_VOICE_SKIP_AFTER_FAILURES })); // guard-ok: одна строка на неудачу голоса
+      }
       const attemptEffect = sessionAttempts.registerVerdict({
         answerAttemptId,
-        verdict: "pedagogical_wrong",
+        verdict: voicePractice ? "technical_error" : "pedagogical_wrong",
       });
       setLearnerFeedback(resolveLearningV2ModeFeedbackV1({
         interfaceLocale: lang,
@@ -1959,6 +2017,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       sessionOrdinal,
       studyTarget,
       transcript,
+      voiceFailuresByInteraction,
     ],
   );
 
@@ -2098,6 +2157,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   const finish = useCallback(async () => {
     if (!run || finishing || finishingRef.current || !runSummary) return;
     finishingRef.current = true;
+    // зачем (№22б): эпизод доведён до финала — сохранённое «продолжить с задания N» стираем.
+    void clearResumeRef.current("finished");
     // зачем (владелец 19.10 «в начале занятия снимается сердечко»): завершённое занятие стирает сохранённые сердечки, иначе повтор урока стартует с прошлыми 2/3.
     if (!isAuthoringPreview) {
       void clearSessionAttemptsState(attemptsAccountToken, attemptsSessionId).catch((error: unknown) => {
@@ -2266,8 +2327,8 @@ export default function LearningV2DirectSessionPlayerV1() {
             publicationToken: publicationToken,
             earnedAtMs: runeRewardEarnedAtMsRef.current,
           });
-          // зачем (владелец 19.10 «монеты не начислены»): кошелёк курса не виден счётчикам — каждое проведённое
-          // начисление (и с первого раза, и из повтора) дублируем в общий кошелёк, он идемпотентен по ключу занятия.
+          // зачем (владелец 19.10 «монеты не начислены»): кошелёк курса не виден счётчикам — проведённое начисление
+          // дублируем в общий кошелёк (идемпотентно по ключу занятия). Награда только за первое прохождение — повтор не дублируется.
           const commitSessionRuneReward = async () => {
             const commit = await commitLearningV2SessionRuneRewardCompositeV1({
               candidate: runeReward,
@@ -2469,6 +2530,174 @@ export default function LearningV2DirectSessionPlayerV1() {
     [material, resetInteraction],
   );
 
+
+  // ───────────── №22б: продолжение эпизода с места + окно выхода (решение владельца 21.10) ─────────────
+  // зачем: отзыв тестера «выход или блокировка экрана — начинай сначала» и багрепорт «нет предупреждения при выходе».
+  // Эпизод пишется на телефон после каждого шага; при входе — «Продолжить с задания N из M» / «Начать заново».
+  // Продолжение энергию не тратит: сигнал «первое задание на экране» не подаётся (гейт энергии в маршруте его ждёт).
+  const resumeOwner = attemptsAccountToken.stableId ?? "guest";
+  const resumeCourseSessionId = runSummary?.courseSessionId ?? null;
+  const resumeFingerprint = runSummary?.childSetFingerprint ?? null;
+  const [resumeOffer, setResumeOffer] = useState<
+    (LearningV2EpisodeResumeRecordV1 & { inMemory?: boolean }) | null
+  >(null);
+  const [exitSheetOpen, setExitSheetOpen] = useState(false);
+  const resumeCheckedRef = useRef(false);
+  const resumedWithoutChargeRef = useRef(false);
+  const clearResumeRef = useRef<(reason: string) => Promise<void>>(async () => undefined);
+  clearResumeRef.current = async (reason: string) => {
+    if (isAuthoringPreview || !resumeCourseSessionId) return;
+    await clearLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, reason });
+  };
+  const snapshotResume = useCallback((): LearningV2EpisodeResumeRecordV1 | null => {
+    if (!resumeCourseSessionId || !resumeFingerprint || !runSummary) return null;
+    return {
+      schemaVersion: LEARNING_V2_EPISODE_RESUME_SCHEMA_V1,
+      courseSessionId: resumeCourseSessionId,
+      childSetFingerprint: resumeFingerprint,
+      savedAtMs: Date.now(),
+      introDone,
+      practiceIndex,
+      practiceTotal: runSummary.practiceInteractionCount,
+      sessionRunes,
+      completions: [...completionsRef.current.values()],
+      answeredUi: [...answeredUiByInteractionRef.current.entries()].map(([id, ui]) => [id, {
+        selectedChoiceId: ui.selectedChoiceId ?? null,
+        orderedIds: [...(ui.orderedIds ?? [])],
+        transcript: ui.transcript ?? "",
+      }] as const),
+      deviceSkippedVoiceIds: [...deviceSkippedVoiceIdsRef.current],
+    };
+  }, [introDone, practiceIndex, resumeCourseSessionId, resumeFingerprint, runSummary, sessionRunes]);
+  const offerInMemoryResumeRef = useRef<() => void>(() => undefined);
+  offerInMemoryResumeRef.current = () => {
+    const snapshot = snapshotResume();
+    console.log("[V2-RESUME] offer_in_memory", JSON.stringify({ hasSnapshot: Boolean(snapshot), practiceIndex, completions: completionsRef.current.size })); // guard-ok: решение после долгого фона
+    if (snapshot) setResumeOffer({ ...snapshot, inMemory: true });
+    else restartInterruptedRun();
+  };
+
+  // Загрузка сохранённого эпизода — один раз, когда известен выпуск.
+  useEffect(() => {
+    if (resumeCheckedRef.current || isAuthoringPreview || !resumeCourseSessionId || !resumeFingerprint) return;
+    resumeCheckedRef.current = true;
+    let alive = true;
+    void loadLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, childSetFingerprint: resumeFingerprint })
+      .then((record) => {
+        if (!alive) return;
+        if (!record) return;
+        // Если человек уже начал отвечать до прихода записи — не перебиваем его.
+        if (completionsRef.current.size > 0) {
+          console.log("[V2-RESUME] offer_skipped_already_answering", JSON.stringify({ completions: completionsRef.current.size })); // guard-ok: ранний выход
+          return;
+        }
+        setResumeOffer(record);
+      });
+    return () => { alive = false; };
+  }, [isAuthoringPreview, resumeCourseSessionId, resumeFingerprint, resumeOwner]);
+
+  // Сохранение после каждого шага (пока предложение продолжить не решено — не перезаписываем старое).
+  useEffect(() => {
+    if (isAuthoringPreview || resumeOffer || finishing || finishingRef.current || !resumeCheckedRef.current) return;
+    if (completionsRef.current.size === 0) return;
+    const snapshot = snapshotResume();
+    if (snapshot) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot);
+  }, [finishing, introDone, isAuthoringPreview, practiceIndex, result, resumeOffer, resumeOwner, sessionRunes, snapshotResume]);
+
+  const applyResume = useCallback(() => {
+    const record = resumeOffer;
+    if (!record) return;
+    if (!record.inMemory) {
+      completionsRef.current.clear();
+      record.completions.forEach((entry) => completionsRef.current.set(entry.interactionId, entry));
+      answeredUiByInteractionRef.current.clear();
+      record.answeredUi.forEach(([id, ui]) => answeredUiByInteractionRef.current.set(id, {
+        selectedChoiceId: ui.selectedChoiceId,
+        orderedIds: [...ui.orderedIds],
+        transcript: ui.transcript,
+      } as never));
+      deviceSkippedVoiceIdsRef.current = new Set(record.deviceSkippedVoiceIds);
+      setSessionRunes(record.sessionRunes);
+      resumedWithoutChargeRef.current = true;
+      if (record.introDone) {
+        sessionStageRef.current = "practice";
+        setIntroDone(true);
+        setCheckpointEntryDone(true);
+        showPracticeIndex(Math.min(record.practiceIndex, Math.max(0, record.practiceTotal - 1)));
+      }
+    }
+    console.log("[V2-RESUME] continue", JSON.stringify({
+      courseSessionId: record.courseSessionId,
+      fromTask: record.practiceIndex + 1,
+      total: record.practiceTotal,
+      completions: record.completions.length,
+      inMemory: Boolean(record.inMemory),
+      energyCharged: false,
+    })); // guard-ok: итог выбора
+    setResumeOffer(null);
+  }, [resumeOffer, showPracticeIndex]);
+
+  const startEpisodeOver = useCallback(() => {
+    console.log("[V2-RESUME] start_over", JSON.stringify({ courseSessionId: resumeOffer?.courseSessionId ?? null, inMemory: Boolean(resumeOffer?.inMemory) })); // guard-ok: итог выбора
+    const inMemory = Boolean(resumeOffer?.inMemory);
+    setResumeOffer(null);
+    void clearResumeRef.current("start_over");
+    if (inMemory) restartInterruptedRun();
+  }, [restartInterruptedRun, resumeOffer]);
+
+  // Выход: есть прогресс — шторка «Выйти из эпизода? Прогресс сохранится»; нет — сразу.
+  const requestEpisodeExit = useCallback((source: string) => {
+    const hasProgress = completionsRef.current.size > 0;
+    console.log("[V2-EXIT] request", JSON.stringify({
+      source,
+      lesson: lessonOrdinal,
+      session: sessionOrdinal,
+      hasProgress,
+      completions: completionsRef.current.size,
+      introDone,
+      practiceIndex,
+      heartsRemaining: sessionAttempts.state.remainingAttempts,
+      decision: hasProgress ? "confirm_sheet" : "exit_now",
+    })); // guard-ok: каждый запрос выхода
+    if (!hasProgress) {
+      exitLearningV2Session();
+      return;
+    }
+    setExitSheetOpen(true);
+  }, [exitLearningV2Session, introDone, lessonOrdinal, practiceIndex, sessionAttempts.state.remainingAttempts, sessionOrdinal]);
+  const confirmEpisodeExit = useCallback(() => {
+    const snapshot = snapshotResume();
+    if (snapshot && !isAuthoringPreview) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot);
+    console.log("[V2-EXIT] leave", JSON.stringify({
+      saved: Boolean(snapshot) && !isAuthoringPreview,
+      fromTask: practiceIndex + 1,
+      total: runSummary?.practiceInteractionCount ?? null,
+      completions: completionsRef.current.size,
+      heartsRemaining: sessionAttempts.state.remainingAttempts,
+    })); // guard-ok: итог выхода
+    setExitSheetOpen(false);
+    exitLearningV2Session();
+  }, [exitLearningV2Session, isAuthoringPreview, practiceIndex, resumeOwner, runSummary, sessionAttempts.state.remainingAttempts, snapshotResume]);
+
+  // Системное «назад» (Android) и жест/стрелка назад — тоже через подтверждение.
+  const navigation = useNavigation();
+  useEffect(() => {
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+      if (sessionExitRequestedRef.current || finishingRef.current || sessionStageRef.current === "finale") return false;
+      requestEpisodeExit("hardware_back");
+      return true;
+    });
+    const unsubscribe = navigation.addListener("beforeRemove", (event) => {
+      if (sessionExitRequestedRef.current || finishingRef.current || sessionStageRef.current === "finale" || completionsRef.current.size === 0) {
+        console.log("[V2-EXIT] before_remove_allowed", JSON.stringify({ exitRequested: sessionExitRequestedRef.current, stage: sessionStageRef.current, completions: completionsRef.current.size })); // guard-ok: ранний выход с причиной
+        return;
+      }
+      event.preventDefault();
+      requestEpisodeExit("gesture_back");
+    });
+    return () => { sub.remove(); unsubscribe(); };
+  }, [navigation, requestEpisodeExit]);
+
   const firstVoicePracticeIndex = resolveLearningV2Session1VoiceDevJumpV1({
     isDev: __DEV__,
     lessonOrdinal,
@@ -2583,6 +2812,41 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     showPracticeIndex(practiceIndex + 1);
   }, [finish, finishing, practice, practiceIndex, runSummary, showPracticeIndex, voiceSkipOnDevice]);
+
+  // ── «Не могу говорить» (решение владельца 21.10 ~22:45): 15 минут голосовые задания засчитываются пропущенными ──
+  // Без потери сердец, в звёзды не идут (тот же набор, что пропуск на устройстве без распознавания), эпизод засчитывается.
+  const [cantSpeakUntilMs, setCantSpeakUntilMs] = useState(() => learningV2CantSpeakUntilV1());
+  useEffect(() => {
+    let alive = true;
+    void hydrateLearningV2CantSpeakV1().then((until) => { if (alive) setCantSpeakUntilMs(until); });
+    return () => { alive = false; };
+  }, []);
+  const cantSpeakActive = cantSpeakUntilMs > Date.now();
+  const skipVoiceCantSpeak = useCallback((reason: LearningV2CantSpeakReasonV1 | "timer") => {
+    if (!practice || !runSummary || finishing || !learningV2ShowsVoiceFooterV1(practice) || result === "correct") {
+      console.log("[V2-VOICE-SKIP] ignored", JSON.stringify({ reason, hasPractice: Boolean(practice), finishing, result })); // guard-ok: ранний выход с причиной
+      return;
+    }
+    completionsRef.current.set(practice.interactionId, learningV2DeviceSkippedVoiceCompletionV1(practice.interactionId));
+    deviceSkippedVoiceIdsRef.current.add(practice.interactionId);
+    const isLast = practiceIndex + 1 >= runSummary.practiceInteractionCount;
+    console.log("[V2-VOICE-SKIP] skipped", JSON.stringify({ reason, interactionId: practice.interactionId, practiceIndex, isLast, untilMs: learningV2CantSpeakUntilV1() })); // guard-ok: каждый пропуск с причиной
+    if (isLast) {
+      void finish();
+      return;
+    }
+    showPracticeIndex(practiceIndex + 1);
+  }, [finish, finishing, practice, practiceIndex, result, runSummary, showPracticeIndex]);
+  const activateCantSpeak = useCallback((reason: LearningV2CantSpeakReasonV1) => {
+    setCantSpeakUntilMs(activateLearningV2CantSpeakV1(reason));
+    skipVoiceCantSpeak(reason);
+  }, [skipVoiceCantSpeak]);
+  // Пока режим включён — каждое следующее голосовое задание пропускается само.
+  useEffect(() => {
+    if (!cantSpeakActive || !practice || !practiceActivated || finishing || result === "correct") return;
+    if (!learningV2ShowsVoiceFooterV1(practice)) return;
+    skipVoiceCantSpeak("timer");
+  }, [cantSpeakActive, finishing, practice, practiceActivated, result, skipVoiceCantSpeak]);
 
   const resetLearningV2AfterSessionRuneForfeit = useCallback(() => {
     setShowAttemptsModal(false);
@@ -2796,7 +3060,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             accessibilityRole="button"
             accessibilityLabel={copy.close}
             hitSlop={8}
-            onPress={exitLearningV2Session}
+            onPress={() => requestEpisodeExit("close_button")}
             style={({ pressed }) => [
               styles.checkpointClose,
               { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.72 : 1 },
@@ -2881,6 +3145,43 @@ export default function LearningV2DirectSessionPlayerV1() {
         <Text style={[styles.runeCounterText, { color: g.text }]}>{sessionRunes}</Text>
       </View>
     </Animated.View>
+  );
+  // зачем (№22б): «Продолжить с задания N из M» поверх вступления/задания и шторка выхода «Прогресс сохранится».
+  const resumeCopy = {
+    // зачем: текст карточки сверил Переводчик (21.10) — общий ключ шторки выхода на 9 языках.
+    title: (n: number, m: number) => lessonExitText(lang, "resumeFrom", { n, m }),
+    resume: triLang(lang, { ru: "Продолжить", uk: "Продовжити", en: "Continue", es: "Continuar", "pt-BR": "Continuar", vi: "Tiếp tục", id: "Lanjutkan", tr: "Devam et", pl: "Kontynuuj" }),
+    restart: triLang(lang, { ru: "Начать заново", uk: "Почати знову", en: "Start over", es: "Empezar de nuevo", "pt-BR": "Recomeçar", vi: "Bắt đầu lại", id: "Mulai ulang", tr: "Baştan başla", pl: "Zacznij od nowa" }),
+  };
+  const episodeOverlays = (
+    <>
+      {resumeOffer ? (
+        <View testID="learning-v2-resume-offer" style={[styles.resumeOfferWrap, { paddingBottom: Math.max(insets.bottom, 12) + 12 }]} pointerEvents="box-none">
+          <View style={[styles.resumeOfferCard, lv2CardStyle(g)]}>
+            <Text style={[styles.resumeOfferTitle, { color: g.text }]}>
+              {resumeCopy.title(
+                (resumeOffer.introDone ? resumeOffer.practiceIndex : 0) + 1,
+                resumeOffer.practiceTotal,
+              )}
+            </Text>
+            <Lv2Cta testID="learning-v2-resume-continue" accessibilityLabel={resumeCopy.resume} onPress={applyResume}>{resumeCopy.resume}</Lv2Cta>
+            <Lv2Cta testID="learning-v2-resume-restart" ghost accessibilityLabel={resumeCopy.restart} onPress={startEpisodeOver}>{resumeCopy.restart}</Lv2Cta>
+          </View>
+        </View>
+      ) : null}
+      <LessonExitSheet
+        lang={lang}
+        visible={exitSheetOpen}
+        energyNote={false}
+        variant="episode"
+        onContinue={() => {
+          console.log("[V2-EXIT] stay", JSON.stringify({ fromTask: practiceIndex + 1 })); // guard-ok: итог шторки
+          setExitSheetOpen(false);
+        }}
+        onLeave={confirmEpisodeExit}
+        testID="learning-v2-exit-sheet"
+      />
+    </>
   );
   const runeFlightOverlay = runeFlight ? (
     <CoinRewardFlight
@@ -2978,7 +3279,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               sessionStageRef.current = "practice";
               setIntroDone(true);
             }}
-            onBack={exitLearningV2Session}
+            onBack={() => requestEpisodeExit("intro_back")}
             headerAccessory={
               <View style={styles.headerActions}>
               <SessionAttemptsHud
@@ -2995,6 +3296,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         </View>
         {devJumpToVoiceButton}
         {runeFlightOverlay}
+        {episodeOverlays}
         <LearningV2VoiceHeadsupSheet
           visible={voiceHeadsupOpen}
           lang={lang}
@@ -3002,6 +3304,10 @@ export default function LearningV2DirectSessionPlayerV1() {
           limit={voiceAllowance.limit}
           onTryPlus={voiceHeadsupTryPlus}
           onStartAnyway={voiceHeadsupStartAnyway}
+          onCantSpeak={() => {
+            setCantSpeakUntilMs(activateLearningV2CantSpeakV1("headsup_button"));
+            voiceHeadsupStartAnyway();
+          }}
         />
       </View>
     );
@@ -3033,14 +3339,15 @@ export default function LearningV2DirectSessionPlayerV1() {
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
       {/* зачем: D72 — сюда доходим только когда первое задание на экране → сигнал гейту энергии. */}
-      <LearningV2FirstQuestionShownReporter />
+      {/* зачем (№22б): продолжение той же попытки энергию не тратит — сигнал гейту энергии не подаём */}
+      {resumedWithoutChargeRef.current ? null : <LearningV2FirstQuestionShownReporter />}
       <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
         <Pressable
           testID="learning-v2-session-close"
           accessibilityRole="button"
           accessibilityLabel={copy.close}
           hitSlop={10}
-          onPress={exitLearningV2Session}
+          onPress={() => requestEpisodeExit("close_button")}
           style={({ pressed }) => [
             styles.iconButton,
             { backgroundColor: g.buttonFill, opacity: pressed ? 0.72 : 1 },
@@ -3509,6 +3816,20 @@ export default function LearningV2DirectSessionPlayerV1() {
               {copy.voiceFailed}
             </Lv2Explain>
           )}
+          {/* зачем (решение владельца 21.10 ~22:45): «Не могу говорить» на каждом голосовом задании — нет микрофона, отказ, шумно. */}
+          {showVoiceFooter && result !== "correct" ? (
+            <Pressable
+              testID="learning-v2-cant-speak"
+              accessibilityRole="button"
+              hitSlop={8}
+              onPress={() => activateCantSpeak("button")}
+              style={({ pressed }) => [styles.cantSpeak, { opacity: pressed ? 0.6 : 1 }]}
+            >
+              <Text style={[styles.cantSpeakText, { color: g.secondary }]}>
+                {triLang(lang, { ru: "Не могу говорить", uk: "Не можу говорити", en: "Can't speak now", es: "Ahora no puedo hablar", "pt-BR": "Não posso falar agora", vi: "Không thể nói lúc này", id: "Tidak bisa bicara sekarang", tr: "Şu an konuşamam", pl: "Nie mogę teraz mówić" })}
+              </Text>
+            </Pressable>
+          ) : null}
           {showVoiceFooter && speechNa ? (
             <Lv2Explain icon="mic-off-outline" style={styles.voiceStatus}>
               {speechUnavailableOnDeviceText(lang)}
@@ -3539,6 +3860,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                   }
                   voiceLastStatusRef.current = nextStatus;
                   setModeVoiceStatus(nextStatus);
+                  // зачем (владелец 21.10): отказ в микрофоне — сразу режим «Не могу говорить», без тупика.
+                  if (nextStatus === "permission_denied") activateCantSpeak("permission_denied");
                   if (nextStatus !== "requesting" && nextStatus !== "listening") {
                     // The panel can end a controlled hold without a physical
                     // press-out (first permission prompt, denial, unavailable,
@@ -3776,9 +4099,11 @@ export default function LearningV2DirectSessionPlayerV1() {
                   },
                 ]}
               >
-                {practiceIndex + 1 >= runSummary.practiceInteractionCount
-                  ? copy.finish
-                  : copy.next}
+                {voiceSkipOnDevice
+                  ? copy.skip
+                  : practiceIndex + 1 >= runSummary.practiceInteractionCount
+                    ? copy.finish
+                    : copy.next}
               </Text>
             </Pressable>
           </View>
@@ -3845,6 +4170,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         />
       ) : null}
       {runeFlightOverlay}
+        {episodeOverlays}
     </View>
   );
 }
@@ -4232,4 +4558,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 17,
   },
   skipText: { fontSize: 13, fontWeight: "700" },
+  // №22б: карточка «Продолжить с задания N из M» — снизу поверх экрана, без обводки (тень/тон карточки 2.0).
+  cantSpeak: { alignSelf: "center", minHeight: 44, justifyContent: "center", paddingHorizontal: 12, marginTop: 4 },
+  cantSpeakText: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
+  resumeOfferWrap: { position: "absolute", left: 0, right: 0, bottom: 0, paddingHorizontal: 16 },
+  resumeOfferCard: { borderRadius: 24, padding: 20, gap: 12 },
+  resumeOfferTitle: { fontSize: 20, lineHeight: 26, fontWeight: "700", marginBottom: 4 },
 });

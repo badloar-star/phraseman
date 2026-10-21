@@ -169,7 +169,8 @@ export default function LearningV2NewWordEncounterOverlay({
     pocketFlightY.setValue(0);
   }, [encounter.lexicalItemId, flipAnim, pocketFlight, pocketFlightX, pocketFlightY]);
   const animateFlipTo = useCallback(
-    (next: boolean) => {
+    (next: boolean, reason: "auto" | "tap" = "tap") => {
+      console.log("[V2-WORD-CARD] flip", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, reason, toFace: next ? "back" : "front", sinceRenderMs: Date.now() - renderedAtRef.current })); // guard-ok: строка на переворот
       flippedRef.current = next;
       flipAnim.stopAnimation();
       RNAnimated.timing(flipAnim, {
@@ -178,7 +179,7 @@ export default function LearningV2NewWordEncounterOverlay({
         useNativeDriver: true,
       }).start();
     },
-    [flipAnim, reduceMotion],
+    [encounter.lexicalItemId, flipAnim, reduceMotion],
   );
   const onFlipFromCardsComponent = useCallback(() => {
     autoFlipControllerRef.current?.manualFlip();
@@ -190,7 +191,7 @@ export default function LearningV2NewWordEncounterOverlay({
       schedule: (callback, delayMs) => setTimeout(callback, delayMs),
       cancel: (timer) => clearTimeout(timer as ReturnType<typeof setTimeout>),
       onAutoFlip: () => {
-        if (!flippedRef.current) animateFlipTo(true);
+        if (!flippedRef.current) animateFlipTo(true, "auto");
       },
     });
     autoFlipControllerRef.current = controller;
@@ -202,6 +203,10 @@ export default function LearningV2NewWordEncounterOverlay({
       }
     };
   }, [animateFlipTo, encounter.lexicalItemId]);
+  // Что на лице и обороте карточки — строка на слово (лицо = слово курса, оборот = перевод, автопереворот через NEW_WORD_AUTO_FLIP_MS).
+  useEffect(() => {
+    console.log("[V2-WORD-CARD] faces", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, front: word, back: exactTranslation ?? null, transcription: encounter.transcription ?? null, locale, autoFlipMs: NEW_WORD_AUTO_FLIP_MS })); // guard-ok: строка на карточку
+  }, [encounter.lexicalItemId, encounter.transcription, exactTranslation, locale, word]);
   useEffect(() => {
     console.log("[V2-WORD-CARD] entrance_start", JSON.stringify({ lexicalItemId: encounter.lexicalItemId, sinceRenderMs: Date.now() - renderedAtRef.current, reduceMotion })); // guard-ok: строка на карточку
     renderedAtRef.current = Date.now();

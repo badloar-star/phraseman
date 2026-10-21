@@ -17,6 +17,12 @@ const S = {
   energy: ['Вернёшься позже, чем через {min} мин — спишется {cost} энергия.', 'Повернешся пізніше, ніж за {min} хв — спишеться {cost} енергія.', 'Come back after more than {min} min and it costs {cost} energy.', 'Si vuelves pasados {min} min, costará {cost} de energía.', 'Se voltar depois de {min} min, custa {cost} de energia.', 'Quay lại sau hơn {min} phút sẽ tốn {cost} năng lượng.', 'Kembali setelah lebih dari {min} menit memakai {cost} energi.', '{min} dakikadan sonra dönersen {cost} enerji harcanır.', 'Powrót po ponad {min} min kosztuje {cost} energii.'],
   keep: ['Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj'],
   leave: ['Выйти', 'Вийти', 'Leave', 'Salir', 'Sair', 'Thoát', 'Keluar', 'Çık', 'Wyjdź'],
+  // Вариант «эпизод Learning V2» (№22): эпизод сохраняется на телефоне и продолжается с того же задания. Переводы кроме RU/UK — предложение, сверка у Переводчика.
+  titleEpisode: ['Выйти из эпизода?', 'Вийти з епізоду?', 'Leave the episode?', '¿Salir del episodio?', 'Sair do episódio?', 'Thoát tập này?', 'Keluar dari episode?', 'Bölümden çıkılsın mı?', 'Wyjść z odcinka?'],
+  bodyEpisode: ['Прогресс сохранится — продолжишь с этого места.', 'Прогрес збережеться — продовжиш із цього місця.', 'Your progress is saved — you’ll pick up right here.', 'Tu progreso se guarda: seguirás desde aquí.', 'Seu progresso fica salvo: você continua daqui.', 'Tiến độ được lưu — bạn sẽ tiếp tục từ đây.', 'Progresmu tersimpan — kamu lanjut dari sini.', 'İlerlemen kaydedilir — buradan devam edersin.', 'Postęp zostanie zapisany — wrócisz do tego miejsca.'],
+  stay: ['Остаться', 'Залишитися', 'Stay', 'Quedarme', 'Ficar', 'Ở lại', 'Tetap di sini', 'Kal', 'Zostań'],
+  // Карточка продолжения эпизода (№22б), строки Переводчика 21.10: {n} — номер задания, {m} — всего.
+  resumeFrom: ['Продолжить с задания {n} из {m}', 'Продовжити із завдання {n} з {m}', 'Continue from task {n} of {m}', 'Seguir desde la tarea {n} de {m}', 'Continuar da tarefa {n} de {m}', 'Tiếp tục từ bài {n}/{m}', 'Lanjutkan tugas {n} dari {m}', 'Görevlere devam et: {n}/{m}', 'Kontynuuj od zadania {n} z {m}'],
   close: ['Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'],
 } as const satisfies Readonly<Record<string, Nine>>;
 

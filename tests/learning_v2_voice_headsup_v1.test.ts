@@ -67,7 +67,7 @@ describe('Learning V2 voice heads-up wiring in the direct player', () => {
   // тихая «Начать всё равно», свайп вниз = «Начать всё равно», без обводок
   it('the sheet follows the approved mockup: mic badge, counter, Plus primary, quiet start, swipe down = start anyway', () => {
     const sheet = fs.readFileSync(path.join(__dirname, '..', 'components', 'learning-v2', 'LearningV2VoiceHeadsupSheet.tsx'), 'utf8').replace(/\r\n/g, '\n');
-    expect(sheet).toContain("title: 'Голоса на всё занятие не хватит'");
+    expect(sheet).toContain("title: 'Голоса на весь эпизод не хватит'");
     expect(sheet).toContain('`${copy.today} · ${remaining} ${copy.of} ${limit}`');
     expect(sheet).toMatch(/<Lv2Cta onPress=\{tryPlus\}/);
     expect(sheet).toMatch(/gs\.dy > DISMISS_DISTANCE \|\| gs\.vy > DISMISS_VELOCITY[\s\S]{0,200}startAnywayRef\.current\(\);/);

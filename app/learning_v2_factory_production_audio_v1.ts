@@ -97,6 +97,10 @@ const factoryAudioTables = lazyContent("learning_v2_factory_production_audio", (
     // decorate: обе архивные записи отсутствуют в bootstrap и проверенном Storage; используется TTS устройства.
     "c9a5c40d628c3411c4fcc70ca737a0ce8d4c4ea6e93e027ba2a811d9cfe80f46",
     "9d110910137464c55e7a6e8acc5847b1327638e38caf11c79bf6fa19192551be",
+    // plug in: три архивные записи отсутствуют в bootstrap и проверенном Storage; используется TTS устройства.
+    "5e534f6e268f70eeb889f652b99a15226bb5e1363389fac9b6ae6243729830d5",
+    "e589126fd6a20e973c5efed8e28f480b67b8be65a843faa076f6ffd4434b92f5",
+    "c6eb315ab530f0ef01e90b63c2e85b70fa2d55a928038b5f5b46cc5f9c97063b",
   ]);
   const audible = <T extends { contentHash: string }>(entries: readonly T[]): T[] =>
     entries.filter((entry) => !silent.has(entry.contentHash) && !unpublished.has(entry.contentHash));

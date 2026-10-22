@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-28:word:tell-the-truth",
+    "correctText": "tell the truth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i01",
+    "correctText": "I want you to tell the truth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i02",
+    "correctText": "I want you to tell the truth.",
+    "correctResponseId": "en:lesson-21:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i03",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:word:tell-a-lie",
+    "correctText": "tell a lie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i04",
+    "correctText": "I do not want you to tell a lie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i05",
+    "correctText": "I do not want you to tell a lie.",
+    "correctResponseId": "en:lesson-21:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i06",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:word:break-a-promise",
+    "correctText": "break a promise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i07",
+    "correctText": "I do not want you to break a promise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i08",
+    "correctText": "I do not want you to break a promise.",
+    "correctResponseId": "en:lesson-21:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i09",
+    "correctText": "to break",
+    "correctResponseId": "en:lesson-21:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:word:make-a-promise",
+    "correctText": "make a promise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i10",
+    "correctText": "I want you to make a promise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i11",
+    "correctText": "I want you to make a promise.",
+    "correctResponseId": "en:lesson-21:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i12",
+    "correctText": "to make",
+    "correctResponseId": "en:lesson-21:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i13",
+    "correctText": "en:lesson-21:session-28:i13:p1=tell the truth\nen:lesson-21:session-28:i13:p2=tell a lie\nen:lesson-21:session-28:i13:p3=break a promise\nen:lesson-21:session-28:i13:p4=make a promise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i16",
+    "correctText": "I do not want you to break a promise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-28:i17",
+    "correctText": "I want you to make a promise.",
+    "correctResponseId": null
+  }
+]

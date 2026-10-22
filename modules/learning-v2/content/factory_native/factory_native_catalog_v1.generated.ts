@@ -8015,4 +8015,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + to-infinitive","uk":"verb + to-infinitive"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 25,
+    sourceFingerprint: "e81ebdf0abf7174b1493eedbc286012c758ed6bdffd97bc745198dae6fe43ede",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object + to-infinitive","uk":"verb + object + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 26,
+    sourceFingerprint: "3bada3826ca4d56ccf452964fc49058bd262ddb0607d8ecff0a2ac6fe0c3e067",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object + to-infinitive","uk":"verb + object + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 27,
+    sourceFingerprint: "e34f133535ff1b8bfcf4f72258ce4c55c9d7eb3fcc6ff9298f02c0bd5e53062f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + to-infinitive","uk":"verb + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 28,
+    sourceFingerprint: "acdaa638e3785f219b09ae8f5a4f0e8d6d830858cf166d83d83f6605085983a6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object + to-infinitive","uk":"verb + object + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
 ]);

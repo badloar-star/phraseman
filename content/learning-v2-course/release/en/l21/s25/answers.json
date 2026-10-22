@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-25:word:approve",
+    "correctText": "approve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i01",
+    "correctText": "I want you to approve the plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i02",
+    "correctText": "I want you to approve the plan.",
+    "correctResponseId": "en:lesson-21:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i03",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:word:reject",
+    "correctText": "reject",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i04",
+    "correctText": "I need you to reject the offer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i05",
+    "correctText": "I need you to reject the offer.",
+    "correctResponseId": "en:lesson-21:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i06",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:word:double-check",
+    "correctText": "double-check",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i07",
+    "correctText": "I need you to double-check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i08",
+    "correctText": "I need you to double-check the address.",
+    "correctResponseId": "en:lesson-21:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i09",
+    "correctText": "to double-check",
+    "correctResponseId": "en:lesson-21:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:word:read-aloud",
+    "correctText": "read aloud",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i10",
+    "correctText": "I want you to read aloud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i11",
+    "correctText": "I want you to read aloud.",
+    "correctResponseId": "en:lesson-21:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i12",
+    "correctText": "to read",
+    "correctResponseId": "en:lesson-21:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i13",
+    "correctText": "en:lesson-21:session-25:i13:p1=approve\nen:lesson-21:session-25:i13:p2=reject\nen:lesson-21:session-25:i13:p3=double-check\nen:lesson-21:session-25:i13:p4=read aloud",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i16",
+    "correctText": "I need you to double-check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-25:i17",
+    "correctText": "I want you to read aloud.",
+    "correctResponseId": null
+  }
+]

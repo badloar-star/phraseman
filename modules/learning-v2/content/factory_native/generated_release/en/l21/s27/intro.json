@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показать дом",
+        "uk": "Показати дім"
+      },
+      "bodyByLocale": {
+        "ru": "Show you around — показать тебе место, провести небольшую экскурсию. Друг впервые пришёл к вам домой, и вы хотите показать ему комнаты. Around здесь входит в выражение о знакомстве с местом. Сравните I want to show you around: показываю я; I want you to feel at home: я хочу, чтобы собеседник чувствовал себя как дома. В want + человек + to + действие именно этот человек выполняет действие.",
+        "uk": "Show you around — показати тобі місце, провести невелику екскурсію. Друг уперше прийшов до вас додому, і ви хочете показати йому кімнати. Around тут входить до виразу про знайомство з місцем. Порівняйте I want to show you around: показую я; I want you to feel at home: я хочу, щоб співрозмовник почувався як удома. У want + людина + to + дія саме ця людина виконує дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-27:intro1:r1",
+              "text": "I want to show you around."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro1:r2",
+              "text": "I want to showing you around."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro1:r3",
+              "text": "I want to shows you around."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-27:intro1:r1",
+              "text": "I want to show you around."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro1:r2",
+              "text": "I want to showing you around."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro1:r3",
+              "text": "I want to shows you around."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проводить друга",
+        "uk": "Провести друга"
+      },
+      "bodyByLocale": {
+        "ru": "Walk you home — проводить тебя домой пешком. Вы хотите пройти с другом до его дома. Feel at home — чувствовать себя как дома, свободно и уютно, даже находясь в гостях. Сравните I want to show you around: показываю я; I want you to feel at home: я хочу, чтобы собеседник чувствовал себя как дома. В want + человек + to + действие именно этот человек выполняет действие.",
+        "uk": "Walk you home — провести тебе додому пішки. Ви хочете пройти з другом до його дому. Feel at home — почуватися як удома, вільно й затишно, навіть перебуваючи в гостях. Порівняйте I want to show you around: показую я; I want you to feel at home: я хочу, щоб співрозмовник почувався як удома. У want + людина + to + дія саме ця людина виконує дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-27:intro2:r1",
+              "text": "I want to walk you home."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro2:r2",
+              "text": "I want to walking you home."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro2:r3",
+              "text": "I want to walks you home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-27:intro2:r1",
+              "text": "I want to walk you home."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro2:r2",
+              "text": "I want to walking you home."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro2:r3",
+              "text": "I want to walks you home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предложить угощение",
+        "uk": "Запропонувати частування"
+      },
+      "bodyByLocale": {
+        "ru": "Help yourself за столом означает «угощайся, бери сам». Вы поставили угощение на стол и хотите, чтобы гость брал еду сам. Это не просьба помочь хозяину: выражение относится к тому, что человек берёт для себя. Сравните I want to show you around: показываю я; I want you to feel at home: я хочу, чтобы собеседник чувствовал себя как дома. В want + человек + to + действие именно этот человек выполняет действие.",
+        "uk": "Help yourself за столом означає «пригощайся, бери сам». Ви поставили частування на стіл і хочете, щоб гість брав їжу сам. Це не прохання допомогти господареві: вираз стосується того, що людина бере для себе. Порівняйте I want to show you around: показую я; I want you to feel at home: я хочу, щоб співрозмовник почувався як удома. У want + людина + to + дія саме ця людина виконує дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-27:intro3:r1",
+              "text": "I want you to help yourself."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro3:r2",
+              "text": "I want you to helping yourself."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro3:r3",
+              "text": "I want you to helps yourself."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-27:intro3:r1",
+              "text": "I want you to help yourself."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro3:r2",
+              "text": "I want you to helping yourself."
+            },
+            {
+              "responseId": "en:lesson-21:session-27:intro3:r3",
+              "text": "I want you to helps yourself."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3b220a4784eddac52e6e7de30a9655c31e9270ddda48d6d180764a7c961e21a6"
+}

@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-28:word:tell-the-truth",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tell the truth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:word:tell-the-truth:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tell the truth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:word:tell-the-truth:audio",
+          "transcript": "tell the truth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:word:tell-the-truth:r1",
+            "targetText": "tell the truth",
+            "meaningByLocale": {
+              "ru": "говорить правду.",
+              "uk": "говорити правду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tell the truth",
+          "definitionByLocale": {
+            "ru": "говорить правду.",
+            "uk": "говорити правду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу, щоб ти говорив правду».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу, щоб ти говорив правду».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want you to tell the truth.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу, чтобы ты говорил правду».",
+          "uk": "Скажіть: «Я хочу, щоб ти говорив правду»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "you",
+          "to",
+          "tell",
+          "the",
+          "truth"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i02:r1",
+          "text": "I want you to tell the truth."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i02:r2",
+          "text": "We want you to tell the truth."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i02:r3",
+          "text": "They want you to tell the truth."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i02:audio",
+          "transcript": "I want you to tell the truth."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:i02:r1",
+            "targetText": "I want you to tell the truth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i02:r2",
+            "targetText": "We want you to tell the truth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i02:r3",
+            "targetText": "They want you to tell the truth.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to tell the truth.",
+              "uk": "У записі звучить I want you to tell the truth."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to tell the truth.",
+              "uk": "У записі звучить I want you to tell the truth."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово для співрозмовника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i03:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i03:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i03:r3",
+          "text": "yours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово для співрозмовника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для собеседника.",
+          "uk": "Виберіть слово для співрозмовника."
+        },
+        "gappedTargetPhrase": "I want ___ to tell the truth.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-28:i03:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i03:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i03:r3",
+            "text": "yours"
+          }
+        ],
+        "testedDimension": "Виберіть слово для співрозмовника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Your означает «твой»; здесь нужен человек you.",
+              "uk": "Your означає «твій»; тут потрібна людина you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+              "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:word:tell-a-lie",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tell a lie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:word:tell-a-lie:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tell a lie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:word:tell-a-lie:audio",
+          "transcript": "tell a lie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:word:tell-a-lie:r1",
+            "targetText": "tell a lie",
+            "meaningByLocale": {
+              "ru": "сказать неправду.",
+              "uk": "сказати неправду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tell a lie",
+          "definitionByLocale": {
+            "ru": "сказать неправду.",
+            "uk": "сказати неправду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу, щоб ти говорив неправду».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу, щоб ти говорив неправду».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want you to tell a lie.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу, чтобы ты говорил неправду».",
+          "uk": "Скажіть: «Я не хочу, щоб ти говорив неправду»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "you",
+          "to",
+          "tell",
+          "a",
+          "lie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i05:r1",
+          "text": "I do not want you to tell a lie."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i05:r2",
+          "text": "We do not want you to tell a lie."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i05:r3",
+          "text": "They do not want you to tell a lie."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i05:audio",
+          "transcript": "I do not want you to tell a lie."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:i05:r1",
+            "targetText": "I do not want you to tell a lie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i05:r2",
+            "targetText": "We do not want you to tell a lie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i05:r3",
+            "targetText": "They do not want you to tell a lie.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want you to tell a lie.",
+              "uk": "У записі звучить I do not want you to tell a lie."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want you to tell a lie.",
+              "uk": "У записі звучить I do not want you to tell a lie."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово для співрозмовника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i06:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i06:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i06:r3",
+          "text": "yours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово для співрозмовника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для собеседника.",
+          "uk": "Виберіть слово для співрозмовника."
+        },
+        "gappedTargetPhrase": "I do not want ___ to tell a lie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-28:i06:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i06:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i06:r3",
+            "text": "yours"
+          }
+        ],
+        "testedDimension": "Виберіть слово для співрозмовника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Your означает «твой»; здесь нужен человек you.",
+              "uk": "Your означає «твій»; тут потрібна людина you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+              "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:word:break-a-promise",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — break a promise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:word:break-a-promise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — break a promise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:word:break-a-promise:audio",
+          "transcript": "break a promise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:word:break-a-promise:r1",
+            "targetText": "break a promise",
+            "meaningByLocale": {
+              "ru": "нарушить обещание.",
+              "uk": "порушити обіцянку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "break a promise",
+          "definitionByLocale": {
+            "ru": "нарушить обещание.",
+            "uk": "порушити обіцянку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу, щоб ти порушував обіцянку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу, щоб ти порушував обіцянку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want you to break a promise.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу, чтобы ты нарушал обещание».",
+          "uk": "Скажіть: «Я не хочу, щоб ти порушував обіцянку»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "you",
+          "to",
+          "break",
+          "a",
+          "promise"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i08:r1",
+          "text": "I do not want you to break a promise."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i08:r2",
+          "text": "We do not want you to break a promise."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i08:r3",
+          "text": "They do not want you to break a promise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i08:audio",
+          "transcript": "I do not want you to break a promise."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:i08:r1",
+            "targetText": "I do not want you to break a promise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i08:r2",
+            "targetText": "We do not want you to break a promise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i08:r3",
+            "targetText": "They do not want you to break a promise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want you to break a promise.",
+              "uk": "У записі звучить I do not want you to break a promise."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want you to break a promise.",
+              "uk": "У записі звучить I do not want you to break a promise."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i09:r1",
+          "text": "to break"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i09:r2",
+          "text": "to breaking"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i09:r3",
+          "text": "to breaks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I do not want you ___ a promise.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-28:i09:r1",
+            "text": "to break"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i09:r2",
+            "text": "to breaking"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i09:r3",
+            "text": "to breaks"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:word:make-a-promise",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — make a promise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:word:make-a-promise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — make a promise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:word:make-a-promise:audio",
+          "transcript": "make a promise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:word:make-a-promise:r1",
+            "targetText": "make a promise",
+            "meaningByLocale": {
+              "ru": "дать обещание.",
+              "uk": "дати обіцянку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make a promise",
+          "definitionByLocale": {
+            "ru": "дать обещание.",
+            "uk": "дати обіцянку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу, щоб ти дав обіцянку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу, щоб ти дав обіцянку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want you to make a promise.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу, чтобы ты дал обещание».",
+          "uk": "Скажіть: «Я хочу, щоб ти дав обіцянку»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "you",
+          "to",
+          "make",
+          "a",
+          "promise"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i11:r1",
+          "text": "I want you to make a promise."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i11:r2",
+          "text": "We want you to make a promise."
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i11:r3",
+          "text": "They want you to make a promise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i11:audio",
+          "transcript": "I want you to make a promise."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-28:i11:r1",
+            "targetText": "I want you to make a promise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i11:r2",
+            "targetText": "We want you to make a promise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i11:r3",
+            "targetText": "They want you to make a promise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to make a promise.",
+              "uk": "У записі звучить I want you to make a promise."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to make a promise.",
+              "uk": "У записі звучить I want you to make a promise."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-28:i12:r1",
+          "text": "to make"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i12:r2",
+          "text": "to making"
+        },
+        {
+          "responseId": "en:lesson-21:session-28:i12:r3",
+          "text": "to makes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I want you ___ a promise.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-28:i12:r1",
+            "text": "to make"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i12:r2",
+            "text": "to making"
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i12:r3",
+            "text": "to makes"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-28:i13:p1",
+            "target": "tell the truth",
+            "meaningByLocale": {
+              "ru": "говорить правду",
+              "uk": "говорити правду"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-28:i13:p2",
+            "target": "tell a lie",
+            "meaningByLocale": {
+              "ru": "сказать неправду",
+              "uk": "сказати неправду"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-28:i13:p3",
+            "target": "break a promise",
+            "meaningByLocale": {
+              "ru": "нарушить обещание",
+              "uk": "порушити обіцянку"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-28:i13:p4",
+            "target": "make a promise",
+            "meaningByLocale": {
+              "ru": "дать обещание",
+              "uk": "дати обіцянку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tell the truth",
+          "tell a lie",
+          "break a promise",
+          "make a promise"
+        ],
+        "rightColumn": [
+          "говорити правду",
+          "сказати неправду",
+          "порушити обіцянку",
+          "дати обіцянку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: приємне заняття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: приємне заняття",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i14:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: закінчити справу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: закінчити справу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i15:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I must finish reading the description.",
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зверніться до друга: «Я не хочу, щоб ти порушував обіцянку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Зверніться до друга: «Я не хочу, щоб ти порушував обіцянку»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i16:audio",
+          "transcript": "I do not want you to break a promise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I do not want you to break a promise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зверніться до друга: «Я хочу, щоб ти дав обіцянку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Зверніться до друга: «Я хочу, щоб ти дав обіцянку»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-28:i17:audio",
+          "transcript": "I want you to make a promise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want you to make a promise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4f524148acfeee25dc5608212f88a72848ff337315cc8a66900d5ed975aeaa4b"
+}

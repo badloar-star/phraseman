@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "verb + object + to-infinitive",
+    "uk": "verb + object + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сказать правду",
+        "uk": "Сказати правду"
+      },
+      "bodyByLocale": {
+        "ru": "Tell the truth — говорить правду. Вы обсуждаете с другом неприятную ситуацию и хотите услышать, что действительно произошло. В выражении сохраняется the: tell the truth. В I want you to… действие выполняет собеседник. В I do not want you to… вы выражаете нежелание, чтобы он так поступал. В обоих случаях сохраняем you + to + начальную форму действия.",
+        "uk": "Tell the truth — говорити правду. Ви обговорюєте з другом неприємну ситуацію й хочете почути, що насправді сталося. У виразі зберігається the: tell the truth. У I want you to… дію виконує співрозмовник. У I do not want you to… ви виражаєте небажання, щоб він так чинив. В обох випадках зберігаємо you + to + початкову форму дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-28:intro1:r1",
+              "text": "I want you to tell the truth."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro1:r2",
+              "text": "I want your to tell the truth."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro1:r3",
+              "text": "I want you tell the truth."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-28:intro1:r1",
+              "text": "I want you to tell the truth."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro1:r2",
+              "text": "I want your to tell the truth."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro1:r3",
+              "text": "I want you tell the truth."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не обмануть",
+        "uk": "Не обманути"
+      },
+      "bodyByLocale": {
+        "ru": "Tell a lie — сказать неправду. Вы прямо говорите другу, что не хотите, чтобы он лгал. Break a promise — нарушить обещание, не сделать обещанного; это противоположно знакомому keep a promise. В I want you to… действие выполняет собеседник. В I do not want you to… вы выражаете нежелание, чтобы он так поступал. В обоих случаях сохраняем you + to + начальную форму действия.",
+        "uk": "Tell a lie — сказати неправду. Ви прямо кажете другові, що не хочете, щоб він брехав. Break a promise — порушити обіцянку, не зробити обіцяного; це протилежне до знайомого keep a promise. У I want you to… дію виконує співрозмовник. У I do not want you to… ви виражаєте небажання, щоб він так чинив. В обох випадках зберігаємо you + to + початкову форму дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-28:intro2:r1",
+              "text": "I do not want you to tell a lie."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro2:r2",
+              "text": "I do not want your to tell a lie."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro2:r3",
+              "text": "I do not want you tell a lie."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-28:intro2:r1",
+              "text": "I do not want you to tell a lie."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro2:r2",
+              "text": "I do not want your to tell a lie."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro2:r3",
+              "text": "I do not want you tell a lie."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дать обещание",
+        "uk": "Дати обіцянку"
+      },
+      "bodyByLocale": {
+        "ru": "Make a promise — дать обещание. Вы договариваетесь с другом и хотите, чтобы он пообещал выполнить договорённость. В сочетании используется make, а не do. Keep a promise — сдержать уже данное обещание, make a promise — дать его. В I want you to… действие выполняет собеседник. В I do not want you to… вы выражаете нежелание, чтобы он так поступал. В обоих случаях сохраняем you + to + начальную форму действия.",
+        "uk": "Make a promise — дати обіцянку. Ви домовляєтеся з другом і хочете, щоб він пообіцяв виконати домовленість. У сполученні вживаємо make, а не do. Keep a promise — дотримати вже дану обіцянку, make a promise — дати її. У I want you to… дію виконує співрозмовник. У I do not want you to… ви виражаєте небажання, щоб він так чинив. В обох випадках зберігаємо you + to + початкову форму дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-28:intro3:r1",
+              "text": "I want you to make a promise."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro3:r2",
+              "text": "I want your to make a promise."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro3:r3",
+              "text": "I want you make a promise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-28:intro3:r1",
+              "text": "I want you to make a promise."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro3:r2",
+              "text": "I want your to make a promise."
+            },
+            {
+              "responseId": "en:lesson-21:session-28:intro3:r3",
+              "text": "I want you make a promise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c09dbf99b8c75c2a718d60084d8bb1d47b822652902d13397fb9b231ec6a632d"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-27:word:show-you-around",
+    "correctText": "show you around",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i01",
+    "correctText": "I want to show you around.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i02",
+    "correctText": "I want to show you around.",
+    "correctResponseId": "en:lesson-21:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i03",
+    "correctText": "to show",
+    "correctResponseId": "en:lesson-21:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:word:walk-you-home",
+    "correctText": "walk you home",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i04",
+    "correctText": "I want to walk you home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i05",
+    "correctText": "I want to walk you home.",
+    "correctResponseId": "en:lesson-21:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i06",
+    "correctText": "to walk",
+    "correctResponseId": "en:lesson-21:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:word:feel-at-home",
+    "correctText": "feel at home",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i07",
+    "correctText": "I want you to feel at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i08",
+    "correctText": "I want you to feel at home.",
+    "correctResponseId": "en:lesson-21:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i09",
+    "correctText": "to feel",
+    "correctResponseId": "en:lesson-21:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:word:help-yourself",
+    "correctText": "help yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i10",
+    "correctText": "I want you to help yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i11",
+    "correctText": "I want you to help yourself.",
+    "correctResponseId": "en:lesson-21:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i12",
+    "correctText": "to help",
+    "correctResponseId": "en:lesson-21:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i13",
+    "correctText": "en:lesson-21:session-27:i13:p1=show you around\nen:lesson-21:session-27:i13:p2=walk you home\nen:lesson-21:session-27:i13:p3=feel at home\nen:lesson-21:session-27:i13:p4=help yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i16",
+    "correctText": "I want you to feel at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-27:i17",
+    "correctText": "I want you to help yourself.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-28:intro1:r2": {
+          "ru": "Здесь нужен человек you, а не слово your — «твой».",
+          "uk": "Тут потрібна людина you, а не слово your — «твій»."
+        },
+        "en:lesson-21:session-28:intro1:r3": {
+          "ru": "После человека перед действием нужен to.",
+          "uk": "Після людини перед дією потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-28:intro2:r2": {
+          "ru": "Здесь нужен человек you, а не слово your — «твой».",
+          "uk": "Тут потрібна людина you, а не слово your — «твій»."
+        },
+        "en:lesson-21:session-28:intro2:r3": {
+          "ru": "После человека перед действием нужен to.",
+          "uk": "Після людини перед дією потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-28:intro3:r2": {
+          "ru": "Здесь нужен человек you, а не слово your — «твой».",
+          "uk": "Тут потрібна людина you, а не слово your — «твій»."
+        },
+        "en:lesson-21:session-28:intro3:r3": {
+          "ru": "После человека перед действием нужен to.",
+          "uk": "Після людини перед дією потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5c0b2fbba8db01483785be9c1506674c689488e8040534f3174531d0e6abb111"
+}

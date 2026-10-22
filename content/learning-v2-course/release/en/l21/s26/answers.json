@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-26:word:straighten",
+    "correctText": "straighten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i01",
+    "correctText": "I need you to straighten the rug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i02",
+    "correctText": "I need you to straighten the rug.",
+    "correctResponseId": "en:lesson-21:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i03",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:word:plug-in",
+    "correctText": "plug in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i04",
+    "correctText": "I want you to plug in the lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i05",
+    "correctText": "I want you to plug in the lamp.",
+    "correctResponseId": "en:lesson-21:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i06",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:word:unblock",
+    "correctText": "unblock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i07",
+    "correctText": "I need you to unblock the sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i08",
+    "correctText": "I need you to unblock the sink.",
+    "correctResponseId": "en:lesson-21:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i09",
+    "correctText": "to unblock",
+    "correctResponseId": "en:lesson-21:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:word:flush",
+    "correctText": "flush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i10",
+    "correctText": "I need you to flush the toilet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i11",
+    "correctText": "I need you to flush the toilet.",
+    "correctResponseId": "en:lesson-21:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i12",
+    "correctText": "to flush",
+    "correctResponseId": "en:lesson-21:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i13",
+    "correctText": "en:lesson-21:session-26:i13:p1=straighten\nen:lesson-21:session-26:i13:p2=plug in\nen:lesson-21:session-26:i13:p3=unblock\nen:lesson-21:session-26:i13:p4=flush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i16",
+    "correctText": "I need you to unblock the sink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-26:i17",
+    "correctText": "I need you to flush the toilet.",
+    "correctResponseId": null
+  }
+]

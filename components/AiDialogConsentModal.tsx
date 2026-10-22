@@ -6,6 +6,8 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import AiConsentSheetModal from './AiConsentSheetModal';
 import DialogueConsentChatReplay from './feature_intro/DialogueConsentChatReplay';
+import DialogsConsentTop from './dialogs/scene/DialogsConsentTop';
+import { DIALOGS_SCENE_V2_ENABLED } from './dialogs/scene/dialogs_scene_flags';
 import { triLang, type Lang } from '../constants/i18n';
 import { useDevFeatureIntroReplay } from '../app/feature_intro_dev_replay';
 import { featureIntroClose } from '../app/feature_intro_copy';
@@ -83,7 +85,10 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
       onAccept={previewOnly ? closePreview : onAccept}
       onDecline={previewOnly ? closePreview : onDecline}
       motionVariant={motionVariant}
-      illustration={<DialogueConsentChatReplay key={replayKey} lang={lang} variant={replayKey} />}
+      // зачем (владелец 22.10, вариант «в» листа согласия; координатор): при DIALOGS_SCENE_V2_ENABLED те же пузыри лежат на свету темы с маленьким героем в углу; без флага — как было. Логика согласия не меняется.
+      illustration={DIALOGS_SCENE_V2_ENABLED
+        ? <DialogsConsentTop><DialogueConsentChatReplay key={replayKey} lang={lang} variant={replayKey} /></DialogsConsentTop>
+        : <DialogueConsentChatReplay key={replayKey} lang={lang} variant={replayKey} />}
       introduction={introduction}
       title={title}
       body={body}

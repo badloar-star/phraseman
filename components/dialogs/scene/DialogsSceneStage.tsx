@@ -18,6 +18,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { alphaHex } from '../../../constants/v2Style';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import V2Pressable from '../../v2/V2Pressable';
+import DialogsSceneBackdrop from './DialogsSceneBackdrop';
 import type { DialogsSceneCopy } from './dialogs_scene_copy';
 import type { DialogsSceneState } from './dialogs_scene_state';
 import type { DialogsSceneColors } from './dialogs_scene_tokens';
@@ -65,32 +66,15 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
   };
   return (
     <View testID={`dialogs-scene-${state}`} style={s.stage}>
-      <LinearGradient colors={[c.top, c.bottom]} start={{ x: 0.42, y: 0 }} end={{ x: 0.58, y: 1 }} style={StyleSheet.absoluteFill} />
+      <DialogsSceneBackdrop colors={c} idPrefix="dlgScene" />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>
-          <RadialGradient id="dlgGlowR" cx="84%" cy="14%" rx="70%" ry="46%" fx="84%" fy="14%">
-            <Stop offset="0" stopColor={c.glowRight} stopOpacity="1" />
-            <Stop offset="1" stopColor={c.glowRight} stopOpacity="0" />
-          </RadialGradient>
-          <RadialGradient id="dlgGlowL" cx="8%" cy="0%" rx="60%" ry="42%" fx="8%" fy="0%">
-            <Stop offset="0" stopColor={c.glowLeft} stopOpacity="1" />
-            <Stop offset="1" stopColor={c.glowLeft} stopOpacity="0" />
-          </RadialGradient>
-          {c.glowBottom ? (
-            <RadialGradient id="dlgGlowB" cx="50%" cy="100%" rx="80%" ry="50%" fx="50%" fy="100%">
-              <Stop offset="0" stopColor={c.glowBottom} stopOpacity="1" />
-              <Stop offset="1" stopColor={c.glowBottom} stopOpacity="0" />
-            </RadialGradient>
-          ) : null}
           <RadialGradient id="dlgHalo" cx="50%" cy="50%" r="50%">
             <Stop offset="0" stopColor={c.halo} stopOpacity="1" />
             <Stop offset="0.62" stopColor={c.halo} stopOpacity="0.2" />
             <Stop offset="1" stopColor={c.halo} stopOpacity="0" />
           </RadialGradient>
         </Defs>
-        <Rect x="0" y="0" width="100%" height="100%" fill="url(#dlgGlowR)" />
-        <Rect x="0" y="0" width="100%" height="100%" fill="url(#dlgGlowL)" />
-        {c.glowBottom ? <Rect x="0" y="0" width="100%" height="100%" fill="url(#dlgGlowB)" /> : null}
         <Rect x="58%" y={96} width={HERO_W} height={HERO_H} fill="url(#dlgHalo)" opacity={p.artDim ? 0.45 : 1} />
       </Svg>
       {c.scrim ? <LinearGradient pointerEvents="none" colors={[alphaHex(c.scrim, 0), alphaHex(c.scrim, 0.62)]} style={s.scrim} /> : null}

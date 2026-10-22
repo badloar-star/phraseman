@@ -55,6 +55,8 @@ type Props = Readonly<{
   skillsTitle?: string;
   skillOkLabel?: string;
   skillReviewLabel?: string;
+  /** «Серия вдвоём» (идея 1, макет friends-full.html «Финал занятия»): карточки серии с друзьями — под итогом, до разбора ошибок. */
+  friendsSlot?: React.ReactNode;
   mistakesSlot?: React.ReactNode;
   feedbackSlot?: React.ReactNode;
   ctaLabel: string;
@@ -154,7 +156,7 @@ const ResultAward = memo(function ResultAward({
 export default function HorizonResultGlass({
   title, subtitle, stars, correct, wrong, labels, gain, gainWord, gainA11yLabel,
   rewardsSettled, reducedMotion, skills, skillsTitle, skillOkLabel, skillReviewLabel,
-  mistakesSlot, feedbackSlot, ctaLabel, ctaTestID, ctaEnabled, onContinue, bottomInset,
+  friendsSlot, mistakesSlot, feedbackSlot, ctaLabel, ctaTestID, ctaEnabled, onContinue, bottomInset,
 }: Props) {
   const sx = useScaledTextStyles(styles);
   const g = useLv2Glass();
@@ -231,6 +233,7 @@ export default function HorizonResultGlass({
           </View>
         ) : null}
 
+        {friendsSlot ? <View style={sx.block}>{friendsSlot}</View> : null}
         {mistakesSlot ? <View style={sx.block}>{mistakesSlot}</View> : null}
         {feedbackSlot ? <View style={sx.block}>{feedbackSlot}</View> : null}
 

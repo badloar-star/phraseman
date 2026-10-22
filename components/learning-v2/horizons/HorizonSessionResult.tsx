@@ -17,6 +17,8 @@ import HorizonMistakeReview, {
 } from "./HorizonMistakeReview";
 import HorizonResultGlass, { type HorizonResultSkillRow } from "./HorizonResultGlass";
 import { horizonResultGlassCopy } from "./horizon_result_glass_copy";
+import FinishFriendPairs from "../../friends_together/FinishFriendPairs";
+import { FRIENDS_TOGETHER_UI_ENABLED } from "../../../app/friends_together/together_config";
 
 export type HorizonResultFacts = Readonly<{
   runes: number;
@@ -179,6 +181,8 @@ export default function HorizonSessionResult({
         skillsTitle={checkpoint.outcomeTitle}
         skillOkLabel={checkpoint.confirmed}
         skillReviewLabel={checkpoint.review}
+        // зачем (идея 1, макет friends-full.html «Финал занятия»): «Серия вдвоём · 13 дней» и кого позвать — только за выключателем «Вместе»
+        friendsSlot={FRIENDS_TOGETHER_UI_ENABLED && !preview ? <FinishFriendPairs /> : undefined}
         mistakesSlot={visibleMistakes.length > 0 ? (
           <HorizonMistakeReview
             items={visibleMistakes}

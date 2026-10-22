@@ -31,6 +31,8 @@ const GAP = 5;
 export const TODAY_RING_SIZES = Object.freeze({
   148: Object.freeze({ size: 148, stroke: STROKE, gap: GAP, coin: 58 }),
   222: Object.freeze({ size: 222, stroke: 16, gap: 7, coin: 86 }),
+  // зачем (эталон today-scene-concepts.html, вариант A «Сцена», 22.10): кольца-герой 200 — макет масштабирует геометрию 222 коэффициентом 200/222
+  200: Object.freeze({ size: 200, stroke: 14.4, gap: 6.3, coin: 77 }),
 });
 export type TodayRingSize = keyof typeof TODAY_RING_SIZES;
 /** Кольца заполняются по очереди (макет Б: transition-delay i × 120 мс) — только при «до → после». */

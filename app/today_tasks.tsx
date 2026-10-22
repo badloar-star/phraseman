@@ -30,6 +30,8 @@ import { noteBackDecision, noteBackStep } from './back_tap_probe';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
 import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
 import BackButton from '../components/v2/BackButton';
+import TodayScene from '../components/home/v2/today_scene/TodayScene';
+import { TODAY_SCENE_V2_ENABLED } from '../components/home/v2/today_scene/today_scene_flag';
 
 /**
  * Высота блока колец: кольцо 222 (макет Б) + отступы TodayRings 2/14 + отступы блока 26/12 (в макете 28 сверху / 26 снизу).
@@ -127,6 +129,23 @@ export default function TodayTasksScreen() {
     if (task.route.startsWith('/(tabs)')) dismissToTabRoute(router, task.route);
     else nav.push(task.route as never);
   };
+
+  // зачем (эталон today-scene-concepts.html, вариант A; координатор 22.10): за флагом (dev — вкл, релиз — выкл) экран рисуется «Сценой»; хуки выше те же,
+  // «до» для колец и открытие задания — прежние, поэтому поведение и журнал [TODAY-RING] не меняются
+  if (TODAY_SCENE_V2_ENABLED) {
+    return (
+      <View testID="today-tasks-screen" style={[s.root, { backgroundColor: p.bg }]}>
+        <TodayScene
+          lang={lang}
+          tasks={tasks}
+          fromProgress={ringReady ? ringFrom.from : undefined}
+          onBack={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }}
+          backLabel={backLabel}
+          onOpenTask={openTask}
+        />
+      </View>
+    );
+  }
 
   return (
     <View testID="today-tasks-screen" style={[s.root, { backgroundColor: p.bg }]}>

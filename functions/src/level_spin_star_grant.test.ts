@@ -252,6 +252,18 @@ describe('chapter exam source (chapterexam_l<УУ>_c<Г>_<1|2>)', () => {
     expect(user.coinWalletLimitsV1).toMatchObject({ chapterExamDayKey: '2026-09-28', chapterExamDayCoins: 40 });
   });
 
+  test('part 2 without part 1 of the same chapter is refused; after part 1 it passes', async () => {
+    const world = makeDb();
+    await expect(credit(world, exam('chapterexam_l02_c3_2')))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'coin_wallet_chapter_exam_part_one_missing' });
+    await credit(world, exam('chapterexam_l02_c3_1'));
+    expect((await credit(world, exam('chapterexam_l02_c3_2'))).starsBalance).toBe(40);
+    // первая часть другой главы не открывает вторую часть этой
+    const other = makeDb();
+    await credit(other, exam('chapterexam_l02_c4_1'));
+    await expect(credit(other, exam('chapterexam_l02_c3_2'))).rejects.toMatchObject({ code: 'failed-precondition' });
+  });
+
   test('a repeat of the same part returns the prior result and never credits twice', async () => {
     const world = makeDb();
     const first = await credit(world, exam('chapterexam_l03_c7_1'));
@@ -287,7 +299,11 @@ describe('chapter exam source (chapterexam_l<УУ>_c<Г>_<1|2>)', () => {
     await expect(credit(makeDb(), exam('chapterexam_l01_c1_1', over))).rejects.toMatchObject({ code: 'invalid-argument' });
   });
 
-  test('day limit: 14 chapters a day, the rest waits for the next UTC day', () => {
+  test('day limit: 3 chapters (120 coins) a day, the rest waits for the next UTC day', async () => {
+    const world = makeDb();
+    for (const c of [1, 2, 3]) { await credit(world, exam(`chapterexam_l01_c${c}_1`)); await credit(world, exam(`chapterexam_l01_c${c}_2`)); }
+    await expect(credit(world, exam('chapterexam_l01_c4_1'))).rejects.toMatchObject({ code: 'resource-exhausted', message: 'coin_wallet_daily_limit_reached' });
+    expect(COIN_WALLET_LIMITS.chapterExamMaxPerDay).toBe(120);
     const full = { ...EMPTY_COIN_WALLET_LIMITS, chapterExamDayKey: '2026-09-28', chapterExamDayCoins: COIN_WALLET_LIMITS.chapterExamMaxPerDay };
     const op = { requestId: 'chapterexam_l05_c1_1', lane: 'base' as const, giftId: 'stars_20', amount: 20, promotionEligibility: 'gameplay' as const };
     const cls = classifyCoinWalletSource(op.requestId);

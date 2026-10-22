@@ -254,9 +254,16 @@ export async function materializeCoinWalletOperation(
   const receipts = userRef.collection(STAR_OPERATIONS_COLLECTION);
   const receiptRef = receipts.doc(composite.operationId);
   const otherLane = composite.lane === 'base' ? 'premium' : 'base';
+  // зачем (Ревизор 22.10): экзамен главы — вторая часть (_2) проходит только после квитанции первой (_1) той же главы;
+  // одно чтение в той же транзакции, только для второй части. Жалоба — соседняя полоса, как раньше.
+  const chapterExamPartOne = classification.source === 'chapter_exam' && composite.requestId.endsWith('_2')
+    ? `${composite.requestId.slice(0, -2)}_1`
+    : null;
   const siblingRef = classification.source === 'report_reward'
     ? receipts.doc(`level_spin:${composite.requestId}.${otherLane}`)
-    : null;
+    : chapterExamPartOne
+      ? receipts.doc(`level_spin:${chapterExamPartOne}.base`)
+      : null;
   return db.runTransaction(async (tx) => {
     beginStarLedgerTransactionAttempt(tx);
     const [userSnap, existingReceipt, siblingSnap] = await Promise.all([
@@ -284,8 +291,16 @@ export async function materializeCoinWalletOperation(
         starsSeq: current.seq,
       });
     }
+    if (chapterExamPartOne) {
+      const partOne = siblingSnap?.exists ? siblingSnap.data() as Partial<StarOpReceipt> | undefined : undefined;
+      const delta = Number(partOne?.delta);
+      if (partOne?.sourceId !== `${chapterExamPartOne}.base` || !Number.isSafeInteger(delta) || delta <= 0) {
+        console.warn(`${LOG} reject reason=coin_wallet_chapter_exam_part_one_missing op=${composite.operationId} sourceId=${String(partOne?.sourceId ?? null)}`);
+        throw new HttpsError('failed-precondition', 'coin_wallet_chapter_exam_part_one_missing');
+      }
+    }
     const limitsBefore = normalizeCoinWalletLimits(userSnap.data()?.[COIN_WALLET_LIMITS_FIELD]);
-    const sibling = siblingRef ? siblingReportAmount(siblingSnap, composite, otherLane) : 0;
+    const sibling = siblingRef && !chapterExamPartOne ? siblingReportAmount(siblingSnap, composite, otherLane) : 0;
     const limitsAfter = applyCoinWalletLimits(limitsBefore, composite, classification, nowMs, sibling);
     const prepared = await prepareStarOperations(
       tx, db, stableUid, userSnap, [levelSpinStarLedgerOperation(composite)],

@@ -1,0 +1,49 @@
+diff --git a/modules/learning-v2/modes/sound_contrast_mode_v1.tsx b/modules/learning-v2/modes/sound_contrast_mode_v1.tsx
+index 518b4d897..39f75bee4 100644
+--- a/modules/learning-v2/modes/sound_contrast_mode_v1.tsx
++++ b/modules/learning-v2/modes/sound_contrast_mode_v1.tsx
+@@ -14,7 +14,7 @@
+  */
+ 
+ import React, { useEffect, useRef } from "react";
+-import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
++import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
+ import Animated, {
+   Easing,
+   useAnimatedStyle,
+@@ -26,9 +26,10 @@ import Animated, {
+ import { useTheme } from "../../../components/ThemeContext";
+ import { V2Chip } from "../../../components/ui/v2_ui";
+ import { useTournamentPalette } from "../../../components/ui/v2_theme";
+-import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
++import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
+ import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
+ import { SOUND_CONTRAST_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
++import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
+ 
+ const EASE = Easing.bezier(0.23, 1, 0.32, 1);
+ 
+@@ -100,19 +101,17 @@ function SoundContrastCardV1({
+         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : dimmed ? "dim" : "idle"}
+         style={styles.card}
+         right={
+-          <Pressable
+-            accessibilityRole="button"
++          <LearningV2AudioReplayPressableV1
+             accessibilityLabel={`Слушать ${label}`}
+-            hitSlop={8}
++            contentStyle={[styles.listenBtn, { backgroundColor: bg }]}
+             onPress={(event) => {
+               event.stopPropagation();
+-              void hapticLightImpact();
+               onListen();
+             }}
+-            style={[styles.listenBtn, { backgroundColor: bg }]}
++            reducedMotion={reducedMotion}
+           >
+             <Text style={{ color: accent, fontSize: 13 }}>♪</Text>
+-          </Pressable>
++          </LearningV2AudioReplayPressableV1>
+         }
+       >
+         <View>

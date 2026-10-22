@@ -1,0 +1,124 @@
+diff --git a/modules/learning-v2/modes/listen_choose_mode_v1.tsx b/modules/learning-v2/modes/listen_choose_mode_v1.tsx
+index 033e4edd4..e0c5ca5ca 100644
+--- a/modules/learning-v2/modes/listen_choose_mode_v1.tsx
++++ b/modules/learning-v2/modes/listen_choose_mode_v1.tsx
+@@ -18,7 +18,7 @@
+  */
+ 
+ import React, { useEffect, useRef, useState } from "react";
+-import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
++import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
+ import Animated, {
+   cancelAnimation,
+   Easing,
+@@ -34,13 +34,14 @@ import Svg, { Circle } from "react-native-svg";
+ import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
+ import Ionicons from "@expo/vector-icons/Ionicons";
+ import { Lv2Explain, Lv2Option, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
+-import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
++import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
+ import { useScaledTextStyles } from "../../../hooks/useLineScale";
+ import { useRuntimeActive } from "../../../hooks/use_runtime_active";
+ import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
+ import { learningV2ModeAudioCopyV1 } from "./mode_copy_v1";
+-import { LISTEN_CHOOSE_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
++import { LISTEN_CHOOSE_MOTION_V1 as MOTION, learningV2RingFillMsForPhraseV1 } from "./mode_motion_tokens_v1";
+ import { learningV2ListenChooseOptionLabelV1 } from "./listen_choose_option_label_v1";
++import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
+ 
+ const EASE = Easing.bezier(0.23, 1, 0.32, 1);
+ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+@@ -52,6 +53,7 @@ const RING_LEN = 2 * Math.PI * RING_RADIUS;
+ 
+ function ListenChoosePlayButtonV1({
+   playing,
++  fillMs,
+   hasPlayedOnce,
+   reducedMotion,
+   disabled,
+@@ -62,6 +64,7 @@ function ListenChoosePlayButtonV1({
+   track,
+ }: {
+   readonly playing: boolean;
++  readonly fillMs: number;
+   readonly hasPlayedOnce: boolean;
+   readonly reducedMotion: boolean;
+   readonly disabled: boolean;
+@@ -90,14 +93,14 @@ function ListenChoosePlayButtonV1({
+     if (playing) {
+       progress.value = 0;
+       progress.value = withTiming(1, {
+-        duration: MOTION.ringFillMs,
++        duration: fillMs,
+         easing: Easing.linear,
+       });
+     } else {
+       // зачем (learning-v2.html lc-3…5, ring: 1): прослушанная фраза — полное кольцо, а не сброс в ноль.
+       progress.value = withTiming(hasPlayedOnce ? 1 : 0, { duration: reducedMotion ? 1 : 120 });
+     }
+-  }, [hasPlayedOnce, playing, reducedMotion, progress]);
++  }, [fillMs, hasPlayedOnce, playing, reducedMotion, progress]);
+ 
+   // Пульс — единственная ВЕЧНАЯ анимация здесь, только она подчиняется
+   // runtimeActive и гаснет при уходе с экрана либо сворачивании приложения.
+@@ -129,22 +132,21 @@ function ListenChoosePlayButtonV1({
+   return (
+     <View style={[styles.playWrap, compact && { width: 80, height: 80 }]}>
+       <Animated.View style={btnStyle}>
+-        <Pressable
+-          accessibilityRole="button"
++        <LearningV2AudioReplayPressableV1
+           accessibilityLabel={accessibilityLabel}
+           accessibilityState={{ disabled }}
++          contentStyle={[styles.playBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+           disabled={disabled}
+-          hitSlop={10}
+-          onPress={() => {
+-            void hapticLightImpact();
+-            onPress();
+-          }}
+-          style={[styles.playBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
++          onPress={onPress}
++          reducedMotion={reducedMotion}
+         >
+-          <Ionicons name={playing ? "volume-high" : "play"} size={44} color={accent} />
+-        </Pressable>
++          {/* зачем (владелец 19.10): на всех заданиях большая кнопка — динамик и всегда нажимается для повтора озвучки */}
++          <Ionicons name="volume-high" size={44} color={accent} />
++        </LearningV2AudioReplayPressableV1>
+       </Animated.View>
+       {/* Кольцо поверх круга кнопки (svg.rg в макете), цвет #E9E9EB — текст темы; дорожка --track. */}
++      {/* зачем (владелец 19.10 «большая круглая кнопка не нажимается»): на iOS корневой Svg игнорирует pointerEvents="none" и кольцо поверх кнопки съедало нажатие — оборачиваем в View, который точно пропускает касания */}
++      <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+       <Svg pointerEvents="none" width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
+         <Circle
+           cx={RING_VIEW / 2}
+@@ -167,6 +169,7 @@ function ListenChoosePlayButtonV1({
+           transform={`rotate(-90 ${RING_VIEW / 2} ${RING_VIEW / 2})`}
+         />
+       </Svg>
++      </View>
+     </View>
+   );
+ }
+@@ -278,7 +281,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
+   }, [playing]);
+ 
+   const handlePlay = () => {
+-    if (!onPlayFullPhraseAudio || playing || loading) return;
++    if (!onPlayFullPhraseAudio) return;
+     onPlayFullPhraseAudio();
+   };
+ 
+@@ -306,9 +309,10 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
+ 
+       <ListenChoosePlayButtonV1
+         playing={playing}
++        fillMs={learningV2RingFillMsForPhraseV1(modePayload?.family === "listen_choose" ? modePayload.referenceAudio?.transcript : null)}
+         hasPlayedOnce={hasPlayedOnce}
+         reducedMotion={reducedMotion}
+-        disabled={!onPlayFullPhraseAudio || loading}
++        disabled={!onPlayFullPhraseAudio}
+         accessibilityLabel={hasPlayedOnce ? audioCopy.replay : audioCopy.play}
+         onPress={handlePlay}
+         accent={g.text}

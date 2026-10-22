@@ -1,0 +1,62 @@
+diff --git a/modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx b/modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx
+index fbee6bff1..b6c18fdbf 100644
+--- a/modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx
++++ b/modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx
+@@ -18,7 +18,7 @@
+ 
+ import React, { useEffect, useRef } from "react";
+ import Ionicons from "@expo/vector-icons/Ionicons";
+-import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
++import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
+ import Animated, {
+   cancelAnimation,
+   Easing,
+@@ -38,6 +38,7 @@ import { useScaledTextStyles } from "../../../hooks/useLineScale";
+ import { useRuntimeActive } from "../../../hooks/use_runtime_active";
+ import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learning_v2_local_hold_to_talk_v1";
+ import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
++import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
+ import { learningV2ScriptedRepeatAnswerBearingContentRevealedV1 } from "../contracts/mode_native_payload_v1";
+ import { LearningV2ModeFeedbackLaneV1 } from "./mode_feedback_v1";
+ import { nestedShadowStyle } from "../../../constants/liquidGlassShadowStyle";
+@@ -95,7 +96,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
+   const requesting = voiceStatus === "requesting" || voiceStatus === "finishing";
+   const referencePlaying = referenceAudioState === "playing";
+   const referenceLoading = referenceAudioState === "loading";
+-  const referenceDisabled = referenceLoading || recording || requesting;
++  const referenceDisabled = recording || requesting;
+   const copy = learningV2ModeRepeatCompareCopyV1(interfaceLocale);
+   const revealPolicyValue =
+     modePayload?.family === "scripted_repeat_compare"
+@@ -227,24 +228,23 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
+             />
+           </Svg>
+           <Animated.View style={audioPulseStyle}>
+-            <Pressable
+-              testID="learning-v2-repeat-reference-play"
+-              accessibilityRole="button"
++            <LearningV2AudioReplayPressableV1
+               accessibilityLabel={copy.listenReference}
+               accessibilityState={{ disabled: referenceDisabled, busy: referenceLoading }}
+-              disabled={referenceDisabled}
+-              hitSlop={10}
+-              onPress={onPlayFullPhraseAudio}
+-              style={[
++              contentStyle={[
+                 sx.playBtn, compact && { width: 64, height: 64, borderRadius: 32 },
+                 {
+                   backgroundColor: g.opaqueCard,
+                   opacity: referenceDisabled ? 0.45 : 1,
+                 },
+               ]}
++              disabled={referenceDisabled}
++              onPress={onPlayFullPhraseAudio}
++              reducedMotion={reducedMotion}
++              testID="learning-v2-repeat-reference-play"
+             >
+               <Ionicons name={referencePlaying ? "pause" : "volume-high"} size={40} color={g.text} />
+-            </Pressable>
++            </LearningV2AudioReplayPressableV1>
+           </Animated.View>
+         </View>
+       )}

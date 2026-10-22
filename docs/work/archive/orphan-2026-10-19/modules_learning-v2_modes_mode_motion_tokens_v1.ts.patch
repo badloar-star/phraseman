@@ -1,0 +1,19 @@
+diff --git a/modules/learning-v2/modes/mode_motion_tokens_v1.ts b/modules/learning-v2/modes/mode_motion_tokens_v1.ts
+index 3f240a01d..a9cdcb7bd 100644
+--- a/modules/learning-v2/modes/mode_motion_tokens_v1.ts
++++ b/modules/learning-v2/modes/mode_motion_tokens_v1.ts
+@@ -218,3 +218,14 @@ export const SCRIPTED_REPEAT_COMPARE_MOTION_V1 = Object.freeze({
+   /** Максимум учебных повторов до "Продолжить с поддержкой". */
+   maxLearningRetries: 2,
+ });
++
++/**
++ * зачем (владелец 19.10 «кольцо сначала медленно, потом быстро — должно равномерно, пока звучит»): кольцо озвучки
++ * заполнялось за фиксированные 1,5 с при любой длине фразы, а по концу речи прыгало в полное. У системного голоса нет
++ * хода воспроизведения, поэтому длину оцениваем по числу слов (обычный темп ≈ 0,42 с на слово + вдох в начале).
++ */
++export function learningV2RingFillMsForPhraseV1(text: string | null | undefined): number {
++  const words = (text ?? "").trim().split(/\s+/u).filter(Boolean).length;
++  if (words === 0) return 1500;
++  return Math.max(900, Math.min(8000, words * 420 + 300));
++}

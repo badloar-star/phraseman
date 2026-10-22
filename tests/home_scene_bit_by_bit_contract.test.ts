@@ -12,7 +12,12 @@ describe('Главная со «Сценой»: до бита', () => {
     expect(tiles).toMatch(/sceneTile: \{ borderRadius: 20, paddingTop: 6, paddingHorizontal: 4, paddingBottom: 10/);
     expect(tiles).toMatch(/sceneArt: \{ width: '100%', height: 58 \}/);
     expect(tiles).toMatch(/sceneTileTitle: \{ fontSize: 13, lineHeight: 17, fontWeight: '700'/);
-    expect(tiles).toContain('style={[s.sceneTile, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}');
+    // зачем (шаг 2 ускорения первого кадра Главной): тень — запечённой маской позади заливки, заливка — отдельным слоем
+    expect(tiles).toContain('style={s.sceneTile}');
+    expect(tiles).toContain('<HomeScenePlateShadow kind="tile" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />');
+    expect(tiles).toContain('<View pointerEvents="none" style={[s.sceneTileFill, { backgroundColor: g.opaqueCard }]} />');
+    expect(today).toContain('<HomeScenePlateShadow kind="today" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />');
+    expect(`${tiles}${today}`).not.toContain('plateBoxShadow(g)');
   });
   it('шапка «Сегодня» — одна нажимаемая строка, серого чипа › нет', () => {
     const scene = today.slice(today.indexOf('if (scene && title !== null)'), today.indexOf('return (\n    <View testID="home-v2-today" style={[s.card'));

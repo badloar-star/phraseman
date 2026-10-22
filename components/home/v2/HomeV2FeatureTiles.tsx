@@ -11,7 +11,8 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { useHomePlateStyle } from './homePlate';
 import type { HomeFeatureTile } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
-import { plateBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
+import { useShadowGlass } from '../../v2/ShadowSurface';
+import HomeScenePlateShadow from './scene/HomeScenePlateShadow';
 import { useSpireHomePlace } from '../../../app/spire/spire_home_place';
 // зачем (координатор 18.10): подпись бейджа — из лёгкого модуля, а не из components/spire/moments (сторож запрещает; модуль моментов не нужен в холодном старте Главной)
 import { spirePlaceBadgeText } from './home_spire_place_badge';
@@ -103,8 +104,11 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
             onPress={() => press(tile.key)}
             scaleTo={0.96}
             outerStyle={s.tileSlot}
-            style={[s.sceneTile, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}
+            style={s.sceneTile}
           >
+            {/* зачем (шаг 2 ускорения первого кадра Главной): тень — запечённой маской позади заливки, заливка — отдельным слоем */}
+            <HomeScenePlateShadow kind="tile" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />
+            <View pointerEvents="none" style={[s.sceneTileFill, { backgroundColor: g.opaqueCard }]} />
             {/* зачем (Сверка home4, scenes-compact `.tile`; координатор: «подпись ВНУТРИ плитки, без подписи снизу»): плитка — карточка r20, картинка 58 сверху, подпись 13/700 внутри; поля 6/4/10 */}
             <View pointerEvents="none" style={s.sceneArt}>
               <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.sceneArtImage} />
@@ -238,6 +242,8 @@ const s = StyleSheet.create({
   // Вариант (а): плашка-иконка, арт по центру (башня Пика целиком в кадре), название под плашкой.
   // зачем (ратчет typography_two_sizes, D145; координатор 17.10): ниже заголовка допустимы только 16 и 13 — название 14→13, цифра места на бейдже 11→13 (бейдж на 2 dp выше, текст всё так же в одну строку).
   sceneTile: { borderRadius: 20, paddingTop: 6, paddingHorizontal: 4, paddingBottom: 10, alignItems: 'center' },
+  // заливка плитки — отдельный слой поверх маски тени (HomeScenePlateShadow)
+  sceneTileFill: { ...StyleSheet.absoluteFillObject, borderRadius: 20 },
   sceneArt: { width: '100%', height: 58 },
   sceneArtImage: { width: '100%', height: '100%' },
   sceneTileTitle: { fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },

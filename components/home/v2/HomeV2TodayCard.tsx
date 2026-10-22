@@ -9,7 +9,8 @@ import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
-import { plateBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
+import { useShadowGlass } from '../../v2/ShadowSurface';
+import HomeScenePlateShadow from './scene/HomeScenePlateShadow';
 import HomeV2SeeAllButton from './HomeV2SeeAllButton';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -80,7 +81,10 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
   const g = useShadowGlass();
   if (scene && title !== null) {
     return (
-      <View testID="home-v2-today" style={[s.sceneCard, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}>
+      <View testID="home-v2-today" style={s.sceneCard}>
+        {/* зачем (шаг 2 ускорения первого кадра Главной): тень — запечённой маской позади заливки, заливка — отдельным слоем */}
+        <HomeScenePlateShadow kind="today" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />
+        <View pointerEvents="none" style={[s.sceneCardFill, { backgroundColor: g.opaqueCard }]} />
         {/* зачем (Сверка home4; макет: серого круглого чипа › в шапке нет): шапка «Сегодня · N из M» — одна нажимаемая строка, ведёт на экран «Сегодня» (кольца дня) */}
         <V2Pressable
           testID="home-v2-today-see-all"
@@ -224,6 +228,7 @@ const s = StyleSheet.create({
   cardBare: { paddingTop: 0 },
   // зачем (эталон scenes-compact .pn / .rw): карточка r28, поля 14/16/6; заголовок 20/26 700, счётчик 13; строка min 52, значок 36 r12, разделитель — линия сверху
   sceneCard: { borderRadius: 28, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
+  sceneCardFill: { ...StyleSheet.absoluteFillObject, borderRadius: 28 },
   sceneHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 4 },
   sceneTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
   sceneCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },

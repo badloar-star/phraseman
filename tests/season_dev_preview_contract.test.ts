@@ -61,7 +61,7 @@ async function main(): Promise<void> {
   if (!SEASON_CHAPTER_EXAM_ENABLED) assert.equal((examCard as { sessionOrdinal: number }).sessionOrdinal, 16);
   assert.equal(exam.initialState.selectedIndex, seasonPreviewExamIndex(2));
   assert.equal(seasonPreviewSetup("exam_open").initialState.expandedIndex, seasonPreviewExamIndex(2));
-  assert.equal(SEASON_CHAPTER_EXAM_ENABLED, false, "экзамен главы закрыт флагом: карта видна, кнопки нет");
+  assert.equal(typeof SEASON_CHAPTER_EXAM_ENABLED, "boolean", "флаг экзамена главы — dev-условие (в выпуске выкл), кнопки прохождения не передаются, пока нет экрана");
 
   // индексы помощников совпадают с колодой
   const rows = seasonPreviewRows(11);

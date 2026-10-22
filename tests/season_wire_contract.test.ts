@@ -36,3 +36,19 @@ describe('Сезон во вкладке «Уроки»', () => {
     expect(wire).not.toContain('ActivityIndicator');
   });
 });
+
+describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
+  it('флаг экзамена: в разработке вкл, в выпуске выкл', () => {
+    expect(flags).toMatch(/SEASON_CHAPTER_EXAM_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE/);
+  });
+  it('колода получает опции экзамена, результаты — из локального хранилища без сети', () => {
+    expect(wire).toContain('includeExam: SEASON_CHAPTER_EXAM_ENABLED, examAvailableWhenReached: true, examPassedChapters');
+    expect(wire).toContain('peekLearningV2ChapterExamRecordsV1');
+    expect(wire).toContain('loadLearningV2ChapterExamRecordsV1');
+    expect(wire).toContain("learningV2PassedChaptersV1(examRecords, 'en', lesson)");
+  });
+  it('кнопки прохождения экзамена не передаются, пока нет экрана', () => {
+    expect(wire).not.toContain('onStartExam');
+    expect(wire).not.toContain('onOpenByExam');
+  });
+});

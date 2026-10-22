@@ -11,20 +11,20 @@ const ROOT = path.join(__dirname, '..');
 const read = (rel: string): string => fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
 const code = (src: string): string => src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
 
-describe('«Экзамен главы» при выключенном экзамене', () => {
-  it('флаг выключен — и карты экзамена в колодах превью нет ни в одном состоянии', () => {
-    expect(SEASON_CHAPTER_EXAM_ENABLED).toBe(false);
+describe('«Экзамен главы» и флаг экзамена', () => {
+  // зачем (экзамен главы — Learning V2 22.10): флаг теперь dev-условие (в тестах dev включён) — проверки подстроены под значение флага, а не под «выключен всегда»
+  it('карта экзамена в колодах превью есть ровно тогда, когда флаг включён', () => {
     for (const state of SEASON_PREVIEW_STATES) {
       const { deck } = seasonPreviewSetup(state);
-      expect(deck.cards.filter((card) => card.kind === 'exam')).toHaveLength(0);
-      expect(deck.cards).toHaveLength(24);
+      expect(deck.cards.filter((card) => card.kind === 'exam')).toHaveLength(SEASON_CHAPTER_EXAM_ENABLED ? 3 : 0);
+      expect(deck.cards).toHaveLength(SEASON_CHAPTER_EXAM_ENABLED ? 27 : 24);
     }
   });
 
-  it('колода без экзамена: главы по 8 карт подряд, границы без «дыр» под экзамен', () => {
+  it('границы глав: без экзамена по 8 карт подряд, с экзаменом — по 9', () => {
     const deck = buildSeasonDeck(seasonPreviewRows(11), { includeExam: SEASON_CHAPTER_EXAM_ENABLED });
-    expect(deck.chapters.map((chapter) => [chapter.firstIndex, chapter.lastIndex])).toEqual([[0, 7], [8, 15], [16, 23]]);
-    expect(deck.currentIndex).toBe(11);
+    expect(deck.chapters.map((chapter) => [chapter.firstIndex, chapter.lastIndex])).toEqual(SEASON_CHAPTER_EXAM_ENABLED ? [[0, 8], [9, 17], [18, 26]] : [[0, 7], [8, 15], [16, 23]]);
+    expect(deck.currentIndex).toBe(SEASON_CHAPTER_EXAM_ENABLED ? 12 : 11);
   });
 
   it('колода с экзаменом (включённый флаг в будущем) по-прежнему собирается: 27 карт', () => {

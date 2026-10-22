@@ -15,10 +15,14 @@ import { useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
+import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
 import { pickInitialLessonOrdinal } from '../../../app/learning_v2_last_lesson';
+import { getStableId, peekStableId } from '../../../app/stable_id';
 import { triLang } from '../../../constants/i18n';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../../../modules/learning-v2/content/course_topology_v1';
 import { learningV2ChapterSceneV1, learningV2LessonArcV1, learningV2SessionTitleV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
+import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
 import PressableHybrid from '../../PressableHybrid';
@@ -90,7 +94,32 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     () => rows.filter((row): row is SessionRow => row.kind === 'session' && row.lessonOrdinal === lesson && isVisible(row.lessonOrdinal, row.sessionOrdinal)),
     [isVisible, lesson, rows],
   );
-  const deck = useMemo(() => buildSeasonDeck(sessionRows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED }), [sessionRows]);
+  // зачем (экзамен главы, Learning V2 22.10): сданные экзамены — карта «пройдена»; первый кадр из памяти процесса (peek), диск — фоном; сеть не читается
+  const [examRecords, setExamRecords] = useState(() => {
+    const id = peekStableId();
+    const hash = id ? deriveLocalOfflineProgressAccountScopeHash(id) : null;
+    const peeked = hash ? peekLearningV2ChapterExamRecordsV1(hash) : null;
+    console.log(`${LOG} экзамены: первый кадр`, JSON.stringify({ enabled: SEASON_CHAPTER_EXAM_ENABLED, hasId: id !== null, source: peeked ? 'память' : 'нет (диск фоном)', count: peeked ? Object.keys(peeked).length : 0 })); // guard-ok: откуда данные
+    return peeked;
+  });
+  useEffect(() => {
+    if (!SEASON_CHAPTER_EXAM_ENABLED) return undefined;
+    let cancelled = false;
+    void getStableId()
+      .then((id) => loadLearningV2ChapterExamRecordsV1(deriveLocalOfflineProgressAccountScopeHash(id)))
+      .then((records) => {
+        if (cancelled) return;
+        console.log(`${LOG} экзамены: диск`, JSON.stringify({ count: Object.keys(records).length })); // guard-ok: откуда данные
+        setExamRecords(records);
+      })
+      .catch((error: unknown) => { console.warn(`${LOG} экзамены: чтение не удалось`, JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); }); // guard-ok: catch пишет причину
+    return () => { cancelled = true; };
+  }, [lesson]);
+  const examPassedChapters = useMemo<ReadonlySet<number>>(() => new Set(examRecords ? learningV2PassedChaptersV1(examRecords, 'en', lesson).keys() : []), [examRecords, lesson]);
+  const deck = useMemo(
+    () => buildSeasonDeck(sessionRows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED, examAvailableWhenReached: true, examPassedChapters }),
+    [examPassedChapters, sessionRows],
+  );
   const chapterCount = deck.chapters.length;
   const newcomer = completedSessionIds.length === 0;
   useEffect(() => {

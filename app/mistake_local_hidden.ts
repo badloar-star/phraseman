@@ -15,6 +15,15 @@ export function unmarkMistakeHiddenLocally(mistakeId: string): void {
   hiddenIds.delete(mistakeId);
 }
 
+// зачем (владелец 22.10, «Очистить все ошибки»): та же пометка пачкой — весь список пустеет в тот же кадр, до записи журнала.
+export function markMistakesHiddenLocally(mistakeIds: readonly string[]): void {
+  for (const mistakeId of mistakeIds) hiddenIds.add(mistakeId);
+}
+
+export function unmarkMistakesHiddenLocally(mistakeIds: readonly string[]): void {
+  for (const mistakeId of mistakeIds) hiddenIds.delete(mistakeId);
+}
+
 /** Строки без локально скрытых; тот же массив, если скрывать нечего (без лишних перерисовок). */
 export function withoutLocallyHiddenMistakes<T extends { readonly mistakeId: string }>(items: readonly T[]): readonly T[] {
   if (hiddenIds.size === 0) return items;

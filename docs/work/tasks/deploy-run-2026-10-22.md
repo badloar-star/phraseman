@@ -127,3 +127,27 @@ Governance-ID: TG-F75A58F43798
 - **Решение координатора (разделение)**:
   1. После коммита 9 · САЙТ — `adminGrantAccess` (contactInboxId) + `submitWebsiteContact` (в проде с 22.09; накопление: f5447d10c логи, effa48638 акция). Потом сигнал САЙТУ.
   2. Удаление аккаунта — ТОЛЬКО после вердикта Ревизора по накоплению 13.10→HEAD на пути worker+mine. D189 выкладывается ЦЕЛИКОМ одним пакетом: `accountDeleteWorker` (-00036-jay), `accountDeleteMine` (-00064-qeh), `accountDeleteEnqueue` (-00030-zim, с 01.10), `accountDeleteCredentialStatus` (-00005-nob, с 01.10). Несёт d4fb962fc (promo.resolvedUid).
+
+Governance-ID: TG-F974EAA55560
+
+- **Пакет акции** — 09:13Z, HEAD 38f472d20, exit 0.
+  - adminGrantAccess: -00024-feh → **-00025-fov** (contactInboxId).
+  - adminSearchUsers: -00023-nuz → **-00024-kex**.
+  - submitWebsiteContact: -00052-jel → **-00053-cef**.
+  - 10 минут логов → сигнал 9 · САЙТ.
+- **D189**: «ДА» владельца (кнопка, 22.10), Ревизор 3.172 ✅.
+  - Пять отдельных выкладок по порядку Ревизора: Worker → Mine → CredentialStatus → Enqueue → RetryCron. Стоп при первой ошибке.
+  - RetryCron в коде уже `every 120 minutes` (ff4c18772).
+  - Откат: Worker -00036-jay, Mine -00064-qeh, CredStatus -00005-nob, Enqueue -00030-zim, RetryCron -00031-bor.
+  - После — 15 минут логов [D189-GUEST], [ACCOUNT-DELETE-ENQUEUE], [ACCOUNT-DELETE-JOB], [D189-LADDER-SCRUB].
+
+Governance-ID: TG-F9A463DCBAE5
+
+- **D189** — все пять выложены 10:00Z, по порядку Ревизора. Первая попытка 09:26Z упала на СБОРКЕ: TS7006 в index.ts из e2db2ac4b, починка a4c9b19ff. В прод тогда ничего не ушло.
+  - accountDeleteWorker: -00036-jay → **-00037-jaq**.
+  - accountDeleteMine: -00064-qeh → **-00065-nuc**.
+  - accountDeleteCredentialStatus: -00005-nob → **-00006-fuv**.
+  - accountDeleteEnqueue: -00030-zim → **-00031-bux**.
+  - accountDeleteRetryCron: -00031-bor → **-00032-fej**, расписание `every 120 minutes` ENABLED.
+  - Код удаления между шагами не менялся (git log по account_delete*.ts — пусто).
+  - Первые логи 09:36–10:00Z: error 0, warn 0. 15 минут меток D189 идут.

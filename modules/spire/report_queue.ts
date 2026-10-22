@@ -126,6 +126,27 @@ export function spireStepsForFloorLocal(floor: number): number {
   return floor <= 5 ? 4 + floor : 10;
 }
 
+/** Последний этаж башни недели — Страж-15 (как SPIRE_FLOOR_COUNT экрана и SPIRE_PACK_FLOORS пакета). */
+export const SPIRE_TOP_FLOOR = 15;
+
+/**
+ * Вершина недели взята: пройден последний этаж — маркер выше 15-го (лестница считает дальше: 16, 17…, пакет даёт ступени «над
+ * облаками» по кругу). ЗАМОК ВЛАДЕЛЬЦА 22.10: «16 — всё, это потолок, дальше нету никаких этажей» — экран, док, окна позиций и
+ * старт забега спрашивают эту функцию, а не зажимают этаж по месту (Math.min(floor, 15) прятал вершину и снова звал на 15-й).
+ */
+export function spireSummitReached(week: Readonly<{ floor: number }> | null | undefined): boolean {
+  return week != null && Number.isFinite(week.floor) && week.floor > SPIRE_TOP_FLOOR;
+}
+
+/** Старт забега закрыт: вершина взята в ИДУЩЕЙ неделе (прошлая неделя на 16-м — не вершина, новая начинается с 1-го). Ключ идущей
+ *  недели даёт вызывающий (модуль без часов). Закрыт — причина в журнал [SPIRE-SUMMIT]; энергия не тратится, забег не начинается. */
+export function spireSummitBlocksStart(week: SpireWeekLocal | null, currentWeekKey: string): boolean {
+  const current = week !== null && week.weekKey === currentWeekKey ? week : null;
+  if (!spireSummitReached(current)) return false;
+  console.log('[SPIRE-SUMMIT] start: вершина недели взята — забег не стартует', JSON.stringify({ weekKey: currentWeekKey, floor: current?.floor ?? null, stepInFloor: current?.stepInFloor ?? null, stepsCleared: current?.stepsCleared ?? null })); // guard-ok: ранний выход старта с причиной
+  return true;
+}
+
 export function spireCreateWeekLocal(input: Readonly<{
   lang: SpireLang;
   weekKey: string;

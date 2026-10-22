@@ -22,6 +22,7 @@ const SEARCH_DIRS = ['tests', 'functions/src'];
 // Новый замок → строка в реестре + путь сюда в том же коммите.
 const KNOWN_GUARDS = [
   'tests/v2_tab_bar_liquid_glass_theme.test.cjs',
+  'tests/owner_locks_spire_summit_2026_10_22.test.ts',
   'tests/owner_locks_spire_2026_10_22.test.ts',
   'tests/season_wire_contract.test.ts',
   'tests/screen_back_button_contract.test.ts',

@@ -70,6 +70,7 @@ import { spireTimeLeftText } from './spire_strings';
 import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
 import { SPIRE_FLOOR_COUNT, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
+import { useSpireSummit } from './use_spire_summit';
 import { asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek } from './spire_home_week';
 
 const LOG = '[SPIRE]';
@@ -208,6 +209,7 @@ export default function SpireHomeScreen() {
   const tailPad = Math.max(scrollTailPad, tailNeeded);
 
   const myFloor = week ? Math.min(week.floor, SPIRE_FLOOR_COUNT) : null;
+  const { summit, stepInFloor: shownStepInFloor } = useSpireSummit(week, myFloor, preview ? 'dev-preview' : 'local_week'); // ЗАМОК ВЛАДЕЛЬЦА 22.10: «16 — всё, это потолок»
   // Маркер поднялся на новый этаж — карточка этажа следует за ним.
   useEffect(() => { if (myFloor !== null) setSelected(myFloor); }, [myFloor]);
   const shownFloor = selected ?? myFloor ?? 1;
@@ -265,7 +267,7 @@ export default function SpireHomeScreen() {
   const rivals = useMemo(() => spireRivalsByFloor(game.rows), [game.rows]);
   const podiumLoading = members === null && game.live && game.roomLoad === null; const roomCeilingPassed = useSpireRoomCeiling({ live: game.live, roomLoad: game.roomLoad, hasRows: members !== null, key: `${spireLang}|${preview ? 'preview' : 'live'}` }); const podiumSkeleton = podiumLoading && !roomCeilingPassed; const podiumColumns = podiumSkeleton || (members !== null && members.length > 0); useSpirePikRenderTrace({ langLocked: langLock.locked, configNull: config === null, unlocked, preview: preview !== null, live: game.live, roomLoad: game.roomLoad, members: members?.length ?? null, tierNull: game.tier === null, showAll, podiumSkeleton, ceilingPassed: roomCeilingPassed }); // зачем (Ревизор по c5ccfd458): колонки подиума есть (комната или скелет) — компакт экономит 40 dp; пустая комната/офлайн — 0, иначе ступень качается
   const budget = useSpireTowerBudget(DOCK_GAP, podiumColumns); const towerWindowH = budget.windowH; // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и ступени ужатия — из замеров верха башни, дока и карточки (use_spire_tower_budget), не из модели высоты
-  const scene = useSpireSceneTop({ lang, members, rankBy: game.rankBy, roomSearching: podiumSkeleton, offline, plus: hasPremiumAccess, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, floor: myFloor, stepInFloor: week ? week.stepInFloor : null, coins: config?.coins ?? null, active: runtimeOwnerId === 'spire' }); // зачем (Пик v2, владелец 22.10): «Сцена» за флагом SPIRE_SCENE_V2_ENABLED; null — прежний верх экрана
+  const scene = useSpireSceneTop({ lang, members, rankBy: game.rankBy, roomSearching: podiumSkeleton, offline, plus: hasPremiumAccess, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, floor: myFloor, stepInFloor: shownStepInFloor, coins: config?.coins ?? null, active: runtimeOwnerId === 'spire' }); // зачем (Пик v2, владелец 22.10): «Сцена» за флагом SPIRE_SCENE_V2_ENABLED; null — прежний верх экрана
   const sceneScroll = useSpireSceneScroll(scene !== null, runtimeOwnerId === 'spire'); // зачем (3b-3): прокрутка гасит цвет шапки «Сообщества», как маска Главной
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
 
@@ -321,7 +323,7 @@ export default function SpireHomeScreen() {
         <View style={s.towerWrap} onLayout={(e) => budget.onTowerTop(Math.round(e.nativeEvent.layout.y))}>
           <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} onTouchActive={towerTouch.onTouchActive} />
         </View>
-        <View onLayout={(e) => budget.onInfoHeight(Math.round(e.nativeEvent.layout.height))}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} compact={budget.cardCompact} /></View>
+        <View onLayout={(e) => budget.onInfoHeight(Math.round(e.nativeEvent.layout.height))}><SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={shownStepInFloor} coins={config.coins} others={rivals.get(shownFloor)} compact={budget.cardCompact} /></View>
         </>}
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
         <View
@@ -354,10 +356,10 @@ export default function SpireHomeScreen() {
             onLater={game.dismissOutcome}
           />
         ) : (
-          <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock ?? (roomCeilingPassed && !climbReady ? 'no_tier' : null)} onClimb={climb} scene={scene !== null} searching={scene?.decision.state === 'search'} />
+          <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock ?? (roomCeilingPassed && !climbReady ? 'no_tier' : null)} onClimb={climb} summit={summit} scene={scene !== null} searching={scene?.decision.state === 'search'} />
         )}
       </View>
-      {momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer lang={lang} outcome={momentOutcome ? game.outcome : null} coins={config.coins} coinRank={myCoinRank} busy={game.starting} stepActive={game.session !== null || game.pending !== null || (game.outcome !== null && !momentOutcome)} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
+      {momentsV3 ? <Suspense fallback={null}><SpireMomentsLayer lang={lang} outcome={momentOutcome ? game.outcome : null} coins={config.coins} coinRank={myCoinRank} busy={game.starting} stepActive={game.session !== null || game.pending !== null || (game.outcome !== null && !momentOutcome)} climbClosed={summit} onClimb={climb} onLater={game.dismissOutcome} /></Suspense> : null}
       {game.uid && game.stableId ? (
         <SpireStepScreen
           lang={lang}

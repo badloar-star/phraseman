@@ -40,9 +40,11 @@ type Props = Readonly<{
   searching?: boolean;
   /** Только dev-вход «Сцены»: энергия из моков вместо настоящей (zero — нет энергии, time — «6:40»). */
   previewEnergy?: Readonly<{ zero: boolean; time: string }>;
+  /** Вершина недели взята (пройден Страж-15) — вместо кнопки «Ты на вершине недели» (ЗАМОК ВЛАДЕЛЬЦА 22.10). */
+  summit?: boolean;
 }>;
 
-function SpireClimbDock({ lang, ready, busy, premium, block, onClimb, scene = false, searching = false, previewEnergy }: Props) {
+function SpireClimbDock({ lang, ready, busy, premium, block, onClimb, scene = false, searching = false, previewEnergy, summit = false }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   // зачем (координатор 15.10, spire-gap-010; эталон kit.css `.cta.dis`: background var(--disabled), текст var(--disabled-ink)): неактивная кнопка — токены ОТКЛЮЧЁННОЙ заливки и подписи темы
   // (читаемая светлая серая, правило «кнопки не сливаются»), а не control + приглушённый текст, который на тёмном слипался с фоном
@@ -79,6 +81,26 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb, scene = fa
     setNoEnergySheet(false);
     router.push({ pathname: '/premium_modal', params: { context: 'no_energy', source: 'spire_no_energy' } } as never);
   }, [router]);
+
+  const dockBranch = summit ? 'summit' : noEnergy ? 'no_energy' : scene && searching ? 'searching' : 'climb';
+  useEffect(() => {
+    const text = dockBranch === 'summit' ? spireGameText(lang, 'summitDock') : dockBranch === 'no_energy' ? 'energyIn' : dockBranch === 'searching' ? spireSceneText(lang, 'searchingRoom') : block ? spireGameText(lang, 'retry') : spireText(lang, 'climb');
+    console.log('[SPIRE-SUMMIT] dock', JSON.stringify({ branch: dockBranch, summit, ready, busy, block: block ?? 'none', text })); // guard-ok: одна строка на смену ветки дока
+  }, [dockBranch, summit, ready, busy, block, lang]);
+
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «16 — всё, это потолок, дальше нету никаких этажей» — после Стража-15 подниматься на этой неделе некуда:
+  // вместо кнопки «Ты на вершине недели», нажать нечего, энергия не нужна (поэтому раньше ветки «нет энергии»)
+  if (summit) {
+    const summitLabel = spireGameText(lang, 'summitDock');
+    return (
+      <View testID="spire-dock-summit">
+        <View style={[s.cta, { backgroundColor: off.fill }, sh.nested]} accessible accessibilityRole="text" accessibilityLabel={summitLabel}>
+          <Ionicons name="trophy" size={18} color={off.ink} />
+          <Text style={[s.ctaText, { color: off.ink }]}>{summitLabel}</Text>
+        </View>
+      </View>
+    );
+  }
 
   if (noEnergy) {
     return (

@@ -20,7 +20,7 @@ import { spireStepBudgetMs, type SpireConfigDoc } from '../../modules/spire/conf
 import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_plan';
 import {
   spireApplyStepReport,
-  spireCreateWeekLocal,
+  spireCreateWeekLocal, spireSummitBlocksStart,
   type SpireFlushTrigger, spireNearWeekEnd,
   type SpireLang,
   type SpireWeekLocal,
@@ -230,7 +230,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
 
   // ── Старт ступени (защита от двойного тапа: один старт за раз) ──
   const startStep = useCallback(async () => {
-    if (!gate || !lang || !config) return;
+    if (!gate || !lang || !config || spireSummitBlocksStart(weekRef.current, spireCurrentWeekKey(Date.now()))) return; // ЗАМОК ВЛАДЕЛЬЦА 22.10: «16 — всё, это потолок» — на вершине забег не стартует, энергия не тратится; причина — [SPIRE-SUMMIT]
     if (startingRef.current || session) {
       DebugLogger.info(LOG, 'game: старт уже идёт — второй тап игнорируем');
       return;

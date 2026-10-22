@@ -26,6 +26,8 @@ export const SPIRE_PREVIEW_STATES = [
   'step_build_filled', 'step_build_wrong',
   // зачем (координатор 12.10, spire-gap-012/013): причины провала «время вышло» и «ступень прервана» (раньше в превью была одна — «сердца»)
   'lose_timeout', 'lose_aborted',
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «16 — всё, это потолок»): после Стража-15 — снова экран Пика, маркер на 16-м, кнопки подъёма нет
+  'top',
 ] as const;
 export type SpirePreviewState = (typeof SPIRE_PREVIEW_STATES)[number];
 
@@ -201,6 +203,10 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
     case 'summit': {
       const w = week(15, 3, 88);
       return { ...base, week: w, game: game({ rows: rows(88), myPlace: 1, friends: FRIENDS, outcome: outcome('summit', w) }) };
+    }
+    case 'top': {
+      const w = week(16, 0, 135);
+      return { ...base, week: w, game: game({ rows: rows(135), myPlace: 1, friends: FRIENDS }) };
     }
     case 'lose': {
       const w = week(7, 2, 31);

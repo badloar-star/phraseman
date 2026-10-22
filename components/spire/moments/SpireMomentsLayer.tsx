@@ -23,11 +23,13 @@ export type SpireMomentsLayerProps = Readonly<{
   busy: boolean;
   /** Ступень идёт или готовится («Готовим ступень…» / сессия ступени) или открыта прежняя панель итога при save_failed (слою тогда идёт outcome=null) — позиционные окна ждут (Ревизор, P17). */
   stepActive?: boolean;
+  /** ЗАМОК ВЛАДЕЛЬЦА 22.10 («16 — всё, это потолок»): вершина недели взята — окна позиций ждут, «Играть» им звать некуда. */
+  climbClosed?: boolean;
   onClimb: () => void;
   onLater: () => void;
 }>;
 
-function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = false, onClimb, onLater }: SpireMomentsLayerProps) {
+function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = false, climbClosed = false, onClimb, onLater }: SpireMomentsLayerProps) {
   const positions = useSpirePositionMoments();
   // зачем (Ревизор P17, 15.10): окна m05 ждали только закрытия итога ступени — после «Ещё раз» итог гас, и «Позиция выросла» всплывала поверх
   // «Готовим ступень…» при идущем таймере ступени. Теперь окно ждёт, пока закрыт итог И нет идущей/готовящейся ступени.
@@ -36,13 +38,13 @@ function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = 
   const { runtimeOwnerId } = useTabNav();
   const screenFocused = useIsScreenFocused();
   const onScreen = screenFocused && runtimeOwnerId === 'spire';
-  const blocked = outcome !== null || stepActive || busy || !onScreen;
-  const blockReason = outcome !== null ? 'outcome' : stepActive ? 'step' : busy ? 'starting' : !onScreen ? 'hidden' : 'free';
+  const blocked = outcome !== null || stepActive || busy || climbClosed || !onScreen;
+  const blockReason = outcome !== null ? 'outcome' : stepActive ? 'step' : busy ? 'starting' : climbClosed ? 'summit' : !onScreen ? 'hidden' : 'free';
   const lastLoggedRef = React.useRef<string | null>(null);
   React.useEffect(() => {
     if (lastLoggedRef.current === blockReason) return;
     lastLoggedRef.current = blockReason;
-    console.log(`[SPIRE-RISE-QUEUE] позиционные окна ${blocked ? 'ждут' : 'свободны'}: причина=${blockReason === 'outcome' ? 'открыт итог ступени' : blockReason === 'step' ? 'идёт или готовится ступень' : blockReason === 'starting' ? 'старт ступени' : blockReason === 'hidden' ? `Пик не на экране (вкладка=${runtimeOwnerId}, фокус=${String(screenFocused)})` : 'нет'} (итог=${String(outcome !== null)} ступень=${String(stepActive)} старт=${String(busy)}) решение Ядра: rise=${positions.rise?.key ?? '—'} overtake=${positions.overtake?.key ?? '—'} lastChance=${positions.lastChance?.key ?? '—'}`); // guard-ok: журнал смены очереди
+    console.log(`[SPIRE-RISE-QUEUE] позиционные окна ${blocked ? 'ждут' : 'свободны'}: причина=${blockReason === 'outcome' ? 'открыт итог ступени' : blockReason === 'step' ? 'идёт или готовится ступень' : blockReason === 'starting' ? 'старт ступени' : blockReason === 'summit' ? 'вершина недели взята — играть некуда' : blockReason === 'hidden' ? `Пик не на экране (вкладка=${runtimeOwnerId}, фокус=${String(screenFocused)})` : 'нет'} (итог=${String(outcome !== null)} ступень=${String(stepActive)} старт=${String(busy)}) решение Ядра: rise=${positions.rise?.key ?? '—'} overtake=${positions.overtake?.key ?? '—'} lastChance=${positions.lastChance?.key ?? '—'}`); // guard-ok: журнал смены очереди
   }, [blockReason, blocked, busy, outcome, positions.lastChance?.key, positions.overtake?.key, positions.rise?.key, stepActive]);
   return (
     <>

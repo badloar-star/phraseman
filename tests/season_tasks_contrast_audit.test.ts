@@ -22,6 +22,19 @@ const six = (c: string): string => c.slice(0, 7);
 describe('Сезон: белый текст на обложках глав (аудит 22.10)', () => {
   const view = readSource('components/learning-v2/season/SeasonCourseView.tsx');
 
+  it('светлая тема: HUD шапки на плите цвета карточки темы (энергия и баланс красятся под светлый фон)', () => {
+    expect(view).toContain('testID="season-hud-plate"');
+    expect(view).toContain('backgroundColor: g.opaqueCard');
+    // текст и акцент темы на плите карточки ≥ 4,5 — те же пары, что в аудите заданий ниже (текст, акцент-текст, вторичный на карточке)
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of ['calm', 'accent', 'max'] as const) {
+        const g = liquidGlassTokens(id, { level, appearance: 'light' } as never);
+        expect(contrastRatio(g.text, g.opaqueCard)).toBeGreaterThanOrEqual(TEXT);
+        expect(contrastRatio(g.accentText, g.opaqueCard)).toBeGreaterThanOrEqual(TEXT);
+      }
+    }
+  });
+
   it('светлая тема: пилюля «Урок N» — тёмное стекло, белый текст ≥ 4,5 на всех оттенках глав', () => {
     expect(view).toMatch(/PILL_ON_LIGHT = 'rgba\(0,0,0,0\.18\)'/);
     let min = 99;

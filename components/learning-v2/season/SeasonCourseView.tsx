@@ -162,7 +162,9 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
             <Ionicons name="chevron-down" size={13} color={WHITE} />
           </Pressable>
           <View style={styles.flex} />
-          {props.avatarSlot ?? null}
+          {/* зачем (аудит контраста светлой темы 22.10, координатор): энергия в шапке вкладки «Уроки» без капсулы красится под светлый ФОН ЭКРАНА (текст/акцент темы), а здесь лежит на тёмном градиенте и световом пятне обложки (≈2,5–3:1);
+              в светлой теме HUD стоит на плите цвета карточки темы — тексты и акцент темы читаются на ней ≥ 4,5:1 (тот же токен opaqueCard, что в аудите заданий) */}
+          {props.avatarSlot ? (!dark && tall ? <View testID="season-hud-plate" style={[styles.hudPlate, { backgroundColor: g.opaqueCard }]}>{props.avatarSlot}</View> : props.avatarSlot) : null}
         </View>
         <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null]}>
           <Text style={styles.kicker}>{kicker}</Text>
@@ -255,6 +257,7 @@ const styles = StyleSheet.create({
   hero: { height: 380, borderBottomLeftRadius: 34, borderBottomRightRadius: 34, overflow: 'hidden' },
   // зачем (владелец 22.10: высота сцен 46 % для всех; scenes-compact.html «Обучение · Сезон», вариант 2): 392 dp вместе с зоной часов, фон от верха экрана
   heroBodyTall: { bottom: 44 },
+  hudPlate: { borderRadius: 22, paddingHorizontal: 6, paddingVertical: 2, flexDirection: 'row', alignItems: 'center' },
   heroTitleLong: { fontSize: 26, lineHeight: 32 },
   heroChips: { marginTop: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   heroChip: { height: 34, paddingHorizontal: 12, borderRadius: 17, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },

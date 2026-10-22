@@ -105,7 +105,8 @@ const s = StyleSheet.create({
   pressed: { transform: [{ scale: 0.94 }] },
   svg: { transform: [{ rotate: '-90deg' }] },
   date: { ...V2_TYPE.caption, fontWeight: '700', textAlign: 'center' },
-  count: { ...V2_TYPE.caption, fontSize: 10, lineHeight: 13, textAlign: 'center' },
+  // зачем (сторож типографики D145 «шрифт < 13»): подпись «N из 3» под кольцами дня 13/17, как остальные подписи
+  count: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17, textAlign: 'center' },
 });
 
 export default memo(TodayActivityHistory);

@@ -106,8 +106,8 @@ function Inner() {
     <View style={s.root} testID="dev-spire-scene-preview">
       <ScreenGradient>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
-          <View style={{ height: insets.top, backgroundColor: sceneTop }} />
-          <View style={[s.tabsRow, { backgroundColor: sceneTop }]} testID="dev-spire-scene-tabs">
+          {/* зачем (владелец 22.10: «верхняя сейф-зона — часть общей композиции»): строка вкладок сама уходит под часы, отдельной полосы нет */}
+          <View style={[s.tabsRow, { backgroundColor: sceneTop, paddingTop: insets.top, height: TABS_H + insets.top }]} testID="dev-spire-scene-tabs">
             {tabViews}
             <View style={s.energy}>
               <Ionicons name="flash" size={16} color={!plus && setup.energy <= 0 ? SPIRE_SCENE_INK.warm : SPIRE_SCENE_INK.text} />

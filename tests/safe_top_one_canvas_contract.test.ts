@@ -23,9 +23,7 @@ function walk(dirRel: string): string[] {
 const SOLID_TOP_BAND = /\{[^{}]*\bheight:\s*[A-Za-z_$][\w$]*\.top\b[^{}]*\bbackgroundColor:[^{}]*\}|\{[^{}]*\bbackgroundColor:[^{}]*\bheight:\s*[A-Za-z_$][\w$]*\.top\b[^{}]*\}/;
 
 // Только с причиной и владельцем; список может лишь сокращаться.
-const KNOWN_BANDS: Readonly<Record<string, string>> = {
-  'app/dev_spire_scene_preview.tsx': 'dev-вход «Сцены» Пика — переводится на полноэкранную страницу вместе со сценой Пика (её файлы в работе другой сессии)',
-};
+const KNOWN_BANDS: Readonly<Record<string, string>> = {};
 
 describe('верх экрана: зона часов — часть общего полотна', () => {
   it('нигде нет сплошной полосы высотой в зону часов', () => {
@@ -59,7 +57,9 @@ describe('верх экрана: зона часов — часть общего
   it('оболочка вкладок не сдвигает всё разом: отступ под часы — у каждой страницы, полноэкранные страницы без него', () => {
     const layout = read('app/(tabs)/_layout.tsx');
     expect(layout).not.toContain('style={{ flex: 1, paddingTop: insets.top }}');
-    expect(layout).toContain('pageTopInset={insets.top} fullBleedPages={homeFullBleedPages}');
+    expect(layout).toContain('pageTopInset={insets.top} fullBleedPages={tabFullBleedPages}');
+    // владелец 22.10 («Пик полноэкранным», схема eab9aa35d): «Сообщество» — полноэкранная страница только при флаге «Сцены» Пика
+    expect(layout).toContain('() => (SPIRE_SCENE_V2_ENABLED && communityLogicalIdx >= 0 ? [...homeFullBleedPages, logicalTabToPhysicalPage(communityLogicalIdx, pageLayout)] : homeFullBleedPages),');
     // над Главной заплатки нет — сцена сама рисует фон от верха экрана
     expect(layout).not.toMatch(/<HomeSceneStatusStrip[^>]*visible=\{visualIdx === 0\}/);
     const slider = read('app/TabSlider.tsx');

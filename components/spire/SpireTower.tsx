@@ -209,8 +209,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     const devTop = getDevSpireScrollOverride() === 'top';
     const nearTop = floor !== null && floor >= SPIRE_FLOOR_COUNT - 1;
     const contentH = SPIRE_TOWER_GEOM.height * scale;
-    // зачем (эталон V2: башня стоит за пьедесталом; координатор 22.10): на «Сцене» окно прижато к низу башни, на 14–15 этаже — показ вершины
-    const y = devTop ? 0 : sceneMode && !nearTop ? Math.max(0, contentH - wh) : spireWindowScrollY({ cy, windowH: wh, crownTopY, floorHalf: (fl.h / 2) * scale, nearTop });
+    // зачем (вариант 2: сцена 46 %, окно ниже): на «Сцене» окно у низа башни, а метка своего этажа видна целиком; на 14–15 этаже — показ вершины
+    const y = devTop ? 0 : sceneMode && !nearTop ? Math.max(0, Math.min(contentH - wh, cy - Math.max((fl.h / 2) * scale, MARKER_SIZE / 2) - 4)) : spireWindowScrollY({ cy, windowH: wh, crownTopY, floorHalf: (fl.h / 2) * scale, nearTop });
     const cut = rowsCutRef.current;
     if (cut) setRowsHidden(spireSceneHiddenRows({ offsetY: Math.min(y, Math.max(0, contentH - wh)), windowH: wh, clearBottom: cut.clear, scale }));
     console.log('[SPIRE-DOCK-INSET] top', JSON.stringify({ why, floor, windowH: roundLayout(wh), contentTop: 0, sceneTopY: roundLayout(crownTopY), requestedY: roundLayout(y), devTop, maxScroll: roundLayout(Math.max(0, contentH - wh)), topReachable: 'да (содержимое начинается с запаса над кровлей)', floor1Bottom: roundLayout(SPIRE_TOWER_GEOM.base * scale), contentH: roundLayout(contentH), floor1Reachable: SPIRE_TOWER_GEOM.base * scale <= contentH ? 'да' : 'нет' })); // guard-ok: журнал краёв окна башни

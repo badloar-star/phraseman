@@ -143,7 +143,7 @@ async function main(): Promise<void> {
   assert.ok(header.includes("if (tone === null) return null;"), "нет тона — слоя нет");
   const community = read("app/(tabs)/community.tsx");
   // строка вкладок «Сообщества» — прежний код (как до «Сцены»): при выключенном флаге шапка та же, слой поверх неё не рисуется
-  assert.ok(community.includes("      <View style={s.header}>\n"), "шапка без подложки");
+  assert.ok(community.includes("      <View style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null]}>\n"), "шапка без подложки; со «Сценой» Пика — отступ на зону часов (полноэкранная вкладка)");
   assert.ok(community.includes("borderBottomColor: on ? accentGfx.border : 'transparent'"), "черта вкладки — прежний цвет");
   assert.ok(community.includes("<Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>"), "текст вкладок — прежние цвета");
   assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : null}"), "справа — как раньше");
@@ -174,10 +174,10 @@ async function main(): Promise<void> {
   const strip = read("components/home/v2/scene/HomeSceneStatusStrip.tsx");
   assert.ok(strip.includes("source === 'spire' ? (SPIRE_SCENE_V2_ENABLED ? spireTint : null) : homeTint"), "цвет Пика — только при флаге");
   // ── сетка без пересечений на 360–430 dp (координатор 22.10 после съёмки Сверки; расчёт — tests/spire_scene_layout.test.ts) ──
-  assert.ok(scene.includes("const frame = useMemo(() => spireSceneFrame({ width, fontScale, myFloor: p.myFloor, guardChars }), [width, fontScale, p.myFloor, guardChars]);"), "окно башни и колонка текста — из расчёта сетки");
+  assert.ok(scene.includes("const frame = useMemo(() => spireSceneFrame({ width, windowH, topInset: insets.top, fontScale, guardChars }), [width, windowH, insets.top, fontScale, guardChars]);"), "окно башни и колонка текста — из расчёта сетки");
   assert.ok(scene.includes("windowHeight={frame.windowH}") && scene.includes("sceneRowsClearBottom={frame.rowsClearBottom}"), "башня знает высоту окна и где начинаются монеты пьедестала");
-  assert.ok(scene.includes("style={[s.me, { bottom: SPIRE_SCENE_H - ME_BOTTOM, width: frame.copyW }"), "своё место левее подписей этажей, переносы — вверх");
-  assert.ok(tower.includes("sceneMode && !nearTop ? Math.max(0, contentH - wh)"), "на «Сцене» окно прижато к низу башни (кроме вершины)");
+  assert.ok(scene.includes("<View testID=\"spire-scene-me\" style={[s.panel, { backgroundColor: pal.card, marginTop: -SPIRE_SCENE_PANEL_OVERLAP }"), "своё место и пьедестал — в панели под сценой (вариант 2)");
+  assert.ok(tower.includes("sceneMode && !nearTop ? Math.max(0, Math.min(contentH - wh, cy - Math.max((fl.h / 2) * scale, MARKER_SIZE / 2) - 4))"), "на «Сцене» окно у низа башни, своя метка видна (кроме вершины)");
   assert.ok(tower.includes("sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0}"), "ряды соперников на «Сцене» — по расчёту сетки");
   assert.ok(tower.includes("if (fl.f <= hiddenBelow) continue;"), "ряды под монетами пьедестала не рисуются");
   const podium = read("components/spire/scene/SpireScenePodium.tsx");

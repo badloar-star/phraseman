@@ -20,7 +20,8 @@ describe('lessons full-bleed safe-area contract', () => {
     expect(tabsLayout).toMatch(/<ScreenGradient\s+artBackdrop=\{scaffoldArtBackdrop\}\s+style=\{\{ flex: 1 \}\}/);
     // зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): отступ под часы — у каждой страницы TabSlider, а не у всей оболочки
     expect(tabsLayout).not.toContain('style={{ flex: 1, paddingTop: insets.top }}');
-    expect(tabsLayout).toContain('pageTopInset={insets.top} fullBleedPages={homeFullBleedPages}');
+    // зачем (владелец 22.10: «Пик полноэкранным»): оболочка отдаёт tabFullBleedPages — страницы Главной и «Уроков» плюс «Сообщество» при флаге «Сцены» Пика
+    expect(tabsLayout).toContain('pageTopInset={insets.top} fullBleedPages={tabFullBleedPages}');
 
     const tabScaffoldSource = tabsLayout.slice(tabsLayout.indexOf('function TabScaffold'));
     expect(tabScaffoldSource).toContain('const insets = useStableSafeAreaInsets();');

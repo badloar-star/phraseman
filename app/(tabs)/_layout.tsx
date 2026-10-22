@@ -31,6 +31,7 @@ initLiteMode();
 import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
 import V2TabBar, { V2_TAB_BAR_HEIGHT, type V2TabBarItem } from '../../components/v2/V2TabBar';
 import { useCommunityTabDot } from '../../hooks/use_community_tab_dot';
+import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
 import { FLOATING_PILL_BOTTOM_GAP, TAB_DOCK_MIN_BOTTOM_PAD } from '../../components/v2/tab_bar_geometry';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -681,6 +682,11 @@ function TabScaffold({
   // зачем (макет system.html «Точка — есть новое в Сообществе»): точка из локального
   // кэша уведомлений, гаснет при заходе во вкладку. 0 чтений Firestore.
   const communityLogicalIdx = TAB_BAR_TABS.find((tab) => tab.key === 'community')?.logicalIdx ?? -1;
+  // зачем (владелец 22.10: «Пик полноэкранным», схема eab9aa35d): со «Сценой» Пика «Сообщество» рисует фон от верха экрана, шапка отступает сама
+  const tabFullBleedPages = useMemo<readonly number[]>(
+    () => (SPIRE_SCENE_V2_ENABLED && communityLogicalIdx >= 0 ? [...homeFullBleedPages, logicalTabToPhysicalPage(communityLogicalIdx, pageLayout)] : homeFullBleedPages),
+    [communityLogicalIdx, homeFullBleedPages, pageLayout],
+  );
   const communityDot = useCommunityTabDot(visualIdx === communityLogicalIdx);
   const tabBarItems = useMemo<V2TabBarItem[]>(
     // зачем: TabLabelCopy содержит Partial-локали, поэтому triLang типизирован как string|undefined; ru всегда есть.
@@ -825,7 +831,7 @@ function TabScaffold({
         <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
           <View style={s.tabContent}>
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTab} onSwipeStart={handleSwipeStartChrome} onSwipeComplete={onSwipeComplete} swipeEnabled={true} pageTopInset={insets.top} fullBleedPages={homeFullBleedPages}>
+              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTab} onSwipeStart={handleSwipeStartChrome} onSwipeComplete={onSwipeComplete} swipeEnabled={true} pageTopInset={insets.top} fullBleedPages={tabFullBleedPages}>
                 {tabScreens}
               </TabSlider>
             </GestureHandlerRootView>

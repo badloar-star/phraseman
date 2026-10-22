@@ -13,6 +13,7 @@ import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../spi
 import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
 import { hapticTap } from '../../hooks/use-haptics';
 import SpireSceneHeaderLayer from '../../components/spire/scene/spire_scene_header';
+import { useTabTopBleedInset } from '../../components/tab_top_bleed';
 
 type Section = SubRuntimeOwnerId;
 type SectionScreen = React.ComponentType<{ presentation?: 'push' | 'embedded' }>;
@@ -56,6 +57,9 @@ export default function CommunityTabRoute() {
   const [visited, setVisited] = useState<ReadonlySet<Section>>(() => new Set([section]));
   // зачем: кнопки справа (лупа, язык) и раскрытый поиск отдаёт сам раздел «Наборы» — их состояние живёт там.
   const [packsSlot, setPacksSlot] = useState<CommunityHeaderSlot | null>(null);
+  // зачем (владелец 22.10: «Пик полноэкранным», без полосы над ним; схема eab9aa35d): со «Сценой» Пика вкладка рисует фон от верха экрана —
+  // шапка отступает на зону часов сама; без «Сцены» (флаг выключен) оболочка отступает как раньше и здесь 0
+  const topInset = useTabTopBleedInset();
 
   useEffect(() => {
     const fromParam = sectionFromParam(sectionParam);
@@ -125,7 +129,7 @@ export default function CommunityTabRoute() {
 
   return (
     <View testID="community-tab" style={s.root}>
-      <View style={s.header}>
+      <View style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null]}>
         {section === 'packs' && packsSlot?.overlay ? (
           // зачем (packs-simple.html кадр 2): открытый поиск «Наборов» встаёт на место строки вкладок.
           <View style={s.headerOverlay}>{packsSlot.overlay}</View>

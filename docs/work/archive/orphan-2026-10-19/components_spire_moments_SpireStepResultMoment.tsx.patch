@@ -1,0 +1,65 @@
+diff --git a/components/spire/moments/SpireStepResultMoment.tsx b/components/spire/moments/SpireStepResultMoment.tsx
+index e5986a561..0dfa57b51 100644
+--- a/components/spire/moments/SpireStepResultMoment.tsx
++++ b/components/spire/moments/SpireStepResultMoment.tsx
+@@ -9,7 +9,7 @@
+ // ═══════════════════════════════════════════════════════════════════════════
+ import { V2_TYPE } from '../../../constants/v2Style';
+ import React, { memo, useEffect, useState } from 'react';
+-import { StyleSheet, Text, View } from 'react-native';
++import { PixelRatio, ScrollView, StyleSheet, Text, View } from 'react-native';
+ import Svg, { Circle } from 'react-native-svg';
+ import Ionicons from '@expo/vector-icons/Ionicons';
+ import Animated, { Easing, FadeIn, cancelAnimation, useAnimatedProps, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
+@@ -37,6 +37,12 @@ const TASKS_PER_STEP = 10;
+ const RING = 110;
+ const RING_R = 47;
+ const RING_LEN = 2 * Math.PI * RING_R;
++/**
++ * `MomentCoin` places its reply above the coin outside its measured bounds.
++ * The 16/21 reply, fixed padding and tail get a 4 dp buffer; this scales with the person's
++ * system text size instead of assuming the default font scale.
++ */
++const FAIL_COIN_BUBBLE_CLEARANCE = Math.ceil(30 + 21 * PixelRatio.getFontScale());
+ /** Тайминги образца: кольцо 0,2 с + 1,1 с; монета 1,4 с; лесенка 1,9 с / провал: дрожь 0,3 с, кивок 1,1 с. */
+ export const STEP_MOMENT_TIMELINE = { ring: 200, ringMs: 1100, cheer: 1400, stairs: 1900, shiver: 300, nod: 1100 } as const;
+ 
+@@ -151,7 +157,7 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
+ 
+   return (
+     <>
+-      <View style={s.body}>
++      <ScrollView style={s.body} contentContainerStyle={s.failBody} bounces={false} showsVerticalScrollIndicator={false}>
+         <View style={s.hearts} accessible={false} importantForAccessibility="no-hide-descendants">
+           {[0, 1, 2].map((i) => (
+             <Animated.View key={i} entering={reduceMotion ? undefined : FadeIn.delay(i * 150)}>
+@@ -164,7 +170,7 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
+         </View>
+         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(450)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.hLg, { color: p.text }]} testID={`${testID}-title`}>{title}</Animated.Text>
+         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(600)} style={[s.p, { color: p.textSecondary }]}>{spireGameText(lang, 'failSub', { n: outcome.floorBefore })}</Animated.Text>
+-      </View>
++      </ScrollView>
+       <View style={s.foot}>
+         <V2Button label={stepMomentText(lang, 'retrySet')} icon="arrow-forward" onPress={choice.next} disabled={busy} testID={`${testID}-again`} />
+         <View style={s.gap} />
+@@ -190,7 +196,8 @@ function SpireStepResultMoment(props: SpireStepResultMomentProps) {
+ const s = StyleSheet.create({
+   // `.full`: колонка, поля 24, верх 76 / низ 36 (+ безопасные зоны задаёт MomentFullScreen/родитель)
+   full: { flex: 1, paddingHorizontal: 24, paddingTop: 76, paddingBottom: 36 },
+-  body: { flex: 1, alignItems: 'center', justifyContent: 'center' },
++  body: { flex: 1 },
++  failBody: { flexGrow: 1, alignItems: 'center', justifyContent: 'center' },
+   rowTop: { flexDirection: 'row', alignItems: 'center', gap: 18 },
+   timer: { width: RING, height: RING, alignItems: 'center', justifyContent: 'center' },
+   timerText: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
+@@ -206,7 +213,9 @@ const s = StyleSheet.create({
+   small: { marginTop: 8, fontSize: 13, lineHeight: 17, textAlign: 'center' },
+   hearts: { flexDirection: 'row', gap: 10 },
+   heartOff: { opacity: 0.45 },
+-  coinGap: { marginTop: 16 },
++  // `say` is absolute in MomentCoin and does not contribute to the coin height. This reserve keeps
++  // the later «Ещё раз?» bubble below the three hearts at the current system text scale.
++  coinGap: { marginTop: FAIL_COIN_BUBBLE_CLEARANCE },
+   foot: { gap: 0 },
+   gap: { height: 12 },
+ });

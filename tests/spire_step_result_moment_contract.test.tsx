@@ -14,6 +14,8 @@ jest.mock('react-native', () => ({
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {} },
   Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
   Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) },
+  PixelRatio: { getFontScale: () => 1 },
+  ScrollView: 'ScrollView',
   NativeModules: {},
 }));
 jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Circle: 'Circle', Defs: 'Defs', RadialGradient: 'RadialGradient', Stop: 'Stop', Rect: 'Rect' })); // Defs…Rect — свечение .glowspot в MomentFullScreen
@@ -86,6 +88,21 @@ describe('m06 · ступень пройдена', () => {
 });
 
 describe('m06 · ступень не пройдена', () => {
+  it('исходник: пузырь «Ещё раз?» получает самостоятельный вертикальный резерв и не перекрывает сердца', () => {
+    const src = read('components/spire/moments/SpireStepResultMoment.tsx');
+    expect(src).toContain('FAIL_COIN_BUBBLE_CLEARANCE');
+    expect(src).toContain('PixelRatio.getFontScale()');
+    expect(src).toContain('coinGap: { marginTop: FAIL_COIN_BUBBLE_CLEARANCE }');
+    expect(src).toContain('<ScrollView');
+  });
+
+  it('ScrollView держит выравнивание дочерних элементов только в contentContainerStyle', () => {
+    const src = read('components/spire/moments/SpireStepResultMoment.tsx');
+    expect(src).toContain('body: { flex: 1 }');
+    expect(src).toContain("failBody: { flexGrow: 1, alignItems: 'center', justifyContent: 'center' }");
+    expect(src).not.toContain("body: { flex: 1, alignItems: 'center', justifyContent: 'center' }");
+  });
+
   it('3 ошибки: заголовок образца, «Остаёшься на 4 этаже…», «Ещё раз — другой набор» зовёт подъём, «К башне» закрывает', async () => {
     const onAgain = jest.fn();
     const onLater = jest.fn();

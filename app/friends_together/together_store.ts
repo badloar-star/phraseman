@@ -22,6 +22,7 @@ import {
 } from './together_days';
 import { computePairStreak, type PairStreakView } from './pair_streak';
 import { pairViewForToday } from './pair_today';
+import { parseStudyLanguagesStarted } from './duel_eligibility';
 import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -62,6 +63,8 @@ export type FriendTogetherPairState = Readonly<{
   isPlus?: boolean;
   /** Лучший этаж Пика друга за неделю — для визитки (идея 1); то же поле профиля, что «Друзья на этой неделе» в Пике. */
   spireFloor?: number | null;
+  /** Начатые языки друга — «Дуэль — когда учите один язык» (идея 3). null — сервер не отдал (не знаем). */
+  studyLanguages?: readonly string[] | null;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -283,6 +286,8 @@ export async function refreshFriendsTogether(
       // зачем (правило Ядра cbdecef56 / 49677b5c4): кольцо Plus — по isPlus + plusUntilMs, как во вкладке; вводный доступ не считается
       isPlus: isPlusProfile(profile),
       spireFloor: profile.spireFloor ?? null,
+      // зачем (идея 3): тот же ответ профиля, разобранный на границе — мусор и отсутствие поля = «не знаем»
+      studyLanguages: parseStudyLanguagesStarted(profile.studyLanguagesStarted),
     };
   }
 

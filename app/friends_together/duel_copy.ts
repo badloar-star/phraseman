@@ -62,6 +62,9 @@ const COPY = {
   versus: L('против', 'проти', 'vs', 'contra', 'contra', 'đấu', 'lawan', 'karşı', 'przeciw'),
   sentMid: L('ход отправлен', 'хід надіслано', 'move sent', 'jugada enviada', 'jogada enviada', 'đã gửi lượt', 'giliran terkirim', 'hamle gönderildi', 'ruch wysłany'),
   resultMid: L('итог', 'підсумок', 'result', 'resultado', 'resultado', 'kết quả', 'hasil', 'sonuç', 'wynik'),
+  // зачем (макет #hub, шторка друга `.acts`): плитка «Дуэль · 5 фраз на точность»
+  tileTitle: L('Дуэль', 'Дуель', 'Duel', 'Duelo', 'Duelo', 'Đấu', 'Duel', 'Düello', 'Pojedynek'),
+  tileSub: L('5 фраз на точность', '5 фраз на точність', '5 phrases, accuracy wins', '5 frases, gana la precisión', '5 frases, vence a precisão', '5 câu, ai chính xác hơn', '5 frasa, yang tepat menang', '5 cümle, doğruluk kazanır', '5 fraz na dokładność'),
 } as const;
 
 export type DuelCopyKey = keyof typeof COPY;

@@ -36,6 +36,7 @@ import { duelClock, duelPlayCopy, duelProgressLabel } from './friends_together/d
 import { parseDuelLaunch, type DuelLaunch } from './friends_together/duel_launch';
 import { resolveDuelPhrasesOnPhone } from './friends_together/duel_phrase_source';
 import { submitDuelChallenge, submitDuelMove, type DuelChallengeResult, type DuelMoveResult } from './friends_together/duel_client';
+import { recordSentDuel } from './friends_together/duel_ledger';
 import type { Lang } from '../constants/i18n';
 
 const LOG = '[FRIENDS-DUEL]';
@@ -137,7 +138,11 @@ function FriendsDuelScreen() {
     setFinish({ kind: 'waiting', move });
     if (launch.mode === 'challenge') {
       void submitDuelChallenge({ friendUid: launch.friendUid, phraseIds: launch.phraseIds, move })
-        .then((res) => applyServer(finishAfterChallenge(res, move, lang), 'challenge'))
+        .then((res) => {
+          // зачем (лимит «три в день», «дуэль уже идёт»): вызов ушёл или ждёт сети на телефоне — шторка вызова узнает об этом без сервера
+          if (res.ok || res.reason === 'network' || res.reason === 'no_sender') void recordSentDuel(launch.friendUid);
+          applyServer(finishAfterChallenge(res, move, lang), 'challenge');
+        })
         .catch((error: unknown) => {
           warn(`challenge: сбой отправки (${error instanceof Error ? error.message : String(error)}) → «Ход готов»`);
           applyServer({ kind: 'offline', move }, 'challenge');

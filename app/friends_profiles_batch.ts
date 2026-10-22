@@ -68,6 +68,11 @@ export interface FriendProfileBatchRecord {
   spireFloor?: number | null;
   /** Язык, на котором друг достиг spireFloor. null = нет данных. */
   spireLang?: string | null;
+  /**
+   * Начатые языки друга (progress.study_languages_started_v1) — «Дуэль — когда учите один язык» (идея 3, 1 · ЯДРО 22.10).
+   * Тот же users/{uid}, 0 доп. чтений. Сырое поле сервера: разбирает parseStudyLanguagesStarted (friends_together/duel_eligibility).
+   */
+  studyLanguagesStarted?: unknown;
 }
 
 type ProfilesResponse = {

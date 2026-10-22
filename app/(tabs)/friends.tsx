@@ -158,6 +158,10 @@ import FriendsOfflineStrip from '../../components/friends_together/FriendsOfflin
 import { useFriendsOffline } from '../../hooks/use_friends_offline';
 import { noteFriendsListServerSnapshot } from '../friends_together/friends_list_sync';
 import { rememberAcceptedLessonInvite, startLessonTogetherClaimer } from '../friends_together/lesson_together_claim';
+import FriendDuelChallengeSheet from '../../components/friends_together/FriendDuelChallengeSheet';
+import { useDuelChallenge } from '../../hooks/use_duel_challenge';
+import { duelCopy } from '../friends_together/duel_copy';
+import { flushPendingDuels } from '../friends_together/duel_client';
 import { launchLearningV2SessionByOrdinalsV1 } from '../learning_v2_home_continue_route';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import type { FriendCallState } from '../../components/friends_together/FriendCallPill';
@@ -1114,6 +1118,20 @@ export default function FriendsTabScreen() {
     tr: string,
     pl: string,
   ) => triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl }), [lang]);
+
+  // зачем (идея 3, макет #hub → «Вызов»): «Дуэль на 5 фраз» — плитка в шторке друга → шторка вызова → экран /friends_duel.
+  // «Позвать на занятие» из шторки вызова (разные языки или мало фраз) — тот же зов, что «Позвать» в шторке друга.
+  const inviteFromDuel = useCallback((friendUid: string, friendName: string) => { void handleNudgeFriend(friendUid, friendName); }, [handleNudgeFriend]);
+  const duelChallenge = useDuelChallenge({
+    studyTarget,
+    lang,
+    myName: myProfile?.name ?? L('Я', 'Я', 'Me', 'Yo', 'Eu', 'Tôi', 'Saya', 'Ben', 'Ja'),
+    onInviteToLesson: inviteFromDuel,
+  });
+  // зачем (идея 3): ход дуэли, сохранённый без сети, досылаем при входе во «Друзей» — одна попытка на заход, без таймеров и слушателей
+  useEffect(() => {
+    if (friendsTogetherUiEnabled && friendsRuntimeActive) void flushPendingDuels();
+  }, [friendsRuntimeActive, friendsTogetherUiEnabled]);
 
   /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
@@ -2291,7 +2309,7 @@ export default function FriendsTabScreen() {
   const modalWedgeActive = selectedPlayer !== null || deleteTarget !== null || blockTarget !== null
     || addModalOpen
     || togetherSheetSession !== null || profileDismissPending
-    || pairMilestoneOpen;
+    || pairMilestoneOpen || duelChallenge.open;
   modalWedgeGuardRef.current = modalWedgeActive;
 
   useEffect(() => {
@@ -2305,8 +2323,10 @@ export default function FriendsTabScreen() {
     if (action.kind === 'delete') handleDeleteConfirm(action.profile.uid, action.profile.name);
     else if (action.kind === 'block') handleBlockConfirm(action.profile.uid, action.profile.name);
     else if (action.kind === 'profile') openProfile(action.profile);
+    // зачем (идея 3): «Дуэль на 5 фраз» — шторка вызова, когда шторка друга закрылась (подготовка уже идёт с тапа по плитке)
+    else if (action.kind === 'phraseDuel') duelChallenge.show();
     else if (__DEV__) console.warn('[D83-ARENA-RETIRED] friend sheet duel action ignored', { kind: action.kind });
-  }, [handleBlockConfirm, handleDeleteConfirm, modalWedgeActive, openProfile, pendingTogetherSheetAction, togetherSheetSession]);
+  }, [duelChallenge.show, handleBlockConfirm, handleDeleteConfirm, modalWedgeActive, openProfile, pendingTogetherSheetAction, togetherSheetSession]);
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -2769,7 +2789,24 @@ export default function FriendsTabScreen() {
               statusLine={pairView ? (pairRowSubline(lang, pairView.state) ?? '') : ''}
               pair={pairView}
               call={{ state: callStateByUid[friendUid] ?? 'idle', onCall: () => { void handleNudgeFriend(friendUid, pairProfile.name); } }}
-              activities={[]}
+              // зачем (идея 3, макет #hub `.acts`): «Дуэль · 5 фраз на точность» — подготовка вызова сразу по тапу, шторка вызова — после закрытия этой
+              activities={[{
+                key: 'duel',
+                icon: 'shield-outline',
+                title: duelCopy(lang, 'tileTitle'),
+                sub: duelCopy(lang, 'tileSub'),
+                onPress: () => {
+                  duelChallenge.prepare({
+                    uid: friendUid,
+                    name: pairProfile.name,
+                    coinRank: pairProfile.coinRank ?? null,
+                    isPlus: isPlusProfile(pairProfile),
+                    studyLanguages: togetherSnapshot?.pairs[friendUid]?.studyLanguages ?? null,
+                  });
+                  setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'phraseDuel', profile: pairProfile }));
+                  setTogetherSheetSession(current => hideFriendSheetSession(current, friendUid));
+                },
+              }]}
               highFived={highFivedUids.has(friendUid)}
               onHighFive={() => { void handleHighFive(pairProfile); }}
               onOpenCard={() => setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'profile', profile: pairProfile }))}
@@ -2835,6 +2872,9 @@ export default function FriendsTabScreen() {
           onOpenChange={setPairMilestoneOpen}
         />
       )}
+
+      {/* зачем (идея 3, макет «Вызов» / «Нет общих занятий»): шторка вызова на «Дуэль на 5 фраз» — открывается после шторки друга */}
+      {friendsTogetherUiEnabled && duelChallenge.sheet ? <FriendDuelChallengeSheet {...duelChallenge.sheet} /> : null}
 
       <FriendStudyInviteModal
         visible={studyInvite !== null}

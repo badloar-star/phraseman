@@ -182,7 +182,10 @@ export function classifyCoinWalletSource(requestId: string): CoinWalletClassific
 }
 
 function assertReportShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
-  if (operation.promotionEligibility !== 'excluded_compensation') {
+  // зачем (Ревизор 22.10, 13 отказов shape_invalid в 18:10): старые операции награды за жалобу ставились в очередь ДО появления
+  // promotionEligibility — поля нет. Для жалобы ожидаемое значение одно (excluded_compensation): нет поля → оно и есть;
+  // явное gameplay — по-прежнему отказ. Таблица номиналов и потолки не меняются.
+  if (operation.promotionEligibility !== 'excluded_compensation' && operation.promotionEligibility !== undefined) {
     reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'report_requires_excluded_compensation' });
   }
   const allowed: readonly string[] = COIN_WALLET_LIMITS.reportGiftsByLane[operation.lane];

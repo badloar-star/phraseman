@@ -92,3 +92,20 @@ describe('Сезон: чипы «Слова / Теория» внутри обл
     expect(view2).toMatch(/heroChip: \{ height: 34, paddingHorizontal: 12, borderRadius: 17/);
   });
 });
+
+describe('Сезон: карточка «Ваши прошлые уроки» (обращения 22.10)', () => {
+  const lessonsSrc = readSource('app/(tabs)/lessons.tsx');
+  const card = readSource('components/learning-v2/season/SeasonLegacyCard.tsx');
+  it('карточка видна только при прогрессе в классическом курсе и ведёт в классический список', () => {
+    expect(lessonsSrc).toContain('return started > 0 && total > 0 ? { done, total, ratio: sum / (total * 50) } : null;');
+    expect(lessonsSrc).toContain('legacyProgress={legacyProgress}');
+    expect(wire).toContain('legacyCard={props.legacyProgress ? <SeasonLegacyCard');
+    expect(wire).toContain('onLegacyLessons();');
+  });
+  it('карточка: тексты на 9 языках, нажатие через V2Pressable, прогресс-полоса, без обводок', () => {
+    for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) expect(card).toContain(`${lang}:`);
+    expect(card).toContain('<V2Pressable');
+    expect(card).toContain('testID="season-legacy-card"');
+    expect(card).not.toMatch(/borderWidth|borderColor/);
+  });
+});

@@ -40,6 +40,8 @@ interface Props {
   topPadding?: number;
   legacyLessonsLabel: string;
   onLegacyLessons: () => void;
+  /** Прогресс в классическом курсе (есть — «Сезон» показывает карточку «Ваши прошлые уроки»); старая карта проп не использует. */
+  legacyProgress?: Readonly<{ done: number; total: number; ratio: number }> | null;
   onExpandedLesson: (lesson: number | null) => void;
   onUnavailableLessonPress: (lesson: number) => void;
   onLockedLessonPress: (lesson: number) => void;

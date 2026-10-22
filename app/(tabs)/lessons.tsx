@@ -4139,6 +4139,21 @@ export default function LessonsTab({
     openLegacyLessons,
   );
   const requestLegacyLessonsIntro = legacyLessonsIntro.request;
+  // зачем (координатор 22.10, обращения: двое не нашли свои прежние уроки): есть ли прогресс в классическом курсе и сколько уроков пройдено — для карточки «Ваши прошлые уроки» в «Обучении»;
+  // данные — уже загруженные счётчики progCounts (новых чтений нет); нет ни одного начатого урока — null (новичку карточка не нужна)
+  const legacyProgress = useMemo(() => {
+    const total = lessons.length;
+    let done = 0;
+    let started = 0;
+    let sum = 0;
+    for (let i = 0; i < total; i += 1) {
+      const count = progCounts[i] ?? 0;
+      if (count >= 50) done += 1;
+      if (count > 0) started += 1;
+      sum += Math.min(50, count);
+    }
+    return started > 0 && total > 0 ? { done, total, ratio: sum / (total * 50) } : null;
+  }, [lessons.length, progCounts]);
   const requestLegacyLessons = useCallback(() => {
     hapticTap();
     console.log("[V2-MAP] classic_course:tap", JSON.stringify({ instanceId: instanceIdRef.current, from: "chapters_map_button" })); // guard-ok: тап «Классический курс»
@@ -5253,6 +5268,7 @@ export default function LessonsTab({
               titles={lessons}
               lang={lang}
               legacyLessonsLabel={classicCourseLabel}
+              legacyProgress={legacyProgress}
               onLegacyLessons={requestLegacyLessons}
               preparedProgress={learningV2PreparedProgress}
               currentSessionId={learningV2Progress.currentSessionId}

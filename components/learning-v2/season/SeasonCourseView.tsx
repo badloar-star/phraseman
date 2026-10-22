@@ -71,6 +71,8 @@ export type SeasonCourseViewProps = Readonly<{
   topPadding: number;
   /** Высота зоны часов, если страница полноэкранная (TabTopBleedContext): обложка идёт от самого верха экрана и занимает 392 dp целиком. 0/не задано — как раньше. */
   topBleed?: number;
+  /** Карточка под обложкой (например «Ваши прошлые уроки»); нет — ничего не рисуется. */
+  legacyCard?: React.ReactNode;
   bottomPadding: number;
   avatarSlot?: React.ReactNode;
   reducedMotion: boolean;
@@ -193,6 +195,8 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
           ) : null}
         </View>
       </View>
+
+      {props.legacyCard ?? null}
 
       <View style={styles.section}>
         <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onChapterPicker} outerStyle={styles.sectionLeft} testID="season-chapter-picker">

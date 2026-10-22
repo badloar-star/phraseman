@@ -37,10 +37,11 @@ import LearningV2AllLessonsList, { type AllLessonsRow } from '../LearningV2AllLe
 import type LearningV2ChaptersCourse from '../LearningV2ChaptersCourse';
 import { useLv2Glass } from '../LearningV2Glass';
 import { LEARNING_V2_CHAPTER_EXAM_MINUTES_V1, learningV2ChapterExamEpisodeRangeV1 } from '../LearningV2ChapterExamSheet';
-import { learningV2ChapterExamCopy } from '../learning_v2_chapter_exam_copy';
+import { learningV2ChapterExamCopy, learningV2ChapterExamPassFrom } from '../learning_v2_chapter_exam_copy';
 import LearningV2TheorySheet from '../LearningV2TheorySheet';
 import type { SeasonExamPanel } from './SeasonExpandedCard';
 import SeasonCourse from './SeasonCourse';
+import SeasonLegacyCard from './SeasonLegacyCard';
 import type { SeasonChapterInfo, SeasonEpisodeInfo } from './SeasonCourseView';
 import { seasonEpisodeLabel, seasonText } from './season_copy';
 import { buildSeasonDeck, type SeasonEpisodeCard } from './season_course_model';
@@ -204,7 +205,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     ].filter(Boolean).join(' ');
     const facts = [
       `${CHAPTER_EXAM_QUESTION_COUNT_V1} ${learningV2ChapterExamCopy(lang, 'questions')}`,
-      `${CHAPTER_EXAM_PASS_CORRECT_V1} ${learningV2ChapterExamCopy(lang, 'toPass')}`,
+      learningV2ChapterExamPassFrom(lang, CHAPTER_EXAM_PASS_CORRECT_V1), // «от N верных» (Переводчик, ba8a5ebd4)
       `~${LEARNING_V2_CHAPTER_EXAM_MINUTES_V1} ${learningV2ChapterExamCopy(lang, 'minutes')}`,
     ];
     return { description, panel: { facts, energyBadge: !examFree, plusLine: examFree ? learningV2ChapterExamCopy(lang, 'plusFree') : null } };
@@ -220,6 +221,11 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     console.log(`${LOG} нажатие → «Открыть экзаменом главы»`, JSON.stringify({ href })); // guard-ok: куда ведёт нажатие
     router.push(href as never);
   }, [lesson, router]);
+  const { onLegacyLessons } = props;
+  const onLegacyCard = useCallback(() => {
+    console.log(`${LOG} нажатие → «Ваши прошлые уроки»`, JSON.stringify({ done: props.legacyProgress?.done ?? null, total: props.legacyProgress?.total ?? null, to: 'onLegacyLessons(классический курс)' })); // guard-ok: куда ведёт нажатие
+    onLegacyLessons();
+  }, [onLegacyLessons, props.legacyProgress]);
   const onChapterPicker = useCallback(() => {
     console.log(`${LOG} нажатие → выбор главы`, JSON.stringify({ lesson, to: 'отдельного экрана нет: главы листает веер «Вся глава»' })); // guard-ok: куда ведёт нажатие
   }, [lesson]);
@@ -277,6 +283,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         onChapterPicker={onChapterPicker}
         onWords={onWords}
         onTheory={onTheory}
+        legacyCard={props.legacyProgress ? <SeasonLegacyCard lang={lang} progress={props.legacyProgress} onPress={onLegacyCard} /> : null}
         examInfo={SEASON_CHAPTER_EXAM_ENABLED ? examInfo : undefined}
         onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}
         onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}

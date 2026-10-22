@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-14:word:ask-for-a-receipt",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ask for a receipt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:ask-for-a-receipt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ask for a receipt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:ask-for-a-receipt:audio",
+            "transcript": "ask for a receipt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:ask-for-a-receipt:r1",
+              "targetText": "ask for a receipt",
+              "meaningByLocale": {
+                "ru": "попросить чек.",
+                "uk": "попросити чек."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ask for a receipt",
+            "definitionByLocale": {
+              "ru": "попросить чек.",
+              "uk": "попросити чек."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "После покупки попросите чек: «Можно мне попросить чек?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "После покупки попросите чек: «Можно мне попросить чек?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I ask for a receipt?",
+          "localizedMeaning": {
+            "ru": "После покупки попросите чек: «Можно мне попросить чек?»",
+            "uk": "Після покупки попросіть чек: «Можна мені попросити чек?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "for",
+            "a",
+            "receipt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i02:r1",
+            "text": "Could I ask for a receipt?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i02:r2",
+            "text": "Could you ask for a receipt?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i02:r3",
+            "text": "Could we ask for a receipt?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i02:audio",
+            "transcript": "Could I ask for a receipt?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i02:r1",
+              "targetText": "Could I ask for a receipt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i02:r2",
+              "targetText": "Could you ask for a receipt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i02:r3",
+              "targetText": "Could we ask for a receipt?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I ask for a receipt?",
+                "uk": "У записі звучить Could I ask for a receipt?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I ask for a receipt?",
+                "uk": "У записі звучить Could I ask for a receipt?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i03:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i03:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i03:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ for a receipt?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i03:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i03:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i03:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:word:get-a-refund",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get a refund",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:get-a-refund:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get a refund",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:get-a-refund:audio",
+            "transcript": "get a refund"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:get-a-refund:r1",
+              "targetText": "get a refund",
+              "meaningByLocale": {
+                "ru": "получить возврат денег.",
+                "uk": "отримати повернення грошей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get a refund",
+            "definitionByLocale": {
+              "ru": "получить возврат денег.",
+              "uk": "отримати повернення грошей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Товар неисправен. Спросите: «Можно мне получить возврат денег?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Товар неисправен. Спросите: «Можно мне получить возврат денег?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I get a refund?",
+          "localizedMeaning": {
+            "ru": "Товар неисправен. Спросите: «Можно мне получить возврат денег?»",
+            "uk": "Товар несправний. Запитайте: «Можна мені отримати повернення грошей?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "get",
+            "a",
+            "refund"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i05:r1",
+            "text": "Could I get a refund?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i05:r2",
+            "text": "Could you get a refund?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i05:r3",
+            "text": "Could we get a refund?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i05:audio",
+            "transcript": "Could I get a refund?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i05:r1",
+              "targetText": "Could I get a refund?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i05:r2",
+              "targetText": "Could you get a refund?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i05:r3",
+              "targetText": "Could we get a refund?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I get a refund?",
+                "uk": "У записі звучить Could I get a refund?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I get a refund?",
+                "uk": "У записі звучить Could I get a refund?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i06:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i06:r2",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i06:r3",
+            "text": "getting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a refund?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i06:r1",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i06:r2",
+              "text": "gets"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i06:r3",
+              "text": "getting"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:word:try-a-sample",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — try a sample",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:try-a-sample:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — try a sample",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:try-a-sample:audio",
+            "transcript": "try a sample"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:try-a-sample:r1",
+              "targetText": "try a sample",
+              "meaningByLocale": {
+                "ru": "попробовать образец.",
+                "uk": "спробувати зразок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "try a sample",
+            "definitionByLocale": {
+              "ru": "попробовать образец.",
+              "uk": "спробувати зразок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец предлагает сыр на пробу. Спросите: «Можно мне попробовать образец?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец предлагает сыр на пробу. Спросите: «Можно мне попробовать образец?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I try a sample?",
+          "localizedMeaning": {
+            "ru": "Продавец предлагает сыр на пробу. Спросите: «Можно мне попробовать образец?»",
+            "uk": "Продавець пропонує сир на пробу. Запитайте: «Можна мені спробувати зразок?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "try",
+            "a",
+            "sample"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i08:r1",
+            "text": "Could I try a sample?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i08:r2",
+            "text": "Could you try a sample?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i08:r3",
+            "text": "Could we try a sample?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i08:audio",
+            "transcript": "Could I try a sample?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i08:r1",
+              "targetText": "Could I try a sample?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i08:r2",
+              "targetText": "Could you try a sample?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i08:r3",
+              "targetText": "Could we try a sample?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try a sample?",
+                "uk": "У записі звучить Could I try a sample?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try a sample?",
+                "uk": "У записі звучить Could I try a sample?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i09:r1",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i09:r2",
+            "text": "tries"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i09:r3",
+            "text": "trying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a sample?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i09:r1",
+              "text": "try"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i09:r2",
+              "text": "tries"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i09:r3",
+              "text": "trying"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:word:pay-separately",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pay separately",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:pay-separately:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pay separately",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:pay-separately:audio",
+            "transcript": "pay separately"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:pay-separately:r1",
+              "targetText": "pay separately",
+              "meaningByLocale": {
+                "ru": "заплатить отдельно.",
+                "uk": "заплатити окремо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pay separately",
+            "definitionByLocale": {
+              "ru": "заплатить отдельно.",
+              "uk": "заплатити окремо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы покупаете вместе с другом, но платите каждый за своё. Спросите: «Можно мне заплатить отдельно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы покупаете вместе с другом, но платите каждый за своё. Спросите: «Можно мне заплатить отдельно?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I pay separately?",
+          "localizedMeaning": {
+            "ru": "Вы покупаете вместе с другом, но платите каждый за своё. Спросите: «Можно мне заплатить отдельно?»",
+            "uk": "Ви купуєте разом із другом, але платите кожен за своє. Запитайте: «Можна мені заплатити окремо?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "pay",
+            "separately"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i11:r1",
+            "text": "Could I pay separately?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i11:r2",
+            "text": "Could you pay separately?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i11:r3",
+            "text": "Could we pay separately?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i11:audio",
+            "transcript": "Could I pay separately?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i11:r1",
+              "targetText": "Could I pay separately?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i11:r2",
+              "targetText": "Could you pay separately?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i11:r3",
+              "targetText": "Could we pay separately?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay separately?",
+                "uk": "У записі звучить Could I pay separately?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay separately?",
+                "uk": "У записі звучить Could I pay separately?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i12:r1",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i12:r2",
+            "text": "pays"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i12:r3",
+            "text": "paying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ separately?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i12:r1",
+              "text": "pay"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i12:r2",
+              "text": "pays"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i12:r3",
+              "text": "paying"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-14:i13:p1",
+              "target": "ask for a receipt",
+              "meaningByLocale": {
+                "ru": "попросить чек",
+                "uk": "попросити чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-14:i13:p2",
+              "target": "get a refund",
+              "meaningByLocale": {
+                "ru": "получить возврат денег",
+                "uk": "отримати повернення грошей"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-14:i13:p3",
+              "target": "try a sample",
+              "meaningByLocale": {
+                "ru": "попробовать образец",
+                "uk": "спробувати зразок"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-14:i13:p4",
+              "target": "pay separately",
+              "meaningByLocale": {
+                "ru": "заплатить отдельно",
+                "uk": "заплатити окремо"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ask for a receipt",
+            "get a refund",
+            "try a sample",
+            "pay separately"
+          ],
+          "rightColumn": [
+            "попросить чек",
+            "получить возврат денег",
+            "попробовать образец",
+            "заплатить отдельно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: её вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: её вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: моя вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: моя вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите за вашу пару: «Можно нам заплатить отдельно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите за вашу пару: «Можно нам заплатить отдельно?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i16:audio",
+            "transcript": "Could we pay separately?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we pay separately?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите за вашу группу: «Можно нам попробовать образец?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите за вашу группу: «Можно нам попробовать образец?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i17:audio",
+            "transcript": "Could we try a sample?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we try a sample?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-14:word:ask-for-a-receipt",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ask for a receipt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:ask-for-a-receipt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ask for a receipt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:ask-for-a-receipt:audio",
+            "transcript": "ask for a receipt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:ask-for-a-receipt:r1",
+              "targetText": "ask for a receipt",
+              "meaningByLocale": {
+                "ru": "попросить чек.",
+                "uk": "попросити чек."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ask for a receipt",
+            "definitionByLocale": {
+              "ru": "попросить чек.",
+              "uk": "попросити чек."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Після покупки попросіть чек: «Можна мені попросити чек?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Після покупки попросіть чек: «Можна мені попросити чек?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I ask for a receipt?",
+          "localizedMeaning": {
+            "ru": "После покупки попросите чек: «Можно мне попросить чек?»",
+            "uk": "Після покупки попросіть чек: «Можна мені попросити чек?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "for",
+            "a",
+            "receipt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i02:r1",
+            "text": "Could I ask for a receipt?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i02:r2",
+            "text": "Could you ask for a receipt?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i02:r3",
+            "text": "Could we ask for a receipt?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i02:audio",
+            "transcript": "Could I ask for a receipt?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i02:r1",
+              "targetText": "Could I ask for a receipt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i02:r2",
+              "targetText": "Could you ask for a receipt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i02:r3",
+              "targetText": "Could we ask for a receipt?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I ask for a receipt?",
+                "uk": "У записі звучить Could I ask for a receipt?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I ask for a receipt?",
+                "uk": "У записі звучить Could I ask for a receipt?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i03:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i03:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i03:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ for a receipt?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i03:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i03:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i03:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:word:get-a-refund",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get a refund",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:get-a-refund:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get a refund",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:get-a-refund:audio",
+            "transcript": "get a refund"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:get-a-refund:r1",
+              "targetText": "get a refund",
+              "meaningByLocale": {
+                "ru": "получить возврат денег.",
+                "uk": "отримати повернення грошей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get a refund",
+            "definitionByLocale": {
+              "ru": "получить возврат денег.",
+              "uk": "отримати повернення грошей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Товар несправний. Запитайте: «Можна мені отримати повернення грошей?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Товар несправний. Запитайте: «Можна мені отримати повернення грошей?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I get a refund?",
+          "localizedMeaning": {
+            "ru": "Товар неисправен. Спросите: «Можно мне получить возврат денег?»",
+            "uk": "Товар несправний. Запитайте: «Можна мені отримати повернення грошей?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "get",
+            "a",
+            "refund"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i05:r1",
+            "text": "Could I get a refund?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i05:r2",
+            "text": "Could you get a refund?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i05:r3",
+            "text": "Could we get a refund?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i05:audio",
+            "transcript": "Could I get a refund?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i05:r1",
+              "targetText": "Could I get a refund?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i05:r2",
+              "targetText": "Could you get a refund?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i05:r3",
+              "targetText": "Could we get a refund?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I get a refund?",
+                "uk": "У записі звучить Could I get a refund?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I get a refund?",
+                "uk": "У записі звучить Could I get a refund?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i06:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i06:r2",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i06:r3",
+            "text": "getting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a refund?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i06:r1",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i06:r2",
+              "text": "gets"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i06:r3",
+              "text": "getting"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:word:try-a-sample",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — try a sample",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:try-a-sample:audio"
+        ],
+        "accessibilityLabel": "Картка слова — try a sample",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:try-a-sample:audio",
+            "transcript": "try a sample"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:try-a-sample:r1",
+              "targetText": "try a sample",
+              "meaningByLocale": {
+                "ru": "попробовать образец.",
+                "uk": "спробувати зразок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "try a sample",
+            "definitionByLocale": {
+              "ru": "попробовать образец.",
+              "uk": "спробувати зразок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець пропонує сир на пробу. Запитайте: «Можна мені спробувати зразок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець пропонує сир на пробу. Запитайте: «Можна мені спробувати зразок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I try a sample?",
+          "localizedMeaning": {
+            "ru": "Продавец предлагает сыр на пробу. Спросите: «Можно мне попробовать образец?»",
+            "uk": "Продавець пропонує сир на пробу. Запитайте: «Можна мені спробувати зразок?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "try",
+            "a",
+            "sample"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i08:r1",
+            "text": "Could I try a sample?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i08:r2",
+            "text": "Could you try a sample?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i08:r3",
+            "text": "Could we try a sample?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i08:audio",
+            "transcript": "Could I try a sample?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i08:r1",
+              "targetText": "Could I try a sample?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i08:r2",
+              "targetText": "Could you try a sample?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i08:r3",
+              "targetText": "Could we try a sample?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try a sample?",
+                "uk": "У записі звучить Could I try a sample?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I try a sample?",
+                "uk": "У записі звучить Could I try a sample?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i09:r1",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i09:r2",
+            "text": "tries"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i09:r3",
+            "text": "trying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a sample?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i09:r1",
+              "text": "try"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i09:r2",
+              "text": "tries"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i09:r3",
+              "text": "trying"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:word:pay-separately",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pay separately",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:word:pay-separately:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pay separately",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:word:pay-separately:audio",
+            "transcript": "pay separately"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:word:pay-separately:r1",
+              "targetText": "pay separately",
+              "meaningByLocale": {
+                "ru": "заплатить отдельно.",
+                "uk": "заплатити окремо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pay separately",
+            "definitionByLocale": {
+              "ru": "заплатить отдельно.",
+              "uk": "заплатити окремо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви купуєте разом із другом, але платите кожен за своє. Запитайте: «Можна мені заплатити окремо?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви купуєте разом із другом, але платите кожен за своє. Запитайте: «Можна мені заплатити окремо?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I pay separately?",
+          "localizedMeaning": {
+            "ru": "Вы покупаете вместе с другом, но платите каждый за своё. Спросите: «Можно мне заплатить отдельно?»",
+            "uk": "Ви купуєте разом із другом, але платите кожен за своє. Запитайте: «Можна мені заплатити окремо?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "pay",
+            "separately"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i11:r1",
+            "text": "Could I pay separately?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i11:r2",
+            "text": "Could you pay separately?"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i11:r3",
+            "text": "Could we pay separately?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i11:audio",
+            "transcript": "Could I pay separately?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-14:i11:r1",
+              "targetText": "Could I pay separately?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i11:r2",
+              "targetText": "Could you pay separately?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i11:r3",
+              "targetText": "Could we pay separately?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay separately?",
+                "uk": "У записі звучить Could I pay separately?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay separately?",
+                "uk": "У записі звучить Could I pay separately?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-14:i12:r1",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i12:r2",
+            "text": "pays"
+          },
+          {
+            "responseId": "en:lesson-22:session-14:i12:r3",
+            "text": "paying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ separately?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-14:i12:r1",
+              "text": "pay"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i12:r2",
+              "text": "pays"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i12:r3",
+              "text": "paying"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-14:i13:p1",
+              "target": "ask for a receipt",
+              "meaningByLocale": {
+                "ru": "попросить чек",
+                "uk": "попросити чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-14:i13:p2",
+              "target": "get a refund",
+              "meaningByLocale": {
+                "ru": "получить возврат денег",
+                "uk": "отримати повернення грошей"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-14:i13:p3",
+              "target": "try a sample",
+              "meaningByLocale": {
+                "ru": "попробовать образец",
+                "uk": "спробувати зразок"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-14:i13:p4",
+              "target": "pay separately",
+              "meaningByLocale": {
+                "ru": "заплатить отдельно",
+                "uk": "заплатити окремо"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ask for a receipt",
+            "get a refund",
+            "try a sample",
+            "pay separately"
+          ],
+          "rightColumn": [
+            "попросити чек",
+            "отримати повернення грошей",
+            "спробувати зразок",
+            "заплатити окремо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: її річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: її річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: моя річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: моя річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте за вашу пару: «Можна нам заплатити окремо?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте за вашу пару: «Можна нам заплатити окремо?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i16:audio",
+            "transcript": "Could we pay separately?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we pay separately?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте за вашу групу: «Можна нам спробувати зразок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте за вашу групу: «Можна нам спробувати зразок?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-14:i17:audio",
+            "transcript": "Could we try a sample?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we try a sample?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-14:word:ask-for-a-receipt",
+      "correctText": "ask for a receipt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i01",
+      "correctText": "Could I ask for a receipt?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i02",
+      "correctText": "Could I ask for a receipt?",
+      "correctResponseId": "en:lesson-22:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i03",
+      "correctText": "ask",
+      "correctResponseId": "en:lesson-22:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:word:get-a-refund",
+      "correctText": "get a refund",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i04",
+      "correctText": "Could I get a refund?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i05",
+      "correctText": "Could I get a refund?",
+      "correctResponseId": "en:lesson-22:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i06",
+      "correctText": "get",
+      "correctResponseId": "en:lesson-22:session-14:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:word:try-a-sample",
+      "correctText": "try a sample",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i07",
+      "correctText": "Could I try a sample?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i08",
+      "correctText": "Could I try a sample?",
+      "correctResponseId": "en:lesson-22:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i09",
+      "correctText": "try",
+      "correctResponseId": "en:lesson-22:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:word:pay-separately",
+      "correctText": "pay separately",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i10",
+      "correctText": "Could I pay separately?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i11",
+      "correctText": "Could I pay separately?",
+      "correctResponseId": "en:lesson-22:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i12",
+      "correctText": "pay",
+      "correctResponseId": "en:lesson-22:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i14",
+      "correctText": "This wash bag is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i15",
+      "correctText": "This eye mask is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i16",
+      "correctText": "Could we pay separately?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-14:i17",
+      "correctText": "Could we try a sample?",
+      "correctResponseId": null
+    }
+  ]
+}

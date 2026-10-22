@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сделать фотографию",
+        "uk": "Зробити фотографію"
+      },
+      "bodyByLocale": {
+        "ru": "Take a photo — сделать фотографию. В обычном выражении используем take, а не make. Фото сохраняет один момент; сначала можно спросить разрешения снять его. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Take a photo — зробити фотографію. У звичайному вислові використовуємо take, а не make. Фото зберігає одну мить; спершу можна запитати дозволу зняти її. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-15:intro1:r1",
+              "text": "Could I take a photo?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro1:r2",
+              "text": "Could I takes a photo?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro1:r3",
+              "text": "Could I taking a photo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-15:intro1:r1",
+              "text": "Could I take a photo?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro1:r2",
+              "text": "Could I takes a photo?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro1:r3",
+              "text": "Could I taking a photo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Видео и звонок",
+        "uk": "Відео та дзвінок"
+      },
+      "bodyByLocale": {
+        "ru": "Record a video — записать видео, снять происходящее в движении. Make a phone call — позвонить по телефону: здесь, наоборот, используется make. Перед звонком можно вежливо попросить разрешения прервать разговор. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Record a video — записати відео, зняти те, що відбувається, у русі. Make a phone call — зателефонувати: тут, навпаки, використовується make. Перед дзвінком можна ввічливо попросити дозволу перервати розмову. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-15:intro2:r1",
+              "text": "Could I record a video?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro2:r2",
+              "text": "Could I records a video?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro2:r3",
+              "text": "Could I recording a video?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-15:intro2:r1",
+              "text": "Could I record a video?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro2:r2",
+              "text": "Could I records a video?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro2:r3",
+              "text": "Could I recording a video?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отправить сообщение",
+        "uk": "Надіслати повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Send a text — отправить текстовое сообщение с телефона. Text здесь — сообщение, а не длинный учебный текст. В примере вы просите минуту, чтобы написать близким. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Send a text — надіслати текстове повідомлення з телефона. Text тут — повідомлення, а не довгий навчальний текст. У прикладі ви просите хвилину, щоб написати близьким. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-15:intro3:r1",
+              "text": "Could I send a text?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro3:r2",
+              "text": "Could I sends a text?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro3:r3",
+              "text": "Could I sending a text?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-15:intro3:r1",
+              "text": "Could I send a text?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro3:r2",
+              "text": "Could I sends a text?"
+            },
+            {
+              "responseId": "en:lesson-22:session-15:intro3:r3",
+              "text": "Could I sending a text?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "65e02be78648ac218db1774127b9addccc356465280e1497df8ace1f0e5a6392"
+}

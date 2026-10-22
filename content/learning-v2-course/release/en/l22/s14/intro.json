@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросить чек",
+        "uk": "Попросити чек"
+      },
+      "bodyByLocale": {
+        "ru": "Ask for a receipt — попросить чек. Чек подтверждает покупку; keep the receipt — сохранить чек — вы уже знаете. Вопрос Could I ask for a receipt? вежливо сообщает, что вам нужен чек. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Ask for a receipt — попросити чек. Чек підтверджує покупку; keep the receipt — зберегти чек — ви вже знаєте. Питання Could I ask for a receipt? ввічливо повідомляє, що вам потрібен чек. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-14:intro1:r1",
+              "text": "Could I ask for a receipt?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro1:r2",
+              "text": "Could I asks for a receipt?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro1:r3",
+              "text": "Could I asking for a receipt?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-14:intro1:r1",
+              "text": "Could I ask for a receipt?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro1:r2",
+              "text": "Could I asks for a receipt?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro1:r3",
+              "text": "Could I asking for a receipt?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вернуть деньги или попробовать товар",
+        "uk": "Повернути гроші або спробувати товар"
+      },
+      "bodyByLocale": {
+        "ru": "Get a refund — получить возврат денег за покупку, близко по смыслу к знакомому get my money back. Try a sample — попробовать небольшой образец товара, например кусочек сыра. Это ещё не покупка всей упаковки. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Get a refund — отримати повернення грошей за покупку, близько за змістом до знайомого get my money back. Try a sample — спробувати невеликий зразок товару, наприклад шматочок сиру. Це ще не купівля всієї упаковки. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-14:intro2:r1",
+              "text": "Could I get a refund?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro2:r2",
+              "text": "Could I gets a refund?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro2:r3",
+              "text": "Could I getting a refund?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-14:intro2:r1",
+              "text": "Could I get a refund?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro2:r2",
+              "text": "Could I gets a refund?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro2:r3",
+              "text": "Could I getting a refund?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отдельная оплата",
+        "uk": "Окрема оплата"
+      },
+      "bodyByLocale": {
+        "ru": "Pay separately — заплатить отдельно от других людей. Вы уточняете, можно ли оплатить свою часть отдельным платежом. Это не обязательно означает разделить общий счёт поровну. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Pay separately — заплатити окремо від інших людей. Ви уточнюєте, чи можна оплатити свою частину окремим платежем. Це не обов’язково означає розділити спільний рахунок порівну. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-14:intro3:r1",
+              "text": "Could I pay separately?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro3:r2",
+              "text": "Could I pays separately?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro3:r3",
+              "text": "Could I paying separately?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-14:intro3:r1",
+              "text": "Could I pay separately?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro3:r2",
+              "text": "Could I pays separately?"
+            },
+            {
+              "responseId": "en:lesson-22:session-14:intro3:r3",
+              "text": "Could I paying separately?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eebb9c459f96aceefdb22322ce554c2025a632b552cfe09a02aada4ce0bd2c1f"
+}

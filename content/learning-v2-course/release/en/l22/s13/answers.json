@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-13:word:make-a-suggestion",
+    "correctText": "make a suggestion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i01",
+    "correctText": "Could I make a suggestion?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i02",
+    "correctText": "Could I make a suggestion?",
+    "correctResponseId": "en:lesson-22:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i03",
+    "correctText": "make",
+    "correctResponseId": "en:lesson-22:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:word:ask-a-favour",
+    "correctText": "ask a favour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i04",
+    "correctText": "Could I ask a favour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i05",
+    "correctText": "Could I ask a favour?",
+    "correctResponseId": "en:lesson-22:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i06",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-22:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:word:use-the-toilet",
+    "correctText": "use the toilet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i07",
+    "correctText": "Could I use the toilet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i08",
+    "correctText": "Could I use the toilet?",
+    "correctResponseId": "en:lesson-22:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i09",
+    "correctText": "use",
+    "correctResponseId": "en:lesson-22:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:word:leave-early",
+    "correctText": "leave early",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i10",
+    "correctText": "Could I leave early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i11",
+    "correctText": "Could I leave early?",
+    "correctResponseId": "en:lesson-22:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i12",
+    "correctText": "leave",
+    "correctResponseId": "en:lesson-22:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i13",
+    "correctText": "en:lesson-22:session-13:i13:p1=make a suggestion\nen:lesson-22:session-13:i13:p2=ask a favour\nen:lesson-22:session-13:i13:p3=use the toilet\nen:lesson-22:session-13:i13:p4=leave early",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i16",
+    "correctText": "Could we leave early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-13:i17",
+    "correctText": "Could we make a suggestion?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-15:word:take-a-photo",
+    "correctText": "take a photo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i01",
+    "correctText": "Could I take a photo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i02",
+    "correctText": "Could I take a photo?",
+    "correctResponseId": "en:lesson-22:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i03",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-22:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:word:record-a-video",
+    "correctText": "record a video",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i04",
+    "correctText": "Could I record a video?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i05",
+    "correctText": "Could I record a video?",
+    "correctResponseId": "en:lesson-22:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i06",
+    "correctText": "record",
+    "correctResponseId": "en:lesson-22:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:word:make-a-phone-call",
+    "correctText": "make a phone call",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i07",
+    "correctText": "Could I make a phone call?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i08",
+    "correctText": "Could I make a phone call?",
+    "correctResponseId": "en:lesson-22:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i09",
+    "correctText": "make",
+    "correctResponseId": "en:lesson-22:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:word:send-a-text",
+    "correctText": "send a text",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i10",
+    "correctText": "Could I send a text?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i11",
+    "correctText": "Could I send a text?",
+    "correctResponseId": "en:lesson-22:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i12",
+    "correctText": "send",
+    "correctResponseId": "en:lesson-22:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i13",
+    "correctText": "en:lesson-22:session-15:i13:p1=take a photo\nen:lesson-22:session-15:i13:p2=record a video\nen:lesson-22:session-15:i13:p3=make a phone call\nen:lesson-22:session-15:i13:p4=send a text",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i16",
+    "correctText": "Could we take a photo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-15:i17",
+    "correctText": "Could we record a video?",
+    "correctResponseId": null
+  }
+]

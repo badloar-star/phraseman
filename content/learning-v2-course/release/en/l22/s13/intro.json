@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить идею",
+        "uk": "Запропонувати ідею"
+      },
+      "bodyByLocale": {
+        "ru": "Make a suggestion — внести предложение: высказать идею, что можно сделать. Здесь make сочетается с suggestion. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Make a suggestion — внести пропозицію: висловити ідею, що можна зробити. Тут make поєднується із suggestion. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-13:intro1:r1",
+              "text": "Could I make a suggestion?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro1:r2",
+              "text": "Could I makes a suggestion?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro1:r3",
+              "text": "Could I making a suggestion?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-13:intro1:r1",
+              "text": "Could I make a suggestion?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro1:r2",
+              "text": "Could I makes a suggestion?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro1:r3",
+              "text": "Could I making a suggestion?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попросить об одолжении",
+        "uk": "Попросити про послугу"
+      },
+      "bodyByLocale": {
+        "ru": "Ask a favour — попросить об одолжении, например попросить соседа полить цветы. Do a favour — оказать услугу — вы уже знаете; теперь вы просите о ней. Use the toilet — воспользоваться туалетом, обычная просьба в гостях. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Ask a favour — попросити про послугу, наприклад попросити сусіда полити квіти. Do a favour — зробити послугу — ви вже знаєте; тепер ви просите про неї. Use the toilet — скористатися туалетом, звичайне прохання в гостях. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-13:intro2:r1",
+              "text": "Could I ask a favour?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro2:r2",
+              "text": "Could I asks a favour?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro2:r3",
+              "text": "Could I asking a favour?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-13:intro2:r1",
+              "text": "Could I ask a favour?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro2:r2",
+              "text": "Could I asks a favour?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro2:r3",
+              "text": "Could I asking a favour?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уйти пораньше",
+        "uk": "Піти раніше"
+      },
+      "bodyByLocale": {
+        "ru": "Leave early — уйти раньше обычного или запланированного времени. На работе можно вежливо спросить разрешение: Could I leave early? Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Leave early — піти раніше звичайного або запланованого часу. На роботі можна ввічливо запитати дозволу: Could I leave early? Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-13:intro3:r1",
+              "text": "Could I leave early?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro3:r2",
+              "text": "Could I leaves early?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro3:r3",
+              "text": "Could I leaving early?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-13:intro3:r1",
+              "text": "Could I leave early?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro3:r2",
+              "text": "Could I leaves early?"
+            },
+            {
+              "responseId": "en:lesson-22:session-13:intro3:r3",
+              "text": "Could I leaving early?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3a6de3accc0c49615adb4b50d20dc6c9e3524d0045393a4601f21fb6f9194eea"
+}

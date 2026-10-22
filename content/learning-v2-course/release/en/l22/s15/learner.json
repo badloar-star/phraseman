@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-15:word:take-a-photo",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — take a photo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:word:take-a-photo:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — take a photo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:word:take-a-photo:audio",
+          "transcript": "take a photo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:word:take-a-photo:r1",
+            "targetText": "take a photo",
+            "meaningByLocale": {
+              "ru": "сделать фотографию.",
+              "uk": "зробити фотографію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take a photo",
+          "definitionByLocale": {
+            "ru": "сделать фотографию.",
+            "uk": "зробити фотографію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите сфотографировать комнату. Спросите: «Можно мне сделать фотографию?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите сфотографировать комнату. Спросите: «Можно мне сделать фотографию?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I take a photo?",
+        "localizedMeaning": {
+          "ru": "Вы хотите сфотографировать комнату. Спросите: «Можно мне сделать фотографию?»",
+          "uk": "Ви хочете сфотографувати кімнату. Запитайте: «Можна мені зробити фотографію?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "take",
+          "a",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i02:r1",
+          "text": "Could I take a photo?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i02:r2",
+          "text": "Could you take a photo?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i02:r3",
+          "text": "Could we take a photo?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i02:audio",
+          "transcript": "Could I take a photo?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:i02:r1",
+            "targetText": "Could I take a photo?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i02:r2",
+            "targetText": "Could you take a photo?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i02:r3",
+            "targetText": "Could we take a photo?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I take a photo?",
+              "uk": "У записі звучить Could I take a photo?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I take a photo?",
+              "uk": "У записі звучить Could I take a photo?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i03:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i03:r2",
+          "text": "takes"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i03:r3",
+          "text": "taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a photo?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-15:i03:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i03:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i03:r3",
+            "text": "taking"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:word:record-a-video",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — record a video",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:word:record-a-video:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — record a video",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:word:record-a-video:audio",
+          "transcript": "record a video"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:word:record-a-video:r1",
+            "targetText": "record a video",
+            "meaningByLocale": {
+              "ru": "записать видео.",
+              "uk": "записати відео."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "record a video",
+          "definitionByLocale": {
+            "ru": "записать видео.",
+            "uk": "записати відео."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите снять происходящее. Спросите: «Можно мне записать видео?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите снять происходящее. Спросите: «Можно мне записать видео?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I record a video?",
+        "localizedMeaning": {
+          "ru": "Вы хотите снять происходящее. Спросите: «Можно мне записать видео?»",
+          "uk": "Ви хочете зняти те, що відбувається. Запитайте: «Можна мені записати відео?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "record",
+          "a",
+          "video"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i05:r1",
+          "text": "Could I record a video?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i05:r2",
+          "text": "Could you record a video?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i05:r3",
+          "text": "Could we record a video?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i05:audio",
+          "transcript": "Could I record a video?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:i05:r1",
+            "targetText": "Could I record a video?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i05:r2",
+            "targetText": "Could you record a video?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i05:r3",
+            "targetText": "Could we record a video?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I record a video?",
+              "uk": "У записі звучить Could I record a video?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I record a video?",
+              "uk": "У записі звучить Could I record a video?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i06:r1",
+          "text": "record"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i06:r2",
+          "text": "records"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i06:r3",
+          "text": "recording"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a video?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-15:i06:r1",
+            "text": "record"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i06:r2",
+            "text": "records"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i06:r3",
+            "text": "recording"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:word:make-a-phone-call",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — make a phone call",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:word:make-a-phone-call:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — make a phone call",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:word:make-a-phone-call:audio",
+          "transcript": "make a phone call"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:word:make-a-phone-call:r1",
+            "targetText": "make a phone call",
+            "meaningByLocale": {
+              "ru": "позвонить по телефону.",
+              "uk": "зателефонувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make a phone call",
+          "definitionByLocale": {
+            "ru": "позвонить по телефону.",
+            "uk": "зателефонувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите ненадолго прервать разговор. Спросите: «Можно мне позвонить по телефону?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите ненадолго прервать разговор. Спросите: «Можно мне позвонить по телефону?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I make a phone call?",
+        "localizedMeaning": {
+          "ru": "Вы хотите ненадолго прервать разговор. Спросите: «Можно мне позвонить по телефону?»",
+          "uk": "Ви хочете ненадовго перервати розмову. Запитайте: «Можна мені зателефонувати?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "make",
+          "a",
+          "phone",
+          "call"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i08:r1",
+          "text": "Could I make a phone call?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i08:r2",
+          "text": "Could you make a phone call?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i08:r3",
+          "text": "Could we make a phone call?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i08:audio",
+          "transcript": "Could I make a phone call?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:i08:r1",
+            "targetText": "Could I make a phone call?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i08:r2",
+            "targetText": "Could you make a phone call?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i08:r3",
+            "targetText": "Could we make a phone call?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I make a phone call?",
+              "uk": "У записі звучить Could I make a phone call?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I make a phone call?",
+              "uk": "У записі звучить Could I make a phone call?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i09:r1",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i09:r2",
+          "text": "makes"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i09:r3",
+          "text": "making"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a phone call?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-15:i09:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i09:r2",
+            "text": "makes"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i09:r3",
+            "text": "making"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:word:send-a-text",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — send a text",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:word:send-a-text:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — send a text",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:word:send-a-text:audio",
+          "transcript": "send a text"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:word:send-a-text:r1",
+            "targetText": "send a text",
+            "meaningByLocale": {
+              "ru": "отправить текстовое сообщение.",
+              "uk": "надіслати текстове повідомлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "send a text",
+          "definitionByLocale": {
+            "ru": "отправить текстовое сообщение.",
+            "uk": "надіслати текстове повідомлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам нужно сообщить близким, где вы. Спросите: «Можно мне отправить текстовое сообщение?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам нужно сообщить близким, где вы. Спросите: «Можно мне отправить текстовое сообщение?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I send a text?",
+        "localizedMeaning": {
+          "ru": "Вам нужно сообщить близким, где вы. Спросите: «Можно мне отправить текстовое сообщение?»",
+          "uk": "Вам потрібно повідомити близьким, де ви. Запитайте: «Можна мені надіслати текстове повідомлення?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "send",
+          "a",
+          "text"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i11:r1",
+          "text": "Could I send a text?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i11:r2",
+          "text": "Could you send a text?"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i11:r3",
+          "text": "Could we send a text?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i11:audio",
+          "transcript": "Could I send a text?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-15:i11:r1",
+            "targetText": "Could I send a text?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i11:r2",
+            "targetText": "Could you send a text?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i11:r3",
+            "targetText": "Could we send a text?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I send a text?",
+              "uk": "У записі звучить Could I send a text?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I send a text?",
+              "uk": "У записі звучить Could I send a text?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-15:i12:r1",
+          "text": "send"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i12:r2",
+          "text": "sends"
+        },
+        {
+          "responseId": "en:lesson-22:session-15:i12:r3",
+          "text": "sending"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a text?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-15:i12:r1",
+            "text": "send"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i12:r2",
+            "text": "sends"
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i12:r3",
+            "text": "sending"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-15:i13:p1",
+            "target": "take a photo",
+            "meaningByLocale": {
+              "ru": "сделать фотографию",
+              "uk": "зробити фотографію"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-15:i13:p2",
+            "target": "record a video",
+            "meaningByLocale": {
+              "ru": "записать видео",
+              "uk": "записати відео"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-15:i13:p3",
+            "target": "make a phone call",
+            "meaningByLocale": {
+              "ru": "позвонить по телефону",
+              "uk": "зателефонувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-15:i13:p4",
+            "target": "send a text",
+            "meaningByLocale": {
+              "ru": "отправить текстовое сообщение",
+              "uk": "надіслати текстове повідомлення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "take a photo",
+          "record a video",
+          "make a phone call",
+          "send a text"
+        ],
+        "rightColumn": [
+          "сделать фотографию",
+          "записать видео",
+          "позвонить по телефону",
+          "отправить текстовое сообщение"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: её вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: её вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: моя вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: моя вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите за вашу группу: «Можно нам сделать фотографию?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите за вашу группу: «Можно нам сделать фотографию?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i16:audio",
+          "transcript": "Could we take a photo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we take a photo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите за вашу группу: «Можно нам записать видео?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите за вашу группу: «Можно нам записать видео?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-15:i17:audio",
+          "transcript": "Could we record a video?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we record a video?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "40b150a68191b1c0ddaed1ef418ca1acfb7fc2f2ddb58c423ece5f014619b192"
+}

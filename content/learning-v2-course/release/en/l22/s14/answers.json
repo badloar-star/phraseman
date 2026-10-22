@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-14:word:ask-for-a-receipt",
+    "correctText": "ask for a receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i01",
+    "correctText": "Could I ask for a receipt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i02",
+    "correctText": "Could I ask for a receipt?",
+    "correctResponseId": "en:lesson-22:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i03",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-22:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:word:get-a-refund",
+    "correctText": "get a refund",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i04",
+    "correctText": "Could I get a refund?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i05",
+    "correctText": "Could I get a refund?",
+    "correctResponseId": "en:lesson-22:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i06",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-22:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:word:try-a-sample",
+    "correctText": "try a sample",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i07",
+    "correctText": "Could I try a sample?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i08",
+    "correctText": "Could I try a sample?",
+    "correctResponseId": "en:lesson-22:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i09",
+    "correctText": "try",
+    "correctResponseId": "en:lesson-22:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:word:pay-separately",
+    "correctText": "pay separately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i10",
+    "correctText": "Could I pay separately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i11",
+    "correctText": "Could I pay separately?",
+    "correctResponseId": "en:lesson-22:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i12",
+    "correctText": "pay",
+    "correctResponseId": "en:lesson-22:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i13",
+    "correctText": "en:lesson-22:session-14:i13:p1=ask for a receipt\nen:lesson-22:session-14:i13:p2=get a refund\nen:lesson-22:session-14:i13:p3=try a sample\nen:lesson-22:session-14:i13:p4=pay separately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i16",
+    "correctText": "Could we pay separately?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-14:i17",
+    "correctText": "Could we try a sample?",
+    "correctResponseId": null
+  }
+]

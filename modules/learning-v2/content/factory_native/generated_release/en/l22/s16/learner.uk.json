@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-16:word:book-a-table",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — book a table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:word:book-a-table:audio"
+      ],
+      "accessibilityLabel": "Картка слова — book a table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:word:book-a-table:audio",
+          "transcript": "book a table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:word:book-a-table:r1",
+            "targetText": "book a table",
+            "meaningByLocale": {
+              "ru": "забронировать столик.",
+              "uk": "забронювати столик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "book a table",
+          "definitionByLocale": {
+            "ru": "забронировать столик.",
+            "uk": "забронювати столик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви телефонуєте до ресторану. Запитайте: «Можна мені забронювати столик?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви телефонуєте до ресторану. Запитайте: «Можна мені забронювати столик?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I book a table?",
+        "localizedMeaning": {
+          "ru": "Вы звоните в ресторан. Спросите: «Можно мне забронировать столик?»",
+          "uk": "Ви телефонуєте до ресторану. Запитайте: «Можна мені забронювати столик?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "book",
+          "a",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i02:r1",
+          "text": "Could I book a table?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i02:r2",
+          "text": "Could you book a table?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i02:r3",
+          "text": "Could we book a table?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i02:audio",
+          "transcript": "Could I book a table?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:i02:r1",
+            "targetText": "Could I book a table?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i02:r2",
+            "targetText": "Could you book a table?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i02:r3",
+            "targetText": "Could we book a table?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I book a table?",
+              "uk": "У записі звучить Could I book a table?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I book a table?",
+              "uk": "У записі звучить Could I book a table?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i03:r1",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i03:r2",
+          "text": "books"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i03:r3",
+          "text": "booking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a table?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-16:i03:r1",
+            "text": "book"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i03:r2",
+            "text": "books"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i03:r3",
+            "text": "booking"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:word:change-a-booking",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — change a booking",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:word:change-a-booking:audio"
+      ],
+      "accessibilityLabel": "Картка слова — change a booking",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:word:change-a-booking:audio",
+          "transcript": "change a booking"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:word:change-a-booking:r1",
+            "targetText": "change a booking",
+            "meaningByLocale": {
+              "ru": "изменить бронирование.",
+              "uk": "змінити бронювання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "change a booking",
+          "definitionByLocale": {
+            "ru": "изменить бронирование.",
+            "uk": "змінити бронювання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хочете прийти в інший час. Запитайте: «Можна мені змінити бронювання?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете прийти в інший час. Запитайте: «Можна мені змінити бронювання?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I change a booking?",
+        "localizedMeaning": {
+          "ru": "Вы хотите прийти в другое время. Спросите: «Можно мне изменить бронирование?»",
+          "uk": "Ви хочете прийти в інший час. Запитайте: «Можна мені змінити бронювання?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "change",
+          "a",
+          "booking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i05:r1",
+          "text": "Could I change a booking?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i05:r2",
+          "text": "Could you change a booking?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i05:r3",
+          "text": "Could we change a booking?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i05:audio",
+          "transcript": "Could I change a booking?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:i05:r1",
+            "targetText": "Could I change a booking?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i05:r2",
+            "targetText": "Could you change a booking?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i05:r3",
+            "targetText": "Could we change a booking?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I change a booking?",
+              "uk": "У записі звучить Could I change a booking?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I change a booking?",
+              "uk": "У записі звучить Could I change a booking?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i06:r1",
+          "text": "change"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i06:r2",
+          "text": "changes"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i06:r3",
+          "text": "changing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a booking?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-16:i06:r1",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i06:r2",
+            "text": "changes"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i06:r3",
+            "text": "changing"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:word:cancel-a-booking",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cancel a booking",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:word:cancel-a-booking:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cancel a booking",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:word:cancel-a-booking:audio",
+          "transcript": "cancel a booking"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:word:cancel-a-booking:r1",
+            "targetText": "cancel a booking",
+            "meaningByLocale": {
+              "ru": "отменить бронирование.",
+              "uk": "скасувати бронювання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cancel a booking",
+          "definitionByLocale": {
+            "ru": "отменить бронирование.",
+            "uk": "скасувати бронювання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви більше не зможете прийти. Запитайте: «Можна мені скасувати бронювання?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви більше не зможете прийти. Запитайте: «Можна мені скасувати бронювання?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I cancel a booking?",
+        "localizedMeaning": {
+          "ru": "Вы больше не сможете прийти. Спросите: «Можно мне отменить бронирование?»",
+          "uk": "Ви більше не зможете прийти. Запитайте: «Можна мені скасувати бронювання?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "cancel",
+          "a",
+          "booking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i08:r1",
+          "text": "Could I cancel a booking?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i08:r2",
+          "text": "Could you cancel a booking?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i08:r3",
+          "text": "Could we cancel a booking?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i08:audio",
+          "transcript": "Could I cancel a booking?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:i08:r1",
+            "targetText": "Could I cancel a booking?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i08:r2",
+            "targetText": "Could you cancel a booking?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i08:r3",
+            "targetText": "Could we cancel a booking?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I cancel a booking?",
+              "uk": "У записі звучить Could I cancel a booking?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I cancel a booking?",
+              "uk": "У записі звучить Could I cancel a booking?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i09:r1",
+          "text": "cancel"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i09:r2",
+          "text": "cancels"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i09:r3",
+          "text": "cancelling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a booking?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-16:i09:r1",
+            "text": "cancel"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i09:r2",
+            "text": "cancels"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i09:r3",
+            "text": "cancelling"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:word:bring-a-friend",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bring a friend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:word:bring-a-friend:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bring a friend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:word:bring-a-friend:audio",
+          "transcript": "bring a friend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:word:bring-a-friend:r1",
+            "targetText": "bring a friend",
+            "meaningByLocale": {
+              "ru": "привести друга с собой.",
+              "uk": "привести друга із собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bring a friend",
+          "definitionByLocale": {
+            "ru": "привести друга с собой.",
+            "uk": "привести друга із собою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вас запросили в гості. Запитайте: «Можна мені привести друга із собою?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вас запросили в гості. Запитайте: «Можна мені привести друга із собою?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I bring a friend?",
+        "localizedMeaning": {
+          "ru": "Вас пригласили в гости. Спросите: «Можно мне привести друга с собой?»",
+          "uk": "Вас запросили в гості. Запитайте: «Можна мені привести друга із собою?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "bring",
+          "a",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i11:r1",
+          "text": "Could I bring a friend?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i11:r2",
+          "text": "Could you bring a friend?"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i11:r3",
+          "text": "Could we bring a friend?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i11:audio",
+          "transcript": "Could I bring a friend?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-16:i11:r1",
+            "targetText": "Could I bring a friend?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i11:r2",
+            "targetText": "Could you bring a friend?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i11:r3",
+            "targetText": "Could we bring a friend?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I bring a friend?",
+              "uk": "У записі звучить Could I bring a friend?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I bring a friend?",
+              "uk": "У записі звучить Could I bring a friend?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-16:i12:r1",
+          "text": "bring"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i12:r2",
+          "text": "brings"
+        },
+        {
+          "responseId": "en:lesson-22:session-16:i12:r3",
+          "text": "bringing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a friend?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-16:i12:r1",
+            "text": "bring"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i12:r2",
+            "text": "brings"
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i12:r3",
+            "text": "bringing"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-16:i13:p1",
+            "target": "book a table",
+            "meaningByLocale": {
+              "ru": "забронировать столик",
+              "uk": "забронювати столик"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-16:i13:p2",
+            "target": "change a booking",
+            "meaningByLocale": {
+              "ru": "изменить бронирование",
+              "uk": "змінити бронювання"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-16:i13:p3",
+            "target": "cancel a booking",
+            "meaningByLocale": {
+              "ru": "отменить бронирование",
+              "uk": "скасувати бронювання"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-16:i13:p4",
+            "target": "bring a friend",
+            "meaningByLocale": {
+              "ru": "привести друга с собой",
+              "uk": "привести друга із собою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "book a table",
+          "change a booking",
+          "cancel a booking",
+          "bring a friend"
+        ],
+        "rightColumn": [
+          "забронювати столик",
+          "змінити бронювання",
+          "скасувати бронювання",
+          "привести друга із собою"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: її річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: її річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: моя річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: моя річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте за вашу пару: «Можна нам забронювати столик?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте за вашу пару: «Можна нам забронювати столик?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i16:audio",
+          "transcript": "Could we book a table?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we book a table?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте за вашу пару: «Можна нам привести друга із собою?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте за вашу пару: «Можна нам привести друга із собою?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-16:i17:audio",
+          "transcript": "Could we bring a friend?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we bring a friend?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2bc2e9ae15682a4fb25399029096cf8933a4b96f89423a4e77a06777decf76e9"
+}

@@ -55,10 +55,22 @@ describe('D187: no exit-intent offer — the paywall closes on the first tap', (
     expect(readPaywallScreen(screen)).not.toContain('disableExitOffer');
   });
 
+  // зачем (переписано 22.10 по смыслу, не ослаблено): с f8cbf06ff (владелец 18.10) закрытие пейвола — только шторка, особого
+  // перехода на Главную для dialog_limit больше нет. Петли «закрыл → исчерпанный диалог снова открыл пейвол» нет по устройству
+  // самих экранов: стена лимита открывает пейвол только явным тапом, а прямой вход в компаньона заменяет свой экран пейволом.
   it('does not reopen the exhausted dialog after a dialog-limit paywall close', () => {
-    const source = readPurchaseHook();
-    expect(source).toContain("if (context === 'dialog_limit')");
-    expect(source).toContain("router.replace('/(tabs)/home' as any);");
+    const dialog = readPaywallScreen('app/ai_dialog_session.tsx').replace(/\r\n/g, '\n');
+    const tapStart = dialog.indexOf('const openDialogPaywall = useCallback(() => {');
+    expect(tapStart).toBeGreaterThan(-1);
+    const tapBody = dialog.slice(tapStart, dialog.indexOf('}, [router]);', tapStart));
+    expect(tapBody).toContain("params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' }");
+    // единственный переход на пейвол лимита в сессии диалога — внутри обработчика тапа
+    expect(dialog.split("context: 'dialog_limit'").length - 1).toBe(tapBody.split("context: 'dialog_limit'").length - 1);
+    const companion = readPaywallScreen('app/ai_companion_session.tsx').replace(/\r\n/g, '\n');
+    const companionOpeners = companion.split("pathname: '/premium_modal',").length - 1;
+    expect(companionOpeners).toBeGreaterThan(0);
+    // каждый переход компаньона на пейвол заменяет экран (назад вернуться некуда)
+    expect(companion.split("markNextNavigationAsReplace();\n    router.replace({\n      pathname: '/premium_modal',").length - 1).toBe(companionOpeners);
   });
 
   it.each(PAYWALL_SCREENS)('does not fall back to a native Alert on %s', (screen) => {

@@ -1393,8 +1393,13 @@ export default function FriendsTabScreen() {
     const uid = selectedPlayer.friendUid ?? selectedPlayer.uid;
     if (!uid || !profiles[uid]) return selectedPlayer;
     const profile = profileWithLookupDisplayName(uid, profiles[uid] ?? null, selectedPlayer.name);
-    return profile ? { ...selectedPlayer, ...profile } : selectedPlayer;
-  }, [profiles, selectedPlayer]);
+    if (!profile) return selectedPlayer;
+    // зачем (идея 1, макет friends-full.html «Визитка»): дни серии · этаж Пика · дней вдвоём — у друга и только при выключателе «Вместе»;
+    // всё из уже загруженного: серия — из профиля, этаж и дни вместе — из снимка «Вместе» на телефоне
+    const pair = friendsTogetherUiEnabled ? togetherSnapshot?.pairs[uid] : undefined;
+    const pairStats = pair ? { streak: profile.streak ?? null, spireFloor: pair.spireFloor ?? null, daysTogether: pair.days } : null;
+    return { ...selectedPlayer, ...profile, pairStats };
+  }, [friendsTogetherUiEnabled, profiles, selectedPlayer, togetherSnapshot]);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
   // зачем (Q41/Q48/Q49, координатор 01.10): блокировка из шторки друга, заодно удаляет из друзей.
   const [blockTarget, setBlockTarget] = useState<{ uid: string; name: string } | null>(null);

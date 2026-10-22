@@ -155,6 +155,24 @@ export function pairQueuedToast(friendName: string): Readonly<{ ru: string; uk: 
   };
 }
 
+/**
+ * Визитка друга: подписи под числами (макет «Визитка»: «48 дней серии · 7 этаж Пика · 12 дней вдвоём»).
+ * «Пик» — то же имя Шпиля, что во вкладках Главной и «Сообщества». Черновик — на сверку Переводчику.
+ */
+export function pairCardStatLabels(lang: Lang, streak: number, together: number): Readonly<{ streak: string; spire: string; together: string }> {
+  return {
+    streak: pick(lang, L(
+      `${slavic(streak, 'день', 'дня', 'дней')} серии`, `${slavic(streak, 'день', 'дні', 'днів')} серії`, 'day streak',
+      `${streak === 1 ? 'día' : 'días'} de racha`, `${streak === 1 ? 'dia' : 'dias'} de sequência`, 'ngày chuỗi', 'hari beruntun', 'gün seri', `${streak === 1 ? 'dzień' : 'dni'} serii`,
+    )),
+    spire: pick(lang, L('этаж Пика', 'поверх Піку', 'Peak floor', 'piso del Pico', 'andar do Pico', 'tầng Đỉnh', 'lantai Puncak', 'Zirve katı', 'piętro Szczytu')),
+    together: pick(lang, L(
+      `${slavic(together, 'день', 'дня', 'дней')} вдвоём`, `${slavic(together, 'день', 'дні', 'днів')} удвох`, `${together === 1 ? 'day' : 'days'} together`,
+      `${together === 1 ? 'día' : 'días'} juntos`, `${together === 1 ? 'dia' : 'dias'} juntos`, 'ngày cùng nhau', 'hari bersama', 'gün birlikte', `${together === 1 ? 'dzień' : 'dni'} razem`,
+    )),
+  };
+}
+
 /** Строка окна приглашения: «Серия вдвоём · 7 дней». */
 export function pairInviteLine(lang: Lang, n: number): string {
   return pairDoneTitle(lang, n);

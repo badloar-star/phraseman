@@ -59,6 +59,8 @@ export type FriendTogetherPairState = Readonly<{
   name?: string;
   coinRank?: number | null;
   isPlus?: boolean;
+  /** Лучший этаж Пика друга за неделю — для визитки (идея 1); то же поле профиля, что «Друзья на этой неделе» в Пике. */
+  spireFloor?: number | null;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -279,6 +281,7 @@ export async function refreshFriendsTogether(
       coinRank: profile.coinRank ?? null,
       // зачем (правило Ядра cbdecef56 / 49677b5c4): кольцо Plus — по isPlus + plusUntilMs, как во вкладке; вводный доступ не считается
       isPlus: isPlusProfile(profile),
+      spireFloor: profile.spireFloor ?? null,
     };
   }
 

@@ -62,6 +62,7 @@ import ReanimatedView from 'react-native-reanimated';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 import { NATIVE_MODAL_DISMISS_GAP_MS } from '../app/safe_modal_navigation';
+import FriendCardStats, { type FriendCardStatsData } from './friends_together/FriendCardStats';
 
 const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
 const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
@@ -97,6 +98,11 @@ export interface PlayerInfo {
   profileCardPro?: boolean;
   profileCardStyle?: string;
   profileCardBio?: string;
+  /**
+   * «Серия вдвоём» (идея 1): дни серии · этаж Пика · дней вдвоём — только визитка друга и только при выключателе «Вместе»;
+   * нет поля — визитка прежняя.
+   */
+  pairStats?: FriendCardStatsData | null;
 }
 
 interface MyInfo {
@@ -401,6 +407,7 @@ function PlayerProfileModalBody({
               onOpenBuy={() => setSheet('buy')}
               plus={plus}
             />
+            {!isMe && player.pairStats ? <FriendCardStats stats={player.pairStats} tokens={tokens} lang={L} /> : null}
           </View>
           {isMe ? (
             <ProfileCardSelfFooter

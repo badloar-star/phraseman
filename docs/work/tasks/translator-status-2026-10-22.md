@@ -139,3 +139,12 @@ bahasa Inggris» — как подпись в заданиях Learning V2 (`GOA
 **c751dbc61** — 492 ситуации уроков 1–3 на украинском: docs/work/tasks/listen-choose-situations-uk-l01-l03.json (ключи как в
 черновике, русский — из final.ru.md после вычитки Теории). В final.uk.md вносит Learning V2, заголовок «Послухайте й виберіть — …».
 Названия эпизодов 1–3 сверены с финалом b58f769cf — совпадают.
+
+## Дополнение: экзамен — «Неверно.» и «Пока не вышло» (вычитка)
+
+Оба ключа в черновиках Learning V2 верны на 8 языках, правок не нужно (файлы не трогал — там незакоммиченная работа Learning V2):
+- `wrong` «Неверно.» — uk «Неправильно.», en «Incorrect.», es «Incorrecto.», pt-BR «Incorreto.», vi «Sai.», id «Salah.», tr «Yanlış.»,
+  pl «Źle.» — коротко, без «попробуй ещё раз», в пару к «Верно./Dobrze.» экзамена.
+- `failedLowTitle` «Пока не вышло» (0–5) — uk «Поки не вийшло», en «Not this time», es «Esta vez no», pt-BR «Ainda não foi»,
+  vi «Lần này chưa đạt», id «Belum berhasil», tr «Bu sefer olmadı», pl «Tym razem nie» — мягче «Не сдан» и отличается от
+  «Почти получилось» (6–9: id «Hampir berhasil», tr «Az kaldı»).

@@ -102,7 +102,16 @@ async function readRecoveryIntervalMsForPeek(): Promise<number> {
  * прогрев и делался.
  */
 export async function primeEnergyPeekFromBoot(): Promise<void> {
-  if (peekEnergyState) return; // уже читали в этой сессии — свежее значение важнее
+  // зачем (координатор 22.10, Сверка «чип энергии на старте "—"», «сперва логи»): каждый выход прогрева
+  // говорит причину и время — иначе не понять, был ли у первого кадра Главной заряд.
+  const startedAt = Date.now();
+  const chipLog = (outcome: string, fields: Readonly<Record<string, unknown>> = {}): void => {
+    console.warn('[ENERGY-CHIP] peek_prime', JSON.stringify({ outcome, ms: Date.now() - startedAt, ...fields }));
+  };
+  if (peekEnergyState) {
+    chipLog('skip_already_primed', { energy: peekEnergyState.energy });
+    return; // уже читали в этой сессии — свежее значение важнее
+  }
   try {
     const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
     // Значение берётся из локального energy contract; удалённые/устаревшие
@@ -112,8 +121,13 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
     // поэтому чтение profile_card_level на холодном старте убрано.
     // Формула та же, что в readDynMax EnergyContext: знаменатель не прыгнет.
     const dynMax = permanentEnergyCapacity({ base: 5 });
-    if (!Number.isFinite(dynMax) || dynMax <= 0 || peekEnergyState) return;
+    if (!Number.isFinite(dynMax) || dynMax <= 0 || peekEnergyState) {
+      chipLog(peekEnergyState ? 'skip_primed_meanwhile' : 'skip_invalid_capacity', { dynMax });
+      return;
+    }
     const raw = await AsyncStorage.getItem(ENERGY_PEEK_STORAGE_KEY);
+    if (!raw) chipLog('skip_no_energy_state_on_disk');
+    else if (peekEnergyState) chipLog('skip_primed_meanwhile');
     if (!raw || peekEnergyState) return;
     const parsed: unknown = JSON.parse(raw);
     const now = Date.now();
@@ -134,9 +148,14 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
       console.warn('[ENERGY-PEEK] prime:skip invalid_current', JSON.stringify({ current, dynMax }));
       return;
     }
-    if (peekEnergyState) return;
+    if (peekEnergyState) {
+      chipLog('skip_primed_meanwhile', { computed: current });
+      return;
+    }
     writePeekEnergy(current, dynMax);
+    chipLog('primed', { energy: current, maxEnergy: dynMax });
   } catch (e) {
+    chipLog('catch', { message: e instanceof Error ? e.message.slice(0, 120) : String(e) });
       // Нет доступа к хранилищу или битый JSON — оставляем кэш пустым: провайдер // отработает как раньше, а не покажет выдуманное число.
       DebugLogger.error('energy_peek_cache:recovered', e instanceof Error ? e : new Error(String(e)), 'warning');
     }

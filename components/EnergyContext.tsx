@@ -583,6 +583,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // load() (тестерские тумблеры/точные гейты продолжают ждать live-данные).
   const [energyReady, setEnergyReady] = useState(false);
   const [appActive, setAppActive] = useState(() => AppState.currentState === 'active');
+  // зачем (координатор 22.10, Сверка «чип энергии на старте "—"», «сперва логи»): когда провайдер встал,
+  // был ли у него заряд из кэша и через сколько мс energyReady стал true.
+  const providerMountedAtRef = useRef(Date.now());
+  useEffect(() => {
+    console.warn('[ENERGY-CHIP] provider_mount', JSON.stringify({ peek: initialPeek ?? null })); // guard-ok: раз на монтирование, диагностика «—» на старте
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- один раз на монтирование, initialPeek — снимок первого кадра
+  }, []);
 
   // Refs for use inside callbacks without stale closures
   const energyRef = useRef(initialPeek?.energy ?? MAX_ENERGY);
@@ -780,6 +787,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
             // gated screens do not wait forever on a broken storage read.
             // Mutations still require the private ready ref and fail closed.
             setEnergyReady(true);
+            console.warn('[ENERGY-CHIP] provider_ready', JSON.stringify({ // guard-ok: раз на чтение хранилища, диагностика «—» на старте
+              loadSucceeded, energy: energyRef.current, unlimited: isUnlimitedRef.current,
+              msSinceMount: Date.now() - providerMountedAtRef.current,
+            }));
             if (loadSucceeded) {
               energyReadyRef.current = true;
               // B2: обновляем peek-кеш последним известным значением после каждого
@@ -830,6 +841,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       setRefundCredit(0);
       energyReadyRef.current = false;
       setEnergyReady(false);
+      console.warn('[ENERGY-CHIP] provider_reset_account', JSON.stringify({ // guard-ok: раз на смену аккаунта
+        phase: accountToken.phase, msSinceMount: Date.now() - providerMountedAtRef.current,
+      }));
       loadRunnerRef.current = null;
       if (accountToken.phase === 'active') void load();
     });

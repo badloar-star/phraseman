@@ -41,11 +41,10 @@ body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, syste
 /* ── телефон ── */
 .ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: #fff;
   box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 21px; }
-.ph.dk { --bg: #0E171C; --tx: #FFFFFF; --st-top: oklch(.36 .08 214); --st-bot: oklch(.15 .05 222); --st-glow: oklch(.55 .10 200 / .85); --tab: rgba(23, 35, 41, .94); --tabtx: #9BB0B9; }
-.ph.lt { --bg: #F2F1F6; --tx: #16141D; --st-top: oklch(.47 .14 282); --st-bot: oklch(.28 .10 276); --st-glow: oklch(.66 .13 300 / .9); --tab: rgba(255, 255, 255, .94); --tabtx: #6A6777; }
+.ph.dk { --card: #172329; --ctl: #213139; --sec: #9BB0B9; --scrim: rgba(0, 0, 0, .52); --bg: #0E171C; --tx: #FFFFFF; --st-top: oklch(.36 .08 214); --st-bot: oklch(.15 .05 222); --st-glow: oklch(.55 .10 200 / .85); --tab: rgba(23, 35, 41, .94); --tabtx: #9BB0B9; }
+.ph.lt { --card: #FFFFFF; --ctl: #E6E7F4; --sec: #6A6777; --scrim: rgba(23, 24, 30, .38); --bg: #F2F1F6; --tx: #16141D; --st-top: oklch(.47 .14 282); --st-bot: oklch(.28 .10 276); --st-glow: oklch(.66 .13 300 / .9); --tab: rgba(255, 255, 255, .94); --tabtx: #6A6777; }
 .ph * { min-width: 0; }
 .pp-scene { position: absolute; inset: 0; background: radial-gradient(70% 45% at 18% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%); }
-.pp-scene::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .34)); }
 .pp-sb { position: absolute; z-index: 9; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 34px; font-size: 13px; font-weight: 700; color: #fff; }
 .pp-sb .sys { display: inline-flex; gap: 6px; align-items: center; }
 .pp-sb .sys i { display: block; background: #fff; border-radius: 2px; }
@@ -76,6 +75,21 @@ body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, syste
 .pp-tb div { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 13px; font-weight: 600; color: var(--tabtx); }
 .pp-tb div .io { font-size: 22px; }
 .pp-tb div.on { color: var(--tx); }
+
+/* ── звёзды по всей плоскости, до краёв (владелец 22.10) ── */
+.pp-stars { position: absolute; z-index: 1; inset: 0; width: 390px; height: 844px; pointer-events: none; }
+/* ── люди нажимаются: визитка (владелец 22.10: «люди нажимаются → визитки») ── */
+[data-who] { cursor: pointer; transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+[data-who]:active { transform: scale(.97); }
+.pp-scrim { position: absolute; z-index: 20; inset: 0; background: var(--scrim); }
+.pp-vis { position: absolute; z-index: 21; left: 0; right: 0; bottom: 0; border-radius: 28px 28px 0 0; background: var(--card); color: var(--tx); padding: 12px 20px 34px; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 -18px 40px -18px rgba(0, 0, 0, .5); }
+.pp-vis .gr { width: 36px; height: 5px; border-radius: 3px; background: var(--sec); opacity: .45; }
+.pp-vis .coin { width: 104px; height: 104px; margin-top: 22px; border-radius: 50%; object-fit: cover; }
+.pp-vis .nm { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.4px; margin-top: 14px; }
+.pp-vis .chip { margin-top: 8px; padding: 6px 14px; border-radius: 16px; background: var(--ctl); font-size: 13px; line-height: 17px; font-weight: 700; }
+.pp-vis .bio { margin-top: 14px; font-size: 16px; line-height: 22px; color: var(--sec); max-width: 300px; }
+.pp-vis .cl { margin-top: 22px; align-self: stretch; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+.pp-vis .cl:active { transform: scale(.97); }
 
 /* ── пьедестал слева: общие части ── */
 .pp-ped { position: absolute; z-index: 4; left: 16px; top: 262px; width: 172px; }
@@ -114,21 +128,21 @@ body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, syste
 .pp-pod .c.p3 .blk { height: 54px; background: rgba(255, 255, 255, .16); }
 
 /* вариант 3: список топ-3 с монетами */
-.pp-list { border-radius: 22px; padding: 6px 12px; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); }
-.pp-li { display: flex; align-items: center; gap: 8px; min-height: 56px; }
+.pp-list { border-radius: 22px; padding: 6px 10px; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); }
+.pp-li { display: flex; align-items: center; gap: 6px; min-height: 56px; }
 .pp-li .pp-coin { width: 28px; height: 28px; }
 .pp-li .t { overflow: hidden; }
 .pp-li .pp-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pp-li + .pp-li { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14); }
-.pp-li .n { width: 18px; font-size: 16px; font-weight: 800; text-align: center; flex: none; }
+.pp-li .n { width: 14px; font-size: 16px; font-weight: 800; text-align: center; flex: none; }
 .pp-li .t { flex: 1; }
-.pp-li .v { display: flex; align-items: center; gap: 4px; margin-left: 6px; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
+.pp-li .v { display: flex; align-items: center; gap: 4px; margin-left: 2px; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
 </style>
 </head>
 <body>
 <div class="pp-page">
   <h1>Пик — пьедестал слева от башни</h1>
-  <p class="pp-lead">Владелец 22.10: «ПЬЕДЕСТАЛ МОЖНО СЛЕВА ОТ БАШНИ СДЕЛАТЬ». Сцена целиком на одном экране 390 × 844, без прокрутки: слева под «Этаж 4 / ступень» — топ-3 «Комнаты недели» и своя позиция, башня справа, «Играть» внизу. Убраны плашки «+10 за ступень / за этаж», номера этажей и цветные кольца вокруг монет. Цвета — только текущей темы. Три варианта пьедестала — нажмите номер, чтобы выбрать.</p>
+  <p class="pp-lead">Владелец 22.10: «ПЬЕДЕСТАЛ МОЖНО СЛЕВА ОТ БАШНИ СДЕЛАТЬ». Сцена целиком на одном экране 390 × 844, без прокрутки: слева под «Этаж 4 / ступень» — топ-3 «Комнаты недели» и своя позиция, башня справа, «Играть» внизу. Убраны плашки «+10 за ступень / за этаж», номера этажей, цветные кольца вокруг монет, подпись «НАД ОБЛАКАМИ» и полосы-облака: за башней один общий фон, звёзды раскиданы по всей плоскости до краёв. Люди нажимаются (пьедестал, своя строка, монеты на башне) и открывают визитку — нажмите на любого прямо в макете; внизу два готовых кадра «нажали». Цвета — только текущей темы. Три варианта пьедестала — нажмите номер, чтобы выбрать.</p>
   <div class="pp-bar">
     <div class="pp-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div>
     <div class="pp-sum" id="pp-sum"></div>
@@ -147,6 +161,23 @@ window.__ICODE = {"flash":"f316","play":"f4c6","chevron-forward":"f23b","home":"
   const TOP = [{ n: 'Аня', c: 612, r: 12 }, { n: 'Марк', c: 538, r: 9 }, { n: 'Тимур', c: 470, r: 11 }];
   const ME = { n: 'Денис', c: 340, r: 5, place: 7 };
   const fmt = (v) => String(v);
+  // названия рангов монет — app/coin_rank_table_v1.ts (индекс = ранг); визитка как PlayerProfileModal: монета, имя, ранг, подпись — новых данных не требуется
+  const RANK_RU = ['Стажёр', 'Кадет', 'Скаут', 'Агент', 'Спикер', 'Лектор', 'Эксперт', 'Профи', 'Мастер', 'Эрудит', 'Дипломат', 'Консул', 'Стратег', 'Магистр', 'Лидер', 'Элита', 'Кумир', 'Икона', 'Легенда', 'Титан'];
+  const WHO = { 'Аня': { r: 12, bio: 'Одна фраза в день — и поехали' }, 'Марк': { r: 9, bio: 'Учу английский по дороге на работу' }, 'Тимур': { r: 11, bio: 'Без паники: ошибки — это тоже практика' },
+    'Денис': { r: 5, bio: 'Пока на 7-м месте, но уже близко' }, 'Лея': { r: 4, bio: 'Говорю с акцентом, зато смело' }, 'Ян': { r: 6, bio: 'Кофе и новые слова' }, 'Вера': { r: 8, bio: 'Каждый вечер по пять фраз' }, 'Нина': { r: 7, bio: 'Люблю диалоги' }, 'Рита': { r: 3, bio: 'Только начинаю' }, 'Сева': { r: 2, bio: 'Привет, мир' } };
+  const WHO_BY_RANK = Object.fromEntries(Object.entries(WHO).map(([n, v]) => [v.r, n]));
+  const stars = (() => {
+    let seed = 7;
+    const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+    let h = '';
+    for (let i = 0; i < 110; i += 1) h += `<circle cx="${(rnd() * 390).toFixed(1)}" cy="${(rnd() * 844).toFixed(1)}" r="${(0.6 + rnd() * 1.2).toFixed(2)}" fill="#fff" opacity="${(0.25 + rnd() * 0.5).toFixed(2)}"/>`;
+    // по краям плоскости — чтобы небо читалось «до краёв»
+    [[3, 60], [387, 190], [385, 520], [2, 430], [195, 2], [330, 3], [200, 841], [8, 790], [382, 770]].forEach(([x, y]) => { h += `<circle cx="${x}" cy="${y}" r="1.1" fill="#fff" opacity="0.6"/>`; });
+    // несколько «искр» покрупнее
+    [[48, 128], [352, 236], [30, 640], [356, 600], [176, 700], [120, 30]].forEach(([x, y], i) => { const r = 2.4 + (i % 3) * 0.5; h += `<path d="M${x} ${y - r}Q${x} ${y} ${x + r} ${y}Q${x} ${y} ${x} ${y + r}Q${x} ${y} ${x - r} ${y}Q${x} ${y} ${x} ${y - r}Z" fill="#fff" opacity="0.7"/>`; });
+    return `<svg class="pp-stars" viewBox="0 0 390 844" aria-hidden="true">${h}</svg>`;
+  })();
+  const visit = (who) => { const p = WHO[who]; if (!p) return ''; return `<div class="pp-scrim" data-close></div><div class="pp-vis"><div class="gr"></div><img class="coin" src="${coin(p.r)}" alt=""><div class="nm">${who}</div><div class="chip">${RANK_RU[p.r]} · ранг ${p.r}</div><div class="bio">«${p.bio}»</div><div class="cl" data-close>Закрыть</div></div>`; };
   const sb = `<div class="pp-sb"><span>18:10</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>`;
   const tabs = `<div class="pp-tabs"><span class="on">Пик</span><span>Друзья</span><span>Наборы</span><span class="sp"></span><span class="en">${io('flash')} 3</span></div>`;
   const copy = `<div class="pp-copy"><div class="pp-kick">Гранит · до конца недели 2&nbsp;д&nbsp;14&nbsp;ч</div><div class="pp-ttl">Этаж 4</div><div class="pp-prog"><span class="bar"><i style="width:87%"></i></span>ступень 7&nbsp;из&nbsp;8</div></div>`;
@@ -154,24 +185,28 @@ window.__ICODE = {"flash":"f316","play":"f4c6","chevron-forward":"f23b","home":"
   const tb = `<div class="pp-tb">${[['home', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people', 'Сообщество'], ['settings-outline', 'Настройки']].map(([i, t]) => `<div class="${t === 'Сообщество' ? 'on' : ''}">${io(i)}${t}</div>`).join('')}</div><div class="pp-ind"></div>`;
 
   const head = `<div class="pp-head"><b>Комната недели</b><span>30</span></div>`;
-  const meRow = `<div class="pp-me"><img class="pp-coin" src="${coin(ME.r)}" alt=""><div class="t"><div class="pp-name">${ME.place} место</div><div class="pp-sub">${ME.n} · ${fmt(ME.c)}</div></div></div><div class="pp-promo">${io('arrow-up')}<span>2 места до повышения</span></div>`;
+  const meRow = `<div class="pp-me" data-who="${ME.n}"><img class="pp-coin" src="${coin(ME.r)}" alt=""><div class="t"><div class="pp-name">${ME.place} место</div><div class="pp-sub">${ME.n} · ${fmt(ME.c)}</div></div></div><div class="pp-promo">${io('arrow-up')}<span>2 места до повышения</span></div>`;
   const all = `<div class="pp-all">Все участники ${io('chevron-forward', 'font-size:14px')}</div>`;
 
   const v1 = () => `<div class="pp-ped">${head}<div class="pp-stairs">`
-    + [[0, 'p1'], [1, 'p2'], [2, 'p3']].map(([i, cls]) => { const m = TOP[i]; return `<div class="pp-step pp-pl ${cls}"><span class="n">${i + 1}</span><img class="pp-coin" src="${coin(m.r)}" alt=""><div class="t"><div class="pp-name">${m.n}</div><div class="pp-sub">${fmt(m.c)}</div></div></div>`; }).join('')
+    + [[0, 'p1'], [1, 'p2'], [2, 'p3']].map(([i, cls]) => { const m = TOP[i]; return `<div class="pp-step pp-pl ${cls}" data-who="${m.n}"><span class="n">${i + 1}</span><img class="pp-coin" src="${coin(m.r)}" alt=""><div class="t"><div class="pp-name">${m.n}</div><div class="pp-sub">${fmt(m.c)}</div></div></div>`; }).join('')
     + `</div>${meRow}${all}</div>`;
-  const pod = (i, cls) => { const m = TOP[i]; return `<div class="c ${cls}"><img class="pp-coin" src="${coin(m.r)}" alt=""><div class="nm">${m.n}</div><div class="blk"><b>${i + 1}</b><small>${fmt(m.c)}</small></div></div>`; };
+  const pod = (i, cls) => { const m = TOP[i]; return `<div class="c ${cls}" data-who="${m.n}"><img class="pp-coin" src="${coin(m.r)}" alt=""><div class="nm">${m.n}</div><div class="blk"><b>${i + 1}</b><small>${fmt(m.c)}</small></div></div>`; };
   const v2 = () => `<div class="pp-ped">${head}<div class="pp-pod">${pod(1, 'p2')}${pod(0, 'p1')}${pod(2, 'p3')}</div>${meRow}${all}</div>`;
   const v3 = () => `<div class="pp-ped">${head}<div class="pp-list">`
-    + TOP.map((m, i) => `<div class="pp-li"><span class="n">${i + 1}</span><img class="pp-coin" src="${coin(m.r)}" alt=""><div class="t"><div class="pp-name">${m.n}</div></div><div class="v">${fmt(m.c)}</div></div>`).join('')
+    + TOP.map((m, i) => `<div class="pp-li" data-who="${m.n}"><span class="n">${i + 1}</span><img class="pp-coin" src="${coin(m.r)}" alt=""><div class="t"><div class="pp-name">${m.n}</div></div><div class="v">${fmt(m.c)}</div></div>`).join('')
     + `</div>${meRow}${all}</div>`;
 
   const towerHtml = () => {
     if (!window.SpireTowerRender) return '';
-    let h = window.SpireTowerRender.windowHtml({ coin, tier: 0, myFloor: 4, myRank: ME.r, selected: 4, theme: AP === 'lt' ? 'light' : 'dark', width: 200, height: 582,
+    let h = window.SpireTowerRender.windowHtml({ coin, tier: 0, myFloor: 4, myRank: ME.r, selected: 4, theme: 'dark', width: 200, height: 582,
       scene: { plate: 'transparent', plateShadow: 'none' }, rivals: { 1: [9, 11, 4, 5], 2: [7, 9, 3, 6], 3: [9, 6, 4, 2], 4: [8, 11, 5], 5: [6, 9, 4], 6: [6], 7: [11] } });
     // без номеров этажей и подписей этажей (решение владельца)
     h = h.replace(/<text x="14"[^>]*>\d+<\/text>/g, '').replace(/<text x="20"[^>]*font-size="7\.5"[^>]*>[^<]*<\/text>/g, '');
+    // без «НАД ОБЛАКАМИ» и без полос-облаков (решение владельца 22.10); звёзды окна башни убраны — вместо них слой звёзд на всю плоскость
+    h = h.replace(/<text[^>]*>НАД ОБЛАКАМИ<\/text>/g, '')
+      .replace(/<ellipse[^>]*url\(#st\d+_Cloud\)[^>]*\/>/g, '')
+      .replace(/<circle cx="[\d.]+" cy="-?[\d.]+" r="(?:0\.8|1\.2)" fill="#FFFFFF" opacity="0\.(?:35|55)"\/>/g, '');
     return h;
   };
   const VARIANTS = [
@@ -181,17 +216,30 @@ window.__ICODE = {"flash":"f316","play":"f4c6","chevron-forward":"f23b","home":"
   ];
   let picked = null;
   const sum = () => { document.getElementById('pp-sum').innerHTML = 'Выбор: <b>' + (picked ? picked + ' · ' + VARIANTS[picked - 1].name : '—') + '</b>'; };
+  const phoneInner = (f, tower) => `<div class="pp-scene"></div>${stars}${sb}${tabs}${copy}<div class="pp-tower">${tower}</div>${f()}${dock}${tb}`;
+  const EXAMPLES = [
+    { v: 1, who: 'Аня', title: 'Нажали на человека на пьедестале', text: 'Любой из топ-3 и своя строка открывают визитку: монета, имя, ранг, подпись. Закрыть — «Закрыть» или тап по затемнению. Карточка — та же, что в «Друзьях».' },
+    { v: 2, who: 'Лея', title: 'Нажали на монету на башне', text: 'Соперники на этажах башни тоже нажимаются и открывают ту же визитку. Свою метку «ты» на башне нажать можно так же.' },
+  ];
   const render = () => {
     const tower = towerHtml();
     document.getElementById('root').innerHTML = VARIANTS.map((v) => `<div class="pp-col"><button type="button" class="pp-pick${picked === v.n ? ' on' : ''}" data-v="${v.n}"><b>${v.n}</b>${v.name}</button><div class="pp-cap">${v.text}</div>`
-      + `<div class="ph ${AP}"><div class="pp-scene"></div>${sb}${tabs}${copy}<div class="pp-tower">${tower}</div>${v.f()}${dock}${tb}</div></div>`).join('');
+      + `<div class="ph ${AP}">${phoneInner(v.f, tower)}</div></div>`).join('')
+      + `<div style="flex-basis:100%;height:0"></div>` + EXAMPLES.map((e) => `<div class="pp-col"><div class="pp-cap"><b>${e.title}</b><br>${e.text}</div><div class="ph ${AP}">${phoneInner(VARIANTS[e.v - 1].f, tower)}${visit(e.who)}</div></div>`).join('');
     // без цветных колец вокруг монет: у метки «ты» на башне оставляем только монету
     document.querySelectorAll('[data-spire-marker] div').forEach((d) => { d.style.background = 'transparent'; });
+    // монеты соперников и метка «ты» на башне нажимаются: имя берём по рангу монеты
+    document.querySelectorAll('.pp-tower img').forEach((im) => { const m = /coin_rank_(\d+)/.exec(im.getAttribute('src') || ''); const nm = m && WHO_BY_RANK[Number(m[1])]; if (nm) im.setAttribute('data-who', nm); });
+    document.querySelectorAll('[data-spire-marker]').forEach((mk) => mk.setAttribute('data-who', ME.n));
     sum();
   };
   document.addEventListener('click', (e) => {
     const ap = e.target.closest('[data-ap]');
     if (ap) { AP = ap.dataset.ap; document.querySelectorAll('[data-ap]').forEach((b) => b.classList.toggle('on', b === ap)); render(); return; }
+    const cl = e.target.closest('[data-close]');
+    if (cl) { const ph = cl.closest('.ph'); ph.querySelectorAll('.pp-scrim, .pp-vis').forEach((n) => n.remove()); return; }
+    const who = e.target.closest('[data-who]');
+    if (who) { const ph = who.closest('.ph'); ph.querySelectorAll('.pp-scrim, .pp-vis').forEach((n) => n.remove()); ph.insertAdjacentHTML('beforeend', visit(who.dataset.who)); return; }
     const p = e.target.closest('.pp-pick');
     if (p) { picked = Number(p.dataset.v); render(); }
   });

@@ -8,7 +8,7 @@ import { useLang } from '../components/LangContext';
 import PressableHybrid from '../components/PressableHybrid';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import ScreenGradient from '../components/ScreenGradient';
-import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -136,14 +136,14 @@ export default function SupportReportScreen() {
   return (
     <ScreenGradient artBackdrop="settings">
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
+        {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+        <ScreenBackZone />
         <BouncyScrollView
           automaticallyAdjustKeyboardInsets
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingBottom: 32 }}
           showsVerticalScrollIndicator={false} decelerationRate="fast"
         >
-          {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
-          <ScreenBackSlot />
           <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5 /* зачем: паритет profile.html PRF-09 (13.10) */, marginTop: 10 }}>
             {L('Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc')}
           </Text>

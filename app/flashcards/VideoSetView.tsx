@@ -16,7 +16,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { packDeckLevel } from '../../components/packs/packDeckModel';
 import { PackCta, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
-import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
+import { SCREEN_BACK_GAP, ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import { KitTouchable } from '../../components/KitTouchable';
 import { useTheme } from '../../components/ThemeContext';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
@@ -126,11 +126,14 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onMore, 
 
   return (
     <View testID="video-set-view" style={styles.root}>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
+      {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): верхний ряд до прокрутки — контент под круг не заезжает */}
+      <View style={{ paddingHorizontal: 20, marginBottom: SCREEN_BACK_GAP }}>
         <PackTopBarRow
           left={<ScreenBackSlot />} // зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции
           right={onMore ? <PackSquareButton g={g} testID="video-set-more" label={copy.menu} onPress={onMore} /> : undefined}
         />
+      </View>
+      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
 
         {/* `vthumb(…, { play, prog })`: 16:9 r18, ▶ по центру, длительность справа внизу, полоса просмотра 3 внизу. */}
         <View style={[styles.heroShadow, { boxShadow: plateBoxShadow(g) }]}>

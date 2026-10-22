@@ -17,7 +17,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
-import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { SCREEN_BACK_GAP, ScreenBackSlot } from '../components/v2/ScreenBackButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import PressableHybrid from '../components/PressableHybrid';
 import { hapticTap } from '../hooks/use-haptics';
@@ -476,20 +476,21 @@ export default function SettingsNotifications() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 40 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
-              <ScreenBackSlot />
-              <View
-                pointerEvents="none"
-                accessibilityElementsHidden={!saved || needsPermission}
-                importantForAccessibility={saved && !needsPermission ? 'auto' : 'no-hide-descendants'}
-                style={{ minHeight: 48, flexDirection: 'row', alignItems: 'center', gap: 4, opacity: saved && !needsPermission ? 1 : 0 }}
-              >
-                <Ionicons name="checkmark-circle-outline" size={16} color={t.correct} />
-                <Text style={{ color: t.correct, fontSize: 13 }}>{savedLabel}</Text>
-              </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: SCREEN_BACK_GAP }}>
+            {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10): строка вне прокрутки — место 48 + зазор = полоса кнопки, прокрутка начинается ниже */}
+            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
+            <ScreenBackSlot />
+            <View
+              pointerEvents="none"
+              accessibilityElementsHidden={!saved || needsPermission}
+              importantForAccessibility={saved && !needsPermission ? 'auto' : 'no-hide-descendants'}
+              style={{ minHeight: 48, flexDirection: 'row', alignItems: 'center', gap: 4, opacity: saved && !needsPermission ? 1 : 0 }}
+            >
+              <Ionicons name="checkmark-circle-outline" size={16} color={t.correct} />
+              <Text style={{ color: t.correct, fontSize: 13 }}>{savedLabel}</Text>
             </View>
+          </View>
+          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 40 }}>
 
             <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {screenTitle}

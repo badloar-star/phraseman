@@ -10,7 +10,7 @@ import KitTouchable from '../components/KitTouchable';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { decidePerfectMoment, perfectMomentKey } from '../components/lesson_moments/perfect_moment_gate';
 import { streakMilestoneHostLoadFailed, useStreakMilestoneHold } from './streak_milestone_pending';
-import ScreenBackButton from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { ScreenBackZone } from '../components/v2/ScreenBackButton';
 // зачем (координатор 15.10): окно рубежа серии грузится лениво и только когда есть ожидающий или открытый рубеж при moments_v3; идёт ПЕРВЫМ, остальные окна экрана ждут
 // зачем (R64): модуль не загрузился — снимаем удержание слота #36, иначе следующий момент ждёт вечно
 const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
@@ -1681,6 +1681,8 @@ export default function LessonComplete() {
       <ScreenBackButton screen="lesson_complete" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={goBackFromComplete} />
       )}
       <ContentWrap>
+      {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+      <ScreenBackZone />
       <BouncyScrollView testID="lesson-complete-screen" decelerationRate="fast" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}

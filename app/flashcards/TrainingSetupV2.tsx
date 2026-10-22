@@ -17,7 +17,7 @@ import { QuietEmptyState, QuietLeave } from '../../components/cards-grid/QuietEm
 import KitTouchable from '../../components/KitTouchable';
 import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { PanelDock } from '../../components/mistakes-panel/PanelKit';
-import { SCREEN_BACK_SIZE } from '../../components/v2/ScreenBackButton';
+import { SCREEN_BACK_GAP, SCREEN_BACK_SIZE } from '../../components/v2/ScreenBackButton';
 import { nestedBoxShadow, PlateFill, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useTheme } from '../../components/ThemeContext';
@@ -145,7 +145,8 @@ function TrainingSetupV2Inner(props: Props) {
 
   return (
     <View testID="fc-training-setup-v2" style={styles2.root}>
-      <ScrollView contentContainerStyle={styles2.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
+      {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): верхний ряд до прокрутки — контент под круг не заезжает */}
+      <View style={styles2.topFixed}>
         <View style={styles2.top}>
           {/* зачем (закон владельца 22.10 «назад везде в одном месте»): сама кнопка — ScreenBackButton экрана-хозяина; здесь её место в строке */}
           <View style={styles2.backSlot} />
@@ -190,6 +191,8 @@ function TrainingSetupV2Inner(props: Props) {
             </View>
           ) : null}
         </View>
+      </View>
+      <ScrollView contentContainerStyle={styles2.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
         {/* макет: `.tile.t55` + название режима 30/700 (без подписи) */}
         <View style={styles2.titleRow}>
           <View style={[styles2.modeTile, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
@@ -300,6 +303,7 @@ const styles = StyleSheet.create({
 const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { paddingHorizontal: 20, paddingBottom: 150 },
+  topFixed: { paddingHorizontal: 20, marginBottom: SCREEN_BACK_GAP },
   top: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   backSlot: { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE },
   pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7 },

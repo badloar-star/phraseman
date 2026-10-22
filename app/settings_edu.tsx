@@ -9,7 +9,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { useTheme } from '../components/ThemeContext';
 import PressableHybrid from '../components/PressableHybrid';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
@@ -383,9 +383,9 @@ export default function SettingsEdu() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
+          {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+          <ScreenBackZone />
           <BouncyScrollView contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 20 }} decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
-            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
-            <ScreenBackSlot />
             <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {loc.edu.title}
             </Text>

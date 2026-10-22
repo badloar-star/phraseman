@@ -168,7 +168,7 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
     '../components/SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
     '../components/v2/ShadowSurface': { plateBoxShadow: () => [{ stub: 'plate' }], raisedBoxShadow: () => [{ stub: 'raised' }], nestedBoxShadow: () => [{ stub: 'nested' }], actionBoxShadow: () => [{ stub: 'action' }], PlateFill: 'PlateFill', RAISED_LIFT: -3 },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
-    '../components/v2/ScreenBackButton': { __esModule: true, default: 'ScreenBackButton', ScreenBackSlot: 'ScreenBackSlot' },
+    '../components/v2/ScreenBackButton': { __esModule: true, default: 'ScreenBackButton', ScreenBackSlot: 'ScreenBackSlot', ScreenBackZone: 'ScreenBackZone' },
     '../components/ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },
       useTheme: () => ({
@@ -224,7 +224,8 @@ test('support screen uses the approved bounded liquid-glass geometry and font no
   assert.match(source, /FONT_SCALE\[fontSize\]\s*\/\s*FONT_SCALE\.medium\s*\*\s*uiScale/);
   for (const side of ['top', 'bottom', 'left', 'right']) assert.match(source, new RegExp(`padding${side[0].toUpperCase()}${side.slice(1)}:\\s*insets\\.${side}`));
   // 04.10 (profile.html `.rb.bare`, 7aae452a2): «назад» — голый шеврон, область нажатия 48×44.
-  assert.ok(source.includes('<ScreenBackSlot />'), 'the scroll keeps the shared button slot');
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10 («кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки ScreenBackZone стоит ДО прокрутки
+  assert.ok(source.indexOf('<ScreenBackZone />') >= 0 && source.indexOf('<ScreenBackZone />') < source.indexOf('<BouncyScrollView'), 'the button zone stands before the scroll');
   assert.match(source, /fontSize:\s*scaled\(34\),\s*lineHeight:\s*scaled\(40\)/);
   assert.match(source, /fontSize:\s*scaled\(15\),\s*lineHeight:\s*scaled\(20\)/);
   assert.match(source, /fontSize:\s*scaled\(13\)[\s\S]*?letterSpacing:\s*1\.7/);

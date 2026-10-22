@@ -18,7 +18,8 @@ test('learning settings use the approved liquid-glass shell without losing setti
   // зачем (10.10): «назад» — голый шеврон по макету profile.html `.rb.bare` (7aae452a2), без круга; область тапа 48×44.
   // 17.10 (слово владельца): шеврон — общий значок «назад» BackGlyph (контур макета kit.js)
   // 22.10 (закон владельца «назад везде в одном месте»): своего шеврона нет — общая ScreenBackButton слоем, в прокрутке её место
-  assert.ok(source.includes('<ScreenBackSlot />'));
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10 («кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки ScreenBackZone стоит ДО прокрутки
+  assert.ok(source.indexOf('<ScreenBackZone />') >= 0 && source.indexOf('<ScreenBackZone />') < source.indexOf('<BouncyScrollView'));
   assert.match(source, /<ScreenBackButton screen="settings_edu"/);
   assert.doesNotMatch(source, /<BackGlyph/);
   assert.match(source, /fontSize:\s*34,[\s\S]*lineHeight:\s*40/);

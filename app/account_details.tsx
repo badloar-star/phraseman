@@ -27,7 +27,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Clipboard from 'expo-clipboard';
 
 import ScreenGradient from '../components/ScreenGradient';
-import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { ScreenBackZone } from '../components/v2/ScreenBackButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
 import PressableHybrid from '../components/PressableHybrid';
@@ -298,14 +298,14 @@ export default function AccountDetailsScreen() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
+          {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+          <ScreenBackZone />
           <BouncyScrollView
             contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 28 }}
             decelerationRate="fast"
             showsVerticalScrollIndicator={false}
             scrollEventThrottle={16}
           >
-            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
-            <ScreenBackSlot />
             <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>

@@ -19,7 +19,7 @@ import { isStudyTargetAllowedForUi, type StudyTarget } from './study_target';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { SettingsGlassEyebrow, SettingsGlassRow } from '../components/settings/SettingsGlassRows';
 import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
-import { ScreenBackSlot, ScreenCloseButton } from '../components/v2/ScreenBackButton';
+import { ScreenBackZone, ScreenCloseButton } from '../components/v2/ScreenBackButton';
 
 // зачем: паритет с макетом profile.html PRF-03 — внизу экрана языков блок «Язык изучения» с флагом текущего языка.
 const STUDY_NAME: Record<StudyTarget, string> = { en: 'English', es: 'Español', fr: 'Français', de: 'Deutsch', it: 'Italiano' };
@@ -87,9 +87,9 @@ export default function SettingsLanguage() {
       >
         <ContentWrap>
           {/* зачем: паритет profile.html PRF-03 (13.10): поля экрана 20, круг «Закрыть» 42 со значком 21, разрядка заголовка −0.5 */}
+          {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+          <ScreenBackZone />
           <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 40 }} scrollEventThrottle={16}>
-            {/* зачем (владелец 22.10, вариант В): сам ✕ — общий ScreenCloseButton слоем; здесь его место в начале прокрутки */}
-            <ScreenBackSlot />
             <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>{s.settings.lang}</Text>
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>{subtitle}</Text>
             <View style={{ marginTop: 22, gap: 10 }}>

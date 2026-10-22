@@ -11,7 +11,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 
 import SkeletonBlock from '../../components/SkeletonShimmer';
 import { PackTopBarRow } from '../../components/packs/PackScreenKit';
-import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
+import { SCREEN_BACK_GAP, ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import type { Lang } from '../../constants/i18n';
 
 const SIDE = 20;
@@ -23,8 +23,11 @@ export const COMMUNITY_PACK_PREVIEW_SKELETON_TEST_ID = 'pack-preview-resolving';
 export default memo(function CommunityPackPreviewSkeleton(_props: Readonly<{ lang: Lang; onBack: () => void }>) {
   return (
     <View testID={COMMUNITY_PACK_PREVIEW_SKELETON_TEST_ID} style={styles.root}>
-      <ScrollView decelerationRate="fast" scrollEnabled={false} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+      {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): верхний ряд до прокрутки — контент под круг не заезжает */}
+      <View style={{ paddingHorizontal: 20, marginBottom: SCREEN_BACK_GAP }}>
         <PackTopBarRow left={<ScreenBackSlot />} />{/* зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции */}
+      </View>
+      <ScrollView decelerationRate="fast" scrollEnabled={false} contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.title}><SkeletonBlock width="62%" height={34} borderRadius={10} /></View>
         <View style={styles.authorRow}>
           <SkeletonBlock width={23} height={23} borderRadius={12} />

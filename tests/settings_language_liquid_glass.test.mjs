@@ -18,7 +18,8 @@ test('language settings use the approved liquid-glass scroll shell and geometry'
   // 22.10 (владелец, вариант В: «✕ оставить, но в одном месте»): ✕ — общий ScreenCloseButton слоем (точка 20/48 от верха), а не круг 42
   // в прокрутке; в начале прокрутки — его место (ScreenBackSlot). Прежнее «круг 42 со значком 21» (PRF-03 11.10) снято законом владельца.
   assert.ok(source.includes('<ScreenCloseButton screen="settings_language" testID="settings-language-back"'), 'close is the shared ScreenCloseButton');
-  assert.ok(source.indexOf('<ScreenBackSlot />', scrollStart) >= 0, 'its slot opens the scroll');
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10 («кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки ScreenBackZone стоит ДО прокрутки
+  assert.ok(source.indexOf('<ScreenBackZone />') >= 0 && source.indexOf('<ScreenBackZone />') < scrollStart, 'the button zone stands before the scroll');
   // заголовок с разрядкой −0.5 (PRF-03)
   assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.5,\s*marginTop:\s*10/);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*22,\s*marginTop:\s*7/);
@@ -88,7 +89,7 @@ test('transpiled screen uses the release-aware registry and preserves row intera
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
     '../components/SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
-    '../components/v2/ScreenBackButton': { ScreenBackSlot: 'ScreenBackSlot', ScreenCloseButton: 'ScreenCloseButton' },
+    '../components/v2/ScreenBackButton': { ScreenBackSlot: 'ScreenBackSlot', ScreenBackZone: 'ScreenBackZone', ScreenCloseButton: 'ScreenCloseButton' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
     // D164 (вариант А): экран читает параметр chooseStudy=1 — открыть шторку «Язык изучения» сразу
     'expo-router': { useRouter: () => ({}), useLocalSearchParams: () => ({}) },

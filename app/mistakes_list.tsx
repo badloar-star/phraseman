@@ -14,7 +14,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
-import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { SCREEN_BACK_SIZE, SCREEN_BACK_GAP } from '../components/v2/ScreenBackButton';
 import { FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, SheetRow, glassButtonFill, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
@@ -260,7 +260,8 @@ export default function MistakesListScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled" decelerationRate="fast">
+        {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+        <View style={{ paddingHorizontal: 20, marginBottom: SCREEN_BACK_GAP }}>
           {searching ? (
             <View style={styles.topbar}>
               <View style={styles.backSlot} />
@@ -301,6 +302,8 @@ export default function MistakesListScreen() {
               </View>
             </View>
           )}
+        </View>
+        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <ScreenTitle g={g} text={copy.title} />
           <View style={styles.tabs}>
             {tabs.map((entry) => {

@@ -28,7 +28,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ScreenBackButton, { ScreenBackSlot, ScreenOriginBelowSafeTop } from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { ScreenBackZone, ScreenOriginBelowSafeTop } from '../components/v2/ScreenBackButton';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Purchases, { type CustomerInfo } from 'react-native-purchases';
@@ -823,9 +823,9 @@ export default function ManageSubscription() {
             <ScreenOriginBelowSafeTop>
               <ScreenBackButton screen="manage_subscription" testID="manage-subscription-close" accessibilityLabel={LP('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')} onPress={() => safeRouterBack(router, closeFallback)} />
             </ScreenOriginBelowSafeTop>
+            {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+            <ScreenBackZone />
             <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
-            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
-            <ScreenBackSlot />
 
             <Text testID="manage-subscription-title" style={[S.screenTitle, { color: glass.text, fontSize: scaled(34), lineHeight: scaled(40) }]}>
               {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): русский заголовок сменили на «Подписка Plus»

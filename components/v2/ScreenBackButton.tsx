@@ -33,7 +33,36 @@ export function screenBackTop(safeTop: number): number {
   return safeTop + SCREEN_BACK_TOP_OFFSET;
 }
 
+/** Зазор между низом круга и первым элементом контента под ним. */
+export const SCREEN_BACK_GAP = 12;
+/**
+ * Высота «полосы кнопки» от безопасного верха: всё содержимое экрана (заголовок, первая строка списка, шторка) начинается НИЖЕ.
+ *
+ * зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10: «КНОПКА ВВЕРХУ „НАЗАД“ ДОЛЖНА БЫТЬ ВЕЗДЕ, НО НЕ ПРИКРЕПЛЕНА ВОТ ТАК, А ИМЕННО В СВОЁМ МЕСТЕ!!
+ * НЕ ПЕРЕСЕКАЕТСЯ С ДРУГИМИ ЭЛЕМЕНТАМИ!!»; повод — «Темы»: место кнопки лежало внутри прокрутки, уезжало вверх, и строка «Рассвет»
+ * вставала под круг): место кнопки не меняется, меняется контент — полоса стоит в потоке ДО прокрутки, и прокрутка обрезается под ней.
+ */
+export const SCREEN_BACK_ZONE = SCREEN_BACK_TOP_OFFSET + SCREEN_BACK_SIZE + SCREEN_BACK_GAP;
+
 const SLOT_STYLE = { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE } as const;
+const ZONE_STYLE = { height: SCREEN_BACK_ZONE } as const;
+
+/**
+ * Полоса кнопки в потоке. Класть первым ребёнком контейнера, чей верх = безопасный верх (SafeAreaView с верхним краем,
+ * paddingTop: insets.top, ContentWrap под ними), и СНАРУЖИ прокрутки — тогда прокрутка начинается ниже круга и под него не заезжает.
+ * Для строки шапки рядом с кнопкой (заголовок справа от круга) — ScreenBackSlot, а не полоса.
+ */
+export function ScreenBackZone() {
+  return <View pointerEvents="none" style={ZONE_STYLE} />;
+}
+
+/** Верх содержимого для корня, который начинается от края экрана (edge-to-edge): безопасный верх экрана + полоса кнопки. */
+export function useScreenBackContentTop(): number {
+  const insets = useStableSafeAreaInsets();
+  const isTabPage = useIsTabPage();
+  const tabBleed = useTabTopBleedInset();
+  return (isTabPage ? tabBleed : insets.top) + SCREEN_BACK_ZONE;
+}
 
 /** Место под общую кнопку в строке шапки: сама кнопка — слой экрана, а заголовок и действия строки встают справа от неё. */
 export function ScreenBackSlot() {

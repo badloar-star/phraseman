@@ -26,7 +26,7 @@ import { loadWordStrengthMap, strengthDotCount, strengthFor, type WordStrengthMa
 import { packDeckLevel } from '../../components/packs/packDeckModel';
 import { packCardsWord } from '../../components/packs/PackRow';
 import { PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
-import { ScreenBackSlot } from '../../components/v2/ScreenBackButton';
+import { SCREEN_BACK_GAP, ScreenBackSlot } from '../../components/v2/ScreenBackButton';
 import SkeletonBlock from '../../components/SkeletonShimmer';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -189,6 +189,13 @@ export default function CommunityPackPreview({
 
   return (
     <View testID="pack-preview" style={styles.root}>
+        {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): верхний ряд до прокрутки — контент под круг не заезжает */}
+        <View style={{ paddingHorizontal: 20, marginBottom: SCREEN_BACK_GAP }}>
+          <PackTopBarRow
+            left={<ScreenBackSlot />} // зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции
+            right={<PackSquareButton g={g} testID="pack-preview-more" label={moreLabel} onPress={onMore} />}
+          />
+        </View>
         <ScrollView
           ref={scrollRef}
           testID="pack-preview-scroll"
@@ -206,10 +213,6 @@ export default function CommunityPackPreview({
           onContentSizeChange={(_w, h) => console.log('[PACK-OPEN] preview:content-size', JSON.stringify({ packId: pack.id, h: Math.round(h), sinceMountMs: Date.now() - mountedAtRef.current }))}
         >
           <View>
-          <PackTopBarRow
-            left={<ScreenBackSlot />} // зачем (закон «назад в одном месте»): кнопка — ScreenBackButton экрана коллекции
-            right={<PackSquareButton g={g} testID="pack-preview-more" label={moreLabel} onPress={onMore} />}
-          />
 
           {/* `setHead()` макета: название 34/40, автор, «уровень · N карточек · ♥ N», ряд кнопок. */}
           <Text maxFontSizeMultiplier={1.15} testID="pack-preview-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>

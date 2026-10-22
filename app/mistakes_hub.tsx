@@ -11,7 +11,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
-import ScreenBackButton, { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
+import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import { mpColors, themePair, mixDark } from '../components/mistakes-panel/panelPaint';
@@ -371,12 +371,13 @@ export default function MistakesHubScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
+        {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
+        <ScreenBackZone />
         <ScrollView
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}
           refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={onPullRefresh} />} decelerationRate="fast"
         >
-          <View style={styles.topbar} />
           <ScreenTitle g={g} text={copy.title} />
           {body}
         </ScrollView>

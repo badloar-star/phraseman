@@ -27,6 +27,7 @@ const KNOWN_GUARDS = [
   'tests/season_wire_contract.test.ts',
   'tests/screen_back_button_contract.test.ts',
   'tests/section_sheet_header_close_left.test.ts',
+  'tests/screen_back_content_below_contract.test.ts', // 5 · ВХОД 22.10: контент ниже кнопки «назад/✕», не лежит под ней
   'tests/learning_v2_not_from_start_once_v1.test.ts',
   'tests/v2_screens_color_literals_ratchet.test.mjs',
   'tests/theme_semantic_follows_current_theme.test.ts',

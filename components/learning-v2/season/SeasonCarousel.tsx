@@ -61,9 +61,10 @@ function CarouselCard({ index, position, children, onPress, label }: Readonly<{
       ],
     };
   });
+  // зачем (отклик нажатия, координатор 22.10): карта — плитка, поэтому видимое нажатие (приглушение) без хаптика
   return (
     <Animated.View style={[styles.card, style]}>
-      <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={`season-card-${index}`}>
+      <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={`season-card-${index}`} style={({ pressed }) => ({ opacity: pressed ? 0.92 : 1 })}>
         {children}
       </Pressable>
     </Animated.View>

@@ -115,7 +115,7 @@ export default function LearningV2TheorySheet({ visible, theory, lang, initialSe
             const on = item.num === section?.num;
             return (
               <Pressable key={item.num} testID={`learning-v2-theory-sec-${item.num}`} accessibilityRole="tab" accessibilityState={{ selected: on }}
-                onPress={() => pickSection(item.num)} style={[styles.sec, { backgroundColor: on ? g.text : g.opaqueControl }]}>
+                onPress={() => pickSection(item.num)} style={({ pressed }) => [styles.sec, { backgroundColor: on ? g.text : g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}>
                 <Text style={[styles.secNum, { color: on ? solid : g.text, opacity: on ? 0.6 : 0.45 }]}>{String(Number(item.num))}</Text>
                 <Text style={[styles.secTitle, { color: on ? solid : g.secondary }]} numberOfLines={1}>{item.title}</Text>
               </Pressable>
@@ -187,7 +187,7 @@ const TheoryBlock = memo(function TheoryBlock({ block, g, lang, copy, speaking, 
               {index > 0 ? <View style={[styles.sep, { backgroundColor: g.hairlineSoft }]} /> : null}
               <View style={styles.ex}>
                 <Pressable accessibilityRole="button" accessibilityLabel={copy.listen(example.en)} onPress={() => onPlay(example.en)} hitSlop={6}
-                  style={[styles.sp, { backgroundColor: on ? g.text : g.opaqueControl }]}>
+                  style={({ pressed }) => [styles.sp, { backgroundColor: on ? g.text : g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}>
                   <Ionicons name={on ? "volume-high" : "volume-medium"} size={17} color={on ? lv2TaskTokens(g).footerSolid : g.text} />
                 </Pressable>
                 <View style={styles.exText}>

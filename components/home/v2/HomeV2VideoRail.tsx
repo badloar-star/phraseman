@@ -52,7 +52,7 @@ const VideoRailCards = memo(function VideoRailCards({ videos, title, plateColor,
           accessibilityRole="button"
           accessibilityLabel={`${title}: ${video.title}`}
           onPress={() => onSelect(video.id)}
-          style={[s.card, { backgroundColor: plateColor }]}
+          style={({ pressed }) => [s.card, { backgroundColor: plateColor, opacity: pressed ? 0.92 : 1 }]} // зачем (отклик нажатия, координатор 22.10): видимое нажатие карточки видео без хаптика (плитка)
         >
           {/* зачем (координатор 12.10, [THUMB] + запасной вид): превью — через общий VideoThumb; при ошибке/пустом адресе вместо серой пустой плитки — название на собственной плашке ленты,
               ▶ остаётся тот же внизу слева, новых запросов и повторов нет */}

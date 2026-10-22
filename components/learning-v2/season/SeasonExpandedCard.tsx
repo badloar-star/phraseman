@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
+import V2Pressable from '../../v2/V2Pressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../../SafeLinearGradient';
@@ -86,9 +87,9 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
           <View style={styles.flex} />
           {p.rightLabel ? <Text style={styles.right}>{p.rightLabel}</Text> : null}
           {locked ? (
-            <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={p.closeLabel} onPress={p.onClose} style={styles.round} testID="season-expanded-close">
+            <V2Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={p.closeLabel} onPress={p.onClose} style={styles.round} testID="season-expanded-close">
               <Ionicons name="close" size={16} color={WHITE} />
-            </Pressable>
+            </V2Pressable>
           ) : null}
         </View>
         <Text style={styles.big} numberOfLines={4}>{p.phrase}</Text>
@@ -101,16 +102,16 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
           <View style={styles.lockRow}><Ionicons name="lock-closed" size={16} color={WHITE_SOFT} /><Text style={styles.lockText}>{p.lockLine}</Text></View>
         ) : null}
         {p.primary ? (
-          <Pressable hitSlop={6} accessibilityRole="button" onPress={p.primary.onPress} style={styles.primary} testID="season-expanded-primary">
+          <V2Pressable hitSlop={6} accessibilityRole="button" onPress={p.primary.onPress} style={styles.primary} testID="season-expanded-primary">
             <Ionicons name={p.primary.icon} size={18} color={INK} />
             <Text style={styles.primaryText}>{p.primary.label}</Text>
-          </Pressable>
+          </V2Pressable>
         ) : null}
         {p.secondary ? (
-          <Pressable hitSlop={6} accessibilityRole="button" onPress={p.secondary.onPress} style={styles.secondary} testID="season-expanded-secondary">
+          <V2Pressable hitSlop={6} accessibilityRole="button" onPress={p.secondary.onPress} style={styles.secondary} testID="season-expanded-secondary">
             <Ionicons name={p.secondary.icon} size={18} color={WHITE} />
             <Text style={styles.secondaryText}>{p.secondary.label}</Text>
-          </Pressable>
+          </V2Pressable>
         ) : null}
         {locked ? <View style={styles.mute} pointerEvents="none" /> : null}
       </Animated.View>

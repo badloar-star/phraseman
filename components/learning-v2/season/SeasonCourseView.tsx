@@ -9,6 +9,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import V2Pressable from '../../v2/V2Pressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../../constants/i18n';
@@ -157,10 +158,10 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <View style={styles.heroGlyph} pointerEvents="none"><Ionicons name={heroInfo.icon} size={310} color={GLYPH} /></View>
         <LinearGradient colors={SCRIM} style={styles.scrim} pointerEvents="none" />
         <View style={[styles.heroTop, { top: props.topPadding + 8 }]}>
-          <Pressable hitSlop={8} accessibilityRole="button" onPress={props.onLessonPicker} style={[styles.pill, dark ? null : { backgroundColor: PILL_ON_LIGHT }]} testID="season-lesson-pill">
+          <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onLessonPicker} style={[styles.pill, dark ? null : { backgroundColor: PILL_ON_LIGHT }]} testID="season-lesson-pill">
             <Text style={styles.pillText}>{seasonText(lang, 'lesson', { n: lessonOrdinal })}</Text>
             <Ionicons name="chevron-down" size={13} color={WHITE} />
-          </Pressable>
+          </V2Pressable>
           <View style={styles.flex} />
           {/* зачем (аудит контраста светлой темы 22.10, координатор): энергия в шапке вкладки «Уроки» без капсулы красится под светлый ФОН ЭКРАНА (текст/акцент темы), а здесь лежит на тёмном градиенте и световом пятне обложки (≈2,5–3:1);
               в светлой теме HUD стоит на плите цвета карточки темы — тексты и акцент темы читаются на ней ≥ 4,5:1 (тот же токен opaqueCard, что в аудите заданий) */}
@@ -169,15 +170,15 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null]}>
           <Text style={styles.kicker}>{kicker}</Text>
           <Text accessibilityRole="header" style={[styles.heroTitle, tall && longTitle ? styles.heroTitleLong : null]}>{props.lessonTitle}</Text>
-          <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} style={styles.primary} testID="season-primary">
+          <V2Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} style={styles.primary} testID="season-primary">
             <Ionicons name="play" size={18} color={BTN_INK} />
             <Text style={styles.primaryText}>{primaryLabel}</Text>
-          </Pressable>
+          </V2Pressable>
           {props.newcomer && props.onNotFromStart ? (
-            <Pressable hitSlop={8} accessibilityRole="button" onPress={props.onNotFromStart} style={styles.glass} testID="season-not-from-start">
+            <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onNotFromStart} style={styles.glass} testID="season-not-from-start">
               <Ionicons name="school-outline" size={18} color={WHITE} />
               <Text style={styles.glassText}>{seasonText(lang, 'notFromStart')}</Text>
-            </Pressable>
+            </V2Pressable>
           ) : props.resumeLine ? (
             <View style={styles.resume}>
               <View style={styles.bar}><View style={[styles.barFill, { width: `${Math.round((currentEpisode ? props.episodeInfo(currentEpisode).progress ?? 0 : 0) * 100)}%` }]} /></View>
@@ -194,13 +195,13 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
       </View>
 
       <View style={styles.section}>
-        <Pressable hitSlop={8} accessibilityRole="button" onPress={props.onChapterPicker} style={styles.sectionLeft} testID="season-chapter-picker">
+        <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onChapterPicker} outerStyle={styles.sectionLeft} testID="season-chapter-picker">
           <Text style={[styles.sectionKicker, { color: g.secondary }]}>{seasonText(lang, 'chapterOf', { n: selectedCard?.chapterOrdinal ?? 1, m: props.chapterCount })}</Text>
           <View style={styles.sectionTitleRow}>
             <Text style={[styles.sectionTitle, { color: g.text }]} numberOfLines={2}>{sectionInfo.scene}</Text>
             <Ionicons name="chevron-down" size={14} color={g.secondary} />
           </View>
-        </Pressable>
+        </V2Pressable>
         <Text style={[styles.sectionRight, { color: g.secondary }]}>{seasonText(lang, 'doneOf', { k: progress.done, n: progress.total })}</Text>
       </View>
 

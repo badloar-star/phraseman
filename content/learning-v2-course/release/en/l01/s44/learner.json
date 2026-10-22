@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — подруга тихо говорит с вами в музее",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-44:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — подруга тихо говорит с вами в музее",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-44:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — подруга тихо говорит с вами в музее",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `weird`, а в этом варианте — `ancient`.",
               "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `ancient`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-44:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — подруга тихо говорит с вами в музее",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "329e6e58d58b5c43d5524dd1e2bda108a687be55d56be38112cfe66af70b4053"
+  "learnerFingerprint": "42ecc16473aa5d858555b7d47e8bb404085da547f65f9c06868a20880f67eb72"
 }

@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — друг зазирає до зали клубу перед концертом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-21:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-21:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — друг зазирає до зали клубу перед концертом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-21:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — друг зазирає до зали клубу перед концертом",
             "feedbackByLocale": {
               "ru": "В записи empty, а не small.",
               "uk": "У записі empty, а не small."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-21:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — друг зазирає до зали клубу перед концертом",
             "feedbackByLocale": {
               "ru": "В записи empty, а не noisy.",
               "uk": "У записі empty, а не noisy."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте повідомлення про подругу",
+      "prompt": "Послухайте й виберіть — друг надсилає вам коротке повідомлення",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-21:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-21:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте повідомлення про подругу",
+      "accessibilityLabel": "Послухайте й виберіть — друг надсилає вам коротке повідомлення",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-01:session-21:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про подругу",
+            "testedDimension": "Послухайте й виберіть — друг надсилає вам коротке повідомлення",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-01:session-21:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте повідомлення про подругу",
+            "testedDimension": "Послухайте й виберіть — друг надсилає вам коротке повідомлення",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `inside`, а в этом варианте — `outside`.",
               "uk": "У записі останнє слово — `inside`, а в цьому варіанті — `outside`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте й виберіть — друг у клубі звертається до вас перед концертом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-21:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-21:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть — друг у клубі звертається до вас перед концертом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-21:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — друг у клубі звертається до вас перед концертом",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-21:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — друг у клубі звертається до вас перед концертом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `prepared`, а в этом варианте — `careful`.",
               "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `careful`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "88dc7086af4c9e329f40f1591180a7ad7aee07e013082bbae12eca3e8d2ef8df"
+  "learnerFingerprint": "344ee456bd58a8af198e4df6492735bee635b23355ceb788bad0d91caebf1c0e"
 }

@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — друг раскладывает вещи на столе в мастерской",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-48:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — друг раскладывает вещи на столе в мастерской",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-01:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг раскладывает вещи на столе в мастерской",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-01:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг раскладывает вещи на столе в мастерской",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `sharp`, а в этом варианте — `sticky`.",
               "uk": "У записі останнє слово — `sharp`, а в цьому варіанті — `sticky`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "846bbde67280c1a3e1fd2391170948ddee28efcf450279ac92cc913428f3a3db"
+  "learnerFingerprint": "2f04eac596c08c638890b95225f8f87434d5c0b53ff8fca741b68ab40a037189"
 }

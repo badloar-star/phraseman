@@ -52,6 +52,10 @@ function orderedSessionIds(): readonly string[] {
   }
   return orderedSessionIdsCache;
 }
+/** Порядок занятий курса — один кэш на приложение (Ревизор 22.10: хранилище звёзд строило топологию второй раз). */
+export function learningV2OrderedCourseSessionIdsV1(): readonly string[] {
+  return orderedSessionIds();
+}
 function sessionIndex(): Map<string, number> {
   if (!sessionIndexCache) {
     sessionIndexCache = new Map(orderedSessionIds().map((sessionId, index) => [sessionId, index]));

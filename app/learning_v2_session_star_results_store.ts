@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
-import { buildLearningV2CourseTopologyV1 } from '../modules/learning-v2/content/course_topology_v1';
+import { learningV2OrderedCourseSessionIdsV1 } from '../modules/learning-v2/progress/course_local_progress_v1';
 import {
   LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
   packSessionStarsSyncV1,
@@ -44,16 +44,8 @@ export interface LearningV2SessionStarInteractionV1 {
 
 const EMPTY: LearningV2SessionStarResultsV1 = Object.freeze({});
 
-// Порядок занятий курса — для облачной строки звёзд; строится один раз и только при первом чтении/записи звёзд.
-let orderedSessionIdsCache: readonly string[] | null = null;
-function orderedSessionIds(): readonly string[] {
-  if (!orderedSessionIdsCache) {
-    orderedSessionIdsCache = Object.freeze(
-      buildLearningV2CourseTopologyV1().lessons.flatMap((lesson) => lesson.sessions.map((session) => session.sessionId)),
-    );
-  }
-  return orderedSessionIdsCache;
-}
+// зачем (Ревизор 22.10, ⚡): порядок занятий — общий кэш хранилища прогресса, топология курса не строится второй раз.
+const orderedSessionIds = learningV2OrderedCourseSessionIdsV1;
 
 /** Облачная копия звёзд не уменьшается: пишем, только если по какому-то занятию локально лучше. */
 async function mirrorStarsToSync(results: LearningV2SessionStarResultsV1): Promise<void> {

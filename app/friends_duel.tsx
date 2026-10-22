@@ -37,6 +37,8 @@ import { parseDuelLaunch, type DuelLaunch } from './friends_together/duel_launch
 import { resolveDuelPhrasesOnPhone } from './friends_together/duel_phrase_source';
 import { submitDuelChallenge, submitDuelMove, type DuelChallengeResult, type DuelMoveResult } from './friends_together/duel_client';
 import { recordSentDuel } from './friends_together/duel_ledger';
+import { markUserNotificationsRead } from './user_notifications';
+import { requestDuelRematch } from './friends_together/duel_intents';
 import type { Lang } from '../constants/i18n';
 
 const LOG = '[FRIENDS-DUEL]';
@@ -45,6 +47,15 @@ function log(line: string): void { console.log(`${LOG} ${line}`); } // guard-ok:
 function warn(line: string): void { console.warn(`${LOG} ${line}`); } // guard-ok: журнал дуэли — отказы и сбои сети
 
 type TheirMove = Readonly<{ correct: number; elapsedMs: number; results: readonly boolean[] }>;
+/** Что рисует экран итога: после своего хода или из строки «Итог дуэли» (режим result). */
+type DuelSummary = Readonly<{
+  kind: 'waiting' | 'offline' | 'result';
+  mineCorrect: number;
+  mineMs: number;
+  mineResults: readonly boolean[] | null;
+  outcome: DuelOutcome | null;
+  theirs: TheirMove | null;
+}>;
 type DuelFinish =
   | Readonly<{ kind: 'waiting' | 'offline'; move: DuelMove }>
   | Readonly<{ kind: 'result'; move: DuelMove; outcome: DuelOutcome; theirs: TheirMove }>
@@ -95,17 +106,20 @@ function DuelMessage({ title, body, lang, onClose }: Readonly<{ title: string; b
 }
 
 function FriendsDuelScreen() {
-  const raw = useLocalSearchParams<{ mode?: string; friend?: string; name?: string; rank?: string; plus?: string; ids?: string; duel?: string; me?: string }>();
+  const raw = useLocalSearchParams<{
+    mode?: string; friend?: string; name?: string; rank?: string; plus?: string; ids?: string; duel?: string; me?: string; n?: string;
+    out?: string; mc?: string; mt?: string; mr?: string; tc?: string; tt?: string; tr?: string;
+  }>();
   const { lang } = useLang();
   const { glass, textScale } = useFriendsGlass();
   const router = useRouter();
   const myCoinRank = useMyCoinRank();
   const myIsPlus = useIsPlus();
   const meFallback = triLang(lang, { ru: 'Я', uk: 'Я', en: 'Me', es: 'Yo', 'pt-BR': 'Eu', vi: 'Tôi', id: 'Saya', tr: 'Ben', pl: 'Ja' });
-  const { mode, friend, name, rank, plus, ids, duel, me } = raw;
+  const { mode, friend, name, rank, plus, ids, duel, me, n, out, mc, mt, mr, tc, tt, tr } = raw;
   const check = useMemo(
-    () => parseDuelLaunch({ mode, friend, name, rank, plus, ids, duel, me }, meFallback),
-    [mode, friend, name, rank, plus, ids, duel, me, meFallback],
+    () => parseDuelLaunch({ mode, friend, name, rank, plus, ids, duel, me, n, out, mc, mt, mr, tc, tt, tr }, meFallback),
+    [mode, friend, name, rank, plus, ids, duel, me, n, out, mc, mt, mr, tc, tt, tr, meFallback],
   );
   const launch: DuelLaunch | null = check.ok ? check.launch : null;
   const phrases = useMemo(() => {
@@ -114,9 +128,11 @@ function FriendsDuelScreen() {
       return null;
     }
     const startedAt = Date.now();
-    const resolved = resolveDuelPhrasesOnPhone(check.launch.phraseIds, lang);
+    const isResult = check.launch.mode === 'result';
+    // зачем: итог без фраз (старый сервер) или с фразами, которых нет в этой версии курса, — показываем без таблицы, а не ошибку
+    const resolved = isResult && check.launch.phraseIds.length === 0 ? [] : resolveDuelPhrasesOnPhone(check.launch.phraseIds, lang);
     log(`route: режим=${check.launch.mode} друг=${maskUid(check.launch.friendUid)} дуэль=${check.launch.duelId ? maskUid(check.launch.duelId) : '—'} фраз=${resolved?.length ?? 0} ms=${Date.now() - startedAt}`);
-    return resolved;
+    return resolved ?? (isResult ? [] : null);
   }, [check, lang]);
 
   const [finish, setFinish] = useState<DuelFinish | null>(null);
@@ -153,6 +169,8 @@ function FriendsDuelScreen() {
       warn(`move: ответ без номера дуэли — не отправляем`);
       return;
     }
+    // зачем: вызов сыгран (ход на телефоне или в сети) — строка вызова гаснет, маркер-щит уходит; вышел посреди хода — остаётся
+    if (launch.notificationId) void markUserNotificationsRead([launch.notificationId]);
     void submitDuelMove({ duelId: launch.duelId, move })
       .then((res) => applyServer(finishAfterMove(res, move, lang), 'move'))
       .catch((error: unknown) => {
@@ -164,9 +182,17 @@ function FriendsDuelScreen() {
   const play = useDuelPlay(phrases, onFinish);
 
   const close = useCallback(() => {
-    log(`close этап=${finish ? finish.kind : `фраза ${play.state.index + 1} из ${DUEL_PHRASES}${play.state.verdict ? ' (проверена)' : ''}`}`);
+    log(`close этап=${finish ? finish.kind : launch?.mode === 'result' ? 'итог' : `фраза ${play.state.index + 1} из ${DUEL_PHRASES}${play.state.verdict ? ' (проверена)' : ''}`}`);
     safeRouterBack(router);
-  }, [finish, play.state.index, play.state.verdict, router]);
+  }, [finish, launch?.mode, play.state.index, play.state.verdict, router]);
+
+  // зачем (решение координатора 22.10, макет «Реванш» в одно касание): новый вызов от нажавшего — назад во «Друзей»,
+  // вкладка забирает просьбу при возврате фокуса и открывает шторку вызова этому другу
+  const rematch = useCallback(() => {
+    if (!launch) return;
+    requestDuelRematch(launch.friendUid);
+    safeRouterBack(router);
+  }, [launch, router]);
 
   if (!launch || !phrases) {
     return <DuelMessage title={duelPlayCopy(lang, 'errorTitle')} body={duelPlayCopy(lang, 'errorBody')} lang={lang} onClose={close} />;
@@ -176,19 +202,43 @@ function FriendsDuelScreen() {
     return <DuelMessage title={finish.title} body={finish.body} lang={lang} onClose={close} />;
   }
 
-  if (finish) {
-    const mineCorrect = duelCorrect(finish.move);
-    const meSide: DuelSide = { name: launch.myName, coinRank: myCoinRank, isPlus: myIsPlus, score: String(mineCorrect), note: duelClock(finish.move.elapsedMs) };
-    const friendSide: DuelSide = finish.kind === 'result'
-      ? { name: launch.friendName, coinRank: launch.friendCoinRank, isPlus: launch.friendIsPlus, score: String(finish.theirs.correct), note: duelClock(finish.theirs.elapsedMs) }
+  // зачем (идея 3): итог у вызвавшего — только просмотр, всё из строки «Итог дуэли»; после своего хода — из ответа сервера
+  const summary: DuelSummary | null = launch.mode === 'result' && launch.result
+    ? {
+      kind: 'result',
+      mineCorrect: launch.result.mine.correct,
+      mineMs: launch.result.mine.elapsedMs,
+      mineResults: launch.result.mine.results,
+      outcome: launch.result.outcome,
+      theirs: launch.result.theirs,
+    }
+    : finish
+      ? {
+        kind: finish.kind,
+        mineCorrect: duelCorrect(finish.move),
+        mineMs: finish.move.elapsedMs,
+        mineResults: finish.move.results,
+        outcome: finish.kind === 'result' ? finish.outcome : null,
+        theirs: finish.kind === 'result' ? finish.theirs : null,
+      }
+      : null;
+
+  if (summary) {
+    const meSide: DuelSide = { name: launch.myName, coinRank: myCoinRank, isPlus: myIsPlus, score: String(summary.mineCorrect), note: duelClock(summary.mineMs) };
+    const friendSide: DuelSide = summary.theirs
+      ? { name: launch.friendName, coinRank: launch.friendCoinRank, isPlus: launch.friendIsPlus, score: String(summary.theirs.correct), note: duelClock(summary.theirs.elapsedMs) }
       : { name: launch.friendName, coinRank: launch.friendCoinRank, isPlus: launch.friendIsPlus, score: '?', note: duelPlayCopy(lang, 'friendTurn') };
-    const rows: DuelPhraseRow[] = phrases.map((p, i) => ({
-      key: p.id,
-      target: p.targetPhrase,
-      meaning: p.goal,
-      mine: finish.move.results[i] === true,
-      theirs: finish.kind === 'result' ? finish.theirs.results[i] ?? null : null,
-    }));
+    // Своих отметок нет (старый сервер) или фраз нет в этой версии курса — таблицу не показываем, счёт и исход остаются.
+    const mineResults = summary.mineResults;
+    const rows: DuelPhraseRow[] = mineResults && phrases.length === DUEL_PHRASES
+      ? phrases.map((p, i) => ({
+        key: p.id,
+        target: p.targetPhrase,
+        meaning: p.goal,
+        mine: mineResults[i] === true,
+        theirs: summary.theirs ? summary.theirs.results[i] ?? null : null,
+      }))
+      : [];
     return (
       <View style={styles.page}>
         <View style={styles.resultHeader}>
@@ -196,12 +246,13 @@ function FriendsDuelScreen() {
         </View>
         <ScrollView style={styles.scroll} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
           <FriendDuelResultView
-            mode={finish.kind}
+            mode={summary.kind}
             me={meSide}
             friend={friendSide}
-            outcome={finish.kind === 'result' ? finish.outcome : undefined}
-            outcomeLine={finish.kind === 'result' ? duelOutcomeLine(lang, finish.outcome, mineCorrect, finish.theirs.correct, finish.move.elapsedMs, finish.theirs.elapsedMs) : undefined}
+            outcome={summary.outcome ?? undefined}
+            outcomeLine={summary.outcome && summary.theirs ? duelOutcomeLine(lang, summary.outcome, summary.mineCorrect, summary.theirs.correct, summary.mineMs, summary.theirs.elapsedMs) : undefined}
             rows={rows}
+            onRematch={summary.kind === 'result' ? rematch : undefined}
             onToFriends={close}
           />
         </ScrollView>

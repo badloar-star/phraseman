@@ -38,6 +38,8 @@ const COPY = {
   tryLater: L('Попробуй позже.', 'Спробуй пізніше.', 'Try again later.', 'Inténtalo más tarde.', 'Tente mais tarde.', 'Hãy thử lại sau.', 'Coba lagi nanti.', 'Daha sonra tekrar dene.', 'Spróbuj później.'),
   /** Под монетой друга, пока он не сходил (`.vs` «ходит»). */
   friendTurn: L('ходит', 'ходить', 'playing', 'jugando', 'jogando', 'đang chơi', 'sedang main', 'oynuyor', 'gra'),
+  /** Маркер итога дуэли в строке друга (доступность). */
+  openResult: L('Открыть итог дуэли', 'Відкрити підсумок дуелі', 'Open duel result', 'Abrir resultado del duelo', 'Abrir resultado do duelo', 'Mở kết quả trận đấu', 'Buka hasil duel', 'Düello sonucunu aç', 'Otwórz wynik pojedynku'),
 } as const;
 
 export type DuelPlayCopyKey = keyof typeof COPY;
@@ -76,6 +78,14 @@ export function duelVerdictTitle(lang: Lang, correct: boolean, ms: number): stri
 /** «Правильно: I am busy.» — после неверного ответа. */
 export function duelCorrectAnswerLine(lang: Lang, targetPhrase: string): string {
   return pick(lang, L(`Правильно: ${targetPhrase}`, `Правильно: ${targetPhrase}`, `Correct answer: ${targetPhrase}`, `Respuesta correcta: ${targetPhrase}`, `Resposta correta: ${targetPhrase}`, `Đáp án đúng: ${targetPhrase}`, `Jawaban benar: ${targetPhrase}`, `Doğru cevap: ${targetPhrase}`, `Poprawnie: ${targetPhrase}`));
+}
+
+/** Остаток вызова на маркере щита: «23 ч», «45 мин» (целые, вниз; меньше минуты — «1 мин»). */
+export function duelTimeLeftShort(lang: Lang, ms: number): string {
+  const hours = Math.floor(ms / 3_600_000);
+  if (hours >= 1) return `${hours} ${pick(lang, L('ч', 'год', 'h', 'h', 'h', 'giờ', 'jam', 'sa', 'godz.'))}`;
+  const minutes = Math.max(1, Math.floor(ms / 60_000));
+  return `${minutes} ${pick(lang, L('мин', 'хв', 'min', 'min', 'min', 'phút', 'mnt', 'dk', 'min'))}`;
 }
 
 /** Часы хода «0:48»: сначала округляем до секунд, потом делим — иначе 59,6 с стали бы «0:60». */

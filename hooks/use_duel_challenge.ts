@@ -135,6 +135,8 @@ export function useDuelChallenge(input: Readonly<{
       phraseIds: done.phrases.map((p) => p.id),
       duelId: null,
       myName,
+      notificationId: null,
+      result: null,
     });
     console.log(`${LOG} challenge:start друг=${maskUid(done.friend.uid)} → экран дуэли`); // guard-ok: одна строка на старт
     router.push({ pathname: '/friends_duel', params } as never);

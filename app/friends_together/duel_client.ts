@@ -245,6 +245,34 @@ export async function submitDuelMove(input: Readonly<{ duelId: string; move: Due
   return result;
 }
 
+export type DuelDeclineReason = 'network' | 'expired' | 'not_invited' | 'already_moved' | 'disabled' | 'invalid';
+
+/**
+ * «Отказаться» от вызова. Шторка и маркер уже закрыты (Optimistic UI) — это только сеть, один запрос без повторов:
+ * не дошёл — дуэль сама закроется по сроку (сервер закрывает лениво), вызвавший увидит «не ответил за сутки».
+ */
+export async function submitDuelDecline(duelId: string): Promise<Readonly<{ ok: true }> | Readonly<{ ok: false; reason: DuelDeclineReason }>> {
+  if (!duelId) {
+    log('decline:refuse reason=invalid duel=none');
+    return { ok: false, reason: 'invalid' };
+  }
+  const startedAt = Date.now();
+  try {
+    await httpsCallable<{ duelId: string }, unknown>(getFunctions(getApp(), REGION), 'friendsDuelDecline')({ duelId });
+    log(`decline:ok duel=${maskUid(duelId)} ms=${Date.now() - startedAt}`);
+    return { ok: true };
+  } catch (error) {
+    const text = errorHaystack(error);
+    const reason: DuelDeclineReason = text.includes('disabled') ? 'disabled'
+      : text.includes('expired') ? 'expired'
+        : text.includes('already_moved') ? 'already_moved'
+          : text.includes('not_invited') ? 'not_invited'
+            : 'network';
+    log(`decline:error duel=${maskUid(duelId)} reason=${reason} ms=${Date.now() - startedAt} raw="${errText(error).slice(0, 160)}"`);
+    return { ok: false, reason };
+  }
+}
+
 /** Дослать отложенные ходы (при входе во «Друзей»). По одному запросу на ход, без повторов внутри одного захода. */
 export async function flushPendingDuels(): Promise<Readonly<{ sent: number; dropped: number; left: number }>> {
   const pending = await readPendingDuels();

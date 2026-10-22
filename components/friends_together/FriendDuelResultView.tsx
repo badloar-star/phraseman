@@ -79,6 +79,8 @@ function FriendDuelResultView({ mode, me, friend, outcome, outcomeLine, rows, on
           </FlowText>
         </View>
       ) : null}
+      {/* зачем: строк нет (старый сервер без своих отметок, фраз нет в этой версии курса) — без пустой таблицы, счёт и исход остаются */}
+      {rows.length > 0 ? (
       <View style={[styles.table, { backgroundColor: glass.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
         <View style={styles.headRow}>
           <FlowText testID="friend-duel-col-phrase" provenance="authored" style={[styles.headPhrase, { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale }]}>{duelCopy(lang, 'phrase')}</FlowText>{/* guard-ok: заголовок столбца таблицы (.colh макета) */}
@@ -99,6 +101,7 @@ function FriendDuelResultView({ mode, me, friend, outcome, outcomeLine, rows, on
           </View>
         ))}
       </View>
+      ) : null}
       <View style={styles.actions}>
         {isResult && onRematch ? (
           <FriendSheetButton glass={glass} textScale={textScale} tone="primary" pill="m" icon="repeat" label={duelCopy(lang, 'rematch')} testID="friend-duel-rematch" onPress={onRematch} />

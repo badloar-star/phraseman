@@ -3,7 +3,8 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, { cancelAnimation, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import type { FriendSocialEvent } from '../../app/friend_social_events';
-import { remainingDuelSeconds } from '../../app/friend_social_events';
+import { remainingDuelChallengeMs, remainingDuelSeconds } from '../../app/friend_social_events';
+import { duelPlayCopy, duelTimeLeftShort } from '../../app/friends_together/duel_play_copy';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { LUM } from '../../constants/motionHybrid';
@@ -34,10 +35,12 @@ function FriendEventMarker({ event, onPress, nowMs }: Props) {
       setLiveNowMs(nowMs);
       return undefined;
     }
-    if (event.kind !== 'duel_invite') return undefined;
+    // зачем (идея 3): вызов на «Дуэль на 5 фраз» показывает часы и минуты — тик раз в минуту, не раз в секунду
+    const tickMs = event.kind === 'duel_invite' ? 1_000 : event.kind === 'duel_challenge' ? 60_000 : 0;
+    if (tickMs === 0) return undefined;
     setLiveNowMs(Date.now());
     if (!runtimeActive) return undefined;
-    const ticker = setInterval(() => setLiveNowMs(Date.now()), 1_000);
+    const ticker = setInterval(() => setLiveNowMs(Date.now()), tickMs);
     return () => clearInterval(ticker);
   }, [event.kind, event.expiresAtMs, nowMs, runtimeActive]);
   useEffect(() => {
@@ -51,24 +54,32 @@ function FriendEventMarker({ event, onPress, nowMs }: Props) {
     ? triLang(lang, { ru: 'Открыть пятюню', uk: 'Відкрити п’ять', en: 'Open high five', es: 'Abrir saludo', 'pt-BR': 'Abrir cumprimento', vi: 'Mở lời động viên', id: 'Buka tos', tr: 'Çakı aç', pl: 'Otwórz piątkę' })
     : event.kind === 'study_invite' || event.kind === 'lesson_invite'
       ? triLang(lang, { ru: 'Открыть приглашение на занятие', uk: 'Відкрити запрошення на заняття', en: 'Open study invitation', es: 'Abrir invitación a estudiar', 'pt-BR': 'Abrir convite para estudar', vi: 'Mở lời mời học', id: 'Buka ajakan belajar', tr: 'Çalışma davetini aç', pl: 'Otwórz zaproszenie do nauki' })
-      : triLang(lang, { ru: 'Открыть вызов на дуэль', uk: 'Відкрити виклик на дуель', en: 'Open duel challenge', es: 'Abrir desafío de duelo', 'pt-BR': 'Abrir desafio de duelo', vi: 'Mở lời thách đấu', id: 'Buka tantangan duel', tr: 'Düello çağrısını aç', pl: 'Otwórz wyzwanie na pojedynek' });
+      : event.kind === 'duel_result'
+        ? duelPlayCopy(lang, 'openResult')
+        : triLang(lang, { ru: 'Открыть вызов на дуэль', uk: 'Відкрити виклик на дуель', en: 'Open duel challenge', es: 'Abrir desafío de duelo', 'pt-BR': 'Abrir desafio de duelo', vi: 'Mở lời thách đấu', id: 'Buka tantangan duel', tr: 'Düello çağrısını aç', pl: 'Otwórz wyzwanie na pojedynek' });
   const seconds = remainingDuelSeconds(event, liveNowMs);
+  // зачем (макет #hub, маркер `mkr('shield', { bd: 'flash', tm: '23 ч' })`): вызов — щит с молнией и остаток «23 ч»; итог — кубок
+  const challengeLeft = event.kind === 'duel_challenge' ? duelTimeLeftShort(lang, remainingDuelChallengeMs(event, liveNowMs)) : null;
+  const flashBadge = event.kind === 'duel_invite' || event.kind === 'duel_challenge';
   const iconName = event.kind === 'high_five'
     ? 'hand-left-outline'
     : event.kind === 'study_invite' || event.kind === 'lesson_invite'
       ? 'book-outline'
-      : 'shield-half-outline';
+      : event.kind === 'duel_result'
+        ? 'trophy-outline'
+        : 'shield-half-outline';
 
   return (
     <Reanimated.View style={animated}>
       <Pressable testID={`friend-event-marker-${event.kind}`} onPress={onPress} accessibilityRole="button" accessibilityLabel={accessibilityLabel} style={styles.marker}>
         <View style={styles.badge} accessible={false} importantForAccessibility="no-hide-descendants">
           <Ionicons name={iconName} size={27} color={GRAPHITE} />
-          {event.kind === 'duel_invite'
+          {flashBadge
             ? <View style={styles.flash}><Ionicons name="flash" size={11} color={PORCELAIN} /></View>
             : <View style={styles.accentDot} />}
         </View>
         {event.kind === 'duel_invite' && <Text style={styles.countdown}>{Math.ceil(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</Text>}
+        {challengeLeft !== null && <Text style={styles.countdown}>{challengeLeft}</Text>}
       </Pressable>
     </Reanimated.View>
   );

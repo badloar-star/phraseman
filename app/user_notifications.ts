@@ -88,7 +88,23 @@ export type UserNotificationFriendEventAction =
   | 'duel_invite'
   | 'duel_state'
   | 'gift'
-  | 'lesson_invite';
+  | 'lesson_invite'
+  // «Дуэль на 5 фраз» (идея 3): не путать с duel_invite/duel_state удалённой Арены (D83)
+  | 'duel_challenge'
+  | 'duel_result'
+  | 'duel_declined';
+
+/** Вызов на «Дуэль на 5 фраз» (идея 3, формат 1 · ЯДРО 22.10): id фраз — тексты берём из курса на телефоне. */
+export type UserNotificationDuelChallenge = Readonly<{ duelId: string; expiresAtMs: number; phraseIds: readonly string[] }>;
+
+/** Итог дуэли у вызвавшего: исход с его стороны, счёт обоих; свои отметки и id фраз — если сервер их положил. */
+export type UserNotificationDuelResult = Readonly<{
+  duelId: string;
+  outcome: 'win' | 'loss' | 'draw';
+  mine: Readonly<{ correct: number; elapsedMs: number; results: readonly boolean[] | null }>;
+  theirs: Readonly<{ correct: number; elapsedMs: number; results: readonly boolean[] }>;
+  phraseIds: readonly string[] | null;
+}>;
 
 /**
  * «Урок вместе» (идея 2, формат 1 · ЯДРО 22.10): номера урока и занятия — «это занятие» в СВОЁМ курсе друга (языки у пары
@@ -112,6 +128,10 @@ export interface UserNotificationNavFriendEvent {
   lesson?: UserNotificationLessonInvite;
   /** Required for a direct Arena invite route; missing legacy rows open the hub. */
   studyTarget?: ArenaStudyTarget;
+  duelChallenge?: UserNotificationDuelChallenge;
+  duelResult?: UserNotificationDuelResult;
+  /** duel_declined: какая дуэль закрыта отказом. */
+  duelId?: string;
 }
 
 export type UserNotificationNav =
@@ -234,7 +254,57 @@ const FRIEND_EVENT_ACTIONS: ReadonlySet<string> = new Set<UserNotificationFriend
   'duel_state',
   'gift',
   'lesson_invite',
+  'duel_challenge',
+  'duel_result',
+  'duel_declined',
 ]);
+
+const DUEL_PHRASE_COUNT = 5;
+const DUEL_MAX_ELAPSED_MS = 15 * 60 * 1000;
+
+/** Ровно 5 разных id фраз ≤ 96 символов — иначе null (дуэль не открыть). */
+function duelPhraseIds(value: unknown): readonly string[] | null {
+  if (!Array.isArray(value) || value.length !== DUEL_PHRASE_COUNT) return null;
+  const ids = value.map((id) => cleanText(id, 97));
+  return ids.every((id) => id.length > 0 && id.length <= 96) && new Set(ids).size === DUEL_PHRASE_COUNT ? ids : null;
+}
+
+function duelResults(value: unknown): readonly boolean[] | null {
+  return Array.isArray(value) && value.length === DUEL_PHRASE_COUNT && value.every((v) => typeof v === 'boolean') ? value as boolean[] : null;
+}
+
+function duelScore(value: unknown): Readonly<{ correct: number; elapsedMs: number }> | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const row = value as Record<string, unknown>;
+  const correct = intIn(row.correct, 0, DUEL_PHRASE_COUNT);
+  const elapsedMs = intIn(row.elapsedMs, 0, DUEL_MAX_ELAPSED_MS);
+  return correct === null || elapsedMs === null ? null : { correct, elapsedMs };
+}
+
+/** Вызов без номера дуэли, срока или пяти фраз — сыграть нечего: строку не берём. */
+function parseDuelChallenge(row: Record<string, unknown>): UserNotificationDuelChallenge | null {
+  const duelId = cleanText(row.duelId, 160);
+  const expiresAtMs = intIn(row.expiresAtMs, 1, Number.MAX_SAFE_INTEGER);
+  const phraseIds = duelPhraseIds(row.phraseIds);
+  return duelId && expiresAtMs !== null && phraseIds ? { duelId, expiresAtMs, phraseIds } : null;
+}
+
+/** Итог без исхода или счёта обоих — показать нечего; свои отметки и фразы — по возможности. */
+function parseDuelResult(row: Record<string, unknown>): UserNotificationDuelResult | null {
+  const duelId = cleanText(row.duelId, 160);
+  const outcome = row.outcome === 'win' || row.outcome === 'loss' || row.outcome === 'draw' ? row.outcome : null;
+  const mine = duelScore(row.mine);
+  const theirs = duelScore(row.theirs);
+  const theirResults = duelResults((row.theirs as Record<string, unknown> | undefined)?.results);
+  if (!duelId || !outcome || !mine || !theirs || !theirResults) return null;
+  return {
+    duelId,
+    outcome,
+    mine: { ...mine, results: duelResults((row.mine as Record<string, unknown>).results) },
+    theirs: { ...theirs, results: theirResults },
+    phraseIds: duelPhraseIds(row.phraseIds),
+  };
+}
 
 export function parseUserNotificationNav(value: unknown): UserNotificationNav | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
@@ -263,6 +333,13 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   const studyTarget = resolveArenaStudyTarget(row.studyTarget);
   const lesson = action === 'lesson_invite' ? parseLessonInvite(row) : null;
   if (action === 'lesson_invite' && !lesson) return null;
+  // зачем (идея 3): строки дуэли разбираем на границе — у вызова и итога без полей играть и показывать нечего
+  const duelChallenge = action === 'duel_challenge' ? parseDuelChallenge(row) : null;
+  if (action === 'duel_challenge' && !duelChallenge) return null;
+  const duelResult = action === 'duel_result' ? parseDuelResult(row) : null;
+  if (action === 'duel_result' && !duelResult) return null;
+  const duelId = action === 'duel_declined' ? cleanText(row.duelId, 160) : '';
+  if (action === 'duel_declined' && !duelId) return null;
   return {
     kind: 'friend_event',
     actorStableUid,
@@ -271,6 +348,9 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
     ...(inviteId ? { inviteId } : {}),
     ...(studyTarget ? { studyTarget } : {}),
     ...(lesson ? { lesson } : {}),
+    ...(duelChallenge ? { duelChallenge } : {}),
+    ...(duelResult ? { duelResult } : {}),
+    ...(duelId ? { duelId } : {}),
   };
 }
 

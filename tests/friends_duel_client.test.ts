@@ -23,7 +23,7 @@ const mockSender: { current: { stableId: string; displayName?: string } | null }
 jest.mock('../app/friends_together/sender_identity', () => ({ prepareTogetherSender: () => Promise.resolve(mockSender.current) }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: () => Promise.resolve('me-1') }));
 
-import { flushPendingDuels, readPendingDuels, submitDuelChallenge, submitDuelMove } from '../app/friends_together/duel_client';
+import { flushPendingDuels, readPendingDuels, submitDuelChallenge, submitDuelDecline, submitDuelMove } from '../app/friends_together/duel_client';
 
 const ok = (data: unknown) => () => Promise.resolve({ data });
 const fail = (code: string) => () => Promise.reject(Object.assign(new Error(code), { code: `functions/${code}` }));
@@ -100,6 +100,23 @@ describe('ход в ответ на вызов', () => {
     await expect(submitDuelMove({ duelId: 'd-1', move })).resolves.toEqual({ ok: false, reason: 'already_moved' });
     await expect(submitDuelMove({ duelId: 'd-1', move })).resolves.toEqual({ ok: false, reason: 'network' });
     expect((await readPendingDuels()).map((p) => p.kind)).toEqual(['move']);
+  });
+});
+
+describe('отказ от вызова', () => {
+  it('один запрос с номером дуэли, без повторов; ошибки сервера — подстрокой', async () => {
+    mockResponses.friendsDuelDecline = [ok({ ok: true }), fail('deadline-exceeded expired'), fail('unavailable')];
+    await expect(submitDuelDecline('d-1')).resolves.toEqual({ ok: true });
+    expect(mockCalls[0]).toEqual({ name: 'friendsDuelDecline', payload: { duelId: 'd-1' } });
+    await expect(submitDuelDecline('d-1')).resolves.toEqual({ ok: false, reason: 'expired' });
+    await expect(submitDuelDecline('d-1')).resolves.toEqual({ ok: false, reason: 'network' });
+    expect(mockCalls).toHaveLength(3);
+    expect(await readPendingDuels()).toEqual([]);
+  });
+
+  it('без номера дуэли — не отправляем', async () => {
+    await expect(submitDuelDecline('')).resolves.toEqual({ ok: false, reason: 'invalid' });
+    expect(mockCalls).toHaveLength(0);
   });
 });
 

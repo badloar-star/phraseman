@@ -17,13 +17,40 @@ const launch: DuelLaunch = {
   phraseIds: ids,
   duelId: 'd-1',
   myName: 'Алекс',
+  notificationId: 'note-1',
+  result: null,
 };
 
 describe('адрес экрана дуэли', () => {
   it('туда и обратно — то же самое', () => {
     expect(parseDuelLaunch(duelLaunchParams(launch), 'Я')).toEqual({ ok: true, launch });
-    const challenge: DuelLaunch = { ...launch, mode: 'challenge', duelId: null, friendCoinRank: null, friendIsPlus: false };
+    const challenge: DuelLaunch = { ...launch, mode: 'challenge', duelId: null, friendCoinRank: null, friendIsPlus: false, notificationId: null };
     expect(parseDuelLaunch(duelLaunchParams(challenge), 'Я')).toEqual({ ok: true, launch: challenge });
+  });
+
+  it('итог — только просмотр: исход, счёт и отметки обоих туда-обратно; без фраз и своих отметок — тоже', () => {
+    const result: DuelLaunch = {
+      ...launch,
+      mode: 'result',
+      notificationId: null,
+      result: {
+        outcome: 'loss',
+        mine: { correct: 3, elapsedMs: 70_000, results: [true, false, true, true, false] },
+        theirs: { correct: 4, elapsedMs: 52_000, results: [true, true, true, false, true] },
+      },
+    };
+    expect(parseDuelLaunch(duelLaunchParams(result), 'Я')).toEqual({ ok: true, launch: result });
+    const bare: DuelLaunch = { ...result, phraseIds: [], result: { ...result.result!, mine: { ...result.result!.mine, results: null } } };
+    expect(parseDuelLaunch(duelLaunchParams(bare), 'Я')).toEqual({ ok: true, launch: bare });
+  });
+
+  it('итог без исхода, счёта или отметок друга — не открываем; строка уведомления — только у ответа', () => {
+    const base = duelLaunchParams({ ...launch, mode: 'result', notificationId: null, result: { outcome: 'win', mine: { correct: 4, elapsedMs: 1, results: null }, theirs: { correct: 3, elapsedMs: 2, results: [true, true, true, false, false] } } });
+    expect(parseDuelLaunch({ ...base, out: 'maybe' }, 'Я')).toEqual({ ok: false, reason: 'result_fields' });
+    expect(parseDuelLaunch({ ...base, tr: '1101' }, 'Я')).toEqual({ ok: false, reason: 'result_fields' });
+    expect(parseDuelLaunch({ ...base, mt: String(16 * 60 * 1000) }, 'Я')).toEqual({ ok: false, reason: 'result_fields' });
+    const withNote = parseDuelLaunch({ ...base, n: 'note-9' }, 'Я');
+    expect(withNote.ok && withNote.launch.notificationId).toBeNull();
   });
 
   it('не играем по кривому адресу', () => {
@@ -33,6 +60,7 @@ describe('адрес экрана дуэли', () => {
     expect(parseDuelLaunch({ ...base, ids: ids.slice(0, 4).join(',') }, 'Я').ok).toBe(false);
     expect(parseDuelLaunch({ ...base, ids: [...ids.slice(0, 4), ids[0]].join(',') }, 'Я').ok).toBe(false);
     expect(parseDuelLaunch({ ...base, duel: '' }, 'Я')).toEqual({ ok: false, reason: 'answer_without_duel' });
+    expect(parseDuelLaunch({ ...base, ids: '' }, 'Я').ok).toBe(false);
   });
 
   it('ранг вне шкалы — без монеты; имя обрезаем; пустое — запасное; массив из адреса — первое значение', () => {

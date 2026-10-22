@@ -178,11 +178,16 @@ import {
 import FriendStudyInviteModal from '../../components/friends_together/FriendStudyInviteModal';
 import {
   acknowledgeMarker,
+  duelClosuresFromNotifications,
   friendSocialEventsFromNotifications,
   nextFriendMarkerExpiryMs,
   selectFriendMarker,
   type FriendSocialEvent,
 } from '../friend_social_events';
+import FriendDuelIncomingHost, { type DuelIncoming } from '../../components/friends_together/FriendDuelIncomingHost';
+import { closeSentDuels } from '../friends_together/duel_ledger';
+import { duelResultParams, type DuelFriendView } from '../friends_together/duel_routes';
+import { takeDuelRematch } from '../friends_together/duel_intents';
 import {
   markUserNotificationsRead,
   probeUserNotificationsHead,
@@ -231,6 +236,11 @@ interface FriendProfile {
   profileCardMotion?: string;
   profileCardPublicFocus?: string;
   coinRank?: number | null;
+}
+
+/** Друг для экранов «Дуэли на 5 фраз» (идея 3): имя, монета (только из шкалы) и настоящий Plus — как в строке списка. */
+function duelFriendView(profile: FriendProfile): DuelFriendView {
+  return { uid: profile.uid, name: profile.name, coinRank: isValidCoinRank(profile.coinRank) ? profile.coinRank : null, isPlus: isPlusProfile(profile) };
 }
 
 const PROFILE_TTL_MS = 30 * 1000;
@@ -884,6 +894,9 @@ export default function FriendsTabScreen() {
   const [studyInvite, setStudyInvite] = useState<{ event: FriendSocialEvent; friendName: string; friendCoinRank: number | null } | null>(null);
   // зачем (идея 1, макет «30 дней»): окно вехи серии вдвоём на экране — вкладка не открывает поверх свои окна
   const [pairMilestoneOpen, setPairMilestoneOpen] = useState(false);
+  // зачем (идея 3, макет «Вызов у Ирины»): вызов на «Дуэль на 5 фраз» от друга — шторка «Принять / Отказаться»
+  const [duelIncoming, setDuelIncoming] = useState<DuelIncoming | null>(null);
+  const clearDuelIncoming = useCallback(() => setDuelIncoming(null), []);
 
   const [optimisticNudgedUids, setOptimisticNudgedUids] = useState<Set<string>>(() => new Set());
   const [nudgedTick, setNudgedTick] = useState(0);
@@ -929,7 +942,10 @@ export default function FriendsTabScreen() {
     if (!friendsRuntimeActive) return;
     let cancelled = false;
     const apply = (rows: Awaited<ReturnType<typeof readCachedUserNotifications>>) => {
-      if (!cancelled) setFriendEvents(friendSocialEventsFromNotifications(rows));
+      if (cancelled) return;
+      setFriendEvents(friendSocialEventsFromNotifications(rows));
+      // зачем (идея 3): пришёл итог или отказ по дуэли — снимаем «дуэль уже идёт» в журнале вызовов, не дожидаясь суток
+      if (FRIENDS_TOGETHER_UI_ENABLED) void closeSentDuels(duelClosuresFromNotifications(rows));
     };
     let unsubFreshRequests: (() => void) | null = null;
     let socialRefreshStarted = false;
@@ -1122,10 +1138,11 @@ export default function FriendsTabScreen() {
   // зачем (идея 3, макет #hub → «Вызов»): «Дуэль на 5 фраз» — плитка в шторке друга → шторка вызова → экран /friends_duel.
   // «Позвать на занятие» из шторки вызова (разные языки или мало фраз) — тот же зов, что «Позвать» в шторке друга.
   const inviteFromDuel = useCallback((friendUid: string, friendName: string) => { void handleNudgeFriend(friendUid, friendName); }, [handleNudgeFriend]);
+  const myDuelName = myProfile?.name ?? L('Я', 'Я', 'Me', 'Yo', 'Eu', 'Tôi', 'Saya', 'Ben', 'Ja');
   const duelChallenge = useDuelChallenge({
     studyTarget,
     lang,
-    myName: myProfile?.name ?? L('Я', 'Я', 'Me', 'Yo', 'Eu', 'Tôi', 'Saya', 'Ben', 'Ja'),
+    myName: myDuelName,
     onInviteToLesson: inviteFromDuel,
   });
   // зачем (идея 3): ход дуэли, сохранённый без сети, досылаем при входе во «Друзей» — одна попытка на заход, без таймеров и слушателей
@@ -2309,7 +2326,7 @@ export default function FriendsTabScreen() {
   const modalWedgeActive = selectedPlayer !== null || deleteTarget !== null || blockTarget !== null
     || addModalOpen
     || togetherSheetSession !== null || profileDismissPending
-    || pairMilestoneOpen || duelChallenge.open;
+    || pairMilestoneOpen || duelChallenge.open || duelIncoming !== null;
   modalWedgeGuardRef.current = modalWedgeActive;
 
   useEffect(() => {
@@ -2380,11 +2397,21 @@ export default function FriendsTabScreen() {
       setStudyInvite({ event, friendName: profile.name, friendCoinRank: isValidCoinRank(profile.coinRank) ? profile.coinRank : null });
       return;
     }
+    // зачем (идея 3): щит «Дуэли на 5 фраз» — шторка «Принять / Отказаться»; кубок — экран итога из строки «Итог дуэли» (0 чтений)
+    if (FRIENDS_TOGETHER_UI_ENABLED && event.kind === 'duel_challenge' && event.duel) {
+      setDuelIncoming({ event, friend: duelFriendView(profile) });
+      return;
+    }
+    if (FRIENDS_TOGETHER_UI_ENABLED && event.kind === 'duel_result' && event.duelResult) {
+      acknowledgeFriendEvent(event);
+      router.push({ pathname: '/friends_duel', params: duelResultParams(duelFriendView(profile), event.duelResult, myDuelName) } as never);
+      return;
+    }
     // зачем: D83 — клиентская Арена удалена; старое приглашение в дуэль
     // просто гасится как прочитанное, экрана приглашения больше нет.
     if (__DEV__) console.warn('[D83-ARENA-RETIRED] duel invite marker acknowledged without navigation', { kind: event.kind });
     acknowledgeFriendEvent(event);
-  }, [acknowledgeFriendEvent]);
+  }, [acknowledgeFriendEvent, myDuelName, router]);
 
   // зачем (аудит скорости 2026-08-22): renderItem ниже создавал новые стрелочные
   // обёртки (() => openProfile(profile) и т.д.) на КАЖДЫЙ рендер экрана — новые
@@ -2415,6 +2442,21 @@ export default function FriendsTabScreen() {
     const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
     if (profile) openFriendEvent(profile, event);
   }, [openFriendEvent]);
+
+  // зачем (идея 3, «Реванш» с экрана итога): вкладка снова на экране (focusTick растёт при возврате) — забираем просьбу
+  // и открываем вызов этому другу; друга нет в списке — причина в журнал
+  useEffect(() => {
+    if (!FRIENDS_TOGETHER_UI_ENABLED || !friendsRuntimeActive) return;
+    const friendUid = takeDuelRematch();
+    if (!friendUid) return;
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (!profile) {
+      console.log('[FRIENDS-DUEL] rematch:skip reason=друга нет в списке'); // guard-ok: ранний выход называет причину
+      return;
+    }
+    duelChallenge.prepare({ ...duelFriendView(profile), studyLanguages: togetherSnapshot?.pairs[friendUid]?.studyLanguages ?? null });
+    duelChallenge.show();
+  }, [duelChallenge.prepare, duelChallenge.show, focusTick, friendsRuntimeActive, togetherSnapshot]);
 
   // зачем (координатор 12.10, R1 «нет пути», друзья): dev `friend_event=study_invite` — окно приглашения на занятие без события от сервера; выдаётся один раз; в стор-сборке null.
   useEffect(() => {
@@ -2875,6 +2917,10 @@ export default function FriendsTabScreen() {
 
       {/* зачем (идея 3, макет «Вызов» / «Нет общих занятий»): шторка вызова на «Дуэль на 5 фраз» — открывается после шторки друга */}
       {friendsTogetherUiEnabled && duelChallenge.sheet ? <FriendDuelChallengeSheet {...duelChallenge.sheet} /> : null}
+      {/* зачем (идея 3, макет «Вызов у Ирины»): вызов друга — «Принять» ведёт на ход в ответ, «Отказаться» гасит щит */}
+      {friendsTogetherUiEnabled ? (
+        <FriendDuelIncomingHost incoming={duelIncoming} myName={myDuelName} onAcknowledge={acknowledgeFriendEvent} onDone={clearDuelIncoming} />
+      ) : null}
 
       <FriendStudyInviteModal
         visible={studyInvite !== null}

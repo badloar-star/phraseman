@@ -38,6 +38,9 @@ import {
 } from '../app/notification_delete_undo';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
+import { FRIENDS_TOGETHER_UI_ENABLED } from '../app/friends_together/together_config';
+import { getFriendsTogetherSnapshot } from '../app/friends_together/together_store';
+import { duelResultParams } from '../app/friends_together/duel_routes';
 import { V2 } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import { colorWithAlpha } from './v2/plateAlpha';
@@ -469,6 +472,14 @@ function NotificationCenterButton({
         // ведёт на Главную, а не в несуществующий экран приглашения.
         if (__DEV__) console.warn('[D83-ARENA-RETIRED] legacy duel notification tap -> home', { action: nav.action });
         router.push('/(tabs)/home' as never);
+        return;
+      }
+      // зачем (идея 3): «Итог дуэли» — сразу экран итога из самой строки (0 чтений). Через вкладку «Друзья» строка могла бы
+      // успеть стать прочитанной раньше, чем вкладка её найдёт; монета и Plus друга — из снимка «Вместе» на телефоне.
+      if (FRIENDS_TOGETHER_UI_ENABLED && nav.action === 'duel_result' && nav.duelResult) {
+        const pair = getFriendsTogetherSnapshot()?.pairs[nav.actorStableUid];
+        const friend = { uid: nav.actorStableUid, name: pair?.name || row.fromName || '?', coinRank: pair?.coinRank ?? null, isPlus: pair?.isPlus === true };
+        router.push({ pathname: '/friends_duel', params: duelResultParams(friend, nav.duelResult, '') } as never);
         return;
       }
       router.push({

@@ -229,17 +229,14 @@ describe('источники отказа звука объясняют прич
     expect(arbiter).toContain('VOICE_QUIET_CEILING_MS');
   });
 
-  test('озвучка урока освобождает аренду на каждом выходе', () => {
+  // зачем (владелец 22.10: «аудио убрали и сменили на TTS»; 72f72a94e): у занятия больше нет своего плеера записей и своей
+  // аренды голоса — говорит общий useAudio, который сам берёт и отпускает аренду на каждом выходе (tts:completion-guard выше).
+  // Экран обязан только остановить речь при уходе и не заводить свою аренду в обход общего хука.
+  test('озвучка урока идёт через общий useAudio и останавливается на выходе', () => {
     const lesson = read('app', 'learning-v2', 'session', '[id].tsx');
-    expect(lesson).toContain('lesson:audio-skip');
-    // Ранний выход после seekTo раньше уходил БЕЗ stopAudioAttempt() — аренда
-    // голоса оставалась висеть навсегда. Проверяем именно этот блок: в нём
-    // перед return обязан стоять вызов освобождения.
-    const guardedExit = lesson.match(
-      /!claim\.isCurrent\(\)[\s\S]{0,200}?!audioAttemptPendingRef\.current[\s\S]{0,900}?return;/,
-    );
-    expect(guardedExit).not.toBeNull();
-    expect(guardedExit?.[0]).toContain('stopAudioAttempt()');
+    expect(lesson).toContain('const { speak: speakLessonAudio, stop: stopLessonAudio } = useAudio();');
+    expect(lesson).not.toContain('claimSpokenAudio(');
+    expect(lesson).toMatch(/return stopLessonAudio;/);
   });
 
   test('речь карточек освобождает аренду, даже если движок бросил исключение', () => {

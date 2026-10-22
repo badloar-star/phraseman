@@ -97,6 +97,7 @@ function ProfileCardBodyBase({
           accessibilityRole="button"
           accessibilityLabel={t4(lang, PC.addBio)}
           onPress={() => { hapticTap(); onEditBio(); }}
+          hitSlop={{ top: 2, bottom: 2 }} // зачем (аудит кнопок 22.10): пилюля 40 — зона нажатия до 44
           style={styles.lock}
         >
           <Ionicons name="pencil" size={15} color="rgba(255,255,255,0.72)" />{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}
@@ -108,6 +109,7 @@ function ProfileCardBodyBase({
           accessibilityRole="button"
           accessibilityLabel={t4(lang, PC.lock)}
           onPress={() => { hapticTap(); onOpenBuy(); }}
+          hitSlop={{ top: 2, bottom: 2 }} // зачем (аудит кнопок 22.10): пилюля 40 — зона нажатия до 44
           style={styles.lock}
         >
           <Ionicons name="lock-closed-outline" size={15} color="rgba(255,255,255,0.72)" />{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}

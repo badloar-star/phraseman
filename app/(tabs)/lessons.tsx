@@ -5506,6 +5506,8 @@ export default function LessonsTab({
                       pl: "Lekcja łączona: kilka tematów naprzemiennie",
                     })}
                     onPress={openCombinedLesson}
+                    // зачем (аудит кнопок 22.10, C2): круг 40 — зона нажатия до 44
+                    hitSlop={2}
                     variant="chip"
                     style={{
                       width: 40,
@@ -5549,6 +5551,8 @@ export default function LessonsTab({
                         disabled: !learningV2CanOpen,
                       }}
                       onPress={openNewLessons}
+                      // зачем (аудит кнопок 22.10, C2): круг 40 — зона нажатия до 44
+                      hitSlop={2}
                       variant="chip"
                       style={{
                         flexShrink: 0,

@@ -1156,6 +1156,8 @@ export default function SettingsMain() {
                   testID="settings-profile-sign-in"
                   accessibilityLabel={L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')}
                   onPress={() => setAuthPromptVisible(true)}
+                  // зачем (аудит кнопок 22.10): пилюля 30 — зона нажатия до 44 по вертикали
+                  hitSlop={{ top: 7, bottom: 7 }}
                   withSound={false}
                   variant="chip"
                   contentStyle={{ minHeight: 30, paddingHorizontal: 12, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
@@ -1172,6 +1174,8 @@ export default function SettingsMain() {
               testID="settings-profile-sign-in"
               accessibilityLabel={L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')}
               onPress={() => setAuthPromptVisible(true)}
+              // зачем (аудит кнопок 22.10): пилюля 30 — зона нажатия до 44 по вертикали
+              hitSlop={{ top: 7, bottom: 7 }}
               withSound={false}
               variant="chip"
               contentStyle={{ minHeight: 30, paddingHorizontal: 12, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}

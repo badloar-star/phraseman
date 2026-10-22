@@ -73,6 +73,16 @@ describe('admin user profile read contracts', () => {
     })).toEqual({ canonicalUid: 'local-canonical', reason: 'canonical_field', providerUid: 'provider-1' });
   });
 
+  it('reports Plus status for the admin grant card: forever, dated, revoked', () => {
+    const future = Date.now() + 30 * 86_400_000;
+    const forever = buildUserProfileSummary('u1', { progress: { vip_active: 'true', vip_plan: 'admin_vip', vip_from: '1', vip_until: '0', vip_admin_override: 'true', vip_admin_grant_at: '1' } });
+    expect(forever).toMatchObject({ plusActive: true, plusUntilMs: 0, vipActive: true, vipUntilMs: 0 });
+    const dated = buildUserProfileSummary('u2', { progress: { vip_active: 'true', vip_plan: 'admin_vip', vip_from: '1', vip_until: String(future), vip_admin_override: 'true', vip_admin_grant_at: '1' } });
+    expect(dated).toMatchObject({ plusActive: true, plusUntilMs: future, vipActive: true, vipUntilMs: future });
+    const revoked = buildUserProfileSummary('u3', { progress: { vip_active: 'false', vip_plan: 'admin_vip', vip_until: String(future), vip_admin_override: 'false' } });
+    expect(revoked).toMatchObject({ plusActive: false, plusUntilMs: null, vipActive: false, vipUntilMs: null });
+  });
+
   it('projects an allowlisted summary and never returns push tokens or raw progress', () => {
     const summary = buildUserProfileSummary('stable-1', {
       progress: {

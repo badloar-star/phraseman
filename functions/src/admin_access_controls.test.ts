@@ -186,6 +186,76 @@ describe('admin access controls', () => {
     await expect(resolver(tx, db, 'legacy')).rejects.toThrow('canonical read unavailable');
   });
 
+  // ── 22.10 владелец: «Plus любому профилю на любое время» — своя дата, 100 лет, кольцо сразу ──
+  describe('vip Plus for any term', () => {
+    const NOW = 1_700_000_000_000;
+    const YEAR_MS = 365 * DAY_MS;
+
+    it('lets only admins with the manual-access permission grant or revoke Plus', () => {
+      const actor = (accessControls as any).adminAccessActor;
+      expect(typeof actor).toBe('function');
+      const deny = (request: unknown) => expect(() => actor(request, 'money.manual_access.write')).toThrow(HttpsError);
+      deny({});
+      deny({ auth: null });
+      deny({ auth: { uid: 'user-1', token: {} } });
+      deny({ auth: { uid: 'user-1', token: { admin: false } } });
+      deny({ auth: { uid: 'user-1', token: { admin: 'true' } } });
+      deny({ auth: { uid: '', token: { admin: true } } });
+      expect(actor({ auth: { uid: 'admin-1', token: { admin: true, email: 'a@b.c' } } }, 'money.manual_access.write'))
+        .toEqual({ actorUid: 'admin-1', role: 'owner', email: 'a@b.c' });
+    });
+
+    it('accepts an exact future end date for a vip grant and uses it as the expiry', () => {
+      const untilMs = NOW + 400 * DAY_MS;
+      const input = normalizeAdminAccessInput({ ...base, kind: 'vip', untilMs }, NOW);
+      expect(input.untilMs).toBe(untilMs);
+      const patch = buildAdminAccessPatch({ progress: { vip_until: String(NOW + 10 * DAY_MS) } }, input, NOW);
+      expect(patch.expiresAtMs).toBe(untilMs);
+      expect(patch.after).toMatchObject({ vip_active: 'true', vip_plan: 'admin_vip', vip_until: String(untilMs), vip_admin_override: 'true' });
+    });
+
+    it.each([
+      ['in the past', { kind: 'vip', untilMs: NOW - 1 }],
+      ['equal to now', { kind: 'vip', untilMs: NOW }],
+      ['more than 100 years ahead', { kind: 'vip', untilMs: NOW + 36_500 * DAY_MS + 1 }],
+      ['not an integer', { kind: 'vip', untilMs: NOW + 1.5 }],
+      ['a string', { kind: 'vip', untilMs: String(NOW + DAY_MS) }],
+      ['for the premium branch', { kind: 'premium', untilMs: NOW + DAY_MS }],
+      ['for a revoke', { kind: 'vip', active: false, untilMs: NOW + DAY_MS }],
+    ])('rejects an end date %s', (_label, extra) => {
+      expect(() => normalizeAdminAccessInput({ ...base, ...extra }, NOW)).toThrow(HttpsError);
+    });
+
+    it('allows terms up to 100 years and keeps 0 as forever', () => {
+      expect(normalizeAdminAccessInput({ ...base, kind: 'vip', durationDays: 36_500 }, NOW).durationDays).toBe(36_500);
+      expect(() => normalizeAdminAccessInput({ ...base, kind: 'vip', durationDays: 36_501 }, NOW)).toThrow(HttpsError);
+      expect(normalizeAdminAccessInput({ ...base, kind: 'vip', untilMs: NOW + 100 * YEAR_MS }, NOW).untilMs).toBe(NOW + 100 * YEAR_MS);
+      const forever = buildAdminAccessPatch({ progress: {} }, normalizeAdminAccessInput({ ...base, kind: 'vip', durationDays: 0 }, NOW), NOW);
+      expect(forever.expiresAtMs).toBe(0);
+    });
+
+    it('keeps old fingerprints for durationDays commands and separates exact-date commands', () => {
+      const old = normalizeAdminAccessInput({ ...base, kind: 'vip' }, NOW);
+      expect(old.untilMs).toBeNull();
+      expect(adminAccessFingerprint(old)).toBe(JSON.stringify({ action: 'grant_access', uid: base.uid, kind: 'vip', durationDays: 30, active: true, reason: base.reason }));
+      const exact = normalizeAdminAccessInput({ ...base, kind: 'vip', untilMs: NOW + DAY_MS }, NOW);
+      expect(adminAccessFingerprint(exact)).not.toBe(adminAccessFingerprint(old));
+    });
+
+    it('updates the Plus ring only after the committed transaction, for vip grants and revokes, never on replay', () => {
+      const lf = source.replace(/\r\n/g, '\n');
+      const start = lf.indexOf('export const adminGrantAccess = onCall(');
+      const body = lf.slice(start, lf.indexOf('\nexport ', start + 1));
+      const txEnd = body.indexOf('  });\n', body.indexOf('db.runTransaction(async (tx) =>'));
+      const ring = body.indexOf('syncPublicProfilePlusAfterCommit(');
+      expect(txEnd).toBeGreaterThan(-1);
+      expect(ring).toBeGreaterThan(txEnd);
+      expect(body).toContain("input.kind === 'vip' && committedProgress && out.replayed !== true");
+      expect(body).toContain("source: input.active ? 'admin_grant_access' : 'admin_revoke_access'");
+      expect(body).toContain('...patch.after');
+    });
+  });
+
   it('uses the canonical target for the transactional write, audit entity, and callable result', () => {
     expect(source).toContain('resolveCanonicalAdminAccessTarget(tx, db, input.uid)');
     expect(source).toContain('tx.update(target.ref, { ...patch.updates, updatedAt: now })');

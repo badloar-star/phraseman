@@ -5,11 +5,15 @@ import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
 import { writeAccessProjectionFromPatch } from './access_projection';
+import { syncPublicProfilePlusAfterCommit } from './public_profile_plus_sync';
 
 const REGION = 'us-central1';
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
-const MAX_DAYS = 3650;
+// зачем (владелец 22.10 «Plus любому профилю на любое время, сколько угодно лет»): потолок 100 лет; «навсегда» — по-прежнему 0.
+const MAX_DAYS = 36_500;
+const MAX_UNTIL_SPAN_MS = MAX_DAYS * 86_400_000;
+const LOG = '[ADMIN-PLUS]';
 type Row = Record<string, unknown>;
 
 function record(value: unknown): value is Row { return typeof value === 'object' && value !== null && !Array.isArray(value); }
@@ -17,9 +21,23 @@ function text(value: unknown, max: number): string { return typeof value === 'st
 function number(value: unknown): number { const n = typeof value === 'number' ? value : Number(value); return Number.isFinite(n) ? n : 0; }
 
 export type AdminAccessKind = 'premium' | 'vip';
-export interface AdminAccessInput { readonly uid: string; readonly kind: AdminAccessKind; readonly durationDays: number; readonly active: boolean; readonly reason: string; readonly requestId: string; readonly idempotencyKey: string; }
+export interface AdminAccessInput { readonly uid: string; readonly kind: AdminAccessKind; readonly durationDays: number; readonly active: boolean; readonly reason: string; readonly requestId: string; readonly idempotencyKey: string; readonly untilMs: number | null; }
 
-export function normalizeAdminAccessInput(data: unknown): AdminAccessInput {
+/**
+ * Точная дата конца VIP-Plus от админки (null — не задана, тогда срок из durationDays).
+ * зачем (владелец 22.10: месяц календарный): админка сама считает конец по календарю от max(сейчас, текущий конец)
+ * или берёт «свою дату»; сервер только проверяет: только выдача vip, дата в будущем и не дальше 100 лет.
+ */
+function normalizeUntilMs(data: Row, kind: AdminAccessKind, active: unknown, nowMs: number): number | null {
+  if (data.untilMs === undefined || data.untilMs === null) return null;
+  const untilMs = typeof data.untilMs === 'number' ? data.untilMs : Number.NaN;
+  if (kind !== 'vip' || active !== true) throw new HttpsError('invalid-argument', 'untilMs is only for vip grants');
+  if (!Number.isSafeInteger(untilMs) || untilMs <= nowMs) throw new HttpsError('invalid-argument', 'untilMs must be in the future');
+  if (untilMs - nowMs > MAX_UNTIL_SPAN_MS) throw new HttpsError('invalid-argument', 'untilMs is more than 100 years ahead');
+  return untilMs;
+}
+
+export function normalizeAdminAccessInput(data: unknown, nowMs: number = Date.now()): AdminAccessInput {
   if (!record(data)) throw new HttpsError('invalid-argument', 'access command required');
   const uid = text(data.uid, 160); const kind = text(data.kind, 20) as AdminAccessKind;
   const durationDays = Math.floor(number(data.durationDays));
@@ -29,11 +47,13 @@ export function normalizeAdminAccessInput(data: unknown): AdminAccessInput {
   if (typeof active !== 'boolean') throw new HttpsError('invalid-argument', 'active must be boolean');
   if (durationDays < 0 || durationDays > MAX_DAYS) throw new HttpsError('invalid-argument', 'durationDays is out of range');
   if (!reason || !TOKEN_RE.test(requestId) || !TOKEN_RE.test(idempotencyKey)) throw new HttpsError('invalid-argument', 'reason and request ids are required');
-  return Object.freeze({ uid, kind, durationDays, active, reason, requestId, idempotencyKey });
+  const untilMs = normalizeUntilMs(data, kind, active, nowMs);
+  return Object.freeze({ uid, kind, durationDays, active, reason, requestId, idempotencyKey, untilMs });
 }
 
 export function adminAccessFingerprint(input: AdminAccessInput): string {
-  return JSON.stringify({ action: 'grant_access', uid: input.uid, kind: input.kind, durationDays: input.durationDays, active: input.active, reason: input.reason });
+  // untilMs пишем только когда задан — отпечатки старых команд (массовая выдача) не меняются.
+  return JSON.stringify({ action: 'grant_access', uid: input.uid, kind: input.kind, durationDays: input.durationDays, active: input.active, reason: input.reason, ...(input.untilMs !== null ? { untilMs: input.untilMs } : {}) });
 }
 
 export interface AccessPatch { readonly updates: Readonly<Row>; readonly before: Readonly<Row>; readonly after: Readonly<Row>; readonly expiresAtMs: number; }
@@ -62,7 +82,8 @@ export function buildAdminAccessPatch(user: Readonly<Row>, input: AdminAccessInp
     }
     const currentUntil = Number(progress.vip_until);
     const baseMs = Number.isFinite(currentUntil) ? Math.max(nowMs, currentUntil) : nowMs;
-    const expiresAtMs = input.durationDays === 0 ? 0 : baseMs + input.durationDays * 86_400_000;
+    const expiresAtMs = input.untilMs !== null ? input.untilMs
+      : input.durationDays === 0 ? 0 : baseMs + input.durationDays * 86_400_000;
     const before = {
       vip_active: progress.vip_active ?? null,
       vip_plan: progress.vip_plan ?? null,
@@ -155,13 +176,21 @@ function actor(request: { auth?: { uid?: string; token?: Row } | null }, permiss
   return { actorUid, role, email: text(token.email, 320) || actorUid };
 }
 
+// зачем: сторож-тест прав (владелец 22.10) вызывает ту же проверку, что и adminGrantAccess, а не ищет строки в исходнике.
+export { actor as adminAccessActor };
+
 export const adminGrantAccess = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (request) => {
   requireAdminAppCheck(request);
   const input = normalizeAdminAccessInput(request.data); const a = actor(request as { auth?: { uid?: string; token?: Row } }, 'money.manual_access.write');
   const db = admin.firestore(); const opRef = db.collection('admin_command_operations').doc(`access_${input.idempotencyKey}`); const auditRef = db.collection('admin_log').doc(); const now = Date.now(); const fingerprint = adminAccessFingerprint(input);
-  return db.runTransaction(async (tx) => {
-    const op = await tx.get(opRef); if (op.exists) { const d = op.data() ?? {}; if (d.requestFingerprint !== fingerprint || d.actorUid !== a.actorUid) throw new HttpsError('already-exists', 'idempotency key replay mismatch'); return { ...(record(d.result) ? d.result : {}), replayed: true }; }
+  console.log(LOG, JSON.stringify({ step: 'in', kind: input.kind, active: input.active, durationDays: input.durationDays, untilMs: input.untilMs }));
+  // Полный progress ПОСЛЕ патча — для кольца после коммита (как в вебхуке RevenueCat). null при повторе команды.
+  let ringProgress: Row | null = null;
+  const result = await db.runTransaction(async (tx) => {
+    ringProgress = null; // транзакцию могут перезапустить — берём progress только последней попытки
+    const op = await tx.get(opRef); if (op.exists) { const d = op.data() ?? {}; if (d.requestFingerprint !== fingerprint || d.actorUid !== a.actorUid) { console.warn(LOG, JSON.stringify({ step: 'replay_mismatch' })); throw new HttpsError('already-exists', 'idempotency key replay mismatch'); } return { ...(record(d.result) ? d.result : {}), replayed: true }; }
     const target = await resolveCanonicalAdminAccessTarget(tx, db, input.uid); const patch = buildAdminAccessPatch(target.snapshot.data() ?? {}, input, now);
+    ringProgress = { ...(record(target.snapshot.data()?.progress) ? target.snapshot.data()!.progress as Row : {}), ...patch.after };
     const audit = createAuditRecord({ action: `${input.active ? 'grant' : 'revoke'}_${input.kind}`, actorUid: a.actorUid, role: a.role, entity: { collection: 'users', id: target.uid }, reason: input.reason, before: patch.before, after: patch.after, requestId: input.requestId, timestamp: new Date(now).toISOString() });
     tx.update(target.ref, { ...patch.updates, updatedAt: now });
     writeAccessProjectionFromPatch(
@@ -174,6 +203,17 @@ export const adminGrantAccess = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (req
     tx.create(auditRef, { ...audit, operationId: opRef.id }); const result = { ok: true, kind: input.kind, active: input.active, uid: target.uid, requestedUid: input.uid, expiresAtMs: patch.expiresAtMs, auditId: auditRef.id };
     tx.create(opRef, { action: 'grant_access', requestFingerprint: fingerprint, actorUid: a.actorUid, auditId: auditRef.id, result, createdAt: admin.firestore.FieldValue.serverTimestamp() }); return result;
   });
+  // зачем (владелец 22.10; Ядро): кольцо Plus у аватара должно загореться/погаснуть сразу, а не при следующем запуске
+  // приложения получателем. Только ПОСЛЕ коммита и только vip-ветка; функция никогда не бросает — выдача уже записана.
+  const committedProgress = ringProgress as Row | null;
+  const out = result as Row;
+  if (input.kind === 'vip' && committedProgress && out.replayed !== true) {
+    const ring = await syncPublicProfilePlusAfterCommit({ db, stableUid: String(out.uid), progress: committedProgress, nowMs: now, source: input.active ? 'admin_grant_access' : 'admin_revoke_access' });
+    console.log(LOG, JSON.stringify({ step: 'out', kind: input.kind, active: input.active, expiresAtMs: out.expiresAtMs, ring }));
+  } else {
+    console.log(LOG, JSON.stringify({ step: 'out', kind: input.kind, active: input.active, expiresAtMs: out.expiresAtMs, replayed: out.replayed === true, ring: 'skipped' }));
+  }
+  return result;
 });
 
 export interface AdminBanInput { readonly uid: string; readonly banned: boolean; readonly reason: string; readonly requestId: string; readonly idempotencyKey: string; }

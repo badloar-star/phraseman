@@ -4,6 +4,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 
+import { isRealPlusActive, isVipActive, parseProgressMs, realPlusUntilMs } from './premium_status';
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const MAX_SEARCH_RESULTS = 20;
@@ -167,6 +168,13 @@ export function buildUserProfileSummary(uid: string, user: Row): Row {
     streakLastDate: text(progress.streak_last_date, 40) || null,
     premiumPlan: text(progress.premium_plan, 40) || null,
     premiumExpiryMs: Math.max(0, finiteNumber(progress.premium_expiry)),
+    // зачем (владелец 22.10 «Plus любому профилю»): карточка выдачи в админке показывает, есть ли Plus и до какого
+    // числа — тем же правилом, что кольцо (isRealPlusActive). vip* — та часть, которую админка может выдать/забрать.
+    // plusUntilMs/vipUntilMs: 0 — бессрочно, null — нет.
+    plusActive: isRealPlusActive(progress),
+    plusUntilMs: realPlusUntilMs(progress),
+    vipActive: isVipActive(progress),
+    vipUntilMs: isVipActive(progress) ? parseProgressMs(progress.vip_until ?? progress.vip_expiry) : null,
     language: text(progress.lang || progress.app_lang, 16) || 'unknown',
     appVersion: text(progress.app_version, 40) || null,
     platform: text(progress.device_platform, 20) || null,
@@ -253,6 +261,10 @@ function searchSummary(summary: Row, matchReasons: readonly string[], identityRe
     email: isRecord(summary.auth) ? summary.auth.email ?? null : null,
     streak: summary.streak,
     premiumPlan: summary.premiumPlan,
+    plusActive: summary.plusActive,
+    plusUntilMs: summary.plusUntilMs,
+    vipActive: summary.vipActive,
+    vipUntilMs: summary.vipUntilMs,
     language: summary.language,
     appVersion: summary.appVersion,
     platform: summary.platform,

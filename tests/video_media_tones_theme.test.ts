@@ -37,6 +37,21 @@ describe('videoMediaTones', () => {
     expect(bad).toEqual([]);
   });
 
+  it('кружок «играть»: плотность не ниже 45 %, значок на нём поверх БЕЛОГО кадра ≥ 3 — запас узкий (3,19 в dark/graphite/calm), ниже плотность нельзя', () => {
+    const bad: string[] = [];
+    for (const variant of VARIANTS) {
+      for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
+        const tones = videoMediaTonesForTheme(id, variant as never);
+        const at = `${id} ${variant.appearance}/${variant.level}`;
+        const alpha = Number(/^rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)$/.exec(tones.playCircle)?.[1] ?? 0);
+        if (alpha < 0.45) bad.push(`${at}: плотность кружка ${alpha} < 0,45`);
+        const ratio = paletteContrast(tones.ink.slice(0, 7), over(tones.playCircle, '#FFFFFF'));
+        if (ratio < 3) bad.push(`${at}: значок «играть» поверх белого кадра ${ratio.toFixed(2)} < 3`);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('файлы видео берут цвета поверх кадра из video_media_tones — без своих литералов и пометок theme-exempt', () => {
     const root = path.resolve(__dirname, '..');
     for (const rel of [

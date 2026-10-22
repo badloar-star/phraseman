@@ -274,9 +274,6 @@ export default function SpireHomeScreen() {
   if (config === null) return <SpireHomeSkeleton lang={lang} />;
   if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем (правило владельца 18.10): без сети и кэша — спокойная фраза замка, не «Нет интернета»
   if (game.roomLoad?.status === 'paused' && !game.roomLoad.room) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
-  if (showAll && members) {
-    return <View style={s.root}><SpireAllMembers lang={lang} members={members} subtitle={allSubtitle} onBack={closeAll} rankBy={game.rankBy} /></View>;
-  }
 
   const climbReady = game.live && game.tier !== null && game.session === null && game.pending === null;
   return (
@@ -376,6 +373,7 @@ export default function SpireHomeScreen() {
         />
       ) : null}
       <SpireTour lang={lang} visible={game.live && tourSeen === false} onDone={finishTour} />
+      {showAll && members ? <SpireAllMembers lang={lang} members={members} subtitle={allSubtitle} onBack={closeAll} rankBy={game.rankBy} /> : null}{/* зачем (вариант А 22.10): окно поверх вкладки, Пик под ним не размонтируется */}
     </View>
   );
 }

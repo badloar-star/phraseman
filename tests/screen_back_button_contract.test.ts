@@ -74,7 +74,7 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(own.filter((rel) => !allowed.has(rel))).toEqual([]);
     // Переведённый файл обязан уйти из базы (иначе база не уменьшается и долг не виден).
     expect(baseline.files.filter((rel) => !own.includes(rel))).toEqual([]);
-    expect(baseline.files.length).toBeLessThanOrEqual(77); // потолок — только вниз (22.10: 80 → 77 — «Сегодня», теория, слова урока)
+    expect(baseline.files.length).toBeLessThanOrEqual(75); // потолок — только вниз (22.10: 80 → 75 — «Сегодня», теория, слова урока, Пик ×2)
   });
 
   it('корень вкладки, открытый НЕ из нижнего меню, показывает общую «назад» (координатор 22.10: Пик с Главной)', () => {
@@ -91,6 +91,21 @@ describe('кнопка «назад»: одна и в одном месте', ()
     const community = read('app/(tabs)/community.tsx');
     expect(community).toContain("const byMenu = tabEnteredByMenu('/(tabs)/community');");
     expect(community).toContain('{backFromLink ? <ScreenBackButton');
+    // на Пике со «Сценой» видимые вкладки нарисованы в слое — сдвиг передаётся и туда (3·МАКЕТЫ 7961dde6a), иначе палец и рисунок разъедутся
+    expect(community).toContain('tabsInset={backInset}');
+  });
+
+  it('подвиды вкладки открываются полноэкранно, «назад» внутри окна считает верх от экрана (координатор 22.10, вариант А)', () => {
+    expect(button).toContain('export function ScreenOriginReset(');
+    const all = read('components/spire/SpireAllMembers.tsx');
+    expect(all).toContain('<Modal visible animationType="slide" presentationStyle="fullScreen" onRequestClose={onBack}');
+    expect(all).toContain('<ScreenOriginReset>');
+    expect(all).toContain('<ScreenBackButton screen="spire_all"');
+    const step = read('components/spire/SpireStepScreen.tsx');
+    expect(step).toContain('<ScreenOriginReset>');
+    expect(step).toContain('<ScreenBackButton screen="spire_step"');
+    // «Все участники» поверх Пика, а не вместо него — Пик под окном не размонтируется
+    expect(read('components/spire/SpireHomeScreen.tsx')).toContain('{showAll && members ? <SpireAllMembers');
   });
 
   it('экраны, взявшие ScreenBackButton, не держат рядом свою кнопку «назад»', () => {

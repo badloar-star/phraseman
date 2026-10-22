@@ -30,7 +30,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
-import BackGlyph from '../v2/BackGlyph';
+import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenOriginReset } from '../v2/ScreenBackButton';
 
 type Props = Readonly<{
   lang: Lang;
@@ -94,17 +94,10 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
   const counter = Math.min(taskIndex + 1, SPIRE_STEP_TASK_COUNT);
   const fb = feedback && !feedback.ok ? feedback : null;
   return (
-    <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top + 6 }]} testID="spire-step">
+    <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top }]} testID="spire-step">
+      {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место в строке шапки */}
       <View style={s.head}>
-        <V2Pressable
-          onPress={props.onBack}
-          accessibilityRole="button"
-          accessibilityLabel={spireText(lang, 'back')}
-          style={[s.back, { backgroundColor: p.control }, sh.nested]}
-          testID="spire-step-back"
-        >
-          <BackGlyph size={20} color={p.text} />
-        </V2Pressable>
+        <View style={s.backSlot} />
         <View style={s.headText}>
           <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{`${spireGameText(lang, 'step')} ${ctx.stepInFloor + 1}`}</Text>
           <Text style={[s.sub, { color: p.textSecondary }]}>{`${spireText(lang, 'floor')} ${ctx.floor} · ${spireTierName(ctx.tier, lang)}`}</Text>
@@ -112,6 +105,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
         <Hearts lang={lang} hearts={hearts} />
         {/* зачем (spire-009, вердикт Макетов c0cd6e2ae, координатор 18.10): в образце (spire.html, stepHead) шапка ступени — заголовок и сердца, энергии справа нет; «⚡ 2» убрана. Пилюля остаётся на главной Шпиля, проп showEnergy сохранён для вызовов */}
       </View>
+      <ScreenBackButton screen="spire_step" testID="spire-step-back" accessibilityLabel={spireText(lang, 'back')} onPress={props.onBack} />
       <ScrollView contentContainerStyle={[s.content, { paddingBottom: insets.bottom + 32 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
         <View style={s.ringWrap}>
           <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} />
@@ -298,17 +292,20 @@ function SpireStepScreen(props: Readonly<Omit<Props, 'session'> & {
   // зачем (обзор R1 п.1): модалка открывается в тот же тап — сначала подготовка, затем та же модалка показывает ступень.
   return (
     <Modal visible={session !== null || pending !== null} animationType="slide" presentationStyle="fullScreen" onRequestClose={() => exitRef.current?.()} statusBarTranslucent>
+      <ScreenOriginReset>
       {session ? <StepBody key={session.runId} {...rest} session={session} exitRef={exitRef} />
         : pending ? <PendingStepBody key={pending.prepId} lang={rest.lang} pending={pending} studyTarget={rest.studyTarget} showEnergy={rest.showEnergy} onCancel={onCancelPending} exitRef={exitRef} />
           : null}
+      </ScreenOriginReset>
     </Modal>
   );
 }
 
 const s = StyleSheet.create({
   root: { flex: 1 },
-  head: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: V2.screenPad },
-  back: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginRight: 6 },
+  // зачем (закон «назад в одном месте»): строка шапки не ниже общей кнопки — заголовок и сердца по её центру, как .topbar макета
+  head: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: V2.screenPad, minHeight: SCREEN_BACK_SIZE },
+  backSlot: { width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE, marginRight: 6 },
   headText: { flex: 1, minWidth: 0 },
   title: { fontSize: 20, lineHeight: 25, fontWeight: '700' },
   sub: { fontSize: 16, lineHeight: 20, marginTop: 2 },

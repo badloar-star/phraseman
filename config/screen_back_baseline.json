@@ -71,8 +71,6 @@
     "components/mistakes-panel/PanelKit.tsx",
     "components/packs/PackScreenKit.tsx",
     "components/practice/PracticeChrome.tsx",
-    "components/spire/SpireAllMembers.tsx",
-    "components/spire/SpireStepScreen.tsx",
     "components/streak/StreakStagesModal.tsx",
     "components/survey/SurveyRewardPanel.tsx",
     "components/survey/SurveySheetModal.tsx",

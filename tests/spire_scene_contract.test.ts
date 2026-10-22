@@ -149,7 +149,7 @@ async function main(): Promise<void> {
   assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}"), "справа — как раньше; на Пике со «Сценой» — настоящий EnergyBar (аудит F4)");
   assert.ok(community.includes("hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}"), "вкладки: зона касания ≥ 44 и без щелей между ними");
   assert.ok(!community.includes("peakHeader") && !community.includes("SPIRE_SCENE_INK"), "строка вкладок не знает о «Сцене»");
-  assert.ok(community.includes("<SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} />\n      </View>"), "слой «Сцены» — последним в шапке, поверх вкладок, с тем же отступом под часы");
+  assert.ok(community.includes("<SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} tabsInset={backInset} />\n      </View>"), "слой «Сцены» — последним в шапке, поверх вкладок, с тем же отступом под часы");
   assert.ok(read("components/spire/scene/spire_scene_header.tsx").includes("topInset > 0 ? { paddingTop: 12 + topInset } : null"), "рисованные вкладки — на месте настоящих (аудит F5)");
 
   // ── шаг 3b-3: прокрутка Пика гасит цвет шапки тем же механизмом, что маску Главной ──

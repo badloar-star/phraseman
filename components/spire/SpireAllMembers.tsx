@@ -11,19 +11,18 @@
 // ступени); шапка своя, без обрезки текста в одну строку (подпись «камень · N человек»).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { spireZonesFor, type SpireZone } from './spire_zones';
-import V2Pressable from '../v2/V2Pressable';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useSpirePalette } from './useSpirePalette';
-import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
 import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
-import BackGlyph from '../v2/BackGlyph';
+import ScreenBackButton, { SCREEN_BACK_RESERVED, SCREEN_BACK_SIZE, ScreenOriginReset } from '../v2/ScreenBackButton';
 
 export { spireZonesFor };
 import { runeWord } from '../../constants/runes';
@@ -34,7 +33,8 @@ type Zone = SpireZone;
 type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void; rankBy?: SpireRankByView }>;
 
 function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: Props) {
-  const p = useSpirePalette(); const sh = useSpireShadow();
+  const p = useSpirePalette();
+  const insets = useStableSafeAreaInsets();
   const { rows, zones } = useMemo(() => {
     const sorted = spireSortMembers(members, rankBy);
     return { rows: sorted, zones: spireZonesFor(sorted, rankBy) };
@@ -72,11 +72,11 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
   };
 
   return (
-    <View style={s.root} testID="spire-all-screen">
+    // зачем (координатор 22.10, вариант А): подвид вкладки — полноэкранное окно поверх шапки «Друзья/Пик/Наборы»; «назад» — общая кнопка
+    <Modal visible animationType="slide" presentationStyle="fullScreen" onRequestClose={onBack} statusBarTranslucent navigationBarTranslucent>
+    <ScreenOriginReset>
+    <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top }]} testID="spire-all-screen">
       <View style={s.header}>
-        <V2Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={spireText(lang, 'back')} style={[s.back, { backgroundColor: p.control }, sh.nested]} testID="spire-all-back">
-          <BackGlyph size={20} color={p.text} />
-        </V2Pressable>
         <View style={s.headText}>
           <Text accessibilityRole="header" style={[s.headTitle, { color: p.text }]}>{spireText(lang, 'allMembers')}</Text>
           {subtitle ? <Text style={[s.headSub, { color: p.textSecondary }]}>{subtitle}</Text> : null}
@@ -87,14 +87,17 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
         {renderZone('stay', spireText(lang, 'zoneStay'), p.textSecondary)}
         {renderZone('down', spireText(lang, 'zoneDown'), p.wrong)}
       </ScrollView>
+      <ScreenBackButton screen="spire_all" testID="spire-all-back" accessibilityLabel={spireText(lang, 'back')} onPress={onBack} />
     </View>
+    </ScreenOriginReset>
+    </Modal>
   );
 }
 
 const s = StyleSheet.create({
   root: { flex: 1 },
-  header: { paddingHorizontal: V2.screenPad, paddingTop: 12, flexDirection: 'row', alignItems: 'center', gap: 18 },
-  back: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  // зачем (закон «назад в одном месте»): заголовок справа от общей кнопки и по её центру (как .topbar макета)
+  header: { paddingLeft: SCREEN_BACK_RESERVED, paddingRight: V2.screenPad, minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center' },
   headText: { flex: 1, minWidth: 0 },
   headTitle: { fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -0.3 },
   headSub: { fontSize: 16, lineHeight: 20, marginTop: 2 },

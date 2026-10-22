@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 
 import { safeRouterBack } from '../../app/navigation_back';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import { useIsTabPage, useTabTopBleedInset } from '../tab_top_bleed';
+import { TabPageContext, TabTopBleedContext, useIsTabPage, useTabTopBleedInset } from '../tab_top_bleed';
 import BackButton from './BackButton';
 
 /**
@@ -77,3 +77,18 @@ function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibility
 
 const ScreenBackButton = memo(ScreenBackButtonBase);
 export default ScreenBackButton;
+
+/**
+ * Полноэкранный слой (Modal) внутри вкладки: отсчёт верха — снова от верха экрана.
+ *
+ * зачем (координатор 22.10, вариант А: подвиды вкладки — «Все участники», «Шаг» Пика… — открываются полноэкранно поверх шапки вкладки):
+ * контекст React проходит внутрь Modal, и без сброса кнопка внутри окна считала бы себя на странице вкладки (верх 0 или зона часов),
+ * а окно начинается от верха экрана. Оборачивай содержимое такого окна.
+ */
+export function ScreenOriginReset({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <TabPageContext.Provider value={false}>
+      <TabTopBleedContext.Provider value={0}>{children}</TabTopBleedContext.Provider>
+    </TabPageContext.Provider>
+  );
+}

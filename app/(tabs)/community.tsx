@@ -183,7 +183,7 @@ export default function CommunityTabRoute() {
         </>)}
         {/* зачем (Пик v2, эталон peak-scene-v2.html; координатор 22.10): «Сцена» Пика уходит под вкладки — слой цвета сцены с белыми вкладками и энергией
             поверх этой шапки, гаснет при прокрутке Пика как маска Главной; флаг SPIRE_SCENE_V2_ENABLED выключен или вкладка не «Пик» — слоя нет */}
-        <SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} />
+        <SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} tabsInset={backInset} />
       </View>
       <View style={s.body}>
         {renderSection('friends')}

@@ -6,7 +6,7 @@
  * прогон сторожа доступности (UPDATE_LEARNING_V2_AVAILABILITY) переписывал потолок на 145 — с ним в сборку уехали бы
  * занятия без квитанций прослушивания, либо ворота паритета упали бы на сервере. Потолок меняется ТОЛЬКО сторожем
  * и ТОЛЬКО коммитом; здесь — стоп, если в папке лежит другое число.
- * Вместе с потолком сверяются файлы, которые от него зависят: набор звука сборки и таблица голосов.
+ * (Набор записей сборки и таблица голосов сверялись здесь до 22.10 — удалены вместе с записями, «только TTS».)
  *
  * Без git (сервер EAS получает архив без .git) — проверка невозможна: громкое предупреждение и код 0,
  * настоящая проверка — локально до запуска EAS (release:precheck, репетиция сборки).
@@ -18,10 +18,9 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const LOG = "[V2-CEILING-GATE]";
+// зачем (владелец 22.10, «только TTS»): набор записей сборки и таблица голосов удалены вместе с записями — сверяем потолок.
 const FILES = [
   "app/learning_v2_bundle_availability_v1.generated.ts",
-  "app/learning_v2_bootstrap_audio_assets_v1.generated.ts",
-  "app/learning_v2_factory_single_voice_v1.generated.ts",
 ];
 
 // зачем (сторож store_release_gate_levers): в стор-сборке, где Learning V2 вырезан router.ctx.js, потолок V2 сборку не
@@ -48,9 +47,9 @@ const committed = spawnSync("git", ["show", `HEAD:${FILES[0]}`], { cwd: ROOT, en
 const ceiling = /LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = (\d+);/u.exec(committed.stdout ?? "")?.[1] ?? "нет";
 
 if (drifted.length > 0) {
-  console.error(`${LOG} ОТКАЗ: в рабочей папке потолок/набор звука/таблица голосов НЕ равны закоммиченным (закоммиченный потолок: ${ceiling}).`);
+  console.error(`${LOG} ОТКАЗ: в рабочей папке потолок НЕ равен закоммиченному (закоммиченный потолок: ${ceiling}).`);
   for (const line of drifted) console.error(`${LOG}   отличается: ${line}`);
   console.error(`${LOG} Что делать: вернуть файлы к HEAD (это сгенерированные артефакты) или закоммитить осознанно — потолок меняется только сторожем доступности и только коммитом.`);
   process.exit(1);
 }
-console.log(`${LOG} OK: потолок ${ceiling}, набор звука и таблица голосов в рабочей папке = HEAD`);
+console.log(`${LOG} OK: потолок ${ceiling} в рабочей папке = HEAD`);

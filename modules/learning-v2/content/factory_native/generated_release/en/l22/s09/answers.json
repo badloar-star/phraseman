@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-09:word:phone-case",
+    "correctText": "phone case",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i01",
+    "correctText": "This phone case is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i02",
+    "correctText": "This phone case is mine.",
+    "correctResponseId": "en:lesson-22:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i03",
+    "correctText": "mine",
+    "correctResponseId": "en:lesson-22:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:word:travel-mug",
+    "correctText": "travel mug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i04",
+    "correctText": "This travel mug is yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i05",
+    "correctText": "This travel mug is yours.",
+    "correctResponseId": "en:lesson-22:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i06",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-22:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:word:woolly-hat",
+    "correctText": "woolly hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i07",
+    "correctText": "This woolly hat is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i08",
+    "correctText": "This woolly hat is hers.",
+    "correctResponseId": "en:lesson-22:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i09",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-22:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:word:rain-jacket",
+    "correctText": "rain jacket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i10",
+    "correctText": "This rain jacket is ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i11",
+    "correctText": "This rain jacket is ours.",
+    "correctResponseId": "en:lesson-22:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i12",
+    "correctText": "ours",
+    "correctResponseId": "en:lesson-22:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i13",
+    "correctText": "en:lesson-22:session-09:i13:p1=phone case\nen:lesson-22:session-09:i13:p2=travel mug\nen:lesson-22:session-09:i13:p3=woolly hat\nen:lesson-22:session-09:i13:p4=rain jacket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i16",
+    "correctText": "The phone case is yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-09:i17",
+    "correctText": "The rain jacket is mine.",
+    "correctResponseId": null
+  }
+]

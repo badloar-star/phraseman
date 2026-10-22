@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "possessive pronoun without following noun",
+    "uk": "possessive pronoun without following noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Общее кресло",
+        "uk": "Спільне крісло"
+      },
+      "bodyByLocale": {
+        "ru": "Camping chair — складное кресло, которое берут на отдых на природе. В примере семья пользуется одним общим креслом, поэтому говорим ours — наше. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Camping chair — складане крісло, яке беруть на відпочинок на природі. У прикладі родина користується одним спільним кріслом, тому кажемо ours — наше. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-10:intro1:r1",
+              "text": "This camping chair is ours."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro1:r2",
+              "text": "This camping chair is our."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro1:r3",
+              "text": "This camping chair is us."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-10:intro1:r1",
+              "text": "This camping chair is ours."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro1:r2",
+              "text": "This camping chair is our."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro1:r3",
+              "text": "This camping chair is us."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка и кроссовки",
+        "uk": "Сумка й кросівки"
+      },
+      "bodyByLocale": {
+        "ru": "Gym bag — сумка для вещей в спортзал; это более конкретное название, чем sports bag. Trainers — обычное британское слово «кроссовки». Американское sneakers уже знакомо; речь о том же виде обуви, а не о новой вещи. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Gym bag — сумка для речей у спортзал; це конкретніша назва, ніж sports bag. Trainers — звичайне британське слово «кросівки». Американське sneakers уже знайоме; йдеться про той самий вид взуття, а не про нову річ. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-10:intro2:r1",
+              "text": "This gym bag is yours."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro2:r2",
+              "text": "This gym bag is your."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro2:r3",
+              "text": "This gym bag is you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-10:intro2:r1",
+              "text": "This gym bag is yours."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro2:r2",
+              "text": "This gym bag is your."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro2:r3",
+              "text": "This gym bag is you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Её коврик",
+        "uk": "Її килимок"
+      },
+      "bodyByLocale": {
+        "ru": "Yoga mat — коврик для йоги, конкретный вид exercise mat. Hers заменяет her mat — «её коврик». В These trainers are mine слово mine тоже не меняется: оно подходит и для одной вещи, и для нескольких. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Yoga mat — килимок для йоги, конкретний вид exercise mat. Hers замінює her mat — «її килимок». У These trainers are mine слово mine теж не змінюється: воно підходить і для однієї речі, і для кількох. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-10:intro3:r1",
+              "text": "This yoga mat is hers."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro3:r2",
+              "text": "This yoga mat is her."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro3:r3",
+              "text": "This yoga mat is she."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-10:intro3:r1",
+              "text": "This yoga mat is hers."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro3:r2",
+              "text": "This yoga mat is her."
+            },
+            {
+              "responseId": "en:lesson-22:session-10:intro3:r3",
+              "text": "This yoga mat is she."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4aaf865a5aa6147c13b2d767bd326600fc2a68163f3decc908c7321d881a83ea"
+}

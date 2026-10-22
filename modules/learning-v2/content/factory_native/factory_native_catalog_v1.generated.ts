@@ -8295,4 +8295,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + it / them","uk":"verb + it / them"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 9,
+    sourceFingerprint: "6eaf1cc4f79e39149ac8e05f9ca7a5a2e681762d14a58d259327fe8188070efb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"possessive pronoun without following noun","uk":"possessive pronoun without following noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 10,
+    sourceFingerprint: "6a0770ab56ce48352e3b2d5cfe21da9e97d4600629e79967015c312aa7b01b7d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"possessive pronoun without following noun","uk":"possessive pronoun without following noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

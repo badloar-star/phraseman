@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "possessive pronoun without following noun",
+    "uk": "possessive pronoun without following noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мой чехол",
+        "uk": "Мій чохол"
+      },
+      "bodyByLocale": {
+        "ru": "Phone case — чехол для телефона, который защищает его корпус. Вы показываете свой чехол и называете владельца: mine — мой. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Phone case — чохол для телефона, який захищає його корпус. Ви показуєте свій чохол і називаєте власника: mine — мій. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-09:intro1:r1",
+              "text": "This phone case is mine."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro1:r2",
+              "text": "This phone case is my."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro1:r3",
+              "text": "This phone case is me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-09:intro1:r1",
+              "text": "This phone case is mine."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro1:r2",
+              "text": "This phone case is my."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro1:r3",
+              "text": "This phone case is me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Твоя кружка и её шапка",
+        "uk": "Твоя чашка та її шапка"
+      },
+      "bodyByLocale": {
+        "ru": "Travel mug — дорожная кружка, обычно с крышкой, чтобы брать напиток с собой. Woolly hat — тёплая вязаная шапка. В примерах кружка принадлежит собеседнику, а шапка — Анне. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Travel mug — дорожня чашка, зазвичай із кришкою, щоб брати напій із собою. Woolly hat — тепла в’язана шапка. У прикладах чашка належить співрозмовнику, а шапка — Анні. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-09:intro2:r1",
+              "text": "This travel mug is yours."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro2:r2",
+              "text": "This travel mug is your."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro2:r3",
+              "text": "This travel mug is you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-09:intro2:r1",
+              "text": "This travel mug is yours."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro2:r2",
+              "text": "This travel mug is your."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro2:r3",
+              "text": "This travel mug is you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Наша куртка",
+        "uk": "Наша куртка"
+      },
+      "bodyByLocale": {
+        "ru": "Rain jacket — куртка от дождя. Raincoat, которое вы уже знаете, — плащ или длинная одежда от дождя, а jacket обычно короче. Ours означает «наш / наша / наше / наши»: форма не зависит от рода вещи. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Rain jacket — куртка від дощу. Raincoat, яке ви вже знаєте, — плащ або довгий одяг від дощу, а jacket зазвичай коротша. Ours означає «наш / наша / наше / наші»: форма не залежить від роду речі. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-09:intro3:r1",
+              "text": "This rain jacket is ours."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro3:r2",
+              "text": "This rain jacket is our."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro3:r3",
+              "text": "This rain jacket is us."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-09:intro3:r1",
+              "text": "This rain jacket is ours."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro3:r2",
+              "text": "This rain jacket is our."
+            },
+            {
+              "responseId": "en:lesson-22:session-09:intro3:r3",
+              "text": "This rain jacket is us."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2a9134efaca57fee0dd4ea70358e73bd3fad83044e6c72824b9af62f466e78a7"
+}

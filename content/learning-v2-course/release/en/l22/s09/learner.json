@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-09:word:phone-case",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — phone case",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:word:phone-case:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — phone case",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:word:phone-case:audio",
+          "transcript": "phone case"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:word:phone-case:r1",
+            "targetText": "phone case",
+            "meaningByLocale": {
+              "ru": "чехол для телефона.",
+              "uk": "чохол для телефона."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "phone case",
+          "definitionByLocale": {
+            "ru": "чехол для телефона.",
+            "uk": "чохол для телефона."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чехол принадлежит вам. Скажите: «Этот чехол для телефона — мой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чехол принадлежит вам. Скажите: «Этот чехол для телефона — мой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This phone case is mine.",
+        "localizedMeaning": {
+          "ru": "Чехол принадлежит вам. Скажите: «Этот чехол для телефона — мой»",
+          "uk": "Чохол належить вам. Скажіть: «Цей чохол для телефона — мій»"
+        },
+        "orderedTokens": [
+          "This",
+          "phone",
+          "case",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i02:r1",
+          "text": "This phone case is mine."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i02:r2",
+          "text": "That phone case is mine."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i02:r3",
+          "text": "This phone case is not mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i02:audio",
+          "transcript": "This phone case is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:i02:r1",
+            "targetText": "This phone case is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i02:r2",
+            "targetText": "That phone case is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i02:r3",
+            "targetText": "This phone case is not mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This phone case is mine.",
+              "uk": "У записі звучить This phone case is mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This phone case is mine.",
+              "uk": "У записі звучить This phone case is mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i03:r1",
+          "text": "mine"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i03:r2",
+          "text": "my"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i03:r3",
+          "text": "me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This phone case is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-09:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i03:r3",
+            "text": "me"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:word:travel-mug",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — travel mug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:word:travel-mug:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — travel mug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:word:travel-mug:audio",
+          "transcript": "travel mug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:word:travel-mug:r1",
+            "targetText": "travel mug",
+            "meaningByLocale": {
+              "ru": "дорожная кружка.",
+              "uk": "дорожня чашка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "travel mug",
+          "definitionByLocale": {
+            "ru": "дорожная кружка.",
+            "uk": "дорожня чашка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кружка принадлежит собеседнику. Скажите: «Эта дорожная кружка — твоя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кружка принадлежит собеседнику. Скажите: «Эта дорожная кружка — твоя»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This travel mug is yours.",
+        "localizedMeaning": {
+          "ru": "Кружка принадлежит собеседнику. Скажите: «Эта дорожная кружка — твоя»",
+          "uk": "Чашка належить співрозмовнику. Скажіть: «Ця дорожня чашка — твоя»"
+        },
+        "orderedTokens": [
+          "This",
+          "travel",
+          "mug",
+          "is",
+          "yours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i05:r1",
+          "text": "This travel mug is yours."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i05:r2",
+          "text": "That travel mug is yours."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i05:r3",
+          "text": "This travel mug is not yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i05:audio",
+          "transcript": "This travel mug is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:i05:r1",
+            "targetText": "This travel mug is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i05:r2",
+            "targetText": "That travel mug is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i05:r3",
+            "targetText": "This travel mug is not yours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This travel mug is yours.",
+              "uk": "У записі звучить This travel mug is yours."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This travel mug is yours.",
+              "uk": "У записі звучить This travel mug is yours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i06:r1",
+          "text": "yours"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i06:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i06:r3",
+          "text": "you"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This travel mug is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-09:i06:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i06:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i06:r3",
+            "text": "you"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:word:woolly-hat",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — woolly hat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:word:woolly-hat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — woolly hat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:word:woolly-hat:audio",
+          "transcript": "woolly hat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:word:woolly-hat:r1",
+            "targetText": "woolly hat",
+            "meaningByLocale": {
+              "ru": "тёплая вязаная шапка.",
+              "uk": "тепла в’язана шапка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "woolly hat",
+          "definitionByLocale": {
+            "ru": "тёплая вязаная шапка.",
+            "uk": "тепла в’язана шапка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Шапка принадлежит Анне. Скажите: «Эта тёплая вязаная шапка — её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шапка принадлежит Анне. Скажите: «Эта тёплая вязаная шапка — её»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This woolly hat is hers.",
+        "localizedMeaning": {
+          "ru": "Шапка принадлежит Анне. Скажите: «Эта тёплая вязаная шапка — её»",
+          "uk": "Шапка належить Анні. Скажіть: «Ця тепла в’язана шапка — її»"
+        },
+        "orderedTokens": [
+          "This",
+          "woolly",
+          "hat",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i08:r1",
+          "text": "This woolly hat is hers."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i08:r2",
+          "text": "That woolly hat is hers."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i08:r3",
+          "text": "This woolly hat is not hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i08:audio",
+          "transcript": "This woolly hat is hers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:i08:r1",
+            "targetText": "This woolly hat is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i08:r2",
+            "targetText": "That woolly hat is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i08:r3",
+            "targetText": "This woolly hat is not hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This woolly hat is hers.",
+              "uk": "У записі звучить This woolly hat is hers."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This woolly hat is hers.",
+              "uk": "У записі звучить This woolly hat is hers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i09:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i09:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i09:r3",
+          "text": "she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This woolly hat is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-09:i09:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i09:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i09:r3",
+            "text": "she"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:word:rain-jacket",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rain jacket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:word:rain-jacket:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rain jacket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:word:rain-jacket:audio",
+          "transcript": "rain jacket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:word:rain-jacket:r1",
+            "targetText": "rain jacket",
+            "meaningByLocale": {
+              "ru": "куртка от дождя.",
+              "uk": "куртка від дощу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rain jacket",
+          "definitionByLocale": {
+            "ru": "куртка от дождя.",
+            "uk": "куртка від дощу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Куртка общая для вашей семьи. Скажите: «Эта куртка от дождя — наша»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Куртка общая для вашей семьи. Скажите: «Эта куртка от дождя — наша»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This rain jacket is ours.",
+        "localizedMeaning": {
+          "ru": "Куртка общая для вашей семьи. Скажите: «Эта куртка от дождя — наша»",
+          "uk": "Куртка спільна для вашої родини. Скажіть: «Ця куртка від дощу — наша»"
+        },
+        "orderedTokens": [
+          "This",
+          "rain",
+          "jacket",
+          "is",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i11:r1",
+          "text": "This rain jacket is ours."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i11:r2",
+          "text": "That rain jacket is ours."
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i11:r3",
+          "text": "This rain jacket is not ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i11:audio",
+          "transcript": "This rain jacket is ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-09:i11:r1",
+            "targetText": "This rain jacket is ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i11:r2",
+            "targetText": "That rain jacket is ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i11:r3",
+            "targetText": "This rain jacket is not ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This rain jacket is ours.",
+              "uk": "У записі звучить This rain jacket is ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This rain jacket is ours.",
+              "uk": "У записі звучить This rain jacket is ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-09:i12:r1",
+          "text": "ours"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i12:r2",
+          "text": "our"
+        },
+        {
+          "responseId": "en:lesson-22:session-09:i12:r3",
+          "text": "us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This rain jacket is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-09:i12:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i12:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i12:r3",
+            "text": "us"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-09:i13:p1",
+            "target": "phone case",
+            "meaningByLocale": {
+              "ru": "чехол для телефона",
+              "uk": "чохол для телефона"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-09:i13:p2",
+            "target": "travel mug",
+            "meaningByLocale": {
+              "ru": "дорожная кружка",
+              "uk": "дорожня чашка"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-09:i13:p3",
+            "target": "woolly hat",
+            "meaningByLocale": {
+              "ru": "тёплая вязаная шапка",
+              "uk": "тепла в’язана шапка"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-09:i13:p4",
+            "target": "rain jacket",
+            "meaningByLocale": {
+              "ru": "куртка от дождя",
+              "uk": "куртка від дощу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "phone case",
+          "travel mug",
+          "woolly hat",
+          "rain jacket"
+        ],
+        "rightColumn": [
+          "чехол для телефона",
+          "дорожная кружка",
+          "тёплая вязаная шапка",
+          "куртка от дождя"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: разговор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: разговор",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: праздник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: праздник",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Чехол принадлежит собеседнику. Скажите: «Чехол для телефона — твой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Чехол принадлежит собеседнику. Скажите: «Чехол для телефона — твой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i16:audio",
+          "transcript": "The phone case is yours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The phone case is yours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-09:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Куртка принадлежит вам. Скажите: «Куртка от дождя — моя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Куртка принадлежит вам. Скажите: «Куртка от дождя — моя»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-09:i17:audio",
+          "transcript": "The rain jacket is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The rain jacket is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f97755ae72fb82b72a9eb2ee167a4f703968f1c0ce42fdfbc3b813f4c5841e20"
+}

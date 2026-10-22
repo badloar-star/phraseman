@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-10:word:camping-chair",
+    "correctText": "camping chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i01",
+    "correctText": "This camping chair is ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i02",
+    "correctText": "This camping chair is ours.",
+    "correctResponseId": "en:lesson-22:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i03",
+    "correctText": "ours",
+    "correctResponseId": "en:lesson-22:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:word:gym-bag",
+    "correctText": "gym bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i04",
+    "correctText": "This gym bag is yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i05",
+    "correctText": "This gym bag is yours.",
+    "correctResponseId": "en:lesson-22:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i06",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-22:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:word:trainers",
+    "correctText": "trainers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i07",
+    "correctText": "These trainers are mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i08",
+    "correctText": "These trainers are mine.",
+    "correctResponseId": "en:lesson-22:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i09",
+    "correctText": "mine",
+    "correctResponseId": "en:lesson-22:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:word:yoga-mat",
+    "correctText": "yoga mat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i10",
+    "correctText": "This yoga mat is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i11",
+    "correctText": "This yoga mat is hers.",
+    "correctResponseId": "en:lesson-22:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i12",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-22:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i13",
+    "correctText": "en:lesson-22:session-10:i13:p1=camping chair\nen:lesson-22:session-10:i13:p2=gym bag\nen:lesson-22:session-10:i13:p3=trainers\nen:lesson-22:session-10:i13:p4=yoga mat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i16",
+    "correctText": "The trainers are yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-10:i17",
+    "correctText": "The yoga mat is mine.",
+    "correctResponseId": null
+  }
+]

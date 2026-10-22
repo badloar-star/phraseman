@@ -120,8 +120,8 @@ export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColo
     accent: t.accentText,
     cta: ctaShapeOk ? t.cta : t.text,
     ctaInk: ctaShapeOk ? t.ctaInk : textZone,
-    glass: alphaHex(hex6(t.text, '#FFFFFF'), 0.12),
-    track: alphaHex(hex6(t.text, '#FFFFFF'), 0.18),
+    glass: alphaHex(hex6(t.text, bottom), 0.12), // зачем (modal_theme_hardcode_guard 22.10): запасной цвет — тон фона сцены, а не литерал #FFFFFF; t.text всегда шестизначный hex
+    track: alphaHex(hex6(t.text, bottom), 0.18),
     textZone,
     isLight: t.isLight,
   });

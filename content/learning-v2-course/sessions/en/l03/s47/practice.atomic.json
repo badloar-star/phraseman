@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте брата и выберите фразу",
+        "prompt": "Послушайте и выберите — брат выбирает вещи в магазине инструментов",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-47:i02:r1",
@@ -73,7 +73,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-47:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте брата и выберите фразу",
+        "accessibilityLabel": "Послушайте и выберите — брат выбирает вещи в магазине инструментов",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -103,7 +103,7 @@
             {
               "responseId": "en:lesson-03:session-47:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте брата и выберите фразу",
+              "testedDimension": "Послушайте и выберите — брат выбирает вещи в магазине инструментов",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `A`, а в этом варианте — `The`.",
                 "uk": "У записі перше слово — `A`, а в цьому варіанті — `The`."
@@ -112,7 +112,7 @@
             {
               "responseId": "en:lesson-03:session-47:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте брата и выберите фразу",
+              "testedDimension": "Послушайте и выберите — брат выбирает вещи в магазине инструментов",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
                 "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
@@ -552,7 +552,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте продавца и выберите фразу",
+        "prompt": "Послушайте и выберите — вам показывает инструменты продавец",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-47:i09:r1",
@@ -571,7 +571,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-47:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте продавца и выберите фразу",
+        "accessibilityLabel": "Послушайте и выберите — вам показывает инструменты продавец",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -601,7 +601,7 @@
             {
               "responseId": "en:lesson-03:session-47:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте продавца и выберите фразу",
+              "testedDimension": "Послушайте и выберите — вам показывает инструменты продавец",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).",
                 "uk": "У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко)."
@@ -610,7 +610,7 @@
             {
               "responseId": "en:lesson-03:session-47:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте продавца и выберите фразу",
+              "testedDimension": "Послушайте и выберите — вам показывает инструменты продавец",
               "feedbackByLocale": {
                 "ru": "В записи перед `screw` стоит `a`, а в этом варианте — `the`.",
                 "uk": "У записі перед `screw` стоїть `a`, а в цьому варіанті — `the`."
@@ -982,7 +982,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что говорит брат",
+        "prompt": "Послушайте и выберите — брат берёт товары для ремонта полки",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-47:i15:r1",
@@ -1001,7 +1001,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-47:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что говорит брат",
+        "accessibilityLabel": "Послушайте и выберите — брат берёт товары для ремонта полки",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1031,7 +1031,7 @@
             {
               "responseId": "en:lesson-03:session-47:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит брат",
+              "testedDimension": "Послушайте и выберите — брат берёт товары для ремонта полки",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `Wrenches`, а в этом варианте — `The`.",
                 "uk": "У записі перше слово — `Wrenches`, а в цьому варіанті — `The`."
@@ -1040,7 +1040,7 @@
             {
               "responseId": "en:lesson-03:session-47:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит брат",
+              "testedDimension": "Послушайте и выберите — брат берёт товары для ремонта полки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `expensive`, а в этом варианте — `cheap`.",
                 "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`."

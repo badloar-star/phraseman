@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-09:word:oven; family: word_card -->
 > **oven** — духовка, печь для запекания. Is it an oven? — «Это духовка?» О кухонной технике, в которой запекают.
 
-**4 · Послушайте, что продавец говорит о технике в кухонном зале**
+**4 · Послушайте и выберите — продавец ведёт вас с сестрой по залу**
 <!-- interaction_id: en:lesson-03:session-09:i02; family: listen_choose -->
 🔊 *It is an oven.* → **It is an oven.** · It is an armchair. · It is a lamp.
 - It is an armchair. — *В записи последнее слово — `oven`, а в этом варианте — `armchair`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *С it нужно is: Yes, it is.*
 - are — *С it нужно is: Yes, it is.*
 
-**13 · Послушайте, что сестра говорит о вещи у выхода**
+**13 · Послушайте и выберите — сестра стоит у выхода из зала**
 <!-- interaction_id: en:lesson-03:session-09:i09; family: listen_choose -->
 🔊 *It's an umbrella.* → **It's an umbrella.** · It's an armchair. · It's an oven.
 - It's an armchair. — *В записи последнее слово — `umbrella`, а в этом варианте — `armchair`.*
@@ -139,7 +139,7 @@ It is ___ lamp. → **a** · an · is
 - an — *Слово lamp начинается с согласного звука, поэтому здесь a: It is a lamp.*
 - is — *Слово is уже стоит перед пропуском. Перед lamp нужно a.*
 
-**19 · Послушайте вопрос сестры**
+**19 · Послушайте и выберите — вы осматриваете зал, сестра спрашивает**
 <!-- interaction_id: en:lesson-03:session-09:i15; family: listen_choose -->
 🔊 *Is it an elevator?* → **Is it an elevator?** · Is it an oven? · Is it an umbrella?
 - Is it an oven? — *В записи последнее слово — `elevator`, а в этом варианте — `oven`.*

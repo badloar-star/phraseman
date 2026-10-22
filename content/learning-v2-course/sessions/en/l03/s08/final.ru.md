@@ -67,9 +67,9 @@
 
 **4 · Послушайте, что подруга говорит о вещах в коридоре**
 <!-- interaction_id: en:lesson-03:session-08:i02; family: listen_choose -->
-🔊 *It is a bucket.* → **It is a bucket.** · It is a ladder. · It is a hammer.
-- It is a ladder. — *В записи последнее слово — `bucket`, а в этом варианте — `ladder`.*
-- It is a hammer. — *В записи последнее слово — `bucket`, а в этом варианте — `hammer`.*
+🔊 *It is a hammer.* → **It is a hammer.** · It is a ladder. · It is a bucket.
+- It is a ladder. — *В записи последнее слово — `hammer`, а в этом варианте — `ladder`.*
+- It is a bucket. — *В записи последнее слово — `hammer`, а в этом варианте — `bucket`.*
 
 **5 · Карточка слова — bucket**
 <!-- interaction_id: en:lesson-03:session-08:word:bucket; family: word_card -->
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**13 · Послушайте вопрос подруги**
+**13 · Послушайте и выберите — подруга спрашивает, пока вы сверяете список**
 <!-- interaction_id: en:lesson-03:session-08:i09; family: listen_choose -->
 🔊 *Is it a bucket?* → **Is it a bucket?** · Is it a ladder? · Is it a hammer?
 - Is it a ladder? — *В записи последнее слово — `bucket`, а в этом варианте — `ladder`.*
@@ -139,7 +139,7 @@ ___ it a ladder? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a ladder?`.*
 
-**19 · Послушайте, что подруга говорит о полке**
+**19 · Послушайте и выберите — вы достаёте из последней коробки предмет**
 <!-- interaction_id: en:lesson-03:session-08:i15; family: listen_choose -->
 🔊 *It is a shelf.* → **It is a shelf.** · It is a hammer. · It is a bucket.
 - It is a hammer. — *В записи последнее слово — `shelf`, а в этом варианте — `hammer`.*

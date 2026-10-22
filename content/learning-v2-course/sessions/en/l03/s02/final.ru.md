@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-02:word:bed; family: word_card -->
 > **bed** — кровать. It's a bed — «Это кровать». Односпальная, двуспальная, детская — всё a bed.
 
-**4 · Послушайте, что грузчик говорит о мебели**
+**4 · Послушайте и выберите — грузчик заносит вещи в комнату**
 <!-- interaction_id: en:lesson-03:session-02:i02; family: listen_choose -->
 🔊 *It is a bed.* → **It is a bed.** · It is a desk. · It is a sofa.
 - It is a desk. — *В записи последнее слово — `bed`, а в этом варианте — `desk`.*
@@ -105,7 +105,7 @@ Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**12 · Послушайте вопрос грузчика**
+**12 · Послушайте и выберите — грузчик стоит в дверях с вещью в руках**
 <!-- interaction_id: en:lesson-03:session-02:i09; family: listen_choose -->
 🔊 *Is it a sofa?* → **Is it a sofa?** · Is it a bed? · Is it a desk?
 - Is it a bed? — *В записи последнее слово — `sofa`, а в этом варианте — `bed`.*
@@ -139,7 +139,7 @@ ___ it a bed? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a bed?`.*
 
-**19 · Послушайте, что подруга говорит о подушке**
+**19 · Послушайте и выберите — в комнате подруга разбирает вещи**
 <!-- interaction_id: en:lesson-03:session-02:i15; family: listen_choose -->
 🔊 *It is a pillow.* → **It is a pillow.** · It is a bed. · It is a sofa.
 - It is a bed. — *В записи последнее слово — `pillow`, а в этом варианте — `bed`.*

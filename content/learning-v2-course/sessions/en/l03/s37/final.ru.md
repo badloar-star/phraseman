@@ -57,7 +57,7 @@
 Плитки: `big` `doors` `are` `These` `door` → **These doors are big.**
 *(плитка `door` лишняя: здесь нужно `doors` — `These doors are big.`)*
 
-**2 · Послушайте, что говорит учительница о стене**
+**2 · Послушайте и выберите — учительница показывает вам соседние здания**
 <!-- interaction_id: en:lesson-03:session-37:i02; family: listen_choose -->
 🔊 *That wall is old.* → **That wall is old.** · Those walls are old. · This wall is old.
 - Those walls are old. — *В записи `That wall` — стена одна, а в этом варианте `Those walls` — несколько.*
@@ -101,7 +101,7 @@ ___ → **entrance** · door · window
 - door — *door — это дверь, а место, где заходят в здание, называется entrance.*
 - window — *window — это окно, а место, где заходят в здание, называется entrance.*
 
-**11 · Послушайте, что говорит брат о здании**
+**11 · Послушайте и выберите — брат осматривает учебный центр вместе с вами**
 <!-- interaction_id: en:lesson-03:session-37:i09; family: listen_choose -->
 🔊 *This building is big.* → **This building is big.** · These buildings are big. · That building is big.
 - These buildings are big. — *В записи `This building` — здание одно, а в этом варианте `These buildings` — несколько.*
@@ -139,7 +139,7 @@ ___ → **yard** · wall · floor
 - wall — *wall — это стена, а открытое место между зданиями называется yard.*
 - floor — *floor — это пол, а открытое место между зданиями называется yard.*
 
-**19 · Послушайте вопрос брата о выходе**
+**19 · Послушайте и выберите — осматривая здания, брат задаёт вопрос**
 <!-- interaction_id: en:lesson-03:session-37:i15; family: listen_choose -->
 🔊 *Is that exit open?* → **Is that exit open?** · Are those exits open? · Is that exit closed?
 - Are those exits open? — *В записи `Is that exit` — выход один, а в этом варианте `Are those exits` — несколько.*

@@ -57,7 +57,7 @@
 Плитки: `new` `pictures` `are` `These` `picture` → **These pictures are new.**
 *(плитка `picture` лишняя: здесь нужно `pictures` — `These pictures are new.`)*
 
-**2 · Послушайте вопрос соседки о зеркале**
+**2 · Послушайте и выберите — соседка выбирает с вами украшения для стены**
 <!-- interaction_id: en:lesson-03:session-35:i02; family: listen_choose -->
 🔊 *Is this mirror big?* → **Is this mirror big?** · Are these mirrors big? · Is this mirror old?
 - Are these mirrors big? — *В записи `Is this mirror` — зеркало одно, а в этом варианте `Are these mirrors` — несколько.*
@@ -101,7 +101,7 @@ ___ → **frame** · mirror · shelf
 - mirror — *mirror — это зеркало, а обрамление для снимка называется frame.*
 - shelf — *shelf — это полка, а обрамление для снимка называется frame.*
 
-**11 · Послушайте, что говорит соседка о снимках**
+**11 · Послушайте и выберите — вы выбираете украшения, соседка говорит**
 <!-- interaction_id: en:lesson-03:session-35:i09; family: listen_choose -->
 🔊 *This photo is old.* → **This photo is old.** · These photos are old. · This photo is new.
 - These photos are old. — *В записи `This photo` — снимок один, а в этом варианте `These photos` — несколько.*
@@ -139,7 +139,7 @@ ___ → **map** · clock · mirror
 - clock — *clock — это часы, а рисунок города с улицами называется map.*
 - mirror — *mirror — это зеркало, а рисунок города с улицами называется map.*
 
-**19 · Послушайте вопрос брата об альбоме**
+**19 · Послушайте и выберите — брат листает вещи рядом с вами**
 <!-- interaction_id: en:lesson-03:session-35:i15; family: listen_choose -->
 🔊 *Is this album new?* → **Is this album new?** · Are these albums new? · Is this album old?
 - Are these albums new? — *В записи `Is this album` — альбом один, а в этом варианте `Are these albums` — несколько.*

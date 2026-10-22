@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-11:word:uniform; family: word_card -->
 > **uniform** — форма, одинаковая рабочая или школьная одежда. Is it a uniform? — «Это форма?» О форме монтажника, врача, школьника.
 
-**4 · Послушайте, что сотрудница говорит о вещи на стойке**
+**4 · Послушайте и выберите — сотрудница за стойкой уточняет детали**
 <!-- interaction_id: en:lesson-03:session-11:i02; family: listen_choose -->
 🔊 *It is a uniform.* → **It is a uniform.** · It is an hour. · It is an armchair.
 - It is an hour. — *В записи последнее слово — `uniform`, а в этом варианте — `hour`.*
@@ -109,7 +109,7 @@ It is ___ utensil. → **a** · an · is
 - an — *Слово utensil читается «юэнсил»: первый звук «й», поэтому a.*
 - is — *Слово is уже стоит перед пропуском. Перед utensil нужно a.*
 
-**13 · Послушайте вопрос сестры**
+**13 · Послушайте и выберите — сестра спрашивает, пока вы ждёте у стойки**
 <!-- interaction_id: en:lesson-03:session-11:i09; family: listen_choose -->
 🔊 *Is it a euro?* → **Is it a euro?** · Is it an hour? · Is it a uniform?
 - Is it an hour? — *В записи последнее слово — `euro`, а в этом варианте — `hour`.*
@@ -139,7 +139,7 @@ Yes, it ___. → **is** · am · are
 - am — *С it нужно is: Yes, it is.*
 - are — *С it нужно is: Yes, it is.*
 
-**19 · Послушайте, что говорит сотрудница**
+**19 · Послушайте и выберите — сотрудница за стойкой снова обращается к вам**
 <!-- interaction_id: en:lesson-03:session-11:i15; family: listen_choose -->
 🔊 *It is an hour.* → **It is an hour.** · It is a uniform. · It is a utensil.
 - It is a uniform. — *В записи последнее слово — `hour`, а в этом варианте — `uniform`.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-14:word:salad; family: word_card -->
 > **salad** — салат, блюдо из нарезанных овощей или других продуктов. Is it a salad? — «Это салат?» О салате из овощей, с курицей, с сыром.
 
-**4 · Послушайте, что официантка говорит о блюде в меню**
+**4 · Послушайте и выберите — официантка принимает у вас заказ**
 <!-- interaction_id: en:lesson-03:session-14:i02; family: listen_choose -->
 🔊 *It is a salad.* → **It is a salad.** · It is a sandwich. · It is a teapot.
 - It is a sandwich. — *В записи последнее слово — `salad`, а в этом варианте — `sandwich`.*
@@ -109,7 +109,7 @@ No, it ___ not a sandwich. → **is** · am · are
 - am — *С it нужно is: No, it is not a sandwich.*
 - are — *С it нужно is: No, it is not a sandwich.*
 
-**13 · Послушайте вопрос сестры**
+**13 · Послушайте и выберите — сестра изучает меню вместе с вами**
 <!-- interaction_id: en:lesson-03:session-14:i09; family: listen_choose -->
 🔊 *Is it an omelette?* → **Is it an omelette?** · Is it a salad? · Is it a sandwich?
 - Is it a salad? — *В записи последнее слово — `omelette`, а в этом варианте — `salad`.*
@@ -139,7 +139,7 @@ It is ___ egg. → **an** · a · is
 - a — *Слово egg начинается с гласного звука, поэтому здесь an.*
 - is — *Слово is уже стоит перед пропуском. Перед egg нужно an.*
 
-**19 · Послушайте, что говорит официантка**
+**19 · Послушайте и выберите — к вашему столику подходит официантка**
 <!-- interaction_id: en:lesson-03:session-14:i15; family: listen_choose -->
 🔊 *It's an omelette.* → **It's an omelette.** · It's an egg. · It's a salad.
 - It's an egg. — *В записи последнее слово — `omelette`, а в этом варианте — `egg`.*

@@ -79,7 +79,7 @@ ___ → **tray** · mat · bowl
 - mat — *mat — это коврик, а плоский предмет для чашек называется tray.*
 - bowl — *bowl — это миска, а плоский предмет для чашек называется tray.*
 
-**7 · Послушайте, что продавец говорит о ковриках**
+**7 · Послушайте и выберите — продавец показывает вам последние мелочи**
 <!-- interaction_id: en:lesson-03:session-56:i05; family: listen_choose -->
 🔊 *Those are grey mats.* → **Those are grey mats.** · That is a grey mat. · Those are grey trays.
 - That is a grey mat. — *В записи `Those are` и несколько ковриков, а в этом варианте `That is a` и один коврик.*
@@ -117,7 +117,7 @@ ___ → **bin** · tray · hook
 <!-- interaction_id: en:lesson-03:session-56:i10; family: speed_match -->
 mat — коврик · tray — поднос · curtain — занавеска · towel — полотенце
 
-**15 · Послушайте вопрос продавца**
+**15 · Послушайте и выберите — у полки продавец задаёт вам вопрос**
 <!-- interaction_id: en:lesson-03:session-56:i11; family: listen_choose -->
 🔊 *Is that bin black?* → **Is that bin black?** · Is this bin black? · Is that bin white?
 - Is this bin black? — *В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).*

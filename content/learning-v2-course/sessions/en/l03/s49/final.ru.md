@@ -79,7 +79,7 @@ ___ → **green** · red · dark
 - red — *red — это красный, а трава другого цвета: green.*
 - dark — *dark — это тёмный, а цвет травы называется green.*
 
-**7 · Послушайте, что продавец говорит о лампе**
+**7 · Послушайте и выберите — продавец показывает вам товары по цветам**
 <!-- interaction_id: en:lesson-03:session-49:i05; family: listen_choose -->
 🔊 *It is a green lamp.* → **It is a green lamp.** · It is a red lamp. · It is a green cup.
 - It is a red lamp. — *В записи цвет — `green`, а в этом варианте — `red`.*
@@ -117,7 +117,7 @@ ___ → **brown** · blue · green
 <!-- interaction_id: en:lesson-03:session-49:i10; family: speed_match -->
 blue — синий, голубой · brown — коричневый · sofa — диван · rug — коврик
 
-**15 · Послушайте вопрос подруги**
+**15 · Послушайте и выберите — подруга выбирает вещи вместе с вами**
 <!-- interaction_id: en:lesson-03:session-49:i11; family: listen_choose -->
 🔊 *Is it a brown cup?* → **Is it a brown cup?** · Is it a brown rug? · Is it a green cup?
 - Is it a brown rug? — *В записи последнее слово — `cup`, а в этом варианте — `rug`.*

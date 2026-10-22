@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-19:word:country; family: word_card -->
 > **country** — страна. Are they countries? — «Это страны?» О стране на карте.
 
-**4 · Послушайте вопрос подруги о надписях на коробке**
+**4 · Послушайте и выберите — подруга читает надписи на упаковке**
 <!-- interaction_id: en:lesson-03:session-19:i02; family: listen_choose -->
 🔊 *Are they countries?* → **Are they countries?** · Is it a country? · Are they batteries?
 - Is it a country? — *В записи последнее слово — `countries`, а в этом варианте — `country`.*
@@ -109,7 +109,7 @@ The stories ___ here. → **are** · is · am
 - is — *Сказок несколько: The stories are here.*
 - am — *С The stories нужно are: The stories are here.*
 
-**13 · Послушайте подругу: она говорит о городах**
+**13 · Послушайте и выберите — вы читаете упаковки, подруга говорит рядом**
 <!-- interaction_id: en:lesson-03:session-19:i09; family: listen_choose -->
 🔊 *The cities are big.* → **The cities are big.** · The cities are old. · The cities are here.
 - The cities are old. — *В записи последнее слово — `big`, а в этом варианте — `old`.*
@@ -139,7 +139,7 @@ Are they ___? → **cities** · city · are
 - city — *В вопросе о нескольких городах тоже нужно cities.*
 - are — *Слово Are уже стоит в начале. В пропуск нужно название городов: cities.*
 
-**19 · Послушайте, что говорит брат**
+**19 · Послушайте и выберите — брат читает надписи на упаковках**
 <!-- interaction_id: en:lesson-03:session-19:i15; family: listen_choose -->
 🔊 *They are stories.* → **They are stories.** · They are batteries. · They are cities.
 - They are batteries. — *В записи последнее слово — `stories`, а в этом варианте — `batteries`.*

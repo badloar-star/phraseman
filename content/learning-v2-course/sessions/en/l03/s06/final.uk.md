@@ -67,9 +67,9 @@
 
 **4 · Послухайте, що консультант каже про товари**
 <!-- interaction_id: en:lesson-03:session-06:i02; family: listen_choose -->
-🔊 *It is a bag.* → **It is a bag.** · It is a tag. · It is a basket.
-- It is a tag. — *У записі останнє слово — `bag`, а в цьому варіанті — `tag`.*
-- It is a basket. — *У записі останнє слово — `bag`, а в цьому варіанті — `basket`.*
+🔊 *It is a tag.* → **It is a tag.** · It is a bag. · It is a basket.
+- It is a bag. — *У записі останнє слово — `tag`, а в цьому варіанті — `bag`.*
+- It is a basket. — *У записі останнє слово — `tag`, а в цьому варіанті — `basket`.*
 
 **5 · Картка слова — trolley**
 <!-- interaction_id: en:lesson-03:session-06:word:trolley; family: word_card -->

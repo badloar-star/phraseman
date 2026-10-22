@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-12:word:clock; family: word_card -->
 > **clock** — часы на стене или на столе. It is not a clock — «Это не часы». О настенных и настольных часах, не о наручных.
 
-**4 · Послушайте продавщицу: она называет вещь в витрине**
+**4 · Послушайте и выберите — продавщица за стеклом расставляет вещи**
 <!-- interaction_id: en:lesson-03:session-12:i02; family: listen_choose -->
 🔊 *It is a clock.* → **It is a clock.** · It is a vase. · It is an armchair.
 - It is a vase. — *В записи последнее слово — `clock`, а в этом варианте — `vase`.*
@@ -109,7 +109,7 @@ No, it ___ not a clock. → **is** · am · are
 - am — *С it нужно is: No, it is not a clock.*
 - are — *С it нужно is: No, it is not a clock.*
 
-**13 · Послушайте вопрос продавщицы**
+**13 · Послушайте и выберите — вы смотрите на витрину, продавщица спрашивает**
 <!-- interaction_id: en:lesson-03:session-12:i09; family: listen_choose -->
 🔊 *Is it a vase?* → **Is it a vase?** · Is it a radio? · Is it an elevator?
 - Is it a radio? — *В записи последнее слово — `vase`, а в этом варианте — `radio`.*
@@ -139,7 +139,7 @@ It is ___ armchair. → **an** · a · is
 - a — *Слово armchair начинается с гласного звука, поэтому здесь an: It is an armchair.*
 - is — *Слово is уже стоит перед пропуском. Перед armchair нужно an.*
 
-**19 · Послушайте, что сестра говорит о находке**
+**19 · Послушайте и выберите — у витрины сестра указывает на находку**
 <!-- interaction_id: en:lesson-03:session-12:i15; family: listen_choose -->
 🔊 *It's a radio.* → **It's a radio.** · It's a vase. · It's an oven.
 - It's a vase. — *В записи последнее слово — `radio`, а в этом варианте — `vase`.*

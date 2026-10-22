@@ -67,9 +67,9 @@
 
 **4 · Послухайте, що майстер каже про ремонт**
 <!-- interaction_id: en:lesson-03:session-05:i02; family: listen_choose -->
-🔊 *It is a crack.* → **It is a crack.** · It is a wall. · It is a floor.
-- It is a wall. — *У записі останнє слово — `crack`, а в цьому варіанті — `wall`.*
-- It is a floor. — *У записі останнє слово — `crack`, а в цьому варіанті — `floor`.*
+🔊 *It is a floor.* → **It is a floor.** · It is a wall. · It is a crack.
+- It is a wall. — *У записі останнє слово — `floor`, а в цьому варіанті — `wall`.*
+- It is a crack. — *У записі останнє слово — `floor`, а в цьому варіанті — `crack`.*
 
 **5 · Картка слова — crack**
 <!-- interaction_id: en:lesson-03:session-05:word:crack; family: word_card -->

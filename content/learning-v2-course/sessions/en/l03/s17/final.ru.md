@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-17:word:coin; family: word_card -->
 > **coin** — монета. Are they coins? — «Это монеты?» О металлических деньгах.
 
-**4 · Послушайте, что курьер говорит о сдаче**
+**4 · Послушайте и выберите — курьер разговаривает с вами у двери**
 <!-- interaction_id: en:lesson-03:session-17:i02; family: listen_choose -->
 🔊 *They are coins.* → **They are coins.** · It is a coin. · They are tickets.
 - It is a coin. — *В записи последнее слово — `coins`, а в этом варианте — `coin`.*
@@ -109,7 +109,7 @@ The pens ___ here. → **are** · is · am
 - is — *Ручек несколько: The pens are here.*
 - am — *С The pens нужно are: The pens are here.*
 
-**13 · Послушайте брата: он говорит о билетах**
+**13 · Послушайте и выберите — курьер перечисляет, что лежит в посылке**
 <!-- interaction_id: en:lesson-03:session-17:i09; family: listen_choose -->
 🔊 *The tickets are new.* → **The tickets are new.** · The tickets are old. · The tickets are here.
 - The tickets are old. — *В записи последнее слово — `new`, а в этом варианте — `old`.*
@@ -139,7 +139,7 @@ Are they ___? → **tickets** · ticket · are
 - ticket — *В вопросе о нескольких билетах тоже нужно tickets с s.*
 - are — *Слово Are уже стоит в начале. В пропуск нужно название билетов: tickets.*
 
-**19 · Послушайте вопрос подруги**
+**19 · Послушайте и выберите — подруга разглядывает посылку вместе с вами**
 <!-- interaction_id: en:lesson-03:session-17:i15; family: listen_choose -->
 🔊 *Are they coins?* → **Are they coins?** · Are they cards? · Are they pens?
 - Are they cards? — *В записи последнее слово — `coins`, а в этом варианте — `cards`.*

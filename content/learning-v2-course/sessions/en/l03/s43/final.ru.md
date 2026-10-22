@@ -57,7 +57,7 @@
 Плитки: `heavy` `are` `Chairs` `The` → **Chairs are heavy.**
 *(плитка `The` лишняя: здесь нужно `Chairs` — `Chairs are heavy.`)*
 
-**2 · Послушайте и выберите фразу**
+**2 · Послушайте и выберите — вы с подругой разбираете стопку вещей**
 <!-- interaction_id: en:lesson-03:session-43:i02; family: listen_choose -->
 🔊 *The bags are new.* → **The bags are new.** · Bags are new. · The bags are old.
 - Bags are new. — *В записи первое слово — `The`, а в этом варианте — `Bags`.*
@@ -101,7 +101,7 @@ ___ → **magazine** · letter · postcard
 - letter — *letter — это письмо, а яркое издание с фотографиями называется magazine.*
 - postcard — *postcard — это открытка, а яркое издание с фотографиями называется magazine.*
 
-**11 · Послушайте, что говорит подруга о книгах**
+**11 · Послушайте и выберите — подруга перебирает стопку рядом с вами**
 <!-- interaction_id: en:lesson-03:session-43:i09; family: listen_choose -->
 🔊 *Books are heavy.* → **Books are heavy.** · The books are heavy. · Books are light.
 - The books are heavy. — *В записи первое слово — `Books`, а в этом варианте — `The`.*
@@ -139,7 +139,7 @@ ___ → **dictionary** · map · letter
 - map — *map — это карта, а книга со значениями слов называется dictionary.*
 - letter — *letter — это письмо, а книга со значениями слов называется dictionary.*
 
-**19 · Послушайте, что говорит брат о газетах**
+**19 · Послушайте и выберите — брат смотрит стопку вместе с вами**
 <!-- interaction_id: en:lesson-03:session-43:i15; family: listen_choose -->
 🔊 *The newspapers are old.* → **The newspapers are old.** · Newspapers are old. · The newspapers are new.
 - Newspapers are old. — *В записи первое слово — `The`, а в этом варианте — `Newspapers`.*

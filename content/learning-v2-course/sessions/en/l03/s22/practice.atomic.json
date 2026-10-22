@@ -139,7 +139,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос подруги",
+        "prompt": "Послушайте и выберите — подруга сверяет кухонную коробку со списком",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-22:i02:r1",
@@ -158,7 +158,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-22:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос подруги",
+        "accessibilityLabel": "Послушайте и выберите — подруга сверяет кухонную коробку со списком",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -188,7 +188,7 @@
             {
               "responseId": "en:lesson-03:session-22:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга сверяет кухонную коробку со списком",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bowls`, а в этом варианте — `bowl`.",
                 "uk": "У записі останнє слово — `bowls`, а в цьому варіанті — `bowl`."
@@ -197,7 +197,7 @@
             {
               "responseId": "en:lesson-03:session-22:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга сверяет кухонную коробку со списком",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bowls`, а в этом варианте — `plates`.",
                 "uk": "У записі останнє слово — `bowls`, а в цьому варіанті — `plates`."
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что брат говорит о находке",
+        "prompt": "Послушайте и выберите — подруга достаёт вещи из кухонной коробки",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-22:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-22:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте, что брат говорит о находке",
+        "accessibilityLabel": "Послушайте и выберите — подруга достаёт вещи из кухонной коробки",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-03:session-22:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что брат говорит о находке",
+              "testedDimension": "Послушайте и выберите — подруга достаёт вещи из кухонной коробки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bottles`, а в этом варианте — `bottle`.",
                 "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `bottle`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-03:session-22:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что брат говорит о находке",
+              "testedDimension": "Послушайте и выберите — подруга достаёт вещи из кухонной коробки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bottles`, а в этом варианте — `jars`.",
                 "uk": "У записі останнє слово — `bottles`, а в цьому варіанті — `jars`."
@@ -979,7 +979,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос соседки",
+        "prompt": "Послушайте и выберите — подруга переспрашивает, пока вы читаете список",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-22:i15:r1",
@@ -998,7 +998,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-22:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос соседки",
+        "accessibilityLabel": "Послушайте и выберите — подруга переспрашивает, пока вы читаете список",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1028,7 +1028,7 @@
             {
               "responseId": "en:lesson-03:session-22:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос соседки",
+              "testedDimension": "Послушайте и выберите — подруга переспрашивает, пока вы читаете список",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `plates`, а в этом варианте — `plate`.",
                 "uk": "У записі останнє слово — `plates`, а в цьому варіанті — `plate`."
@@ -1037,7 +1037,7 @@
             {
               "responseId": "en:lesson-03:session-22:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос соседки",
+              "testedDimension": "Послушайте и выберите — подруга переспрашивает, пока вы читаете список",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `plates`, а в этом варианте — `bowls`.",
                 "uk": "У записі останнє слово — `plates`, а в цьому варіанті — `bowls`."

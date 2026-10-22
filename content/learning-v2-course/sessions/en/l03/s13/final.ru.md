@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-13:word:necklace; family: word_card -->
 > **necklace** — ожерелье, украшение на шею. Is it a necklace? — «Это ожерелье?» О цепочке с камнем или бусами.
 
-**4 · Послушайте, что продавщица говорит о вещи в витрине**
+**4 · Послушайте и выберите — у прилавка продавщица достаёт вещи из витрины**
 <!-- interaction_id: en:lesson-03:session-13:i02; family: listen_choose -->
 🔊 *It is a necklace.* → **It is a necklace.** · It is an earring. · It is a vase.
 - It is an earring. — *В записи последнее слово — `necklace`, а в этом варианте — `earring`.*
@@ -109,7 +109,7 @@ It is ___ pearl. → **a** · an · is
 - an — *Слово pearl начинается с согласного звука, поэтому здесь a.*
 - is — *Слово is уже стоит перед пропуском. Перед pearl нужно a.*
 
-**13 · Послушайте вопрос сестры**
+**13 · Послушайте и выберите — вы выбираете подарок маме, сестра спрашивает**
 <!-- interaction_id: en:lesson-03:session-13:i09; family: listen_choose -->
 🔊 *Is it an earring?* → **Is it an earring?** · Is it a pearl? · Is it a bracelet?
 - Is it a pearl? — *В записи последнее слово — `earring`, а в этом варианте — `pearl`.*
@@ -139,7 +139,7 @@ It is ___ clock. → **a** · an · is
 - an — *Слово clock начинается с согласного звука, поэтому здесь a.*
 - is — *Слово is уже стоит перед пропуском. Перед clock нужно a.*
 
-**19 · Послушайте, что говорит сестра**
+**19 · Послушайте и выберите — сестра выбирает с вами подарок для мамы**
 <!-- interaction_id: en:lesson-03:session-13:i15; family: listen_choose -->
 🔊 *It's an earring.* → **It's an earring.** · It's a necklace. · It's a bracelet.
 - It's a necklace. — *В записи последнее слово — `earring`, а в этом варианте — `necklace`.*

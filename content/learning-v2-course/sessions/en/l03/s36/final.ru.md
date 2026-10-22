@@ -57,7 +57,7 @@
 Плитки: `big` `windows` `are` `Those` `window` → **Those windows are big.**
 *(плитка `window` лишняя: здесь нужно `windows` — `Those windows are big.`)*
 
-**2 · Послушайте, что говорит подруга о двери**
+**2 · Послушайте и выберите — подруга гуляет с вами по улице**
 <!-- interaction_id: en:lesson-03:session-36:i02; family: listen_choose -->
 🔊 *That door is old.* → **That door is old.** · Those doors are old. · This door is old.
 - Those doors are old. — *В записи `That door` — дверь одна, а в этом варианте `Those doors` — несколько.*
@@ -101,7 +101,7 @@ ___ → **flower** · tree · toy
 - tree — *tree — это дерево, а то, что дарят в букете, называется flower.*
 - toy — *toy — это игрушка, а то, что дарят в букете, называется flower.*
 
-**11 · Послушайте, что говорит брат о дереве**
+**11 · Послушайте и выберите — брат смотрит на витрины вместе с вами**
 <!-- interaction_id: en:lesson-03:session-36:i09; family: listen_choose -->
 🔊 *That tree is small.* → **That tree is small.** · Those trees are small. · That tree is big.
 - Those trees are small. — *В записи `That tree` — дерево одно, а в этом варианте `Those trees` — несколько.*
@@ -139,7 +139,7 @@ ___ → **toy** · bicycle · flower
 - bicycle — *bicycle — это велосипед, а то, с чем играют, называется toy.*
 - flower — *flower — это цветок, а то, с чем играют, называется toy.*
 
-**19 · Послушайте, что говорит подруга о велосипедах**
+**19 · Послушайте и выберите — подруга останавливается у витрины**
 <!-- interaction_id: en:lesson-03:session-36:i15; family: listen_choose -->
 🔊 *That bicycle is cheap.* → **That bicycle is cheap.** · Those bicycles are cheap. · That bicycle is new.
 - Those bicycles are cheap. — *В записи `That bicycle` — велосипед один, а в этом варианте `Those bicycles` — несколько.*

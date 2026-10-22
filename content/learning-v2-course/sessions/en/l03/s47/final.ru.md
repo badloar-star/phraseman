@@ -57,7 +57,7 @@
 Плитки: `hammer` `a` `is` `This` `an` → **This is a hammer.**
 *(плитка `an` лишняя: здесь нужно `a` — `This is a hammer.`)*
 
-**2 · Послушайте брата и выберите фразу**
+**2 · Послушайте и выберите — брат выбирает вещи в магазине инструментов**
 <!-- interaction_id: en:lesson-03:session-47:i02; family: listen_choose -->
 🔊 *A ladder is here.* → **A ladder is here.** · The ladder is here. · A ladder is there.
 - The ladder is here. — *В записи первое слово — `A`, а в этом варианте — `The`.*
@@ -101,7 +101,7 @@ ___ → **nail** · key · lock
 - key — *key — это ключ, а стержень, который забивают молотком, называется nail.*
 - lock — *lock — это замок, а стержень, который забивают молотком, называется nail.*
 
-**11 · Послушайте продавца и выберите фразу**
+**11 · Послушайте и выберите — вам показывает инструменты продавец**
 <!-- interaction_id: en:lesson-03:session-47:i09; family: listen_choose -->
 🔊 *This is a screw.* → **This is a screw.** · That is a screw. · This is the screw.
 - That is a screw. — *В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).*
@@ -139,7 +139,7 @@ ___ → **drill** · hammer · ladder
 - hammer — *hammer — это молоток, а прибор, который делает отверстия в стене, называется drill.*
 - ladder — *ladder — это лестница-стремянка, а прибор, который делает отверстия в стене, называется drill.*
 
-**19 · Послушайте, что говорит брат**
+**19 · Послушайте и выберите — брат берёт товары для ремонта полки**
 <!-- interaction_id: en:lesson-03:session-47:i15; family: listen_choose -->
 🔊 *Wrenches are expensive.* → **Wrenches are expensive.** · The wrenches are expensive. · Wrenches are cheap.
 - The wrenches are expensive. — *В записи первое слово — `Wrenches`, а в этом варианте — `The`.*

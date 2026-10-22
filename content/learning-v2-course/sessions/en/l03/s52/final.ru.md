@@ -79,7 +79,7 @@ ___ → **oval** · round · low
 - round — *round — это круглый, а у яйца вытянутая форма: oval.*
 - low — *low — это низкий, а форма яйца называется oval.*
 
-**7 · Послушайте, что продавец говорит о зеркале**
+**7 · Послушайте и выберите — продавец рассказывает о вещах в зале**
 <!-- interaction_id: en:lesson-03:session-52:i05; family: listen_choose -->
 🔊 *That round mirror is old.* → **That round mirror is old.** · That oval mirror is old. · That round mirror is new.
 - That oval mirror is old. — *В записи форма — `round`, а в этом варианте — `oval`.*
@@ -117,7 +117,7 @@ ___ → **high** · low · round
 <!-- interaction_id: en:lesson-03:session-52:i10; family: speed_match -->
 high — высокий (о полке, потолке) · low — низкий · clock — часы (настенные) · shelf — полка
 
-**15 · Послушайте вопрос подруги**
+**15 · Послушайте и выберите — подруга разглядывает вещи рядом с вами**
 <!-- interaction_id: en:lesson-03:session-52:i11; family: listen_choose -->
 🔊 *Is that oval clock new?* → **Is that oval clock new?** · Is this oval clock new? · Is that round clock new?
 - Is this oval clock new? — *В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).*

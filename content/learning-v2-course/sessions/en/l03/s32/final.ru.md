@@ -57,7 +57,7 @@
 Плитки: `scarf` `This` `is` `a` `That` → **This is a scarf.**
 *(плитка `That` лишняя: здесь нужно `This` — `This is a scarf.`)*
 
-**2 · Послушайте, что говорит продавщица**
+**2 · Послушайте и выберите — продавщица показывает витрину в киоске**
 <!-- interaction_id: en:lesson-03:session-32:i02; family: listen_choose -->
 🔊 *That is a button.* → **That is a button.** · This is a button. · That is a parcel.
 - This is a button. — *В записи первое слово — `That`, а в этом варианте — `This`.*
@@ -101,7 +101,7 @@ ___ → **magnet** · button · parcel
 - button — *button — это кнопка, которую нажимают, а предмет для холодильника называется magnet.*
 - parcel — *parcel — это посылка, а предмет для холодильника называется magnet.*
 
-**11 · Послушайте подругу**
+**11 · Послушайте и выберите — подруга выбирает подарок вместе с вами**
 <!-- interaction_id: en:lesson-03:session-32:i09; family: listen_choose -->
 🔊 *This is not a postcard.* → **This is not a postcard.** · That is not a postcard. · This is not a scarf.
 - That is not a postcard. — *В записи первое слово — `This`, а в этом варианте — `That`.*
@@ -139,7 +139,7 @@ ___ → **souvenir** · postcard · suitcase
 - postcard — *postcard — это открытка, которую отправляют другу, а вещь на память называется souvenir.*
 - suitcase — *suitcase — это чемодан, а вещь на память называется souvenir.*
 
-**19 · Послушайте вопрос подруги**
+**19 · Послушайте и выберите — у витрины подруга задаёт вопрос**
 <!-- interaction_id: en:lesson-03:session-32:i15; family: listen_choose -->
 🔊 *Is this a keyring?* → **Is this a keyring?** · Is that a keyring? · Is this a souvenir?
 - Is that a keyring? — *В записи второе слово — `this`, а в этом варианте — `that`.*

@@ -57,7 +57,7 @@
 Плитки: `door` `That` `is` `a` `an` → **That is a door.**
 *(плитка `an` лишняя: здесь нужно `a` — `That is a door.`)*
 
-**2 · Послушайте, что говорит техник**
+**2 · Послушайте и выберите — техник проверяет оборудование в зале**
 <!-- interaction_id: en:lesson-03:session-26:i02; family: listen_choose -->
 🔊 *That is a window.* → **That is a window.** · This is a window. · That is a shelf.
 - This is a window. — *В записи первое слово — `That`, а в этом варианте — `This`.*
@@ -101,7 +101,7 @@ ___ → **projector** · screen · table
 - screen — *screen — это экран, на который выводят картинку, а прибор называется projector.*
 - table — *table — это стол, а прибор называется projector.*
 
-**11 · Послушайте, что говорит подруга**
+**11 · Послушайте и выберите — подруга готовит зал вместе с вами**
 <!-- interaction_id: en:lesson-03:session-26:i09; family: listen_choose -->
 🔊 *That is not a screen.* → **That is not a screen.** · This is not a screen. · That is not a door.
 - This is not a screen. — *В записи первое слово — `That`, а в этом варианте — `This`.*
@@ -139,7 +139,7 @@ ___ → **banner** · speaker · window
 - speaker — *speaker — это колонка, а длинное полотно называется banner.*
 - window — *window — это окно, а длинное полотно называется banner.*
 
-**19 · Послушайте, что говорит ведущая**
+**19 · Послушайте и выберите — техник заходит в зал перед презентацией**
 <!-- interaction_id: en:lesson-03:session-26:i15; family: listen_choose -->
 🔊 *This is not a speaker.* → **This is not a speaker.** · That is not a speaker. · This is not a screen.
 - That is not a speaker. — *В записи первое слово — `This`, а в этом варианте — `That`.*

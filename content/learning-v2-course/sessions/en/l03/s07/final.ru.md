@@ -67,9 +67,9 @@
 
 **4 · Послушайте, что подруга говорит о мебели**
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
-🔊 *It is a wardrobe.* → **It is a wardrobe.** · It is a cupboard. · It is a drawer.
-- It is a cupboard. — *В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.*
-- It is a drawer. — *В записи последнее слово — `wardrobe`, а в этом варианте — `drawer`.*
+🔊 *It is a cupboard.* → **It is a cupboard.** · It is a wardrobe. · It is a drawer.
+- It is a wardrobe. — *В записи последнее слово — `cupboard`, а в этом варианте — `wardrobe`.*
+- It is a drawer. — *В записи последнее слово — `cupboard`, а в этом варианте — `drawer`.*
 
 **5 · Карточка слова — wardrobe**
 <!-- interaction_id: en:lesson-03:session-07:word:wardrobe; family: word_card -->
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**13 · Послушайте вопрос подруги**
+**13 · Послушайте и выберите — вы собираете мебель, подруга спрашивает**
 <!-- interaction_id: en:lesson-03:session-07:i09; family: listen_choose -->
 🔊 *Is it a wardrobe?* → **Is it a wardrobe?** · Is it a cupboard? · Is it a hanger?
 - Is it a cupboard? — *В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.*
@@ -139,7 +139,7 @@ ___ it a hanger? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a hanger?`.*
 
-**19 · Послушайте, что подруга говорит о вешалке**
+**19 · Послушайте и выберите — очередную деталь вам подаёт подруга**
 <!-- interaction_id: en:lesson-03:session-07:i15; family: listen_choose -->
 🔊 *It is a hanger.* → **It is a hanger.** · It is a drawer. · It is a cupboard.
 - It is a drawer. — *В записи последнее слово — `hanger`, а в этом варианте — `drawer`.*

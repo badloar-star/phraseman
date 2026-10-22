@@ -57,7 +57,7 @@
 Плитки: `lamp` `This` `is` `a` `an` → **This is a lamp.**
 *(плитка `an` лишняя: здесь нужно `a` — `This is a lamp.`)*
 
-**2 · Послушайте, что говорит мастер**
+**2 · Послушайте и выберите — мастер в мастерской осматривает ваши вещи**
 <!-- interaction_id: en:lesson-03:session-25:i02; family: listen_choose -->
 🔊 *This is a box.* → **This is a box.** · This is a key. · This is a bag.
 - This is a key. — *В записи последнее слово — `box`, а в этом варианте — `key`.*
@@ -101,7 +101,7 @@ ___ → **cable** · socket · lamp
 - socket — *socket — это розетка в стене, а провод называется cable.*
 - lamp — *lamp — это лампа, а провод называется cable.*
 
-**11 · Послушайте, что говорит подруга**
+**11 · Послушайте и выберите — подруга стоит рядом, пока вы сдаёте вещи**
 <!-- interaction_id: en:lesson-03:session-25:i09; family: listen_choose -->
 🔊 *This is not a charger.* → **This is not a charger.** · This is not a box. · This is not a key.
 - This is not a box. — *В записи последнее слово — `charger`, а в этом варианте — `box`.*
@@ -139,7 +139,7 @@ ___ → **socket** · adapter · box
 - adapter — *adapter — это переходник для вилки, а отверстие в стене называется socket.*
 - box — *box — это коробка, а отверстие в стене называется socket.*
 
-**19 · Послушайте, что говорит мастер**
+**19 · Послушайте и выберите — у вас в руках вещь, мастер берёт её для ремонта**
 <!-- interaction_id: en:lesson-03:session-25:i15; family: listen_choose -->
 🔊 *This is not an adapter.* → **This is not an adapter.** · This is not a charger. · This is not a cable.
 - This is not a charger. — *В записи последнее слово — `adapter`, а в этом варианте — `charger`.*

@@ -67,9 +67,9 @@
 
 **4 · Послушайте, что подруга говорит о вещи у двери**
 <!-- interaction_id: en:lesson-03:session-03:i02; family: listen_choose -->
-🔊 *It is a rug.* → **It is a rug.** · It is a mirror. · It is a stool.
-- It is a mirror. — *В записи последнее слово — `rug`, а в этом варианте — `mirror`.*
-- It is a stool. — *В записи последнее слово — `rug`, а в этом варианте — `stool`.*
+🔊 *It is a mirror.* → **It is a mirror.** · It is a rug. · It is a stool.
+- It is a rug. — *В записи последнее слово — `mirror`, а в этом варианте — `rug`.*
+- It is a stool. — *В записи последнее слово — `mirror`, а в этом варианте — `stool`.*
 
 **5 · На стене висит одно из зеркал. Дополните: «Это зеркало»**
 <!-- interaction_id: en:lesson-03:session-03:i03; family: context_gap_grammar -->
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**13 · Послушайте вопрос подруги**
+**13 · Послушайте и выберите — подруга спрашивает про вещь в кладовке**
 <!-- interaction_id: en:lesson-03:session-03:i09; family: listen_choose -->
 🔊 *Is it a picture?* → **Is it a picture?** · Is it a mirror? · Is it a rug?
 - Is it a mirror? — *В записи последнее слово — `picture`, а в этом варианте — `mirror`.*
@@ -139,7 +139,7 @@ ___ it a rug? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a rug?`.*
 
-**19 · Послушайте, что подруга говорит о картине**
+**19 · Послушайте и выберите — вы расставляете вещи, подруга держит одну**
 <!-- interaction_id: en:lesson-03:session-03:i15; family: listen_choose -->
 🔊 *It is a picture.* → **It is a picture.** · It is a rug. · It is a stool.
 - It is a rug. — *В записи последнее слово — `picture`, а в этом варианте — `rug`.*

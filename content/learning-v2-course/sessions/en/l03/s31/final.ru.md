@@ -57,7 +57,7 @@
 Плитки: `table` `This` `is` `a` `That` → **This is a table.**
 *(плитка `That` лишняя: здесь нужно `This` — `This is a table.`)*
 
-**2 · Послушайте, что говорит костюмерша**
+**2 · Послушайте и выберите — костюмерша торопит вас в костюмерной**
 <!-- interaction_id: en:lesson-03:session-31:i02; family: listen_choose -->
 🔊 *That is a chair.* → **That is a chair.** · This is a chair. · That is a door.
 - This is a chair. — *В записи первое слово — `That`, а в этом варианте — `This`.*
@@ -101,7 +101,7 @@ ___ → **belt** · hat · table
 - hat — *hat — это шляпа, а полоса, которой подпоясывают одежду, называется belt.*
 - table — *table — это стол, а полоса, которой подпоясывают одежду, называется belt.*
 
-**11 · Послушайте подругу**
+**11 · Послушайте и выберите — подруга разбирает костюмы рядом с вами**
 <!-- interaction_id: en:lesson-03:session-31:i09; family: listen_choose -->
 🔊 *That is not a hat.* → **That is not a hat.** · This is not a hat. · That is not a table.
 - This is not a hat. — *В записи первое слово — `That`, а в этом варианте — `This`.*
@@ -139,7 +139,7 @@ ___ → **cape** · scarf · hat
 - scarf — *scarf — это шарф на шею, а длинная накидка на плечи называется cape.*
 - hat — *hat — это шляпа, а длинная накидка на плечи называется cape.*
 
-**19 · Послушайте вопрос подруги**
+**19 · Послушайте и выберите — в костюмерной подруга задаёт вопрос**
 <!-- interaction_id: en:lesson-03:session-31:i15; family: listen_choose -->
 🔊 *Is this a boot?* → **Is this a boot?** · Is that a boot? · Is this a belt?
 - Is that a boot? — *В записи второе слово — `this`, а в этом варианте — `that`.*

@@ -57,7 +57,7 @@
 Плитки: `door` `is` `open` `The` `A` → **The door is open.**
 *(плитка `A` лишняя: здесь нужно `The` — `The door is open.`)*
 
-**2 · Послушайте и выберите фразу**
+**2 · Послушайте и выберите — вы показываете, что в покупках сломано**
 <!-- interaction_id: en:lesson-03:session-42:i02; family: listen_choose -->
 🔊 *The window is closed.* → **The window is closed.** · A window is closed. · The window is open.
 - A window is closed. — *В записи первое слово — `The`, а в этом варианте — `A`.*
@@ -101,7 +101,7 @@ ___ → **bell** · key · lock
 - key — *key — это ключ, а то, что звенит у двери, называется bell.*
 - lock — *lock — это замок, а то, что звенит у двери, называется bell.*
 
-**11 · Послушайте, что говорит соседка**
+**11 · Послушайте и выберите — соседка осматривает покупку вместе с вами**
 <!-- interaction_id: en:lesson-03:session-42:i09; family: listen_choose -->
 🔊 *The handle is broken.* → **The handle is broken.** · A handle is broken. · The handle is loose.
 - A handle is broken. — *В записи первое слово — `The`, а в этом варианте — `A`.*
@@ -139,7 +139,7 @@ ___ → **cord** · socket · lamp
 - socket — *socket — это розетка, а провод от лампы к розетке называется cord.*
 - lamp — *lamp — это лампа, а провод от неё к розетке называется cord.*
 
-**19 · Послушайте, что говорит продавец**
+**19 · Послушайте и выберите — продавец осматривает вашу покупку**
 <!-- interaction_id: en:lesson-03:session-42:i15; family: listen_choose -->
 🔊 *The wheel is loose.* → **The wheel is loose.** · A wheel is loose. · The wheel is tight.
 - A wheel is loose. — *В записи первое слово — `The`, а в этом варианте — `A`.*

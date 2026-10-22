@@ -57,7 +57,7 @@
 Плитки: `heavy` `baskets` `are` `These` `basket` → **These baskets are heavy.**
 *(плитка `basket` лишняя: здесь нужно `baskets` — `These baskets are heavy.`)*
 
-**2 · Послушайте вопрос подруги о персиках**
+**2 · Послушайте и выберите — подруга выбирает фрукты рядом с вами**
 <!-- interaction_id: en:lesson-03:session-38:i02; family: listen_choose -->
 🔊 *Are those peaches fresh?* → **Are those peaches fresh?** · Is that peach fresh? · Are these peaches fresh?
 - Is that peach fresh? — *В записи `Are those peaches` — персиков несколько, а в этом варианте `Is that peach` — один.*
@@ -101,7 +101,7 @@ ___ → **banana** · peach · egg
 - peach — *peach — это персик, а длинный жёлтый фрукт называется banana.*
 - egg — *egg — это яйцо, а длинный жёлтый фрукт называется banana.*
 
-**11 · Послушайте, что говорит подруга о яблоках**
+**11 · Послушайте и выберите — на рынке подруга обращается к вам**
 <!-- interaction_id: en:lesson-03:session-38:i09; family: listen_choose -->
 🔊 *Those apples are cheap.* → **Those apples are cheap.** · That apple is cheap. · Those apples are old.
 - That apple is cheap. — *В записи `Those apples` — яблок несколько, а в этом варианте `That apple` — одно.*
@@ -139,7 +139,7 @@ ___ → **pear** · apple · peach
 - apple — *apple — это яблоко, а фрукт с узким верхом называется pear.*
 - peach — *peach — это персик, а фрукт с узким верхом называется pear.*
 
-**19 · Послушайте, что говорит продавец об апельсине**
+**19 · Послушайте и выберите — продавец стоит за прилавком с фруктами**
 <!-- interaction_id: en:lesson-03:session-38:i15; family: listen_choose -->
 🔊 *This is an orange.* → **This is an orange.** · These are oranges. · This is an apple.
 - These are oranges. — *В записи `This is an` — апельсин один, а в этом варианте `These are` — несколько.*

@@ -53,7 +53,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите фразу",
+        "prompt": "Послушайте и выберите — вы с подругой разбираете стопку вещей",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-43:i02:r1",
@@ -72,7 +72,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-43:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите фразу",
+        "accessibilityLabel": "Послушайте и выберите — вы с подругой разбираете стопку вещей",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -102,7 +102,7 @@
             {
               "responseId": "en:lesson-03:session-43:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу",
+              "testedDimension": "Послушайте и выберите — вы с подругой разбираете стопку вещей",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `The`, а в этом варианте — `Bags`.",
                 "uk": "У записі перше слово — `The`, а в цьому варіанті — `Bags`."
@@ -111,7 +111,7 @@
             {
               "responseId": "en:lesson-03:session-43:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу",
+              "testedDimension": "Послушайте и выберите — вы с подругой разбираете стопку вещей",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
                 "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
@@ -552,7 +552,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что говорит подруга о книгах",
+        "prompt": "Послушайте и выберите — подруга перебирает стопку рядом с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-43:i09:r1",
@@ -571,7 +571,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-43:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте, что говорит подруга о книгах",
+        "accessibilityLabel": "Послушайте и выберите — подруга перебирает стопку рядом с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -601,7 +601,7 @@
             {
               "responseId": "en:lesson-03:session-43:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит подруга о книгах",
+              "testedDimension": "Послушайте и выберите — подруга перебирает стопку рядом с вами",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `Books`, а в этом варианте — `The`.",
                 "uk": "У записі перше слово — `Books`, а в цьому варіанті — `The`."
@@ -610,7 +610,7 @@
             {
               "responseId": "en:lesson-03:session-43:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит подруга о книгах",
+              "testedDimension": "Послушайте и выберите — подруга перебирает стопку рядом с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `heavy`, а в этом варианте — `light`.",
                 "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `light`."
@@ -981,7 +981,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что говорит брат о газетах",
+        "prompt": "Послушайте и выберите — брат смотрит стопку вместе с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-43:i15:r1",
@@ -1000,7 +1000,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-43:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что говорит брат о газетах",
+        "accessibilityLabel": "Послушайте и выберите — брат смотрит стопку вместе с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1030,7 +1030,7 @@
             {
               "responseId": "en:lesson-03:session-43:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит брат о газетах",
+              "testedDimension": "Послушайте и выберите — брат смотрит стопку вместе с вами",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `The`, а в этом варианте — `Newspapers`.",
                 "uk": "У записі перше слово — `The`, а в цьому варіанті — `Newspapers`."
@@ -1039,7 +1039,7 @@
             {
               "responseId": "en:lesson-03:session-43:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит брат о газетах",
+              "testedDimension": "Послушайте и выберите — брат смотрит стопку вместе с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
                 "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."

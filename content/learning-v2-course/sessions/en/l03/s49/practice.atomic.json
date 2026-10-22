@@ -316,7 +316,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что продавец говорит о лампе",
+        "prompt": "Послушайте и выберите — продавец показывает вам товары по цветам",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-49:i05:r1",
@@ -335,7 +335,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-49:i05:audio"
         ],
-        "accessibilityLabel": "Послушайте, что продавец говорит о лампе",
+        "accessibilityLabel": "Послушайте и выберите — продавец показывает вам товары по цветам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -365,7 +365,7 @@
             {
               "responseId": "en:lesson-03:session-49:i05:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что продавец говорит о лампе",
+              "testedDimension": "Послушайте и выберите — продавец показывает вам товары по цветам",
               "feedbackByLocale": {
                 "ru": "В записи цвет — `green`, а в этом варианте — `red`.",
                 "uk": "У записі колір — `green`, а в цьому варіанті — `red`."
@@ -374,7 +374,7 @@
             {
               "responseId": "en:lesson-03:session-49:i05:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что продавец говорит о лампе",
+              "testedDimension": "Послушайте и выберите — продавец показывает вам товары по цветам",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `lamp`, а в этом варианте — `cup`.",
                 "uk": "У записі останнє слово — `lamp`, а в цьому варіанті — `cup`."
@@ -748,7 +748,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос подруги",
+        "prompt": "Послушайте и выберите — подруга выбирает вещи вместе с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-49:i11:r1",
@@ -767,7 +767,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-49:i11:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос подруги",
+        "accessibilityLabel": "Послушайте и выберите — подруга выбирает вещи вместе с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -797,7 +797,7 @@
             {
               "responseId": "en:lesson-03:session-49:i11:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга выбирает вещи вместе с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `cup`, а в этом варианте — `rug`.",
                 "uk": "У записі останнє слово — `cup`, а в цьому варіанті — `rug`."
@@ -806,7 +806,7 @@
             {
               "responseId": "en:lesson-03:session-49:i11:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга выбирает вещи вместе с вами",
               "feedbackByLocale": {
                 "ru": "В записи цвет — `brown`, а в этом варианте — `green`.",
                 "uk": "У записі колір — `brown`, а в цьому варіанті — `green`."

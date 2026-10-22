@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-21:word:curtain; family: word_card -->
 > **curtain** — занавеска. It is a curtain — «Это занавеска». О занавеске на окне или в ванной.
 
-**4 · Послушайте брата: он говорит о второй строке накладной**
+**4 · Послушайте и выберите — брат читает вторую строку накладной**
 <!-- interaction_id: en:lesson-03:session-21:i02; family: listen_choose -->
 🔊 *It is a curtain.* → **It is a curtain.** · They are curtains. · It is a towel.
 - They are curtains. — *В записи последнее слово — `curtain`, а в этом варианте — `curtains`.*
@@ -109,7 +109,7 @@ They are ___. → **sponges** · a sponges · sponge
 - a sponges — *Перед несколькими предметами a не ставим: They are sponges.*
 - sponge — *Губок несколько, поэтому нужно sponges с s.*
 
-**13 · Послушайте подругу: она читает накладную**
+**13 · Послушайте и выберите — подруга читает накладную строчку за строчкой**
 <!-- interaction_id: en:lesson-03:session-21:i09; family: listen_choose -->
 🔊 *They are towels.* → **They are towels.** · It is a towel. · They are combs.
 - It is a towel. — *В записи последнее слово — `towels`, а в этом варианте — `towel`.*
@@ -139,7 +139,7 @@ It is ___ towel. → **a** · an · is
 - an — *Слово towel начинается с согласного звука, поэтому здесь a.*
 - is — *Слово is уже стоит перед пропуском. Перед towel нужно a.*
 
-**19 · Послушайте вопрос курьера**
+**19 · Послушайте и выберите — курьер уточняет у вас строчки накладной**
 <!-- interaction_id: en:lesson-03:session-21:i15; family: listen_choose -->
 🔊 *Are they sponges?* → **Are they sponges?** · Is it a sponge? · Are they curtains?
 - Is it a sponge? — *В записи последнее слово — `sponges`, а в этом варианте — `sponge`.*

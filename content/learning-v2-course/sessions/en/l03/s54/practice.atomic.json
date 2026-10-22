@@ -316,7 +316,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что продавец говорит о рубашке",
+        "prompt": "Послушайте и выберите — продавец показывает вам вещи с рисунком",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-54:i05:r1",
@@ -335,7 +335,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-54:i05:audio"
         ],
-        "accessibilityLabel": "Послушайте, что продавец говорит о рубашке",
+        "accessibilityLabel": "Послушайте и выберите — продавец показывает вам вещи с рисунком",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -365,7 +365,7 @@
             {
               "responseId": "en:lesson-03:session-54:i05:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что продавец говорит о рубашке",
+              "testedDimension": "Послушайте и выберите — продавец показывает вам вещи с рисунком",
               "feedbackByLocale": {
                 "ru": "В записи рисунок — `striped`, а в этом варианте — `checked`.",
                 "uk": "У записі малюнок — `striped`, а в цьому варіанті — `checked`."
@@ -374,7 +374,7 @@
             {
               "responseId": "en:lesson-03:session-54:i05:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что продавец говорит о рубашке",
+              "testedDimension": "Послушайте и выберите — продавец показывает вам вещи с рисунком",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
                 "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
@@ -748,7 +748,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос подруги",
+        "prompt": "Послушайте и выберите — подруга выбирает с вами вещи с рисунком",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-54:i11:r1",
@@ -767,7 +767,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-54:i11:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос подруги",
+        "accessibilityLabel": "Послушайте и выберите — подруга выбирает с вами вещи с рисунком",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -797,7 +797,7 @@
             {
               "responseId": "en:lesson-03:session-54:i11:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга выбирает с вами вещи с рисунком",
               "feedbackByLocale": {
                 "ru": "В записи рисунок — `striped`, а в этом варианте — `checked`.",
                 "uk": "У записі малюнок — `striped`, а в цьому варіанті — `checked`."
@@ -806,7 +806,7 @@
             {
               "responseId": "en:lesson-03:session-54:i11:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга выбирает с вами вещи с рисунком",
               "feedbackByLocale": {
                 "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
                 "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."

@@ -57,7 +57,7 @@
 Плитки: `soft` `pillows` `are` `Those` `pillow` → **Those pillows are soft.**
 *(плитка `pillow` лишняя: здесь нужно `pillows` — `Those pillows are soft.`)*
 
-**2 · Послушайте вопрос подруги о полотенцах**
+**2 · Послушайте и выберите — подруга спрашивает вас в магазине текстиля**
 <!-- interaction_id: en:lesson-03:session-34:i02; family: listen_choose -->
 🔊 *Are those towels clean?* → **Are those towels clean?** · Is that towel clean? · Are these towels clean?
 - Is that towel clean? — *В записи `Are those towels` — полотенец несколько, а в этом варианте `Is that towel` — одно.*
@@ -101,7 +101,7 @@ ___ → **sheet** · towel · blanket
 - towel — *towel — это полотенце, а ткань для кровати называется sheet.*
 - blanket — *blanket — это плед, а ткань под себя называется sheet.*
 
-**11 · Послушайте, что говорит подруга о пледах**
+**11 · Послушайте и выберите — вы выбираете бельё, подруга говорит рядом**
 <!-- interaction_id: en:lesson-03:session-34:i09; family: listen_choose -->
 🔊 *Those blankets are soft.* → **Those blankets are soft.** · That blanket is soft. · Those blankets are big.
 - That blanket is soft. — *В записи `Those blankets are` — пледов несколько, а в этом варианте `That blanket is` — один.*
@@ -139,7 +139,7 @@ ___ → **pillowcase** · sheet · towel
 - sheet — *sheet — это простыня, а чехол для подушки называется pillowcase.*
 - towel — *towel — это полотенце, а чехол для подушки называется pillowcase.*
 
-**19 · Послушайте, что говорит продавец об одеялах**
+**19 · Послушайте и выберите — продавец стоит у полок в дальнем конце зала**
 <!-- interaction_id: en:lesson-03:session-34:i15; family: listen_choose -->
 🔊 *Those duvets are warm.* → **Those duvets are warm.** · That duvet is warm. · Those duvets are cheap.
 - That duvet is warm. — *В записи `Those duvets are` — одеял несколько, а в этом варианте `That duvet is` — одно.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-01:word:table; family: word_card -->
 > **table** — стол. Is it a table? — «Это стол?» Обеденный, письменный, кухонный — всё это a table.
 
-**4 · Послушайте, что подруга говорит о вещи в коробке**
+**4 · Послушайте и выберите — подруга заглядывает в ваши коробки**
 <!-- interaction_id: en:lesson-03:session-01:i02; family: listen_choose -->
 🔊 *It is a table.* → **It is a table.** · It is a lamp. · It is a chair.
 - It is a lamp. — *В записи последнее слово — `table`, а в этом варианте — `lamp`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-03:session-01:word:box; family: word_card -->
 > **box** — коробка. It is a box — «Это коробка». В ней носят, хранят и отправляют вещи.
 
-**13 · Послушайте вопрос подруги**
+**13 · Послушайте и выберите — вы распаковываете вещи, подруга интересуется**
 <!-- interaction_id: en:lesson-03:session-01:i09; family: listen_choose -->
 🔊 *Is it a box?* → **Is it a box?** · Is it a table? · Is it a lamp?
 - Is it a table? — *В записи последнее слово — `box`, а в этом варианте — `table`.*
@@ -139,7 +139,7 @@ ___ it a lamp? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a lamp?`.*
 
-**19 · Послушайте, что подруга говорит о коробке**
+**19 · Послушайте и выберите — среди ваших вещей подруга замечает что-то**
 <!-- interaction_id: en:lesson-03:session-01:i15; family: listen_choose -->
 🔊 *It is a box.* → **It is a box.** · It is a chair. · It is a table.
 - It is a chair. — *В записи последнее слово — `box`, а в этом варианте — `chair`.*

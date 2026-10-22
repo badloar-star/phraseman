@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-18:word:dish; family: word_card -->
 > **dish** — блюдо или глубокая тарелка. Are they dishes? — «Это глубокие тарелки?» О посуде, из которой едят суп.
 
-**4 · Послушайте вопрос подруги о посуде**
+**4 · Послушайте и выберите — у открытой коробки подруга задаёт вам вопрос**
 <!-- interaction_id: en:lesson-03:session-18:i02; family: listen_choose -->
 🔊 *Are they dishes?* → **Are they dishes?** · Is it a dish? · Are they buses?
 - Is it a dish? — *В записи последнее слово — `dishes`, а в этом варианте — `dish`.*
@@ -109,7 +109,7 @@ The watches ___ old. → **are** · is · am
 - is — *Часов несколько: The watches are old.*
 - am — *С The watches нужно are: The watches are old.*
 
-**13 · Послушайте брата: он говорит об автобусах**
+**13 · Послушайте и выберите — подруга говорит, пока вы вскрываете коробки**
 <!-- interaction_id: en:lesson-03:session-18:i09; family: listen_choose -->
 🔊 *The buses are new.* → **The buses are new.** · The buses are old. · The buses are here.
 - The buses are old. — *В записи последнее слово — `new`, а в этом варианте — `old`.*
@@ -139,7 +139,7 @@ Are they ___? → **boxes** · box · are
 - box — *В вопросе о нескольких коробках тоже нужно boxes с es.*
 - are — *Слово Are уже стоит в начале. В пропуск нужно название коробок: boxes.*
 
-**19 · Послушайте, что брат говорит о находке**
+**19 · Послушайте и выберите — подруга достаёт что-то из коробки**
 <!-- interaction_id: en:lesson-03:session-18:i15; family: listen_choose -->
 🔊 *They are watches.* → **They are watches.** · They are dresses. · They are dishes.
 - They are dresses. — *В записи последнее слово — `watches`, а в этом варианте — `dresses`.*

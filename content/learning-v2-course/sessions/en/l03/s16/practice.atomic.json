@@ -140,7 +140,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что кассир говорит о строчке на экране",
+        "prompt": "Послушайте и выберите — кассир сверяет вашу корзину и бумаги",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-16:i02:r1",
@@ -159,7 +159,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-16:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте, что кассир говорит о строчке на экране",
+        "accessibilityLabel": "Послушайте и выберите — кассир сверяет вашу корзину и бумаги",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -189,7 +189,7 @@
             {
               "responseId": "en:lesson-03:session-16:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что кассир говорит о строчке на экране",
+              "testedDimension": "Послушайте и выберите — кассир сверяет вашу корзину и бумаги",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `discount`, а в этом варианте — `invoice`.",
                 "uk": "У записі останнє слово — `discount`, а в цьому варіанті — `invoice`."
@@ -198,7 +198,7 @@
             {
               "responseId": "en:lesson-03:session-16:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что кассир говорит о строчке на экране",
+              "testedDimension": "Послушайте и выберите — кассир сверяет вашу корзину и бумаги",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `discount`, а в этом варианте — `vase`.",
                 "uk": "У записі останнє слово — `discount`, а в цьому варіанті — `vase`."
@@ -638,7 +638,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос сестры",
+        "prompt": "Послушайте и выберите — у кассы сестра задаёт вопрос",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-16:i09:r1",
@@ -657,7 +657,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-16:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос сестры",
+        "accessibilityLabel": "Послушайте и выберите — у кассы сестра задаёт вопрос",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -687,7 +687,7 @@
             {
               "responseId": "en:lesson-03:session-16:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос сестры",
+              "testedDimension": "Послушайте и выберите — у кассы сестра задаёт вопрос",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `warranty`, а в этом варианте — `address`.",
                 "uk": "У записі останнє слово — `warranty`, а в цьому варіанті — `address`."
@@ -696,7 +696,7 @@
             {
               "responseId": "en:lesson-03:session-16:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос сестры",
+              "testedDimension": "Послушайте и выберите — у кассы сестра задаёт вопрос",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `warranty`, а в этом варианте — `discount`.",
                 "uk": "У записі останнє слово — `warranty`, а в цьому варіанті — `discount`."
@@ -983,7 +983,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что говорит кассир",
+        "prompt": "Послушайте и выберите — вам протягивает бумаги кассир",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-16:i15:r1",
@@ -1002,7 +1002,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-16:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что говорит кассир",
+        "accessibilityLabel": "Послушайте и выберите — вам протягивает бумаги кассир",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1032,7 +1032,7 @@
             {
               "responseId": "en:lesson-03:session-16:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит кассир",
+              "testedDimension": "Послушайте и выберите — вам протягивает бумаги кассир",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `address`, а в этом варианте — `warranty`.",
                 "uk": "У записі останнє слово — `address`, а в цьому варіанті — `warranty`."
@@ -1041,7 +1041,7 @@
             {
               "responseId": "en:lesson-03:session-16:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит кассир",
+              "testedDimension": "Послушайте и выберите — вам протягивает бумаги кассир",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `address`, а в этом варианте — `discount`.",
                 "uk": "У записі останнє слово — `address`, а в цьому варіанті — `discount`."

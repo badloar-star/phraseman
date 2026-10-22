@@ -57,7 +57,7 @@
 Плитки: `umbrella` `is` `wet` `The` `An` → **The umbrella is wet.**
 *(плитка `An` лишняя: здесь нужно `The` — `The umbrella is wet.`)*
 
-**2 · Послушайте продавца и выберите фразу**
+**2 · Послушайте и выберите — вы спрашиваете продавца о товарах**
 <!-- interaction_id: en:lesson-03:session-45:i02; family: listen_choose -->
 🔊 *An apple is here.* → **An apple is here.** · The apple is here. · An apple is there.
 - The apple is here. — *В записи первое слово — `An`, а в этом варианте — `The`.*
@@ -101,7 +101,7 @@ ___ → **colour** · size · box
 - size — *size — это размер, а красный и синий отличаются цветом: colour.*
 - box — *box — это коробка, а красный и синий отличаются цветом: colour.*
 
-**11 · Послушайте продавца и выберите фразу**
+**11 · Послушайте и выберите — продавец отвечает на ваш вопрос**
 <!-- interaction_id: en:lesson-03:session-45:i09; family: listen_choose -->
 🔊 *The size is small.* → **The size is small.** · A size is small. · The size is big.
 - A size is small. — *В записи первое слово — `The`, а в этом варианте — `A`.*
@@ -139,7 +139,7 @@ ___ → **brand** · size · box
 - size — *size — это размер, а название фирмы называется brand.*
 - box — *box — это коробка, а название фирмы называется brand.*
 
-**19 · Послушайте продавца и выберите фразу**
+**19 · Послушайте и выберите — у товара рядом с вами стоит продавец**
 <!-- interaction_id: en:lesson-03:session-45:i15; family: listen_choose -->
 🔊 *This is a model.* → **This is a model.** · That is a model. · This is the model.
 - That is a model. — *В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).*

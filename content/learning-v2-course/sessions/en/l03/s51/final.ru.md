@@ -79,7 +79,7 @@ ___ → **purple** · yellow · pink
 - yellow — *yellow — это жёлтый, а слива другого цвета: purple.*
 - pink — *pink — это розовый, а слива темнее и глубже: purple.*
 
-**7 · Послушайте, что продавец говорит о шарфе**
+**7 · Послушайте и выберите — продавец раскладывает перед вами товары**
 <!-- interaction_id: en:lesson-03:session-51:i05; family: listen_choose -->
 🔊 *It is a yellow scarf.* → **It is a yellow scarf.** · It is a purple scarf. · It is a yellow vase.
 - It is a purple scarf. — *В записи цвет — `yellow`, а в этом варианте — `purple`.*
@@ -117,7 +117,7 @@ ___ → **navy** · blue · olive
 <!-- interaction_id: en:lesson-03:session-51:i10; family: speed_match -->
 navy — тёмно-синий · olive — оливковый · pink — розовый · yellow — жёлтый
 
-**15 · Послушайте вопрос подруги**
+**15 · Послушайте и выберите — подруга выбирает с вами вещи по цвету**
 <!-- interaction_id: en:lesson-03:session-51:i11; family: listen_choose -->
 🔊 *Is it an olive scarf?* → **Is it an olive scarf?** · Is it a navy scarf? · Is it an olive coat?
 - Is it a navy scarf? — *В записи `an olive`, а в этом варианте `a navy`: перед olive нужно an, перед navy — a.*

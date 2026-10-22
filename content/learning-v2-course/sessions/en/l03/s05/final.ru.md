@@ -67,9 +67,9 @@
 
 **4 · Послушайте, что мастер говорит о ремонте**
 <!-- interaction_id: en:lesson-03:session-05:i02; family: listen_choose -->
-🔊 *It is a crack.* → **It is a crack.** · It is a wall. · It is a floor.
-- It is a wall. — *В записи последнее слово — `crack`, а в этом варианте — `wall`.*
-- It is a floor. — *В записи последнее слово — `crack`, а в этом варианте — `floor`.*
+🔊 *It is a floor.* → **It is a floor.** · It is a wall. · It is a crack.
+- It is a wall. — *В записи последнее слово — `floor`, а в этом варианте — `wall`.*
+- It is a crack. — *В записи последнее слово — `floor`, а в этом варианте — `crack`.*
 
 **5 · Карточка слова — crack**
 <!-- interaction_id: en:lesson-03:session-05:word:crack; family: word_card -->
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**13 · Послушайте вопрос мастера**
+**13 · Послушайте и выберите — в комнате мастер задаёт вам вопрос**
 <!-- interaction_id: en:lesson-03:session-05:i09; family: listen_choose -->
 🔊 *Is it a wall?* → **Is it a wall?** · Is it a crack? · Is it a floor?
 - Is it a crack? — *В записи последнее слово — `wall`, а в этом варианте — `crack`.*
@@ -139,7 +139,7 @@ ___ it a ceiling? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a ceiling?`.*
 
-**19 · Послушайте, что мастер говорит о трещине**
+**19 · Послушайте и выберите — вы идёте за мастером по комнате**
 <!-- interaction_id: en:lesson-03:session-05:i15; family: listen_choose -->
 🔊 *It is a crack.* → **It is a crack.** · It is a wall. · It is a ceiling.
 - It is a wall. — *В записи последнее слово — `crack`, а в этом варианте — `wall`.*

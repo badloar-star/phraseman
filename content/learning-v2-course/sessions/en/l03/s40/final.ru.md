@@ -57,7 +57,7 @@
 Плитки: `empty` `bottles` `are` `These` `bottle` → **These bottles are empty.**
 *(плитка `bottle` лишняя: здесь нужно `bottles` — `These bottles are empty.`)*
 
-**2 · Послушайте вопрос продавца о банке**
+**2 · Послушайте и выберите — продавец помогает вам проверить покупки**
 <!-- interaction_id: en:lesson-03:session-40:i02; family: listen_choose -->
 🔊 *Is that jar full?* → **Is that jar full?** · Are those jars full? · Is this jar full?
 - Are those jars full? — *В записи `Is that jar` — банка одна, а в этом варианте `Are those jars` — несколько.*
@@ -101,7 +101,7 @@ ___ → **seal** · jar · bag
 - jar — *jar — это банка, а защитная плёнка на крышке называется seal.*
 - bag — *bag — это сумка, а защитная плёнка на крышке называется seal.*
 
-**11 · Послушайте, что говорит продавец о штрихкоде**
+**11 · Послушайте и выберите — у выхода из магазина стоит продавец**
 <!-- interaction_id: en:lesson-03:session-40:i09; family: listen_choose -->
 🔊 *That barcode is old.* → **That barcode is old.** · Those barcodes are old. · This barcode is old.
 - Those barcodes are old. — *В записи `That barcode` — штрихкод один, а в этом варианте `Those barcodes` — несколько.*
@@ -139,7 +139,7 @@ ___ → **scanner** · barcode · box
 - barcode — *barcode — это штрихкод, а прибор, который его читает, называется scanner.*
 - box — *box — это коробка, а прибор, который читает штрихкод, называется scanner.*
 
-**19 · Послушайте, что говорит подруга о купонах**
+**19 · Послушайте и выберите — подруга проверяет покупки вместе с вами**
 <!-- interaction_id: en:lesson-03:session-40:i15; family: listen_choose -->
 🔊 *Those coupons are old.* → **Those coupons are old.** · That coupon is old. · Those coupons are new.
 - That coupon is old. — *В записи `Those coupons` — купонов несколько, а в этом варианте `That coupon` — один.*

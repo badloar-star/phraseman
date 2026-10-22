@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите фразу",
+        "prompt": "Послушайте и выберите — вы проверяете чек, кассир рядом",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-41:i02:r1",
@@ -73,7 +73,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-41:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите фразу",
+        "accessibilityLabel": "Послушайте и выберите — вы проверяете чек, кассир рядом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -103,7 +103,7 @@
             {
               "responseId": "en:lesson-03:session-41:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу",
+              "testedDimension": "Послушайте и выберите — вы проверяете чек, кассир рядом",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `A` (предмет назван впервые), а в этом варианте — `The`.",
                 "uk": "У записі перше слово — `A` (предмет названо вперше), а в цьому варіанті — `The`."
@@ -112,7 +112,7 @@
             {
               "responseId": "en:lesson-03:session-41:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу",
+              "testedDimension": "Послушайте и выберите — вы проверяете чек, кассир рядом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
                 "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
@@ -553,7 +553,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что говорит кассир",
+        "prompt": "Послушайте и выберите — кассир выдаёт вам чек",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-41:i09:r1",
@@ -572,7 +572,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-41:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте, что говорит кассир",
+        "accessibilityLabel": "Послушайте и выберите — кассир выдаёт вам чек",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -602,7 +602,7 @@
             {
               "responseId": "en:lesson-03:session-41:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит кассир",
+              "testedDimension": "Послушайте и выберите — кассир выдаёт вам чек",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `A` (чек назван впервые), а в этом варианте — `The`.",
                 "uk": "У записі перше слово — `A` (чек названо вперше), а в цьому варіанті — `The`."
@@ -611,7 +611,7 @@
             {
               "responseId": "en:lesson-03:session-41:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит кассир",
+              "testedDimension": "Послушайте и выберите — кассир выдаёт вам чек",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
                 "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."
@@ -983,7 +983,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что говорит подруга",
+        "prompt": "Послушайте и выберите — подруга смотрит на чек вместе с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-41:i15:r1",
@@ -1002,7 +1002,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-41:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что говорит подруга",
+        "accessibilityLabel": "Послушайте и выберите — подруга смотрит на чек вместе с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1032,7 +1032,7 @@
             {
               "responseId": "en:lesson-03:session-41:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит подруга",
+              "testedDimension": "Послушайте и выберите — подруга смотрит на чек вместе с вами",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `The` (об ошибке уже шла речь), а в этом варианте — `A`.",
                 "uk": "У записі перше слово — `The` (про помилку вже йшлося), а в цьому варіанті — `A`."
@@ -1041,7 +1041,7 @@
             {
               "responseId": "en:lesson-03:session-41:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что говорит подруга",
+              "testedDimension": "Послушайте и выберите — подруга смотрит на чек вместе с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `here` (рядом), а в этом варианте — `there` (далеко).",
                 "uk": "У записі останнє слово — `here` (поруч), а в цьому варіанті — `there` (далеко)."

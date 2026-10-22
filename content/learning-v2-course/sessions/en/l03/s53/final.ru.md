@@ -79,7 +79,7 @@ ___ → **leather** · metal · soft
 - metal — *metal — это металл, а ремень сделан из кожи: leather.*
 - soft — *soft — это мягкий, а материал ремня называется leather.*
 
-**7 · Послушайте, что продавец говорит о перчатках**
+**7 · Послушайте и выберите — продавец показывает вещи из разных материалов**
 <!-- interaction_id: en:lesson-03:session-53:i05; family: listen_choose -->
 🔊 *Those leather gloves are old.* → **Those leather gloves are old.** · These leather gloves are old. · Those leather gloves are new.
 - These leather gloves are old. — *В записи первое слово — `Those` (далеко), а в этом варианте — `These` (рядом).*
@@ -117,7 +117,7 @@ ___ → **cotton** · rubber · leather
 <!-- interaction_id: en:lesson-03:session-53:i10; family: speed_match -->
 rubber — резиновый · cotton — хлопковый · glove — перчатка · boot — ботинок
 
-**15 · Послушайте вопрос подруги**
+**15 · Послушайте и выберите — подруга задаёт вопрос, пока вы смотрите вещи**
 <!-- interaction_id: en:lesson-03:session-53:i11; family: listen_choose -->
 🔊 *Are these metal boxes heavy?* → **Are these metal boxes heavy?** · Is this metal box heavy? · Are these metal boxes new?
 - Is this metal box heavy? — *В записи `Are these` и несколько коробок, а в этом варианте `Is this` и одна коробка.*

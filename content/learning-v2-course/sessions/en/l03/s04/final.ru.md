@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-04:word:door; family: word_card -->
 > **door** — дверь. Is it a door? — «Это дверь?» Входная, комнатная, шкафная — всё это a door.
 
-**4 · Послушайте, что хозяин говорит в коридоре**
+**4 · Послушайте и выберите — хозяин квартиры ведёт вас по коридору**
 <!-- interaction_id: en:lesson-03:session-04:i02; family: listen_choose -->
 🔊 *It is a door.* → **It is a door.** · It is a window. · It is a key.
 - It is a window. — *В записи последнее слово — `door`, а в этом варианте — `window`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**13 · Послушайте вопрос хозяина**
+**13 · Послушайте и выберите — в комнате хозяин быстро спрашивает вас**
 <!-- interaction_id: en:lesson-03:session-04:i09; family: listen_choose -->
 🔊 *Is it a lock?* → **Is it a lock?** · It is a lock. · Is it a key?
 - It is a lock. — *В записи сначала звучит `Is`: это вопрос. А в этом варианте стоит утверждение `It is`.*
@@ -139,7 +139,7 @@ ___ it a door? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a door?`.*
 
-**19 · Послушайте, что хозяин говорит о замке**
+**19 · Послушайте и выберите — вы идёте за хозяином из комнаты в комнату**
 <!-- interaction_id: en:lesson-03:session-04:i15; family: listen_choose -->
 🔊 *It is a lock.* → **It is a lock.** · It is a key. · It is a door.
 - It is a key. — *В записи последнее слово — `lock`, а в этом варианте — `key`.*

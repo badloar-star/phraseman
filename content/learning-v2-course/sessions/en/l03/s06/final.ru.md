@@ -67,9 +67,9 @@
 
 **4 · Послушайте, что консультант говорит о товарах**
 <!-- interaction_id: en:lesson-03:session-06:i02; family: listen_choose -->
-🔊 *It is a bag.* → **It is a bag.** · It is a tag. · It is a basket.
-- It is a tag. — *В записи последнее слово — `bag`, а в этом варианте — `tag`.*
-- It is a basket. — *В записи последнее слово — `bag`, а в этом варианте — `basket`.*
+🔊 *It is a tag.* → **It is a tag.** · It is a bag. · It is a basket.
+- It is a bag. — *В записи последнее слово — `tag`, а в этом варианте — `bag`.*
+- It is a basket. — *В записи последнее слово — `tag`, а в этом варианте — `basket`.*
 
 **5 · Карточка слова — trolley**
 <!-- interaction_id: en:lesson-03:session-06:word:trolley; family: word_card -->
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `Yes, it is`.*
 
-**13 · Послушайте вопрос консультанта**
+**13 · Послушайте и выберите — у полки консультант обращается к вам**
 <!-- interaction_id: en:lesson-03:session-06:i09; family: listen_choose -->
 🔊 *Is it a trolley?* → **Is it a trolley?** · Is it a basket? · Is it a bag?
 - Is it a basket? — *В записи последнее слово — `trolley`, а в этом варианте — `basket`.*
@@ -139,7 +139,7 @@ ___ it a bag? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос — `Is it a bag?`.*
 
-**19 · Послушайте, что подруга говорит о бирке**
+**19 · Послушайте и выберите — подруга разглядывает товары рядом с вами**
 <!-- interaction_id: en:lesson-03:session-06:i15; family: listen_choose -->
 🔊 *It is a tag.* → **It is a tag.** · It is a bag. · It is a trolley.
 - It is a bag. — *В записи последнее слово — `tag`, а в этом варианте — `bag`.*

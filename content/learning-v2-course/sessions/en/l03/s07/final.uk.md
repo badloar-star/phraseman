@@ -67,9 +67,9 @@
 
 **4 · Послухайте, що подруга каже про меблі**
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
-🔊 *It is a wardrobe.* → **It is a wardrobe.** · It is a cupboard. · It is a drawer.
-- It is a cupboard. — *У записі останнє слово — `wardrobe`, а в цьому варіанті — `cupboard`.*
-- It is a drawer. — *У записі останнє слово — `wardrobe`, а в цьому варіанті — `drawer`.*
+🔊 *It is a cupboard.* → **It is a cupboard.** · It is a wardrobe. · It is a drawer.
+- It is a wardrobe. — *У записі останнє слово — `cupboard`, а в цьому варіанті — `wardrobe`.*
+- It is a drawer. — *У записі останнє слово — `cupboard`, а в цьому варіанті — `drawer`.*
 
 **5 · Картка слова — wardrobe**
 <!-- interaction_id: en:lesson-03:session-07:word:wardrobe; family: word_card -->

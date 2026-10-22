@@ -57,7 +57,7 @@
 Плитки: `sofa` `Is` `this` `a` `an` → **Is this a sofa?**
 *(плитка `an` лишняя: здесь нужно `a` — `Is this a sofa?`)*
 
-**2 · Послушайте вопрос соседки**
+**2 · Послушайте и выберите — соседка просит вас помочь с покупками**
 <!-- interaction_id: en:lesson-03:session-27:i02; family: listen_choose -->
 🔊 *Is that a shelf?* → **Is that a shelf?** · Is this a shelf? · Is that a clock?
 - Is this a shelf? — *В записи второе слово — `that`, а в этом варианте — `this`.*
@@ -101,7 +101,7 @@ ___ → **button** · switch · shelf
 - switch — *switch — это выключатель на стене, а деталь, которую нажимают, называется button.*
 - shelf — *shelf — это полка, а деталь, которую нажимают, называется button.*
 
-**11 · Послушайте вопрос подруги**
+**11 · Послушайте и выберите — подруга спрашивает, пока вы осматриваетесь**
 <!-- interaction_id: en:lesson-03:session-27:i09; family: listen_choose -->
 🔊 *Is that a remote?* → **Is that a remote?** · Is this a remote? · Is that a lamp?
 - Is this a remote? — *В записи второе слово — `that`, а в этом варианте — `this`.*
@@ -139,7 +139,7 @@ ___ → **router** · remote · shelf
 - remote — *remote — это пульт, а коробка, которая раздаёт интернет, называется router.*
 - shelf — *shelf — это полка, а коробка, которая раздаёт интернет, называется router.*
 
-**19 · Послушайте вопрос соседки**
+**19 · Послушайте и выберите — вокруг вас соседка показывает вещи**
 <!-- interaction_id: en:lesson-03:session-27:i15; family: listen_choose -->
 🔊 *Is that a switch?* → **Is that a switch?** · Is this a switch? · Is that a sofa?
 - Is this a switch? — *В записи второе слово — `that`, а в этом варианте — `this`.*

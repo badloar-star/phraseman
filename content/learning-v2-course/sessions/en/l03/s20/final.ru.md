@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-20:word:brush; family: word_card -->
 > **brush** — щётка или кисть. Are they brushes? — «Это щётки?» О щётке для уборки, для одежды, для волос.
 
-**4 · Послушайте курьера: что он диктует сейчас**
+**4 · Послушайте и выберите — курьер диктует вам по телефону**
 <!-- interaction_id: en:lesson-03:session-20:i02; family: listen_choose -->
 🔊 *They are brushes.* → **They are brushes.** · It is a brush. · They are benches.
 - It is a brush. — *В записи последнее слово — `brushes`, а в этом варианте — `brush`.*
@@ -109,7 +109,7 @@ The peaches ___ here. → **are** · is · am
 - is — *Персиков несколько: The peaches are here.*
 - am — *С The peaches нужно are: The peaches are here.*
 
-**13 · Послушайте курьера: он называет скамейку**
+**13 · Послушайте и выберите — курьер звонит вам из машины**
 <!-- interaction_id: en:lesson-03:session-20:i09; family: listen_choose -->
 🔊 *It is a bench.* → **It is a bench.** · They are benches. · It is a peach.
 - They are benches. — *В записи последнее слово — `bench`, а в этом варианте — `benches`.*
@@ -139,7 +139,7 @@ Are they ___? → **glasses** · glass · are
 - glass — *В вопросе о нескольких стаканах тоже нужно glasses.*
 - are — *Слово Are уже стоит в начале. В пропуск нужно название стаканов: glasses.*
 
-**19 · Послушайте вопрос подруги**
+**19 · Послушайте и выберите — подруга слушает курьера и задаёт вопрос**
 <!-- interaction_id: en:lesson-03:session-20:i15; family: listen_choose -->
 🔊 *Are they peaches?* → **Are they peaches?** · Is it a peach? · Are they benches?
 - Is it a peach? — *В записи последнее слово — `peaches`, а в этом варианте — `peach`.*

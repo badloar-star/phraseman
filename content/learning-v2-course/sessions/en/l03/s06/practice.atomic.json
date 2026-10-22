@@ -144,11 +144,11 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-06:i02:r1",
-            "text": "It is a bag."
+            "text": "It is a tag."
           },
           {
             "responseId": "en:lesson-03:session-06:i02:r2",
-            "text": "It is a tag."
+            "text": "It is a bag."
           },
           {
             "responseId": "en:lesson-03:session-06:i02:r3",
@@ -164,18 +164,18 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-03:session-06:i02:audio",
-            "transcript": "It is a bag."
+            "transcript": "It is a tag."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-03:session-06:i02:r1",
-              "targetText": "It is a bag.",
+              "targetText": "It is a tag.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-03:session-06:i02:r2",
-              "targetText": "It is a tag.",
+              "targetText": "It is a bag.",
               "meaningByLocale": null
             },
             {
@@ -191,8 +191,8 @@
               "correct": false,
               "testedDimension": "Послушайте, что консультант говорит о товарах",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `bag`, а в этом варианте — `tag`.",
-                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `tag`."
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `bag`."
               }
             },
             {
@@ -200,8 +200,8 @@
               "correct": false,
               "testedDimension": "Послушайте, что консультант говорит о товарах",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `bag`, а в этом варианте — `basket`.",
-                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `basket`."
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `basket`."
               }
             }
           ],
@@ -639,7 +639,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос консультанта",
+        "prompt": "Послушайте и выберите — у полки консультант обращается к вам",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-06:i09:r1",
@@ -658,7 +658,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-06:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос консультанта",
+        "accessibilityLabel": "Послушайте и выберите — у полки консультант обращается к вам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -688,7 +688,7 @@
             {
               "responseId": "en:lesson-03:session-06:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос консультанта",
+              "testedDimension": "Послушайте и выберите — у полки консультант обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `trolley`, а в этом варианте — `basket`.",
                 "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `basket`."
@@ -697,7 +697,7 @@
             {
               "responseId": "en:lesson-03:session-06:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос консультанта",
+              "testedDimension": "Послушайте и выберите — у полки консультант обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `trolley`, а в этом варианте — `bag`.",
                 "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `bag`."
@@ -985,7 +985,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что подруга говорит о бирке",
+        "prompt": "Послушайте и выберите — подруга разглядывает товары рядом с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-06:i15:r1",
@@ -1004,7 +1004,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-06:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что подруга говорит о бирке",
+        "accessibilityLabel": "Послушайте и выберите — подруга разглядывает товары рядом с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1034,7 +1034,7 @@
             {
               "responseId": "en:lesson-03:session-06:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что подруга говорит о бирке",
+              "testedDimension": "Послушайте и выберите — подруга разглядывает товары рядом с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tag`, а в этом варианте — `bag`.",
                 "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `bag`."
@@ -1043,7 +1043,7 @@
             {
               "responseId": "en:lesson-03:session-06:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что подруга говорит о бирке",
+              "testedDimension": "Послушайте и выберите — подруга разглядывает товары рядом с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tag`, а в этом варианте — `trolley`.",
                 "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `trolley`."
@@ -1312,11 +1312,11 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-06:i02:r1",
-            "text": "It is a bag."
+            "text": "It is a tag."
           },
           {
             "responseId": "en:lesson-03:session-06:i02:r2",
-            "text": "It is a tag."
+            "text": "It is a bag."
           },
           {
             "responseId": "en:lesson-03:session-06:i02:r3",
@@ -1332,18 +1332,18 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-03:session-06:i02:audio",
-            "transcript": "It is a bag."
+            "transcript": "It is a tag."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-03:session-06:i02:r1",
-              "targetText": "It is a bag.",
+              "targetText": "It is a tag.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-03:session-06:i02:r2",
-              "targetText": "It is a tag.",
+              "targetText": "It is a bag.",
               "meaningByLocale": null
             },
             {
@@ -1359,8 +1359,8 @@
               "correct": false,
               "testedDimension": "Послухайте, що консультант каже про товари",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `bag`, а в этом варианте — `tag`.",
-                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `tag`."
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `bag`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `bag`."
               }
             },
             {
@@ -1368,8 +1368,8 @@
               "correct": false,
               "testedDimension": "Послухайте, що консультант каже про товари",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `bag`, а в этом варианте — `basket`.",
-                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `basket`."
+                "ru": "В записи последнее слово — `tag`, а в этом варианте — `basket`.",
+                "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `basket`."
               }
             }
           ],
@@ -2357,7 +2357,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-06:i02",
-      "correctText": "It is a bag.",
+      "correctText": "It is a tag.",
       "correctResponseId": "en:lesson-03:session-06:i02:r1"
     },
     {

@@ -79,7 +79,7 @@ ___ → **white** · black · dark
 - black — *black — это чёрный, а молоко другого цвета: white.*
 - dark — *dark — это тёмный, а цвет молока называется white.*
 
-**7 · Послушайте, что продавец говорит о стульях**
+**7 · Послушайте и выберите — продавец показывает вам мебель в магазине**
 <!-- interaction_id: en:lesson-03:session-50:i05; family: listen_choose -->
 🔊 *Those are white chairs.* → **Those are white chairs.** · That is a white chair. · Those are black chairs.
 - That is a white chair. — *В записи `Those are` и несколько стульев, а в этом варианте `That is a` и один стул.*
@@ -117,7 +117,7 @@ ___ → **beige** · grey · white
 <!-- interaction_id: en:lesson-03:session-50:i10; family: speed_match -->
 white — белый · beige — бежевый · towel — полотенце · bowl — миска
 
-**15 · Послушайте вопрос подруги**
+**15 · Послушайте и выберите — подруга выбирает с вами вещи для квартиры**
 <!-- interaction_id: en:lesson-03:session-50:i11; family: listen_choose -->
 🔊 *Is it a grey towel?* → **Is it a grey towel?** · Are those grey towels? · Is it a white towel?
 - Are those grey towels? — *В записи `Is it a` и один предмет, а в этом варианте `Are those` и несколько.*

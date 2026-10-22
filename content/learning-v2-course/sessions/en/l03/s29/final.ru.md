@@ -57,7 +57,7 @@
 Плитки: `heavy` `It` `is` `are` → **It is heavy.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is heavy.`)*
 
-**2 · Послушайте, что говорит соседка**
+**2 · Послушайте и выберите — соседка разбирает с вами почту в подъезде**
 <!-- interaction_id: en:lesson-03:session-29:i02; family: listen_choose -->
 🔊 *That is a door.* → **That is a door.** · This is a door. · That is a box.
 - This is a door. — *В записи первое слово — `That`, а в этом варианте — `This`.*
@@ -101,7 +101,7 @@ ___ → **letter** · parcel · box
 - parcel — *parcel — это посылка, коробка с вещами, а листок в конверте называется letter.*
 - box — *box — это коробка, а листок в конверте называется letter.*
 
-**11 · Послушайте соседку**
+**11 · Послушайте и выберите — у подъезда соседка смотрит на вещи**
 <!-- interaction_id: en:lesson-03:session-29:i09; family: listen_choose -->
 🔊 *This is not a parcel.* → **This is not a parcel.** · That is not a parcel. · This is not a box.
 - That is not a parcel. — *В записи первое слово — `This`, а в этом варианте — `That`.*
@@ -139,7 +139,7 @@ ___ → **mailbox** · box · parcel
 - box — *box — это обычная коробка, а ящик для писем называется mailbox.*
 - parcel — *parcel — это посылка, а ящик для писем называется mailbox.*
 
-**19 · Послушайте соседку про марку**
+**19 · Послушайте и выберите — вы разбираете почту, соседка говорит рядом**
 <!-- interaction_id: en:lesson-03:session-29:i15; family: listen_choose -->
 🔊 *It is small.* → **It is small.** · It is big. · It is heavy.
 - It is big. — *В записи последнее слово — `small`, а в этом варианте — `big`.*

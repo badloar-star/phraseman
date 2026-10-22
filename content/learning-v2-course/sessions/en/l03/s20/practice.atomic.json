@@ -139,7 +139,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте курьера: что он диктует сейчас",
+        "prompt": "Послушайте и выберите — курьер диктует вам по телефону",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-20:i02:r1",
@@ -158,7 +158,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-20:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте курьера: что он диктует сейчас",
+        "accessibilityLabel": "Послушайте и выберите — курьер диктует вам по телефону",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -188,7 +188,7 @@
             {
               "responseId": "en:lesson-03:session-20:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте курьера: что он диктует сейчас",
+              "testedDimension": "Послушайте и выберите — курьер диктует вам по телефону",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `brushes`, а в этом варианте — `brush`.",
                 "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `brush`."
@@ -197,7 +197,7 @@
             {
               "responseId": "en:lesson-03:session-20:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте курьера: что он диктует сейчас",
+              "testedDimension": "Послушайте и выберите — курьер диктует вам по телефону",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `brushes`, а в этом варианте — `benches`.",
                 "uk": "У записі останнє слово — `brushes`, а в цьому варіанті — `benches`."
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте курьера: он называет скамейку",
+        "prompt": "Послушайте и выберите — курьер звонит вам из машины",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-20:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-20:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте курьера: он называет скамейку",
+        "accessibilityLabel": "Послушайте и выберите — курьер звонит вам из машины",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-03:session-20:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте курьера: он называет скамейку",
+              "testedDimension": "Послушайте и выберите — курьер звонит вам из машины",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bench`, а в этом варианте — `benches`.",
                 "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `benches`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-03:session-20:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте курьера: он называет скамейку",
+              "testedDimension": "Послушайте и выберите — курьер звонит вам из машины",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bench`, а в этом варианте — `peach`.",
                 "uk": "У записі останнє слово — `bench`, а в цьому варіанті — `peach`."
@@ -979,7 +979,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос подруги",
+        "prompt": "Послушайте и выберите — подруга слушает курьера и задаёт вопрос",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-20:i15:r1",
@@ -998,7 +998,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-20:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос подруги",
+        "accessibilityLabel": "Послушайте и выберите — подруга слушает курьера и задаёт вопрос",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1028,7 +1028,7 @@
             {
               "responseId": "en:lesson-03:session-20:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга слушает курьера и задаёт вопрос",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `peaches`, а в этом варианте — `peach`.",
                 "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `peach`."
@@ -1037,7 +1037,7 @@
             {
               "responseId": "en:lesson-03:session-20:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос подруги",
+              "testedDimension": "Послушайте и выберите — подруга слушает курьера и задаёт вопрос",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `peaches`, а в этом варианте — `benches`.",
                 "uk": "У записі останнє слово — `peaches`, а в цьому варіанті — `benches`."

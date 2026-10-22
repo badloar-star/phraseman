@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-24:word:label; family: word_card -->
 > **label** — бирка или этикетка. Is it a label? — «Это бирка?» О бирке на коробке, на одежде, на банке.
 
-**4 · Послушайте вопрос подруги о бирке**
+**4 · Послушайте и выберите — подруга разглядывает то, что вы принимаете**
 <!-- interaction_id: en:lesson-03:session-24:i02; family: listen_choose -->
 🔊 *Is it a label?* → **Is it a label?** · Are they labels? · Is it a card?
 - Are they labels? — *В записи последнее слово — `label`, а в этом варианте — `labels`.*
@@ -109,7 +109,7 @@ It is ___ envelope. → **an** · a · is
 - a — *Слово envelope начинается с гласного звука, поэтому здесь an.*
 - is — *Слово is уже стоит перед пропуском. Перед envelope нужно an.*
 
-**13 · Послушайте, что говорит брат**
+**13 · Послушайте и выберите — брат проверяет доставку вместе с вами**
 <!-- interaction_id: en:lesson-03:session-24:i09; family: listen_choose -->
 🔊 *They are tickets.* → **They are tickets.** · It is a ticket. · They are pens.
 - It is a ticket. — *В записи последнее слово — `tickets`, а в этом варианте — `ticket`.*
@@ -139,7 +139,7 @@ Are they ___? → **labels** · label · are
 - label — *В вопросе о нескольких бирках тоже нужно labels с s.*
 - are — *Слово Are уже стоит в начале. В пропуск нужно название бирок: labels.*
 
-**19 · Послушайте вопрос подруги**
+**19 · Послушайте и выберите — вы сверяете доставку, подруга задаёт вопрос**
 <!-- interaction_id: en:lesson-03:session-24:i15; family: listen_choose -->
 🔊 *Are they cities?* → **Are they cities?** · Is it a city? · Are they bottles?
 - Is it a city? — *В записи последнее слово — `cities`, а в этом варианте — `city`.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-22:word:bowl; family: word_card -->
 > **bowl** — миска, глубокая посуда для салата и супа. Where are the bowls? — «Где миски?» О миске на кухне.
 
-**4 · Послушайте вопрос подруги**
+**4 · Послушайте и выберите — подруга сверяет кухонную коробку со списком**
 <!-- interaction_id: en:lesson-03:session-22:i02; family: listen_choose -->
 🔊 *Where are the bowls?* → **Where are the bowls?** · Where is the bowl? · Where are the plates?
 - Where is the bowl? — *В записи последнее слово — `bowls`, а в этом варианте — `bowl`.*
@@ -109,7 +109,7 @@ The jars ___ here. → **are** · is · am
 - is — *Банок несколько: The jars are here.*
 - am — *С The jars нужно are: The jars are here.*
 
-**13 · Послушайте, что брат говорит о находке**
+**13 · Послушайте и выберите — подруга достаёт вещи из кухонной коробки**
 <!-- interaction_id: en:lesson-03:session-22:i09; family: listen_choose -->
 🔊 *They are bottles.* → **They are bottles.** · It is a bottle. · They are jars.
 - It is a bottle. — *В записи последнее слово — `bottles`, а в этом варианте — `bottle`.*
@@ -139,7 +139,7 @@ Are they ___? → **bottles** · bottle · are
 - bottle — *В вопросе о нескольких бутылках тоже нужно bottles с s.*
 - are — *Слово Are уже стоит в начале. В пропуск нужно название бутылок: bottles.*
 
-**19 · Послушайте вопрос соседки**
+**19 · Послушайте и выберите — подруга переспрашивает, пока вы читаете список**
 <!-- interaction_id: en:lesson-03:session-22:i15; family: listen_choose -->
 🔊 *Are they plates?* → **Are they plates?** · Is it a plate? · Are they bowls?
 - Is it a plate? — *В записи последнее слово — `plates`, а в этом варианте — `plate`.*

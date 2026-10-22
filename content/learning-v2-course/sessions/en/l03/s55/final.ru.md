@@ -79,7 +79,7 @@ ___ → **material** · shape · round
 - shape — *shape — это форма, а то, из чего вещь сделана, называется material.*
 - round — *round — это круглый, а то, из чего вещь сделана, называется material.*
 
-**7 · Послушайте вопрос продавца**
+**7 · Послушайте и выберите — продавец осматривает покупки вместе с вами**
 <!-- interaction_id: en:lesson-03:session-55:i05; family: listen_choose -->
 🔊 *What is the material?* → **What is the material?** · What is the shape? · Where is the material?
 - What is the shape? — *В записи последнее слово — `material`, а в этом варианте — `shape`.*
@@ -117,7 +117,7 @@ ___ → **style** · pattern · material
 <!-- interaction_id: en:lesson-03:session-55:i10; family: speed_match -->
 pattern — узор · style — стиль · leather — кожаный · floral — цветочный (с цветами)
 
-**15 · Послушайте вопрос подруги**
+**15 · Послушайте и выберите — подруга делает последний осмотр с вами**
 <!-- interaction_id: en:lesson-03:session-55:i11; family: listen_choose -->
 🔊 *Is the pattern floral?* → **Is the pattern floral?** · Is the pattern striped? · Is the style floral?
 - Is the pattern striped? — *В записи рисунок — `floral`, а в этом варианте — `striped`.*

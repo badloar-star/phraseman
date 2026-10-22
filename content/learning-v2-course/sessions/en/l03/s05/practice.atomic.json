@@ -144,7 +144,7 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-05:i02:r1",
-            "text": "It is a crack."
+            "text": "It is a floor."
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r2",
@@ -152,7 +152,7 @@
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
-            "text": "It is a floor."
+            "text": "It is a crack."
           }
         ],
         "mediaIds": [],
@@ -164,13 +164,13 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-03:session-05:i02:audio",
-            "transcript": "It is a crack."
+            "transcript": "It is a floor."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-03:session-05:i02:r1",
-              "targetText": "It is a crack.",
+              "targetText": "It is a floor.",
               "meaningByLocale": null
             },
             {
@@ -180,7 +180,7 @@
             },
             {
               "responseId": "en:lesson-03:session-05:i02:r3",
-              "targetText": "It is a floor.",
+              "targetText": "It is a crack.",
               "meaningByLocale": null
             }
           ],
@@ -191,8 +191,8 @@
               "correct": false,
               "testedDimension": "Послушайте, что мастер говорит о ремонте",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `crack`, а в этом варианте — `wall`.",
-                "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `wall`."
+                "ru": "В записи последнее слово — `floor`, а в этом варианте — `wall`.",
+                "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `wall`."
               }
             },
             {
@@ -200,8 +200,8 @@
               "correct": false,
               "testedDimension": "Послушайте, что мастер говорит о ремонте",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `crack`, а в этом варианте — `floor`.",
-                "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `floor`."
+                "ru": "В записи последнее слово — `floor`, а в этом варианте — `crack`.",
+                "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `crack`."
               }
             }
           ],
@@ -639,7 +639,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос мастера",
+        "prompt": "Послушайте и выберите — в комнате мастер задаёт вам вопрос",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-05:i09:r1",
@@ -658,7 +658,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-05:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос мастера",
+        "accessibilityLabel": "Послушайте и выберите — в комнате мастер задаёт вам вопрос",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -688,7 +688,7 @@
             {
               "responseId": "en:lesson-03:session-05:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос мастера",
+              "testedDimension": "Послушайте и выберите — в комнате мастер задаёт вам вопрос",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wall`, а в этом варианте — `crack`.",
                 "uk": "У записі останнє слово — `wall`, а в цьому варіанті — `crack`."
@@ -697,7 +697,7 @@
             {
               "responseId": "en:lesson-03:session-05:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос мастера",
+              "testedDimension": "Послушайте и выберите — в комнате мастер задаёт вам вопрос",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wall`, а в этом варианте — `floor`.",
                 "uk": "У записі останнє слово — `wall`, а в цьому варіанті — `floor`."
@@ -985,7 +985,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что мастер говорит о трещине",
+        "prompt": "Послушайте и выберите — вы идёте за мастером по комнате",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-05:i15:r1",
@@ -1004,7 +1004,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-05:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что мастер говорит о трещине",
+        "accessibilityLabel": "Послушайте и выберите — вы идёте за мастером по комнате",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1034,7 +1034,7 @@
             {
               "responseId": "en:lesson-03:session-05:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что мастер говорит о трещине",
+              "testedDimension": "Послушайте и выберите — вы идёте за мастером по комнате",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `crack`, а в этом варианте — `wall`.",
                 "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `wall`."
@@ -1043,7 +1043,7 @@
             {
               "responseId": "en:lesson-03:session-05:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что мастер говорит о трещине",
+              "testedDimension": "Послушайте и выберите — вы идёте за мастером по комнате",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `crack`, а в этом варианте — `ceiling`.",
                 "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `ceiling`."
@@ -1312,7 +1312,7 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-05:i02:r1",
-            "text": "It is a crack."
+            "text": "It is a floor."
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r2",
@@ -1320,7 +1320,7 @@
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
-            "text": "It is a floor."
+            "text": "It is a crack."
           }
         ],
         "mediaIds": [],
@@ -1332,13 +1332,13 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-03:session-05:i02:audio",
-            "transcript": "It is a crack."
+            "transcript": "It is a floor."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-03:session-05:i02:r1",
-              "targetText": "It is a crack.",
+              "targetText": "It is a floor.",
               "meaningByLocale": null
             },
             {
@@ -1348,7 +1348,7 @@
             },
             {
               "responseId": "en:lesson-03:session-05:i02:r3",
-              "targetText": "It is a floor.",
+              "targetText": "It is a crack.",
               "meaningByLocale": null
             }
           ],
@@ -1359,8 +1359,8 @@
               "correct": false,
               "testedDimension": "Послухайте, що майстер каже про ремонт",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `crack`, а в этом варианте — `wall`.",
-                "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `wall`."
+                "ru": "В записи последнее слово — `floor`, а в этом варианте — `wall`.",
+                "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `wall`."
               }
             },
             {
@@ -1368,8 +1368,8 @@
               "correct": false,
               "testedDimension": "Послухайте, що майстер каже про ремонт",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `crack`, а в этом варианте — `floor`.",
-                "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `floor`."
+                "ru": "В записи последнее слово — `floor`, а в этом варианте — `crack`.",
+                "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `crack`."
               }
             }
           ],
@@ -2357,7 +2357,7 @@
     },
     {
       "interactionId": "en:lesson-03:session-05:i02",
-      "correctText": "It is a crack.",
+      "correctText": "It is a floor.",
       "correctResponseId": "en:lesson-03:session-05:i02:r1"
     },
     {

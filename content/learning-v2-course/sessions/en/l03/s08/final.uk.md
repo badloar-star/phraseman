@@ -67,9 +67,9 @@
 
 **4 · Послухайте, що подруга каже про речі в коридорі**
 <!-- interaction_id: en:lesson-03:session-08:i02; family: listen_choose -->
-🔊 *It is a bucket.* → **It is a bucket.** · It is a ladder. · It is a hammer.
-- It is a ladder. — *У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`.*
-- It is a hammer. — *У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`.*
+🔊 *It is a hammer.* → **It is a hammer.** · It is a ladder. · It is a bucket.
+- It is a ladder. — *У записі останнє слово — `hammer`, а в цьому варіанті — `ladder`.*
+- It is a bucket. — *У записі останнє слово — `hammer`, а в цьому варіанті — `bucket`.*
 
 **5 · Картка слова — bucket**
 <!-- interaction_id: en:lesson-03:session-08:word:bucket; family: word_card -->

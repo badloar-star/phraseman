@@ -67,9 +67,9 @@
 
 **4 · Послухайте, що подруга каже про річ біля дверей**
 <!-- interaction_id: en:lesson-03:session-03:i02; family: listen_choose -->
-🔊 *It is a rug.* → **It is a rug.** · It is a mirror. · It is a stool.
-- It is a mirror. — *У записі останнє слово — `rug`, а в цьому варіанті — `mirror`.*
-- It is a stool. — *У записі останнє слово — `rug`, а в цьому варіанті — `stool`.*
+🔊 *It is a mirror.* → **It is a mirror.** · It is a rug. · It is a stool.
+- It is a rug. — *У записі останнє слово — `mirror`, а в цьому варіанті — `rug`.*
+- It is a stool. — *У записі останнє слово — `mirror`, а в цьому варіанті — `stool`.*
 
 **5 · На стіні висить одне з дзеркал. Доповніть: «Це дзеркало»**
 <!-- interaction_id: en:lesson-03:session-03:i03; family: context_gap_grammar -->

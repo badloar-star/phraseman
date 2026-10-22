@@ -57,7 +57,7 @@
 Плитки: `basket` `here` `is` `A` `The` → **A basket is here.**
 *(плитка `The` лишняя: здесь нужно `A` — `A basket is here.`)*
 
-**2 · Послушайте продавца и выберите фразу**
+**2 · Послушайте и выберите — вы слушаете разговор продавцов у кассы**
 <!-- interaction_id: en:lesson-03:session-44:i02; family: listen_choose -->
 🔊 *A basket is here.* → **A basket is here.** · The basket is here. · A basket is there.
 - The basket is here. — *В записи первое слово — `A`, а в этом варианте — `The`.*
@@ -101,7 +101,7 @@ ___ → **seller** · customer · coin
 - customer — *customer — это покупатель, а тот, кто продаёт товары, называется seller.*
 - coin — *coin — это монета, а тот, кто продаёт товары, называется seller.*
 
-**11 · Послушайте, что говорит продавец**
+**11 · Послушайте и выберите — у кассы продавец разговаривает с коллегой**
 <!-- interaction_id: en:lesson-03:session-44:i09; family: listen_choose -->
 🔊 *A customer is happy.* → **A customer is happy.** · The customer is happy. · A customer is angry.
 - The customer is happy. — *В записи первое слово — `A`, а в этом варианте — `The`.*
@@ -139,7 +139,7 @@ ___ → **queue** · basket · trolley
 - basket — *basket — это корзина, а люди, которые стоят друг за другом, — это queue.*
 - trolley — *trolley — это тележка, а люди, которые стоят друг за другом, — это queue.*
 
-**19 · Послушайте, что говорит продавец**
+**19 · Послушайте и выберите — продавец что-то объясняет коллеге рядом с вами**
 <!-- interaction_id: en:lesson-03:session-44:i15; family: listen_choose -->
 🔊 *An assistant is here.* → **An assistant is here.** · The assistant is here. · An assistant is there.
 - The assistant is here. — *В записи первое слово — `An`, а в этом варианте — `The`.*

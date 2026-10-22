@@ -57,7 +57,7 @@
 Плитки: `light` `bags` `are` `These` `bag` → **These bags are light.**
 *(плитка `bag` лишняя: здесь нужно `bags` — `These bags are light.`)*
 
-**2 · Послушайте вопрос брата о грушах**
+**2 · Послушайте и выберите — брат спрашивает вас у овощной палатки**
 <!-- interaction_id: en:lesson-03:session-39:i02; family: listen_choose -->
 🔊 *Are those pears ripe?* → **Are those pears ripe?** · Is that pear ripe? · Are these pears ripe?
 - Is that pear ripe? — *В записи `Are those pears` — груш несколько, а в этом варианте `Is that pear` — одна.*
@@ -101,7 +101,7 @@ ___ → **lemon** · apple · pear
 - apple — *apple — это яблоко, а кислый жёлтый фрукт для чая называется lemon.*
 - pear — *pear — это груша, а кислый жёлтый фрукт для чая называется lemon.*
 
-**11 · Послушайте, что говорит продавец о винограде**
+**11 · Послушайте и выберите — продавец кладёт продукты в сумки**
 <!-- interaction_id: en:lesson-03:session-39:i09; family: listen_choose -->
 🔊 *Those grapes are ripe.* → **Those grapes are ripe.** · That grape is ripe. · Those grapes are old.
 - That grape is ripe. — *В записи `Those grapes` — виноградин несколько, а в этом варианте `That grape` — одна.*
@@ -139,7 +139,7 @@ ___ → **cucumber** · onion · lemon
 - onion — *onion — это лук, а длинный зелёный овощ для салата называется cucumber.*
 - lemon — *lemon — это лимон, а длинный зелёный овощ для салата называется cucumber.*
 
-**19 · Послушайте вопрос подруги о луке**
+**19 · Послушайте и выберите — в палатке подруга задаёт вопрос**
 <!-- interaction_id: en:lesson-03:session-39:i15; family: listen_choose -->
 🔊 *Are those onions fresh?* → **Are those onions fresh?** · Is that onion fresh? · Are these onions fresh?
 - Is that onion fresh? — *В записи `Are those onions` — луковиц несколько, а в этом варианте `Is that onion` — одна.*

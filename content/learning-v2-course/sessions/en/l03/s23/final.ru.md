@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-23:word:fork; family: word_card -->
 > **fork** — вилка. Are they forks? — «Это вилки?» О вилке, которой едят.
 
-**4 · Послушайте вопрос подруги о втором ящике**
+**4 · Послушайте и выберите — подруга заглядывает в соседний ящик**
 <!-- interaction_id: en:lesson-03:session-23:i02; family: listen_choose -->
 🔊 *Are they forks?* → **Are they forks?** · Is it a fork? · Are they spoons?
 - Is it a fork? — *В записи последнее слово — `forks`, а в этом варианте — `fork`.*
@@ -109,7 +109,7 @@ The pots ___ hot. → **are** · is · am
 - is — *Кастрюль несколько: The pots are hot.*
 - am — *С The pots нужно are: The pots are hot.*
 
-**13 · Послушайте, что подруга говорит о посуде**
+**13 · Послушайте и выберите — вы достаёте вещи из коробки, подруга смотрит**
 <!-- interaction_id: en:lesson-03:session-23:i09; family: listen_choose -->
 🔊 *They are cups.* → **They are cups.** · It is a cup. · They are pots.
 - It is a cup. — *В записи последнее слово — `cups`, а в этом варианте — `cup`.*
@@ -139,7 +139,7 @@ Are they ___? → **spoons** · spoon · are
 - spoon — *В вопросе о нескольких ложках тоже нужно spoons с s.*
 - are — *Слово Are уже стоит в начале. В пропуск нужно название ложек: spoons.*
 
-**19 · Послушайте вопрос брата**
+**19 · Послушайте и выберите — брат наблюдает, как вы раскладываете вещи**
 <!-- interaction_id: en:lesson-03:session-23:i15; family: listen_choose -->
 🔊 *Are they cups?* → **Are they cups?** · Is it a pot? · Are they forks?
 - Is it a pot? — *В записи последнее слово — `cups`, а в этом варианте — `pot`.*

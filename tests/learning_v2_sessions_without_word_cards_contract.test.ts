@@ -11,11 +11,6 @@ jest.mock("@react-native-firebase/app", () => ({ getApp: jest.fn(() => ({})) }))
 jest.mock("@react-native-firebase/functions", () => ({ getFunctions: jest.fn(() => ({})), httpsCallable: jest.fn() }));
 jest.mock("../app/cloud_sync", () => ({ ensureAnonUser: jest.fn(async () => "stable-1") }));
 jest.mock("../app/stable_id", () => ({ peekStableId: jest.fn(() => "stable-1") }));
-jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
-  preloadLearningV2CourseSessionAudioV1: jest.fn(),
-  isLearningV2CourseSessionAudioPreloadHandleV1: jest.fn(() => true),
-  getLearningV2CourseSessionAudioPreloadSummaryV1: jest.fn(),
-}));
 
 /* eslint-disable import/first -- native/transport seams are mocked first */
 import fs from "node:fs";

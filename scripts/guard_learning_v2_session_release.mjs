@@ -142,7 +142,6 @@ if (trackFiles.length === 0) {
 }
 
 const client = read('app/learning_v2_course_released_session_client_v3.ts') ?? '';
-const preload = read('app/learning_v2_course_session_audio_preload_v1.ts') ?? '';
 
 for (const trackFile of trackFiles) {
   const text = read(path.join(SOURCE_DIR, trackFile));
@@ -228,29 +227,9 @@ for (const trackFile of trackFiles) {
           `   stable_identity_unavailable».`,
       );
     }
-    // 2026-09-20: озвучка больше НЕ подключается пофайлово вызовом
-    // learningV2…SessionNBundledAudioModuleForObjectPathV1. Она переехала на
-    // общий путь: файл ищется по личности (identity) сначала в подготовленном
-    // кэше, затем в сгенерированном bootstrap-реестре. Проверка по именам
-    // функций сторожила ОТМЕНЁННОЕ устройство и блокировала любой коммит.
-    // Сторожим сам путь: разорвётся он — озвучка не найдётся ни для одной
-    // сессии, то есть тот же класс бага ловится честно.
-    if (
-      callCount(preload, 'resolvePreparedLearningV2VoiceAudioOfflineFileV1') === 0 ||
-      callCount(preload, 'resolveLearningV2BootstrapAudioOfflineFileV1') === 0
-    ) {
-      problems.push(
-        `[${lang}] Разорван общий путь поиска озвучки в
-` +
-          `   learning_v2_course_session_audio_preload_v1.ts: нужен поиск и в
-` +
-          `   подготовленном кэше (resolvePreparedLearningV2VoiceAudioOfflineFileV1),
-` +
-          `   и в bootstrap-реестре (resolveLearningV2BootstrapAudioOfflineFileV1).
-` +
-          `   Без обоих звеньев аудио не найдётся при воспроизведении.`,
-      );
-    }
+    // зачем (владелец 22.10, «только TTS»): в занятиях звучит только голос телефона — модуль прогрева записей и
+    // bootstrap-реестр удалены вместе с записями, проверка «общего пути поиска записей» снята. Модули сессий
+    // (*_production_audio_v1.ts) остаются: клиент считает по ним отпечатки урока 1 (награда), это сторожит пункт выше.
   }
 }
 
@@ -283,7 +262,7 @@ if (factoryText && manifestText) {
         `   а в манифесте он есть у ${auxiliaryRowCount} из ${rowCount}. Каждое занятие без него падает с\n` +
         '   learning_v2_factory_native_auxiliary_missing → «Сессия недоступна» в стор-сборке.\n' +
         '   Коммить фабрику ОДНИМ коммитом с перегенерированным манифестом и копиями auxiliary.json,\n' +
-        '   затем прогони tests/learning_v2_lesson1_bundle_builds.test.ts.\n' +
+        '   затем прогони tests/learning_v2_bundle_availability.test.ts.\n' +
         '   Подробно: docs/phraseman-2.0/handoff/CODEX_URGENT_FACTORY_2026-10-11.md',
     );
   }

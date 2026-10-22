@@ -48,15 +48,3 @@ describe('[V2-FINISH] · сбой сохранения после звёзд: с
     expect(block).toContain('ru: "Не получилось сохранить результат"');
   });
 });
-
-describe('[AUDIO-PRELOAD] · бюджет прогрева виден в журнале до отказа', () => {
-  it('одна строка на подготовку, предупреждение при заполнении больше 75%, проверка бюджета прежняя', () => {
-    const preload = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning_v2_course_session_audio_preload_v1.ts'), 'utf8');
-    const at = preload.indexOf('const budgetPct = ');
-    expect(at).toBeGreaterThan(-1);
-    const block = preload.slice(at, at + 1400);
-    expect(block).toContain('if (budgetPct > 75) console.warn("[AUDIO-PRELOAD] budget_high", budgetLine);');
-    expect(block).toContain('else console.log("[AUDIO-PRELOAD] budget", budgetLine);');
-    expect(block.indexOf('[AUDIO-PRELOAD] budget')).toBeLessThan(block.indexOf('fail("preload_budget_exceeded"'));
-  });
-});

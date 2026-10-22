@@ -31,11 +31,6 @@ jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false 
 // зачем: owner_repository_runtime → v3-клиент → предзагрузка озвучки → встроенные
 // MP3 через expo-asset (ESM, нативный модуль). К завершению занятия это не
 // относится; подменяем только этот нативный шов, логика завершения — настоящая.
-jest.mock('../app/learning_v2_bootstrap_audio_seed_v1', () => ({
-  preloadLearningV2BootstrapAudioAssetsV1: jest.fn(async () => undefined),
-  seedLearningV2BootstrapAudioCacheV1: jest.fn(async () => undefined),
-  resolveLearningV2BootstrapAudioOfflineFileV1: jest.fn(async () => null),
-}));
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable-user-1') }));
 jest.mock('../app/learning_v2_owner_repository_runtime', () => {
   const actual = jest.requireActual('../app/learning_v2_owner_repository_runtime');

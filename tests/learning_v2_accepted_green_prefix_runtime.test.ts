@@ -2,11 +2,6 @@ jest.mock("@react-native-firebase/app", () => ({ getApp: jest.fn(() => ({})) }))
 jest.mock("@react-native-firebase/functions", () => ({ getFunctions: jest.fn(() => ({})), httpsCallable: jest.fn() }));
 jest.mock("../app/cloud_sync", () => ({ ensureAnonUser: jest.fn(async () => "stable-1") }));
 jest.mock("../app/stable_id", () => ({ peekStableId: jest.fn(() => "stable-1") }));
-jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
-  preloadLearningV2CourseSessionAudioV1: jest.fn(),
-  isLearningV2CourseSessionAudioPreloadHandleV1: jest.fn(() => true),
-  getLearningV2CourseSessionAudioPreloadSummaryV1: jest.fn(),
-}));
 
 /* eslint-disable import/first -- native/transport seams are mocked first */
 import {
@@ -14,7 +9,6 @@ import {
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 import { materializeFactoryNativeLearningV2SessionV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 import { bundledLearningV2CourseSessionMaterialV3 } from "../app/learning_v2_course_released_session_client_v3";
-import { learningV2FactoryMissingAudioInteractionIdsV1 } from "../app/learning_v2_factory_production_audio_v1";
 import {
   LEARNING_V2_RELEASED_SESSION_COUNT_V1,
   isLearningV2SessionReleasedV1,
@@ -89,7 +83,6 @@ describe("accepted green Learning V2 prefix runtime compatibility", () => {
     } as never);
     const raw = materializeFactoryNativeLearningV2SessionV1({ lessonOrdinal: 1, sessionOrdinal, interfaceLocale: "ru" });
     expect(material).not.toBeNull();
-    expect(learningV2FactoryMissingAudioInteractionIdsV1(material!.learnerChild)).toEqual([]);
     expect(material!.learnerChild.interactions.map((interaction) => interaction.interactionId))
       .toEqual(raw!.learnerChild.interactions.map((interaction) => interaction.interactionId));
   });

@@ -20,15 +20,12 @@ const client = normalizeEol(readFileSync(
   "app/learning_v2_course_released_session_client_v3.ts",
   "utf8",
 ));
-const audio = normalizeEol(readFileSync(
-  "app/learning_v2_course_session_audio_preload_v1.ts",
-  "utf8",
-));
-
-assert.match(
+// зачем (владелец 22.10, «только TTS»): записанных mp3 в занятиях нет — модуль прогрева записей и встроенный пакет
+// урока 1 удалены, их проверки сняты; корень приложения больше не сеет кэш записей.
+assert.doesNotMatch(
   rootLayout,
-  /seedLearningV2BootstrapAudioCacheV1\(\)\.catch/,
-  "the bundled Session 1 pack must seed the durable cache during app bootstrap",
+  /seedLearningV2BootstrapAudioCacheV1/,
+  "recorded lesson audio is retired: the root layout must not seed a recorded-audio cache",
 );
 assert.doesNotMatch(
   lessons,
@@ -92,10 +89,16 @@ assert.doesNotMatch(
   /prepareLearningV2AudioSession/,
   "navigation preparation must never wait for network-capable audio preparation",
 );
+// зачем (владелец 22.10, «только TTS»): записей нет — фоновый прогрев готовит только материал занятия, звук не готовит.
 assert.match(
   preparationWrapper,
-  /const prewarmLearningV2SessionLaunch[\s\S]*?prepareLearningV2AudioSession[\s\S]*?prepareLearningV2SessionBeforeModal/,
-  "background prewarm must prepare audio before the local-only handoff",
+  /const prewarmLearningV2SessionLaunch[\s\S]*?prepareLearningV2SessionBeforeModal/,
+  "background prewarm must prepare the session material before the local-only handoff",
+);
+assert.doesNotMatch(
+  preparationWrapper,
+  /prepareLearningV2AudioSession/,
+  "recorded lesson audio is retired: prewarm must not prepare recorded audio",
 );
 
 const launchHandler = lessons.slice(
@@ -105,18 +108,6 @@ const launchHandler = lessons.slice(
 assert.match(launchHandler, /setSelectedLearningV2Session\(null\)/);
 assert.match(launchHandler, /LEARNING_V2_SESSION_MODAL_EXIT_MS/);
 assert.match(launchHandler, /Promise\.all/);
-
-assert.match(audio, /physicalAudioCacheKeyV1/);
-assert.match(audio, /verifiedPhysicalAudioFiles/);
-assert.match(
-  audio,
-  /physicalAudioCacheKeyV1\([\s\S]{0,220}audioFingerprint[\s\S]{0,220}contentHash/,
-);
-assert.doesNotMatch(
-  audio.match(/function physicalAudioCacheKeyV1[\s\S]*?\n\}/)?.[0] ?? "",
-  /sessionRunId/,
-  "physical-file cache identity must not contain sessionRunId",
-);
 
 assert.match(client, /getLearningV2CourseSessionReadyTimingV3/);
 assert.match(client, /materialReadyAtMs/);

@@ -132,41 +132,6 @@ describe("Learning V2 continuous map performance contract", () => {
     expect(lessons).not.toContain("learningV2HasPublishedAudioV1");
   });
 
-  test("лёгкий срез озвучки совпадает с полным индексом", () => {
-    // Технический долг среза: он дублирует список из большого индекса и обязан
-    // обновляться вместе с ним. Без этой проверки расхождение было бы немым —
-    // занятие с новой озвучкой просто не прогревалось бы.
-    const readOrdinals = (text: string) => {
-      const re =
-        /(\d+):\s*Object\.freeze\(\{\s*sessionCount:\s*\d+,\s*sessionOrdinals:\s*Object\.freeze\(\[([0-9,]*)\]\)/g;
-      const map = new Map<number, string>();
-      let match: RegExpExecArray | null;
-      while ((match = re.exec(text))) map.set(Number(match[1]), match[2]);
-      return map;
-    };
-    const fullIndex = readOrdinals(
-      readFileSync(
-        join(__dirname, "..", "app", "learning_v2_factory_lesson_audio_index_v1.generated.ts"),
-        "utf8",
-      ),
-    );
-    const sliceText = readFileSync(
-      join(__dirname, "..", "app", "learning_v2_published_audio_sessions_v1.generated.ts"),
-      "utf8",
-    );
-    const sliceRe = /(\d+):\s*Object\.freeze\(\[([0-9,]*)\]\)/g;
-    const slice = new Map<number, string>();
-    let sliceMatch: RegExpExecArray | null;
-    while ((sliceMatch = sliceRe.exec(sliceText))) {
-      slice.set(Number(sliceMatch[1]), sliceMatch[2]);
-    }
-    expect(fullIndex.size).toBeGreaterThan(0);
-    expect([...slice.keys()].sort()).toEqual([...fullIndex.keys()].sort());
-    for (const [lesson, ordinals] of fullIndex) {
-      expect(slice.get(lesson)).toBe(ordinals);
-    }
-  });
-
   // зачем (владелец 17.10: «этот модал удаляй полностью, он не нужен!!!»): окна «Пропуск основателя / Начать знакомство» нет —
   // ни компонента, ни гейта, ни квитанции «видел»; карта уроков и прогрев занятия от него не зависят.
   test("окна «Пропуск основателя» нет: ни компонента, ни гейта в «Уроках»", () => {

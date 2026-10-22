@@ -56,8 +56,6 @@ describe('стартовый путь не выполняет тяжёлый к�
   const importsOf = (src: string): string[] => src.split('\n').filter((l) => /^import\s/.test(l));
 
   test.each([
-    ['app/learning_v2_factory_production_audio_v1.ts', 'learning_v2_factory_production_audio_entries_v1.generated', 'learning_v2_factory_production_audio'],
-    ['app/learning_v2_lesson_audio_pack_v1.ts', 'learning_v2_factory_lesson_audio_index_v1.generated', 'learning_v2_factory_lesson_audio_index'],
     ['modules/audio/phrase_audio_lookup.ts', 'phrase_audio_url_map.generated', 'phrase_audio_url_map'],
     ['app/lesson_words_spanish_gloss.ts', 'lesson_words_source_locales', 'lesson_words_source_locales'],
   ])('%s: нет статического import %s, есть lazyContent("%s")', (file, heavy, key) => {
@@ -83,41 +81,5 @@ describe('поведение данных не изменилось', () => {
     const body = (src: string): string => /export function normalizePhraseAudioKey[^{]*\{([^}]*)\}/.exec(src)?.[1]?.replace(/\s+/g, ' ').trim() ?? '';
     expect(body(read('app/phrase_audio_key.ts'))).toBe(body(read('app/phrase_audio_url_map.generated.ts')));
     expect(body(read('app/phrase_audio_key.ts'))).not.toBe('');
-  });
-
-  test('озвучка фабрики: ленивые таблицы отдают те же записи, что сгенерированный список; загрузка — только по обращению', () => {
-    resetContentLazyForTests();
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const audio = require('../app/learning_v2_factory_production_audio_v1') as typeof import('../app/learning_v2_factory_production_audio_v1');
-    expect(loadedContentKeys()).not.toContain('learning_v2_factory_production_audio');
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { FACTORY_PRODUCTION_AUDIO_ENTRIES_V1: entries } = require('../app/learning_v2_factory_production_audio_entries_v1.generated') as typeof import('../app/learning_v2_factory_production_audio_entries_v1.generated');
-    const entry = entries[0]!;
-    const byHash = audio.learningV2FactoryRemoteAudioFilesForContentHashesV1([entry.contentHash]);
-    expect(loadedContentKeys()).toContain('learning_v2_factory_production_audio');
-    expect(byHash).toHaveLength(1);
-    expect(byHash[0]!.contentHash).toBe(entry.contentHash);
-    expect(byHash[0]!.byteSize).toBe(entry.byteSize);
-    const byTranscript = audio.learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(entry.transcript, entry.voiceId as never);
-    expect(byTranscript?.contentHash).toBe(entry.contentHash);
-    expect(audio.learningV2FactoryRemoteAudioFileForTranscriptVoiceV1('definitely not a recorded phrase 123', 'ash')).toBeNull();
-    expect(() => audio.learningV2FactoryRemoteAudioFilesForContentHashesV1(['no_such_hash'])).toThrow('learning_v2_factory_production_audio_missing');
-  });
-
-  test('индекс озвучки по урокам: опубликованные уроки те же, что в сгенерированном индексе', () => {
-    resetContentLazyForTests();
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const pack = require('../app/learning_v2_lesson_audio_pack_v1') as typeof import('../app/learning_v2_lesson_audio_pack_v1');
-    expect(loadedContentKeys()).not.toContain('learning_v2_factory_lesson_audio_index');
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1: index } = require('../app/learning_v2_factory_lesson_audio_index_v1.generated') as typeof import('../app/learning_v2_factory_lesson_audio_index_v1.generated');
-    const expected = Object.keys(index).map(Number).filter((n) => Number.isSafeInteger(n) && n >= 1 && n <= 32).sort((a, b) => a - b);
-    expect(pack.learningV2PublishedAudioLessonOrdinalsV1('en')).toEqual(expected);
-    expect(loadedContentKeys()).toContain('learning_v2_factory_lesson_audio_index');
-    expect(pack.isLearningV2LessonAudioPackPublishedV1({ targetLanguage: 'en', lessonOrdinal: expected[0]! })).toBe(true);
-    expect(pack.isLearningV2LessonAudioPackPublishedV1({ targetLanguage: 'en', lessonOrdinal: 9999 })).toBe(false);
-    expect(pack.learningV2PublishedAudioLessonOrdinalsV1('es')).toEqual([1]);
   });
 });

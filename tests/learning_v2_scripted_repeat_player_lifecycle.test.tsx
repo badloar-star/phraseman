@@ -327,14 +327,6 @@ jest.mock("../modules/learning-v2/runtime/course_session_device_run_v1", () => (
 jest.mock("../app/learning_v2_direct_session_intro_adapter_v1", () => ({
   adaptLearningV2DirectSessionIntroV1: () => [],
 }));
-jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
-  resolveLearningV2CourseSessionFullPhraseAudioV1: () => null,
-  resolveLearningV2CourseSessionSelectableAudioV1: () => null,
-  resolveLearningV2CourseSessionSupplementalAudioV1: () => null,
-}));
-jest.mock("../app/learning_v2_lesson_audio_pack_v1", () => ({
-  resolvePreparedLearningV2FactoryWordAudioV1: () => null,
-}));
 jest.mock("../modules/learning-v2/content/factory_native/factory_native_catalog_v1", () => ({
   factoryNativeLearningV2AvailabilityV1: () => ({ sessions: [] }),
 }));

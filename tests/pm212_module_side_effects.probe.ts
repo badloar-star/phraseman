@@ -43,8 +43,6 @@ const ALLOW: Record<string, Allow> = {
   // Сброс кэшей в памяти при смене аккаунта — шина поколений аккаунта живёт в памяти.
   'app/energy_peek_cache.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс peek-кэша энергии при смене аккаунта (память)' },
   'app/learning_v2_completion_callable_fetch.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс кэша завершений при смене аккаунта (память)' },
-  'app/learning_v2_course_session_audio_preload_v1.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс кэша озвучки курса при смене аккаунта (память)' },
-  'app/learning_v2_lesson_audio_pack_v1.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс кэша пакета озвучки при смене аккаунта (память)' },
   // ── Осознанные прогревы с диска при импорте (одно чтение, без сети) ──────
   'app/energy_peek_cache.ts::primeEnergyPeekFromBoot': { count: 1, reason: 'решение владельца 2026-08-24: EnergyProvider монтируется ВЫШЕ загрузчика снапшота; прогрев из загрузчика опаздывал к первому кадру' },
   'app/runes_system.ts::primeRunesPeekFromBoot': { count: 1, reason: 'та же причина, что у энергии: счётчик рун на первом кадре Главной' },

@@ -2,8 +2,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { httpsCallable } from "@react-native-firebase/functions";
 
 const h = (character: string) => character.repeat(64);
-const audioPreload = Object.freeze({ audioPreload: true });
-const preloadAudio = jest.fn(async (_input: unknown) => audioPreload);
 
 jest.mock("@react-native-firebase/app", () => ({
   getApp: jest.fn(() => ({})),
@@ -19,23 +17,6 @@ jest.mock("../app/cloud_sync", () => ({
 }));
 jest.mock("../app/stable_id", () => ({
   peekStableId: jest.fn(() => "stable-1"),
-}));
-jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
-  preloadLearningV2CourseSessionAudioV1: (input: unknown) =>
-    preloadAudio(input),
-  isLearningV2CourseSessionAudioPreloadHandleV1: (value: unknown) =>
-    value === audioPreload,
-  getLearningV2CourseSessionAudioPreloadSummaryV1: () => ({
-    courseSessionId: "lesson-32:session:56",
-    sessionRunId: "run-neutral-1",
-    learnerFingerprint: h("2"),
-    audioFingerprint: h("5"),
-    localFileCount: 2,
-    selectedFileCount: 2,
-    // зачем: поле добавлено в сводку озвучки 2026-09-20 (6c02e4088); у этой сессии доп. слов нет.
-    supplementalAudioCount: 0,
-    preloadFingerprint: h("9"),
-  }),
 }));
 jest.mock(
   "../modules/learning-v2/runtime/course_session_client_children_v1",
@@ -203,7 +184,6 @@ describe("Learning V2 composite text+audio app client v3", () => {
       lastRequest = data;
       return { data: await network() };
     }) as never);
-    preloadAudio.mockClear();
     await clearLearningV2CourseReleasedSessionCacheV3();
   });
 
@@ -277,7 +257,6 @@ describe("Learning V2 composite text+audio app client v3", () => {
       sessionRunId: "run-neutral-1",
     });
     expect(isLearningV2CourseSessionReadyHandleV3(handle)).toBe(true);
-    expect(preloadAudio).not.toHaveBeenCalled();
     expect(getLearningV2CourseSessionReadySummaryV3(handle)).toMatchObject({
       courseSessionId,
       sessionRunId: "run-neutral-1",

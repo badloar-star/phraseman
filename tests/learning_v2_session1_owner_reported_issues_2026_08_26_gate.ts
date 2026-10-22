@@ -69,8 +69,7 @@ assert.equal(
   24,
   "session 1 must bind all 24 production clips statically",
 );
-const audioPreload = read("app/learning_v2_course_session_audio_preload_v1.ts");
-assert.ok(audioPreload.includes("await asset.downloadAsync()"));
+// зачем (владелец 22.10, «только TTS»): модуль прогрева записей удалён, проверка его загрузки снята.
 
 const preview = buildLearningV2AuthoringDevicePreviewV1(1, "ru");
 const practice = preview.learnerChild.interactions;

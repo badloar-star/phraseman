@@ -2,7 +2,7 @@
 // HomeSceneStage.tsx — «Сцена» Главной: свет и глубина, герой справа, крупный следующий шаг.
 //
 // зачем (владелец 21.10 ~23:40: «ВАРИАНТ 1 СЦЕНА! ОТЛИЧНО, МНЕ ОЧЕНЬ НРАВИТСЯ!»; эталон docs/design/v2-app/home-new-concepts.html,
-// раздел A, под замком 9e9e23b0b): сцена — градиент тона темы (home_scene_tokens: белый текст ≥ 4,5:1 в любой теме), свет
+// раздел A, под замком 9e9e23b0b): сцена — градиент из токенов темы (homeSceneThemeTokens по эталону home-scene-states.html), свет
 // в левом верхнем углу, мягкий ореол за героем, затемнение снизу под текстом; шапка (серия, монеты | энергия, колокол, аватар)
 // лежит на сцене стеклом; внизу — место, крупный заголовок, строка прогресса, белая главная кнопка и стеклянные чипы.
 // Вид — только из пропсов: что показывать, решают pickHomeSceneState и buildHomeSceneCopy. Перерисовка — по данным:
@@ -22,7 +22,7 @@ import { ThemedArtLayers } from '../../../theme/ThemedArtLayers';
 import V2Pressable from '../../../v2/V2Pressable';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
 import type { HomeSceneState } from './home_scene_state';
-import type { HomeSceneTokens } from './home_scene_tokens';
+import type { HomeSceneStageTokens } from './home_scene_tokens';
 
 const LOG = '[HOME-SCENE]';
 /** Высота сцены эталона (.a-stage 540); при крупном шрифте сцена растёт, а не режет текст. */
@@ -38,7 +38,7 @@ export type HomeSceneChip = Readonly<{ kind: HomeSceneChipKind; label: string; i
 type Props = {
   state: HomeSceneState;
   evening: boolean;
-  tokens: HomeSceneTokens;
+  tokens: HomeSceneStageTokens;
   copy: HomeSceneCopy;
   /** Где живые минуты до энергии: в заголовке («нет энергии») или в тёплой строке (вечер при 0); null — нигде. */
   liveEnergy: 'title' | 'warm' | null;
@@ -81,8 +81,9 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>
           <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
-            <Stop offset="0" stopColor={evening ? tokens.sceneEmber : tokens.sceneGlow} stopOpacity="1" />
-            <Stop offset="1" stopColor={evening ? tokens.sceneEmber : tokens.sceneGlow} stopOpacity="0" />
+            {/* зачем (эталон home-scene-states.html): вечером справа сверху — тёплый свет eveningGlow, угли снизу слева — sceneEmber */}
+            <Stop offset="0" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="1" />
+            <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
           </RadialGradient>
           <RadialGradient id="sceneHalo" cx="50%" cy="50%" r="50%">
             <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.22" />
@@ -104,7 +105,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
           <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition="center" />
         </Animated.View>
       ) : null}
-      <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} />
+      {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
+      {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
       <View style={s.topSpace} />
       <View style={s.body}>
         {pending ? (

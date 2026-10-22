@@ -16,15 +16,17 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
+import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import type { Lang } from '../../../../constants/i18n';
 import { V2 } from '../../../../constants/v2Style';
+import { useTheme } from '../../../ThemeContext';
 import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
 import HomeSceneStage, { type HomeSceneChip } from './HomeSceneStage';
 import { resolveHomeSceneArt } from './home_scene_art';
 import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput } from './home_scene_copy';
 import { homeSceneAllReleasedDone, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
-import { homeSceneTokens } from './home_scene_tokens';
+import { homeSceneThemeTokens, type HomeSceneStageTokens } from './home_scene_tokens';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
 
@@ -75,8 +77,11 @@ type Props = Readonly<{
   /** HomeV2Header с tone="scene"; surface — верхний цвет сцены (под значком ◆ кольца Plus). */
   header: (surface: string) => React.ReactNode;
   artTone: ThemedArtBrightness;
-  /** Акцент темы — из него цвета сцены (home_scene_tokens). */
-  accent: string;
+  /**
+   * Прежний вход цветов сцены. зачем оставлен: Главная ещё передаёт его (app/(tabs)/home.tsx занят чужими правками); с 22.10 цвета —
+   * из токенов выбранной темы по эталону home-scene-states.html (useHomeSceneStageTokens). Убрать вместе с правкой Главной.
+   */
+  accent?: string;
   streakDays: number;
   streakToday: 'unknown' | 'counted' | 'pending';
   plus: boolean;
@@ -127,7 +132,6 @@ export default function HomeScene(p: Props) {
       lang={p.lang}
       header={p.header}
       artTone={p.artTone}
-      accent={p.accent}
       decision={decision}
       streakDays={p.streakDays}
       daysAway={daysAway}
@@ -147,7 +151,6 @@ export type HomeSceneViewProps = Readonly<{
   lang: Lang;
   header: (surface: string) => React.ReactNode;
   artTone: ThemedArtBrightness;
-  accent: string;
   /** Решение pickHomeSceneState — у Главной из фактов телефона, у dev-входа из моков. */
   decision: HomeSceneDecision;
   streakDays: number;
@@ -169,6 +172,16 @@ export type HomeSceneViewProps = Readonly<{
   onChip: (kind: HomeSceneChipKind) => void;
 }>;
 
+/**
+ * Цвета «Сцены» выбранной темы по эталону home-scene-states.html (под замком): токены текущего уровня и оформления темы — как у «Сцены»
+ * «Диалогов»; dev-вход берёт те же цвета для полосы под часами.
+ */
+export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens {
+  const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const theme = liquidGlassTokens(liquidGlassThemeId);
+  return useMemo(() => homeSceneThemeTokens({ themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, theme }, evening), [liquidGlassThemeId, liquidGlassAppearance, theme, evening]);
+}
+
 /** «Сцена» по готовому решению: цвета, картинка, тексты, шапка и строка «Нет сети» поверх. */
 export function HomeSceneView(p: HomeSceneViewProps) {
   const { decision } = p;
@@ -182,7 +195,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     return () => clearInterval(timer);
   }, [evening, p.active, fixedClock]);
   const toMidnight = p.minutesToMidnight ?? minutesUntilMidnight(new Date());
-  const tokens = useMemo(() => homeSceneTokens(p.accent, evening), [p.accent, evening]);
+  const tokens = useHomeSceneStageTokens(evening);
   // зачем (координатор 22.10): верхний цвет сцены — полосе под часами над Главной (HomeSceneStatusStrip в оболочке вкладок); сцены нет — полосы нет
   useEffect(() => {
     if (!p.statusTint) return undefined;
@@ -191,8 +204,8 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [tokens.sceneTop, p.statusTint]);
   const art = useMemo(() => resolveHomeSceneArt(decision.state, p.artTone), [decision.state, p.artTone]);
   useEffect(() => {
-    console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)) })); // guard-ok: одна строка на смену героя
-  }, [art, decision.state, p.artTone, tokens.whiteContrastTop]);
+    console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)), seam: Number(tokens.seam.toFixed(2)), scrim: tokens.scrim })); // guard-ok: одна строка на смену героя
+  }, [art, decision.state, p.artTone, tokens.whiteContrastTop, tokens.seam, tokens.scrim]);
   const copyInput = useMemo<HomeSceneCopyInput>(() => ({
     lang: p.lang, state: decision.state, zeroEnergyNote: decision.zeroEnergyNote, badge: p.place.badge, episode: p.place.episode, title: p.place.title,
     progress: p.place.done !== null && p.place.total !== null ? { done: p.place.done, total: p.place.total } : null,

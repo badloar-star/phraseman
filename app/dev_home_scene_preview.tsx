@@ -24,7 +24,7 @@ import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { coinRankDisplaySource } from '../components/coins/coin_rank_display';
 import HomeV2Header from '../components/home/v2/HomeV2Header';
-import { HomeSceneView } from '../components/home/v2/scene/HomeScene';
+import { HomeSceneView, useHomeSceneStageTokens } from '../components/home/v2/scene/HomeScene';
 import { HomeSceneEnergyView } from '../components/home/v2/scene/HomeSceneEnergy';
 import {
   homeScenePreviewHeaderWords,
@@ -34,7 +34,6 @@ import {
   type HomeScenePreviewState,
 } from '../components/home/v2/scene/home_scene_preview_fixtures';
 import { pickHomeSceneState } from '../components/home/v2/scene/home_scene_state';
-import { homeSceneTokens } from '../components/home/v2/scene/home_scene_tokens';
 import { STORY_RING_SLOT } from '../components/stories/story_ring_constants';
 import { nestedBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
 import { colorWithAlpha } from '../components/v2/plateAlpha';
@@ -84,7 +83,7 @@ function Inner() {
   const words = useMemo(() => homeScenePreviewHeaderWords(lang, setup.streakDays), [lang, setup.streakDays]);
   const artTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
   // зачем: на Главной под часами — полоса верхнего цвета сцены (HomeSceneStatusStrip); превью рисует такую же у себя, а не на Главной
-  const sceneTop = useMemo(() => homeSceneTokens(v2.accent, decision.state === 'streak_risk').sceneTop, [v2.accent, decision.state]);
+  const sceneTop = useHomeSceneStageTokens(decision.state === 'streak_risk').sceneTop;
 
   useEffect(() => {
     if (params.state !== undefined && !isHomeScenePreviewState(params.state)) console.warn(`[DEV-STATE] home_scene_preview state=${params.state} неизвестно → continue`); // guard-ok: dev-маршрут, причина подмены параметра
@@ -134,7 +133,6 @@ function Inner() {
             lang={lang}
             header={header}
             artTone={artTone}
-            accent={v2.accent}
             decision={decision}
             streakDays={setup.streakDays}
             daysAway={setup.daysAway}

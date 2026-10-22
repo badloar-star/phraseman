@@ -153,6 +153,7 @@ import { pairQueuedToast, pairRowSubline } from '../friends_together/pair_copy';
 import FriendListRow from '../../components/friends_together/FriendListRow';
 import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
 import FriendPairSheet from '../../components/friends_together/FriendPairSheet';
+import FriendPairMilestoneHost from '../../components/friends_together/FriendPairMilestoneHost';
 import type { FriendCallState } from '../../components/friends_together/FriendCallPill';
 import {
   createFriendSheetSession,
@@ -870,6 +871,8 @@ export default function FriendsTabScreen() {
   const [friendEvents, setFriendEvents] = useState<FriendSocialEvent[]>([]);
   const [friendMarkerClockMs, setFriendMarkerClockMs] = useState(Date.now());
   const [studyInvite, setStudyInvite] = useState<{ event: FriendSocialEvent; friendName: string; friendCoinRank: number | null } | null>(null);
+  // зачем (идея 1, макет «30 дней»): окно вехи серии вдвоём на экране — вкладка не открывает поверх свои окна
+  const [pairMilestoneOpen, setPairMilestoneOpen] = useState(false);
 
   const [optimisticNudgedUids, setOptimisticNudgedUids] = useState<Set<string>>(() => new Set());
   const [nudgedTick, setNudgedTick] = useState(0);
@@ -1058,11 +1061,12 @@ export default function FriendsTabScreen() {
     if (FRIENDS_TOGETHER_UI_ENABLED && result.queued) {
       // зачем (макет «Нет сети»): зов ждёт сети — честный тост вместо «Позвал», кнопка «В очереди»
       console.log(`[NUDGE] tap → queued offline friend=${friendUid.slice(0, 6)}`); // guard-ok: одна строка на тап
-      const queued = pairQueuedToast(friendName);
+      // зачем (сторож tests/friends_toasts_en): тексты тоста — `texts`, как у тоста ошибки выше; сторож узнаёт messageEn: texts.en
+      const texts = pairQueuedToast(friendName);
       emitAppEvent('action_toast', {
         type: 'info',
-        messageRu: queued.ru, messageUk: queued.uk, messageEn: queued.en, messageEs: queued.es, messagePtBr: queued.ptBr,
-        messageVi: queued.vi, messageId: queued.id, messageTr: queued.tr, messagePl: queued.pl,
+        messageRu: texts.ru, messageUk: texts.uk, messageEn: texts.en, messageEs: texts.es, messagePtBr: texts.ptBr,
+        messageVi: texts.vi, messageId: texts.id, messageTr: texts.tr, messagePl: texts.pl,
       });
       return;
     }
@@ -2270,9 +2274,11 @@ export default function FriendsTabScreen() {
   }, [highFivedUids, myProfile?.name]);
 
   // Обновляем гард на каждый рендер: любая открытая модалка блокирует открытие следующей.
+  // зачем (идея 1): окно вехи тоже держит гард; само оно смотрит на гард только до показа, поэтому себя не ждёт
   const modalWedgeActive = selectedPlayer !== null || deleteTarget !== null || blockTarget !== null
     || addModalOpen
-    || togetherSheetSession !== null || profileDismissPending;
+    || togetherSheetSession !== null || profileDismissPending
+    || pairMilestoneOpen;
   modalWedgeGuardRef.current = modalWedgeActive;
 
   useEffect(() => {
@@ -2362,6 +2368,15 @@ export default function FriendsTabScreen() {
     const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
     if (profile) openFriendSheet(profile);
   }, [openFriendSheet]);
+  // зачем (идея 1): «Дать пять» из окна вехи — тот же лайк профиля, что в строке и шторке друга (сразу, сеть догоняет, сбой — откат)
+  const highFiveByUid = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (!profile) {
+      console.log('[FRIENDS-1] milestone:high_five skip reason=not_in_list'); // guard-ok: ранний выход называет причину
+      return;
+    }
+    handleHighFive(profile);
+  }, [handleHighFive]);
   const openFriendEventByUid = useCallback((friendUid: string, event: FriendSocialEvent) => {
     const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
     if (profile) openFriendEvent(profile, event);
@@ -2790,6 +2805,20 @@ export default function FriendsTabScreen() {
           />
         );
       })()}
+
+      {friendsTogetherUiEnabled && (
+        // зачем (владелец 21.10, макет friends-full.html «30 дней»): веха серии вдвоём — окно поверх вкладки, один раз на пару и веху;
+        // пока открыто другое окно вкладки, веха ждёт
+        <FriendPairMilestoneHost
+          active={friendsRuntimeActive && friendsTogetherPolicy.enabled}
+          snapshot={togetherSnapshot}
+          blocked={modalWedgeActive || studyInvite !== null || devBotsSheetOpen || accessEndedOpen}
+          myName={myProfile?.name ?? L('Я', 'Я', 'Me', 'Yo', 'Eu', 'Tôi', 'Saya', 'Ben', 'Ja')}
+          highFivedUids={highFivedUids}
+          onHighFive={highFiveByUid}
+          onOpenChange={setPairMilestoneOpen}
+        />
+      )}
 
       <FriendStudyInviteModal
         visible={studyInvite !== null}

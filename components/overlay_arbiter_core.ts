@@ -21,6 +21,7 @@ export type OverlayKey =
   | 'entitlementExpired'
   | 'referralWelcome'
   | 'friendGift'
+  | 'friendPairMilestone'
   | 'devHub'
   | 'compassBriefing'
   | 'lessonResultsSequence'
@@ -74,6 +75,10 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'entitlementExpired',
   'referralWelcome',
   'friendGift',
+  // friendPairMilestone — веха «Серия вдвоём — 7 / 30 / 100 дней» на вкладке «Друзья» (идея 1, владелец 21.10): праздник, который
+  // приходит сам, не по тапу. Уступает системным, окнам запуска Главной и сообщениям; закрывает человек («Отлично» / свайп).
+  // Шторка в нативном окне (HybridSheetShell) — в NATIVE_MODAL_KEYS.
+  'friendPairMilestone',
   // DEV Hub owns one uninterrupted slot while handing off from its native
   // tool sheet to an in-tree preview.
   'devHub',
@@ -153,6 +158,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'entitlementExpired',
   'referralWelcome',
   'friendGift',
+  'friendPairMilestone',
   'themedAlert',
   'devHub',
   'compassBriefing',
@@ -208,6 +214,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   entitlementExpired: false,
   referralWelcome: false,
   friendGift: false,
+  friendPairMilestone: false,
   devHub: false,
   compassBriefing: false,
   lessonResultsSequence: false,

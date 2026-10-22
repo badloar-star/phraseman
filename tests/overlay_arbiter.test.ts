@@ -222,6 +222,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'introFullAccess', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'streakRevive',
     'entitlementExpired', 'referralWelcome', 'friendGift',
+    // friendPairMilestone — веха «Серия вдвоём» (идея 1): закрывает человек («Отлично» / свайп), таймера нет — выселять нельзя.
+    'friendPairMilestone',
     'devHub', 'compassBriefing',
     // зачем (11.10): ключ Арены (D83) ещё живёт в overlay_arbiter_core — удалить его решает владелец (см.
     // app_events_overlay_registry). Пока он там, классифицируем как в ядре: не force-evictable.

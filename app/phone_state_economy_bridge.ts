@@ -296,8 +296,8 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
 ): Promise<boolean> {
   const active = runtime;
   if (!active) {
-    return input.kind === 'star_credit'
-      ? refuseStarCredit('runtime_missing', { op: input.operationId }, input.expectedOwnerStableId)
+    return input.kind === 'star_credit' || input.kind === 'star_credit_ack'
+      ? refuseStarCredit(input.kind === 'star_credit' ? 'runtime_missing' : 'ack_runtime_missing', { op: input.entitlementId }, input.expectedOwnerStableId)
       : false;
   }
   if (input.kind === 'star_credit') {
@@ -329,13 +329,25 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
     }
   }
   if (input.kind === 'star_credit_ack') {
+    // зачем (тест 22.10: .base дошла до сервера, .premium — нет): отказ записи квитанции рвёт очередь после ответа сервера.
+    const op = input.entitlementId;
+    const refuse = (reason: string, fields: Readonly<Record<string, unknown>>): false => (
+      refuseStarCredit(reason, fields, input.expectedOwnerStableId)
+    );
     const exact = parseLevelSpinStarCreditAckExactResult(input.exactResult);
-    if (!exact
-      || input.operationId !== levelSpinStarCreditAckOperationId(exact.operationId)
-      || input.entitlementId !== exact.operationId
-      || input.expectedOwnerStableId !== exact.ownerStableId
-      || active.scope.stableUid !== input.expectedOwnerStableId
-      || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
+    if (!exact) return refuse('ack_exact_parse_failed', { op });
+    if (input.operationId !== levelSpinStarCreditAckOperationId(exact.operationId) || input.entitlementId !== exact.operationId) {
+      return refuse('ack_operation_id_mismatch', { op, ackOp: input.operationId, exactOp: exact.operationId });
+    }
+    if (input.expectedOwnerStableId !== exact.ownerStableId) {
+      return refuse('ack_owner_mismatch_exact', { op, expectedOwner: input.expectedOwnerStableId.slice(0, 8), exactOwner: exact.ownerStableId.slice(0, 8) });
+    }
+    if (active.scope.stableUid !== input.expectedOwnerStableId) {
+      return refuse('ack_runtime_owner_mismatch', { op, runtimeOwner: String(active.scope.stableUid).slice(0, 8), expectedOwner: input.expectedOwnerStableId.slice(0, 8) });
+    }
+    if (active.runtimeGeneration !== input.expectedAccountGeneration) {
+      return refuse('ack_generation_mismatch', { op, runtimeGeneration: active.runtimeGeneration, expectedGeneration: input.expectedAccountGeneration });
+    }
   }
   if (input.kind === 'attempt_restore_inventory_credit') {
     const exact = parseAttemptRestoreGiftCreditExactResult(input.exactResult);
@@ -429,7 +441,12 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
       createdAtMs: Date.now(),
     });
     await active.store.commit(pending, { idempotencyKey: `economy:${input.operationId}` });
-    if (runtime !== active) return false;
+    const isStarKind = input.kind === 'star_credit' || input.kind === 'star_credit_ack';
+    if (runtime !== active) {
+      return isStarKind
+        ? refuseStarCredit(`${input.kind}_runtime_replaced_after_commit`, { op: input.entitlementId }, input.expectedOwnerStableId)
+        : false;
+    }
     if ((input.kind === 'star_credit'
       || input.kind === 'star_credit_ack'
       || input.kind === 'attempt_restore_inventory_credit'
@@ -438,7 +455,13 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
       || input.kind === 'paid_level_spin_rune_purchase'
       || input.kind === 'customization_rune_purchase')
       && (active.scope.stableUid !== input.expectedOwnerStableId
-        || active.runtimeGeneration !== input.expectedAccountGeneration)) return false;
+        || active.runtimeGeneration !== input.expectedAccountGeneration)) {
+      return isStarKind
+        ? refuseStarCredit(`${input.kind}_account_changed_after_commit`, {
+          op: input.entitlementId, runtimeGeneration: active.runtimeGeneration, expectedGeneration: input.expectedAccountGeneration,
+        }, input.expectedOwnerStableId)
+        : false;
+    }
     active.triggerSync();
     return true;
   } catch (error) {

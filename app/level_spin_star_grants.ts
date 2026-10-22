@@ -2656,7 +2656,11 @@ export async function syncPendingLevelSpinStarGrants(
           starsSeq: ack.starsSeq,
         }),
       });
-      if (!ackStored || !isCurrentAccountGeneration(token, ownerStableId)) break;
+      if (!ackStored || !isCurrentAccountGeneration(token, ownerStableId)) {
+        // зачем (тест 22.10: на сервер дошла .base, а .premium — нет): сюда выходили молча после ответа сервера.
+        walletLog('stop', { reason: ackStored ? 'account_generation_stale' : 'ack_commit_refused', at: 'after_ack', op, generation: token.generation });
+        break;
+      }
       const projection = await withAccountTransitionLock(async () => withStorageLock(async () => {
         if (!isCurrentAccountGeneration(token, ownerStableId)) return null;
         const current = await readOutbox(ownerStableId);

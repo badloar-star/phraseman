@@ -16,6 +16,10 @@ import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
 import V2Pressable from '../../v2/V2Pressable';
 import { DIALOGS_SCENE_PANEL_OVERLAP } from './DialogsSceneStage';
 import { contrastRatio } from './dialogs_scene_tokens';
+import { sceneTouchTrace } from '../../../app/scene_touch_trace';
+
+// зачем (🔴 владелец 22.10 «в Диалогах ничего не нажимается», сперва логи): [SCENE-TOUCH] — дошло ли касание до панели (только dev)
+const dialogsPanelTouchTrace = sceneTouchTrace('dialogs_panel');
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -134,7 +138,7 @@ function DialogsScenePanel(p: DialogsScenePanelProps) {
   const g = useLv2Glass();
   const s = useScaledTextStyles(baseStyles);
   return (
-    <View testID="dialogs-scene-panel" style={[s.panel, p.inset ? s.panelInset : null, { backgroundColor: g.opaqueCard, boxShadow: `0 26px 50px -22px ${g.isLight ? g.shadowTint : 'rgba(0,0,0,0.62)'}` /* theme-exempt: тень панели тёмного оформления, эталон --shc */ }]}>
+    <View testID="dialogs-scene-panel" onTouchStart={dialogsPanelTouchTrace} style={[s.panel, p.inset ? s.panelInset : null, { backgroundColor: g.opaqueCard, boxShadow: `0 26px 50px -22px ${g.isLight ? g.shadowTint : 'rgba(0,0,0,0.62)'}` /* theme-exempt: тень панели тёмного оформления, эталон --shc */ }]}>
       <View style={s.head}>
         <Text accessibilityRole="header" style={[s.headTitle, { color: g.text }]}>{p.title}</Text>
         <Text style={[s.headCount, { color: g.secondary }]}>{p.count}</Text>

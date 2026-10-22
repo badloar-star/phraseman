@@ -13,6 +13,7 @@ import Animated, {
 import { scheduleOnRN } from 'react-native-worklets';
 import { useScreen } from '../hooks/use-screen';
 import { TabTopBleedContext } from '../components/tab_top_bleed';
+import { sceneTouchTrace } from './scene_touch_trace';
 import { tabSwipeLocked } from './tabSwipeLock';
 
 const TAB_SWIPE_ACTIVE_OFFSET_X = 22;
@@ -168,6 +169,15 @@ export default function TabSlider({
   }));
 
   const tabs = React.Children.toArray(children);
+  // зачем (🔴 владелец 22.10 «в сценах ничего не нажимается», сперва логи): какая страница получила касание, активна ли она и
+  // полноэкранная ли — [SCENE-TOUCH], только dev
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
+  const pageTouchTraces = useMemo(
+    () => tabs.map((_, i) => sceneTouchTrace(`tab_page_${i}`, () => ({ activeIndex: activeIndexRef.current, pointerEvents: i === activeIndexRef.current ? 'auto' : 'none', fullBleed: fullBleedPages?.includes(i) === true }))),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: обработчики по числу страниц; живые значения читаются из ref
+    [tabs.length, fullBleedPages],
+  );
 
   return (
     <GestureDetector gesture={pan}>
@@ -182,6 +192,7 @@ export default function TabSlider({
                 key={i}
                 style={[s.tab, { width: W }, { paddingTop: fullBleed ? 0 : pageTopInset }]}
                 pointerEvents={i === activeIndex ? 'auto' : 'none'}
+                onTouchStart={pageTouchTraces[i]}
                 accessibilityElementsHidden={i !== activeIndex}
                 importantForAccessibility={i === activeIndex ? 'auto' : 'no-hide-descendants'}
               >

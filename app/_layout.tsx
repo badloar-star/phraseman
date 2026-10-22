@@ -99,6 +99,7 @@ import { maskDeepLinkForLog } from './deep_link_log_mask';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createTapLatencyCaptureHandler, createTapLatencyProfilerHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
+import { sceneTouchTrace } from './scene_touch_trace';
 import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useGlobalSearchParams, useNavigationContainerRef, usePathname, useRouter, useSegments, router as globalRouter, type Href } from 'expo-router';
@@ -4098,6 +4099,9 @@ const styles = StyleSheet.create({
 const tapLatencyCaptureHandler = createTapLatencyCaptureHandler();
 // onTouchEnd корня всплывает от любой кнопки: отсюда берём момент отпускания пальца.
 const tapLatencyTouchEndHandler = createTapLatencyTouchEndHandler();
+// зачем (🔴 владелец 22.10 «в сценах ничего не нажимается», сперва логи): корень видит каждое касание — если строки нет,
+// касание забрало отдельное окно поверх приложения (Modal); [SCENE-TOUCH], только dev
+const appRootTouchTrace = sceneTouchTrace('app_root');
 // Profiler вокруг дерева стека: сколько раз и как долго React рендерил экраны от
 // касания до кадра. Когда трассировка выключена — undefined, Profiler не оборачивается.
 const tapLatencyProfilerOnRender = createTapLatencyProfilerHandler();
@@ -4140,6 +4144,7 @@ export default function RootLayout() {
       style={{ flex: 1, backgroundColor: startupSplashPalette(Appearance.getColorScheme(), null).bg }}
       onStartShouldSetResponderCapture={tapLatencyCaptureHandler}
       onTouchEnd={tapLatencyTouchEndHandler}
+      onTouchStart={appRootTouchTrace}
     >
     <ErrorBoundary>
       <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>

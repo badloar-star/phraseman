@@ -23,6 +23,7 @@ import DialogsSceneBackdrop from './DialogsSceneBackdrop';
 import type { DialogsSceneCopy } from './dialogs_scene_copy';
 import type { DialogsSceneState } from './dialogs_scene_state';
 import type { DialogsSceneColors } from './dialogs_scene_tokens';
+import { sceneTouchTrace } from '../../../app/scene_touch_trace';
 
 const LOG = '[DIALOGS-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
@@ -39,6 +40,7 @@ const HERO_BELOW_TOP = 44;
 const TEXT_RIGHT = 150;
 /** Заголовок длиннее 20 знаков — на 4 кегля меньше, чтобы не заезжать на предмет справа (эталон: `long`). */
 const LONG_TITLE_CHARS = 20;
+const dialogsSceneTouchTrace = sceneTouchTrace('dialogs_scene');
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 /** Десять фиксированных делений шкалы ответов; свои id — деления не пересортировываются. */
 const METER_SEGMENTS = ['m0', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9'] as const;
@@ -79,7 +81,8 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
     p.onRound();
   };
   return (
-    <View testID={`dialogs-scene-${state}`} style={[s.stage, { minHeight: stageH }]}>
+    // зачем (🔴 владелец 22.10 «в Диалогах ничего не нажимается», сперва логи): [SCENE-TOUCH] — дошло ли касание до сцены (только dev)
+    <View testID={`dialogs-scene-${state}`} style={[s.stage, { minHeight: stageH }]} onTouchStart={dialogsSceneTouchTrace}>
       <DialogsSceneBackdrop colors={c} idPrefix="dlgScene" />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>

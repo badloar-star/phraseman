@@ -897,7 +897,7 @@ const capX = (st) => st === 'pause'
   ? cap('Попытка: 9 из 12, нужно 10', 'Пересдать через 59 мин', `<div class="qbtn ctl t">${io('refresh-outline')}Разбор ошибок</div><div class="qnote">Пересдать можно через час после попытки</div>`)
   : st === 'pass'
     ? cap('Экзамен сдан, 11 из 12', 'Глава 3 открыта', `<div class="qbtn solid t">${io('play')}К главе 3</div><div class="qnote">Эпизоды 13–16 открыты, их можно пройти позже</div>`)
-    : cap('Финал главы 2, можно сдать заранее', 'Экзамен главы', `<div class="qbtn solid t">${io('trophy')}Сдать экзамен</div><div class="qnote">12 вопросов, сдать от 10</div>`);
+    : cap('Финал главы 2, можно сдать заранее', 'Экзамен главы', `<div class="qbtn solid t">${io('trophy')}Сдать экзамен</div><div class="qnote">Сдашь — откроется глава 3 · 12 вопросов, сдать от 10</div>`);
 const inFlow = (st) => {
   const ep = st === 'pass' ? 'open' : 'lock';
   return T(phone(`<div style="height:52px"></div>${top2()}${c1sec('Глава 2 из 7', CH[1].scene, '3 из 8')}${flowX([[15, ep], [16, ep], ['x', st], [17, ep], [18, ep]])}${capX(st)}${acts()}<div style="height:140px"></div>`, OPT2));

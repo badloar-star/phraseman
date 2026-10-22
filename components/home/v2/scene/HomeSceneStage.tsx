@@ -128,7 +128,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
               : <Text testID="home-scene-title" accessibilityRole="header" style={s.title}>{copy.title}</Text>}
             {copy.warm ? (
               <View style={s.warmRow}>
-                <Ionicons name="flame" size={16} color="#FFD0C4" />
+                <Ionicons name="flame" size={16} color="#FFD9D0" />
                 {liveEnergy === 'warm' ? <LiveEnergyText testID="home-scene-warm" build={buildLiveText} style={s.warm} /> : <Text style={s.warm}>{copy.warm}</Text>}
               </View>
             ) : null}
@@ -196,7 +196,7 @@ const s = StyleSheet.create({
   kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
   title: { color: '#FFFFFF', fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.6, marginTop: 4 },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
-  warm: { color: '#FFD0C4', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  warm: { color: '#FFD9D0', /* аудит контраста 22.10: чуть светлее прежнего #FFD0C4 — 4,45 → ≥ 4,5 в светлых sage/grad_aurora */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.28)', overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: '#FFFFFF' },
@@ -205,7 +205,7 @@ const s = StyleSheet.create({
   ctaBusy: { opacity: 0.72 },
   ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700' },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },
-  chip: { height: 36, borderRadius: 18, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(255,255,255,0.16)' },
+  chip: { height: 36, borderRadius: 18, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(255,255,255,0.14)' }, // аудит контраста 22.10: чип 14 % вместо 16 % — текст на нём ≥ 4,5 в светлых sage/grad_aurora
   chipText: { color: '#FFFFFF', fontSize: 16, lineHeight: 21, fontWeight: '700' },
   note: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17, marginTop: 12 },
   skel: { borderRadius: 8, backgroundColor: 'rgba(255,255,255,0.18)' },

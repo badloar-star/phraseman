@@ -106,7 +106,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           <Text testID="today-scene-title" accessibilityRole="header" style={s.title}>{copy.title}</Text>
           {copy.warm ? (
             <View style={s.warmRow}>
-              <Ionicons name="flame" size={16} color="#FFD0C4" />
+              <Ionicons name="flame" size={16} color="#FFD9D0" />
               <Text testID="today-scene-warm" style={s.warm}>{copy.warm}</Text>
             </View>
           ) : null}
@@ -175,7 +175,7 @@ const s = StyleSheet.create({
   kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
   title: { color: '#FFFFFF', fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, fontVariant: ['tabular-nums'] },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
-  warm: { color: '#FFD0C4', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  warm: { color: '#FFD9D0', /* аудит контраста 22.10: как на Главной, чуть светлее прежнего #FFD0C4 */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, marginTop: 10 },
   cta: { marginTop: 16, height: 54, borderRadius: 27, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
   ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },

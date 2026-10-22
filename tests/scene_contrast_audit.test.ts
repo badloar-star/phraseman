@@ -3,6 +3,7 @@
 // Сцены Главной, «Сегодня» и Пика красятся одной формулой (homeSceneTokensForTheme), «Диалогов» — своей (dialogsSceneColors). Сторож проверяет пары без правки компонентов.
 // Таблица для людей: SCENE_AUDIT_OUT=<файл.json> npm run test:one -- tests/scene_contrast_audit.test.ts (используется при подготовке docs/work/tasks/scene-contrast-audit-2026-10-22.md).
 import fs from 'node:fs';
+import { readSource } from './helpers/read_source';
 
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
@@ -12,7 +13,8 @@ const TEXT = 4.5;
 const LARGE = 3;
 const WHITE = '#FFFFFF';
 const CTA_INK = '#121318'; // текст белой кнопки сцены (HomeSceneStage / TodaySceneView)
-const WARM = '#FFD0C4'; // тёплая строка вечера
+const WARM = '#FFD9D0'; // тёплая строка вечера (была #FFD0C4: 4,45 в светлых sage/grad_aurora)
+const GLASS_ALPHA = 0.14; // подложка полосы «Нет сети» и чипов (была 16 %)
 
 const hexToRgb = (h: string): [number, number, number] => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)) as [number, number, number];
 const toHex = (c: readonly number[]): string => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('');
@@ -27,14 +29,7 @@ type Row = { scene: string; theme: string; appearance: string; state: string; pa
 // зачем: формула цветов сцены Главной заперта эталоном (tests/home_scene_theme_tokens.test.ts), поэтому два граничных случая светлых тем не лечатся токенами, а только
 // константами компонентов (белая полоса 16 % → 14 %, тёплая строка #FFD0C4 → светлее) — это файлы 3 · МАКЕТЫ. Пока так, они перечислены здесь ПОИМЁННО; новый промах или исчезновение
 // старого валит сторожа (список обязан сокращаться).
-const KNOWN_MARGINAL: ReadonlySet<string> = new Set([
-  'sage|light|день|тёплая строка вечера на верх сцены',
-  'grad_aurora|light|день|тёплая строка вечера на верх сцены',
-  'sage|light|день|«Нет сети»: белый текст на полосе на верх сцены',
-  'grad_aurora|light|день|«Нет сети»: белый текст на полосе на верх сцены',
-  'sage|light|день|чип (белый текст на белом 16 %) на верх сцены',
-  'grad_aurora|light|день|чип (белый текст на белом 16 %) на верх сцены',
-]);
+const KNOWN_MARGINAL: ReadonlySet<string> = new Set<string>([]); // 22.10: пусто — граничные случаи закрыты константами компонентов (14 %, #FFD9D0)
 const MARGINAL_FLOOR = 4.4;
 const keyOf = (r: Row): string => `${r.theme}|${r.appearance}|${r.state}|${r.pair}`;
 const rows: Row[] = [];
@@ -52,10 +47,10 @@ for (const themeId of LIQUID_GLASS_THEME_IDS) {
         push('Главная/Сегодня/Пик', themeId, appearance, state, `подпись над заголовком (белый 86 %) на ${zone}`, contrastRatio(over(WHITE, 0.86, bg), bg), TEXT);
         push('Главная/Сегодня/Пик', themeId, appearance, state, `строка под заголовком (белый 88 %) на ${zone}`, contrastRatio(over(WHITE, 0.88, bg), bg), TEXT);
         push('Главная/Сегодня/Пик', themeId, appearance, state, `тёплая строка вечера на ${zone}`, contrastRatio(WARM, bg), TEXT);
-        const strip = over(WHITE, 0.16, bg);
+        const strip = over(WHITE, GLASS_ALPHA, bg);
         push('Главная', themeId, appearance, state, `«Нет сети»: белый текст на полосе на ${zone}`, contrastRatio(WHITE, strip), TEXT);
         push('Главная', themeId, appearance, state, `значок «Нет сети» на полосе на ${zone}`, contrastRatio(WHITE, strip), LARGE);
-        push('Главная/Сегодня/Пик', themeId, appearance, state, `чип (белый текст на белом 16 %) на ${zone}`, contrastRatio(WHITE, over(WHITE, 0.16, bg)), TEXT);
+        push('Главная/Сегодня/Пик', themeId, appearance, state, `чип (белый текст на белом 14 %) на ${zone}`, contrastRatio(WHITE, over(WHITE, GLASS_ALPHA, bg)), TEXT);
         push('Главная/Сегодня/Пик', themeId, appearance, state, `белая кнопка на ${zone} (форма кнопки)`, contrastRatio(WHITE, bg), LARGE);
       }
       push('Главная/Сегодня/Пик', themeId, appearance, state, 'текст на белой кнопке', contrastRatio(CTA_INK, WHITE), TEXT);
@@ -89,6 +84,16 @@ describe('аудит контраста сцен: все темы, уровен�
   it('список граничных случаев не устарел: каждый всё ещё ниже нормы (иначе убрать из списка)', () => {
     const stale = [...KNOWN_MARGINAL].filter((k) => !rows.some((r) => keyOf(r) === k && r.ratio < r.need));
     expect(stale).toEqual([]);
+  });
+
+  it('константы теста совпадают с компонентами: подложка 14 % и тёплая строка #FFD9D0 на Главной и в «Сегодня»', () => {
+    const home = readSource('components/home/v2/scene/HomeScene.tsx');
+    const stage = readSource('components/home/v2/scene/HomeSceneStage.tsx');
+    const today = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
+    expect(home).toContain("backgroundColor: 'rgba(255,255,255,0.14)'");
+    expect(stage).toContain("backgroundColor: 'rgba(255,255,255,0.14)'");
+    expect(stage).toContain("warm: { color: '#FFD9D0'");
+    expect(today).toContain("warm: { color: '#FFD9D0'");
   });
 
   it('пары берут токены уровня «Максимум» (светлое/тёмное оформление различаются)', () => {

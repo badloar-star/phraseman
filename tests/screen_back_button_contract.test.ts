@@ -77,6 +77,22 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(baseline.files.length).toBeLessThanOrEqual(77); // потолок — только вниз (22.10: 80 → 77 — «Сегодня», теория, слова урока)
   });
 
+  it('корень вкладки, открытый НЕ из нижнего меню, показывает общую «назад» (координатор 22.10: Пик с Главной)', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const entry = require('../app/tab_entry_source') as typeof import('../app/tab_entry_source');
+    entry.resetTabEntrySourceForTests();
+    expect(entry.tabEnteredByMenu('/(tabs)/community', 1000)).toBe(false); // ссылкой — «назад» есть
+    entry.noteTabEnteredByMenu('/(tabs)/community');
+    expect(entry.tabEnteredByMenu('/(tabs)/community')).toBe(true); // из меню — «назад» нет
+    expect(entry.tabEnteredByMenu('/(tabs)/home')).toBe(false);
+    expect(entry.tabEnteredByMenu('/(tabs)/community', Date.now() + 5000)).toBe(false); // старая отметка не действует
+    const layout = read('app/(tabs)/_layout.tsx');
+    expect(layout.match(/noteTabEnteredByMenu\(IDX_TO_TAB_ROUTE\[idx\] \?\? ''\)/g)?.length).toBe(2); // тап по меню и свайп
+    const community = read('app/(tabs)/community.tsx');
+    expect(community).toContain("const byMenu = tabEnteredByMenu('/(tabs)/community');");
+    expect(community).toContain('{backFromLink ? <ScreenBackButton');
+  });
+
   it('экраны, взявшие ScreenBackButton, не держат рядом свою кнопку «назад»', () => {
     const users = [...walk('app'), ...walk('components')].filter((rel) => !IMPLEMENTATION.has(rel) && /<ScreenBackButton\b/.test(read(rel)));
     const doubled = users.filter((rel) => OWN_BACK.some(([, re]) => re.test(read(rel))));

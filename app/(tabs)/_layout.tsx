@@ -18,6 +18,7 @@ import { SEASON_SCENE_V2_ENABLED } from '../../components/learning-v2/season/sea
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
+import { noteTabEnteredByMenu } from '../tab_entry_source';
 import { TabProvider, useTabNav } from '../TabContext';
 import { createTapLatencyProfilerHandler, noteTapAction, TAP_LATENCY_TRACE_ENABLED, traceLog } from '../tap_latency_trace';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -1375,6 +1376,8 @@ function ReleasedTabLayout() {
     // зачем: метка [TAP-LAT] для тапа по табу — отделяет отклик таббара от
     // разморозки (react-freeze) и коммита панели назначения.
     noteTapAction(`tab:${idx}`);
+    // зачем (закон владельца 22.10 «назад в одном месте»): вкладка из меню — без «назад»; открытая ссылкой — с «назад» (tab_entry_source)
+    noteTabEnteredByMenu(IDX_TO_TAB_ROUTE[idx] ?? '');
     markExamBestPctTabActivity(idx);
     setVisualIdx(idx);
     const physical = logicalTabToPhysicalPage(idx, pageLayoutRef.current);
@@ -1393,6 +1396,7 @@ function ReleasedTabLayout() {
     physicalPageIdxRef.current = physical;
     const idx = physicalPageToLogicalTab(physical, pageLayoutRef.current);
     traceTabsIdx(tabsInstRef.current, 'swipe_complete', { physicalIdx, idx, active: `${activeIdxRef.current}→${idx}`, pending: pendingTabIdxRef.current });
+    noteTabEnteredByMenu(IDX_TO_TAB_ROUTE[idx] ?? ''); // зачем: свайп между вкладками — тот же «вход из меню», без «назад»
     markExamBestPctTabActivity(idx);
     setPhysicalPageIdx(physical);
     setVisualIdx(idx);

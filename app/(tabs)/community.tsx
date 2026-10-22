@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useAccentGraphics } from '../../hooks/use_accent_graphics';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, usePathname, useRouter } from 'expo-router';
@@ -15,6 +15,8 @@ import { hapticTap } from '../../hooks/use-haptics';
 import SpireSceneHeaderLayer from '../../components/spire/scene/spire_scene_header';
 import { useTabTopBleedInset } from '../../components/tab_top_bleed';
 import SpireEnergyPill from '../../components/spire/SpireEnergyPill';
+import ScreenBackButton, { SCREEN_BACK_RESERVED } from '../../components/v2/ScreenBackButton';
+import { tabEnteredByMenu } from '../tab_entry_source';
 import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
 
 type Section = SubRuntimeOwnerId;
@@ -108,6 +110,24 @@ export default function CommunityTabRoute() {
     void refreshSpireTabFlagIfClosed('community_focus');
   }, [spireVisible, tabVisible]);
 
+  // зачем (закон владельца 22.10 «назад везде в одном месте»; координатор: корень вкладки, открытый НЕ из нижнего меню — Пик с Главной,
+  // «Сегодня», пуш, — показывает общую «назад»): решение принимается в момент, когда вкладка становится видимой. Оболочка вкладок отмечает
+  // вход из меню/свайпом (tab_entry_source); нет отметки — пришли ссылкой. Ушли с вкладки — «назад» гаснет до следующего входа.
+  const [backFromLink, setBackFromLink] = useState(false);
+  const wasVisibleRef = useRef(false);
+  useEffect(() => {
+    const was = wasVisibleRef.current;
+    wasVisibleRef.current = tabVisible;
+    if (!tabVisible) { setBackFromLink(false); return; }
+    if (was) return;
+    const byMenu = tabEnteredByMenu('/(tabs)/community');
+    console.log('[BACK-TAB] community: вход', JSON.stringify({ byMenu, sectionParam: sectionParam ?? null, back: !byMenu })); // guard-ok: почему «назад» показан/скрыт
+    setBackFromLink(!byMenu);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: решение только в момент входа; параметр печатается для журнала
+  }, [tabVisible]);
+  // ряд вкладок раздела (и строка поиска «Наборов») уступает место кнопке «назад»: кнопка стоит у поля экрана, ряд — справа от неё
+  const backInset = backFromLink ? { marginLeft: SCREEN_BACK_RESERVED - V2.screenPad } : null;
+
   const renderSection = (key: Section) => {
     if (!visited.has(key) && key !== section) return null;
     const shown = key === section;
@@ -134,9 +154,9 @@ export default function CommunityTabRoute() {
       <View style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null]}>
         {section === 'packs' && packsSlot?.overlay ? (
           // зачем (packs-simple.html кадр 2): открытый поиск «Наборов» встаёт на место строки вкладок.
-          <View style={s.headerOverlay}>{packsSlot.overlay}</View>
+          <View style={[s.headerOverlay, backInset]}>{packsSlot.overlay}</View>
         ) : (<>
-        <View testID="community-sections" accessibilityRole="tablist" style={s.tabs}>
+        <View testID="community-sections" accessibilityRole="tablist" style={[s.tabs, backInset]}>
           {segments.map((seg) => {
             const on = seg.key === section;
             return (
@@ -170,6 +190,7 @@ export default function CommunityTabRoute() {
         {spireVisible ? renderSection('spire') : null}
         {renderSection('packs')}
       </View>
+      {backFromLink ? <ScreenBackButton screen="community_from_link" testID="community-back" fallback="/(tabs)/home" /> : null}
     </View>
   );
 }

@@ -1,5 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
+import { buildLearningV2CourseTopologyV1 } from '../modules/learning-v2/content/course_topology_v1';
+import {
+  LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
+  packSessionStarsSyncV1,
+  unpackSessionStarsSyncV1,
+} from '../modules/learning-v2/progress/progress_sync_v1';
 
 /**
  * Звёзды 0–3 за пройденную сессию — ТОЛЬКО для показа на карте.
@@ -37,6 +43,36 @@ export interface LearningV2SessionStarInteractionV1 {
 }
 
 const EMPTY: LearningV2SessionStarResultsV1 = Object.freeze({});
+
+// Порядок занятий курса — для облачной строки звёзд; строится один раз и только при первом чтении/записи звёзд.
+let orderedSessionIdsCache: readonly string[] | null = null;
+function orderedSessionIds(): readonly string[] {
+  if (!orderedSessionIdsCache) {
+    orderedSessionIdsCache = Object.freeze(
+      buildLearningV2CourseTopologyV1().lessons.flatMap((lesson) => lesson.sessions.map((session) => session.sessionId)),
+    );
+  }
+  return orderedSessionIdsCache;
+}
+
+/** Облачная копия звёзд не уменьшается: пишем, только если по какому-то занятию локально лучше. */
+async function mirrorStarsToSync(results: LearningV2SessionStarResultsV1): Promise<void> {
+  try {
+    const order = orderedSessionIds();
+    const syncedRaw = await AsyncStorage.getItem(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1);
+    const synced = unpackSessionStarsSyncV1(syncedRaw, order);
+    let better = 0;
+    const merged: Record<string, number> = { ...synced };
+    for (const [id, stars] of Object.entries(results)) {
+      if (synced[id] === undefined || stars > synced[id]) { merged[id] = stars; better += 1; }
+    }
+    if (better === 0) return;
+    await AsyncStorage.setItem(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1, packSessionStarsSyncV1(merged, order));
+    console.log('[V2-PROGRESS-SYNC] stars:mirrored', JSON.stringify({ improved: better, total: Object.keys(merged).length })); // guard-ok: что ушло в облачную копию
+  } catch (error) {
+    console.warn('[V2-PROGRESS-SYNC] stars:mirror_failed', JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+  }
+}
 const listeners = new Set<() => void>();
 let memory: LearningV2SessionStarResultsV1 = EMPTY;
 let memoryScopeHash: string | null = null;
@@ -151,10 +187,25 @@ export async function hydrateLearningV2SessionStarResults(
   if (!HASH_RE.test(accountScopeHash)) return EMPTY;
   try {
     const raw = await AsyncStorage.getItem(storageKey(accountScopeHash));
-    const next = raw === null ? EMPTY : parse(raw, accountScopeHash);
+    const local = raw === null ? EMPTY : parse(raw, accountScopeHash);
+    // зачем (координатор 22.10): после переустановки или на новом телефоне облачная строка звёзд знает больше —
+    // берём лучшее по каждому занятию; локально лучшее поднимает облачную копию.
+    const synced = unpackSessionStarsSyncV1(await AsyncStorage.getItem(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1), orderedSessionIds());
+    const merged: Record<string, 0 | 1 | 2 | 3> = { ...local };
+    let fromCloud = 0;
+    for (const [id, stars] of Object.entries(synced)) {
+      if (merged[id] === undefined || stars > merged[id]) { merged[id] = stars; fromCloud += 1; }
+    }
+    const next = fromCloud > 0 ? Object.freeze(merged) : local;
+    if (fromCloud > 0) {
+      await AsyncStorage.setItem(storageKey(accountScopeHash), JSON.stringify({ schemaVersion: SCHEMA, accountScopeHash, results: next }));
+      console.log('[V2-PROGRESS-SYNC] stars:hydrated_from_cloud', JSON.stringify({ local: Object.keys(local).length, fromCloud, source: 'sync_key' })); // guard-ok: откуда пришло
+    }
     publish(accountScopeHash, next);
+    void mirrorStarsToSync(next);
     return next;
-  } catch {
+  } catch (error) {
+    console.warn('[V2-PROGRESS-SYNC] stars:hydrate_failed', JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
     publish(accountScopeHash, EMPTY);
     return EMPTY;
   }
@@ -192,6 +243,7 @@ export async function recordLearningV2SessionStarResult(input: {
       }),
     );
     publish(accountScopeHash, next);
+    await mirrorStarsToSync(next);
   } catch (e) {
       // Витрина: сбой записи не должен ломать завершение сессии.
       DebugLogger.error('learning_v2_session_star_results_store:next', e instanceof Error ? e : new Error(String(e)), 'warning');

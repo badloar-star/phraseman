@@ -317,8 +317,10 @@ import { mergeNumericMaxRestoreValue } from './restore_numeric_max_merge';
 import {
   LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
   LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
+  LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
   mergeChapterExamSyncRestoreValueV1,
   mergeCourseProgressSyncRestoreValueV1,
+  mergeSessionStarsSyncRestoreValueV1,
 } from '../modules/learning-v2/progress/progress_sync_v1';
 import {
   isDeferredBootRestoreWaiting,
@@ -513,6 +515,7 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   // сохраняется. Пустой телефон облако не уменьшает: пустая сторона ничего не стирает. Журнал [V2-PROGRESS-SYNC].
   [LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1]: mergeCourseProgressSyncRestoreValueV1,
   [LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1]: mergeChapterExamSyncRestoreValueV1,
+  [LEARNING_V2_SESSION_STARS_SYNC_KEY_V1]: mergeSessionStarsSyncRestoreValueV1,
 };
 
 export const SYNC_KEYS = [
@@ -689,6 +692,8 @@ export const SYNC_KEYS = [
   //    без текстов (≤ ~13 КБ на весь курс из 224 глав). Слияние — FC_RESTORE_MERGE_STRATEGIES ниже: пройденное не теряется.
   LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
   LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
+  // звёзды эпизодов: строка цифр 0–3 по порядку курса (≤ 1792 байт), слияние — лучшая звезда по каждому занятию
+  LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
 ] as const;
 
 export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string[] {
@@ -768,6 +773,7 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   // стираются вместе с аккаунтом (облачная копия — ключи learning_v2_*_sync_v1 в SYNC_KEYS, стираются при смене как все ключи синка).
   'learning-v2:course-local-progress:v1:',
   'v2:chapter-exam:v1:',
+  'learning-v2:session-star-results:v1:',
   // Client-authoritative pearl journal and its crash/sync bookkeeping.
   'client_shard_operation_v1:',
   'client_shard_ledger_state_v1:',

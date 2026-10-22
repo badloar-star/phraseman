@@ -122,3 +122,32 @@ describe('Learning V2 progress cloud copy', () => {
     expect(bytes).toBeLessThan(16_000);
   });
 });
+
+// зачем (координатор 22.10): звёзды эпизодов переживают переустановку — строка цифр по порядку курса, слияние по максимуму.
+describe('episode stars cloud copy', () => {
+  const {
+    LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
+    mergeSessionStarsSyncRestoreValueV1,
+    packSessionStarsSyncV1,
+    unpackSessionStarsSyncV1,
+  } = require('../modules/learning-v2/progress/progress_sync_v1');
+  const order = ['s1', 's2', 's3', 's4'];
+  it('packs one digit per session and trims the empty tail', () => {
+    expect(packSessionStarsSyncV1({ s1: 3, s3: 1 }, order)).toBe('3-1');
+    expect(unpackSessionStarsSyncV1('3-1', order)).toEqual({ s1: 3, s3: 1 });
+    expect(unpackSessionStarsSyncV1('3x92', order)).toEqual({ s1: 3, s4: 2 });
+    expect(unpackSessionStarsSyncV1('3---2', order)).toEqual({ s1: 3 });
+  });
+  it('best star per session wins; an empty phone never erases the cloud', () => {
+    expect(mergeSessionStarsSyncRestoreValueV1('312', '13-3')).toBe('3323');
+    expect(mergeSessionStarsSyncRestoreValueV1(null, '13-3')).toBe('13-3');
+    expect(mergeSessionStarsSyncRestoreValueV1('', '13-3')).toBe('13-3');
+  });
+  it('full course is at most one byte per episode', () => {
+    expect(packSessionStarsSyncV1({}, order)).toBe('');
+    expect(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1).toBe('learning_v2_session_stars_sync_v1');
+    const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8');
+    expect(src).toContain('[LEARNING_V2_SESSION_STARS_SYNC_KEY_V1]: mergeSessionStarsSyncRestoreValueV1,');
+    expect(src).toContain("'learning-v2:session-star-results:v1:',");
+  });
+});

@@ -110,3 +110,55 @@ export function mergeCourseProgressSyncRestoreValueV1(localRaw: string | null | 
   console.log(`${LOG} restore:course`, JSON.stringify({ local, cloud, merged, rule: "max_completed_never_lost" })); // guard-ok: какое правило сработало
   return String(merged);
 }
+
+// ── Звёзды эпизодов (координатор 22.10): без них после переустановки пройденные эпизоды показывались бы с одной звездой.
+// Компактно: строка по порядку занятий курса, символ на занятие — '0'…'3' или '-' (результата нет); ≤ 1792 байт на весь курс.
+export const LEARNING_V2_SESSION_STARS_SYNC_KEY_V1 = "learning_v2_session_stars_sync_v1";
+
+const STAR_CHARS = new Set(["-", "0", "1", "2", "3"]);
+const starRank = (char: string | undefined): number => (char === undefined || char === "-" ? -1 : Number(char));
+
+/** Звёзды по id занятия → строка по порядку курса (хвост без результатов обрезан). */
+export function packSessionStarsSyncV1(
+  stars: Readonly<Record<string, number>>,
+  orderedSessionIds: readonly string[],
+): string {
+  const chars = orderedSessionIds.map((id) => {
+    const value = stars[id];
+    return value === 0 || value === 1 || value === 2 || value === 3 ? String(value) : "-";
+  });
+  return chars.join("").replace(/-+$/u, "");
+}
+
+/** Строка → звёзды по id занятия; посторонние символы и лишняя длина отбрасываются. */
+export function unpackSessionStarsSyncV1(
+  raw: string | null | undefined,
+  orderedSessionIds: readonly string[],
+): Record<string, 0 | 1 | 2 | 3> {
+  const out: Record<string, 0 | 1 | 2 | 3> = {};
+  if (!raw) return out;
+  const limit = Math.min(raw.length, orderedSessionIds.length);
+  for (let i = 0; i < limit; i += 1) {
+    const char = raw[i];
+    if (char === "0" || char === "1" || char === "2" || char === "3") out[orderedSessionIds[i]] = Number(char) as 0 | 1 | 2 | 3;
+  }
+  return out;
+}
+
+/** Правило восстановления: по каждому занятию — лучшая звезда; пустая или битая сторона ничего не стирает. */
+export function mergeSessionStarsSyncRestoreValueV1(localRaw: string | null | undefined, cloudRaw: string): string {
+  const clean = (raw: string | null | undefined) => [...(raw ?? "")].map((c) => (STAR_CHARS.has(c) ? c : "-"));
+  const local = clean(localRaw);
+  const cloud = clean(cloudRaw);
+  const length = Math.max(local.length, cloud.length);
+  const merged: string[] = [];
+  let improvedFromLocal = 0;
+  for (let i = 0; i < length; i += 1) {
+    const best = starRank(local[i]) > starRank(cloud[i]) ? local[i] : (cloud[i] ?? "-");
+    if (best !== (cloud[i] ?? "-")) improvedFromLocal += 1;
+    merged.push(best ?? "-");
+  }
+  const out = merged.join("").replace(/-+$/u, "");
+  console.log(`${LOG} restore:stars`, JSON.stringify({ local: local.length, cloud: cloud.length, improvedFromLocal, rule: "best_star_per_session" })); // guard-ok: какое правило сработало
+  return out;
+}

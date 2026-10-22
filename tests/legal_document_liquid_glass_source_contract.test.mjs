@@ -66,8 +66,10 @@ const LEGAL_FILES = [
   // проверка имени, запросы к платному ИИ (диалоги, разбор, перевод, озвучка); хэш учётки или IP, сам IP не хранится; окно час/сутки.
   // 22.10 (координатор, замок владельца «история остаётся, имя скрыто»): §20 — абзац о дуэлях друзей при удалении аккаунта: законченные дуэли и итог
   // остаются у друга под «Deleted player» без uid/ника/аватара, открытые вызовы стираются (functions/src/account_delete_friend_duels.ts).
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'c4af7d20776371f132f52631c49cfc0a0460f6599392c67561d8fc7ef7648bbb'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '990ff809b837bd4f9511ff7d804e9dcf41ef6394f33f68a24bae872b96942333'],
+  // 22.10 (координатор, пакет «Друзей», Ревизор): §5 — абзац «Итог недели друга»: занятия, дни, серия, лучший этаж Пика и рост, лучший день;
+  // считается на телефоне, едет с прогрессом; переключатель «Show my week to friends» → сервер не отдаёт (functions/src/friends_profiles.ts:264).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'c52ca86c78104236481057159a43434aeb084b501ae2e48b82b721422c6b96b5'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '0ce499de94c35215c346d47d792bd3d88434641f68ac9dd896180958730c6600'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3'],

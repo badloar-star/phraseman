@@ -104,7 +104,8 @@ export function gatherLearningV2ChapterExamCandidatesV1(input: Readonly<{
 }>): readonly ChapterExamCandidateV1[] {
   const out: ChapterExamCandidateV1[] = [];
   let sessions = 0;
-  for (const sessionOrdinal of chapterSessionOrdinalsV1(input.chapterOrdinal)) {
+  // зачем (макет chapter-exam-flow.html «По эпизодам 9–15» для главы 2): восьмое занятие главы — «Проверка главы», в экзамен не идёт
+  for (const sessionOrdinal of chapterSessionOrdinalsV1(input.chapterOrdinal).slice(0, -1)) {
     const session = materializeChapterSession(input.lessonOrdinal, sessionOrdinal, input.locale);
     if (!session) continue;
     sessions += 1;
@@ -200,3 +201,23 @@ export function learningV2PassedChaptersV1(records: Readonly<Record<string, Chap
 }
 
 export default function __RouteShim() { return null; }
+
+/**
+ * Маршрут экрана экзамена главы — для кнопок Сезона «Сдать экзамен» (onStartExam) и «Открыть экзаменом главы» (onOpenByExam).
+ * зачем (координатор 22.10): 4 · ТЕМЫ подключает кнопки по этому адресу заранее, экран экзамена живёт по нему же.
+ * source — откуда пришли (для журнала и возврата): карта экзамена или закрытый эпизод следующей главы.
+ */
+export function learningV2ChapterExamHrefV1(input: Readonly<{
+  lessonOrdinal: number;
+  chapterOrdinal: number;
+  source: 'exam_card' | 'open_by_exam';
+}>) {
+  return {
+    pathname: '/learning-v2/chapter-exam',
+    params: {
+      lessonOrdinal: String(input.lessonOrdinal),
+      chapterOrdinal: String(input.chapterOrdinal),
+      source: input.source,
+    },
+  } as const;
+}

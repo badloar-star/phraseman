@@ -102,18 +102,18 @@ export default function LearningV2LessonWordsScreen() {
   };
   const g = useLv2Glass();
   const switchLabels = triLang(lang, {
-    ru: ['Этот урок', 'Весь курс'], uk: ['Цей урок', 'Весь курс'], en: ['This lesson', 'Whole course'], es: ['Esta lección', 'Todo el curso'], 'pt-BR': ['Esta lição', 'Curso todo'],
+    ru: ['Этот урок', 'Весь курс'], uk: ['Цей урок', 'Весь курс'], en: ['This lesson', 'Whole course'], es: ['Esta lección', 'Todo el curso'], 'pt-BR': ['Esta lição', 'Todo o curso'],
     vi: ['Bài này', 'Cả khóa học'], id: ['Pelajaran ini', 'Seluruh kursus'], tr: ['Bu ders', 'Tüm kurs'], pl: ['Ta lekcja', 'Cały kurs'],
-  }); // ⚠ ЖДУТ ревью «Переводчика» (10) на 7 языках
-  const courseTitle = triLang(lang, { ru: 'Слова курса', uk: 'Слова курсу', en: 'Course words', es: 'Palabras del curso', 'pt-BR': 'Palavras do curso', vi: 'Từ của khóa học', id: 'Kata kursus', tr: 'Kurs kelimeleri', pl: 'Słowa kursu' });
+  }); // зачем (Переводчик 22.10): вычитано на 9 языках; pt «Todo o curso», пустые состояния ru/uk — на «ты», как весь интерфейс
+  const courseTitle = triLang(lang, { ru: 'Слова курса', uk: 'Слова курсу', en: 'Course words', es: 'Palabras del curso', 'pt-BR': 'Palavras do curso', vi: 'Từ vựng khóa học', id: 'Kata dalam kursus', tr: 'Kurs kelimeleri', pl: 'Słowa kursu' });
   const courseEmptyText = triLang(lang, {
-    ru: 'Слова появятся здесь, когда вы встретите их в занятиях курса', uk: 'Слова з’являться тут, коли ви зустрінете їх у заняттях курсу', en: 'Words will appear here as you meet them in the course',
+    ru: 'Слова появятся здесь, когда встретишь их в занятиях курса', uk: 'Слова з’являться тут, коли зустрінеш їх у заняттях курсу', en: 'Words will appear here as you meet them in the course',
     es: 'Las palabras aparecerán aquí cuando las encuentres en el curso', 'pt-BR': 'As palavras vão aparecer aqui quando você as encontrar no curso', vi: 'Từ sẽ xuất hiện ở đây khi bạn gặp chúng trong khóa học',
     id: 'Kata akan muncul di sini saat kamu menemuinya di kursus', tr: 'Kelimeler, kurstaki alıştırmalarda karşılaştıkça burada görünecek', pl: 'Słowa pojawią się tutaj, gdy spotkasz je w kursie',
   });
   const emptyText = triLang(lang, {
-    ru: 'Слова появятся здесь, когда вы встретите их в занятиях этого урока',
-    uk: 'Слова з’являться тут, коли ви зустрінете їх у заняттях цього уроку',
+    ru: 'Слова появятся здесь, когда встретишь их в занятиях этого урока',
+    uk: 'Слова з’являться тут, коли зустрінеш їх у заняттях цього уроку',
     en: 'Words will appear here as you meet them in this lesson',
     es: 'Las palabras aparecerán aquí cuando las encuentres en esta lección',
     'pt-BR': 'As palavras vão aparecer aqui quando você as encontrar nesta lição',

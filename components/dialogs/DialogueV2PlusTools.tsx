@@ -34,7 +34,7 @@ export function DialogueV2PlusTools({
   });
   const subtitle = triLang(lang, {
     ru: 'Практика без сценария', uk: 'Практика без сценарію', en: 'Practice without a scenario',
-    es: 'Práctica sin escenario', fr: 'Pratique sans scénario', de: 'Üben ohne Szenario',
+    es: 'Práctica sin guion', fr: 'Pratique sans scénario', de: 'Üben ohne Szenario',
     'pt-BR': 'Prática sem roteiro', vi: 'Luyện tập không theo kịch bản', id: 'Latihan tanpa skenario', tr: 'Senaryosuz pratik', pl: 'Ćwiczenie bez scenariusza',
   });
   const hint = !hasPremiumAccess

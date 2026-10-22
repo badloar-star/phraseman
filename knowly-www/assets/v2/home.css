@@ -161,3 +161,12 @@ main h1 > br, main h2 > br { display: none; } /* em и так на новой с
   .site-header .nav-actions .button.small { padding: 0 11px; font-size: 12px; min-height: 34px; }
   .v2-theme-btn, .menu-button { width: 32px; height: 32px; }
 }
+
+/* Макет телефона = настоящая Главная со сценой (снимки с эмулятора, владелец 22.10). Тема снимка — по data-mode сайта. */
+.phone .screen.shots { background: #06171b; }
+:root[data-mode="light"] .phone .screen.shots { background: #cfeaf2; }
+.phone .shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0; transition: opacity 700ms ease; }
+.phone .shot.on { opacity: 1; }
+:root[data-mode="light"] .phone .shot[data-mode-only="dark"],
+:root:not([data-mode="light"]) .phone .shot[data-mode-only="light"] { display: none; }
+@media (prefers-reduced-motion: reduce) { .phone .shot { transition: none; } }

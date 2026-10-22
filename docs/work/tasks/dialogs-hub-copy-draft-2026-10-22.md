@@ -1,6 +1,6 @@
 # Хаб Диалогов: черновик текстов на 8 языках (Переводчик, по макету 556e3086c)
 
-Status: Draft — ждёт выбора варианта владельцем; после выбора сверю с выбранным вариантом и отдам в код
+Status: Draft v2 — ответы координатора учтены; владелец выбрал вариант 2. Сверка строк — по новому макету от 2 · ДИЗАЙН (хэш ждём)
 Owner: «10 · ПЕРЕВОДЧИК» (поручение координатора 22.10)
 
 Источник: `docs/design/v2-app/dialogs-hub.html` (556e3086c), все три варианта. Порядок колонок как в
@@ -18,8 +18,8 @@ Owner: «10 · ПЕРЕВОДЧИК» (поручение координатор
 
 | ключ | ru | uk | en | es | pt-BR | vi | id | tr | pl |
 |---|---|---|---|---|---|---|---|---|---|
-| allDialogs | Все диалоги | Усі діалоги | All dialogues | Catálogo | Catálogo | Tất cả | Semua dialog | Katalog | Wszystkie |
-| freeDialog | Свободный диалог | Вільний діалог | Open conversation | Diálogo libre | Conversa livre | Trò chuyện tự do | Obrolan bebas | Serbest sohbet | Swobodna rozmowa |
+| allDialogs | Все диалоги | Усі діалоги | All dialogues | Todos los diálogos | Todos os diálogos | Mọi hội thoại | Semua dialog | Tüm diyaloglar | Wszystkie dialogi |
+| freeDialog | Свободный разговор | Вільна розмова | Open conversation | Conversación libre | Conversa livre | Trò chuyện tự do | Percakapan bebas | Serbest konuşma | Swobodna rozmowa |
 | doneTile | Пройденные | Пройдені | Completed | Completados | Concluídos | Đã xong | Selesai | Tamamlanan | Ukończone |
 | nextLabel | Дальше | Далі | Up next | Siguientes | A seguir | Tiếp theo | Berikutnya | Sıradakiler | Dalej |
 | available | {n} доступно | {n} доступно | {n} available | {n} disponibles | {n} disponíveis | {n} đang mở | {n} tersedia | {n} açık | {n} dostępne* |
@@ -42,21 +42,22 @@ Owner: «10 · ПЕРЕВОДЧИК» (поручение координатор
 - «N целей» и «2 из N целей» — это `dialogsSceneGoalsLabel` и `dialogsSceneGoalsDoneLabel`.
 - Названия миров уже переведены в `DialogueV2CatalogueContainer.tsx`.
 
-## Что решить до кода (вопросы — координатору)
+## Решения координатора 22.10 (вопросы закрыты)
 
-1. **«Свободный диалог» или «Свободный разговор».** В макете стоит «диалог». В приложении сейчас «Свободный
-   разговор» (`DialogueV2PlusTools.tsx`, `DialogsTabContent.tsx`), и переводы сделаны от «разговора». Я оставил
-   устоявшиеся переводы. Исключения — uk («Вільний діалог», чтобы совпадало с русским) и es («Diálogo libre»:
-   «Conversación libre» длиннее на 5 знаков и в плитку варианта 1 не влезает). Если в приложении тоже
-   переименуют в «диалог», поправлю обе старые строки. en «Free dialogue» не беру: free читается как
-   «бесплатно», а функция платная.
-2. **«Все диалоги» в узкой плитке.** Полный перевод влезает в uk, en и id. Для es, pt-BR и tr предлагаю
-   «Catálogo» / «Katalog»: полный вариант («Todos los diálogos», «Tüm diyaloglar») длиннее эталона в 1,3–1,6 раза.
-   Для vi — «Tất cả», для pl — «Wszystkie»: над подписью и так стоит счётчик диалогов. В варианте 3 плитка
-   шире, и там можно дать полные «Todos los diálogos» / «Todos os diálogos» / «Tüm diyaloglar» / «Mọi hội thoại».
-3. **Название мира «Повседневное».** В макете — «Повседневное», в приложении — «Каждый день»
-   (`DialogueV2CatalogueContainer.tsx`). Переводы уже есть, но нужно решить, какое русское слово главное.
-4. **en «All dialogues».** 13 знаков против 11 у русского. Это предел, но, по моей оценке, влезает. Если на
-   склейке не влезет, ставлю «Catalogue».
+1. Название — как в приложении: **«Свободный разговор»**, ничего не переименовываем. Переводы взяты из кода
+   (`DialogsTabContent.tsx`, `app/ai_companion_session.tsx`). ⚠️ В `DialogueV2PlusTools.tsx` для id и tr стоят другие слова:
+   «Obrolan bebas» и «Serbest sohbet» вместо «Percakapan bebas» и «Serbest konuşma». В хабе беру вариант, который встречается
+   в коде чаще. Выравнивание PlusTools — отдельная точечная правка, если координатор скажет.
+2. Основа — **вариант 2**: «Свободный разговор» и «Все диалоги» — широкие плитки, темы — плитки 2 × 2. В широкой плитке
+   помещаются полные формы, поэтому «Catálogo» и «Katalog» больше не нужны. Короткие слова остаются запасом, если
+   на склейке что-то не влезет.
+3. Темы — как в приложении. Источник — утверждённый `shared/generated/dialogue_v2_ui_copy.<lang>.json` (`worlds`):
+   ru «Общение / Дела / Поездки / Повседневное», uk «Спілкування / Справи / Поїздки / Повсякденне»,
+   en «Social / Work / Travel / Everyday», es «Social / Trabajo / Viajes / Día a día»,
+   pt-BR «Conversas / Trabalho / Viagens / Dia a dia», vi «Giao tiếp / Công việc / Chuyến đi / Đời thường»,
+   id «Pergaulan / Urusan / Perjalanan / Sehari-hari», tr «Sohbet / İşler / Yolculuklar / Gündelik hayat»,
+   pl «Rozmowy / Sprawy / Podróże / Codzienność». Подписи-заглушки в `DialogueV2CatalogueContainer.tsx` («Каждый день»
+   и т. п.) срабатывают, только если в json нет строки.
+4. en «All dialogues» — ок, плитка широкая.
 
-Все строки после выбора варианта проверю по ширине на склейке «макет | эмулятор» вместе со «Сверкой».
+Строки сверю с новым макетом (его переделывают по описи кода), когда 2 · ДИЗАЙН пришлёт хэш.

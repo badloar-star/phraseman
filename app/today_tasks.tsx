@@ -19,6 +19,7 @@ import { V2, V2_TYPE } from '../constants/v2Style';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import HomeV2TodayCard from '../components/home/v2/HomeV2TodayCard';
+import TodayActivityHistory from '../components/home/v2/TodayActivityHistory';
 import type { TodayTask } from '../components/home/v2/home_v2_types';
 import { todayRingColors, useStreakColors } from '../components/streak/moments/use_streak_colors';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
@@ -171,6 +172,7 @@ export default function TodayTasksScreen() {
             </View>
           ) : null}
           <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} />
+          <TodayActivityHistory dayKey={todayTasks.dayKey} tasks={tasks} />
         </ScrollView>
       </SafeAreaView>
     </View>

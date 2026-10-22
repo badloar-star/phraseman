@@ -413,3 +413,42 @@ describe('friend nudge push logging (PM-200)', () => {
     warn.mockRestore();
   });
 });
+
+describe('серия вдвоём и флаг «Вместе» (ревью Ядра 4f33676dc)', () => {
+  // зачем: у обоих 5 общих дней подряд по «сегодня» (23.08) — без этого серия 0 и тест «флаг выключен» прошёл бы впустую
+  function seedFiveDayStreak() {
+    const days = ['2026-08-23', '2026-08-22', '2026-08-21', '2026-08-20', '2026-08-19'];
+    for (const uid of ['alice', 'bob']) {
+      const user = docs.get(`users/${uid}`) as DocData;
+      docs.set(`users/${uid}`, { ...user, progress: { ...(user.progress as DocData), active_days_v1: JSON.stringify(encode('2026-08-23', days)) } });
+    }
+  }
+  const pushRow = (): Record<string, unknown> => {
+    const request = (global.fetch as jest.Mock).mock.calls[0]?.[1] as { body?: string } | undefined;
+    return (JSON.parse(String(request?.body || '[]')) as Array<Record<string, unknown>>)[0] ?? {};
+  };
+  const notificationNav = () => (docs.get('users/bob/notifications/friends_together_nudge_alice_2026-08-23') as { nav?: Record<string, unknown> } | undefined)?.nav;
+  const receiptResponse = () => (docs.get('users/alice/friends_together_nudge_receipts/nudge_000001') as { response?: Record<string, unknown> } | undefined)?.response;
+
+  test('флаг выключен — серия не уходит ни в пуш, ни в уведомление, ни в квитанцию', async () => {
+    seedFiveDayStreak();
+
+    const result = await nudge();
+
+    expect(result.ok).toBe(true);
+    expect(notificationNav()?.pairStreak).toBe(0);
+    expect(receiptResponse()?.pairStreak).toBe(0);
+    expect(pushRow()).toMatchObject({ title: 'Alice: пять минут практики?', body: 'Одно маленькое занятие.' });
+  });
+
+  test('флаг включён — серия 5 дней в уведомлении, квитанции и тексте пуша', async () => {
+    seedFiveDayStreak();
+    docs.set('remote_config/app', { bools: { friends_together_enabled: true } });
+
+    await nudge();
+
+    expect(notificationNav()?.pairStreak).toBe(5);
+    expect(receiptResponse()?.pairStreak).toBe(5);
+    expect(pushRow().title).toBe('Alice: серия вдвоём ждёт');
+  });
+});

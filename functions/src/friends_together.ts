@@ -23,6 +23,7 @@ import {
   nudgeLimitBlockReason,
   pairStreakDays,
   pairStreakReferenceDay,
+  PAIR_STREAK_PUSH_MIN,
 } from './friends_together_core';
 
 const REGION = 'us-central1';
@@ -74,6 +75,12 @@ function activeDaysFromUser(data: FirebaseFirestore.DocumentData | undefined): A
   const raw = parseJsonObject(getField(data, 'active_days_v1'));
   return typeof raw.anchor === 'string' && typeof raw.bits === 'string' ? { anchor: raw.anchor, bits: raw.bits } : null;
 }
+
+/**
+ * Короткая метка uid для журналов — первые 6 символов.
+ * зачем (координатор 21.10, Ревизор): полные stableUid в журналах не пишем; метки хватает, чтобы связать строки одной цепочки.
+ */
+const uidTag = (uid: string): string => (uid ? uid.slice(0, 6) : '-');
 
 /** зачем (1 · ЯДРО 21.10): каждый ранний выход «Друзей» пишет причину в журнал под одним префиксом. */
 function rejectNudge(code: ConstructorParameters<typeof HttpsError>[0], reason: string, ctx: Record<string, unknown> = {}): never {
@@ -145,6 +152,9 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
   if (linked.stableUid !== stableUid) throw new HttpsError('failed-precondition', 'stable_id_changed');
 
   const config = await resolveConfig(db);
+  // зачем (ревью Ядра 4f33676dc): серия пары уходит в уведомление и в ответ только при включённом «Вместе» — иначе окно
+  // приглашения нарисовало бы «Серия вдвоём · N» раньше «Сверки». Снимок флага — до транзакции, из того же чтения конфига.
+  const togetherOn = cachedTogetherEnabled;
   const now = Date.now();
   const dayKey = todayDayKey(now);
   const userRef = db.collection('users').doc(stableUid);
@@ -168,11 +178,11 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
     if (receiptSnap.exists) {
       const receipt = receiptSnap.data() ?? {};
       if (receipt.friendUid !== friendUid) rejectNudge('already-exists', 'request_id_reused', { requestId });
-      console.log(`[FRIENDS-TOGETHER] nudge:replay requestId=${requestId} friend=${friendUid}`);
+      console.log(`[FRIENDS-TOGETHER] nudge:replay requestId=${requestId} friend=${uidTag(friendUid)}`);
       return receipt.response as Record<string, unknown>;
     }
 
-    const ctx = { from: stableUid, friend: friendUid, requestId };
+    const ctx = { from: uidTag(stableUid), friend: uidTag(friendUid), requestId };
     if (!userSnap.exists || !friendSnap.exists) rejectNudge('not-found', 'user_not_found', { ...ctx, userExists: userSnap.exists, friendExists: friendSnap.exists });
     if (!userMatchesAuth(stableUid, userSnap.data(), request.auth!.uid)) {
       rejectNudge('permission-denied', 'user_does_not_match_auth', ctx);
@@ -206,7 +216,8 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
 
     // зачем (идея 1 «Серия вдвоём», владелец 21.10): серия пары — из active_days_v1 уже прочитанных документов, без новых чтений.
     const senderDays = activeDaysFromUser(userSnap.data());
-    const pairStreak = pairStreakDays(senderDays, activeDaysFromUser(friendSnap.data()), pairStreakReferenceDay(senderDays, now));
+    const pairStreakRaw = pairStreakDays(senderDays, activeDaysFromUser(friendSnap.data()), pairStreakReferenceDay(senderDays, now));
+    const pairStreak = togetherOn ? pairStreakRaw : 0;
 
     const senderName =
       String(request.data?.senderDisplayName ?? '').trim().slice(0, 80) ||
@@ -242,7 +253,7 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
 
     const response = { ok: true, requestId, sentAtMs: now, pairStreak };
     tx.set(receiptRef, { friendUid, response, createdAt: now });
-    console.log(`[FRIENDS-TOGETHER] nudge:sent ${JSON.stringify({ ...ctx, pairStreak })}`);
+    console.log(`[FRIENDS-TOGETHER] nudge:sent ${JSON.stringify({ ...ctx, together: togetherOn, pairStreak, pairStreakRaw })}`);
 
     return {
       ...response,
@@ -253,10 +264,11 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
 
   const pushToken = (result as { _friendPushToken?: string })._friendPushToken;
   const senderName = (result as { _senderName?: string })._senderName ?? 'Friend';
-  const pushPairStreak = cachedTogetherEnabled ? Number((result as { pairStreak?: unknown }).pairStreak) || 0 : 0;
+  const pushPairStreak = togetherOn ? Number((result as { pairStreak?: unknown }).pairStreak) || 0 : 0;
   if (pushToken) {
     const copy = friendNudgePushCopy(senderName, pushPairStreak);
-    console.log(`[FRIENDS-TOGETHER] nudge:push together=${cachedTogetherEnabled} pairStreak=${pushPairStreak} title="${copy.title}"`);
+    // зачем (ревью Ядра): заголовок пуша содержит имя отправителя — в журнал только шаблон текста
+    console.log(`[FRIENDS-TOGETHER] nudge:push together=${togetherOn} pairStreak=${pushPairStreak} copy=${pushPairStreak >= PAIR_STREAK_PUSH_MIN ? 'pair_streak' : 'plain'}`);
     void sendExpoPush(
       pushToken,
       copy.title,

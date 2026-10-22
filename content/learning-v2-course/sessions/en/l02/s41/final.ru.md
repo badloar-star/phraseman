@@ -61,7 +61,7 @@
 Плитки: `stubborn` `is` `He` `are` → **He is stubborn.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is stubborn.`)*
 
-**3 · Послушайте, что мама говорит о детях**
+**3 · Послушайте и выберите — мама по телефону говорит с вами о детях**
 <!-- interaction_id: en:lesson-02:session-41:i02; family: listen_choose -->
 🔊 *They are tired.* → **They are tired.** · They are hungry. · They are sleepy.
 - They are hungry. — *В записи последнее слово — `tired`, а в этом варианте — `hungry`.*
@@ -109,7 +109,7 @@ Yes, he ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-41:word:naughty; family: word_card -->
 > **naughty** — непослушный, озорной, о ребёнке или щенке. He is naughty — «Он шалит». О мальчике, щенке, котёнке.
 
-**13 · Послушайте, что мама говорит о собаке**
+**13 · Послушайте и выберите — ещё раз вечером вам звонит мама**
 <!-- interaction_id: en:lesson-02:session-41:i09; family: listen_choose -->
 🔊 *He is naughty.* → **He is naughty.** · He is gentle. · He is stubborn.
 - He is gentle. — *В записи последнее слово — `naughty`, а в этом варианте — `gentle`.*
@@ -139,7 +139,7 @@ He ___ not selfish. → **is** · am · are
 - am — *С `He` нужно `is`.*
 - are — *Фраза — `He is not selfish`.*
 
-**19 · Послушайте вопрос мамы**
+**19 · Послушайте и выберите — вечером мама интересуется у вас, как дела**
 <!-- interaction_id: en:lesson-02:session-41:i15; family: listen_choose -->
 🔊 *Are they naughty?* → **Are they naughty?** · Are they gentle? · Are they selfish?
 - Are they gentle? — *В записи последнее слово — `naughty`, а в этом варианте — `gentle`.*

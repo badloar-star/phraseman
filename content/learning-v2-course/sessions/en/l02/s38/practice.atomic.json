@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что мастер говорит о замке",
+        "prompt": "Послушайте и выберите — мастер заходит в вашу квартиру и осматривается",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-38:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-38:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте, что мастер говорит о замке",
+        "accessibilityLabel": "Послушайте и выберите — мастер заходит в вашу квартиру и осматривается",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-38:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что мастер говорит о замке",
+              "testedDimension": "Послушайте и выберите — мастер заходит в вашу квартиру и осматривается",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `broken`, а в этом варианте — `old`.",
                 "uk": "У записі останнє слово — `broken`, а в цьому варіанті — `old`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-38:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что мастер говорит о замке",
+              "testedDimension": "Послушайте и выберите — мастер заходит в вашу квартиру и осматривается",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `broken`, а в этом варианте — `open`.",
                 "uk": "У записі останнє слово — `broken`, а в цьому варіанті — `open`."
@@ -637,7 +637,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что соседка говорит о стуле",
+        "prompt": "Послушайте и выберите — соседка заходит к вам в съёмную квартиру",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-38:i09:r1",
@@ -656,7 +656,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-38:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте, что соседка говорит о стуле",
+        "accessibilityLabel": "Послушайте и выберите — соседка заходит к вам в съёмную квартиру",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -686,7 +686,7 @@
             {
               "responseId": "en:lesson-02:session-38:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что соседка говорит о стуле",
+              "testedDimension": "Послушайте и выберите — соседка заходит к вам в съёмную квартиру",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wobbly`, а в этом варианте — `broken`.",
                 "uk": "У записі останнє слово — `wobbly`, а в цьому варіанті — `broken`."
@@ -695,7 +695,7 @@
             {
               "responseId": "en:lesson-02:session-38:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что соседка говорит о стуле",
+              "testedDimension": "Послушайте и выберите — соседка заходит к вам в съёмную квартиру",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wobbly`, а в этом варианте — `heavy`.",
                 "uk": "У записі останнє слово — `wobbly`, а в цьому варіанті — `heavy`."
@@ -980,7 +980,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос мастера",
+        "prompt": "Послушайте и выберите — мастер ходит по вашей квартире и спрашивает",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-38:i15:r1",
@@ -999,7 +999,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-38:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос мастера",
+        "accessibilityLabel": "Послушайте и выберите — мастер ходит по вашей квартире и спрашивает",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1029,7 +1029,7 @@
             {
               "responseId": "en:lesson-02:session-38:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос мастера",
+              "testedDimension": "Послушайте и выберите — мастер ходит по вашей квартире и спрашивает",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `leaky`, а в этом варианте — `dented`.",
                 "uk": "У записі останнє слово — `leaky`, а в цьому варіанті — `dented`."
@@ -1038,7 +1038,7 @@
             {
               "responseId": "en:lesson-02:session-38:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос мастера",
+              "testedDimension": "Послушайте и выберите — мастер ходит по вашей квартире и спрашивает",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `leaky`, а в этом варианте — `creaky`.",
                 "uk": "У записі останнє слово — `leaky`, а в цьому варіанті — `creaky`."

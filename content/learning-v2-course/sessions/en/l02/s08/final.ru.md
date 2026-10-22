@@ -57,7 +57,7 @@
 Плитки: `sure` `not` `am` `I` `is` → **I am not sure.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am not sure.`)*
 
-**2 · Послушайте фразу о сестре Паши**
+**2 · Послушайте и выберите — подруга говорит с вами в зале за час до спектакля**
 <!-- interaction_id: en:lesson-02:session-08:i02; family: listen_choose -->
 🔊 *She is not interested.* → **She is not interested.** · She is not relaxed. · She is not confident.
 - She is not relaxed. — *В записи последнее слово — `interested`, а в этом варианте — `relaxed`.*
@@ -109,7 +109,7 @@ We ___ not finished. → **are** · am · is
 - am — *После `We` нужно `are`.*
 - is — *Вас двое, поэтому `We are not`.*
 
-**13 · Послушайте фразу о декорации**
+**13 · Послушайте и выберите — друг осматривает с вами декорации перед началом**
 <!-- interaction_id: en:lesson-02:session-08:i09; family: listen_choose -->
 🔊 *It is not finished.* → **It is not finished.** · It is not broken. · It is not real.
 - It is not broken. — *В записи последнее слово — `finished`, а в этом варианте — `broken`.*
@@ -139,7 +139,7 @@ They ___ not necessary. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Стульев два, поэтому `They are not`.*
 
-**19 · Послушайте короткую фразу о Нине**
+**19 · Послушайте и выберите — перед выходом на сцену друг делится с вами мыслями**
 <!-- interaction_id: en:lesson-02:session-08:i15; family: listen_choose -->
 🔊 *She's not confident.* → **She's not confident.** · She's not interested. · She's not satisfied.
 - She's not interested. — *В записи последнее слово — `confident`, а в этом варианте — `interested`.*

@@ -107,9 +107,9 @@ Yes, he ___. → **is** · am · are
 
 **12 · Послухайте, що ведучий каже про останній номер**
 <!-- interaction_id: en:lesson-02:session-54:i09; family: listen_choose -->
-🔊 *It is dramatic.* → **It is dramatic.** · It is loud. · It is stunning.
-- It is loud. — *У записі останнє слово — `dramatic`, а в цьому варіанті — `loud`.*
-- It is stunning. — *У записі останнє слово — `dramatic`, а в цьому варіанті — `stunning`.*
+🔊 *It is stunning.* → **It is stunning.** · It is loud. · It is dramatic.
+- It is loud. — *У записі останнє слово — `stunning`, а в цьому варіанті — `loud`.*
+- It is dramatic. — *У записі останнє слово — `stunning`, а в цьому варіанті — `dramatic`.*
 
 **13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-02:session-54:i10; family: speed_match -->

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-31:word:unusual; family: word_card -->
 > **unusual** — необычный, не такой, как все. It is unusual — «Он необычный». О форме, цвете, вкусе, идее.
 
-**4 · Послушайте фразу о чайнике**
+**4 · Послушайте и выберите — подруга показывает вам чайник на выставке**
 <!-- interaction_id: en:lesson-02:session-31:i02; family: listen_choose -->
 🔊 *It is unusual.* → **It is unusual.** · It is valid. · It is separate.
 - It is valid. — *В записи последнее слово — `unusual`, а в этом варианте — `valid`.*
@@ -109,7 +109,7 @@ No, they ___ not. → **are** · am · is
 - am — *С `they` нужно `are`.*
 - is — *Ответ — `No, they are not`.*
 
-**13 · Послушайте вопрос**
+**13 · Послушайте и выберите — в зале керамики подруга обращается к вам**
 <!-- interaction_id: en:lesson-02:session-31:i09; family: listen_choose -->
 🔊 *Is it valid?* → **Is it valid?** · Is it valuable? · Is it antique?
 - Is it valuable? — *В записи последнее слово — `valid`, а в этом варианте — `valuable`.*
@@ -139,7 +139,7 @@ It ___ not valid. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is not valid`.*
 
-**19 · Послушайте фразу о чашках**
+**19 · Послушайте и выберите — подруга разглядывает чашки рядом с вами**
 <!-- interaction_id: en:lesson-02:session-31:i15; family: listen_choose -->
 🔊 *They are valuable.* → **They are valuable.** · They are antique. · They are painted.
 - They are antique. — *В записи последнее слово — `valuable`, а в этом варианте — `antique`.*

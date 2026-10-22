@@ -56,10 +56,10 @@
 <!-- interaction_id: en:lesson-02:session-25:word:who; family: word_card -->
 > **who** — хто. Who is missing? — «Кого немає?» Питаємо про людину.
 
-**2 · На репетицію прийшли не всі. Запитайте, хто відсутній**
+**2 · На репетиції збираються. Запитайте, хто вже на місці**
 <!-- interaction_id: en:lesson-02:session-25:i01; family: phrase_builder -->
-Плитки: `absent` `is` `Who` `What` → **Who is absent?**
-*(плитка `What` зайва: тут потрібно `Who` — `Who is absent?`)*
+Плитки: `here` `is` `Who` `What` → **Who is here?**
+*(плитка `What` зайва: про людину питають `Who` — `Who is here?`)*
 
 **3 · Картка слова — where**
 <!-- interaction_id: en:lesson-02:session-25:word:where; family: word_card -->

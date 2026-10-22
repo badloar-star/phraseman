@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Через час сестра встала с дивана. Послушайте, что говорит брат",
+        "prompt": "Послушайте и выберите — брат говорит с вами дома у подруги",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-17:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-17:i02:audio"
         ],
-        "accessibilityLabel": "Через час сестра встала с дивана. Послушайте, что говорит брат",
+        "accessibilityLabel": "Послушайте и выберите — брат говорит с вами дома у подруги",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-17:i02:r2",
               "correct": false,
-              "testedDimension": "Через час сестра встала с дивана. Послушайте, что говорит брат",
+              "testedDimension": "Послушайте и выберите — брат говорит с вами дома у подруги",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `well`, а в этом варианте — `safe`.",
                 "uk": "У записі останнє слово — `well`, а в цьому варіанті — `safe`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-17:i02:r3",
               "correct": false,
-              "testedDimension": "Через час сестра встала с дивана. Послушайте, что говорит брат",
+              "testedDimension": "Послушайте и выберите — брат говорит с вами дома у подруги",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `well`, а в этом варианте — `right`.",
                 "uk": "У записі останнє слово — `well`, а в цьому варіанті — `right`."
@@ -509,7 +509,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
+        "prompt": "Послушайте и выберите — подруга встречает вас у дома после долгой дороги",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-17:i09:r1",
@@ -528,7 +528,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-17:i09:audio"
         ],
-        "accessibilityLabel": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
+        "accessibilityLabel": "Послушайте и выберите — подруга встречает вас у дома после долгой дороги",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -558,7 +558,7 @@
             {
               "responseId": "en:lesson-02:session-17:i09:r2",
               "correct": false,
-              "testedDimension": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
+              "testedDimension": "Послушайте и выберите — подруга встречает вас у дома после долгой дороги",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `possible`, а в этом варианте — `safe`.",
                 "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `safe`."
@@ -567,7 +567,7 @@
             {
               "responseId": "en:lesson-02:session-17:i09:r3",
               "correct": false,
-              "testedDimension": "Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос",
+              "testedDimension": "Послушайте и выберите — подруга встречает вас у дома после долгой дороги",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `possible`, а в этом варианте — `right`.",
                 "uk": "У записі останнє слово — `possible`, а в цьому варіанті — `right`."
@@ -981,7 +981,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
+        "prompt": "Послушайте и выберите — сестра отвечает подруге у дома",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-17:i15:r1",
@@ -1000,7 +1000,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-17:i15:audio"
         ],
-        "accessibilityLabel": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
+        "accessibilityLabel": "Послушайте и выберите — сестра отвечает подруге у дома",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1030,7 +1030,7 @@
             {
               "responseId": "en:lesson-02:session-17:i15:r2",
               "correct": false,
-              "testedDimension": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
+              "testedDimension": "Послушайте и выберите — сестра отвечает подруге у дома",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `carsick`, а в этом варианте — `safe`.",
                 "uk": "У записі останнє слово — `carsick`, а в цьому варіанті — `safe`."
@@ -1039,7 +1039,7 @@
             {
               "responseId": "en:lesson-02:session-17:i15:r3",
               "correct": false,
-              "testedDimension": "Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра",
+              "testedDimension": "Послушайте и выберите — сестра отвечает подруге у дома",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `carsick`, а в этом варианте — `well`.",
                 "uk": "У записі останнє слово — `carsick`, а в цьому варіанті — `well`."

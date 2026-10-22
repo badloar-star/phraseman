@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте фразу об одном из соседей",
+        "prompt": "Послушайте и выберите — соседка рассказывает вам о ярмарке во дворе",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-32:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-32:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте фразу об одном из соседей",
+        "accessibilityLabel": "Послушайте и выберите — соседка рассказывает вам о ярмарке во дворе",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-32:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте фразу об одном из соседей",
+              "testedDimension": "Послушайте и выберите — соседка рассказывает вам о ярмарке во дворе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `away`, а в этом варианте — `absent`.",
                 "uk": "У записі останнє слово — `away`, а в цьому варіанті — `absent`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-32:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте фразу об одном из соседей",
+              "testedDimension": "Послушайте и выберите — соседка рассказывает вам о ярмарке во дворе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `away`, а в этом варианте — `generous`.",
                 "uk": "У записі останнє слово — `away`, а в цьому варіанті — `generous`."
@@ -593,7 +593,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос",
+        "prompt": "Послушайте и выберите — вы с соседями расставляете коробки во дворе",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-32:i09:r1",
@@ -612,7 +612,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-32:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос",
+        "accessibilityLabel": "Послушайте и выберите — вы с соседями расставляете коробки во дворе",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -642,7 +642,7 @@
             {
               "responseId": "en:lesson-02:session-32:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — вы с соседями расставляете коробки во дворе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `generous`, а в этом варианте — `absent`.",
                 "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `absent`."
@@ -651,7 +651,7 @@
             {
               "responseId": "en:lesson-02:session-32:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — вы с соседями расставляете коробки во дворе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `generous`, а в этом варианте — `away`.",
                 "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `away`."
@@ -978,7 +978,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос",
+        "prompt": "Послушайте и выберите — из-за дождя сосед обращается к вам",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-32:i15:r1",
@@ -997,7 +997,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-32:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос",
+        "accessibilityLabel": "Послушайте и выберите — из-за дождя сосед обращается к вам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1027,7 +1027,7 @@
             {
               "responseId": "en:lesson-02:session-32:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — из-за дождя сосед обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `she`, а в этом варианте — `he`.",
                 "uk": "У записі останнє слово — `she`, а в цьому варіанті — `he`."
@@ -1036,7 +1036,7 @@
             {
               "responseId": "en:lesson-02:session-32:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — из-за дождя сосед обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
                 "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."

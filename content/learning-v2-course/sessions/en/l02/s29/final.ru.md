@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-29:word:fixed; family: word_card -->
 > **fixed** — починенный, исправленный. It is fixed — «Она починена». О лампе, часах, замке, велосипеде.
 
-**4 · Послушайте фразу о лампе**
+**4 · Послушайте и выберите — помощник протягивает вам лампу в мастерской**
 <!-- interaction_id: en:lesson-02:session-29:i02; family: listen_choose -->
 🔊 *It is fixed.* → **It is fixed.** · It is broken. · It is local.
 - It is broken. — *В записи последнее слово — `fixed`, а в этом варианте — `broken`.*
@@ -109,7 +109,7 @@ No, it ___ not. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `No, it is not`.*
 
-**13 · Послушайте вопрос**
+**13 · Послушайте и выберите — подруга осматривает лампу вместе с помощником**
 <!-- interaction_id: en:lesson-02:session-29:i09; family: listen_choose -->
 🔊 *Is it scratched?* → **Is it scratched?** · Is it fixed? · Is it worn?
 - Is it fixed? — *В записи последнее слово — `scratched`, а в этом варианте — `fixed`.*
@@ -139,7 +139,7 @@ Where ___ they? → **are** · am · is
 - am — *С `they` нужно `are`.*
 - is — *Вопрос о двоих — `Where are they?`.*
 
-**19 · Послушайте вопрос**
+**19 · Послушайте и выберите — в мастерской с помощником говорит подруга**
 <!-- interaction_id: en:lesson-02:session-29:i15; family: listen_choose -->
 🔊 *Who is away?* → **Who is away?** · Who is online? · Who is local?
 - Who is online? — *В записи последнее слово — `away`, а в этом варианте — `online`.*

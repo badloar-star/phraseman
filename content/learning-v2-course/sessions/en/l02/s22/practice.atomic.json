@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что друг говорит о короле на картинке",
+        "prompt": "Послушайте и выберите — друг собирает с вами пазл на столе",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-22:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-22:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте, что друг говорит о короле на картинке",
+        "accessibilityLabel": "Послушайте и выберите — друг собирает с вами пазл на столе",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-22:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о короле на картинке",
+              "testedDimension": "Послушайте и выберите — друг собирает с вами пазл на столе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `rich`, а в этом варианте — `poor`.",
                 "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `poor`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-22:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о короле на картинке",
+              "testedDimension": "Послушайте и выберите — друг собирает с вами пазл на столе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `rich`, а в этом варианте — `famous`.",
                 "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `famous`."
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что друг говорит о двух полосатых деталях",
+        "prompt": "Послушайте и выберите — друг разбирает с вами детали из двух коробок",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-22:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-22:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте, что друг говорит о двух полосатых деталях",
+        "accessibilityLabel": "Послушайте и выберите — друг разбирает с вами детали из двух коробок",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-02:session-22:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о двух полосатых деталях",
+              "testedDimension": "Послушайте и выберите — друг разбирает с вами детали из двух коробок",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `extra`, а в этом варианте — `bent`.",
                 "uk": "У записі останнє слово — `extra`, а в цьому варіанті — `bent`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-02:session-22:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о двух полосатых деталях",
+              "testedDimension": "Послушайте и выберите — друг разбирает с вами детали из двух коробок",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `extra`, а в этом варианте — `square`.",
                 "uk": "У записі останнє слово — `extra`, а в цьому варіанті — `square`."
@@ -980,7 +980,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос друга об окне в башне",
+        "prompt": "Послушайте и выберите — вы с другом рассматриваете башню из пазла",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-22:i15:r1",
@@ -999,7 +999,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-22:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос друга об окне в башне",
+        "accessibilityLabel": "Послушайте и выберите — вы с другом рассматриваете башню из пазла",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1029,7 +1029,7 @@
             {
               "responseId": "en:lesson-02:session-22:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос друга об окне в башне",
+              "testedDimension": "Послушайте и выберите — вы с другом рассматриваете башню из пазла",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `square`, а в этом варианте — `bent`.",
                 "uk": "У записі останнє слово — `square`, а в цьому варіанті — `bent`."
@@ -1038,7 +1038,7 @@
             {
               "responseId": "en:lesson-02:session-22:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос друга об окне в башне",
+              "testedDimension": "Послушайте и выберите — вы с другом рассматриваете башню из пазла",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `square`, а в этом варианте — `complete`.",
                 "uk": "У записі останнє слово — `square`, а в цьому варіанті — `complete`."

@@ -61,7 +61,7 @@
 Плитки: `wrinkled` `is` `It` `are` → **It is wrinkled.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is wrinkled.`)*
 
-**3 · Послушайте, что мама говорит о рукаве**
+**3 · Послушайте и выберите — мама разбирает с вами шкаф перед поездкой**
 <!-- interaction_id: en:lesson-02:session-49:i02; family: listen_choose -->
 🔊 *It is torn.* → **It is torn.** · It is worn. · It is damp.
 - It is worn. — *В записи последнее слово — `torn`, а в этом варианте — `worn`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-49:word:smelly; family: word_card -->
 > **smelly** — вонючий, плохо пахнущий. They're smelly — «Они плохо пахнут». О носках, обуви, мусоре, белье.
 
-**13 · Послушайте, что мама говорит о кроссовках после дождя**
+**13 · Послушайте и выберите — мама перебирает с вами вещи у двери**
 <!-- interaction_id: en:lesson-02:session-49:i09; family: listen_choose -->
 🔊 *They are smelly.* → **They are smelly.** · They are dirty. · They are damp.
 - They are dirty. — *В записи последнее слово — `smelly`, а в этом варианте — `dirty`.*
@@ -139,7 +139,7 @@ It ___ not stained. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is not stained`.*
 
-**19 · Послушайте вопрос мамы**
+**19 · Послушайте и выберите — бельё из корзины с вами перебирает мама**
 <!-- interaction_id: en:lesson-02:session-49:i15; family: listen_choose -->
 🔊 *Is it frayed?* → **Is it frayed?** · Is it stained? · Is it wrinkled?
 - Is it stained? — *В записи последнее слово — `frayed`, а в этом варианте — `stained`.*

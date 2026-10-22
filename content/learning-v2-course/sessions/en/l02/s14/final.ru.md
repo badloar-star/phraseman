@@ -61,7 +61,7 @@
 Плитки: `obvious` `is` `It` `are` → **It is obvious.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is obvious.`)*
 
-**3 · Послушайте вопрос прохожего о мастерской**
+**3 · Послушайте и выберите — прохожий останавливается у витрины мастерской**
 <!-- interaction_id: en:lesson-02:session-14:i02; family: listen_choose -->
 🔊 *Is it open?* → **Is it open?** · Is it closed? · Is it clean?
 - Is it closed? — *В записи последнее слово — `open`, а в этом варианте — `closed`.*
@@ -101,7 +101,7 @@ They ___ dirty. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Про две полки — `They are`.*
 
-**11 · Послушайте, что подруга говорит о лимоне**
+**11 · Послушайте и выберите — подруга перебирает украшения для витрины**
 <!-- interaction_id: en:lesson-02:session-14:i09; family: listen_choose -->
 🔊 *It is fake.* → **It is fake.** · It is dirty. · It is open.
 - It is dirty. — *В записи последнее слово — `fake`, а в этом варианте — `dirty`.*
@@ -139,7 +139,7 @@ ___ they fake? → **Are** · Am · Is
 - Am — *С `they` нужно `Are`.*
 - Is — *Про два яблока — `Are they`.*
 
-**19 · Подруга вымыла стекло. Послушайте, что она говорит**
+**19 · Послушайте и выберите — подруга вместе с вами любуется витриной**
 <!-- interaction_id: en:lesson-02:session-14:i15; family: listen_choose -->
 🔊 *It is not dirty.* → **It is not dirty.** · It is not fake. · It is not closed.
 - It is not fake. — *В записи последнее слово — `dirty`, а в этом варианте — `fake`.*

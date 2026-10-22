@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-30:word:healthy; family: word_card -->
 > **healthy** — здоровый, крепкий. It is healthy — «Оно здоровое». О растении, человеке, питании.
 
-**4 · Послушайте фразу о растении**
+**4 · Послушайте и выберите — подруга выбирает с вами цветок для пересадки**
 <!-- interaction_id: en:lesson-02:session-30:i02; family: listen_choose -->
 🔊 *It is healthy.* → **It is healthy.** · It is dead. · It is alive.
 - It is dead. — *В записи последнее слово — `healthy`, а в этом варианте — `dead`.*
@@ -109,7 +109,7 @@ No, it ___ not. → **is** · am · are
 - am — *С `it` нужно `is`.*
 - are — *Ответ — `No, it is not`.*
 
-**13 · Послушайте вопрос**
+**13 · Послушайте и выберите — подруга склонилась над горшками и спрашивает вас**
 <!-- interaction_id: en:lesson-02:session-30:i09; family: listen_choose -->
 🔊 *Is it wilted?* → **Is it wilted?** · Is it healthy? · Is it missing?
 - Is it healthy? — *В записи последнее слово — `wilted`, а в этом варианте — `healthy`.*
@@ -139,7 +139,7 @@ They ___ elsewhere. → **are** · am · is
 - am — *С `They` нужно `are`.*
 - is — *Про два горшка — `They are elsewhere`.*
 
-**19 · Послушайте вопрос**
+**19 · Послушайте и выберите — посреди пересадки подруга спрашивает вас**
 <!-- interaction_id: en:lesson-02:session-30:i15; family: listen_choose -->
 🔊 *Where is it?* → **Where is it?** · Who is it? · What is it?
 - Who is it? — *В записи первое слово — `Where`, а в этом варианте — `Who`.*

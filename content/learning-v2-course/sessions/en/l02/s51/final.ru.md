@@ -61,7 +61,7 @@
 Плитки: `baggy` `is` `It` `are` → **It is baggy.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is baggy.`)*
 
-**3 · Послушайте, что продавец говорит о перчатках**
+**3 · Послушайте и выберите — продавец приносит вам вещи для примерки**
 <!-- interaction_id: en:lesson-02:session-51:i02; family: listen_choose -->
 🔊 *It is soft.* → **It is soft.** · It is tight. · It is short.
 - It is tight. — *В записи последнее слово — `soft`, а в этом варианте — `tight`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-51:word:plain; family: word_card -->
 > **plain** — простой, без узора и украшений. It is plain — «Она простая, без рисунка». О футболке, ткани, чашке, платье.
 
-**13 · Послушайте, что продавец говорит о футболке**
+**13 · Послушайте и выберите — пока вы выбираете куртку, продавец стоит рядом**
 <!-- interaction_id: en:lesson-02:session-51:i09; family: listen_choose -->
 🔊 *It is plain.* → **It is plain.** · It is dark. · It is tight.
 - It is dark. — *В записи последнее слово — `plain`, а в этом варианте — `dark`.*
@@ -139,7 +139,7 @@ She ___ stylish. → **is** · am · are
 - am — *С `She` нужно `is`.*
 - are — *Фраза — `She is stylish`.*
 
-**19 · Послушайте вопрос продавца**
+**19 · Послушайте и выберите — у зеркала к вам подходит продавец**
 <!-- interaction_id: en:lesson-02:session-51:i15; family: listen_choose -->
 🔊 *Is it baggy?* → **Is it baggy?** · Is it plain? · Is it stylish?
 - Is it plain? — *В записи последнее слово — `baggy`, а в этом варианте — `plain`.*

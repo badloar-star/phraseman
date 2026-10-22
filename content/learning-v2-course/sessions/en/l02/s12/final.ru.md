@@ -61,7 +61,7 @@
 Плитки: `private` `is` `It` `are` → **It is private.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is private.`)*
 
-**3 · Послушайте вопрос о надписи на фотографии**
+**3 · Послушайте и выберите — вы с другом Костей раскладываете фото на столе**
 <!-- interaction_id: en:lesson-02:session-12:i02; family: listen_choose -->
 🔊 *Is it visible?* → **Is it visible?** · Is it hidden? · Is it clear?
 - Is it hidden? — *В записи последнее слово — `visible`, а в этом варианте — `hidden`.*
@@ -109,7 +109,7 @@ He ___ not loud. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-12:word:printed; family: word_card -->
 > **printed** — напечатанный. They're not printed — «Они не напечатаны». О фотографиях, билетах, приглашениях.
 
-**13 · Послушайте вопрос о фото с котёнком**
+**13 · Послушайте и выберите — костя достаёт ещё один снимок для альбома**
 <!-- interaction_id: en:lesson-02:session-12:i09; family: listen_choose -->
 🔊 *Is it cute?* → **Is it cute?** · Is it public? · Is it printed?
 - Is it public? — *В записи последнее слово — `cute`, а в этом варианте — `public`.*
@@ -139,7 +139,7 @@ ___ he helpful? → **Is** · Am · Are
 - Am — *С `he` нужно `Is`.*
 - Are — *Про Олега — `Is he`.*
 
-**19 · Послушайте вопрос об объяснении Кости**
+**19 · Послушайте и выберите — костя рассказывает вам об альбоме**
 <!-- interaction_id: en:lesson-02:session-12:i15; family: listen_choose -->
 🔊 *Is it clear?* → **Is it clear?** · Is it private? · Is it hidden?
 - Is it private? — *В записи последнее слово — `clear`, а в этом варианте — `private`.*

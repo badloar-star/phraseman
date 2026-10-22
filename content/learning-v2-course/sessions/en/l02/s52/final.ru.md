@@ -61,7 +61,7 @@
 Плитки: `legible` `is` `It` `are` → **It is legible.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is legible.`)*
 
-**3 · Послушайте, что брат говорит о странице**
+**3 · Послушайте и выберите — брат листает с вами тетрадь перед школой**
 <!-- interaction_id: en:lesson-02:session-52:i02; family: listen_choose -->
 🔊 *It is neat.* → **It is neat.** · It is messy. · It is torn.
 - It is messy. — *В записи последнее слово — `neat`, а в этом варианте — `messy`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-52:word:thorough; family: word_card -->
 > **thorough** — тщательный, подробный: ничего не пропущено. It is thorough — «Тут всё сделано тщательно». О работе, проверке, ответе, уборке.
 
-**13 · Послушайте, что учительница говорит о домашней работе**
+**13 · Послушайте и выберите — учительница принимает тетрадь вашего брата**
 <!-- interaction_id: en:lesson-02:session-52:i09; family: listen_choose -->
 🔊 *It is thorough.* → **It is thorough.** · It is sloppy. · It is legible.
 - It is sloppy. — *В записи последнее слово — `thorough`, а в этом варианте — `sloppy`.*
@@ -139,7 +139,7 @@ It ___ thorough. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is thorough`.*
 
-**19 · Послушайте вопрос учительницы**
+**19 · Послушайте и выберите — в классе учительница смотрит на работу брата**
 <!-- interaction_id: en:lesson-02:session-52:i15; family: listen_choose -->
 🔊 *Is it legible?* → **Is it legible?** · Is it smudged? · Is it sloppy?
 - Is it smudged? — *В записи последнее слово — `legible`, а в этом варианте — `smudged`.*

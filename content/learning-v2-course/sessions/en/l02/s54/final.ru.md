@@ -61,7 +61,7 @@
 Плитки: `talented` `is` `He` `are` → **He is talented.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is talented.`)*
 
-**3 · Послушайте, что соседка говорит о мальчике перед выходом**
+**3 · Послушайте и выберите — соседка по ряду наклоняется к вам перед выходом**
 <!-- interaction_id: en:lesson-02:session-54:i02; family: listen_choose -->
 🔊 *He is nervous.* → **He is nervous.** · He is shy. · He is brave.
 - He is shy. — *В записи последнее слово — `nervous`, а в этом варианте — `shy`.*
@@ -107,9 +107,9 @@ Yes, he ___. → **is** · am · are
 
 **12 · Послушайте, что ведущий говорит о последнем номере**
 <!-- interaction_id: en:lesson-02:session-54:i09; family: listen_choose -->
-🔊 *It is dramatic.* → **It is dramatic.** · It is loud. · It is stunning.
-- It is loud. — *В записи последнее слово — `dramatic`, а в этом варианте — `loud`.*
-- It is stunning. — *В записи последнее слово — `dramatic`, а в этом варианте — `stunning`.*
+🔊 *It is stunning.* → **It is stunning.** · It is loud. · It is dramatic.
+- It is loud. — *В записи последнее слово — `stunning`, а в этом варианте — `loud`.*
+- It is dramatic. — *В записи последнее слово — `stunning`, а в этом варианте — `dramatic`.*
 
 **13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-02:session-54:i10; family: speed_match -->
@@ -139,7 +139,7 @@ He ___ not shy. → **is** · am · are
 - am — *С `He` нужно `is`.*
 - are — *Фраза — `He is not shy`.*
 
-**19 · Послушайте вопрос мамы**
+**19 · Послушайте и выберите — мама шепчется с вами на школьном концерте**
 <!-- interaction_id: en:lesson-02:session-54:i15; family: listen_choose -->
 🔊 *Is he talented?* → **Is he talented?** · Is he graceful? · Is he shy?
 - Is he graceful? — *В записи последнее слово — `talented`, а в этом варианте — `graceful`.*

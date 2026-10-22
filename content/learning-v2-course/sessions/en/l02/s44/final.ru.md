@@ -61,7 +61,7 @@
 Плитки: `bumpy` `is` `It` `are` → **It is bumpy.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is bumpy.`)*
 
-**3 · Послушайте, что учительница говорит о дороге**
+**3 · Послушайте и выберите — учительница рисования говорит с вами в автобусе**
 <!-- interaction_id: en:lesson-02:session-44:i02; family: listen_choose -->
 🔊 *It is long.* → **It is long.** · It is narrow. · It is steep.
 - It is narrow. — *В записи последнее слово — `long`, а в этом варианте — `narrow`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-44:word:vivid; family: word_card -->
 > **vivid** — яркий, насыщенный, о цвете и образе. They're vivid — «Они яркие». О красках, снах, воспоминаниях.
 
-**13 · Послушайте, что учительница говорит о красках**
+**13 · Послушайте и выберите — по дороге группе показывает краски учительница**
 <!-- interaction_id: en:lesson-02:session-44:i09; family: listen_choose -->
 🔊 *They are vivid.* → **They are vivid.** · They are bright. · They are dim.
 - They are bright. — *В записи последнее слово — `vivid`, а в этом варианте — `bright`.*
@@ -139,7 +139,7 @@ It ___ not bumpy. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is not bumpy`.*
 
-**19 · Послушайте вопрос учительницы**
+**19 · Послушайте и выберите — в дороге задание с вами разбирает учительница**
 <!-- interaction_id: en:lesson-02:session-44:i15; family: listen_choose -->
 🔊 *Is it tricky?* → **Is it tricky?** · Is it vague? · Is it bumpy?
 - Is it vague? — *В записи последнее слово — `tricky`, а в этом варианте — `vague`.*

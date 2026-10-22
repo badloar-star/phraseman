@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-33:word:fit; family: word_card -->
 > **fit** — в хорошей физической форме. She is fit — «Она в хорошей форме». О человеке, который регулярно тренируется.
 
-**4 · Послушайте фразу о подруге**
+**4 · Послушайте и выберите — друг гуляет с вами по парку в воскресенье**
 <!-- interaction_id: en:lesson-02:session-33:i02; family: listen_choose -->
 🔊 *She is fit.* → **She is fit.** · She is tired. · She is awake.
 - She is tired. — *В записи последнее слово — `fit`, а в этом варианте — `tired`.*
@@ -109,7 +109,7 @@ Yes, he ___. → **is** · am · are
 - am — *С `he` нужно `is`.*
 - are — *Ответ — `Yes, he is`.*
 
-**13 · Послушайте вопрос**
+**13 · Послушайте и выберите — на дорожке парка вас догоняет друг**
 <!-- interaction_id: en:lesson-02:session-33:i09; family: listen_choose -->
 🔊 *Are you breathless?* → **Are you breathless?** · Are you energetic? · Are you awake?
 - Are you energetic? — *В записи последнее слово — `breathless`, а в этом варианте — `energetic`.*
@@ -139,7 +139,7 @@ She ___ not absent. → **is** · am · are
 - am — *С `She` нужно `is`.*
 - are — *Фраза — `She is not absent`.*
 
-**19 · Послушайте вопрос**
+**19 · Послушайте и выберите — вы с другом отдыхаете в парке на траве**
 <!-- interaction_id: en:lesson-02:session-33:i15; family: listen_choose -->
 🔊 *Is she active?* → **Is she active?** · Is she fit? · Is she energetic?
 - Is she fit? — *В записи последнее слово — `active`, а в этом варианте — `fit`.*

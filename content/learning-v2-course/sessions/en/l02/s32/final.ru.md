@@ -61,7 +61,7 @@
 Плитки: `homemade` `is` `It` `are` → **It is homemade.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is homemade.`)*
 
-**3 · Послушайте фразу об одном из соседей**
+**3 · Послушайте и выберите — соседка рассказывает вам о ярмарке во дворе**
 <!-- interaction_id: en:lesson-02:session-32:i02; family: listen_choose -->
 🔊 *He is away.* → **He is away.** · He is absent. · He is generous.
 - He is absent. — *В записи последнее слово — `away`, а в этом варианте — `absent`.*
@@ -105,7 +105,7 @@ Yes, he ___. → **is** · am · are
 - am — *С `he` нужно `is`.*
 - are — *Ответ — `Yes, he is`.*
 
-**12 · Послушайте вопрос**
+**12 · Послушайте и выберите — вы с соседями расставляете коробки во дворе**
 <!-- interaction_id: en:lesson-02:session-32:i09; family: listen_choose -->
 🔊 *Who is generous?* → **Who is generous?** · Who is absent? · Who is away?
 - Who is absent? — *В записи последнее слово — `generous`, а в этом варианте — `absent`.*
@@ -139,7 +139,7 @@ They ___ not away. → **are** · am · is
 - am — *С `They` нужно `are`.*
 - is — *Фраза — `They are not away`.*
 
-**19 · Послушайте вопрос**
+**19 · Послушайте и выберите — из-за дождя сосед обращается к вам**
 <!-- interaction_id: en:lesson-02:session-32:i15; family: listen_choose -->
 🔊 *Where is she?* → **Where is she?** · Where is he? · Who is she?
 - Where is he? — *В записи последнее слово — `she`, а в этом варианте — `he`.*

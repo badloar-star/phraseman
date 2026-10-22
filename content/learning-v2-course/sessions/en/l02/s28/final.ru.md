@@ -61,7 +61,7 @@
 Плитки: `flexible` `am` `I` `are` → **I am flexible.**
 *(плитка `are` лишняя: здесь нужно `am` — `I am flexible.`)*
 
-**3 · Послушайте фразу**
+**3 · Послушайте и выберите — подруга обсуждает с вами встречу книжного клуба**
 <!-- interaction_id: en:lesson-02:session-28:i02; family: listen_choose -->
 🔊 *It is correct.* → **It is correct.** · It is serious. · It is flexible.
 - It is serious. — *В записи последнее слово — `correct`, а в этом варианте — `serious`.*
@@ -105,7 +105,7 @@ Yes, I ___. → **am** · is · are
 <!-- interaction_id: en:lesson-02:session-28:word:thick; family: word_card -->
 > **thick** — толстый. Is it thick? — «Она толстая?» О книге, стене, свитере, одеяле.
 
-**12 · Послушайте, что подруга говорит о новом романе**
+**12 · Послушайте и выберите — о книге месяца с вами делится мнением подруга**
 <!-- interaction_id: en:lesson-02:session-28:i09; family: listen_choose -->
 🔊 *It is thick.* → **It is thick.** · It is correct. · It is serious.
 - It is correct. — *В записи последнее слово — `thick`, а в этом варианте — `correct`.*
@@ -139,7 +139,7 @@ It ___ not correct. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is not correct`.*
 
-**19 · Послушайте вопрос**
+**19 · Послушайте и выберите — друг звонит вам перед встречей клуба**
 <!-- interaction_id: en:lesson-02:session-28:i15; family: listen_choose -->
 🔊 *Who is certain?* → **Who is certain?** · Who is innocent? · Who is flexible?
 - Who is innocent? — *В записи последнее слово — `certain`, а в этом варианте — `innocent`.*

@@ -53,7 +53,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что друг говорит о новой лампочке для проектора",
+        "prompt": "Послушайте и выберите — друг возится с проектором перед показом",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-16:i02:r1",
@@ -72,7 +72,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-16:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте, что друг говорит о новой лампочке для проектора",
+        "accessibilityLabel": "Послушайте и выберите — друг возится с проектором перед показом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -102,7 +102,7 @@
             {
               "responseId": "en:lesson-02:session-16:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о новой лампочке для проектора",
+              "testedDimension": "Послушайте и выберите — друг возится с проектором перед показом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `urgent`, а в этом варианте — `possible`.",
                 "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `possible`."
@@ -111,7 +111,7 @@
             {
               "responseId": "en:lesson-02:session-16:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о новой лампочке для проектора",
+              "testedDimension": "Послушайте и выберите — друг возится с проектором перед показом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `urgent`, а в этом варианте — `obvious`.",
                 "uk": "У записі останнє слово — `urgent`, а в цьому варіанті — `obvious`."
@@ -507,7 +507,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос соседки о фильме",
+        "prompt": "Послушайте и выберите — соседка расспрашивает вас перед показом",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-16:i09:r1",
@@ -526,7 +526,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-16:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос соседки о фильме",
+        "accessibilityLabel": "Послушайте и выберите — соседка расспрашивает вас перед показом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -556,7 +556,7 @@
             {
               "responseId": "en:lesson-02:session-16:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос соседки о фильме",
+              "testedDimension": "Послушайте и выберите — соседка расспрашивает вас перед показом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `scary`, а в этом варианте — `urgent`.",
                 "uk": "У записі останнє слово — `scary`, а в цьому варіанті — `urgent`."
@@ -565,7 +565,7 @@
             {
               "responseId": "en:lesson-02:session-16:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос соседки о фильме",
+              "testedDimension": "Послушайте и выберите — соседка расспрашивает вас перед показом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `scary`, а в этом варианте — `possible`.",
                 "uk": "У записі останнє слово — `scary`, а в цьому варіанті — `possible`."
@@ -977,7 +977,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что друг говорит о показе",
+        "prompt": "Послушайте и выберите — у входа друг обсуждает с вами сегодняшний показ",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-16:i15:r1",
@@ -996,7 +996,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-16:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что друг говорит о показе",
+        "accessibilityLabel": "Послушайте и выберите — у входа друг обсуждает с вами сегодняшний показ",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1026,7 +1026,7 @@
             {
               "responseId": "en:lesson-02:session-16:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о показе",
+              "testedDimension": "Послушайте и выберите — у входа друг обсуждает с вами сегодняшний показ",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `private`, а в этом варианте — `public`.",
                 "uk": "У записі останнє слово — `private`, а в цьому варіанті — `public`."
@@ -1035,7 +1035,7 @@
             {
               "responseId": "en:lesson-02:session-16:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что друг говорит о показе",
+              "testedDimension": "Послушайте и выберите — у входа друг обсуждает с вами сегодняшний показ",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `private`, а в этом варианте — `silent`.",
                 "uk": "У записі останнє слово — `private`, а в цьому варіанті — `silent`."

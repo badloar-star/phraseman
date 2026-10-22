@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос о надписи на фотографии",
+        "prompt": "Послушайте и выберите — вы с другом Костей раскладываете фото на столе",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-12:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-12:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос о надписи на фотографии",
+        "accessibilityLabel": "Послушайте и выберите — вы с другом Костей раскладываете фото на столе",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-12:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос о надписи на фотографии",
+              "testedDimension": "Послушайте и выберите — вы с другом Костей раскладываете фото на столе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `visible`, а в этом варианте — `hidden`.",
                 "uk": "У записі останнє слово — `visible`, а в цьому варіанті — `hidden`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-12:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос о надписи на фотографии",
+              "testedDimension": "Послушайте и выберите — вы с другом Костей раскладываете фото на столе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `visible`, а в этом варианте — `clear`.",
                 "uk": "У записі останнє слово — `visible`, а в цьому варіанті — `clear`."
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос о фото с котёнком",
+        "prompt": "Послушайте и выберите — костя достаёт ещё один снимок для альбома",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-12:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-12:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос о фото с котёнком",
+        "accessibilityLabel": "Послушайте и выберите — костя достаёт ещё один снимок для альбома",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-02:session-12:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос о фото с котёнком",
+              "testedDimension": "Послушайте и выберите — костя достаёт ещё один снимок для альбома",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `cute`, а в этом варианте — `public`.",
                 "uk": "У записі останнє слово — `cute`, а в цьому варіанті — `public`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-02:session-12:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос о фото с котёнком",
+              "testedDimension": "Послушайте и выберите — костя достаёт ещё один снимок для альбома",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `cute`, а в этом варианте — `printed`.",
                 "uk": "У записі останнє слово — `cute`, а в цьому варіанті — `printed`."
@@ -978,7 +978,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос об объяснении Кости",
+        "prompt": "Послушайте и выберите — костя рассказывает вам об альбоме",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-12:i15:r1",
@@ -997,7 +997,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-12:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос об объяснении Кости",
+        "accessibilityLabel": "Послушайте и выберите — костя рассказывает вам об альбоме",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1027,7 +1027,7 @@
             {
               "responseId": "en:lesson-02:session-12:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос об объяснении Кости",
+              "testedDimension": "Послушайте и выберите — костя рассказывает вам об альбоме",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `clear`, а в этом варианте — `private`.",
                 "uk": "У записі останнє слово — `clear`, а в цьому варіанті — `private`."
@@ -1036,7 +1036,7 @@
             {
               "responseId": "en:lesson-02:session-12:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос об объяснении Кости",
+              "testedDimension": "Послушайте и выберите — костя рассказывает вам об альбоме",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `clear`, а в этом варианте — `hidden`.",
                 "uk": "У записі останнє слово — `clear`, а в цьому варіанті — `hidden`."

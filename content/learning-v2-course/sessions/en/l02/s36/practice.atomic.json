@@ -139,7 +139,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте фразу об одежде",
+        "prompt": "Послушайте и выберите — друг пишет вам о вечере у него дома",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-36:i02:r1",
@@ -158,7 +158,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-36:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте фразу об одежде",
+        "accessibilityLabel": "Послушайте и выберите — друг пишет вам о вечере у него дома",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -188,7 +188,7 @@
             {
               "responseId": "en:lesson-02:session-36:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте фразу об одежде",
+              "testedDimension": "Послушайте и выберите — друг пишет вам о вечере у него дома",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `casual`, а в этом варианте — `formal`.",
                 "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `formal`."
@@ -197,7 +197,7 @@
             {
               "responseId": "en:lesson-02:session-36:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте фразу об одежде",
+              "testedDimension": "Послушайте и выберите — друг пишет вам о вечере у него дома",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `casual`, а в этом варианте — `optional`.",
                 "uk": "У записі останнє слово — `casual`, а в цьому варіанті — `optional`."
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос",
+        "prompt": "Послушайте и выберите — дома после рабочей недели вас ждёт друг",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-36:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-36:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос",
+        "accessibilityLabel": "Послушайте и выберите — дома после рабочей недели вас ждёт друг",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-02:session-36:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — дома после рабочей недели вас ждёт друг",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `delivered`, а в этом варианте — `casual`.",
                 "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `casual`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-02:session-36:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — дома после рабочей недели вас ждёт друг",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `delivered`, а в этом варианте — `informal`.",
                 "uk": "У записі останнє слово — `delivered`, а в цьому варіанті — `informal`."
@@ -979,7 +979,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос",
+        "prompt": "Послушайте и выберите — подруга садится рядом с вами у друга",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-36:i15:r1",
@@ -998,7 +998,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-36:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос",
+        "accessibilityLabel": "Послушайте и выберите — подруга садится рядом с вами у друга",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1028,7 +1028,7 @@
             {
               "responseId": "en:lesson-02:session-36:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — подруга садится рядом с вами у друга",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `flexible`.",
                 "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `flexible`."
@@ -1037,7 +1037,7 @@
             {
               "responseId": "en:lesson-02:session-36:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — подруга садится рядом с вами у друга",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `hungry`.",
                 "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `hungry`."

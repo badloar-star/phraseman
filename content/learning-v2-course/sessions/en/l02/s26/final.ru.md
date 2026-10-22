@@ -61,7 +61,7 @@
 Плитки: `careless` `is` `He` `are` → **He is careless.**
 *(плитка `are` лишняя: здесь нужно `is` — `He is careless.`)*
 
-**3 · Послушайте фразу о подруге**
+**3 · Послушайте и выберите — подруга сидит рядом с вами у деревянных игрушек**
 <!-- interaction_id: en:lesson-02:session-26:i02; family: listen_choose -->
 🔊 *She is confused.* → **She is confused.** · She is worried. · She is bored.
 - She is worried. — *В записи последнее слово — `confused`, а в этом варианте — `worried`.*
@@ -105,7 +105,7 @@ No, she ___ not. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-26:word:glossy; family: word_card -->
 > **glossy** — блестящий, глянцевый. It's glossy — «Она блестит». О краске, журнале, фотографии, волосах.
 
-**12 · Краска на лошадке высохла. Послушайте, что говорит подруга**
+**12 · Послушайте и выберите — расписанную лошадку показывает вам подруга**
 <!-- interaction_id: en:lesson-02:session-26:i09; family: listen_choose -->
 🔊 *It is glossy.* → **It is glossy.** · It is ugly. · It is wooden.
 - It is wooden. — *В записи последнее слово — `glossy`, а в этом варианте — `wooden`.*
@@ -139,7 +139,7 @@ They ___ not careless. → **are** · am · is
 - am — *С `They` нужно `are`.*
 - is — *Фраза — `They are not careless`.*
 
-**19 · Послушайте вопрос**
+**19 · Послушайте и выберите — друг переставляет банки, пока вы ищете кисть**
 <!-- interaction_id: en:lesson-02:session-26:i15; family: listen_choose -->
 🔊 *Who is worried?* → **Who is worried?** · Who is bored? · Who is careless?
 - Who is bored? — *В записи последнее слово — `worried`, а в этом варианте — `bored`.*

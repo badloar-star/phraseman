@@ -140,7 +140,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите услышанное",
+        "prompt": "Послушайте и выберите — гид ведёт вас по съёмочной площадке",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-05:i02:r1",
@@ -159,7 +159,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-05:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — гид ведёт вас по съёмочной площадке",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -189,7 +189,7 @@
             {
               "responseId": "en:lesson-02:session-05:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — гид ведёт вас по съёмочной площадке",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `real`, а в этом варианте — `raw`.",
                 "uk": "У записі останнє слово — `real`, а в цьому варіанті — `raw`."
@@ -198,7 +198,7 @@
             {
               "responseId": "en:lesson-02:session-05:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — гид ведёт вас по съёмочной площадке",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `real`, а в этом варианте — `full`.",
                 "uk": "У записі останнє слово — `real`, а в цьому варіанті — `full`."
@@ -638,7 +638,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте фразу о супе",
+        "prompt": "Послушайте и выберите — вы с другом заходите в кафе рядом с площадкой",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-05:i09:r1",
@@ -657,7 +657,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-05:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте фразу о супе",
+        "accessibilityLabel": "Послушайте и выберите — вы с другом заходите в кафе рядом с площадкой",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -687,7 +687,7 @@
             {
               "responseId": "en:lesson-02:session-05:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте фразу о супе",
+              "testedDimension": "Послушайте и выберите — вы с другом заходите в кафе рядом с площадкой",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `hot`, а в этом варианте — `cold`.",
                 "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `cold`."
@@ -696,7 +696,7 @@
             {
               "responseId": "en:lesson-02:session-05:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте фразу о супе",
+              "testedDimension": "Послушайте и выберите — вы с другом заходите в кафе рядом с площадкой",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `hot`, а в этом варианте — `real`.",
                 "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `real`."
@@ -981,7 +981,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте короткую фразу о хлебе и выберите её",
+        "prompt": "Послушайте и выберите — за столиком в кафе друг делится с вами впечатлением",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-05:i15:r1",
@@ -1000,7 +1000,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-05:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте короткую фразу о хлебе и выберите её",
+        "accessibilityLabel": "Послушайте и выберите — за столиком в кафе друг делится с вами впечатлением",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1030,7 +1030,7 @@
             {
               "responseId": "en:lesson-02:session-05:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте короткую фразу о хлебе и выберите её",
+              "testedDimension": "Послушайте и выберите — за столиком в кафе друг делится с вами впечатлением",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `stale`, а в этом варианте — `salty`.",
                 "uk": "У записі останнє слово — `stale`, а в цьому варіанті — `salty`."
@@ -1039,7 +1039,7 @@
             {
               "responseId": "en:lesson-02:session-05:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте короткую фразу о хлебе и выберите её",
+              "testedDimension": "Послушайте и выберите — за столиком в кафе друг делится с вами впечатлением",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
                 "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."

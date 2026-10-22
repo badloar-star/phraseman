@@ -56,16 +56,16 @@
 <!-- interaction_id: en:lesson-02:session-25:word:who; family: word_card -->
 > **who** — кто. Who is missing? — «Кого нет?» Спрашиваем о человеке.
 
-**2 · На репетицию пришли не все. Спросите, кто отсутствует**
+**2 · На репетиции собираются. Спросите, кто уже на месте**
 <!-- interaction_id: en:lesson-02:session-25:i01; family: phrase_builder -->
-Плитки: `absent` `is` `Who` `What` → **Who is absent?**
-*(плитка `What` лишняя: здесь нужно `Who` — `Who is absent?`)*
+Плитки: `here` `is` `Who` `What` → **Who is here?**
+*(плитка `What` лишняя: о человеке спрашивают `Who` — `Who is here?`)*
 
 **3 · Карточка слова — where**
 <!-- interaction_id: en:lesson-02:session-25:word:where; family: word_card -->
 > **where** — где. Where is he? — «Где он?» Спрашиваем о месте.
 
-**4 · Послушайте вопрос**
+**4 · Послушайте и выберите — друг оглядывается среди декораций на репетиции**
 <!-- interaction_id: en:lesson-02:session-25:i02; family: listen_choose -->
 🔊 *Where is she?* → **Where is she?** · Who is she? · Where is he?
 - Who is she? — *В записи первое слово — `Where`, а в этом варианте — `Who`.*
@@ -109,7 +109,7 @@ ___ is it? → **What** · Who · Where
 - Who — *`Who` спрашивает о человеке. Здесь предмет: `What`.*
 - Where — *`Where` — «где». Вы уже видите предмет и спрашиваете, что это.*
 
-**13 · Послушайте фразу о друге**
+**13 · Послушайте и выберите — в зал к декорациям возвращается друг**
 <!-- interaction_id: en:lesson-02:session-25:i09; family: listen_choose -->
 🔊 *He is proud.* → **He is proud.** · He is ashamed. · He is surprised.
 - He is ashamed. — *В записи последнее слово — `proud`, а в этом варианте — `ashamed`.*
@@ -139,7 +139,7 @@ She ___ well. → **is** · am · are
 - am — *После `She` нужно `is`.*
 - are — *Фраза о подруге — `She is well`.*
 
-**19 · Послушайте вопрос**
+**19 · Послушайте и выберите — среди декораций друг задаёт вам вопрос**
 <!-- interaction_id: en:lesson-02:session-25:i15; family: listen_choose -->
 🔊 *Who is absent?* → **Who is absent?** · Who is surprised? · Who is ashamed?
 - Who is surprised? — *В записи последнее слово — `absent`, а в этом варианте — `surprised`.*

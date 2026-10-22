@@ -57,7 +57,7 @@
 Плитки: `possible` `it` `Is` `Are` → **Is it possible?**
 *(плитка `Are` лишняя: здесь нужно `Is` — `Is it possible?`)*
 
-**2 · Послушайте, что друг говорит о новой лампочке для проектора**
+**2 · Послушайте и выберите — друг возится с проектором перед показом**
 <!-- interaction_id: en:lesson-02:session-16:i02; family: listen_choose -->
 🔊 *It is not urgent.* → **It is not urgent.** · It is not possible. · It is not obvious.
 - It is not possible. — *В записи последнее слово — `urgent`, а в этом варианте — `possible`.*
@@ -97,7 +97,7 @@ They ___ not silent. → **are** · am · is
 <!-- interaction_id: en:lesson-02:session-16:word:scary; family: word_card -->
 > **scary** — страшный. It's not scary — «Он не страшный». О фильме, собаке, тёмной улице.
 
-**10 · Послушайте вопрос соседки о фильме**
+**10 · Послушайте и выберите — соседка расспрашивает вас перед показом**
 <!-- interaction_id: en:lesson-02:session-16:i09; family: listen_choose -->
 🔊 *Is it scary?* → **Is it scary?** · Is it urgent? · Is it possible?
 - Is it urgent? — *В записи последнее слово — `scary`, а в этом варианте — `urgent`.*
@@ -139,7 +139,7 @@ ___ it long? → **Is** · Am · Are
 - Am — *С `it` нужно `Is`.*
 - Are — *Вопрос про один фильм — `Is it`.*
 
-**19 · Послушайте, что друг говорит о показе**
+**19 · Послушайте и выберите — у входа друг обсуждает с вами сегодняшний показ**
 <!-- interaction_id: en:lesson-02:session-16:i15; family: listen_choose -->
 🔊 *It is private.* → **It is private.** · It is public. · It is silent.
 - It is public. — *В записи последнее слово — `private`, а в этом варианте — `public`.*

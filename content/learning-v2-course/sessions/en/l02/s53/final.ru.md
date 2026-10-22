@@ -61,7 +61,7 @@
 Плитки: `sweaty` `is` `It` `are` → **It is sweaty.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is sweaty.`)*
 
-**3 · Послушайте, что тренер говорит о погоде в парке**
+**3 · Послушайте и выберите — тренер ведёт вашу группу по парковой дорожке**
 <!-- interaction_id: en:lesson-02:session-53:i02; family: listen_choose -->
 🔊 *It is windy.* → **It is windy.** · It is cold. · It is hot.
 - It is cold. — *В записи последнее слово — `windy`, а в этом варианте — `cold`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-53:word:steady; family: word_card -->
 > **steady** — ровный, устойчивый, без рывков. It is steady — «Тут ровный темп». О темпе, шаге, дыхании, руке.
 
-**13 · Послушайте, что тренер говорит о темпе**
+**13 · Послушайте и выберите — тренер на ходу меняет упражнение**
 <!-- interaction_id: en:lesson-02:session-53:i09; family: listen_choose -->
 🔊 *It is steady.* → **It is steady.** · It is fast. · It is slow.
 - It is fast. — *В записи последнее слово — `steady`, а в этом варианте — `fast`.*
@@ -139,7 +139,7 @@ It ___ tough. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is tough`.*
 
-**19 · Послушайте вопрос тренера**
+**19 · Послушайте и выберите — посреди занятия группу спрашивает тренер**
 <!-- interaction_id: en:lesson-02:session-53:i15; family: listen_choose -->
 🔊 *Is it steady?* → **Is it steady?** · Is it tough? · Is it upbeat?
 - Is it tough? — *В записи последнее слово — `steady`, а в этом варианте — `tough`.*

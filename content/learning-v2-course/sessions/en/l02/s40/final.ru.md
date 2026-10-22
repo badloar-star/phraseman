@@ -61,7 +61,7 @@
 Плитки: `cramped` `is` `It` `are` → **It is cramped.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is cramped.`)*
 
-**3 · Послушайте, что бабушка говорит о чае**
+**3 · Послушайте и выберите — бабушка встречает вас дома на выходных**
 <!-- interaction_id: en:lesson-02:session-40:i02; family: listen_choose -->
 🔊 *It is hot.* → **It is hot.** · It is cozy. · It is tasty.
 - It is cozy. — *В записи последнее слово — `hot`, а в этом варианте — `cozy`.*
@@ -109,7 +109,7 @@ Yes, they ___. → **are** · is · am
 <!-- interaction_id: en:lesson-02:session-40:word:shabby; family: word_card -->
 > **shabby** — потрёпанный, старый и вытертый. It's shabby — «Оно потрёпанное». О кресле, куртке, ковре, обложке.
 
-**13 · Послушайте, что бабушка говорит о кресле**
+**13 · Послушайте и выберите — бабушка показывает вам комнату**
 <!-- interaction_id: en:lesson-02:session-40:i09; family: listen_choose -->
 🔊 *It is shabby.* → **It is shabby.** · It is old. · It is small.
 - It is old. — *В записи последнее слово — `shabby`, а в этом варианте — `old`.*
@@ -139,7 +139,7 @@ It ___ not cramped. → **is** · am · are
 - am — *С `It` нужно `is`.*
 - are — *Фраза — `It is not cramped`.*
 
-**19 · Послушайте вопрос бабушки**
+**19 · Послушайте и выберите — бабушка о чём-то спрашивает вас в комнате**
 <!-- interaction_id: en:lesson-02:session-40:i15; family: listen_choose -->
 🔊 *Is it snug?* → **Is it snug?** · Is it cramped? · Is it shabby?
 - Is it cramped? — *В записи последнее слово — `snug`, а в этом варианте — `cramped`.*

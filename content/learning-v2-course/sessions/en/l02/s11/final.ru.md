@@ -61,7 +61,7 @@
 Плитки: `urgent` `it` `Is` `Are` → **Is it urgent?**
 *(плитка `Are` лишняя: здесь нужно `Is` — `Is it urgent?`)*
 
-**3 · Послушайте фразу о Лене**
+**3 · Послушайте и выберите — друг говорит о Лене за сборами коробки**
 <!-- interaction_id: en:lesson-02:session-11:i02; family: listen_choose -->
 🔊 *She is not aware.* → **She is not aware.** · She is not convinced. · She is not concerned.
 - She is not convinced. — *В записи последнее слово — `aware`, а в этом варианте — `convinced`.*
@@ -105,7 +105,7 @@ ___ he strong? → **Is** · Am · Are
 <!-- interaction_id: en:lesson-02:session-11:word:signed; family: word_card -->
 > **signed** — подписанный. It's not signed — «Он не подписан». О рисунке, договоре, открытке.
 
-**12 · Послушайте вопрос о рисунке**
+**12 · Послушайте и выберите — лена показывает вам рисунки у коробки**
 <!-- interaction_id: en:lesson-02:session-11:i09; family: listen_choose -->
 🔊 *Is it signed?* → **Is it signed?** · Is it sealed? · Is it framed?
 - Is it sealed? — *В записи последнее слово — `signed`, а в этом варианте — `sealed`.*
@@ -139,7 +139,7 @@ ___ you concerned? → **Are** · Am · Is
 - Am — *С `you` нужно `Are`.*
 - Is — *К собеседнику — `Are you`.*
 
-**19 · Послушайте короткую фразу об Олеге**
+**19 · Послушайте и выберите — пока курьер едет, Лена делится с вами мыслями**
 <!-- interaction_id: en:lesson-02:session-11:i15; family: listen_choose -->
 🔊 *He's not convinced.* → **He's not convinced.** · He's not aware. · He's not concerned.
 - He's not aware. — *В записи последнее слово — `convinced`, а в этом варианте — `aware`.*

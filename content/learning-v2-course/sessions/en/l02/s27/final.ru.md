@@ -57,7 +57,7 @@
 Плитки: `generous` `is` `She` `are` → **She is generous.**
 *(плитка `are` лишняя: здесь нужно `is` — `She is generous.`)*
 
-**2 · Послушайте фразу о друге**
+**2 · Послушайте и выберите — подруга накрывает завтрак в гостевом доме**
 <!-- interaction_id: en:lesson-02:session-27:i02; family: listen_choose -->
 🔊 *He is asleep.* → **He is asleep.** · He is awake. · He is guilty.
 - He is awake. — *В записи последнее слово — `asleep`, а в этом варианте — `awake`.*
@@ -97,7 +97,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-27:word:burnt; family: word_card -->
 > **burnt** — подгоревший. It's burnt — «Он подгорел». О тосте, каше, пироге, котлете.
 
-**10 · Послушайте, что подруга говорит о первом тосте**
+**10 · Послушайте и выберите — за общим столом подруга говорит о завтраке**
 <!-- interaction_id: en:lesson-02:session-27:i09; family: listen_choose -->
 🔊 *It is burnt.* → **It is burnt.** · It is available. · It is broken.
 - It is available. — *В записи последнее слово — `burnt`, а в этом варианте — `available`.*
@@ -139,7 +139,7 @@ No, he ___ not. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-27:word:spicy; family: word_card -->
 > **spicy** — острый, о еде. Is it spicy? — «Он острый?» О соусе, супе, перце, блюде.
 
-**19 · Послушайте вопрос друга о соусе**
+**19 · Послушайте и выберите — друг выходит к столу, когда завтрак готов**
 <!-- interaction_id: en:lesson-02:session-27:i15; family: listen_choose -->
 🔊 *Is it spicy?* → **Is it spicy?** · Is it available? · Is it burnt?
 - Is it available? — *В записи последнее слово — `spicy`, а в этом варианте — `available`.*

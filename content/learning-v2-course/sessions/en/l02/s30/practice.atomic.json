@@ -139,7 +139,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте фразу о растении",
+        "prompt": "Послушайте и выберите — подруга выбирает с вами цветок для пересадки",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-30:i02:r1",
@@ -158,7 +158,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-30:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте фразу о растении",
+        "accessibilityLabel": "Послушайте и выберите — подруга выбирает с вами цветок для пересадки",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -188,7 +188,7 @@
             {
               "responseId": "en:lesson-02:session-30:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте фразу о растении",
+              "testedDimension": "Послушайте и выберите — подруга выбирает с вами цветок для пересадки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `healthy`, а в этом варианте — `dead`.",
                 "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `dead`."
@@ -197,7 +197,7 @@
             {
               "responseId": "en:lesson-02:session-30:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте фразу о растении",
+              "testedDimension": "Послушайте и выберите — подруга выбирает с вами цветок для пересадки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `healthy`, а в этом варианте — `alive`.",
                 "uk": "У записі останнє слово — `healthy`, а в цьому варіанті — `alive`."
@@ -637,7 +637,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос",
+        "prompt": "Послушайте и выберите — подруга склонилась над горшками и спрашивает вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-30:i09:r1",
@@ -656,7 +656,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-30:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос",
+        "accessibilityLabel": "Послушайте и выберите — подруга склонилась над горшками и спрашивает вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -686,7 +686,7 @@
             {
               "responseId": "en:lesson-02:session-30:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — подруга склонилась над горшками и спрашивает вас",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wilted`, а в этом варианте — `healthy`.",
                 "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `healthy`."
@@ -695,7 +695,7 @@
             {
               "responseId": "en:lesson-02:session-30:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — подруга склонилась над горшками и спрашивает вас",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wilted`, а в этом варианте — `missing`.",
                 "uk": "У записі останнє слово — `wilted`, а в цьому варіанті — `missing`."
@@ -979,7 +979,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос",
+        "prompt": "Послушайте и выберите — посреди пересадки подруга спрашивает вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-30:i15:r1",
@@ -998,7 +998,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-30:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос",
+        "accessibilityLabel": "Послушайте и выберите — посреди пересадки подруга спрашивает вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1028,7 +1028,7 @@
             {
               "responseId": "en:lesson-02:session-30:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — посреди пересадки подруга спрашивает вас",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
                 "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
@@ -1037,7 +1037,7 @@
             {
               "responseId": "en:lesson-02:session-30:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос",
+              "testedDimension": "Послушайте и выберите — посреди пересадки подруга спрашивает вас",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `Where`, а в этом варианте — `What`.",
                 "uk": "У записі перше слово — `Where`, а в цьому варіанті — `What`."

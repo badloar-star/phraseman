@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос руководительницы о партнёре по сцене",
+        "prompt": "Послушайте и выберите — руководительница оглядывает актёров перед репетицией",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-18:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-18:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос руководительницы о партнёре по сцене",
+        "accessibilityLabel": "Послушайте и выберите — руководительница оглядывает актёров перед репетицией",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-18:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос руководительницы о партнёре по сцене",
+              "testedDimension": "Послушайте и выберите — руководительница оглядывает актёров перед репетицией",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `unwell`, а в этом варианте — `early`.",
                 "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `early`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-18:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос руководительницы о партнёре по сцене",
+              "testedDimension": "Послушайте и выберите — руководительница оглядывает актёров перед репетицией",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `unwell`, а в этом варианте — `lucky`.",
                 "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `lucky`."
@@ -551,7 +551,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Партнёр по сцене спорит с руководительницей о времени. Послушайте, что вы говорите о ней",
+        "prompt": "Послушайте и выберите — вы с партнёром по сцене ждёте руководительницу",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-18:i09:r1",
@@ -570,7 +570,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-18:i09:audio"
         ],
-        "accessibilityLabel": "Партнёр по сцене спорит с руководительницей о времени. Послушайте, что вы говорите о ней",
+        "accessibilityLabel": "Послушайте и выберите — вы с партнёром по сцене ждёте руководительницу",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -600,7 +600,7 @@
             {
               "responseId": "en:lesson-02:session-18:i09:r2",
               "correct": false,
-              "testedDimension": "Партнёр по сцене спорит с руководительницей о времени. Послушайте, что вы говорите о ней",
+              "testedDimension": "Послушайте и выберите — вы с партнёром по сцене ждёте руководительницу",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wrong`, а в этом варианте — `early`.",
                 "uk": "У записі останнє слово — `wrong`, а в цьому варіанті — `early`."
@@ -609,7 +609,7 @@
             {
               "responseId": "en:lesson-02:session-18:i09:r3",
               "correct": false,
-              "testedDimension": "Партнёр по сцене спорит с руководительницей о времени. Послушайте, что вы говорите о ней",
+              "testedDimension": "Послушайте и выберите — вы с партнёром по сцене ждёте руководительницу",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `wrong`, а в этом варианте — `unwell`.",
                 "uk": "У записі останнє слово — `wrong`, а в цьому варіанті — `unwell`."
@@ -980,7 +980,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Руководительница заходит в зал с улицы. Послушайте её вопрос",
+        "prompt": "Послушайте и выберите — руководительница заходит в зал перед репетицией",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-18:i15:r1",
@@ -999,7 +999,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-18:i15:audio"
         ],
-        "accessibilityLabel": "Руководительница заходит в зал с улицы. Послушайте её вопрос",
+        "accessibilityLabel": "Послушайте и выберите — руководительница заходит в зал перед репетицией",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1029,7 +1029,7 @@
             {
               "responseId": "en:lesson-02:session-18:i15:r2",
               "correct": false,
-              "testedDimension": "Руководительница заходит в зал с улицы. Послушайте её вопрос",
+              "testedDimension": "Послушайте и выберите — руководительница заходит в зал перед репетицией",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `stuffy`, а в этом варианте — `possible`.",
                 "uk": "У записі останнє слово — `stuffy`, а в цьому варіанті — `possible`."
@@ -1038,7 +1038,7 @@
             {
               "responseId": "en:lesson-02:session-18:i15:r3",
               "correct": false,
-              "testedDimension": "Руководительница заходит в зал с улицы. Послушайте её вопрос",
+              "testedDimension": "Послушайте и выберите — руководительница заходит в зал перед репетицией",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `stuffy`, а в этом варианте — `urgent`.",
                 "uk": "У записі останнє слово — `stuffy`, а в цьому варіанті — `urgent`."

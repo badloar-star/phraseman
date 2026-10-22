@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что учительница говорит о дороге",
+        "prompt": "Послушайте и выберите — учительница рисования говорит с вами в автобусе",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-44:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-44:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте, что учительница говорит о дороге",
+        "accessibilityLabel": "Послушайте и выберите — учительница рисования говорит с вами в автобусе",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-44:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что учительница говорит о дороге",
+              "testedDimension": "Послушайте и выберите — учительница рисования говорит с вами в автобусе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `long`, а в этом варианте — `narrow`.",
                 "uk": "У записі останнє слово — `long`, а в цьому варіанті — `narrow`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-44:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что учительница говорит о дороге",
+              "testedDimension": "Послушайте и выберите — учительница рисования говорит с вами в автобусе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `long`, а в этом варианте — `steep`.",
                 "uk": "У записі останнє слово — `long`, а в цьому варіанті — `steep`."
@@ -637,7 +637,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что учительница говорит о красках",
+        "prompt": "Послушайте и выберите — по дороге группе показывает краски учительница",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-44:i09:r1",
@@ -656,7 +656,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-44:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте, что учительница говорит о красках",
+        "accessibilityLabel": "Послушайте и выберите — по дороге группе показывает краски учительница",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -686,7 +686,7 @@
             {
               "responseId": "en:lesson-02:session-44:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что учительница говорит о красках",
+              "testedDimension": "Послушайте и выберите — по дороге группе показывает краски учительница",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `vivid`, а в этом варианте — `bright`.",
                 "uk": "У записі останнє слово — `vivid`, а в цьому варіанті — `bright`."
@@ -695,7 +695,7 @@
             {
               "responseId": "en:lesson-02:session-44:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что учительница говорит о красках",
+              "testedDimension": "Послушайте и выберите — по дороге группе показывает краски учительница",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `vivid`, а в этом варианте — `dim`.",
                 "uk": "У записі останнє слово — `vivid`, а в цьому варіанті — `dim`."
@@ -980,7 +980,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос учительницы",
+        "prompt": "Послушайте и выберите — в дороге задание с вами разбирает учительница",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-44:i15:r1",
@@ -999,7 +999,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-44:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос учительницы",
+        "accessibilityLabel": "Послушайте и выберите — в дороге задание с вами разбирает учительница",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1029,7 +1029,7 @@
             {
               "responseId": "en:lesson-02:session-44:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос учительницы",
+              "testedDimension": "Послушайте и выберите — в дороге задание с вами разбирает учительница",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tricky`, а в этом варианте — `vague`.",
                 "uk": "У записі останнє слово — `tricky`, а в цьому варіанті — `vague`."
@@ -1038,7 +1038,7 @@
             {
               "responseId": "en:lesson-02:session-44:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос учительницы",
+              "testedDimension": "Послушайте и выберите — в дороге задание с вами разбирает учительница",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tricky`, а в этом варианте — `bumpy`.",
                 "uk": "У записі останнє слово — `tricky`, а в цьому варіанті — `bumpy`."

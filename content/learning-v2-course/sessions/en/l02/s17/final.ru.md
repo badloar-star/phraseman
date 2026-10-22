@@ -61,7 +61,7 @@
 Плитки: `am` `I` `Yes,` `No,` → **Yes, I am.**
 *(плитка `No,` лишняя: здесь нужно `Yes,` — `Yes, I am.`)*
 
-**3 · Через час сестра встала с дивана. Послушайте, что говорит брат**
+**3 · Послушайте и выберите — брат говорит с вами дома у подруги**
 <!-- interaction_id: en:lesson-02:session-17:i02; family: listen_choose -->
 🔊 *She is well.* → **She is well.** · She is safe. · She is right.
 - She is safe. — *В записи последнее слово — `well`, а в этом варианте — `safe`.*
@@ -97,7 +97,7 @@ No, I ___ not. → **am** · is · are
 - is — *Про себя — `I am not`.*
 - are — *С `I` нужно `am`, даже если в вопросе было `Are you`.*
 
-**10 · Подруга хочет оставить машину у дома на ночь. Послушайте её вопрос**
+**10 · Послушайте и выберите — подруга встречает вас у дома после долгой дороги**
 <!-- interaction_id: en:lesson-02:session-17:i09; family: listen_choose -->
 🔊 *Is it possible?* → **Is it possible?** · Is it safe? · Is it right?
 - Is it safe? — *В записи последнее слово — `possible`, а в этом варианте — `safe`.*
@@ -139,7 +139,7 @@ They ___ unpacked. → **are** · am · is
 <!-- interaction_id: en:lesson-02:session-17:word:carsick; family: word_card -->
 > **carsick** — которого укачало в дороге. Is she carsick? — «Её укачало?» В машине, автобусе.
 
-**19 · Подруга спрашивает, не укачало ли брата. Послушайте, что говорит сестра**
+**19 · Послушайте и выберите — сестра отвечает подруге у дома**
 <!-- interaction_id: en:lesson-02:session-17:i15; family: listen_choose -->
 🔊 *He is not carsick.* → **He is not carsick.** · He is not safe. · He is not well.
 - He is not safe. — *В записи последнее слово — `carsick`, а в этом варианте — `safe`.*

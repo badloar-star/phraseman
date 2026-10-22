@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-02:word:satisfied; family: word_card -->
 > **satisfied** — довольный результатом. We are satisfied — «Мы довольны». We're not satisfied — «Мы недовольны».
 
-**4 · Послушайте фразу о сестре**
+**4 · Послушайте и выберите — друг делится с вами мыслями на репетиции**
 <!-- interaction_id: en:lesson-02:session-02:i02; family: listen_choose -->
 🔊 *She is not relaxed.* → **She is not relaxed.** · She is not confident. · She is not satisfied.
 - She is not confident. — *В записи последнее слово — `relaxed`, а в этом варианте — `confident`.*
@@ -109,7 +109,7 @@ It ___ not booked. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-02:word:planned; family: word_card -->
 > **planned** — запланирован, продуман заранее. It is planned — «Это продумано». It's not planned — «Это не продумано».
 
-**13 · Олег позвонил администратору школы. Послушайте, что он передал вам о зале**
+**13 · Послушайте и выберите — друг рассказывает вам о звонке**
 <!-- interaction_id: en:lesson-02:session-02:i09; family: listen_choose -->
 🔊 *It is not booked.* → **It is not booked.** · It is not planned. · It is booked.
 - It is not planned. — *В записи последнее слово — `booked`, а в этом варианте — `planned`.*
@@ -139,7 +139,7 @@ He ___ not confident. → **is** · am · are
 - am — *После `He` нужно `is`.*
 - are — *Про друга — `He is not`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — друзья подводят с вами итог репетиции**
 <!-- interaction_id: en:lesson-02:session-02:i15; family: listen_choose -->
 🔊 *We're not satisfied.* → **We're not satisfied.** · We're not relaxed. · We're not confident.
 - We're not relaxed. — *В записи последнее слово — `satisfied`, а в этом варианте — `relaxed`.*

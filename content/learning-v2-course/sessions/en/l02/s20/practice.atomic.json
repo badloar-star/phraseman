@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос мамы о сестре",
+        "prompt": "Послушайте и выберите — мама проверяет праздничный стол",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-20:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-20:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос мамы о сестре",
+        "accessibilityLabel": "Послушайте и выберите — мама проверяет праздничный стол",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-20:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос мамы о сестре",
+              "testedDimension": "Послушайте и выберите — мама проверяет праздничный стол",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `prepared`, а в этом варианте — `careful`.",
                 "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `careful`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-20:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос мамы о сестре",
+              "testedDimension": "Послушайте и выберите — мама проверяет праздничный стол",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `prepared`, а в этом варианте — `lost`.",
                 "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `lost`."
@@ -552,7 +552,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
+        "prompt": "Послушайте и выберите — сестра шепчет вам у праздничного стола",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-20:i09:r1",
@@ -571,7 +571,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-20:i09:audio"
         ],
-        "accessibilityLabel": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
+        "accessibilityLabel": "Послушайте и выберите — сестра шепчет вам у праздничного стола",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -601,7 +601,7 @@
             {
               "responseId": "en:lesson-02:session-20:i09:r2",
               "correct": false,
-              "testedDimension": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
+              "testedDimension": "Послушайте и выберите — сестра шепчет вам у праздничного стола",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `suspicious`, а в этом варианте — `prepared`.",
                 "uk": "У записі останнє слово — `suspicious`, а в цьому варіанті — `prepared`."
@@ -610,7 +610,7 @@
             {
               "responseId": "en:lesson-02:session-20:i09:r3",
               "correct": false,
-              "testedDimension": "Брат прячет руки за спину. Послушайте, что шепчет вам сестра",
+              "testedDimension": "Послушайте и выберите — сестра шепчет вам у праздничного стола",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `suspicious`, а в этом варианте — `innocent`.",
                 "uk": "У записі останнє слово — `suspicious`, а в цьому варіанті — `innocent`."
@@ -979,7 +979,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте, что брат говорит о сестре",
+        "prompt": "Послушайте и выберите — брат говорит с мамой у стола",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-20:i15:r1",
@@ -998,7 +998,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-20:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте, что брат говорит о сестре",
+        "accessibilityLabel": "Послушайте и выберите — брат говорит с мамой у стола",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1028,7 +1028,7 @@
             {
               "responseId": "en:lesson-02:session-20:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте, что брат говорит о сестре",
+              "testedDimension": "Послушайте и выберите — брат говорит с мамой у стола",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `innocent`, а в этом варианте — `prepared`.",
                 "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `prepared`."
@@ -1037,7 +1037,7 @@
             {
               "responseId": "en:lesson-02:session-20:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте, что брат говорит о сестре",
+              "testedDimension": "Послушайте и выберите — брат говорит с мамой у стола",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `innocent`, а в этом варианте — `careful`.",
                 "uk": "У записі останнє слово — `innocent`, а в цьому варіанті — `careful`."

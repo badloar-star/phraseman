@@ -61,7 +61,7 @@
 Плитки: `complete` `is` `It` `are` → **It is complete.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is complete.`)*
 
-**3 · Послушайте, что друг говорит о короле на картинке**
+**3 · Послушайте и выберите — друг собирает с вами пазл на столе**
 <!-- interaction_id: en:lesson-02:session-22:i02; family: listen_choose -->
 🔊 *He is rich.* → **He is rich.** · He is poor. · He is famous.
 - He is poor. — *В записи последнее слово — `rich`, а в этом варианте — `poor`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-22:word:extra; family: word_card -->
 > **extra** — лишний, дополнительный. Are they extra? — «Они лишние?» О деталях, билете, стуле, подушке.
 
-**13 · Послушайте, что друг говорит о двух полосатых деталях**
+**13 · Послушайте и выберите — друг разбирает с вами детали из двух коробок**
 <!-- interaction_id: en:lesson-02:session-22:i09; family: listen_choose -->
 🔊 *They are extra.* → **They are extra.** · They are bent. · They are square.
 - They are bent. — *В записи последнее слово — `extra`, а в этом варианте — `bent`.*
@@ -139,7 +139,7 @@ It ___ not obvious. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Фраза — `It is not obvious`.*
 
-**19 · Послушайте вопрос друга об окне в башне**
+**19 · Послушайте и выберите — вы с другом рассматриваете башню из пазла**
 <!-- interaction_id: en:lesson-02:session-22:i15; family: listen_choose -->
 🔊 *Is it square?* → **Is it square?** · Is it bent? · Is it complete?
 - Is it bent? — *В записи последнее слово — `square`, а в этом варианте — `bent`.*

@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос Косте",
+        "prompt": "Послушайте и выберите — в театре друг задаёт вопрос рядом с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-09:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-09:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос Косте",
+        "accessibilityLabel": "Послушайте и выберите — в театре друг задаёт вопрос рядом с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-02:session-09:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос Косте",
+              "testedDimension": "Послушайте и выберите — в театре друг задаёт вопрос рядом с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sure`, а в этом варианте — `comfortable`.",
                 "uk": "У записі останнє слово — `sure`, а в цьому варіанті — `comfortable`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-02:session-09:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос Косте",
+              "testedDimension": "Послушайте и выберите — в театре друг задаёт вопрос рядом с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sure`, а в этом варианте — `interested`.",
                 "uk": "У записі останнє слово — `sure`, а в цьому варіанті — `interested`."
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос о креслах",
+        "prompt": "Послушайте и выберите — вы с другом смотрите на кресла ближе к сцене",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-09:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-09:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос о креслах",
+        "accessibilityLabel": "Послушайте и выберите — вы с другом смотрите на кресла ближе к сцене",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-02:session-09:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос о креслах",
+              "testedDimension": "Послушайте и выберите — вы с другом смотрите на кресла ближе к сцене",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `soft`, а в этом варианте — `close`.",
                 "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `close`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-02:session-09:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос о креслах",
+              "testedDimension": "Послушайте и выберите — вы с другом смотрите на кресла ближе к сцене",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `soft`, а в этом варианте — `taken`.",
                 "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `taken`."
@@ -978,7 +978,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте вопрос об актрисе",
+        "prompt": "Послушайте и выберите — друг тихо говорит с вами перед началом",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-09:i15:r1",
@@ -997,7 +997,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-09:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте вопрос об актрисе",
+        "accessibilityLabel": "Послушайте и выберите — друг тихо говорит с вами перед началом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1027,7 +1027,7 @@
             {
               "responseId": "en:lesson-02:session-09:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте вопрос об актрисе",
+              "testedDimension": "Послушайте и выберите — друг тихо говорит с вами перед началом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `young`, а в этом варианте — `tall`.",
                 "uk": "У записі останнє слово — `young`, а в цьому варіанті — `tall`."
@@ -1036,7 +1036,7 @@
             {
               "responseId": "en:lesson-02:session-09:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте вопрос об актрисе",
+              "testedDimension": "Послушайте и выберите — друг тихо говорит с вами перед началом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `young`, а в этом варианте — `short`.",
                 "uk": "У записі останнє слово — `young`, а в цьому варіанті — `short`."

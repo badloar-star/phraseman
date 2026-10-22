@@ -97,9 +97,6 @@ export default function LearningV2NewWordEncounterOverlay({
   const reduceMotion = useReducedMotion();
   const appActive = useAppRuntimeActive();
   const word = encounter.save.targetText;
-  // Legacy wire name; this is the manually authored, dictionary-precise
-  // definition shown below the card, never on the translation side.
-  const editorialDefinition = encounter.playfulMeaningByLocale[locale];
   const copy = useMemo(
     () =>
       learningV2NewWordEncounterCopy({
@@ -411,13 +408,7 @@ export default function LearningV2NewWordEncounterOverlay({
         </RNAnimated.View>
         </View>
 
-        <Text
-          testID="learning-v2-new-word-definition"
-          style={[styles.editorialDefinition, { color: g.text, lineHeight: lh(24) }]}
-        >
-          {editorialDefinition}
-        </Text>
-
+        {/* зачем (владелец 22.10 через координатора, «до бита»): в «Предлагаем» под карточкой слова ничего нет — абзац с определением убран; данные определения остаются в выпуске */}
         </ScrollView>
 
         <View style={styles.continueRow}>
@@ -491,23 +482,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 21,
     fontWeight: "600",
-  },
-  // `.fliph` 14/600, в 16 от определения (gap 14 + 2).
-  flipHint: {
-    fontSize: 13,
-    lineHeight: 19,
-    fontWeight: "600",
-    textAlign: "center",
-    marginTop: 2,
-  },
-  editorialDefinition: {
-    // `.defn` 17/24, в 20 от карточки (gap 14 + 6; D145 → 16).
-    paddingHorizontal: 8,
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: "400",
-    textAlign: "center",
-    marginTop: 6,
   },
   cardWrap: {
     position: "relative",

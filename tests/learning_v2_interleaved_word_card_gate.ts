@@ -62,15 +62,16 @@ rejectText(
   "<PhraseCard",
   "overlay_still_uses_wrong_tall_deck_card_variant",
 );
-expectText(
+// зачем (владелец 22.10, «до бита» с «Предлагаем»): абзаца с определением под карточкой больше нет
+rejectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
   "encounter.playfulMeaningByLocale[locale]",
-  "under_card_editorial_definition_missing",
+  "under_card_editorial_definition_must_be_gone",
 );
-expectText(
+rejectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
   'testID="learning-v2-new-word-definition"',
-  "under_card_editorial_definition_not_rendered",
+  "under_card_editorial_definition_must_not_render",
 );
 expectText(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",

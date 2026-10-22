@@ -37,19 +37,11 @@ const overlay = readFileSync(
   resolve(root, "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx"),
   "utf8",
 );
-assert.match(overlay, /testID="learning-v2-new-word-definition"/u);
-assert.match(overlay, /encounter\.playfulMeaningByLocale\[locale\]/u);
+// зачем (владелец 22.10 через координатора, «до бита» с макетом «Предлагаем»): абзац с определением под карточкой слова убран —
+// данные определения остаются в выпуске (проверка выше), на экране под карточкой ничего нет; карточка показывает слово и перевод.
+assert.doesNotMatch(overlay, /testID="learning-v2-new-word-definition"/u, "под карточкой нового слова абзаца нет");
+assert.doesNotMatch(overlay, /encounter\.playfulMeaningByLocale\[locale\]/u, "определение не выводится на экран нового слова");
 assert.match(overlay, /exactMeaningByLocale\[locale\]/u);
-assert.match(
-  overlay,
-  /styles\.editorialDefinition, \{ color: t\.textPrimary \}/u,
-  "the definition must use the readable primary modal text token",
-);
-assert.doesNotMatch(
-  overlay,
-  /styles\.editorialDefinition, \{ color: t\.textSecond \}/u,
-  "muted theme text is illegible over the dimmed word-card overlay",
-);
 
 for (const documentPath of [
   "docs/v2/СТАРТ В2.md",

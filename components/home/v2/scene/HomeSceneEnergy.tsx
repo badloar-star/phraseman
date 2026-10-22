@@ -17,7 +17,8 @@ export default function HomeSceneEnergy() {
   return <HomeSceneEnergyView value={value} zero={!isUnlimited && energyReady && energy <= 0} />;
 }
 
-const HomeSceneEnergyView = memo(function HomeSceneEnergyView({ value, zero }: Readonly<{ value: string; zero: boolean }>) {
+// зачем (координатор 22.10): dev-вход /dev_home_scene_preview рисует ту же энергию числом из моков, без подписки на настоящую
+export const HomeSceneEnergyView = memo(function HomeSceneEnergyView({ value, zero }: Readonly<{ value: string; zero: boolean }>) {
   // зачем (эталон .glass .hm-emb): ноль энергии — тёплый тон, чтобы было видно без слов
   const color = zero ? '#FFB4A3' : '#FFFFFF';
   return (

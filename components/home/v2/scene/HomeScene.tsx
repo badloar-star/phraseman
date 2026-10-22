@@ -8,6 +8,8 @@
 // Шапка — прежняя HomeV2Header в тоне сцены, кладётся поверх запомненной сцены: новый элемент шапки на каждый рендер Главной
 // не перерисовывает фон, героя и текст. Журнал [HOME-SCENE]: решение с причиной, картинка и её источник.
 // «Экзамен главы ждёт» выключен: экзамена в приложении ещё нет (координатор 22.10).
+// Две части (координатор 22.10, dev-вход «Сверки»): HomeScene собирает факты телефона и зовёт pickHomeSceneState, HomeSceneView
+// рисует по готовому решению. /dev_home_scene_preview берёт факты из моков, решение — та же функция, вид — тот же HomeSceneView.
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -21,7 +23,7 @@ import HomeSceneStage, { type HomeSceneChip } from './HomeSceneStage';
 import { resolveHomeSceneArt } from './home_scene_art';
 import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput } from './home_scene_copy';
 import { homeSceneAllReleasedDone, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
-import { minutesUntilMidnight, pickHomeSceneState } from './home_scene_state';
+import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
 import { homeSceneTokens } from './home_scene_tokens';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
@@ -96,7 +98,6 @@ type Props = Readonly<{
 export default function HomeScene(p: Props) {
   const offline = useHomeSceneOffline(p.active);
   const personal = usePersonalProgressSnapshot();
-  const [minuteTick, setMinuteTick] = useState(0);
   const now = new Date();
   const hour = now.getHours();
   const todayKey = dayKeyOf(now);
@@ -114,14 +115,6 @@ export default function HomeScene(p: Props) {
     hasProgress: p.hasProgress, hour, streakDays: p.streakDays, dayCounted, plus: p.plus, energy: p.energy, daysAway,
     streakLostToday, chapterExamReady: false, allReleasedDone, offline,
   }), [p.hasProgress, hour, p.streakDays, dayCounted, p.plus, p.energy, daysAway, streakLostToday, allReleasedDone, offline]);
-  const evening = decision.state === 'streak_risk';
-  // зачем: «До полуночи 2 ч 20 мин» не стоит на месте, пока Главная открыта — раз в минуту, только вечером и только на экране
-  useEffect(() => {
-    if (!evening || !p.active) return undefined;
-    const timer = setInterval(() => setMinuteTick((n) => n + 1), 60_000);
-    return () => clearInterval(timer);
-  }, [evening, p.active]);
-  const toMidnight = minutesUntilMidnight(now);
   const logKeyRef = useRef('');
   useEffect(() => {
     const key = `${decision.state}|${decision.reason}|${String(decision.offlineLine)}|${String(decision.zeroEnergyNote)}`;
@@ -129,12 +122,73 @@ export default function HomeScene(p: Props) {
     logKeyRef.current = key;
     console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, offlineLine: decision.offlineLine, zeroEnergyNote: decision.zeroEnergyNote, offline, streakToday: p.streakToday, energy: p.energy, plus: p.plus, lastDay, daysAway, streakCount: personal.streakCount, streakLostToday, allReleasedDone, course: p.courseProgress, examReady: 'off:no_exam_yet' })); // guard-ok: одна строка на смену решения
   }, [decision, offline, p.energy, p.plus, p.streakToday, lastDay, daysAway, personal.streakCount, streakLostToday, allReleasedDone, p.courseProgress]);
+  return (
+    <HomeSceneView
+      lang={p.lang}
+      header={p.header}
+      artTone={p.artTone}
+      accent={p.accent}
+      decision={decision}
+      streakDays={p.streakDays}
+      daysAway={daysAway}
+      lostStreakDays={streakLostToday ? personal.streakCount : null}
+      place={p.place}
+      pending={p.pending}
+      busy={p.busy}
+      active={p.active}
+      statusTint
+      onContinue={p.onContinue}
+      onChip={p.onChip}
+    />
+  );
+}
+
+export type HomeSceneViewProps = Readonly<{
+  lang: Lang;
+  header: (surface: string) => React.ReactNode;
+  artTone: ThemedArtBrightness;
+  accent: string;
+  /** Решение pickHomeSceneState — у Главной из фактов телефона, у dev-входа из моков. */
+  decision: HomeSceneDecision;
+  streakDays: number;
+  /** Дней без занятий («Тебя не было N дней»); null — неизвестно. */
+  daysAway: number | null;
+  /** «Было N дней» у «серия прервалась»; null — строки нет. */
+  lostStreakDays: number | null;
+  /** Минуты до полуночи; не задано — по часам телефона (dev-вход задаёт число, чтобы кадр совпадал с эталоном). */
+  minutesToMidnight?: number;
+  /** Минуты до энергии; не задано — живой таймер энергии (dev-вход задаёт число). */
+  energyMinutes?: number;
+  place: HomeScenePlace;
+  pending: boolean;
+  busy: boolean;
+  active: boolean;
+  /** Красить полосу под часами над Главной: только настоящая Главная; dev-вход полосу Главной не трогает. */
+  statusTint: boolean;
+  onContinue: () => void;
+  onChip: (kind: HomeSceneChipKind) => void;
+}>;
+
+/** «Сцена» по готовому решению: цвета, картинка, тексты, шапка и строка «Нет сети» поверх. */
+export function HomeSceneView(p: HomeSceneViewProps) {
+  const { decision } = p;
+  const [minuteTick, setMinuteTick] = useState(0);
+  const evening = decision.state === 'streak_risk';
+  const fixedClock = p.minutesToMidnight !== undefined;
+  // зачем: «До полуночи 2 ч 20 мин» не стоит на месте, пока Главная открыта — раз в минуту, только вечером и только на экране
+  useEffect(() => {
+    if (!evening || !p.active || fixedClock) return undefined;
+    const timer = setInterval(() => setMinuteTick((n) => n + 1), 60_000);
+    return () => clearInterval(timer);
+  }, [evening, p.active, fixedClock]);
+  const toMidnight = p.minutesToMidnight ?? minutesUntilMidnight(new Date());
   const tokens = useMemo(() => homeSceneTokens(p.accent, evening), [p.accent, evening]);
   // зачем (координатор 22.10): верхний цвет сцены — полосе под часами над Главной (HomeSceneStatusStrip в оболочке вкладок); сцены нет — полосы нет
   useEffect(() => {
+    if (!p.statusTint) return undefined;
     setHomeSceneStatusTint(tokens.sceneTop);
     return () => setHomeSceneStatusTint(null);
-  }, [tokens.sceneTop]);
+  }, [tokens.sceneTop, p.statusTint]);
   const art = useMemo(() => resolveHomeSceneArt(decision.state, p.artTone), [decision.state, p.artTone]);
   useEffect(() => {
     console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)) })); // guard-ok: одна строка на смену героя
@@ -142,17 +196,18 @@ export default function HomeScene(p: Props) {
   const copyInput = useMemo<HomeSceneCopyInput>(() => ({
     lang: p.lang, state: decision.state, zeroEnergyNote: decision.zeroEnergyNote, badge: p.place.badge, episode: p.place.episode, title: p.place.title,
     progress: p.place.done !== null && p.place.total !== null ? { done: p.place.done, total: p.place.total } : null,
-    streakDays: p.streakDays, minutesToMidnight: toMidnight, daysAway, energyMinutes: null,
+    streakDays: p.streakDays, minutesToMidnight: toMidnight, daysAway: p.daysAway, energyMinutes: null,
     theoryAvailable: p.place.theoryLessonId !== null, wordsAvailable: HOME_SCENE_WORDS_CHIP_ENABLED && p.place.theoryLessonId !== null,
-    lostStreakDays: streakLostToday ? personal.streakCount : null,
+    lostStreakDays: p.lostStreakDays,
   // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: minuteTick и toMidnight меняют только вечерний текст раз в минуту
-  }), [p.lang, decision.state, decision.zeroEnergyNote, p.place.badge, p.place.episode, p.place.title, p.place.done, p.place.total, p.place.theoryLessonId, p.streakDays, daysAway, streakLostToday, personal.streakCount, evening ? toMidnight : 0, minuteTick]);
+  }), [p.lang, decision.state, decision.zeroEnergyNote, p.place.badge, p.place.episode, p.place.title, p.place.done, p.place.total, p.place.theoryLessonId, p.streakDays, p.daysAway, p.lostStreakDays, evening ? toMidnight : 0, minuteTick]);
   const copy = useMemo(() => buildHomeSceneCopy(copyInput), [copyInput]);
   const liveEnergy = decision.state === 'no_energy' ? 'title' : evening && decision.zeroEnergyNote ? 'warm' : null;
+  const fixedEnergyMinutes = p.energyMinutes;
   const buildLiveText = useCallback((minutes: number | null) => {
-    const live = buildHomeSceneCopy({ ...copyInput, energyMinutes: minutes });
+    const live = buildHomeSceneCopy({ ...copyInput, energyMinutes: fixedEnergyMinutes ?? minutes });
     return liveEnergy === 'title' ? live.title : (live.warm ?? '');
-  }, [copyInput, liveEnergy]);
+  }, [copyInput, liveEnergy, fixedEnergyMinutes]);
   const chips = useMemo<readonly HomeSceneChip[]>(() => copy.chips.map((kind) => ({ kind, label: homeSceneChipLabel(p.lang, kind), icon: CHIP_ICON[kind] })), [copy.chips, p.lang]);
   const offlineLine = useMemo(() => (decision.offlineLine ? homeSceneOfflineLine(p.lang) : null), [decision.offlineLine, p.lang]);
   return (

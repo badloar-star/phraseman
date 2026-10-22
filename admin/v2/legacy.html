@@ -6743,6 +6743,9 @@ body.pm-v9-ready .cp-pack-card{
   display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:10px!important;
 }
 body.pm-v9-ready .report-card .rc-left{min-width:0!important;overflow-wrap:anywhere;}
+/* зачем (владелец 22.10, скрин «Жалобы на объяснения»): карточка жалобы — столбик (фраза, объяснение, жалобы).
+   Общая сетка 1fr|auto выше раскладывала её блоки по двум колонкам, и заголовок сжимался до одной буквы. */
+body.pm-v9-ready #tab-explain-reports .report-card{display:block!important;}
 body.pm-v9-ready .report-card .rc-right,
 body.pm-v9-ready .app-msg-card-actions,
 body.pm-v9-ready .cp-pack-actions,
@@ -20512,6 +20515,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
   window.openPremiumGrantModal = function openPremiumGrantModal(uid) {
+    // зачем (владелец 22.10: «почему не появилась кнопка 2 года, 3 года…»): «Выдать Plus» из карточки пользователя
+    // открывает новую панель Admin Plus с этим профилем — там +7 дней / +1 мес / +1 год / N лет / навсегда / до даты.
+    // Старое окно (1–12 мес) остаётся только запасным, если панели нет.
+    if (typeof window.openPlusGrantFor === 'function') {
+      if (typeof window.closeDetail === 'function') window.closeDetail();
+      window.openPlusGrantFor({ query: uid });
+      return;
+    }
     const u = window._users.find(x => x.uid === uid);
     if (!u) return;
     window._pgGrantUid = uid;

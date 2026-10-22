@@ -226,6 +226,10 @@ export function createLearningV2CourseLocalProgressStoreV1(
     // облачная копия — только растёт: ИЛИ с тем, что уже лежит (другое устройство могло открыть или пройти больше)
     try {
       const cloud = parseCourseMasksV1(await storage.getItem(LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1), LEARNING_V2_COURSE_SESSION_COUNT_V1);
+      if (cloud.foreignLayout) {
+        console.warn("[LV2-PROGRESS] masks:cloud_foreign_layout_not_overwritten", JSON.stringify({ accountScopeHash: accountScopeHash.slice(0, 8) })); // guard-ok: ранний выход с причиной — чужую раскладку не затираем
+        return;
+      }
       await storage.setItem(LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1, packCourseMasksV1(unionCourseMasksV1(cloud, masks)));
     } catch (error) {
       console.warn("[LV2-PROGRESS] masks:mirror_failed", JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину; телефон уже записал

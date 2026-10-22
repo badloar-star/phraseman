@@ -8,7 +8,32 @@
 
 export const LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1 = "learning_v2_course_masks_sync_v1";
 
-export type CourseProgressMasksV1 = Readonly<{ completed: ReadonlySet<number>; opened: ReadonlySet<number> }>;
+/**
+ * Раскладка битов v1 — НЕИЗМЕННАЯ сетка курса: бит = (урок − 1) × 56 + (эпизод − 1).
+ * зачем (координатор/Ревизор 22.10, 🔴 до облака): если бит зависел бы от «позиции в списке занятий», вставка занятия
+ * сдвинула бы все маски и пройденное у учеников уехало бы на чужие эпизоды. Сетка 32 × 56 фиксирована: новые уроки (22+)
+ * заполняют уже существующие ячейки, ничего не сдвигая. Если сетку когда-нибудь изменят — новая версия раскладки и
+ * миграция; сторож tests/learning_v2_course_progress_v2.test.ts падает при любом расхождении сетки с порядком курса.
+ */
+export const LEARNING_V2_COURSE_MASK_LAYOUT_V1 = Object.freeze({ version: 1 as const, lessons: 32, sessionsPerLesson: 56 });
+
+/** Бит занятия по его id (`lesson-07:session:12`); null — id не из сетки v1. */
+export function courseMaskBitForSessionIdV1(sessionId: string): number | null {
+  const match = /^lesson-(\d{2}):session:(\d{2})$/u.exec(sessionId);
+  if (!match) return null;
+  const lesson = Number(match[1]);
+  const session = Number(match[2]);
+  const { lessons, sessionsPerLesson } = LEARNING_V2_COURSE_MASK_LAYOUT_V1;
+  if (lesson < 1 || lesson > lessons || session < 1 || session > sessionsPerLesson) return null;
+  return (lesson - 1) * sessionsPerLesson + (session - 1);
+}
+
+export type CourseProgressMasksV1 = Readonly<{
+  completed: ReadonlySet<number>;
+  opened: ReadonlySet<number>;
+  /** true — значение записано другой (будущей) раскладкой: читать нельзя, перезаписывать нельзя. */
+  foreignLayout?: boolean;
+}>;
 
 const HEX = "0123456789abcdef";
 
@@ -41,13 +66,18 @@ export function decodeCourseMaskV1(raw: string | null | undefined, total: number
 }
 
 export function packCourseMasksV1(masks: CourseProgressMasksV1): string {
-  return JSON.stringify({ c: encodeCourseMaskV1(masks.completed), o: encodeCourseMaskV1(masks.opened) });
+  return JSON.stringify({ v: LEARNING_V2_COURSE_MASK_LAYOUT_V1.version, c: encodeCourseMaskV1(masks.completed), o: encodeCourseMaskV1(masks.opened) });
 }
 
 export function parseCourseMasksV1(raw: string | null | undefined, total: number): CourseProgressMasksV1 {
   if (!raw) return Object.freeze({ completed: new Set<number>(), opened: new Set<number>() });
   try {
-    const value = JSON.parse(raw) as { c?: unknown; o?: unknown };
+    const value = JSON.parse(raw) as { v?: unknown; c?: unknown; o?: unknown };
+    // без поля v — первые записи части (а) той же раскладки v1; иная версия — чужая раскладка, данные не трогаем
+    if (value?.v !== undefined && value.v !== LEARNING_V2_COURSE_MASK_LAYOUT_V1.version) {
+      console.warn("[LV2-PROGRESS] masks:foreign_layout", JSON.stringify({ v: value.v, expected: LEARNING_V2_COURSE_MASK_LAYOUT_V1.version })); // guard-ok: ранний выход с причиной
+      return Object.freeze({ completed: new Set<number>(), opened: new Set<number>(), foreignLayout: true });
+    }
     return Object.freeze({
       completed: decodeCourseMaskV1(typeof value?.c === "string" ? value.c : "", total),
       opened: decodeCourseMaskV1(typeof value?.o === "string" ? value.o : "", total),
@@ -93,6 +123,11 @@ export function courseCurrentIndexV1(masks: CourseProgressMasksV1, total: number
 export function mergeCourseMasksRestoreValueV1(localRaw: string | null | undefined, cloudRaw: string, total: number): string {
   const local = parseCourseMasksV1(localRaw, total);
   const cloud = parseCourseMasksV1(cloudRaw, total);
+  // зачем: облако записано будущей раскладкой — эта сборка его не понимает и НЕ затирает (иначе потеря прогресса)
+  if (cloud.foreignLayout || local.foreignLayout) {
+    console.warn("[LV2-PROGRESS] restore:masks_foreign_layout_kept", JSON.stringify({ localForeign: Boolean(local.foreignLayout), cloudForeign: Boolean(cloud.foreignLayout) })); // guard-ok: какое правило сработало
+    return cloud.foreignLayout ? cloudRaw : (localRaw ?? cloudRaw);
+  }
   const merged = unionCourseMasksV1(local, cloud);
   console.log("[LV2-PROGRESS] restore:masks", JSON.stringify({ local: [local.completed.size, local.opened.size], cloud: [cloud.completed.size, cloud.opened.size], merged: [merged.completed.size, merged.opened.size], rule: "bitwise_or_never_lost" })); // guard-ok: какое правило сработало
   return packCourseMasksV1(merged);

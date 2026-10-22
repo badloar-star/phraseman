@@ -121,6 +121,30 @@ describe('progress v2: backward compatibility', () => {
   });
 });
 
+describe('progress v2: stable mask layout (bits never shift)', () => {
+  it('bit = grid cell (lesson−1)×56 + (session−1) and equals the course order for every session', () => {
+    const { courseMaskBitForSessionIdV1, LEARNING_V2_COURSE_MASK_LAYOUT_V1 } =
+      require('../modules/learning-v2/progress/course_progress_masks_v1') as typeof import('../modules/learning-v2/progress/course_progress_masks_v1');
+    expect(LEARNING_V2_COURSE_MASK_LAYOUT_V1).toEqual({ version: 1, lessons: 32, sessionsPerLesson: 56 });
+    const ids = learningV2OrderedCourseSessionIdsV1();
+    expect(ids).toHaveLength(32 * 56);
+    ids.forEach((id, index) => expect(courseMaskBitForSessionIdV1(id)).toBe(index));
+    expect(courseMaskBitForSessionIdV1(sid(22, 1))).toBe(21 * 56);
+  });
+
+  it('a mask from a future layout is neither read as v1 nor overwritten (merge keeps it, phone does not write over it)', async () => {
+    const future = JSON.stringify({ v: 2, c: 'ff', o: '' });
+    const local = JSON.stringify({ v: 1, c: encodeCourseMaskV1([3]), o: '' });
+    expect(parseCourseMasksV1(future, TOTAL).foreignLayout).toBe(true);
+    expect(mergeCourseMasksRestoreValueV1(local, future, TOTAL)).toBe(future);
+    const { storage, rows } = memory();
+    rows.set(LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1, future);
+    const store = createLearningV2CourseLocalProgressStoreV1(storage);
+    await store.open(scope, [sid(1, 2)], 'chapter_exam');
+    expect(rows.get(LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1)).toBe(future);
+  });
+});
+
 describe('progress v2: progress is never lost', () => {
   it('restore merge is bitwise OR: nothing from either side disappears', () => {
     const a = JSON.stringify({ c: encodeCourseMaskV1([0, 5, 9]), o: encodeCourseMaskV1([20]) });

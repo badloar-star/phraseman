@@ -27,7 +27,6 @@ type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
 const WHITE = '#FFFFFF'; // theme-exempt: текст на градиентной обложке белый в обеих темах (эталон `.c1hero { color: #fff }`)
 const WHITE_SOFT = 'rgba(255,255,255,0.86)'; // theme-exempt: подпись на обложке, эталон `.c1kick`
-const GLYPH = 'rgba(255,255,255,0.12)'; // theme-exempt: крупный значок главы на обложке, эталон `.c1hero .gl`
 const PILL = 'rgba(255,255,255,0.16)'; // theme-exempt: «стеклянная» пилюля на обложке, эталон `.c1pill`
 // зачем (аудит контраста светлой темы 22.10, координатор): белый «Урок N» на светлой подложке-пилюле (белый 16 % поверх from) давал 3,69–4,26:1 при норме 4,5 на всех 224 оттенках глав;
 // в светлой теме пилюля — тёмное стекло (чёрный 18 %), белый текст на ней ≥ 4,92:1; в тёмной оформление прежнее (5,73:1)
@@ -108,7 +107,6 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   const currentCard = deck.cards[deck.currentIndex];
   const currentEpisode = currentCard && currentCard.kind === 'episode' ? currentCard : (deck.cards.find((c): c is SeasonEpisodeCard => c.kind === 'episode') ?? null);
   const heroChapter = currentCard ? currentCard.chapterOrdinal : 1;
-  const heroInfo = props.chapterInfo(heroChapter);
   const heroArt = seasonArtCached(seasonChapterHue(lessonOrdinal, heroChapter), 0, theme);
 
   const selectedCard = deck.cards[selected] ?? currentCard;
@@ -157,7 +155,6 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
       <View style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
-        <View style={styles.heroGlyph} pointerEvents="none"><Ionicons name={heroInfo.icon} size={310} color={GLYPH} /></View>
         <LinearGradient colors={SCRIM} style={styles.scrim} pointerEvents="none" />
         <View style={[styles.heroTop, { top: props.topPadding + 8 }]}>
           <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onLessonPicker} style={[styles.pill, dark ? null : { backgroundColor: PILL_ON_LIGHT }]} testID="season-lesson-pill">
@@ -268,7 +265,6 @@ const styles = StyleSheet.create({
   heroChip: { height: 34, paddingHorizontal: 12, borderRadius: 17, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },
   heroChipText: { fontSize: 13, lineHeight: 17, fontWeight: '600', color: WHITE },
   heroTall: { height: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
-  heroGlyph: { position: 'absolute', right: -54, top: 64, transform: [{ rotate: '-8deg' }] },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
   pill: { height: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },

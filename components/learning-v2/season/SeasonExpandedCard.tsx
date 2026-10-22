@@ -19,7 +19,6 @@ type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
 const WHITE = '#FFFFFF'; // theme-exempt: текст на градиентной карте белый в обеих темах (эталон `.c4card { color: #fff }`)
 const WHITE_SOFT = 'rgba(255,255,255,0.86)'; // theme-exempt: вторичный текст на карте, эталон `.c4card .ru`
-const GLYPH = 'rgba(255,255,255,0.11)'; // theme-exempt: крупный значок главы, эталон `.c4card .gl`
 const GLASS = 'rgba(255,255,255,0.16)'; // theme-exempt: стеклянные чипы и кнопки на карте, эталон `.qchip.glass`
 const MUTE = 'rgba(8,10,18,0.32)'; // theme-exempt: затемнение закрытой карты, эталон `.c4card.mute::before`
 const INK = '#121318'; // theme-exempt: текст белой кнопки, эталон `.qbtn.white`
@@ -80,7 +79,6 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
           <>
             <LinearGradient colors={[p.art.from, p.art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
             <LinearGradient colors={[p.art.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
-            <View style={styles.glyph} pointerEvents="none"><Ionicons name={p.glyph} size={230} color={GLYPH} /></View>
           </>
         )}
         <View style={styles.top}>
@@ -137,7 +135,6 @@ const styles = StyleSheet.create({
   root: { ...StyleSheet.absoluteFillObject, zIndex: 40 },
   dim: { ...StyleSheet.absoluteFillObject },
   card: { position: 'absolute', left: 24, right: 24, top: 128, maxHeight: 560, minHeight: 440, borderRadius: 32, overflow: 'hidden', padding: 18, boxShadow: SHADOW },
-  glyph: { position: 'absolute', right: -40, top: 40, transform: [{ rotate: '-8deg' }] },
   top: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   chip: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 34, paddingHorizontal: 12, borderRadius: 17, backgroundColor: GLASS },
   chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: WHITE },

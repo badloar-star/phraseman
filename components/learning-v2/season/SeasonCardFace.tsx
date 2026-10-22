@@ -17,7 +17,6 @@ import type { SeasonCardState } from './season_course_model';
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
 const WHITE = '#FFFFFF'; // theme-exempt: текст и значки на градиентной обложке белые в обеих темах (эталон `.h2c { color: #fff }`)
-const GLYPH = 'rgba(255,255,255,0.12)'; // theme-exempt: крупный значок главы за текстом, эталон `.h2c .gl`
 const CHIP = 'rgba(0,0,0,0.24)'; // theme-exempt: метка с номером, эталон `.h2c .n`
 const TRACK = 'rgba(255,255,255,0.26)'; // theme-exempt: дорожка прогресса на карте, эталон `.h2c .prog`
 const MUTE = 'rgba(8,10,18,0.36)'; // theme-exempt: затемнение закрытой карты, эталон `.h2c.mute::after`
@@ -33,7 +32,7 @@ export type SeasonCardFaceProps = Readonly<{
   ordinal: number;
   art: SeasonArt;
   dark: boolean;
-  /** Значок главы (Ionicons) за текстом. */
+  /** Не рисуется (владелец 22.10: «текстурки убирай»); проп оставлен, чтобы не менять вызовы. */
   glyph: IonName;
   /** Ключевая фраза эпизода (внизу карты) или название экзамена. */
   phrase: string;
@@ -41,7 +40,7 @@ export type SeasonCardFaceProps = Readonly<{
   progress: number | null;
 }>;
 
-function SeasonCardFace({ kind, state, ordinal, art, dark, glyph, phrase, progress }: SeasonCardFaceProps) {
+function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress }: SeasonCardFaceProps) {
   if (kind === 'exam') {
     const colors = dark ? EXAM_FROM_DARK : EXAM_FROM_LIGHT;
     return (
@@ -58,7 +57,6 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, glyph, phrase, progre
     <View style={styles.card}>
       <LinearGradient colors={[art.from, art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
       <LinearGradient colors={[art.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
-      <View style={styles.glyph} pointerEvents="none"><Ionicons name={glyph} size={150} color={GLYPH} /></View>
       <View style={styles.mark}>
         <Ionicons name={markIcon} size={12} color={WHITE} />
         <Text style={styles.markText}>{ordinal}</Text>
@@ -85,7 +83,6 @@ const styles = StyleSheet.create({
     boxShadow: SHADOW,
   },
   examCard: { padding: 14 },
-  glyph: { position: 'absolute', right: -26, top: -14, transform: [{ rotate: '-8deg' }] },
   mark: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 5, height: 26, paddingHorizontal: 9, borderRadius: 13, backgroundColor: CHIP },
   markText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: WHITE },
   phrase: { fontSize: 22, lineHeight: 26, fontWeight: '700', letterSpacing: -0.3, color: WHITE },

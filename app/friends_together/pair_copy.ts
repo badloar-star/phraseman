@@ -103,7 +103,7 @@ export function pairDoneFriendAlsoToday(lang: Lang, friendName: string): string 
 
 /** Финал занятия, второй ряд: «Марк ещё не занимался(ась)». */
 export function pairDoneFriendPending(lang: Lang, friendName: string): string {
-  return pick(lang, L(`${friendName}: сегодня ещё без занятия`, `${friendName}: сьогодні ще без заняття`, `${friendName} hasn’t studied yet`, `${friendName} aún no ha estudiado`, `${friendName} ainda não estudou`, `${friendName} chưa học hôm nay`, `${friendName} belum belajar`, `${friendName} henüz çalışmadı`, `${friendName}: dziś jeszcze bez nauki`));
+  return pick(lang, L(`${friendName}: сегодня ещё без занятия`, `${friendName}: сьогодні ще без заняття`, `${friendName} hasn’t studied today yet`, `${friendName} aún no ha estudiado hoy`, `${friendName} ainda não estudou hoje`, `${friendName} chưa học hôm nay`, `${friendName} belum belajar hari ini`, `${friendName} bugün henüz çalışmadı`, `${friendName}: dziś jeszcze bez nauki`));
 }
 
 /** Веха серии вдвоём: «Серия вдвоём — 30 дней». */
@@ -163,7 +163,7 @@ export function pairCardStatLabels(lang: Lang, streak: number, together: number)
   return {
     streak: pick(lang, L(
       `${slavic(streak, 'день', 'дня', 'дней')} серии`, `${slavic(streak, 'день', 'дні', 'днів')} серії`, 'day streak',
-      `${streak === 1 ? 'día' : 'días'} de racha`, `${streak === 1 ? 'dia' : 'dias'} de sequência`, 'ngày chuỗi', 'hari beruntun', 'gün seri', `${streak === 1 ? 'dzień' : 'dni'} serii`,
+      `${streak === 1 ? 'día' : 'días'} de racha`, `${streak === 1 ? 'dia' : 'dias'} de sequência`, 'ngày chuỗi', 'hari beruntun', 'günlük seri', `${streak === 1 ? 'dzień' : 'dni'} serii`,
     )),
     spire: pick(lang, L('этаж Пика', 'поверх Піку', 'Peak floor', 'piso del Pico', 'andar do Pico', 'tầng Đỉnh', 'lantai Puncak', 'Zirve katı', 'piętro Szczytu')),
     together: pick(lang, L(

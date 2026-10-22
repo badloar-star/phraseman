@@ -33,7 +33,14 @@ Owner: Ядро (сессия 1). Решение владельца 21.10: се�
   - Ключ inbox — хеш (progressAccountScopeHash + mutationId): нужен экспорт помощника из `learning_v2/required_session_completion_callable.ts` — зона Learning V2, согласовать через координатора.
 - Монеты:
   - stars_ledger, новая причина `friends_lesson_together`, класс **grant** — earn двигал бы starsWeekEarned → место в Пике;
-  - opId `lesson_together:<inviteId>:<uid>`;
+  - **защита от фарма** (условие владельца 21.10: «+2 не чаще 1 раза в день на пару, только сервер», уточнение 8 · МОМЕНТЫ):
+    - ключ награды — пара + день, а не приглашение;
+    - pairKey — оба stableUid по возрастанию;
+    - dayKey — местный день друга, прошедшего занятие, на момент awardedAtMs (friends_push_v1.tz);
+    - повтор пары в тот же день → `{ok:false, reason:'already_claimed'}`, монет и уведомления нет;
+    - приглашения и пуши при этом не ограничиваются (кроме 3/занятие/день против спама);
+  - opId: `OP_ID_RE = /^[a-z0-9_]{1,32}:[A-Za-z0-9_.-]{1,96}$/` — ОДНО двоеточие, хвост ≤96. Поэтому `lesson_together:<sha256(pairKey|dayKey|uid) hex[0..48]>`; исходные pairKey, dayKey и uid — в полях операции и в журнале;
+  - тест: A→B и B→A в один день → +2 один раз каждому; на следующий день снова можно;
   - D-строка и ECONOMY.md — у координатора.
 - Полночь друга — `users/{друг}.progress.friends_push_v1.tz`, иначе `config.nudgeDefaultTzOffsetMinutes`.
 - Предел 3/день и расписка по requestId — один документ в транзакции. Повтор → тот же ответ без второго пуша.

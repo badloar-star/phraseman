@@ -83,7 +83,8 @@ describe('mistake practice immutable event transport', () => {
                 : ref.kind === 'map'
                   ? { exists: ownerMapExistsAtRead, data: () => ownerMapDataAtRead }
                   : { exists: records.has(ref.id), data: () => records.get(ref.id) };
-              if (attempt === 0 && reads === 3) {
+              // зачем (22.10): быстрый путь читает только владельца и карту — переход владельца случается после 2-го чтения.
+              if (attempt === 0 && reads === 2) {
                 firstAttemptPaused = true;
                 owner.data.mistakePracticeMergePending = true;
                 ownerMap.exists = true;

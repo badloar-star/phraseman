@@ -57,7 +57,59 @@ describe('mistake practice sync: foreign-language events from old clients', () =
       data: { action: 'append', expectedStableUid: 'owner-a', studyTarget: 'fr', events: [event('e1', 'fr'), event('e2', 'en')] },
     });
     expect(result).toEqual({ ok: true, appended: 2 });
-    expect(stats()).toEqual({ reads: 3, creates: 1 });
+    // зачем (Ревизор 22.10): новые события пишутся без чтения — только владелец и карта владельца.
+    expect(stats()).toEqual({ reads: 2, creates: 1 });
+  });
+
+  test('events without a string studyTarget are dropped instead of rejecting the batch', async () => {
+    const { db, stats } = fakeDb();
+    const untargeted = { ...event('e3', 'fr') } as Record<string, unknown>;
+    delete untargeted.studyTarget;
+    const result = await handlerWith(db)({
+      auth: { uid: 'auth-a' },
+      data: { action: 'append', expectedStableUid: 'owner-a', studyTarget: 'fr', events: [event('e1', 'fr'), untargeted] },
+    });
+    expect(result).toEqual({ ok: true, appended: 2 });
+    expect(stats()).toEqual({ reads: 2, creates: 1 });
+  });
+
+  test('replayed event: create hits ALREADY_EXISTS, the batch falls back to read-and-verify without a duplicate', async () => {
+    const records = new Map<string, unknown>();
+    let reads = 0;
+    let commits = 0;
+    const doc = (kind: string, id: string) => ({ kind, id });
+    const db = {
+      collection: (name: string) => ({
+        doc: (id: string) => name === 'users'
+          ? { ...doc('owner', id), collection: () => ({ doc: (eventId: string) => doc('event', eventId) }) }
+          : doc('map', id),
+      }),
+      runTransaction: async (work: (tx: unknown) => Promise<unknown>) => {
+        const creates: Array<{ id: string; value: unknown }> = [];
+        const result = await work({
+          get: async (ref: { kind: string; id: string }) => {
+            reads += 1;
+            if (ref.kind === 'owner') return { exists: true, data: () => ({ appVersion: '2.0.0' }) };
+            if (ref.kind === 'map') return { exists: false, data: () => undefined };
+            return { exists: records.has(ref.id), data: () => records.get(ref.id) };
+          },
+          create: (ref: { id: string }, value: unknown) => creates.push({ id: ref.id, value }),
+        });
+        if (creates.some(({ id }) => records.has(id))) throw Object.assign(new Error('6 ALREADY_EXISTS'), { code: 6 });
+        creates.forEach(({ id, value }) => records.set(id, value));
+        commits += 1;
+        return result;
+      },
+    };
+    const send = () => handlerWith(db)({
+      auth: { uid: 'auth-a' },
+      data: { action: 'append', expectedStableUid: 'owner-a', studyTarget: 'fr', events: [event('e1', 'fr')] },
+    });
+    await expect(send()).resolves.toEqual({ ok: true, appended: 1 });
+    expect({ reads, commits, stored: records.size }).toEqual({ reads: 2, commits: 1, stored: 1 });
+    await expect(send()).resolves.toEqual({ ok: true, appended: 1 });
+    // повтор: быстрая попытка (2 чтения) + прежний путь (2 + 1 чтение), второго документа нет
+    expect({ reads, commits, stored: records.size }).toEqual({ reads: 7, commits: 2, stored: 1 });
   });
 
   test('all-foreign batch answers ok without a single Firestore read', async () => {

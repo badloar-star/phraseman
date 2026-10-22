@@ -94,11 +94,15 @@ export function parseMistakePracticeEventSyncRequest(input: unknown): SyncReques
     // повторял синк по кругу и каждый раз перечитывал до 50 документов — ≈ треть всех чтений Firestore.
     // Теперь чужие события молча отбрасываются (они живут в журнале своего языка), остальное принимается.
     const target = input.studyTarget as StudyTarget;
-    const own = input.events.filter((event) => !isRecord(event) || typeof event.studyTarget !== 'string' ||
-      event.studyTarget === target);
-    const droppedForeign = input.events.length - own.length;
-    if (droppedForeign > 0) {
-      console.info('[MP-SYNC] foreign_dropped', JSON.stringify({ studyTarget: target, received: input.events.length, droppedForeign }));
+    // зачем (Ревизор 22.10): событие без строкового studyTarget раньше проходило фильтр «чужих» и валило всю пачку
+    // (event_target_mismatch, 124 из 400 строк [MP-SYNC] за сутки) — клиент повторял её по кругу. Язык такого события
+    // не проверить, поэтому оно отбрасывается как чужое; ответ той же формы, что у №45, понимают и старые клиенты.
+    const own = input.events.filter((event) => !isRecord(event) || event.studyTarget === target);
+    const droppedForeign = input.events.filter((event) => isRecord(event) && typeof event.studyTarget === 'string' &&
+      event.studyTarget !== target).length;
+    const droppedUntargeted = input.events.length - own.length - droppedForeign;
+    if (droppedForeign > 0 || droppedUntargeted > 0) {
+      console.info('[MP-SYNC] foreign_dropped', JSON.stringify({ studyTarget: target, received: input.events.length, droppedForeign, droppedUntargeted }));
     }
     return Object.freeze({
       action: 'append',
@@ -161,6 +165,13 @@ export function assertMistakePracticeExpectedOwner(expectedStableUid: string, ac
 
 type FirestoreLike = Pick<admin.firestore.Firestore, 'collection' | 'runTransaction'>;
 
+/** Коммит транзакции упал, потому что create наткнулся на существующий документ (gRPC 6 / ALREADY_EXISTS). */
+export function isAlreadyExistsError(error: unknown): boolean {
+  const code = (error as { code?: unknown } | null)?.code;
+  return code === 6 || code === 'already-exists' || code === 'ALREADY_EXISTS' ||
+    /ALREADY_EXISTS|already exists/i.test(String((error as Error | null)?.message ?? ''));
+}
+
 export function createMistakePracticeEventSyncHandler(dependencies: Readonly<{
   db?: FirestoreLike;
   resolveAccountBinding?: (authUid: string) => Promise<ProgressAccountBinding>;
@@ -198,30 +209,57 @@ export function createMistakePracticeEventSyncHandler(dependencies: Readonly<{
       studyTarget: input.studyTarget,
       event,
     }));
-    await db.runTransaction(async (tx) => {
-      const refs = records.map((record) => collection.doc(mistakePracticeEventDocIdForRecord(record)));
-      const ownerRef = db.collection('users').doc(binding.stableUid);
-      const ownerMapRef = db.collection('account_identity_owner_map').doc(binding.stableUid);
-      const [ownerSnapshot, ownerMapSnapshot, ...snapshots] = await Promise.all([
-        tx.get(ownerRef),
-        tx.get(ownerMapRef),
-        ...refs.map((ref) => tx.get(ref)),
-      ]);
+    const refs = records.map((record) => collection.doc(mistakePracticeEventDocIdForRecord(record)));
+    const ownerRef = db.collection('users').doc(binding.stableUid);
+    const ownerMapRef = db.collection('account_identity_owner_map').doc(binding.stableUid);
+    const assertOwnerStable = (
+      ownerSnapshot: admin.firestore.DocumentSnapshot,
+      ownerMapSnapshot: admin.firestore.DocumentSnapshot,
+    ): string | null => {
       const canonicalOwner = String(ownerMapSnapshot.data()?.canonicalStableId ?? '').trim();
       if (!ownerSnapshot.exists || ownerSnapshot.data()?.identityHidden === true ||
         ownerSnapshot.data()?.mistakePracticeMergePending === true ||
         (ownerMapSnapshot.exists && canonicalOwner !== binding.stableUid)) {
         throw new HttpsError('failed-precondition', 'mistake_practice_owner_transitioned');
       }
-      snapshots.forEach((snapshot, index) => {
-        if (snapshot.exists) {
-          try { verifyMistakePracticeEventReplay(records[index], snapshot.data()); }
-          catch { throw new HttpsError('data-loss', 'mistake_practice_event_conflict'); }
-        } else {
-          tx.create(refs[index], records[index]);
-        }
+      const appVersion = ownerSnapshot.data()?.appVersion;
+      return typeof appVersion === 'string' ? appVersion.slice(0, 20) : null;
+    };
+    // зачем (Ревизор 22.10, ≈23–25 % всех чтений): раньше транзакция читала КАЖДЫЙ документ события ради проверки
+    // существования — ~50 тыс. NOT_FOUND в сутки. id события детерминированный, поэтому новые события создаются без
+    // чтения; счётчиков и наград по признаку «новое» тут нет. Если хоть одно уже есть, create валит коммит с
+    // ALREADY_EXISTS — тогда эта пачка идёт прежним путём со сверкой повтора (конфликт = data-loss).
+    let path: 'fast' | 'replay' = 'fast';
+    let appVersion: string | null = null;
+    try {
+      appVersion = await db.runTransaction(async (tx) => {
+        const [ownerSnapshot, ownerMapSnapshot] = await Promise.all([tx.get(ownerRef), tx.get(ownerMapRef)]);
+        const version = assertOwnerStable(ownerSnapshot, ownerMapSnapshot);
+        refs.forEach((ref, index) => tx.create(ref, records[index]));
+        return version;
       });
-    });
+    } catch (error) {
+      if (!isAlreadyExistsError(error)) throw error;
+      path = 'replay';
+      appVersion = await db.runTransaction(async (tx) => {
+        const [ownerSnapshot, ownerMapSnapshot, ...snapshots] = await Promise.all([
+          tx.get(ownerRef),
+          tx.get(ownerMapRef),
+          ...refs.map((ref) => tx.get(ref)),
+        ]);
+        const version = assertOwnerStable(ownerSnapshot, ownerMapSnapshot);
+        snapshots.forEach((snapshot, index) => {
+          if (snapshot.exists) {
+            try { verifyMistakePracticeEventReplay(records[index], snapshot.data()); }
+            catch { throw new HttpsError('data-loss', 'mistake_practice_event_conflict'); }
+          } else {
+            tx.create(refs[index], records[index]);
+          }
+        });
+        return version;
+      });
+    }
+    console.info('[MP-SYNC] append', JSON.stringify({ path, events: records.length, received: input.received, studyTarget: input.studyTarget, appVersion }));
     return Object.freeze({ ok: true, appended: input.received });
   }
   const ownerSnapshot = await db.collection('users').doc(binding.stableUid).get();

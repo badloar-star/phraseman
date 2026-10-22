@@ -260,6 +260,7 @@ async function flushPendingAppMessageVisibility(
   for (const operation of pending) {
     try {
       const stateRef = db.collection('users').doc(ownerUid).collection(APP_MESSAGE_STATES_COLLECTION).doc(operation.messageId);
+      let applied = false;
       await db.runTransaction(async (transaction: any) => {
         const stateSnap = await transaction.get(stateRef);
         const serverRevision = toMs(stateSnap?.exists ? stateSnap.data?.()?.visibilityRevision : 0, 0);
@@ -270,7 +271,16 @@ async function flushPendingAppMessageVisibility(
           updatedAtMs: operation.revision,
           visibilityRevision: operation.revision,
         }, { merge: true });
+        applied = true;
       });
+      // 🔴 Ревизор 3.164: скрытие принято сервером → и в копию личных, иначе при той же inboxRev копия вернула бы старое.
+      if (applied) {
+        await patchPersonalCopyState(ownerUid, operation.messageId, {
+          dismissedAtMs: operation.dismissedAtMs,
+          updatedAtMs: operation.revision,
+          visibilityRevision: operation.revision,
+        }, 'visibility');
+      }
     } catch (e) {
       // Keep the operation until a server snapshot acknowledges this revision.
       DebugLogger.error('app_messages:serverRevision', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -1718,6 +1728,39 @@ async function writeStoredPersonalInbox(ownerUid: string, copy: StoredPersonalIn
     .catch((error: unknown) => console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_personal', event: 'local_copy_write_failed', message: String(error).slice(0, 80) }))); // guard-ok: catch называет причину
 }
 
+/**
+ * Удачная запись состояния клиентом (прочитано, реакция, голос, скрытие) — сразу в копию личных.
+ *
+ * зачем (🔴 Ревизор 3.164 к 1b7a6f987): при той же inboxRev состояния берутся из копии, а свои записи клиента inboxRev не
+ * поднимают — без этого «прочитано», реакция и голос пропадали после перезапуска. Пишем ПОСЛЕ ответа сервера: копия равна
+ * тому, что вернул бы полный перечит, откат не нужен. Копии нет (версия ещё не известна) — ничего не делаем: следующий
+ * старт прочитает состояния из сети.
+ */
+async function patchPersonalCopyState(
+  ownerUid: string,
+  messageId: string,
+  patch: Partial<AppMessageState>,
+  kind: 'read' | 'reaction' | 'vote' | 'visibility',
+): Promise<void> {
+  try {
+    const stored = await readStoredPersonalInbox(ownerUid);
+    if (!stored) {
+      console.log('[INBOX-REV]', JSON.stringify({ reason: 'local_state_overlay', kind, result: 'no_copy' })); // guard-ok: ранний выход, без uid
+      return;
+    }
+    const existing = stored.states.find((state) => state.messageId === messageId);
+    const base: AppMessageState = existing ?? normalizeAppMessageState(messageId, {});
+    const nextState: AppMessageState = { ...base, ...patch, messageId };
+    const states = existing
+      ? stored.states.map((state) => (state.messageId === messageId ? nextState : state))
+      : [...stored.states, nextState];
+    await writeStoredPersonalInbox(ownerUid, { ...stored, states });
+    console.log('[INBOX-REV]', JSON.stringify({ reason: 'local_state_overlay', kind, result: existing ? 'updated' : 'added' })); // guard-ok: без uid
+  } catch (error) {
+    console.warn('[INBOX-REV]', JSON.stringify({ reason: 'local_state_overlay', kind, result: 'write_failed', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+  }
+}
+
 /** inboxRev этого владельца: свежий из восстановления, либо ждём, пока идущее восстановление старта прочитает документ. */
 async function resolveInboxRevForOwner(ownerUid: string): Promise<Readonly<{ rev: number | null; source: string }>> {
   try {
@@ -1939,6 +1982,7 @@ export async function markAppMessageRead(messageId: string): Promise<void> {
     },
     { merge: true },
   );
+  await patchPersonalCopyState(uid, messageId, { readAtMs: nowMs, updatedAtMs: nowMs }, 'read');
 }
 
 export async function setAppMessageReaction(
@@ -1958,6 +2002,7 @@ export async function setAppMessageReaction(
       stateRef.set({ messageId, reaction, updatedAtMs: nowMs }, { merge: true }),
       reactionRef.set({ messageId, userId: uid, reaction, updatedAtMs: nowMs }, { merge: true }),
     ]);
+    await patchPersonalCopyState(uid, messageId, { reaction, updatedAtMs: nowMs }, 'reaction');
     return;
   }
 
@@ -1965,6 +2010,7 @@ export async function setAppMessageReaction(
     stateRef.set({ messageId, reaction: null, updatedAtMs: nowMs }, { merge: true }),
     typeof reactionRef.delete === 'function' ? reactionRef.delete() : Promise.resolve(),
   ]);
+  await patchPersonalCopyState(uid, messageId, { reaction: null, updatedAtMs: nowMs }, 'reaction');
 }
 
 export async function setAppMessagePollVote(messageId: string, optionId: string): Promise<void> {
@@ -1982,6 +2028,7 @@ export async function setAppMessagePollVote(messageId: string, optionId: string)
     stateRef.set({ messageId, pollOptionId: cleanOptionId, updatedAtMs: nowMs }, { merge: true }),
     voteRef.set({ messageId, userId: uid, optionId: cleanOptionId, updatedAtMs: nowMs }, { merge: true }),
   ]);
+  await patchPersonalCopyState(uid, messageId, { pollOptionId: cleanOptionId, updatedAtMs: nowMs }, 'vote');
 }
 
 // ── «Письмо прилетело» — анимация ровно ОДИН раз на сообщение ──────────────────

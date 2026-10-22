@@ -79,6 +79,7 @@ export default function LearningV2TheorySheet({ visible, theory, lang, initialSe
           onBack={close}
           scrollToSection={initialSection}
           reportDataId={`learning_v2_theory_${theory.lesson}_${theory.lang}`}
+          level={null}
         />
       ) : null}
     </Modal>

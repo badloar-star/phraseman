@@ -22,6 +22,9 @@
 | She is not tasting the jam. | Вона не куштує варення. | is not tasting |
 | Is the zipper working? | Блискавка працює? | Is |
 
+**tip**
+Слова з розборів: іменник — річ або людина (the ice, a visitor); зв'язка — am, is, are; Present Continuous — форма «зараз» (I am watching), Present Simple — форма «зазвичай» з уроку 6 (I watch).
+
 ---
 
 ## 02 · Скріпка + дія з -ing *(відкрито одразу)*

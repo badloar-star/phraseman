@@ -22,6 +22,9 @@
 | I was cleaning my ankle boots when you called. | Я чистив черевики, коли ти подзвонив. | when |
 | She was sniffing the flowers while I was talking. | Вона нюхала квіти, поки я говорив. | while |
 
+**tip**
+У розборах «підмет» — це «хто» на початку фрази: I, she, the children. Від нього залежить was чи were.
+
 ---
 
 ## 02 · was / were + дія з -ing *(відкрито одразу)*

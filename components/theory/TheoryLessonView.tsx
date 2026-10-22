@@ -122,6 +122,8 @@ interface Props {
   scrollToSection?: string;
   /** id для «Сообщить об ошибке»; по умолчанию `lesson_theory_<урок>` основного курса. */
   reportDataId?: string;
+  /** Уровень в шапке «Урок N · A1». null — без уровня (Learning V2: у курса нет уровня на урок). По умолчанию A1, как в основном курсе. */
+  level?: string | null;
 }
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
@@ -238,6 +240,7 @@ export default function TheoryLessonView({
   onBack,
   scrollToSection,
   reportDataId,
+  level = 'A1',
 }: Props) {
   const { theme: t, themeMode, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -631,17 +634,12 @@ export default function TheoryLessonView({
       })
     : progressLabel;
 
-  const levelTag = triLang(lang, {
-    ru: `Урок ${lessonId} · A1`,
-    uk: `Урок ${lessonId} · A1`,
-    en: `Lesson ${lessonId} · A1`,
-    es: `Lección ${lessonId} · A1`,
-    'pt-BR': `Lição ${lessonId} · A1`,
-    vi: `Bài ${lessonId} · A1`,
-    id: `Pelajaran ${lessonId} · A1`,
-    tr: `Ders ${lessonId} · A1`,
-    pl: `Lekcja ${lessonId} · A1`,
+  // зачем (координатор 22.10, чистка видимых текстов): «· A1» было зашито для всех уроков — в Learning V2 урок 22 тоже назывался A1.
+  // Уровень теперь параметр: основной курс оставляет A1, Learning V2 передаёт null и показывает просто «Урок N».
+  const lessonWord = triLang(lang, {
+    ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja',
   });
+  const levelTag = level ? `${lessonWord} ${lessonId} · ${level}` : `${lessonWord} ${lessonId}`;
 
   const progressPct = Math.round(progress * 100);
 

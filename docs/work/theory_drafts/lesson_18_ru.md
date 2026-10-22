@@ -29,6 +29,9 @@
 | This cabin bag is too big. | Эта сумка для салона слишком большая. | too big |
 | We have such a good relationship. | У нас такие хорошие отношения. | such a |
 
+**tip**
+В разборах «прилагательное» — это признак: cheap, big, kind. К нему и добавляют -er и -est.
+
 ---
 
 ## 02 · -er than — «дешевле, чем» *(открыт сразу)*

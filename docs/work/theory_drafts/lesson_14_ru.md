@@ -28,6 +28,9 @@
 | I was cleaning my ankle boots when you called. | Я чистил ботильоны, когда ты позвонил. | when |
 | She was sniffing the flowers while I was talking. | Она нюхала цветы, пока я говорил. | while |
 
+**tip**
+В разборах «подлежащее» — это «кто» в начале фразы: I, she, the children. От него зависит was или were.
+
 ---
 
 ## 02 · was / were + действие с -ing *(открыт сразу)*

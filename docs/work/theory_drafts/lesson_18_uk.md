@@ -23,6 +23,9 @@
 | This cabin bag is too big. | Ця сумка для салону завелика. | too big |
 | We have such a good relationship. | У нас такі добрі стосунки. | such a |
 
+**tip**
+У розборах «прикметник» — це ознака: cheap, big, kind. До нього й додають -er та -est.
+
 ---
 
 ## 02 · -er than — «дешевший, ніж» *(відкрито одразу)*

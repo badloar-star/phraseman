@@ -23,6 +23,9 @@
 | There isn't a doorbell. | Дзвінка немає. | isn't |
 | The key is under the doormat. | Ключ під килимком. | under |
 
+**tip**
+Слова з розборів: однина — одна річ (a bank), множина — кілька речей (banks).
+
 ---
 
 ## 02 · There is — «тут є» *(відкрито одразу)*

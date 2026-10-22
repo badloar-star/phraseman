@@ -29,6 +29,9 @@
 | She is not tasting the jam. | Она не пробует варенье. | is not tasting |
 | Is the zipper working? | Молния работает? | Is |
 
+**tip**
+Слова из разборов: существительное — вещь или человек (the ice, a visitor); связка — am, is, are; Present Continuous — форма «сейчас» (I am watching), Present Simple — форма «обычно» из урока 6 (I watch).
+
 ---
 
 ## 02 · Скрепка + действие с -ing *(открыт сразу)*

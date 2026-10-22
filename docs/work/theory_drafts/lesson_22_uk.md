@@ -22,6 +22,9 @@
 | I want the hooded one. | Я хочу ту, що з каптуром. | one |
 | I need another payment method. | Мені потрібен інший спосіб оплати. | another |
 
+**tip**
+Слова з розборів: займенник — коротке слово замість імені (him, it, them); присвійний — слово «чий»: my, mine, yours.
+
 ---
 
 ## 02 · him, her, them — після дії *(відкрито одразу)*

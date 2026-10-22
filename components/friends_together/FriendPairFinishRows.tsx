@@ -49,8 +49,10 @@ function FriendPairFinishRows({ me, together, pending }: FriendPairFinishRowsPro
   const { glass, textScale } = useFriendsGlass();
   const { lang } = useLang();
   if (!together && !pending) return null;
-  const title = { color: glass.text, fontSize: 17 * textScale, lineHeight: 22 * textScale, fontWeight: '700' as const };
-  const sub = { color: glass.secondary, fontSize: 14 * textScale, lineHeight: 19 * textScale };
+  // зачем (D145, координатор 22.10 — красный typography_two_sizes_ratchet): обычный текст только 16 и 13 — строки карточки
+  // по общей шкале V2_TYPE: заголовок = headline 16/21 жирный, подпись = subtitle 13/18; иерархия весом и цветом.
+  const title = { color: glass.text, fontSize: 16 * textScale, lineHeight: 21 * textScale, fontWeight: '700' as const };
+  const sub = { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale }; // guard-ok: короткая строка макета «Финал занятия» (friends-full.html) — исключение PhraseMan 2.0
   return (
     <View style={styles.stack} testID="friend-pair-finish-rows">
       {together ? (

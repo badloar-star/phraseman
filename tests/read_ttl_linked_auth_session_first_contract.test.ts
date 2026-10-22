@@ -1,9 +1,11 @@
 // зачем (владелец 21.10, №45 шаг 6; Ревизор п.7): карточка аккаунта читала весь users/{stableId} ради linkedAuth даже
 // когда сессия уже вошла через Google/Apple. Сторож: сначала сессия, документ — только для гостя.
-import fs from 'node:fs';
 import path from 'node:path';
 
-const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8');
+import { readSource } from './helpers/read_source';
+
+// зачем (Ревизор 22.10, source_guard_eol_normalized): многострочные ожидания — по тексту с нормализованными концами строк
+const source = readSource(path.join(__dirname, '..', 'app', 'auth_provider.ts'));
 
 describe('getLinkedAuthInfo: привязка из сессии раньше чтения документа', () => {
   it('провайдер сессии отвечает без Firestore, гость читает документ как раньше', () => {

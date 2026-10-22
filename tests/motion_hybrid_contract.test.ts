@@ -36,7 +36,10 @@ const MODAL_LIKE = /(Modal|Toast|Sheet|Banner|Celebration|Prompt)\w*\.tsx$/;
 // законный вход, как гибрид. Это вход по содержимому, а не исключение по имени файла. KitSheetModal — общая
 // шторка кита на KIT_MOTION (как HybridSheetShell для гибрида).
 // зачем (Дизайн 12.10): FriendsAddSheetShell — общая шторка на KIT_MOTION (словарь кита), её потребители (StudyLanguageSheet и др.) входят через гибрид.
-const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal|KIT_MOTION|KitSheetModal|FriendsAddSheetShell/;
+// зачем (закон владельца 22.10 «назад/✕ в одном месте», Ревизор 22.10): шапка шторки SectionSheetHeader больше не рисует свой ✕ на
+// PressableHybrid — ✕ это общий ScreenCloseButton, а он сам нажимается через PressableHybrid (BackButton). Вход по содержимому тот же,
+// что был у прежнего импорта гибрида в этой шапке; сама шторка (её движение) — у владельца окна.
+const HYBRID_ENTRY = /motionVariant|HybridAlertShell|HybridSheetShell|FullscreenHybridEntrance|useRewardImpactHybrid|MotionModal|KIT_MOTION|KitSheetModal|FriendsAddSheetShell|<ScreenCloseButton\b/;
 
 function hasHybridEntry(file: string): boolean {
   return /Hybrid\w*\.tsx$/.test(path.basename(file))

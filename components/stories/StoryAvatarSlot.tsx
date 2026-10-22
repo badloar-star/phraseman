@@ -9,10 +9,11 @@
 // или человек тапнул по аватару с событиями. Флаг выключен / событий нет → слот не грузит ни одного модуля сторис, кроме лёгких констант, строк и хука данных.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
-import { TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
+import { TouchableOpacity, View, type GestureResponderEvent, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import type { Lang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
+import { sceneTouchTrace } from '../../app/scene_touch_trace';
 import { useStoryEvents } from '../../modules/story_events/use_story_events';
 import type { StoryEventList } from '../../modules/story_events/story_events_core';
 import { STORY_RING_COIN, STORY_RING_SLOT } from './story_ring_constants';
@@ -20,6 +21,7 @@ import type { StoryOrigin } from './StoryViewer';
 import { storyText } from './story_strings';
 
 const LOG = '[STORY-RING]';
+const AVATAR_LOG = '[AVATAR-TAP]';
 
 // зачем: ленивые подключения тяжёлых частей; кэш модуля — повторный require мгновенный. Отступ у require обязателен: сторож статического графа (cold_start_static_graph_guard) считает только require верхнего уровня.
 type StoryRingModule = typeof import('./StoryRing');
@@ -86,6 +88,45 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
 
   const closeViewer = useCallback(() => { setViewer(null); }, []);
 
+  // зачем (Сверка 22.10: аватар открывает профиль 3 из 5 — первое нажатие после входа на Главную и у верхнего края круга; правило
+  // «сперва логи»): [AVATAR-TAP] показывает, где кнопка на экране, дошло ли касание до неё, отдал ли ей responder нажатие и какая ветка
+  // сработала. Касание без onPress (палец сдвинулся / нажатие забрал прокрутчик) пишется при следующем касании.
+  const mountedAtRef = useRef(Date.now());
+  const frameRef = useRef('—'); // зачем: «рамка ещё не измерена»; не русская строка — сканер непереведённого UI принял бы её за текст экрана
+  const pressRef = useRef<{ seq: number; inAt: number; pageX: number; pageY: number; pressed: boolean } | null>(null);
+  const pressSeqRef = useRef(0);
+  const sinceMount = (): number => Date.now() - mountedAtRef.current;
+  const onButtonLayout = useCallback(() => {
+    const handle = buttonRef.current;
+    if (!handle || typeof handle.measureInWindow !== 'function') {
+      DebugLogger.info(AVATAR_LOG, `рамка: измерить нельзя (handle=${String(Boolean(handle))}) +${sinceMount()} мс`);
+      return;
+    }
+    handle.measureInWindow((x: number, y: number, w: number, h: number) => {
+      frameRef.current = `x=${Math.round(x)} y=${Math.round(y)} ${Math.round(w)}×${Math.round(h)}`;
+      DebugLogger.info(AVATAR_LOG, `рамка кнопки в окне ${frameRef.current} (hitSlop 6) +${sinceMount()} мс с монтажа`);
+    });
+  }, []);
+  const traceRawTouch = useMemo(() => sceneTouchTrace('home_avatar', () => ({ frame: frameRef.current, sinceMountMs: sinceMount() })), []);
+  const onPressIn = useCallback((event: GestureResponderEvent) => {
+    const prev = pressRef.current;
+    if (prev && !prev.pressed) DebugLogger.warn(AVATAR_LOG, `касание #${prev.seq} закончилось БЕЗ onPress (палец ушёл за кнопку или нажатие забрал другой ответчик)`);
+    const n = event.nativeEvent;
+    pressSeqRef.current += 1;
+    pressRef.current = { seq: pressSeqRef.current, inAt: Date.now(), pageX: n.pageX, pageY: n.pageY, pressed: false };
+    DebugLogger.info(AVATAR_LOG, `pressIn #${pressSeqRef.current} в кнопке ${Math.round(n.locationX)},${Math.round(n.locationY)} на экране ${Math.round(n.pageX)},${Math.round(n.pageY)} рамка ${frameRef.current} +${sinceMount()} мс с монтажа; сторис=${String(opensStories)} монета=${coinSource ? 'готова' : 'заглушка'}`);
+  }, [coinSource, opensStories]);
+  const onPressOut = useCallback((event: GestureResponderEvent) => {
+    const cur = pressRef.current;
+    const n = event.nativeEvent;
+    DebugLogger.info(AVATAR_LOG, `pressOut #${cur?.seq ?? '?'} держали ${cur ? Date.now() - cur.inAt : '?'} мс, сдвиг ${cur ? `${Math.round(n.pageX - cur.pageX)},${Math.round(n.pageY - cur.pageY)}` : '?'}`);
+  }, []);
+  const onPress = useCallback(() => {
+    if (pressRef.current) pressRef.current.pressed = true;
+    DebugLogger.info(AVATAR_LOG, `onPress #${pressRef.current?.seq ?? '?'} → ${opensStories ? 'просмотр сторис' : 'профиль'} +${sinceMount()} мс с монтажа`);
+    if (opensStories) open(); else onOpenProfile();
+  }, [onOpenProfile, open, opensStories]);
+
   const coin = (size: number): React.ReactElement => (coinSource ? (
     <Image testID="home-avatar-coin-rank" source={coinSource} style={{ width: size, height: size }} contentFit="contain" />
   ) : (
@@ -97,17 +138,23 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
 
   return (
     <>
-      <TouchableOpacity
-        ref={buttonRef}
-        testID="home-hero-avatar-button"
-        activeOpacity={0.82}
-        onPress={opensStories ? open : onOpenProfile}
-        accessibilityRole="button"
-        accessibilityLabel={ring ? storyText(lang, 'ringLabel') : profileLabel}
-        hitSlop={6}
-      >
-        {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : coin(STORY_RING_SLOT)}
-      </TouchableOpacity>
+      {/* зачем ([AVATAR-TAP]): обёртка без стиля только ловит сырое касание (onTouchStart не участвует в выборе ответчика) */}
+      <View onTouchStart={traceRawTouch}>
+        <TouchableOpacity
+          ref={buttonRef}
+          testID="home-hero-avatar-button"
+          activeOpacity={0.82}
+          onPress={onPress}
+          onPressIn={onPressIn}
+          onPressOut={onPressOut}
+          onLayout={onButtonLayout}
+          accessibilityRole="button"
+          accessibilityLabel={ring ? storyText(lang, 'ringLabel') : profileLabel}
+          hitSlop={6}
+        >
+          {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : coin(STORY_RING_SLOT)}
+        </TouchableOpacity>
+      </View>
       {viewer && Viewer ? (
         <Viewer lang={lang} events={viewer.events} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
       ) : null}

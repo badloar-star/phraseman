@@ -570,6 +570,22 @@ function PlayerProfileModal({ player, myInfo, onClose, onDismissed }: Props) {
     return () => clearTimeout(timer);
   }, [modalOpen, notifyDismissed]);
 
+  // зачем (Сверка 22.10: аватар на Главной открывает карточку 3 из 5; правило «сперва логи»): [AVATAR-TAP] — пришёл ли open в окно
+  // и показала ли его система (onShow), через сколько мс. Пара к логам кнопки в StoryAvatarSlot.
+  const openedAtRef = useRef<number | null>(null);
+  useEffect(() => {
+    DebugLogger.info('[AVATAR-TAP]', `окно профиля смонтировано (ленивый модуль загружен) open=${String(modalOpen)} isMe=${String(player?.isMe ?? null)}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: один раз на монтирование
+  }, []);
+  useEffect(() => {
+    if (modalOpen) openedAtRef.current = Date.now();
+    DebugLogger.info('[AVATAR-TAP]', `окно профиля open=${String(modalOpen)} isMe=${String(player?.isMe ?? null)}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: лог только на смену open
+  }, [modalOpen]);
+  const onModalShow = useCallback(() => {
+    DebugLogger.info('[AVATAR-TAP]', `окно профиля показано системой через ${openedAtRef.current === null ? '?' : Date.now() - openedAtRef.current} мс после open`);
+  }, []);
+
   useEffect(() => {
     if (modalOpen) return;
     slideAnim.setValue(60);
@@ -622,6 +638,7 @@ function PlayerProfileModal({ player, myInfo, onClose, onDismissed }: Props) {
       animationType="none"
       onRequestClose={handleHardwareBack}
       onDismiss={notifyDismissed}
+      onShow={onModalShow}
       hardwareAccelerated
       statusBarTranslucent
       navigationBarTranslucent

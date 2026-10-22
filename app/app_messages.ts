@@ -1597,6 +1597,72 @@ export type AppMessagesRefreshOutcome =
   | Readonly<{ source: 'network'; messages: number; userMessages: number; states: number }>
   | Readonly<{ source: 'error' }>;
 
+// ── Версия общей ленты (вопрос 27, владелец 22.10 «сначала безопасные») ─────────────────────────────────────────────
+// зачем: общая лента app_messages (до 80 документов) перечитывалась каждый старт, хотя меняется редко (публикация из
+// админки). Сервер (1 · Ядро) пишет remote_config/app.numbers.app_messages_feed_rev — мс последнего изменения ленты;
+// документ настроек и так читается раз в 6 ч. Та же версия и есть копия на телефоне → лента не читается (0 чтений).
+// Версии нет (сервер ещё не пишет) → прежний путь. Личные сообщения и состояния — как раньше.
+// Имя не начинается с app_messages: так ключ не путается с владельческими префиксами сообщений `app_messages_*:` (сторож cache_reset).
+const APP_MESSAGES_GLOBAL_FEED_CACHE_KEY = 'global_news_feed_copy_v1';
+/** Страховка: даже без смены версии общая лента перечитывается не реже раза в 7 дней. */
+export const APP_MESSAGES_GLOBAL_FEED_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+
+type StoredGlobalFeed = Readonly<{ rev: number; fetchedAtMs: number; messages: AppMessage[] }>;
+
+export type AppMessagesGlobalFeedDecision = Readonly<{
+  reuse: boolean;
+  reason: 'no_remote_rev' | 'no_local_copy' | 'rev_changed' | 'max_age' | 'same_rev';
+  remoteRev: number;
+  localRev: number | null;
+  ageMs: number | null;
+}>;
+
+export function decideAppMessagesGlobalFeedReuse(input: Readonly<{
+  remoteRev: number;
+  stored: StoredGlobalFeed | null;
+  nowMs: number;
+}>): AppMessagesGlobalFeedDecision {
+  const remoteRev = Number.isFinite(input.remoteRev) ? Math.max(0, Math.floor(input.remoteRev)) : 0;
+  const localRev = input.stored ? input.stored.rev : null;
+  const ageMs = input.stored ? input.nowMs - input.stored.fetchedAtMs : null;
+  const base = { remoteRev, localRev, ageMs };
+  if (remoteRev <= 0) return { reuse: false, reason: 'no_remote_rev', ...base };
+  if (!input.stored) return { reuse: false, reason: 'no_local_copy', ...base };
+  if (input.stored.rev !== remoteRev) return { reuse: false, reason: 'rev_changed', ...base };
+  if (ageMs === null || ageMs < 0 || ageMs >= APP_MESSAGES_GLOBAL_FEED_MAX_AGE_MS) return { reuse: false, reason: 'max_age', ...base };
+  return { reuse: true, reason: 'same_rev', ...base };
+}
+
+async function readStoredGlobalFeed(): Promise<StoredGlobalFeed | null> {
+  try {
+    const raw = await AsyncStorage.getItem(APP_MESSAGES_GLOBAL_FEED_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<StoredGlobalFeed>;
+    const rev = Math.floor(Number(parsed.rev));
+    const fetchedAtMs = Math.floor(Number(parsed.fetchedAtMs));
+    if (!Number.isFinite(rev) || rev <= 0 || !Number.isFinite(fetchedAtMs) || !Array.isArray(parsed.messages)) return null;
+    return { rev, fetchedAtMs, messages: parsed.messages };
+  } catch (error) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_feed', event: 'local_copy_unreadable', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return null;
+  }
+}
+
+async function writeStoredGlobalFeed(feed: StoredGlobalFeed): Promise<void> {
+  await AsyncStorage.setItem(APP_MESSAGES_GLOBAL_FEED_CACHE_KEY, JSON.stringify(feed))
+    .catch((error: unknown) => console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_feed', event: 'local_copy_write_failed', message: String(error).slice(0, 80) }))); // guard-ok: catch называет причину
+}
+
+async function readAppMessagesFeedRemoteRev(): Promise<number> {
+  try {
+    const { getRemoteNumber } = await import('./remote_flags');
+    return getRemoteNumber('app_messages_feed_rev');
+  } catch (error) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_feed', event: 'remote_rev_unavailable', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return 0;
+  }
+}
+
 export async function refreshAppMessagesSnapshotOnce(options: {
   force?: boolean;
   minIntervalMs?: number;
@@ -1647,8 +1713,18 @@ export async function refreshAppMessagesSnapshotOnce(options: {
           fsMod.limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT),
         ),
       );
+    const [feedRemoteRev, storedFeed] = await Promise.all([readAppMessagesFeedRemoteRev(), readStoredGlobalFeed()]);
+    const feedDecision = decideAppMessagesGlobalFeedReuse({ remoteRev: feedRemoteRev, stored: storedFeed, nowMs });
+    console.log('[READ-TTL]', JSON.stringify({ // guard-ok: решение «лента из кэша или из сети», без uid
+      area: 'app_messages_feed',
+      source: feedDecision.reuse ? 'cache' : 'network',
+      reason: feedDecision.reason,
+      remoteRev: feedDecision.remoteRev,
+      localRev: feedDecision.localRev,
+      ageMs: feedDecision.ageMs,
+    }));
     const [messagesSnap, userMessagesSnap, statesSnap, localMessages, localStates] = await Promise.all([
-      latest([APP_MESSAGES_COLLECTION], 'createdAtMs'),
+      feedDecision.reuse ? Promise.resolve(null) : latest([APP_MESSAGES_COLLECTION], 'createdAtMs'),
       latest(['users', uid, USER_MESSAGES_COLLECTION], 'createdAtMs')
         // Подколлекции может не быть / rules ещё не задеплоены — глобальная лента важнее.
         .catch(() => ({ docs: [] })),
@@ -1662,9 +1738,13 @@ export async function refreshAppMessagesSnapshotOnce(options: {
       readLocalPreviewMessages(uid),
       readLocalPreviewStates(uid),
     ]);
-    const messages = (messagesSnap.docs || []).map((docSnap: any) =>
-      normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}, nowMs),
-    );
+    const messages: AppMessage[] = messagesSnap
+      ? (messagesSnap.docs || []).map((docSnap: any) => normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}, nowMs))
+      : (storedFeed?.messages ?? []);
+    if (messagesSnap && feedDecision.remoteRev > 0) {
+      // Копию с версией храним только когда сервер версию пишет — иначе сравнивать не с чем.
+      await writeStoredGlobalFeed({ rev: feedDecision.remoteRev, fetchedAtMs: nowMs, messages });
+    }
     const userMessages = (userMessagesSnap.docs || []).map((docSnap: any) =>
       normalizeOwnedUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, uid, nowMs),
     ).filter((message: AppMessage | null): message is AppMessage => !!message);

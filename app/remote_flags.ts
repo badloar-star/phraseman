@@ -27,6 +27,11 @@ export type RemoteNumberKey =
   | 'paywall_v2_pct'
   | 'auth_link_cache_ttl_ms'
   | 'phone_state_cutover_percent'
+  // зачем (владелец 22.10, вопрос 27 «сначала безопасные»): версии общих данных — клиент тянет их из сети, только когда
+  // версия выросла. 0 / нет поля = сервер версию ещё не пишет → прежнее поведение. Пишет только сервер (1 · Ядро).
+  | 'app_messages_feed_rev'
+  | 'global_broadcast_rev'
+  | 'home_survey_rev'
   ;
 
 export type RemoteBoolKey =
@@ -221,6 +226,9 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   paywall_v2_pct: 100,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
   phone_state_cutover_percent: 0,
+  app_messages_feed_rev: 0,
+  global_broadcast_rev: 0,
+  home_survey_rev: 0,
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
@@ -385,6 +393,9 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   paywall_v2_pct: { min: 0, max: 100 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
   phone_state_cutover_percent: { min: 0, max: 100 },
+  app_messages_feed_rev: { min: 0, max: Number.MAX_SAFE_INTEGER },
+  global_broadcast_rev: { min: 0, max: Number.MAX_SAFE_INTEGER },
+  home_survey_rev: { min: 0, max: Number.MAX_SAFE_INTEGER },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
@@ -461,6 +472,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
   // local even if legacy keys are still present in an old Firestore document.
   const allowedNumbers = new Set<RemoteNumberKey>([
     'auth_link_cache_ttl_ms', 'phone_state_cutover_percent', 'paywall_v2_pct',
+    'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',

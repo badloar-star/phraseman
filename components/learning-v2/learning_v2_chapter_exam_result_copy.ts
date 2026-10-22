@@ -9,6 +9,8 @@ type Row = Readonly<Record<Lang9, string>>;
 const COPY = {
   score: { ru: "{x} из 12", uk: "{x} з 12", en: "{x} of 12", es: "{x} de 12", "pt-BR": "{x} de 12", vi: "{x}/12", id: "{x} dari 12", tr: "12'de {x}", pl: "{x} z 12" },
   passedTitle: { ru: "Экзамен сдан", uk: "Іспит складено", en: "Exam passed", es: "Examen aprobado", "pt-BR": "Exame aprovado", vi: "Đã đạt", id: "Lulus ujian", tr: "Sınavı geçtin", pl: "Egzamin zdany" },
+  // зачем (Сверка 22.10): «Почти получилось» при 0 из 12 нелепо — при 0–5 верных другой заголовок (черновик для Переводчика)
+  failedLowTitle: { ru: "Пока не вышло", uk: "Поки не вийшло", en: "Not this time", es: "Esta vez no", "pt-BR": "Ainda não foi", vi: "Lần này chưa đạt", id: "Belum berhasil", tr: "Bu sefer olmadı", pl: "Tym razem nie" },
   failedTitle: { ru: "Почти получилось", uk: "Майже вийшло", en: "Almost there", es: "Casi lo logras", "pt-BR": "Quase lá", vi: "Suýt đạt", id: "Hampir berhasil", tr: "Az kaldı", pl: "Prawie się udało" },
   unlocked: { ru: "Глава {n} открыта", uk: "Розділ {n} відкрито", en: "Chapter {n} unlocked", es: "Capítulo {n} desbloqueado", "pt-BR": "Capítulo {n} desbloqueado", vi: "Chương {n} đã mở", id: "Bab {n} terbuka", tr: "{n}. ünite açıldı", pl: "Rozdział {n} otwarty" },
   openedAlso: { ru: "Эпизоды {a}–{b} главы {n} тоже открыты, их можно пройти позже", uk: "Епізоди {a}–{b} розділу {n} теж відкриті — можна пройти, коли захочеш", en: "Episodes {a}–{b} of chapter {n} are open too — play them whenever you like", es: "Los episodios {a}–{b} del capítulo {n} también están abiertos: hazlos cuando quieras", "pt-BR": "Os episódios {a}–{b} do capítulo {n} também estão abertos — faça quando quiser", vi: "Tập {a}–{b} của chương {n} cũng đã mở — học khi nào bạn muốn", id: "Episode {a}–{b} bab {n} juga terbuka — kerjakan kapan saja", tr: "{n}. ünitenin {a}–{b}. bölümleri de açık — istediğin zaman geçebilirsin", pl: "Odcinki {a}–{b} rozdziału {n} też są otwarte — przejdź je, kiedy chcesz" },
@@ -35,19 +37,21 @@ export function learningV2ChapterExamResultCopy(
   return template.replace(/\{(\w+)\}/gu, (_, name: string) => String(vars[name] ?? ""));
 }
 
-const RU_WORDS: Readonly<Record<number, string>> = { 3: "три ошибки", 4: "четыре ошибки", 5: "пять ошибок", 6: "шесть ошибок", 7: "семь ошибок", 8: "восемь ошибок", 9: "девять ошибок", 10: "десять ошибок", 11: "одиннадцать ошибок", 12: "двенадцать ошибок" };
-const UK_WORDS: Readonly<Record<number, string>> = { 3: "три помилки", 4: "чотири помилки", 5: "п’ять помилок", 6: "шість помилок", 7: "сім помилок", 8: "вісім помилок", 9: "дев’ять помилок", 10: "десять помилок", 11: "одинадцять помилок", 12: "дванадцять помилок" };
+/** Заголовок итога «не сдан» по числу верных: 0–5 — «Пока не вышло», 6–9 — «Почти получилось» (Сверка 22.10). */
+export function learningV2ChapterExamFailedTitle(lang: string, score: number): string {
+  return learningV2ChapterExamResultCopy(lang, score <= 5 ? "failedLowTitle" : "failedTitle");
+}
 
 /**
- * «Чтобы сдать, нужно 10. Разберём три ошибки, и через час можно пересдать.» — с числом ошибок попытки.
- * зачем: при провале ошибок всегда 3–12 (сдано меньше 10 из 12), поэтому форма всегда множественная; ru/uk — числом-словом, как в
- * макете; остальные языки — числом (вычитано Переводчиком 22.10).
+ * «Чтобы сдать, нужно 10. Разберём 3 ошибки, и через час можно пересдать.» — с числом ошибок попытки.
+ * зачем: при провале ошибок всегда 3–12 (сдано меньше 10 из 12), поэтому форма всегда множественная. Число — цифрой на
+ * всех языках (Сверка 22.10: «двенадцать ошибок» словом читалось хуже, чем «12»); ru/uk: 3–4 — «ошибки», 5+ — «ошибок».
  */
 export function learningV2ChapterExamFailedBody(lang: string, mistakes: number): string {
   const k = Math.max(3, Math.min(12, mistakes));
   switch (lang) {
-    case "ru": return `Чтобы сдать, нужно 10. Разберём ${RU_WORDS[k]}, и через час можно пересдать.`;
-    case "uk": return `Щоб скласти, треба 10. Розберемо ${UK_WORDS[k]} — і за годину можна перескласти.`;
+    case "ru": return `Чтобы сдать, нужно 10. Разберём ${k} ${k <= 4 ? "ошибки" : "ошибок"}, и через час можно пересдать.`;
+    case "uk": return `Щоб скласти, треба 10. Розберемо ${k} ${k <= 4 ? "помилки" : "помилок"} — і за годину можна перескласти.`;
     case "es": return `Necesitas 10 para aprobar. Repasemos ${k} errores y en una hora puedes repetirlo.`;
     case "pt-BR": return `Você precisa de 10 para passar. Vamos revisar ${k} erros — em uma hora dá para refazer.`;
     case "vi": return `Cần 10 câu để đạt. Cùng xem lại ${k} lỗi — một giờ nữa có thể thi lại.`;

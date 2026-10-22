@@ -370,13 +370,15 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
 
       {explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
 
-      <LearningV2TaskCta
-        disabled={!canSubmit || resolved || phase === "processing"}
-        onPress={onSubmit}
-        style={[sx.submit, compact && { marginTop: 10 }]}
-      >
-        {learningV2ModeCheckLabelV1(interfaceLocale)}
-      </LearningV2TaskCta>
+      {props.hideInlineSubmit ? null : (
+        <LearningV2TaskCta
+          disabled={!canSubmit || resolved || phase === "processing"}
+          onPress={onSubmit}
+          style={[sx.submit, compact && { marginTop: 10 }]}
+        >
+          {learningV2ModeCheckLabelV1(interfaceLocale)}
+        </LearningV2TaskCta>
+      )}
     </View>
   );
 }

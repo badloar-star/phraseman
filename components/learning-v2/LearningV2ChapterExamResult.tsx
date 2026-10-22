@@ -15,6 +15,7 @@ import { learningV2ChapterIonIcon } from './icons/learningV2IonIcons';
 import { hexHue, seasonThemedArt } from './season/season_art';
 import {
   learningV2ChapterExamFailedBody,
+  learningV2ChapterExamFailedTitle,
   learningV2ChapterExamResultCopy,
   learningV2ChapterExamReviewSubtitle,
 } from './learning_v2_chapter_exam_result_copy';
@@ -78,7 +79,7 @@ export function LearningV2ChapterExamResultView(p: ResultProps) {
           </View>
         ) : null}
         <Text style={[styles.big, { color: g.text, marginTop: p.passed ? 16 : 20 }]}>{learningV2ChapterExamResultCopy(p.lang, 'score', { x: p.correct })}</Text>
-        <Text style={[styles.title, { color: g.text }]}>{learningV2ChapterExamResultCopy(p.lang, p.passed ? 'passedTitle' : 'failedTitle')}</Text>
+        <Text style={[styles.title, { color: g.text }]}>{p.passed ? learningV2ChapterExamResultCopy(p.lang, 'passedTitle') : learningV2ChapterExamFailedTitle(p.lang, p.correct)}</Text>
         <View style={styles.dots} accessibilityElementsHidden>
           {Array.from({ length: CHAPTER_EXAM_QUESTION_COUNT_V1 }, (_, i) => (
             // guard-ok: 12 неподвижных точек, порядок не меняется
@@ -149,7 +150,10 @@ export function LearningV2ChapterExamReviewView(p: ReviewProps) {
   const wrong = p.answers.filter((a) => !a.correct);
   const plate = { backgroundColor: g.opaqueCard, boxShadow: t.taskPlateShadow as never };
   return (
-    <ScrollView style={styles.flex} contentContainerStyle={[styles.review, { paddingTop: p.topInset + 8, paddingBottom: 34 + p.bottomInset }]}>
+    // зачем (Сверка 22.10, закон safe area): фон экрана идёт до часов без полосы другого цвета, а прокручиваемые карточки
+    // обрезаются по нижнему краю статус-бара и не заезжают под часы — отступ сверху у контейнера, не у содержимого
+    <View style={[styles.flex, { paddingTop: p.topInset }]}>
+    <ScrollView style={styles.flex} contentContainerStyle={[styles.review, { paddingTop: 8, paddingBottom: 34 + p.bottomInset }]}>
       <V2Pressable testID="chapter-exam-review-back" accessibilityLabel={learningV2ChapterExamResultCopy(p.lang, 'review')} onPress={p.onBack} style={[styles.round, plate]}>
         <BackGlyph size={20} color={g.text} />
       </V2Pressable>
@@ -179,6 +183,7 @@ export function LearningV2ChapterExamReviewView(p: ReviewProps) {
         </View>
       ))}
     </ScrollView>
+    </View>
   );
 }
 

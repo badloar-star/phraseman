@@ -19,6 +19,8 @@ const COPY = {
   // Во время экзамена (таблица Переводчика, раздел «Во время экзамена»)
   progress: { ru: "Экзамен · {i} / 12", uk: "Іспит · {i} / 12", en: "Exam · {i} / 12", es: "Examen · {i} / 12", "pt-BR": "Exame · {i} / 12", vi: "Bài thi · {i} / 12", id: "Ujian · {i} / 12", tr: "Sınav · {i} / 12", pl: "Egzamin · {i} / 12" },
   next: { ru: "Дальше", uk: "Далі", en: "Next", es: "Siguiente", "pt-BR": "Próximo", vi: "Tiếp", id: "Lanjut", tr: "Devam", pl: "Dalej" },
+  // зачем (Сверка 22.10): на экзамене одна попытка — после ошибки «Неверно», а не «Попробуй ещё раз» (на вычитку Переводчику)
+  wrong: { ru: "Неверно.", uk: "Неправильно.", en: "Incorrect.", es: "Incorrecto.", "pt-BR": "Incorreto.", vi: "Sai.", id: "Salah.", tr: "Yanlış.", pl: "Źle." },
 } as const satisfies Record<string, Row>;
 
 export type LearningV2ChapterExamCopyKey = keyof typeof COPY;

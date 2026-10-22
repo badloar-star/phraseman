@@ -326,7 +326,10 @@ function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfa
     });
     // зачем (Ревизор 22.10): авторский разбор варианта обычно называет правильный ответ — посреди экзамена это подсказка.
     // Роутеру — только вердикт «Верно / Неверно» без разбора (данные задания не передаём); разбор живёт в итоге.
-    setFeedback(resolveLearningV2ModeFeedbackV1({ interfaceLocale, modePayload: null, outcome: correct ? 'correct' : 'wrong', selectedResponseId: null, orderedResponseIds: [] }));
+    // зачем (Сверка 22.10): общий нейтральный вердикт для ошибки — «Попробуй ещё раз», а на экзамене попытка одна:
+    // только «Неверно» и «Дальше» (решение координатора)
+    const verdictFeedback = resolveLearningV2ModeFeedbackV1({ interfaceLocale, modePayload: null, outcome: correct ? 'correct' : 'wrong', selectedResponseId: null, orderedResponseIds: [] });
+    setFeedback(correct ? verdictFeedback : { ...verdictFeedback, text: learningV2ChapterExamCopy(interfaceLocale, 'wrong') });
     const parts = splitLearningV2TaskPromptV1({ family: interaction.family, prompt: interaction.prompt, interfaceLocale, modePayload: interaction.modePayload, interactionId: interaction.interactionId });
     const answerText = response.kind === 'choice_token'
       ? (options.find((o) => o.responseId === response.value)?.text ?? null)
@@ -375,10 +378,13 @@ function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfa
             explanation={null}
             learnerFeedback={feedback}
             referenceAudioState={speechText ? (playing ? 'playing' : 'idle') : 'unavailable'}
+            // зачем (Сверка 22.10): выбор только отмечает вариант — проверка кнопкой «Проверить» в подвале, как в макете;
+            // встроенная кнопка сборки/диктанта и крупный показ звучавшей фразы на экзамене скрыты (это подсказка ответа)
+            hideInlineSubmit
+            hideTranscriptReveal
             onPick={(responseId) => {
               if (verdict) return;
               setSelectedChoiceId(responseId);
-              evaluate({ kind: 'choice_token', value: responseId });
             }}
             onAppendToken={(responseId) => { if (!verdict) setOrderedIds((current) => [...current, responseId]); }}
             onUndoToken={() => { if (!verdict) setOrderedIds((current) => current.slice(0, -1)); }}

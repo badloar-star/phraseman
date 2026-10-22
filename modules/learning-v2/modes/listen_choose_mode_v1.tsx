@@ -318,7 +318,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
   // зачем (колонка «Предлагаем»): части строки задания — по правилам Learning V2 (task_prompt_parts_v1)
   const parts = useLearningV2TaskParts({ family: props.family, prompt, interfaceLocale, modePayload });
   // зачем (learning-v2.html lc-3/lc-5): после верного ответа или разбора фраза раскрывается текстом под кнопкой.
-  const revealText = resolved && modePayload?.family === "listen_choose" ? modePayload.referenceAudio?.transcript ?? null : null;
+  const revealText = resolved && !props.hideTranscriptReveal && modePayload?.family === "listen_choose" ? modePayload.referenceAudio?.transcript ?? null : null;
 
   return (
     // зачем (сверка с learning-v2.html lc, 05.10): заголовок слева 600; кнопка 128 по центру в 26; подпись 14; варианты в 26

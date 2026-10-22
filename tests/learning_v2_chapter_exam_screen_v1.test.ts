@@ -47,8 +47,52 @@ describe('chapter exam: no answer leaks mid-exam', () => {
 
   it('the exam screen passes the router only the verdict, never the task data feedback', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning-v2', 'chapter-exam.tsx'), 'utf8');
-    expect(src).toContain("setFeedback(resolveLearningV2ModeFeedbackV1({ interfaceLocale, modePayload: null,");
+    expect(src).toContain("const verdictFeedback = resolveLearningV2ModeFeedbackV1({ interfaceLocale, modePayload: null,");
     expect(src).not.toContain('setFeedback(fb)');
     expect(src).toContain('explanation={null}');
+  });
+});
+
+// зачем (Сверка 22.10, sverka-status §22): шесть дефектов показа экзамена — сторожим, чтобы не вернулись
+describe('chapter exam: Sverka defects stay fixed', () => {
+  const read = (...p: string[]) => fs.readFileSync(path.join(__dirname, '..', ...p), 'utf8');
+  const screen = read('app', 'learning-v2', 'chapter-exam.tsx');
+
+  it('one «Проверить»: the footer CTA; built-in builder/dictation submit is hidden on the exam', () => {
+    expect(screen).toContain('hideInlineSubmit');
+    for (const mode of ['phrase_builder_mode_v1.tsx', 'listen_build_dictation_mode_v1.tsx']) {
+      expect(read('modules', 'learning-v2', 'modes', mode)).toContain('props.hideInlineSubmit ? null');
+    }
+  });
+
+  it('wrong answer says «Неверно», not «Попробуй ещё раз»', () => {
+    const { learningV2ChapterExamCopy } = require('../components/learning-v2/learning_v2_chapter_exam_copy');
+    expect(learningV2ChapterExamCopy('ru', 'wrong')).toBe('Неверно.');
+    expect(screen).toContain("learningV2ChapterExamCopy(interfaceLocale, 'wrong')");
+  });
+
+  it('picking an option only selects it; the answer is not revealed on the card', () => {
+    const pick = screen.slice(screen.indexOf('onPick={'), screen.indexOf('onAppendToken='));
+    expect(pick).toContain('setSelectedChoiceId(responseId)');
+    expect(pick).not.toContain('evaluate(');
+    expect(screen).toContain('hideTranscriptReveal');
+    expect(read('modules', 'learning-v2', 'modes', 'listen_choose_mode_v1.tsx')).toContain('!props.hideTranscriptReveal');
+  });
+
+  it('failed title depends on the score; mistakes are written as digits', () => {
+    const copy = require('../components/learning-v2/learning_v2_chapter_exam_result_copy');
+    expect(copy.learningV2ChapterExamFailedTitle('ru', 0)).toBe('Пока не вышло');
+    expect(copy.learningV2ChapterExamFailedTitle('ru', 5)).toBe('Пока не вышло');
+    expect(copy.learningV2ChapterExamFailedTitle('ru', 6)).toBe('Почти получилось');
+    expect(copy.learningV2ChapterExamFailedTitle('ru', 9)).toBe('Почти получилось');
+    expect(copy.learningV2ChapterExamFailedBody('ru', 12)).toBe('Чтобы сдать, нужно 10. Разберём 12 ошибок, и через час можно пересдать.');
+    expect(copy.learningV2ChapterExamFailedBody('ru', 3)).toContain('Разберём 3 ошибки');
+    expect(copy.learningV2ChapterExamFailedBody('uk', 4)).toContain('Розберемо 4 помилки');
+  });
+
+  it('review content stays below the status bar (inset on the container, not on the scroll content)', () => {
+    const result = read('components', 'learning-v2', 'LearningV2ChapterExamResult.tsx');
+    expect(result).toContain('<View style={[styles.flex, { paddingTop: p.topInset }]}>');
+    expect(result).not.toContain('paddingTop: p.topInset + 8');
   });
 });

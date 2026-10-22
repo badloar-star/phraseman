@@ -281,13 +281,15 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
 
       {explanation ? <View style={sx.explainWrap}><Lv2Explain>{explanation}</Lv2Explain></View> : null}
 
-      <LearningV2TaskCta
-        style={compact ? { marginTop: 10 } : sx.cta}
-        disabled={!canSubmit || resolved || phase === "processing"}
-        onPress={onSubmit}
-      >
-        {learningV2ModeCheckLabelV1(interfaceLocale)}
-      </LearningV2TaskCta>
+      {props.hideInlineSubmit ? null : (
+        <LearningV2TaskCta
+          style={compact ? { marginTop: 10 } : sx.cta}
+          disabled={!canSubmit || resolved || phase === "processing"}
+          onPress={onSubmit}
+        >
+          {learningV2ModeCheckLabelV1(interfaceLocale)}
+        </LearningV2TaskCta>
+      )}
     </View>
   );
 }

@@ -8,6 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, { Easing as REasing, cancelAnimation, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import V2Pressable from '../v2/V2Pressable';
+import SheetSwipeClose, { SheetSwipeRoot } from '../modal_fx/SheetSwipeClose';
 import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
 import { useEnergy } from '../EnergyContext';
@@ -128,11 +129,14 @@ export default function LearningV2ChapterExamSheet({ visible, lessonOrdinal, cha
 
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
+      <SheetSwipeRoot>
       <View style={styles.root}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel={later}>
           {/* `.xdim` — токен затемнения экзамена */}
           <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: t.examScrim }, dimStyle]} />
         </Pressable>
+        {/* зачем (сторож «ручка ⇒ свайп», Ревизор 22.10): свайп вниз закрывает окно тем же onClose, что фон и «Позже» */}
+        <SheetSwipeClose name="chapter-exam-sheet" onClose={onClose}>
         <Animated.View
           accessibilityViewIsModal
           testID="chapter-exam-sheet"
@@ -166,7 +170,9 @@ export default function LearningV2ChapterExamSheet({ visible, lessonOrdinal, cha
             <Text style={[styles.secondaryText, { color: g.text }]}>{later}</Text>
           </V2Pressable>
         </Animated.View>
+        </SheetSwipeClose>
       </View>
+      </SheetSwipeRoot>
     </Modal>
   );
 }

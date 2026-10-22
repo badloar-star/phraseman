@@ -9,6 +9,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FlatList, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import SheetSwipeClose, { SheetSwipeRoot } from "../modal_fx/SheetSwipeClose";
 import Svg, { Circle } from "react-native-svg";
 
 import FlashcardsTrainingModeSheet from "../../app/flashcards/FlashcardsTrainingModeSheet";
@@ -433,8 +434,11 @@ export default function LearningV2DictionaryV2({ words, lessons, studyTarget, of
 
       {/* лист «Уроки»: отметить несколько, «Показать N слов» */}
       <Modal visible={lessonsSheetOpen} transparent animationType="fade" statusBarTranslucent onRequestClose={() => setLessonsSheetOpen(false)}>
+        <SheetSwipeRoot>
         <Pressable style={styles.dim} onPress={() => setLessonsSheetOpen(false)} accessibilityLabel={copy.close} />
-        <View style={[styles.sheet, { backgroundColor: g.opaqueCard, paddingBottom: Math.max(insets.bottom, 16) + 18 }]}>
+        {/* зачем (сторож «ручка ⇒ свайп», Ревизор 22.10): свайп вниз закрывает лист «Уроки» тем же путём, что фон; обёртка держит прижатие к низу */}
+        <SheetSwipeClose name="learning-v2-dictionary-lessons" onClose={() => setLessonsSheetOpen(false)} wrapStyle={styles.sheetWrap}>
+        <View style={[styles.sheet, styles.sheetInWrap, { backgroundColor: g.opaqueCard, paddingBottom: Math.max(insets.bottom, 16) + 18 }]}>
           <View style={[styles.grab, { backgroundColor: g.mutedText }]} />
           <Text style={[styles.sheetTitle, { color: g.text }]}>{copy.lessonsFilter}</Text>
           <Text style={[styles.sheetSub, { color: g.secondary }]}>{copy.lessonsSheetSub}</Text>
@@ -473,6 +477,8 @@ export default function LearningV2DictionaryV2({ words, lessons, studyTarget, of
             {copy.showWords(sheetWordCount)}
           </Lv2Cta>
         </View>
+        </SheetSwipeClose>
+        </SheetSwipeRoot>
       </Modal>
 
       <FlashcardsTrainingModeSheet
@@ -660,6 +666,8 @@ const styles = StyleSheet.create({
   emptyCta: { marginTop: 22, alignSelf: "stretch" },
   dim: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.55)" }, // theme-exempt: затемнение под шторкой — как `.dv-dim` в макете
   sheet: { position: "absolute", left: 0, right: 0, bottom: 0, borderTopLeftRadius: 30, borderTopRightRadius: 30, paddingTop: 10, paddingHorizontal: 20 },
+  sheetWrap: { position: "absolute", left: 0, right: 0, bottom: 0 },
+  sheetInWrap: { position: "relative" },
   grab: { width: 40, height: 5, borderRadius: 3, alignSelf: "center", marginBottom: 16, opacity: 0.6 },
   sheetTitle: { fontSize: 22, lineHeight: 28, fontWeight: "700", textAlign: "center" },
   sheetSub: { marginTop: 4, fontSize: 16, lineHeight: 21, textAlign: "center" },

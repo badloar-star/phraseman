@@ -18,7 +18,6 @@
     "app/hint.tsx",
     "app/language_welcome.tsx",
     "app/lesson_intro_screens.tsx",
-    "app/lesson_words.tsx",
     "app/lingman_playlist.tsx",
     "app/lingman_video_watch.tsx",
     "app/privacy_settings.tsx",

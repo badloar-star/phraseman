@@ -29,7 +29,8 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 import { PracticeCta, PracticeProgressRow, PracticeQuestionCard } from '../components/practice/PracticeStates';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
@@ -2771,7 +2772,7 @@ function WordsTrainingSkeleton({ glass, kicker, header }: { glass: ReturnType<ty
   );
 }
 
-function Training({ words, storageKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, headerTitle, onHeaderBack, devFakeStartRunes, devJumpToFinale }: { words:Word[]; storageKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; headerTitle: string; onHeaderBack: () => void; devFakeStartRunes?: number; devJumpToFinale?: boolean }) {
+function Training({ words, storageKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, headerTitle, devFakeStartRunes, devJumpToFinale }: { words:Word[]; storageKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; headerTitle: string; onHeaderBack: () => void; devFakeStartRunes?: number; devJumpToFinale?: boolean }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -3168,14 +3169,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   // зачем (redesign-round-1 «Словарь» вариант A, владелец 04.10): шапка — «назад», «1. Словарь» и под ним
   // «Узнавание · 0 / 37», справа сердца и монеты (`vhead` макета). Без hud — итог и скелет.
   const renderTrainingHeader = (subtitle?: string, hud?: React.ReactNode) => (
-    <View style={{ flexDirection:'row', alignItems:'center', gap:10, paddingHorizontal:12, paddingTop:12 }}>
-      <PracticeBackButton
-        glass={glass}
-        color={glass.text}
-        testID="lesson-words-header-back"
-        accessibilityLabel={pickTriLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-        onPress={onHeaderBack}
-      />
+    <View style={{ flexDirection:'row', alignItems:'center', gap:10, paddingLeft:20, paddingRight:12, minHeight:SCREEN_BACK_SIZE }}>
+      <ScreenBackSlot />
       <PracticeHeaderTitle glass={glass} title={headerTitle} subtitle={subtitle} />
       {hud}
     </View>
@@ -3736,17 +3731,19 @@ function LessonWords() {
     <ScreenGradient>
     <View style={{ flex:1, paddingTop: insets.top }}>
       <ContentWrap>
+      {/* зачем (закон владельца 22.10 «назад в одном месте»): одна общая кнопка первым ребёнком под безопасным верхом — и для списка,
+          и для тренировки (обе шапки вели в урок через goBackToLesson); в шапках — её место */}
+      <SafeTopBackButton
+        screen="lesson_words"
+        testID="lesson-words-header-back"
+        accessibilityLabel={pickTriLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+        onPress={goBackToLesson}
+      />
       {/* Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700. Во время тренировки шапку рисует сама
           тренировка (с подзаголовком, сердцами и монетами — макет «Словарь» A), здесь — список, загрузка, отказ. */}
       {trainingOwnsHeader ? null : (
-      <View style={{ flexDirection:'row', alignItems:'center', gap:10, paddingHorizontal:12, paddingTop:12 }}>
-        <PracticeBackButton
-          glass={glass}
-          color={glass.text}
-          testID="lesson-words-header-back"
-          accessibilityLabel={pickTriLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-          onPress={goBackToLesson}
-        />
+      <View style={{ flexDirection:'row', alignItems:'center', gap:10, paddingLeft:20, paddingRight:12, minHeight:SCREEN_BACK_SIZE }}>
+        <ScreenBackSlot />
         <PracticeHeaderTitle glass={glass} title={ws.title(lessonId)} />
       </View>
       )}

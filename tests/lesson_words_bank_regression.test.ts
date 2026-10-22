@@ -58,6 +58,17 @@ jest.mock('../app/lesson_premium_gate', () => ({ openLessonAccessGate: jest.fn()
 // зачем (d425ffa08, 13.10): шлюз урока рисует скелет LessonFirstFrame → LessonLoadingSkeleton → AppArtBackdrop (StyleSheet на заглушке
 // react-native падает при импорте); банку слов он не нужен.
 jest.mock('../modules/lesson_first_frame', () => ({ __esModule: true, default: () => null }));
+// зачем (закон владельца 22.10 «назад в одном месте»): «Слова урока» берут общую кнопку; её цепочка (стекло темы, StyleSheet)
+// на заглушке react-native падает при импорте, а банку слов кнопка не нужна.
+jest.mock('../components/v2/ScreenBackButton', () => ({
+  __esModule: true,
+  default: () => null,
+  SafeTopBackButton: () => null,
+  ScreenBackSlot: () => null,
+  ScreenBackZone: () => null,
+  SCREEN_BACK_SIZE: 48,
+  SCREEN_BACK_LEFT: 20,
+}));
 jest.mock('../app/vocabulary_target_gate', () => ({
   frenchVocabularyGateCopy: jest.fn(),
   vocabularyContentAvailableForTarget: jest.fn(() => true),

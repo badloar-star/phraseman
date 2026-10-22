@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточки эпизодов</title>
+<link rel="stylesheet" href="lesson-redesign.css">
+<!-- зачем (владелец 22.10 через координатора): «МЕНЯЙ ФОРМУ УРОКОВ, МНЕ НЕ НРАВИТСЯ ВОТ ЭТА ВЕРТИКАЛЬНАЯ КВАДРАТКА, ХОЧУ МАКЕТЫ».
+     4 формы карточек эпизодов на экране Сезона: верх как сейчас (урок, глава ⌄, «N из 8»), низ «Вся глава · Слова · Теория».
+     Урок 1, глава 1, 8 эпизодов — настоящие данные курса. Цвета — только токены текущей темы. Весь экран заново — lesson-screen-redesign.html. -->
+</head>
+<body class="t-ink">
+<div class="page">
+  <div class="top">
+    <div>
+      <h1>Форма карточек эпизодов — 4 варианта</h1>
+      <p>Урок 1, глава 1 «Первый рабочий день», 8 эпизодов. Для примера пройдено 3: видно «пройден», «дальше» и «закрыт». Верх и низ экрана — как сейчас. Весь экран урока заново — на странице lesson-screen-redesign.html.</p>
+    </div>
+    <div class="themes" role="group" aria-label="Тема">
+      <button data-t="t-ink" aria-pressed="true">Сумерки · светлая</button>
+      <button data-t="t-marine" aria-pressed="false">Океан · тёмная</button>
+      <button data-t="t-graphite" aria-pressed="false">Графит · тёмная</button>
+    </div>
+  </div>
+  <div class="law">
+    <span>Без вертикальных квадратов</span>
+    <span>Номер эпизода на каждой карточке</span>
+    <span>Пройден · дальше · закрыт</span>
+    <span>Только оттенки текущей темы, без узоров</span>
+    <span>Названия ≤ 2 слов</span>
+  </div>
+
+  <section class="variant">
+    <div class="row">
+      <div class="cell"><div id="k1"></div><div class="lab">1 · Билет — широкая полоса</div></div>
+      <div class="cell"><div id="k2"></div><div class="lab">2 · Таймлайн — тонкие строки</div></div>
+      <div class="cell"><div id="k3"></div><div class="lab">3 · Станции на пути</div></div>
+      <div class="cell"><div id="k4"></div><div class="lab">4 · Плитки 2 в ряд</div></div>
+    </div>
+    <div class="row">
+      <div class="notes"><h3>Билет</h3><ul><li>Крупный номер, название, фраза — читается как расписание.</li><li>Следующий билет выше и в цвете темы.</li></ul></div>
+      <div class="notes"><h3>Таймлайн</h3><ul><li>Самая плотная форма: вся глава почти без прокрутки.</li><li>Линия показывает, сколько пройдено.</li></ul></div>
+      <div class="notes"><h3>Станции на пути</h3><ul><li>Путь ведёт глаз к следующему эпизоду.</li><li>Без картинок и узоров — только линия и круги цвета темы.</li></ul></div>
+      <div class="notes"><h3>Плитки 2 в ряд</h3><ul><li>Плоские и широкие, а не вертикальные квадраты.</li><li>Вся глава на одном экране, следующая залита цветом темы.</li></ul></div>
+    </div>
+  </section>
+
+  <section class="variant">
+    <h2>Короткие названия эпизодов</h2>
+    <p class="why">Правило владельца 22.10: не больше 2 слов. Предложение для главы 1 урока 1; рядом — как сейчас в курсе.</p>
+    <div id="names"></div>
+  </section>
+</div>
+<script src="lesson-redesign.js"></script>
+<script>
+  (function () {
+    const L = window.LR.L1;
+    const put = (id, html) => { document.getElementById(id).innerHTML = html; };
+    put('k1', LR.CARDS.ticket(L)); put('k2', LR.CARDS.timeline(L)); put('k3', LR.CARDS.path(L)); put('k4', LR.CARDS.tiles(L));
+    put('names', LR.namesTable(L, [1]));
+    LR.wireThemes();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* lesson-redesign.css — экран «Урок» 2.0: темы, телефон 390×844, кнопки одного стиля.
+   зачем (владелец 22.10 через координатора): «МЕНЯЙ ФОРМУ УРОКОВ… ВСЁ ДОЛЖНО БЫТЬ МАКСИМАЛЬНО ЭРГОНОМИЧНО… ВСЕ КНОПКИ — В ОДНОМ СТИЛЕ»
+   и закон «ЦВЕТА — СТРОГО ЦВЕТА И ОТТЕНКИ ТЕКУЩЕЙ ТЕМЫ». Каждый цвет ниже — токен приложения (liquidGlassTokens в
+   constants/liquidGlassThemePalette.ts), значения сняты из кода 22.10; оттенки — только color-mix этих же токенов.
+   Без текстур и узоров. Шрифт Inter, текст по D145: обычный 16 и 13, заголовки 20/24/26. */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+
+/* ── темы: «Сумерки» ink · max · светлая; «Океан» marine · max · тёмная; «Графит» graphite · calm · тёмная (по умолчанию) ── */
+.t-ink {
+  --bgT: #F3F4FD; --bgM: #EAEBFE; --bgB: #ECE4F7; --card: #FCFCFF; --sheet: #FBFBFE; --ctl: #DBDDEC;
+  --tx: #17181E; --sec: #595A63; --mut: #5E5F67; --line: #50527124; --sel: #2A2B4114;
+  --cta: #1D1D2F; --ctaInk: #FFFFFF; --acc: #5F5CB1; --accInk: #FFFFFF; --accTx: #514EA1; --accSoft: #E6E9FFF7; --accTile: #D8DBFDF7;
+  --good: #006F30; --bad: #AB3837; --shTint: #363659;
+  --sh: 0 10px 26px -14px color-mix(in srgb, var(--shTint) 34%, transparent), inset 0 1px 0 color-mix(in srgb, var(--card) 92%, transparent);
+  --bezel: var(--tx); color-scheme: light;
+}
+.t-marine {
+  --bgT: #002936; --bgM: #000F16; --bgB: #001B17; --card: #002027; --sheet: #03171C; --ctl: #123037;
+  --tx: #F6FBFD; --sec: #B8CFD6; --mut: #98ACB1; --line: #ACEAFA26; --sel: #55C9E433;
+  --cta: #D0EAED; --ctaInk: #010708; --acc: #5CCFEB; --accInk: #001A22; --accTx: #5CCFEB; --accSoft: #006C859E; --accTile: #00475AF0;
+  --good: #73CB87; --bad: #ED756E; --shTint: #000000;
+  --sh: 0 12px 28px -14px color-mix(in srgb, var(--shTint) 70%, transparent), inset 0 1px 0 color-mix(in srgb, var(--tx) 6%, transparent);
+  --bezel: var(--ctl); color-scheme: dark;
+}
+.t-graphite {
+  --bgT: #181A1F; --bgM: #0C0D10; --bgB: #16181D; --card: #151517; --sheet: #222429; --ctl: #222429;
+  --tx: #FFFFFF; --sec: #B8B9BD; --mut: #B8B9BD; --line: #FFFFFF17; --sel: #B4BCCF30;
+  --cta: #F2F1F6; --ctaInk: #0B0C0E; --acc: #F2F1F6; --accInk: #0B0C0E; --accTx: #F2F1F6; --accSoft: #B4BCCF30; --accTile: #222429;
+  --good: #73CB87; --bad: #ED756E; --shTint: #000000;
+  --sh: 0 12px 28px -14px color-mix(in srgb, var(--shTint) 70%, transparent), inset 0 1px 0 color-mix(in srgb, var(--tx) 6%, transparent);
+  --bezel: var(--sheet); color-scheme: dark;
+}
+
+/* ── страница с макетами (не экран приложения) ── */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bgM); color: var(--tx); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 22px; }
+button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; }
+.page { max-width: 1760px; margin: 0 auto; padding: 28px 24px 80px; }
+.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 28px; }
+.top h1 { margin: 0; font-size: 26px; line-height: 31px; font-weight: 800; letter-spacing: -0.4px; text-wrap: balance; }
+.top p { margin: 6px 0 0; color: var(--sec); max-width: 760px; }
+.themes { display: flex; gap: 8px; flex-wrap: wrap; }
+.themes button { height: 40px; padding: 0 16px; border-radius: 20px; background: var(--ctl); font-size: 13px; font-weight: 700; }
+.themes button[aria-pressed="true"] { background: var(--cta); color: var(--ctaInk); }
+.law { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.law span { font-size: 13px; line-height: 18px; padding: 7px 12px; border-radius: 14px; background: var(--card); box-shadow: var(--sh); color: var(--sec); }
+.variant { margin-top: 44px; }
+.variant > h2 { margin: 0; font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -0.3px; }
+.variant > .why { margin: 6px 0 0; color: var(--sec); max-width: 900px; }
+.row { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 34px 28px; align-items: flex-start; }
+.cell { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cell .lab { font-size: 13px; line-height: 18px; font-weight: 700; color: var(--sec); }
+.notes { flex: 1 1 280px; max-width: 380px; padding: 18px 20px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); }
+.notes h3 { margin: 0 0 8px; font-size: 16px; line-height: 21px; font-weight: 700; }
+.notes ul { margin: 0; padding-left: 18px; color: var(--sec); }
+.notes li + li { margin-top: 6px; }
+.names { margin-top: 18px; border-collapse: collapse; background: var(--card); box-shadow: var(--sh); border-radius: 18px; overflow: hidden; }
+.names th, .names td { text-align: left; padding: 9px 14px; font-size: 13px; line-height: 18px; }
+.names th { color: var(--sec); font-weight: 700; }
+.names tr + tr td { box-shadow: inset 0 1px 0 var(--line); }
+.names td.new { font-weight: 700; color: var(--tx); }
+.names td.old { color: var(--sec); }
+.tablewrap { overflow-x: auto; }
+
+/* ── телефон ── */
+.dev { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none;
+  background: linear-gradient(180deg, var(--bgT) 0%, var(--bgM) 55%, var(--bgB) 100%); color: var(--tx);
+  box-shadow: 0 0 0 9px var(--bezel), 0 32px 60px -28px color-mix(in srgb, var(--shTint) 80%, transparent); }
+.sb { height: 50px; padding: 18px 30px 0 34px; display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; line-height: 20px; }
+.sb .sbr { display: flex; align-items: center; gap: 6px; }
+.home { position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); z-index: 60; }
+.scr { position: absolute; left: 0; right: 0; top: 50px; bottom: 0; overflow: hidden; }
+.pad { padding: 0 16px; }
+
+/* шапка: «назад» всегда слева сверху, урок — пилюля, справа энергия и монеты */
+.hdr { height: 52px; padding: 4px 16px 0; display: flex; align-items: center; gap: 10px; }
+.rb { width: 44px; height: 44px; border-radius: 22px; flex: none; display: flex; align-items: center; justify-content: center; background: var(--card); box-shadow: var(--sh); color: var(--tx); }
+.lp { height: 44px; padding: 0 14px 0 16px; border-radius: 22px; display: inline-flex; align-items: center; gap: 6px; background: var(--card); box-shadow: var(--sh); font-size: 16px; font-weight: 700; }
+.sp { flex: 1; }
+.stat { height: 44px; padding: 0 14px; border-radius: 22px; display: inline-flex; align-items: center; gap: 12px; background: var(--card); box-shadow: var(--sh); font-size: 16px; font-weight: 700; }
+.stat .en, .stat .co { display: inline-flex; align-items: center; gap: 4px; }
+.stat .en { color: var(--accTx); }
+.stat .en b { color: var(--tx); font-weight: 700; }
+.stat img { width: 20px; height: 20px; }
+
+/* заголовок урока */
+.lt { padding: 14px 20px 0; }
+.lt .h1 { font-size: 26px; line-height: 31px; font-weight: 800; letter-spacing: -0.4px; text-wrap: balance; }
+.lt .cap { margin-top: 4px; font-size: 13px; line-height: 18px; color: var(--sec); }
+
+/* кнопки одного стиля: главная — сплошная пилюля темы; вторая — тон «контрол»; круглая — карточка */
+.btn { height: 54px; border-radius: 27px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--cta); color: var(--ctaInk); font-size: 16px; font-weight: 700; box-shadow: 0 12px 24px -14px color-mix(in srgb, var(--cta) 70%, transparent); }
+.btn2 { height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px;
+  background: var(--ctl); color: var(--tx); font-size: 16px; font-weight: 700; }
+.btn2 .n { font-size: 13px; font-weight: 700; color: var(--sec); }
+.chip { height: 36px; border-radius: 18px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; flex: none;
+  background: var(--ctl); color: var(--tx); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.chip.on { background: var(--cta); color: var(--ctaInk); }
+.chip.off { color: var(--mut); }
+.tools { display: flex; gap: 10px; }
+.tools .btn2 { flex: 1; }
+
+/* закреплённый низ: подложка из фона темы, чтобы список не лежал под кнопками */
+.dock { position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 16px 30px; display: flex; flex-direction: column; gap: 10px; z-index: 20;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bgB) 0%, transparent) 0%, var(--bgB) 26px); }
+
+/* карточка-плашка (стиль «Тень»: без обводки — тон и мягкая тень) */
+.card { border-radius: 22px; background: var(--card); box-shadow: var(--sh); }
+
+/* состояния эпизода — одинаковые во всех вариантах */
+.st { width: 32px; height: 32px; border-radius: 16px; flex: none; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; }
+.st.done { background: color-mix(in srgb, var(--good) 16%, var(--card)); color: var(--good); }
+.st.next { background: var(--acc); color: var(--accInk); }
+.st.locked { background: var(--ctl); color: var(--mut); }
+.st.exam { background: var(--ctl); color: var(--mut); }
+.t16 { font-size: 16px; line-height: 21px; font-weight: 700; }
+.t13 { font-size: 13px; line-height: 18px; color: var(--sec); }
+.mute { color: var(--mut); }
+.accTx { color: var(--accTx); }
+.ell { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kick { font-size: 13px; line-height: 18px; font-weight: 700; color: var(--accTx); }
+
+/* шторка */
+.veil { position: absolute; inset: 0; z-index: 40; background: color-mix(in srgb, var(--shTint) 46%, transparent); }
+.t-ink .veil { background: color-mix(in srgb, var(--tx) 30%, transparent); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 41; border-radius: 32px 32px 0 0; background: var(--sheet);
+  box-shadow: 0 -18px 40px -18px color-mix(in srgb, var(--shTint) 60%, transparent); padding: 10px 16px 34px; }
+.grab { width: 40px; height: 5px; border-radius: 3px; margin: 0 auto 12px; background: var(--ctl); }
+/* на шторке кнопки — свой оттенок: у «Графита» шторка и контрол одного тона (#222429), кнопка бы пропала; оттенок — текст темы поверх шторки */
+.sheet .btn2, .sheet .xb, .sheet .chip:not(.on), .sheet .grab { background: color-mix(in srgb, var(--tx) 9%, var(--sheet)); }
+.shead { display: flex; align-items: center; justify-content: space-between; padding: 0 4px 10px; }
+.shead .t { font-size: 20px; line-height: 26px; font-weight: 800; }
+.xb { width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; background: var(--ctl); color: var(--tx); }
+
+/* подсказка «тап» в кадре выбора — тонкое кольцо цвета текста темы (2.0: тонкая полупрозрачная обводка разрешена) */
+.tap { box-shadow: 0 0 0 2px color-mix(in srgb, var(--tx) 55%, transparent), var(--sh) !important; }
+.toast { position: absolute; left: 16px; right: 16px; z-index: 45; border-radius: 18px; padding: 12px 14px; display: flex; gap: 10px; align-items: center;
+  background: var(--tx); color: var(--card); font-size: 13px; line-height: 18px; font-weight: 700; }
+
+@media (max-width: 440px) {
+  .page { padding: 18px 16px 60px; }
+  .dev { transform-origin: top left; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

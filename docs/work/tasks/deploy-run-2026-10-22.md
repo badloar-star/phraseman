@@ -151,3 +151,8 @@ Governance-ID: TG-F9A463DCBAE5
   - accountDeleteRetryCron: -00031-bor → **-00032-fej**, расписание `every 120 minutes` ENABLED.
   - Код удаления между шагами не менялся (git log по account_delete*.ts — пусто).
   - Первые логи 09:36–10:00Z: error 0, warn 0. 15 минут меток D189 идут.
+
+- **mistakePracticeSyncEvents** (bef7c9246, «да» владельца после ✅ Ревизора) — выложена 11:58Z из чистого HEAD 14a853b3a.
+  - Ревизия: -00014-fiz → **-00015-lim**. Откат: `gcloud run services update-traffic mistakepracticesyncevents --to-revisions=mistakepracticesyncevents-00014-fiz=100 --region us-central1`.
+  - Отсчёт чтений до выкладки (24 ч на 11:53Z): всего 234 494, NOT_FOUND 49 356, LOOKUP 87 682, QUERY 97 456. Повторный замер — 23.10 после 12:00Z.
+  - 15 минут логов [MP-SYNC] идут.

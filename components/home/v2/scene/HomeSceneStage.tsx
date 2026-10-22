@@ -22,6 +22,7 @@ import { useEnergyCountdown } from '../../../EnergyContext';
 import { ThemedArtLayers } from '../../../theme/ThemedArtLayers';
 import V2Pressable from '../../../v2/V2Pressable';
 import { useTabPillTop } from '../../../../hooks/use-tab-content-bottom-pad';
+import { useAfterFirstFrame } from '../../../../hooks/use-after-first-frame';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
 import { homeSceneStageHeight } from './home_scene_fit';
 import { homeSceneWarmTone } from './home_scene_warm_tone';
@@ -90,6 +91,7 @@ export default function HomeSceneStage(props: Props) {
 const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0 }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
+  const heroReady = useAfterFirstFrame('home:hero'); // зачем (ускорение первого кадра; координатор 22.10): герой — со 2-го кадра тем же FadeIn
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
   const pillTop = useTabPillTop();
@@ -146,7 +148,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       <View style={s.topSpace} />
       {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота, поверх текста допустимо), крупный — не выше свободного места */}
       <View style={s.heroSpace} pointerEvents="none">
-        {art ? (
+        {art && heroReady ? (
           <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[heroBounded ? s.heroBounded : s.hero, artDim ? s.heroDim : null]}>
             <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
           </Animated.View>

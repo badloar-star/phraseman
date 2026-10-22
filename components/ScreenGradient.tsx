@@ -685,9 +685,14 @@ interface Props {
    * на границе inset она расходилась с копией оболочки. bleedTop (dp) поднимает слой полотна над верхом страницы на inset: геометрия совпадает с оболочкой, пиксели те же, шва нет.
    */
   bleedTop?: number;
+  /**
+   * зачем (ускорение первого кадра Главной; координатор 22.10): пятна темы (SVG трёх радиалов) — со 2-го кадра тем же FadeIn, что и
+   * герой «Сцены»; итоговый вид прежний. Включает только оболочка вкладок для своего фона.
+   */
+  deferGlow?: boolean;
 }
 
-function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed, artBackdrop, topFade, bleedTop = 0 }: Props) {
+function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed, artBackdrop, deferGlow = false, topFade, bleedTop = 0 }: Props) {
   const { theme: t, themeMode } = useTheme();
   const reduceMotion = useReduceMotionEnabled();
   const isNested = useContext(GradientActiveCtx);
@@ -752,7 +757,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   // зачем (2.0, владелец 24.09): один фон на все экраны — графит с мягкими пятнами
   // света (V2Backdrop), вместо орбов/артов тем. Темы меняют только оттенок (D38/D41).
   // false — вернуть прежний фон тем одной строкой.
-  const backgroundLayers = V2_BACKDROP_ENABLED ? <V2Backdrop /> : (
+  const backgroundLayers = V2_BACKDROP_ENABLED ? <V2Backdrop deferGlow={deferGlow} /> : (
     <>
       {bgLayers.map(layer => renderBackgroundLayer(layer))}
       {fixedArtBackdrop ? <AppArtBackdrop name={fixedArtBackdrop} /> : routeArtBackdropEnabled ? <AppRouteArtBackdrop /> : null}

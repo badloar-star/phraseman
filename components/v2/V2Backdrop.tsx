@@ -4,6 +4,8 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
+import { useAfterFirstFrame } from '../../hooks/use-after-first-frame';
 import { useV2Palette } from './useV2Palette';
 
 // зачем (темы 2.0, «Максимум»): три мягких пятна цвета темы — ровно как в макете
@@ -40,7 +42,15 @@ const ThemeGlow = memo(function ThemeGlow({ colors }: { colors: readonly [string
  * Фон экранов 2.0: ровный тёмный с едва заметным светлым верхом.
  * Статичный градиент: без анимаций и без перерисовки при скролле.
  */
-function V2Backdrop() {
+/** Проявление пятен со 2-го кадра — тот же FadeIn, что у героя «Сцены» (280 мс, сильное ease-out). */
+const GLOW_EASE = Easing.bezier(0.23, 1, 0.32, 1);
+
+type V2BackdropProps = Readonly<{
+  /** Пятна темы — со 2-го кадра тем же FadeIn (фон оболочки вкладок; координатор 22.10). Итоговый вид прежний. */
+  deferGlow?: boolean;
+}>;
+
+function V2Backdrop({ deferGlow = false }: V2BackdropProps) {
   const p = useV2Palette();
   const { liquidGlassThemeId, liquidGlassIntensity, liquidGlassAppearance } = useTheme();
   // зачем: владелец 24.09 — «пятна света на фоне убрать»: фон ровный тёмный,
@@ -50,6 +60,10 @@ function V2Backdrop() {
   // есть непрозрачное пятно — рисуем один статичный слой, нет — слоя нет вовсе.
   const tokens = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity });
   const glow = tokens.bgGlow.some(c => opacityOf(c) > 0) ? tokens.bgGlow : null;
+  // зачем (ускорение первого кадра Главной; координатор 22.10: «пятна НЕ убирать — на первом кадре их нет, со 2-го тихо проявляются
+  // тем же FadeIn, что и герой»): SVG трёх радиалов не растеризуется на первом кадре; смонтирован один раз — смена вкладок его не трогает
+  const glowReady = useAfterFirstFrame('backdrop:glow', deferGlow && glow !== null);
+  const reduceMotion = useReducedMotion();
   return (
     <>
       <LinearGradient
@@ -59,7 +73,13 @@ function V2Backdrop() {
         end={{ x: 0.5, y: 0.6 }}
         style={StyleSheet.absoluteFill}
       />
-      {glow ? <ThemeGlow colors={glow} /> : null}
+      {glow && glowReady ? (
+        deferGlow && !reduceMotion ? (
+          <Animated.View pointerEvents="none" entering={FadeIn.duration(280).easing(GLOW_EASE)} style={StyleSheet.absoluteFill}>
+            <ThemeGlow colors={glow} />
+          </Animated.View>
+        ) : <ThemeGlow colors={glow} />
+      ) : null}
     </>
   );
 }

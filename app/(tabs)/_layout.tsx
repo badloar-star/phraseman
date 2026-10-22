@@ -814,6 +814,8 @@ function TabScaffold({
       artBackdrop={scaffoldArtBackdrop}
       style={{ flex: 1 }}
       staticParallaxY={scaffoldStaticParallaxY}
+      // зачем (ускорение первого кадра Главной, координатор 22.10): пятна темы фона вкладок — со 2-го кадра тем же FadeIn, что и герой
+      deferGlow
     >
       {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}

@@ -6,7 +6,7 @@
 // Данные из сборки, без сети; прогресс заданий живёт в памяти шторки. Журнал [V2-THEORY].
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View, type BoxShadowValue } from "react-native";
 
 import { useStableSafeAreaInsets } from "../../app/stable_safe_area_metrics";
 import { triLang, type Lang } from "../../constants/i18n";
@@ -19,8 +19,18 @@ import ThreeTileChoice from "../theory/ThreeTileChoice";
 import WordBankBuilder from "../theory/WordBankBuilder";
 import { splitTheoryHighlight } from "../theory/highlight";
 import { lv2Alpha, Lv2Cta, useLv2Glass, type Lv2Glass } from "./LearningV2Glass";
+import { lv2TaskTokens } from "./learning_v2_task_theme_tokens";
 
 const LOG = "[V2-THEORY]";
+/** `.fx s` макета lesson-theory.html: «неверно» в теории — янтарный, а не красный вердикт заданий. */
+const THEORY_WRONG = "#B5651D"; // theme-exempt: цвет `.fx s` макета теории, один во всех темах
+/** `.tsh` макета: тень выезжающей панели `0 -18px 40px -18px rgba(0,0,0,.5)`. */
+const SHEET_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: -18, blurRadius: 40, spreadDistance: -18, color: "rgba(0,0,0,0.5)" }]; // theme-exempt: тень шторки из макета, одна во всех темах
+
+/** Строки формулы: части с «:» («сейчас: am / is / are + …») — каждая своей строкой (`.frm div`), остальные — одна цепочка через «·». */
+function formulaRows(parts: readonly Readonly<{ text: string; accent: boolean }>[]): (readonly Readonly<{ text: string; accent: boolean }>[])[] {
+  return parts.some((part) => part.text.includes(":")) ? parts.map((part) => [part]) : [parts];
+}
 
 type Props = Readonly<{
   visible: boolean;
@@ -44,6 +54,8 @@ const copyFor = (lang: Lang) => ({
 
 export default function LearningV2TheorySheet({ visible, theory, lang, initialSection, returnTask, onClose }: Props) {
   const g = useLv2Glass();
+  // зачем (владелец 22.10, 1:1 с lesson-theory.html): надпись активной вкладки — `--solid` макета, а не фон экрана (у тем с градиентом они разные)
+  const solid = lv2TaskTokens(g).footerSolid;
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const [active, setActive] = useState(initialSection);
@@ -83,7 +95,7 @@ export default function LearningV2TheorySheet({ visible, theory, lang, initialSe
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={close}>
       <Pressable style={styles.dim} onPress={close} accessibilityLabel={copy.close} />
-      <View testID="learning-v2-theory-sheet" style={[styles.sheet, { top: insets.top + 30, backgroundColor: g.opaqueCard }]}>
+      <View testID="learning-v2-theory-sheet" style={[styles.sheet, { top: insets.top + 30, backgroundColor: g.opaqueCard, boxShadow: SHEET_SHADOW }]}>
         <View style={[styles.grab, { backgroundColor: g.opaqueControl }]} />
         <View style={styles.head}>
           <View style={styles.headText}>
@@ -104,8 +116,8 @@ export default function LearningV2TheorySheet({ visible, theory, lang, initialSe
             return (
               <Pressable key={item.num} testID={`learning-v2-theory-sec-${item.num}`} accessibilityRole="tab" accessibilityState={{ selected: on }}
                 onPress={() => pickSection(item.num)} style={[styles.sec, { backgroundColor: on ? g.text : g.opaqueControl }]}>
-                <Text style={[styles.secNum, { color: on ? g.bg : g.text, opacity: on ? 0.6 : 0.45 }]}>{String(Number(item.num))}</Text>
-                <Text style={[styles.secTitle, { color: on ? g.bg : g.secondary }]} numberOfLines={1}>{item.title}</Text>
+                <Text style={[styles.secNum, { color: on ? solid : g.text, opacity: on ? 0.6 : 0.45 }]}>{String(Number(item.num))}</Text>
+                <Text style={[styles.secTitle, { color: on ? solid : g.secondary }]} numberOfLines={1}>{item.title}</Text>
               </Pressable>
             );
           })}
@@ -149,14 +161,18 @@ const TheoryBlock = memo(function TheoryBlock({ block, g, lang, copy, speaking, 
   }
   if (block.kind === "formula") {
     return (
+      // зачем (владелец 22.10, 1:1): `.frm` макета — столбик строк (gap 8), каждая строка — цепочка частей; варианты «x: …» идут отдельными строками
       <View style={[styles.frm, { backgroundColor: g.opaqueControl }]}>
-        <Text style={styles.frmLine}>
-          {block.formula.map((part, index) => (
-            <Text key={index} style={{ color: part.accent ? g.accentTextSafe : g.secondary, fontWeight: part.accent ? "800" : "600" }}>
-              {index > 0 ? "  ·  " : ""}{part.text}
-            </Text>
-          ))}
-        </Text>
+        {/* guard-ok: строки формулы — статичные данные сборки (≤ 4), ключи по индексу безопасны */}
+        {formulaRows(block.formula).map((row, rowIndex) => (
+          <Text key={rowIndex} style={[styles.frmLine, { color: g.text }]}>
+            {row.map((part, index) => (
+              <Text key={index} style={{ color: part.accent ? g.accentTextSafe : g.secondary, fontWeight: part.accent ? "800" : "600" }}>
+                {index > 0 ? "  ·  " : ""}{part.text}
+              </Text>
+            ))}
+          </Text>
+        ))}
       </View>
     );
   }
@@ -167,11 +183,12 @@ const TheoryBlock = memo(function TheoryBlock({ block, g, lang, copy, speaking, 
           const on = speaking === example.en;
           return (
             <View key={index}>
-              {index > 0 ? <View style={[styles.sep, { backgroundColor: g.line }]} /> : null}
+              {/* `.ex { box-shadow: inset 0 -1px 0 var(--edge) }`: разделитель 1 px цвета --edge (hairlineSoft), а не hairline 0,4 px */}
+              {index > 0 ? <View style={[styles.sep, { backgroundColor: g.hairlineSoft }]} /> : null}
               <View style={styles.ex}>
                 <Pressable accessibilityRole="button" accessibilityLabel={copy.listen(example.en)} onPress={() => onPlay(example.en)} hitSlop={6}
                   style={[styles.sp, { backgroundColor: on ? g.text : g.opaqueControl }]}>
-                  <Ionicons name={on ? "volume-high" : "volume-medium"} size={17} color={on ? g.bg : g.text} />
+                  <Ionicons name={on ? "volume-high" : "volume-medium"} size={17} color={on ? lv2TaskTokens(g).footerSolid : g.text} />
                 </Pressable>
                 <View style={styles.exText}>
                   <Highlighted text={example.en} hi={example.hi} g={g} style={styles.en} />
@@ -190,7 +207,7 @@ const TheoryBlock = memo(function TheoryBlock({ block, g, lang, copy, speaking, 
         {block.fixes.map((fix, index) => (
           <View key={index} style={[styles.fxRow, { backgroundColor: g.opaqueControl }]}>
             <Text style={[styles.fxText, { color: g.text }]}>
-              <Text style={{ color: g.bad, textDecorationLine: "line-through" }}>{fix.wrong}</Text>
+              <Text style={{ color: THEORY_WRONG, textDecorationLine: "line-through" }}>{fix.wrong}</Text>
               {"  →  "}
               <Text style={{ color: g.good, fontWeight: "700" }}>{fix.right}</Text>
             </Text>
@@ -228,7 +245,8 @@ const TheoryDrill = memo(function TheoryDrill({ drill, g, lang, label, drillKey 
 
 const styles = StyleSheet.create({
   dim: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.5)" }, // theme-exempt: затемнение под шторкой — `.xdim` макета
-  sheet: { position: "absolute", left: 0, right: 0, bottom: 0, borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: "hidden" },
+  // без overflow: hidden — иначе iOS срежет тень `.tsh`; дети без своих фонов, скругление держит сама шторка
+  sheet: { position: "absolute", left: 0, right: 0, bottom: 0, borderTopLeftRadius: 30, borderTopRightRadius: 30 },
   grab: { width: 40, height: 5, borderRadius: 3, alignSelf: "center", marginTop: 10 },
   head: { flexDirection: "row", alignItems: "flex-start", gap: 12, paddingTop: 10, paddingHorizontal: 20 },
   headText: { flex: 1, minWidth: 0 },
@@ -243,20 +261,20 @@ const styles = StyleSheet.create({
   body: { flex: 1 },
   bodyContent: { paddingHorizontal: 20, paddingBottom: 24 },
   tbody: { marginTop: 16, fontSize: 16, lineHeight: 23 },
-  frm: { marginTop: 14, borderRadius: 18, padding: 14 },
-  frmLine: { fontSize: 16, lineHeight: 22 },
+  frm: { marginTop: 14, borderRadius: 18, padding: 14, gap: 8 },
+  frmLine: { fontSize: 16, lineHeight: 22, fontWeight: "700" }, // D145: 17 → 16
   exs: { marginTop: 12 },
-  sep: { height: StyleSheet.hairlineWidth },
+  sep: { height: 1 },
   ex: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 10 },
   sp: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center" },
   exText: { flex: 1, minWidth: 0 },
   en: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
-  ru: { marginTop: 1, fontSize: 13, lineHeight: 18 },
+  ru: { marginTop: 1, fontSize: 13, lineHeight: 19 }, // D145: 14 → 13, межстрочный 19 как `.ex .ru`
   fx: { marginTop: 12, gap: 8 },
   fxRow: { borderRadius: 16, paddingVertical: 10, paddingHorizontal: 14 },
   fxText: { fontSize: 16, lineHeight: 22 },
   tip: { marginTop: 12, borderRadius: 16, paddingVertical: 10, paddingHorizontal: 14, flexDirection: "row", gap: 10 },
-  tipText: { flex: 1, fontSize: 16, lineHeight: 22 },
+  tipText: { flex: 1, fontSize: 16, lineHeight: 21 }, // D145: 15 → 16, межстрочный 21 как `.tip`
   drill: { marginTop: 16, borderRadius: 20, padding: 14 },
   drillHead: { flexDirection: "row", alignItems: "center", gap: 6, marginBottom: 6 },
   drillLabel: { fontSize: 13, fontWeight: "700" },

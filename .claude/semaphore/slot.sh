@@ -57,6 +57,11 @@ reap(){
 }
 
 held(){ ls -d "$DIR"/slot.*.d 2>/dev/null | wc -l | tr -d ' '; }
+# зачем (Ревизор 22.10, «GO слот 6/1» у Моментов): held() для РЕШЕНИЯ считает все каталоги, включая недолговечные каталоги
+# проигравших (mkdir → откат), поэтому в журнале и в GO печаталось 2/1…6/1, хотя второй шёл в откат. Для журнала и статуса
+# считаем только подтверждённые слоты — с файлом born (проигравший откатывается до записи born).
+committed(){ local n=0 d; for d in "$DIR"/slot.*.d; do [ -f "$d/born" ] && n=$((n+1)); done; echo "$n"; }
+holders(){ local d out=""; for d in "$DIR"/slot.*.d; do [ -f "$d/born" ] && out="${out}$(basename "$d" .d | cut -c6-13),"; done; echo "$out"; }
 
 # Одна попытка взять слот. 0 = GO (строка напечатана), 1 = занято (ничего не печатает).
 try_acquire(){
@@ -67,6 +72,25 @@ try_acquire(){
     stamp "$DIR/slot.$ME.d/born"
     echo "GO (слот уже был у этой сессии)"; return 0
   fi
+  if [ "$(held)" -ge "$SLOTS" ]; then return 1; fi
+  # зачем (Ревизор 22.10, проверка 5 параллельных run): без общего замка ждущие одновременно делали mkdir и откатывались
+  # все разом — слот простаивал по ~30 с. Короткий замок gate.d пускает к «проверка → mkdir → born» по одному;
+  # повторная проверка после mkdir оставлена страховкой. Брошенный замок (сессия умерла внутри) снимаем через 20 с.
+  local gate="$DIR/gate.d"
+  if [ -d "$gate" ]; then
+    local gage=$(( $(now) - $(stat -c %Y "$gate" 2>/dev/null || now) ))
+    if [ "$gage" -gt 20 ]; then ev "gate_stale age=${gage}s — снят"; rmdir "$gate" 2>/dev/null; fi
+  fi
+  mkdir "$gate" 2>/dev/null || return 1
+  local rc=1
+  try_acquire_locked "$why" && rc=0
+  rmdir "$gate" 2>/dev/null
+  return $rc
+}
+
+# Захват под замком gate.d (вызывается только из try_acquire). 0 = GO, 1 = занято.
+try_acquire_locked(){
+  local why="$1"
   if [ "$(held)" -ge "$SLOTS" ]; then return 1; fi
   if mkdir "$DIR/slot.$ME.d" 2>/dev/null; then
     # зачем (координатор 18.10 00:01): две сессии могли одновременно пройти проверку held() и обе создать слоты —
@@ -82,8 +106,8 @@ try_acquire(){
       return 1
     fi
     printf '%s' "$why" > "$DIR/slot.$ME.d/why"
-    ev "GO held=$(held)/$SLOTS holders=$(ls -d "$DIR"/slot.*.d 2>/dev/null | xargs -n1 basename 2>/dev/null | cut -c6-13 | tr '\n' ',') why=$why"
-    echo "GO  слот $(held)/$SLOTS · $why"
+    ev "GO held=$(committed)/$SLOTS dirs=$(held) holders=$(holders) why=$why"
+    echo "GO  слот $(committed)/$SLOTS · $why"
     return 0
   fi
   return 1
@@ -105,7 +129,9 @@ acquire(){
   while :; do
     if try_acquire "$why"; then return 0; fi
     if [ "$(now)" -ge "$deadline" ]; then break; fi
-    sleep 3
+    # зачем (Ревизор 22.10, журнал 20:01:40–20:02:22): 4–5 ждущих просыпались в одну секунду, все делали mkdir и все
+    # откатывались — слот стоял свободным ~40 с. Случайная пауза 2–5 с разводит их, и кто-то один проходит.
+    sleep $(( 2 + RANDOM % 4 ))
   done
   ev "WAIT timeout wait_s=$wait_s held=$(held)/$SLOTS why=$why"
   # зачем: одна строка, начинается с WAIT (вызывающие читают `grep -q '^GO'` и `tail -1`); код выхода 1 — НЕ запускай тяжёлое.
@@ -193,7 +219,8 @@ run(){
 
 status(){
   reap >/dev/null
-  local h; h=$(held)
+  # зачем (Ревизор 22.10): статус показывает подтверждённые слоты, а не каталоги проигравших в откате
+  local h; h=$(committed)
   local light="🟢 СВОБОДНО"
   [ "$h" -ge 1 ] && light="🟡 ЕСТЬ МЕСТО"
   [ "$h" -ge "$SLOTS" ] && light="🔴 ЗАНЯТО — не запускай тяжёлое"

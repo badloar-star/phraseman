@@ -71,9 +71,26 @@ for (const reason of Object.keys(APPROVED_REASONS)) {
 
 // 2) белый список кошелька по префиксу ключа
 const policy = code('functions/src/coin_wallet_policy.ts');
-const prefixes = [...policy.matchAll(/\[\/\^([a-z0-9]+?)_/g)].map((m) => m[1]).sort();
-need(JSON.stringify(prefixes) === JSON.stringify(['dailyjourney', 'report']),
-  `белый список кошелька изменён: ${prefixes.join(',')} (ожидается report_reward, dailyjourney; g2c* снят по D148)`);
+// зачем (координатор 22.10): прежняя регулярка видела только литерал прямо в строке таблицы (`[/^report_`), а префикс
+// экзамена записан именованной константой (CHAPTER_EXAM_REQUEST_RE) — новый источник проходил незамеченным. Теперь
+// собираем префиксы в ЛЮБОМ виде записи по всему файлу (литерал /^x_, строка '^x_' для new RegExp, startsWith('x_'))
+// и отдельно сверяем число строк таблицы SOURCE_PATTERNS — строка с префиксом, собранным иначе, тоже не пройдёт.
+const APPROVED_WALLET_PREFIXES: Record<string, string> = {
+  report: 'D109: награда за жалобу (report_reward_)',
+  dailyjourney: 'D49: «Сегодня» (dailyjourney_)',
+  chapterexam: 'владелец 22.10 «Начислять +40 монет»: экзамен главы Learning V2, 20+20, потолок 120 (ECONOMY.md 0273fc93e)',
+};
+const prefixes = [...new Set([...policy.matchAll(/(?:\/\^|['"`]\^|startsWith\(\s*['"`])([a-z][a-z0-9]*)_/g)].map((m) => m[1]))].sort();
+for (const prefix of prefixes) {
+  need(prefix in APPROVED_WALLET_PREFIXES, `новый префикс кошелька ${prefix}_ — источника монет нет в списке PM-080 (нужно решение владельца и строка в ECONOMY.md)`);
+}
+for (const prefix of Object.keys(APPROVED_WALLET_PREFIXES)) {
+  need(prefixes.includes(prefix), `префикс ${prefix}_ есть в списке пробы, но исчез из политики кошелька — обновите список и ECONOMY.md`);
+}
+const sourceTable = /const SOURCE_PATTERNS[^=]*=\s*Object\.freeze\(\[([\s\S]*?)\]\s*as const\)/.exec(policy)?.[1] ?? '';
+const sourceRows = (sourceTable.match(/^\s*\[/gm) ?? []).length;
+need(sourceRows === Object.keys(APPROVED_WALLET_PREFIXES).length,
+  `в SOURCE_PATTERNS ${sourceRows} строк, а утверждённых префиксов ${Object.keys(APPROVED_WALLET_PREFIXES).length} — новый источник монет без строки в списке`);
 need(!/g2c1_\[|g2cdj_\[/.test(policy), 'в политике кошелька вернулись g2c*');
 need(!/\^quest_/.test(policy), 'в политике кошелька появились quest_*');
 

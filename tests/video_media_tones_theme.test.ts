@@ -4,6 +4,7 @@
 // читается даже поверх белого кадра (≥ 4,5), в файлах видео нет своих цветов.
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { paletteContrast } from '../constants/liquidGlassPaletteRoles';
 import { videoMediaTonesForTheme } from '../components/video/video_media_tones';
@@ -63,7 +64,7 @@ describe('videoMediaTones', () => {
       'components/youtube/YoutubePremiereHero.tsx',
       'components/youtube/YoutubeVideoGridCard.tsx',
     ]) {
-      const code = fs.readFileSync(path.join(root, rel), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1');
+      const code = normalizeEol(fs.readFileSync(path.join(root, rel), 'utf8')).replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1');
       expect({ rel, literals: code.match(/(['"`])#(?:[0-9A-Fa-f]{3,8})\1|rgba?\(\s*\d/g) ?? [] }).toEqual({ rel, literals: [] });
       expect({ rel, exempt: /theme-exempt|MEDIA_INK/.test(code) }).toEqual({ rel, exempt: false });
     }

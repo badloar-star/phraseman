@@ -52,7 +52,9 @@ import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-ha
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { type StudyTarget } from '../study_target';
 import { useStudyTarget } from '../../components/StudyTargetContext';
-import { triLang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
+import { FRIENDS_TOGETHER_UI_ENABLED } from '../friends_together/together_config';
+import { weekCopy } from '../friends_together/friend_week_copy';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { warmAuthSignInCallables } from '../cloud_sync';
 import { readAccountSwitchUnsavedCardsDecision } from '../account_switch_unsaved_cards';
@@ -1253,6 +1255,16 @@ export default function SettingsMain() {
               : L('Выкл', 'Вимк', 'Off', 'Desactivadas', 'Desativadas', 'Tắt', 'Nonaktif', 'Kapalı', 'Wył.')}
             onPress={() => router.push('/settings_notifications')}
           />
+          {/* зачем (идея 6, макет friends-full.html #week «Настройки → Моя неделя»): как друзья видят твою неделю, кто дал пять, скрыть */}
+          {FRIENDS_TOGETHER_UI_ENABLED ? (
+            <SettingsGlassRow
+              glass={glass}
+              testID="settings-my-week-row"
+              icon="calendar-outline"
+              title={weekCopy(lang as Lang, 'myWeek')}
+              onPress={() => router.push('/friends_week_mine' as never)}
+            />
+          ) : null}
           <SettingsGlassRow
             glass={glass}
             testID="settings-themes-row"

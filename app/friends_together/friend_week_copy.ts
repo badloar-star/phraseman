@@ -34,8 +34,9 @@ const WEEK_COPY = {
   showMyWeek: L('Показывать друзьям мою неделю', 'Показувати друзям мій тиждень', 'Show my week to friends', 'Mostrar mi semana a mis amigos', 'Mostrar minha semana aos amigos', 'Cho bạn bè xem tuần của tôi', 'Tampilkan mingguku ke teman', 'Haftamı arkadaşlarıma göster', 'Pokazuj znajomym mój tydzień'),
   emptyTitle: L('Итоги недели — в понедельник', 'Підсумки тижня — у понеділок', 'Weekly recaps arrive on Monday', 'Los resúmenes llegan el lunes', 'Os resumos chegam na segunda', 'Tổng kết tuần có vào thứ Hai', 'Rekap mingguan muncul hari Senin', 'Haftanın özetleri pazartesi gelir', 'Podsumowania tygodnia — w poniedziałek'),
   emptySub: L('Первый итог — после 7 дней дружбы', 'Перший підсумок — після 7 днів дружби', 'The first one comes after 7 days as friends', 'El primero llega tras 7 días de amistad', 'O primeiro chega após 7 dias de amizade', 'Bản đầu tiên có sau 7 ngày kết bạn', 'Rekap pertama setelah 7 hari berteman', 'İlki 7 günlük arkadaşlıktan sonra', 'Pierwsze — po 7 dniach znajomości'),
-  // ⚑ «Первая неделя без пропусков» макета утверждает историю, которой запись не знает — без «Первая» (переводы — из черновика без первого слова)
-  noGaps: L('Неделя без пропусков', 'Тиждень без пропусків', 'A week with no missed days', 'Semana sin faltar', 'Semana sem faltas', 'Tuần không bỏ ngày nào', 'Minggu tanpa bolos', 'Boşluksuz hafta', 'Tydzień bez przerw'),
+  // ⚑ «Первая неделя без пропусков» макета утверждает историю, которой запись не знает — без «Первая» (подтвердил Переводчик 22.10;
+  // id «bolos» — «прогулять уроки», звучит упрёком → «tanpa jeda»; tr — «Aralıksız bir hafta», естественнее)
+  noGaps: L('Неделя без пропусков', 'Тиждень без пропусків', 'A week with no missed days', 'Semana sin faltar', 'Semana sem faltas', 'Tuần không bỏ ngày nào', 'Seminggu tanpa jeda', 'Aralıksız bir hafta', 'Tydzień bez przerw'),
 } as const;
 
 export type FriendWeekCopyKey = keyof typeof WEEK_COPY;
@@ -135,6 +136,34 @@ export function weekdayName(lang: Lang, week: string, dow: number): string {
     console.warn(`[FRIEND-WEEK] Intl не назвал день ${dow} (${lang}): ${error instanceof Error ? error.message : String(error)}`); // guard-ok
     return String(dow + 1);
   }
+}
+
+/** «{name} даёт пять» / «{a} и {b} дали пять» (больше двух — первые двое); имена не склоняем. Нет пятёрок — null. */
+export function gaveFiveLine(lang: Lang, names: readonly string[]): string | null {
+  if (names.length === 0) return null;
+  if (names.length === 1) {
+    return pick(lang, L('{name} даёт пять', '{name} дає п’ять', '{name} gave you a high five', '{name} te choca los cinco', '{name} te deu um toque', '{name} đập tay với bạn', '{name} memberi tos', '{name} sana çak yaptı', '{name} przybija piątkę'))
+      .replace('{name}', names[0]!);
+  }
+  return pick(lang, L('{a} и {b} дали пять', '{a} і {b} дали п’ять', '{a} and {b} gave you a high five', '{a} y {b} te chocaron los cinco', '{a} e {b} te deram um toque', '{a} và {b} đập tay với bạn', '{a} dan {b} memberi tos', '{a} ve {b} sana çak yaptı', '{a} i {b} przybili piątkę'))
+    .replace('{a}', names[0]!).replace('{b}', names[1]!);
+}
+
+/** Часы:минуты по-местному («9:12»). */
+export function clockLabel(lang: Lang, ms: number): string {
+  try {
+    return new Intl.DateTimeFormat(DATE_LOCALE[lang] ?? 'ru-RU', { hour: 'numeric', minute: '2-digit' }).format(new Date(ms));
+  } catch (error) {
+    console.warn(`[FRIEND-WEEK] Intl не отформатировал время (${lang}): ${error instanceof Error ? error.message : String(error)}`); // guard-ok
+    const d = new Date(ms);
+    return `${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}`;
+  }
+}
+
+/** «сегодня в 9:12 и 9:40» — когда обе пятёрки сегодня. */
+export function gaveFiveWhen(lang: Lang, t1: string, t2: string): string {
+  return pick(lang, L('сегодня в {t1} и {t2}', 'сьогодні о {t1} і {t2}', 'today at {t1} and {t2}', 'hoy a las {t1} y {t2}', 'hoje às {t1} e {t2}', 'hôm nay lúc {t1} và {t2}', 'hari ini pukul {t1} dan {t2}', 'bugün {t1} ve {t2}', 'dziś o {t1} i {t2}'))
+    .replace('{t1}', t1).replace('{t2}', t2);
 }
 
 /** Тексты тоста «Пятюня отправлена» — 9 языков в форме, которую экран раскладывает в action_toast (как pairQueuedToast). */

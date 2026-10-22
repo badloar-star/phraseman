@@ -173,11 +173,13 @@ function ChapterExamRun() {
       // зачем (владелец 22.10): правильный ответ — только после конца экзамена и только по ошибкам, из вердикта проверки
       answersRef.current = answersRef.current.map((a) => (a.correct ? a : { ...a, correctAnswer: learningV2ChapterExamCorrectAnswerV1({ lessonOrdinal, sessionOrdinal: a.sessionOrdinal, interactionId: a.interactionId, locale }) }));
       setOutcome({ correct: outcome.result.correct, passed: outcome.result.passed, openedRange: openedRangeOf(outcome.creditedSessionIds) });
-      // зачем (владелец 22.10): 40 монет за ПЕРВУЮ сдачу главы; плашка — только после подтверждения сервера (празднуем фактом)
+      // зачем (закон владельца 22.10: монеты выдаёт телефон, сервер только сохраняет): 40 монет за ПЕРВУЮ сдачу главы —
+      // плашка сразу вместе с итогом; если локальная запись не удалась — плашку убираем (откат), причина в журнале
       if (outcome.firstPass) {
+        setReward(40);
         void grantChapterExamCoinsV1({ lessonOrdinal, chapterOrdinal }).then((granted) => {
-          console.log(`${LOG} reward`, JSON.stringify({ examKey: prepared.examKey, granted })); // guard-ok: показали плашку или нет
-          if (granted === 'credited') setReward(40);
+          console.log(`${LOG} reward`, JSON.stringify({ examKey: prepared.examKey, granted, shown: granted === 'credited' })); // guard-ok: оставили плашку или откатили
+          if (granted !== 'credited') setReward(null);
         });
       }
     }, (error: unknown) => {

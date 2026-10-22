@@ -22,6 +22,19 @@ describe('chapter exam coins and the Super Sunday multiplier', () => {
     }
   });
 
+  // зачем (закон владельца 22.10: «сервер для сохранения, а не решений»): «+40» видно сразу, синк с сервером — фоном
+  it('the +40 plate is shown immediately on first pass; the server sync is not awaited', () => {
+    const fs = require('node:fs') as typeof import('node:fs');
+    const path = require('node:path') as typeof import('node:path');
+    const screen = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning-v2', 'chapter-exam.tsx'), 'utf8');
+    const reward = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning_v2_chapter_exam_reward_v1.ts'), 'utf8');
+    const firstPass = screen.slice(screen.indexOf('if (outcome.firstPass) {'));
+    expect(firstPass.indexOf('setReward(40)')).toBeLessThan(firstPass.indexOf('grantChapterExamCoinsV1('));
+    expect(firstPass).toContain("if (granted !== 'credited') setReward(null)");
+    expect(reward).toContain('void wallet.syncPendingLevelSpinStarGrants(token)');
+    expect(reward).not.toContain('await wallet.syncPendingLevelSpinStarGrants');
+  });
+
   it('other gameplay sources keep the multiplier (behaviour unchanged)', () => {
     expect(levelSpinStarOperationAmountV1({ requestId: `dailyjourney_${'a'.repeat(32)}_1`, giftId: 'stars_50', promotionEligibility: 'gameplay', createdAtMs: SUNDAY })).toBe(100);
     expect(levelSpinStarOperationAmountV1({ requestId: 'report_reward_msg0000000001', giftId: 'stars_500', promotionEligibility: 'excluded_compensation', createdAtMs: SUNDAY })).toBe(500);

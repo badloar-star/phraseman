@@ -1,14 +1,17 @@
 // learning_v2_chapter_exam_reward_v1.ts — 40 монет за первую сдачу экзамена главы Learning V2.
 // зачем (владелец 22.10 через координатора): награду «+40» НАЧИСЛЯТЬ по-настоящему, один раз на главу, через существующий
 // серверный кошелёк (levelSpinStarGrant, квитанция на операцию — повтор не начисляет второй раз). Номинала 40 в кошельке нет,
-// поэтому две операции stars_20: chapterexam_l<УУ>_c<Г>_1 и _2. Плашку показываем ТОЛЬКО после факта: обе операции ушли из очереди
-// (сервер подтвердил). Отказ сервера (например, политика ещё не выложена) — начисление остаётся в очереди и дойдёт позже, плашки нет.
+// поэтому две операции stars_20: chapterexam_l<УУ>_c<Г>_1 и _2.
+// зачем (закон владельца 22.10: «сервер для сохранения, а не решений — монеты выдаёт телефон»): фактом считается локальное
+// начисление — операции записаны в журнал телефона и баланс уже вырос (enqueue публикует проекцию). Сервер лишь сохраняет:
+// синк идёт фоном и не задерживает плашку «+40». Отказ сервера оставляет операции в очереди — дойдут при следующем синке.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration } from './account_generation';
 
 const LOG = '[COIN-WALLET]';
 
-export type ChapterExamRewardOutcomeV1 = 'credited' | 'pending' | 'skipped';
+/** credited — записано на телефоне (баланс вырос); failed — локальная запись не удалась; skipped — нет активного аккаунта. */
+export type ChapterExamRewardOutcomeV1 = 'credited' | 'failed' | 'skipped';
 
 export function chapterExamRewardRequestIdsV1(lessonOrdinal: number, chapterOrdinal: number): readonly [string, string] {
   const base = `chapterexam_l${String(lessonOrdinal).padStart(2, '0')}_c${chapterOrdinal}`;
@@ -31,16 +34,19 @@ export async function grantChapterExamCoinsV1(input: Readonly<{ lessonOrdinal: n
       // зачем (Ревизор 22.10): без синка на каждую постановку — один проход синка ниже; иначе две части давали до трёх проходов к серверу
       await wallet.enqueueLevelSpinStarGrant({ token, requestId, lane: 'base', giftId: 'stars_20', promotionEligibility: 'gameplay' }, { syncNow: false });
     }
-    const sync = await wallet.syncPendingLevelSpinStarGrants(token);
-    const raw = await AsyncStorage.getItem(wallet.levelSpinStarGrantOutboxKey(owner));
-    const pending = requestIds.filter((id) => (raw ?? '').includes(`level_spin:${id}.base`));
-    const outcome: ChapterExamRewardOutcomeV1 = pending.length === 0 ? 'credited' : 'pending';
-    // зачем: отказ сервера (coin_wallet_source_not_allowed и др.) печатает сам цикл синка; здесь — что осталось в очереди
-    console.log(`${LOG} chapter_exam:result`, JSON.stringify({ ...input, outcome, pending, synced: sync.synced, stillQueued: sync.pending })); // guard-ok: итог
-    return outcome;
+    console.log(`${LOG} chapter_exam:result`, JSON.stringify({ ...input, outcome: 'credited', source: 'local_journal' })); // guard-ok: итог — начислено на телефоне
+    // сохранение на сервере — фоном; отказ сервера (coin_wallet_source_not_allowed и др.) печатает сам цикл синка
+    void wallet.syncPendingLevelSpinStarGrants(token).then(async (sync) => {
+      const raw = await AsyncStorage.getItem(wallet.levelSpinStarGrantOutboxKey(owner));
+      const stillQueued = requestIds.filter((id) => (raw ?? '').includes(`level_spin:${id}.base`));
+      console.log(`${LOG} chapter_exam:synced`, JSON.stringify({ ...input, synced: sync.synced, pending: sync.pending, stillQueued })); // guard-ok: что сохранил сервер
+    }, (error: unknown) => {
+      console.warn(`${LOG} chapter_exam:sync_failed`, JSON.stringify({ ...input, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину; операции остаются в очереди
+    });
+    return 'credited';
   } catch (error) {
     console.warn(`${LOG} chapter_exam:failed`, JSON.stringify({ ...input, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
-    return 'pending';
+    return 'failed';
   }
 }
 

@@ -20,11 +20,11 @@
   "reportId": "b8cc765fa357eb4b2bc1802f3f82ac440b1c58705d577c680fcdedee488acd32",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! Монеты «Пика» должны попадать в общий счёт, но после входа приложение иногда показывало старую сумму. Мы это исправили; исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет.",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! Монеты «Пика» должны попадать в общий счёт, но после входа приложение иногда показывало старую сумму. Мы это исправили; исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением.",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -71,11 +71,11 @@
   "reportId": "1e714640f0be8825d75552a0504751d39891bd04a9fa40f5bac92829b880f0fb",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! Мы ускорили занятия и включили микрофон в диалогах так же, как в уроках. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет.",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! Мы ускорили занятия и включили микрофон в диалогах так же, как в уроках. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением.",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -88,11 +88,11 @@
   "reportId": "ntIVWu8IIMM8ttDHynxr",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! Транскрипцию «driver's» мы исправили вместе с десятками похожих слов. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! Транскрипцию «driver's» мы исправили вместе с десятками похожих слов. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -105,11 +105,11 @@
   "reportId": "I0UfQidOYaGuckfFTmBu",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! Транскрипцию «lines» мы исправили. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! Транскрипцию «lines» мы исправили. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -140,7 +140,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 работа над ошибками заметно быстрее. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -156,11 +156,11 @@
   "reportId": "d98a4c40613a2159d5120391dae8202e9f1321b654f35a38671be9f71bba032a",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо за сообщение! Мы нашли, почему уроки подвисали при открытии: приложение долго готовило звук. Теперь фразы озвучивает голос телефона, и урок открывается сразу. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет.",
-  "resolution": "resolved",
+  "body": "Спасибо за сообщение! Мы нашли, почему уроки подвисали при открытии: приложение долго готовило звук. Теперь фразы озвучивает голос телефона, и урок открывается сразу. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением.",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -174,7 +174,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что сообщили! Само задание в порядке, похоже, завис экран. В версии 2.0 уроки работают заметно быстрее. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -190,11 +190,11 @@
   "reportId": "5ff68a6bb8a816b479ecd114a7c996a957502f9075899b51655ac5e7eaf28a2c",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! На части телефонов микрофон в диалогах был выключен, хотя в уроках работал. Мы это исправили. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет.",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! На части телефонов микрофон в диалогах был выключен, хотя в уроках работал. Мы это исправили. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением.",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -208,7 +208,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо за сообщение! В этом задании засчитываются и «did not use to», и «didn't use to». Если ответ всё равно не примут, напишите нам через поддержку на сайте knowlyapps.com/contact/ и приложите снимок экрана. Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -225,7 +225,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 диалоги открываются, а если они выключены, достаточно включить разговоры с ИИ одной кнопкой. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -242,7 +242,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "«У тебя есть время?» — это «Do you have time?». «Do I have time?» значит «У меня есть время?», поэтому ответ не засчитался. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -276,7 +276,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Хороший вопрос! «A book» — книга, а «to book» — глагол «забронировать». Поэтому «How do we book it?» — «Как нам это забронировать?». Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -293,7 +293,7 @@
   "uid": "",
   "title": "Дякуємо за повідомлення!",
   "body": "Дякуємо, що повідомили! У версії 2.0 фрази озвучує голос телефона, тож речення більше не обриваються. Будь ласка, оновіть застосунок до версії 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -310,7 +310,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Ответ «She's not sick» правильный, и проверка его засчитывает. Если снова увидите ошибку, напишите нам через поддержку на сайте knowlyapps.com/contact/. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -327,7 +327,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Это то же задание, что и в вашем соседнем сообщении, — мы ответили там.",
-  "resolution": "resolved",
+  "resolution": "duplicate",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -344,7 +344,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Это то же задание, что и в вашем соседнем сообщении, — мы ответили там.",
-  "resolution": "resolved",
+  "resolution": "duplicate",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -361,7 +361,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Это то же задание, что и в вашем соседнем сообщении, — мы ответили там.",
-  "resolution": "resolved",
+  "resolution": "duplicate",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -378,7 +378,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Это то же задание, что и в вашем соседнем сообщении, — мы ответили там.",
-  "resolution": "resolved",
+  "resolution": "duplicate",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -394,11 +394,11 @@
   "reportId": "gU1PAg2snNZdyNNlTBH3",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, что не поленились написать, — вы правы: в переводе стоит «нашёл», а по-английски после «saw» нужно «find», и это сбивает. Мы поправим это задание. В благодарность за найденную ошибку мы начислили вам 300 монет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "in_progress",
+  "body": "Спасибо, что не поленились написать, — вы правы: в переводе стоит «нашёл», а по-английски после «saw» нужно «find», и это сбивает. Мы поправим это задание. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -411,11 +411,11 @@
   "reportId": "inyj1I0j6xkp5mrO5xSB",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! Транскрипцию «table» мы исправили. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! Транскрипцию «table» мы исправили. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -428,11 +428,11 @@
   "reportId": "U92Hq7qEy6KN9vErUJod",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! Транскрипцию «uses» мы исправили, а в версии 2.0 все фразы озвучивает голос телефона, поэтому без звука они не остаются. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку мы начислили вам 300 монет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! Транскрипцию «uses» мы исправили, а в версии 2.0 все фразы озвучивает голос телефона, поэтому без звука они не остаются. Исправление уже готово и придёт с ближайшим обновлением. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -445,11 +445,11 @@
   "reportId": "t8V5joQSdAXTBYm1ywD5",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! Теперь там «Номер (в отеле)». В благодарность за найденную ошибку мы начислили вам 300 монет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "body": "Спасибо, вы правы! Теперь там «Номер (в отеле)». В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -462,11 +462,11 @@
   "reportId": "VoSkRp182liMzrcqaC37",
   "uid": "",
   "title": "Спасибо за сообщение!",
-  "body": "Спасибо, вы правы! В русском нет артиклей, и вариант с «the» здесь тоже правильный. Мы добавим его в засчитываемые ответы. В благодарность за найденную ошибку мы начислили вам 300 монет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "in_progress",
+  "body": "Спасибо, вы правы! В русском нет артиклей, и вариант с «the» здесь тоже правильный. Мы добавим его в засчитываемые ответы. В благодарность за найденную ошибку вас ждёт награда — 300 монет: нажмите «Получить» под этим сообщением. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
-   "severity": "confirmed",
+   "severity": "minor",
    "coins": 300
   },
   "reportCollection": "error_reports",
@@ -480,7 +480,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Мы проверили задание — все слова в нём есть. Если какого-то снова не хватит, напишите нам через поддержку на сайте knowlyapps.com/contact/. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -497,7 +497,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали! Нужно «friends» с «s» на конце: «friend» — это один друг. «We're» засчитывается. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -514,7 +514,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 теория урока 12 переделана, все её экраны открываются. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -548,7 +548,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Хороший вопрос! «The» ставят и с множественным числом, когда речь об определённых предметах: «wash the dishes» — помыть свою посуду. Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -582,7 +582,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 работа над ошибками переделана: в каждом задании есть поле ответа и кнопка проверки. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -599,7 +599,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 диалоги открываются, а если они выключены, достаточно включить разговоры с ИИ одной кнопкой. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -616,7 +616,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! «Ask for help» — «просить о помощи», здесь нужен именно «for». «Look at» — другой глагол со своим предлогом. Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -633,7 +633,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Правильно «does»; «dose» — другое слово («доза»), его специально ставят среди вариантов. Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -667,7 +667,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 аватары переделаны, шестиугольника больше нет. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -684,7 +684,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Оба варианта, «I'm tired» и «I am tired», засчитываются. Если ответ не приняли, напишите нам через поддержку на сайте knowlyapps.com/contact/. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -718,7 +718,7 @@
   "uid": "",
   "title": "Дякуємо за повідомлення!",
   "body": "Дякуємо! Відповіли на ваше попереднє повідомлення.",
-  "resolution": "resolved",
+  "resolution": "duplicate",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -752,7 +752,7 @@
   "uid": "",
   "title": "Дякуємо за повідомлення!",
   "body": "Дякуємо за уважність! У версії 2.0 це завдання оновлене: там «their» — «свою». Будь ласка, оновіть застосунок до версії 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -803,7 +803,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали, и простите, что ответ пришёл так поздно. В версии 2.0 микрофон переделан: он слушает на нужном языке и реже отказывает. Если и после обновления вас не услышат, напишите нам через поддержку на сайте knowlyapps.com/contact/ и укажите модель телефона — разберёмся. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -820,7 +820,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 микрофон переделан и реже отказывает. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -837,7 +837,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 распознавание речи точнее. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -854,7 +854,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! Засчитываются «We have class on Tuesdays» и «We have classes on Tuesdays»: «по вторникам» — это «on Tuesdays», с «s». Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -871,7 +871,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! «Holiday» — это «праздник» или «отпуск». В версии 2.0 тренажёр слов переделан, путавшей картинки там нет. Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -888,7 +888,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 распознавание речи точнее и реже путает похожие слова. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -905,7 +905,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали, и простите за неудобство. Старая версия больше не поддерживается, поэтому диалоги в ней не отправлялись. В версии 2.0 они работают. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -922,7 +922,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали, и простите за неудобство. Старая версия больше не поддерживается, поэтому диалоги в ней не отправлялись. В версии 2.0 они работают. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -939,7 +939,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали, и простите, что ответ пришёл так поздно. В версии 2.0 микрофон переделан: он слушает на нужном языке и реже отказывает. Если и после обновления вас не услышат, напишите нам через поддержку на сайте knowlyapps.com/contact/ и укажите модель телефона — разберёмся. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -956,7 +956,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! «Мы» — это «We», и правильным считается именно «We do not buy it». «They» стоит среди вариантов для тренировки. Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -973,7 +973,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 это задание обновлено, все слова на месте. Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -990,7 +990,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали, и простите, что ответ пришёл так поздно. В версии 2.0 микрофон переделан: он слушает на нужном языке и реже отказывает. Если и после обновления вас не услышат, напишите нам через поддержку на сайте knowlyapps.com/contact/ и укажите модель телефона — разберёмся. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1007,7 +1007,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 диалоги открываются, а если они выключены, достаточно включить разговоры с ИИ одной кнопкой. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1024,7 +1024,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали! В версии 2.0 лиг больше нет — вместо них «Пик», где места считаются заново. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1041,7 +1041,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В ответе пропущена буква: нужно «not», а получилось «no». Поэтому ответ не засчитался. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1058,7 +1058,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо! В версии 2.0 все фразы озвучивает голос телефона, без звука они не остаются. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1075,7 +1075,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали, и простите за неудобство. Старая версия больше не поддерживается, поэтому диалоги в ней не отправлялись. В версии 2.0 они работают. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1092,7 +1092,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Хороший вопрос! «Food» в значении «еда» неисчисляемое, поэтому «a/an» не ставят: «We buy food». Обновите, пожалуйста, приложение до версии 2.0: https://apps.apple.com/app/id6764800879",
-  "resolution": "resolved",
+  "resolution": "rejected",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1109,7 +1109,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что написали! Старая версия больше не поддерживается: Арены в версии 2.0 нет, вместо неё — «Пик», а диалоги работают. Счёт после обновления подтянется с сервера. Если сумма всё равно будет неверной, напишите нам через поддержку на сайте knowlyapps.com/contact/. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "confirmed_fixed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",
@@ -1126,7 +1126,7 @@
   "uid": "",
   "title": "Спасибо за сообщение!",
   "body": "Спасибо, что сообщили! Мы проверим запуск микрофона в карточках. Если повторится в версии 2.0, напишите нам через поддержку на сайте knowlyapps.com/contact/ и укажите модель телефона. Обновите, пожалуйста, приложение до версии 2.0: https://play.google.com/store/apps/details?id=app.phraseman",
-  "resolution": "resolved",
+  "resolution": "unconfirmed",
   "rewardBundle": {
    "version": 2,
    "severity": "none",

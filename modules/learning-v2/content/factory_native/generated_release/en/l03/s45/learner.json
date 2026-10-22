@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте продавца и выберите фразу",
+      "prompt": "Послушайте и выберите — вы спрашиваете продавца о товарах",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-45:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-45:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте продавца и выберите фразу",
+      "accessibilityLabel": "Послушайте и выберите — вы спрашиваете продавца о товарах",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-45:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте продавца и выберите фразу",
+            "testedDimension": "Послушайте и выберите — вы спрашиваете продавца о товарах",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `An`, а в этом варианте — `The`.",
               "uk": "У записі перше слово — `An`, а в цьому варіанті — `The`."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-45:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте продавца и выберите фразу",
+            "testedDimension": "Послушайте и выберите — вы спрашиваете продавца о товарах",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
               "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте продавца и выберите фразу",
+      "prompt": "Послушайте и выберите — продавец отвечает на ваш вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-45:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-45:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте продавца и выберите фразу",
+      "accessibilityLabel": "Послушайте и выберите — продавец отвечает на ваш вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-45:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте продавца и выберите фразу",
+            "testedDimension": "Послушайте и выберите — продавец отвечает на ваш вопрос",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
               "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-45:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте продавца и выберите фразу",
+            "testedDimension": "Послушайте и выберите — продавец отвечает на ваш вопрос",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
               "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте продавца и выберите фразу",
+      "prompt": "Послушайте и выберите — у товара рядом с вами стоит продавец",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-45:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-45:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте продавца и выберите фразу",
+      "accessibilityLabel": "Послушайте и выберите — у товара рядом с вами стоит продавец",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-45:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте продавца и выберите фразу",
+            "testedDimension": "Послушайте и выберите — у товара рядом с вами стоит продавец",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).",
               "uk": "У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко)."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-45:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте продавца и выберите фразу",
+            "testedDimension": "Послушайте и выберите — у товара рядом с вами стоит продавец",
             "feedbackByLocale": {
               "ru": "В записи перед `model` стоит `a`, а в этом варианте — `the`.",
               "uk": "У записі перед `model` стоїть `a`, а в цьому варіанті — `the`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "df234db7e90e13f6bf258850e3caabf8b288f30ad9b98c7351960473f99126b4"
+  "learnerFingerprint": "35fbb01d6951e86d6ac82831170c8f8c35db7af48e2041884a93b2e96b69a4cd"
 }

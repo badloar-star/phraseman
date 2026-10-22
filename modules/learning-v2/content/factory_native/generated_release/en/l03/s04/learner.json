@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что хозяин говорит в коридоре",
+      "prompt": "Послушайте и выберите — хозяин квартиры ведёт вас по коридору",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-04:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-04:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что хозяин говорит в коридоре",
+      "accessibilityLabel": "Послушайте и выберите — хозяин квартиры ведёт вас по коридору",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-04:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что хозяин говорит в коридоре",
+            "testedDimension": "Послушайте и выберите — хозяин квартиры ведёт вас по коридору",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
               "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-04:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что хозяин говорит в коридоре",
+            "testedDimension": "Послушайте и выберите — хозяин квартиры ведёт вас по коридору",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `door`, а в этом варианте — `key`.",
               "uk": "У записі останнє слово — `door`, а в цьому варіанті — `key`."
@@ -639,7 +639,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос хозяина",
+      "prompt": "Послушайте и выберите — в комнате хозяин быстро спрашивает вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-04:i09:r1",
@@ -658,7 +658,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-04:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос хозяина",
+      "accessibilityLabel": "Послушайте и выберите — в комнате хозяин быстро спрашивает вас",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -688,7 +688,7 @@
           {
             "responseId": "en:lesson-03:session-04:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос хозяина",
+            "testedDimension": "Послушайте и выберите — в комнате хозяин быстро спрашивает вас",
             "feedbackByLocale": {
               "ru": "В записи сначала звучит `Is`: это вопрос. А в этом варианте стоит утверждение `It is`.",
               "uk": "У записі спочатку звучить `Is`: це запитання. А в цьому варіанті стоїть твердження `It is`."
@@ -697,7 +697,7 @@
           {
             "responseId": "en:lesson-03:session-04:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос хозяина",
+            "testedDimension": "Послушайте и выберите — в комнате хозяин быстро спрашивает вас",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `lock`, а в этом варианте — `key`.",
               "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `key`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что хозяин говорит о замке",
+      "prompt": "Послушайте и выберите — вы идёте за хозяином из комнаты в комнату",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-04:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-04:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что хозяин говорит о замке",
+      "accessibilityLabel": "Послушайте и выберите — вы идёте за хозяином из комнаты в комнату",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-04:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что хозяин говорит о замке",
+            "testedDimension": "Послушайте и выберите — вы идёте за хозяином из комнаты в комнату",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `lock`, а в этом варианте — `key`.",
               "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `key`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-04:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что хозяин говорит о замке",
+            "testedDimension": "Послушайте и выберите — вы идёте за хозяином из комнаты в комнату",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `lock`, а в этом варианте — `door`.",
               "uk": "У записі останнє слово — `lock`, а в цьому варіанті — `door`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0e57c93b672eea5855f95414c63301c4f79d2ca2ab07567a08255ad2632aea09"
+  "learnerFingerprint": "db929e932fe3787f4bce87f028725a731b419a708f8c0282eb2fa08c13d78553"
 }

@@ -316,7 +316,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что продавец говорит о перчатках",
+      "prompt": "Послушайте и выберите — продавец показывает вещи из разных материалов",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-53:i05:r1",
@@ -335,7 +335,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-53:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте, что продавец говорит о перчатках",
+      "accessibilityLabel": "Послушайте и выберите — продавец показывает вещи из разных материалов",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -365,7 +365,7 @@
           {
             "responseId": "en:lesson-03:session-53:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит о перчатках",
+            "testedDimension": "Послушайте и выберите — продавец показывает вещи из разных материалов",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `Those` (далеко), а в этом варианте — `These` (рядом).",
               "uk": "У записі перше слово — `Those` (далеко), а в цьому варіанті — `These` (поруч)."
@@ -374,7 +374,7 @@
           {
             "responseId": "en:lesson-03:session-53:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит о перчатках",
+            "testedDimension": "Послушайте и выберите — продавец показывает вещи из разных материалов",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
               "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
@@ -748,7 +748,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги",
+      "prompt": "Послушайте и выберите — подруга задаёт вопрос, пока вы смотрите вещи",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-53:i11:r1",
@@ -767,7 +767,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-53:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги",
+      "accessibilityLabel": "Послушайте и выберите — подруга задаёт вопрос, пока вы смотрите вещи",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -797,7 +797,7 @@
           {
             "responseId": "en:lesson-03:session-53:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга задаёт вопрос, пока вы смотрите вещи",
             "feedbackByLocale": {
               "ru": "В записи `Are these` и несколько коробок, а в этом варианте `Is this` и одна коробка.",
               "uk": "У записі `Are these` і кілька коробок, а в цьому варіанті `Is this` і одна коробка."
@@ -806,7 +806,7 @@
           {
             "responseId": "en:lesson-03:session-53:i11:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга задаёт вопрос, пока вы смотрите вещи",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `heavy`, а в этом варианте — `new`.",
               "uk": "У записі останнє слово — `heavy`, а в цьому варіанті — `new`."
@@ -1136,5 +1136,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5f04a1df7f26bd7f702e949fdca3054ee3950e9e8c7b6be195e6fd9e9de48d1b"
+  "learnerFingerprint": "99bd581cee93b29841ac4dbbdda2a068a9b13b15a6ca7c8b692586415a3fa2e5"
 }

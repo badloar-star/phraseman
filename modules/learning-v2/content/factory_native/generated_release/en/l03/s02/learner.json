@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что грузчик говорит о мебели",
+      "prompt": "Послушайте и выберите — грузчик заносит вещи в комнату",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-02:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-02:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что грузчик говорит о мебели",
+      "accessibilityLabel": "Послушайте и выберите — грузчик заносит вещи в комнату",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-02:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что грузчик говорит о мебели",
+            "testedDimension": "Послушайте и выберите — грузчик заносит вещи в комнату",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `bed`, а в этом варианте — `desk`.",
               "uk": "У записі останнє слово — `bed`, а в цьому варіанті — `desk`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-02:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что грузчик говорит о мебели",
+            "testedDimension": "Послушайте и выберите — грузчик заносит вещи в комнату",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `bed`, а в этом варианте — `sofa`.",
               "uk": "У записі останнє слово — `bed`, а в цьому варіанті — `sofa`."
@@ -596,7 +596,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос грузчика",
+      "prompt": "Послушайте и выберите — грузчик стоит в дверях с вещью в руках",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-02:i09:r1",
@@ -615,7 +615,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-02:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос грузчика",
+      "accessibilityLabel": "Послушайте и выберите — грузчик стоит в дверях с вещью в руках",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -645,7 +645,7 @@
           {
             "responseId": "en:lesson-03:session-02:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос грузчика",
+            "testedDimension": "Послушайте и выберите — грузчик стоит в дверях с вещью в руках",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `sofa`, а в этом варианте — `bed`.",
               "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `bed`."
@@ -654,7 +654,7 @@
           {
             "responseId": "en:lesson-03:session-02:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос грузчика",
+            "testedDimension": "Послушайте и выберите — грузчик стоит в дверях с вещью в руках",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `sofa`, а в этом варианте — `desk`.",
               "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `desk`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о подушке",
+      "prompt": "Послушайте и выберите — в комнате подруга разбирает вещи",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-02:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-02:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о подушке",
+      "accessibilityLabel": "Послушайте и выберите — в комнате подруга разбирает вещи",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-02:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о подушке",
+            "testedDimension": "Послушайте и выберите — в комнате подруга разбирает вещи",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `pillow`, а в этом варианте — `bed`.",
               "uk": "У записі останнє слово — `pillow`, а в цьому варіанті — `bed`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-02:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о подушке",
+            "testedDimension": "Послушайте и выберите — в комнате подруга разбирает вещи",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `pillow`, а в этом варианте — `sofa`.",
               "uk": "У записі останнє слово — `pillow`, а в цьому варіанті — `sofa`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4fb1e1e1e7e87bbd914395a9f713a1e382e004d2d6e50a812ecbc7adc0b24ce7"
+  "learnerFingerprint": "c2950054b9465587fe52b6fd8c3f70048f236cff6adf039f0a25625bb84972f1"
 }

@@ -144,11 +144,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-06:i02:r1",
-          "text": "It is a bag."
+          "text": "It is a tag."
         },
         {
           "responseId": "en:lesson-03:session-06:i02:r2",
-          "text": "It is a tag."
+          "text": "It is a bag."
         },
         {
           "responseId": "en:lesson-03:session-06:i02:r3",
@@ -164,18 +164,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-06:i02:audio",
-          "transcript": "It is a bag."
+          "transcript": "It is a tag."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-06:i02:r1",
-            "targetText": "It is a bag.",
+            "targetText": "It is a tag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-06:i02:r2",
-            "targetText": "It is a tag.",
+            "targetText": "It is a bag.",
             "meaningByLocale": null
           },
           {
@@ -191,8 +191,8 @@
             "correct": false,
             "testedDimension": "Послухайте, що консультант каже про товари",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bag`, а в этом варианте — `tag`.",
-              "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `tag`."
+              "ru": "В записи последнее слово — `tag`, а в этом варианте — `bag`.",
+              "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `bag`."
             }
           },
           {
@@ -200,8 +200,8 @@
             "correct": false,
             "testedDimension": "Послухайте, що консультант каже про товари",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bag`, а в этом варианте — `basket`.",
-              "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `basket`."
+              "ru": "В записи последнее слово — `tag`, а в этом варианте — `basket`.",
+              "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `basket`."
             }
           }
         ],
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c0c7df7e4bec967be79e4837de51a0cc5df41162ac589edc08649b0675bf817b"
+  "learnerFingerprint": "0754e63dd284d76ad40a2d8e4b59ec060cd78bc159c9269e0eed4715a148438d"
 }

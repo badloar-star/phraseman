@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что официантка говорит о блюде в меню",
+      "prompt": "Послушайте и выберите — официантка принимает у вас заказ",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-14:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-14:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что официантка говорит о блюде в меню",
+      "accessibilityLabel": "Послушайте и выберите — официантка принимает у вас заказ",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-14:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что официантка говорит о блюде в меню",
+            "testedDimension": "Послушайте и выберите — официантка принимает у вас заказ",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `salad`, а в этом варианте — `sandwich`.",
               "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `sandwich`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-14:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что официантка говорит о блюде в меню",
+            "testedDimension": "Послушайте и выберите — официантка принимает у вас заказ",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `salad`, а в этом варианте — `teapot`.",
               "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `teapot`."
@@ -638,7 +638,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос сестры",
+      "prompt": "Послушайте и выберите — сестра изучает меню вместе с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-14:i09:r1",
@@ -657,7 +657,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-14:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос сестры",
+      "accessibilityLabel": "Послушайте и выберите — сестра изучает меню вместе с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -687,7 +687,7 @@
           {
             "responseId": "en:lesson-03:session-14:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос сестры",
+            "testedDimension": "Послушайте и выберите — сестра изучает меню вместе с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `omelette`, а в этом варианте — `salad`.",
               "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `salad`."
@@ -696,7 +696,7 @@
           {
             "responseId": "en:lesson-03:session-14:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос сестры",
+            "testedDimension": "Послушайте и выберите — сестра изучает меню вместе с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `omelette`, а в этом варианте — `sandwich`.",
               "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `sandwich`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что говорит официантка",
+      "prompt": "Послушайте и выберите — к вашему столику подходит официантка",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-14:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-14:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что говорит официантка",
+      "accessibilityLabel": "Послушайте и выберите — к вашему столику подходит официантка",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-14:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит официантка",
+            "testedDimension": "Послушайте и выберите — к вашему столику подходит официантка",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `omelette`, а в этом варианте — `egg`.",
               "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `egg`."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-14:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит официантка",
+            "testedDimension": "Послушайте и выберите — к вашему столику подходит официантка",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `omelette`, а в этом варианте — `salad`.",
               "uk": "У записі останнє слово — `omelette`, а в цьому варіанті — `salad`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "80ffa5db2363a866540fd634152fedd1dc739f73f92847d4a8dde759a134f273"
+  "learnerFingerprint": "755026563d9afa342ec7c93c14bcab83ca16b798a7a2b450ffe217e67e0aa8cd"
 }

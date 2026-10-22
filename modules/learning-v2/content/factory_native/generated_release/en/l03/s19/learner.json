@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги о надписях на коробке",
+      "prompt": "Послушайте и выберите — подруга читает надписи на упаковке",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-19:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-19:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги о надписях на коробке",
+      "accessibilityLabel": "Послушайте и выберите — подруга читает надписи на упаковке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-03:session-19:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги о надписях на коробке",
+            "testedDimension": "Послушайте и выберите — подруга читает надписи на упаковке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `countries`, а в этом варианте — `country`.",
               "uk": "У записі останнє слово — `countries`, а в цьому варіанті — `country`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-03:session-19:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги о надписях на коробке",
+            "testedDimension": "Послушайте и выберите — подруга читает надписи на упаковке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `countries`, а в этом варианте — `batteries`.",
               "uk": "У записі останнє слово — `countries`, а в цьому варіанті — `batteries`."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте подругу: она говорит о городах",
+      "prompt": "Послушайте и выберите — вы читаете упаковки, подруга говорит рядом",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-19:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-19:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте подругу: она говорит о городах",
+      "accessibilityLabel": "Послушайте и выберите — вы читаете упаковки, подруга говорит рядом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-03:session-19:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте подругу: она говорит о городах",
+            "testedDimension": "Послушайте и выберите — вы читаете упаковки, подруга говорит рядом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `big`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `big`, а в цьому варіанті — `old`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-03:session-19:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте подругу: она говорит о городах",
+            "testedDimension": "Послушайте и выберите — вы читаете упаковки, подруга говорит рядом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `big`, а в этом варианте — `here`.",
               "uk": "У записі останнє слово — `big`, а в цьому варіанті — `here`."
@@ -979,7 +979,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что говорит брат",
+      "prompt": "Послушайте и выберите — брат читает надписи на упаковках",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-19:i15:r1",
@@ -998,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-19:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что говорит брат",
+      "accessibilityLabel": "Послушайте и выберите — брат читает надписи на упаковках",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1028,7 +1028,7 @@
           {
             "responseId": "en:lesson-03:session-19:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит брат",
+            "testedDimension": "Послушайте и выберите — брат читает надписи на упаковках",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `stories`, а в этом варианте — `batteries`.",
               "uk": "У записі останнє слово — `stories`, а в цьому варіанті — `batteries`."
@@ -1037,7 +1037,7 @@
           {
             "responseId": "en:lesson-03:session-19:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит брат",
+            "testedDimension": "Послушайте и выберите — брат читает надписи на упаковках",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `stories`, а в этом варианте — `cities`.",
               "uk": "У записі останнє слово — `stories`, а в цьому варіанті — `cities`."
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7fc57c479b3458d1c011cdf448981c115eee06620e898411668fb66c544c5039"
+  "learnerFingerprint": "9497fc0d75ec794dadf9dd83a39faea71239f99f89df707af68a12d735af795e"
 }

@@ -44,7 +44,7 @@ data.pushTokenLang || progress.lang || progress.app_lang`, нормализов�
 | duelFeed | Вызов на дуэль | Виклик на дуель | Duel challenge | Desafío a duelo | Desafio para duelo | Lời thách đấu | Tantangan duel | Düello daveti | Wyzwanie na pojedynek |
 | duelResultTitle | Итог дуэли | Підсумок дуелі | Duel result | Resultado del duelo | Resultado do duelo | Kết quả trận đấu | Hasil duel | Düello sonucu | Wynik pojedynku |
 | duelResultBody ⚑ | {name}: ответ на дуэль готов | {name}: відповідь на дуель готова | {name} has played the duel | {name} ya jugó el duelo | {name} já jogou o duelo | {name} đã chơi trận đấu | {name} sudah main duel | {name} düelloyu oynadı | {name}: odpowiedź na pojedynek gotowa |
-| duelDeclinedFeed ⚑ | дуэль не принята | дуель не прийнято | didn’t take the duel | no aceptó el duelo | não aceitou o duelo | chưa nhận lời thách đấu | tidak menerima duel | düelloyu kabul etmedi | pojedynek nieprzyjęty |
+| duelDeclinedFeed ⚑ | Дуэль не принята | Дуель не прийнято | Duel declined | Duelo rechazado | Duelo recusado | Lời thách đấu bị từ chối | Duel ditolak | Düello reddedildi | Pojedynek nieprzyjęty |
 | lessonInviteTitle | {name} зовёт на занятие | {name} кличе на заняття | {name} invites you to a session | {name} te invita a una sesión | {name} chama você para uma sessão | {name} rủ bạn học cùng | {name} mengajakmu ke sesi | {name} seni oturuma çağırıyor | {name} zaprasza cię na zajęcia |
 | lessonInviteBody | Урок {l} · Занятие {s} | Урок {l} · Заняття {s} | Lesson {l} · Session {s} | Lección {l} · Sesión {s} | Lição {l} · Sessão {s} | Bài {l} · Buổi {s} | Pelajaran {l} · Sesi {s} | Ders {l} · Oturum {s} | Lekcja {l} · Zajęcia {s} |
 | lessonInviteFeed | Зовёт на занятие | Кличе на заняття | Invites you to a session | Te invita a una sesión | Chama você para uma sessão | Rủ bạn học cùng | Mengajakmu ke sesi | Seni oturuma çağırıyor | Zaprasza na zajęcia |
@@ -60,7 +60,8 @@ data.pushTokenLang || progress.lang || progress.app_lang`, нормализов�
 
 ⚑ Строки с родом — сейчас в коде «ответил(а) на дуэль» и «не принял(а) дуэль». Предлагаю безличные формы (как в
 `duel_copy.ts`: «род неизвестен — безлично»): ru «{name}: ответ на дуэль готов», «дуэль не принята». В en, es, pt, vi, id
-и tr рода нет, там формы естественные. Строка ленты отказа идёт после имени отправителя, поэтому она без `{name}`.
+и tr рода нет, там формы естественные. Строка ленты — отдельная строка под заголовком «имя + подпись по типу» (`NotificationCenterButton`: rowTitle / rowPreview),
+поэтому `duelDeclinedFeed` — самостоятельная фраза с заглавной, как соседние строки ленты (поправлено 22.10 после вычитки модуля Ядра).
 
 ## Не трогаю
 

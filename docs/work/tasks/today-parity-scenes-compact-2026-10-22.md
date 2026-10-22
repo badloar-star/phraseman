@@ -1,7 +1,7 @@
 # Task packet: «Сегодня» scene matches scenes-compact v.2 to the CSS (rings, «Начать», task rows)
 
 Governance-ID: TG-2DD6A647E12D
-Status: Done for items 1–3 (rings, «Начать», rows); items 4–5 wait for the owner via the coordinator
+Status: Done for items 1–4 (rings, «Начать», rows: 767196a6f; week card — variant A, TG-3E4DD900AAA3); item 5 (header) waits for the owner via the coordinator
 Owner: 3 · МАКЕТЫ (coordinator 22.10 ~14:20, Сверка of 366de369b: light diff 25.9 %, dark 48.2 %)
 Related epic/enabler: TG-1669267668FC (scenes 46 %), 366de369b (Today 46 %), 89515f3c9 (poll on Today)
 

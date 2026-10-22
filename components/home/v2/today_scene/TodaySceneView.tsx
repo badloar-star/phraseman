@@ -43,7 +43,7 @@ const PANEL_OVERLAP = 22;
  * Кольца как рисует эталон scenes-compact.html v2 в любой теме: RC макета (урок, диалог, карточки), дорожка 22 %, точка начала у пустого.
  * зачем (координатор 22.10, Сверка 366de369b: «кольца — цветные красное/синее/зелёное, а сейчас приглушённые лиловые»)
  */
-const TODAY_SCENE_RING_LOOK: TodayRingsLook = Object.freeze({ colors: Object.freeze(['#FF6B5B', '#3DD6A3', '#55A8FF'] as const), trackOpacity: 0.22, zeroDot: true }); // theme-exempt: цвета колец эталона scenes-compact v2 (RC), одни в светлой и тёмной
+export const TODAY_SCENE_RING_LOOK: TodayRingsLook = Object.freeze({ colors: Object.freeze(['#FF6B5B', '#3DD6A3', '#55A8FF'] as const), trackOpacity: 0.22, zeroDot: true }); // theme-exempt: цвета колец эталона scenes-compact v2 (RC), одни в светлой и тёмной
 /** Отметка выполненного задания справа в строке (эталон `.rw .ok`). */
 const DONE_TICK = '#3DD6A3'; // theme-exempt: цвет отметки эталона scenes-compact v2 (.rw .ok), как зелёное кольцо
 const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']>> = {

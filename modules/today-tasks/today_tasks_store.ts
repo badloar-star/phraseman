@@ -35,6 +35,7 @@ import {
   type TodayTasksDayState,
 } from './today_tasks_core';
 import { onAccountOwnerChanged } from '../../app/account_owner_change';
+import { __resetTodayWeekMemory, recordTodayWeekDay } from './today_tasks_week';
 
 const LOG = '[TODAY-TASKS]';
 const STATE_KEY_PREFIX = 'today_tasks_v1:';
@@ -247,6 +248,9 @@ async function loadDay(): Promise<TodayTasksDayState> {
   // невыданные pending уходят в список переноса и выдаются тем же идемпотентным ключом прошлого дня.
   const previous = current && current.ownerKey === ownerKey && current.dayKey !== dayKey ? current : stored && stored.ownerKey === ownerKey && stored.dayKey !== dayKey ? stored : null;
   if (previous && ownerKey !== ANON_OWNER) await carryOverPendingRewards(previous);
+  // зачем (владелец 22.10, карточка «Неделя · N из 6 дней»; координатор: вариант А): итог прошедшего дня — в историю недели на телефоне;
+  // запись не ждём (новый день не задерживается), сбой — только журнал [TODAY-WEEK]
+  if (previous) void recordTodayWeekDay(ownerKey, previous);
   const kinds = await readAvailableKinds();
   const fresh = createTodayTasksDay(ownerKey, dayKey, kinds);
   log('day:new_set', {
@@ -552,6 +556,11 @@ export function peekTodayTasks(): TodayTasksDayState | null {
   return current;
 }
 
+/** Владелец текущего дня — для истории недели (тот же ключ, что у заданий); null — день ещё не загружен. */
+export function peekTodayTasksOwnerKey(): string | null {
+  return current ? current.ownerKey : null;
+}
+
 export function subscribeTodayTasks(listener: (state: TodayTasksDayState | null) => void): () => void {
   listeners.add(listener);
   return () => {
@@ -573,6 +582,7 @@ export const __todayTasksStoreTestHooks = Object.freeze({
     availableKinds = null;
     queue = Promise.resolve();
     listeners.clear();
+    __resetTodayWeekMemory();
   },
   /** Сбросить только память процесса (имитация перезапуска приложения). */
   simulateRestart(): void {

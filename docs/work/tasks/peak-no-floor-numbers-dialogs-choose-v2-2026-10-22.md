@@ -1,7 +1,7 @@
 # Task packet: Peak scene without floor numbers; Dialogs «choose» mockup v2; Today week card data
 
 Governance-ID: TG-3E4DD900AAA3
-Status: In progress
+Status: Done — 1: 8321305c7 (no floor numbers), 2: 8c48481f0 (dialogs-scene-choose-v2), 3: the week card commit (feat(today): Week card)
 Owner: 3 · МАКЕТЫ (coordinator 22.10 ~14:40, owner's words)
 Related epic/enabler: a07d547a1 (Peak tall), 34b0caae2 (dialogs-scene-choose v1), TG-2DD6A647E12D (Today parity)
 

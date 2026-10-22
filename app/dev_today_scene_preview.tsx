@@ -18,13 +18,14 @@ import { buildTodaySceneCopy } from '../components/home/v2/today_scene/today_sce
 import { pickTodaySceneState } from '../components/home/v2/today_scene/today_scene_state';
 import {
   TODAY_SCENE_PREVIEW_MINUTES_TO_MIDNIGHT,
+  TODAY_WEEK_PREVIEW_DAYS,
   isTodayScenePreviewState,
   todayScenePreviewInput,
   todayScenePreviewTasks,
   type TodayScenePreviewState,
 } from '../components/home/v2/today_scene/today_scene_preview_fixtures';
 import type { TodayTask } from '../components/home/v2/home_v2_types';
-import TodayActivityHistory from '../components/home/v2/TodayActivityHistory';
+import TodayWeekCard from '../components/home/v2/today_scene/TodayWeekCard';
 import TodaySceneView from '../components/home/v2/today_scene/TodaySceneView';
 import { todaySceneDateLabel } from '../components/home/v2/today_scene/TodayScene';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
@@ -76,7 +77,7 @@ function Inner() {
         onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
         backLabel="Back"
         onOpenTask={openTask}
-        history={<TodayActivityHistory dayKey="2026-10-21" tasks={tasks} />}
+        history={<TodayWeekCard dayKey="2026-10-21" fixture={TODAY_WEEK_PREVIEW_DAYS} />}
       />
     </View>
   );

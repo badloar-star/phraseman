@@ -81,3 +81,33 @@ export function todayHistoryFullDays(lang: Lang, n: number): string {
     tr: `${count} tam gün`,
   });
 }
+
+/** Заголовок карточки «Неделя» (эталон scenes-compact.html v2, «Сегодня»). */
+export function todayWeekTitle(lang: Lang): string {
+  return tri(lang, { ru: 'Неделя', uk: 'Тиждень', en: 'Week', es: 'Semana', 'pt-BR': 'Semana', vi: 'Tuần', id: 'Minggu', tr: 'Hafta', pl: 'Tydzień' });
+}
+
+/** После «из N» — родительный: «из 1 дня», «из 6 дней» (ru/uk/pl). */
+const OF_DAYS: Readonly<Record<'ru' | 'uk' | 'pl', PluralForms>> = {
+  ru: { one: 'дня', few: 'дней', many: 'дней' },
+  uk: { one: 'дня', few: 'днів', many: 'днів' },
+  pl: { one: 'dnia', few: 'dni', many: 'dni' },
+};
+
+/** Счётчик карточки «Неделя»: «5 из 6 дней» — дни с занятием из шести до сегодняшнего. */
+export function todayWeekActiveLabel(lang: Lang, active: number, total = 6): string {
+  const n = Math.max(0, Math.trunc(active));
+  const t = Math.max(0, Math.trunc(total));
+  if (lang === 'ru') return `${n} из ${t} ${pluralWord(lang, t, OF_DAYS.ru)}`;
+  if (lang === 'uk') return `${n} з ${t} ${pluralWord(lang, t, OF_DAYS.uk)}`;
+  if (lang === 'pl') return `${n} z ${t} ${pluralWord(lang, t, OF_DAYS.pl)}`;
+  return tri(lang, {
+    ru: '', uk: '', pl: '',
+    en: `${n} of ${t} ${t === 1 ? 'day' : 'days'}`,
+    es: `${n} de ${t} ${t === 1 ? 'día' : 'días'}`,
+    'pt-BR': `${n} de ${t} ${t === 1 ? 'dia' : 'dias'}`,
+    vi: `${n}/${t} ngày`,
+    id: `${n} dari ${t} hari`,
+    tr: `${n}/${t} gün`,
+  });
+}

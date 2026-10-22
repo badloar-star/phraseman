@@ -11,8 +11,8 @@ import { peekStreakDayState, subscribeStreakDayState } from '../../../../app/str
 import type { Lang } from '../../../../constants/i18n';
 import type { TodayTask } from '../home_v2_types';
 import { minutesUntilMidnight } from '../scene/home_scene_state';
-import TodayActivityHistory from '../TodayActivityHistory';
 import TodaySceneView, { type TodayScenePollRow } from './TodaySceneView';
+import TodayWeekCard from './TodayWeekCard';
 import { buildTodaySceneCopy } from './today_scene_copy';
 import { pickTodaySceneState } from './today_scene_state';
 
@@ -78,7 +78,8 @@ export default function TodayScene({ lang, title, dayKey, tasks, fromProgress, o
     <TodaySceneView
       title={title} decision={decision} copy={copy} tasks={tasks} fromProgress={fromProgress}
       onBack={onBack} backLabel={backLabel} onOpenTask={onOpenTask} pollRow={pollRow}
-      history={<TodayActivityHistory dayKey={dayKey} tasks={tasks} />}
+      // зачем (владелец 22.10, вариант 2 scenes-compact; координатор: вариант А): под «Заданиями дня» — «Неделя · N из 6 дней» с кольцами по дням
+      history={<TodayWeekCard dayKey={dayKey} />}
     />
   );
 }

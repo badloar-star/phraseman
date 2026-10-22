@@ -2,6 +2,7 @@
 // ничего не читается из сети и не пишется; состояние выбирает НАСТОЯЩАЯ pickTodaySceneState по этому входу.
 import type { TodayTask } from '../home_v2_types';
 import type { TodaySceneInput } from './today_scene_state';
+import type { TodayWeekDay } from '../../../../modules/today-tasks/today_tasks_week';
 
 export const TODAY_SCENE_PREVIEW_STATES = ['morning', 'day', 'eve', 'done', 'video'] as const;
 export type TodayScenePreviewState = typeof TODAY_SCENE_PREVIEW_STATES[number];
@@ -41,3 +42,13 @@ export function todayScenePreviewInput(state: TodayScenePreviewState): TodayScen
 
 /** Минуты до полуночи для надписи вечера в превью: 2 ч 20 мин, как в эталоне. */
 export const TODAY_SCENE_PREVIEW_MINUTES_TO_MIDNIGHT = 140;
+
+/** Неделя dev-превью — данные эталона scenes-compact v2 (15–20 окт.: урок / диалог / карточки; 19-го без занятий): «5 из 6 дней». */
+export const TODAY_WEEK_PREVIEW_DAYS: readonly TodayWeekDay[] = Object.freeze([
+  { dayKey: '2026-10-15', progress: [1, 1, 10], targets: [1, 1, 10] },
+  { dayKey: '2026-10-16', progress: [1, 1, 6], targets: [1, 1, 10] },
+  { dayKey: '2026-10-17', progress: [1, 0, 0], targets: [1, 1, 10] },
+  { dayKey: '2026-10-18', progress: [1, 1, 10], targets: [1, 1, 10] },
+  { dayKey: '2026-10-19', progress: [0, 0, 0], targets: [1, 1, 10] },
+  { dayKey: '2026-10-20', progress: [1, 1, 8], targets: [1, 1, 10] },
+] as const);

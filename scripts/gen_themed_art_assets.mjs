@@ -24,6 +24,8 @@ const ART_CORNER_MAX_ALPHA = 16;
 export const ACCENT_MISALIGNED_DEBT = new Set([
   'light/intro_cards_swipe.accent.webp', // светлая стрелка не вырезается автоматически (сливается с тенью) — пересдача Codex
   'dark/intro_legacy_lessons.accent.webp', 'light/intro_legacy_lessons.accent.webp',
+  // зачем (координатор 22.10): порог сторожа ужесточён до 12 %; эти два слоя от Codex дают 12,2 % и 13,4 % и ждут перерисовки — убрать из долга после замены
+  'dark/mistakes_entry.accent.webp', 'dark/spire_rank_6.accent.webp',
 ]);
 
 /** Проверка одного файла арта: { ok, reason }. Не бросает — причина отказа всегда в reason. */

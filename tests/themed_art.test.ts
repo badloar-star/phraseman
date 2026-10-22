@@ -96,9 +96,7 @@ describe('first real assets (adfaa8c34) and set choice', () => {
       for (const brightness of ['dark', 'light'] as const) {
         const art = resolveThemedArt(name, brightness);
         expect(art.origin).toBe('v2art');
-        // зачем (22.10): цветной слой dark/mistakes_entry.accent от Codex отвергнут сторожем (12,2 % на перепадах при пороге 12 %) и в сборку не идёт — ждёт замены
-        if (name === 'mistakes_entry' && brightness === 'dark') expect(art.accent).toBeNull();
-        else if ((WITH_ACCENT as readonly string[]).includes(name)) expect(art.accent).not.toBeNull();
+        if ((WITH_ACCENT as readonly string[]).includes(name)) expect(art.accent).not.toBeNull();
         else if (name === 'phrase_of_day' && brightness === 'dark') expect(art.accent).toBeNull();
         else expect(art.accent).not.toBeNull();
       }

@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-45:word:lock-the-door",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lock the door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:lock-the-door:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lock the door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:lock-the-door:audio",
+            "transcript": "lock the door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:lock-the-door:r1",
+              "targetText": "lock the door",
+              "meaningByLocale": {
+                "ru": "запереть дверь.",
+                "uk": "замкнути двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lock the door",
+            "definitionByLocale": {
+              "ru": "запереть дверь.",
+              "uk": "замкнути двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите запереть дверь. Спросите: «Можно мне запереть дверь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите запереть дверь. Спросите: «Можно мне запереть дверь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I lock the door?",
+          "localizedMeaning": {
+            "ru": "Вы хотите запереть дверь. Спросите: «Можно мне запереть дверь?»",
+            "uk": "Ви хочете замкнути двері. Запитайте: «Можна мені замкнути двері?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "lock",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i02:r1",
+            "text": "Could I lock the door?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i02:r2",
+            "text": "Could you lock the door?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i02:r3",
+            "text": "Could we lock the door?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i02:audio",
+            "transcript": "Could I lock the door?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i02:r1",
+              "targetText": "Could I lock the door?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i02:r2",
+              "targetText": "Could you lock the door?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i02:r3",
+              "targetText": "Could we lock the door?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I lock the door?",
+                "uk": "У записі звучить Could I lock the door?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I lock the door?",
+                "uk": "У записі звучить Could I lock the door?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i03:r1",
+            "text": "lock"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i03:r2",
+            "text": "locks"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i03:r3",
+            "text": "locking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the door?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i03:r1",
+              "text": "lock"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i03:r2",
+              "text": "locks"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i03:r3",
+              "text": "locking"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:word:turn-off-the-lights",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — turn off the lights",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:turn-off-the-lights:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — turn off the lights",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:turn-off-the-lights:audio",
+            "transcript": "turn off the lights"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:turn-off-the-lights:r1",
+              "targetText": "turn off the lights",
+              "meaningByLocale": {
+                "ru": "выключить свет.",
+                "uk": "вимкнути світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turn off the lights",
+            "definitionByLocale": {
+              "ru": "выключить свет.",
+              "uk": "вимкнути світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лампы больше не нужны. Спросите: «Можно мне выключить свет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лампы больше не нужны. Спросите: «Можно мне выключить свет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I turn off the lights?",
+          "localizedMeaning": {
+            "ru": "Лампы больше не нужны. Спросите: «Можно мне выключить свет?»",
+            "uk": "Лампи більше не потрібні. Запитайте: «Можна мені вимкнути світло?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "turn",
+            "off",
+            "the",
+            "lights"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i05:r1",
+            "text": "Could I turn off the lights?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i05:r2",
+            "text": "Could you turn off the lights?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i05:r3",
+            "text": "Could we turn off the lights?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i05:audio",
+            "transcript": "Could I turn off the lights?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i05:r1",
+              "targetText": "Could I turn off the lights?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i05:r2",
+              "targetText": "Could you turn off the lights?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i05:r3",
+              "targetText": "Could we turn off the lights?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn off the lights?",
+                "uk": "У записі звучить Could I turn off the lights?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn off the lights?",
+                "uk": "У записі звучить Could I turn off the lights?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i06:r1",
+            "text": "turn"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i06:r2",
+            "text": "turns"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i06:r3",
+            "text": "turning"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ off the lights?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i06:r1",
+              "text": "turn"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i06:r2",
+              "text": "turns"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i06:r3",
+              "text": "turning"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:word:close-the-curtains",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — close the curtains",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:close-the-curtains:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — close the curtains",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:close-the-curtains:audio",
+            "transcript": "close the curtains"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:close-the-curtains:r1",
+              "targetText": "close the curtains",
+              "meaningByLocale": {
+                "ru": "закрыть шторы.",
+                "uk": "закрити штори."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "close the curtains",
+            "definitionByLocale": {
+              "ru": "закрыть шторы.",
+              "uk": "закрити штори."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Солнце мешает смотреть фильм. Спросите: «Можно мне закрыть шторы?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Солнце мешает смотреть фильм. Спросите: «Можно мне закрыть шторы?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I close the curtains?",
+          "localizedMeaning": {
+            "ru": "Солнце мешает смотреть фильм. Спросите: «Можно мне закрыть шторы?»",
+            "uk": "Сонце заважає дивитися фільм. Запитайте: «Можна мені закрити штори?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "close",
+            "the",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i08:r1",
+            "text": "Could I close the curtains?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i08:r2",
+            "text": "Could you close the curtains?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i08:r3",
+            "text": "Could we close the curtains?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i08:audio",
+            "transcript": "Could I close the curtains?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i08:r1",
+              "targetText": "Could I close the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i08:r2",
+              "targetText": "Could you close the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i08:r3",
+              "targetText": "Could we close the curtains?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I close the curtains?",
+                "uk": "У записі звучить Could I close the curtains?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I close the curtains?",
+                "uk": "У записі звучить Could I close the curtains?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i09:r1",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i09:r2",
+            "text": "closes"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i09:r3",
+            "text": "closing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the curtains?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i09:r1",
+              "text": "close"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i09:r2",
+              "text": "closes"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i09:r3",
+              "text": "closing"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:word:open-the-window",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — open the window",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:open-the-window:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — open the window",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:open-the-window:audio",
+            "transcript": "open the window"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:open-the-window:r1",
+              "targetText": "open the window",
+              "meaningByLocale": {
+                "ru": "открыть окно.",
+                "uk": "відчинити вікно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open the window",
+            "definitionByLocale": {
+              "ru": "открыть окно.",
+              "uk": "відчинити вікно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В комнате душно. Спросите: «Можно мне открыть окно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В комнате душно. Спросите: «Можно мне открыть окно?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I open the window?",
+          "localizedMeaning": {
+            "ru": "В комнате душно. Спросите: «Можно мне открыть окно?»",
+            "uk": "У кімнаті душно. Запитайте: «Можна мені відчинити вікно?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "open",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i11:r1",
+            "text": "Could I open the window?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i11:r2",
+            "text": "Could you open the window?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i11:r3",
+            "text": "Could we open the window?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i11:audio",
+            "transcript": "Could I open the window?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i11:r1",
+              "targetText": "Could I open the window?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i11:r2",
+              "targetText": "Could you open the window?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i11:r3",
+              "targetText": "Could we open the window?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I open the window?",
+                "uk": "У записі звучить Could I open the window?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I open the window?",
+                "uk": "У записі звучить Could I open the window?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i12:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i12:r2",
+            "text": "opens"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i12:r3",
+            "text": "opening"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the window?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i12:r1",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i12:r2",
+              "text": "opens"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i12:r3",
+              "text": "opening"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-45:i13:p1",
+              "target": "lock the door",
+              "meaningByLocale": {
+                "ru": "запереть дверь",
+                "uk": "замкнути двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-45:i13:p2",
+              "target": "turn off the lights",
+              "meaningByLocale": {
+                "ru": "выключить свет",
+                "uk": "вимкнути світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-45:i13:p3",
+              "target": "close the curtains",
+              "meaningByLocale": {
+                "ru": "закрыть шторы",
+                "uk": "закрити штори"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-45:i13:p4",
+              "target": "open the window",
+              "meaningByLocale": {
+                "ru": "открыть окно",
+                "uk": "відчинити вікно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lock the door",
+            "turn off the lights",
+            "close the curtains",
+            "open the window"
+          ],
+          "rightColumn": [
+            "запереть дверь",
+            "выключить свет",
+            "закрыть шторы",
+            "открыть окно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: её вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: её вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: моя вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: моя вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам выключить свет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам выключить свет?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i16:audio",
+            "transcript": "Could we turn off the lights?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we turn off the lights?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам открыть окно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам открыть окно?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i17:audio",
+            "transcript": "Could we open the window?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we open the window?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-45:word:lock-the-door",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lock the door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:lock-the-door:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lock the door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:lock-the-door:audio",
+            "transcript": "lock the door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:lock-the-door:r1",
+              "targetText": "lock the door",
+              "meaningByLocale": {
+                "ru": "запереть дверь.",
+                "uk": "замкнути двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lock the door",
+            "definitionByLocale": {
+              "ru": "запереть дверь.",
+              "uk": "замкнути двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете замкнути двері. Запитайте: «Можна мені замкнути двері?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете замкнути двері. Запитайте: «Можна мені замкнути двері?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I lock the door?",
+          "localizedMeaning": {
+            "ru": "Вы хотите запереть дверь. Спросите: «Можно мне запереть дверь?»",
+            "uk": "Ви хочете замкнути двері. Запитайте: «Можна мені замкнути двері?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "lock",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i02:r1",
+            "text": "Could I lock the door?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i02:r2",
+            "text": "Could you lock the door?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i02:r3",
+            "text": "Could we lock the door?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i02:audio",
+            "transcript": "Could I lock the door?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i02:r1",
+              "targetText": "Could I lock the door?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i02:r2",
+              "targetText": "Could you lock the door?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i02:r3",
+              "targetText": "Could we lock the door?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I lock the door?",
+                "uk": "У записі звучить Could I lock the door?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I lock the door?",
+                "uk": "У записі звучить Could I lock the door?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i03:r1",
+            "text": "lock"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i03:r2",
+            "text": "locks"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i03:r3",
+            "text": "locking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the door?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i03:r1",
+              "text": "lock"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i03:r2",
+              "text": "locks"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i03:r3",
+              "text": "locking"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:word:turn-off-the-lights",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — turn off the lights",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:turn-off-the-lights:audio"
+        ],
+        "accessibilityLabel": "Картка слова — turn off the lights",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:turn-off-the-lights:audio",
+            "transcript": "turn off the lights"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:turn-off-the-lights:r1",
+              "targetText": "turn off the lights",
+              "meaningByLocale": {
+                "ru": "выключить свет.",
+                "uk": "вимкнути світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turn off the lights",
+            "definitionByLocale": {
+              "ru": "выключить свет.",
+              "uk": "вимкнути світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лампи більше не потрібні. Запитайте: «Можна мені вимкнути світло?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лампи більше не потрібні. Запитайте: «Можна мені вимкнути світло?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I turn off the lights?",
+          "localizedMeaning": {
+            "ru": "Лампы больше не нужны. Спросите: «Можно мне выключить свет?»",
+            "uk": "Лампи більше не потрібні. Запитайте: «Можна мені вимкнути світло?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "turn",
+            "off",
+            "the",
+            "lights"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i05:r1",
+            "text": "Could I turn off the lights?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i05:r2",
+            "text": "Could you turn off the lights?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i05:r3",
+            "text": "Could we turn off the lights?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i05:audio",
+            "transcript": "Could I turn off the lights?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i05:r1",
+              "targetText": "Could I turn off the lights?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i05:r2",
+              "targetText": "Could you turn off the lights?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i05:r3",
+              "targetText": "Could we turn off the lights?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn off the lights?",
+                "uk": "У записі звучить Could I turn off the lights?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn off the lights?",
+                "uk": "У записі звучить Could I turn off the lights?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i06:r1",
+            "text": "turn"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i06:r2",
+            "text": "turns"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i06:r3",
+            "text": "turning"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ off the lights?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i06:r1",
+              "text": "turn"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i06:r2",
+              "text": "turns"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i06:r3",
+              "text": "turning"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:word:close-the-curtains",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — close the curtains",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:close-the-curtains:audio"
+        ],
+        "accessibilityLabel": "Картка слова — close the curtains",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:close-the-curtains:audio",
+            "transcript": "close the curtains"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:close-the-curtains:r1",
+              "targetText": "close the curtains",
+              "meaningByLocale": {
+                "ru": "закрыть шторы.",
+                "uk": "закрити штори."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "close the curtains",
+            "definitionByLocale": {
+              "ru": "закрыть шторы.",
+              "uk": "закрити штори."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сонце заважає дивитися фільм. Запитайте: «Можна мені закрити штори?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сонце заважає дивитися фільм. Запитайте: «Можна мені закрити штори?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I close the curtains?",
+          "localizedMeaning": {
+            "ru": "Солнце мешает смотреть фильм. Спросите: «Можно мне закрыть шторы?»",
+            "uk": "Сонце заважає дивитися фільм. Запитайте: «Можна мені закрити штори?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "close",
+            "the",
+            "curtains"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i08:r1",
+            "text": "Could I close the curtains?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i08:r2",
+            "text": "Could you close the curtains?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i08:r3",
+            "text": "Could we close the curtains?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i08:audio",
+            "transcript": "Could I close the curtains?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i08:r1",
+              "targetText": "Could I close the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i08:r2",
+              "targetText": "Could you close the curtains?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i08:r3",
+              "targetText": "Could we close the curtains?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I close the curtains?",
+                "uk": "У записі звучить Could I close the curtains?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I close the curtains?",
+                "uk": "У записі звучить Could I close the curtains?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i09:r1",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i09:r2",
+            "text": "closes"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i09:r3",
+            "text": "closing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the curtains?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i09:r1",
+              "text": "close"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i09:r2",
+              "text": "closes"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i09:r3",
+              "text": "closing"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:word:open-the-window",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — open the window",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:word:open-the-window:audio"
+        ],
+        "accessibilityLabel": "Картка слова — open the window",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:word:open-the-window:audio",
+            "transcript": "open the window"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:word:open-the-window:r1",
+              "targetText": "open the window",
+              "meaningByLocale": {
+                "ru": "открыть окно.",
+                "uk": "відчинити вікно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open the window",
+            "definitionByLocale": {
+              "ru": "открыть окно.",
+              "uk": "відчинити вікно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У кімнаті душно. Запитайте: «Можна мені відчинити вікно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кімнаті душно. Запитайте: «Можна мені відчинити вікно?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I open the window?",
+          "localizedMeaning": {
+            "ru": "В комнате душно. Спросите: «Можно мне открыть окно?»",
+            "uk": "У кімнаті душно. Запитайте: «Можна мені відчинити вікно?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "open",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i11:r1",
+            "text": "Could I open the window?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i11:r2",
+            "text": "Could you open the window?"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i11:r3",
+            "text": "Could we open the window?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i11:audio",
+            "transcript": "Could I open the window?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-45:i11:r1",
+              "targetText": "Could I open the window?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i11:r2",
+              "targetText": "Could you open the window?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i11:r3",
+              "targetText": "Could we open the window?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I open the window?",
+                "uk": "У записі звучить Could I open the window?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I open the window?",
+                "uk": "У записі звучить Could I open the window?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-45:i12:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i12:r2",
+            "text": "opens"
+          },
+          {
+            "responseId": "en:lesson-22:session-45:i12:r3",
+            "text": "opening"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the window?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-45:i12:r1",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i12:r2",
+              "text": "opens"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i12:r3",
+              "text": "opening"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-45:i13:p1",
+              "target": "lock the door",
+              "meaningByLocale": {
+                "ru": "запереть дверь",
+                "uk": "замкнути двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-45:i13:p2",
+              "target": "turn off the lights",
+              "meaningByLocale": {
+                "ru": "выключить свет",
+                "uk": "вимкнути світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-45:i13:p3",
+              "target": "close the curtains",
+              "meaningByLocale": {
+                "ru": "закрыть шторы",
+                "uk": "закрити штори"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-45:i13:p4",
+              "target": "open the window",
+              "meaningByLocale": {
+                "ru": "открыть окно",
+                "uk": "відчинити вікно"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lock the door",
+            "turn off the lights",
+            "close the curtains",
+            "open the window"
+          ],
+          "rightColumn": [
+            "замкнути двері",
+            "вимкнути світло",
+            "закрити штори",
+            "відчинити вікно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: її річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: її річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: моя річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: моя річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам вимкнути світло?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам вимкнути світло?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i16:audio",
+            "transcript": "Could we turn off the lights?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we turn off the lights?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам відчинити вікно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам відчинити вікно?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-45:i17:audio",
+            "transcript": "Could we open the window?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we open the window?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-45:word:lock-the-door",
+      "correctText": "lock the door",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i01",
+      "correctText": "Could I lock the door?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i02",
+      "correctText": "Could I lock the door?",
+      "correctResponseId": "en:lesson-22:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i03",
+      "correctText": "lock",
+      "correctResponseId": "en:lesson-22:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:word:turn-off-the-lights",
+      "correctText": "turn off the lights",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i04",
+      "correctText": "Could I turn off the lights?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i05",
+      "correctText": "Could I turn off the lights?",
+      "correctResponseId": "en:lesson-22:session-45:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i06",
+      "correctText": "turn",
+      "correctResponseId": "en:lesson-22:session-45:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:word:close-the-curtains",
+      "correctText": "close the curtains",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i07",
+      "correctText": "Could I close the curtains?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i08",
+      "correctText": "Could I close the curtains?",
+      "correctResponseId": "en:lesson-22:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i09",
+      "correctText": "close",
+      "correctResponseId": "en:lesson-22:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:word:open-the-window",
+      "correctText": "open the window",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i10",
+      "correctText": "Could I open the window?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i11",
+      "correctText": "Could I open the window?",
+      "correctResponseId": "en:lesson-22:session-45:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i12",
+      "correctText": "open",
+      "correctResponseId": "en:lesson-22:session-45:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i14",
+      "correctText": "This wash bag is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i15",
+      "correctText": "This eye mask is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i16",
+      "correctText": "Could we turn off the lights?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-45:i17",
+      "correctText": "Could we open the window?",
+      "correctResponseId": null
+    }
+  ]
+}

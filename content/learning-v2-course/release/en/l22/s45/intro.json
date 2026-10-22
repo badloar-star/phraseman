@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Запереть дверь",
+        "uk": "Замкнути двері"
+      },
+      "bodyByLocale": {
+        "ru": "Lock the door — запереть дверь на замок. Close the door — просто закрыть: дверь может оставаться незапертой. Здесь вы уточняете, можно ли именно запереть её. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Lock the door — замкнути двері на замок. Close the door — просто зачинити: двері можуть залишатися незамкненими. Тут ви уточнюєте, чи можна саме замкнути їх. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-45:intro1:r1",
+              "text": "Could I lock the door?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro1:r2",
+              "text": "Could I locks the door?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro1:r3",
+              "text": "Could I locking the door?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-45:intro1:r1",
+              "text": "Could I lock the door?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro1:r2",
+              "text": "Could I locks the door?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro1:r3",
+              "text": "Could I locking the door?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Свет и шторы",
+        "uk": "Світло й штори"
+      },
+      "bodyByLocale": {
+        "ru": "Turn off the lights — выключить свет, лампы. Close the curtains — закрыть шторы. Lights и curtains стоят во множественном числе, хотя по-русски можно сказать «свет». Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Turn off the lights — вимкнути світло, лампи. Close the curtains — закрити штори. Lights і curtains стоять у множині, хоча українською можна сказати «світло». Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-45:intro2:r1",
+              "text": "Could I turn off the lights?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro2:r2",
+              "text": "Could I turns off the lights?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro2:r3",
+              "text": "Could I turning off the lights?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-45:intro2:r1",
+              "text": "Could I turn off the lights?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro2:r2",
+              "text": "Could I turns off the lights?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro2:r3",
+              "text": "Could I turning off the lights?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Открыть окно",
+        "uk": "Відчинити вікно"
+      },
+      "bodyByLocale": {
+        "ru": "Open the window — открыть окно. Вы спрашиваете разрешение у людей в комнате, поскольку открытое окно повлияет и на них. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Open the window — відчинити вікно. Ви питаєте дозволу в людей у кімнаті, оскільки відчинене вікно вплине й на них. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-45:intro3:r1",
+              "text": "Could I open the window?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro3:r2",
+              "text": "Could I opens the window?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro3:r3",
+              "text": "Could I opening the window?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-45:intro3:r1",
+              "text": "Could I open the window?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro3:r2",
+              "text": "Could I opens the window?"
+            },
+            {
+              "responseId": "en:lesson-22:session-45:intro3:r3",
+              "text": "Could I opening the window?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "527513e8f4af57b976c429e6217f23bf5979dd70cf67db65fe6ba90015f7547d"
+}

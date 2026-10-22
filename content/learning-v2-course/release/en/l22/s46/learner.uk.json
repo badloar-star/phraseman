@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-46:word:water-the-plants",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — water the plants",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:word:water-the-plants:audio"
+      ],
+      "accessibilityLabel": "Картка слова — water the plants",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:word:water-the-plants:audio",
+          "transcript": "water the plants"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:word:water-the-plants:r1",
+            "targetText": "water the plants",
+            "meaningByLocale": {
+              "ru": "полить растения.",
+              "uk": "полити рослини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water the plants",
+          "definitionByLocale": {
+            "ru": "полить растения.",
+            "uk": "полити рослини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хочете допомогти з рослинами. Запитайте: «Можна мені полити рослини?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете допомогти з рослинами. Запитайте: «Можна мені полити рослини?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I water the plants?",
+        "localizedMeaning": {
+          "ru": "Вы хотите помочь с растениями. Спросите: «Можно мне полить растения?»",
+          "uk": "Ви хочете допомогти з рослинами. Запитайте: «Можна мені полити рослини?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "water",
+          "the",
+          "plants"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i02:r1",
+          "text": "Could I water the plants?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i02:r2",
+          "text": "Could you water the plants?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i02:r3",
+          "text": "Could we water the plants?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i02:audio",
+          "transcript": "Could I water the plants?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:i02:r1",
+            "targetText": "Could I water the plants?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i02:r2",
+            "targetText": "Could you water the plants?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i02:r3",
+            "targetText": "Could we water the plants?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I water the plants?",
+              "uk": "У записі звучить Could I water the plants?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I water the plants?",
+              "uk": "У записі звучить Could I water the plants?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i03:r1",
+          "text": "water"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i03:r2",
+          "text": "waters"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i03:r3",
+          "text": "watering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the plants?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-46:i03:r1",
+            "text": "water"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i03:r2",
+            "text": "waters"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i03:r3",
+            "text": "watering"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:word:feed-the-cat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — feed the cat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:word:feed-the-cat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — feed the cat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:word:feed-the-cat:audio",
+          "transcript": "feed the cat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:word:feed-the-cat:r1",
+            "targetText": "feed the cat",
+            "meaningByLocale": {
+              "ru": "покормить кота.",
+              "uk": "нагодувати кота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "feed the cat",
+          "definitionByLocale": {
+            "ru": "покормить кота.",
+            "uk": "нагодувати кота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви уточнюєте, чи можна нагодувати улюбленця. Запитайте: «Можна мені нагодувати кота?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви уточнюєте, чи можна нагодувати улюбленця. Запитайте: «Можна мені нагодувати кота?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I feed the cat?",
+        "localizedMeaning": {
+          "ru": "Вы уточняете, можно ли покормить питомца. Спросите: «Можно мне покормить кота?»",
+          "uk": "Ви уточнюєте, чи можна нагодувати улюбленця. Запитайте: «Можна мені нагодувати кота?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "feed",
+          "the",
+          "cat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i05:r1",
+          "text": "Could I feed the cat?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i05:r2",
+          "text": "Could you feed the cat?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i05:r3",
+          "text": "Could we feed the cat?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i05:audio",
+          "transcript": "Could I feed the cat?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:i05:r1",
+            "targetText": "Could I feed the cat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i05:r2",
+            "targetText": "Could you feed the cat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i05:r3",
+            "targetText": "Could we feed the cat?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I feed the cat?",
+              "uk": "У записі звучить Could I feed the cat?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I feed the cat?",
+              "uk": "У записі звучить Could I feed the cat?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i06:r1",
+          "text": "feed"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i06:r2",
+          "text": "feeds"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i06:r3",
+          "text": "feeding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the cat?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-46:i06:r1",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i06:r2",
+            "text": "feeds"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i06:r3",
+            "text": "feeding"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:word:walk-the-dog",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — walk the dog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:word:walk-the-dog:audio"
+      ],
+      "accessibilityLabel": "Картка слова — walk the dog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:word:walk-the-dog:audio",
+          "transcript": "walk the dog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:word:walk-the-dog:r1",
+            "targetText": "walk the dog",
+            "meaningByLocale": {
+              "ru": "выгулять собаку.",
+              "uk": "вигуляти собаку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "walk the dog",
+          "definitionByLocale": {
+            "ru": "выгулять собаку.",
+            "uk": "вигуляти собаку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви пропонуєте вийти із собакою. Запитайте: «Можна мені вигуляти собаку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви пропонуєте вийти із собакою. Запитайте: «Можна мені вигуляти собаку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I walk the dog?",
+        "localizedMeaning": {
+          "ru": "Вы предлагаете выйти с собакой. Спросите: «Можно мне выгулять собаку?»",
+          "uk": "Ви пропонуєте вийти із собакою. Запитайте: «Можна мені вигуляти собаку?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "walk",
+          "the",
+          "dog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i08:r1",
+          "text": "Could I walk the dog?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i08:r2",
+          "text": "Could you walk the dog?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i08:r3",
+          "text": "Could we walk the dog?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i08:audio",
+          "transcript": "Could I walk the dog?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:i08:r1",
+            "targetText": "Could I walk the dog?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i08:r2",
+            "targetText": "Could you walk the dog?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i08:r3",
+            "targetText": "Could we walk the dog?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I walk the dog?",
+              "uk": "У записі звучить Could I walk the dog?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I walk the dog?",
+              "uk": "У записі звучить Could I walk the dog?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i09:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i09:r2",
+          "text": "walks"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i09:r3",
+          "text": "walking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the dog?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-46:i09:r1",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i09:r2",
+            "text": "walks"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i09:r3",
+            "text": "walking"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:word:empty-the-bin",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — empty the bin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:word:empty-the-bin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — empty the bin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:word:empty-the-bin:audio",
+          "transcript": "empty the bin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:word:empty-the-bin:r1",
+            "targetText": "empty the bin",
+            "meaningByLocale": {
+              "ru": "опустошить мусорное ведро.",
+              "uk": "спорожнити сміттєве відро."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "empty the bin",
+          "definitionByLocale": {
+            "ru": "опустошить мусорное ведро.",
+            "uk": "спорожнити сміттєве відро."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Відро заповнене. Запитайте: «Можна мені спорожнити сміттєве відро?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Відро заповнене. Запитайте: «Можна мені спорожнити сміттєве відро?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I empty the bin?",
+        "localizedMeaning": {
+          "ru": "Ведро заполнено. Спросите: «Можно мне опустошить мусорное ведро?»",
+          "uk": "Відро заповнене. Запитайте: «Можна мені спорожнити сміттєве відро?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "empty",
+          "the",
+          "bin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i11:r1",
+          "text": "Could I empty the bin?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i11:r2",
+          "text": "Could you empty the bin?"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i11:r3",
+          "text": "Could we empty the bin?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i11:audio",
+          "transcript": "Could I empty the bin?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-46:i11:r1",
+            "targetText": "Could I empty the bin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i11:r2",
+            "targetText": "Could you empty the bin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i11:r3",
+            "targetText": "Could we empty the bin?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I empty the bin?",
+              "uk": "У записі звучить Could I empty the bin?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I empty the bin?",
+              "uk": "У записі звучить Could I empty the bin?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-46:i12:r1",
+          "text": "empty"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i12:r2",
+          "text": "empties"
+        },
+        {
+          "responseId": "en:lesson-22:session-46:i12:r3",
+          "text": "emptying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the bin?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-46:i12:r1",
+            "text": "empty"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i12:r2",
+            "text": "empties"
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i12:r3",
+            "text": "emptying"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-46:i13:p1",
+            "target": "water the plants",
+            "meaningByLocale": {
+              "ru": "полить растения",
+              "uk": "полити рослини"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-46:i13:p2",
+            "target": "feed the cat",
+            "meaningByLocale": {
+              "ru": "покормить кота",
+              "uk": "нагодувати кота"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-46:i13:p3",
+            "target": "walk the dog",
+            "meaningByLocale": {
+              "ru": "выгулять собаку",
+              "uk": "вигуляти собаку"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-46:i13:p4",
+            "target": "empty the bin",
+            "meaningByLocale": {
+              "ru": "опустошить мусорное ведро",
+              "uk": "спорожнити сміттєве відро"
+            }
+          }
+        ],
+        "leftColumn": [
+          "water the plants",
+          "feed the cat",
+          "walk the dog",
+          "empty the bin"
+        ],
+        "rightColumn": [
+          "полити рослини",
+          "нагодувати кота",
+          "вигуляти собаку",
+          "спорожнити сміттєве відро"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: її річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: її річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: моя річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: моя річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам полити рослини?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам полити рослини?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i16:audio",
+          "transcript": "Could we water the plants?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we water the plants?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам вигуляти собаку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам вигуляти собаку?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-46:i17:audio",
+          "transcript": "Could we walk the dog?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we walk the dog?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8cb3312efc5834de7384921ff4716bbb6b0bc00079b6602e2c156ea261fc5956"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-45:word:lock-the-door",
+    "correctText": "lock the door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i01",
+    "correctText": "Could I lock the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i02",
+    "correctText": "Could I lock the door?",
+    "correctResponseId": "en:lesson-22:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i03",
+    "correctText": "lock",
+    "correctResponseId": "en:lesson-22:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:word:turn-off-the-lights",
+    "correctText": "turn off the lights",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i04",
+    "correctText": "Could I turn off the lights?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i05",
+    "correctText": "Could I turn off the lights?",
+    "correctResponseId": "en:lesson-22:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i06",
+    "correctText": "turn",
+    "correctResponseId": "en:lesson-22:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:word:close-the-curtains",
+    "correctText": "close the curtains",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i07",
+    "correctText": "Could I close the curtains?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i08",
+    "correctText": "Could I close the curtains?",
+    "correctResponseId": "en:lesson-22:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i09",
+    "correctText": "close",
+    "correctResponseId": "en:lesson-22:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:word:open-the-window",
+    "correctText": "open the window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i10",
+    "correctText": "Could I open the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i11",
+    "correctText": "Could I open the window?",
+    "correctResponseId": "en:lesson-22:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i12",
+    "correctText": "open",
+    "correctResponseId": "en:lesson-22:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i13",
+    "correctText": "en:lesson-22:session-45:i13:p1=lock the door\nen:lesson-22:session-45:i13:p2=turn off the lights\nen:lesson-22:session-45:i13:p3=close the curtains\nen:lesson-22:session-45:i13:p4=open the window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i16",
+    "correctText": "Could we turn off the lights?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-45:i17",
+    "correctText": "Could we open the window?",
+    "correctResponseId": null
+  }
+]

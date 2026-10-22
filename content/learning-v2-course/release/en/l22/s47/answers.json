@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-47:word:sweep-the-floor",
+    "correctText": "sweep the floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i01",
+    "correctText": "I use a broom to sweep the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i02",
+    "correctText": "I use a broom to sweep the floor.",
+    "correctResponseId": "en:lesson-22:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:word:mop-the-floor",
+    "correctText": "mop the floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i04",
+    "correctText": "I fill the bucket to mop the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i05",
+    "correctText": "I fill the bucket to mop the floor.",
+    "correctResponseId": "en:lesson-22:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:word:vacuum-the-carpet",
+    "correctText": "vacuum the carpet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i07",
+    "correctText": "I move the chair to vacuum the carpet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i08",
+    "correctText": "I move the chair to vacuum the carpet.",
+    "correctResponseId": "en:lesson-22:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:word:dust-the-shelves",
+    "correctText": "dust the shelves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i10",
+    "correctText": "I use a soft cloth to dust the shelves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i11",
+    "correctText": "I use a soft cloth to dust the shelves.",
+    "correctResponseId": "en:lesson-22:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i13",
+    "correctText": "en:lesson-22:session-47:i13:p1=sweep the floor\nen:lesson-22:session-47:i13:p2=mop the floor\nen:lesson-22:session-47:i13:p3=vacuum the carpet\nen:lesson-22:session-47:i13:p4=dust the shelves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i16",
+    "correctText": "I need to vacuum the carpet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-47:i17",
+    "correctText": "I want to sweep the floor.",
+    "correctResponseId": null
+  }
+]

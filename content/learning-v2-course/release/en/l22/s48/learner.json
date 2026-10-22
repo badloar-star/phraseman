@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-48:word:boil-the-water",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boil the water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:word:boil-the-water:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boil the water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:word:boil-the-water:audio",
+          "transcript": "boil the water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:word:boil-the-water:r1",
+            "targetText": "boil the water",
+            "meaningByLocale": {
+              "ru": "вскипятить воду.",
+              "uk": "закип’ятити воду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boil the water",
+          "definitionByLocale": {
+            "ru": "вскипятить воду.",
+            "uk": "закип’ятити воду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы готовите чай. Скажите: «Я наполняю чайник, чтобы вскипятить воду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовите чай. Скажите: «Я наполняю чайник, чтобы вскипятить воду»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I fill the kettle to boil the water.",
+        "localizedMeaning": {
+          "ru": "Вы готовите чай. Скажите: «Я наполняю чайник, чтобы вскипятить воду»",
+          "uk": "Ви готуєте чай. Скажіть: «Я наповнюю чайник, щоб закип’ятити воду»"
+        },
+        "orderedTokens": [
+          "I",
+          "fill",
+          "the",
+          "kettle",
+          "to",
+          "boil",
+          "the",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i02:r1",
+          "text": "I fill the kettle to boil the water."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i02:r2",
+          "text": "We fill the kettle to boil the water."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i02:r3",
+          "text": "You fill the kettle to boil the water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i02:audio",
+          "transcript": "I fill the kettle to boil the water."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:i02:r1",
+            "targetText": "I fill the kettle to boil the water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i02:r2",
+            "targetText": "We fill the kettle to boil the water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i02:r3",
+            "targetText": "You fill the kettle to boil the water.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I fill the kettle to boil the water.",
+              "uk": "У записі звучить I fill the kettle to boil the water."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I fill the kettle to boil the water.",
+              "uk": "У записі звучить I fill the kettle to boil the water."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i03:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i03:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I fill the kettle ___ boil the water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-48:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:word:chop-the-vegetables",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chop the vegetables",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:word:chop-the-vegetables:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chop the vegetables",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:word:chop-the-vegetables:audio",
+          "transcript": "chop the vegetables"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:word:chop-the-vegetables:r1",
+            "targetText": "chop the vegetables",
+            "meaningByLocale": {
+              "ru": "нарезать овощи.",
+              "uk": "нарізати овочі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chop the vegetables",
+          "definitionByLocale": {
+            "ru": "нарезать овощи.",
+            "uk": "нарізати овочі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы готовите овощи для супа. Скажите: «Я использую этот нож, чтобы нарезать овощи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовите овощи для супа. Скажите: «Я использую этот нож, чтобы нарезать овощи»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use this knife to chop the vegetables.",
+        "localizedMeaning": {
+          "ru": "Вы готовите овощи для супа. Скажите: «Я использую этот нож, чтобы нарезать овощи»",
+          "uk": "Ви готуєте овочі для супу. Скажіть: «Я використовую цей ніж, щоб нарізати овочі»"
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "this",
+          "knife",
+          "to",
+          "chop",
+          "the",
+          "vegetables"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i05:r1",
+          "text": "I use this knife to chop the vegetables."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i05:r2",
+          "text": "We use this knife to chop the vegetables."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i05:r3",
+          "text": "You use this knife to chop the vegetables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i05:audio",
+          "transcript": "I use this knife to chop the vegetables."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:i05:r1",
+            "targetText": "I use this knife to chop the vegetables.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i05:r2",
+            "targetText": "We use this knife to chop the vegetables.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i05:r3",
+            "targetText": "You use this knife to chop the vegetables.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use this knife to chop the vegetables.",
+              "uk": "У записі звучить I use this knife to chop the vegetables."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use this knife to chop the vegetables.",
+              "uk": "У записі звучить I use this knife to chop the vegetables."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i06:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i06:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i06:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I use this knife ___ chop the vegetables.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-48:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i06:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:word:fry-an-egg",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fry an egg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:word:fry-an-egg:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fry an egg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:word:fry-an-egg:audio",
+          "transcript": "fry an egg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:word:fry-an-egg:r1",
+            "targetText": "fry an egg",
+            "meaningByLocale": {
+              "ru": "пожарить яйцо.",
+              "uk": "посмажити яйце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fry an egg",
+          "definitionByLocale": {
+            "ru": "пожарить яйцо.",
+            "uk": "посмажити яйце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы готовите завтрак. Скажите: «Я нагреваю сковороду, чтобы пожарить яйцо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовите завтрак. Скажите: «Я нагреваю сковороду, чтобы пожарить яйцо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I heat the pan to fry an egg.",
+        "localizedMeaning": {
+          "ru": "Вы готовите завтрак. Скажите: «Я нагреваю сковороду, чтобы пожарить яйцо»",
+          "uk": "Ви готуєте сніданок. Скажіть: «Я нагріваю сковороду, щоб посмажити яйце»"
+        },
+        "orderedTokens": [
+          "I",
+          "heat",
+          "the",
+          "pan",
+          "to",
+          "fry",
+          "an",
+          "egg"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i08:r1",
+          "text": "I heat the pan to fry an egg."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i08:r2",
+          "text": "We heat the pan to fry an egg."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i08:r3",
+          "text": "You heat the pan to fry an egg."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i08:audio",
+          "transcript": "I heat the pan to fry an egg."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:i08:r1",
+            "targetText": "I heat the pan to fry an egg.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i08:r2",
+            "targetText": "We heat the pan to fry an egg.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i08:r3",
+            "targetText": "You heat the pan to fry an egg.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I heat the pan to fry an egg.",
+              "uk": "У записі звучить I heat the pan to fry an egg."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I heat the pan to fry an egg.",
+              "uk": "У записі звучить I heat the pan to fry an egg."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i09:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i09:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I heat the pan ___ fry an egg.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-48:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:word:bake-a-cake",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bake a cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:word:bake-a-cake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bake a cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:word:bake-a-cake:audio",
+          "transcript": "bake a cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:word:bake-a-cake:r1",
+            "targetText": "bake a cake",
+            "meaningByLocale": {
+              "ru": "испечь торт.",
+              "uk": "спекти торт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bake a cake",
+          "definitionByLocale": {
+            "ru": "испечь торт.",
+            "uk": "спекти торт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы готовите угощение. Скажите: «Я включаю духовку, чтобы испечь торт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовите угощение. Скажите: «Я включаю духовку, чтобы испечь торт»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I turn on the oven to bake a cake.",
+        "localizedMeaning": {
+          "ru": "Вы готовите угощение. Скажите: «Я включаю духовку, чтобы испечь торт»",
+          "uk": "Ви готуєте частування. Скажіть: «Я вмикаю духовку, щоб спекти торт»"
+        },
+        "orderedTokens": [
+          "I",
+          "turn",
+          "on",
+          "the",
+          "oven",
+          "to",
+          "bake",
+          "a",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i11:r1",
+          "text": "I turn on the oven to bake a cake."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i11:r2",
+          "text": "We turn on the oven to bake a cake."
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i11:r3",
+          "text": "You turn on the oven to bake a cake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i11:audio",
+          "transcript": "I turn on the oven to bake a cake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-48:i11:r1",
+            "targetText": "I turn on the oven to bake a cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i11:r2",
+            "targetText": "We turn on the oven to bake a cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i11:r3",
+            "targetText": "You turn on the oven to bake a cake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I turn on the oven to bake a cake.",
+              "uk": "У записі звучить I turn on the oven to bake a cake."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I turn on the oven to bake a cake.",
+              "uk": "У записі звучить I turn on the oven to bake a cake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-48:i12:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i12:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-48:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I turn on the oven ___ bake a cake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-48:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-48:i13:p1",
+            "target": "boil the water",
+            "meaningByLocale": {
+              "ru": "вскипятить воду",
+              "uk": "закип’ятити воду"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-48:i13:p2",
+            "target": "chop the vegetables",
+            "meaningByLocale": {
+              "ru": "нарезать овощи",
+              "uk": "нарізати овочі"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-48:i13:p3",
+            "target": "fry an egg",
+            "meaningByLocale": {
+              "ru": "пожарить яйцо",
+              "uk": "посмажити яйце"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-48:i13:p4",
+            "target": "bake a cake",
+            "meaningByLocale": {
+              "ru": "испечь торт",
+              "uk": "спекти торт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "boil the water",
+          "chop the vegetables",
+          "fry an egg",
+          "bake a cake"
+        ],
+        "rightColumn": [
+          "вскипятить воду",
+          "нарезать овощи",
+          "пожарить яйцо",
+          "испечь торт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: место у окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: место у окна",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i14:audio",
+          "transcript": "Could I sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I sit by the window?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: прогулка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: прогулка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i15:audio",
+          "transcript": "Could I go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I go for a walk?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мне нужно нарезать овощи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мне нужно нарезать овощи»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i16:audio",
+          "transcript": "I need to chop the vegetables."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to chop the vegetables.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-48:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я хочу пожарить яйцо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я хочу пожарить яйцо»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-48:i17:audio",
+          "transcript": "I want to fry an egg."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to fry an egg.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3c84800a94956db3457ec37e8815fcbf400cb75f96fae5da46456a6ba2e7afda"
+}

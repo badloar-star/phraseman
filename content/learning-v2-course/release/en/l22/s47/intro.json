@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подмести",
+        "uk": "Підмести"
+      },
+      "bodyByLocale": {
+        "ru": "Sweep the floor — подмести пол веником или щёткой. Это сухая уборка; sweep не означает мыть водой. Здесь broom — предмет, которым вы подметаете. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Sweep the floor — підмести підлогу віником або щіткою. Це сухе прибирання; sweep не означає мити водою. Тут broom — предмет, яким ви підмітаєте. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-47:intro1:r1",
+              "text": "I use a broom to sweep the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro1:r2",
+              "text": "I use a broom for sweep the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro1:r3",
+              "text": "I use a broom of sweep the floor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-47:intro1:r1",
+              "text": "I use a broom to sweep the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro1:r2",
+              "text": "I use a broom for sweep the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro1:r3",
+              "text": "I use a broom of sweep the floor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пол и ковёр",
+        "uk": "Підлога й килим"
+      },
+      "bodyByLocale": {
+        "ru": "Mop the floor — вымыть пол шваброй. Vacuum the carpet — пропылесосить ковёр. В этих сочетаниях mop и vacuum — действия, хотя вам знакомы и названия предметов для уборки. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Mop the floor — вимити підлогу шваброю. Vacuum the carpet — пропилососити килим. У цих сполученнях mop і vacuum — дії, хоча вам знайомі й назви предметів для прибирання. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-47:intro2:r1",
+              "text": "I fill the bucket to mop the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro2:r2",
+              "text": "I fill the bucket for mop the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro2:r3",
+              "text": "I fill the bucket of mop the floor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-47:intro2:r1",
+              "text": "I fill the bucket to mop the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro2:r2",
+              "text": "I fill the bucket for mop the floor."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro2:r3",
+              "text": "I fill the bucket of mop the floor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пыль на полках",
+        "uk": "Пил на полицях"
+      },
+      "bodyByLocale": {
+        "ru": "Dust the shelves — вытереть пыль с полок. Dust здесь глагол «убрать пыль», а не существительное «пыль». Shelves — множественное число от shelf. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Dust the shelves — витерти пил із полиць. Dust тут дієслово «прибрати пил», а не іменник «пил». Shelves — множина від shelf. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-47:intro3:r1",
+              "text": "I use a soft cloth to dust the shelves."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro3:r2",
+              "text": "I use a soft cloth for dust the shelves."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro3:r3",
+              "text": "I use a soft cloth of dust the shelves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-47:intro3:r1",
+              "text": "I use a soft cloth to dust the shelves."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro3:r2",
+              "text": "I use a soft cloth for dust the shelves."
+            },
+            {
+              "responseId": "en:lesson-22:session-47:intro3:r3",
+              "text": "I use a soft cloth of dust the shelves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "65426f06cadb5780373e728efdae2c49d1fcac582f066e0e0b5636b54fb98774"
+}

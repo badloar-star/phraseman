@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вскипятить воду",
+        "uk": "Закип’ятити воду"
+      },
+      "bodyByLocale": {
+        "ru": "Boil the water — вскипятить воду. В этом сочетании water неисчисляемое: речь о воде для вашего чая, а не об одной отдельной вещи. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Boil the water — закип’ятити воду. У цьому сполученні water незлічуване: йдеться про воду для вашого чаю, а не про одну окрему річ. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-48:intro1:r1",
+              "text": "I fill the kettle to boil the water."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro1:r2",
+              "text": "I fill the kettle for boil the water."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro1:r3",
+              "text": "I fill the kettle of boil the water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-48:intro1:r1",
+              "text": "I fill the kettle to boil the water."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro1:r2",
+              "text": "I fill the kettle for boil the water."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro1:r3",
+              "text": "I fill the kettle of boil the water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Овощи и яйцо",
+        "uk": "Овочі та яйце"
+      },
+      "bodyByLocale": {
+        "ru": "Chop the vegetables — нарезать овощи на небольшие кусочки. Fry an egg — пожарить яйцо на сковороде. Перед egg нужен an, потому что слово начинается с гласного звука. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Chop the vegetables — нарізати овочі на невеликі шматочки. Fry an egg — посмажити яйце на сковороді. Перед egg потрібен an, бо слово починається з голосного звука. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-48:intro2:r1",
+              "text": "I use this knife to chop the vegetables."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro2:r2",
+              "text": "I use this knife for chop the vegetables."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro2:r3",
+              "text": "I use this knife of chop the vegetables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-48:intro2:r1",
+              "text": "I use this knife to chop the vegetables."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro2:r2",
+              "text": "I use this knife for chop the vegetables."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro2:r3",
+              "text": "I use this knife of chop the vegetables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Испечь торт",
+        "uk": "Спекти торт"
+      },
+      "bodyByLocale": {
+        "ru": "Bake a cake — испечь торт или кекс в духовке. Cake не всегда многослойный торт с кремом: это может быть простой кекс. Bake отличается от fry: здесь используется духовка, а не жарка на сковороде. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Bake a cake — спекти торт або кекс у духовці. Cake не завжди багатошаровий торт із кремом: це може бути простий кекс. Bake відрізняється від fry: тут використовується духовка, а не смаження на пательні. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-48:intro3:r1",
+              "text": "I turn on the oven to bake a cake."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro3:r2",
+              "text": "I turn on the oven for bake a cake."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro3:r3",
+              "text": "I turn on the oven of bake a cake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-48:intro3:r1",
+              "text": "I turn on the oven to bake a cake."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro3:r2",
+              "text": "I turn on the oven for bake a cake."
+            },
+            {
+              "responseId": "en:lesson-22:session-48:intro3:r3",
+              "text": "I turn on the oven of bake a cake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eec12409accb63967d4410b2c38737bb3fc153e0de1f523e1ef8b8facee6f6ed"
+}

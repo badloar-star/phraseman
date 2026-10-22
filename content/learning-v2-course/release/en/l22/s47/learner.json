@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-47:word:sweep-the-floor",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sweep the floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:word:sweep-the-floor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sweep the floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:word:sweep-the-floor:audio",
+          "transcript": "sweep the floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:word:sweep-the-floor:r1",
+            "targetText": "sweep the floor",
+            "meaningByLocale": {
+              "ru": "подмести пол.",
+              "uk": "підмести підлогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweep the floor",
+          "definitionByLocale": {
+            "ru": "подмести пол.",
+            "uk": "підмести підлогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы собираете сухой мусор. Скажите: «Я использую веник, чтобы подмести пол»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы собираете сухой мусор. Скажите: «Я использую веник, чтобы подмести пол»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use a broom to sweep the floor.",
+        "localizedMeaning": {
+          "ru": "Вы собираете сухой мусор. Скажите: «Я использую веник, чтобы подмести пол»",
+          "uk": "Ви збираєте сухе сміття. Скажіть: «Я використовую віник, щоб підмести підлогу»"
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "a",
+          "broom",
+          "to",
+          "sweep",
+          "the",
+          "floor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i02:r1",
+          "text": "I use a broom to sweep the floor."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i02:r2",
+          "text": "We use a broom to sweep the floor."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i02:r3",
+          "text": "You use a broom to sweep the floor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i02:audio",
+          "transcript": "I use a broom to sweep the floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:i02:r1",
+            "targetText": "I use a broom to sweep the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i02:r2",
+            "targetText": "We use a broom to sweep the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i02:r3",
+            "targetText": "You use a broom to sweep the floor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use a broom to sweep the floor.",
+              "uk": "У записі звучить I use a broom to sweep the floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use a broom to sweep the floor.",
+              "uk": "У записі звучить I use a broom to sweep the floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i03:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i03:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I use a broom ___ sweep the floor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-47:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:word:mop-the-floor",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mop the floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:word:mop-the-floor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mop the floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:word:mop-the-floor:audio",
+          "transcript": "mop the floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:word:mop-the-floor:r1",
+            "targetText": "mop the floor",
+            "meaningByLocale": {
+              "ru": "вымыть пол шваброй.",
+              "uk": "вимити підлогу шваброю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mop the floor",
+          "definitionByLocale": {
+            "ru": "вымыть пол шваброй.",
+            "uk": "вимити підлогу шваброю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы готовите воду для уборки. Скажите: «Я наполняю ведро, чтобы вымыть пол шваброй»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовите воду для уборки. Скажите: «Я наполняю ведро, чтобы вымыть пол шваброй»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I fill the bucket to mop the floor.",
+        "localizedMeaning": {
+          "ru": "Вы готовите воду для уборки. Скажите: «Я наполняю ведро, чтобы вымыть пол шваброй»",
+          "uk": "Ви готуєте воду для прибирання. Скажіть: «Я наповнюю відро, щоб вимити підлогу шваброю»"
+        },
+        "orderedTokens": [
+          "I",
+          "fill",
+          "the",
+          "bucket",
+          "to",
+          "mop",
+          "the",
+          "floor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i05:r1",
+          "text": "I fill the bucket to mop the floor."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i05:r2",
+          "text": "We fill the bucket to mop the floor."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i05:r3",
+          "text": "You fill the bucket to mop the floor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i05:audio",
+          "transcript": "I fill the bucket to mop the floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:i05:r1",
+            "targetText": "I fill the bucket to mop the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i05:r2",
+            "targetText": "We fill the bucket to mop the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i05:r3",
+            "targetText": "You fill the bucket to mop the floor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I fill the bucket to mop the floor.",
+              "uk": "У записі звучить I fill the bucket to mop the floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I fill the bucket to mop the floor.",
+              "uk": "У записі звучить I fill the bucket to mop the floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i06:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i06:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i06:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I fill the bucket ___ mop the floor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-47:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i06:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:word:vacuum-the-carpet",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vacuum the carpet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:word:vacuum-the-carpet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vacuum the carpet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:word:vacuum-the-carpet:audio",
+          "transcript": "vacuum the carpet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:word:vacuum-the-carpet:r1",
+            "targetText": "vacuum the carpet",
+            "meaningByLocale": {
+              "ru": "пропылесосить ковёр.",
+              "uk": "пропилососити килим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vacuum the carpet",
+          "definitionByLocale": {
+            "ru": "пропылесосить ковёр.",
+            "uk": "пропилососити килим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стул мешает убрать под ним. Скажите: «Я передвигаю стул, чтобы пропылесосить ковёр»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стул мешает убрать под ним. Скажите: «Я передвигаю стул, чтобы пропылесосить ковёр»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I move the chair to vacuum the carpet.",
+        "localizedMeaning": {
+          "ru": "Стул мешает убрать под ним. Скажите: «Я передвигаю стул, чтобы пропылесосить ковёр»",
+          "uk": "Стілець заважає прибрати під ним. Скажіть: «Я пересуваю стілець, щоб пропилососити килим»"
+        },
+        "orderedTokens": [
+          "I",
+          "move",
+          "the",
+          "chair",
+          "to",
+          "vacuum",
+          "the",
+          "carpet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i08:r1",
+          "text": "I move the chair to vacuum the carpet."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i08:r2",
+          "text": "We move the chair to vacuum the carpet."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i08:r3",
+          "text": "You move the chair to vacuum the carpet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i08:audio",
+          "transcript": "I move the chair to vacuum the carpet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:i08:r1",
+            "targetText": "I move the chair to vacuum the carpet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i08:r2",
+            "targetText": "We move the chair to vacuum the carpet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i08:r3",
+            "targetText": "You move the chair to vacuum the carpet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I move the chair to vacuum the carpet.",
+              "uk": "У записі звучить I move the chair to vacuum the carpet."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I move the chair to vacuum the carpet.",
+              "uk": "У записі звучить I move the chair to vacuum the carpet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i09:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i09:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I move the chair ___ vacuum the carpet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-47:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:word:dust-the-shelves",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dust the shelves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:word:dust-the-shelves:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dust the shelves",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:word:dust-the-shelves:audio",
+          "transcript": "dust the shelves"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:word:dust-the-shelves:r1",
+            "targetText": "dust the shelves",
+            "meaningByLocale": {
+              "ru": "вытереть пыль с полок.",
+              "uk": "витерти пил із полиць."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dust the shelves",
+          "definitionByLocale": {
+            "ru": "вытереть пыль с полок.",
+            "uk": "витерти пил із полиць."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На полках пыль. Скажите: «Я использую мягкую тряпку, чтобы вытереть пыль с полок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На полках пыль. Скажите: «Я использую мягкую тряпку, чтобы вытереть пыль с полок»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use a soft cloth to dust the shelves.",
+        "localizedMeaning": {
+          "ru": "На полках пыль. Скажите: «Я использую мягкую тряпку, чтобы вытереть пыль с полок»",
+          "uk": "На полицях пил. Скажіть: «Я використовую м’яку ганчірку, щоб витерти пил із полиць»"
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "a",
+          "soft",
+          "cloth",
+          "to",
+          "dust",
+          "the",
+          "shelves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i11:r1",
+          "text": "I use a soft cloth to dust the shelves."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i11:r2",
+          "text": "We use a soft cloth to dust the shelves."
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i11:r3",
+          "text": "You use a soft cloth to dust the shelves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i11:audio",
+          "transcript": "I use a soft cloth to dust the shelves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-47:i11:r1",
+            "targetText": "I use a soft cloth to dust the shelves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i11:r2",
+            "targetText": "We use a soft cloth to dust the shelves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i11:r3",
+            "targetText": "You use a soft cloth to dust the shelves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use a soft cloth to dust the shelves.",
+              "uk": "У записі звучить I use a soft cloth to dust the shelves."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use a soft cloth to dust the shelves.",
+              "uk": "У записі звучить I use a soft cloth to dust the shelves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-47:i12:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i12:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-47:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I use a soft cloth ___ dust the shelves.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-47:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-47:i13:p1",
+            "target": "sweep the floor",
+            "meaningByLocale": {
+              "ru": "подмести пол",
+              "uk": "підмести підлогу"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-47:i13:p2",
+            "target": "mop the floor",
+            "meaningByLocale": {
+              "ru": "вымыть пол шваброй",
+              "uk": "вимити підлогу шваброю"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-47:i13:p3",
+            "target": "vacuum the carpet",
+            "meaningByLocale": {
+              "ru": "пропылесосить ковёр",
+              "uk": "пропилососити килим"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-47:i13:p4",
+            "target": "dust the shelves",
+            "meaningByLocale": {
+              "ru": "вытереть пыль с полок",
+              "uk": "витерти пил із полиць"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sweep the floor",
+          "mop the floor",
+          "vacuum the carpet",
+          "dust the shelves"
+        ],
+        "rightColumn": [
+          "подмести пол",
+          "вымыть пол шваброй",
+          "пропылесосить ковёр",
+          "вытереть пыль с полок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: место у окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: место у окна",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i14:audio",
+          "transcript": "Could I sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I sit by the window?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: прогулка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: прогулка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i15:audio",
+          "transcript": "Could I go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I go for a walk?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мне нужно пропылесосить ковёр»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мне нужно пропылесосить ковёр»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i16:audio",
+          "transcript": "I need to vacuum the carpet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to vacuum the carpet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я хочу подмести пол»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я хочу подмести пол»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-47:i17:audio",
+          "transcript": "I want to sweep the floor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to sweep the floor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8c12b3f1f545d339239c9867d57f6b629a5acdb7c78ce63a54909b1f98011b6c"
+}

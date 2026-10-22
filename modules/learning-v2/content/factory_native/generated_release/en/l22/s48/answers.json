@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-48:word:boil-the-water",
+    "correctText": "boil the water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i01",
+    "correctText": "I fill the kettle to boil the water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i02",
+    "correctText": "I fill the kettle to boil the water.",
+    "correctResponseId": "en:lesson-22:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:word:chop-the-vegetables",
+    "correctText": "chop the vegetables",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i04",
+    "correctText": "I use this knife to chop the vegetables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i05",
+    "correctText": "I use this knife to chop the vegetables.",
+    "correctResponseId": "en:lesson-22:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:word:fry-an-egg",
+    "correctText": "fry an egg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i07",
+    "correctText": "I heat the pan to fry an egg.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i08",
+    "correctText": "I heat the pan to fry an egg.",
+    "correctResponseId": "en:lesson-22:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:word:bake-a-cake",
+    "correctText": "bake a cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i10",
+    "correctText": "I turn on the oven to bake a cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i11",
+    "correctText": "I turn on the oven to bake a cake.",
+    "correctResponseId": "en:lesson-22:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i13",
+    "correctText": "en:lesson-22:session-48:i13:p1=boil the water\nen:lesson-22:session-48:i13:p2=chop the vegetables\nen:lesson-22:session-48:i13:p3=fry an egg\nen:lesson-22:session-48:i13:p4=bake a cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i16",
+    "correctText": "I need to chop the vegetables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-48:i17",
+    "correctText": "I want to fry an egg.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2349 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-31",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-31:word:cross-out",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cross out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:cross-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cross out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:cross-out:audio",
+            "transcript": "cross out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:cross-out:r1",
+              "targetText": "cross out",
+              "meaningByLocale": {
+                "ru": "зачеркнуть.",
+                "uk": "закреслити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cross out",
+            "definitionByLocale": {
+              "ru": "зачеркнуть.",
+              "uk": "закреслити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужно, чтобы ты зачеркнул неверный адрес».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужно, чтобы ты зачеркнул неверный адрес».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need you to cross out the wrong address.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно, чтобы ты зачеркнул неверный адрес».",
+            "uk": "Скажіть: «Мені потрібно, щоб ти закреслив неправильну адресу»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "cross",
+            "out",
+            "the",
+            "wrong",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i02:r1",
+            "text": "I need you to cross out the wrong address."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i02:r2",
+            "text": "We need you to cross out the wrong address."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i02:r3",
+            "text": "They need you to cross out the wrong address."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i02:audio",
+            "transcript": "I need you to cross out the wrong address."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i02:r1",
+              "targetText": "I need you to cross out the wrong address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i02:r2",
+              "targetText": "We need you to cross out the wrong address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i02:r3",
+              "targetText": "They need you to cross out the wrong address.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to cross out the wrong address.",
+                "uk": "У записі звучить I need you to cross out the wrong address."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to cross out the wrong address.",
+                "uk": "У записі звучить I need you to cross out the wrong address."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово для собеседника.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i03:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i03:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i03:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово для собеседника.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово для собеседника.",
+            "uk": "Виберіть слово для співрозмовника."
+          },
+          "gappedTargetPhrase": "I need ___ to cross out the wrong address.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i03:r1",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i03:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i03:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Выберите слово для собеседника.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово для собеседника.",
+              "feedbackByLocale": {
+                "ru": "Your означает «твой»; здесь нужен человек you.",
+                "uk": "Your означає «твій»; тут потрібна людина you."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово для собеседника.",
+              "feedbackByLocale": {
+                "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+                "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:word:rub-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rub out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:rub-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rub out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:rub-out:audio",
+            "transcript": "rub out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:rub-out:r1",
+              "targetText": "rub out",
+              "meaningByLocale": {
+                "ru": "стереть ластиком.",
+                "uk": "стерти гумкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rub out",
+            "definitionByLocale": {
+              "ru": "стереть ластиком.",
+              "uk": "стерти гумкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу, чтобы ты стёр это слово ластиком».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу, чтобы ты стёр это слово ластиком».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want you to rub out this word.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу, чтобы ты стёр это слово ластиком».",
+            "uk": "Скажіть: «Я хочу, щоб ти стер це слово гумкою»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "you",
+            "to",
+            "rub",
+            "out",
+            "this",
+            "word"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i05:r1",
+            "text": "I want you to rub out this word."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i05:r2",
+            "text": "We want you to rub out this word."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i05:r3",
+            "text": "They want you to rub out this word."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i05:audio",
+            "transcript": "I want you to rub out this word."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i05:r1",
+              "targetText": "I want you to rub out this word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i05:r2",
+              "targetText": "We want you to rub out this word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i05:r3",
+              "targetText": "They want you to rub out this word.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to rub out this word.",
+                "uk": "У записі звучить I want you to rub out this word."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to rub out this word.",
+                "uk": "У записі звучить I want you to rub out this word."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово для собеседника.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i06:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i06:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i06:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово для собеседника.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово для собеседника.",
+            "uk": "Виберіть слово для співрозмовника."
+          },
+          "gappedTargetPhrase": "I want ___ to rub out this word.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i06:r1",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i06:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i06:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Выберите слово для собеседника.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово для собеседника.",
+              "feedbackByLocale": {
+                "ru": "Your означает «твой»; здесь нужен человек you.",
+                "uk": "Your означає «твій»; тут потрібна людина you."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово для собеседника.",
+              "feedbackByLocale": {
+                "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+                "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:word:look-over",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — look over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:look-over:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — look over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:look-over:audio",
+            "transcript": "look over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:look-over:r1",
+              "targetText": "look over",
+              "meaningByLocale": {
+                "ru": "просмотреть, бегло проверить.",
+                "uk": "переглянути, побіжно перевірити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "look over",
+            "definitionByLocale": {
+              "ru": "просмотреть, бегло проверить.",
+              "uk": "переглянути, побіжно перевірити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужно, чтобы ты просмотрел список».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужно, чтобы ты просмотрел список».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need you to look over the list.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно, чтобы ты просмотрел список».",
+            "uk": "Скажіть: «Мені потрібно, щоб ти переглянув список»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i08:r1",
+            "text": "I need you to look over the list."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i08:r2",
+            "text": "We need you to look over the list."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i08:r3",
+            "text": "They need you to look over the list."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i08:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i08:r1",
+              "targetText": "I need you to look over the list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i08:r2",
+              "targetText": "We need you to look over the list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i08:r3",
+              "targetText": "They need you to look over the list.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to look over the list.",
+                "uk": "У записі звучить I need you to look over the list."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to look over the list.",
+                "uk": "У записі звучить I need you to look over the list."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i09:r1",
+            "text": "to look"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i09:r2",
+            "text": "to looking"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i09:r3",
+            "text": "to looks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I need you ___ over the list.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i09:r1",
+              "text": "to look"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i09:r2",
+              "text": "to looking"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i09:r3",
+              "text": "to looks"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:word:talk-through",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — talk through",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:talk-through:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — talk through",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:talk-through:audio",
+            "transcript": "talk through"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:talk-through:r1",
+              "targetText": "talk through",
+              "meaningByLocale": {
+                "ru": "обсудить шаг за шагом.",
+                "uk": "обговорити крок за кроком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "talk through",
+            "definitionByLocale": {
+              "ru": "обсудить шаг за шагом.",
+              "uk": "обговорити крок за кроком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу, чтобы ты обсудил со мной план шаг за шагом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу, чтобы ты обсудил со мной план шаг за шагом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want you to talk through the plan with me.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу, чтобы ты обсудил со мной план шаг за шагом».",
+            "uk": "Скажіть: «Я хочу, щоб ти обговорив зі мною план крок за кроком»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "you",
+            "to",
+            "talk",
+            "through",
+            "the",
+            "plan",
+            "with",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i11:r1",
+            "text": "I want you to talk through the plan with me."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i11:r2",
+            "text": "We want you to talk through the plan with me."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i11:r3",
+            "text": "They want you to talk through the plan with me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i11:audio",
+            "transcript": "I want you to talk through the plan with me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i11:r1",
+              "targetText": "I want you to talk through the plan with me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i11:r2",
+              "targetText": "We want you to talk through the plan with me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i11:r3",
+              "targetText": "They want you to talk through the plan with me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to talk through the plan with me.",
+                "uk": "У записі звучить I want you to talk through the plan with me."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to talk through the plan with me.",
+                "uk": "У записі звучить I want you to talk through the plan with me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i12:r1",
+            "text": "to talk"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i12:r2",
+            "text": "to talking"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i12:r3",
+            "text": "to talks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I want you ___ through the plan with me.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i12:r1",
+              "text": "to talk"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i12:r2",
+              "text": "to talking"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i12:r3",
+              "text": "to talks"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-31:i13:p1",
+              "target": "cross out",
+              "meaningByLocale": {
+                "ru": "зачеркнуть",
+                "uk": "закреслити"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-31:i13:p2",
+              "target": "rub out",
+              "meaningByLocale": {
+                "ru": "стереть ластиком",
+                "uk": "стерти гумкою"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-31:i13:p3",
+              "target": "look over",
+              "meaningByLocale": {
+                "ru": "просмотреть, бегло проверить",
+                "uk": "переглянути, побіжно перевірити"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-31:i13:p4",
+              "target": "talk through",
+              "meaningByLocale": {
+                "ru": "обсудить шаг за шагом",
+                "uk": "обговорити крок за кроком"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cross out",
+            "rub out",
+            "look over",
+            "talk through"
+          ],
+          "rightColumn": [
+            "зачеркнуть",
+            "стереть ластиком",
+            "просмотреть, бегло проверить",
+            "обсудить шаг за шагом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: приятное занятие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: приятное занятие",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: закончить дело",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: закончить дело",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Обратитесь к другу: «Мне нужно, чтобы ты просмотрел список»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Обратитесь к другу: «Мне нужно, чтобы ты просмотрел список»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i16:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need you to look over the list.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Обратитесь к другу: «Я хочу, чтобы ты обсудил со мной план шаг за шагом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Обратитесь к другу: «Я хочу, чтобы ты обсудил со мной план шаг за шагом»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i17:audio",
+            "transcript": "I want you to talk through the plan with me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want you to talk through the plan with me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-31:word:cross-out",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cross out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:cross-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cross out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:cross-out:audio",
+            "transcript": "cross out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:cross-out:r1",
+              "targetText": "cross out",
+              "meaningByLocale": {
+                "ru": "зачеркнуть.",
+                "uk": "закреслити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cross out",
+            "definitionByLocale": {
+              "ru": "зачеркнуть.",
+              "uk": "закреслити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібно, щоб ти закреслив неправильну адресу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібно, щоб ти закреслив неправильну адресу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need you to cross out the wrong address.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно, чтобы ты зачеркнул неверный адрес».",
+            "uk": "Скажіть: «Мені потрібно, щоб ти закреслив неправильну адресу»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "cross",
+            "out",
+            "the",
+            "wrong",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i02:r1",
+            "text": "I need you to cross out the wrong address."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i02:r2",
+            "text": "We need you to cross out the wrong address."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i02:r3",
+            "text": "They need you to cross out the wrong address."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i02:audio",
+            "transcript": "I need you to cross out the wrong address."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i02:r1",
+              "targetText": "I need you to cross out the wrong address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i02:r2",
+              "targetText": "We need you to cross out the wrong address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i02:r3",
+              "targetText": "They need you to cross out the wrong address.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to cross out the wrong address.",
+                "uk": "У записі звучить I need you to cross out the wrong address."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to cross out the wrong address.",
+                "uk": "У записі звучить I need you to cross out the wrong address."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово для співрозмовника.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i03:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i03:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i03:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово для співрозмовника.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово для собеседника.",
+            "uk": "Виберіть слово для співрозмовника."
+          },
+          "gappedTargetPhrase": "I need ___ to cross out the wrong address.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i03:r1",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i03:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i03:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Виберіть слово для співрозмовника.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово для співрозмовника.",
+              "feedbackByLocale": {
+                "ru": "Your означает «твой»; здесь нужен человек you.",
+                "uk": "Your означає «твій»; тут потрібна людина you."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово для співрозмовника.",
+              "feedbackByLocale": {
+                "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+                "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:word:rub-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rub out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:rub-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rub out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:rub-out:audio",
+            "transcript": "rub out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:rub-out:r1",
+              "targetText": "rub out",
+              "meaningByLocale": {
+                "ru": "стереть ластиком.",
+                "uk": "стерти гумкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rub out",
+            "definitionByLocale": {
+              "ru": "стереть ластиком.",
+              "uk": "стерти гумкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу, щоб ти стер це слово гумкою».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу, щоб ти стер це слово гумкою».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want you to rub out this word.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу, чтобы ты стёр это слово ластиком».",
+            "uk": "Скажіть: «Я хочу, щоб ти стер це слово гумкою»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "you",
+            "to",
+            "rub",
+            "out",
+            "this",
+            "word"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i05:r1",
+            "text": "I want you to rub out this word."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i05:r2",
+            "text": "We want you to rub out this word."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i05:r3",
+            "text": "They want you to rub out this word."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i05:audio",
+            "transcript": "I want you to rub out this word."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i05:r1",
+              "targetText": "I want you to rub out this word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i05:r2",
+              "targetText": "We want you to rub out this word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i05:r3",
+              "targetText": "They want you to rub out this word.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to rub out this word.",
+                "uk": "У записі звучить I want you to rub out this word."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to rub out this word.",
+                "uk": "У записі звучить I want you to rub out this word."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово для співрозмовника.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i06:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i06:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i06:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово для співрозмовника.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово для собеседника.",
+            "uk": "Виберіть слово для співрозмовника."
+          },
+          "gappedTargetPhrase": "I want ___ to rub out this word.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i06:r1",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i06:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i06:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Виберіть слово для співрозмовника.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово для співрозмовника.",
+              "feedbackByLocale": {
+                "ru": "Your означает «твой»; здесь нужен человек you.",
+                "uk": "Your означає «твій»; тут потрібна людина you."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово для співрозмовника.",
+              "feedbackByLocale": {
+                "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+                "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:word:look-over",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — look over",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:look-over:audio"
+        ],
+        "accessibilityLabel": "Картка слова — look over",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:look-over:audio",
+            "transcript": "look over"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:look-over:r1",
+              "targetText": "look over",
+              "meaningByLocale": {
+                "ru": "просмотреть, бегло проверить.",
+                "uk": "переглянути, побіжно перевірити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "look over",
+            "definitionByLocale": {
+              "ru": "просмотреть, бегло проверить.",
+              "uk": "переглянути, побіжно перевірити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібно, щоб ти переглянув список».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібно, щоб ти переглянув список».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need you to look over the list.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно, чтобы ты просмотрел список».",
+            "uk": "Скажіть: «Мені потрібно, щоб ти переглянув список»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i08:r1",
+            "text": "I need you to look over the list."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i08:r2",
+            "text": "We need you to look over the list."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i08:r3",
+            "text": "They need you to look over the list."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i08:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i08:r1",
+              "targetText": "I need you to look over the list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i08:r2",
+              "targetText": "We need you to look over the list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i08:r3",
+              "targetText": "They need you to look over the list.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to look over the list.",
+                "uk": "У записі звучить I need you to look over the list."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need you to look over the list.",
+                "uk": "У записі звучить I need you to look over the list."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i09:r1",
+            "text": "to look"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i09:r2",
+            "text": "to looking"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i09:r3",
+            "text": "to looks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I need you ___ over the list.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i09:r1",
+              "text": "to look"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i09:r2",
+              "text": "to looking"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i09:r3",
+              "text": "to looks"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:word:talk-through",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — talk through",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:word:talk-through:audio"
+        ],
+        "accessibilityLabel": "Картка слова — talk through",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:word:talk-through:audio",
+            "transcript": "talk through"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:word:talk-through:r1",
+              "targetText": "talk through",
+              "meaningByLocale": {
+                "ru": "обсудить шаг за шагом.",
+                "uk": "обговорити крок за кроком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "talk through",
+            "definitionByLocale": {
+              "ru": "обсудить шаг за шагом.",
+              "uk": "обговорити крок за кроком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу, щоб ти обговорив зі мною план крок за кроком».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу, щоб ти обговорив зі мною план крок за кроком».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want you to talk through the plan with me.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу, чтобы ты обсудил со мной план шаг за шагом».",
+            "uk": "Скажіть: «Я хочу, щоб ти обговорив зі мною план крок за кроком»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "you",
+            "to",
+            "talk",
+            "through",
+            "the",
+            "plan",
+            "with",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i11:r1",
+            "text": "I want you to talk through the plan with me."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i11:r2",
+            "text": "We want you to talk through the plan with me."
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i11:r3",
+            "text": "They want you to talk through the plan with me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i11:audio",
+            "transcript": "I want you to talk through the plan with me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-31:i11:r1",
+              "targetText": "I want you to talk through the plan with me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i11:r2",
+              "targetText": "We want you to talk through the plan with me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i11:r3",
+              "targetText": "They want you to talk through the plan with me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to talk through the plan with me.",
+                "uk": "У записі звучить I want you to talk through the plan with me."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to talk through the plan with me.",
+                "uk": "У записі звучить I want you to talk through the plan with me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-31:i12:r1",
+            "text": "to talk"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i12:r2",
+            "text": "to talking"
+          },
+          {
+            "responseId": "en:lesson-21:session-31:i12:r3",
+            "text": "to talks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I want you ___ through the plan with me.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-31:i12:r1",
+              "text": "to talk"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i12:r2",
+              "text": "to talking"
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i12:r3",
+              "text": "to talks"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-31:i13:p1",
+              "target": "cross out",
+              "meaningByLocale": {
+                "ru": "зачеркнуть",
+                "uk": "закреслити"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-31:i13:p2",
+              "target": "rub out",
+              "meaningByLocale": {
+                "ru": "стереть ластиком",
+                "uk": "стерти гумкою"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-31:i13:p3",
+              "target": "look over",
+              "meaningByLocale": {
+                "ru": "просмотреть, бегло проверить",
+                "uk": "переглянути, побіжно перевірити"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-31:i13:p4",
+              "target": "talk through",
+              "meaningByLocale": {
+                "ru": "обсудить шаг за шагом",
+                "uk": "обговорити крок за кроком"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cross out",
+            "rub out",
+            "look over",
+            "talk through"
+          ],
+          "rightColumn": [
+            "закреслити",
+            "стерти гумкою",
+            "переглянути, побіжно перевірити",
+            "обговорити крок за кроком"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: приємне заняття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: приємне заняття",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: закінчити справу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: закінчити справу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Зверніться до друга: «Мені потрібно, щоб ти переглянув список»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Зверніться до друга: «Мені потрібно, щоб ти переглянув список»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i16:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need you to look over the list.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Зверніться до друга: «Я хочу, щоб ти обговорив зі мною план крок за кроком»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Зверніться до друга: «Я хочу, щоб ти обговорив зі мною план крок за кроком»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-31:i17:audio",
+            "transcript": "I want you to talk through the plan with me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want you to talk through the plan with me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-31:word:cross-out",
+      "correctText": "cross out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i01",
+      "correctText": "I need you to cross out the wrong address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i02",
+      "correctText": "I need you to cross out the wrong address.",
+      "correctResponseId": "en:lesson-21:session-31:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i03",
+      "correctText": "you",
+      "correctResponseId": "en:lesson-21:session-31:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:word:rub-out",
+      "correctText": "rub out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i04",
+      "correctText": "I want you to rub out this word.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i05",
+      "correctText": "I want you to rub out this word.",
+      "correctResponseId": "en:lesson-21:session-31:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i06",
+      "correctText": "you",
+      "correctResponseId": "en:lesson-21:session-31:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:word:look-over",
+      "correctText": "look over",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i07",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i08",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": "en:lesson-21:session-31:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i09",
+      "correctText": "to look",
+      "correctResponseId": "en:lesson-21:session-31:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:word:talk-through",
+      "correctText": "talk through",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i10",
+      "correctText": "I want you to talk through the plan with me.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i11",
+      "correctText": "I want you to talk through the plan with me.",
+      "correctResponseId": "en:lesson-21:session-31:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i12",
+      "correctText": "to talk",
+      "correctResponseId": "en:lesson-21:session-31:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i14",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i15",
+      "correctText": "I must finish reading the description.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i16",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-31:i17",
+      "correctText": "I want you to talk through the plan with me.",
+      "correctResponseId": null
+    }
+  ]
+}

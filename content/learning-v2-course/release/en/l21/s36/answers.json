@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-36:word:save-time",
+    "correctText": "save time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i01",
+    "correctText": "I book online to save time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i02",
+    "correctText": "I book online to save time.",
+    "correctResponseId": "en:lesson-21:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i03",
+    "correctText": "to save",
+    "correctResponseId": "en:lesson-21:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:word:save-money",
+    "correctText": "save money",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i04",
+    "correctText": "I walk to save money.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i05",
+    "correctText": "I walk to save money.",
+    "correctResponseId": "en:lesson-21:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i06",
+    "correctText": "to save",
+    "correctResponseId": "en:lesson-21:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:word:avoid-queues",
+    "correctText": "avoid queues",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i07",
+    "correctText": "I buy tickets in advance to avoid queues.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i08",
+    "correctText": "I buy tickets in advance to avoid queues.",
+    "correctResponseId": "en:lesson-21:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i09",
+    "correctText": "to avoid",
+    "correctResponseId": "en:lesson-21:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:word:beat-the-traffic",
+    "correctText": "beat the traffic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i10",
+    "correctText": "I leave early to beat the traffic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i11",
+    "correctText": "I leave early to beat the traffic.",
+    "correctResponseId": "en:lesson-21:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i12",
+    "correctText": "to beat",
+    "correctResponseId": "en:lesson-21:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i13",
+    "correctText": "en:lesson-21:session-36:i13:p1=save time\nen:lesson-21:session-36:i13:p2=save money\nen:lesson-21:session-36:i13:p3=avoid queues\nen:lesson-21:session-36:i13:p4=beat the traffic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i16",
+    "correctText": "I buy tickets in advance to avoid queues.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-36:i17",
+    "correctText": "I leave early to beat the traffic.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-31:word:cross-out",
+    "correctText": "cross out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i01",
+    "correctText": "I need you to cross out the wrong address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i02",
+    "correctText": "I need you to cross out the wrong address.",
+    "correctResponseId": "en:lesson-21:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i03",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:word:rub-out",
+    "correctText": "rub out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i04",
+    "correctText": "I want you to rub out this word.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i05",
+    "correctText": "I want you to rub out this word.",
+    "correctResponseId": "en:lesson-21:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i06",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:word:look-over",
+    "correctText": "look over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i07",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i08",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": "en:lesson-21:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i09",
+    "correctText": "to look",
+    "correctResponseId": "en:lesson-21:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:word:talk-through",
+    "correctText": "talk through",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i10",
+    "correctText": "I want you to talk through the plan with me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i11",
+    "correctText": "I want you to talk through the plan with me.",
+    "correctResponseId": "en:lesson-21:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i12",
+    "correctText": "to talk",
+    "correctResponseId": "en:lesson-21:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i13",
+    "correctText": "en:lesson-21:session-31:i13:p1=cross out\nen:lesson-21:session-31:i13:p2=rub out\nen:lesson-21:session-31:i13:p3=look over\nen:lesson-21:session-31:i13:p4=talk through",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i16",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-31:i17",
+    "correctText": "I want you to talk through the plan with me.",
+    "correctResponseId": null
+  }
+]

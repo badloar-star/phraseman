@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-33:word:study-group",
+    "correctText": "study group",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i01",
+    "correctText": "I join a study group to learn English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i02",
+    "correctText": "I join a study group to learn English.",
+    "correctResponseId": "en:lesson-21:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i03",
+    "correctText": "to learn",
+    "correctResponseId": "en:lesson-21:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:word:evening-class",
+    "correctText": "evening class",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i04",
+    "correctText": "I attend an evening class to improve my English.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i05",
+    "correctText": "I attend an evening class to improve my English.",
+    "correctResponseId": "en:lesson-21:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i06",
+    "correctText": "to improve",
+    "correctResponseId": "en:lesson-21:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:word:language-exchange",
+    "correctText": "language exchange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i07",
+    "correctText": "I join a language exchange to meet people.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i08",
+    "correctText": "I join a language exchange to meet people.",
+    "correctResponseId": "en:lesson-21:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i09",
+    "correctText": "to meet",
+    "correctResponseId": "en:lesson-21:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:word:study-partner",
+    "correctText": "study partner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i10",
+    "correctText": "I meet my study partner to revise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i11",
+    "correctText": "I meet my study partner to revise.",
+    "correctResponseId": "en:lesson-21:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i12",
+    "correctText": "to revise",
+    "correctResponseId": "en:lesson-21:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i13",
+    "correctText": "en:lesson-21:session-33:i13:p1=study group\nen:lesson-21:session-33:i13:p2=evening class\nen:lesson-21:session-33:i13:p3=language exchange\nen:lesson-21:session-33:i13:p4=study partner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i16",
+    "correctText": "I join a language exchange to meet people.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-33:i17",
+    "correctText": "I meet my study partner to revise.",
+    "correctResponseId": null
+  }
+]

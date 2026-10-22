@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-33:word:study-group",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — study group",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:word:study-group:audio"
+      ],
+      "accessibilityLabel": "Картка слова — study group",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:word:study-group:audio",
+          "transcript": "study group"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:word:study-group:r1",
+            "targetText": "study group",
+            "meaningByLocale": {
+              "ru": "группа для совместной учёбы.",
+              "uk": "група для спільного навчання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "study group",
+          "definitionByLocale": {
+            "ru": "группа для совместной учёбы.",
+            "uk": "група для спільного навчання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я приєднуюся до навчальної групи, щоб вивчати англійську».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я приєднуюся до навчальної групи, щоб вивчати англійську».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I join a study group to learn English.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я присоединяюсь к учебной группе, чтобы учить английский».",
+          "uk": "Скажіть: «Я приєднуюся до навчальної групи, щоб вивчати англійську»."
+        },
+        "orderedTokens": [
+          "I",
+          "join",
+          "a",
+          "study",
+          "group",
+          "to",
+          "learn",
+          "English"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i02:r1",
+          "text": "I join a study group to learn English."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i02:r2",
+          "text": "We join a study group to learn English."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i02:r3",
+          "text": "They join a study group to learn English."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i02:audio",
+          "transcript": "I join a study group to learn English."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:i02:r1",
+            "targetText": "I join a study group to learn English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i02:r2",
+            "targetText": "We join a study group to learn English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i02:r3",
+            "targetText": "They join a study group to learn English.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I join a study group to learn English.",
+              "uk": "У записі звучить I join a study group to learn English."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I join a study group to learn English.",
+              "uk": "У записі звучить I join a study group to learn English."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i03:r1",
+          "text": "to learn"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i03:r2",
+          "text": "to learning"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i03:r3",
+          "text": "for learn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I join a study group ___ English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-33:i03:r1",
+            "text": "to learn"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i03:r2",
+            "text": "to learning"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i03:r3",
+            "text": "for learn"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:word:evening-class",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — evening class",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:word:evening-class:audio"
+      ],
+      "accessibilityLabel": "Картка слова — evening class",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:word:evening-class:audio",
+          "transcript": "evening class"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:word:evening-class:r1",
+            "targetText": "evening class",
+            "meaningByLocale": {
+              "ru": "вечернее занятие.",
+              "uk": "вечірнє заняття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "evening class",
+          "definitionByLocale": {
+            "ru": "вечернее занятие.",
+            "uk": "вечірнє заняття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я ходжу на вечірнє заняття, щоб поліпшити свою англійську».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я ходжу на вечірнє заняття, щоб поліпшити свою англійську».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I attend an evening class to improve my English.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хожу на вечернее занятие, чтобы улучшить свой английский».",
+          "uk": "Скажіть: «Я ходжу на вечірнє заняття, щоб поліпшити свою англійську»."
+        },
+        "orderedTokens": [
+          "I",
+          "attend",
+          "an",
+          "evening",
+          "class",
+          "to",
+          "improve",
+          "my",
+          "English"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i05:r1",
+          "text": "I attend an evening class to improve my English."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i05:r2",
+          "text": "We attend an evening class to improve our English."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i05:r3",
+          "text": "They attend an evening class to improve their English."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i05:audio",
+          "transcript": "I attend an evening class to improve my English."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:i05:r1",
+            "targetText": "I attend an evening class to improve my English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i05:r2",
+            "targetText": "We attend an evening class to improve our English.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i05:r3",
+            "targetText": "They attend an evening class to improve their English.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I attend an evening class to improve my English.",
+              "uk": "У записі звучить I attend an evening class to improve my English."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I attend an evening class to improve my English.",
+              "uk": "У записі звучить I attend an evening class to improve my English."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i06:r1",
+          "text": "to improve"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i06:r2",
+          "text": "to improving"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i06:r3",
+          "text": "for improve"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I attend an evening class ___ my English.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-33:i06:r1",
+            "text": "to improve"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i06:r2",
+            "text": "to improving"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i06:r3",
+            "text": "for improve"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:word:language-exchange",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — language exchange",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:word:language-exchange:audio"
+      ],
+      "accessibilityLabel": "Картка слова — language exchange",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:word:language-exchange:audio",
+          "transcript": "language exchange"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:word:language-exchange:r1",
+            "targetText": "language exchange",
+            "meaningByLocale": {
+              "ru": "языковой обмен.",
+              "uk": "мовний обмін."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "language exchange",
+          "definitionByLocale": {
+            "ru": "языковой обмен.",
+            "uk": "мовний обмін."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я беру участь у мовному обміні, щоб знайомитися з людьми».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я беру участь у мовному обміні, щоб знайомитися з людьми».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I join a language exchange to meet people.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я участвую в языковом обмене, чтобы знакомиться с людьми».",
+          "uk": "Скажіть: «Я беру участь у мовному обміні, щоб знайомитися з людьми»."
+        },
+        "orderedTokens": [
+          "I",
+          "join",
+          "a",
+          "language",
+          "exchange",
+          "to",
+          "meet",
+          "people"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i08:r1",
+          "text": "I join a language exchange to meet people."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i08:r2",
+          "text": "We join a language exchange to meet people."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i08:r3",
+          "text": "They join a language exchange to meet people."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i08:audio",
+          "transcript": "I join a language exchange to meet people."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:i08:r1",
+            "targetText": "I join a language exchange to meet people.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i08:r2",
+            "targetText": "We join a language exchange to meet people.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i08:r3",
+            "targetText": "They join a language exchange to meet people.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I join a language exchange to meet people.",
+              "uk": "У записі звучить I join a language exchange to meet people."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I join a language exchange to meet people.",
+              "uk": "У записі звучить I join a language exchange to meet people."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i09:r1",
+          "text": "to meet"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i09:r2",
+          "text": "to meeting"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i09:r3",
+          "text": "for meet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I join a language exchange ___ people.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-33:i09:r1",
+            "text": "to meet"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i09:r2",
+            "text": "to meeting"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i09:r3",
+            "text": "for meet"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:word:study-partner",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — study partner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:word:study-partner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — study partner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:word:study-partner:audio",
+          "transcript": "study partner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:word:study-partner:r1",
+            "targetText": "study partner",
+            "meaningByLocale": {
+              "ru": "напарник по учёбе.",
+              "uk": "напарник у навчанні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "study partner",
+          "definitionByLocale": {
+            "ru": "напарник по учёбе.",
+            "uk": "напарник у навчанні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я зустрічаюся з напарником у навчанні, щоб повторити матеріал».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я зустрічаюся з напарником у навчанні, щоб повторити матеріал».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I meet my study partner to revise.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я встречаюсь с напарником по учёбе, чтобы повторить материал».",
+          "uk": "Скажіть: «Я зустрічаюся з напарником у навчанні, щоб повторити матеріал»."
+        },
+        "orderedTokens": [
+          "I",
+          "meet",
+          "my",
+          "study",
+          "partner",
+          "to",
+          "revise"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i11:r1",
+          "text": "I meet my study partner to revise."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i11:r2",
+          "text": "We meet our study partner to revise."
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i11:r3",
+          "text": "They meet their study partner to revise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i11:audio",
+          "transcript": "I meet my study partner to revise."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-33:i11:r1",
+            "targetText": "I meet my study partner to revise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i11:r2",
+            "targetText": "We meet our study partner to revise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i11:r3",
+            "targetText": "They meet their study partner to revise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I meet my study partner to revise.",
+              "uk": "У записі звучить I meet my study partner to revise."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I meet my study partner to revise.",
+              "uk": "У записі звучить I meet my study partner to revise."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-33:i12:r1",
+          "text": "to revise"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i12:r2",
+          "text": "to revising"
+        },
+        {
+          "responseId": "en:lesson-21:session-33:i12:r3",
+          "text": "for revise"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I meet my study partner ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-33:i12:r1",
+            "text": "to revise"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i12:r2",
+            "text": "to revising"
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i12:r3",
+            "text": "for revise"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-33:i13:p1",
+            "target": "study group",
+            "meaningByLocale": {
+              "ru": "группа для совместной учёбы",
+              "uk": "група для спільного навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-33:i13:p2",
+            "target": "evening class",
+            "meaningByLocale": {
+              "ru": "вечернее занятие",
+              "uk": "вечірнє заняття"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-33:i13:p3",
+            "target": "language exchange",
+            "meaningByLocale": {
+              "ru": "языковой обмен",
+              "uk": "мовний обмін"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-33:i13:p4",
+            "target": "study partner",
+            "meaningByLocale": {
+              "ru": "напарник по учёбе",
+              "uk": "напарник у навчанні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "study group",
+          "evening class",
+          "language exchange",
+          "study partner"
+        ],
+        "rightColumn": [
+          "група для спільного навчання",
+          "вечірнє заняття",
+          "мовний обмін",
+          "напарник у навчанні"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть: «Я беру участь у мовному обміні, щоб знайомитися з людьми»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Поясніть: «Я беру участь у мовному обміні, щоб знайомитися з людьми»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i16:audio",
+          "transcript": "I join a language exchange to meet people."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I join a language exchange to meet people.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, навіщо зустрічаєтеся з напарником у навчанні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Поясніть, навіщо зустрічаєтеся з напарником у навчанні",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-33:i17:audio",
+          "transcript": "I meet my study partner to revise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I meet my study partner to revise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c4cff45e89bd8316c2b6b87f2d9e7b981b5df2afb4308271c3e3cb5fac42ae4c"
+}

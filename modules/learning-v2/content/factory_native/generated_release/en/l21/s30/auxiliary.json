@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-30:intro1:r2": {
+          "ru": "Перед одним прилагательным здесь нужно so, а не such.",
+          "uk": "Перед одним прикметником тут потрібне so, а не such."
+        },
+        "en:lesson-21:session-30:intro1:r3": {
+          "ru": "С одним автобусом употребляем is.",
+          "uk": "З одним автобусом уживаємо is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-30:intro2:r2": {
+          "ru": "Room — одна комната, поэтому is.",
+          "uk": "Room — одна кімната, тому is."
+        },
+        "en:lesson-21:session-30:intro2:r3": {
+          "ru": "Перед прилагательным здесь нужен is.",
+          "uk": "Перед прикметником тут потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-30:intro3:r2": {
+          "ru": "С rent здесь употребляем is.",
+          "uk": "З rent тут уживаємо is."
+        },
+        "en:lesson-21:session-30:intro3:r3": {
+          "ru": "Перед прилагательным здесь нужен is.",
+          "uk": "Перед прикметником тут потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9cfbd3fde094ed2101e1732b5c49d1cd25c6699e022a4726c6bcc19f385cf131"
+}

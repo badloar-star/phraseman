@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-35:word:label",
+    "correctText": "label",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i01",
+    "correctText": "I label the boxes to find things quickly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i02",
+    "correctText": "I label the boxes to find things quickly.",
+    "correctResponseId": "en:lesson-21:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i03",
+    "correctText": "to find",
+    "correctResponseId": "en:lesson-21:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:word:stack",
+    "correctText": "stack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i04",
+    "correctText": "I stack the plates to save space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i05",
+    "correctText": "I stack the plates to save space.",
+    "correctResponseId": "en:lesson-21:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i06",
+    "correctText": "to save",
+    "correctResponseId": "en:lesson-21:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:word:store",
+    "correctText": "store",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i07",
+    "correctText": "I store my bicycle inside to keep it dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i08",
+    "correctText": "I store my bicycle inside to keep it dry.",
+    "correctResponseId": "en:lesson-21:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i09",
+    "correctText": "to keep",
+    "correctResponseId": "en:lesson-21:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:word:donate",
+    "correctText": "donate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i10",
+    "correctText": "I donate clothes to help others.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i11",
+    "correctText": "I donate clothes to help others.",
+    "correctResponseId": "en:lesson-21:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i12",
+    "correctText": "to help",
+    "correctResponseId": "en:lesson-21:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i13",
+    "correctText": "en:lesson-21:session-35:i13:p1=label\nen:lesson-21:session-35:i13:p2=stack\nen:lesson-21:session-35:i13:p3=store\nen:lesson-21:session-35:i13:p4=donate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i16",
+    "correctText": "I store my bicycle inside to keep it dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-35:i17",
+    "correctText": "I donate clothes to help others.",
+    "correctResponseId": null
+  }
+]

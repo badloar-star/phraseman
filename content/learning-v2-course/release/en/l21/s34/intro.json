@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать занятие",
+        "uk": "Вибрати заняття"
+      },
+      "bodyByLocale": {
+        "ru": "Fitness class — групповое занятие фитнесом. Вы рассказываете другу о своём выборе: ходите на занятие, чтобы стать сильнее. To get stronger объясняет вашу цель. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Fitness class — групове заняття фітнесом. Ви розповідаєте другові про свій вибір: ходите на заняття, щоб стати сильнішим. To get stronger пояснює вашу мету. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-34:intro1:r1",
+              "text": "I attend a fitness class to get stronger."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro1:r2",
+              "text": "I attend a fitness class to getting stronger."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro1:r3",
+              "text": "I attend a fitness class for get stronger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-34:intro1:r1",
+              "text": "I attend a fitness class to get stronger."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro1:r2",
+              "text": "I attend a fitness class to getting stronger."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro1:r3",
+              "text": "I attend a fitness class for get stronger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Использовать коврик",
+        "uk": "Використати килимок"
+      },
+      "bodyByLocale": {
+        "ru": "Exercise mat — коврик, на котором делают упражнения. В учебной ситуации вы используете его для растяжки. Walking group — группа людей, которые собираются на прогулки; ваша цель — познакомиться с людьми. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Exercise mat — килимок, на якому роблять вправи. У навчальній ситуації ви використовуєте його для розтягування. Walking group — група людей, які збираються на прогулянки; ваша мета — познайомитися з людьми. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-34:intro2:r1",
+              "text": "I use an exercise mat to stretch."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro2:r2",
+              "text": "I use an exercise mat to stretching."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro2:r3",
+              "text": "I use an exercise mat for stretch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-34:intro2:r1",
+              "text": "I use an exercise mat to stretch."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro2:r2",
+              "text": "I use an exercise mat to stretching."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro2:r3",
+              "text": "I use an exercise mat for stretch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Присоединиться к бегу",
+        "uk": "Приєднатися до бігу"
+      },
+      "bodyByLocale": {
+        "ru": "Running club — клуб любителей бега. Вы объясняете другу, что вступаете в него, чтобы улучшить свою физическую форму. My fitness относится к форме самого говорящего. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Running club — клуб любителів бігу. Ви пояснюєте другові, що вступаєте до нього, щоб поліпшити свою фізичну форму. My fitness стосується форми самого мовця. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-34:intro3:r1",
+              "text": "I join a running club to improve my fitness."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro3:r2",
+              "text": "I join a running club to improving my fitness."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro3:r3",
+              "text": "I join a running club for improve my fitness."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-34:intro3:r1",
+              "text": "I join a running club to improve my fitness."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro3:r2",
+              "text": "I join a running club to improving my fitness."
+            },
+            {
+              "responseId": "en:lesson-21:session-34:intro3:r3",
+              "text": "I join a running club for improve my fitness."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a6624d81b18b7071ab9d73c66a9218dbf2b7be95928b3c840fab107cdeeeb0b3"
+}

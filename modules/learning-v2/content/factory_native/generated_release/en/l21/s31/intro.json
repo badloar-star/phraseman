@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "verb + object + to-infinitive",
+    "uk": "verb + object + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Зачеркнуть адрес",
+        "uk": "Закреслити адресу"
+      },
+      "bodyByLocale": {
+        "ru": "Cross out — зачеркнуть, провести линию через написанное. Вы записали неправильный адрес и просите друга его зачеркнуть. Надпись остаётся видна, но уже не считается правильной. Сравните I want to read — «я хочу читать» и I want you to read — «я хочу, чтобы ты читал». После want или need ставим того, кто должен выполнить действие, затем to + глагол. You относится к собеседнику. Это прямое выражение желания или необходимости, а не самая мягкая форма просьбы.",
+        "uk": "Cross out — закреслити, провести лінію через написане. Ви записали неправильну адресу й просите друга її закреслити. Напис залишається видимим, але вже не вважається правильним. Порівняйте I want to read — «я хочу читати» та I want you to read — «я хочу, щоб ти читав». Після want або need ставимо того, хто має виконати дію, потім to + дієслово. You стосується співрозмовника. Це пряме вираження бажання або необхідності, а не наймʼякша форма прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-31:intro1:r1",
+              "text": "I need you to cross out the wrong address."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro1:r2",
+              "text": "I need your to cross out the wrong address."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro1:r3",
+              "text": "I need you cross out the wrong address."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-31:intro1:r1",
+              "text": "I need you to cross out the wrong address."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro1:r2",
+              "text": "I need your to cross out the wrong address."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro1:r3",
+              "text": "I need you cross out the wrong address."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стереть запись",
+        "uk": "Стерти запис"
+      },
+      "bodyByLocale": {
+        "ru": "Rub out — стереть ластиком, обычно карандашную запись. В отличие от cross out, здесь вы убираете саму надпись. Look over — просмотреть, бегло проверить список или документ. Сравните I want to read — «я хочу читать» и I want you to read — «я хочу, чтобы ты читал». После want или need ставим того, кто должен выполнить действие, затем to + глагол. You относится к собеседнику. Это прямое выражение желания или необходимости, а не самая мягкая форма просьбы.",
+        "uk": "Rub out — стерти гумкою, зазвичай запис олівцем. На відміну від cross out, тут ви прибираєте сам напис. Look over — переглянути, побіжно перевірити список або документ. Порівняйте I want to read — «я хочу читати» та I want you to read — «я хочу, щоб ти читав». Після want або need ставимо того, хто має виконати дію, потім to + дієслово. You стосується співрозмовника. Це пряме вираження бажання або необхідності, а не наймʼякша форма прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-31:intro2:r1",
+              "text": "I want you to rub out this word."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro2:r2",
+              "text": "I want your to rub out this word."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro2:r3",
+              "text": "I want you rub out this word."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-31:intro2:r1",
+              "text": "I want you to rub out this word."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro2:r2",
+              "text": "I want your to rub out this word."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro2:r3",
+              "text": "I want you rub out this word."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обсудить план",
+        "uk": "Обговорити план"
+      },
+      "bodyByLocale": {
+        "ru": "Talk through — обсудить что-то шаг за шагом. Вы хотите вместе пройти по плану и поговорить о каждом этапе. With me уточняет, с кем собеседник будет обсуждать план. Сравните I want to read — «я хочу читать» и I want you to read — «я хочу, чтобы ты читал». После want или need ставим того, кто должен выполнить действие, затем to + глагол. You относится к собеседнику. Это прямое выражение желания или необходимости, а не самая мягкая форма просьбы.",
+        "uk": "Talk through — обговорити щось крок за кроком. Ви хочете разом пройтися планом і поговорити про кожний етап. With me уточнює, з ким співрозмовник обговорюватиме план. Порівняйте I want to read — «я хочу читати» та I want you to read — «я хочу, щоб ти читав». Після want або need ставимо того, хто має виконати дію, потім to + дієслово. You стосується співрозмовника. Це пряме вираження бажання або необхідності, а не наймʼякша форма прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-31:intro3:r1",
+              "text": "I want you to talk through the plan with me."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro3:r2",
+              "text": "I want your to talk through the plan with me."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro3:r3",
+              "text": "I want you talk through the plan with me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-31:intro3:r1",
+              "text": "I want you to talk through the plan with me."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro3:r2",
+              "text": "I want your to talk through the plan with me."
+            },
+            {
+              "responseId": "en:lesson-21:session-31:intro3:r3",
+              "text": "I want you talk through the plan with me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ff687d9f45b8ef99401c422e56edbd708663a64642e562d7e129fa485250fc67"
+}

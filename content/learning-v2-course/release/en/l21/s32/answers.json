@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-32:word:take-responsibility",
+    "correctText": "take responsibility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i01",
+    "correctText": "I want you to take responsibility for the mistake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i02",
+    "correctText": "I want you to take responsibility for the mistake.",
+    "correctResponseId": "en:lesson-21:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i03",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:word:set-an-example",
+    "correctText": "set an example",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i04",
+    "correctText": "I want you to set an example.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i05",
+    "correctText": "I want you to set an example.",
+    "correctResponseId": "en:lesson-21:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i06",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-21:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:word:show-respect",
+    "correctText": "show respect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i07",
+    "correctText": "I want you to show respect.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i08",
+    "correctText": "I want you to show respect.",
+    "correctResponseId": "en:lesson-21:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i09",
+    "correctText": "to show",
+    "correctResponseId": "en:lesson-21:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:word:give-way",
+    "correctText": "give way",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i10",
+    "correctText": "I need you to give way to her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i11",
+    "correctText": "I need you to give way to her.",
+    "correctResponseId": "en:lesson-21:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i12",
+    "correctText": "to give",
+    "correctResponseId": "en:lesson-21:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i13",
+    "correctText": "en:lesson-21:session-32:i13:p1=take responsibility\nen:lesson-21:session-32:i13:p2=set an example\nen:lesson-21:session-32:i13:p3=show respect\nen:lesson-21:session-32:i13:p4=give way",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i16",
+    "correctText": "I want you to show respect.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-32:i17",
+    "correctText": "I need you to give way to her.",
+    "correctResponseId": null
+  }
+]

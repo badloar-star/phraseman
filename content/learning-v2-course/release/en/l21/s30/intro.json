@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; adjective after is",
+    "uk": "so + adjective; adjective after is"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Автобус не приходит вовремя",
+        "uk": "Автобус не приходить вчасно"
+      },
+      "bodyByLocale": {
+        "ru": "Unreliable — ненадёжный. Автобус то опаздывает, то не приходит, и на него трудно рассчитывать. Это противоположность знакомого reliable. После is можно поставить прилагательное: оно описывает предмет или ситуацию. So усиливает прилагательное: so unreliable — «такой ненадёжный». Such обычно сопровождает существительное: such an unreliable bus.",
+        "uk": "Unreliable — ненадійний. Автобус то запізнюється, то не приїжджає, і на нього важко розраховувати. Це протилежність знайомого reliable. Після is можна поставити прикметник: він описує предмет або ситуацію. So підсилює прикметник: so unreliable — «такий ненадійний». Such зазвичай супроводжує іменник: such an unreliable bus."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-30:intro1:r1",
+              "text": "This bus is so unreliable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro1:r2",
+              "text": "This bus is such unreliable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro1:r3",
+              "text": "This bus are so unreliable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-30:intro1:r1",
+              "text": "This bus is so unreliable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro1:r2",
+              "text": "This bus is such unreliable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro1:r3",
+              "text": "This bus are so unreliable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Комнату нельзя забронировать",
+        "uk": "Кімнату не можна забронювати"
+      },
+      "bodyByLocale": {
+        "ru": "Unavailable — недоступный в данный момент. Нужную комнату нельзя забронировать на выбранную дату. Avoidable — такой, которого можно избежать: например, ошибка из-за спешки. После is можно поставить прилагательное: оно описывает предмет или ситуацию. So усиливает прилагательное: so unreliable — «такой ненадёжный». Such обычно сопровождает существительное: such an unreliable bus.",
+        "uk": "Unavailable — недоступний зараз. Потрібну кімнату не можна забронювати на обрану дату. Avoidable — такий, якого можна уникнути: наприклад, помилка через поспіх. Після is можна поставити прикметник: він описує предмет або ситуацію. So підсилює прикметник: so unreliable — «такий ненадійний». Such зазвичай супроводжує іменник: such an unreliable bus."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-30:intro2:r1",
+              "text": "The room is unavailable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro2:r2",
+              "text": "The room are unavailable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro2:r3",
+              "text": "The room unavailable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-30:intro2:r1",
+              "text": "The room is unavailable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro2:r2",
+              "text": "The room are unavailable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro2:r3",
+              "text": "The room unavailable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Цена не подходит",
+        "uk": "Ціна не підходить"
+      },
+      "bodyByLocale": {
+        "ru": "Unaffordable — не по карману. Вы сравниваете квартиры: эта арендная плата слишком высока для вашего бюджета. В знакомом affordable смысл обратный — доступный по цене. После is можно поставить прилагательное: оно описывает предмет или ситуацию. So усиливает прилагательное: so unreliable — «такой ненадёжный». Such обычно сопровождает существительное: such an unreliable bus.",
+        "uk": "Unaffordable — не по кишені. Ви порівнюєте квартири: ця орендна плата надто висока для вашого бюджету. У знайомому affordable значення протилежне — доступний за ціною. Після is можна поставити прикметник: він описує предмет або ситуацію. So підсилює прикметник: so unreliable — «такий ненадійний». Such зазвичай супроводжує іменник: such an unreliable bus."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-30:intro3:r1",
+              "text": "The rent is unaffordable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro3:r2",
+              "text": "The rent are unaffordable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro3:r3",
+              "text": "The rent unaffordable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-30:intro3:r1",
+              "text": "The rent is unaffordable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro3:r2",
+              "text": "The rent are unaffordable."
+            },
+            {
+              "responseId": "en:lesson-21:session-30:intro3:r3",
+              "text": "The rent unaffordable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2e8ceb46eca04b59b6937c9b15a14c8a888ea84522ce6e63db9299ebf561b7f7"
+}

@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-29:word:pay-attention",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pay attention",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:word:pay-attention:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pay attention",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:word:pay-attention:audio",
+          "transcript": "pay attention"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:word:pay-attention:r1",
+            "targetText": "pay attention",
+            "meaningByLocale": {
+              "ru": "обратить внимание, быть внимательным.",
+              "uk": "звернути увагу, бути уважним."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pay attention",
+          "definitionByLocale": {
+            "ru": "обратить внимание, быть внимательным.",
+            "uk": "звернути увагу, бути уважним."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мне нужно, чтобы ты был внимателен».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мне нужно, чтобы ты был внимателен».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need you to pay attention.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно, чтобы ты был внимателен».",
+          "uk": "Скажіть: «Мені потрібно, щоб ти був уважним»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "pay",
+          "attention"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i02:r1",
+          "text": "I need you to pay attention."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i02:r2",
+          "text": "We need you to pay attention."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i02:r3",
+          "text": "They need you to pay attention."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i02:audio",
+          "transcript": "I need you to pay attention."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:i02:r1",
+            "targetText": "I need you to pay attention.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i02:r2",
+            "targetText": "We need you to pay attention.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i02:r3",
+            "targetText": "They need you to pay attention.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to pay attention.",
+              "uk": "У записі звучить I need you to pay attention."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to pay attention.",
+              "uk": "У записі звучить I need you to pay attention."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово для собеседника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i03:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i03:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i03:r3",
+          "text": "yours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово для собеседника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для собеседника.",
+          "uk": "Виберіть слово для співрозмовника."
+        },
+        "gappedTargetPhrase": "I need ___ to pay attention.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-29:i03:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i03:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i03:r3",
+            "text": "yours"
+          }
+        ],
+        "testedDimension": "Выберите слово для собеседника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово для собеседника.",
+            "feedbackByLocale": {
+              "ru": "Your означает «твой»; здесь нужен человек you.",
+              "uk": "Your означає «твій»; тут потрібна людина you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово для собеседника.",
+            "feedbackByLocale": {
+              "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+              "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:word:keep-quiet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keep quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:word:keep-quiet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keep quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:word:keep-quiet:audio",
+          "transcript": "keep quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:word:keep-quiet:r1",
+            "targetText": "keep quiet",
+            "meaningByLocale": {
+              "ru": "не шуметь, вести себя тихо.",
+              "uk": "не шуміти, поводитися тихо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep quiet",
+          "definitionByLocale": {
+            "ru": "не шуметь, вести себя тихо.",
+            "uk": "не шуміти, поводитися тихо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я хочу, чтобы ты не шумел».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я хочу, чтобы ты не шумел».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want you to keep quiet.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу, чтобы ты не шумел».",
+          "uk": "Скажіть: «Я хочу, щоб ти не шумів»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "you",
+          "to",
+          "keep",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i05:r1",
+          "text": "I want you to keep quiet."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i05:r2",
+          "text": "We want you to keep quiet."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i05:r3",
+          "text": "They want you to keep quiet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i05:audio",
+          "transcript": "I want you to keep quiet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:i05:r1",
+            "targetText": "I want you to keep quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i05:r2",
+            "targetText": "We want you to keep quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i05:r3",
+            "targetText": "They want you to keep quiet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to keep quiet.",
+              "uk": "У записі звучить I want you to keep quiet."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to keep quiet.",
+              "uk": "У записі звучить I want you to keep quiet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово для собеседника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i06:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i06:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i06:r3",
+          "text": "yours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово для собеседника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для собеседника.",
+          "uk": "Виберіть слово для співрозмовника."
+        },
+        "gappedTargetPhrase": "I want ___ to keep quiet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-29:i06:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i06:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i06:r3",
+            "text": "yours"
+          }
+        ],
+        "testedDimension": "Выберите слово для собеседника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово для собеседника.",
+            "feedbackByLocale": {
+              "ru": "Your означает «твой»; здесь нужен человек you.",
+              "uk": "Your означає «твій»; тут потрібна людина you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово для собеседника.",
+            "feedbackByLocale": {
+              "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+              "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:word:ask-permission",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ask permission",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:word:ask-permission:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ask permission",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:word:ask-permission:audio",
+          "transcript": "ask permission"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:word:ask-permission:r1",
+            "targetText": "ask permission",
+            "meaningByLocale": {
+              "ru": "спросить разрешения.",
+              "uk": "запитати дозволу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ask permission",
+          "definitionByLocale": {
+            "ru": "спросить разрешения.",
+            "uk": "запитати дозволу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мне нужно, чтобы ты сначала спросил разрешения».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мне нужно, чтобы ты сначала спросил разрешения».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need you to ask permission first.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно, чтобы ты сначала спросил разрешения».",
+          "uk": "Скажіть: «Мені потрібно, щоб ти спочатку запитав дозволу»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "ask",
+          "permission",
+          "first"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i08:r1",
+          "text": "I need you to ask permission first."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i08:r2",
+          "text": "We need you to ask permission first."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i08:r3",
+          "text": "They need you to ask permission first."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i08:audio",
+          "transcript": "I need you to ask permission first."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:i08:r1",
+            "targetText": "I need you to ask permission first.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i08:r2",
+            "targetText": "We need you to ask permission first.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i08:r3",
+            "targetText": "They need you to ask permission first.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to ask permission first.",
+              "uk": "У записі звучить I need you to ask permission first."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to ask permission first.",
+              "uk": "У записі звучить I need you to ask permission first."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму с to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i09:r1",
+          "text": "to ask"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i09:r2",
+          "text": "to asking"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i09:r3",
+          "text": "to asks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму с to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I need you ___ permission first.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-29:i09:r1",
+            "text": "to ask"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i09:r2",
+            "text": "to asking"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i09:r3",
+            "text": "to asks"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму с to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:word:stand-aside",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stand aside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:word:stand-aside:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stand aside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:word:stand-aside:audio",
+          "transcript": "stand aside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:word:stand-aside:r1",
+            "targetText": "stand aside",
+            "meaningByLocale": {
+              "ru": "отойти в сторону, уступить проход.",
+              "uk": "відійти вбік, звільнити прохід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stand aside",
+          "definitionByLocale": {
+            "ru": "отойти в сторону, уступить проход.",
+            "uk": "відійти вбік, звільнити прохід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мне нужно, чтобы ты отошёл в сторону».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мне нужно, чтобы ты отошёл в сторону».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need you to stand aside.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно, чтобы ты отошёл в сторону».",
+          "uk": "Скажіть: «Мені потрібно, щоб ти відійшов убік»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "stand",
+          "aside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i11:r1",
+          "text": "I need you to stand aside."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i11:r2",
+          "text": "We need you to stand aside."
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i11:r3",
+          "text": "They need you to stand aside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i11:audio",
+          "transcript": "I need you to stand aside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-29:i11:r1",
+            "targetText": "I need you to stand aside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i11:r2",
+            "targetText": "We need you to stand aside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i11:r3",
+            "targetText": "They need you to stand aside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to stand aside.",
+              "uk": "У записі звучить I need you to stand aside."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to stand aside.",
+              "uk": "У записі звучить I need you to stand aside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму с to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-29:i12:r1",
+          "text": "to stand"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i12:r2",
+          "text": "to standing"
+        },
+        {
+          "responseId": "en:lesson-21:session-29:i12:r3",
+          "text": "to stands"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму с to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I need you ___ aside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-29:i12:r1",
+            "text": "to stand"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i12:r2",
+            "text": "to standing"
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i12:r3",
+            "text": "to stands"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму с to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму с to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-29:i13:p1",
+            "target": "pay attention",
+            "meaningByLocale": {
+              "ru": "обратить внимание, быть внимательным",
+              "uk": "звернути увагу, бути уважним"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-29:i13:p2",
+            "target": "keep quiet",
+            "meaningByLocale": {
+              "ru": "не шуметь, вести себя тихо",
+              "uk": "не шуміти, поводитися тихо"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-29:i13:p3",
+            "target": "ask permission",
+            "meaningByLocale": {
+              "ru": "спросить разрешения",
+              "uk": "запитати дозволу"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-29:i13:p4",
+            "target": "stand aside",
+            "meaningByLocale": {
+              "ru": "отойти в сторону, уступить проход",
+              "uk": "відійти вбік, звільнити прохід"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pay attention",
+          "keep quiet",
+          "ask permission",
+          "stand aside"
+        ],
+        "rightColumn": [
+          "обратить внимание, быть внимательным",
+          "не шуметь, вести себя тихо",
+          "спросить разрешения",
+          "отойти в сторону, уступить проход"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: приятное занятие",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: приятное занятие",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i14:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: закончить дело",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: закончить дело",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i15:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I must finish reading the description.",
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Обратитесь к другу: «Мне нужно, чтобы ты сначала спросил разрешения»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Обратитесь к другу: «Мне нужно, чтобы ты сначала спросил разрешения»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i16:audio",
+          "transcript": "I need you to ask permission first."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need you to ask permission first.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Обратитесь к другу: «Мне нужно, чтобы ты отошёл в сторону»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Обратитесь к другу: «Мне нужно, чтобы ты отошёл в сторону»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-29:i17:audio",
+          "transcript": "I need you to stand aside."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need you to stand aside.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ad6f1cdd9eb07911876904df479834b079abe1e26a46e9642a2ec1a2c0bfb2d2"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сэкономить время",
+        "uk": "Заощадити час"
+      },
+      "bodyByLocale": {
+        "ru": "Save time — экономить время. Вы бронируете онлайн, чтобы не тратить время на поездку в кассу. Здесь важна цель действия, поэтому после book online стоит to save time. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Save time — заощаджувати час. Ви бронюєте онлайн, щоб не витрачати час на поїздку до каси. Тут важлива мета дії, тому після book online стоїть to save time. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-36:intro1:r1",
+              "text": "I book online to save time."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro1:r2",
+              "text": "I book online to saving time."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro1:r3",
+              "text": "I book online for save time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-36:intro1:r1",
+              "text": "I book online to save time."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro1:r2",
+              "text": "I book online to saving time."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro1:r3",
+              "text": "I book online for save time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сэкономить деньги",
+        "uk": "Заощадити гроші"
+      },
+      "bodyByLocale": {
+        "ru": "Save money — экономить деньги. На короткие расстояния вы ходите пешком, чтобы не платить за транспорт. Avoid queues — избегать очередей: вы покупаете билеты заранее, чтобы не стоять в очереди. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Save money — заощаджувати гроші. На короткі відстані ви ходите пішки, щоб не платити за транспорт. Avoid queues — уникати черг: ви купуєте квитки заздалегідь, щоб не стояти в черзі. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-36:intro2:r1",
+              "text": "I walk to save money."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro2:r2",
+              "text": "I walk to saving money."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro2:r3",
+              "text": "I walk for save money."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-36:intro2:r1",
+              "text": "I walk to save money."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro2:r2",
+              "text": "I walk to saving money."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro2:r3",
+              "text": "I walk for save money."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выехать пораньше",
+        "uk": "Виїхати раніше"
+      },
+      "bodyByLocale": {
+        "ru": "Beat the traffic — выехать до основного потока машин и избежать пробок. В этой фразе beat не означает ударить: вы стараетесь опередить час пик. Вы объясняете, зачем выезжаете рано. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Beat the traffic — виїхати до основного потоку машин та уникнути заторів. У цій фразі beat не означає вдарити: ви намагаєтеся випередити годину пік. Ви пояснюєте, навіщо виїжджаєте рано. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-36:intro3:r1",
+              "text": "I leave early to beat the traffic."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro3:r2",
+              "text": "I leave early to beating the traffic."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro3:r3",
+              "text": "I leave early for beat the traffic."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-36:intro3:r1",
+              "text": "I leave early to beat the traffic."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro3:r2",
+              "text": "I leave early to beating the traffic."
+            },
+            {
+              "responseId": "en:lesson-21:session-36:intro3:r3",
+              "text": "I leave early for beat the traffic."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "256a0ccae42a6f26bbeb2683f35d16f1b5a0e44d9433a628eb95999d517ef0d3"
+}

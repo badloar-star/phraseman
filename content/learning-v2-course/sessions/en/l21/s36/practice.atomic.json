@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-36:word:save-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — save time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:save-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — save time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:save-time:audio",
+            "transcript": "save time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:save-time:r1",
+              "targetText": "save time",
+              "meaningByLocale": {
+                "ru": "экономить время.",
+                "uk": "заощаджувати час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "save time",
+            "definitionByLocale": {
+              "ru": "экономить время.",
+              "uk": "заощаджувати час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я бронирую онлайн, чтобы сэкономить время».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я бронирую онлайн, чтобы сэкономить время».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I book online to save time.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я бронирую онлайн, чтобы сэкономить время».",
+            "uk": "Скажіть: «Я бронюю онлайн, щоб заощадити час»."
+          },
+          "orderedTokens": [
+            "I",
+            "book",
+            "online",
+            "to",
+            "save",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i02:r1",
+            "text": "I book online to save time."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i02:r2",
+            "text": "We book online to save time."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i02:r3",
+            "text": "They book online to save time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i02:audio",
+            "transcript": "I book online to save time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i02:r1",
+              "targetText": "I book online to save time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i02:r2",
+              "targetText": "We book online to save time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i02:r3",
+              "targetText": "They book online to save time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I book online to save time.",
+                "uk": "У записі звучить I book online to save time."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I book online to save time.",
+                "uk": "У записі звучить I book online to save time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i03:r1",
+            "text": "to save"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i03:r2",
+            "text": "to saving"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i03:r3",
+            "text": "for save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I book online ___ time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i03:r1",
+              "text": "to save"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i03:r2",
+              "text": "to saving"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i03:r3",
+              "text": "for save"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:word:save-money",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — save money",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:save-money:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — save money",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:save-money:audio",
+            "transcript": "save money"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:save-money:r1",
+              "targetText": "save money",
+              "meaningByLocale": {
+                "ru": "экономить деньги.",
+                "uk": "заощаджувати гроші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "save money",
+            "definitionByLocale": {
+              "ru": "экономить деньги.",
+              "uk": "заощаджувати гроші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хожу пешком, чтобы сэкономить деньги».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хожу пешком, чтобы сэкономить деньги».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I walk to save money.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хожу пешком, чтобы сэкономить деньги».",
+            "uk": "Скажіть: «Я ходжу пішки, щоб заощадити гроші»."
+          },
+          "orderedTokens": [
+            "I",
+            "walk",
+            "to",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i05:r1",
+            "text": "I walk to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i05:r2",
+            "text": "We walk to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i05:r3",
+            "text": "They walk to save money."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i05:audio",
+            "transcript": "I walk to save money."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i05:r1",
+              "targetText": "I walk to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i05:r2",
+              "targetText": "We walk to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i05:r3",
+              "targetText": "They walk to save money.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I walk to save money.",
+                "uk": "У записі звучить I walk to save money."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I walk to save money.",
+                "uk": "У записі звучить I walk to save money."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i06:r1",
+            "text": "to save"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i06:r2",
+            "text": "to saving"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i06:r3",
+            "text": "for save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I walk ___ money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i06:r1",
+              "text": "to save"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i06:r2",
+              "text": "to saving"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i06:r3",
+              "text": "for save"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:word:avoid-queues",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — avoid queues",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:avoid-queues:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — avoid queues",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:avoid-queues:audio",
+            "transcript": "avoid queues"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:avoid-queues:r1",
+              "targetText": "avoid queues",
+              "meaningByLocale": {
+                "ru": "избегать очередей.",
+                "uk": "уникати черг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "avoid queues",
+            "definitionByLocale": {
+              "ru": "избегать очередей.",
+              "uk": "уникати черг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я покупаю билеты заранее, чтобы избежать очередей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я покупаю билеты заранее, чтобы избежать очередей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I buy tickets in advance to avoid queues.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я покупаю билеты заранее, чтобы избежать очередей».",
+            "uk": "Скажіть: «Я купую квитки заздалегідь, щоб уникнути черг»."
+          },
+          "orderedTokens": [
+            "I",
+            "buy",
+            "tickets",
+            "in",
+            "advance",
+            "to",
+            "avoid",
+            "queues"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i08:r1",
+            "text": "I buy tickets in advance to avoid queues."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i08:r2",
+            "text": "We buy tickets in advance to avoid queues."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i08:r3",
+            "text": "They buy tickets in advance to avoid queues."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i08:audio",
+            "transcript": "I buy tickets in advance to avoid queues."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i08:r1",
+              "targetText": "I buy tickets in advance to avoid queues.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i08:r2",
+              "targetText": "We buy tickets in advance to avoid queues.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i08:r3",
+              "targetText": "They buy tickets in advance to avoid queues.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I buy tickets in advance to avoid queues.",
+                "uk": "У записі звучить I buy tickets in advance to avoid queues."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I buy tickets in advance to avoid queues.",
+                "uk": "У записі звучить I buy tickets in advance to avoid queues."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i09:r1",
+            "text": "to avoid"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i09:r2",
+            "text": "to avoiding"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i09:r3",
+            "text": "for avoid"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I buy tickets in advance ___ queues.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i09:r1",
+              "text": "to avoid"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i09:r2",
+              "text": "to avoiding"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i09:r3",
+              "text": "for avoid"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:word:beat-the-traffic",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beat the traffic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:beat-the-traffic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beat the traffic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:beat-the-traffic:audio",
+            "transcript": "beat the traffic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:beat-the-traffic:r1",
+              "targetText": "beat the traffic",
+              "meaningByLocale": {
+                "ru": "выехать до пробок, избежать потока машин.",
+                "uk": "виїхати до заторів, уникнути потоку машин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beat the traffic",
+            "definitionByLocale": {
+              "ru": "выехать до пробок, избежать потока машин.",
+              "uk": "виїхати до заторів, уникнути потоку машин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я выезжаю рано, чтобы не попасть в пробки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я выезжаю рано, чтобы не попасть в пробки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I leave early to beat the traffic.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я выезжаю рано, чтобы не попасть в пробки».",
+            "uk": "Скажіть: «Я виїжджаю рано, щоб не потрапити в затори»."
+          },
+          "orderedTokens": [
+            "I",
+            "leave",
+            "early",
+            "to",
+            "beat",
+            "the",
+            "traffic"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i11:r1",
+            "text": "I leave early to beat the traffic."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i11:r2",
+            "text": "We leave early to beat the traffic."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i11:r3",
+            "text": "They leave early to beat the traffic."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i11:audio",
+            "transcript": "I leave early to beat the traffic."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i11:r1",
+              "targetText": "I leave early to beat the traffic.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i11:r2",
+              "targetText": "We leave early to beat the traffic.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i11:r3",
+              "targetText": "They leave early to beat the traffic.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I leave early to beat the traffic.",
+                "uk": "У записі звучить I leave early to beat the traffic."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I leave early to beat the traffic.",
+                "uk": "У записі звучить I leave early to beat the traffic."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите цель действия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i12:r1",
+            "text": "to beat"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i12:r2",
+            "text": "to beating"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i12:r3",
+            "text": "for beat"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите цель действия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I leave early ___ the traffic.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i12:r1",
+              "text": "to beat"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i12:r2",
+              "text": "to beating"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i12:r3",
+              "text": "for beat"
+            }
+          ],
+          "testedDimension": "Выразите цель действия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Выразите цель действия.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-36:i13:p1",
+              "target": "save time",
+              "meaningByLocale": {
+                "ru": "экономить время",
+                "uk": "заощаджувати час"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-36:i13:p2",
+              "target": "save money",
+              "meaningByLocale": {
+                "ru": "экономить деньги",
+                "uk": "заощаджувати гроші"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-36:i13:p3",
+              "target": "avoid queues",
+              "meaningByLocale": {
+                "ru": "избегать очередей",
+                "uk": "уникати черг"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-36:i13:p4",
+              "target": "beat the traffic",
+              "meaningByLocale": {
+                "ru": "выехать до пробок, избежать потока машин",
+                "uk": "виїхати до заторів, уникнути потоку машин"
+              }
+            }
+          ],
+          "leftColumn": [
+            "save time",
+            "save money",
+            "avoid queues",
+            "beat the traffic"
+          ],
+          "rightColumn": [
+            "экономить время",
+            "экономить деньги",
+            "избегать очередей",
+            "выехать до пробок, избежать потока машин"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: попросить проверить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: попросить проверить",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: общение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: общение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Объясните: «Я покупаю билеты заранее, чтобы избежать очередей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Объясните: «Я покупаю билеты заранее, чтобы избежать очередей»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i16:audio",
+            "transcript": "I buy tickets in advance to avoid queues."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I buy tickets in advance to avoid queues.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Объясните, зачем выезжаете рано",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Объясните, зачем выезжаете рано",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i17:audio",
+            "transcript": "I leave early to beat the traffic."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I leave early to beat the traffic.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-36:word:save-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — save time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:save-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — save time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:save-time:audio",
+            "transcript": "save time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:save-time:r1",
+              "targetText": "save time",
+              "meaningByLocale": {
+                "ru": "экономить время.",
+                "uk": "заощаджувати час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "save time",
+            "definitionByLocale": {
+              "ru": "экономить время.",
+              "uk": "заощаджувати час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я бронюю онлайн, щоб заощадити час».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я бронюю онлайн, щоб заощадити час».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I book online to save time.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я бронирую онлайн, чтобы сэкономить время».",
+            "uk": "Скажіть: «Я бронюю онлайн, щоб заощадити час»."
+          },
+          "orderedTokens": [
+            "I",
+            "book",
+            "online",
+            "to",
+            "save",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i02:r1",
+            "text": "I book online to save time."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i02:r2",
+            "text": "We book online to save time."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i02:r3",
+            "text": "They book online to save time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i02:audio",
+            "transcript": "I book online to save time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i02:r1",
+              "targetText": "I book online to save time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i02:r2",
+              "targetText": "We book online to save time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i02:r3",
+              "targetText": "They book online to save time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I book online to save time.",
+                "uk": "У записі звучить I book online to save time."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I book online to save time.",
+                "uk": "У записі звучить I book online to save time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i03:r1",
+            "text": "to save"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i03:r2",
+            "text": "to saving"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i03:r3",
+            "text": "for save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I book online ___ time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i03:r1",
+              "text": "to save"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i03:r2",
+              "text": "to saving"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i03:r3",
+              "text": "for save"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:word:save-money",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — save money",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:save-money:audio"
+        ],
+        "accessibilityLabel": "Картка слова — save money",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:save-money:audio",
+            "transcript": "save money"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:save-money:r1",
+              "targetText": "save money",
+              "meaningByLocale": {
+                "ru": "экономить деньги.",
+                "uk": "заощаджувати гроші."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "save money",
+            "definitionByLocale": {
+              "ru": "экономить деньги.",
+              "uk": "заощаджувати гроші."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я ходжу пішки, щоб заощадити гроші».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я ходжу пішки, щоб заощадити гроші».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I walk to save money.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хожу пешком, чтобы сэкономить деньги».",
+            "uk": "Скажіть: «Я ходжу пішки, щоб заощадити гроші»."
+          },
+          "orderedTokens": [
+            "I",
+            "walk",
+            "to",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i05:r1",
+            "text": "I walk to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i05:r2",
+            "text": "We walk to save money."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i05:r3",
+            "text": "They walk to save money."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i05:audio",
+            "transcript": "I walk to save money."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i05:r1",
+              "targetText": "I walk to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i05:r2",
+              "targetText": "We walk to save money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i05:r3",
+              "targetText": "They walk to save money.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I walk to save money.",
+                "uk": "У записі звучить I walk to save money."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I walk to save money.",
+                "uk": "У записі звучить I walk to save money."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i06:r1",
+            "text": "to save"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i06:r2",
+            "text": "to saving"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i06:r3",
+            "text": "for save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I walk ___ money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i06:r1",
+              "text": "to save"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i06:r2",
+              "text": "to saving"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i06:r3",
+              "text": "for save"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:word:avoid-queues",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — avoid queues",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:avoid-queues:audio"
+        ],
+        "accessibilityLabel": "Картка слова — avoid queues",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:avoid-queues:audio",
+            "transcript": "avoid queues"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:avoid-queues:r1",
+              "targetText": "avoid queues",
+              "meaningByLocale": {
+                "ru": "избегать очередей.",
+                "uk": "уникати черг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "avoid queues",
+            "definitionByLocale": {
+              "ru": "избегать очередей.",
+              "uk": "уникати черг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я купую квитки заздалегідь, щоб уникнути черг».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я купую квитки заздалегідь, щоб уникнути черг».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I buy tickets in advance to avoid queues.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я покупаю билеты заранее, чтобы избежать очередей».",
+            "uk": "Скажіть: «Я купую квитки заздалегідь, щоб уникнути черг»."
+          },
+          "orderedTokens": [
+            "I",
+            "buy",
+            "tickets",
+            "in",
+            "advance",
+            "to",
+            "avoid",
+            "queues"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i08:r1",
+            "text": "I buy tickets in advance to avoid queues."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i08:r2",
+            "text": "We buy tickets in advance to avoid queues."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i08:r3",
+            "text": "They buy tickets in advance to avoid queues."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i08:audio",
+            "transcript": "I buy tickets in advance to avoid queues."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i08:r1",
+              "targetText": "I buy tickets in advance to avoid queues.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i08:r2",
+              "targetText": "We buy tickets in advance to avoid queues.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i08:r3",
+              "targetText": "They buy tickets in advance to avoid queues.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I buy tickets in advance to avoid queues.",
+                "uk": "У записі звучить I buy tickets in advance to avoid queues."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I buy tickets in advance to avoid queues.",
+                "uk": "У записі звучить I buy tickets in advance to avoid queues."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i09:r1",
+            "text": "to avoid"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i09:r2",
+            "text": "to avoiding"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i09:r3",
+            "text": "for avoid"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I buy tickets in advance ___ queues.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i09:r1",
+              "text": "to avoid"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i09:r2",
+              "text": "to avoiding"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i09:r3",
+              "text": "for avoid"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:word:beat-the-traffic",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beat the traffic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:word:beat-the-traffic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beat the traffic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:word:beat-the-traffic:audio",
+            "transcript": "beat the traffic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:word:beat-the-traffic:r1",
+              "targetText": "beat the traffic",
+              "meaningByLocale": {
+                "ru": "выехать до пробок, избежать потока машин.",
+                "uk": "виїхати до заторів, уникнути потоку машин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beat the traffic",
+            "definitionByLocale": {
+              "ru": "выехать до пробок, избежать потока машин.",
+              "uk": "виїхати до заторів, уникнути потоку машин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я виїжджаю рано, щоб не потрапити в затори».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я виїжджаю рано, щоб не потрапити в затори».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I leave early to beat the traffic.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я выезжаю рано, чтобы не попасть в пробки».",
+            "uk": "Скажіть: «Я виїжджаю рано, щоб не потрапити в затори»."
+          },
+          "orderedTokens": [
+            "I",
+            "leave",
+            "early",
+            "to",
+            "beat",
+            "the",
+            "traffic"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i11:r1",
+            "text": "I leave early to beat the traffic."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i11:r2",
+            "text": "We leave early to beat the traffic."
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i11:r3",
+            "text": "They leave early to beat the traffic."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i11:audio",
+            "transcript": "I leave early to beat the traffic."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-36:i11:r1",
+              "targetText": "I leave early to beat the traffic.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i11:r2",
+              "targetText": "We leave early to beat the traffic.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i11:r3",
+              "targetText": "They leave early to beat the traffic.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I leave early to beat the traffic.",
+                "uk": "У записі звучить I leave early to beat the traffic."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I leave early to beat the traffic.",
+                "uk": "У записі звучить I leave early to beat the traffic."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виразіть мету дії.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-36:i12:r1",
+            "text": "to beat"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i12:r2",
+            "text": "to beating"
+          },
+          {
+            "responseId": "en:lesson-21:session-36:i12:r3",
+            "text": "for beat"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виразіть мету дії.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите цель действия.",
+            "uk": "Виразіть мету дії."
+          },
+          "gappedTargetPhrase": "I leave early ___ the traffic.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-36:i12:r1",
+              "text": "to beat"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i12:r2",
+              "text": "to beating"
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i12:r3",
+              "text": "for beat"
+            }
+          ],
+          "testedDimension": "Виразіть мету дії.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "После to для цели нужен глагол без -ing.",
+                "uk": "Після to для мети потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Виразіть мету дії.",
+              "feedbackByLocale": {
+                "ru": "Здесь цель выражается через to, не for с начальной формой.",
+                "uk": "Тут мета виражається через to, не for з початковою формою."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-36:i13:p1",
+              "target": "save time",
+              "meaningByLocale": {
+                "ru": "экономить время",
+                "uk": "заощаджувати час"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-36:i13:p2",
+              "target": "save money",
+              "meaningByLocale": {
+                "ru": "экономить деньги",
+                "uk": "заощаджувати гроші"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-36:i13:p3",
+              "target": "avoid queues",
+              "meaningByLocale": {
+                "ru": "избегать очередей",
+                "uk": "уникати черг"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-36:i13:p4",
+              "target": "beat the traffic",
+              "meaningByLocale": {
+                "ru": "выехать до пробок, избежать потока машин",
+                "uk": "виїхати до заторів, уникнути потоку машин"
+              }
+            }
+          ],
+          "leftColumn": [
+            "save time",
+            "save money",
+            "avoid queues",
+            "beat the traffic"
+          ],
+          "rightColumn": [
+            "заощаджувати час",
+            "заощаджувати гроші",
+            "уникати черг",
+            "виїхати до заторів, уникнути потоку машин"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: попросити перевірити",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: попросити перевірити",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: спілкування",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: спілкування",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поясніть: «Я купую квитки заздалегідь, щоб уникнути черг»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Поясніть: «Я купую квитки заздалегідь, щоб уникнути черг»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i16:audio",
+            "transcript": "I buy tickets in advance to avoid queues."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I buy tickets in advance to avoid queues.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поясніть, навіщо виїжджаєте рано",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Поясніть, навіщо виїжджаєте рано",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-36:i17:audio",
+            "transcript": "I leave early to beat the traffic."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I leave early to beat the traffic.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-36:word:save-time",
+      "correctText": "save time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i01",
+      "correctText": "I book online to save time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i02",
+      "correctText": "I book online to save time.",
+      "correctResponseId": "en:lesson-21:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i03",
+      "correctText": "to save",
+      "correctResponseId": "en:lesson-21:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:word:save-money",
+      "correctText": "save money",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i04",
+      "correctText": "I walk to save money.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i05",
+      "correctText": "I walk to save money.",
+      "correctResponseId": "en:lesson-21:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i06",
+      "correctText": "to save",
+      "correctResponseId": "en:lesson-21:session-36:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:word:avoid-queues",
+      "correctText": "avoid queues",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i07",
+      "correctText": "I buy tickets in advance to avoid queues.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i08",
+      "correctText": "I buy tickets in advance to avoid queues.",
+      "correctResponseId": "en:lesson-21:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i09",
+      "correctText": "to avoid",
+      "correctResponseId": "en:lesson-21:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:word:beat-the-traffic",
+      "correctText": "beat the traffic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i10",
+      "correctText": "I leave early to beat the traffic.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i11",
+      "correctText": "I leave early to beat the traffic.",
+      "correctResponseId": "en:lesson-21:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i12",
+      "correctText": "to beat",
+      "correctResponseId": "en:lesson-21:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i14",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i15",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i16",
+      "correctText": "I buy tickets in advance to avoid queues.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-36:i17",
+      "correctText": "I leave early to beat the traffic.",
+      "correctResponseId": null
+    }
+  ]
+}

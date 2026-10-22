@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-30:word:unreliable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unreliable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:word:unreliable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unreliable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:word:unreliable:audio",
+          "transcript": "unreliable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:word:unreliable:r1",
+            "targetText": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный.",
+              "uk": "ненадійний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unreliable",
+          "definitionByLocale": {
+            "ru": "ненадёжный.",
+            "uk": "ненадійний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Этот автобус такой ненадёжный».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Этот автобус такой ненадёжный».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This bus is so unreliable.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Этот автобус такой ненадёжный».",
+          "uk": "Скажіть: «Цей автобус такий ненадійний»."
+        },
+        "orderedTokens": [
+          "This",
+          "bus",
+          "is",
+          "so",
+          "unreliable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i02:r1",
+          "text": "This bus is so unreliable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i02:r2",
+          "text": "This bus was so unreliable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i02:r3",
+          "text": "This bus will be so unreliable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i02:audio",
+          "transcript": "This bus is so unreliable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:i02:r1",
+            "targetText": "This bus is so unreliable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i02:r2",
+            "targetText": "This bus was so unreliable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i02:r3",
+            "targetText": "This bus will be so unreliable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This bus is so unreliable.",
+              "uk": "У записі звучить This bus is so unreliable."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This bus is so unreliable.",
+              "uk": "У записі звучить This bus is so unreliable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание в настоящем времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание в настоящем времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание в настоящем времени.",
+          "uk": "Доповніть опис у теперішньому часі."
+        },
+        "gappedTargetPhrase": "This bus ___ so unreliable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-30:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните описание в настоящем времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Здесь описывается один предмет: нужен is.",
+              "uk": "Тут описано один предмет: потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "uk": "Am уживається з I, а не з цим підметом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:word:unavailable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unavailable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:word:unavailable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unavailable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:word:unavailable:audio",
+          "transcript": "unavailable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:word:unavailable:r1",
+            "targetText": "unavailable",
+            "meaningByLocale": {
+              "ru": "недоступный в данный момент.",
+              "uk": "недоступний зараз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unavailable",
+          "definitionByLocale": {
+            "ru": "недоступный в данный момент.",
+            "uk": "недоступний зараз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Комната сейчас недоступна».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Комната сейчас недоступна».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The room is unavailable.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Комната сейчас недоступна».",
+          "uk": "Скажіть: «Кімната зараз недоступна»."
+        },
+        "orderedTokens": [
+          "The",
+          "room",
+          "is",
+          "unavailable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i05:r1",
+          "text": "The room is unavailable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i05:r2",
+          "text": "The room was unavailable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i05:r3",
+          "text": "The room will be unavailable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i05:audio",
+          "transcript": "The room is unavailable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:i05:r1",
+            "targetText": "The room is unavailable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i05:r2",
+            "targetText": "The room was unavailable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i05:r3",
+            "targetText": "The room will be unavailable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room is unavailable.",
+              "uk": "У записі звучить The room is unavailable."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room is unavailable.",
+              "uk": "У записі звучить The room is unavailable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание в настоящем времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание в настоящем времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание в настоящем времени.",
+          "uk": "Доповніть опис у теперішньому часі."
+        },
+        "gappedTargetPhrase": "The room ___ unavailable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-30:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните описание в настоящем времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Здесь описывается один предмет: нужен is.",
+              "uk": "Тут описано один предмет: потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "uk": "Am уживається з I, а не з цим підметом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:word:avoidable",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — avoidable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:word:avoidable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — avoidable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:word:avoidable:audio",
+          "transcript": "avoidable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:word:avoidable:r1",
+            "targetText": "avoidable",
+            "meaningByLocale": {
+              "ru": "такой, которого можно избежать.",
+              "uk": "такий, якого можна уникнути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "avoidable",
+          "definitionByLocale": {
+            "ru": "такой, которого можно избежать.",
+            "uk": "такий, якого можна уникнути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Этой ошибки можно избежать».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Этой ошибки можно избежать».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This mistake is avoidable.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Этой ошибки можно избежать».",
+          "uk": "Скажіть: «Цієї помилки можна уникнути»."
+        },
+        "orderedTokens": [
+          "This",
+          "mistake",
+          "is",
+          "avoidable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i08:r1",
+          "text": "This mistake is avoidable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i08:r2",
+          "text": "This mistake was avoidable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i08:r3",
+          "text": "This mistake will be avoidable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i08:audio",
+          "transcript": "This mistake is avoidable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:i08:r1",
+            "targetText": "This mistake is avoidable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i08:r2",
+            "targetText": "This mistake was avoidable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i08:r3",
+            "targetText": "This mistake will be avoidable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This mistake is avoidable.",
+              "uk": "У записі звучить This mistake is avoidable."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This mistake is avoidable.",
+              "uk": "У записі звучить This mistake is avoidable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание в настоящем времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание в настоящем времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание в настоящем времени.",
+          "uk": "Доповніть опис у теперішньому часі."
+        },
+        "gappedTargetPhrase": "This mistake ___ avoidable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-30:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните описание в настоящем времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Здесь описывается один предмет: нужен is.",
+              "uk": "Тут описано один предмет: потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "uk": "Am уживається з I, а не з цим підметом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:word:unaffordable",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unaffordable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:word:unaffordable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unaffordable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:word:unaffordable:audio",
+          "transcript": "unaffordable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:word:unaffordable:r1",
+            "targetText": "unaffordable",
+            "meaningByLocale": {
+              "ru": "не по карману, слишком дорогой.",
+              "uk": "не по кишені, надто дорогий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unaffordable",
+          "definitionByLocale": {
+            "ru": "не по карману, слишком дорогой.",
+            "uk": "не по кишені, надто дорогий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Арендная плата нам не по карману».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Арендная плата нам не по карману».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The rent is unaffordable.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Арендная плата нам не по карману».",
+          "uk": "Скажіть: «Орендна плата нам не по кишені»."
+        },
+        "orderedTokens": [
+          "The",
+          "rent",
+          "is",
+          "unaffordable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i11:r1",
+          "text": "The rent is unaffordable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i11:r2",
+          "text": "The rent was unaffordable."
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i11:r3",
+          "text": "The rent will be unaffordable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i11:audio",
+          "transcript": "The rent is unaffordable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-30:i11:r1",
+            "targetText": "The rent is unaffordable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i11:r2",
+            "targetText": "The rent was unaffordable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i11:r3",
+            "targetText": "The rent will be unaffordable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rent is unaffordable.",
+              "uk": "У записі звучить The rent is unaffordable."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rent is unaffordable.",
+              "uk": "У записі звучить The rent is unaffordable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание в настоящем времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-30:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-21:session-30:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание в настоящем времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание в настоящем времени.",
+          "uk": "Доповніть опис у теперішньому часі."
+        },
+        "gappedTargetPhrase": "The rent ___ unaffordable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-30:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните описание в настоящем времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Здесь описывается один предмет: нужен is.",
+              "uk": "Тут описано один предмет: потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание в настоящем времени.",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "uk": "Am уживається з I, а не з цим підметом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-30:i13:p1",
+            "target": "unreliable",
+            "meaningByLocale": {
+              "ru": "ненадёжный",
+              "uk": "ненадійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-30:i13:p2",
+            "target": "unavailable",
+            "meaningByLocale": {
+              "ru": "недоступный в данный момент",
+              "uk": "недоступний зараз"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-30:i13:p3",
+            "target": "avoidable",
+            "meaningByLocale": {
+              "ru": "такой, которого можно избежать",
+              "uk": "такий, якого можна уникнути"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-30:i13:p4",
+            "target": "unaffordable",
+            "meaningByLocale": {
+              "ru": "не по карману, слишком дорогой",
+              "uk": "не по кишені, надто дорогий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "unreliable",
+          "unavailable",
+          "avoidable",
+          "unaffordable"
+        ],
+        "rightColumn": [
+          "ненадёжный",
+          "недоступный в данный момент",
+          "такой, которого можно избежать",
+          "не по карману, слишком дорогой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: перепроверить адрес",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: перепроверить адрес",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i14:audio",
+          "transcript": "I need you to double-check the address."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to double-check the address.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "double-check",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: план поездки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: план поездки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i15:audio",
+          "transcript": "I intend to book ahead."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I intend to book ahead.",
+        "orderedTokens": [
+          "I",
+          "intend",
+          "to",
+          "book",
+          "ahead"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что этой ошибки можно избежать",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что этой ошибки можно избежать",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i16:audio",
+          "transcript": "This mistake is avoidable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This mistake is avoidable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что арендная плата не по карману",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что арендная плата не по карману",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-30:i17:audio",
+          "transcript": "The rent is unaffordable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The rent is unaffordable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8b990c08f0212db907c9074d1ab6666b1068c3768c0e7423a232bc13350a11f0"
+}

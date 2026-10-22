@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учиться вместе",
+        "uk": "Навчатися разом"
+      },
+      "bodyByLocale": {
+        "ru": "Study group — группа людей, которые учатся вместе и помогают друг другу. Вы присоединяетесь к такой группе, чтобы учить английский. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Study group — група людей, які навчаються разом і допомагають одне одному. Ви приєднуєтеся до такої групи, щоб вивчати англійську. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-33:intro1:r1",
+              "text": "I join a study group to learn English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro1:r2",
+              "text": "I join a study group to learning English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro1:r3",
+              "text": "I join a study group for learn English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-33:intro1:r1",
+              "text": "I join a study group to learn English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro1:r2",
+              "text": "I join a study group to learning English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro1:r3",
+              "text": "I join a study group for learn English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Учиться вечером",
+        "uk": "Навчатися ввечері"
+      },
+      "bodyByLocale": {
+        "ru": "Evening class — занятие, которое проходит вечером. Вы ходите на него после работы. Language exchange — языковой обмен: участники помогают друг другу практиковать разные языки. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Evening class — заняття, яке відбувається ввечері. Ви ходите на нього після роботи. Language exchange — мовний обмін: учасники допомагають одне одному практикувати різні мови. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-33:intro2:r1",
+              "text": "I attend an evening class to improve my English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro2:r2",
+              "text": "I attend an evening class to improving my English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro2:r3",
+              "text": "I attend an evening class for improve my English."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-33:intro2:r1",
+              "text": "I attend an evening class to improve my English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro2:r2",
+              "text": "I attend an evening class to improving my English."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro2:r3",
+              "text": "I attend an evening class for improve my English."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Повторить материал",
+        "uk": "Повторити матеріал"
+      },
+      "bodyByLocale": {
+        "ru": "Study partner — человек, с которым вы вместе занимаетесь. Вы встречаетесь, чтобы повторить материал: знакомое revise здесь означает повторение изученного. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Study partner — людина, з якою ви разом навчаєтеся. Ви зустрічаєтеся, щоб повторити матеріал: знайоме revise тут означає повторення вивченого. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-33:intro3:r1",
+              "text": "I meet my study partner to revise."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro3:r2",
+              "text": "I meet my study partner to revising."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro3:r3",
+              "text": "I meet my study partner for revise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-33:intro3:r1",
+              "text": "I meet my study partner to revise."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro3:r2",
+              "text": "I meet my study partner to revising."
+            },
+            {
+              "responseId": "en:lesson-21:session-33:intro3:r3",
+              "text": "I meet my study partner for revise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b577e24f4857bb73bc2d8307fceaa691707cab324a40bab1bd3c7a1d93057345"
+}

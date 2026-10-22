@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "verb + object + to-infinitive",
+    "uk": "verb + object + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответить за ошибку",
+        "uk": "Відповісти за помилку"
+      },
+      "bodyByLocale": {
+        "ru": "Take responsibility — взять на себя ответственность. Вы обсуждаете с другом общую работу: он допустил ошибку, и вы хотите, чтобы он признал свою ответственность за неё. For вводит то, за что человек отвечает. Сравните I want to read — «я хочу читать» и I want you to read — «я хочу, чтобы ты читал». После want или need ставим того, кто должен выполнить действие, затем to + глагол. You относится к собеседнику. Это прямое выражение желания или необходимости, а не самая мягкая форма просьбы.",
+        "uk": "Take responsibility — узяти на себе відповідальність. Ви обговорюєте з другом спільну роботу: він припустився помилки, і ви хочете, щоб він визнав свою відповідальність за неї. For вводить те, за що людина відповідає. Порівняйте I want to read — «я хочу читати» та I want you to read — «я хочу, щоб ти читав». Після want або need ставимо того, хто має виконати дію, потім to + дієслово. You стосується співрозмовника. Це пряме вираження бажання або необхідності, а не наймʼякша форма прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-32:intro1:r1",
+              "text": "I want you to take responsibility for the mistake."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro1:r2",
+              "text": "I want your to take responsibility for the mistake."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro1:r3",
+              "text": "I want you take responsibility for the mistake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-32:intro1:r1",
+              "text": "I want you to take responsibility for the mistake."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro1:r2",
+              "text": "I want your to take responsibility for the mistake."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro1:r3",
+              "text": "I want you take responsibility for the mistake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Показать пример",
+        "uk": "Показати приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Set an example — показать пример другим своим поведением. Вы хотите, чтобы друг помог новичкам понять, как вести себя в группе. Show respect — проявлять уважение: например, выслушать человека, не перебивая его. Сравните I want to read — «я хочу читать» и I want you to read — «я хочу, чтобы ты читал». После want или need ставим того, кто должен выполнить действие, затем to + глагол. You относится к собеседнику. Это прямое выражение желания или необходимости, а не самая мягкая форма просьбы.",
+        "uk": "Set an example — показати приклад іншим своєю поведінкою. Ви хочете, щоб друг допоміг новачкам зрозуміти, як поводитися в групі. Show respect — виявляти повагу: наприклад, вислухати людину, не перебиваючи її. Порівняйте I want to read — «я хочу читати» та I want you to read — «я хочу, щоб ти читав». Після want або need ставимо того, хто має виконати дію, потім to + дієслово. You стосується співрозмовника. Це пряме вираження бажання або необхідності, а не наймʼякша форма прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-32:intro2:r1",
+              "text": "I want you to set an example."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro2:r2",
+              "text": "I want your to set an example."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro2:r3",
+              "text": "I want you set an example."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-32:intro2:r1",
+              "text": "I want you to set an example."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro2:r2",
+              "text": "I want your to set an example."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro2:r3",
+              "text": "I want you set an example."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пропустить человека",
+        "uk": "Пропустити людину"
+      },
+      "bodyByLocale": {
+        "ru": "Give way — уступить дорогу, дать другому пройти. В узком коридоре идёт женщина с сумками; вы обращаетесь к другу и хотите, чтобы он её пропустил. To her показывает, кому уступить дорогу. Сравните I want to read — «я хочу читать» и I want you to read — «я хочу, чтобы ты читал». После want или need ставим того, кто должен выполнить действие, затем to + глагол. You относится к собеседнику. Это прямое выражение желания или необходимости, а не самая мягкая форма просьбы.",
+        "uk": "Give way — поступитися дорогою, дати іншому пройти. Вузьким коридором іде жінка із сумками; ви звертаєтеся до друга й хочете, щоб він її пропустив. To her показує, кому поступитися дорогою. Порівняйте I want to read — «я хочу читати» та I want you to read — «я хочу, щоб ти читав». Після want або need ставимо того, хто має виконати дію, потім to + дієслово. You стосується співрозмовника. Це пряме вираження бажання або необхідності, а не наймʼякша форма прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-32:intro3:r1",
+              "text": "I need you to give way to her."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro3:r2",
+              "text": "I need your to give way to her."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro3:r3",
+              "text": "I need you give way to her."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-32:intro3:r1",
+              "text": "I need you to give way to her."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro3:r2",
+              "text": "I need your to give way to her."
+            },
+            {
+              "responseId": "en:lesson-21:session-32:intro3:r3",
+              "text": "I need you give way to her."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3c3848ef0f010d4d418067054ab36f62069e8dc5cd850f4972eb20692042d869"
+}

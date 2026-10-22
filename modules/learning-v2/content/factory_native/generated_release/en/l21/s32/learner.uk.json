@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-32:word:take-responsibility",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take responsibility",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:word:take-responsibility:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take responsibility",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:word:take-responsibility:audio",
+          "transcript": "take responsibility"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:word:take-responsibility:r1",
+            "targetText": "take responsibility",
+            "meaningByLocale": {
+              "ru": "взять на себя ответственность.",
+              "uk": "узяти на себе відповідальність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take responsibility",
+          "definitionByLocale": {
+            "ru": "взять на себя ответственность.",
+            "uk": "узяти на себе відповідальність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу, щоб ти взяв на себе відповідальність за помилку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу, щоб ти взяв на себе відповідальність за помилку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want you to take responsibility for the mistake.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу, чтобы ты взял на себя ответственность за ошибку».",
+          "uk": "Скажіть: «Я хочу, щоб ти взяв на себе відповідальність за помилку»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "you",
+          "to",
+          "take",
+          "responsibility",
+          "for",
+          "the",
+          "mistake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i02:r1",
+          "text": "I want you to take responsibility for the mistake."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i02:r2",
+          "text": "We want you to take responsibility for the mistake."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i02:r3",
+          "text": "They want you to take responsibility for the mistake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i02:audio",
+          "transcript": "I want you to take responsibility for the mistake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:i02:r1",
+            "targetText": "I want you to take responsibility for the mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i02:r2",
+            "targetText": "We want you to take responsibility for the mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i02:r3",
+            "targetText": "They want you to take responsibility for the mistake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to take responsibility for the mistake.",
+              "uk": "У записі звучить I want you to take responsibility for the mistake."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to take responsibility for the mistake.",
+              "uk": "У записі звучить I want you to take responsibility for the mistake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово для співрозмовника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i03:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i03:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i03:r3",
+          "text": "yours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово для співрозмовника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для собеседника.",
+          "uk": "Виберіть слово для співрозмовника."
+        },
+        "gappedTargetPhrase": "I want ___ to take responsibility for the mistake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-32:i03:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i03:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i03:r3",
+            "text": "yours"
+          }
+        ],
+        "testedDimension": "Виберіть слово для співрозмовника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Your означает «твой»; здесь нужен человек you.",
+              "uk": "Your означає «твій»; тут потрібна людина you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+              "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:word:set-an-example",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — set an example",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:word:set-an-example:audio"
+      ],
+      "accessibilityLabel": "Картка слова — set an example",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:word:set-an-example:audio",
+          "transcript": "set an example"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:word:set-an-example:r1",
+            "targetText": "set an example",
+            "meaningByLocale": {
+              "ru": "показать пример другим.",
+              "uk": "показати приклад іншим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "set an example",
+          "definitionByLocale": {
+            "ru": "показать пример другим.",
+            "uk": "показати приклад іншим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу, щоб ти показав приклад іншим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу, щоб ти показав приклад іншим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want you to set an example.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу, чтобы ты показал пример другим».",
+          "uk": "Скажіть: «Я хочу, щоб ти показав приклад іншим»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "you",
+          "to",
+          "set",
+          "an",
+          "example"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i05:r1",
+          "text": "I want you to set an example."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i05:r2",
+          "text": "We want you to set an example."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i05:r3",
+          "text": "They want you to set an example."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i05:audio",
+          "transcript": "I want you to set an example."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:i05:r1",
+            "targetText": "I want you to set an example.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i05:r2",
+            "targetText": "We want you to set an example.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i05:r3",
+            "targetText": "They want you to set an example.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to set an example.",
+              "uk": "У записі звучить I want you to set an example."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to set an example.",
+              "uk": "У записі звучить I want you to set an example."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово для співрозмовника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i06:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i06:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i06:r3",
+          "text": "yours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово для співрозмовника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для собеседника.",
+          "uk": "Виберіть слово для співрозмовника."
+        },
+        "gappedTargetPhrase": "I want ___ to set an example.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-32:i06:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i06:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i06:r3",
+            "text": "yours"
+          }
+        ],
+        "testedDimension": "Виберіть слово для співрозмовника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Your означает «твой»; здесь нужен человек you.",
+              "uk": "Your означає «твій»; тут потрібна людина you."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово для співрозмовника.",
+            "feedbackByLocale": {
+              "ru": "Yours означает «твой, твоя вещь»; здесь нужно you.",
+              "uk": "Yours означає «твій, твоя річ»; тут потрібне you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:word:show-respect",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — show respect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:word:show-respect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — show respect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:word:show-respect:audio",
+          "transcript": "show respect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:word:show-respect:r1",
+            "targetText": "show respect",
+            "meaningByLocale": {
+              "ru": "проявлять уважение.",
+              "uk": "виявляти повагу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "show respect",
+          "definitionByLocale": {
+            "ru": "проявлять уважение.",
+            "uk": "виявляти повагу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу, щоб ти виявляв повагу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу, щоб ти виявляв повагу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want you to show respect.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу, чтобы ты проявлял уважение».",
+          "uk": "Скажіть: «Я хочу, щоб ти виявляв повагу»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "you",
+          "to",
+          "show",
+          "respect"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i08:r1",
+          "text": "I want you to show respect."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i08:r2",
+          "text": "We want you to show respect."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i08:r3",
+          "text": "They want you to show respect."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i08:audio",
+          "transcript": "I want you to show respect."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:i08:r1",
+            "targetText": "I want you to show respect.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i08:r2",
+            "targetText": "We want you to show respect.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i08:r3",
+            "targetText": "They want you to show respect.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to show respect.",
+              "uk": "У записі звучить I want you to show respect."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want you to show respect.",
+              "uk": "У записі звучить I want you to show respect."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i09:r1",
+          "text": "to show"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i09:r2",
+          "text": "to showing"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i09:r3",
+          "text": "to shows"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I want you ___ respect.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-32:i09:r1",
+            "text": "to show"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i09:r2",
+            "text": "to showing"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i09:r3",
+            "text": "to shows"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:word:give-way",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — give way",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:word:give-way:audio"
+      ],
+      "accessibilityLabel": "Картка слова — give way",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:word:give-way:audio",
+          "transcript": "give way"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:word:give-way:r1",
+            "targetText": "give way",
+            "meaningByLocale": {
+              "ru": "уступить дорогу.",
+              "uk": "поступитися дорогою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "give way",
+          "definitionByLocale": {
+            "ru": "уступить дорогу.",
+            "uk": "поступитися дорогою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно, щоб ти поступився їй дорогою».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно, щоб ти поступився їй дорогою».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need you to give way to her.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно, чтобы ты уступил ей дорогу».",
+          "uk": "Скажіть: «Мені потрібно, щоб ти поступився їй дорогою»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "give",
+          "way",
+          "to",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i11:r1",
+          "text": "I need you to give way to her."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i11:r2",
+          "text": "We need you to give way to her."
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i11:r3",
+          "text": "They need you to give way to her."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i11:audio",
+          "transcript": "I need you to give way to her."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-32:i11:r1",
+            "targetText": "I need you to give way to her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i11:r2",
+            "targetText": "We need you to give way to her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i11:r3",
+            "targetText": "They need you to give way to her.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to give way to her.",
+              "uk": "У записі звучить I need you to give way to her."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need you to give way to her.",
+              "uk": "У записі звучить I need you to give way to her."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-32:i12:r1",
+          "text": "to give"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i12:r2",
+          "text": "to giving"
+        },
+        {
+          "responseId": "en:lesson-21:session-32:i12:r3",
+          "text": "to gives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "I need you ___ way to her.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-32:i12:r1",
+            "text": "to give"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i12:r2",
+            "text": "to giving"
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i12:r3",
+            "text": "to gives"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-32:i13:p1",
+            "target": "take responsibility",
+            "meaningByLocale": {
+              "ru": "взять на себя ответственность",
+              "uk": "узяти на себе відповідальність"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-32:i13:p2",
+            "target": "set an example",
+            "meaningByLocale": {
+              "ru": "показать пример другим",
+              "uk": "показати приклад іншим"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-32:i13:p3",
+            "target": "show respect",
+            "meaningByLocale": {
+              "ru": "проявлять уважение",
+              "uk": "виявляти повагу"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-32:i13:p4",
+            "target": "give way",
+            "meaningByLocale": {
+              "ru": "уступить дорогу",
+              "uk": "поступитися дорогою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "take responsibility",
+          "set an example",
+          "show respect",
+          "give way"
+        ],
+        "rightColumn": [
+          "узяти на себе відповідальність",
+          "показати приклад іншим",
+          "виявляти повагу",
+          "поступитися дорогою"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: приємне заняття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: приємне заняття",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i14:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: закінчити справу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: закінчити справу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i15:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I must finish reading the description.",
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зверніться до друга: «Я хочу, щоб ти виявляв повагу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i16:audio"
+      ],
+      "accessibilityLabel": "Зверніться до друга: «Я хочу, щоб ти виявляв повагу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i16:audio",
+          "transcript": "I want you to show respect."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want you to show respect.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-32:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зверніться до друга: «Мені потрібно, щоб ти поступився їй дорогою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Зверніться до друга: «Мені потрібно, щоб ти поступився їй дорогою»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-32:i17:audio",
+          "transcript": "I need you to give way to her."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need you to give way to her.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7f492f0131b78208e54e679d29e9d507810fc4cb6afccfe8237c18273cff4993"
+}

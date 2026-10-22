@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-35:word:label",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — label",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:word:label:audio"
+      ],
+      "accessibilityLabel": "Картка слова — label",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:word:label:audio",
+          "transcript": "label"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:word:label:r1",
+            "targetText": "label",
+            "meaningByLocale": {
+              "ru": "подписывать, снабжать этикеткой.",
+              "uk": "підписувати, позначати етикеткою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "label",
+          "definitionByLocale": {
+            "ru": "подписывать, снабжать этикеткой.",
+            "uk": "підписувати, позначати етикеткою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я підписую коробки, щоб швидко знаходити речі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я підписую коробки, щоб швидко знаходити речі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I label the boxes to find things quickly.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я подписываю коробки, чтобы быстро находить вещи».",
+          "uk": "Скажіть: «Я підписую коробки, щоб швидко знаходити речі»."
+        },
+        "orderedTokens": [
+          "I",
+          "label",
+          "the",
+          "boxes",
+          "to",
+          "find",
+          "things",
+          "quickly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i02:r1",
+          "text": "I label the boxes to find things quickly."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i02:r2",
+          "text": "We label the boxes to find things quickly."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i02:r3",
+          "text": "They label the boxes to find things quickly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i02:audio",
+          "transcript": "I label the boxes to find things quickly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:i02:r1",
+            "targetText": "I label the boxes to find things quickly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i02:r2",
+            "targetText": "We label the boxes to find things quickly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i02:r3",
+            "targetText": "They label the boxes to find things quickly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I label the boxes to find things quickly.",
+              "uk": "У записі звучить I label the boxes to find things quickly."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I label the boxes to find things quickly.",
+              "uk": "У записі звучить I label the boxes to find things quickly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i03:r1",
+          "text": "to find"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i03:r2",
+          "text": "to finding"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i03:r3",
+          "text": "for find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I label the boxes ___ things quickly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-35:i03:r1",
+            "text": "to find"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i03:r2",
+            "text": "to finding"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i03:r3",
+            "text": "for find"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:word:stack",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:word:stack:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:word:stack:audio",
+          "transcript": "stack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:word:stack:r1",
+            "targetText": "stack",
+            "meaningByLocale": {
+              "ru": "складывать стопкой.",
+              "uk": "складати стосом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stack",
+          "definitionByLocale": {
+            "ru": "складывать стопкой.",
+            "uk": "складати стосом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я складаю тарілки стосом, щоб заощадити місце».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я складаю тарілки стосом, щоб заощадити місце».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I stack the plates to save space.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я складываю тарелки стопкой, чтобы сэкономить место».",
+          "uk": "Скажіть: «Я складаю тарілки стосом, щоб заощадити місце»."
+        },
+        "orderedTokens": [
+          "I",
+          "stack",
+          "the",
+          "plates",
+          "to",
+          "save",
+          "space"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i05:r1",
+          "text": "I stack the plates to save space."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i05:r2",
+          "text": "We stack the plates to save space."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i05:r3",
+          "text": "They stack the plates to save space."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i05:audio",
+          "transcript": "I stack the plates to save space."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:i05:r1",
+            "targetText": "I stack the plates to save space.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i05:r2",
+            "targetText": "We stack the plates to save space.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i05:r3",
+            "targetText": "They stack the plates to save space.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I stack the plates to save space.",
+              "uk": "У записі звучить I stack the plates to save space."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I stack the plates to save space.",
+              "uk": "У записі звучить I stack the plates to save space."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i06:r1",
+          "text": "to save"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i06:r2",
+          "text": "to saving"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i06:r3",
+          "text": "for save"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I stack the plates ___ space.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-35:i06:r1",
+            "text": "to save"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i06:r2",
+            "text": "to saving"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i06:r3",
+            "text": "for save"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i06:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:word:store",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — store",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:word:store:audio"
+      ],
+      "accessibilityLabel": "Картка слова — store",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:word:store:audio",
+          "transcript": "store"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:word:store:r1",
+            "targetText": "store",
+            "meaningByLocale": {
+              "ru": "хранить.",
+              "uk": "зберігати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "store",
+          "definitionByLocale": {
+            "ru": "хранить.",
+            "uk": "зберігати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я зберігаю велосипед усередині, щоб він залишався сухим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я зберігаю велосипед усередині, щоб він залишався сухим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I store my bicycle inside to keep it dry.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я храню велосипед внутри, чтобы он оставался сухим».",
+          "uk": "Скажіть: «Я зберігаю велосипед усередині, щоб він залишався сухим»."
+        },
+        "orderedTokens": [
+          "I",
+          "store",
+          "my",
+          "bicycle",
+          "inside",
+          "to",
+          "keep",
+          "it",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i08:r1",
+          "text": "I store my bicycle inside to keep it dry."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i08:r2",
+          "text": "We store our bicycle inside to keep it dry."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i08:r3",
+          "text": "They store their bicycle inside to keep it dry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i08:audio",
+          "transcript": "I store my bicycle inside to keep it dry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:i08:r1",
+            "targetText": "I store my bicycle inside to keep it dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i08:r2",
+            "targetText": "We store our bicycle inside to keep it dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i08:r3",
+            "targetText": "They store their bicycle inside to keep it dry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I store my bicycle inside to keep it dry.",
+              "uk": "У записі звучить I store my bicycle inside to keep it dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I store my bicycle inside to keep it dry.",
+              "uk": "У записі звучить I store my bicycle inside to keep it dry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i09:r1",
+          "text": "to keep"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i09:r2",
+          "text": "to keeping"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i09:r3",
+          "text": "for keep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I store my bicycle inside ___ it dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-35:i09:r1",
+            "text": "to keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i09:r2",
+            "text": "to keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i09:r3",
+            "text": "for keep"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:word:donate",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — donate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:word:donate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — donate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:word:donate:audio",
+          "transcript": "donate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:word:donate:r1",
+            "targetText": "donate",
+            "meaningByLocale": {
+              "ru": "передавать в дар, жертвовать.",
+              "uk": "віддавати в дар, жертвувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "donate",
+          "definitionByLocale": {
+            "ru": "передавать в дар, жертвовать.",
+            "uk": "віддавати в дар, жертвувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я віддаю одяг у дар, щоб допомогти іншим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я віддаю одяг у дар, щоб допомогти іншим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I donate clothes to help others.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я отдаю одежду в дар, чтобы помочь другим».",
+          "uk": "Скажіть: «Я віддаю одяг у дар, щоб допомогти іншим»."
+        },
+        "orderedTokens": [
+          "I",
+          "donate",
+          "clothes",
+          "to",
+          "help",
+          "others"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i11:r1",
+          "text": "I donate clothes to help others."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i11:r2",
+          "text": "We donate clothes to help others."
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i11:r3",
+          "text": "They donate clothes to help others."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i11:audio",
+          "transcript": "I donate clothes to help others."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-35:i11:r1",
+            "targetText": "I donate clothes to help others.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i11:r2",
+            "targetText": "We donate clothes to help others.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i11:r3",
+            "targetText": "They donate clothes to help others.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I donate clothes to help others.",
+              "uk": "У записі звучить I donate clothes to help others."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I donate clothes to help others.",
+              "uk": "У записі звучить I donate clothes to help others."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-35:i12:r1",
+          "text": "to help"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i12:r2",
+          "text": "to helping"
+        },
+        {
+          "responseId": "en:lesson-21:session-35:i12:r3",
+          "text": "for help"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I donate clothes ___ others.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-35:i12:r1",
+            "text": "to help"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i12:r2",
+            "text": "to helping"
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i12:r3",
+            "text": "for help"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-35:i12:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-35:i12:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-35:i13:p1",
+            "target": "label",
+            "meaningByLocale": {
+              "ru": "подписывать, снабжать этикеткой",
+              "uk": "підписувати, позначати етикеткою"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-35:i13:p2",
+            "target": "stack",
+            "meaningByLocale": {
+              "ru": "складывать стопкой",
+              "uk": "складати стосом"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-35:i13:p3",
+            "target": "store",
+            "meaningByLocale": {
+              "ru": "хранить",
+              "uk": "зберігати"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-35:i13:p4",
+            "target": "donate",
+            "meaningByLocale": {
+              "ru": "передавать в дар, жертвовать",
+              "uk": "віддавати в дар, жертвувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "label",
+          "stack",
+          "store",
+          "donate"
+        ],
+        "rightColumn": [
+          "підписувати, позначати етикеткою",
+          "складати стосом",
+          "зберігати",
+          "віддавати в дар, жертвувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть: «Я зберігаю велосипед усередині, щоб він залишався сухим»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i16:audio"
+      ],
+      "accessibilityLabel": "Поясніть: «Я зберігаю велосипед усередині, щоб він залишався сухим»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i16:audio",
+          "transcript": "I store my bicycle inside to keep it dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I store my bicycle inside to keep it dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, навіщо віддаєте одяг у дар",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Поясніть, навіщо віддаєте одяг у дар",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-35:i17:audio",
+          "transcript": "I donate clothes to help others."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I donate clothes to help others.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fdbb891b7b7455b1e7467495ad314716b1c18ee0cab784f9ce8b92cba2e54860"
+}

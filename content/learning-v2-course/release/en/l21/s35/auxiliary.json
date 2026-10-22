@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-35:intro1:r2": {
+          "ru": "После to для цели нужна начальная форма.",
+          "uk": "Після to для мети потрібна початкова форма."
+        },
+        "en:lesson-21:session-35:intro1:r3": {
+          "ru": "For с начальной формой глагола здесь не выражает цель: нужно to.",
+          "uk": "For з початковою формою дієслова тут не виражає мету: потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-35:intro2:r2": {
+          "ru": "После to для цели нужна начальная форма.",
+          "uk": "Після to для мети потрібна початкова форма."
+        },
+        "en:lesson-21:session-35:intro2:r3": {
+          "ru": "For с начальной формой глагола здесь не выражает цель: нужно to.",
+          "uk": "For з початковою формою дієслова тут не виражає мету: потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-35:intro3:r2": {
+          "ru": "После to для цели нужна начальная форма.",
+          "uk": "Після to для мети потрібна початкова форма."
+        },
+        "en:lesson-21:session-35:intro3:r3": {
+          "ru": "For с начальной формой глагола здесь не выражает цель: нужно to.",
+          "uk": "For з початковою формою дієслова тут не виражає мету: потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4175937017a568744e74301584122805919e55ec4a3af8ae93f929c984a3f69a"
+}

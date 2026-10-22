@@ -66,7 +66,7 @@ describe('plusRingArcs · угловой градиент дугами', () => {
   it('цвета замкнуты и взяты из эталона: #8E7CFF → #6FA8FF → #7FE0D8 → #C69BFF → #8E7CFF от 200°', () => {
     expect([...PLUS_RING_COLORS]).toEqual(['#8E7CFF', '#6FA8FF', '#7FE0D8', '#C69BFF', '#8E7CFF']);
     expect(PLUS_RING_START_DEG).toBe(200);
-    expect([...PLUS_PIN_COLORS]).toEqual(['#8E7CFF', '#6FA8FF']);
+    expect([...PLUS_PIN_COLORS]).toEqual(['#8E7CFF', '#5F90DB']); // 22.10: голубой конец темнее ради контраста ромба
   });
 
   it('4 дуги по 90°, каждая переходит в цвет следующей, последняя замыкается на первый цвет', () => {

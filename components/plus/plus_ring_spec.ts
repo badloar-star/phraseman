@@ -23,7 +23,9 @@ export function plusRingColors(isLight: boolean): readonly string[] {
   return isLight ? PLUS_RING_COLORS_LIGHT : PLUS_RING_COLORS;
 }
 /** Значок ◆: градиент 135° сверху-слева вниз-вправо. */
-export const PLUS_PIN_COLORS = ['#8E7CFF', '#6FA8FF'] as const; // theme-exempt: знак Plus — один цвет во всех темах
+// зачем: 22.10, контраст ромба; вид сохранён. Белый ромб на прежнем голубом конце #6FA8FF давал 2,41:1 (в середине градиента 2,82:1); голубой конец ×0,86 → #5F90DB,
+// белый ромб ≥ 3:1 по всей диагонали (3,24 / 3,28 / 3,23). Вариант A документа docs/work/tasks/plus-pin-glyph-contrast-2026-10-22.md; откат — вернуть #6FA8FF.
+export const PLUS_PIN_COLORS = ['#8E7CFF', '#5F90DB'] as const; // theme-exempt: знак Plus — один цвет во всех темах
 /** Плоское кольцо жителей на башне Пика. */
 export const PLUS_FLAT_COLOR = '#9B8CFF'; // theme-exempt: знак Plus — один цвет во всех темах
 export const PLUS_PIN_GLYPH_COLOR = '#FFFFFF'; // theme-exempt: белый ромб на фиолетовом значке

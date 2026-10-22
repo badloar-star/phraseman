@@ -4,6 +4,8 @@ import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGl
 import {
   PLUS_FLAT_COLOR,
   PLUS_FLAT_COLOR_LIGHT,
+  PLUS_PIN_COLORS,
+  PLUS_PIN_GLYPH_COLOR,
   PLUS_RING_COLORS,
   PLUS_RING_COLORS_LIGHT,
   plusRingArcs,
@@ -41,6 +43,12 @@ describe('палитра кольца Plus для светлых тем', () => 
       expect(ratio(color, g.bg.slice(0, 7))).toBeGreaterThanOrEqual(3);
       expect(ratio(color, g.opaqueCard.slice(0, 7))).toBeGreaterThanOrEqual(3);
     }
+  });
+
+  it('белый ромб ◆ на значке: ≥ 3:1 на обоих концах градиента и в середине, где он стоит (22.10)', () => {
+    const [from, to] = PLUS_PIN_COLORS;
+    const mid = '#' + [1, 3, 5].map((i) => Math.round((parseInt(from.slice(i, i + 2), 16) + parseInt(to.slice(i, i + 2), 16)) / 2).toString(16).padStart(2, '0')).join('');
+    for (const color of [from, mid, to]) expect(ratio(PLUS_PIN_GLYPH_COLOR, color)).toBeGreaterThanOrEqual(3);
   });
 
   it('спецификация: светлый вариант плоского кольца Пика и дуги на светлых цветах; тёмные по умолчанию', () => {

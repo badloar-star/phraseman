@@ -132,7 +132,7 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
               {done ? (
                 <View style={[s.ck, { backgroundColor: color }]}><Ionicons name="checkmark" size={16} color="#FFFFFF" /></View>
               ) : (
-                <View style={[s.ck, { boxShadow: [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadRadius: 2, color, inset: true }] }]} /> // shadow-ok: guard-ok: кружок-индикатор невыполненного задания (внутреннее кольцо 2, не рамка контейнера)
+                <View style={[s.ck, s.ckRing, { borderColor: color }]} /> // shadow-ok: guard-ok: кружок-индикатор невыполненного задания, не контейнер
               )}
               <View style={[s.ic, { backgroundColor: p.control }]}><Ionicons name={ROW_ICON[task.kind]} size={18} color={p.text} /></View>
               <View style={s.tx}>
@@ -171,6 +171,7 @@ const s = StyleSheet.create({
   panelTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
   panelCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 },
+  ckRing: { borderWidth: 2 }, // shadow-ok: guard-ok: typo-exempt: кружок-индикатор невыполненного задания, не контейнер
   ck: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   ic: { width: 36, height: 36, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   tx: { flex: 1, minWidth: 0 },

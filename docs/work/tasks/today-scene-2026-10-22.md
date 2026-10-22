@@ -11,6 +11,9 @@ Governance-ID: TG-370D2BC385F7
 Governance-ID: TG-F797F50B0F26
 Governance-ID: TG-64B0FBA91380
 Governance-ID: TG-E8B032E24853
+Governance-ID: TG-BE47095D90FA
+Governance-ID: TG-697D91ABA73E
+Governance-ID: TG-5B7EEA40E325
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: эталон docs/design/v2-app/today-scene-concepts.html, вариант A (владелец утвердил 22.10); приказ координатора

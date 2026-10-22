@@ -239,6 +239,8 @@ describe('рубежи серии — флаг, подключение, исхо
     'components/spire/SpireWeekResultCard.tsx',
     // зачем (владелец 17.10): кольца дня ушли с Главной на экран «Сегодня» (/today_tasks) — флаг, цвета колец и ленивый слот колец
     'app/today_tasks.tsx',
+    // зачем (22.10, координатор): «Сегодня» в стиле «Сцена» (вид — TodaySceneView/TodayScene) и лента истории дней берут те же кольца и цвета колец дня (TodayRingsSlot, use_streak_colors); всё за флагом TODAY_SCENE_V2_ENABLED
+    'components/home/v2/today_scene/TodayScene.tsx', 'components/home/v2/today_scene/TodaySceneView.tsx', 'components/home/v2/TodayActivityHistory.tsx', 'app/dev_today_scene_preview.tsx',
     // зачем (владелец 15.10, m08 «Молния» за moments_v3): слой поверх урока берёт второй цвет темы для холодной виньетки (use_streak_colors); грузится require'ом при флаге
     'components/feedback/ComboMomentLayer.tsx',
     // зачем (координатор 15.10, кадры Сверки): dev_state `moments=v3|off|inherit` — dev-переключатель флага (только __DEV__), импорт ленивый

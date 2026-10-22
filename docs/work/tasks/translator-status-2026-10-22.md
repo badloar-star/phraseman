@@ -130,3 +130,6 @@ duel_copy, duel_play_copy — без правок; lesson_invite_friend_copy —
 `app/friends_together/duel_play_copy.ts` (файл Моментов, ключ `sayInEnglish`): id «Ucapkan dalam bahasa Inggris» → «Katakan dalam
 bahasa Inggris» — как подпись в заданиях Learning V2 (`GOAL_SAY` в task_prompt_parts_v1.ts). Решение координатора 22.10. Я файл
 не трогал — он ваш; поправьте при следующем касании (одна строка, логики нет).
+
+**e80580a2b** — названия 56 эпизодов урока 6 на 8 языков (черновик 12 · ТЕОРИИ b4de77625) в session_titles_i18n_v1.ts; модуль — 224 ключа.
+Если Ревизор/владелец заменят названия — переведу изменённые строки точечно.

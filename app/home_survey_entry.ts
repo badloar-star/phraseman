@@ -18,8 +18,26 @@ import { fetchActiveSurveyWithRetry, type ActiveSurvey } from './survey_client';
 
 export const HOME_SURVEY_STORAGE_KEY = 'home_survey_entry_v1';
 export const HOME_SURVEY_TTL_MS = 6 * 60 * 60_000;
+// зачем (владелец 22.10, вопрос 27 «сначала безопасные»): при одной сессии в сутки кэш 6 ч истекал каждый раз, и вызов
+// getActiveShardSurvey (полное ядро, ≈ 4 чтения) шёл почти каждый старт. Сервер (1 · Ядро) пишет
+// remote_config/app.numbers.home_survey_rev — мс последнего изменения опроса. Та же версия, что у ответа на телефоне, —
+// ответ годен до 7 дней без сети. Версии нет (0) → прежние 6 ч.
+export const HOME_SURVEY_REV_MAX_AGE_MS = 7 * 24 * 60 * 60_000;
 
-type Entry = Readonly<{ stableId: string; lang: Lang; fetchedAtMs: number; survey: ActiveSurvey | null }>;
+type Entry = Readonly<{ stableId: string; lang: Lang; fetchedAtMs: number; survey: ActiveSurvey | null; rev?: number }>;
+
+/** Последняя известная версия опроса из remote_config/app (0 — сервер версию не пишет или ещё не прочитана). */
+let knownRemoteRev = 0;
+
+async function readHomeSurveyRemoteRev(): Promise<number> {
+  try {
+    const { getRemoteNumber } = await import('./remote_flags');
+    return getRemoteNumber('home_survey_rev');
+  } catch (error) {
+    log('remote_rev:unavailable → прежние 6 ч', String(error));
+    return 0;
+  }
+}
 
 let memory: Entry | null = null;
 let inFlight: { key: string; promise: Promise<ActiveSurvey | null> } | null = null;
@@ -55,11 +73,11 @@ function scopeKey(stableId: string, lang: Lang): string {
 }
 
 function isFresh(entry: Entry | null, stableId: string, lang: Lang, nowMs: number): entry is Entry {
-  return entry !== null
-    && entry.stableId === stableId
-    && entry.lang === lang
-    && nowMs - entry.fetchedAtMs >= 0
-    && nowMs - entry.fetchedAtMs < HOME_SURVEY_TTL_MS;
+  if (entry === null || entry.stableId !== stableId || entry.lang !== lang) return false;
+  const ageMs = nowMs - entry.fetchedAtMs;
+  if (ageMs < 0) return false;
+  if (ageMs < HOME_SURVEY_TTL_MS) return true;
+  return knownRemoteRev > 0 && entry.rev === knownRemoteRev && ageMs < HOME_SURVEY_REV_MAX_AGE_MS;
 }
 
 async function readStorage(): Promise<void> {
@@ -80,6 +98,7 @@ async function readStorage(): Promise<void> {
         lang: parsed.lang as Lang,
         fetchedAtMs: parsed.fetchedAtMs,
         survey: parsed.survey && typeof parsed.survey === 'object' ? parsed.survey as ActiveSurvey : null,
+        ...(typeof parsed.rev === 'number' && parsed.rev > 0 ? { rev: parsed.rev } : {}),
       };
       log('storage:hit', { ageMs: Date.now() - parsed.fetchedAtMs, hasSurvey: Boolean(memory.survey) });
     }
@@ -112,7 +131,16 @@ export async function loadHomeSurvey(input: {
   const nowMs = input.nowMs ?? Date.now();
   const key = scopeKey(input.stableId, input.lang);
   await readStorage();
-  if (isFresh(memory, input.stableId, input.lang, nowMs)) {
+  knownRemoteRev = await readHomeSurveyRemoteRev();
+  const fresh = isFresh(memory, input.stableId, input.lang, nowMs);
+  console.log('[READ-TTL]', JSON.stringify({ // guard-ok: решение «опрос из кэша или из сети», без uid
+    area: 'home_survey',
+    source: fresh ? 'cache' : 'network',
+    ageMs: memory ? nowMs - memory.fetchedAtMs : null,
+    remoteRev: knownRemoteRev,
+    localRev: memory?.rev ?? null,
+  }));
+  if (fresh && memory) {
     settledThisProcess.add(key);
     log('cache:fresh → без сети', { ageMs: nowMs - memory.fetchedAtMs, hasSurvey: Boolean(memory.survey) });
     logSurveyRow(input.lang, 'cache', memory.survey, nowMs - memory.fetchedAtMs);
@@ -132,7 +160,7 @@ export async function loadHomeSurvey(input: {
     try {
       const result = await fetchActiveSurveyWithRetry({ stableId: input.stableId, platform: input.platform, lang: input.lang });
       const survey = result.survey && !result.completion ? result.survey : null;
-      const entry: Entry = { stableId: input.stableId, lang: input.lang, fetchedAtMs: Date.now(), survey };
+      const entry: Entry = { stableId: input.stableId, lang: input.lang, fetchedAtMs: Date.now(), survey, ...(knownRemoteRev > 0 ? { rev: knownRemoteRev } : {}) };
       memory = entry;
       settledThisProcess.add(key);
       writeStorage(entry);
@@ -159,7 +187,7 @@ export async function loadHomeSurvey(input: {
 
 /** После отправки ответов: опроса больше нет — строка исчезает и после перезапуска. */
 export function markHomeSurveyCompleted(stableId: string, lang: Lang): void {
-  const entry: Entry = { stableId, lang, fetchedAtMs: Date.now(), survey: null };
+  const entry: Entry = { stableId, lang, fetchedAtMs: Date.now(), survey: null, ...(knownRemoteRev > 0 ? { rev: knownRemoteRev } : {}) };
   memory = entry;
   settledThisProcess.add(scopeKey(stableId, lang));
   writeStorage(entry);
@@ -170,5 +198,6 @@ export function resetHomeSurveyEntryForTests(): void {
   memory = null;
   inFlight = null;
   storageRead = false;
+  knownRemoteRev = 0;
   settledThisProcess.clear();
 }

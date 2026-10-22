@@ -16,6 +16,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGener
 import { accountScopeKey } from './account_scope_key';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { decideGlobalBroadcastSettledSkip, GLOBAL_BROADCAST_SETTLED_KEY, type GlobalBroadcastSettledRecord } from './global_broadcast_settled';
 
 export type GlobalBroadcastKind = 'general' | 'review_promo';
 export type GlobalBroadcastPremiumAudience = 'all' | 'free' | 'premium';
@@ -402,6 +403,34 @@ function writeBroadcastEmptyCache(uid: string | null): void {
   });
 }
 
+// ── Версия рассылок (вопрос 27, владелец 22.10 «сначала безопасные») — решение в app/global_broadcast_settled.ts ──────
+// Версии нет → прежний путь (кэш «пусто» 12 ч). «Показывать нечего» = пусто, уже получено, скрыто; сбой — нет.
+async function readBroadcastRemoteRev(): Promise<number> {
+  try {
+    const { getRemoteNumber } = await import('./remote_flags');
+    return getRemoteNumber('global_broadcast_rev');
+  } catch (error) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'global_broadcast', event: 'remote_rev_unavailable', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return 0;
+  }
+}
+
+async function readBroadcastSettled(): Promise<GlobalBroadcastSettledRecord | null> {
+  try {
+    const raw = await AsyncStorage.getItem(GLOBAL_BROADCAST_SETTLED_KEY);
+    return raw ? JSON.parse(raw) as GlobalBroadcastSettledRecord : null;
+  } catch (error) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'global_broadcast', event: 'settled_unreadable', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return null;
+  }
+}
+
+function writeBroadcastSettled(uid: string, rev: number): void {
+  if (!(rev > 0)) return;
+  void AsyncStorage.setItem(GLOBAL_BROADCAST_SETTLED_KEY, JSON.stringify({ uid, rev, at: Date.now() }))
+    .catch((error: unknown) => console.warn('[READ-TTL]', JSON.stringify({ area: 'global_broadcast', event: 'settled_write_failed', message: String(error).slice(0, 80) }))); // guard-ok: catch называет причину
+}
+
 export async function fetchPendingGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
   options: Readonly<{ premiumAudienceAccess?: boolean | null }> = {},
@@ -417,8 +446,17 @@ export async function fetchPendingGlobalBroadcastModal(
   if (!uid) return skip('no_uid');
   const accountToken = captureAccountGeneration();
   if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_before_list');
+  const [remoteRev, settledRecord] = await Promise.all([readBroadcastRemoteRev(), readBroadcastSettled()]);
+  const settledVerdict = decideGlobalBroadcastSettledSkip({ remoteRev, uid, settled: settledRecord, nowMs: Date.now() });
+  console.log('[READ-TTL]', JSON.stringify({ area: 'global_broadcast', source: settledVerdict.skip ? 'cache' : 'network', reason: settledVerdict.reason, remoteRev })); // guard-ok: решение, без uid
+  if (settledVerdict.skip) return skip(`rev_unchanged_settled rev=${remoteRev}`);
   const emptyAgeMs = await readBroadcastEmptyAgeMs(uid, Date.now());
   if (emptyAgeMs !== null) return skip(`empty_cached age=${Math.round(emptyAgeMs / 60_000)}m ttl=${GLOBAL_BROADCAST_EMPTY_TTL_MS / 60_000}m`);
+  // Итог «показывать нечего» при этой версии — запоминаем, чтобы до смены версии не звать сервер.
+  const settled = (reason: string): null => {
+    writeBroadcastSettled(uid, remoteRev);
+    return skip(reason);
+  };
 
   try {
     const listActive = httpsCallable<{ limit: number }, GlobalBroadcastPublicListResponse>(
@@ -434,7 +472,7 @@ export async function fetchPendingGlobalBroadcastModal(
     if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_after_list');
     if (listData.items.length === 0) {
       writeBroadcastEmptyCache(uid);
-      return skip('no_active_broadcasts');
+      return settled('no_active_broadcasts');
     }
     writeBroadcastEmptyCache(null);
     const activeDocs = listData.items.map((row) => ({ id:String(row.id || ''), data:row }));
@@ -449,14 +487,14 @@ export async function fetchPendingGlobalBroadcastModal(
     }
 
     const payload = pickLatest(activeDocs);
-    if (!payload) return skip(`no_valid_payload items=${activeDocs.length}`);
+    if (!payload) return settled(`no_valid_payload items=${activeDocs.length}`);
     if (isRetiredLeagueSystemBroadcast(payload)) {
       await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_3'));
-      return skip(`retired_league id=${payload.id}`);
+      return settled(`retired_league id=${payload.id}`);
     }
     if (payload.kind === 'review_promo') {
       await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_4'));
-      return skip(`review_promo id=${payload.id}`);
+      return settled(`review_promo id=${payload.id}`);
     }
 
     if (payload.premiumAudience !== 'all') {
@@ -477,7 +515,7 @@ export async function fetchPendingGlobalBroadcastModal(
 
     const dismissed = await AsyncStorage.getItem(dismissKey(payload.id, accountToken));
     if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_before_claim');
-    if (dismissed === '1') return skip(`dismissed id=${payload.id}`);
+    if (dismissed === '1') return settled(`dismissed id=${payload.id}`);
     // R58 #5: окно уже закрыто в этом запуске, получение идёт фоном — не всплываем повторно
     if (closedThisSession.has(`${uid}:${payload.id}`)) return skip(`closed_this_session id=${payload.id}`);
 
@@ -498,7 +536,7 @@ export async function fetchPendingGlobalBroadcastModal(
       }
       if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_after_claim');
       await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_5'));
-      return skip(`already_claimed id=${payload.id}`);
+      return settled(`already_claimed id=${payload.id}`);
     }
 
     return payload;

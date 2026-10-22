@@ -36,7 +36,9 @@ describe('fetchPendingGlobalBroadcastModal — выходы с причиной'
     const body = fetchBody();
     expect(source).toContain('export const GLOBAL_BROADCAST_EMPTY_TTL_MS = 12 * 60 * 60 * 1000;');
     expect(body).toContain('return skip(`empty_cached age=');
-    expect(body).toMatch(/if \(listData\.items\.length === 0\) \{\s*writeBroadcastEmptyCache\(uid\);\s*return skip\('no_active_broadcasts'\);\s*\}\s*writeBroadcastEmptyCache\(null\);/);
+    // Вопрос 27 (22.10): тот же выход теперь ещё и отмечает «показывать нечего» при версии рассылок (settled → skip).
+    expect(body).toMatch(/if \(listData\.items\.length === 0\) \{\s*writeBroadcastEmptyCache\(uid\);\s*return settled\('no_active_broadcasts'\);\s*\}\s*writeBroadcastEmptyCache\(null\);/);
+    expect(body).toContain('writeBroadcastSettled(uid, remoteRev);\n    return skip(reason);');
     expect(source).toContain("if (parsed?.uid !== uid || typeof parsed.at !== 'number') return null;");
   });
 });

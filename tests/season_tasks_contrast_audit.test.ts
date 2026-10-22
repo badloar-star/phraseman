@@ -70,13 +70,15 @@ describe('Сезон: белый текст на обложках глав (ау
   });
 });
 
-describe('Задания №23: пары токенов светлой темы (все 23 темы × калм/акцент/максимум)', () => {
+describe('Задания №23: пары токенов (светлая и тёмная, все 23 темы × калм/акцент/максимум)', () => {
   const rows: { pair: string; ratio: number; need: number; tag: string }[] = [];
-  for (const id of LIQUID_GLASS_THEME_IDS) {
+  for (const appearance of ['light', 'dark'] as const) for (const id of LIQUID_GLASS_THEME_IDS) {
     for (const level of ['calm', 'accent', 'max'] as const) {
-      const g = liquidGlassTokens(id, { level, appearance: 'light' } as never);
+      const g = liquidGlassTokens(id, { level, appearance } as never);
       const card = g.opaqueCard;
-      const tag = `${id}/${level}`;
+      // --amber эталона экзамена (lv2TaskAmber): светлый rgba(190,118,28,.12), тёмный rgba(230,160,60,.14)
+      const amber = appearance === 'light' ? { hex: '#BE761C', alpha: 0.12 } : { hex: '#E6A03C', alpha: 0.14 };
+      const tag = `${appearance}/${id}/${level}`;
       const push = (pair: string, ratio: number, need: number): void => { rows.push({ pair, ratio, need, tag }); };
       push('текст на карточке', contrastRatio(g.text, card), TEXT);
       push('вторичный на карточке', contrastRatio(g.secondary, card), TEXT);
@@ -87,8 +89,8 @@ describe('Задания №23: пары токенов светлой темы 
       push('«верно» на плитке goodSoft', contrastRatio(g.good, over(six(g.good), 0.12, card)), TEXT);
       push('текст на выбранной плитке (акцент 14 %)', contrastRatio(g.text, over(six(g.accent), 0.14, card)), TEXT);
       push('вторичный на «ситуации» (акцент 9 %)', contrastRatio(g.secondary, over(six(g.accent), 0.09, card)), TEXT);
-      push('текст на неверной (amber)', contrastRatio(g.text, over('#BE761C', 0.12, card)), TEXT);
-      push('вторичный на неверной (amber)', contrastRatio(g.secondary, over('#BE761C', 0.12, card)), TEXT);
+      push('текст на неверной (amber)', contrastRatio(g.text, over(amber.hex, amber.alpha, card)), TEXT);
+      push('вторичный на неверной (amber)', contrastRatio(g.secondary, over(amber.hex, amber.alpha, card)), TEXT);
       push('кнопка: ctaInk на cta', contrastRatio(g.ctaInk, g.cta), TEXT);
       push('прогресс: акцент-график на дорожке', contrastRatio(g.accentGraphic, over(g.text, 0.16, g.bg)), GRAPHIC);
       push('прогресс: акцент-график на фоне', contrastRatio(g.accentGraphic, g.bg), GRAPHIC);

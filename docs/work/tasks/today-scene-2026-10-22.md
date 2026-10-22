@@ -1,6 +1,8 @@
 # Task packet: «Сегодня» в стиле «Сцена», вариант A, пять состояний
 
 Governance-ID: TG-27CB07B4A87D
+Governance-ID: TG-8DA0436DA565
+Governance-ID: TG-6534986517B3
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: эталон docs/design/v2-app/today-scene-concepts.html, вариант A (владелец утвердил 22.10); приказ координатора

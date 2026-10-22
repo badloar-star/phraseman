@@ -29,9 +29,9 @@ describe('«Сегодня» в стиле «Сцена»: подключени�
     expect(route).toContain('setDevAppearance(before)');
   });
 
-  it('вид: цвета сцены из home_scene_tokens, кольца — существующий TodayRingsSlot размера 200, строки без своих рамок', () => {
+  it('вид: цвета сцены из токенов темы уровня «Максимум» (homeSceneTokensForTheme), кольца — существующий TodayRingsSlot размера 200, строки без своих рамок', () => {
     const view = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
-    expect(view).toContain('homeSceneTokens(p.accent, evening)');
+    expect(view).toContain('homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening)');
     expect(view).toContain('<TodayRingsSlot');
     expect(view).toContain('size={200}');
     for (const line of view.split('\n')) {

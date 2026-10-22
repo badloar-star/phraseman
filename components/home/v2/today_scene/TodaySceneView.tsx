@@ -9,7 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
@@ -21,7 +21,8 @@ import { plateBoxShadow, useShadowGlass } from '../../../v2/ShadowSurface';
 import V2Pressable from '../../../v2/V2Pressable';
 import { useV2Palette } from '../../../v2/useV2Palette';
 import type { TodayTask, TodayTaskKind } from '../home_v2_types';
-import { homeSceneTokens } from '../scene/home_scene_tokens';
+import { useTheme } from '../../../ThemeContext';
+import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
 import type { TodaySceneCopy } from './today_scene_copy';
 import type { TodaySceneDecision } from './today_scene_state';
 
@@ -50,7 +51,10 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
   const glass = useShadowGlass();
   const insets = useStableSafeAreaInsets();
   const evening = decision.state === 'evening';
-  const tokens = homeSceneTokens(p.accent, evening);
+  // зачем (владелец 22.10 «Сцена всегда как в макете»; эталон today-scene-concepts.html = home-scene-states.html): цвета сцены — токены темы УРОВНЯ «Максимум»
+  // при любом положении ползунка насыщенности (homeSceneTokensForTheme; прежняя homeSceneTokens(accent) считала от акцента и расходилась с эталоном)
+  const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const tokens = useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
   const nextTask = decision.nextIndex === null ? null : tasks[decision.nextIndex] ?? null;
   const ringTasks: readonly TodayRingsTask[] = tasks.map((task) => ({ progress: task.progress, target: task.target }));
   return (
@@ -60,8 +64,8 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
           <Defs>
             <RadialGradient id="todayLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
-              <Stop offset="0" stopColor={evening ? tokens.sceneEmber : tokens.sceneGlow} stopOpacity="1" />
-              <Stop offset="1" stopColor={evening ? tokens.sceneEmber : tokens.sceneGlow} stopOpacity="0" />
+              <Stop offset="0" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="1" />
+              <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
             </RadialGradient>
             <RadialGradient id="todayHalo" cx="50%" cy="50%" r="50%">
               <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.2" />
@@ -82,7 +86,8 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
         <View pointerEvents="none" testID="today-scene-rings" style={s.hero}>
           <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={200} showDayDone={false} />
         </View>
-        <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} />
+        {/* зачем (эталон): у тёмной сцены затемнения низа нет — иначе стык с панелью сливается */}
+        {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
         <View style={[s.top, { paddingTop: insets.top + 8 }]}>
           <BackButton testID="today-scene-back" screen="today_tasks" onPress={onBack} accessibilityLabel={backLabel} />
         </View>

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-18:word:express-yourself",
+    "correctText": "express yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i01",
+    "correctText": "You can express yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i02",
+    "correctText": "You can express yourself.",
+    "correctResponseId": "en:lesson-22:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i03",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:word:push-yourself",
+    "correctText": "push yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i04",
+    "correctText": "You do not need to push yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i05",
+    "correctText": "You do not need to push yourself.",
+    "correctResponseId": "en:lesson-22:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i06",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:word:treat-yourself",
+    "correctText": "treat yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i07",
+    "correctText": "You can treat yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i08",
+    "correctText": "You can treat yourself.",
+    "correctResponseId": "en:lesson-22:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i09",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:word:defend-yourself",
+    "correctText": "defend yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i10",
+    "correctText": "You can defend yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i11",
+    "correctText": "You can defend yourself.",
+    "correctResponseId": "en:lesson-22:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i12",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i13",
+    "correctText": "en:lesson-22:session-18:i13:p1=express yourself\nen:lesson-22:session-18:i13:p2=push yourself\nen:lesson-22:session-18:i13:p3=treat yourself\nen:lesson-22:session-18:i13:p4=defend yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i16",
+    "correctText": "I can express myself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-18:i17",
+    "correctText": "She can defend herself.",
+    "correctResponseId": null
+  }
+]

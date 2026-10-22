@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-20:word:be-yourself",
+    "correctText": "be yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i01",
+    "correctText": "You can be yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i02",
+    "correctText": "You can be yourself.",
+    "correctResponseId": "en:lesson-22:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i03",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:word:think-for-yourself",
+    "correctText": "think for yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i04",
+    "correctText": "You can think for yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i05",
+    "correctText": "You can think for yourself.",
+    "correctResponseId": "en:lesson-22:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i06",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:word:keep-to-yourself",
+    "correctText": "keep to yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i07",
+    "correctText": "You can keep to yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i08",
+    "correctText": "You can keep to yourself.",
+    "correctResponseId": "en:lesson-22:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i09",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:word:speak-for-yourself",
+    "correctText": "speak for yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i10",
+    "correctText": "You can speak for yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i11",
+    "correctText": "You can speak for yourself.",
+    "correctResponseId": "en:lesson-22:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i12",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i13",
+    "correctText": "en:lesson-22:session-20:i13:p1=be yourself\nen:lesson-22:session-20:i13:p2=think for yourself\nen:lesson-22:session-20:i13:p3=keep to yourself\nen:lesson-22:session-20:i13:p4=speak for yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i16",
+    "correctText": "I can think for myself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-20:i17",
+    "correctText": "She can speak for herself.",
+    "correctResponseId": null
+  }
+]

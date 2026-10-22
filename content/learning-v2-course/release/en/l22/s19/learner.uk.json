@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-19:word:teach-yourself",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — teach yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:word:teach-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — teach yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:word:teach-yourself:audio",
+          "transcript": "teach yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:word:teach-yourself:r1",
+            "targetText": "teach yourself",
+            "meaningByLocale": {
+              "ru": "научиться самостоятельно.",
+              "uk": "навчитися самостійно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "teach yourself",
+          "definitionByLocale": {
+            "ru": "научиться самостоятельно.",
+            "uk": "навчитися самостійно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг вчиться грати на гітарі. Скажіть: «Ти можеш сам навчитися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг вчиться грати на гітарі. Скажіть: «Ти можеш сам навчитися»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can teach yourself.",
+        "localizedMeaning": {
+          "ru": "Друг учится играть на гитаре. Скажите: «Ты можешь сам научиться»",
+          "uk": "Друг вчиться грати на гітарі. Скажіть: «Ти можеш сам навчитися»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "teach",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i02:r1",
+          "text": "You can teach yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i02:r2",
+          "text": "I can teach myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i02:r3",
+          "text": "We can teach ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i02:audio",
+          "transcript": "You can teach yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:i02:r1",
+            "targetText": "You can teach yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i02:r2",
+            "targetText": "I can teach myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i02:r3",
+            "targetText": "We can teach ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can teach yourself.",
+              "uk": "У записі звучить You can teach yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can teach yourself.",
+              "uk": "У записі звучить You can teach yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i03:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i03:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i03:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can teach ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-19:i03:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i03:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i03:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:word:prepare-yourself",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — prepare yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:word:prepare-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — prepare yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:word:prepare-yourself:audio",
+          "transcript": "prepare yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:word:prepare-yourself:r1",
+            "targetText": "prepare yourself",
+            "meaningByLocale": {
+              "ru": "подготовиться.",
+              "uk": "підготуватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prepare yourself",
+          "definitionByLocale": {
+            "ru": "подготовиться.",
+            "uk": "підготуватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг іде на важливу зустріч. Скажіть: «Тобі потрібно підготуватися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг іде на важливу зустріч. Скажіть: «Тобі потрібно підготуватися»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You need to prepare yourself.",
+        "localizedMeaning": {
+          "ru": "Друг идёт на важную встречу. Скажите: «Тебе нужно подготовиться»",
+          "uk": "Друг іде на важливу зустріч. Скажіть: «Тобі потрібно підготуватися»"
+        },
+        "orderedTokens": [
+          "You",
+          "need",
+          "to",
+          "prepare",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i05:r1",
+          "text": "You need to prepare yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i05:r2",
+          "text": "I need to prepare myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i05:r3",
+          "text": "We need to prepare ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i05:audio",
+          "transcript": "You need to prepare yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:i05:r1",
+            "targetText": "You need to prepare yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i05:r2",
+            "targetText": "I need to prepare myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i05:r3",
+            "targetText": "We need to prepare ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You need to prepare yourself.",
+              "uk": "У записі звучить You need to prepare yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You need to prepare yourself.",
+              "uk": "У записі звучить You need to prepare yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i06:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i06:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i06:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You need to prepare ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-19:i06:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i06:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i06:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:word:remind-yourself",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — remind yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:word:remind-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — remind yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:word:remind-yourself:audio",
+          "transcript": "remind yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:word:remind-yourself:r1",
+            "targetText": "remind yourself",
+            "meaningByLocale": {
+              "ru": "напомнить себе.",
+              "uk": "нагадати собі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "remind yourself",
+          "definitionByLocale": {
+            "ru": "напомнить себе.",
+            "uk": "нагадати собі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг забуває про свою мету. Скажіть: «Ти можеш нагадати собі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг забуває про свою мету. Скажіть: «Ти можеш нагадати собі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can remind yourself.",
+        "localizedMeaning": {
+          "ru": "Друг забывает о своей цели. Скажите: «Ты можешь напомнить себе»",
+          "uk": "Друг забуває про свою мету. Скажіть: «Ти можеш нагадати собі»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "remind",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i08:r1",
+          "text": "You can remind yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i08:r2",
+          "text": "I can remind myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i08:r3",
+          "text": "We can remind ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i08:audio",
+          "transcript": "You can remind yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:i08:r1",
+            "targetText": "You can remind yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i08:r2",
+            "targetText": "I can remind myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i08:r3",
+            "targetText": "We can remind ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can remind yourself.",
+              "uk": "У записі звучить You can remind yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can remind yourself.",
+              "uk": "У записі звучить You can remind yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i09:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i09:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i09:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can remind ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-19:i09:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i09:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i09:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:word:forgive-yourself",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — forgive yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:word:forgive-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — forgive yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:word:forgive-yourself:audio",
+          "transcript": "forgive yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:word:forgive-yourself:r1",
+            "targetText": "forgive yourself",
+            "meaningByLocale": {
+              "ru": "простить себя.",
+              "uk": "пробачити себе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "forgive yourself",
+          "definitionByLocale": {
+            "ru": "простить себя.",
+            "uk": "пробачити себе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг переживає через стару помилку. Скажіть: «Ти можеш пробачити себе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг переживає через стару помилку. Скажіть: «Ти можеш пробачити себе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can forgive yourself.",
+        "localizedMeaning": {
+          "ru": "Друг переживает из-за старой ошибки. Скажите: «Ты можешь простить себя»",
+          "uk": "Друг переживає через стару помилку. Скажіть: «Ти можеш пробачити себе»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "forgive",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i11:r1",
+          "text": "You can forgive yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i11:r2",
+          "text": "I can forgive myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i11:r3",
+          "text": "We can forgive ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i11:audio",
+          "transcript": "You can forgive yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-19:i11:r1",
+            "targetText": "You can forgive yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i11:r2",
+            "targetText": "I can forgive myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i11:r3",
+            "targetText": "We can forgive ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can forgive yourself.",
+              "uk": "У записі звучить You can forgive yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can forgive yourself.",
+              "uk": "У записі звучить You can forgive yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-19:i12:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i12:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-19:i12:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can forgive ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-19:i12:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i12:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i12:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-19:i13:p1",
+            "target": "teach yourself",
+            "meaningByLocale": {
+              "ru": "научиться самостоятельно",
+              "uk": "навчитися самостійно"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-19:i13:p2",
+            "target": "prepare yourself",
+            "meaningByLocale": {
+              "ru": "подготовиться",
+              "uk": "підготуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-19:i13:p3",
+            "target": "remind yourself",
+            "meaningByLocale": {
+              "ru": "напомнить себе",
+              "uk": "нагадати собі"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-19:i13:p4",
+            "target": "forgive yourself",
+            "meaningByLocale": {
+              "ru": "простить себя",
+              "uk": "пробачити себе"
+            }
+          }
+        ],
+        "leftColumn": [
+          "teach yourself",
+          "prepare yourself",
+          "remind yourself",
+          "forgive yourself"
+        ],
+        "rightColumn": [
+          "навчитися самостійно",
+          "підготуватися",
+          "нагадати собі",
+          "пробачити себе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про себе: «Мені потрібно підготуватися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть про себе: «Мені потрібно підготуватися»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i16:audio",
+          "transcript": "I need to prepare myself."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to prepare myself.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-19:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про Анну: «Вона може пробачити себе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть про Анну: «Вона може пробачити себе»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-19:i17:audio",
+          "transcript": "She can forgive herself."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She can forgive herself.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a01f669442d8497f641547d9dd7587f8d4ea170cd0c661f602946e19c6733fe5"
+}

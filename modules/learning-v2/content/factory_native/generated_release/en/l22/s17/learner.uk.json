@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-17:word:introduce-yourself",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — introduce yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:word:introduce-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — introduce yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:word:introduce-yourself:audio",
+          "transcript": "introduce yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:word:introduce-yourself:r1",
+            "targetText": "introduce yourself",
+            "meaningByLocale": {
+              "ru": "представиться.",
+              "uk": "відрекомендуватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "introduce yourself",
+          "definitionByLocale": {
+            "ru": "представиться.",
+            "uk": "відрекомендуватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Співрозмовник прийшов на зустріч. Скажіть: «Ти можеш відрекомендуватися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Співрозмовник прийшов на зустріч. Скажіть: «Ти можеш відрекомендуватися»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can introduce yourself.",
+        "localizedMeaning": {
+          "ru": "Собеседник пришёл на встречу. Скажите: «Ты можешь представиться»",
+          "uk": "Співрозмовник прийшов на зустріч. Скажіть: «Ти можеш відрекомендуватися»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "introduce",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i02:r1",
+          "text": "You can introduce yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i02:r2",
+          "text": "You can introduce him."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i02:r3",
+          "text": "You can introduce her."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i02:audio",
+          "transcript": "You can introduce yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:i02:r1",
+            "targetText": "You can introduce yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i02:r2",
+            "targetText": "You can introduce him.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i02:r3",
+            "targetText": "You can introduce her.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can introduce yourself.",
+              "uk": "У записі звучить You can introduce yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can introduce yourself.",
+              "uk": "У записі звучить You can introduce yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i03:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i03:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i03:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can introduce ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-17:i03:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i03:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i03:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:word:look-after-yourself",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — look after yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:word:look-after-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — look after yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:word:look-after-yourself:audio",
+          "transcript": "look after yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:word:look-after-yourself:r1",
+            "targetText": "look after yourself",
+            "meaningByLocale": {
+              "ru": "заботиться о себе.",
+              "uk": "дбати про себе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "look after yourself",
+          "definitionByLocale": {
+            "ru": "заботиться о себе.",
+            "uk": "дбати про себе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Співрозмовник забуває про відпочинок. Скажіть: «Тобі потрібно дбати про себе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Співрозмовник забуває про відпочинок. Скажіть: «Тобі потрібно дбати про себе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You need to look after yourself.",
+        "localizedMeaning": {
+          "ru": "Собеседник забывает об отдыхе. Скажите: «Тебе нужно заботиться о себе»",
+          "uk": "Співрозмовник забуває про відпочинок. Скажіть: «Тобі потрібно дбати про себе»"
+        },
+        "orderedTokens": [
+          "You",
+          "need",
+          "to",
+          "look",
+          "after",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i05:r1",
+          "text": "You need to look after yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i05:r2",
+          "text": "You need to look after him."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i05:r3",
+          "text": "You need to look after her."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i05:audio",
+          "transcript": "You need to look after yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:i05:r1",
+            "targetText": "You need to look after yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i05:r2",
+            "targetText": "You need to look after him.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i05:r3",
+            "targetText": "You need to look after her.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You need to look after yourself.",
+              "uk": "У записі звучить You need to look after yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You need to look after yourself.",
+              "uk": "У записі звучить You need to look after yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i06:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i06:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i06:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You need to look after ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-17:i06:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i06:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i06:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:word:believe-in-yourself",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — believe in yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:word:believe-in-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — believe in yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:word:believe-in-yourself:audio",
+          "transcript": "believe in yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:word:believe-in-yourself:r1",
+            "targetText": "believe in yourself",
+            "meaningByLocale": {
+              "ru": "верить в себя.",
+              "uk": "вірити в себе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "believe in yourself",
+          "definitionByLocale": {
+            "ru": "верить в себя.",
+            "uk": "вірити в себе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Підтримайте співрозмовника. Скажіть: «Ти можеш вірити в себе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підтримайте співрозмовника. Скажіть: «Ти можеш вірити в себе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can believe in yourself.",
+        "localizedMeaning": {
+          "ru": "Поддержите собеседника. Скажите: «Ты можешь верить в себя»",
+          "uk": "Підтримайте співрозмовника. Скажіть: «Ти можеш вірити в себе»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "believe",
+          "in",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i08:r1",
+          "text": "You can believe in yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i08:r2",
+          "text": "You can believe in him."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i08:r3",
+          "text": "You can believe in her."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i08:audio",
+          "transcript": "You can believe in yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:i08:r1",
+            "targetText": "You can believe in yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i08:r2",
+            "targetText": "You can believe in him.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i08:r3",
+            "targetText": "You can believe in her.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can believe in yourself.",
+              "uk": "У записі звучить You can believe in yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can believe in yourself.",
+              "uk": "У записі звучить You can believe in yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i09:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i09:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i09:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can believe in ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-17:i09:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i09:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i09:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:word:blame-yourself",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blame yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:word:blame-yourself:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blame yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:word:blame-yourself:audio",
+          "transcript": "blame yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:word:blame-yourself:r1",
+            "targetText": "blame yourself",
+            "meaningByLocale": {
+              "ru": "винить себя.",
+              "uk": "звинувачувати себе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blame yourself",
+          "definitionByLocale": {
+            "ru": "винить себя.",
+            "uk": "звинувачувати себе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Помилка сталася не з вини співрозмовника. Скажіть: «Тобі не слід звинувачувати себе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Помилка сталася не з вини співрозмовника. Скажіть: «Тобі не слід звинувачувати себе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should not blame yourself.",
+        "localizedMeaning": {
+          "ru": "Ошибка произошла не по вине собеседника. Скажите: «Тебе не следует винить себя»",
+          "uk": "Помилка сталася не з вини співрозмовника. Скажіть: «Тобі не слід звинувачувати себе»"
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "not",
+          "blame",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i11:r1",
+          "text": "You should not blame yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i11:r2",
+          "text": "You should not blame him."
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i11:r3",
+          "text": "You should not blame her."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i11:audio",
+          "transcript": "You should not blame yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-17:i11:r1",
+            "targetText": "You should not blame yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i11:r2",
+            "targetText": "You should not blame him.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i11:r3",
+            "targetText": "You should not blame her.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should not blame yourself.",
+              "uk": "У записі звучить You should not blame yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should not blame yourself.",
+              "uk": "У записі звучить You should not blame yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-17:i12:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i12:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-17:i12:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You should not blame ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-17:i12:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i12:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i12:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-17:i13:p1",
+            "target": "introduce yourself",
+            "meaningByLocale": {
+              "ru": "представиться",
+              "uk": "відрекомендуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-17:i13:p2",
+            "target": "look after yourself",
+            "meaningByLocale": {
+              "ru": "заботиться о себе",
+              "uk": "дбати про себе"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-17:i13:p3",
+            "target": "believe in yourself",
+            "meaningByLocale": {
+              "ru": "верить в себя",
+              "uk": "вірити в себе"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-17:i13:p4",
+            "target": "blame yourself",
+            "meaningByLocale": {
+              "ru": "винить себя",
+              "uk": "звинувачувати себе"
+            }
+          }
+        ],
+        "leftColumn": [
+          "introduce yourself",
+          "look after yourself",
+          "believe in yourself",
+          "blame yourself"
+        ],
+        "rightColumn": [
+          "відрекомендуватися",
+          "дбати про себе",
+          "вірити в себе",
+          "звинувачувати себе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про себе: «Я можу відрекомендуватися»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть про себе: «Я можу відрекомендуватися»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i16:audio",
+          "transcript": "I can introduce myself."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can introduce myself.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-17:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть про Тома: «Йому потрібно дбати про себе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть про Тома: «Йому потрібно дбати про себе»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-17:i17:audio",
+          "transcript": "He needs to look after himself."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He needs to look after himself.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "278c8b6434658088f4551521d7c1945f5592c7039c7faac74e553b350ce3571f"
+}

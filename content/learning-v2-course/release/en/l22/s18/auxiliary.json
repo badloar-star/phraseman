@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-22:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-22:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-18:intro1:r2": {
+          "ru": "Действие относится к самому собеседнику: нужно yourself.",
+          "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+        },
+        "en:lesson-22:session-18:intro1:r3": {
+          "ru": "Действие относится к самому собеседнику: нужно yourself.",
+          "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-18:intro2:r2": {
+          "ru": "Действие относится к самому собеседнику: нужно yourself.",
+          "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+        },
+        "en:lesson-22:session-18:intro2:r3": {
+          "ru": "Действие относится к самому собеседнику: нужно yourself.",
+          "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-18:intro3:r2": {
+          "ru": "Действие относится к самому собеседнику: нужно yourself.",
+          "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+        },
+        "en:lesson-22:session-18:intro3:r3": {
+          "ru": "Действие относится к самому собеседнику: нужно yourself.",
+          "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ead3ea654b3625c1c49fe7784871adaea241918791bbd5c15a03d5527696e433"
+}

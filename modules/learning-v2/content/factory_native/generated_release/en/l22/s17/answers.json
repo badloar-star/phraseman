@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-17:word:introduce-yourself",
+    "correctText": "introduce yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i01",
+    "correctText": "You can introduce yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i02",
+    "correctText": "You can introduce yourself.",
+    "correctResponseId": "en:lesson-22:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i03",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:word:look-after-yourself",
+    "correctText": "look after yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i04",
+    "correctText": "You need to look after yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i05",
+    "correctText": "You need to look after yourself.",
+    "correctResponseId": "en:lesson-22:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i06",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:word:believe-in-yourself",
+    "correctText": "believe in yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i07",
+    "correctText": "You can believe in yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i08",
+    "correctText": "You can believe in yourself.",
+    "correctResponseId": "en:lesson-22:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i09",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:word:blame-yourself",
+    "correctText": "blame yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i10",
+    "correctText": "You should not blame yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i11",
+    "correctText": "You should not blame yourself.",
+    "correctResponseId": "en:lesson-22:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i12",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i13",
+    "correctText": "en:lesson-22:session-17:i13:p1=introduce yourself\nen:lesson-22:session-17:i13:p2=look after yourself\nen:lesson-22:session-17:i13:p3=believe in yourself\nen:lesson-22:session-17:i13:p4=blame yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i16",
+    "correctText": "I can introduce myself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-17:i17",
+    "correctText": "He needs to look after himself.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "subject + verb + matching reflexive pronoun",
+    "uk": "subject + verb + matching reflexive pronoun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представиться",
+        "uk": "Відрекомендуватися"
+      },
+      "bodyByLocale": {
+        "ru": "Introduce yourself — представиться, назвать себя новому знакомому. Introduce Anna — представить Анну, а introduce yourself — представить самого себя. Здесь you обращено к одному человеку. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Introduce yourself — відрекомендуватися, назвати себе новому знайомому. Introduce Anna — відрекомендувати Анну, а introduce yourself — відрекомендувати самого себе. Тут you звернене до однієї особи. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-17:intro1:r1",
+              "text": "You can introduce yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro1:r2",
+              "text": "You can introduce you."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro1:r3",
+              "text": "You can introduce your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-17:intro1:r1",
+              "text": "You can introduce yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro1:r2",
+              "text": "You can introduce you."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro1:r3",
+              "text": "You can introduce your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заботиться о себе и верить в себя",
+        "uk": "Дбати про себе й вірити в себе"
+      },
+      "bodyByLocale": {
+        "ru": "Look after yourself — заботиться о себе: отдыхать, есть и учитывать свои потребности. Believe in yourself — верить в себя, доверять своим силам. В обоих выражениях yourself относится к собеседнику. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Look after yourself — дбати про себе: відпочивати, їсти та враховувати свої потреби. Believe in yourself — вірити в себе, довіряти своїм силам. В обох висловах yourself стосується співрозмовника. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-17:intro2:r1",
+              "text": "You need to look after yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro2:r2",
+              "text": "You need to look after you."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro2:r3",
+              "text": "You need to look after your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-17:intro2:r1",
+              "text": "You need to look after yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro2:r2",
+              "text": "You need to look after you."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro2:r3",
+              "text": "You need to look after your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не винить себя",
+        "uk": "Не звинувачувати себе"
+      },
+      "bodyByLocale": {
+        "ru": "Blame yourself — винить себя, считать себя ответственным за плохой результат. Если собеседник не виноват, можно сказать: You should not blame yourself. Не все русские глаголы на -ся требуют такого местоимения: например, relax — расслабиться. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Blame yourself — звинувачувати себе, вважати себе відповідальним за поганий результат. Якщо співрозмовник не винен, можна сказати: You should not blame yourself. Не всі українські дієслова на -ся потребують такого займенника: наприклад, relax — розслабитися. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-17:intro3:r1",
+              "text": "You should not blame yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro3:r2",
+              "text": "You should not blame you."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro3:r3",
+              "text": "You should not blame your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-17:intro3:r1",
+              "text": "You should not blame yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro3:r2",
+              "text": "You should not blame you."
+            },
+            {
+              "responseId": "en:lesson-22:session-17:intro3:r3",
+              "text": "You should not blame your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "13c8b0c421bb4dabe9d753d96c69fa6400b363d49af9270779b8b5cb98db2146"
+}

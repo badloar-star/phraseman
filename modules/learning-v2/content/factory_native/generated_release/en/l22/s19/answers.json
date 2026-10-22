@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-19:word:teach-yourself",
+    "correctText": "teach yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i01",
+    "correctText": "You can teach yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i02",
+    "correctText": "You can teach yourself.",
+    "correctResponseId": "en:lesson-22:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i03",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:word:prepare-yourself",
+    "correctText": "prepare yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i04",
+    "correctText": "You need to prepare yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i05",
+    "correctText": "You need to prepare yourself.",
+    "correctResponseId": "en:lesson-22:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i06",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:word:remind-yourself",
+    "correctText": "remind yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i07",
+    "correctText": "You can remind yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i08",
+    "correctText": "You can remind yourself.",
+    "correctResponseId": "en:lesson-22:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i09",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:word:forgive-yourself",
+    "correctText": "forgive yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i10",
+    "correctText": "You can forgive yourself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i11",
+    "correctText": "You can forgive yourself.",
+    "correctResponseId": "en:lesson-22:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i12",
+    "correctText": "yourself",
+    "correctResponseId": "en:lesson-22:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i13",
+    "correctText": "en:lesson-22:session-19:i13:p1=teach yourself\nen:lesson-22:session-19:i13:p2=prepare yourself\nen:lesson-22:session-19:i13:p3=remind yourself\nen:lesson-22:session-19:i13:p4=forgive yourself",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i16",
+    "correctText": "I need to prepare myself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-19:i17",
+    "correctText": "She can forgive herself.",
+    "correctResponseId": null
+  }
+]

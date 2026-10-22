@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-20:word:be-yourself",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — be yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:word:be-yourself:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — be yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:word:be-yourself:audio",
+          "transcript": "be yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:word:be-yourself:r1",
+            "targetText": "be yourself",
+            "meaningByLocale": {
+              "ru": "быть собой.",
+              "uk": "бути собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "be yourself",
+          "definitionByLocale": {
+            "ru": "быть собой.",
+            "uk": "бути собою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг боится показаться странным среди знакомых. Скажите: «Ты можешь быть собой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг боится показаться странным среди знакомых. Скажите: «Ты можешь быть собой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can be yourself.",
+        "localizedMeaning": {
+          "ru": "Друг боится показаться странным среди знакомых. Скажите: «Ты можешь быть собой»",
+          "uk": "Друг боїться здатися дивним серед знайомих. Скажіть: «Ти можеш бути собою»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "be",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i02:r1",
+          "text": "You can be yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i02:r2",
+          "text": "I can be myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i02:r3",
+          "text": "We can be ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i02:audio",
+          "transcript": "You can be yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:i02:r1",
+            "targetText": "You can be yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i02:r2",
+            "targetText": "I can be myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i02:r3",
+            "targetText": "We can be ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can be yourself.",
+              "uk": "У записі звучить You can be yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can be yourself.",
+              "uk": "У записі звучить You can be yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i03:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i03:r2",
+          "text": "yourselfs"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i03:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can be ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-20:i03:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i03:r2",
+            "text": "yourselfs"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i03:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:word:think-for-yourself",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — think for yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:word:think-for-yourself:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — think for yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:word:think-for-yourself:audio",
+          "transcript": "think for yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:word:think-for-yourself:r1",
+            "targetText": "think for yourself",
+            "meaningByLocale": {
+              "ru": "думать самостоятельно.",
+              "uk": "думати самостійно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "think for yourself",
+          "definitionByLocale": {
+            "ru": "думать самостоятельно.",
+            "uk": "думати самостійно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг привык повторять чужое мнение. Скажите: «Ты можешь сам формировать своё мнение»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг привык повторять чужое мнение. Скажите: «Ты можешь сам формировать своё мнение»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can think for yourself.",
+        "localizedMeaning": {
+          "ru": "Друг привык повторять чужое мнение. Скажите: «Ты можешь сам формировать своё мнение»",
+          "uk": "Друг звик повторювати чужу думку. Скажіть: «Ти можеш сам формувати власну думку»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "think",
+          "for",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i05:r1",
+          "text": "You can think for yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i05:r2",
+          "text": "I can think for myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i05:r3",
+          "text": "We can think for ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i05:audio",
+          "transcript": "You can think for yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:i05:r1",
+            "targetText": "You can think for yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i05:r2",
+            "targetText": "I can think for myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i05:r3",
+            "targetText": "We can think for ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can think for yourself.",
+              "uk": "У записі звучить You can think for yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can think for yourself.",
+              "uk": "У записі звучить You can think for yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i06:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i06:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i06:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can think for ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-20:i06:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i06:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i06:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:word:keep-to-yourself",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keep to yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:word:keep-to-yourself:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keep to yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:word:keep-to-yourself:audio",
+          "transcript": "keep to yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:word:keep-to-yourself:r1",
+            "targetText": "keep to yourself",
+            "meaningByLocale": {
+              "ru": "держаться особняком.",
+              "uk": "триматися осторонь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep to yourself",
+          "definitionByLocale": {
+            "ru": "держаться особняком.",
+            "uk": "триматися осторонь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На встрече можно общаться или побыть отдельно. Скажите: «Ты можешь держаться особняком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На встрече можно общаться или побыть отдельно. Скажите: «Ты можешь держаться особняком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can keep to yourself.",
+        "localizedMeaning": {
+          "ru": "На встрече можно общаться или побыть отдельно. Скажите: «Ты можешь держаться особняком»",
+          "uk": "На зустрічі можна спілкуватися або побути окремо. Скажіть: «Ти можеш триматися осторонь»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "keep",
+          "to",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i08:r1",
+          "text": "You can keep to yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i08:r2",
+          "text": "I can keep to myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i08:r3",
+          "text": "We can keep to ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i08:audio",
+          "transcript": "You can keep to yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:i08:r1",
+            "targetText": "You can keep to yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i08:r2",
+            "targetText": "I can keep to myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i08:r3",
+            "targetText": "We can keep to ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can keep to yourself.",
+              "uk": "У записі звучить You can keep to yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can keep to yourself.",
+              "uk": "У записі звучить You can keep to yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i09:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i09:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i09:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can keep to ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-20:i09:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i09:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i09:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:word:speak-for-yourself",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — speak for yourself",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:word:speak-for-yourself:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — speak for yourself",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:word:speak-for-yourself:audio",
+          "transcript": "speak for yourself"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:word:speak-for-yourself:r1",
+            "targetText": "speak for yourself",
+            "meaningByLocale": {
+              "ru": "говорить от своего имени.",
+              "uk": "говорити від свого імені."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "speak for yourself",
+          "definitionByLocale": {
+            "ru": "говорить от своего имени.",
+            "uk": "говорити від свого імені."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Другу предлагают высказать собственную позицию. Скажите: «Ты можешь говорить от своего имени»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Другу предлагают высказать собственную позицию. Скажите: «Ты можешь говорить от своего имени»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can speak for yourself.",
+        "localizedMeaning": {
+          "ru": "Другу предлагают высказать собственную позицию. Скажите: «Ты можешь говорить от своего имени»",
+          "uk": "Другові пропонують висловити власну позицію. Скажіть: «Ти можеш говорити від свого імені»"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "speak",
+          "for",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i11:r1",
+          "text": "You can speak for yourself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i11:r2",
+          "text": "I can speak for myself."
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i11:r3",
+          "text": "We can speak for ourselves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i11:audio",
+          "transcript": "You can speak for yourself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-20:i11:r1",
+            "targetText": "You can speak for yourself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i11:r2",
+            "targetText": "I can speak for myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i11:r3",
+            "targetText": "We can speak for ourselves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can speak for yourself.",
+              "uk": "У записі звучить You can speak for yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You can speak for yourself.",
+              "uk": "У записі звучить You can speak for yourself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-20:i12:r1",
+          "text": "yourself"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i12:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-20:i12:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "You can speak for ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-20:i12:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i12:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i12:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Действие относится к самому собеседнику: нужно yourself.",
+              "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-20:i13:p1",
+            "target": "be yourself",
+            "meaningByLocale": {
+              "ru": "быть собой",
+              "uk": "бути собою"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-20:i13:p2",
+            "target": "think for yourself",
+            "meaningByLocale": {
+              "ru": "думать самостоятельно",
+              "uk": "думати самостійно"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-20:i13:p3",
+            "target": "keep to yourself",
+            "meaningByLocale": {
+              "ru": "держаться особняком",
+              "uk": "триматися осторонь"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-20:i13:p4",
+            "target": "speak for yourself",
+            "meaningByLocale": {
+              "ru": "говорить от своего имени",
+              "uk": "говорити від свого імені"
+            }
+          }
+        ],
+        "leftColumn": [
+          "be yourself",
+          "think for yourself",
+          "keep to yourself",
+          "speak for yourself"
+        ],
+        "rightColumn": [
+          "быть собой",
+          "думать самостоятельно",
+          "держаться особняком",
+          "говорить от своего имени"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: разговор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: разговор",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: праздник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: праздник",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите о себе: «Я могу сам формировать своё мнение»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите о себе: «Я могу сам формировать своё мнение»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i16:audio",
+          "transcript": "I can think for myself."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can think for myself.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите об Анне: «Она может говорить от своего имени»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите об Анне: «Она может говорить от своего имени»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-20:i17:audio",
+          "transcript": "She can speak for herself."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She can speak for herself.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "48f59859d1deebc638a92e37fd79b8e7344f1c719a05eb7fa1d09b1d1dd18b13"
+}

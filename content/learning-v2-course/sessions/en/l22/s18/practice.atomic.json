@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-18",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-18:word:express-yourself",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — express yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:express-yourself:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — express yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:express-yourself:audio",
+            "transcript": "express yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:express-yourself:r1",
+              "targetText": "express yourself",
+              "meaningByLocale": {
+                "ru": "выразить свои мысли и чувства.",
+                "uk": "висловити свої думки й почуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "express yourself",
+            "definitionByLocale": {
+              "ru": "выразить свои мысли и чувства.",
+              "uk": "висловити свої думки й почуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Собеседнику трудно высказать свои чувства. Скажите: «Ты можешь выразить свои мысли и чувства»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Собеседнику трудно высказать свои чувства. Скажите: «Ты можешь выразить свои мысли и чувства»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can express yourself.",
+          "localizedMeaning": {
+            "ru": "Собеседнику трудно высказать свои чувства. Скажите: «Ты можешь выразить свои мысли и чувства»",
+            "uk": "Співрозмовнику важко висловити свої почуття. Скажіть: «Ти можеш висловити свої думки й почуття»"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "express",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i02:r1",
+            "text": "You can express yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i02:r2",
+            "text": "I can express myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i02:r3",
+            "text": "We can express ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i02:audio",
+            "transcript": "You can express yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i02:r1",
+              "targetText": "You can express yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i02:r2",
+              "targetText": "I can express myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i02:r3",
+              "targetText": "We can express ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can express yourself.",
+                "uk": "У записі звучить You can express yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can express yourself.",
+                "uk": "У записі звучить You can express yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i03:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i03:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i03:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You can express ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i03:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i03:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i03:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:word:push-yourself",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — push yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:push-yourself:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — push yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:push-yourself:audio",
+            "transcript": "push yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:push-yourself:r1",
+              "targetText": "push yourself",
+              "meaningByLocale": {
+                "ru": "заставлять себя стараться сильнее.",
+                "uk": "змушувати себе старатися більше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "push yourself",
+            "definitionByLocale": {
+              "ru": "заставлять себя стараться сильнее.",
+              "uk": "змушувати себе старатися більше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг старается сверх своих сил. Скажите: «Тебе не нужно заставлять себя стараться сильнее»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг старается сверх своих сил. Скажите: «Тебе не нужно заставлять себя стараться сильнее»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You do not need to push yourself.",
+          "localizedMeaning": {
+            "ru": "Друг старается сверх своих сил. Скажите: «Тебе не нужно заставлять себя стараться сильнее»",
+            "uk": "Друг старається понад свої сили. Скажіть: «Тобі не потрібно змушувати себе старатися більше»"
+          },
+          "orderedTokens": [
+            "You",
+            "do",
+            "not",
+            "need",
+            "to",
+            "push",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i05:r1",
+            "text": "You do not need to push yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i05:r2",
+            "text": "I do not need to push myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i05:r3",
+            "text": "We do not need to push ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i05:audio",
+            "transcript": "You do not need to push yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i05:r1",
+              "targetText": "You do not need to push yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i05:r2",
+              "targetText": "I do not need to push myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i05:r3",
+              "targetText": "We do not need to push ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You do not need to push yourself.",
+                "uk": "У записі звучить You do not need to push yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You do not need to push yourself.",
+                "uk": "У записі звучить You do not need to push yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i06:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i06:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i06:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You do not need to push ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i06:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i06:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i06:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:word:treat-yourself",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — treat yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:treat-yourself:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — treat yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:treat-yourself:audio",
+            "transcript": "treat yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:treat-yourself:r1",
+              "targetText": "treat yourself",
+              "meaningByLocale": {
+                "ru": "порадовать себя.",
+                "uk": "потішити себе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "treat yourself",
+            "definitionByLocale": {
+              "ru": "порадовать себя.",
+              "uk": "потішити себе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг закончил трудную работу. Скажите: «Ты можешь порадовать себя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг закончил трудную работу. Скажите: «Ты можешь порадовать себя»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can treat yourself.",
+          "localizedMeaning": {
+            "ru": "Друг закончил трудную работу. Скажите: «Ты можешь порадовать себя»",
+            "uk": "Друг закінчив складну роботу. Скажіть: «Ти можеш потішити себе»"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "treat",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i08:r1",
+            "text": "You can treat yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i08:r2",
+            "text": "I can treat myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i08:r3",
+            "text": "We can treat ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i08:audio",
+            "transcript": "You can treat yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i08:r1",
+              "targetText": "You can treat yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i08:r2",
+              "targetText": "I can treat myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i08:r3",
+              "targetText": "We can treat ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can treat yourself.",
+                "uk": "У записі звучить You can treat yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can treat yourself.",
+                "uk": "У записі звучить You can treat yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i09:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i09:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i09:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You can treat ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i09:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i09:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i09:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:word:defend-yourself",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — defend yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:defend-yourself:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — defend yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:defend-yourself:audio",
+            "transcript": "defend yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:defend-yourself:r1",
+              "targetText": "defend yourself",
+              "meaningByLocale": {
+                "ru": "защитить себя.",
+                "uk": "захистити себе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "defend yourself",
+            "definitionByLocale": {
+              "ru": "защитить себя.",
+              "uk": "захистити себе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Собеседника несправедливо обвиняют в ошибке. Скажите: «Ты можешь защитить себя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Собеседника несправедливо обвиняют в ошибке. Скажите: «Ты можешь защитить себя»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can defend yourself.",
+          "localizedMeaning": {
+            "ru": "Собеседника несправедливо обвиняют в ошибке. Скажите: «Ты можешь защитить себя»",
+            "uk": "Співрозмовника несправедливо звинувачують у помилці. Скажіть: «Ти можеш захистити себе»"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "defend",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i11:r1",
+            "text": "You can defend yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i11:r2",
+            "text": "I can defend myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i11:r3",
+            "text": "We can defend ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i11:audio",
+            "transcript": "You can defend yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i11:r1",
+              "targetText": "You can defend yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i11:r2",
+              "targetText": "I can defend myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i11:r3",
+              "targetText": "We can defend ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can defend yourself.",
+                "uk": "У записі звучить You can defend yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can defend yourself.",
+                "uk": "У записі звучить You can defend yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i12:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i12:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i12:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You can defend ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i12:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i12:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i12:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-18:i13:p1",
+              "target": "express yourself",
+              "meaningByLocale": {
+                "ru": "выразить свои мысли и чувства",
+                "uk": "висловити свої думки й почуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-18:i13:p2",
+              "target": "push yourself",
+              "meaningByLocale": {
+                "ru": "заставлять себя стараться сильнее",
+                "uk": "змушувати себе старатися більше"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-18:i13:p3",
+              "target": "treat yourself",
+              "meaningByLocale": {
+                "ru": "порадовать себя",
+                "uk": "потішити себе"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-18:i13:p4",
+              "target": "defend yourself",
+              "meaningByLocale": {
+                "ru": "защитить себя",
+                "uk": "захистити себе"
+              }
+            }
+          ],
+          "leftColumn": [
+            "express yourself",
+            "push yourself",
+            "treat yourself",
+            "defend yourself"
+          ],
+          "rightColumn": [
+            "выразить свои мысли и чувства",
+            "заставлять себя стараться сильнее",
+            "порадовать себя",
+            "защитить себя"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: разговор",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: разговор",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i14:audio",
+            "transcript": "I want to change the subject."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to change the subject.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "change",
+            "the",
+            "subject"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: праздник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: праздник",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i15:audio",
+            "transcript": "I want to raise a glass to Anna."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "raise",
+            "a",
+            "glass",
+            "to",
+            "Anna"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите о себе: «Я могу выразить свои мысли и чувства»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите о себе: «Я могу выразить свои мысли и чувства»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i16:audio",
+            "transcript": "I can express myself."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can express myself.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите об Анне: «Она может защитить себя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите об Анне: «Она может защитить себя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i17:audio",
+            "transcript": "She can defend herself."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can defend herself.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-18:word:express-yourself",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — express yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:express-yourself:audio"
+        ],
+        "accessibilityLabel": "Картка слова — express yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:express-yourself:audio",
+            "transcript": "express yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:express-yourself:r1",
+              "targetText": "express yourself",
+              "meaningByLocale": {
+                "ru": "выразить свои мысли и чувства.",
+                "uk": "висловити свої думки й почуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "express yourself",
+            "definitionByLocale": {
+              "ru": "выразить свои мысли и чувства.",
+              "uk": "висловити свої думки й почуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Співрозмовнику важко висловити свої почуття. Скажіть: «Ти можеш висловити свої думки й почуття»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Співрозмовнику важко висловити свої почуття. Скажіть: «Ти можеш висловити свої думки й почуття»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can express yourself.",
+          "localizedMeaning": {
+            "ru": "Собеседнику трудно высказать свои чувства. Скажите: «Ты можешь выразить свои мысли и чувства»",
+            "uk": "Співрозмовнику важко висловити свої почуття. Скажіть: «Ти можеш висловити свої думки й почуття»"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "express",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i02:r1",
+            "text": "You can express yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i02:r2",
+            "text": "I can express myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i02:r3",
+            "text": "We can express ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i02:audio",
+            "transcript": "You can express yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i02:r1",
+              "targetText": "You can express yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i02:r2",
+              "targetText": "I can express myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i02:r3",
+              "targetText": "We can express ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can express yourself.",
+                "uk": "У записі звучить You can express yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can express yourself.",
+                "uk": "У записі звучить You can express yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i03:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i03:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i03:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You can express ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i03:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i03:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i03:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:word:push-yourself",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — push yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:push-yourself:audio"
+        ],
+        "accessibilityLabel": "Картка слова — push yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:push-yourself:audio",
+            "transcript": "push yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:push-yourself:r1",
+              "targetText": "push yourself",
+              "meaningByLocale": {
+                "ru": "заставлять себя стараться сильнее.",
+                "uk": "змушувати себе старатися більше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "push yourself",
+            "definitionByLocale": {
+              "ru": "заставлять себя стараться сильнее.",
+              "uk": "змушувати себе старатися більше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг старається понад свої сили. Скажіть: «Тобі не потрібно змушувати себе старатися більше»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг старається понад свої сили. Скажіть: «Тобі не потрібно змушувати себе старатися більше»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You do not need to push yourself.",
+          "localizedMeaning": {
+            "ru": "Друг старается сверх своих сил. Скажите: «Тебе не нужно заставлять себя стараться сильнее»",
+            "uk": "Друг старається понад свої сили. Скажіть: «Тобі не потрібно змушувати себе старатися більше»"
+          },
+          "orderedTokens": [
+            "You",
+            "do",
+            "not",
+            "need",
+            "to",
+            "push",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i05:r1",
+            "text": "You do not need to push yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i05:r2",
+            "text": "I do not need to push myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i05:r3",
+            "text": "We do not need to push ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i05:audio",
+            "transcript": "You do not need to push yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i05:r1",
+              "targetText": "You do not need to push yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i05:r2",
+              "targetText": "I do not need to push myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i05:r3",
+              "targetText": "We do not need to push ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You do not need to push yourself.",
+                "uk": "У записі звучить You do not need to push yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You do not need to push yourself.",
+                "uk": "У записі звучить You do not need to push yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i06:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i06:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i06:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You do not need to push ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i06:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i06:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i06:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:word:treat-yourself",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — treat yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:treat-yourself:audio"
+        ],
+        "accessibilityLabel": "Картка слова — treat yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:treat-yourself:audio",
+            "transcript": "treat yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:treat-yourself:r1",
+              "targetText": "treat yourself",
+              "meaningByLocale": {
+                "ru": "порадовать себя.",
+                "uk": "потішити себе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "treat yourself",
+            "definitionByLocale": {
+              "ru": "порадовать себя.",
+              "uk": "потішити себе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг закінчив складну роботу. Скажіть: «Ти можеш потішити себе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг закінчив складну роботу. Скажіть: «Ти можеш потішити себе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can treat yourself.",
+          "localizedMeaning": {
+            "ru": "Друг закончил трудную работу. Скажите: «Ты можешь порадовать себя»",
+            "uk": "Друг закінчив складну роботу. Скажіть: «Ти можеш потішити себе»"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "treat",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i08:r1",
+            "text": "You can treat yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i08:r2",
+            "text": "I can treat myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i08:r3",
+            "text": "We can treat ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i08:audio",
+            "transcript": "You can treat yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i08:r1",
+              "targetText": "You can treat yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i08:r2",
+              "targetText": "I can treat myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i08:r3",
+              "targetText": "We can treat ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can treat yourself.",
+                "uk": "У записі звучить You can treat yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can treat yourself.",
+                "uk": "У записі звучить You can treat yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i09:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i09:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i09:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You can treat ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i09:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i09:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i09:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:word:defend-yourself",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — defend yourself",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:word:defend-yourself:audio"
+        ],
+        "accessibilityLabel": "Картка слова — defend yourself",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:word:defend-yourself:audio",
+            "transcript": "defend yourself"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:word:defend-yourself:r1",
+              "targetText": "defend yourself",
+              "meaningByLocale": {
+                "ru": "защитить себя.",
+                "uk": "захистити себе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "defend yourself",
+            "definitionByLocale": {
+              "ru": "защитить себя.",
+              "uk": "захистити себе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Співрозмовника несправедливо звинувачують у помилці. Скажіть: «Ти можеш захистити себе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Співрозмовника несправедливо звинувачують у помилці. Скажіть: «Ти можеш захистити себе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can defend yourself.",
+          "localizedMeaning": {
+            "ru": "Собеседника несправедливо обвиняют в ошибке. Скажите: «Ты можешь защитить себя»",
+            "uk": "Співрозмовника несправедливо звинувачують у помилці. Скажіть: «Ти можеш захистити себе»"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "defend",
+            "yourself"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i11:r1",
+            "text": "You can defend yourself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i11:r2",
+            "text": "I can defend myself."
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i11:r3",
+            "text": "We can defend ourselves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i11:audio",
+            "transcript": "You can defend yourself."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-18:i11:r1",
+              "targetText": "You can defend yourself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i11:r2",
+              "targetText": "I can defend myself.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i11:r3",
+              "targetText": "We can defend ourselves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can defend yourself.",
+                "uk": "У записі звучить You can defend yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can defend yourself.",
+                "uk": "У записі звучить You can defend yourself."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-18:i12:r1",
+            "text": "yourself"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i12:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-18:i12:r3",
+            "text": "your"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "You can defend ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-18:i12:r1",
+              "text": "yourself"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i12:r2",
+              "text": "you"
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i12:r3",
+              "text": "your"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "Действие относится к самому собеседнику: нужно yourself.",
+                "uk": "Дія стосується самого співрозмовника: потрібно yourself."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-18:i13:p1",
+              "target": "express yourself",
+              "meaningByLocale": {
+                "ru": "выразить свои мысли и чувства",
+                "uk": "висловити свої думки й почуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-18:i13:p2",
+              "target": "push yourself",
+              "meaningByLocale": {
+                "ru": "заставлять себя стараться сильнее",
+                "uk": "змушувати себе старатися більше"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-18:i13:p3",
+              "target": "treat yourself",
+              "meaningByLocale": {
+                "ru": "порадовать себя",
+                "uk": "потішити себе"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-18:i13:p4",
+              "target": "defend yourself",
+              "meaningByLocale": {
+                "ru": "защитить себя",
+                "uk": "захистити себе"
+              }
+            }
+          ],
+          "leftColumn": [
+            "express yourself",
+            "push yourself",
+            "treat yourself",
+            "defend yourself"
+          ],
+          "rightColumn": [
+            "висловити свої думки й почуття",
+            "змушувати себе старатися більше",
+            "потішити себе",
+            "захистити себе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: розмова",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: розмова",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i14:audio",
+            "transcript": "I want to change the subject."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to change the subject.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "change",
+            "the",
+            "subject"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: свято",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: свято",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i15:audio",
+            "transcript": "I want to raise a glass to Anna."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "raise",
+            "a",
+            "glass",
+            "to",
+            "Anna"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть про себе: «Я можу висловити свої думки й почуття»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть про себе: «Я можу висловити свої думки й почуття»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i16:audio",
+            "transcript": "I can express myself."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can express myself.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть про Анну: «Вона може захистити себе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть про Анну: «Вона може захистити себе»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-18:i17:audio",
+            "transcript": "She can defend herself."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can defend herself.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-18:word:express-yourself",
+      "correctText": "express yourself",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i01",
+      "correctText": "You can express yourself.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i02",
+      "correctText": "You can express yourself.",
+      "correctResponseId": "en:lesson-22:session-18:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i03",
+      "correctText": "yourself",
+      "correctResponseId": "en:lesson-22:session-18:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:word:push-yourself",
+      "correctText": "push yourself",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i04",
+      "correctText": "You do not need to push yourself.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i05",
+      "correctText": "You do not need to push yourself.",
+      "correctResponseId": "en:lesson-22:session-18:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i06",
+      "correctText": "yourself",
+      "correctResponseId": "en:lesson-22:session-18:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:word:treat-yourself",
+      "correctText": "treat yourself",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i07",
+      "correctText": "You can treat yourself.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i08",
+      "correctText": "You can treat yourself.",
+      "correctResponseId": "en:lesson-22:session-18:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i09",
+      "correctText": "yourself",
+      "correctResponseId": "en:lesson-22:session-18:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:word:defend-yourself",
+      "correctText": "defend yourself",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i10",
+      "correctText": "You can defend yourself.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i11",
+      "correctText": "You can defend yourself.",
+      "correctResponseId": "en:lesson-22:session-18:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i12",
+      "correctText": "yourself",
+      "correctResponseId": "en:lesson-22:session-18:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i14",
+      "correctText": "I want to change the subject.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i15",
+      "correctText": "I want to raise a glass to Anna.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i16",
+      "correctText": "I can express myself.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-18:i17",
+      "correctText": "She can defend herself.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "subject + verb + matching reflexive pronoun",
+    "uk": "subject + verb + matching reflexive pronoun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выразить себя",
+        "uk": "Висловити себе"
+      },
+      "bodyByLocale": {
+        "ru": "Express yourself — выразить свои мысли и чувства словами, музыкой или другим способом. Это шире, чем просто speak — говорить. Здесь вы поддерживаете человека, которому трудно подобрать слова. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Express yourself — висловити свої думки й почуття словами, музикою або іншим способом. Це ширше, ніж просто speak — говорити. Тут ви підтримуєте людину, якій важко дібрати слова. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-18:intro1:r1",
+              "text": "You can express yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro1:r2",
+              "text": "You can express you."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro1:r3",
+              "text": "You can express your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-18:intro1:r1",
+              "text": "You can express yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro1:r2",
+              "text": "You can express you."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro1:r3",
+              "text": "You can express your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Усилия и приятный подарок себе",
+        "uk": "Зусилля й приємний подарунок собі"
+      },
+      "bodyByLocale": {
+        "ru": "Push yourself — заставлять себя стараться сильнее, прикладывать больше усилий. Это не буквальное «толкать себя». Treat yourself — порадовать себя чем-то приятным: например, купить любимый десерт. Здесь treat не значит «лечить». Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Push yourself — змушувати себе старатися більше, докладати більше зусиль. Це не буквальне «штовхати себе». Treat yourself — потішити себе чимось приємним: наприклад, купити улюблений десерт. Тут treat не означає «лікувати». Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-18:intro2:r1",
+              "text": "You do not need to push yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro2:r2",
+              "text": "You do not need to push you."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro2:r3",
+              "text": "You do not need to push your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-18:intro2:r1",
+              "text": "You do not need to push yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro2:r2",
+              "text": "You do not need to push you."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro2:r3",
+              "text": "You do not need to push your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Защитить себя",
+        "uk": "Захистити себе"
+      },
+      "bodyByLocale": {
+        "ru": "Defend yourself — защитить себя. Можно защищать себя словами: объяснить свою позицию, когда вас обвиняют. В этом примере речь о разговоре, а не о драке. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Defend yourself — захистити себе. Можна захищати себе словами: пояснити свою позицію, коли вас звинувачують. У цьому прикладі йдеться про розмову, а не про бійку. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-18:intro3:r1",
+              "text": "You can defend yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro3:r2",
+              "text": "You can defend you."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro3:r3",
+              "text": "You can defend your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-18:intro3:r1",
+              "text": "You can defend yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro3:r2",
+              "text": "You can defend you."
+            },
+            {
+              "responseId": "en:lesson-22:session-18:intro3:r3",
+              "text": "You can defend your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "62c8d36bb1425fcd3457c241d495250401c9d1b780c2bdcdd70b5d4a34dd69ee"
+}

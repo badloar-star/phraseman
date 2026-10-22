@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "subject + verb + matching reflexive pronoun",
+    "uk": "subject + verb + matching reflexive pronoun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Быть собой",
+        "uk": "Бути собою"
+      },
+      "bodyByLocale": {
+        "ru": "Be yourself — быть собой, вести себя естественно, не изображать другого человека. Yourself здесь часть обычного выражения. Оно не означает «будь один»: речь о вашем поведении. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Be yourself — бути собою, поводитися природно, не вдавати іншу людину. Yourself тут частина звичайного вислову. Він не означає «будь сам»: йдеться про вашу поведінку. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-20:intro1:r1",
+              "text": "You can be yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro1:r2",
+              "text": "You can be yourselfs."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro1:r3",
+              "text": "You can be your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-20:intro1:r1",
+              "text": "You can be yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro1:r2",
+              "text": "You can be yourselfs."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro1:r3",
+              "text": "You can be your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Своя мысль и личное пространство",
+        "uk": "Власна думка й особистий простір"
+      },
+      "bodyByLocale": {
+        "ru": "Think for yourself — думать самостоятельно, формировать своё мнение. Keep to yourself — держаться особняком, мало общаться с другими. Это не то же самое, что keep something to yourself — сохранить что-то в тайне. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Think for yourself — думати самостійно, формувати власну думку. Keep to yourself — триматися осторонь, мало спілкуватися з іншими. Це не те саме, що keep something to yourself — зберегти щось у таємниці. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-20:intro2:r1",
+              "text": "You can think for yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro2:r2",
+              "text": "You can think for you."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro2:r3",
+              "text": "You can think for your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-20:intro2:r1",
+              "text": "You can think for yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro2:r2",
+              "text": "You can think for you."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro2:r3",
+              "text": "You can think for your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "От своего имени",
+        "uk": "Від свого імені"
+      },
+      "bodyByLocale": {
+        "ru": "Speak for yourself — говорить от своего имени, представлять свою позицию. Отдельное резкое Speak for yourself! может означать «Говори за себя!». В нашем примере человек спокойно получает возможность высказаться сам. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Speak for yourself — говорити від свого імені, представляти власну позицію. Окреме різке Speak for yourself! може означати «Кажи за себе!». У нашому прикладі людина спокійно отримує можливість висловитися сама. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-20:intro3:r1",
+              "text": "You can speak for yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro3:r2",
+              "text": "You can speak for you."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro3:r3",
+              "text": "You can speak for your."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-20:intro3:r1",
+              "text": "You can speak for yourself."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro3:r2",
+              "text": "You can speak for you."
+            },
+            {
+              "responseId": "en:lesson-22:session-20:intro3:r3",
+              "text": "You can speak for your."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7d77b9da3dd958c3ce53ceed3d3dab507bd8d94d0808a3b9433d85c2e093fbdb"
+}

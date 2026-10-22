@@ -8351,4 +8351,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 17,
+    sourceFingerprint: "987bffd7600b9c8f1a980d0c374c714db77ff5a0c02ee6c8a2a0f86db048b603",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + verb + matching reflexive pronoun","uk":"subject + verb + matching reflexive pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 18,
+    sourceFingerprint: "96a71390ed25545a7e109fa83107a65c09584db183dbeefa8f975ef8b0bff7f5",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + verb + matching reflexive pronoun","uk":"subject + verb + matching reflexive pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 19,
+    sourceFingerprint: "319f44bf44a1c3e095fa14166b07f4048ff1d7f59cfe549d2362c55b79d1d57e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + verb + matching reflexive pronoun","uk":"subject + verb + matching reflexive pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 20,
+    sourceFingerprint: "662257a5935f6745ede0929789da1abe35e210604d3420a93900d0a12c6b32b0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + verb + matching reflexive pronoun","uk":"subject + verb + matching reflexive pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

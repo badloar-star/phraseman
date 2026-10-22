@@ -257,3 +257,32 @@ describe('Онбординг и приветствие: палитра из то
     for (const stop of ['#7B8CFF', '#C95CFF']) expect(contrastRatio(stop, bg)).toBeGreaterThanOrEqual(GRAPHIC);
   });
 });
+
+describe('Главная, вариант 2: плашки на подложке 50 %, плитки, значок места Пика (аудит 22.10)', () => {
+  const rows: { pair: string; ratio: number; need: number; tag: string }[] = [];
+  for (const appearance of ['light', 'dark'] as const) {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of ['calm', 'accent', 'max'] as const) {
+        const g = liquidGlassTokens(id, { level, appearance } as never);
+        const tag = `${appearance}/${id}/${level}`;
+        const push = (pair: string, ratio: number, need: number): void => { rows.push({ pair, ratio, need, tag }); };
+        const backs = [g.bgTop, g.bg, g.bgBottom];
+        for (const back of backs) {
+          for (const [name, fill] of [['плашка', g.plateFillFrom], ['строка', g.raisedFillFrom]] as const) {
+            // HOME_PLATE_ALPHA = 0.5: плашка — цвет плашки темы с альфой 50 % поверх фона экрана
+            const bg = over(six(fill), 0.5, six(back));
+            push(`${name} Главной: заголовок`, contrastRatio(g.text, bg), TEXT);
+            push(`${name} Главной: secondary`, contrastRatio(g.secondary, bg), TEXT);
+            push(`${name} Главной: кольцо чекбокса`, contrastRatio(g.mutedText, bg), GRAPHIC);
+          }
+        }
+        push('подпись плитки Главной на фоне экрана', Math.min(...backs.map((b) => contrastRatio(g.text, b))), TEXT);
+        push('значок места Пика: ctaFillInk на ctaFill', contrastRatio(g.ctaFillInk, g.ctaFill), TEXT);
+      }
+    }
+  }
+  it('ни одна пара не ниже нормы', () => {
+    const misses = rows.filter((r) => r.ratio < r.need).map((r) => `${r.tag} · ${r.pair}: ${r.ratio.toFixed(2)} < ${r.need}`);
+    expect(misses).toEqual([]);
+  });
+});

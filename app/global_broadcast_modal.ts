@@ -17,6 +17,7 @@ import { accountScopeKey } from './account_scope_key';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { decideGlobalBroadcastSettledSkip, GLOBAL_BROADCAST_SETTLED_KEY, type GlobalBroadcastSettledRecord } from './global_broadcast_settled';
+import { decideTeamModal, logTeamModalDecision, type FreshInstallVerdict } from './fresh_install_gate';
 
 export type GlobalBroadcastKind = 'general' | 'review_promo';
 export type GlobalBroadcastPremiumAudience = 'all' | 'free' | 'premium';
@@ -433,7 +434,7 @@ function writeBroadcastSettled(uid: string, rev: number): void {
 
 export async function fetchPendingGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
-  options: Readonly<{ premiumAudienceAccess?: boolean | null }> = {},
+  options: Readonly<{ premiumAudienceAccess?: boolean | null; teamModalVerdict?: FreshInstallVerdict }> = {},
 ): Promise<GlobalBroadcastModalPayload | null> {
   // зачем (координатор 12.10, п.70 №4, «сперва логи»): «рассылки нет» складывалось из десятка немых выходов и немого
   // catch — по журналу нельзя было понять, нет рассылки или проверка сломалась. Каждый выход называет причину.
@@ -495,6 +496,16 @@ export async function fetchPendingGlobalBroadcastModal(
     if (payload.kind === 'review_promo') {
       await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_4'));
       return settled(`review_promo id=${payload.id}`);
+    }
+    if (options.teamModalVerdict) {
+      // зачем (владелец 22.10): окно рассылки — не новичку и не рассылке старше первого входа человека. Кандидат один (самая
+      // свежая), значит и более старые созданы до первого входа: «показывать нечего» до смены версии рассылок.
+      const parsedCreatedMs = Date.parse(String(payload.createdAt ?? ''));
+      const createdAtMs = Number.isFinite(parsedCreatedMs) ? parsedCreatedMs : null;
+      const decision = decideTeamModal({ verdict: options.teamModalVerdict, createdAtMs, personal: false });
+      logTeamModalDecision('broadcast', payload.id, createdAtMs, options.teamModalVerdict, decision);
+      if (decision === 'skip_created_before_first_entry') return settled(`created_before_first_entry id=${payload.id}`);
+      if (decision === 'skip_new_user_48h') return skip(`new_user_48h id=${payload.id}`);
     }
 
     if (payload.premiumAudience !== 'all') {

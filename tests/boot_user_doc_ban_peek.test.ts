@@ -60,7 +60,8 @@ describe('[BAN-CHECK] banned из документа восстановлени�
   it('контракт: рассылка берёт аудиторию из PremiumContext, пока он не разрешён — из документа', () => {
     const layout = read('app/_layout.tsx');
     expect(layout).toContain('broadcastAudienceAccessRef.current = accessResolved ? (premiumForAudience || vipForAudience) : null;');
-    expect(layout).toContain('fetchPendingGlobalBroadcastModal(studyTarget, { premiumAudienceAccess: broadcastAudienceAccessRef.current })');
+    // teamModalVerdict — окно рассылки только тем, кто в приложении ≥ 48 ч (владелец 22.10)
+    expect(layout).toContain('fetchPendingGlobalBroadcastModal(studyTarget, { premiumAudienceAccess: broadcastAudienceAccessRef.current, teamModalVerdict: verdict })');
     const broadcast = read('app/global_broadcast_modal.ts');
     expect(broadcast).toContain("if (typeof options.premiumAudienceAccess === 'boolean') {");
     expect(broadcast).toContain('source=users_doc');

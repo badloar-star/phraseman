@@ -339,7 +339,7 @@ import {
   type AppMessageWithState,
 } from './app_messages';
 import { getDevAppMessage, subscribeDevAppMessage } from './dev_social_state';
-import { readFreshInstallVerdict, skipAnnouncementsForFreshInstall } from './fresh_install_gate';
+import { decideTeamModal, logTeamModalDecision, readFreshInstallVerdict, skipAnnouncementsCreatedBeforeFirstEntry, skipAnnouncementsForFreshInstall } from './fresh_install_gate';
 import { readOrInitAnnouncementFloor, skipAnnouncementsBeforeFloor } from './announcement_version_floor';
 import {
   getIntroFullAccessState,
@@ -1594,20 +1594,33 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       })
       .then(async (snapshot) => {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
-        setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
-        // зачем (координатор 12.10): новичку — после онбординга < суток — объявления «что нового» не показываем (app/fresh_install_gate.ts).
+        // зачем (владелец 22.10): окна «от команды» — только тем, кто в приложении ≥ 48 ч (app/fresh_install_gate.ts); до этого
+        // сообщение тихо лежит во «Входящих». Вердикт — одно локальное чтение, без сети.
+        const verdict = await readFreshInstallVerdict();
+        if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
+        const personal = pickNextLoginPersonalMessage(snapshot);
+        if (personal) {
+          const personalDecision = decideTeamModal({ verdict, createdAtMs: personal.createdAtMs, personal: true });
+          logTeamModalDecision('personal', personal.id, personal.createdAtMs, verdict, personalDecision);
+          setPersonalAdminMessage(personalDecision === 'show' ? personal : null);
+        } else {
+          setPersonalAdminMessage(null);
+        }
         // зачем (координатор 15.10): граница ставится при первом обращении 2.0 даже с пустой очередью — анонсы «всем»,
         // созданные раньше неё (1.6.x), окном не всплывают (app/announcement_version_floor.ts).
+        // зачем (владелец 22.10): объявления, созданные до первого входа человека, окном не всплывают никогда — даже с целевой версией.
         const floorMs = await readOrInitAnnouncementFloor();
-        const queue = skipAnnouncementsBeforeFloor(listPendingAppMessageModals(snapshot, hasPremiumAccess), floorMs);
-        const verdict = queue.length > 0 ? await readFreshInstallVerdict() : null;
+        const queue = skipAnnouncementsCreatedBeforeFirstEntry(
+          skipAnnouncementsBeforeFloor(listPendingAppMessageModals(snapshot, hasPremiumAccess), floorMs),
+          verdict,
+        );
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         // зачем (Авторизация 12.10, system-012): пока стоит dev `appmessage`, сетевое обновление не затирает демо-сообщение в окне (в сторе геттер = null)
         if (getDevAppMessage()) {
           console.log(`[DEV-STATE] окно объявления: сетевая очередь (${queue.length}) не применена — показано демо-сообщение`); // guard-ok: dev-ветка
           return;
         }
-        setAppMessageModalQueue(verdict ? skipAnnouncementsForFreshInstall(queue, verdict) : queue);
+        setAppMessageModalQueue(skipAnnouncementsForFreshInstall(queue, verdict));
       })
       .catch(noteSwallowedHandler('_layout:useEffect.refreshAppMessagesSnapshotOnce'));
     return () => { cancelled = true; };
@@ -2237,7 +2250,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         console.log(`[OVERLAY-QUEUE] broadcast: чтение пропущено — свежая установка reason=${verdict.reason} ageMs=${String(verdict.ageMs)}`); // guard-ok: ранний выход называет причину
         return;
       }
-      const payload = await fetchPendingGlobalBroadcastModal(studyTarget, { premiumAudienceAccess: broadcastAudienceAccessRef.current });
+      // зачем (владелец 22.10): рассылка, созданная до первого входа человека, окном не всплывает никогда
+      const payload = await fetchPendingGlobalBroadcastModal(studyTarget, { premiumAudienceAccess: broadcastAudienceAccessRef.current, teamModalVerdict: verdict });
       console.log(`[OVERLAY-QUEUE] broadcast: запрошено id=${payload?.id ?? 'нет'} kind=${payload?.kind ?? '-'} награда=${payload ? `${payload.rewardType}:${payload.rewardAmount}` : '-'}`); // guard-ok: результат запроса
       if (payload) setGlobalBroadcastModal(payload);
     } finally {

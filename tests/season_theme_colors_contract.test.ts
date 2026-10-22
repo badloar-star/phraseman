@@ -3,9 +3,11 @@
 import { readSource } from './helpers/read_source';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
+import { homeSceneOklchOf } from '../components/home/v2/scene/home_scene_tokens';
 import { hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
 
 const WHITE = '#FFFFFF';
+const rgbOf = (hex: string): [number, number, number] => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)) as [number, number, number];
 // оттенок надёжно определяется у заметно цветных и не слишком тёмных цветов: в почти чёрном 8-битное округление сдвигает его на десятки градусов
 const chromaOf = (hex: string): number => {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255) as [number, number, number];
@@ -45,6 +47,26 @@ describe('Сезон: цвета карточек — оттенки текущ�
     }
     expect(outOfTheme.slice(0, 10)).toEqual([]);
     expect(lowContrast.slice(0, 10)).toEqual([]);
+  });
+
+  it('соседние эпизоды заметно различаются светлотой (шаг ≥ 0,03 по OKLCH) при одном оттенке темы, детерминированно', () => {
+    const flat: string[] = [];
+    for (const appearance of ['light', 'dark'] as const) {
+      for (const id of LIQUID_GLASS_THEME_IDS) {
+        const themeHue = hexHue(liquidGlassTokens(id, { level: 'max', appearance } as never).accent);
+        for (let chapter = 1; chapter <= 7; chapter += 1) {
+          for (let episode = 1; episode < 12; episode += 1) {
+            const a = seasonThemedArt(themeHue, chapter, episode, appearance);
+            const b = seasonThemedArt(themeHue, chapter, episode + 1, appearance);
+            const [la] = homeSceneOklchOf(rgbOf(a.from));
+            const [lb] = homeSceneOklchOf(rgbOf(b.from));
+            if (Math.abs(la - lb) < 0.03) flat.push(`${appearance}/${id} гл.${chapter} эп.${episode}→${episode + 1}: ΔL ${Math.abs(la - lb).toFixed(3)}`);
+          }
+        }
+        expect(seasonThemedArt(themeHue, 2, 5, appearance)).toBe(seasonThemedArt(themeHue, 2, 5, appearance));
+      }
+    }
+    expect(flat.slice(0, 10)).toEqual([]);
   });
 
   it('карточки, обложка и итог экзамена берут оттенок из темы, а не из таблицы оттенков глав', () => {

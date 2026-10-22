@@ -129,14 +129,29 @@ export function seasonArtCached(hue: number, shift: number, theme: SeasonTheme):
 // Главы и эпизоды различаются только светлотой (темнее — белый текст держит контраст) и насыщенностью внутри палитры этой темы. Карта экзамена — самый тёмный оттенок темы.
 // Общая функция для всех экранов урока (в том числе нового экрана по новым макетам): seasonThemedArt(hexHue(g.accent), глава, эпизод, тема).
 const CHAPTER_CHROMA_MUL: readonly number[] = [1, 0.88, 0.76, 1, 0.88, 0.76, 1];
+/**
+ * Шаги эпизода (светлота «темнее на», насыщенность ×): соседние карточки заметно различаются (шаг светлоты ≥ 0,05 между соседними номерами, насыщенность тоже чередуется),
+ * оттенок один — тема. Светлота только падает → белый текст держит ≥ 4,5. Период 6 эпизодов, номер берётся по модулю — детерминированно.
+ * зачем (владелец 22.10: «КАРТОЧКИ ДОЛЖНЫ БЫТЬ РАЗНЫХ ОТТЕНКОВ ТЕМЫ»): раньше шаг по эпизоду был 0,004 — карточки сливались.
+ */
+export const SEASON_EPISODE_STEPS: readonly Readonly<{ darker: number; chroma: number }>[] = [
+  { darker: 0, chroma: 1 }, { darker: 0.05, chroma: 0.82 }, { darker: 0.1, chroma: 1 },
+  { darker: 0.03, chroma: 0.68 }, { darker: 0.08, chroma: 0.92 }, { darker: 0.13, chroma: 0.76 },
+];
 const themedCache = new Map<string, SeasonArt>();
+/**
+ * Цвета карточки эпизода/обложки/экзамена: оттенок = оттенок темы (themeHue = hexHue(g.accent)), глава и номер эпизода задают светлоту и насыщенность.
+ * Пример: `seasonThemedArt(hexHue(g.accent), card.chapterOrdinal, card.sessionOrdinal, g.isLight ? 'light' : 'dark')` → { from, to, glow } для LinearGradient.
+ */
 export function seasonThemedArt(themeHue: number, chapterOrdinal: number, sessionOrdinal: number, theme: SeasonTheme, exam = false): SeasonArt {
   const chapter = Math.max(1, chapterOrdinal) - 1;
-  const key = `${Math.round(themeHue)}:${chapter}:${exam ? 'x' : sessionOrdinal % 8}:${theme}`;
+  const step = SEASON_EPISODE_STEPS[Math.abs(Math.round(sessionOrdinal)) % SEASON_EPISODE_STEPS.length]!;
+  const key = `${Math.round(themeHue)}:${chapter}:${exam ? 'x' : Math.abs(Math.round(sessionOrdinal)) % SEASON_EPISODE_STEPS.length}:${theme}`;
   const hit = themedCache.get(key);
   if (hit) return hit;
-  const darker = exam ? 0.12 : 0.015 * (chapter % 4) + 0.004 * (sessionOrdinal % 8);
-  const next = seasonArt(norm(themeHue), 0, theme, darker, exam ? 0.8 : CHAPTER_CHROMA_MUL[chapter % CHAPTER_CHROMA_MUL.length]!, 0); // spread 0: и конец градиента, и свет — тот же оттенок темы
+  const darker = exam ? 0.12 : 0.01 * (chapter % 3) + step.darker;
+  const chroma = exam ? 0.8 : CHAPTER_CHROMA_MUL[chapter % CHAPTER_CHROMA_MUL.length]! * step.chroma;
+  const next = seasonArt(norm(themeHue), 0, theme, darker, chroma, 0); // spread 0: и конец градиента, и свет — тот же оттенок темы
   themedCache.set(key, next);
   return next;
 }

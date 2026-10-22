@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-47:intro1:r2": {
+          "ru": "После to в этой конструкции нужна начальная форма.",
+          "uk": "Після to у цій конструкції потрібна початкова форма."
+        },
+        "en:lesson-21:session-47:intro1:r3": {
+          "ru": "После want или need перед глаголом нужно to, не for.",
+          "uk": "Після want або need перед дієсловом потрібне to, не for."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-47:intro2:r2": {
+          "ru": "После to в этой конструкции нужна начальная форма.",
+          "uk": "Після to у цій конструкції потрібна початкова форма."
+        },
+        "en:lesson-21:session-47:intro2:r3": {
+          "ru": "После want или need перед глаголом нужно to, не for.",
+          "uk": "Після want або need перед дієсловом потрібне to, не for."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-47:intro3:r2": {
+          "ru": "После to в этой конструкции нужна начальная форма.",
+          "uk": "Після to у цій конструкції потрібна початкова форма."
+        },
+        "en:lesson-21:session-47:intro3:r3": {
+          "ru": "После want или need перед глаголом нужно to, не for.",
+          "uk": "Після want або need перед дієсловом потрібне to, не for."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4046a6d5d6bb5bb91e93c83d2f9ab164299a54ba43d067d9fc9541de5e7e59e5"
+}

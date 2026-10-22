@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-46:word:try-on",
+    "correctText": "try on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i01",
+    "correctText": "I want to try on this jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i02",
+    "correctText": "I want to try on this jacket.",
+    "correctResponseId": "en:lesson-21:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i03",
+    "correctText": "to try",
+    "correctResponseId": "en:lesson-21:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:word:exchange",
+    "correctText": "exchange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i04",
+    "correctText": "I want to exchange these shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i05",
+    "correctText": "I want to exchange these shoes.",
+    "correctResponseId": "en:lesson-21:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i06",
+    "correctText": "to exchange",
+    "correctResponseId": "en:lesson-21:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:word:keep-the-receipt",
+    "correctText": "keep the receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i07",
+    "correctText": "I want to keep the receipt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i08",
+    "correctText": "I want to keep the receipt.",
+    "correctResponseId": "en:lesson-21:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i09",
+    "correctText": "to keep",
+    "correctResponseId": "en:lesson-21:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:word:get-my-money-back",
+    "correctText": "get my money back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i10",
+    "correctText": "I want to get my money back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i11",
+    "correctText": "I want to get my money back.",
+    "correctResponseId": "en:lesson-21:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i12",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i13",
+    "correctText": "en:lesson-21:session-46:i13:p1=try on\nen:lesson-21:session-46:i13:p2=exchange\nen:lesson-21:session-46:i13:p3=keep the receipt\nen:lesson-21:session-46:i13:p4=get my money back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i16",
+    "correctText": "I need to keep the receipt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-46:i17",
+    "correctText": "I want to try on these shoes.",
+    "correctResponseId": null
+  }
+]

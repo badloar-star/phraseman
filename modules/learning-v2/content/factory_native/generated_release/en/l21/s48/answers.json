@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-48:word:cook-from-scratch",
+    "correctText": "cook from scratch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i01",
+    "correctText": "I want to cook from scratch today.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i02",
+    "correctText": "I want to cook from scratch today.",
+    "correctResponseId": "en:lesson-21:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i03",
+    "correctText": "to cook",
+    "correctResponseId": "en:lesson-21:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:word:order-a-takeaway",
+    "correctText": "order a takeaway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i04",
+    "correctText": "I want to order a takeaway tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i05",
+    "correctText": "I want to order a takeaway tonight.",
+    "correctResponseId": "en:lesson-21:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i06",
+    "correctText": "to order",
+    "correctResponseId": "en:lesson-21:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:word:have-a-snack",
+    "correctText": "have a snack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i07",
+    "correctText": "I want to have a snack.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i08",
+    "correctText": "I want to have a snack.",
+    "correctResponseId": "en:lesson-21:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i09",
+    "correctText": "to have",
+    "correctResponseId": "en:lesson-21:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:word:skip-breakfast",
+    "correctText": "skip breakfast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i10",
+    "correctText": "I do not want to skip breakfast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i11",
+    "correctText": "I do not want to skip breakfast.",
+    "correctResponseId": "en:lesson-21:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i12",
+    "correctText": "to skip",
+    "correctResponseId": "en:lesson-21:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i13",
+    "correctText": "en:lesson-21:session-48:i13:p1=cook from scratch\nen:lesson-21:session-48:i13:p2=order a takeaway\nen:lesson-21:session-48:i13:p3=have a snack\nen:lesson-21:session-48:i13:p4=skip breakfast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i16",
+    "correctText": "I want to have a snack now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-48:i17",
+    "correctText": "I do not want to order a takeaway.",
+    "correctResponseId": null
+  }
+]

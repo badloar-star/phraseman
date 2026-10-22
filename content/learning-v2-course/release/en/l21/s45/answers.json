@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-45:word:catch-the-bus",
+    "correctText": "catch the bus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i01",
+    "correctText": "I want to catch the bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i02",
+    "correctText": "I want to catch the bus.",
+    "correctResponseId": "en:lesson-21:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i03",
+    "correctText": "to catch",
+    "correctResponseId": "en:lesson-21:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:word:change-trains",
+    "correctText": "change trains",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i04",
+    "correctText": "I need to change trains here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i05",
+    "correctText": "I need to change trains here.",
+    "correctResponseId": "en:lesson-21:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i06",
+    "correctText": "to change",
+    "correctResponseId": "en:lesson-21:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:word:miss-my-stop",
+    "correctText": "miss my stop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i07",
+    "correctText": "I do not want to miss my stop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i08",
+    "correctText": "I do not want to miss my stop.",
+    "correctResponseId": "en:lesson-21:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i09",
+    "correctText": "to miss",
+    "correctResponseId": "en:lesson-21:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:word:check-the-timetable",
+    "correctText": "check the timetable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i10",
+    "correctText": "I need to check the timetable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i11",
+    "correctText": "I need to check the timetable.",
+    "correctResponseId": "en:lesson-21:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i12",
+    "correctText": "to check",
+    "correctResponseId": "en:lesson-21:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i13",
+    "correctText": "en:lesson-21:session-45:i13:p1=catch the bus\nen:lesson-21:session-45:i13:p2=change trains\nen:lesson-21:session-45:i13:p3=miss my stop\nen:lesson-21:session-45:i13:p4=check the timetable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i16",
+    "correctText": "I want to check the timetable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-45:i17",
+    "correctText": "I need to catch the bus.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "want / need + to-infinitive",
+    "uk": "want / need + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Примерить одежду",
+        "uk": "Приміряти одяг"
+      },
+      "bodyByLocale": {
+        "ru": "Try on — примерить одежду или обувь перед покупкой. Try on this jacket — примерить эту куртку. Это не try out — испытать вещь в работе: здесь речь о том, как одежда сидит на вас. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Try on — приміряти одяг або взуття перед купівлею. Try on this jacket — приміряти цю куртку. Це не try out — випробувати річ у роботі: тут ідеться про те, як одяг сидить на вас. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-46:intro1:r1",
+              "text": "I want to try on this jacket."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro1:r2",
+              "text": "I want to trying on this jacket."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro1:r3",
+              "text": "I want for try on this jacket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-46:intro1:r1",
+              "text": "I want to try on this jacket."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro1:r2",
+              "text": "I want to trying on this jacket."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro1:r3",
+              "text": "I want for try on this jacket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обмен и чек",
+        "uk": "Обмін і чек"
+      },
+      "bodyByLocale": {
+        "ru": "Exchange как глагол — обменять товар, например обувь на другую пару. Keep the receipt — сохранить чек после покупки. Здесь exchange — действие; ранее в exchange rate это слово входило в название курса обмена валют. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Exchange як дієслово — обміняти товар, наприклад взуття на іншу пару. Keep the receipt — зберегти чек після купівлі. Тут exchange — дія; раніше в exchange rate це слово входило до назви курсу обміну валют. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-46:intro2:r1",
+              "text": "I want to exchange these shoes."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro2:r2",
+              "text": "I want to exchanging these shoes."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro2:r3",
+              "text": "I want for exchange these shoes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-46:intro2:r1",
+              "text": "I want to exchange these shoes."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro2:r2",
+              "text": "I want to exchanging these shoes."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro2:r3",
+              "text": "I want for exchange these shoes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вернуть деньги",
+        "uk": "Повернути гроші"
+      },
+      "bodyByLocale": {
+        "ru": "Get my money back — получить свои деньги обратно. Так покупатель объясняет, что хочет возврат денег, а не другой товар. Это выражение желания; условия возврата зависят от ситуации. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Get my money back — отримати свої гроші назад. Так покупець пояснює, що хоче повернення грошей, а не інший товар. Це вираження бажання; умови повернення залежать від ситуації. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-46:intro3:r1",
+              "text": "I want to get my money back."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro3:r2",
+              "text": "I want to getting my money back."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro3:r3",
+              "text": "I want for get my money back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-46:intro3:r1",
+              "text": "I want to get my money back."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro3:r2",
+              "text": "I want to getting my money back."
+            },
+            {
+              "responseId": "en:lesson-21:session-46:intro3:r3",
+              "text": "I want for get my money back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9be266d44f763edd81896e5a93a463dacb95049e9404b981cec60822348d7a49"
+}

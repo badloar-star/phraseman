@@ -8155,4 +8155,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 45,
+    sourceFingerprint: "10434bf51d5d65d73770eddad15a0868493457f32f3c84175da6413ab16be3df",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want / need + to-infinitive","uk":"want / need + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 46,
+    sourceFingerprint: "f04d0f9f10985f1b7a1e2b27608b6821510b47e2548e4c102e7d32f67c2affcf",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want / need + to-infinitive","uk":"want / need + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 47,
+    sourceFingerprint: "d9b5642ed8a4ce06927f6c2d7bd85b9cba382cc8d0f439ab3bd288d1cf0b7319",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want / need + to-infinitive","uk":"want / need + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 48,
+    sourceFingerprint: "07709b7e7c2fe9ae851b117677a98b24c6a2d0f8022d9f03fb9e6699b538bf5a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want / need + to-infinitive","uk":"want / need + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
 ]);

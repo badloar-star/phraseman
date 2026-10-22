@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-46:word:try-on",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — try on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:word:try-on:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — try on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:word:try-on:audio",
+          "transcript": "try on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:word:try-on:r1",
+            "targetText": "try on",
+            "meaningByLocale": {
+              "ru": "примерить.",
+              "uk": "приміряти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "try on",
+          "definitionByLocale": {
+            "ru": "примерить.",
+            "uk": "приміряти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я хочу примерить эту куртку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я хочу примерить эту куртку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to try on this jacket.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу примерить эту куртку».",
+          "uk": "Скажіть: «Я хочу приміряти цю куртку»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "try",
+          "on",
+          "this",
+          "jacket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i02:r1",
+          "text": "I want to try on this jacket."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i02:r2",
+          "text": "We want to try on this jacket."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i02:r3",
+          "text": "They want to try on this jacket."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i02:audio",
+          "transcript": "I want to try on this jacket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:i02:r1",
+            "targetText": "I want to try on this jacket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i02:r2",
+            "targetText": "We want to try on this jacket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i02:r3",
+            "targetText": "They want to try on this jacket.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to try on this jacket.",
+              "uk": "У записі звучить I want to try on this jacket."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to try on this jacket.",
+              "uk": "У записі звучить I want to try on this jacket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после want или need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i03:r1",
+          "text": "to try"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i03:r2",
+          "text": "to trying"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i03:r3",
+          "text": "for try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после want или need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ on this jacket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-46:i03:r1",
+            "text": "to try"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i03:r2",
+            "text": "to trying"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i03:r3",
+            "text": "for try"
+          }
+        ],
+        "testedDimension": "Выберите форму после want или need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:word:exchange",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exchange",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:word:exchange:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exchange",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:word:exchange:audio",
+          "transcript": "exchange"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:word:exchange:r1",
+            "targetText": "exchange",
+            "meaningByLocale": {
+              "ru": "обменять.",
+              "uk": "обміняти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exchange",
+          "definitionByLocale": {
+            "ru": "обменять.",
+            "uk": "обміняти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я хочу обменять эти туфли».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я хочу обменять эти туфли».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to exchange these shoes.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу обменять эти туфли».",
+          "uk": "Скажіть: «Я хочу обміняти ці туфлі»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "exchange",
+          "these",
+          "shoes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i05:r1",
+          "text": "I want to exchange these shoes."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i05:r2",
+          "text": "We want to exchange these shoes."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i05:r3",
+          "text": "They want to exchange these shoes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i05:audio",
+          "transcript": "I want to exchange these shoes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:i05:r1",
+            "targetText": "I want to exchange these shoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i05:r2",
+            "targetText": "We want to exchange these shoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i05:r3",
+            "targetText": "They want to exchange these shoes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to exchange these shoes.",
+              "uk": "У записі звучить I want to exchange these shoes."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to exchange these shoes.",
+              "uk": "У записі звучить I want to exchange these shoes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после want или need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i06:r1",
+          "text": "to exchange"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i06:r2",
+          "text": "to exchanging"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i06:r3",
+          "text": "for exchange"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после want или need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ these shoes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-46:i06:r1",
+            "text": "to exchange"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i06:r2",
+            "text": "to exchanging"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i06:r3",
+            "text": "for exchange"
+          }
+        ],
+        "testedDimension": "Выберите форму после want или need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:word:keep-the-receipt",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keep the receipt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:word:keep-the-receipt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keep the receipt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:word:keep-the-receipt:audio",
+          "transcript": "keep the receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:word:keep-the-receipt:r1",
+            "targetText": "keep the receipt",
+            "meaningByLocale": {
+              "ru": "сохранить чек.",
+              "uk": "зберегти чек."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep the receipt",
+          "definitionByLocale": {
+            "ru": "сохранить чек.",
+            "uk": "зберегти чек."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я хочу сохранить чек».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я хочу сохранить чек».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to keep the receipt.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу сохранить чек».",
+          "uk": "Скажіть: «Я хочу зберегти чек»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "keep",
+          "the",
+          "receipt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i08:r1",
+          "text": "I want to keep the receipt."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i08:r2",
+          "text": "We want to keep the receipt."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i08:r3",
+          "text": "They want to keep the receipt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i08:audio",
+          "transcript": "I want to keep the receipt."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:i08:r1",
+            "targetText": "I want to keep the receipt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i08:r2",
+            "targetText": "We want to keep the receipt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i08:r3",
+            "targetText": "They want to keep the receipt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to keep the receipt.",
+              "uk": "У записі звучить I want to keep the receipt."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to keep the receipt.",
+              "uk": "У записі звучить I want to keep the receipt."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после want или need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i09:r1",
+          "text": "to keep"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i09:r2",
+          "text": "to keeping"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i09:r3",
+          "text": "for keep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после want или need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ the receipt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-46:i09:r1",
+            "text": "to keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i09:r2",
+            "text": "to keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i09:r3",
+            "text": "for keep"
+          }
+        ],
+        "testedDimension": "Выберите форму после want или need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:word:get-my-money-back",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — get my money back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:word:get-my-money-back:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — get my money back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:word:get-my-money-back:audio",
+          "transcript": "get my money back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:word:get-my-money-back:r1",
+            "targetText": "get my money back",
+            "meaningByLocale": {
+              "ru": "получить свои деньги обратно.",
+              "uk": "отримати свої гроші назад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get my money back",
+          "definitionByLocale": {
+            "ru": "получить свои деньги обратно.",
+            "uk": "отримати свої гроші назад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я хочу получить свои деньги обратно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я хочу получить свои деньги обратно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to get my money back.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу получить свои деньги обратно».",
+          "uk": "Скажіть: «Я хочу отримати свої гроші назад»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "get",
+          "my",
+          "money",
+          "back"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i11:r1",
+          "text": "I want to get my money back."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i11:r2",
+          "text": "We want to get our money back."
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i11:r3",
+          "text": "They want to get their money back."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i11:audio",
+          "transcript": "I want to get my money back."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-46:i11:r1",
+            "targetText": "I want to get my money back.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i11:r2",
+            "targetText": "We want to get our money back.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i11:r3",
+            "targetText": "They want to get their money back.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to get my money back.",
+              "uk": "У записі звучить I want to get my money back."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to get my money back.",
+              "uk": "У записі звучить I want to get my money back."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после want или need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-46:i12:r1",
+          "text": "to get"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i12:r2",
+          "text": "to getting"
+        },
+        {
+          "responseId": "en:lesson-21:session-46:i12:r3",
+          "text": "for get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после want или need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ my money back.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-46:i12:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i12:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i12:r3",
+            "text": "for get"
+          }
+        ],
+        "testedDimension": "Выберите форму после want или need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после want или need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-46:i13:p1",
+            "target": "try on",
+            "meaningByLocale": {
+              "ru": "примерить",
+              "uk": "приміряти"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-46:i13:p2",
+            "target": "exchange",
+            "meaningByLocale": {
+              "ru": "обменять",
+              "uk": "обміняти"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-46:i13:p3",
+            "target": "keep the receipt",
+            "meaningByLocale": {
+              "ru": "сохранить чек",
+              "uk": "зберегти чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-46:i13:p4",
+            "target": "get my money back",
+            "meaningByLocale": {
+              "ru": "получить свои деньги обратно",
+              "uk": "отримати свої гроші назад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "try on",
+          "exchange",
+          "keep the receipt",
+          "get my money back"
+        ],
+        "rightColumn": [
+          "примерить",
+          "обменять",
+          "сохранить чек",
+          "получить свои деньги обратно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: попросить проверить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: попросить проверить",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: общение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: общение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мне нужно сохранить чек»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мне нужно сохранить чек»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i16:audio",
+          "transcript": "I need to keep the receipt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to keep the receipt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я хочу примерить эти туфли»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я хочу примерить эти туфли»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-46:i17:audio",
+          "transcript": "I want to try on these shoes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to try on these shoes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8477aca3885c5e54bec6c71a2f9f8ced379b711f5570cacc6ee3a2596086589b"
+}

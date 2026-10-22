@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-45:word:catch-the-bus",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — catch the bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:word:catch-the-bus:audio"
+      ],
+      "accessibilityLabel": "Картка слова — catch the bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:word:catch-the-bus:audio",
+          "transcript": "catch the bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:word:catch-the-bus:r1",
+            "targetText": "catch the bus",
+            "meaningByLocale": {
+              "ru": "успеть на автобус.",
+              "uk": "встигнути на автобус."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "catch the bus",
+          "definitionByLocale": {
+            "ru": "успеть на автобус.",
+            "uk": "встигнути на автобус."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу встигнути на автобус».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу встигнути на автобус».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to catch the bus.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу успеть на автобус».",
+          "uk": "Скажіть: «Я хочу встигнути на автобус»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "catch",
+          "the",
+          "bus"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i02:r1",
+          "text": "I want to catch the bus."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i02:r2",
+          "text": "We want to catch the bus."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i02:r3",
+          "text": "They want to catch the bus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i02:audio",
+          "transcript": "I want to catch the bus."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:i02:r1",
+            "targetText": "I want to catch the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i02:r2",
+            "targetText": "We want to catch the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i02:r3",
+            "targetText": "They want to catch the bus.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to catch the bus.",
+              "uk": "У записі звучить I want to catch the bus."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to catch the bus.",
+              "uk": "У записі звучить I want to catch the bus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i03:r1",
+          "text": "to catch"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i03:r2",
+          "text": "to catching"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i03:r3",
+          "text": "for catch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ the bus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-45:i03:r1",
+            "text": "to catch"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i03:r2",
+            "text": "to catching"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i03:r3",
+            "text": "for catch"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:word:change-trains",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — change trains",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:word:change-trains:audio"
+      ],
+      "accessibilityLabel": "Картка слова — change trains",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:word:change-trains:audio",
+          "transcript": "change trains"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:word:change-trains:r1",
+            "targetText": "change trains",
+            "meaningByLocale": {
+              "ru": "пересесть на другой поезд.",
+              "uk": "пересісти на інший потяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "change trains",
+          "definitionByLocale": {
+            "ru": "пересесть на другой поезд.",
+            "uk": "пересісти на інший потяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно пересісти тут на інший потяг».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно пересісти тут на інший потяг».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to change trains here.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно пересесть здесь на другой поезд».",
+          "uk": "Скажіть: «Мені потрібно пересісти тут на інший потяг»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "change",
+          "trains",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i05:r1",
+          "text": "I need to change trains here."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i05:r2",
+          "text": "We need to change trains here."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i05:r3",
+          "text": "They need to change trains here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i05:audio",
+          "transcript": "I need to change trains here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:i05:r1",
+            "targetText": "I need to change trains here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i05:r2",
+            "targetText": "We need to change trains here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i05:r3",
+            "targetText": "They need to change trains here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to change trains here.",
+              "uk": "У записі звучить I need to change trains here."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to change trains here.",
+              "uk": "У записі звучить I need to change trains here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i06:r1",
+          "text": "to change"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i06:r2",
+          "text": "to changing"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i06:r3",
+          "text": "for change"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ trains here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-45:i06:r1",
+            "text": "to change"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i06:r2",
+            "text": "to changing"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i06:r3",
+            "text": "for change"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:word:miss-my-stop",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — miss my stop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:word:miss-my-stop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — miss my stop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:word:miss-my-stop:audio",
+          "transcript": "miss my stop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:word:miss-my-stop:r1",
+            "targetText": "miss my stop",
+            "meaningByLocale": {
+              "ru": "проехать свою остановку.",
+              "uk": "проїхати свою зупинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "miss my stop",
+          "definitionByLocale": {
+            "ru": "проехать свою остановку.",
+            "uk": "проїхати свою зупинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу проїхати свою зупинку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу проїхати свою зупинку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to miss my stop.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу проехать свою остановку».",
+          "uk": "Скажіть: «Я не хочу проїхати свою зупинку»."
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "miss",
+          "my",
+          "stop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i08:r1",
+          "text": "I do not want to miss my stop."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i08:r2",
+          "text": "We do not want to miss our stop."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i08:r3",
+          "text": "They do not want to miss their stop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i08:audio",
+          "transcript": "I do not want to miss my stop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:i08:r1",
+            "targetText": "I do not want to miss my stop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i08:r2",
+            "targetText": "We do not want to miss our stop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i08:r3",
+            "targetText": "They do not want to miss their stop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to miss my stop.",
+              "uk": "У записі звучить I do not want to miss my stop."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to miss my stop.",
+              "uk": "У записі звучить I do not want to miss my stop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i09:r1",
+          "text": "to miss"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i09:r2",
+          "text": "to missing"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i09:r3",
+          "text": "for miss"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I do not want ___ my stop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-45:i09:r1",
+            "text": "to miss"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i09:r2",
+            "text": "to missing"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i09:r3",
+            "text": "for miss"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:word:check-the-timetable",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — check the timetable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:word:check-the-timetable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — check the timetable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:word:check-the-timetable:audio",
+          "transcript": "check the timetable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:word:check-the-timetable:r1",
+            "targetText": "check the timetable",
+            "meaningByLocale": {
+              "ru": "проверить расписание.",
+              "uk": "перевірити розклад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "check the timetable",
+          "definitionByLocale": {
+            "ru": "проверить расписание.",
+            "uk": "перевірити розклад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно перевірити розклад».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно перевірити розклад».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to check the timetable.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно проверить расписание».",
+          "uk": "Скажіть: «Мені потрібно перевірити розклад»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "check",
+          "the",
+          "timetable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i11:r1",
+          "text": "I need to check the timetable."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i11:r2",
+          "text": "We need to check the timetable."
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i11:r3",
+          "text": "They need to check the timetable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i11:audio",
+          "transcript": "I need to check the timetable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-45:i11:r1",
+            "targetText": "I need to check the timetable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i11:r2",
+            "targetText": "We need to check the timetable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i11:r3",
+            "targetText": "They need to check the timetable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to check the timetable.",
+              "uk": "У записі звучить I need to check the timetable."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to check the timetable.",
+              "uk": "У записі звучить I need to check the timetable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-45:i12:r1",
+          "text": "to check"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i12:r2",
+          "text": "to checking"
+        },
+        {
+          "responseId": "en:lesson-21:session-45:i12:r3",
+          "text": "for check"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ the timetable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-45:i12:r1",
+            "text": "to check"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i12:r2",
+            "text": "to checking"
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i12:r3",
+            "text": "for check"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-45:i13:p1",
+            "target": "catch the bus",
+            "meaningByLocale": {
+              "ru": "успеть на автобус",
+              "uk": "встигнути на автобус"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-45:i13:p2",
+            "target": "change trains",
+            "meaningByLocale": {
+              "ru": "пересесть на другой поезд",
+              "uk": "пересісти на інший потяг"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-45:i13:p3",
+            "target": "miss my stop",
+            "meaningByLocale": {
+              "ru": "проехать свою остановку",
+              "uk": "проїхати свою зупинку"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-45:i13:p4",
+            "target": "check the timetable",
+            "meaningByLocale": {
+              "ru": "проверить расписание",
+              "uk": "перевірити розклад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "catch the bus",
+          "change trains",
+          "miss my stop",
+          "check the timetable"
+        ],
+        "rightColumn": [
+          "встигнути на автобус",
+          "пересісти на інший потяг",
+          "проїхати свою зупинку",
+          "перевірити розклад"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу перевірити розклад»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу перевірити розклад»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i16:audio",
+          "transcript": "I want to check the timetable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to check the timetable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-45:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Мені потрібно встигнути на автобус»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Мені потрібно встигнути на автобус»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-45:i17:audio",
+          "transcript": "I need to catch the bus."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to catch the bus.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "987a3b7bd91af153e816e013ef0ed8f7547d936eeb4e91e75a1283d362b621ac"
+}

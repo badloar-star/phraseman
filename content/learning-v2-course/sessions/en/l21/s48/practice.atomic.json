@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-48",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-48:word:cook-from-scratch",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cook from scratch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:cook-from-scratch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cook from scratch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:cook-from-scratch:audio",
+            "transcript": "cook from scratch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:cook-from-scratch:r1",
+              "targetText": "cook from scratch",
+              "meaningByLocale": {
+                "ru": "готовить с нуля.",
+                "uk": "готувати з нуля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cook from scratch",
+            "definitionByLocale": {
+              "ru": "готовить с нуля.",
+              "uk": "готувати з нуля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Сегодня я хочу приготовить еду с нуля».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Сегодня я хочу приготовить еду с нуля».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to cook from scratch today.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сегодня я хочу приготовить еду с нуля».",
+            "uk": "Скажіть: «Сьогодні я хочу приготувати їжу з нуля»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "cook",
+            "from",
+            "scratch",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i02:r1",
+            "text": "I want to cook from scratch today."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i02:r2",
+            "text": "We want to cook from scratch today."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i02:r3",
+            "text": "They want to cook from scratch today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i02:audio",
+            "transcript": "I want to cook from scratch today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i02:r1",
+              "targetText": "I want to cook from scratch today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i02:r2",
+              "targetText": "We want to cook from scratch today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i02:r3",
+              "targetText": "They want to cook from scratch today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to cook from scratch today.",
+                "uk": "У записі звучить I want to cook from scratch today."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to cook from scratch today.",
+                "uk": "У записі звучить I want to cook from scratch today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i03:r1",
+            "text": "to cook"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i03:r2",
+            "text": "to cooking"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i03:r3",
+            "text": "for cook"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ from scratch today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i03:r1",
+              "text": "to cook"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i03:r2",
+              "text": "to cooking"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i03:r3",
+              "text": "for cook"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:word:order-a-takeaway",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — order a takeaway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:order-a-takeaway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — order a takeaway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:order-a-takeaway:audio",
+            "transcript": "order a takeaway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:order-a-takeaway:r1",
+              "targetText": "order a takeaway",
+              "meaningByLocale": {
+                "ru": "заказать готовую еду с собой или на дом.",
+                "uk": "замовити готову їжу із собою або додому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "order a takeaway",
+            "definitionByLocale": {
+              "ru": "заказать готовую еду с собой или на дом.",
+              "uk": "замовити готову їжу із собою або додому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Сегодня вечером я хочу заказать готовую еду на дом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Сегодня вечером я хочу заказать готовую еду на дом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to order a takeaway tonight.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сегодня вечером я хочу заказать готовую еду на дом».",
+            "uk": "Скажіть: «Сьогодні ввечері я хочу замовити готову їжу додому»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "order",
+            "a",
+            "takeaway",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i05:r1",
+            "text": "I want to order a takeaway tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i05:r2",
+            "text": "We want to order a takeaway tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i05:r3",
+            "text": "They want to order a takeaway tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i05:audio",
+            "transcript": "I want to order a takeaway tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i05:r1",
+              "targetText": "I want to order a takeaway tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i05:r2",
+              "targetText": "We want to order a takeaway tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i05:r3",
+              "targetText": "They want to order a takeaway tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to order a takeaway tonight.",
+                "uk": "У записі звучить I want to order a takeaway tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to order a takeaway tonight.",
+                "uk": "У записі звучить I want to order a takeaway tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i06:r1",
+            "text": "to order"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i06:r2",
+            "text": "to ordering"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i06:r3",
+            "text": "for order"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ a takeaway tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i06:r1",
+              "text": "to order"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i06:r2",
+              "text": "to ordering"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i06:r3",
+              "text": "for order"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:word:have-a-snack",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — have a snack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:have-a-snack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — have a snack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:have-a-snack:audio",
+            "transcript": "have a snack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:have-a-snack:r1",
+              "targetText": "have a snack",
+              "meaningByLocale": {
+                "ru": "перекусить.",
+                "uk": "перекусити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a snack",
+            "definitionByLocale": {
+              "ru": "перекусить.",
+              "uk": "перекусити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу перекусить».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу перекусить».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to have a snack.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу перекусить».",
+            "uk": "Скажіть: «Я хочу перекусити»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "have",
+            "a",
+            "snack"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i08:r1",
+            "text": "I want to have a snack."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i08:r2",
+            "text": "We want to have a snack."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i08:r3",
+            "text": "They want to have a snack."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i08:audio",
+            "transcript": "I want to have a snack."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i08:r1",
+              "targetText": "I want to have a snack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i08:r2",
+              "targetText": "We want to have a snack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i08:r3",
+              "targetText": "They want to have a snack.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to have a snack.",
+                "uk": "У записі звучить I want to have a snack."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to have a snack.",
+                "uk": "У записі звучить I want to have a snack."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i09:r1",
+            "text": "to have"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i09:r2",
+            "text": "to having"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i09:r3",
+            "text": "for have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ a snack.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i09:r1",
+              "text": "to have"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i09:r2",
+              "text": "to having"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i09:r3",
+              "text": "for have"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:word:skip-breakfast",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — skip breakfast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:skip-breakfast:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — skip breakfast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:skip-breakfast:audio",
+            "transcript": "skip breakfast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:skip-breakfast:r1",
+              "targetText": "skip breakfast",
+              "meaningByLocale": {
+                "ru": "пропустить завтрак.",
+                "uk": "пропустити сніданок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skip breakfast",
+            "definitionByLocale": {
+              "ru": "пропустить завтрак.",
+              "uk": "пропустити сніданок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я не хочу пропускать завтрак».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я не хочу пропускать завтрак».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not want to skip breakfast.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я не хочу пропускать завтрак».",
+            "uk": "Скажіть: «Я не хочу пропускати сніданок»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "want",
+            "to",
+            "skip",
+            "breakfast"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i11:r1",
+            "text": "I do not want to skip breakfast."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i11:r2",
+            "text": "We do not want to skip breakfast."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i11:r3",
+            "text": "They do not want to skip breakfast."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i11:audio",
+            "transcript": "I do not want to skip breakfast."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i11:r1",
+              "targetText": "I do not want to skip breakfast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i11:r2",
+              "targetText": "We do not want to skip breakfast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i11:r3",
+              "targetText": "They do not want to skip breakfast.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to skip breakfast.",
+                "uk": "У записі звучить I do not want to skip breakfast."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to skip breakfast.",
+                "uk": "У записі звучить I do not want to skip breakfast."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после want или need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i12:r1",
+            "text": "to skip"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i12:r2",
+            "text": "to skipping"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i12:r3",
+            "text": "for skip"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после want или need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I do not want ___ breakfast.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i12:r1",
+              "text": "to skip"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i12:r2",
+              "text": "to skipping"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i12:r3",
+              "text": "for skip"
+            }
+          ],
+          "testedDimension": "Выберите форму после want или need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после want или need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-48:i13:p1",
+              "target": "cook from scratch",
+              "meaningByLocale": {
+                "ru": "готовить с нуля",
+                "uk": "готувати з нуля"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-48:i13:p2",
+              "target": "order a takeaway",
+              "meaningByLocale": {
+                "ru": "заказать готовую еду с собой или на дом",
+                "uk": "замовити готову їжу із собою або додому"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-48:i13:p3",
+              "target": "have a snack",
+              "meaningByLocale": {
+                "ru": "перекусить",
+                "uk": "перекусити"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-48:i13:p4",
+              "target": "skip breakfast",
+              "meaningByLocale": {
+                "ru": "пропустить завтрак",
+                "uk": "пропустити сніданок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cook from scratch",
+            "order a takeaway",
+            "have a snack",
+            "skip breakfast"
+          ],
+          "rightColumn": [
+            "готовить с нуля",
+            "заказать готовую еду с собой или на дом",
+            "перекусить",
+            "пропустить завтрак"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: попросить проверить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: попросить проверить",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: общение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: общение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я хочу перекусить сейчас»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я хочу перекусить сейчас»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i16:audio",
+            "transcript": "I want to have a snack now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to have a snack now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я не хочу заказывать готовую еду на дом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я не хочу заказывать готовую еду на дом»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i17:audio",
+            "transcript": "I do not want to order a takeaway."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not want to order a takeaway.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-48:word:cook-from-scratch",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cook from scratch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:cook-from-scratch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cook from scratch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:cook-from-scratch:audio",
+            "transcript": "cook from scratch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:cook-from-scratch:r1",
+              "targetText": "cook from scratch",
+              "meaningByLocale": {
+                "ru": "готовить с нуля.",
+                "uk": "готувати з нуля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cook from scratch",
+            "definitionByLocale": {
+              "ru": "готовить с нуля.",
+              "uk": "готувати з нуля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Сьогодні я хочу приготувати їжу з нуля».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Сьогодні я хочу приготувати їжу з нуля».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to cook from scratch today.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сегодня я хочу приготовить еду с нуля».",
+            "uk": "Скажіть: «Сьогодні я хочу приготувати їжу з нуля»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "cook",
+            "from",
+            "scratch",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i02:r1",
+            "text": "I want to cook from scratch today."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i02:r2",
+            "text": "We want to cook from scratch today."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i02:r3",
+            "text": "They want to cook from scratch today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i02:audio",
+            "transcript": "I want to cook from scratch today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i02:r1",
+              "targetText": "I want to cook from scratch today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i02:r2",
+              "targetText": "We want to cook from scratch today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i02:r3",
+              "targetText": "They want to cook from scratch today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to cook from scratch today.",
+                "uk": "У записі звучить I want to cook from scratch today."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to cook from scratch today.",
+                "uk": "У записі звучить I want to cook from scratch today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i03:r1",
+            "text": "to cook"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i03:r2",
+            "text": "to cooking"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i03:r3",
+            "text": "for cook"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ from scratch today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i03:r1",
+              "text": "to cook"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i03:r2",
+              "text": "to cooking"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i03:r3",
+              "text": "for cook"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:word:order-a-takeaway",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — order a takeaway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:order-a-takeaway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — order a takeaway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:order-a-takeaway:audio",
+            "transcript": "order a takeaway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:order-a-takeaway:r1",
+              "targetText": "order a takeaway",
+              "meaningByLocale": {
+                "ru": "заказать готовую еду с собой или на дом.",
+                "uk": "замовити готову їжу із собою або додому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "order a takeaway",
+            "definitionByLocale": {
+              "ru": "заказать готовую еду с собой или на дом.",
+              "uk": "замовити готову їжу із собою або додому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Сьогодні ввечері я хочу замовити готову їжу додому».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Сьогодні ввечері я хочу замовити готову їжу додому».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to order a takeaway tonight.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Сегодня вечером я хочу заказать готовую еду на дом».",
+            "uk": "Скажіть: «Сьогодні ввечері я хочу замовити готову їжу додому»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "order",
+            "a",
+            "takeaway",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i05:r1",
+            "text": "I want to order a takeaway tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i05:r2",
+            "text": "We want to order a takeaway tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i05:r3",
+            "text": "They want to order a takeaway tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i05:audio",
+            "transcript": "I want to order a takeaway tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i05:r1",
+              "targetText": "I want to order a takeaway tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i05:r2",
+              "targetText": "We want to order a takeaway tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i05:r3",
+              "targetText": "They want to order a takeaway tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to order a takeaway tonight.",
+                "uk": "У записі звучить I want to order a takeaway tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to order a takeaway tonight.",
+                "uk": "У записі звучить I want to order a takeaway tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i06:r1",
+            "text": "to order"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i06:r2",
+            "text": "to ordering"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i06:r3",
+            "text": "for order"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ a takeaway tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i06:r1",
+              "text": "to order"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i06:r2",
+              "text": "to ordering"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i06:r3",
+              "text": "for order"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:word:have-a-snack",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — have a snack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:have-a-snack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — have a snack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:have-a-snack:audio",
+            "transcript": "have a snack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:have-a-snack:r1",
+              "targetText": "have a snack",
+              "meaningByLocale": {
+                "ru": "перекусить.",
+                "uk": "перекусити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "have a snack",
+            "definitionByLocale": {
+              "ru": "перекусить.",
+              "uk": "перекусити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу перекусити».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу перекусити».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to have a snack.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу перекусить».",
+            "uk": "Скажіть: «Я хочу перекусити»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "have",
+            "a",
+            "snack"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i08:r1",
+            "text": "I want to have a snack."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i08:r2",
+            "text": "We want to have a snack."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i08:r3",
+            "text": "They want to have a snack."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i08:audio",
+            "transcript": "I want to have a snack."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i08:r1",
+              "targetText": "I want to have a snack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i08:r2",
+              "targetText": "We want to have a snack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i08:r3",
+              "targetText": "They want to have a snack.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to have a snack.",
+                "uk": "У записі звучить I want to have a snack."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want to have a snack.",
+                "uk": "У записі звучить I want to have a snack."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i09:r1",
+            "text": "to have"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i09:r2",
+            "text": "to having"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i09:r3",
+            "text": "for have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I want ___ a snack.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i09:r1",
+              "text": "to have"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i09:r2",
+              "text": "to having"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i09:r3",
+              "text": "for have"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:word:skip-breakfast",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — skip breakfast",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:word:skip-breakfast:audio"
+        ],
+        "accessibilityLabel": "Картка слова — skip breakfast",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:word:skip-breakfast:audio",
+            "transcript": "skip breakfast"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:word:skip-breakfast:r1",
+              "targetText": "skip breakfast",
+              "meaningByLocale": {
+                "ru": "пропустить завтрак.",
+                "uk": "пропустити сніданок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skip breakfast",
+            "definitionByLocale": {
+              "ru": "пропустить завтрак.",
+              "uk": "пропустити сніданок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я не хочу пропускати сніданок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я не хочу пропускати сніданок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I do not want to skip breakfast.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я не хочу пропускать завтрак».",
+            "uk": "Скажіть: «Я не хочу пропускати сніданок»."
+          },
+          "orderedTokens": [
+            "I",
+            "do",
+            "not",
+            "want",
+            "to",
+            "skip",
+            "breakfast"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i11:r1",
+            "text": "I do not want to skip breakfast."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i11:r2",
+            "text": "We do not want to skip breakfast."
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i11:r3",
+            "text": "They do not want to skip breakfast."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i11:audio",
+            "transcript": "I do not want to skip breakfast."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-48:i11:r1",
+              "targetText": "I do not want to skip breakfast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i11:r2",
+              "targetText": "We do not want to skip breakfast.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i11:r3",
+              "targetText": "They do not want to skip breakfast.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to skip breakfast.",
+                "uk": "У записі звучить I do not want to skip breakfast."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I do not want to skip breakfast.",
+                "uk": "У записі звучить I do not want to skip breakfast."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після want або need.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-48:i12:r1",
+            "text": "to skip"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i12:r2",
+            "text": "to skipping"
+          },
+          {
+            "responseId": "en:lesson-21:session-48:i12:r3",
+            "text": "for skip"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після want або need.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после want или need.",
+            "uk": "Виберіть форму після want або need."
+          },
+          "gappedTargetPhrase": "I do not want ___ breakfast.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-48:i12:r1",
+              "text": "to skip"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i12:r2",
+              "text": "to skipping"
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i12:r3",
+              "text": "for skip"
+            }
+          ],
+          "testedDimension": "Виберіть форму після want або need.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після want або need.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед глаголом нужно to, не for.",
+                "uk": "Тут перед дієсловом потрібне to, не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-48:i13:p1",
+              "target": "cook from scratch",
+              "meaningByLocale": {
+                "ru": "готовить с нуля",
+                "uk": "готувати з нуля"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-48:i13:p2",
+              "target": "order a takeaway",
+              "meaningByLocale": {
+                "ru": "заказать готовую еду с собой или на дом",
+                "uk": "замовити готову їжу із собою або додому"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-48:i13:p3",
+              "target": "have a snack",
+              "meaningByLocale": {
+                "ru": "перекусить",
+                "uk": "перекусити"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-48:i13:p4",
+              "target": "skip breakfast",
+              "meaningByLocale": {
+                "ru": "пропустить завтрак",
+                "uk": "пропустити сніданок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cook from scratch",
+            "order a takeaway",
+            "have a snack",
+            "skip breakfast"
+          ],
+          "rightColumn": [
+            "готувати з нуля",
+            "замовити готову їжу із собою або додому",
+            "перекусити",
+            "пропустити сніданок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: попросити перевірити",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: попросити перевірити",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: спілкування",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: спілкування",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я хочу перекусити зараз»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я хочу перекусити зараз»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i16:audio",
+            "transcript": "I want to have a snack now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to have a snack now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я не хочу замовляти готову їжу додому»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я не хочу замовляти готову їжу додому»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-48:i17:audio",
+            "transcript": "I do not want to order a takeaway."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I do not want to order a takeaway.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-48:word:cook-from-scratch",
+      "correctText": "cook from scratch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i01",
+      "correctText": "I want to cook from scratch today.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i02",
+      "correctText": "I want to cook from scratch today.",
+      "correctResponseId": "en:lesson-21:session-48:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i03",
+      "correctText": "to cook",
+      "correctResponseId": "en:lesson-21:session-48:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:word:order-a-takeaway",
+      "correctText": "order a takeaway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i04",
+      "correctText": "I want to order a takeaway tonight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i05",
+      "correctText": "I want to order a takeaway tonight.",
+      "correctResponseId": "en:lesson-21:session-48:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i06",
+      "correctText": "to order",
+      "correctResponseId": "en:lesson-21:session-48:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:word:have-a-snack",
+      "correctText": "have a snack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i07",
+      "correctText": "I want to have a snack.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i08",
+      "correctText": "I want to have a snack.",
+      "correctResponseId": "en:lesson-21:session-48:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i09",
+      "correctText": "to have",
+      "correctResponseId": "en:lesson-21:session-48:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:word:skip-breakfast",
+      "correctText": "skip breakfast",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i10",
+      "correctText": "I do not want to skip breakfast.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i11",
+      "correctText": "I do not want to skip breakfast.",
+      "correctResponseId": "en:lesson-21:session-48:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i12",
+      "correctText": "to skip",
+      "correctResponseId": "en:lesson-21:session-48:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i14",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i15",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i16",
+      "correctText": "I want to have a snack now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-48:i17",
+      "correctText": "I do not want to order a takeaway.",
+      "correctResponseId": null
+    }
+  ]
+}

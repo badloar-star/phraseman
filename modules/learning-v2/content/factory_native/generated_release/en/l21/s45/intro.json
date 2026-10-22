@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "want / need + to-infinitive",
+    "uk": "want / need + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Успеть на автобус",
+        "uk": "Встигнути на автобус"
+      },
+      "bodyByLocale": {
+        "ru": "Catch the bus — успеть на автобус и сесть в него. Catch здесь не означает ловить автобус руками. Вы говорите, что хотите уехать этим автобусом. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Catch the bus — встигнути на автобус і сісти в нього. Catch тут не означає ловити автобус руками. Ви кажете, що хочете поїхати цим автобусом. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-45:intro1:r1",
+              "text": "I want to catch the bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro1:r2",
+              "text": "I want to catching the bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro1:r3",
+              "text": "I want for catch the bus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-45:intro1:r1",
+              "text": "I want to catch the bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro1:r2",
+              "text": "I want to catching the bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro1:r3",
+              "text": "I want for catch the bus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пересесть и не проехать остановку",
+        "uk": "Пересісти й не проїхати зупинку"
+      },
+      "bodyByLocale": {
+        "ru": "Change trains — пересесть на другой поезд. Miss my stop — проехать свою остановку; miss your stop относится к собеседнику. Это отличается от miss the bus — опоздать на автобус. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Change trains — пересісти на інший потяг. Miss my stop — проїхати свою зупинку; miss your stop стосується співрозмовника. Це відрізняється від miss the bus — запізнитися на автобус. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-45:intro2:r1",
+              "text": "I need to change trains here."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro2:r2",
+              "text": "I need to changing trains here."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro2:r3",
+              "text": "I need for change trains here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-45:intro2:r1",
+              "text": "I need to change trains here."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro2:r2",
+              "text": "I need to changing trains here."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro2:r3",
+              "text": "I need for change trains here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить расписание",
+        "uk": "Перевірити розклад"
+      },
+      "bodyByLocale": {
+        "ru": "Check the timetable — проверить расписание транспорта. Вы смотрите, во сколько отправляется нужный автобус или поезд. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Check the timetable — перевірити розклад транспорту. Ви дивитеся, о котрій відправляється потрібний автобус або потяг. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-45:intro3:r1",
+              "text": "I need to check the timetable."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro3:r2",
+              "text": "I need to checking the timetable."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro3:r3",
+              "text": "I need for check the timetable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-45:intro3:r1",
+              "text": "I need to check the timetable."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro3:r2",
+              "text": "I need to checking the timetable."
+            },
+            {
+              "responseId": "en:lesson-21:session-45:intro3:r3",
+              "text": "I need for check the timetable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7514b5c1785c35196eb2176771018d2a5b621bc86ec3af99c88a32a6676a4a70"
+}

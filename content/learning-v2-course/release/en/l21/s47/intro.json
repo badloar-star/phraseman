@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "want / need + to-infinitive",
+    "uk": "want / need + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Накрыть на стол",
+        "uk": "Накрити на стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Set the table — накрыть на стол: поставить тарелки, разложить приборы. Это подготовка к еде. Clear the table, которое вы уже знаете, — убрать со стола после еды. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Set the table — накрити на стіл: поставити тарілки, розкласти прибори. Це підготовка до їжі. Clear the table, яке ви вже знаєте, — прибрати зі столу після їжі. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-47:intro1:r1",
+              "text": "I need to set the table."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro1:r2",
+              "text": "I need to setting the table."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro1:r3",
+              "text": "I need for set the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-47:intro1:r1",
+              "text": "I need to set the table."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro1:r2",
+              "text": "I need to setting the table."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro1:r3",
+              "text": "I need for set the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посуда и мусор",
+        "uk": "Посуд і сміття"
+      },
+      "bodyByLocale": {
+        "ru": "Do the washing-up — помыть посуду. Это британское выражение; washing-up здесь не стирка одежды. Take out the rubbish — вынести мусор из дома. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Do the washing-up — помити посуд. Це британський вираз; washing-up тут не прання одягу. Take out the rubbish — винести сміття з дому. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-47:intro2:r1",
+              "text": "I need to do the washing-up."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro2:r2",
+              "text": "I need to doing the washing-up."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro2:r3",
+              "text": "I need for do the washing-up."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-47:intro2:r1",
+              "text": "I need to do the washing-up."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro2:r2",
+              "text": "I need to doing the washing-up."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro2:r3",
+              "text": "I need for do the washing-up."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поставить чайник",
+        "uk": "Поставити чайник"
+      },
+      "bodyByLocale": {
+        "ru": "Put the kettle on — поставить чайник, начать нагревать воду для чая или кофе. Так говорят и об электрическом чайнике: важно включить нагрев, а не просто передвинуть чайник. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
+        "uk": "Put the kettle on — поставити чайник, почати нагрівати воду для чаю або кави. Так кажуть і про електричний чайник: важливо ввімкнути нагрів, а не просто переставити чайник. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-47:intro3:r1",
+              "text": "I want to put the kettle on."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro3:r2",
+              "text": "I want to putting the kettle on."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro3:r3",
+              "text": "I want for put the kettle on."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-47:intro3:r1",
+              "text": "I want to put the kettle on."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro3:r2",
+              "text": "I want to putting the kettle on."
+            },
+            {
+              "responseId": "en:lesson-21:session-47:intro3:r3",
+              "text": "I want for put the kettle on."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2e0da81704248368815bd37a993ac10773ff91069f6032ca813562009ce3976f"
+}

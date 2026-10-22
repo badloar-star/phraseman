@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-47:word:set-the-table",
+    "correctText": "set the table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i01",
+    "correctText": "I need to set the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i02",
+    "correctText": "I need to set the table.",
+    "correctResponseId": "en:lesson-21:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i03",
+    "correctText": "to set",
+    "correctResponseId": "en:lesson-21:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:word:do-the-washing-up",
+    "correctText": "do the washing-up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i04",
+    "correctText": "I need to do the washing-up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i05",
+    "correctText": "I need to do the washing-up.",
+    "correctResponseId": "en:lesson-21:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i06",
+    "correctText": "to do",
+    "correctResponseId": "en:lesson-21:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:word:take-out-the-rubbish",
+    "correctText": "take out the rubbish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i07",
+    "correctText": "I need to take out the rubbish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i08",
+    "correctText": "I need to take out the rubbish.",
+    "correctResponseId": "en:lesson-21:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i09",
+    "correctText": "to take",
+    "correctResponseId": "en:lesson-21:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:word:put-the-kettle-on",
+    "correctText": "put the kettle on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i10",
+    "correctText": "I want to put the kettle on.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i11",
+    "correctText": "I want to put the kettle on.",
+    "correctResponseId": "en:lesson-21:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i12",
+    "correctText": "to put",
+    "correctResponseId": "en:lesson-21:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i13",
+    "correctText": "en:lesson-21:session-47:i13:p1=set the table\nen:lesson-21:session-47:i13:p2=do the washing-up\nen:lesson-21:session-47:i13:p3=take out the rubbish\nen:lesson-21:session-47:i13:p4=put the kettle on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i16",
+    "correctText": "I want to set the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-47:i17",
+    "correctText": "I need to put the kettle on.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-47:word:set-the-table",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — set the table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:word:set-the-table:audio"
+      ],
+      "accessibilityLabel": "Картка слова — set the table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:word:set-the-table:audio",
+          "transcript": "set the table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:word:set-the-table:r1",
+            "targetText": "set the table",
+            "meaningByLocale": {
+              "ru": "накрыть на стол.",
+              "uk": "накрити на стіл."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "set the table",
+          "definitionByLocale": {
+            "ru": "накрыть на стол.",
+            "uk": "накрити на стіл."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно накрити на стіл».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно накрити на стіл».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to set the table.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно накрыть на стол».",
+          "uk": "Скажіть: «Мені потрібно накрити на стіл»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "set",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i02:r1",
+          "text": "I need to set the table."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i02:r2",
+          "text": "We need to set the table."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i02:r3",
+          "text": "They need to set the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i02:audio",
+          "transcript": "I need to set the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:i02:r1",
+            "targetText": "I need to set the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i02:r2",
+            "targetText": "We need to set the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i02:r3",
+            "targetText": "They need to set the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to set the table.",
+              "uk": "У записі звучить I need to set the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to set the table.",
+              "uk": "У записі звучить I need to set the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i03:r1",
+          "text": "to set"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i03:r2",
+          "text": "to setting"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i03:r3",
+          "text": "for set"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-47:i03:r1",
+            "text": "to set"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i03:r2",
+            "text": "to setting"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i03:r3",
+            "text": "for set"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:word:do-the-washing-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — do the washing-up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:word:do-the-washing-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — do the washing-up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:word:do-the-washing-up:audio",
+          "transcript": "do the washing-up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:word:do-the-washing-up:r1",
+            "targetText": "do the washing-up",
+            "meaningByLocale": {
+              "ru": "помыть посуду.",
+              "uk": "помити посуд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "do the washing-up",
+          "definitionByLocale": {
+            "ru": "помыть посуду.",
+            "uk": "помити посуд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно помити посуд».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно помити посуд».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to do the washing-up.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно помыть посуду».",
+          "uk": "Скажіть: «Мені потрібно помити посуд»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "do",
+          "the",
+          "washing-up"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i05:r1",
+          "text": "I need to do the washing-up."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i05:r2",
+          "text": "We need to do the washing-up."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i05:r3",
+          "text": "They need to do the washing-up."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i05:audio",
+          "transcript": "I need to do the washing-up."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:i05:r1",
+            "targetText": "I need to do the washing-up.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i05:r2",
+            "targetText": "We need to do the washing-up.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i05:r3",
+            "targetText": "They need to do the washing-up.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to do the washing-up.",
+              "uk": "У записі звучить I need to do the washing-up."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to do the washing-up.",
+              "uk": "У записі звучить I need to do the washing-up."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i06:r1",
+          "text": "to do"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i06:r2",
+          "text": "to doing"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i06:r3",
+          "text": "for do"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ the washing-up.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-47:i06:r1",
+            "text": "to do"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i06:r2",
+            "text": "to doing"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i06:r3",
+            "text": "for do"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:word:take-out-the-rubbish",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take out the rubbish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:word:take-out-the-rubbish:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take out the rubbish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:word:take-out-the-rubbish:audio",
+          "transcript": "take out the rubbish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:word:take-out-the-rubbish:r1",
+            "targetText": "take out the rubbish",
+            "meaningByLocale": {
+              "ru": "вынести мусор.",
+              "uk": "винести сміття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take out the rubbish",
+          "definitionByLocale": {
+            "ru": "вынести мусор.",
+            "uk": "винести сміття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібно винести сміття».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібно винести сміття».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to take out the rubbish.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно вынести мусор».",
+          "uk": "Скажіть: «Мені потрібно винести сміття»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "take",
+          "out",
+          "the",
+          "rubbish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i08:r1",
+          "text": "I need to take out the rubbish."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i08:r2",
+          "text": "We need to take out the rubbish."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i08:r3",
+          "text": "They need to take out the rubbish."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i08:audio",
+          "transcript": "I need to take out the rubbish."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:i08:r1",
+            "targetText": "I need to take out the rubbish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i08:r2",
+            "targetText": "We need to take out the rubbish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i08:r3",
+            "targetText": "They need to take out the rubbish.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to take out the rubbish.",
+              "uk": "У записі звучить I need to take out the rubbish."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need to take out the rubbish.",
+              "uk": "У записі звучить I need to take out the rubbish."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i09:r1",
+          "text": "to take"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i09:r2",
+          "text": "to taking"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i09:r3",
+          "text": "for take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I need ___ out the rubbish.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-47:i09:r1",
+            "text": "to take"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i09:r2",
+            "text": "to taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i09:r3",
+            "text": "for take"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:word:put-the-kettle-on",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — put the kettle on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:word:put-the-kettle-on:audio"
+      ],
+      "accessibilityLabel": "Картка слова — put the kettle on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:word:put-the-kettle-on:audio",
+          "transcript": "put the kettle on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:word:put-the-kettle-on:r1",
+            "targetText": "put the kettle on",
+            "meaningByLocale": {
+              "ru": "поставить чайник.",
+              "uk": "поставити чайник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "put the kettle on",
+          "definitionByLocale": {
+            "ru": "поставить чайник.",
+            "uk": "поставити чайник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу поставити чайник».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу поставити чайник».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to put the kettle on.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу поставить чайник».",
+          "uk": "Скажіть: «Я хочу поставити чайник»."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "put",
+          "the",
+          "kettle",
+          "on"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i11:r1",
+          "text": "I want to put the kettle on."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i11:r2",
+          "text": "We want to put the kettle on."
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i11:r3",
+          "text": "They want to put the kettle on."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i11:audio",
+          "transcript": "I want to put the kettle on."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-47:i11:r1",
+            "targetText": "I want to put the kettle on.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i11:r2",
+            "targetText": "We want to put the kettle on.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i11:r3",
+            "targetText": "They want to put the kettle on.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to put the kettle on.",
+              "uk": "У записі звучить I want to put the kettle on."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to put the kettle on.",
+              "uk": "У записі звучить I want to put the kettle on."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після want або need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-47:i12:r1",
+          "text": "to put"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i12:r2",
+          "text": "to putting"
+        },
+        {
+          "responseId": "en:lesson-21:session-47:i12:r3",
+          "text": "for put"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після want або need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после want или need.",
+          "uk": "Виберіть форму після want або need."
+        },
+        "gappedTargetPhrase": "I want ___ the kettle on.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-47:i12:r1",
+            "text": "to put"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i12:r2",
+            "text": "to putting"
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i12:r3",
+            "text": "for put"
+          }
+        ],
+        "testedDimension": "Виберіть форму після want або need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "После to в этой конструкции нужен глагол без -ing.",
+              "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після want або need.",
+            "feedbackByLocale": {
+              "ru": "Здесь перед глаголом нужно to, не for.",
+              "uk": "Тут перед дієсловом потрібне to, не for."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-47:i13:p1",
+            "target": "set the table",
+            "meaningByLocale": {
+              "ru": "накрыть на стол",
+              "uk": "накрити на стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-47:i13:p2",
+            "target": "do the washing-up",
+            "meaningByLocale": {
+              "ru": "помыть посуду",
+              "uk": "помити посуд"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-47:i13:p3",
+            "target": "take out the rubbish",
+            "meaningByLocale": {
+              "ru": "вынести мусор",
+              "uk": "винести сміття"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-47:i13:p4",
+            "target": "put the kettle on",
+            "meaningByLocale": {
+              "ru": "поставить чайник",
+              "uk": "поставити чайник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "set the table",
+          "do the washing-up",
+          "take out the rubbish",
+          "put the kettle on"
+        ],
+        "rightColumn": [
+          "накрити на стіл",
+          "помити посуд",
+          "винести сміття",
+          "поставити чайник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу накрити на стіл»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу накрити на стіл»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i16:audio",
+          "transcript": "I want to set the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to set the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Мені потрібно поставити чайник»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Мені потрібно поставити чайник»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-47:i17:audio",
+          "transcript": "I need to put the kettle on."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to put the kettle on.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c3a445d27a0a8c8b7e325240bef5029ed2b9a6280e92ec64324d3a41047f5709"
+}

@@ -52,11 +52,13 @@ type Props = Readonly<{
   onPress?: () => void;
   testID?: string;
   accessibilityLabel?: string;
+  /** Верх цвета сцены под кнопкой (Главная, «Диалоги», обложка Сезона): круг и значок подбираются по яркости сцены. Место и размер не меняются. */
+  sceneTop?: string;
 }>;
 
 type BaseProps = Props & Readonly<{ glyph: 'back' | 'close' }>;
 
-function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibilityLabel, glyph }: BaseProps) {
+function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibilityLabel, glyph, sceneTop }: BaseProps) {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const isTabPage = useIsTabPage();
@@ -87,6 +89,7 @@ function ScreenBackButtonBase({ screen, fallback, onPress, testID, accessibility
         onPress={handlePress}
         size={SCREEN_BACK_SIZE}
         glyph={glyph}
+        sceneTop={sceneTop}
         testID={testID}
         accessibilityLabel={accessibilityLabel}
       />

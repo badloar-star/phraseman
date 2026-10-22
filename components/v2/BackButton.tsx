@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
+import { backOnSceneTokens } from './back_on_scene';
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 import PressableHybrid from '../PressableHybrid';
@@ -26,13 +27,22 @@ type Props = Readonly<{
   size?: number;
   /** Знак: стрелка «назад» или ✕ «закрыть» (владелец 22.10, вариант В: круг и место те же, меняется только знак). */
   glyph?: 'back' | 'close';
+  /**
+   * Верхний цвет сцены под кнопкой (#rrggbb): Главная, «Диалоги», обложка Сезона. Есть — круг и значок по яркости сцены (back_on_scene.ts);
+   * нет — прежний buttonFill страницы.
+   */
+  sceneTop?: string;
 }>;
 
 const CLOSE_LABELS = { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' } as const;
 
-function BackButtonBase({ onPress, screen, accessibilityLabel, testID, size = 44, glyph = 'back' }: Props) {
+function BackButtonBase({ onPress, screen, accessibilityLabel, testID, size = 44, glyph = 'back', sceneTop }: Props) {
   const { lang } = useLang();
   const g = useLv2Glass();
+  // зачем (🟡 координатор 22.10, g.backOnScene): на сцене фон другой, чем у страницы, — заливка buttonFill там сливалась; цвет считается от верха сцены, место и размер те же
+  const onScene = useMemo(() => (sceneTop ? backOnSceneTokens({ sceneTop, mediaInk: g.mediaInk, text: g.text }) : null), [sceneTop, g.mediaInk, g.text]);
+  const fill = onScene?.fill ?? g.buttonFill;
+  const ink = onScene?.ink ?? g.text;
   const handlePress = useCallback(() => {
     noteBackTap(screen, 'BackButton');
     onPress();
@@ -51,11 +61,11 @@ function BackButtonBase({ onPress, screen, accessibilityLabel, testID, size = 44
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: size / 2,
-        backgroundColor: g.buttonFill,
+        backgroundColor: fill,
         boxShadow: nestedBoxShadow(g),
       }}
     >
-      {glyph === 'close' ? <CloseGlyph size={22} color={g.text} /> : <BackGlyph size={22} color={g.text} />}
+      {glyph === 'close' ? <CloseGlyph size={22} color={ink} /> : <BackGlyph size={22} color={ink} />}
     </PressableHybrid>
   );
 }

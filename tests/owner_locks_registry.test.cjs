@@ -28,6 +28,7 @@ const KNOWN_GUARDS = [
   'tests/learning_v2_not_from_start_once_v1.test.ts',
   'tests/v2_screens_color_literals_ratchet.test.mjs',
   'tests/theme_semantic_follows_current_theme.test.ts',
+  'tests/theme_switch_clears_dev_override.test.tsx',
 ];
 
 // Любой способ выключить тест по тексту файла: jest (skip/x*/todo/only) и node:test ({ skip }, { todo }, t.skip()).

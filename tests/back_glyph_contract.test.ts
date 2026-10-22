@@ -51,12 +51,14 @@ describe('значок «назад»: один контур — как в ма�
 
   it('общая кнопка BackButton: заливка buttonFill (не сливается ни с одной темой), зона 44 + hitSlop, журнал [BACK-BTN]; «Сегодня» использует её', () => {
     const btn = read('components/v2/BackButton.tsx');
-    expect(btn).toContain('backgroundColor: g.buttonFill');
+    // зачем (g.backOnScene 22.10): на странице заливка прежняя buttonFill, на сцене — по яркости сцены (back_on_scene.ts)
+    expect(btn).toContain('onScene?.fill ?? g.buttonFill');
+    expect(btn).toContain('backgroundColor: fill');
     expect(btn).not.toMatch(/backgroundColor:\s*g\.opaqueControl/);
     expect(btn).toContain('size = 44');
     expect(btn).toContain('hitSlop={6}');
     expect(btn).toContain("noteBackTap(screen, 'BackButton')");
-    expect(btn).toContain('<BackGlyph size={22} color={g.text} />');
+    expect(btn).toContain('<BackGlyph size={22} color={ink} />');
     // Темы 17.10: круг на p.control сливался со страницей (1,00 на светлых, 1,25 на тёмных при пороге 1,5)
     const today = read('app/today_tasks.tsx');
     // 22.10 (закон владельца «назад в одном месте»): «Сегодня» берёт общую ScreenBackButton — внутри неё та же BackButton

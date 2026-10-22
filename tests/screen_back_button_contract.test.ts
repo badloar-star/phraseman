@@ -121,7 +121,9 @@ describe('кнопка «назад»: одна и в одном месте', ()
     const close = /export const CLOSE_GLYPH_PATH = '([^']+)'/.exec(glyphs)?.[1];
     expect(close).toBeTruthy();
     expect(kit).toContain(`close: '<path d="${close}"/>'`);
-    expect(read('components/v2/BackButton.tsx')).toContain("{glyph === 'close' ? <CloseGlyph size={22} color={g.text} /> : <BackGlyph size={22} color={g.text} />}");
+    // зачем (g.backOnScene 22.10): цвет значка — g.text на странице, по яркости сцены на сцене; размер и контур прежние
+    expect(read('components/v2/BackButton.tsx')).toContain("{glyph === 'close' ? <CloseGlyph size={22} color={ink} /> : <BackGlyph size={22} color={ink} />}");
+    expect(read('components/v2/BackButton.tsx')).toContain('onScene?.ink ?? g.text');
   });
 
   it('свой значок ✕ на экранах app/** — только в базе config/screen_close_baseline.json; база только уменьшается', () => {

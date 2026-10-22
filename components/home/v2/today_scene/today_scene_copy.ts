@@ -36,7 +36,7 @@ type Words = Readonly<Record<'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' |
 const tri = (lang: Lang, w: Words): string => triLang(lang, w);
 
 // «N из M»
-function ofLine(lang: Lang, n: number, m: number): string {
+export function ofLine(lang: Lang, n: number, m: number): string {
   return tri(lang, { ru: `${n} из ${m}`, uk: `${n} з ${m}`, en: `${n} of ${m}`, es: `${n} de ${m}`, 'pt-BR': `${n} de ${m}`, vi: `${n}/${m}`, id: `${n} dari ${m}`, tr: `${n} / ${m}`, pl: `${n} z ${m}` });
 }
 

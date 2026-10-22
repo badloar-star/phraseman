@@ -669,12 +669,13 @@ function DailyPhraseCard({
               картинка сама служит иконкой-цитатой, без второго графического слоя. */}
           <Image source={phraseArt} style={styles.v2Art} contentFit="contain" accessible={false} />
           <View style={styles.v2Copy}>
-            <Text style={[styles.v2Kicker, { color: v2.textSecondary }]}>{title.toUpperCase()}</Text>
+            <Text style={[styles.v2Kicker, { color: v2.textSecondary }]}>{title}</Text>
             <Text style={[styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>
             {cardLiteral ? (
               <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{cardLiteral}</Text>
             ) : null}
           </View>
+          <Ionicons name="chevron-forward" size={18} color={v2.textSecondary} accessible={false} />
           {/* зачем (владелец через координатора 18.10): на карточке «Фраза дня» нет ни звезды (сохранить), ни «Озвучить» — они есть, когда фразу открывают (шторка). Карточка целиком нажимается и открывает фразу. */}
         </Pressable>
         ) : (
@@ -1082,13 +1083,14 @@ const styles = StyleSheet.create({
     gap: 12,
     overflow: 'hidden',
   },
-  v2Art: { position: 'absolute', right: 8, top: 4, width: 72, height: 72 },
+  // зачем (владелец 22.10, scenes-compact в.2 `.pod`; снимок Сверки home3): картинка слева 52×52 в потоке, подпись обычным регистром, справа шеврон — карточка с картинкой, как в макете
+  v2Art: { width: 52, height: 52 },
   v2Quote: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   v2QuoteMark: { fontSize: 30, lineHeight: 36, fontWeight: '800', marginTop: 6 },
   // зачем (18.10): кнопок справа от текста больше нет — запас под арт (72 + 8 справа) вместо 122; minHeight карточки 80 держит высоту ровной
-  v2Copy: { flex: 1, minWidth: 0, paddingRight: 80 },
-  v2Kicker: { ...V2_TYPE.overline },
-  v2Phrase: { fontSize: 19, lineHeight: 23, fontWeight: '800', letterSpacing: -0.3, marginTop: 2 },
+  v2Copy: { flex: 1, minWidth: 0 },
+  v2Kicker: { fontSize: 13, lineHeight: 17 },
+  v2Phrase: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 2 },
   v2Translation: { ...V2_TYPE.body, marginTop: 1 },
   placeholder: {
     minHeight: 88,

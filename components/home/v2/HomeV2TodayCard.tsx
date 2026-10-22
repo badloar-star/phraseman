@@ -9,6 +9,7 @@ import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
+import { plateBoxShadow, useShadowGlass } from '../../v2/ShadowSurface';
 import HomeV2SeeAllButton from './HomeV2SeeAllButton';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -31,6 +32,8 @@ type Props = {
   seeAll?: Readonly<{ label: string; onPress: () => void }> | null;
   /** Цвет отметки выполненной строки по индексу (цвета колец на экране «Сегодня»); нет — нейтральный. */
   doneColors?: readonly string[] | null;
+  /** зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): «Сцена» Главной — белая карточка r28 с заголовком «Сегодня · N из M» внутри, строки без плашек, разделители тонкой линией. */
+  scene?: Readonly<{ count: string }> | null;
 };
 
 /**
@@ -52,6 +55,7 @@ export default function HomeV2TodayCard(props: Props) {
 
 function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
   if (a.title !== b.title || a.latestRef !== b.latestRef) return false;
+  if ((a.scene?.count ?? null) !== (b.scene?.count ?? null)) return false;
   if ((a.surveyRow?.title ?? null) !== (b.surveyRow?.title ?? null) || (a.surveyRow?.subtitle ?? null) !== (b.surveyRow?.subtitle ?? null)) return false;
   if ((a.seeAll?.label ?? null) !== (b.seeAll?.label ?? null)) return false;
   const ac = a.doneColors ?? [];
@@ -66,13 +70,68 @@ function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
 
 type ViewProps = Props & Readonly<{ latestRef: React.MutableRefObject<Props> }>;
 
-const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, surveyRow, seeAll, doneColors, latestRef }: ViewProps) {
+const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, surveyRow, seeAll, doneColors, scene, latestRef }: ViewProps) {
   useRenderCause('home:today', () => ({ title, tasks, surveyRow, seeAll, doneColors }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);
   const ringsScreenOn = useMomentsV3Enabled();
   const seeAllShown = ringsScreenOn ? seeAll : null;
+  const g = useShadowGlass();
+  if (scene && title !== null) {
+    return (
+      <View testID="home-v2-today" style={[s.sceneCard, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}>
+        <View style={s.sceneHead}>
+          <Text accessibilityRole="header" style={[s.sceneTitle, { color: g.text }]}>{title}</Text>
+          <Text style={[s.sceneCount, { color: g.secondary }]}>{scene.count}</Text>
+          {seeAllShown ? <HomeV2SeeAllButton testID="home-v2-today-see-all" label={seeAllShown.label} onPress={() => latestRef.current.seeAll?.onPress()} rowHeight={17} /> : null}
+        </View>
+        {tasks.map((task, index) => {
+          const doneColor = doneColors?.[index] ?? g.good;
+          const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
+          return (
+            <V2Pressable
+              key={task.id}
+              testID={`home-v2-today-${task.kind}`}
+              accessibilityRole="button"
+              accessibilityState={{ checked: task.done }}
+              accessibilityLabel={`${task.title}${task.subtitle ? `. ${task.subtitle}` : ''}. ${counter}`}
+              onPress={() => {
+                console.log('[TODAY-TASKS] route', JSON.stringify({ kind: task.kind, route: task.route, done: task.done, progress: task.progress, target: task.target, scene: true }));
+                latestRef.current.onOpenTask(task);
+              }}
+              scaleTo={0.98}
+              style={[s.sceneRow, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` } : null]} // shadow-ok: разделитель строк (линия сверху, не обводка контейнера)
+            >
+              <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name={KIND_ICON[task.kind]} size={18} color={g.text} /></View>
+              <View style={s.copy}>
+                <Text style={[s.taskTitle, { color: g.text }]}>{task.title}</Text>
+                {task.subtitle ? <Text style={[s.taskSubtitle, { color: g.secondary }]}>{task.subtitle}</Text> : null}
+              </View>
+              {task.done ? <Ionicons name="checkmark" size={18} color={doneColor} /> : <Text style={[s.counter, { color: g.secondary }]}>{counter}</Text>}
+            </V2Pressable>
+          );
+        })}
+        {surveyRow ? (
+          <V2Pressable
+            testID="home-v2-today-survey"
+            accessibilityRole="button"
+            accessibilityLabel={`${surveyRow.title}${surveyRow.subtitle ? `. ${surveyRow.subtitle}` : ''}`}
+            onPress={() => latestRef.current.surveyRow?.onPress()}
+            scaleTo={0.98}
+            style={[s.sceneRow, { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` }]} // shadow-ok: разделитель строк
+          >
+            <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={g.text} /></View>
+            <View style={s.copy}>
+              <Text numberOfLines={1} style={[s.taskTitle, { color: g.text }]}>{surveyRow.title}</Text>
+              {surveyRow.subtitle ? <Text numberOfLines={1} style={[s.taskSubtitle, { color: g.secondary }]}>{surveyRow.subtitle}</Text> : null}
+            </View>
+            <Ionicons name="chevron-forward" size={16} color={g.secondary} />
+          </V2Pressable>
+        ) : null}
+      </View>
+    );
+  }
   return (
     <View testID="home-v2-today" style={[s.card, title === null ? s.cardBare : null]}>
       {title !== null ? (
@@ -155,6 +214,13 @@ const s = StyleSheet.create({
     paddingTop: 16,
   },
   cardBare: { paddingTop: 0 },
+  // зачем (эталон scenes-compact .pn / .rw): карточка r28, поля 14/16/6; заголовок 20/26 700, счётчик 13; строка min 52, значок 36 r12, разделитель — линия сверху
+  sceneCard: { borderRadius: 28, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
+  sceneHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 4 },
+  sceneTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
+  sceneCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
+  sceneRow: { minHeight: 52, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  sceneIcon: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   // зачем (17.10; 18.10): заголовок и кнопка-иконка «Смотреть все» в одну строку — та же кнопка, что у ленты видео (HomeV2SeeAllButton)
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginLeft: 12, marginRight: 8, marginBottom: 12, minHeight: 17 },
   header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6 },

@@ -100,6 +100,7 @@ import HomeV2ContinueCardBase from '../../components/home/v2/HomeV2ContinueCard'
 import HomeV2FeatureTilesBase from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRailBase from '../../components/home/v2/HomeV2VideoRail';
 import HomeV2TodayCardBase from '../../components/home/v2/HomeV2TodayCard';
+import { ofLine as todayOfLine } from '../../components/home/v2/today_scene/today_scene_copy';
 // зачем (владелец 21.10 ~23:40, Главная A «Сцена»): шапка и «Продолжить» сведены в сцену — components/home/v2/scene
 import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/HomeScene';
 import HomeSceneEnergy from '../../components/home/v2/scene/HomeSceneEnergy';
@@ -2579,6 +2580,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeV2TilesReason = homeV2WithSpire ? 'four:all_sections_and_spire'
             : homeV2BaseTiles.length === 3 ? `three:spire_off(surface=${isLearningSurfaceReady(studyTarget, 'spire')},tab=${spireTabEnabled})`
             : `fill:base=${homeV2BaseTiles.map((tile) => tile.key).join('+') || 'none'}`;
+        // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): ряд плиток со «Сценой» — Уроки, Карточки, Диалоги, Пик (порядок макета); без «Сцены» порядок прежний
+        const homeV2TileOrder = ['lessons', 'cards', 'dialogs', 'spire'];
+        const homeV2TilesInOrder: HomeFeatureTile[] = HOME_SCENE_V2_ENABLED
+            ? [...homeV2Tiles].sort((a, b) => (homeV2TileOrder.indexOf(a.key) + 1 || 99) - (homeV2TileOrder.indexOf(b.key) + 1 || 99))
+            : homeV2Tiles;
         // зачем D129: задания только из разделов, видимых для языка обучения
         // (хук уже строит набор из доступных типов; фильтр — страховка при смене языка днём).
         // Подпись урока — название последнего урока, как было в заглушке.
@@ -2586,6 +2592,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           todayTasks.tasks.map((task) => (task.kind === 'lesson' && lastLesson ? { ...task, subtitle: lastLessonName } : task)),
           studyTarget,
         );
+        // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): со «Сценой» в карточке «Сегодня» три строки без «Посмотреть видео»; анкета — 4-й строкой только при активной кампании из админки (Poll V2 на Главной не показываем)
+        const homeTodayCardTasks = HOME_SCENE_V2_ENABLED ? homeV2Tasks.filter((task) => task.kind !== 'video') : homeV2Tasks;
+        const homeTodayTitle = triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' });
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);
         // зачем (Главная A «Сцена»): тот же переход «Продолжить», что у карточки, — одной функцией для карточки и сцены (не две копии логики)
@@ -2781,10 +2790,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             </View>
             )}
             <HomeV2TodayCard
-              title={triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' }).toUpperCase()}
-              tasks={homeV2Tasks}
+              title={HOME_SCENE_V2_ENABLED ? homeTodayTitle : homeTodayTitle.toUpperCase()}
+              scene={HOME_SCENE_V2_ENABLED ? { count: todayOfLine(lang, homeTodayCardTasks.filter((task) => task.done).length, homeTodayCardTasks.length) } : null}
+              tasks={homeTodayCardTasks}
               onOpenTask={(task) => go(task.route)}
-              surveyRow={homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' ? {
+              surveyRow={homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {
                 title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
                 subtitle: triLang(lang, { ru: `${homePollV2.total} вопроса`, uk: `${homePollV2.total} питання`, en: `${homePollV2.total} questions`, es: `${homePollV2.total} preguntas`, 'pt-BR': `${homePollV2.total} perguntas`, vi: `${homePollV2.total} câu hỏi`, id: `${homePollV2.total} pertanyaan`, tr: `${homePollV2.total} soru`, pl: `${homePollV2.total} pytania` }),
                 onPress: () => setHomePollV2Open(true),
@@ -2798,7 +2808,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 },
               }}
             />
-            {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
+            {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2TilesInOrder} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
             {homeDailyPhraseVisible ? (
             <View onLayout={(event: LayoutChangeEvent) => {

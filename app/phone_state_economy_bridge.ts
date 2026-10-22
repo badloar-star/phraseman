@@ -247,9 +247,48 @@ type NonMonetaryEconomyGrantInput = Readonly<{
 // зачем (координатор 22.10, «сперва логи»): отказ моста для star_credit останавливал ВСЮ очередь
 // начислений монет молча — после клеймов наград телефон ни разу не позвал сервер, и причину не видно.
 // Каждый отказ пишет причину и значения, которые её решили. Условия прежние.
-function refuseStarCredit(reason: string, fields: Readonly<Record<string, unknown>>): false {
+function refuseStarCredit(reason: string, fields: Readonly<Record<string, unknown>>, ownerStableId?: string): false {
   console.warn('[COIN-WALLET] phone_state_commit_refused', JSON.stringify({ reason, ...fields }));
+  reportStarCreditRefusalOnce(reason, fields, ownerStableId);
   return false;
+}
+
+// зачем (владелец 22.10 «ДА», через координатора): у живых людей консоль нам не видна — причина отказа уходит
+// одной строкой в app_errors. Только причина, значения проверок, источник операции и короткий хэш владельца;
+// uid и почты в строке нет (префиксы id отфильтрованы). Не чаще раза на причину за запуск; app_health грузится лениво.
+const reportedStarCreditRefusals = new Set<string>();
+
+function shortOwnerHash(value: string): string {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash.toString(16).padStart(8, '0');
+}
+
+function reportStarCreditRefusalOnce(reason: string, fields: Readonly<Record<string, unknown>>, ownerStableId?: string): void {
+  if (reportedStarCreditRefusals.has(reason)) return;
+  reportedStarCreditRefusals.add(reason);
+  const op = typeof fields.op === 'string' ? fields.op : '';
+  const tags: Record<string, string | number | boolean | null> = {
+    reason,
+    opSource: op.replace(/^level_spin:/, '').split('_')[0] || null,
+    ownerHash: ownerStableId ? shortOwnerHash(ownerStableId) : null,
+  };
+  for (const [key, value] of Object.entries(fields)) {
+    if (key === 'op' || /owner/i.test(key)) continue;
+    if (typeof value === 'number' || typeof value === 'boolean' || value === null) tags[key] = value;
+  }
+  void import('./app_health') // guard-ok: диагностика, не данные человека; ошибка ловится .catch ниже и пишется в консоль
+    .then(({ logAppError }) => logAppError(
+      'phone_state_economy_bridge:star_credit_refused',
+      new Error(`star_credit_refused:${reason}`),
+      { severity: 'warning', writeToFirestore: true, feature: 'coin_wallet', tags },
+    ))
+    .catch((error: unknown) => {
+      console.warn('[COIN-WALLET] diag_report_failed', JSON.stringify({ reason, message: error instanceof Error ? error.message.slice(0, 120) : String(error) }));
+    });
 }
 
 export async function commitPhoneStateNonMonetaryEconomyGrant(
@@ -258,32 +297,35 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
   const active = runtime;
   if (!active) {
     return input.kind === 'star_credit'
-      ? refuseStarCredit('runtime_missing', { op: input.operationId })
+      ? refuseStarCredit('runtime_missing', { op: input.operationId }, input.expectedOwnerStableId)
       : false;
   }
   if (input.kind === 'star_credit') {
     const op = input.operationId;
+    const refuse = (reason: string, fields: Readonly<Record<string, unknown>>): false => (
+      refuseStarCredit(reason, fields, input.expectedOwnerStableId)
+    );
     const exact = parseLevelSpinStarCreditExactResult(input.exactResult);
-    if (!exact) return refuseStarCredit('exact_parse_failed', { op });
+    if (!exact) return refuse('exact_parse_failed', { op });
     if (input.operationId !== exact.operationId || input.entitlementId !== exact.operationId) {
-      return refuseStarCredit('operation_id_mismatch', { op, exactOp: exact.operationId, entitlementId: input.entitlementId });
+      return refuse('operation_id_mismatch', { op, exactOp: exact.operationId, entitlementId: input.entitlementId });
     }
     if (input.expectedOwnerStableId !== exact.ownerStableId) {
-      return refuseStarCredit('owner_mismatch_exact', { op, expectedOwner: input.expectedOwnerStableId.slice(0, 8), exactOwner: exact.ownerStableId.slice(0, 8) });
+      return refuse('owner_mismatch_exact', { op, expectedOwner: input.expectedOwnerStableId.slice(0, 8), exactOwner: exact.ownerStableId.slice(0, 8) });
     }
     if (active.scope.stableUid !== input.expectedOwnerStableId) {
-      return refuseStarCredit('runtime_owner_mismatch', { op, runtimeOwner: String(active.scope.stableUid).slice(0, 8), expectedOwner: input.expectedOwnerStableId.slice(0, 8) });
+      return refuse('runtime_owner_mismatch', { op, runtimeOwner: String(active.scope.stableUid).slice(0, 8), expectedOwner: input.expectedOwnerStableId.slice(0, 8) });
     }
     if (active.runtimeGeneration !== input.expectedAccountGeneration) {
-      return refuseStarCredit('generation_mismatch', { op, runtimeGeneration: active.runtimeGeneration, expectedGeneration: input.expectedAccountGeneration });
+      return refuse('generation_mismatch', { op, runtimeGeneration: active.runtimeGeneration, expectedGeneration: input.expectedAccountGeneration });
     }
     if (!await hasValidLevelSpinStarCreditRequestFingerprint(exact)) {
-      return refuseStarCredit('fingerprint_invalid', { op });
+      return refuse('fingerprint_invalid', { op });
     }
     if (runtime !== active
       || active.scope.stableUid !== input.expectedOwnerStableId
       || active.runtimeGeneration !== input.expectedAccountGeneration) {
-      return refuseStarCredit('runtime_changed_during_check', { op, runtimeReplaced: runtime !== active });
+      return refuse('runtime_changed_during_check', { op, runtimeReplaced: runtime !== active });
     }
   }
   if (input.kind === 'star_credit_ack') {

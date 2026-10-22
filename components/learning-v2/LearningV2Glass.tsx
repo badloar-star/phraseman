@@ -18,6 +18,7 @@ import {
   LV2_TASK_TILE, LV2_TASK_VERDICT_BLOCK, lv2TaskTileLook, lv2TaskVerdictBlockLook,
 } from './learning_v2_task_layout_tokens';
 import { useTheme } from '../ThemeContext';
+import { lv2TaskTokens } from './learning_v2_task_theme_tokens';
 
 // зачем (владелец 2026-09-30): весь Learning V2 (карта, окна, интро, шесть режимов занятия,
 // итог) переносится 1 в 1 по макету learning-v2.html (Liquid Glass). Общие детали — чип-слово,
@@ -130,9 +131,11 @@ export const Lv2Chip = memo(function Lv2Chip({
   const ok = verdict === 'ok';
   const bad = verdict === 'bad';
   // зачем (темы 2.0): выбранный вариант в цвете темы; в «Спокойно» accentSoft = selected.
-  const bg = ok ? g.goodFill : bad ? g.badFill : selected ? g.accentSoft : g.opaqueControl;
+  // зачем (владелец 22.10, 1:1, таблица 4 · ТЕМЫ п. 1, 6): заливка чипа — `--ctl` макета (controlSoft), полка — `chipShelf`; выбранный — акцент 14 % (accentWash14)
+  const task = lv2TaskTokens(g);
+  const bg = ok ? g.goodFill : bad ? g.badFill : selected ? task.accentWash14 : task.controlSoft;
   const ink = ok ? g.good : bad ? g.bad : g.text;
-  const plate = ok ? lv2Alpha(LV2_GOOD, 0.25) : bad ? lv2Alpha(LV2_BAD, 0.25) : g.plate;
+  const plate = ok ? lv2Alpha(LV2_GOOD, 0.25) : bad ? lv2Alpha(LV2_BAD, 0.25) : task.chipShelf;
   return (
     <View style={[styles.chipPlate, { backgroundColor: plate, opacity: verdict === 'dim' ? 0.45 : 1 }, style]}>
       <Pressable

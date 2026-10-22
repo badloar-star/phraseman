@@ -29,14 +29,17 @@ const phraseBuilder = readFileSync(
   resolve(root, "modules/learning-v2/modes/phrase_builder_mode_v1.tsx"),
   "utf8",
 );
-assert.match(phraseBuilder, /styles\.taskLabel/);
-assert.match(phraseBuilder, /localizedMeaning\[interfaceLocale\]/);
+// зачем (владелец 22.10, колонка «Предлагаем»): прежняя серая строка задания заменена общим началом тела — «Собери фразу» со значком и карточка ситуации
+assert.match(phraseBuilder, /<LearningV2TaskLead[^>]*parts={parts}/);
+// смысл фразы (цель «Скажите по-английски») теперь берут правила Learning V2 из разбора фразы задания
+assert.match(phraseBuilder, /useLearningV2TaskParts\(\{[^}]*modePayload/);
 
 const listenBuild = readFileSync(
   resolve(root, "modules/learning-v2/modes/listen_build_dictation_mode_v1.tsx"),
   "utf8",
 );
-assert.match(listenBuild, /phrase \? "Послушай и собери фразу" : "Послушай и собери слово"/);
+// зачем (владелец 22.10, колонка «Предлагаем»): название диктанта постоянное — «Послушай и собери» (по правилам Learning V2), ситуация видна отдельной карточкой
+assert.match(listenBuild, /<LearningV2TaskLead[^>]*parts=\{parts\}/);
 
 const speedMatch = readFileSync(
   resolve(root, "modules/learning-v2/modes/speed_match_mode_v1.tsx"),

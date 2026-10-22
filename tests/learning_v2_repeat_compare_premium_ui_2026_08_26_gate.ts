@@ -11,11 +11,11 @@ const player = readFileSync(
 );
 
 assert.match(mode, /testID="learning-v2-repeat-reference-play"/u);
-assert.match(mode, /<Svg[\s\S]*?<Circle[\s\S]*?<Pressable/u,
-  "Repeat & Compare needs the same premium ringed audio affordance as audio modes");
-assert.match(mode, /playWrap:\s*\{\s*width:\s*116,\s*height:\s*116/u);
-assert.match(mode, /targetPhrase:[\s\S]{0,160}textAlign:\s*"center"/u,
-  "the model phrase needs its own centered typographic layer");
+// зачем (владелец 22.10, колонка «Предлагаем» learning-v2-tasks-review.html): прежняя большая кнопка с кольцом (решение 26.08) заменена динамиком внутри карточки «фраза + перевод» —
+// повтор образца по-прежнему нажимается всегда, а фраза живёт в отдельной карточке с переводом.
+assert.match(mode, /<LearningV2SayCard[\s\S]*?<LearningV2AudioReplayPressableV1/u,
+  "Repeat & Compare keeps the replay speaker inside the phrase + translation card");
+assert.match(mode, /<LearningV2TaskLead[^>]*parts=\{visibleParts\}/u);
 assert.doesNotMatch(mode, /capture:|WaveformBarsV1/u,
   "Repeat & Compare must not duplicate the shared Oral capture surface");
 assert.doesNotMatch(

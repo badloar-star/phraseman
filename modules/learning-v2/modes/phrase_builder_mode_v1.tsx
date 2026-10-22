@@ -17,7 +17,7 @@
 
 import React, { useEffect, useMemo, useRef } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, StyleSheet, Text, View, type ViewStyle } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -29,7 +29,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
-import { Lv2Chip, Lv2Cta, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
+import { Lv2Chip, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticSuccess } from "../../../hooks/use-haptics";
 import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import { learningV2SessionCopy } from "../../../app/learning_v2_session_copy";
@@ -41,7 +41,9 @@ import {
   PHRASE_BUILDER_MOTION_V1 as MOTION,
 } from "./mode_motion_tokens_v1";
 import { learningV2ModeCheckLabelV1 } from "./mode_copy_v1";
-import { learningV2DistinctPhraseBuilderMeaningV1 } from "./phrase_builder_display_v1";
+import type { Lang } from "../../../constants/i18n";
+import { LearningV2GoalBlock, LearningV2TaskCta, LearningV2TaskLead, useLearningV2TaskParts } from "../../../components/learning-v2/LearningV2TaskBody";
+import { lv2TaskAnswerLineShadow, lv2TaskTokens } from "../../../components/learning-v2/learning_v2_task_theme_tokens";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 
@@ -179,12 +181,8 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
         .filter((entry): entry is (typeof options)[number] => entry !== undefined),
     [orderedResponseIds, options],
   );
-  const distinctLocalizedMeaning = learningV2DistinctPhraseBuilderMeaningV1(
-    prompt,
-    modePayload?.family === "phrase_builder"
-      ? modePayload.localizedMeaning[interfaceLocale]
-      : null,
-  );
+  // зачем (колонка «Предлагаем»): части строки задания — по правилам Learning V2 (task_prompt_parts_v1): «Собери фразу», ситуация отдельной карточкой, цель «Скажите по-английски: Я здесь.»
+  const parts = useLearningV2TaskParts({ family: props.family, prompt, interfaceLocale, modePayload });
 
   const announcedRef = useRef(false);
   useEffect(() => {
@@ -204,27 +202,36 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
     // зачем (сверка с learning-v2.html pbBody, 05.10): отступы по макету — заголовок → фраза 10, → строка ответа 22,
     // → банк 22, → разбор 18, → «Проверить» 22 (раньше ровный gap 14); межстрочные растут с системным шрифтом.
     <View style={sx.root}>
-      <Text style={[sx.taskLabel, { color: g.secondary }]}>{prompt}</Text>
-      <View style={[sx.heroRow, compact && { marginTop: 6 }]}>
-        {distinctLocalizedMeaning ? (
-          <Text style={[sx.hero, { color: g.text }]}>
-            {distinctLocalizedMeaning}
-          </Text>
-        ) : <View style={sx.heroSpacer} />}
-        {onPlayFullPhraseAudio && (
+      <LearningV2TaskLead lang={interfaceLocale as Lang} parts={parts} />
+      {parts.goal ? (
+        <LearningV2GoalBlock
+          kicker={parts.goal.label}
+          value={parts.goal.text}
+          trailing={onPlayFullPhraseAudio ? (
+            <LearningV2AudioReplayPressableV1
+              contentStyle={[sx.audioBtn, { backgroundColor: lv2TaskTokens(g).controlSoft }]}
+              onPress={onPlayFullPhraseAudio}
+              reducedMotion={reducedMotion}
+            >
+              <Ionicons name="volume-high" size={18} color={g.text} />
+            </LearningV2AudioReplayPressableV1>
+          ) : null}
+        />
+      ) : onPlayFullPhraseAudio ? (
+        <View style={sx.audioOnly}>
           <LearningV2AudioReplayPressableV1
-            contentStyle={[sx.audioBtn, { backgroundColor: g.opaqueControl }]}
+            contentStyle={[sx.audioBtn, { backgroundColor: lv2TaskTokens(g).controlSoft }]}
             onPress={onPlayFullPhraseAudio}
             reducedMotion={reducedMotion}
           >
             <Ionicons name="volume-high" size={18} color={g.text} />
           </LearningV2AudioReplayPressableV1>
-        )}
-      </View>
+        </View>
+      ) : null}
 
       {/* Строка ответа: min-height зарезервирована, первый кадр = финальная
         геометрия (Performance Bible — никаких прыжков при появлении чипов). */}
-      <View style={[sx.answerRow, compact && { minHeight: 48, marginTop: 10, paddingTop: 4, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.glassEdge }]}>
+      <View style={[sx.answerRow, compact && { minHeight: 48, marginTop: 10, paddingTop: 4, paddingBottom: 4, gap: 6 }, { boxShadow: lv2TaskAnswerLineShadow(g) as ViewStyle["boxShadow"] }]}>
         {answerChips.length === 0 ? (
           // `.ans` пустая: подсказка «Нажимай слова по порядку» 15 --muted (раньше пробел).
           <Text style={[sx.placeholder, { color: g.mutedText }]}>
@@ -274,13 +281,13 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
 
       {explanation ? <View style={sx.explainWrap}><Lv2Explain>{explanation}</Lv2Explain></View> : null}
 
-      <Lv2Cta
+      <LearningV2TaskCta
         style={compact ? { marginTop: 10 } : sx.cta}
         disabled={!canSubmit || resolved || phase === "processing"}
         onPress={onSubmit}
       >
         {learningV2ModeCheckLabelV1(interfaceLocale)}
-      </Lv2Cta>
+      </LearningV2TaskCta>
     </View>
   );
 }
@@ -289,16 +296,7 @@ export default PhraseBuilderModeV1;
 
 const styles = StyleSheet.create({
   root: {},
-  // `.tlab` 15/600 --sec (D145 → 16).
-  taskLabel: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: "600",
-  },
-  // `.thero` margin-top 10.
-  heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12, marginTop: 10 },
-  hero: { flex: 1, fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3 },
-  heroSpacer: { flex: 1 },
+  audioOnly: { alignItems: "center", marginTop: 14 },
   audioBtn: {
     width: 38,
     height: 38,
@@ -308,16 +306,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   answerRow: {
-    // `.ans`: min-height 64, линия --line-2, padding 10/0/12, margin-top 22, по центру по вертикали.
+    // `.ans` макета №23: min-height 64, margin-top 22, inset 0 −1px 0 --edge (линия — boxShadow), padding 10 12, gap 8, по центру по вертикали.
     minHeight: 64,
     marginTop: 22,
-    borderBottomWidth: 1, // shadow-ok: линия-подчёркивание зоны ответа `.ans`, не контейнер
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
     gap: 8,
     paddingTop: 10,
-    paddingBottom: 12,
+    paddingBottom: 10,
+    paddingHorizontal: 12,
   },
   placeholder: { fontSize: 16, lineHeight: 21 },
   // `.bank` margin-top 22, gap 10.

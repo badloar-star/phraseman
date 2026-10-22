@@ -15,7 +15,7 @@
  */
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, StyleSheet, Text, View, type ViewStyle } from "react-native";
 import Animated, {
   Easing,
   useAnimatedProps,
@@ -33,7 +33,7 @@ import { learningV2SessionCopy } from "../../../app/learning_v2_session_copy";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Lv2Chip, Lv2Cta, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
+import { Lv2Chip, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import {
@@ -43,29 +43,17 @@ import {
   learningV2RingFillMsForPhraseV1,
 } from "./mode_motion_tokens_v1";
 import { learningV2ModeAudioCopyV1, learningV2ModeCheckLabelV1 } from "./mode_copy_v1";
+import type { Lang } from "../../../constants/i18n";
+import { lv2TaskAnswerLineShadow, lv2TaskTokens } from "../../../components/learning-v2/learning_v2_task_theme_tokens";
+import { LearningV2TaskCta, LearningV2TaskLead, useLearningV2TaskParts } from "../../../components/learning-v2/LearningV2TaskBody";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 
-function listenBuildTaskLabel(
-  locale: LearningV2ModeCommonPropsV1["interfaceLocale"],
-  phrase: boolean,
-): string {
-  const copy = {
-    ru: phrase ? "Послушай и собери фразу" : "Послушай и собери слово",
-    uk: phrase ? "Послухай і склади фразу" : "Послухай і склади слово",
-    es: phrase ? "Escucha y forma la frase" : "Escucha y forma la palabra",
-    "pt-BR": phrase ? "Ouça e monte a frase" : "Ouça e monte a palavra",
-    vi: phrase ? "Nghe và ghép câu" : "Nghe và ghép từ",
-    id: phrase ? "Dengarkan dan susun frasa" : "Dengarkan dan susun kata",
-    tr: phrase ? "Dinle ve ifadeyi kur" : "Dinle ve sözcüğü kur",
-    pl: phrase ? "Posłuchaj i ułóż zwrot" : "Posłuchaj i ułóż słowo",
-    en: phrase ? "Listen and build the phrase" : "Listen and build the word",
-  } as const;
-  return copy[locale];
-}
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-// `.playb` 128 + svg.rg viewBox 128, r 60, stroke 5 — кольцо по краю самой кнопки (как в «Слушай и выбирай»).
+// `.play.s` в «Предлагаем»: кнопка 96, значок 36 (вместо 128); svg.rg viewBox 128 масштабируется. Прежде: `.playb` 128 + svg.rg viewBox 128, r 60, stroke 5 — кольцо по краю самой кнопки (как в «Слушай и выбирай»).
 const RING_VIEW = 128;
+const PLAY_SIZE = 96;
+const PLAY_ICON = 36;
 const RING_RADIUS = 60;
 const RING_LEN = 2 * Math.PI * RING_RADIUS;
 
@@ -93,6 +81,7 @@ function DictationRingButtonV1({
   readonly surface: string;
 }) {
   const compact = useLearningV2CompactPractice();
+  const plateShadow = lv2TaskTokens(useLv2Glass()).taskPlateShadow;
   const progress = useSharedValue(0);
   useEffect(() => {
     if (!playing) {
@@ -111,17 +100,17 @@ function DictationRingButtonV1({
       <LearningV2AudioReplayPressableV1
         accessibilityLabel={accessibilityLabel}
         accessibilityState={{ disabled }}
-        contentStyle={[styles.ringBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+        contentStyle={[styles.ringBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, boxShadow: plateShadow as ViewStyle["boxShadow"], opacity: disabled ? 0.45 : 1 }]}
         disabled={disabled}
         onPress={onPress}
         reducedMotion={reducedMotion}
       >
         {/* зачем (владелец 19.10): на всех заданиях большая кнопка — динамик и всегда нажимается для повтора озвучки */}
-          <Ionicons name="volume-high" size={44} color={accent} />
+          <Ionicons name="volume-high" size={PLAY_ICON} color={accent} />
       </LearningV2AudioReplayPressableV1>
       {/* зачем (владелец 19.10 «большая круглая кнопка не нажимается»): на iOS корневой Svg игнорирует pointerEvents="none" и кольцо поверх кнопки съедало нажатие — оборачиваем в View, который точно пропускает касания */}
       <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Svg pointerEvents="none" width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
+      <Svg pointerEvents="none" width={compact ? 80 : PLAY_SIZE} height={compact ? 80 : PLAY_SIZE} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
         <Circle cx={RING_VIEW / 2} cy={RING_VIEW / 2} r={RING_RADIUS} stroke={track} strokeWidth={5} fill="none" />
         <AnimatedCircle
           cx={RING_VIEW / 2}
@@ -290,18 +279,13 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
   }, [phase, reducedMotion, prompt]);
 
   const sx = useScaledTextStyles(styles);
+  // зачем (колонка «Предлагаем»): части строки задания — по правилам Learning V2 (task_prompt_parts_v1); ситуация теперь видна
+  const parts = useLearningV2TaskParts({ family: props.family, prompt, interfaceLocale, modePayload });
   return (
     // зачем (сверка с learning-v2.html ld, 05.10): как «Слушай и выбирай» + «Собери фразу» — заголовок слева 600,
     // кнопка 128 в 26, подпись 14, фраза 18, строка ответа 22 с подсказкой, банк 22 с тенями, разбор 18, «Проверить» 22.
     <View style={sx.root}>
-      <Text style={[sx.taskLabel, { color: g.secondary }]}>
-        {listenBuildTaskLabel(
-          interfaceLocale,
-          (modePayload?.family === "listen_build_dictation"
-            ? modePayload.hiddenTargetPhrase.trim().split(/\s+/u).length
-            : 2) > 1,
-        )}
-      </Text>
+      <LearningV2TaskLead lang={interfaceLocale as Lang} parts={parts} />
       <View style={[sx.playRow, compact && { marginTop: 8 }]}>
       <DictationRingButtonV1
         playing={playing}
@@ -316,17 +300,6 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
         surface={g.opaqueCard}
       />
       </View>
-      <Text style={[sx.playSub, { color: g.secondary }, compact && { marginTop: 6 }]}>
-        {!onPlayFullPhraseAudio
-          ? audioCopy.unavailable
-          : loading
-            ? audioCopy.loading
-            : playing
-            ? audioCopy.playing
-            : hasPlayedOnce
-              ? audioCopy.replay
-              : audioCopy.play}
-      </Text>
 
       {/* Фраза раскрывается после успеха или разбора (learning-v2.html ld-2/ld-4) — до этого честный диктант. */}
       {(phase === "success" || resolved) && (
@@ -337,7 +310,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
         </Text>
       )}
 
-      <View style={[sx.answerRow, compact && { minHeight: 48, marginTop: 10, paddingTop: 4, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.glassEdge }]}>
+      <View style={[sx.answerRow, compact && { minHeight: 48, marginTop: 10, paddingTop: 4, paddingBottom: 4, gap: 6 }, { boxShadow: lv2TaskAnswerLineShadow(g) as ViewStyle["boxShadow"] }]}>
         {answerChips.length === 0 ? (
           <Text style={[sx.placeholder, { color: g.mutedText }]}>
             {learningV2SessionCopy(interfaceLocale as Parameters<typeof learningV2SessionCopy>[0]).tapWords}
@@ -384,13 +357,13 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
 
       {explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
 
-      <Lv2Cta
+      <LearningV2TaskCta
         disabled={!canSubmit || resolved || phase === "processing"}
         onPress={onSubmit}
         style={[sx.submit, compact && { marginTop: 10 }]}
       >
         {learningV2ModeCheckLabelV1(interfaceLocale)}
-      </Lv2Cta>
+      </LearningV2TaskCta>
     </View>
   );
 }
@@ -399,27 +372,21 @@ export default ListenBuildDictationModeV1;
 
 const styles = StyleSheet.create({
   root: {},
-  taskLabel: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: "600",
-  },
-  playRow: { alignItems: "center", marginTop: 26 },
-  ringWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
-  ringBtn: { width: 128, height: 128, borderRadius: 64, alignItems: "center", justifyContent: "center" },
-  playSub: { fontSize: 16, lineHeight: 22, fontWeight: "600", textAlign: "center", marginTop: 14 },
+  playRow: { alignItems: "center", marginTop: 18 },
+  ringWrap: { width: PLAY_SIZE, height: PLAY_SIZE, alignItems: "center", justifyContent: "center" },
+  ringBtn: { width: PLAY_SIZE, height: PLAY_SIZE, borderRadius: PLAY_SIZE / 2, alignItems: "center", justifyContent: "center" },
   revealText: { fontSize: 24, lineHeight: 30, fontWeight: "700", textAlign: "center", letterSpacing: -0.3, marginTop: 18 },
   answerRow: {
     minHeight: 64,
     width: "100%",
     marginTop: 22,
-    borderBottomWidth: 1, // shadow-ok: линия-подчёркивание зоны ответа `.ans`, не контейнер
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
     gap: 8,
     paddingTop: 10,
-    paddingBottom: 12,
+    paddingBottom: 10,
+    paddingHorizontal: 12,
   },
   placeholder: { fontSize: 16, lineHeight: 21 },
   bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start", width: "100%", marginTop: 22 },

@@ -22,16 +22,13 @@ import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
 import Animated, {
   cancelAnimation,
   Easing,
-  useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
   withSequence,
   withTiming,
 } from "react-native-reanimated";
-import Svg, { Circle } from "react-native-svg";
 
-import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import { useScaledTextStyles } from "../../../hooks/useLineScale";
@@ -44,11 +41,11 @@ import { LearningV2ModeFeedbackLaneV1 } from "./mode_feedback_v1";
 import { nestedShadowStyle } from "../../../constants/liquidGlassShadowStyle";
 import { feedbackInkSoftForLight } from "../../../constants/learningV2ModeFeedbackPalette";
 import { learningV2ModeRepeatCompareCopyV1 } from "./mode_copy_v1";
+import type { Lang } from "../../../constants/i18n";
+import { lv2TaskTokens } from "../../../components/learning-v2/learning_v2_task_theme_tokens";
+import { LearningV2SayCard, LearningV2TaskLead, useLearningV2TaskParts } from "../../../components/learning-v2/LearningV2TaskBody";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const RING_RADIUS = 54;
-const RING_LENGTH = 2 * Math.PI * RING_RADIUS;
 
 /** Пропсы этого режима шире общего контракта — voice-состояние не нужно
  * остальным 6 режимам, поэтому не раздувает mode_contract_v1. */
@@ -61,7 +58,6 @@ export interface ScriptedRepeatCompareModePropsV1 extends LearningV2ModeCommonPr
 }
 
 export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModePropsV1) {
-  const compact = useLearningV2CompactPractice();
   const g = useLv2Glass();
   const {
     prompt,
@@ -134,20 +130,13 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     !answerBearingContentRevealed && containsTarget(instruction)
       ? null
       : instruction;
+  // зачем (колонка «Предлагаем»): части строки задания — по правилам Learning V2; разбор идёт по «видимой» строке (без ответа, пока он скрыт)
+  const parts = useLearningV2TaskParts({ family: props.family, prompt: visiblePrompt, interfaceLocale, modePayload });
+  const visibleParts = answerBearingContentRevealed ? parts : { ...parts, goal: null };
   const audioPulse = useSharedValue(1);
-  const audioProgress = useSharedValue(0);
   // Кольцо — конечная анимация хода звука, ведёт только referencePlaying:
   // завязав её на runtimeActive, мы перезапускали бы кольцо с нуля при
   // возврате из фона, под звук, играющий с середины.
-  useEffect(() => {
-    audioProgress.value = referencePlaying
-      ? withTiming(1, { duration: 1500, easing: Easing.linear })
-      : withTiming(0, { duration: reducedMotion ? 1 : 120 });
-    return () => {
-      cancelAnimation(audioProgress);
-    };
-  }, [audioProgress, reducedMotion, referencePlaying]);
-
   // Пульс — вечная анимация, только она подчиняется runtimeActive.
   useEffect(() => {
     audioPulse.value = referencePlaying && runtimeActive && !reducedMotion
@@ -164,9 +153,6 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
       cancelAnimation(audioPulse);
     };
   }, [audioPulse, reducedMotion, referencePlaying, runtimeActive]);
-  const ringProps = useAnimatedProps(() => ({
-    strokeDashoffset: RING_LENGTH * (1 - audioProgress.value),
-  }));
   const audioPulseStyle = useAnimatedStyle(() => ({
     transform: [{ scale: audioPulse.value }],
   }));
@@ -192,69 +178,27 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     // зачем (сверка с learning-v2.html rc, 05.10): заголовок слева 600; эталон 22; фраза 24; подсказка 10; разбор 18;
     // вердикт 16 (раньше ровный gap 14 и всё по центру). Сама кнопка эталона — решение владельца 26.08, не меняю.
     <View style={sx.root}>
-      {visiblePrompt ? (
-        <Text style={[sx.taskLabel, { color: g.secondary }]}>
-          {visiblePrompt}
-        </Text>
-      ) : null}
-      {answerBearingContentRevealed && onPlayFullPhraseAudio && (
-        // зачем (learning-v2.html, rc): эталон — круглая кнопка на токенах стекла с кольцом хода
-        // звука (прежнее решение владельца 26.08 сохранено), значок динамика/паузы вместо текстовых
-        // символов; реальное состояние аудио по-прежнему берётся из referenceAudioState.
-        <View style={[sx.playWrap, compact && { width: 80, height: 80, marginTop: 8 }]}>
-          <Svg
-            width={compact ? 80 : 116}
-            height={compact ? 80 : 116}
-            viewBox="0 0 116 116"
-            style={StyleSheet.absoluteFill}
-          >
-            <Circle
-              cx={58}
-              cy={58}
-              r={RING_RADIUS}
-              stroke={g.opaqueControl}
-              strokeWidth={5}
-              fill="none"
-            />
-            <AnimatedCircle
-              cx={58}
-              cy={58}
-              r={RING_RADIUS}
-              stroke={referencePlaying ? g.text : g.good}
-              strokeWidth={5}
-              strokeLinecap="round"
-              fill="none"
-              strokeDasharray={RING_LENGTH}
-              animatedProps={ringProps}
-              transform="rotate(-90 58 58)"
-            />
-          </Svg>
-          <Animated.View style={audioPulseStyle}>
-            <LearningV2AudioReplayPressableV1
-              accessibilityLabel={copy.listenReference}
-              accessibilityState={{ disabled: referenceDisabled, busy: referenceLoading }}
-              contentStyle={[
-                sx.playBtn, compact && { width: 64, height: 64, borderRadius: 32 },
-                {
-                  backgroundColor: g.opaqueCard,
-                  opacity: referenceDisabled ? 0.45 : 1,
-                },
-              ]}
-              disabled={referenceDisabled}
-              onPress={onPlayFullPhraseAudio}
-              reducedMotion={reducedMotion}
-              testID="learning-v2-repeat-reference-play"
-            >
-              <Ionicons name="volume-high" size={40} color={g.text} />
-            </LearningV2AudioReplayPressableV1>
-          </Animated.View>
-        </View>
-      )}
-
+      <LearningV2TaskLead lang={interfaceLocale as Lang} parts={visibleParts} />
       {answerBearingContentRevealed && targetPhrase ? (
-        <Text style={[sx.targetPhrase, compact && { fontSize: 26, lineHeight: 31, marginTop: 10 }, { color: g.text }]}>
-          {targetPhrase}
-        </Text>
+        <LearningV2SayCard
+          primary={targetPhrase}
+          secondary={parts.goal?.text ?? null}
+          trailing={onPlayFullPhraseAudio ? (
+            <Animated.View style={audioPulseStyle}>
+              <LearningV2AudioReplayPressableV1
+                accessibilityLabel={copy.listenReference}
+                accessibilityState={{ disabled: referenceDisabled, busy: referenceLoading }}
+                contentStyle={[sx.speaker, { backgroundColor: lv2TaskTokens(g).controlSoft, opacity: referenceDisabled ? 0.45 : 1 }]}
+                disabled={referenceDisabled}
+                onPress={onPlayFullPhraseAudio}
+                reducedMotion={reducedMotion}
+                testID="learning-v2-repeat-reference-play"
+              >
+                <Ionicons name="volume-high" size={18} color={g.text} />
+              </LearningV2AudioReplayPressableV1>
+            </Animated.View>
+          ) : null}
+        />
       ) : null}
 
       {visibleInstruction && (
@@ -281,38 +225,16 @@ export default ScriptedRepeatCompareModeV1;
 
 const styles = StyleSheet.create({
   root: { alignItems: "center" },
-  // `.tlab` 15/600 --sec, слева (D145 → 16).
-  taskLabel: {
-    alignSelf: "stretch",
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: "600",
-  },
-  playWrap: { width: 116, height: 116, alignItems: "center", justifyContent: "center", marginTop: 22 },
-  playBtn: {
-    width: 92,
-    height: 92,
-    borderRadius: 46,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  targetPhrase: {
-    width: "100%",
-    fontSize: 30,
-    lineHeight: 36,
-    fontWeight: "700",
-    letterSpacing: -0.3,
-    textAlign: "center",
-    marginTop: 24,
-  },
-  // `.scene` по центру, margin-top 10.
+  // `.spk` 38 в карточке «фраза + перевод»
+  speaker: { width: 38, height: 38, borderRadius: 19, alignItems: "center", justifyContent: "center" },
+  // `.micl` макета №23: 13/17, --sec, по центру, margin-top 18
   instruction: {
     width: "100%",
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: "400",
-    lineHeight: 22,
+    lineHeight: 17,
     textAlign: "center",
-    marginTop: 10,
+    marginTop: 18,
   },
   feedbackLane: { width: "100%", marginTop: 18 },
   // `.verdict` margin-top 16.

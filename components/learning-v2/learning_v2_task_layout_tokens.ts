@@ -11,6 +11,7 @@ import type { ViewStyle } from 'react-native';
 
 import { plateBoxShadow } from '../v2/ShadowSurface';
 import { lv2Alpha, type Lv2Glass } from './LearningV2Glass';
+import { lv2TaskPlateBase, lv2TaskTokens } from './learning_v2_task_theme_tokens';
 
 export const LV2_TASK_LAYOUT = {
   /** `.tvtop`: gap 12, высота от 54, отступ сверху 2. */
@@ -27,9 +28,9 @@ export const LV2_TASK_LAYOUT = {
   footer: { padTop: 8, padH: 10, item: 44, gap: 3, icon: 26, labelSize: 13, labelLine: 17, offOpacity: 0.3 },
 } as const;
 
-/** Плита шапки: круглая «закрыть» и таблетки HUD — заливка карточки + тень плиты (в стиле «Тень» обводок нет). */
+/** Плита шапки: круглая «закрыть» и таблетки HUD — заливка карточки + тень плиты; тело — в learning_v2_task_theme_tokens (лёгкий файл, его же берёт тело заданий). */
 export function lv2TaskPlateStyle(g: Lv2Glass): ViewStyle {
-  return { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) };
+  return lv2TaskPlateBase(g);
 }
 
 /**

@@ -13,6 +13,7 @@
 
 import type { LearningV2ActivityFamilyCode } from "../telemetry";
 import type { LearningV2ModeOptionV1 } from "./mode_contract_v1";
+import type { LearningV2ModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
 
 export type LearningV2ModeShowcaseInputModeV1 = "single_choice" | "ordered_tokens";
 
@@ -40,6 +41,8 @@ export interface LearningV2ModeShowcaseFixtureV1 {
   readonly correctResponseId: string;
   readonly inputMode: LearningV2ModeShowcaseInputModeV1;
   readonly explanation: string;
+  /** Структурные данные режима (смысл фразы, сцена), если режиму они нужны. */
+  readonly modePayload?: LearningV2ModeNativePayloadV1 | null;
 }
 
 /** Демо-фразы намеренно повторяют реальные фразы из episode_01 (урок 1,
@@ -52,24 +55,31 @@ export const LEARNING_V2_MODE_SHOWCASE_FIXTURES_V1: Readonly<
     family: "phrase_builder",
     title: "Сборка фразы (эталон)",
     mockupSource: "docs/v2/mockups/02-phrase-builder.html",
-    prompt: "Приятно познакомиться",
+    prompt: "Соберите фразу — коллега ищет вас, а вы уже в комнате",
+    modePayload: Object.freeze({
+      family: "phrase_builder",
+      targetPhrase: "I am here.",
+      localizedMeaning: { ru: "Я здесь." },
+      orderedTokens: ["I", "am", "here"],
+      authoredDistractorTokens: ["ready"],
+      slotFeedback: [],
+      explanationV1: { phrase: { meaningByLocale: { ru: "Я здесь." } } },
+    }) as unknown as LearningV2ModeNativePayloadV1,
     options: [
-      { responseId: "nice", text: "Nice" },
-      { responseId: "to", text: "to" },
-      { responseId: "meet", text: "meet" },
-      { responseId: "you", text: "you" },
-      { responseId: "meets", text: "meets" },
-      { responseId: "meeting", text: "meeting" },
+      { responseId: "i", text: "I" },
+      { responseId: "am", text: "am" },
+      { responseId: "here", text: "here" },
+      { responseId: "ready", text: "ready" },
     ],
-    correctResponseId: "nice to meet you",
+    correctResponseId: "i am here",
     inputMode: "ordered_tokens",
-    explanation: "meets — форма для he/she/it, а не для you. Nice to meet you.",
+    explanation: "Между «я» и «здесь» нужна связка am: I am here.",
   },
   listen_choose: {
     family: "listen_choose",
     title: "Выбор на слух",
     mockupSource: "docs/v2/mockups/03-listen-choose.html",
-    prompt: "Прослушай фразу",
+    prompt: "Послушайте, что грузчик говорит о мебели",
     options: [
       { responseId: "nice-to-meet-you", text: "Nice to meet you" },
       { responseId: "my-name-is-anna", text: "My name is Anna" },
@@ -96,32 +106,38 @@ export const LEARNING_V2_MODE_SHOWCASE_FIXTURES_V1: Readonly<
     family: "listen_build_dictation",
     title: "Диктант",
     mockupSource: "docs/v2/mockups/05-listen-build.html",
-    prompt: "Послушай и собери фразу",
+    prompt: "Послушайте реплику коллеги перед началом встречи и соберите её.",
     options: [
-      { responseId: "my", text: "My" },
-      { responseId: "name", text: "name" },
-      { responseId: "is", text: "is" },
-      { responseId: "anna", text: "Anna" },
-      { responseId: "names", text: "names" },
+      { responseId: "i", text: "I" },
       { responseId: "am", text: "am" },
+      { responseId: "ready", text: "ready" },
+      { responseId: "fine", text: "fine" },
     ],
-    correctResponseId: "my name is anna",
+    correctResponseId: "i am",
     inputMode: "ordered_tokens",
-    explanation: "names — множественное число, здесь нужна форма is: My name is Anna.",
+    explanation: "Между «я» и состоянием нужна связка am: I am ready.",
   },
   context_gap_grammar: {
     family: "context_gap_grammar",
     title: "Контекстный пропуск",
     mockupSource: "docs/v2/mockups/06-context-gap.html",
-    prompt: "Ты устал? ___ you tired?",
+    prompt: "I am ___.",
+    modePayload: Object.freeze({
+      family: "context_gap_grammar",
+      localizedScene: { ru: "Вставьте слово — начальница звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь" },
+      gappedTargetPhrase: "I am ___.",
+      gapOptions: [],
+      testedDimension: "be_location",
+      choiceFeedback: [],
+    }) as unknown as LearningV2ModeNativePayloadV1,
     options: [
-      { responseId: "is", text: "Is" },
-      { responseId: "are", text: "Are" },
-      { responseId: "do", text: "Do" },
+      { responseId: "here", text: "here" },
+      { responseId: "ready", text: "ready" },
+      { responseId: "fine", text: "fine" },
     ],
-    correctResponseId: "are",
+    correctResponseId: "here",
     inputMode: "single_choice",
-    explanation: "you всегда идёт со связкой are, не is и не do.",
+    explanation: "«Я уже здесь» — I am here: слово here говорит, где вы.",
   },
   speed_match: {
     family: "speed_match",
@@ -144,8 +160,19 @@ export const LEARNING_V2_MODE_SHOWCASE_VOICE_FIXTURE_V1 = Object.freeze({
   family: "scripted_repeat_compare" as const,
   title: "Повтор за моделью (голос)",
   mockupSource: "docs/v2/mockups/14-repeat-compare.html",
-  prompt: "Скажи вслух: Nice to meet you",
-  instruction: "Сначала послушай, потом повтори",
+  prompt: "Скажите вслух — начальница звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+  modePayload: Object.freeze({
+    family: "scripted_repeat_compare",
+    referenceAudio: null,
+    slowReferenceAudio: null,
+    targetPhrase: "I am here.",
+    recordControlPolicy: "hold_press_release_with_accessible_toggle",
+    modelPlayback: "reference_and_slow",
+    learnerPlayback: "available_after_capture",
+    honestOutcomeStates: ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"],
+    explanationV1: { phrase: { meaningByLocale: { ru: "Я здесь." } } },
+  }) as unknown as LearningV2ModeNativePayloadV1,
+  instruction: "Удерживай и говори",
 });
 
 export function isLearningV2ModeShowcaseTextFamilyV1(

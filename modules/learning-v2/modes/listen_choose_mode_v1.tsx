@@ -18,7 +18,7 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, StyleSheet, Text, View, type ViewStyle } from "react-native";
 import Animated, {
   cancelAnimation,
   Easing,
@@ -42,11 +42,16 @@ import { learningV2ModeAudioCopyV1 } from "./mode_copy_v1";
 import { LISTEN_CHOOSE_MOTION_V1 as MOTION, learningV2RingFillMsForPhraseV1 } from "./mode_motion_tokens_v1";
 import { learningV2ListenChooseOptionLabelV1 } from "./listen_choose_option_label_v1";
 import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
+import type { Lang } from "../../../constants/i18n";
+import { lv2TaskTokens } from "../../../components/learning-v2/learning_v2_task_theme_tokens";
+import { LearningV2TaskLead, useLearningV2TaskParts } from "../../../components/learning-v2/LearningV2TaskBody";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-// `.playb` 128 + svg.rg viewBox 128, r 60, stroke 5: кольцо лежит по краю самой кнопки.
+// `.playb`: в «Предлагаем» кнопка 96 (`.play.s`, значок 36) вместо 128 — варианты ответа поднимаются выше; кольцо svg.rg viewBox 128 масштабируется под размер кнопки.
+const PLAY_SIZE = 96;
+const PLAY_ICON = 36;
 const RING_VIEW = 128;
 const RING_RADIUS = 60;
 const RING_LEN = 2 * Math.PI * RING_RADIUS;
@@ -76,6 +81,7 @@ function ListenChoosePlayButtonV1({
   readonly track: string;
 }) {
   const compact = useLearningV2CompactPractice();
+  const plateShadow = lv2TaskTokens(useLv2Glass()).taskPlateShadow;
   const progress = useSharedValue(0);
   const pulse = useSharedValue(1);
   // зачем (аудит нагрева 2026-08-26): пульс play-кнопки — withRepeat(-1), и он
@@ -135,19 +141,19 @@ function ListenChoosePlayButtonV1({
         <LearningV2AudioReplayPressableV1
           accessibilityLabel={accessibilityLabel}
           accessibilityState={{ disabled }}
-          contentStyle={[styles.playBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+          contentStyle={[styles.playBtn, compact && { width: 80, height: 80, borderRadius: 40 }, { backgroundColor: surface, boxShadow: plateShadow as ViewStyle["boxShadow"], opacity: disabled ? 0.45 : 1 }]}
           disabled={disabled}
           onPress={onPress}
           reducedMotion={reducedMotion}
         >
           {/* зачем (владелец 19.10): на всех заданиях большая кнопка — динамик и всегда нажимается для повтора озвучки */}
-          <Ionicons name="volume-high" size={44} color={accent} />
+          <Ionicons name="volume-high" size={PLAY_ICON} color={accent} />
         </LearningV2AudioReplayPressableV1>
       </Animated.View>
       {/* Кольцо поверх круга кнопки (svg.rg в макете), цвет #E9E9EB — текст темы; дорожка --track. */}
       {/* зачем (владелец 19.10 «большая круглая кнопка не нажимается»): на iOS корневой Svg игнорирует pointerEvents="none" и кольцо поверх кнопки съедало нажатие — оборачиваем в View, который точно пропускает касания */}
       <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Svg pointerEvents="none" width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
+      <Svg pointerEvents="none" width={compact ? 80 : PLAY_SIZE} height={compact ? 80 : PLAY_SIZE} viewBox={`0 0 ${RING_VIEW} ${RING_VIEW}`} style={StyleSheet.absoluteFill}>
         <Circle
           cx={RING_VIEW / 2}
           cy={RING_VIEW / 2}
@@ -297,6 +303,8 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
   }, [phase, reducedMotion, prompt]);
 
   const sx = useScaledTextStyles(styles);
+  // зачем (колонка «Предлагаем»): части строки задания — по правилам Learning V2 (task_prompt_parts_v1)
+  const parts = useLearningV2TaskParts({ family: props.family, prompt, interfaceLocale, modePayload });
   // зачем (learning-v2.html lc-3/lc-5): после верного ответа или разбора фраза раскрывается текстом под кнопкой.
   const revealText = resolved && modePayload?.family === "listen_choose" ? modePayload.referenceAudio?.transcript ?? null : null;
 
@@ -304,7 +312,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
     // зачем (сверка с learning-v2.html lc, 05.10): заголовок слева 600; кнопка 128 по центру в 26; подпись 14; варианты в 26
     // через 13; затемнение .45 только у вариантов, не участвовавших в разборе.
     <View style={sx.root}>
-      <Text style={[sx.taskLabel, { color: g.secondary }]}>{prompt}</Text>
+      <LearningV2TaskLead lang={interfaceLocale as Lang} parts={parts} />
       <View style={[sx.playRow, compact && { marginTop: 8 }]}>
 
       <ListenChoosePlayButtonV1
@@ -384,18 +392,12 @@ export default ListenChooseModeV1;
 
 const styles = StyleSheet.create({
   root: {},
-  // `.tlab` 15/600 --sec, слева (D145 → 16).
-  taskLabel: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: "600",
-  },
-  playRow: { alignItems: "center", marginTop: 26 },
-  playWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
+  playRow: { alignItems: "center", marginTop: 18 },
+  playWrap: { width: PLAY_SIZE, height: PLAY_SIZE, alignItems: "center", justifyContent: "center" },
   playBtn: {
-    width: 128,
-    height: 128,
-    borderRadius: 64,
+    width: PLAY_SIZE,
+    height: PLAY_SIZE,
+    borderRadius: PLAY_SIZE / 2,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -404,6 +406,6 @@ const styles = StyleSheet.create({
   // `.reveal` 24/700 по центру, margin-top 18.
   reveal: { fontSize: 24, lineHeight: 30, fontWeight: "700", letterSpacing: -0.3, textAlign: "center", marginTop: 18 },
   // `.stack.g13` margin-top 26.
-  options: { width: "100%", gap: 13, marginTop: 26 },
+  options: { width: "100%", gap: 13, marginTop: 20 },
   feedbackLane: { width: "100%", marginTop: 18 },
 });

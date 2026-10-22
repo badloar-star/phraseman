@@ -27,6 +27,9 @@ import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
 import { learningV2ModeContextGapCopyV1 } from "./mode_copy_v1";
+import type { Lang } from "../../../constants/i18n";
+import { lv2TaskTokens } from "../../../components/learning-v2/learning_v2_task_theme_tokens";
+import { LearningV2GoalBlock, LearningV2TaskLead, useLearningV2TaskParts } from "../../../components/learning-v2/LearningV2TaskBody";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const GAP_MARKER = "___";
@@ -170,17 +173,16 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
   }, [phase, reducedMotion, prompt]);
 
   const sx = useScaledTextStyles(styles);
+  // зачем (колонка «Предлагаем»): строка сцены (в ней склеены «что сделать», ситуация и цель) — по правилам Learning V2 (task_prompt_parts_v1) на «Вставь слово», ситуацию и цель
+  const sceneText = modePayload?.family === "context_gap_grammar" ? modePayload.localizedScene[interfaceLocale] ?? prompt : prompt;
+  const parts = useLearningV2TaskParts({ family: props.family, prompt: sceneText, interfaceLocale, modePayload });
 
   return (
     // зачем (сверка с learning-v2.html cg, 05.10): отступы макета — сцена 10, фраза с пропуском 18, варианты 26 через 13,
     // разбор 18 (было ровно 14); заголовок 600; затемнение .45 только у вариантов вне разбора (в cg-2…4 не гаснут).
     <View style={sx.root}>
-      <Text style={[sx.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
-      <Text style={[sx.scene, { color: g.secondary }, compact && { marginTop: 4 }]}>
-        {modePayload?.family === "context_gap_grammar"
-          ? modePayload.localizedScene[interfaceLocale]
-          : prompt}
-      </Text>
+      <LearningV2TaskLead lang={interfaceLocale as Lang} parts={parts} />
+      {parts.goal ? <LearningV2GoalBlock kicker={parts.goal.label} value={parts.goal.text} small /> : null}
 
       <View style={[sx.heroRow, compact && { marginTop: 8 }]}>
         {hasGap ? (
@@ -190,8 +192,8 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
               style={[
                 sx.gapSlot,
                 {
-                  color: filled ? gapPaint.ink : g.mutedText,
-                  backgroundColor: filled ? gapPaint.bg : g.opaqueControl,
+                  color: filled ? gapPaint.ink : g.secondary,
+                  backgroundColor: filled ? gapPaint.bg : lv2TaskTokens(g).controlSoft,
                 },
               ]}
             >
@@ -208,8 +210,8 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
                 sx.gapSlot,
                 sx.gapSlotStandalone,
                 {
-                  color: filled ? gapPaint.ink : g.mutedText,
-                  backgroundColor: filled ? gapPaint.bg : g.opaqueControl,
+                  color: filled ? gapPaint.ink : g.secondary,
+                  backgroundColor: filled ? gapPaint.bg : lv2TaskTokens(g).controlSoft,
                 },
               ]}
             >
@@ -220,7 +222,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
         {onPlayFullPhraseAudio && (
           <LearningV2AudioReplayPressableV1
             accessibilityLabel={copy.playPhrase}
-            contentStyle={[sx.audioBtn, { backgroundColor: g.opaqueControl }]}
+            contentStyle={[sx.audioBtn, { backgroundColor: lv2TaskTokens(g).controlSoft }]}
             onPress={onPlayFullPhraseAudio}
             reducedMotion={reducedMotion}
           >
@@ -266,17 +268,9 @@ export default ContextGapGrammarModeV1;
 
 const styles = StyleSheet.create({
   root: {},
-  // `.tlab` 15/600 --sec (D145 → 16).
-  taskLabel: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: "600",
-  },
-  // `.scene` 16/22 --sec, margin-top 10.
-  scene: { fontSize: 16, lineHeight: 22, fontWeight: "400", marginTop: 10 },
   // `.thero` margin-top 18, gap 12.
-  heroRow: { flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap", gap: 12, marginTop: 18 },
-  hero: { flex: 1, fontSize: 28, lineHeight: 44, minWidth: 200, fontWeight: "700", letterSpacing: -0.3 },
+  heroRow: { flexDirection: "row", alignItems: "flex-start", justifyContent: "center", flexWrap: "wrap", gap: 12, marginTop: 18 },
+  hero: { flex: 1, fontSize: 28, lineHeight: 44, minWidth: 200, fontWeight: "700", letterSpacing: -0.3, textAlign: "center" },
   gapSlot: {
     fontWeight: "700",
     borderRadius: 8,
@@ -299,7 +293,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   // `.stack.g13` margin-top 26.
-  variants: { gap: 13, marginTop: 26 },
+  variants: { gap: 13, marginTop: 16 },
   explainWrap: { marginTop: 18 },
   variantWrap: { width: "100%" },
 });

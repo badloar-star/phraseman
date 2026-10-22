@@ -81,7 +81,7 @@ function TextModeStage({
       <LearningV2ModeRouterV1
         family={item.family}
         interfaceLocale="ru"
-        modePayload={item.family === 'speed_match' ? SHOWCASE_SPEED_PAYLOAD : null}
+        modePayload={item.family === 'speed_match' ? SHOWCASE_SPEED_PAYLOAD : item.modePayload ?? null}
         phase={host.phase}
         prompt={item.prompt}
         options={item.options}
@@ -138,7 +138,7 @@ function VoiceModeStage({ onAdvance }: { readonly onAdvance: () => void }) {
       <ScriptedRepeatCompareModeV1
         family={item.family}
         interfaceLocale="ru"
-        modePayload={null}
+        modePayload={item.modePayload}
         phase="idle"
         prompt={item.prompt}
         options={[]}

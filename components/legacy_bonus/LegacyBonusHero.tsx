@@ -6,7 +6,7 @@
 // Монета — настоящая монета ранга человека (MomentCoin), движение на UI-треде; число — отдельный узел со своим состоянием.
 // ═══════════════════════════════════════════════════════════════════════════
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { forwardRef, memo, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, memo, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import type { Lang } from '../../constants/i18n';
@@ -14,7 +14,7 @@ import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { legacyBonusTotalLabel } from '../../modules/legacy_bonus/legacy_bonus_strings';
 import MomentCoin from '../moments/MomentCoin';
 import LegacyBonusTotalCounter, { type LegacyBonusTotalCounterHandle } from './LegacyBonusTotalCounter';
-import { MOMENT_ART } from '../../constants/momentArtPalette';
+import { colorWithAlpha } from '../v2/plateAlpha';
 
 export const LEGACY_BONUS_COIN_SIZE = 64;
 const EASE_POP = Easing.bezier(0.34, 1.56, 0.64, 1);
@@ -71,6 +71,17 @@ const LegacyBonusHero = forwardRef<LegacyBonusHeroHandle, Props>(function Legacy
     ensure: (value: number) => counterRef.current?.ensure(value) ?? value,
   }), [coinScale, numScale, reduceMotion, ring, sweep]);
 
+  // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»; координатор → МОМЕНТЫ): блик по монете — «чернила поверх
+  // картинок» темы (mediaInk, белый во всех темах) 0 → 75 % → 0 вместо отдельной палитры арта; ореол кольца — акцент темы 55 % и 35 %
+  // (прежние суффиксы 8C/59, приклеенные к строке токена, ломались бы на токене с альфой).
+  const glint = useMemo(
+    () => [colorWithAlpha(glass.mediaInk, 0), colorWithAlpha(glass.mediaInk, 0.75), colorWithAlpha(glass.mediaInk, 0)] as const,
+    [glass.mediaInk],
+  );
+  const ringGlow = useMemo(
+    () => ({ boxShadow: `0 0 0 2px ${colorWithAlpha(glass.accent, 0.55)}, 0 0 24px 6px ${colorWithAlpha(glass.accent, 0.35)}` }),
+    [glass.accent],
+  );
   const coinStyle = useAnimatedStyle(() => ({ transform: [{ scale: coinScale.value }] }));
   const numStyle = useAnimatedStyle(() => ({ transform: [{ scale: numScale.value }] }));
   const ringStyle = useAnimatedStyle(() => ({ opacity: 0.9 * (1 - ring.value), transform: [{ scale: 0.92 + ring.value * 0.98 }] }));
@@ -87,10 +98,10 @@ const LegacyBonusHero = forwardRef<LegacyBonusHeroHandle, Props>(function Legacy
     <View style={s.hero}>
       <Animated.View style={[s.coinWrap, coinStyle]} testID="legacy-bonus-coin">
         <MomentCoin rank={coinRank} size={LEGACY_BONUS_COIN_SIZE} mood="still" shadow={false} />
-        <Animated.View pointerEvents="none" style={[s.ring, { boxShadow: `0 0 0 2px ${glass.accent}8C, 0 0 24px 6px ${glass.accent}59` }, ringStyle]} />
+        <Animated.View pointerEvents="none" style={[s.ring, ringGlow, ringStyle]} />
         <View pointerEvents="none" style={s.mask}>
           <Animated.View style={[s.sweep, sweepStyle]}>
-            <LinearGradient colors={[MOMENT_ART.coinGlintClear, MOMENT_ART.coinGlintPeak, MOMENT_ART.coinGlintClear]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={StyleSheet.absoluteFill} />
+            <LinearGradient colors={glint} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={StyleSheet.absoluteFill} />
           </Animated.View>
         </View>
       </Animated.View>

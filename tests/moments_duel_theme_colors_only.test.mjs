@@ -16,6 +16,8 @@ const DIRS = [
   'components/lesson_moments',
   'components/coin_rank_moments',
   'components/dialog_moments',
+  // плашка «Встречайте 2.0» (пересчёт монет) — та же монета момента и её блик (координатор 22.10)
+  'components/legacy_bonus',
 ];
 const FILES = [
   'components/feedback/ComboMomentLayer.tsx',
@@ -70,4 +72,16 @@ test('moment windows and the friends duel use only current-theme colours — no 
     });
   }
   assert.deepEqual(found, [], `зашитые цвета (берите токен темы или colorWithAlpha(токен, α)):\n${found.join('\n')}`);
+});
+
+test('the separate «moment art» palette is gone — corona, coin shadow and coin glint come from the theme', () => {
+  // зачем (координатор 22.10): constants/momentArtPalette.ts держал арт моментов «одинаковым во всех темах» — по закону владельца так нельзя
+  assert.equal(existsSync(join(ROOT, 'constants', 'momentArtPalette.ts')), false, 'палитра арта моментов вернулась');
+  const importers = [];
+  for (const d of ['app', 'components', 'constants', 'hooks', 'modules']) {
+    for (const f of walk(join(ROOT, d), [])) {
+      if (/momentArtPalette|MOMENT_ART\b/.test(readFileSync(f, 'utf8'))) importers.push(relative(ROOT, f).split(sep).join('/'));
+    }
+  }
+  assert.deepEqual(importers, []);
 });

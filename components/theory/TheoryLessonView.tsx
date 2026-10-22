@@ -1,7 +1,6 @@
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import React, { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated, Easing, type ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -10,7 +9,7 @@ import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
-import { PracticeBackButton, PracticeHeaderTitle } from '../practice/PracticeChrome';
+import ScreenBackButton, { SCREEN_BACK_RESERVED, SCREEN_BACK_SIZE, screenBackTop } from '../v2/ScreenBackButton';
 
 import TapScale from '../TapScale';
 import ScreenGradient from '../ScreenGradient';
@@ -456,12 +455,13 @@ export default function TheoryLessonView({
           default:
             return null;
         }
-      } catch {
-        // Нестыковка данных интерактива не должна ронять экран теории.
+      } catch (error) {
+        // Нестыковка данных интерактива не должна ронять экран теории — но причина пишется в журнал.
+        console.warn('[THEORY] drill_render_failed', JSON.stringify({ lesson: lessonId, drill: key, type: drill.type, error: String(error) })); // guard-ok: ранний выход рендера
         return null;
       }
     },
-    [lang, accent, drillTheme, themeMode, drillProgress, updateDrillProgress],
+    [lang, accent, drillTheme, themeMode, drillProgress, updateDrillProgress, lessonId],
   );
 
   // ─── Рендер блока ─────────────────────────────────────────────────────────
@@ -645,40 +645,35 @@ export default function TheoryLessonView({
 
   const progressPct = Math.round(progress * 100);
 
+  // зачем (владелец 22.10, на снимок теории: «В ТЕОРИИ РАМКИ НА ВСЮ ШИРИНУ ЭКРАНА!!! ВОТ ТАКОГО РАЗДЕЛЕНИЯ НЕ ДОЛЖНО БЫТЬ,
+  // ЧТО ВВЕРХУ ЦВЕТ ДРУГОЙ И ТАК ОБРЕЗАНО! И ТЕОРИЯ ОТЦЕНТРИРОВАНА»): экран edge-to-edge на одном фоне до часов — без SafeAreaView
+  // со своим фоном и без шапки-полосы, о которую резался контент. Строка «Урок N · A1» и флажок — первая строка прокрутки,
+  // «назад» — общий ScreenBackButton (одно место на всех экранах). Один вид для основного курса и Learning V2.
+  const headerTop = screenBackTop(insets.top);
+
   return (
     <ScreenGradient>
-      <SafeAreaView style={[styles.safe, { backgroundColor: glass.bg }]} edges={['top']}>
-        {/* Шапка: круглая «‹», «Урок N · A1» 20/700, флажок ошибки */}
-        <View style={styles.topBar}>
-          <PracticeBackButton
-            glass={glass}
-            color={glass.text}
-            onPress={onBack}
-            accessibilityLabel={triLang(lang, {
-              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
-              'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-            })}
-          />
-          <View style={styles.topTitle}>
-            <PracticeHeaderTitle glass={glass} title={levelTag} />
-          </View>
-          <View style={styles.flagBtn}>
-            <ReportErrorButton
-              variant="icon-flag"
-              screen="lesson_theory"
-              dataId={reportDataId ?? `lesson_theory_${lessonId}`}
-              dataText={title}
-            />
-          </View>
-        </View>
-
+      <View style={styles.root}>
         <BouncyScrollView ref={scrollRef} decelerationRate="fast"
           showsVerticalScrollIndicator={false}
           contentContainerStyle={[
             styles.scrollContent,
-            { paddingBottom: 24 + bottomInset },
+            { paddingTop: headerTop, paddingBottom: 24 + bottomInset },
           ]}
         >
+          {/* Шапка: «Урок N · A1» по центру между «назад» и флажком (поля равные — SCREEN_BACK_RESERVED с обеих сторон) */}
+          <View style={styles.topBar}>
+            <Text style={[styles.topTitle, { color: glass.text }]} numberOfLines={1}>{levelTag}</Text>
+            <View style={styles.flagBtn}>
+              <ReportErrorButton
+                variant="icon-flag"
+                screen="lesson_theory"
+                dataId={reportDataId ?? `lesson_theory_${lessonId}`}
+                dataText={title}
+              />
+            </View>
+          </View>
+
           {/* Hero: 30/36 700 + подзаголовок 16 */}
           <Text style={[styles.heroTitle, { color: glass.text }]}>{title}</Text>
           {!!subtitle && (
@@ -701,7 +696,7 @@ export default function TheoryLessonView({
             </View>
           </View>
 
-          {/* Разделы: строки внутри одной карточки */}
+          {/* Разделы: строки внутри одной карточки на всю ширину (поля экрана 20) */}
           <View
             style={[
               styles.sectionsWrap,
@@ -727,7 +722,15 @@ export default function TheoryLessonView({
           </View>
 
         </BouncyScrollView>
-      </SafeAreaView>
+        <ScreenBackButton
+          screen={`lesson_theory_${lessonId}`}
+          onPress={onBack}
+          accessibilityLabel={triLang(lang, {
+            ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
+            'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+          })}
+        />
+      </View>
     </ScreenGradient>
   );
 }
@@ -736,16 +739,13 @@ export default function TheoryLessonView({
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  safe: { flex: 1 },
 
   // Шапка
+  // строка шапки высотой с круг «назад» (48) на его уровне; заголовок по центру, слева и справа равные поля под кнопки
   topBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    minHeight: 48,
+    height: SCREEN_BACK_SIZE,
+    justifyContent: 'center',
+    paddingHorizontal: SCREEN_BACK_RESERVED - 20,
   },
   iconBtn: {
     width: 44,
@@ -754,21 +754,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   flagBtn: {
-    minWidth: 44,
-    minHeight: 44,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: SCREEN_BACK_SIZE,
+    height: SCREEN_BACK_SIZE,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // кегль общего заголовка шапки (PracticeHeaderTitle 20/26 700), но по центру
   topTitle: {
-    flex: 1,
-    minWidth: 0,
-    marginLeft: 6,
+    fontSize: 20,
+    lineHeight: 26,
+    fontWeight: '700',
+    textAlign: 'center',
   },
 
   // Скролл
   scrollContent: {
     paddingHorizontal: 20,
-    paddingTop: 8,
   },
 
   // Hero (learn.html: 30/36 700, подзаголовок 16)
@@ -826,12 +830,12 @@ const styles = StyleSheet.create({
   sectionHeaderRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 14,
+    gap: 10,
   },
+  // без колонки фиксированной ширины (владелец 22.10): номер стоит перед заголовком, тело раздела не сдвигается вправо
   sectionNum: {
     fontSize: 13,
     fontWeight: '700',
-    width: 26,
     fontVariant: ['tabular-nums'],
   },
   sectionHeadText: {
@@ -849,7 +853,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   sectionBody: {
-    paddingLeft: 44,
+    paddingLeft: 4,
     paddingRight: 4,
     paddingBottom: 18,
     paddingTop: 2,

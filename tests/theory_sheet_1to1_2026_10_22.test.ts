@@ -41,3 +41,24 @@ describe('теория Learning V2 = экран теории основного 
     expect(view).toContain('dataId={reportDataId ?? `lesson_theory_${lessonId}`}');
   });
 });
+
+describe('один вид теории для основного курса и Learning V2 (владелец 22.10)', () => {
+  const view = code(read('components/theory/TheoryLessonView.tsx'));
+
+  it('экран edge-to-edge на одном фоне: без SafeAreaView со своим фоном и без шапки-полосы', () => {
+    expect(view).not.toContain('SafeAreaView');
+    expect(view).not.toContain('backgroundColor: glass.bg');
+    expect(view).toContain('paddingTop: headerTop');
+  });
+
+  it('«назад» — общий ScreenBackButton, заголовок шапки по центру', () => {
+    expect(view).toContain('<ScreenBackButton');
+    expect(view).not.toContain('PracticeBackButton');
+    expect(view).toMatch(/topTitle: \{[^}]*textAlign: 'center'/);
+  });
+
+  it('разделы без колонки номера: тело не сдвинуто вправо, поля симметричные', () => {
+    expect(view).not.toMatch(/sectionNum: \{[^}]*width: 26/);
+    expect(view).toMatch(/sectionBody: \{\s*paddingLeft: 4,\s*paddingRight: 4,/);
+  });
+});

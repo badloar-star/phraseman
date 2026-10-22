@@ -234,7 +234,7 @@ export const Lv2Option = memo(function Lv2Option({
  * Недоступная — глухая плита (`.cta.dis`), без вибрации.
  */
 export const Lv2Cta = memo(function Lv2Cta({
-  children, onPress, disabled, ghost, style, accessibilityLabel, testID, right,
+  children, onPress, disabled, ghost, style, accessibilityLabel, testID, right, left,
 }: {
   children: React.ReactNode;
   onPress?: () => void;
@@ -245,6 +245,8 @@ export const Lv2Cta = memo(function Lv2Cta({
   accessibilityLabel?: string;
   testID?: string;
   right?: React.ReactNode;
+  /** Значок перед надписью (▶ у «Тренировать» словаря); цвет — тот же, что у надписи. */
+  left?: React.ComponentProps<typeof Ionicons>['name'];
 }) {
   const g = useLv2Glass();
   // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
@@ -277,6 +279,7 @@ export const Lv2Cta = memo(function Lv2Cta({
       ]}
     >
       {!disabled && !ghost ? <ThemeAccentFill glass={g} radius={26} /> : null}
+      {left ? <Ionicons name={left} size={18} color={ink} /> : null}
       <Text style={[styles.ctaText, { color: ink }]}>{children}</Text>
       {right ? <View style={styles.ctaRight}>{right}</View> : null}
     </Pressable>

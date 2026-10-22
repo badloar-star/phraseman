@@ -95,8 +95,10 @@ export default function LearningV2TheorySheet({ visible, theory, lang, initialSe
             <Ionicons name="close" size={18} color={g.text} />
           </Pressable>
         </View>
-        {/* guard-ok: разделов урока 12–16 — виртуализация не нужна */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.secsScroll} contentContainerStyle={styles.secs}>
+        {/* зачем (Сверка 22.10, th_side_T3): вкладка «2 Главная формула» упиралась в край экрана на 411 dp и обрезалась; в макете вкладки помещаются в одну строку.
+            Реальные заголовки разделов длиннее макетных, поэтому вкладки переносятся на вторую строку (flexWrap): все разделы видны сразу и ни один не прячется за краем.
+            guard-ok: разделов урока 12–16 — виртуализация не нужна */}
+        <View style={styles.secs}>
           {(theory?.sections ?? []).map((item) => {
             const on = item.num === section?.num;
             return (
@@ -107,7 +109,7 @@ export default function LearningV2TheorySheet({ visible, theory, lang, initialSe
               </Pressable>
             );
           })}
-        </ScrollView>
+        </View>
         {/* guard-ok: блоков в разделе ≤ 8, порядок данных из сборки не меняется (ключи по индексу безопасны) */}
         <ScrollView ref={bodyRef} style={styles.body} contentContainerStyle={styles.bodyContent}>
           {section?.blocks.map((block, index) => (
@@ -233,9 +235,9 @@ const styles = StyleSheet.create({
   kicker: { fontSize: 13, lineHeight: 17, fontWeight: "700" },
   title: { marginTop: 2, fontSize: 22, lineHeight: 27, fontWeight: "800", letterSpacing: -0.3 },
   x: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center" },
-  secsScroll: { flexGrow: 0, marginTop: 14 },
-  secs: { gap: 8, paddingHorizontal: 20 },
-  sec: { height: 36, paddingHorizontal: 14, borderRadius: 18, flexDirection: "row", alignItems: "center", gap: 6, maxWidth: 280 },
+  secs: { flexDirection: "row", flexWrap: "wrap", gap: 8, paddingHorizontal: 20, marginTop: 14 },
+  // maxWidth 100 %: одна вкладка не шире строки; заголовок ужимается эллипсисом только если длиннее всей строки (секции ниже — длинные языки de/pl/pt)
+  sec: { height: 36, paddingHorizontal: 14, borderRadius: 18, flexDirection: "row", alignItems: "center", gap: 6, maxWidth: "100%" },
   secNum: { fontSize: 13, fontWeight: "800" },
   secTitle: { fontSize: 13, fontWeight: "700", flexShrink: 1 },
   body: { flex: 1 },

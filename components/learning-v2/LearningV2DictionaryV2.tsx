@@ -374,6 +374,7 @@ export default function LearningV2DictionaryV2({ words, lessons, studyTarget, of
             ) : null}
           </View>
           <FlatList
+            style={styles.list}
             removeClippedSubviews={false}
             data={rows}
             keyExtractor={rowKey}
@@ -405,6 +406,7 @@ export default function LearningV2DictionaryV2({ words, lessons, studyTarget, of
               disabled={trainingWords.length === 0}
               onPress={startTraining}
               right={null}
+              left="play"
             >
               {selecting ? copy.trainShort(selectedWords.length) : copy.train(visibleWords.length)}
             </Lv2Cta>
@@ -621,11 +623,13 @@ const styles = StyleSheet.create({
   offline: { flexDirection: "row", alignItems: "center", gap: 10, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, marginTop: 12, marginHorizontal: 20 },
   offlineText: { flex: 1, fontSize: 13, lineHeight: 18 },
   bold: { fontWeight: "700" },
-  chipsScroll: { flexGrow: 0, marginTop: 12 },
+  // зачем (Сверка 22.10, dict_side_D1): ряд чипов ужимался до ~32 dp и резал «Все уроки» снизу — соседний список с длинным содержимым забирал высоту; ряд не сжимается (высота чипа 40)
+  chipsScroll: { flexGrow: 0, flexShrink: 0, minHeight: 40, marginTop: 12 },
   chips: { gap: 8, paddingHorizontal: 20 },
   chip: { height: 40, paddingHorizontal: 12, borderRadius: 20, flexDirection: "row", alignItems: "center", gap: 6 },
   chipIcon: { paddingHorizontal: 12 },
   chipText: { fontSize: 13, lineHeight: 17, fontWeight: "600" },
+  list: { flex: 1 },
   search: { flexDirection: "row", alignItems: "center", gap: 10, height: 46, borderRadius: 14, paddingHorizontal: 14, marginTop: 16, marginHorizontal: 20 },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
   dsec: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 22, marginBottom: 6, marginHorizontal: 22 },

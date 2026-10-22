@@ -29,3 +29,20 @@ export function learningV2ChapterExamCopy(
   const template = row[lang as Lang9] ?? row.en;
   return template.replace(/\{(\w+)\}/gu, (_, name: string) => String(vars[name] ?? ""));
 }
+
+// зачем (координатор 22.10, эталон «12 вопросов · от 10 верных · ~5 минут»): «10 чтобы сдать» звучало коряво; здесь — порог
+// с согласованием по числу (ru/uk/pl, es/pt-BR — единственное при 1).
+export function learningV2ChapterExamPassFrom(lang: string, n: number): string {
+  const one = n % 10 === 1 && n % 100 !== 11;
+  switch (lang) {
+    case "ru": return `от ${n} ${one ? "верного" : "верных"}`;
+    case "uk": return `від ${n} ${one ? "правильної" : "правильних"}`;
+    case "es": return `al menos ${n} ${n === 1 ? "acierto" : "aciertos"}`;
+    case "pt-BR": return `pelo menos ${n} ${n === 1 ? "acerto" : "acertos"}`;
+    case "vi": return `từ ${n} câu đúng`;
+    case "id": return `minimal ${n} benar`;
+    case "tr": return `en az ${n} doğru`;
+    case "pl": return `od ${n} ${n === 1 ? "poprawnej" : "poprawnych"}`;
+    default: return `at least ${n} correct`;
+  }
+}

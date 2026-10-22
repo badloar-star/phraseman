@@ -58,7 +58,7 @@
 ## 03 · Does — про he, she і одну людину
 
 **body**
-Якщо питаєте про he, she, it чи одну людину — the barber, the fan — замість Do ставлять Does. А s, яке було в дії (he works), переходить на does і з дії зникає: Does he work?
+Якщо питаєте про he, she, it чи одну людину — the barber (перукар), the fan (уболівальник) — замість Do ставлять Does. А s, яке було в дії (he works), переходить на does і з дії зникає: Does he work?
 
 **formula**
 `Does` · `he / she / it / одна людина` · `дія без s` · `?`

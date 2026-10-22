@@ -57,7 +57,7 @@
 ## 03 · Підказки у самій фразі
 
 **body**
-Часто фраза сама підказує форму. often, usually, once a week, twice a week — це звичка, -ing не потрібен. today, now — це зараз, потрібні am / is / are + -ing.
+Часто фраза сама підказує форму. often, usually, once a week («раз на тиждень»), twice a week («двічі на тиждень») — це звичка, -ing не потрібен. today («сьогодні»), now («зараз») — це зараз, потрібні am / is / are + -ing.
 
 **examples** 🔊
 | en | uk | hi |
@@ -112,7 +112,7 @@
 ## 05 · «Болить» — have чи has
 
 **body**
-Українською «у мене болить горло». Англійською кажуть «у мене хворе горло»: I have a sore throat. Без am. З he і she — has: She has earache, He has backache. Перед earache, backache, toothache a зазвичай не ставлять.
+Українською «у мене болить горло». Англійською кажуть «у мене хворе горло»: I have a sore throat. Без am. З he і she — has: She has earache, He has backache. Перед earache («болить вухо»), backache («спина»), toothache («зуб») a зазвичай не ставлять.
 
 **examples** 🔊
 | en | uk | hi |
@@ -174,7 +174,7 @@ probably — «мабуть», ставлять після скріпки: He is
 ## 08 · Коли: at lunchtime, before bedtime
 
 **body**
-З точним часом доби — at: at nine, at lunchtime, at midnight. «Перед» — before: before bedtime. «Вдень» як частина доби — in the daytime. Де й коли, як і раніше, — у кінці фрази.
+З точним часом доби — at: at nine, at lunchtime («в обід»), at midnight («опівночі»). «Перед» — before: before bedtime. «Вдень» як частина доби — in the daytime. Де й коли, як і раніше, — у кінці фрази.
 
 **examples** 🔊
 | en | uk | hi |

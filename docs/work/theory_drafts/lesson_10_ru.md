@@ -64,7 +64,7 @@
 ## 03 · Подсказки в самой фразе
 
 **body**
-Часто фраза сама подсказывает форму. often, usually, once a week, twice a week — это привычка, -ing не нужен. today, now — это сейчас, нужен am / is / are + -ing.
+Часто фраза сама подсказывает форму. often, usually, once a week («раз в неделю»), twice a week («два раза в неделю») — это привычка, -ing не нужен. today («сегодня»), now («сейчас») — это сейчас, нужен am / is / are + -ing.
 
 **examples** 🔊
 | en | ru | hi |
@@ -119,7 +119,7 @@
 ## 05 · «Болит» — have или has
 
 **body**
-По-русски «у меня болит горло». В английском говорят «у меня больное горло»: I have a sore throat. Без am. С he и she — has: She has earache, He has backache. Перед earache, backache, toothache a обычно не ставят.
+По-русски «у меня болит горло». В английском говорят «у меня больное горло»: I have a sore throat. Без am. С he и she — has: She has earache, He has backache. Перед earache («болит ухо»), backache («спина»), toothache («зуб») a обычно не ставят.
 
 **examples** 🔊
 | en | ru | hi |
@@ -181,7 +181,7 @@ probably — «наверное», ставят после скрепки: He is
 ## 08 · Когда: at lunchtime, before bedtime
 
 **body**
-С точным временем дня — at: at nine, at lunchtime, at midnight. «Перед» — before: before bedtime. «Днём» как часть суток — in the daytime. Где и когда, как и раньше, — в конце фразы.
+С точным временем дня — at: at nine, at lunchtime («в обед»), at midnight («в полночь»). «Перед» — before: before bedtime. «Днём» как часть суток — in the daytime. Где и когда, как и раньше, — в конце фразы.
 
 **examples** 🔊
 | en | ru | hi |

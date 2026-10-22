@@ -1,13 +1,13 @@
 {
-  "total": 293,
+  "total": 248,
   "files": {
     "components/home/HomeMistakesLockedSheet.tsx": 1,
     "components/home/v2/HomeV2Header.tsx": 3,
     "components/home/v2/HomeV2VideoPlayerModal.tsx": 2,
     "components/home/v2/HomeV2VideoRail.tsx": 1,
     "components/home/v2/scene/HomeScene.tsx": 3,
-    "components/home/v2/scene/HomeSceneEnergy.tsx": 2,
-    "components/home/v2/scene/HomeSceneStage.tsx": 21,
+    "components/home/v2/scene/HomeSceneEnergy.tsx": 1,
+    "components/home/v2/scene/HomeSceneStage.tsx": 18,
     "components/home/v2/scene/home_scene_tokens.ts": 3,
     "components/home/v2/TodayActivityHistory.tsx": 3,
     "components/home/v2/today_scene/TodaySceneView.tsx": 18,
@@ -16,12 +16,7 @@
     "components/v2/GlassAlertDialog.tsx": 2,
     "components/v2/V2TabBar.tsx": 4,
     "modules/spire/tower_skins.ts": 112,
-    "components/spire/moments/MomentDown.tsx": 2,
-    "components/spire/moments/MomentPromotion.tsx": 4,
-    "components/spire/moments/moments_effects.tsx": 6,
-    "components/spire/moments/moments_layout.tsx": 1,
-    "components/spire/moments/SpirePositionRiseMoment.tsx": 1,
-    "components/spire/scene/spire_scene_palette.ts": 22,
+    "components/spire/scene/spire_scene_palette.ts": 20,
     "components/spire/SpireTower.tsx": 3,
     "components/spire/useSpireScene.ts": 7,
     "components/dialogs/DialogHintModal.tsx": 1,
@@ -32,9 +27,6 @@
     "components/learning-v2/season/SeasonCourseView.tsx": 8,
     "components/learning-v2/season/SeasonExpandedCard.tsx": 9,
     "components/learning-v2/LearningV2ChapterExamResult.tsx": 2,
-    "components/learning-v2/learning_v2_task_theme_tokens.ts": 11,
-    "components/streak/moments/StreakMomentFlame.tsx": 2,
-    "components/moments/MomentCoin.tsx": 11,
-    "components/friends_together/FriendEventMarker.tsx": 4
+    "components/learning-v2/learning_v2_task_theme_tokens.ts": 10
   }
 }

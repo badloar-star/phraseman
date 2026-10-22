@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-24:word:let-you-know",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — let you know",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:let-you-know:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — let you know",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:let-you-know:audio",
+            "transcript": "let you know"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:let-you-know:r1",
+              "targetText": "let you know",
+              "meaningByLocale": {
+                "ru": "сообщить тебе.",
+                "uk": "повідомити тобі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let you know",
+            "definitionByLocale": {
+              "ru": "сообщить тебе.",
+              "uk": "повідомити тобі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я обещаю сообщить тебе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я обещаю сообщить тебе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I promise to let you know.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я обещаю сообщить тебе».",
+            "uk": "Скажіть: «Я обіцяю повідомити тобі»."
+          },
+          "orderedTokens": [
+            "I",
+            "promise",
+            "to",
+            "let",
+            "you",
+            "know"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i02:r1",
+            "text": "I promise to let you know."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i02:r2",
+            "text": "We promise to let you know."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i02:r3",
+            "text": "They promise to let you know."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i02:audio",
+            "transcript": "I promise to let you know."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i02:r1",
+              "targetText": "I promise to let you know.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i02:r2",
+              "targetText": "We promise to let you know.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i02:r3",
+              "targetText": "They promise to let you know.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to let you know.",
+                "uk": "У записі звучить I promise to let you know."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to let you know.",
+                "uk": "У записі звучить I promise to let you know."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i03:r1",
+            "text": "to let"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i03:r2",
+            "text": "to letting"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i03:r3",
+            "text": "to lets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I promise ___ you know.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i03:r1",
+              "text": "to let"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i03:r2",
+              "text": "to letting"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i03:r3",
+              "text": "to lets"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:word:keep-you-posted",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keep you posted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:keep-you-posted:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keep you posted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:keep-you-posted:audio",
+            "transcript": "keep you posted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:keep-you-posted:r1",
+              "targetText": "keep you posted",
+              "meaningByLocale": {
+                "ru": "держать тебя в курсе.",
+                "uk": "тримати тебе в курсі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep you posted",
+            "definitionByLocale": {
+              "ru": "держать тебя в курсе.",
+              "uk": "тримати тебе в курсі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я обещаю держать тебя в курсе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я обещаю держать тебя в курсе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I promise to keep you posted.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я обещаю держать тебя в курсе».",
+            "uk": "Скажіть: «Я обіцяю тримати тебе в курсі»."
+          },
+          "orderedTokens": [
+            "I",
+            "promise",
+            "to",
+            "keep",
+            "you",
+            "posted"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i05:r1",
+            "text": "I promise to keep you posted."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i05:r2",
+            "text": "We promise to keep you posted."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i05:r3",
+            "text": "They promise to keep you posted."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i05:audio",
+            "transcript": "I promise to keep you posted."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i05:r1",
+              "targetText": "I promise to keep you posted.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i05:r2",
+              "targetText": "We promise to keep you posted.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i05:r3",
+              "targetText": "They promise to keep you posted.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to keep you posted.",
+                "uk": "У записі звучить I promise to keep you posted."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to keep you posted.",
+                "uk": "У записі звучить I promise to keep you posted."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i06:r1",
+            "text": "to keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i06:r2",
+            "text": "to keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i06:r3",
+            "text": "to keeps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I promise ___ you posted.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i06:r1",
+              "text": "to keep"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i06:r2",
+              "text": "to keeping"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i06:r3",
+              "text": "to keeps"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:word:give-you-a-call",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — give you a call",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:give-you-a-call:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — give you a call",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:give-you-a-call:audio",
+            "transcript": "give you a call"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:give-you-a-call:r1",
+              "targetText": "give you a call",
+              "meaningByLocale": {
+                "ru": "позвонить тебе.",
+                "uk": "зателефонувати тобі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give you a call",
+            "definitionByLocale": {
+              "ru": "позвонить тебе.",
+              "uk": "зателефонувати тобі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я планирую позвонить тебе сегодня вечером».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я планирую позвонить тебе сегодня вечером».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to give you a call tonight.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую позвонить тебе сегодня вечером».",
+            "uk": "Скажіть: «Я планую зателефонувати тобі сьогодні ввечері»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "give",
+            "you",
+            "a",
+            "call",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i08:r1",
+            "text": "I plan to give you a call tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i08:r2",
+            "text": "We plan to give you a call tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i08:r3",
+            "text": "They plan to give you a call tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i08:audio",
+            "transcript": "I plan to give you a call tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i08:r1",
+              "targetText": "I plan to give you a call tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i08:r2",
+              "targetText": "We plan to give you a call tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i08:r3",
+              "targetText": "They plan to give you a call tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to give you a call tonight.",
+                "uk": "У записі звучить I plan to give you a call tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to give you a call tonight.",
+                "uk": "У записі звучить I plan to give you a call tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i09:r1",
+            "text": "to give"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i09:r2",
+            "text": "to giving"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i09:r3",
+            "text": "to gives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ you a call tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i09:r1",
+              "text": "to give"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i09:r2",
+              "text": "to giving"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i09:r3",
+              "text": "to gives"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:word:pass-on",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pass on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:pass-on:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pass on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:pass-on:audio",
+            "transcript": "pass on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:pass-on:r1",
+              "targetText": "pass on",
+              "meaningByLocale": {
+                "ru": "передать сообщение другому человеку.",
+                "uk": "передати повідомлення іншій людині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pass on",
+            "definitionByLocale": {
+              "ru": "передать сообщение другому человеку.",
+              "uk": "передати повідомлення іншій людині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужно передать твоё сообщение».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужно передать твоё сообщение».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to pass on your message.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно передать твоё сообщение».",
+            "uk": "Скажіть: «Мені потрібно передати твоє повідомлення»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "pass",
+            "on",
+            "your",
+            "message"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i11:r1",
+            "text": "I need to pass on your message."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i11:r2",
+            "text": "We need to pass on your message."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i11:r3",
+            "text": "They need to pass on your message."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i11:audio",
+            "transcript": "I need to pass on your message."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i11:r1",
+              "targetText": "I need to pass on your message.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i11:r2",
+              "targetText": "We need to pass on your message.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i11:r3",
+              "targetText": "They need to pass on your message.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to pass on your message.",
+                "uk": "У записі звучить I need to pass on your message."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to pass on your message.",
+                "uk": "У записі звучить I need to pass on your message."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильную форму с to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i12:r1",
+            "text": "to pass"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i12:r2",
+            "text": "to passing"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i12:r3",
+            "text": "to passes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильную форму с to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I need ___ on your message.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i12:r1",
+              "text": "to pass"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i12:r2",
+              "text": "to passing"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i12:r3",
+              "text": "to passes"
+            }
+          ],
+          "testedDimension": "Выберите правильную форму с to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильную форму с to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-24:i13:p1",
+              "target": "let you know",
+              "meaningByLocale": {
+                "ru": "сообщить тебе",
+                "uk": "повідомити тобі"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-24:i13:p2",
+              "target": "keep you posted",
+              "meaningByLocale": {
+                "ru": "держать тебя в курсе",
+                "uk": "тримати тебе в курсі"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-24:i13:p3",
+              "target": "give you a call",
+              "meaningByLocale": {
+                "ru": "позвонить тебе",
+                "uk": "зателефонувати тобі"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-24:i13:p4",
+              "target": "pass on",
+              "meaningByLocale": {
+                "ru": "передать сообщение другому человеку",
+                "uk": "передати повідомлення іншій людині"
+              }
+            }
+          ],
+          "leftColumn": [
+            "let you know",
+            "keep you posted",
+            "give you a call",
+            "pass on"
+          ],
+          "rightColumn": [
+            "сообщить тебе",
+            "держать тебя в курсе",
+            "позвонить тебе",
+            "передать сообщение другому человеку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: приятное занятие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: приятное занятие",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: закончить дело",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: закончить дело",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Обратитесь к другу: «Я планирую позвонить тебе сегодня вечером»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Обратитесь к другу: «Я планирую позвонить тебе сегодня вечером»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i16:audio",
+            "transcript": "I plan to give you a call tonight."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I plan to give you a call tonight.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Обратитесь к другу: «Мне нужно передать твоё сообщение»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Обратитесь к другу: «Мне нужно передать твоё сообщение»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i17:audio",
+            "transcript": "I need to pass on your message."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to pass on your message.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-24:word:let-you-know",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — let you know",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:let-you-know:audio"
+        ],
+        "accessibilityLabel": "Картка слова — let you know",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:let-you-know:audio",
+            "transcript": "let you know"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:let-you-know:r1",
+              "targetText": "let you know",
+              "meaningByLocale": {
+                "ru": "сообщить тебе.",
+                "uk": "повідомити тобі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let you know",
+            "definitionByLocale": {
+              "ru": "сообщить тебе.",
+              "uk": "повідомити тобі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я обіцяю повідомити тобі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я обіцяю повідомити тобі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I promise to let you know.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я обещаю сообщить тебе».",
+            "uk": "Скажіть: «Я обіцяю повідомити тобі»."
+          },
+          "orderedTokens": [
+            "I",
+            "promise",
+            "to",
+            "let",
+            "you",
+            "know"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i02:r1",
+            "text": "I promise to let you know."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i02:r2",
+            "text": "We promise to let you know."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i02:r3",
+            "text": "They promise to let you know."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i02:audio",
+            "transcript": "I promise to let you know."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i02:r1",
+              "targetText": "I promise to let you know.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i02:r2",
+              "targetText": "We promise to let you know.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i02:r3",
+              "targetText": "They promise to let you know.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to let you know.",
+                "uk": "У записі звучить I promise to let you know."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to let you know.",
+                "uk": "У записі звучить I promise to let you know."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i03:r1",
+            "text": "to let"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i03:r2",
+            "text": "to letting"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i03:r3",
+            "text": "to lets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I promise ___ you know.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i03:r1",
+              "text": "to let"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i03:r2",
+              "text": "to letting"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i03:r3",
+              "text": "to lets"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:word:keep-you-posted",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keep you posted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:keep-you-posted:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keep you posted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:keep-you-posted:audio",
+            "transcript": "keep you posted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:keep-you-posted:r1",
+              "targetText": "keep you posted",
+              "meaningByLocale": {
+                "ru": "держать тебя в курсе.",
+                "uk": "тримати тебе в курсі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keep you posted",
+            "definitionByLocale": {
+              "ru": "держать тебя в курсе.",
+              "uk": "тримати тебе в курсі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я обіцяю тримати тебе в курсі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я обіцяю тримати тебе в курсі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I promise to keep you posted.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я обещаю держать тебя в курсе».",
+            "uk": "Скажіть: «Я обіцяю тримати тебе в курсі»."
+          },
+          "orderedTokens": [
+            "I",
+            "promise",
+            "to",
+            "keep",
+            "you",
+            "posted"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i05:r1",
+            "text": "I promise to keep you posted."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i05:r2",
+            "text": "We promise to keep you posted."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i05:r3",
+            "text": "They promise to keep you posted."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i05:audio",
+            "transcript": "I promise to keep you posted."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i05:r1",
+              "targetText": "I promise to keep you posted.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i05:r2",
+              "targetText": "We promise to keep you posted.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i05:r3",
+              "targetText": "They promise to keep you posted.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to keep you posted.",
+                "uk": "У записі звучить I promise to keep you posted."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I promise to keep you posted.",
+                "uk": "У записі звучить I promise to keep you posted."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i06:r1",
+            "text": "to keep"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i06:r2",
+            "text": "to keeping"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i06:r3",
+            "text": "to keeps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I promise ___ you posted.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i06:r1",
+              "text": "to keep"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i06:r2",
+              "text": "to keeping"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i06:r3",
+              "text": "to keeps"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:word:give-you-a-call",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — give you a call",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:give-you-a-call:audio"
+        ],
+        "accessibilityLabel": "Картка слова — give you a call",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:give-you-a-call:audio",
+            "transcript": "give you a call"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:give-you-a-call:r1",
+              "targetText": "give you a call",
+              "meaningByLocale": {
+                "ru": "позвонить тебе.",
+                "uk": "зателефонувати тобі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "give you a call",
+            "definitionByLocale": {
+              "ru": "позвонить тебе.",
+              "uk": "зателефонувати тобі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я планую зателефонувати тобі сьогодні ввечері».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я планую зателефонувати тобі сьогодні ввечері».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I plan to give you a call tonight.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я планирую позвонить тебе сегодня вечером».",
+            "uk": "Скажіть: «Я планую зателефонувати тобі сьогодні ввечері»."
+          },
+          "orderedTokens": [
+            "I",
+            "plan",
+            "to",
+            "give",
+            "you",
+            "a",
+            "call",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i08:r1",
+            "text": "I plan to give you a call tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i08:r2",
+            "text": "We plan to give you a call tonight."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i08:r3",
+            "text": "They plan to give you a call tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i08:audio",
+            "transcript": "I plan to give you a call tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i08:r1",
+              "targetText": "I plan to give you a call tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i08:r2",
+              "targetText": "We plan to give you a call tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i08:r3",
+              "targetText": "They plan to give you a call tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to give you a call tonight.",
+                "uk": "У записі звучить I plan to give you a call tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I plan to give you a call tonight.",
+                "uk": "У записі звучить I plan to give you a call tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i09:r1",
+            "text": "to give"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i09:r2",
+            "text": "to giving"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i09:r3",
+            "text": "to gives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I plan ___ you a call tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i09:r1",
+              "text": "to give"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i09:r2",
+              "text": "to giving"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i09:r3",
+              "text": "to gives"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:word:pass-on",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pass on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:word:pass-on:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pass on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:word:pass-on:audio",
+            "transcript": "pass on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:word:pass-on:r1",
+              "targetText": "pass on",
+              "meaningByLocale": {
+                "ru": "передать сообщение другому человеку.",
+                "uk": "передати повідомлення іншій людині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pass on",
+            "definitionByLocale": {
+              "ru": "передать сообщение другому человеку.",
+              "uk": "передати повідомлення іншій людині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібно передати твоє повідомлення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібно передати твоє повідомлення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need to pass on your message.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужно передать твоё сообщение».",
+            "uk": "Скажіть: «Мені потрібно передати твоє повідомлення»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "to",
+            "pass",
+            "on",
+            "your",
+            "message"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i11:r1",
+            "text": "I need to pass on your message."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i11:r2",
+            "text": "We need to pass on your message."
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i11:r3",
+            "text": "They need to pass on your message."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i11:audio",
+            "transcript": "I need to pass on your message."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-24:i11:r1",
+              "targetText": "I need to pass on your message.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i11:r2",
+              "targetText": "We need to pass on your message.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i11:r3",
+              "targetText": "They need to pass on your message.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to pass on your message.",
+                "uk": "У записі звучить I need to pass on your message."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need to pass on your message.",
+                "uk": "У записі звучить I need to pass on your message."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильну форму з to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-24:i12:r1",
+            "text": "to pass"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i12:r2",
+            "text": "to passing"
+          },
+          {
+            "responseId": "en:lesson-21:session-24:i12:r3",
+            "text": "to passes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильну форму з to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильную форму с to.",
+            "uk": "Виберіть правильну форму з to."
+          },
+          "gappedTargetPhrase": "I need ___ on your message.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-24:i12:r1",
+              "text": "to pass"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i12:r2",
+              "text": "to passing"
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i12:r3",
+              "text": "to passes"
+            }
+          ],
+          "testedDimension": "Виберіть правильну форму з to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нужен глагол без -ing.",
+                "uk": "Після to тут потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильну форму з to.",
+              "feedbackByLocale": {
+                "ru": "После to здесь нет окончания -s.",
+                "uk": "Після to тут немає закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-24:i13:p1",
+              "target": "let you know",
+              "meaningByLocale": {
+                "ru": "сообщить тебе",
+                "uk": "повідомити тобі"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-24:i13:p2",
+              "target": "keep you posted",
+              "meaningByLocale": {
+                "ru": "держать тебя в курсе",
+                "uk": "тримати тебе в курсі"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-24:i13:p3",
+              "target": "give you a call",
+              "meaningByLocale": {
+                "ru": "позвонить тебе",
+                "uk": "зателефонувати тобі"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-24:i13:p4",
+              "target": "pass on",
+              "meaningByLocale": {
+                "ru": "передать сообщение другому человеку",
+                "uk": "передати повідомлення іншій людині"
+              }
+            }
+          ],
+          "leftColumn": [
+            "let you know",
+            "keep you posted",
+            "give you a call",
+            "pass on"
+          ],
+          "rightColumn": [
+            "повідомити тобі",
+            "тримати тебе в курсі",
+            "зателефонувати тобі",
+            "передати повідомлення іншій людині"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: приємне заняття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: приємне заняття",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i14:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: закінчити справу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: закінчити справу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i15:audio",
+            "transcript": "I must finish reading the description."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I must finish reading the description.",
+          "orderedTokens": [
+            "I",
+            "must",
+            "finish",
+            "reading",
+            "the",
+            "description"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Зверніться до друга: «Я планую зателефонувати тобі сьогодні ввечері»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Зверніться до друга: «Я планую зателефонувати тобі сьогодні ввечері»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i16:audio",
+            "transcript": "I plan to give you a call tonight."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I plan to give you a call tonight.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Зверніться до друга: «Мені потрібно передати твоє повідомлення»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Зверніться до друга: «Мені потрібно передати твоє повідомлення»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-24:i17:audio",
+            "transcript": "I need to pass on your message."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to pass on your message.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-24:word:let-you-know",
+      "correctText": "let you know",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i01",
+      "correctText": "I promise to let you know.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i02",
+      "correctText": "I promise to let you know.",
+      "correctResponseId": "en:lesson-21:session-24:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i03",
+      "correctText": "to let",
+      "correctResponseId": "en:lesson-21:session-24:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:word:keep-you-posted",
+      "correctText": "keep you posted",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i04",
+      "correctText": "I promise to keep you posted.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i05",
+      "correctText": "I promise to keep you posted.",
+      "correctResponseId": "en:lesson-21:session-24:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i06",
+      "correctText": "to keep",
+      "correctResponseId": "en:lesson-21:session-24:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:word:give-you-a-call",
+      "correctText": "give you a call",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i07",
+      "correctText": "I plan to give you a call tonight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i08",
+      "correctText": "I plan to give you a call tonight.",
+      "correctResponseId": "en:lesson-21:session-24:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i09",
+      "correctText": "to give",
+      "correctResponseId": "en:lesson-21:session-24:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:word:pass-on",
+      "correctText": "pass on",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i10",
+      "correctText": "I need to pass on your message.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i11",
+      "correctText": "I need to pass on your message.",
+      "correctResponseId": "en:lesson-21:session-24:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i12",
+      "correctText": "to pass",
+      "correctResponseId": "en:lesson-21:session-24:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i14",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i15",
+      "correctText": "I must finish reading the description.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i16",
+      "correctText": "I plan to give you a call tonight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-24:i17",
+      "correctText": "I need to pass on your message.",
+      "correctResponseId": null
+    }
+  ]
+}

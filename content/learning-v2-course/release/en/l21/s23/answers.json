@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-23:word:stay-calm",
+    "correctText": "stay calm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i01",
+    "correctText": "I want to stay calm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i02",
+    "correctText": "I want to stay calm.",
+    "correctResponseId": "en:lesson-21:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i03",
+    "correctText": "to stay",
+    "correctResponseId": "en:lesson-21:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:word:take-a-deep-breath",
+    "correctText": "take a deep breath",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i04",
+    "correctText": "I need to take a deep breath.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i05",
+    "correctText": "I need to take a deep breath.",
+    "correctResponseId": "en:lesson-21:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i06",
+    "correctText": "to take",
+    "correctResponseId": "en:lesson-21:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:word:let-off-steam",
+    "correctText": "let off steam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i07",
+    "correctText": "I want to let off steam.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i08",
+    "correctText": "I want to let off steam.",
+    "correctResponseId": "en:lesson-21:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i09",
+    "correctText": "to let",
+    "correctResponseId": "en:lesson-21:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:word:clear-the-air",
+    "correctText": "clear the air",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i10",
+    "correctText": "I want to clear the air.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i11",
+    "correctText": "I want to clear the air.",
+    "correctResponseId": "en:lesson-21:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i12",
+    "correctText": "to clear",
+    "correctResponseId": "en:lesson-21:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i13",
+    "correctText": "en:lesson-21:session-23:i13:p1=stay calm\nen:lesson-21:session-23:i13:p2=take a deep breath\nen:lesson-21:session-23:i13:p3=let off steam\nen:lesson-21:session-23:i13:p4=clear the air",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i16",
+    "correctText": "I want to let off steam.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-23:i17",
+    "correctText": "I want to clear the air.",
+    "correctResponseId": null
+  }
+]

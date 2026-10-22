@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-22:word:run-late",
+    "correctText": "run late",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i01",
+    "correctText": "I do not want to run late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i02",
+    "correctText": "I do not want to run late.",
+    "correctResponseId": "en:lesson-21:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i03",
+    "correctText": "to run",
+    "correctResponseId": "en:lesson-21:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:word:lose-track-of-time",
+    "correctText": "lose track of time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i04",
+    "correctText": "I do not want to lose track of time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i05",
+    "correctText": "I do not want to lose track of time.",
+    "correctResponseId": "en:lesson-21:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i06",
+    "correctText": "to lose",
+    "correctResponseId": "en:lesson-21:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:word:set-an-alarm",
+    "correctText": "set an alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i07",
+    "correctText": "I need to set an alarm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i08",
+    "correctText": "I need to set an alarm.",
+    "correctResponseId": "en:lesson-21:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i09",
+    "correctText": "to set",
+    "correctResponseId": "en:lesson-21:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:word:allow-time",
+    "correctText": "allow time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i10",
+    "correctText": "I need to allow time for the journey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i11",
+    "correctText": "I need to allow time for the journey.",
+    "correctResponseId": "en:lesson-21:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i12",
+    "correctText": "to allow",
+    "correctResponseId": "en:lesson-21:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i13",
+    "correctText": "en:lesson-21:session-22:i13:p1=run late\nen:lesson-21:session-22:i13:p2=lose track of time\nen:lesson-21:session-22:i13:p3=set an alarm\nen:lesson-21:session-22:i13:p4=allow time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i16",
+    "correctText": "I need to set an alarm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-22:i17",
+    "correctText": "I need to allow time for the journey.",
+    "correctResponseId": null
+  }
+]

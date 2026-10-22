@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не терять связь",
+        "uk": "Не втрачати звʼязок"
+      },
+      "bodyByLocale": {
+        "ru": "Lose touch — потерять связь, перестать общаться. Друг переезжает, и вы не хотите прекращать общение. Это противоположная ситуация знакомому keep in touch — поддерживать связь. После want, hope и need здесь используем to + начальную форму: to lose, to hear, to write, to leave. Отрицание I do not want показывает, что вы не хотите терять связь.",
+        "uk": "Lose touch — втратити звʼязок, перестати спілкуватися. Друг переїжджає, і ви не хочете припиняти спілкування. Це протилежна ситуація до знайомого keep in touch — підтримувати звʼязок. Після want, hope і need тут використовуємо to + початкову форму: to lose, to hear, to write, to leave. Заперечення I do not want показує, що ви не хочете втрачати звʼязок."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-21:intro1:r1",
+              "text": "I do not want to lose touch."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro1:r2",
+              "text": "I do not want to losing touch."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro1:r3",
+              "text": "I do not want to loses touch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-21:intro1:r1",
+              "text": "I do not want to lose touch."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro1:r2",
+              "text": "I do not want to losing touch."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro1:r3",
+              "text": "I do not want to loses touch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Получить ответ",
+        "uk": "Отримати відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Hear from — получить весточку от человека: сообщение, письмо или звонок. Вы обращаетесь к другу и надеетесь вскоре получить от него новости. Write back — написать в ответ на уже полученное письмо или сообщение. После want, hope и need здесь используем to + начальную форму: to lose, to hear, to write, to leave. Отрицание I do not want показывает, что вы не хотите терять связь.",
+        "uk": "Hear from — отримати звістку від людини: повідомлення, лист або дзвінок. Ви звертаєтеся до друга й сподіваєтеся невдовзі отримати від нього новини. Write back — написати у відповідь на вже отриманий лист або повідомлення. Після want, hope і need тут використовуємо to + початкову форму: to lose, to hear, to write, to leave. Заперечення I do not want показує, що ви не хочете втрачати звʼязок."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-21:intro2:r1",
+              "text": "I hope to hear from you soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro2:r2",
+              "text": "I hope to hearing from you soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro2:r3",
+              "text": "I hope to hears from you soon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-21:intro2:r1",
+              "text": "I hope to hear from you soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro2:r2",
+              "text": "I hope to hearing from you soon."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro2:r3",
+              "text": "I hope to hears from you soon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оставить сообщение",
+        "uk": "Залишити повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Leave a message — оставить сообщение. Нужный человек не может ответить на звонок, поэтому вы хотите оставить ему сообщение. Это может быть голосовое сообщение или записка, которую ему передадут. После want, hope и need здесь используем to + начальную форму: to lose, to hear, to write, to leave. Отрицание I do not want показывает, что вы не хотите терять связь.",
+        "uk": "Leave a message — залишити повідомлення. Потрібна людина не може відповісти на дзвінок, тому ви хочете залишити їй повідомлення. Це може бути голосове повідомлення або записка, яку їй передадуть. Після want, hope і need тут використовуємо to + початкову форму: to lose, to hear, to write, to leave. Заперечення I do not want показує, що ви не хочете втрачати звʼязок."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-21:intro3:r1",
+              "text": "I want to leave a message."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro3:r2",
+              "text": "I want to leaving a message."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro3:r3",
+              "text": "I want to leaves a message."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-21:intro3:r1",
+              "text": "I want to leave a message."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro3:r2",
+              "text": "I want to leaving a message."
+            },
+            {
+              "responseId": "en:lesson-21:session-21:intro3:r3",
+              "text": "I want to leaves a message."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "747ae493eb8c30dc1ab67a156ea98f4dce40e4c248217e7b10ac1caec3bd212c"
+}

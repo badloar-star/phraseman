@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-21:word:lose-touch",
+    "correctText": "lose touch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i01",
+    "correctText": "I do not want to lose touch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i02",
+    "correctText": "I do not want to lose touch.",
+    "correctResponseId": "en:lesson-21:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i03",
+    "correctText": "to lose",
+    "correctResponseId": "en:lesson-21:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:word:hear-from",
+    "correctText": "hear from",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i04",
+    "correctText": "I hope to hear from you soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i05",
+    "correctText": "I hope to hear from you soon.",
+    "correctResponseId": "en:lesson-21:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i06",
+    "correctText": "to hear",
+    "correctResponseId": "en:lesson-21:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:word:write-back",
+    "correctText": "write back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i07",
+    "correctText": "I need to write back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i08",
+    "correctText": "I need to write back.",
+    "correctResponseId": "en:lesson-21:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i09",
+    "correctText": "to write",
+    "correctResponseId": "en:lesson-21:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:word:leave-a-message",
+    "correctText": "leave a message",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i10",
+    "correctText": "I want to leave a message.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i11",
+    "correctText": "I want to leave a message.",
+    "correctResponseId": "en:lesson-21:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i12",
+    "correctText": "to leave",
+    "correctResponseId": "en:lesson-21:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i13",
+    "correctText": "en:lesson-21:session-21:i13:p1=lose touch\nen:lesson-21:session-21:i13:p2=hear from\nen:lesson-21:session-21:i13:p3=write back\nen:lesson-21:session-21:i13:p4=leave a message",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i16",
+    "correctText": "I need to write back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-21:i17",
+    "correctText": "I want to leave a message.",
+    "correctResponseId": null
+  }
+]

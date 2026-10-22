@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сохранить спокойствие",
+        "uk": "Зберегти спокій"
+      },
+      "bodyByLocale": {
+        "ru": "Stay calm — сохранять спокойствие. Перед непростым разговором вы говорите о том, как хотите себя вести. Calm описывает состояние, а stay показывает, что вы хотите его сохранить. После want и need здесь используем to + начальную форму: to stay, to take, to let, to clear. В устойчивом выражении сохраняем остальные слова: to let off steam, to clear the air.",
+        "uk": "Stay calm — зберігати спокій. Перед непростою розмовою ви говорите про те, як хочете поводитися. Calm описує стан, а stay показує, що ви хочете його зберегти. Після want і need тут використовуємо to + початкову форму: to stay, to take, to let, to clear. У сталому виразі зберігаємо решту слів: to let off steam, to clear the air."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-23:intro1:r1",
+              "text": "I want to stay calm."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro1:r2",
+              "text": "I want to staying calm."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro1:r3",
+              "text": "I want to stays calm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-23:intro1:r1",
+              "text": "I want to stay calm."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro1:r2",
+              "text": "I want to staying calm."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro1:r3",
+              "text": "I want to stays calm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сделать паузу",
+        "uk": "Зробити паузу"
+      },
+      "bodyByLocale": {
+        "ru": "Take a deep breath — глубоко вдохнуть. В учебной ситуации человек делает паузу перед ответом. Let off steam — дать выход накопившемуся напряжению; например, прогуляться после тяжёлого дня. Здесь steam употребляется образно. После want и need здесь используем to + начальную форму: to stay, to take, to let, to clear. В устойчивом выражении сохраняем остальные слова: to let off steam, to clear the air.",
+        "uk": "Take a deep breath — глибоко вдихнути. У навчальній ситуації людина робить паузу перед відповіддю. Let off steam — дати вихід накопиченому напруженню; наприклад, прогулятися після важкого дня. Тут steam ужито образно. Після want і need тут використовуємо to + початкову форму: to stay, to take, to let, to clear. У сталому виразі зберігаємо решту слів: to let off steam, to clear the air."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-23:intro2:r1",
+              "text": "I need to take a deep breath."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro2:r2",
+              "text": "I need to taking a deep breath."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro2:r3",
+              "text": "I need to takes a deep breath."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-23:intro2:r1",
+              "text": "I need to take a deep breath."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro2:r2",
+              "text": "I need to taking a deep breath."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro2:r3",
+              "text": "I need to takes a deep breath."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Прояснить недоразумение",
+        "uk": "Зʼясувати непорозуміння"
+      },
+      "bodyByLocale": {
+        "ru": "Clear the air — поговорить о недоразумении, чтобы убрать напряжение между людьми. После неловкого разговора вы хотите спокойно объясниться с другом. Это выражение об отношениях, а не о проветривании комнаты. После want и need здесь используем to + начальную форму: to stay, to take, to let, to clear. В устойчивом выражении сохраняем остальные слова: to let off steam, to clear the air.",
+        "uk": "Clear the air — поговорити про непорозуміння, щоб прибрати напруження між людьми. Після незручної розмови ви хочете спокійно порозумітися з другом. Це вираз про стосунки, а не про провітрювання кімнати. Після want і need тут використовуємо to + початкову форму: to stay, to take, to let, to clear. У сталому виразі зберігаємо решту слів: to let off steam, to clear the air."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-23:intro3:r1",
+              "text": "I want to clear the air."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro3:r2",
+              "text": "I want to clearing the air."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro3:r3",
+              "text": "I want to clears the air."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-23:intro3:r1",
+              "text": "I want to clear the air."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro3:r2",
+              "text": "I want to clearing the air."
+            },
+            {
+              "responseId": "en:lesson-21:session-23:intro3:r3",
+              "text": "I want to clears the air."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a58b5337f02c6af9858ecea68baf3b45e55482837a83f182790813d52669981c"
+}

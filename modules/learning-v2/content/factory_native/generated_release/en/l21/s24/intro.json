@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о решении",
+        "uk": "Повідомити про рішення"
+      },
+      "bodyByLocale": {
+        "ru": "Let you know — сообщить тебе. Друг ждёт окончательного решения о встрече, и вы обещаете сообщить ему, когда всё станет известно. В этой фразе you относится к человеку, с которым вы разговариваете. После promise, plan и need здесь используем to + начальную форму: to let, to keep, to give, to pass. Promise выражает обещание, plan — план, need — необходимость; эти слова не означают одинаковую степень уверенности.",
+        "uk": "Let you know — повідомити тобі. Друг чекає остаточного рішення щодо зустрічі, і ви обіцяєте повідомити йому, коли все стане відомо. У цій фразі you стосується людини, з якою ви розмовляєте. Після promise, plan і need тут використовуємо to + початкову форму: to let, to keep, to give, to pass. Promise виражає обіцянку, plan — план, need — необхідність; ці слова не означають однакового ступеня впевненості."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-24:intro1:r1",
+              "text": "I promise to let you know."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro1:r2",
+              "text": "I promise to letting you know."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro1:r3",
+              "text": "I promise to lets you know."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-24:intro1:r1",
+              "text": "I promise to let you know."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro1:r2",
+              "text": "I promise to letting you know."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro1:r3",
+              "text": "I promise to lets you know."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Держать в курсе",
+        "uk": "Тримати в курсі"
+      },
+      "bodyByLocale": {
+        "ru": "Keep you posted — держать тебя в курсе, сообщать о новых изменениях по мере их появления. Give you a call — позвонить тебе. Вы обращаетесь к другу и говорите, что планируете позвонить сегодня вечером. После promise, plan и need здесь используем to + начальную форму: to let, to keep, to give, to pass. Promise выражает обещание, plan — план, need — необходимость; эти слова не означают одинаковую степень уверенности.",
+        "uk": "Keep you posted — тримати тебе в курсі, повідомляти про нові зміни в міру їх появи. Give you a call — зателефонувати тобі. Ви звертаєтеся до друга й кажете, що плануєте зателефонувати сьогодні ввечері. Після promise, plan і need тут використовуємо to + початкову форму: to let, to keep, to give, to pass. Promise виражає обіцянку, plan — план, need — необхідність; ці слова не означають однакового ступеня впевненості."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-24:intro2:r1",
+              "text": "I promise to keep you posted."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro2:r2",
+              "text": "I promise to keeping you posted."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro2:r3",
+              "text": "I promise to keeps you posted."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-24:intro2:r1",
+              "text": "I promise to keep you posted."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro2:r2",
+              "text": "I promise to keeping you posted."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro2:r3",
+              "text": "I promise to keeps you posted."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Передать сообщение",
+        "uk": "Передати повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Pass on — передать сообщение или информацию другому человеку. Друг попросил вас передать его сообщение общей знакомой. Вы говорите ему, что вам нужно это сделать. После promise, plan и need здесь используем to + начальную форму: to let, to keep, to give, to pass. Promise выражает обещание, plan — план, need — необходимость; эти слова не означают одинаковую степень уверенности.",
+        "uk": "Pass on — передати повідомлення або інформацію іншій людині. Друг попросив вас передати його повідомлення спільній знайомій. Ви кажете йому, що вам потрібно це зробити. Після promise, plan і need тут використовуємо to + початкову форму: to let, to keep, to give, to pass. Promise виражає обіцянку, plan — план, need — необхідність; ці слова не означають однакового ступеня впевненості."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-24:intro3:r1",
+              "text": "I need to pass on your message."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro3:r2",
+              "text": "I need to passing on your message."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro3:r3",
+              "text": "I need to passes on your message."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-24:intro3:r1",
+              "text": "I need to pass on your message."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro3:r2",
+              "text": "I need to passing on your message."
+            },
+            {
+              "responseId": "en:lesson-21:session-24:intro3:r3",
+              "text": "I need to passes on your message."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8dcffc95e06b4a3a8132eadf0a6b0b414644a4b59245c345ab12bd81c13322b9"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-24:word:let-you-know",
+    "correctText": "let you know",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i01",
+    "correctText": "I promise to let you know.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i02",
+    "correctText": "I promise to let you know.",
+    "correctResponseId": "en:lesson-21:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i03",
+    "correctText": "to let",
+    "correctResponseId": "en:lesson-21:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:word:keep-you-posted",
+    "correctText": "keep you posted",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i04",
+    "correctText": "I promise to keep you posted.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i05",
+    "correctText": "I promise to keep you posted.",
+    "correctResponseId": "en:lesson-21:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i06",
+    "correctText": "to keep",
+    "correctResponseId": "en:lesson-21:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:word:give-you-a-call",
+    "correctText": "give you a call",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i07",
+    "correctText": "I plan to give you a call tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i08",
+    "correctText": "I plan to give you a call tonight.",
+    "correctResponseId": "en:lesson-21:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i09",
+    "correctText": "to give",
+    "correctResponseId": "en:lesson-21:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:word:pass-on",
+    "correctText": "pass on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i10",
+    "correctText": "I need to pass on your message.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i11",
+    "correctText": "I need to pass on your message.",
+    "correctResponseId": "en:lesson-21:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i12",
+    "correctText": "to pass",
+    "correctResponseId": "en:lesson-21:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i13",
+    "correctText": "en:lesson-21:session-24:i13:p1=let you know\nen:lesson-21:session-24:i13:p2=keep you posted\nen:lesson-21:session-24:i13:p3=give you a call\nen:lesson-21:session-24:i13:p4=pass on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i16",
+    "correctText": "I plan to give you a call tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-24:i17",
+    "correctText": "I need to pass on your message.",
+    "correctResponseId": null
+  }
+]

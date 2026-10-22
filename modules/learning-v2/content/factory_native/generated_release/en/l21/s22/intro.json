@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не опаздывать",
+        "uk": "Не запізнюватися"
+      },
+      "bodyByLocale": {
+        "ru": "Run late — отставать от графика, опаздывать. У вас назначена встреча, и вы не хотите задержаться. Часто можно услышать I am running late — «Я опаздываю»; здесь выражаем нежелание: I do not want to run late. После want и need здесь используем to + начальную форму. I do not want to… выражает нежелание, I need to… — необходимость. В сочетаниях to run и to set не удваиваем последнюю букву: удвоение есть только в running и setting.",
+        "uk": "Run late — відставати від графіка, запізнюватися. У вас призначена зустріч, і ви не хочете затриматися. Часто можна почути I am running late — «Я запізнююся»; тут виражаємо небажання: I do not want to run late. Після want і need тут використовуємо to + початкову форму. I do not want to… виражає небажання, I need to… — необхідність. У сполученнях to run і to set не подвоюємо останньої літери: подвоєння є лише в running та setting."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-22:intro1:r1",
+              "text": "I do not want to run late."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro1:r2",
+              "text": "I do not want to running late."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro1:r3",
+              "text": "I do not want to runs late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-22:intro1:r1",
+              "text": "I do not want to run late."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro1:r2",
+              "text": "I do not want to running late."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro1:r3",
+              "text": "I do not want to runs late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Следить за временем",
+        "uk": "Стежити за часом"
+      },
+      "bodyByLocale": {
+        "ru": "Lose track of time — потерять счёт времени, увлечься и не заметить, сколько времени прошло. Вы не хотите забыть о встрече за чтением. Set an alarm — поставить будильник, выбрать время сигнала. После want и need здесь используем to + начальную форму. I do not want to… выражает нежелание, I need to… — необходимость. В сочетаниях to run и to set не удваиваем последнюю букву: удвоение есть только в running и setting.",
+        "uk": "Lose track of time — втратити відчуття часу, захопитися й не помітити, скільки часу минуло. Ви не хочете забути про зустріч за читанням. Set an alarm — поставити будильник, вибрати час сигналу. Після want і need тут використовуємо to + початкову форму. I do not want to… виражає небажання, I need to… — необхідність. У сполученнях to run і to set не подвоюємо останньої літери: подвоєння є лише в running та setting."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-22:intro2:r1",
+              "text": "I do not want to lose track of time."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro2:r2",
+              "text": "I do not want to losing track of time."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro2:r3",
+              "text": "I do not want to loses track of time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-22:intro2:r1",
+              "text": "I do not want to lose track of time."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro2:r2",
+              "text": "I do not want to losing track of time."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro2:r3",
+              "text": "I do not want to loses track of time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Учесть дорогу",
+        "uk": "Урахувати дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Allow time — предусмотреть время на что-то. Вы планируете встречу и учитываете, сколько займёт дорога. Allow time for the journey означает оставить в плане достаточно времени на путь. После want и need здесь используем to + начальную форму. I do not want to… выражает нежелание, I need to… — необходимость. В сочетаниях to run и to set не удваиваем последнюю букву: удвоение есть только в running и setting.",
+        "uk": "Allow time — передбачити час на щось. Ви плануєте зустріч і враховуєте, скільки триватиме дорога. Allow time for the journey означає залишити в плані достатньо часу на шлях. Після want і need тут використовуємо to + початкову форму. I do not want to… виражає небажання, I need to… — необхідність. У сполученнях to run і to set не подвоюємо останньої літери: подвоєння є лише в running та setting."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-22:intro3:r1",
+              "text": "I need to allow time for the journey."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro3:r2",
+              "text": "I need to allowing time for the journey."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro3:r3",
+              "text": "I need to allows time for the journey."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-22:intro3:r1",
+              "text": "I need to allow time for the journey."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro3:r2",
+              "text": "I need to allowing time for the journey."
+            },
+            {
+              "responseId": "en:lesson-21:session-22:intro3:r3",
+              "text": "I need to allows time for the journey."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ee149615e02394e549dc260b009ba34abaa9d4e68e4622f43988525e63a3bf44"
+}

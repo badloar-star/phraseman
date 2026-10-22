@@ -8,6 +8,20 @@
 /** Угловой градиент от 200°: #8E7CFF → #6FA8FF → #7FE0D8 → #C69BFF → #8E7CFF (замкнут). */
 export const PLUS_RING_COLORS = ['#8E7CFF', '#6FA8FF', '#7FE0D8', '#C69BFF', '#8E7CFF'] as const; // theme-exempt: знак Plus — один цвет во всех темах
 export const PLUS_RING_START_DEG = 200;
+/**
+ * Те же пять цветов, затемнённые для СВЕТЛЫХ тем.
+ * зачем (владелец 22.10, вопрос №17: «Да, затемнённое»): на светлых фонах исходные цвета давали 1,1–2,3:1 (мятный почти сливался), норма для графики — 3:1.
+ * Затемнение по яркости с сохранением тона: ≥ 3:1 к фону экрана и к карточке во всех 23 светлых темах (docs/work/tasks/plus-ring-light-contrast-2026-10-22.md).
+ * Тёмные темы не тронуты. Порядок цветов и вид знака те же.
+ */
+export const PLUS_RING_COLORS_LIGHT = ['#7A6BDB', '#527CBD', '#4B847F', '#8D6EB5', '#7A6BDB'] as const; // theme-exempt: знак Plus — затемнённый вариант для светлых тем
+/** Плоское кольцо Пика в светлых темах. */
+export const PLUS_FLAT_COLOR_LIGHT = '#7A6FC9'; // theme-exempt: знак Plus — затемнённый вариант для светлых тем
+
+/** Цвета углового градиента кольца под оформление темы. */
+export function plusRingColors(isLight: boolean): readonly string[] {
+  return isLight ? PLUS_RING_COLORS_LIGHT : PLUS_RING_COLORS;
+}
 /** Значок ◆: градиент 135° сверху-слева вниз-вправо. */
 export const PLUS_PIN_COLORS = ['#8E7CFF', '#6FA8FF'] as const; // theme-exempt: знак Plus — один цвет во всех темах
 /** Плоское кольцо жителей на башне Пика. */
@@ -52,7 +66,7 @@ export type PlusRingSpec = Readonly<{
  * card: кольцо 6, зазор 5, значок 46 (ромб 24, обводка 4), внутри угла монеты на 4.
  * flat: кольцо 3, зазор 2, без значка.
  */
-export function plusRingSpec(size: number, kind: PlusRingKind = 'list'): PlusRingSpec {
+export function plusRingSpec(size: number, kind: PlusRingKind = 'list', isLight = false): PlusRingSpec {
   const safeSize = Number.isFinite(size) && size > 0 ? size : 0;
   if (kind === 'card') {
     const ring = 6;
@@ -65,7 +79,7 @@ export function plusRingSpec(size: number, kind: PlusRingKind = 'list'): PlusRin
   if (kind === 'flat') {
     const ring = 3;
     const gap = 2;
-    return { kind, ring, gap, inset: ring + gap, outer: safeSize + 2 * (ring + gap), flatColor: PLUS_FLAT_COLOR, pin: null };
+    return { kind, ring, gap, inset: ring + gap, outer: safeSize + 2 * (ring + gap), flatColor: isLight ? PLUS_FLAT_COLOR_LIGHT : PLUS_FLAT_COLOR, pin: null };
   }
   const ring = 2.5;
   const gap = 2;
@@ -94,8 +108,7 @@ const r2 = (n: number): number => Math.round(n * 100) / 100;
  * разницы с настоящим угловым градиентом не видит. Дуги чуть перекрываются (`overlapDeg`), чтобы на стыках не было щелей.
  * Угол — по часовой стрелке от 12 часов, как в CSS.
  */
-export function plusRingArcs(outer: number, ring: number, overlapDeg = 0.9): readonly PlusRingArc[] {
-  const colors = PLUS_RING_COLORS;
+export function plusRingArcs(outer: number, ring: number, overlapDeg = 0.9, colors: readonly string[] = PLUS_RING_COLORS): readonly PlusRingArc[] {
   const segments = colors.length - 1;
   const step = 360 / segments;
   const c = outer / 2;

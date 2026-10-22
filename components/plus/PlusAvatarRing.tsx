@@ -16,6 +16,7 @@ import {
   PLUS_PIN_COLORS,
   PLUS_PIN_GLYPH_COLOR,
   plusRingArcs,
+  plusRingColors,
   plusRingSpec,
   plusTagColors,
   type PlusRingKind,
@@ -35,9 +36,14 @@ type OverlayProps = Readonly<{
 }>;
 
 const RingGraphic = memo(function RingGraphic({ size, kind }: { size: number; kind: PlusRingKind }) {
-  const spec = plusRingSpec(size, kind);
+  // зачем (владелец 22.10, №17): в светлых темах кольцо затемнённое (≥ 3:1); isDark === false — только явно светлая тема, без темы остаётся прежнее
+  const { isDark } = useTheme();
+  const isLight = isDark === false;
+  const spec = plusRingSpec(size, kind, isLight);
   const { outer, ring, inset } = spec;
   const center = outer / 2;
+  const arcs = spec.flatColor ? [] : plusRingArcs(outer, ring, 0.9, plusRingColors(isLight));
+  const idBase = `plr${Math.round(outer * 10)}${isLight ? 'l' : 'd'}`;
   return (
     <Svg width={outer} height={outer} style={{ position: 'absolute', left: -inset, top: -inset }}>
       {spec.flatColor ? (
@@ -45,15 +51,15 @@ const RingGraphic = memo(function RingGraphic({ size, kind }: { size: number; ki
       ) : (
         <>
           <Defs>
-            {plusRingArcs(outer, ring).map((arc, index) => (
-              <SvgLinearGradient key={`g${index}`} id={`plr${Math.round(outer * 10)}_${index}`} gradientUnits="userSpaceOnUse" x1={arc.x1} y1={arc.y1} x2={arc.x2} y2={arc.y2}>
+            {arcs.map((arc, index) => (
+              <SvgLinearGradient key={`g${index}`} id={`${idBase}_${index}`} gradientUnits="userSpaceOnUse" x1={arc.x1} y1={arc.y1} x2={arc.x2} y2={arc.y2}>
                 <Stop offset="0" stopColor={arc.from} />
                 <Stop offset="1" stopColor={arc.to} />
               </SvgLinearGradient>
             ))}
           </Defs>
-          {plusRingArcs(outer, ring).map((arc, index) => (
-            <Path key={`p${index}`} d={arc.d} stroke={`url(#plr${Math.round(outer * 10)}_${index})`} strokeWidth={ring} fill="none" />
+          {arcs.map((arc, index) => (
+            <Path key={`p${index}`} d={arc.d} stroke={`url(#${idBase}_${index})`} strokeWidth={ring} fill="none" />
           ))}
         </>
       )}

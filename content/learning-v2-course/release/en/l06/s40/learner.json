@@ -327,17 +327,17 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-40:i05:audio",
-          "transcript": "The invitation is on the doorstep."
+          "transcript": "The invitation is on the table."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The invitation is on the doorstep.",
+        "hiddenTargetPhrase": "The invitation is on the table.",
         "orderedTokens": [
           "The",
           "invitation",
           "is",
           "on",
           "the",
-          "doorstep"
+          "table"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -348,8 +348,8 @@
             "correct": false,
             "testedDimension": "Послушайте новичка и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The invitation is on the doorstep.`",
-              "uk": "тут потрібно `is` — `The invitation is on the doorstep.`"
+              "ru": "здесь нужно `is` — `The invitation is on the table.`",
+              "uk": "тут потрібно `is` — `The invitation is on the table.`"
             }
           }
         ],
@@ -1178,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d4a4f88c241a98458a5b6d39286428a3c52d0f7b1984a0dda3f978ef427b7067"
+  "learnerFingerprint": "e14c8e5db99e50eb112a9fc5b37ba098d7d975461eb6118f2d81cc4003dc1f0e"
 }

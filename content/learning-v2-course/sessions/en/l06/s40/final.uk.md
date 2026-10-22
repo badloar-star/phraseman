@@ -79,8 +79,8 @@ newcomer — новоприбулий · invitation — запрошення · 
 
 **6 · Послухайте новачка й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-40:i05; family: listen_build_dictation -->
-🔊 *The invitation is on the doorstep.* Плитки: `doorstep` `on` `the` `The` `invitation` `is` `are` → **The invitation is on the doorstep.**
-*(плитка `are` зайва: тут потрібно `is` — `The invitation is on the doorstep.`)*
+🔊 *The invitation is on the table.* Плитки: `table` `on` `the` `The` `invitation` `is` `are` → **The invitation is on the table.**
+*(плитка `are` зайва: тут потрібно `is` — `The invitation is on the table.`)*
 
 **7 · Картка слова — newcomer**
 <!-- interaction_id: en:lesson-06:session-40:word:newcomer; family: word_card -->

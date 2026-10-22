@@ -5,6 +5,7 @@ import ScreenGradient from './ScreenGradient';
 import LessonArtBackdrop from './LessonArtBackdrop';
 import SkeletonBlock from './SkeletonShimmer';
 import type { Theme } from '../constants/theme';
+import { SCREEN_BACK_LEFT, SCREEN_BACK_SIZE } from './v2/ScreenBackButton';
 
 interface LessonLoadingSkeletonProps {
   theme: Theme;
@@ -34,8 +35,11 @@ function LessonLoadingSkeletonBase({ theme: t, compact = false, horizontalPaddin
             width: '100%',
             flexDirection: 'row',
             alignItems: 'center',
-            paddingHorizontal: horizontalPadding < 20 ? 10 : 15,
-            paddingVertical: compact ? 7 : 12,
+            paddingLeft: SCREEN_BACK_LEFT,
+            paddingRight: horizontalPadding < 20 ? 10 : 15,
+            // зачем (закон 22.10 «назад в одном месте»): высота как у шапки урока — место общей кнопки 48 + отступ снизу
+            minHeight: SCREEN_BACK_SIZE,
+            marginBottom: compact ? 7 : 12,
             gap: 6,
           }}
         >

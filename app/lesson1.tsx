@@ -34,7 +34,8 @@ import { theoryEntryFor, triLang, type Lang } from '../constants/i18n';
 import { FONT_SCALE, getCardShadow, useTheme } from '../components/ThemeContext';
 import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_LEFT, SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
@@ -1075,27 +1076,31 @@ const LessonContent = React.memo(function LessonContent({
   return (
     <>
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
+      {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+      <SafeTopBackButton
+        screen="lesson1"
+        onPress={onHeaderBack}
+        testID="lesson1-header-back"
+        accessibilityLabel={triLang(lang, {
+          uk: 'Назад', ru: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+        })}
+      />
       {/* ХЕДЕР — flex + minWidth:0 + wrap, иначе на узких экранах правый блок вылезает за край */}
       <View
         style={{
           width: '100%',
           flexDirection: 'row',
           alignItems: 'center',
-          paddingHorizontal: isSmallScreen ? 10 : 15,
-          paddingVertical: linkedSliceCompact ? 7 : 12,
+          paddingLeft: SCREEN_BACK_LEFT,
+          paddingRight: isSmallScreen ? 10 : 15,
+          // верх шапки = верх общей кнопки; отступ до задания — снизу
+          minHeight: SCREEN_BACK_SIZE,
+          marginBottom: linkedSliceCompact ? 7 : 12,
           gap: 6,
         }}
       >
-        {/* зачем: шапка макета D — круглая «‹» 34 (область нажатия 44) + «Урок N» 20/700; подзаголовка-уровня в данных урока нет. */}
-        <PracticeBackButton
-          glass={glass}
-          color={glass.text}
-          onPress={onHeaderBack}
-          testID="lesson1-header-back"
-          accessibilityLabel={triLang(lang, {
-            uk: 'Назад', ru: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-          })}
-        />
+        {/* зачем: шапка макета D — место общей «‹» 48 + «Урок N» 20/700; подзаголовка-уровня в данных урока нет. */}
+        <ScreenBackSlot />
         <PracticeHeaderTitle
           glass={glass}
           oneLine

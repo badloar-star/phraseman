@@ -26,7 +26,13 @@ assert.ok(chrome.split('\n').length <= 400);
 
 for (const [name, source] of Object.entries(modes)) {
   assert.match(source, /components\/practice\/PracticeChrome/, `${name} uses the shared practice chrome`);
-  assert.match(source, /<PracticeBackButton/, `${name} uses the round back button`);
+  // зачем (закон владельца 22.10 «назад/✕ в одном месте»): «Вспомни» и «Устно» уже на общем ✕ (SafeTopCloseButton), Блиц и
+  // «Правда / ложь» пока на круглой кнопке практики — переводятся следующими волнами
+  assert.match(source, /<PracticeBackButton|<PracticeSessionHeader|<SafeTopCloseButton/, `${name} has a back/close control`);
+}
+for (const name of ['blitz', 'recall', 'speaking']) {
+  assert.match(modes[name], /<SafeTopCloseButton\s+screen="flashcards_/, `${name} uses the shared close in one place`);
+  assert.doesNotMatch(modes[name], /<PracticeBackButton/, `${name} has no own close`);
 }
 // зачем (PM-129/PM-130, координатор 03.10): у Блица и «Устно» кнопки выбора наборов в шапке больше
 // нет — наборы выбираются на экране настройки (D152), на её месте плашка монет из practice.html.

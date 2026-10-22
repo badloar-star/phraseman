@@ -59,7 +59,8 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { mixHex } from '../constants/v2Style';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { mixDark } from '../components/mistakes-panel/panelPaint'; // theme-exempt: ложное срабатывание — hex только в комментарии. зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopCloseButton } from '../components/v2/ScreenBackButton';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import SpeechFailBlock from '../components/speech/SpeechFailBlock';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
@@ -1427,20 +1428,14 @@ export default function FlashcardsSpeakingSession() {
   // ── Рендер ─────────────────────────────────────────────────────────────────
   const header = (interactive: boolean) => (
     <>
+      {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общий ✕ первым ребёнком под безопасным верхом; системная «назад» = ✕ */}
+      <SafeTopCloseButton screen="flashcards_speaking" onPress={leave} testID="fc-speak-back" accessibilityLabel={labels.back} />
       {/* зачем (PM-130, как Блиц PM-129): монеты — плашкой в шапке после сердец; кнопка выбора
           наборов ушла (наборы выбираются на экране настройки, D152), и место в ряду освободилось. */}
     <View style={styles.headerRow}>
       <View style={{ marginRight: 6 }}>
-      <PracticeBackButton
-        large
-        icon="close"
-        glass={speakingGlass}
-        color={t.textPrimary}
-        // зачем (аудит #21, 15.10): на скелете загрузки (до 20 с) стрелка была без обработчика — из зависшего экрана нельзя выйти; выход есть во всех состояниях
-        onPress={leave}
-        testID="fc-speak-back"
-        accessibilityLabel={labels.back}
-      />
+      {/* зачем (аудит #21, 15.10): выход есть во всех состояниях — общий ✕ выше получает onPress={leave} и на скелете загрузки */}
+      <ScreenBackSlot />
       </View>
       {/* зачем (Карточки 2.0 12.10, `sessHdr`): в шапке «Устно» одно название — подзаголовка с названием набора нет */}
       <PracticeHeaderTitle glass={speakingGlass} title={labels.title} />
@@ -1898,7 +1893,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     paddingHorizontal: 20,
-    paddingTop: 16,
+    minHeight: SCREEN_BACK_SIZE,
   },
   progressTrack: { height: 6, borderRadius: 4, marginTop: 22, marginHorizontal: 20, overflow: 'hidden' },
   progressFill: { height: 6, borderRadius: 4 },

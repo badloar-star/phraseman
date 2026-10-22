@@ -137,6 +137,13 @@ jest.mock('../hooks/usePracticeRunes', () => ({ usePracticeRunes: () => ({ hydra
 jest.mock('../hooks/useCoinRewardFlight', () => ({ useCoinRewardFlight: () => ({ flight: null, originRef: { current: null }, counterRef: { current: null }, bump: jest.fn(), fly: jest.fn(), clearFlight: jest.fn() }) }));
 jest.mock('../app/mistake_practice_capture', () => ({ captureCurrentAccountObjectiveAttempt: jest.fn() }));
 jest.mock('../app/navigation_back', () => ({ markNextNavigationAsReplace: jest.fn(), safeRouterBack: jest.fn() }));
+// зачем (закон владельца 22.10 «назад/✕ в одном месте»): шапка тренировки рисует общую кнопку; её цепочка (звук → firebase/config,
+// useFocusEffect) в подменах этого теста не поднимается — подменяем простым Pressable с тем же testID и обработчиком.
+jest.mock('../components/v2/ScreenBackButton', () => {
+  const React = require('react');
+  const Btn = ({ testID, onPress }: { testID?: string; onPress?: () => void }) => React.createElement('Pressable', { testID, onPress });
+  return { __esModule: true, default: Btn, ScreenCloseButton: Btn, SafeTopBackButton: Btn, SafeTopCloseButton: Btn, ScreenBackSlot: () => null, SCREEN_BACK_SIZE: 48, SCREEN_BACK_LEFT: 20 };
+});
 jest.mock('../app/flashcards/SoundService', () => ({ fcHaptic: jest.fn(), playSfx: jest.fn() }));
 jest.mock('../components/ContentWrap', () => 'ContentWrap');
 jest.mock('../components/ScreenGradient', () => 'ScreenGradient');

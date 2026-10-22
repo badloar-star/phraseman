@@ -57,7 +57,8 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
-import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeTimerPill } from '../components/practice/PracticeChrome';
+import { PracticeAnswerMark, PracticeHeaderTitle, PracticeTimerPill } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton, SafeTopCloseButton } from '../components/v2/ScreenBackButton';
 import { KitGlassLayer } from '../components/v2/KitLiquidGlass';
 import { useLineScale } from '../hooks/useLineScale';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
@@ -1344,15 +1345,11 @@ export default function FlashcardsBlitzSession() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} testID={quotaUnavailable ? 'fc-blitz-quota-unavailable' : undefined}>
           <ContentWrap>
+            {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+            {/* зачем (бета-тест 15.10, А2): без onPress стрелка была неактивной — из зависшей загрузки на iOS не выйти */}
+            <SafeTopBackButton screen="flashcards_blitz_loading" onPress={leave} testID="fc-blitz-back" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} />
             <View style={styles.headerRow}>
-              {/* зачем (бета-тест 15.10, А2): без onPress стрелка была неактивной — из зависшей загрузки на iOS не выйти */}
-              <PracticeBackButton
-                glass={blitzGlass}
-                color={t.textPrimary}
-                onPress={leave}
-                testID="fc-blitz-back"
-                accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-              />
+              <ScreenBackSlot />
               <PracticeHeaderTitle
                 glass={blitzGlass}
                 title={triLang(lang, {
@@ -1435,14 +1432,10 @@ export default function FlashcardsBlitzSession() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} testID="fc-blitz-unavailable">
           <ContentWrap>
+            {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+            <SafeTopBackButton screen="flashcards_blitz_unavailable" onPress={leave} testID="fc-blitz-back" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} />
             <View style={styles.headerRow}>
-              <PracticeBackButton
-                glass={blitzGlass}
-                color={t.textPrimary}
-                onPress={leave}
-                testID="fc-blitz-back"
-                accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-              />
+              <ScreenBackSlot />
               <PracticeHeaderTitle
                 glass={blitzGlass}
                 title={triLang(lang, {
@@ -1497,10 +1490,12 @@ export default function FlashcardsBlitzSession() {
               зачем (PM-129): монеты раньше висели отдельной строкой НАД шапкой; кнопка выбора
               наборов ушла — наборы выбираются на экране настройки тренировки (D152), шапка
               освободилась, и плашка монет встала на своё место из макета. */}
+          {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+          {/* зачем (Карточки 2.0 12.10, cards-v2.html `sessHdr`): в занятии слева ✕ вместо «‹»; системная «назад» = ✕ */}
+          <SafeTopCloseButton screen="flashcards_blitz" onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
           <View style={styles.headerRow}>
             <View style={{ marginRight: 6 }}>
-              {/* зачем (Карточки 2.0 12.10, cards-v2.html `sessHdr`): слева ✕ вместо «‹» */}
-              <PracticeBackButton large icon="close" glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
+              <ScreenBackSlot />
             </View>
             {/* зачем (Карточки 2.0 12.10): в шапке Блица по макету одно название — подзаголовка с названием набора нет */}
             <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle} />
@@ -1641,7 +1636,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     paddingHorizontal: 20,
-    paddingTop: 16,
+    minHeight: SCREEN_BACK_SIZE,
   },
   // зачем (`.trk`): полоса 22 под шапкой, по полю 20, дорожка #2C2C2E.
   timerTrack: {

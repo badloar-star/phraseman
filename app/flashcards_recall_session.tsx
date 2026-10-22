@@ -36,7 +36,8 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
-import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, SafeTopCloseButton } from '../components/v2/ScreenBackButton';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
@@ -852,6 +853,14 @@ export default function FlashcardsRecallSession() {
 
   const renderHeader = (interactive: boolean) => (
     <>
+      {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общий ✕ первым ребёнком под безопасным верхом; системная «назад» = ✕ */}
+      <SafeTopCloseButton
+        screen="flashcards_recall"
+        onPress={leave}
+        testID="fc-recall-back"
+        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+      />
+      {/* ✕ стоит в строке монет слева (монеты справа), поэтому в строке названия места под него нет */}
       <View style={styles.runeRow}>
         <View ref={runeFlight.counterRef} collapsable={false}>
           <PracticeRuneCounter
@@ -864,15 +873,6 @@ export default function FlashcardsRecallSession() {
         </View>
       </View>
       <View style={styles.headerRow}>
-        <PracticeBackButton
-          large
-          icon="close"
-          glass={recallGlass}
-          color={t.textPrimary}
-          onPress={leave}
-          testID="fc-recall-back"
-          accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-        />
         <PracticeHeaderTitle glass={recallGlass} title={copy.title} />
         <View style={styles.headerTools}>
           <SessionAttemptsHud
@@ -1249,7 +1249,7 @@ export default function FlashcardsRecallSession() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0 },
-  runeRow: { minHeight: 42, paddingHorizontal: 16, alignItems: 'flex-end', justifyContent: 'center' },
+  runeRow: { minHeight: SCREEN_BACK_SIZE, paddingHorizontal: 16, alignItems: 'flex-end', justifyContent: 'center' },
   // зачем (practice.html `.hd`): поле страницы 20, шапка 16 от верха.
   headerRow: { minHeight: 52, paddingHorizontal: 20, paddingTop: 16, flexDirection: 'row', alignItems: 'center', gap: 6 },
   headerTools: { flexDirection: 'row', alignItems: 'center', gap: 4 },

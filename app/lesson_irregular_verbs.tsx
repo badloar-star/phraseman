@@ -25,7 +25,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 import { PracticeCta, PracticeProgressRow, PracticeQuestionCard } from '../components/practice/PracticeStates';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
@@ -1252,14 +1253,11 @@ function LessonIrregularVerbs() {
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top }}>
         <ContentWrap>
+          {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+          <SafeTopBackButton screen="lesson_irregular_verbs" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }} />
           {/* Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700. */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingTop: 12 }}>
-            <PracticeBackButton
-              glass={glass}
-              color={glass.text}
-              accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-              onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
-            />
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 20, paddingRight: 12, minHeight: SCREEN_BACK_SIZE }}>
+            <ScreenBackSlot />
             <PracticeHeaderTitle glass={glass} title={`${lessonId}. ${title}`} />
           </View>
 

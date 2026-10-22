@@ -10,7 +10,8 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 import { PracticeCta, PracticeQuestionCard, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -261,17 +262,21 @@ function PrepositionDrillScreen() {
   });
   const backToLesson = () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
   // Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700 + подзаголовок 15, энергия справа.
+  // шапка всегда первым ребёнком ContentWrap под безопасным верхом — общая кнопка встаёт первой
   const headerNode = (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingTop: 12 }}>
-      <PracticeBackButton
-        glass={glass}
-        color={glass.text}
+    <>
+      {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+      <SafeTopBackButton
+        screen="preposition_drill"
         accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
         onPress={() => { fk.tap(); backToLesson(); }}
       />
-      <PracticeHeaderTitle glass={glass} title={title} subtitle={subtitle} />
-      <EnergyBar size={30} glass />
-    </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 20, paddingRight: 12, minHeight: SCREEN_BACK_SIZE }}>
+        <ScreenBackSlot />
+        <PracticeHeaderTitle glass={glass} title={title} subtitle={subtitle} />
+        <EnergyBar size={30} glass />
+      </View>
+    </>
   );
 
   if (frenchPrepositionBlocked) {

@@ -31,7 +31,7 @@ import {
 } from './combined_lesson_pool';
 import { getCourseLevelForLesson } from './course_levels';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { PracticeBackButton } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { safeRouterBack } from './navigation_back';
 import { navOnce } from './nav_once';
@@ -134,20 +134,12 @@ export default function CombinedLessonPickScreen() {
     // половине окна. Оборачиваем всё внутрь, как в app/lesson_menu.tsx:1098.
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: Math.max(insets.bottom, 12) }}>
+        {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+        <SafeTopBackButton screen="combined_lesson_pick" testID="combo-pick-back" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz', })} onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as never); }} />
         {/* Шапка */}
         {/* зачем (сверка learn-016…018, learn.html A15–A17): шапка — круг .rb.l 48, gap 14, поля --pad 20, сразу под статус-баром. */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 20, paddingTop: 8 }}>
-          <PracticeBackButton
-            large
-            glass={glass}
-            color={glass.text}
-            testID="combo-pick-back"
-            accessibilityLabel={triLang(lang, {
-              ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás',
-              'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-            })}
-            onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as never); }}
-          />
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 20, minHeight: SCREEN_BACK_SIZE }}>
+          <ScreenBackSlot />
           <Text
             maxFontSizeMultiplier={1.3}
             style={{ flex: 1, color: glass.text, fontSize: 28, lineHeight: lh(34, 1.3), fontWeight: '700', letterSpacing: -0.4 }}

@@ -10,7 +10,8 @@ import { lessonNamesForLang } from '../constants/lessons';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 import ScreenGradient from '../components/ScreenGradient';
 import ReportErrorButton from '../components/ReportErrorButton';
 import type { Theme } from '../constants/theme';
@@ -365,23 +366,25 @@ function LessonHelp() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
+        {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+        <SafeTopBackButton
+          screen="lesson_help"
+          onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
+          testID="lesson-help-back"
+          accessibilityLabel={triLang(lang, {
+            uk: 'Назад', ru: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+          })}
+        />
         {/* Header */}
         <View style={{
           flexDirection: 'row',
           alignItems: 'center',
-          paddingHorizontal: 16,
-          paddingVertical: 12,
+          paddingLeft: 20,
+          paddingRight: 16,
+          minHeight: SCREEN_BACK_SIZE,
           gap: 10,
         }}>
-          <PracticeBackButton
-            glass={glass}
-            color={glass.text}
-            onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
-            testID="lesson-help-back"
-            accessibilityLabel={triLang(lang, {
-              uk: 'Назад', ru: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-            })}
-          />
+          <ScreenBackSlot />
           <PracticeHeaderTitle
             glass={glass}
             title={triLang(lang, {

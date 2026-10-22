@@ -53,6 +53,8 @@ describe('guest clean classifier', () => {
     expect(classifyGuestCleanKey('lesson_progress_v2::fr::legacy_free_lesson_cap_v1', '5')).toBe('progress');
     expect(classifyGuestCleanKey('legacy_free_lesson_migration_v1', '1')).toBe('service');
     expect(classifyGuestCleanKey('friends_push_v1', 'true')).toBe('service');
+    // «Итог недели друга» (идея 6) — производная от дневных счётчиков, не прогресс
+    expect(classifyGuestCleanKey('friends_week_v1', JSON.stringify({ v: 1, hidden: false, cur: null, prev: null }))).toBe('service');
   });
 
   // зачем: формы взяты из прогона Сверки guest_clean_relapse_1516 (свежий гость после онбординга, 13 ключей).

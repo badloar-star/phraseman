@@ -542,6 +542,9 @@ export const SYNC_KEYS = [
   // настройка пуша "Позвать" (обычный LWW — это просто тумблер с tz).
   'active_days_v1',
   'friends_push_v1',
+  // «Итог недели друга» (идея 6, app/friends_together/friend_week.ts): своя неделя, посчитанная телефоном; друзья забирают её
+  // тем же friendsGetProfiles (чтение users/{uid} уже есть). Обычный LWW — запись целиком пересчитывается из дневных данных.
+  'friends_week_v1',
   // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
   // (гейт «1 язык фри»; см. app/study_languages.ts)
   'study_languages_started_v1',

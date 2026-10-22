@@ -15,6 +15,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { FRIENDS_TOGETHER_UI_ENABLED } from './friends_together/together_config';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STORAGE_KEY = 'stats_daily_breakdown_v1';
@@ -208,6 +209,13 @@ export async function bumpStatsDaily(
     void import('./activity_365_analytics')
       .then(({ invalidateActivity365Cache }) => invalidateActivity365Cache())
       .catch(noteSwallowedHandler('stats_daily_breakdown:promise_1'));
+    // зачем (идея 6 «Итог недели друга», закон владельца «телефон решает»): после занятия телефон сам пересчитывает свою неделю —
+    // запись friends_week_v1 уходит тем же склеенным патчем синхронизации. Модуль грузится только при включённом интерфейсе «Вместе».
+    if (metric === 'lessons_completed' && FRIENDS_TOGETHER_UI_ENABLED) {
+      void import('./friends_together/friend_week_store')
+        .then(({ refreshMyFriendWeek }) => refreshMyFriendWeek('lesson_completed'))
+        .catch(noteSwallowedHandler('stats_daily_breakdown:friend_week'));
+    }
   } catch (e) {
       // ignore
       DebugLogger.error('stats_daily_breakdown:committed', e instanceof Error ? e : new Error(String(e)), 'warning');

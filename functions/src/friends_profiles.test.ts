@@ -93,6 +93,29 @@ describe('friendsGetProfiles reads', () => {
     expect(reads).toHaveLength(5 * 5);
   });
 
+  it('passes the friend week record (idea 6) from the already-read user doc; hidden or broken records give null, no new reads', async () => {
+    // зачем (закон владельца «телефон решает, сервер только хранит записи»): неделю считает телефон друга, сервер её только отдаёт.
+    const week = { week: '2026-10-19', streak: 48, lessons: 9, days: 5, floor: 7, best: { dow: 4, lessons: 3 } };
+    const rows: Record<string, Row> = {
+      ...friendRows('caller-d5', 'shown'),
+      ...friendRows('caller-d5', 'hidden-week'),
+      ...friendRows('caller-d5', 'broken'),
+      ...friendRows('caller-d5', 'none'),
+    };
+    rows['users/shown'] = { progress: { friends_week_v1: JSON.stringify({ v: 1, hidden: false, cur: { ...week, week: '2026-10-26' }, prev: week }) } };
+    rows['users/hidden-week'] = { progress: { friends_week_v1: JSON.stringify({ v: 1, hidden: true, cur: week, prev: null }) } };
+    rows['users/broken'] = { progress: { friends_week_v1: JSON.stringify({ v: 1, cur: { ...week, week: '2026-10-20', days: 40 } }) } };
+    const { db, reads } = makeDb(rows);
+    const result = await runFriendsGetProfiles(db, 'caller-d5', ['shown', 'hidden-week', 'broken', 'none']);
+
+    expect(result.profiles.shown?.friendWeek).toEqual({ v: 1, cur: { ...week, week: '2026-10-26' }, prev: week });
+    expect(result.profiles['hidden-week']?.friendWeek).toBeNull();
+    // не понедельник — запись недели отброшена целиком
+    expect(result.profiles.broken?.friendWeek).toBeNull();
+    expect(result.profiles.none?.friendWeek).toBeNull();
+    expect(reads).toHaveLength(4 * 5);
+  });
+
   it('the caller own profile still reads its user doc and deletion marker itself', async () => {
     const { db, reads } = makeDb({ 'users/caller-d3': { progress: {} }, 'public_profiles/caller-d3': { name: 'Я' } });
     const result = await runFriendsGetProfiles(db, 'caller-d3', ['caller-d3']);

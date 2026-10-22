@@ -36,6 +36,30 @@ export interface FriendPushSettings {
   tz: number;
 }
 
+/**
+ * «Итог недели друга» (идея 6, docs/design/v2-app/friends-full.html #week): неделя, посчитанная телефоном друга
+ * (app/friends_together/friend_week.ts) и лежащая в users/{uid}.progress.friends_week_v1.
+ * зачем (закон владельца «телефон решает и выдаёт сразу, сервер только хранит записи, чтобы друг их забрал»): сервер ничего
+ * не считает — только строго разбирает чужую запись и отдаёт её тем же чтением users/{uid}; скрытая («не показывать друзьям») — null.
+ */
+export interface FriendWeekSummaryWire {
+  /** Локальный понедельник недели, YYYY-MM-DD. */
+  week: string;
+  streak: number;
+  lessons: number;
+  /** Дней с занятиями, 0…7. */
+  days: number;
+  floor: number | null;
+  /** 0 — понедельник … 6 — воскресенье. */
+  best: { dow: number; lessons: number } | null;
+}
+
+export interface FriendWeekWire {
+  v: 1;
+  cur: FriendWeekSummaryWire | null;
+  prev: FriendWeekSummaryWire | null;
+}
+
 export interface FriendPublicProfile {
   uid: string;
   displayName: string;
@@ -68,6 +92,8 @@ export interface FriendPublicProfile {
   spireFloor: number | null;
   /** Язык, на котором друг достиг spireFloor (нужно для подписи/иконки языка в строке). */
   spireLang: string | null;
+  /** «Итог недели друга» (идея 6): две недели из friends_week_v1; null — нет записи или друг её скрыл. */
+  friendWeek: FriendWeekWire | null;
 }
 
 type ProfilesResponse = { ok: true; profiles: Record<string, FriendPublicProfile | null> };
@@ -204,6 +230,41 @@ function spireFloorFromUserProgress(
   return bestFloor >= 0 ? { spireFloor: bestFloor, spireLang: bestLang } : { spireFloor: null, spireLang: null };
 }
 
+/** Строгий разбор недели друга: дата-понедельник, числа в границах; иначе null (запись недоверенная). */
+function friendWeekSummaryFromWire(raw: unknown): FriendWeekSummaryWire | null {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+  const r = raw as Record<string, unknown>;
+  const week = typeof r.week === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.week) ? r.week : '';
+  const [y, m, d] = week.split('-').map(Number);
+  const ms = week ? Date.UTC(y!, m! - 1, d!) : NaN;
+  const back = new Date(ms);
+  if (!week || !Number.isFinite(ms) || back.getUTCDate() !== d || back.getUTCDay() !== 1) return null;
+  const bounded = (value: unknown, max: number): number => {
+    const n = Math.floor(Number(value));
+    return Number.isFinite(n) && n > 0 ? Math.min(n, max) : 0;
+  };
+  const bestRaw = r.best && typeof r.best === 'object' && !Array.isArray(r.best) ? r.best as Record<string, unknown> : null;
+  const dow = Math.floor(Number(bestRaw?.dow));
+  const bestLessons = bounded(bestRaw?.lessons, 2_000);
+  const floor = r.floor === null || r.floor === undefined ? 0 : bounded(r.floor, 999);
+  return {
+    week,
+    streak: bounded(r.streak, 100_000),
+    lessons: bounded(r.lessons, 2_000),
+    days: bounded(r.days, 7),
+    floor: floor > 0 ? floor : null,
+    best: bestRaw && Number.isFinite(dow) && dow >= 0 && dow <= 6 && bestLessons > 0 ? { dow, lessons: bestLessons } : null,
+  };
+}
+
+export function friendWeekFromProgress(progress: Record<string, unknown>): FriendWeekWire | null {
+  const raw = parseJsonObject(progress['friends_week_v1']);
+  if (raw.v !== 1 || raw.hidden === true) return null;
+  const cur = friendWeekSummaryFromWire(raw.cur);
+  const prev = friendWeekSummaryFromWire(raw.prev);
+  return cur || prev ? { v: 1, cur, prev } : null;
+}
+
 /** Читает active_days_v1/friends_push_v1/last_active_date из users/{uid}.progress. */
 export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: number = Date.now()): {
   lastActiveDate: string | null;
@@ -211,6 +272,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
   friendsPush: FriendPushSettings | null;
   spireFloor: number | null;
   spireLang: string | null;
+  friendWeek: FriendWeekWire | null;
 } {
   const progress = getProgress(userData);
   const lastActiveDate = typeof progress['last_active_date'] === 'string' && progress['last_active_date']
@@ -235,6 +297,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
     friendsPush,
     spireFloor: spire.spireFloor,
     spireLang: spire.spireLang,
+    friendWeek: friendWeekFromProgress(progress),
   };
 }
 
@@ -279,6 +342,7 @@ export function buildFriendProfile(
     friendsPush: together.friendsPush,
     spireFloor: together.spireFloor,
     spireLang: together.spireLang,
+    friendWeek: together.friendWeek,
   };
   if (!profile.displayName && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;

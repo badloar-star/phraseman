@@ -73,6 +73,11 @@ export interface FriendProfileBatchRecord {
    * Тот же users/{uid}, 0 доп. чтений. Сырое поле сервера: разбирает parseStudyLanguagesStarted (friends_together/duel_eligibility).
    */
   studyLanguagesStarted?: unknown;
+  /**
+   * «Итог недели друга» (идея 6): две недели из progress.friends_week_v1, посчитанные телефоном друга; null — нет записи или друг её
+   * скрыл. Тот же users/{uid}, 0 доп. чтений. Недоверенное поле: разбирает parseFriendWeekRecord (friends_together/friend_week).
+   */
+  friendWeek?: unknown;
 }
 
 type ProfilesResponse = {

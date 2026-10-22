@@ -242,3 +242,17 @@ ru, uk, en, es, pt-BR, vi («vắng»), tr («yoktun»), pl — про отсу�
 pt-BR «Bem-vindo de volta» → «Olá de novo». Обе строки короче прежних, на 360 dp запас только больше. Остальные 7 языков уже без рода.
 id-правка ушла раньше отдельным коммитом (916556300), так что «одним заходом» не вышло — тут отдельный коммит.
 Паспорт: home-welcome-genderless-2026-10-22.md.
+
+## Дополнение: Пик — состояние «Вершина» (для 3 · МАКЕТЫ, баг «после вершины зовёт на 15 этаж»)
+
+Отправлено 3 · МАКЕТЫ напрямую (send_message), ключи — предложение для `spire_game_strings.ts`:
+- `summitTitle`: Ты на вершине / Ти на вершині / You’re at the summit / Estás en la cima / Você está no topo / Bạn đã lên đỉnh /
+  Kamu di puncak / Zirvedesin / Jesteś na szczycie;
+- `summitTopWeek`: Топ-1 недели / Топ-1 тижня / No. 1 this week / N.º 1 de la semana / Nº 1 da semana / Hạng 1 tuần này /
+  Peringkat 1 minggu ini / Haftanın 1 numarası / Nr 1 tygodnia;
+- `summitNewWeek`: Новая неделя — новый подъём / Новий тиждень — новий підйом / New week, new climb / Nueva semana, nueva subida /
+  Semana nova, nova subida / Tuần mới, chặng leo mới / Minggu baru, pendakian baru / Yeni hafta, yeni tırmanış / Nowy tydzień, nowa wspinaczka.
+
+Без рода. Термин «Вершина» = `spire_strings.summit`. Замер Inter Bold 16: до 256 px, в док на 360 dp влезает.
+uk «нове сходження» (282 px) заменено на «новий підйом». «Топ-1 недели» — только при месте 1, иначе готовый `summitSub`.
+Приветствие без рода: первый процесс коммита умер, перезапущен.

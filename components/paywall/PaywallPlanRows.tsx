@@ -50,7 +50,7 @@ const PlanRadio = memo(function PlanRadio({ g, on }: { g: GlassTokens; on: boole
       <View style={[S.radioDot, { backgroundColor: g.accentGraphic }]} />
     </View>
   ) : (
-    <View style={[S.radio, S.radioRing, { borderColor: alphaHex(g.text.slice(0, 7), 0.35) }]} /> // guard-ok: кольцо радио — индикатор выбора, не контейнер
+    <View style={[S.radio, { boxShadow: [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadRadius: 2, color: alphaHex(g.text.slice(0, 7), 0.35), inset: true }] }]} /> // shadow-ok: guard-ok: кольцо радио (внутренняя тень 2 вместо borderWidth — индикатор выбора, не контейнер; сторож типографики D145)
   );
 });
 
@@ -85,7 +85,7 @@ const PlanRow = memo(function PlanRow({ lang, g, on, disabled, onPress, testID, 
     >
       {/* выбранный слой: градиент + кромка; сам слой скруглён, контейнер без overflow — свечение не режется */}
       {/* guard-ok: тонкая кромка 1,5 выбранной строки — по макету варианта A (утверждён владельцем 18.10) */}
-      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, S.selLayer, { borderColor: paint.edge }, selStyle]}>
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, S.selLayer, { boxShadow: [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadRadius: 1.5, color: paint.edge, inset: true }] }, selStyle]}> {/* shadow-ok: guard-ok: кромка выбранной строки 1,5 (утверждено 18.10) */}
         <LinearGradient pointerEvents="none" colors={[...paint.gradient]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} locations={[0, 0.6]} style={[StyleSheet.absoluteFill, { borderRadius: PLAN_ROW_RADIUS }]} />
       </Animated.View>
       {savingsPct ? (
@@ -159,11 +159,11 @@ export const PLAN_ROWS_BLOCK_HEIGHT = PLAN_ROW_MIN_HEIGHT * 2 + PLAN_ROW_GAP;
 const S = StyleSheet.create({
   list: { gap: PLAN_ROW_GAP, marginTop: 16 },
   row: { minHeight: PLAN_ROW_MIN_HEIGHT, borderRadius: PLAN_ROW_RADIUS, paddingVertical: 14, paddingHorizontal: 16, justifyContent: 'center' },
-  selLayer: { borderRadius: PLAN_ROW_RADIUS, borderWidth: 1.5 }, // shadow-ok: guard-ok: тонкая кромка акцента выбранной строки по макету варианта A (`0 0 0 1.5px var(--acc)`), утверждён владельцем 18.10
+  // зачем (сторож типографики D145 «рамка > hairline»): кромка выбранной строки 1,5 по макету варианта A (`0 0 0 1.5px var(--acc)`, утверждено владельцем 18.10) — внутренняя тень вместо borderWidth, вид тот же
+  selLayer: { borderRadius: PLAN_ROW_RADIUS },
   disabled: { opacity: DISABLED_OPACITY },
   inner: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   radio: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
-  radioRing: { borderWidth: 2 }, // shadow-ok: guard-ok: кольцо радио — индикатор выбора, не контейнер
   radioDot: { width: 12, height: 12, borderRadius: 6 },
   nameCol: { flex: 1, minWidth: 0 },
   name: { fontSize: 16, lineHeight: 22, fontWeight: '800' },

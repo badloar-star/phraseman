@@ -16,6 +16,9 @@ const COPY = {
   start: { ru: "Начать экзамен", uk: "Почати іспит", en: "Start the exam", es: "Empezar el examen", "pt-BR": "Começar o exame", vi: "Bắt đầu bài thi", id: "Mulai ujian", tr: "Sınava başla", pl: "Zacznij egzamin" },
   plusFree: { ru: "С Plus экзамен бесплатный", uk: "З Plus іспит безкоштовний", en: "Free with Plus", es: "Gratis con Plus", "pt-BR": "Grátis com o Plus", vi: "Miễn phí với Plus", id: "Gratis dengan Plus", tr: "Plus ile ücretsiz", pl: "Z Plus za darmo" },
   later: { ru: "Позже", uk: "Пізніше", en: "Later", es: "Más tarde", "pt-BR": "Mais tarde", vi: "Để sau", id: "Nanti", tr: "Sonra", pl: "Później" },
+  // Во время экзамена (таблица Переводчика, раздел «Во время экзамена»)
+  progress: { ru: "Экзамен · {i} / 12", uk: "Іспит · {i} / 12", en: "Exam · {i} / 12", es: "Examen · {i} / 12", "pt-BR": "Exame · {i} / 12", vi: "Bài thi · {i} / 12", id: "Ujian · {i} / 12", tr: "Sınav · {i} / 12", pl: "Egzamin · {i} / 12" },
+  next: { ru: "Дальше", uk: "Далі", en: "Next", es: "Siguiente", "pt-BR": "Próximo", vi: "Tiếp", id: "Lanjut", tr: "Devam", pl: "Dalej" },
 } as const satisfies Record<string, Row>;
 
 export type LearningV2ChapterExamCopyKey = keyof typeof COPY;

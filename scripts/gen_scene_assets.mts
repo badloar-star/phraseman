@@ -15,6 +15,7 @@ import sharp from 'sharp';
 import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { parseColor, renderBackdrop } from './lib/scene_backdrop_math';
+import { CAP_ALPHA_CLASSES, capMasks, capT } from './lib/tabbar_cap_math';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = path.join(ROOT, 'assets', 'images', 'v2scene');
@@ -109,31 +110,54 @@ function blur(src: Float32Array, w: number, h: number, sigma: number): Float32Ar
   return out;
 }
 
-const shadowTable: Record<string, Record<string, { file: string; width: number; height: number; margin: number; offsetY: number }>> = {};
+type ShadowEntry = { file: string; width: number; height: number; margin: number; offsetY: number };
+async function makeShadow(fileName: string, plate: { w: number; h: number; r: number }, layer: ShadowLayer): Promise<ShadowEntry> {
+  const sigma = layer.blur / 2;
+  const margin = Math.max(2, Math.ceil(sigma * 3 + Math.abs(layer.offsetY) + Math.max(0, layer.spread)) + Math.min(0, layer.spread));
+  const W = plate.w + margin * 2;
+  const H = plate.h + margin * 2;
+  // фигура тени: плита, сдвинутая на offsetY и расширенная на spread (минус — сужается); радиус меняется вместе с отступом
+  const hw = Math.max(0.5, plate.w / 2 + layer.spread);
+  const hh = Math.max(0.5, plate.h / 2 + layer.spread);
+  const r = Math.max(0, Math.min(plate.r + layer.spread, hw, hh));
+  const shape = new Float32Array(W * H);
+  for (let y = 0; y < H; y += 1) for (let x = 0; x < W; x += 1) {
+    const d = sdRoundRect(x + 0.5, y + 0.5, W / 2, H / 2 + layer.offsetY, hw, hh, r);
+    shape[y * W + x] = Math.min(1, Math.max(0, 0.5 - d));
+  }
+  const mask = blur(shape, W, H, sigma);
+  const rgba = new Uint8Array(W * H * 4);
+  for (let i = 0; i < W * H; i += 1) { rgba[i * 4] = 255; rgba[i * 4 + 1] = 255; rgba[i * 4 + 2] = 255; rgba[i * 4 + 3] = Math.round(255 * Math.min(1, mask[i]!)); }
+  await webp(fileName, rgba, W, H);
+  return { file: fileName, width: W, height: H, margin, offsetY: layer.offsetY };
+}
+
+const shadowTable: Record<string, Record<string, ShadowEntry>> = {};
 for (const cls of CLASSES) {
   shadowTable[cls.name] = {};
-  for (const layer of LAYERS) {
-    const sigma = layer.blur / 2;
-    const margin = Math.max(2, Math.ceil(sigma * 3 + Math.abs(layer.offsetY) + Math.max(0, layer.spread)) + Math.min(0, layer.spread));
-    const W = cls.w + margin * 2;
-    const H = cls.h + margin * 2;
-    // фигура тени: плита, сдвинутая на offsetY и расширенная на spread (минус — сужается); радиус меняется вместе с отступом
-    const hw = Math.max(0.5, cls.w / 2 + layer.spread);
-    const hh = Math.max(0.5, cls.h / 2 + layer.spread);
-    const r = Math.max(0, Math.min(cls.r + layer.spread, hw, hh));
-    const shape = new Float32Array(W * H);
-    for (let y = 0; y < H; y += 1) for (let x = 0; x < W; x += 1) {
-      const d = sdRoundRect(x + 0.5, y + 0.5, W / 2, H / 2 + layer.offsetY, hw, hh, r);
-      shape[y * W + x] = Math.min(1, Math.max(0, 0.5 - d));
-    }
-    const mask = blur(shape, W, H, sigma);
-    const rgba = new Uint8Array(W * H * 4);
-    for (let i = 0; i < W * H; i += 1) { rgba[i * 4] = 255; rgba[i * 4 + 1] = 255; rgba[i * 4 + 2] = 255; rgba[i * 4 + 3] = Math.round(255 * Math.min(1, mask[i]!)); }
-    const file = `shadow_${cls.name}_${layer.name}.webp`;
-    await webp(file, rgba, W, H);
-    shadowTable[cls.name]![layer.name] = { file, width: W, height: H, margin, offsetY: layer.offsetY };
-  }
+  for (const layer of LAYERS) shadowTable[cls.name]![layer.name] = await makeShadow(`shadow_${cls.name}_${layer.name}.webp`, cls, layer);
 }
+
+// ── (г) таб-бар: плашка активной вкладки и тень капсулы (пункт 5 плана) ──
+// Плашка: две белые маски (под цвет темы и белый блик) вместо SVG-радиала; без скругления — его даёт родитель (borderRadius 18 с обрезкой).
+export const CAP_W = 128;
+export const CAP_H_PX = 64;
+// Пара масок на каждый класс прозрачности accentCap (у светлых тем цвет плашки несёт альфу 10–18 %, а белый конец градиента с ней не связан).
+for (const cls of CAP_ALPHA_CLASSES) {
+  const a = parseInt(cls, 16) / 255;
+  const c = new Uint8Array(CAP_W * CAP_H_PX * 4);
+  const wh = new Uint8Array(CAP_W * CAP_H_PX * 4);
+  for (let j = 0; j < CAP_H_PX; j += 1) for (let i = 0; i < CAP_W; i += 1) {
+    const m = capMasks(capT((i + 0.5) / CAP_W, (j + 0.5) / CAP_H_PX), a);
+    const o = (j * CAP_W + i) * 4;
+    c[o] = c[o + 1] = c[o + 2] = 255; c[o + 3] = Math.round(255 * m.c);
+    wh[o] = wh[o + 1] = wh[o + 2] = 255; wh[o + 3] = Math.round(255 * m.w);
+  }
+  await webp(`tabbar_cap_color_${cls}.webp`, c, CAP_W, CAP_H_PX);
+  await webp(`tabbar_cap_white_${cls}.webp`, wh, CAP_W, CAP_H_PX);
+}
+// Тень капсулы (общая маска для светлых и тёмных тем): пилюля 360×66 r33, приближение к Material (сдвиг 8, размытие 20).
+const tabbarShadow = await makeShadow('tabbar_shadow.webp', { w: 360, h: 66, r: 33 }, { name: 'tabbarLight', offsetY: 8, blur: 20, spread: 0 });
 
 // ── таблица ──
 const rel = (f: string): string => `../../../../assets/images/v2scene/${f}`;
@@ -164,6 +188,22 @@ export const HOME_SCENE_HALO: number = require('${rel('scene_halo.webp')}');
 export const HOME_SCENE_EMBER: number = require('${rel('scene_ember.webp')}');
 /** Затемнение низа светлой сцены: 4×64, альфа 0 → 40 % сверху вниз; растягивается на высоту 300 у нижнего края. */
 export const HOME_SCENE_SCRIM: number = require('${rel('scene_scrim.webp')}');
+
+/**
+ * Таб-бар: плашка активной вкладки = две маски 128×64 (без скругления; родитель с borderRadius 18 обрезает), растянутые на плашку:
+ * color → tintColor = RGB цвета accentCap (первые 7 знаков, БЕЗ альфы), white → без тинта (белый блик).
+ * Класс прозрачности accentCap (байт альфы 8-значного hex в нижнем регистре; без альфы — 'ff') выбирает пару масок: у светлых тем цвет несёт альфу 10–18 %.
+ */
+export const HOME_TABBAR_CAP: Readonly<Record<string, Readonly<{ color: number; white: number }>>> = Object.freeze({
+${CAP_ALPHA_CLASSES.map((c) => "  '" + c + "': { color: require('" + rel('tabbar_cap_color_' + c + '.webp') + "'), white: require('" + rel('tabbar_cap_white_' + c + '.webp') + "') },").join('\n')}
+});
+/** Пара масок плашки по цвету accentCap темы или null (неизвестный класс — вызывающий рисует прежний SVG). */
+export function homeTabbarCapMasks(accentCap: string): Readonly<{ color: number; white: number }> | null {
+  const key = (accentCap.length === 9 ? accentCap.slice(7) : 'ff').toLowerCase();
+  return HOME_TABBAR_CAP[key] ?? null;
+}
+/** Тень капсулы таб-бара (пилюля 360×66; растянуть на ширину капсулы + 2·margin; tintColor: светлые темы — palette.shadowTint, тёмные — чёрный; альфа тени подбирается снимком «до/после», ориентир Material ≈ 0,19–0,30). На тёмных темах с цветным фоном (уровень Максимум) тень различима до ~10/255, поэтому маска общая. */
+export const HOME_TABBAR_SHADOW = { source: require('${rel('tabbar_shadow.webp')}'), width: ${tabbarShadow.width}, height: ${tabbarShadow.height}, margin: ${tabbarShadow.margin}, offsetY: ${tabbarShadow.offsetY} } as const;
 
 export type HomeSceneShadowMask = Readonly<{ source: number; width: number; height: number; margin: number; offsetY: number }>;
 /**

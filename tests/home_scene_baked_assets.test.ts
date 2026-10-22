@@ -4,9 +4,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import sharp from 'sharp';
-import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
+import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
-import { backdropAt, renderBackdrop, sampleBilinear } from '../scripts/lib/scene_backdrop_math';
+import { backdropAt, parseColor, renderBackdrop, sampleBilinear } from '../scripts/lib/scene_backdrop_math';
+import { capComposite, capCompositeFromMasks, capT } from '../scripts/lib/tabbar_cap_math';
 
 const DIR = path.join(__dirname, '..', 'assets', 'images', 'v2scene');
 const TABLE = fs.readFileSync(path.join(__dirname, '..', 'components', 'home', 'v2', 'scene', 'home_scene_baked_assets.generated.ts'), 'utf8').replace(/\r\n/g, '\n');
@@ -89,5 +90,44 @@ describe('Запечённые ассеты сцены Главной', () => {
       n += 1;
     }
     expect(n).toBe(9);
+  });
+  it('таб-бар: маски плашки по классам прозрачности accentCap совпадают с градиентом SVG для ВСЕХ тем × оформлений × уровней (≤ 3/255)', async () => {
+    const bad: string[] = [];
+    const classes = new Set<string>();
+    const loaded: Record<string, { color: Awaited<ReturnType<typeof decode>>; white: Awaited<ReturnType<typeof decode>> }> = {};
+    for (const cls of ['ff', '1a', '24', '29', '2e']) loaded[cls] = { color: await decode(`tabbar_cap_color_${cls}.webp`), white: await decode(`tabbar_cap_white_${cls}.webp`) };
+    for (const appearance of ['dark', 'light'] as const) {
+      for (const id of LIQUID_GLASS_THEME_IDS) {
+        for (const level of ['calm', 'accent', 'max'] as const) {
+          const g = liquidGlassTokens(id, { level, appearance } as never) as Record<string, string>;
+          const cap = g.accentCap!;
+          const cls = (cap.length === 9 ? cap.slice(7) : 'ff').toLowerCase();
+          classes.add(cls);
+          const pair = loaded[cls];
+          if (!pair) { bad.push(`${appearance}/${id}/${level}: нет класса прозрачности ${cls}`); continue; }
+          const a = parseInt(cls, 16) / 255;
+          const accent = parseColor(cap.slice(0, 7)).slice(0, 3);
+          const bg = parseColor(g.bgBottom!).slice(0, 3);
+          let worst = 0;
+          for (let j = 0; j < 64; j += 4) {
+            for (let i = 0; i < 128; i += 4) {
+              const t = capT((i + 0.5) / 128, (j + 0.5) / 64);
+              const truth = capComposite(accent, bg, t, a);
+              const got = capCompositeFromMasks(accent, bg, t, pair.color.data[(j * 128 + i) * 4 + 3]! / 255, pair.white.data[(j * 128 + i) * 4 + 3]! / 255);
+              for (let c = 0; c < 3; c += 1) worst = Math.max(worst, Math.abs(truth[c]! - got[c]!));
+            }
+          }
+          if (worst > 3) bad.push(`${appearance}/${id}/${level} (${cls}): ${worst.toFixed(2)}`);
+        }
+      }
+    }
+    expect([...classes].sort()).toEqual(['1a', '24', '29', '2e', 'ff']);
+    expect(bad.slice(0, 8)).toEqual([]);
+    for (const [cls, pair] of Object.entries(loaded)) expect([cls, pair.color.width, pair.color.height, pair.white.width, pair.white.height]).toEqual([cls, 128, 64, 128, 64]);
+  });
+
+  it('таб-бар: маска тени капсулы есть и описана в таблице (общая для светлых и тёмных тем: на тёмных цветных фонах уровня «Максимум» тень различима до ~10/255)', () => {
+    expect(fs.existsSync(path.join(DIR, 'tabbar_shadow.webp'))).toBe(true);
+    expect(TABLE).toContain('HOME_TABBAR_SHADOW');
   });
 });

@@ -117,6 +117,26 @@ export const HOME_SCENE_EMBER: number = require('../../../../assets/images/v2sce
 /** Затемнение низа светлой сцены: 4×64, альфа 0 → 40 % сверху вниз; растягивается на высоту 300 у нижнего края. */
 export const HOME_SCENE_SCRIM: number = require('../../../../assets/images/v2scene/scene_scrim.webp');
 
+/**
+ * Таб-бар: плашка активной вкладки = две маски 128×64 (без скругления; родитель с borderRadius 18 обрезает), растянутые на плашку:
+ * color → tintColor = RGB цвета accentCap (первые 7 знаков, БЕЗ альфы), white → без тинта (белый блик).
+ * Класс прозрачности accentCap (байт альфы 8-значного hex в нижнем регистре; без альфы — 'ff') выбирает пару масок: у светлых тем цвет несёт альфу 10–18 %.
+ */
+export const HOME_TABBAR_CAP: Readonly<Record<string, Readonly<{ color: number; white: number }>>> = Object.freeze({
+  'ff': { color: require('../../../../assets/images/v2scene/tabbar_cap_color_ff.webp'), white: require('../../../../assets/images/v2scene/tabbar_cap_white_ff.webp') },
+  '1a': { color: require('../../../../assets/images/v2scene/tabbar_cap_color_1a.webp'), white: require('../../../../assets/images/v2scene/tabbar_cap_white_1a.webp') },
+  '24': { color: require('../../../../assets/images/v2scene/tabbar_cap_color_24.webp'), white: require('../../../../assets/images/v2scene/tabbar_cap_white_24.webp') },
+  '29': { color: require('../../../../assets/images/v2scene/tabbar_cap_color_29.webp'), white: require('../../../../assets/images/v2scene/tabbar_cap_white_29.webp') },
+  '2e': { color: require('../../../../assets/images/v2scene/tabbar_cap_color_2e.webp'), white: require('../../../../assets/images/v2scene/tabbar_cap_white_2e.webp') },
+});
+/** Пара масок плашки по цвету accentCap темы или null (неизвестный класс — вызывающий рисует прежний SVG). */
+export function homeTabbarCapMasks(accentCap: string): Readonly<{ color: number; white: number }> | null {
+  const key = (accentCap.length === 9 ? accentCap.slice(7) : 'ff').toLowerCase();
+  return HOME_TABBAR_CAP[key] ?? null;
+}
+/** Тень капсулы таб-бара (пилюля 360×66; растянуть на ширину капсулы + 2·margin; tintColor: светлые темы — palette.shadowTint, тёмные — чёрный; альфа тени подбирается снимком «до/после», ориентир Material ≈ 0,19–0,30). На тёмных темах с цветным фоном (уровень Максимум) тень различима до ~10/255, поэтому маска общая. */
+export const HOME_TABBAR_SHADOW = { source: require('../../../../assets/images/v2scene/tabbar_shadow.webp'), width: 436, height: 142, margin: 38, offsetY: 8 } as const;
+
 export type HomeSceneShadowMask = Readonly<{ source: number; width: number; height: number; margin: number; offsetY: number }>;
 /**
  * Маски теней плит (белые, альфа = тень). Класс: tile (86×92, r20) · today (358×209, r28) · phrase (358×80, r18). Слой: dark · light · lightSoft.

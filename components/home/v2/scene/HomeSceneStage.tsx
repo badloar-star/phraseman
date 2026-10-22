@@ -202,7 +202,7 @@ function LiveEnergyText({ build, style, testID, header = false }: Readonly<{ bui
 
 const baseStyles = StyleSheet.create({
   // зачем: сцена во всю ширину экрана, скругление только снизу — как .a-stage (0 0 36 36)
-  stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden', justifyContent: 'space-between' },
+  stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden', justifyContent: 'space-between' },
   // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
   heroSpace: { flex: 1 },
   hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO, padding: HERO_PAD, opacity: 0.96 },

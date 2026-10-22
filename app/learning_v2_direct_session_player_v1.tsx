@@ -2292,6 +2292,13 @@ export default function LearningV2DirectSessionPlayerV1() {
         try {
           await commitLocalProgress();
         } catch (error: unknown) {
+          // зачем (координатор 22.10, прогресс v2): логический отказ хранилища («не следующее и не открытое») повтором не
+          // лечится — повторять его бессмысленно; пишем причину и не крутим попытки. Повторы — только для сбоя записи.
+          const reason = error instanceof Error ? error.message : String(error);
+          if (reason === "learning_v2_course_local_progress_invalid") {
+            console.warn("[LV2-PROGRESS] player:complete_rejected", JSON.stringify({ courseSessionId: runSummary.courseSessionId, reason, retry: false })); // guard-ok: отказ с причиной, без повторов
+            DebugLogger.error("learning_v2_direct_session_player_v1:local_progress_rejected", error instanceof Error ? error : new Error(reason), "warning");
+          } else {
           DebugLogger.error(
             "learning_v2_direct_session_player_v1:local_progress_retry_scheduled",
             error instanceof Error ? error : new Error(String(error)),
@@ -2309,6 +2316,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               );
             },
           });
+          }
         }
       }
       // Local completion owns the next frame after the one-star gate. A

@@ -11,6 +11,9 @@ import {
 export type LearningV2AccordionSessionStateV1 =
   | "completed"
   | "current"
+  // зачем (владелец 21.10 №8/№10, стр. 87 «ПРОСТО ОТКРЫТЫ»; прогресс v2): открыто экзаменом или входным тестом —
+  // играть можно, но не пройдено: без галочки и без звёзд-оценки
+  | "open"
   | "next"
   | "locked";
 
@@ -53,6 +56,8 @@ export type LearningV2PreparedAccordionProgressV1 = Readonly<{
 export type LearningV2PreparedAccordionProgressInputV1 = Readonly<{
   completedSessionIds: readonly string[];
   currentSessionId: string | null;
+  /** Прогресс v2: открытые и не пройденные занятия; нет — прежнее поведение. */
+  openedSessionIds?: readonly string[];
 }>;
 
 export type LearningV2PreparedCourseAccordionMapInputV1 = Readonly<{
@@ -89,6 +94,7 @@ type SessionCoordinate = Readonly<{
 
 type PreparedProgressInternals = Readonly<{
   completed: ReadonlySet<string>;
+  opened: ReadonlySet<string>;
   currentSessionId: string | null;
   currentCoordinate: SessionCoordinate | null;
 }>;
@@ -171,6 +177,7 @@ export function prepareLearningV2CourseAccordionProgressV1(
     preparedProgress,
     Object.freeze({
       completed,
+      opened: new Set((input.openedSessionIds ?? []).filter((id) => !completed.has(id))),
       currentSessionId: input.currentSessionId,
       currentCoordinate,
     }),
@@ -255,6 +262,8 @@ export function buildLearningV2CourseAccordionMapFromPreparedProgressV1(
         ? "completed"
         : prepared.currentSessionId === sessionId
           ? "current"
+          : prepared.opened.has(sessionId)
+          ? "open"
           : // зачем: у новичка (currentSessionId === null) текущим считается
             // первое занятие ПЕРВОГО урока, а не первое занятие каждого.
             // В аккордеоне разница не была видна — на экране жил один урок.

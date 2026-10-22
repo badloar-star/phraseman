@@ -2695,7 +2695,9 @@ export default function LessonsTab({
   const [learningV2Progress, setLearningV2Progress] = useState<{
     completedSessionIds: readonly string[];
     currentSessionId: string | null;
-  }>({ completedSessionIds: [], currentSessionId: "lesson-01:session:01" });
+    // зачем (прогресс v2, владелец 21.10 №8/№10): открытые экзаменом или входным тестом — играть можно, не пройдены
+    openedSessionIds: readonly string[];
+  }>({ completedSessionIds: [], currentSessionId: "lesson-01:session:01", openedSessionIds: [] });
   const [learningV2ProgressHydrated, setLearningV2ProgressHydrated] =
     useState(false);
   // зачем: V2 — не отдельный экран, а страница ЭТОЙ же вкладки, и раньше обе
@@ -2773,6 +2775,7 @@ export default function LessonsTab({
         return {
           completedSessionIds: state.completedSessionIds,
           currentSessionId: state.currentSessionId,
+          openedSessionIds: state.openedSessionIds,
         };
       })
         .then((value) => {
@@ -2790,11 +2793,15 @@ export default function LessonsTab({
               previous.completedSessionIds.every(
                 (id, index) => id === value.completedSessionIds[index],
               );
-            return sameCurrent && sameCompleted
+            const sameOpened =
+              previous.openedSessionIds.length === value.openedSessionIds.length &&
+              previous.openedSessionIds.every((id, index) => id === value.openedSessionIds[index]);
+            return sameCurrent && sameCompleted && sameOpened
               ? previous
               : {
                   completedSessionIds: value.completedSessionIds,
                   currentSessionId: value.currentSessionId,
+                  openedSessionIds: value.openedSessionIds,
                 };
           });
           if (__DEV__) {
@@ -2894,10 +2901,12 @@ export default function LessonsTab({
       prepareLearningV2CourseAccordionProgressV1({
         completedSessionIds: learningV2Progress.completedSessionIds,
         currentSessionId: learningV2Progress.currentSessionId,
+        openedSessionIds: learningV2Progress.openedSessionIds,
       }),
     [
       learningV2Progress.completedSessionIds,
       learningV2Progress.currentSessionId,
+      learningV2Progress.openedSessionIds,
     ],
   );
   // зачем: карту V2 строит LearningV2PulseCourse из той же модели. Здесь она

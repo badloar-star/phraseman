@@ -132,7 +132,8 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     [examPassedChapters, sessionRows],
   );
   const chapterCount = deck.chapters.length;
-  const newcomer = completedSessionIds.length === 0;
+  // зачем (прогресс v2): после входного теста ничего не пройдено, но текущий — эпизод 1 урока N; такой человек не новичок
+  const newcomer = completedSessionIds.length === 0 && (props.currentSessionId === null || /^lesson-0?1:session:0?1$/.test(props.currentSessionId));
   useEffect(() => {
     const cur = deck.cards[deck.currentIndex];
     console.log(`${LOG} урок/глава`, JSON.stringify({ lesson, chapters: chapterCount, cards: deck.cards.length, currentIndex: deck.currentIndex, currentSession: cur ? cur.sessionOrdinal : null, currentChapter: cur ? cur.chapterOrdinal : null, currentState: cur ? cur.state : null, newcomer, rows: rows.length })); // guard-ok: что видит человек

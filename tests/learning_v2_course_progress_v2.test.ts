@@ -59,6 +59,26 @@ describe('progress v2: open ≠ completed (ЗАМОК ВЛАДЕЛЬЦА)', () =
   });
 });
 
+describe('progress v2: map and season see «open» (ЗАМОК ВЛАДЕЛЬЦА)', () => {
+  it('opened sessions are «open» on the map — not completed, not locked; season card is playable', () => {
+    const { buildLearningV2CourseAccordionMapFromPreparedProgressV1, prepareLearningV2CourseAccordionProgressV1 } =
+      require('../modules/learning-v2/map/course_accordion_map_model_v1') as typeof import('../modules/learning-v2/map/course_accordion_map_model_v1');
+    const { seasonCardState } = require('../components/learning-v2/season/season_course_model') as typeof import('../components/learning-v2/season/season_course_model');
+    const preparedProgress = prepareLearningV2CourseAccordionProgressV1({
+      completedSessionIds: [sid(1, 1)],
+      currentSessionId: sid(2, 1),
+      openedSessionIds: [sid(1, 1), sid(1, 2), sid(1, 3)],
+    });
+    const rows = buildLearningV2CourseAccordionMapFromPreparedProgressV1({ projectionScopeKey: 'open-test', expandedLessonOrdinal: 1, preparedProgress }).rows;
+    const state = (s: number) => (rows.find((r) => r.kind === 'session' && r.lessonOrdinal === 1 && r.sessionOrdinal === s) as { state: string }).state;
+    expect(state(1)).toBe('completed');
+    expect(state(2)).toBe('open');
+    expect(state(3)).toBe('open');
+    expect(state(4)).toBe('locked');
+    expect(seasonCardState('open')).toBe('open');
+  });
+});
+
 describe('progress v2: backward compatibility', () => {
   it('old data (chain + old cloud number) reads exactly as before', async () => {
     const { storage, rows } = memory();

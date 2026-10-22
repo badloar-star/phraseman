@@ -14,7 +14,9 @@ import type {
   LearningV2CourseAccordionRowV1,
 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
 
-export type SeasonCardState = 'done' | 'current' | 'locked';
+// зачем (владелец 21.10 №8/№10, стр. 87 «ПРОСТО ОТКРЫТЫ»; прогресс v2): 'open' — открыто экзаменом или входным тестом:
+// без замка, звёзды пустые, играть можно, но не пройдено (вид карточки — 2 · ДИЗАЙН читает это поле)
+export type SeasonCardState = 'done' | 'current' | 'open' | 'locked';
 
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'session' }>;
 
@@ -54,6 +56,7 @@ export type SeasonDeck = Readonly<{
 export function seasonCardState(source: LearningV2AccordionSessionStateV1): SeasonCardState {
   if (source === 'completed') return 'done';
   if (source === 'current') return 'current';
+  if (source === 'open') return 'open';
   return 'locked';
 }
 
@@ -80,7 +83,8 @@ export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[],
     if (!includeExam || chapterRows.length === 0) return;
     const last = chapterRows[chapterRows.length - 1];
     const allDone = chapterRows.every((row) => row.state === 'completed');
-    const reached = chapterRows.some((row) => row.state === 'completed' || row.state === 'current');
+    // зачем (прогресс v2): глава, открытая входным тестом или экзаменом, тоже «достигнута» — её экзамен доступен
+    const reached = chapterRows.some((row) => row.state === 'completed' || row.state === 'current' || row.state === 'open');
     const passed = options.examPassedChapters?.has(last.chapterOrdinal) === true;
     const examState: SeasonCardState = passed ? 'done' : (options.examAvailableWhenReached ? reached : allDone) ? 'current' : 'locked';
     cards.push({

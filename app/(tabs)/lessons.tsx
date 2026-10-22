@@ -4823,12 +4823,13 @@ export default function LessonsTab({
                         paddingHorizontal: 3,
                         alignItems: "center",
                         justifyContent: "center",
-                        backgroundColor: t.accent,
+                        // зачем (Сверка §21, координатор 22.10): бейдж числа слов у книги был ярко-фиолетовым во всех темах (t.accent) — теперь токены текущей темы: заливка accent и надпись accentInk
+                        backgroundColor: learnGlass.accent,
                       }}
                     >
                       <Text
                         style={{
-                          color: t.textOnGold,
+                          color: learnGlass.accentInk,
                           fontSize: 13,
                           lineHeight: 17,
                           fontWeight: "700",

@@ -36,6 +36,7 @@ const PILL = 'rgba(255,255,255,0.16)'; // theme-exempt: «стеклянная»
 const PILL_ON_LIGHT = 'rgba(0,0,0,0.18)'; // theme-exempt: тёмное стекло пилюли «Урок N» на светлой обложке
 const SCRIM = ['rgba(0,0,0,0)', 'rgba(0,0,0,0.36)'] as const; // theme-exempt: затемнение низа обложки, эталон `.c1hero .scrim`
 const BTN_INK = '#121318'; // theme-exempt: текст белой кнопки на обложке, эталон `.qbtn.white`
+const HUD_ROW_HEIGHT = 44; // высота самой высокой кнопки HUD (книга слов 44) — ниже неё начинаются кикер и заголовок
 const BAR = 'rgba(255,255,255,0.28)'; // theme-exempt: дорожка прогресса на обложке, эталон `.c1res .bar`
 
 export type SeasonEpisodeInfo = Readonly<{
@@ -172,7 +173,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
               в светлой теме HUD стоит на плите цвета карточки темы — тексты и акцент темы читаются на ней ≥ 4,5:1 (тот же токен opaqueCard, что в аудите заданий) */}
           {props.avatarSlot ? (!dark && tall ? <View testID="season-hud-plate" style={[styles.hudPlate, { backgroundColor: g.opaqueCard }]}>{props.avatarSlot}</View> : props.avatarSlot) : null}
         </View>
-        <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null]}>
+        <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null, { paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12 }]}>
           <Text style={styles.kicker}>{kicker}</Text>
           <Text accessibilityRole="header" style={[styles.heroTitle, tall && longTitle ? styles.heroTitleLong : null]}>{props.lessonTitle}</Text>
           <V2Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} style={styles.primary} testID="season-primary">
@@ -267,20 +268,21 @@ function ActionChip({ icon, label, onPress, testID }: Readonly<{ icon: IonName; 
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  hero: { height: 380, borderBottomLeftRadius: 34, borderBottomRightRadius: 34, overflow: 'hidden' },
+  // зачем (Сверка §21, координатор 22.10: «HUD-плашка налезает на строку «Урок 2 · …» и заголовок во всех темах»): обложка — не фиксированная высота с текстом, прижатым к низу, а минимальная высота 380/392 и поток; тексты и кнопки лежат ПОД строкой HUD (отступ сверху = безопасный верх + 8 + строка 44 + 12) и при нехватке места обложка вырастает, а не наезжает на HUD
+  hero: { minHeight: 380, borderBottomLeftRadius: 34, borderBottomRightRadius: 34, overflow: 'hidden' },
   // зачем (владелец 22.10: высота сцен 46 % для всех; scenes-compact.html «Обучение · Сезон», вариант 2): 392 dp вместе с зоной часов, фон от верха экрана
-  heroBodyTall: { bottom: 44 },
+  heroBodyTall: { paddingBottom: 44 },
   hudPlate: { borderRadius: 22, paddingHorizontal: 6, paddingVertical: 2, flexDirection: 'row', alignItems: 'center' },
   heroTitleLong: { fontSize: 26, lineHeight: 32 },
   heroChips: { marginTop: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   heroChip: { height: 34, paddingHorizontal: 12, borderRadius: 17, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },
   heroChipText: { fontSize: 13, lineHeight: 17, fontWeight: '600', color: WHITE },
-  heroTall: { height: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
+  heroTall: { minHeight: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
   pill: { height: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },
   pillText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: WHITE },
-  heroBody: { position: 'absolute', left: 20, right: 20, bottom: 22 },
+  heroBody: { flexGrow: 1, justifyContent: 'flex-end', paddingHorizontal: 20, paddingBottom: 22 },
   kicker: { fontSize: 13, lineHeight: 17, color: WHITE_SOFT },
   heroTitle: { marginTop: 4, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5, color: WHITE },
   primary: { marginTop: 16, height: 50, borderRadius: 25, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: WHITE },

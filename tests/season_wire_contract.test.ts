@@ -79,11 +79,12 @@ describe('Сезон: обложка 46 % от самого верха (влад
     expect(lessons).toContain('bleedTop={isRetainedTab && seasonBleed === 0 ? insets.top : 0}');
     expect(wire).toContain('topBleed={bleed}');
   });
-  it('обложка: 392 dp вместе с зоной часов, заголовок 30/36, кнопка 50, низ 44', () => {
-    expect(view).toMatch(/heroTall: \{ height: 392/);
+  it('обложка: не менее 392 dp вместе с зоной часов (растёт, а не наезжает на HUD), заголовок 30/36, кнопка 50, низ 44', () => {
+    expect(view).toMatch(/heroTall: \{ minHeight: 392/);
+    expect(view).toContain('paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12');
     expect(view).toMatch(/heroTitle: \{ marginTop: 4, fontSize: 30, lineHeight: 36/);
     expect(view).toMatch(/primary: \{ marginTop: 16, height: 50/);
-    expect(view).toContain('heroBodyTall: { bottom: 44 }');
+    expect(view).toContain('heroBodyTall: { paddingBottom: 44 }');
   });
 });
 

@@ -40,6 +40,9 @@ const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionic
   lesson: 'book-outline', dialog: 'chatbubbles-outline', cards: 'copy-outline', video: 'play-circle-outline', mistakes: 'alert-circle-outline', spire_steps: 'trending-up-outline',
 };
 
+/** Строка опроса дня в панели «Задания дня» (владелец 22.10: опрос живёт на экране «Сегодня», Главная — строго по макету). */
+export type TodayScenePollRow = Readonly<{ title: string; subtitle: string; onPress: () => void }>;
+
 export type TodaySceneViewProps = Readonly<{
   /** Заголовок экрана справа от «назад» (28/34, белый) — на языке интерфейса. */
   title: string;
@@ -55,9 +58,11 @@ export type TodaySceneViewProps = Readonly<{
   onBack: () => void;
   backLabel: string;
   onOpenTask: (task: TodayTask) => void;
+  /** Строка опроса дня после заданий; null — опроса сейчас нет (набора нет или он пройден). */
+  pollRow?: TodayScenePollRow | null;
 }>;
 
-const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, ringColors, fromProgress, onBack, backLabel, onOpenTask }: TodaySceneViewProps) {
+const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, ringColors, fromProgress, onBack, backLabel, onOpenTask, pollRow = null }: TodaySceneViewProps) {
   // зачем (FONTSCALE2, 2 · ДИЗАЙН 22.10): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const s = useScaledTextStyles(baseStyles);
   const { fontScale, height: windowH } = useWindowDimensions();
@@ -177,6 +182,25 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
             </V2Pressable>
           );
         })}
+        {/* зачем (владелец 22.10 кнопкой: опрос дня — строкой на «Сегодня»): та же строка, что была в карточке «Сегодня» на Главной */}
+        {pollRow ? (
+          <V2Pressable
+            testID="today-scene-row-poll"
+            accessibilityRole="button"
+            accessibilityLabel={`${pollRow.title}. ${pollRow.subtitle}`}
+            onPress={pollRow.onPress}
+            scaleTo={0.97}
+            style={[s.row, { borderTopColor: `${card.text.slice(0, 7)}12`, borderTopWidth: StyleSheet.hairlineWidth }]} // shadow-ok: разделитель строк (верхняя линия, не обводка контейнера)
+          >
+            <View style={s.ck} />
+            <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={card.text} /></View>
+            <View style={s.tx}>
+              <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={1}>{pollRow.title}</Text>
+              <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={1}>{pollRow.subtitle}</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={16} color={card.secondary} />
+          </V2Pressable>
+        ) : null}
       </View>
       {history ? <View testID="today-scene-history" style={s.history}>{history}</View> : null}
     </ScrollView>

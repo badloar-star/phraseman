@@ -9,7 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -33,6 +33,11 @@ import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type Today
 import BackButton from '../components/v2/BackButton';
 import TodayScene from '../components/home/v2/today_scene/TodayScene';
 import { TODAY_SCENE_V2_ENABLED } from '../components/home/v2/today_scene/today_scene_flag';
+import type { TodayScenePollRow } from '../components/home/v2/today_scene/TodaySceneView';
+import { HOME_SCENE_V2_ENABLED } from '../components/home/v2/scene/home_scene_flag';
+import HomePollV2Card from '../components/home/HomePollV2Card';
+import HybridSheetShell from '../components/modal_fx/HybridSheetShell';
+import { useHomePollV2 } from '../hooks/use_home_poll_v2';
 
 /**
  * Высота блока колец: кольцо 222 (макет Б) + отступы TodayRings 2/14 + отступы блока 26/12 (в макете 28 сверху / 26 снизу).
@@ -62,6 +67,28 @@ export default function TodayTasksScreen() {
   const doneColors = useMemo(() => (streakColors ? todayRingColors(streakColors) : null), [streakColors]);
   const todayTasks = useTodayTasks(lang, studyTarget);
   const tasks = useMemo(() => filterTodayTasksForTarget(todayTasks.tasks, studyTarget), [studyTarget, todayTasks.tasks]);
+  // зачем (владелец 22.10 кнопкой: «опрос дня перенести на экран «Сегодня», Главная — строго по макету»): с новой Главной (флаг «Сцены»)
+  // строки опроса на ней нет — опрос живёт здесь строкой. Тот же хук (набор дня — бандл и расписание, ответы — с диска, сеть только у голоса)
+  // и та же шторка, что были на Главной; без флага опрос остаётся на прежней Главной и здесь не дублируется.
+  const pollOn = HOME_SCENE_V2_ENABLED;
+  const poll = useHomePollV2({ lang, active: pollOn });
+  const [pollOpen, setPollOpen] = useState(false);
+  const openPoll = useCallback(() => {
+    console.log('[TODAY-POLL] open', JSON.stringify({ setId: poll.setId, step: poll.step, total: poll.total, phase: poll.phase })); // guard-ok: одна строка на тап
+    setPollOpen(true);
+  }, [poll.phase, poll.setId, poll.step, poll.total]);
+  const closePoll = useCallback(() => setPollOpen(false), []);
+  useEffect(() => {
+    if (poll.phase === 'hidden') setPollOpen(false);
+  }, [poll.phase]);
+  const pollRow = useMemo<TodayScenePollRow | null>(() => (pollOn && poll.phase !== 'hidden' ? {
+    title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
+    subtitle: triLang(lang, { ru: `${poll.total} вопроса`, uk: `${poll.total} питання`, en: `${poll.total} questions`, es: `${poll.total} preguntas`, 'pt-BR': `${poll.total} perguntas`, vi: `${poll.total} câu hỏi`, id: `${poll.total} pertanyaan`, tr: `${poll.total} soru`, pl: `${poll.total} pytania` }),
+    onPress: openPoll,
+  } : null), [lang, openPoll, poll.phase, poll.total, pollOn]);
+  useEffect(() => {
+    console.log('[TODAY-POLL] row', JSON.stringify({ pollOn, phase: poll.phase, setId: poll.setId, step: poll.step, total: poll.total, shown: pollRow !== null, reason: !pollOn ? 'home_without_scene_keeps_poll' : poll.phase === 'hidden' ? 'no_set_or_answered' : 'shown' })); // guard-ok: журнал на смену состояния опроса
+  }, [poll.phase, poll.setId, poll.step, poll.total, pollOn, pollRow]);
   // зачем: «до» привязано к дню И набору задач — если набор дня сменился (язык, Пик), кольцо не докручивается от чужих чисел
   const seenKey = `${todayTasks.dayKey}|${tasks.map((task) => task.kind).join(',')}`;
   const progress = ringProgress(tasks);
@@ -133,6 +160,20 @@ export default function TodayTasksScreen() {
 
   // зачем (эталон today-scene-concepts.html, вариант A; координатор 22.10): за флагом (dev — вкл, релиз — выкл) экран рисуется «Сценой»; хуки выше те же,
   // «до» для колец и открытие задания — прежние, поэтому поведение и журнал [TODAY-RING] не меняются
+  const pollSheet = pollOn ? (
+    <HybridSheetShell
+      visible={pollOpen}
+      onClose={closePoll}
+      closeLabel={triLang(lang, { ru: 'Закрыть опрос', uk: 'Закрити опитування', en: 'Close poll', es: 'Cerrar encuesta', 'pt-BR': 'Fechar enquete', vi: 'Đóng khảo sát', id: 'Tutup jajak pendapat', tr: 'Anketi kapat', pl: 'Zamknij ankietę' })}
+      backdropAccessible={false}
+      material="liquid-glass-opaque"
+      sheetHeight="74%"
+      testID="today-poll-v2-sheet"
+    >
+      <HomePollV2Card model={poll} lang={lang} onFinished={closePoll} />
+    </HybridSheetShell>
+  ) : null;
+
   if (TODAY_SCENE_V2_ENABLED) {
     return (
       <View testID="today-tasks-screen" style={[s.root, { backgroundColor: p.bg }]}>
@@ -145,7 +186,9 @@ export default function TodayTasksScreen() {
           onBack={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }}
           backLabel={backLabel}
           onOpenTask={openTask}
+          pollRow={pollRow}
         />
+        {pollSheet}
       </View>
     );
   }
@@ -173,10 +216,11 @@ export default function TodayTasksScreen() {
               ) : null}
             </View>
           ) : null}
-          <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} />
+          <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} surveyRow={pollRow} />
           <TodayActivityHistory dayKey={todayTasks.dayKey} tasks={tasks} />
         </ScrollView>
       </SafeAreaView>
+      {pollSheet}
     </View>
   );
 }

@@ -64,7 +64,7 @@ describe('экран «Сегодня» и Главная — по строка�
     expect(screen).toContain('<TodayRingsSlot tasks={tasks} fromProgress={ringFrom.from} size={222} showDayDone={false} />');
     expect(screen).toContain('rings: { minHeight: RINGS_BLOCK_HEIGHT, paddingTop: 26, paddingBottom: 12 }');
     expect(screen).not.toMatch(/DAY_DONE_EXTRA/);
-    expect(screen).toContain('<HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} />');
+    expect(screen).toContain('<HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} surveyRow={pollRow} />');
     expect(screen).toContain('rememberTodayRingSeen(seenKey, progress);');
     for (const tag of ['screen:open', 'ring:from', 'task:open']) expect(screen).toContain(`[TODAY-RING] ${tag}`);
     expect(screen).toMatch(/entering=\{reduceMotion \? undefined : RINGS_ENTER\}/);

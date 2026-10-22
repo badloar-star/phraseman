@@ -36,7 +36,8 @@ describe('home startup stability', () => {
     expect(home).toContain('const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });');
     // зачем (владелец 22.10, «вернуть анкеты»): одна строка «Сегодня» — анкета-кампания первой, иначе Poll V2
     expect(home).toContain("const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
-    expect(home).toContain("homeTodayRowSource === 'poll_v2' ? {");
+    // зачем (владелец 22.10 кнопкой): без «Сцены» — строка на Главной; с новой Главной опрос живёт на экране «Сегодня»
+    expect(home).toContain("homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {");
     expect(home).toContain('testID="home-poll-v2-sheet"');
     expect(home).toContain('<HomePollV2Card model={homePollV2} lang={lang} onFinished={closeHomePollV2} />');
     expect(home).not.toMatch(/<HomePollV2Card lang=\{lang\} active=/u);

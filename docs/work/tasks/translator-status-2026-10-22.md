@@ -124,3 +124,9 @@ learningV2SessionTitleForLocaleV1(lesson, session, locale), откат к рус
 **0cc795465** — сквозная вычитка «Друзей» за выключателем (friends-texts-sweep-2026-10-22.md): pair_copy, lesson_together_copy,
 duel_copy, duel_play_copy — без правок; lesson_invite_friend_copy — 3 правки (занятие tr «oturum», vi «Buổi»).
 На заметку: «Скажи по-английски» id — «Ucapkan» в дуэли, «Katakan» в заданиях.
+
+## Для 8 · МОМЕНТЫ: одно слово «Скажи по-английски» в id
+
+`app/friends_together/duel_play_copy.ts` (файл Моментов, ключ `sayInEnglish`): id «Ucapkan dalam bahasa Inggris» → «Katakan dalam
+bahasa Inggris» — как подпись в заданиях Learning V2 (`GOAL_SAY` в task_prompt_parts_v1.ts). Решение координатора 22.10. Я файл
+не трогал — он ваш; поправьте при следующем касании (одна строка, логики нет).

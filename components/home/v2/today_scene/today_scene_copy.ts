@@ -87,17 +87,20 @@ function midnightTitle(lang: Lang, minutes: number): string {
   const h = Math.floor(m / 60);
   const mm = m % 60;
   const hm = (hs: string, ms: string): string => [h > 0 ? `${h} ${hs}` : '', mm > 0 || h === 0 ? `${mm} ${ms}` : ''].filter(Boolean).join(' ');
-  return tri(lang, {
-    ru: `До полуночи ${hm('ч', 'мин')}`,
-    uk: `До опівночі ${hm('год', 'хв')}`,
-    en: `${hm('h', 'min')} until midnight`,
-    es: `Faltan ${hm('h', 'min')} para medianoche`,
-    'pt-BR': `Faltam ${hm('h', 'min')} para meia-noite`,
-    vi: `Còn ${hm('giờ', 'phút')} đến nửa đêm`,
-    id: `${hm('jam', 'mnt')} lagi sampai tengah malam`,
-    tr: `Gece yarısına ${hm('sa', 'dk')} kaldı`,
-    pl: `Do północy ${hm('godz.', 'min')}`,
+  // зачем (Сверка 22.10, как на сцене Главной): заголовок рвался «До полуночи 2 ч 20 / мин». Два куска — фраза и время; внутри куска пробелы неразрывные,
+  // между кусками обычный: строка рвётся только там («До полуночи / 2 ч 20 мин»), короткое время остаётся в одну строку.
+  const pair = triLang(lang, {
+    ru: ['До полуночи', hm('ч', 'мин')],
+    uk: ['До опівночі', hm('год', 'хв')],
+    en: [hm('h', 'min'), 'until midnight'],
+    es: [`Faltan ${hm('h', 'min')}`, 'para medianoche'],
+    'pt-BR': [`Faltam ${hm('h', 'min')}`, 'para meia-noite'],
+    vi: [`Còn ${hm('giờ', 'phút')}`, 'đến nửa đêm'],
+    id: [hm('jam', 'mnt'), 'lagi sampai tengah malam'],
+    tr: ['Gece yarısına', `${hm('sa', 'dk')} kaldı`],
+    pl: ['Do północy', hm('godz.', 'min')],
   });
+  return (pair as readonly string[]).map((chunk) => chunk.replace(/ /g, ' ')).join(' ');
 }
 
 /** Тексты сцены для решения pickTodaySceneState. Ничего не выдумывает: всё из заданий дня, серии и часов. */

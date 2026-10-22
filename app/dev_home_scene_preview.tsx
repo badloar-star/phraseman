@@ -107,7 +107,7 @@ function Inner() {
           testID: 'home-v2-streak',
           icon: <Ionicons name={setup.streakToday === 'pending' ? 'flame-outline' : 'flame'} size={20} color={v2.iconTint} />,
           value: words.days,
-          label: setup.streakToday === 'pending' ? words.pending : words.streak,
+          label: words.streak, // зачем: 22.10 владелец — без текста «Сегодня ещё нет», состояние несёт только огонёк
           accessibilityLabel: `${words.streak}: ${words.days}`,
         },
         {

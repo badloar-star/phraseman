@@ -71,7 +71,7 @@ async function main(): Promise<void> {
   assert.equal(homeScenePreviewHeaderWords("ru", 1).days, "1 день");
   assert.equal(homeScenePreviewHeaderWords("ru", 2).days, "2 дня");
   assert.equal(homeScenePreviewHeaderWords("ru", 11).days, "11 дней");
-  assert.equal(homeScenePreviewHeaderWords("ru", 0).pending, "Сегодня ещё нет");
+  assert.equal("pending" in homeScenePreviewHeaderWords("ru", 0), false, "слова «Сегодня ещё нет» больше нет (владелец 22.10)");
   for (const lang of LANGS) {
     const w = homeScenePreviewHeaderWords(lang, 5);
     for (const [key, text] of Object.entries(w)) assert.ok(text.trim().length > 0, `${lang}/${key}: пусто`);

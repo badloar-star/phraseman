@@ -23,11 +23,11 @@ describe('buildTodaySceneCopy · русский', () => {
   });
   it('вечер: «До полуночи 2 ч 20 мин», серия с правильным склонением, тёплая строка', () => {
     const c = copy('ru', [t('lesson', 0, 1), t('dialog', 0, 1), t('cards', 0, 10)], 21);
-    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До полуночи 2 ч 20 мин', line: null, warm: 'Одно занятие сохранит серию' });
+    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До\u00A0полуночи 2\u00A0ч\u00A020\u00A0мин', line: null, warm: 'Одно занятие сохранит серию' });
   });
   it('вечер, ровно часы и ровно минуты — без «0 мин» и «0 ч»', () => {
-    expect(copy('ru', [t('lesson', 0, 1)], 22, 1, false, 120).title).toBe('До полуночи 2 ч');
-    expect(copy('ru', [t('lesson', 0, 1)], 23, 1, false, 45).title).toBe('До полуночи 45 мин');
+    expect(copy('ru', [t('lesson', 0, 1)], 22, 1, false, 120).title).toBe('До\u00A0полуночи 2\u00A0ч');
+    expect(copy('ru', [t('lesson', 0, 1)], 23, 1, false, 45).title).toBe('До\u00A0полуночи 45\u00A0мин');
     expect(copy('ru', [t('lesson', 0, 1)], 23, 1, false, 45).kicker).toBe('Серия 1 день');
     expect(copy('ru', [t('lesson', 0, 1)], 23, 2, false, 45).kicker).toBe('Серия 2 дня');
     expect(copy('ru', [t('lesson', 0, 1)], 23, 11, false, 45).kicker).toBe('Серия 11 дней');

@@ -126,8 +126,8 @@ export function homeScenePreviewPlace(
   });
 }
 
-/** Слова шапки Главной (серия, «Сегодня ещё нет», монеты) — те же, что у HomeV2Header на Главной. */
-export function homeScenePreviewHeaderWords(lang: Lang, days: number): Readonly<{ days: string; streak: string; pending: string; coins: string }> {
+/** Слова шапки Главной (серия, монеты) — те же, что у HomeV2Header на Главной. Подписи «Сегодня ещё нет» нет: состояние дня показывает только огонёк (владелец 22.10). */
+export function homeScenePreviewHeaderWords(lang: Lang, days: number): Readonly<{ days: string; streak: string; coins: string }> {
   const ruForm = days % 10 === 1 && days % 100 !== 11 ? 0 : days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 12 || days % 100 > 14) ? 1 : 2;
   return Object.freeze({
     days: triLang(lang, {
@@ -136,7 +136,6 @@ export function homeScenePreviewHeaderWords(lang: Lang, days: number): Readonly<
       vi: `${days} ngày`, id: `${days} hari`, tr: `${days} gün`, pl: `${days} ${days === 1 ? 'dzień' : 'dni'}`,
     }),
     streak: triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' }),
-    pending: triLang(lang, { ru: 'Сегодня ещё нет', uk: 'Сьогодні ще ні', en: 'Not yet today', es: 'Hoy aún no', 'pt-BR': 'Hoje ainda não', vi: 'Hôm nay chưa có', id: 'Hari ini belum', tr: 'Bugün henüz yok', pl: 'Dziś jeszcze nie' }),
     coins: triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' }),
   });
 }

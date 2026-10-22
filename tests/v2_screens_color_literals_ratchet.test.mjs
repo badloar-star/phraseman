@@ -18,6 +18,9 @@ const ZONE = [
   // зона «Друзья / лента / Сообщество» (координатор → 8 · МОМЕНТЫ, аудит 4 · ТЕМЫ 22.10): вкладки, визитка игрока, наборы сообщества
   'app/(tabs)/friends.tsx', 'app/(tabs)/community.tsx', 'components/friends', 'app/community_packs', 'app/community_pack_create.tsx',
   'components/PlayerProfileModal.tsx', 'components/profile-card',
+  // зона «Сообщения / инбокс» (координатор → 8 · МОМЕНТЫ, волна 2): центр уведомлений, входящие, личное сообщение, окна разрешения
+  'components/NotificationCenterButton.tsx', 'components/AppMessagesInbox.tsx', 'components/AppMessageAnnouncementModal.tsx',
+  'components/PersonalAdminMessageModal.tsx', 'components/NotificationPermissionModal', 'components/notification_center_tones.ts',
 ];
 const SKIP = /\.test\.|preview|fixtures|\.generated\.|v2_kit|KitLiquidGlass|plateTone/i;
 const reHex = /#(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{3,4})(?![0-9A-Za-z])/g;

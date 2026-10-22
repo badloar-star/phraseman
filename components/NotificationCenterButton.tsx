@@ -44,6 +44,7 @@ import { duelResultParams } from '../app/friends_together/duel_routes';
 import { V2 } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import { colorWithAlpha } from './v2/plateAlpha';
+import { notificationTones, type NotificationTones } from './notification_center_tones';
 import { nestedBoxShadow, useShadowGlass } from './v2/ShadowSurface';
 import { KitSheetModal } from './v2/KitSheetModal';
 import auth from '@react-native-firebase/auth';
@@ -51,12 +52,6 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import BackGlyph from './v2/BackGlyph';
 import { HomeBellStateContext } from './home/v2/home_bell_state';
 
-const EXEMPT_COLOR_1 = 'rgba(99,217,143,0.35)'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
-const EXEMPT_COLOR_2 = '#2E9E63'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
-const EXEMPT_COLOR_3 = '#F6C453'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
-const EXEMPT_COLOR_4 = '#63D98F'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
-const EXEMPT_COLOR_5 = '#F6C453'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
-const EXEMPT_COLOR_6 = '#07110A'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
 
 /**
  * Центр событий на главной: «кто поставил лайк, кто принял заявку, кто ответил
@@ -170,10 +165,9 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
   }
 }
 
-function notificationIconColor(type: UserNotificationType, fallback: string): string {
-  if (type === 'activity_like') return '#FF2D55'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
-  if (type === 'friend_accepted') return '#34C759'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
-  if (type === 'report_reply') return '#2E9E63'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
+function notificationIconColor(type: UserNotificationType, fallback: string, tones: NotificationTones): string {
+  if (type === 'activity_like') return tones.like;
+  if (type === 'friend_accepted' || type === 'report_reply') return tones.good;
   return fallback;
 }
 
@@ -200,6 +194,7 @@ function NotificationCenterButton({
   const homeFocusTick = bellState?.focusTick ?? homeFocusTickProp ?? 0;
   const v2 = useV2Palette();
   const shadowGlass = useShadowGlass();
+  const tones = useMemo(() => notificationTones(shadowGlass), [shadowGlass]);
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
@@ -519,10 +514,10 @@ function NotificationCenterButton({
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
         {reportRewardHasVisibleReward(reward.rewardBundle) ? (
-          <View style={[styles.rewardCard, { backgroundColor: t.bgSurface, borderColor: EXEMPT_COLOR_1 }]}>
+          <View style={[styles.rewardCard, { backgroundColor: t.bgSurface }]}>
             <Reanimated.View entering={reduceMotion ? undefined : ZoomIn.duration(420).springify()} style={styles.rewardTop}>
-              <View style={styles.rewardIcon}>
-                <Ionicons name={reward.claimed ? 'checkmark-circle' : 'gift-outline'} size={22} color={EXEMPT_COLOR_2} />
+              <View style={[styles.rewardIcon, tones.rewardIcon]}>
+                <Ionicons name={reward.claimed ? 'checkmark-circle' : 'gift-outline'} size={22} color={tones.good} />
               </View>
               <Text style={[styles.rewardTitle, { color: t.textPrimary }]}>
                 {reward.claimed ? copy.claimed : copy.reportReply}
@@ -531,7 +526,7 @@ function NotificationCenterButton({
             {reward.claimed && !reduceMotion ? (
               <Reanimated.View entering={ZoomIn.delay(120).duration(460)} style={styles.celebrationRow}>
                 {['sparkles', 'star', 'sparkles', 'star', 'sparkles'].map((icon, index) => (
-                  <Ionicons key={`${icon}-${index}`} name={icon as keyof typeof Ionicons.glyphMap} size={index === 2 ? 22 : 15} color={index % 2 ? EXEMPT_COLOR_3 : EXEMPT_COLOR_4} />
+                  <Ionicons key={`${icon}-${index}`} name={icon as keyof typeof Ionicons.glyphMap} size={index === 2 ? 22 : 15} color={index % 2 ? tones.gold : tones.good} />
                 ))}
               </Reanimated.View>
             ) : null}
@@ -542,8 +537,8 @@ function NotificationCenterButton({
               {/* зачем: Q4 (координатор 01.10) — награда показывается в монетах
                   (v2 coins; у старых v1 руны — тот же кошелёк монет). */}
               {reportRewardCoins(reward.rewardBundle) > 0 ? (
-                <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(180).duration(260)} style={styles.rewardLine}>
-                  <Ionicons name="star-outline" size={21} color={EXEMPT_COLOR_5} />
+                <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(180).duration(260)} style={[styles.rewardLine, tones.rewardLine]}>
+                  <Ionicons name="star-outline" size={21} color={tones.gold} />
                   <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reportRewardCoins(reward.rewardBundle)} ${triLang(lang as Lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' })}`}</Text>
                 </Reanimated.View>
               ) : null}
@@ -561,10 +556,10 @@ function NotificationCenterButton({
                 accessibilityState={{ busy: claimingMessageId === reward.messageId, disabled: claimingMessageId === reward.messageId }}
                 disabled={claimingMessageId === reward.messageId}
                 onPress={() => { void claimReportReward(row); }}
-                style={styles.rewardButton}
+                style={[styles.rewardButton, tones.rewardButton]}
               >
-                <Ionicons name="gift-outline" size={17} color={EXEMPT_COLOR_6} />
-                <Text style={styles.rewardButtonText}>{copy.claim}</Text>
+                <Ionicons name="gift-outline" size={17} color={tones.rewardButtonInk} />
+                <Text style={[styles.rewardButtonText, { color: tones.rewardButtonInk }]}>{copy.claim}</Text>
               </TouchableOpacity>
             ) : null}
           </View>
@@ -598,7 +593,7 @@ function NotificationCenterButton({
           <AvatarView avatar={row.fromAvatar!} size={38} animateAura={false} />
         ) : (
           <View style={[styles.notificationIcon, { backgroundColor: t.bgCard }]}>
-            <Ionicons name={notificationIcon(row.type)} size={18} color={notificationIconColor(row.type, t.textMuted)} />
+            <Ionicons name={notificationIcon(row.type)} size={18} color={notificationIconColor(row.type, t.textMuted, tones)} />
           </View>
         )}
         <View style={styles.notificationCopy}>
@@ -615,7 +610,7 @@ function NotificationCenterButton({
           <Text style={{ color: t.textGhost, fontSize: Math.max(9, f.caption - 2), fontWeight: '800' }}>
             {timeLabel(row.createdAt)}
           </Text>
-          <Ionicons name={notificationIcon(row.type)} size={13} color={notificationIconColor(row.type, t.textGhost)} />
+          <Ionicons name={notificationIcon(row.type)} size={13} color={notificationIconColor(row.type, t.textGhost, tones)} />
         </View>
         {!hasUnclaimedReportReward ? (
         <TouchableOpacity
@@ -767,7 +762,7 @@ function NotificationCenterButton({
           />
           )}
           {pendingDeletion ? (
-            <View style={[styles.notificationUndo, { bottom: 0, backgroundColor: t.bgSurface }]}>
+            <View style={[styles.notificationUndo, tones.undoShadow, { bottom: 0, backgroundColor: t.bgSurface }]}>
               <Text style={[styles.notificationUndoText, { color: t.textPrimary }]}>{copy.deletedUndo}</Text>
               <TouchableOpacity accessibilityRole="button" onPress={undoDelete} style={styles.notificationUndoButton}>
                 <Text style={[styles.notificationUndoAction, { color: t.accentText }]}>{copy.undo}</Text>
@@ -896,7 +891,6 @@ const styles = StyleSheet.create({
     paddingRight: 6,
     flexDirection: 'row',
     alignItems: 'center',
-    shadowColor: '#000', // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
     shadowOpacity: 0.18,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
@@ -967,7 +961,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
-    backgroundColor: 'rgba(99,217,143,0.08)', // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
   },
   rewardLineText: {
     fontSize: 13,
@@ -985,7 +978,6 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(99,217,143,0.14)', // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
   },
   rewardTitle: {
     flex: 1,
@@ -997,7 +989,6 @@ const styles = StyleSheet.create({
   rewardButton: {
     minHeight: 44,
     borderRadius: 14,
-    backgroundColor: '#63D98F', // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1005,7 +996,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   rewardButtonText: {
-    color: '#07110A', // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
     fontSize: 13,
     fontWeight: '900',
   },

@@ -84,7 +84,8 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
       statusBarTranslucent
       onRequestClose={() => { void close(); }}
     >
-      <View style={[styles.root, { paddingBottom: normalizeSafeAreaBottomInset(insets.bottom) }]}>
+      {/* затемнение — скрим текущей темы (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы») */}
+      <View style={[styles.root, { backgroundColor: glass.scrim, paddingBottom: normalizeSafeAreaBottomInset(insets.bottom) }]}>
         <View
           accessibilityViewIsModal
           style={[styles.card, { backgroundColor: glass.opaqueSheet, boxShadow: plateBoxShadow(glass) }]}
@@ -113,7 +114,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 22,
-    backgroundColor: 'rgba(0,0,0,0.62)',
   },
   card: {
     maxHeight: '100%',

@@ -18,7 +18,6 @@ const CEILING: Readonly<Record<string, number>> = {
   'components/UpdateModal.tsx': 5, // блик и чёрная подложка
   'components/GlobalBroadcastModal.tsx': 1, // затемнение подложки
   'components/home/HomeMistakesLockedSheet.tsx': 1, // затемнение подложки
-  'components/PersonalAdminMessageModal.tsx': 1, // затемнение подложки
 };
 
 function listModalFiles(dir: string, out: string[] = []): string[] {

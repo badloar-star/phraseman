@@ -20,6 +20,7 @@ import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { colorWithAlpha } from './v2/plateAlpha';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import MotionModal from './MotionModal';
 import { hapticTap } from '../hooks/use-haptics';
@@ -157,6 +158,12 @@ function AppMessagesInbox({
   // из токенов активной темы, зелёный бренд и цветные рамки убраны.
   const { theme, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»; координатор → МОМЕНТЫ, зона «Сообщения»): блик и тень
+  // летящего конверта — mediaInk 55 % и shadowTint темы (прежде постоянные белый и чёрный с пометкой theme-exempt)
+  const envelopeTones = useMemo(() => ({
+    shine: { backgroundColor: colorWithAlpha(glass.mediaInk, 0.55) },
+    body: { backgroundColor: glass.lightTint, shadowColor: colorWithAlpha(glass.shadowTint, 1) },
+  }), [glass]);
   const insets = useStableSafeAreaInsets();
   const copy = inboxText(lang);
   const [messages, setMessages] = useState<AppMessageWithState[]>([]);
@@ -669,7 +676,7 @@ function AppMessagesInbox({
   const vipSurveyTint = glass.selected;
   // Награда (монеты) и «получено» — цвета темы приложения, как и раньше «награда».
   // Ошибка/«не нравится» остаётся красной.
-  const dangerColor = theme?.wrong ?? 'red';
+  const dangerColor = theme?.wrong ?? glass.bad;
   const bellColor = theme?.accentText ?? glass.accentText;
 
   const renderEmbeddedSection = () => {
@@ -833,7 +840,7 @@ function AppMessagesInbox({
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
                 style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor }]}
               >
-                <RowDivider edge="bottom" color="rgba(255,255,255,0.09)" />{/* theme-exempt: светлая линия 0.09 внутри тёмной плашки — постоянная */}
+                <RowDivider edge="bottom" color={glass.dividerTone} />{/* разделитель строк — тон темы: в светлом оформлении белая линия была невидима */}
                 {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
                 {/* зачем: макет system.html system_17 — сверху строки «Новое»/дата, ниже заголовок и текст */}
                 <View style={styles.messageMetaRow}>
@@ -1192,9 +1199,9 @@ function AppMessagesInbox({
                   ],
                 }}
               >
-                <View style={[styles.envelope, { backgroundColor: glass.lightTint }]}>
+                <View style={[styles.envelope, envelopeTones.body]}>
                   <View style={[styles.envelopeFlap, { borderTopColor: glass.cta }]} />
-                  <View style={styles.envelopeShine} />
+                  <View style={[styles.envelopeShine, envelopeTones.shine]} />
                 </View>
               </Animated.View>
           </View>
@@ -1203,7 +1210,7 @@ function AppMessagesInbox({
 
       <MotionModal visible={visible} onRequestClose={closeInbox} testID="app-messages-motion-modal">
         <SheetSwipeRoot>
-        <View style={styles.backdrop}>
+        <View style={[styles.backdrop, { backgroundColor: glass.scrim }]}>
           <Pressable style={StyleSheet.absoluteFill} onPress={closeInbox} />
         </View>
         <View pointerEvents="box-none" style={[styles.modalWrap, { paddingTop: insets.top + 12 }]}>
@@ -1389,7 +1396,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 12, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и тень (летящий конверт)
     overflow: 'hidden',
-    shadowColor: 'black', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
     shadowOpacity: 0.3,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 6 },
@@ -1415,7 +1421,6 @@ const styles = StyleSheet.create({
     width: 26,
     height: 8,
     borderRadius: 4,
-    backgroundColor: 'rgba(255,255,255,0.55)', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
     transform: [{ rotate: '-18deg' }],
   },
   badge: {
@@ -1437,7 +1442,6 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.56)', // theme-exempt: тень, затемнение и светлая кромка внутри тёмной плашки — постоянные
   },
   // Нижняя шторка (макет SYS-10): прижата к низу, сверху отступ под safe area.
   modalWrap: {

@@ -29,6 +29,7 @@ import { useTheme } from './ThemeContext';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { colorWithAlpha } from './v2/plateAlpha';
 import { LinearGradient } from './SafeLinearGradient';
 
 interface Props {
@@ -96,7 +97,7 @@ function ConfirmButton({ label, onPress, testID }: { label: string; onPress: () 
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={[styles.primaryBtn, { backgroundColor: glass.accent }]}
+        style={[styles.primaryBtn, { backgroundColor: glass.accent, shadowColor: colorWithAlpha(glass.shadowTint, 1) }]}
       >
         <Text style={[styles.primaryBtnText, { color: glass.accentInk }]}>{label}</Text>
       </Pressable>
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
-    shadowColor: '#000000', // theme-exempt: тень кнопки всегда чёрная, не зависит от темы
+    // зачем (закон владельца 22.10): тень кнопки — тон тени темы (shadowTint), задаётся в разметке; прежде всегда чёрная
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.22,
     shadowRadius: 8,

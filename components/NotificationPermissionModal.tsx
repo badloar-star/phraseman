@@ -100,7 +100,7 @@ function NotificationPermissionModal({
 
   return (
     <Modal visible={visible} transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onCancel}>
-      <TouchableOpacity activeOpacity={1} onPress={onCancel} style={[styles.backdrop, { paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
+      <TouchableOpacity activeOpacity={1} onPress={onCancel} style={[styles.backdrop, { backgroundColor: glass.scrimStrong, paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
         <TouchableOpacity activeOpacity={1} onPress={(event) => event.stopPropagation()} style={[styles.card, { backgroundColor: glass.sheet, paddingBottom: Math.max(18, insets.bottom + 12) }]}>
           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
             {/* зачем (координатор 18.10, список Сайта; прецедент — интро урока, «свечение текста убери»): на Android dimezis-BlurView без blurTarget снимает экран вместе с текстом панели
@@ -155,7 +155,8 @@ function NotificationPermissionModal({
 export default memo(NotificationPermissionModal);
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+  // зачем (закон владельца 22.10): затемнение под окном — сильный скрим текущей темы (scrimStrong), прежде постоянный чёрный 72 %
+  backdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
   card: { width: '100%', maxWidth: 390, maxHeight: '100%', borderRadius: 18, paddingHorizontal: 20, paddingTop: 20, overflow: 'hidden' },
   scrollContent: { width: '100%', flexShrink: 1, minHeight: 0 },
   scrollContentInner: { paddingBottom: 14 },

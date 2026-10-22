@@ -132,7 +132,7 @@ ought to is also advice, almost like should, but with to: You ought to set a bud
 ## 06 · mustn't — not allowed
 
 **body**
-mustn't means it is not allowed: You mustn't ignore the rules. It is a strong no. Do not use it for «not necessary» — that is don't have to. No to after mustn't.
+mustn't means it is not allowed: You mustn't ignore the rules. It is a strong no. Do not use it for “not necessary” — that is don't have to. No to after mustn't.
 
 **formula**
 `who` · `mustn't` · `action as in the dictionary`

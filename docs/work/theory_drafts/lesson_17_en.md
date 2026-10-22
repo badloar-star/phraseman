@@ -54,7 +54,7 @@ Some things you count one by one: a bookend, two ottomans — a or an for one, -
 
 ---
 
-## 03 · many or much — «how many? how much?»
+## 03 · many or much — “how many? how much?”
 
 **body**
 Things you count — many: How many pecans? Things you don't — much: How much polenta? With not too: We don't have much semolina. Never put a before many or much.
@@ -85,7 +85,7 @@ Things you count — many: How many pecans? Things you don't — much: How much 
 
 ---
 
-## 04 · a few, a little — «there is some»
+## 04 · a few, a little — “there is some”
 
 **body**
 Not much, but there is some: a few for things you count, a little for things you don't. We have a few housemates. We have a little leisure time.
@@ -107,7 +107,7 @@ Not much, but there is some: a few for things you count, a little for things you
 
 ---
 
-## 05 · few, little — «not enough»
+## 05 · few, little — “not enough”
 
 **body**
 Take away a and the meaning changes: less than you would like. We have little privacy. I have few contact numbers. a few / a little — there is some; few / little — not enough.

@@ -12,34 +12,34 @@
 ## 01 · Apa yang akan kamu pelajari *(terbuka sejak awal)*
 
 **body**
-Pelajaran ini tentang menggabungkan dua tindakan: «saya suka menjelajahi tempat baru», «saya berniat tinggal di sini», «saya mau kamu membaca keras-keras», «saya pakai mantel supaya tetap hangat». Tindakan kedua pakai -ing atau to — kata pertama yang menentukan.
+Pelajaran ini tentang menggabungkan dua tindakan: «aku suka menjelajahi tempat baru», «aku berniat tinggal di sini», «aku mau kamu membaca keras-keras», «aku pakai mantel supaya tetap hangat». Tindakan kedua pakai -ing atau to — kata pertama yang menentukan.
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I enjoy exploring new places. | Saya suka menjelajahi tempat baru. | exploring |
-| I intend to stay here. | Saya berniat tinggal di sini. | to stay |
-| I want you to read aloud. | Saya mau kamu membaca keras-keras. | you to read |
-| I wear a coat to keep warm. | Saya pakai mantel supaya tetap hangat. | to keep |
+| I enjoy exploring new places. | Aku suka menjelajahi tempat baru. | exploring |
+| I intend to stay here. | Aku berniat tinggal di sini. | to stay |
+| I want you to read aloud. | Aku mau kamu membaca keras-keras. | you to read |
+| I wear a coat to keep warm. | Aku pakai mantel supaya tetap hangat. | to keep |
 
 ---
 
 ## 02 · enjoy, finish, avoid + -ing *(terbuka sejak awal)*
 
 **body**
-Setelah enjoy (suka), finish (selesai), avoid (menghindari), do not mind (tidak keberatan), tindakan kedua diberi -ing: I enjoy exploring new places. Bahasa Indonesia tidak mengubah kata kerja, bahasa Inggris wajib -ing.
+Setelah enjoy (suka), finish (selesai), avoid (menghindari), don't mind (tidak keberatan), tindakan kedua diberi -ing: I enjoy exploring new places. Bahasa Indonesia tidak mengubah kata kerja, bahasa Inggris wajib -ing.
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `kata kerja + ing`
+`enjoy / finish / avoid / don't mind` · `kata kerja + ing`
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I enjoy exploring new places. | Saya suka menjelajahi tempat baru. | enjoy exploring |
-| I must finish writing the summary. | Saya harus menyelesaikan ringkasan ini. | finish writing |
-| I avoid causing conflict. | Saya menghindari bikin konflik. | avoid causing |
-| I do not mind receiving criticism. | Saya tidak keberatan dikritik. | mind receiving |
-| I cannot risk losing my job. | Saya tidak bisa ambil risiko kehilangan pekerjaan. | risk losing |
+| I enjoy exploring new places. | Aku suka menjelajahi tempat baru. | enjoy exploring |
+| I must finish writing the summary. | Aku harus menyelesaikan ringkasan ini. | finish writing |
+| I avoid causing conflict. | Aku menghindari bikin konflik. | avoid causing |
+| I do not mind receiving criticism. | Aku tidak keberatan dikritik. | mind receiving |
+| I cannot risk losing my job. | Aku tidak bisa ambil risiko kehilangan pekerjaan. | risk losing |
 
 **fix**
 - ~~I enjoy explore new places.~~ → I enjoy exploring new places.
@@ -65,11 +65,11 @@ Setelah want (mau), need (perlu), hope (berharap), plan, intend (berniat), expec
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I intend to stay here. | Saya berniat tinggal di sini. | intend to |
-| I hope to start over. | Saya berharap bisa mulai dari awal. | hope to |
-| I plan to travel light. | Saya berencana bepergian dengan barang sedikit. | plan to |
-| I promise to keep you posted. | Saya janji akan terus mengabari kamu. | promise to |
-| I do not want to lose touch. | Saya tidak mau putus kontak. | want to |
+| I intend to stay here. | Aku berniat tinggal di sini. | intend to |
+| I hope to start over. | Aku berharap bisa mulai dari awal. | hope to |
+| I plan to travel light. | Aku berencana bepergian dengan barang sedikit. | plan to |
+| I promise to keep you posted. | Aku janji akan terus mengabari kamu. | promise to |
+| I do not want to lose touch. | Aku tidak mau putus kontak. | want to |
 
 **fix**
 - ~~I want stay here.~~ → I want to stay here.
@@ -77,10 +77,10 @@ Setelah want (mau), need (perlu), hope (berharap), plan, intend (berniat), expec
 
 ---
 
-## 04 · want you to — «saya mau kamu…»
+## 04 · want you to — «aku mau kamu…»
 
 **body**
-«Saya mau kamu membaca» dalam bahasa Inggris perlu to: want / need + orang + to + kata kerja. I want you to read aloud. Bukan your, tapi orangnya: you, him, her.
+«Aku mau kamu membaca» dalam bahasa Inggris perlu to: want / need + orang + to + kata kerja. I want you to read aloud. Bukan your, tapi orangnya: you, him, her.
 
 **formula**
 `I want / need` · `orang` · `to` · `kata kerja seperti di kamus`
@@ -88,11 +88,11 @@ Setelah want (mau), need (perlu), hope (berharap), plan, intend (berniat), expec
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I want you to read aloud. | Saya mau kamu membaca keras-keras. | you to |
-| I need you to straighten the rug. | Saya perlu kamu merapikan karpetnya. | you to |
-| I want you to tell the truth. | Saya mau kamu jujur. | you to |
-| I need you to pay attention. | Saya perlu kamu memperhatikan. | you to |
-| I want you to wait your turn. | Saya mau kamu menunggu giliranmu. | you to |
+| I want you to read aloud. | Aku mau kamu membaca keras-keras. | you to |
+| I need you to straighten the rug. | Aku perlu kamu merapikan karpetnya. | you to |
+| I want you to tell the truth. | Aku mau kamu jujur. | you to |
+| I need you to pay attention. | Aku perlu kamu memperhatikan. | you to |
+| I want you to wait your turn. | Aku mau kamu menunggu giliranmu. | you to |
 
 **fix**
 - ~~I want you approve the plan.~~ → I want you to approve the plan.
@@ -100,7 +100,7 @@ Setelah want (mau), need (perlu), hope (berharap), plan, intend (berniat), expec
 - ~~I want that you read aloud.~~ → I want you to read aloud.
 
 **drill · word_bank**
-- tugas: Katakan: «Saya mau kamu membaca keras-keras».
+- tugas: Katakan: «Aku mau kamu membaca keras-keras».
 - jawaban: `I` · `want` · `you` · `to` · `read` · `aloud`
 - label kotak: tidak ada (kalimat panjang)
 - kartu lebih: `that` · `your`
@@ -113,16 +113,16 @@ Setelah want (mau), need (perlu), hope (berharap), plan, intend (berniat), expec
 Untuk bilang tujuan — «untuk», «supaya» — bahasa Inggris cukup to + kata kerja: I wear a coat to keep warm. «Untuk» di sini bukan for: for learn itu salah.
 
 **formula**
-`apa yang saya lakukan` · `to` · `tujuan: kata kerja seperti di kamus`
+`apa yang aku lakukan` · `to` · `tujuan: kata kerja seperti di kamus`
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I wear a coat to keep warm. | Saya pakai mantel supaya tetap hangat. | to keep |
-| I join a study group to learn English. | Saya ikut kelompok belajar untuk belajar bahasa Inggris. | to learn |
-| I leave early to beat the traffic. | Saya berangkat pagi supaya tidak kena macet. | to beat |
-| I compare prices to save money. | Saya membandingkan harga untuk berhemat. | to save |
-| I take notes to remember the ideas. | Saya mencatat supaya ingat idenya. | to remember |
+| I wear a coat to keep warm. | Aku pakai mantel supaya tetap hangat. | to keep |
+| I join a study group to learn English. | Aku ikut kelompok belajar untuk belajar bahasa Inggris. | to learn |
+| I leave early to beat the traffic. | Aku berangkat pagi supaya tidak kena macet. | to beat |
+| I compare prices to save money. | Aku membandingkan harga untuk berhemat. | to save |
+| I take notes to remember the ideas. | Aku mencatat supaya ingat idenya. | to remember |
 
 **fix**
 - ~~I join a study group for learn English.~~ → I join a study group to learn English.
@@ -151,7 +151,7 @@ Untuk bilang tujuan — «untuk», «supaya» — bahasa Inggris cukup to + kata
 
 ---
 
-## 07 · Yang dibawa ke latihan
+## 07 · Bekal untuk latihan
 
 **body**
 Suka, selesai, menghindari — + -ing. Mau, berharap, berencana — + to. Mau kamu melakukan — want you to. Supaya — to. Setelah to selalu kata kerja seperti di kamus.
@@ -159,6 +159,6 @@ Suka, selesai, menghindari — + -ing. Mau, berharap, berencana — + to. Mau ka
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I enjoy making friends. | Saya suka cari teman baru. | enjoy making |
-| I need to check the timetable. | Saya perlu cek jadwalnya. | need to |
-| I want to make you laugh. | Saya mau bikin kamu tertawa. | want to |
+| I enjoy making friends. | Aku suka cari teman baru. | enjoy making |
+| I need to check the timetable. | Aku perlu cek jadwalnya. | need to |
+| I want to make you laugh. | Aku mau bikin kamu tertawa. | want to |

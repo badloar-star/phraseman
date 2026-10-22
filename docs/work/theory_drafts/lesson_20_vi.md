@@ -20,7 +20,7 @@ Bài này về quy định và lời khuyên: «cô ấy phải xuất trình gi
 | She must show identification. | Cô ấy phải xuất trình giấy tờ tùy thân. | must |
 | I have to read the contract. | Tôi phải đọc hợp đồng. | have to |
 | You should consult a teacher. | Bạn nên hỏi ý kiến giáo viên. | should |
-| You mustn't ignore the rules. | Không được phớt lờ luật chơi. | mustn't |
+| You mustn't ignore the rules. | Không được phớt lờ quy định. | mustn't |
 | I don't have to buy supplies. | Tôi không cần mua dụng cụ. | don't have to |
 
 ---
@@ -140,7 +140,7 @@ mustn't là cấm: «không được», «tuyệt đối không». You mustn't i
 **examples** 🔊
 | en | vi | hi |
 |---|---|---|
-| You mustn't ignore the rules. | Không được phớt lờ luật chơi. | mustn't |
+| You mustn't ignore the rules. | Không được phớt lờ quy định. | mustn't |
 | We mustn't reveal the answer. | Mình không được tiết lộ đáp án. | mustn't |
 | You mustn't harm the animals. | Không được làm hại động vật. | mustn't |
 | We mustn't offend our neighbours. | Mình không được làm phật lòng hàng xóm. | mustn't |

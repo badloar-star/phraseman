@@ -136,7 +136,7 @@ Türkçedeki tek «-ecek» eki İngilizcede dört parça: kim + am / is / are + 
 
 ---
 
-## 07 · Pratiğe ne götürmeli
+## 07 · Alıştırmaya ne götürmelisin
 
 **body**
 Kendin karar verdin — am / is / are going to + eylem. Olacağı belli — yine going to. Sözleştin, zaman belli — am / is / are + -ing + ne zaman.

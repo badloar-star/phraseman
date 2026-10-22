@@ -189,7 +189,7 @@ will, I'll ve Shall I'dan sonra eylem hep sözlükteki hâliyle gelir: to yok, -
 
 ---
 
-## 09 · Pratiğe ne götürmeli
+## 09 · Alıştırmaya ne götürmelisin
 
 **body**
 Nasıl olacağını düşünüyorsun — I think … will. Şu an karar veriyor ya da söz veriyorsun — I'll. Yardım teklif ediyorsun — I'll ya da Shall I…? Önceden karar verdin — going to, saatte sözleştin — -ing.

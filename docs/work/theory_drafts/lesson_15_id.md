@@ -12,21 +12,21 @@
 ## 01 · Apa yang akan kamu pelajari *(terbuka sejak awal)*
 
 **body**
-Di pelajaran ini kamu belajar bicara tentang masa depan: «saya mau membersihkan kerak ketel», «wastafelnya mau meluap», «besok saya ketemu perawat». Caranya ada dua, dan keduanya sudah setengah kamu kenal.
+Di pelajaran ini kamu belajar bicara tentang masa depan: «aku mau membersihkan kerak ketel», «wastafelnya mau meluap», «besok aku ketemu perawat». Caranya ada dua, dan keduanya sudah setengah kamu kenal.
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I am going to descale the kettle. | Saya mau membersihkan kerak ketel. | going to |
+| I am going to descale the kettle. | Aku mau membersihkan kerak ketel. | going to |
 | The sink is going to overflow. | Wastafelnya mau meluap. | going to |
-| I am meeting the carer tomorrow. | Besok saya ketemu perawat. | am meeting |
+| I am meeting the carer tomorrow. | Besok aku ketemu perawat. | am meeting |
 
 ---
 
 ## 02 · going to — «mau», sudah diputuskan *(terbuka sejak awal)*
 
 **body**
-Kalau kamu sudah memutuskan melakukan sesuatu, bilang am / is / are going to + kata kerja seperti di kamus: I am going to repaint the wall — «saya mau mengecat ulang dinding». Penjepit, going, dan to wajib ada.
+Kalau kamu sudah memutuskan melakukan sesuatu, bilang am / is / are going to + kata kerja seperti di kamus: I am going to repaint the wall — «aku mau mengecat ulang dinding». Penjepit, going, dan to wajib ada.
 
 **formula**
 `siapa` · `am / is / are going to` · `kata kerja seperti di kamus`
@@ -34,10 +34,10 @@ Kalau kamu sudah memutuskan melakukan sesuatu, bilang am / is / are going to + k
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I am going to descale the kettle. | Saya mau membersihkan kerak ketel. | going to |
+| I am going to descale the kettle. | Aku mau membersihkan kerak ketel. | going to |
 | She is going to repaint the wall. | Dia mau mengecat ulang dinding. | going to |
 | We are going to alter the dress. | Kami mau mengecilkan gaunnya. | going to |
-| I am going to hang the bunting. | Saya mau memasang bendera hias. | going to |
+| I am going to hang the bunting. | Aku mau memasang bendera hias. | going to |
 
 **fix**
 - ~~I going to descale the kettle.~~ → I am going to descale the kettle.
@@ -90,7 +90,7 @@ Kalau kamu sudah janjian dengan seseorang dan ada waktunya — «besok jam enam�
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I am meeting the carer tomorrow. | Besok saya ketemu perawat. | am meeting |
+| I am meeting the carer tomorrow. | Besok aku ketemu perawat. | am meeting |
 | We are meeting the babysitter at six tomorrow. | Besok jam enam kami ketemu pengasuh anak. | are meeting |
 | We are visiting a car boot sale on Sunday. | Hari Minggu kami ke pasar loak bagasi mobil. | are visiting |
 | They are meeting at the book club tonight. | Malam ini mereka ketemu di klub buku. | are meeting |
@@ -109,9 +109,9 @@ going to — kamu memutuskan sendiri: I am going to renew my pass. -ing dengan w
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I am going to renew my pass. | Saya mau memperpanjang kartu masuk. | going to |
-| I am bringing my appointment card tomorrow. | Besok saya bawa kartu janji temu. | am bringing |
-| I am going to attend a christening. | Saya mau datang ke acara pembaptisan. | going to |
+| I am going to renew my pass. | Aku mau memperpanjang kartu masuk. | going to |
+| I am bringing my appointment card tomorrow. | Besok aku bawa kartu janji temu. | am bringing |
+| I am going to attend a christening. | Aku mau datang ke acara pembaptisan. | going to |
 | We are attending a hen party on Saturday. | Hari Sabtu kami datang ke pesta lajang. | are attending |
 
 **drill · choice**
@@ -136,7 +136,7 @@ going to — kamu memutuskan sendiri: I am going to renew my pass. -ing dengan w
 
 ---
 
-## 07 · Yang dibawa ke latihan
+## 07 · Bekal untuk latihan
 
 **body**
 Memutuskan sendiri — am / is / are going to + kata kerja. Kelihatan mau terjadi — juga going to. Sudah janjian, ada waktunya — am / is / are + -ing + kapan.

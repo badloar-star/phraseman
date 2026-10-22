@@ -24,7 +24,7 @@ In this lesson one small word, will, does a lot of work: a guess about tomorrow,
 
 ---
 
-## 02 · will — «I think it will happen» *(open from the start)*
+## 02 · will — “I think it will happen” *(open from the start)*
 
 **body**
 When you guess how things will be, say will + the action as in the dictionary. Will is the same for everyone: I will, he will, they will. It often comes after I think: this is your opinion, not a plan.

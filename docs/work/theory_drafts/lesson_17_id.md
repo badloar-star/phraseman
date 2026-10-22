@@ -110,16 +110,16 @@ Sedikit tapi ada: a few untuk yang dihitung, a little untuk yang tidak. We have 
 ## 05 · few, little — «sedikit, kurang»
 
 **body**
-Hapus a, artinya berubah: «sedikit, kurang dari yang diharapkan». We have little privacy — «kami kurang privasi». I have few contact numbers — «nomor kontak saya sedikit». a few / a little — «ada sedikit», few / little — «kurang».
+Hapus a, artinya berubah: «sedikit, kurang dari yang diharapkan». We have little privacy — «kami kurang privasi». I have few contact numbers — «nomor kontakku sedikit». a few / a little — «ada sedikit», few / little — «kurang».
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
 | We have little privacy. | Kami kurang privasi. | little |
 | We received little encouragement. | Kami hampir tidak dapat dukungan. | little |
-| I have few contact numbers. | Nomor kontak saya sedikit. | few |
+| I have few contact numbers. | Nomor kontakku sedikit. | few |
 | We have little buckwheat left. | Soba kita tinggal sedikit. | little |
-| I received a few voice messages. | Saya dapat beberapa pesan suara. | a few |
+| I received a few voice messages. | Aku dapat beberapa pesan suara. | a few |
 
 **drill · choice**
 - kalimat: `We have ___ floor space.` *(lantai hampir tidak ada tempat untuk tamu tidur)*
@@ -168,7 +168,7 @@ Yang tidak bisa dihitung, dihitung lewat kemasan dan takaran: two bags of rice, 
 | We need two bars of soap. | Kita perlu dua batang sabun. | bars of |
 | We need two bags of rice. | Kita perlu dua kantong beras. | bags of |
 | We need two litres of milk. | Kita perlu dua liter susu. | litres of |
-| I need two pieces of advice. | Saya perlu dua saran. | pieces of |
+| I need two pieces of advice. | Aku perlu dua saran. | pieces of |
 
 **fix**
 - ~~We need two bags rice.~~ → We need two bags of rice.
@@ -196,7 +196,7 @@ Tanya dulu: bisa dihitung satu per satu? Ya — a, -s, many, a few. Tidak — ta
 
 ---
 
-## 09 · Yang dibawa ke latihan
+## 09 · Bekal untuk latihan
 
 **body**
 Dihitung — many, a few, few. Tidak dihitung — much, a little, little. Dengan a — «ada sedikit», tanpa a — «kurang». Some di kalimat biasa, any dengan «tidak» dan di pertanyaan. Kemasan + s + of.
@@ -205,5 +205,5 @@ Dihitung — many, a few, few. Tidak dihitung — much, a little, little. Dengan
 | en | id | hi |
 |---|---|---|
 | How much knowledge do we need? | Kita perlu pengetahuan seberapa banyak? | much |
-| I need a little personal space. | Saya perlu sedikit ruang pribadi. | a little |
+| I need a little personal space. | Aku perlu sedikit ruang pribadi. | a little |
 | We need two slices of cheese. | Kita perlu dua iris keju. | slices of |

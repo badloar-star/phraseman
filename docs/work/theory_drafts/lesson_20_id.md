@@ -12,16 +12,16 @@
 ## 01 · Apa yang akan kamu pelajari *(terbuka sejak awal)*
 
 **body**
-Pelajaran ini tentang aturan dan saran: «dia harus menunjukkan identitas», «saya harus membaca kontrak», «sebaiknya kamu tanya guru», «tidak boleh mengabaikan aturan», «saya tidak perlu beli perlengkapan». Yang terpenting: jangan tertukar «tidak boleh» dan «tidak perlu».
+Pelajaran ini tentang aturan dan saran: «dia harus menunjukkan identitas», «aku harus membaca kontrak», «sebaiknya kamu tanya guru», «tidak boleh mengabaikan aturan», «aku tidak perlu beli perlengkapan». Yang terpenting: jangan tertukar «tidak boleh» dan «tidak perlu».
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
 | She must show identification. | Dia harus menunjukkan identitas. | must |
-| I have to read the contract. | Saya harus membaca kontraknya. | have to |
+| I have to read the contract. | Aku harus membaca kontraknya. | have to |
 | You should consult a teacher. | Sebaiknya kamu tanya guru. | should |
 | You mustn't ignore the rules. | Tidak boleh mengabaikan aturan. | mustn't |
-| I don't have to buy supplies. | Saya tidak perlu beli perlengkapan. | don't have to |
+| I don't have to buy supplies. | Aku tidak perlu beli perlengkapan. | don't have to |
 
 ---
 
@@ -57,7 +57,7 @@ must + kata kerja seperti di kamus — «harus», «wajib»: You must take your 
 ## 03 · have to — «harus (karena keadaan)»
 
 **body**
-have to + kata kerja — «harus», «terpaksa», sering karena keadaan: I have to read the contract. Dengan he / she pakai has to. Tanpa to artinya lain: I have read — «saya sudah membaca».
+have to + kata kerja — «harus», «terpaksa», sering karena keadaan: I have to read the contract. Dengan he / she pakai has to. Tanpa to artinya lain: I have read — «aku sudah membaca».
 
 **formula**
 `I / you / we / they: have to + kata kerja` · `he / she: has to + kata kerja`
@@ -65,11 +65,11 @@ have to + kata kerja — «harus», «terpaksa», sering karena keadaan: I have 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I have to read the contract. | Saya harus membaca kontraknya. | have to |
+| I have to read the contract. | Aku harus membaca kontraknya. | have to |
 | She has to enter her occupation. | Dia harus mengisi pekerjaannya. | has to |
-| I occasionally have to work late. | Kadang saya harus lembur. | have to |
+| I occasionally have to work late. | Kadang aku harus lembur. | have to |
 | He has to follow the diversion. | Dia harus lewat jalan pengalihan. | has to |
-| I have to show proof of purchase. | Saya harus menunjukkan bukti pembelian. | have to |
+| I have to show proof of purchase. | Aku harus menunjukkan bukti pembelian. | have to |
 
 **fix**
 - ~~I has to read the contract.~~ → I have to read the contract.
@@ -161,7 +161,7 @@ mustn't adalah larangan: «tidak boleh», «sama sekali jangan». You mustn't ig
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I don't have to buy supplies. | Saya tidak perlu beli perlengkapan. | don't have to |
+| I don't have to buy supplies. | Aku tidak perlu beli perlengkapan. | don't have to |
 | She doesn't have to bring a photocopy. | Dia tidak harus membawa fotokopi. | doesn't have to |
 | He doesn't have to head back yet. | Dia belum harus pulang. | doesn't have to |
 | You needn't reply straight away. | Kamu tidak perlu langsung membalas. | needn't |
@@ -184,7 +184,7 @@ mustn't adalah larangan: «tidak boleh», «sama sekali jangan». You mustn't ig
 ## 08 · Could I…? — ulangan
 
 **body**
-Permintaan sopan dari pelajaran 19 muncul juga di sini: Could I pay separately? — «boleh saya bayar terpisah?». Could dulu, lalu I dan kata kerja tanpa to.
+Permintaan sopan dari pelajaran 19 muncul juga di sini: Could I pay separately? — «boleh aku bayar terpisah?». Could dulu, lalu I dan kata kerja tanpa to.
 
 **formula**
 `Could I` · `kata kerja seperti di kamus` · `?`
@@ -192,16 +192,16 @@ Permintaan sopan dari pelajaran 19 muncul juga di sini: Could I pay separately? 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Could I pay separately? | Boleh saya bayar terpisah? | Could I |
-| Could I take a look? | Boleh saya lihat sebentar? | Could I |
-| Could I pay on arrival? | Boleh saya bayar saat tiba? | Could I |
-| Could I send it by post? | Boleh saya kirim lewat pos? | Could I |
+| Could I pay separately? | Boleh aku bayar terpisah? | Could I |
+| Could I take a look? | Boleh aku lihat sebentar? | Could I |
+| Could I pay on arrival? | Boleh aku bayar saat tiba? | Could I |
+| Could I send it by post? | Boleh aku kirim lewat pos? | Could I |
 
 **fix**
 - ~~Could I to pay separately?~~ → Could I pay separately?
 
 **drill · word_bank**
-- tugas: Minta: «Boleh saya coba?»
+- tugas: Minta: «Boleh aku coba?»
 - jawaban: `Could` · `I` · `give` · `it` · `a` · `try`
 - label kotak: tidak ada (kalimat panjang)
 - kartu lebih: `to` · `did`
@@ -222,7 +222,7 @@ to hanya ada di have to dan ought to. Setelah must, should, mustn't, dan needn't
 
 ---
 
-## 10 · Yang dibawa ke latihan
+## 10 · Bekal untuk latihan
 
 **body**
 Wajib — must. Harus karena keadaan — have / has to. Saran — should atau ought to. Tidak boleh — mustn't. Tidak perlu — don't have to atau needn't.

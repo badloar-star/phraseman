@@ -27,10 +27,10 @@ Esta lección es para unir dos acciones: «me gusta conocer lugares nuevos», «
 ## 02 · enjoy, finish, avoid + -ing *(abierta al inicio)*
 
 **body**
-Después de enjoy (disfrutar), finish (terminar), avoid (evitar), do not mind (no me molesta) la segunda acción va con -ing: I enjoy exploring new places. Aunque en español digas «disfruto explorar», aquí no va to.
+Después de enjoy (disfrutar), finish (terminar), avoid (evitar), don't mind (no me molesta) la segunda acción va con -ing: I enjoy exploring new places. Aunque en español digas «disfruto explorar», aquí no va to.
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `acción + ing`
+`enjoy / finish / avoid / don't mind` · `acción + ing`
 
 **examples** 🔊
 | en | es | hi |

@@ -12,22 +12,22 @@
 ## 01 · Apa yang akan kamu pelajari *(terbuka sejak awal)*
 
 **body**
-Di pelajaran ini satu kata kecil, will, bekerja banyak: «kayaknya panasnya selesai besok», «saya ambil penyedot WC», «nanti saya kabari», «mau saya dinginkan supnya?». Di akhir kamu belajar memilih antara will, going to, dan -ing dari pelajaran 15.
+Di pelajaran ini satu kata kecil, will, bekerja banyak: «kayaknya panasnya selesai besok», «aku ambil penyedot WC», «nanti aku kabari», «mau aku dinginkan supnya?». Di akhir kamu belajar memilih antara will, going to, dan -ing dari pelajaran 15.
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
 | I think the heatwave will end tomorrow. | Kayaknya gelombang panasnya selesai besok. | will end |
-| I'll get the plunger. | Saya ambil penyedot WC. | I'll |
-| I'll keep in touch. | Nanti saya kabari terus. | I'll |
-| Shall I cool down the soup? | Mau saya dinginkan supnya? | Shall I |
+| I'll get the plunger. | Aku ambil penyedot WC. | I'll |
+| I'll keep in touch. | Nanti aku kabari terus. | I'll |
+| Shall I cool down the soup? | Mau aku dinginkan supnya? | Shall I |
 
 ---
 
 ## 02 · will — «kayaknya bakal begitu» *(terbuka sejak awal)*
 
 **body**
-Kalau kamu menebak apa yang akan terjadi, bilang will + kata kerja seperti di kamus. Will sama untuk semua: I will, he will, they will. Di depannya sering ada I think — «menurut saya»: itu pendapat, bukan rencana.
+Kalau kamu menebak apa yang akan terjadi, bilang will + kata kerja seperti di kamus. Will sama untuk semua: I will, he will, they will. Di depannya sering ada I think — «menurut aku»: itu pendapat, bukan rencana.
 
 **formula**
 `I think` · `siapa` · `will` · `kata kerja seperti di kamus`
@@ -35,9 +35,9 @@ Kalau kamu menebak apa yang akan terjadi, bilang will + kata kerja seperti di ka
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I think the humidity will rise. | Menurut saya kelembapannya akan naik. | will rise |
-| I think the mist will clear soon. | Menurut saya kabutnya sebentar lagi hilang. | will clear |
-| I think I will oversleep tomorrow. | Kayaknya besok saya kesiangan. | will oversleep |
+| I think the humidity will rise. | Menurutku kelembapannya akan naik. | will rise |
+| I think the mist will clear soon. | Menurutku kabutnya sebentar lagi hilang. | will clear |
+| I think I will oversleep tomorrow. | Kayaknya besok aku kesiangan. | will oversleep |
 | I think they will overcharge us. | Kayaknya mereka bakal kemahalan ke kita. | will overcharge |
 
 **fix**
@@ -74,10 +74,10 @@ Kalau bukan tindakan tapi keadaan — «pantainya akan penuh sesak», «tehnya a
 
 ---
 
-## 04 · I'll — saya putuskan sekarang
+## 04 · I'll — aku putuskan sekarang
 
 **body**
-I'll adalah bentuk pendek I will. Air di wastafel tidak turun, kamu baru sadar dan langsung memutuskan: I'll get the plunger — «saya ambil penyedot WC». Bahasa Indonesia bilang «saya ambil», tapi bahasa Inggris pakai I'll, bukan I get.
+I'll adalah bentuk pendek I will. Air di wastafel tidak turun, kamu baru sadar dan langsung memutuskan: I'll get the plunger — «aku ambil penyedot WC». Bahasa Indonesia bilang «aku ambil», tapi bahasa Inggris pakai I'll, bukan I get.
 
 **formula**
 `I'll` · `kata kerja seperti di kamus`
@@ -85,11 +85,11 @@ I'll adalah bentuk pendek I will. Air di wastafel tidak turun, kamu baru sadar d
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I'll get the plunger. | Saya ambil penyedot WC. | I'll |
-| I'll get a tablespoon. | Saya ambil sendok makan. | I'll |
-| I'll roll up my sleeves. | Saya gulung lengan baju. | I'll |
-| I'll mop up the water. | Saya lap airnya. | I'll |
-| I'll fill up the water bottle. | Saya isi botol airnya. | I'll |
+| I'll get the plunger. | Aku ambil penyedot WC. | I'll |
+| I'll get a tablespoon. | Aku ambil sendok makan. | I'll |
+| I'll roll up my sleeves. | Aku gulung lengan baju. | I'll |
+| I'll mop up the water. | Aku lap airnya. | I'll |
+| I'll fill up the water bottle. | Aku isi botol airnya. | I'll |
 
 **fix**
 - ~~I get the plunger.~~ *(baru diputuskan)* → I'll get the plunger.
@@ -104,7 +104,7 @@ I'll adalah bentuk pendek I will. Air di wastafel tidak turun, kamu baru sadar d
 
 ---
 
-## 05 · I'll — saya janji
+## 05 · I'll — aku janji
 
 **body**
 Dengan I'll yang sama kamu berjanji: temanmu mau pergi dan khawatir soal ibunya, lalu kamu menenangkannya — I'll check in on your mother. Bentuknya sama, artinya dari situasi.
@@ -112,11 +112,11 @@ Dengan I'll yang sama kamu berjanji: temanmu mau pergi dan khawatir soal ibunya,
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I'll check in on your mother. | Saya akan menengok ibumu. | I'll |
-| I'll keep in touch. | Nanti saya kabari terus. | I'll |
-| I'll drop by tomorrow. | Besok saya mampir. | I'll |
-| I'll hand in the form tomorrow. | Besok saya serahkan formulirnya. | I'll |
-| I'll keep an eye on your bag. | Saya jagain tasmu. | I'll |
+| I'll check in on your mother. | Aku akan menengok ibumu. | I'll |
+| I'll keep in touch. | Nanti aku kabari terus. | I'll |
+| I'll drop by tomorrow. | Besok aku mampir. | I'll |
+| I'll hand in the form tomorrow. | Besok aku serahkan formulirnya. | I'll |
+| I'll keep an eye on your bag. | Aku jagain tasmu. | I'll |
 
 **fix**
 - ~~I keep in touch.~~ *(sedang berjanji)* → I'll keep in touch.
@@ -127,7 +127,7 @@ Dengan I'll yang sama kamu berjanji: temanmu mau pergi dan khawatir soal ibunya,
 ## 06 · I'll dan Shall I…? — menawarkan bantuan
 
 **body**
-Ada dua cara menawarkan bantuan. Langsung lakukan: I'll top up your glass — «saya tambahkan minumnya». Atau tanya dulu: Shall I cool down the soup? — «mau saya dinginkan supnya?». Setelah Shall I, kata kerja seperti di kamus, tanpa to dan tanpa will kedua.
+Ada dua cara menawarkan bantuan. Langsung lakukan: I'll top up your glass — «aku tambahkan minumnya». Atau tanya dulu: Shall I cool down the soup? — «mau aku dinginkan supnya?». Setelah Shall I, kata kerja seperti di kamus, tanpa to dan tanpa will kedua.
 
 **formula**
 `Shall I` · `kata kerja seperti di kamus` · `?`
@@ -135,18 +135,18 @@ Ada dua cara menawarkan bantuan. Langsung lakukan: I'll top up your glass — «
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I'll top up your glass. | Saya tambahkan minum di gelasmu. | I'll |
-| Shall I cool down the soup? | Mau saya dinginkan supnya? | Shall I |
-| Shall I clear away the plates? | Mau saya bereskan piringnya? | Shall I |
-| Shall I put up the shelf? | Mau saya pasang raknya? | Shall I |
-| Shall I come round this evening? | Mau saya mampir nanti malam? | Shall I |
+| I'll top up your glass. | Aku tambahkan minum di gelasmu. | I'll |
+| Shall I cool down the soup? | Mau aku dinginkan supnya? | Shall I |
+| Shall I clear away the plates? | Mau aku bereskan piringnya? | Shall I |
+| Shall I put up the shelf? | Mau aku pasang raknya? | Shall I |
+| Shall I come round this evening? | Mau aku mampir nanti malam? | Shall I |
 
 **fix**
 - ~~Shall I to cool down the soup?~~ → Shall I cool down the soup?
 - ~~Shall I will cool down the soup?~~ → Shall I cool down the soup?
 
 **drill · word_bank**
-- tugas: Tawarkan: «Mau saya potong rotinya?»
+- tugas: Tawarkan: «Mau aku potong rotinya?»
 - jawaban: `Shall` · `I` · `slice` · `up` · `the` · `bread`
 - label kotak: tidak ada (kalimat panjang)
 - kartu lebih: `to` · `will`
@@ -161,8 +161,8 @@ Tiga cara bicara soal masa depan, masing-masing dengan nuansanya. Kamu menebak �
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I think the task will be manageable. | Menurut saya tugasnya masih bisa ditangani. | will |
-| I am going to cancel an unnecessary trip. | Saya mau membatalkan perjalanan yang tidak perlu. | going to |
+| I think the task will be manageable. | Menurutku tugasnya masih bisa ditangani. | will |
+| I am going to cancel an unnecessary trip. | Aku mau membatalkan perjalanan yang tidak perlu. | going to |
 | We are joining a worthwhile activity tomorrow. | Besok kami ikut kegiatan yang bermanfaat. | are joining |
 | I think Tom will show up on time. | Kayaknya Tom datang tepat waktu. | will |
 | We are heading out at eight tomorrow. | Besok kami berangkat jam delapan. | are heading |
@@ -189,7 +189,7 @@ Setelah will, I'll, dan Shall I selalu kata kerja seperti di kamus: tanpa to, ta
 
 ---
 
-## 09 · Yang dibawa ke latihan
+## 09 · Bekal untuk latihan
 
 **body**
 Menebak — I think … will. Memutuskan saat itu juga atau berjanji — I'll. Menawarkan bantuan — I'll atau Shall I…? Sudah diputuskan sebelumnya — going to, sudah janjian jamnya — -ing.
@@ -198,5 +198,5 @@ Menebak — I think … will. Memutuskan saat itu juga atau berjanji — I'll. M
 | en | id | hi |
 |---|---|---|
 | I think the holiday will be memorable. | Kayaknya liburannya bakal berkesan. | will be |
-| I'll wipe down the table. | Saya lap mejanya. | I'll |
-| Shall I go over the list with you? | Mau saya periksa daftarnya bareng kamu? | Shall I |
+| I'll wipe down the table. | Aku lap mejanya. | I'll |
+| Shall I go over the list with you? | Mau aku periksa daftarnya bareng kamu? | Shall I |

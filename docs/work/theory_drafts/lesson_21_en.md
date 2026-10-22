@@ -27,10 +27,10 @@ This lesson is about joining two actions: what you like doing, what you want to 
 ## 02 · enjoy, finish, avoid + -ing *(open from the start)*
 
 **body**
-After enjoy, finish, avoid and do not mind, the second action takes -ing: I enjoy exploring new places. Do not put to here.
+After enjoy, finish, avoid and don't mind, the second action takes -ing: I enjoy exploring new places. Do not put to here.
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `action + ing`
+`enjoy / finish / avoid / don't mind` · `action + ing`
 
 **examples** 🔊
 | en | meaning | hi |

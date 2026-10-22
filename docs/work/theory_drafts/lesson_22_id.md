@@ -12,16 +12,16 @@
 ## 01 · Apa yang akan kamu pelajari *(terbuka sejak awal)*
 
 **body**
-Pelajaran ini tentang kata pendek pengganti nama dan barang: «saya bisa menasihatinya», «boleh saya buka ini?», «sarung HP ini punya saya», «perkenalkan dirimu», «saya mau yang ada tudungnya», «saya perlu cara bayar lain».
+Pelajaran ini tentang kata pendek pengganti nama dan barang: «aku bisa menasihatinya», «boleh aku buka ini?», «sarung HP ini punyaku», «perkenalkan dirimu», «aku mau yang ada tudungnya», «aku perlu cara bayar lain».
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I can advise him. | Saya bisa menasihatinya. | him |
-| This phone case is mine. | Sarung HP ini punya saya. | mine |
+| I can advise him. | Aku bisa menasihatinya. | him |
+| This phone case is mine. | Sarung HP ini punyaku. | mine |
 | You can introduce yourself. | Kamu bisa memperkenalkan diri. | yourself |
-| I want the hooded one. | Saya mau yang ada tudungnya. | one |
-| I need another payment method. | Saya perlu cara bayar lain. | another |
+| I want the hooded one. | Aku mau yang ada tudungnya. | one |
+| I need another payment method. | Aku perlu cara bayar lain. | another |
 
 ---
 
@@ -36,10 +36,10 @@ Bahasa Indonesia cukup «dia» untuk semua; bahasa Inggris membedakan: laki-laki
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I can advise him. | Saya bisa menasihatinya. | him |
-| I want to congratulate her. | Saya mau mengucapkan selamat padanya. | her |
-| I admire them. | Saya kagum pada mereka. | them |
-| I do not want to disappoint you. | Saya tidak mau mengecewakanmu. | you |
+| I can advise him. | Aku bisa menasihatinya. | him |
+| I want to congratulate her. | Aku mau mengucapkan selamat padanya. | her |
+| I admire them. | Aku kagum pada mereka. | them |
+| I do not want to disappoint you. | Aku tidak mau mengecewakanmu. | you |
 | This story can amuse them. | Cerita ini bisa menghibur mereka. | them |
 
 **fix**
@@ -66,11 +66,11 @@ Satu barang setelah tindakan — it, beberapa — them: Could I unscrew it? Coul
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Could I unscrew it? | Boleh saya buka sekrupnya? | it |
-| Could I untangle them? | Boleh saya urai yang kusut ini? | them |
-| Could I strain it? | Boleh saya saring ini? | it |
-| I can calculate it. | Saya bisa menghitungnya. | it |
-| I can round it down. | Saya bisa membulatkannya ke bawah. | it |
+| Could I unscrew it? | Boleh aku buka sekrupnya? | it |
+| Could I untangle them? | Boleh aku urai yang kusut ini? | them |
+| Could I strain it? | Boleh aku saring ini? | it |
+| I can calculate it. | Aku bisa menghitungnya. | it |
+| I can round it down. | Aku bisa membulatkannya ke bawah. | it |
 
 **fix**
 - ~~Could I untangle they?~~ → Could I untangle them?
@@ -78,10 +78,10 @@ Satu barang setelah tindakan — it, beberapa — them: Could I unscrew it? Coul
 
 ---
 
-## 04 · mine, yours, ours — «punya saya» tanpa barang
+## 04 · mine, yours, ours — «punyaku» tanpa barang
 
 **body**
-Kalau barangnya sudah disebut dan kamu bilang «ini punya saya», pakai kata tersendiri: mine, yours, his, hers, ours. This phone case is mine. My tidak berdiri sendiri.
+Kalau barangnya sudah disebut dan kamu bilang «ini punyaku», pakai kata tersendiri: mine, yours, his, hers, ours. This phone case is mine. My tidak berdiri sendiri.
 
 **formula**
 `ini` · `is` · `mine / yours / his / hers / ours`
@@ -89,7 +89,7 @@ Kalau barangnya sudah disebut dan kamu bilang «ini punya saya», pakai kata ter
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| This phone case is mine. | Sarung HP ini punya saya. | mine |
+| This phone case is mine. | Sarung HP ini punyaku. | mine |
 | This travel mug is yours. | Gelas perjalanan ini punyamu. | yours |
 | This rain jacket is ours. | Jas hujan ini punya kita. | ours |
 | This yoga mat is hers. | Matras yoga ini punya dia. | hers |
@@ -142,17 +142,17 @@ Bahasa Indonesia bilang «yang ada tudungnya»; bahasa Inggris pakai the + ciri 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I want the hooded one. | Saya mau yang ada tudungnya. | one |
-| I like the patterned ones. | Saya suka yang bermotif. | ones |
-| I prefer the padded one. | Saya lebih suka yang empuk. | one |
-| I want the slip-on ones. | Saya mau yang tanpa tali. | ones |
-| I want the ready-to-eat one. | Saya mau yang siap makan. | one |
+| I want the hooded one. | Aku mau yang ada tudungnya. | one |
+| I like the patterned ones. | Aku suka yang bermotif. | ones |
+| I prefer the padded one. | Aku lebih suka yang empuk. | one |
+| I want the slip-on ones. | Aku mau yang tanpa tali. | ones |
+| I want the ready-to-eat one. | Aku mau yang siap makan. | one |
 
 **fix**
 - ~~I want the hooded it.~~ → I want the hooded one.
 
 **drill · word_bank**
-- tugas: Katakan: «Saya suka yang bermotif».
+- tugas: Katakan: «Aku suka yang bermotif».
 - jawaban: `I` · `like` · `the` · `patterned` · `ones`
 - label kotak: tidak ada (kalimat panjang)
 - kartu lebih: `one` · `it`
@@ -162,7 +162,7 @@ Bahasa Indonesia bilang «yang ada tudungnya»; bahasa Inggris pakai the + ciri 
 ## 07 · another — «yang lain, satu lagi»
 
 **body**
-Kalau perlu satu pilihan baru sebagai ganti — another + satu barang: I need another payment method — «saya perlu cara bayar lain». Bahasa Indonesia menaruh «lain» di belakang, bahasa Inggris another di depan.
+Kalau perlu satu pilihan baru sebagai ganti — another + satu barang: I need another payment method — «aku perlu cara bayar lain». Bahasa Indonesia menaruh «lain» di belakang, bahasa Inggris another di depan.
 
 **formula**
 `another` · `satu barang`
@@ -170,10 +170,10 @@ Kalau perlu satu pilihan baru sebagai ganti — another + satu barang: I need an
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I need another payment method. | Saya perlu cara bayar lain. | another |
-| I need another meeting place. | Saya perlu tempat ketemu lain. | another |
+| I need another payment method. | Aku perlu cara bayar lain. | another |
+| I need another meeting place. | Aku perlu tempat ketemu lain. | another |
 | We use another departure gate. | Kami lewat gerbang keberangkatan lain. | another |
-| I want another room type. | Saya mau tipe kamar lain. | another |
+| I want another room type. | Aku mau tipe kamar lain. | another |
 
 **fix**
 - ~~I need payment method other.~~ → I need another payment method.
@@ -189,10 +189,10 @@ Dari pelajaran sebelumnya: Could I…? — minta dengan sopan, to + kata kerja �
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Could I book a table? | Boleh saya pesan meja? | Could I |
-| Could I get some fresh air? | Boleh saya cari udara segar? | Could I |
-| I use an umbrella to stay dry. | Saya pakai payung supaya tidak basah. | to stay |
-| I fill the kettle to boil the water. | Saya isi teko untuk merebus air. | to boil |
+| Could I book a table? | Boleh aku pesan meja? | Could I |
+| Could I get some fresh air? | Boleh aku cari udara segar? | Could I |
+| I use an umbrella to stay dry. | Aku pakai payung supaya tidak basah. | to stay |
+| I fill the kettle to boil the water. | Aku isi teko untuk merebus air. | to boil |
 
 ---
 
@@ -206,18 +206,18 @@ Dari pelajaran sebelumnya: Could I…? — minta dengan sopan, to + kata kerja �
 - ~~I need other payment method.~~ → I need another payment method.
 
 **tip**
-Setelah tindakan — him (laki-laki), her (perempuan), them, it. «Punya saya» tanpa barang — mine. «Diri sendiri» — yourself. Jangan ulang barang — one atau ones. Lain — another.
+Setelah tindakan — him (laki-laki), her (perempuan), them, it. «Punya aku» tanpa barang — mine. «Diri sendiri» — yourself. Jangan ulang barang — one atau ones. Lain — another.
 
 ---
 
-## 10 · Yang dibawa ke latihan
+## 10 · Bekal untuk latihan
 
 **body**
-Orang setelah tindakan — him / her / them. Barang — it / them. «Punya saya» tanpa barang — mine, yours, ours. Diri sendiri — yourself. Yang… — the … one. Lain — another.
+Orang setelah tindakan — him / her / them. Barang — it / them. «Punya aku» tanpa barang — mine, yours, ours. Diri sendiri — yourself. Yang… — the … one. Lain — another.
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I want to praise him. | Saya mau memujinya. | him |
+| I want to praise him. | Aku mau memujinya. | him |
 | This overnight bag is yours. | Tas menginap ini punyamu. | yours |
 | You can think for yourself. | Kamu bisa berpikir sendiri. | yourself |

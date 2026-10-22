@@ -12,7 +12,7 @@
 ## 01 · Neler söylemeyi öğreneceksin *(baştan açık)*
 
 **body**
-Bu ders kurallar ve tavsiyelerle ilgili: «kimlik göstermesi gerekiyor», «sözleşmeyi okumam lazım», «bir öğretmene danışmalısın», «kuralları çiğneyemezsin», «malzeme almak zorunda değilim». En önemlisi: «yasak» ile «zorunda değil»i karıştırmamak.
+Bu ders kurallar ve tavsiyelerle ilgili: «kimlik göstermesi gerekiyor», «sözleşmeyi okumam lazım», «bir öğretmene danışmalısın», «kuralları görmezden gelemezsin», «malzeme almak zorunda değilim». En önemlisi: «yasak» ile «zorunda değil»i karıştırmamak.
 
 **examples** 🔊
 | en | tr | hi |
@@ -222,7 +222,7 @@ to yalnızca have to ve ought to'da var. must, should, mustn't ve needn't'tan so
 
 ---
 
-## 10 · Pratiğe ne götürmeli
+## 10 · Alıştırmaya ne götürmelisin
 
 **body**
 Mutlaka — must. Zorundayım — have / has to. Tavsiye — should ya da ought to. Yasak — mustn't. Gerek yok — don't have to ya da needn't.

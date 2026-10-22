@@ -27,10 +27,10 @@ Bu ders iki eylemi birleştirmekle ilgili: «yeni yerler keşfetmeyi severim», 
 ## 02 · enjoy, finish, avoid + -ing *(baştan açık)*
 
 **body**
-enjoy (sevmek, keyif almak), finish (bitirmek), avoid (kaçınmak), do not mind (sorun etmemek) sonrasında ikinci eylem -ing alır: I enjoy exploring new places. Burada to gelmez.
+enjoy (sevmek, keyif almak), finish (bitirmek), avoid (kaçınmak), don't mind (sorun etmemek) sonrasında ikinci eylem -ing alır: I enjoy exploring new places. Burada to gelmez.
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `eylem + ing`
+`enjoy / finish / avoid / don't mind` · `eylem + ing`
 
 **examples** 🔊
 | en | tr | hi |
@@ -151,7 +151,7 @@ Bir şeyi ne için yaptığını söylemek için İngilizcede to + eylem yeter: 
 
 ---
 
-## 07 · Pratiğe ne götürmeli
+## 07 · Alıştırmaya ne götürmelisin
 
 **body**
 Severim, bitiririm, kaçınırım — + -ing. İsterim, umarım, planlarım — + to. -manı istiyorum — want you to. İçin — to. to'dan sonra eylem hep sözlükteki hâliyle.

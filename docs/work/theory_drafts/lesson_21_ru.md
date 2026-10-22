@@ -5,7 +5,7 @@
 > без грамматических терминов и имён героев.
 >
 > **Источник.** Цели и интро занятий `sessions/en/l21/*/final.ru.md` (строк урока 21 в плане нет).
-> Формы урока: enjoy / finish / avoid / do not mind / risk / deny / involve + -ing; want / need /
+> Формы урока: enjoy / finish / avoid / don't mind / risk / deny / involve + -ing; want / need /
 > hope / plan / intend / expect / promise / offer / manage + to + действие; want / need + человек
 > + to; действие + to — «чтобы». Занятия 30, 53, 54 — повтор (so / such, mustn't).
 > Все примеры — из занятий. Карта «занятие → раздел» — в
@@ -35,10 +35,10 @@
 ## 02 · enjoy, finish, avoid + -ing *(открыт сразу)*
 
 **body**
-После enjoy (нравится), finish (закончить), avoid (избегать), do not mind (не против) второе действие идёт с -ing: I enjoy exploring new places. To здесь не ставят.
+После enjoy (нравится), finish (закончить), avoid (избегать), don't mind (не против) второе действие идёт с -ing: I enjoy exploring new places. To здесь не ставят.
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `действие + ing`
+`enjoy / finish / avoid / don't mind` · `действие + ing`
 
 **examples** 🔊
 | en | ru | hi |

@@ -12,14 +12,14 @@
 ## 01 · Apa yang akan kamu pelajari *(terbuka sejak awal)*
 
 **body**
-Pelajaran ini tentang apa yang bisa kamu lakukan: «saya bisa menghilangkan noda ini», «umur sepuluh saya sudah lancar membaca», «boleh saya coba?», «kita akan bisa mencapainya». Hampir selalu, setelah kata utama ada kata kerja seperti di kamus, tanpa to.
+Pelajaran ini tentang apa yang bisa kamu lakukan: «aku bisa menghilangkan noda ini», «umur sepuluh, aku sudah lancar membaca», «boleh aku coba?», «kita akan bisa mencapainya». Hampir selalu, setelah kata utama ada kata kerja seperti di kamus, tanpa to.
 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I can remove this stain. | Saya bisa menghilangkan noda ini. | can |
-| At ten, I could read fluently. | Umur sepuluh saya sudah lancar membaca. | could |
-| May I have a sample? | Boleh saya coba sedikit? | May I |
+| I can remove this stain. | Aku bisa menghilangkan noda ini. | can |
+| At ten, I could read fluently. | Umur sepuluh, aku sudah lancar membaca. | could |
+| May I have a sample? | Boleh aku coba sedikit? | May I |
 | We will be able to achieve this goal. | Kita akan bisa mencapai tujuan ini. | will be able to |
 
 ---
@@ -35,7 +35,7 @@ can + kata kerja seperti di kamus: I can remove this stain. Can sama untuk semua
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I can remove this stain. | Saya bisa menghilangkan noda ini. | can |
+| I can remove this stain. | Aku bisa menghilangkan noda ini. | can |
 | She can replace the battery. | Dia bisa mengganti baterainya. | can |
 | We can arrange a meeting. | Kita bisa mengatur pertemuan. | can |
 | Noise can affect your sleep. | Kebisingan bisa mengganggu tidurmu. | can |
@@ -57,7 +57,7 @@ can + kata kerja seperti di kamus: I can remove this stain. Can sama untuk semua
 ## 03 · could — «dulu sudah bisa»
 
 **body**
-Untuk bilang apa yang dulu sudah bisa kamu lakukan — could: At ten, I could read fluently — «umur sepuluh saya sudah lancar membaca». Bahasa Indonesia cukup tambah «dulu», bahasa Inggris ganti can jadi could. Tanpa to juga.
+Untuk bilang apa yang dulu sudah bisa kamu lakukan — could: At ten, I could read fluently — «umur sepuluh, aku sudah lancar membaca». Bahasa Indonesia cukup tambah «dulu», bahasa Inggris ganti can jadi could. Tanpa to juga.
 
 **formula**
 `kapan` · `siapa` · `could` · `kata kerja seperti di kamus`
@@ -65,10 +65,10 @@ Untuk bilang apa yang dulu sudah bisa kamu lakukan — could: At ten, I could re
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| At ten, I could read fluently. | Umur sepuluh saya sudah lancar membaca. | could |
-| At six, I could write the alphabet. | Umur enam saya sudah bisa menulis alfabet. | could |
-| At twelve, we could travel independently. | Umur dua belas kami sudah bisa bepergian sendiri. | could |
-| At twenty, I could learn a new skill. | Umur dua puluh saya cepat belajar keterampilan baru. | could |
+| At ten, I could read fluently. | Umur sepuluh, aku sudah lancar membaca. | could |
+| At six, I could write the alphabet. | Umur enam, aku sudah bisa menulis alfabet. | could |
+| At twelve, we could travel independently. | Umur dua belas, kami sudah bisa bepergian sendiri. | could |
+| At twenty, I could learn a new skill. | Umur dua puluh, aku cepat belajar keterampilan baru. | could |
 
 **fix**
 - ~~At ten, I can read fluently.~~ → At ten, I could read fluently.
@@ -83,10 +83,10 @@ Untuk bilang apa yang dulu sudah bisa kamu lakukan — could: At ten, I could re
 
 ---
 
-## 04 · May I…? — «boleh saya…?»
+## 04 · May I…? — «boleh aku…?»
 
 **body**
-Minta izin dengan sopan — May I + kata kerja? May I have a sample? — «boleh saya coba sedikit?». May di depan, sebelum I; setelah I kata kerja tanpa to. Bukan I may…?, urutannya dibalik.
+Minta izin dengan sopan — May I + kata kerja? May I have a sample? — «boleh aku coba sedikit?». May di depan, sebelum I; setelah I kata kerja tanpa to. Bukan I may…?, urutannya dibalik.
 
 **formula**
 `May I` · `kata kerja seperti di kamus` · `?`
@@ -94,11 +94,11 @@ Minta izin dengan sopan — May I + kata kerja? May I have a sample? — «boleh
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| May I have a sample? | Boleh saya coba sedikit? | May I |
-| May I make a comment? | Boleh saya memberi komentar? | May I |
-| May I change the channel? | Boleh saya ganti saluran? | May I |
-| May I disturb you for a moment? | Boleh saya ganggu sebentar? | May I |
-| May I check the exact price? | Boleh saya cek harga pastinya? | May I |
+| May I have a sample? | Boleh aku coba sedikit? | May I |
+| May I make a comment? | Boleh aku memberi komentar? | May I |
+| May I change the channel? | Boleh aku ganti saluran? | May I |
+| May I disturb you for a moment? | Boleh aku ganggu sebentar? | May I |
+| May I check the exact price? | Boleh aku cek harga pastinya? | May I |
 
 **fix**
 - ~~I may have a sample?~~ → May I have a sample?
@@ -106,10 +106,10 @@ Minta izin dengan sopan — May I + kata kerja? May I have a sample? — «boleh
 
 ---
 
-## 05 · Could I…? — juga «boleh saya…?»
+## 05 · Could I…? — juga «boleh aku…?»
 
 **body**
-Could I…? — permintaan sopan lainnya: Could I pay in advance? — «boleh saya bayar di muka?». Di sini could bukan soal masa lalu, tapi permintaan. Urutannya sama: Could dulu, lalu I dan kata kerja tanpa to.
+Could I…? — permintaan sopan lainnya: Could I pay in advance? — «boleh aku bayar di muka?». Di sini could bukan soal masa lalu, tapi permintaan. Urutannya sama: Could dulu, lalu I dan kata kerja tanpa to.
 
 **formula**
 `Could I` · `kata kerja seperti di kamus` · `?`
@@ -117,18 +117,18 @@ Could I…? — permintaan sopan lainnya: Could I pay in advance? — «boleh sa
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Could I discuss my diet? | Boleh saya membahas pola makan saya? | Could I |
-| Could I bring my sibling? | Boleh saya ajak saudara kandung saya? | Could I |
-| Could I pay in advance? | Boleh saya bayar di muka? | Could I |
-| Could I start right away? | Boleh saya mulai sekarang juga? | Could I |
-| Could I have it in writing? | Boleh saya minta itu secara tertulis? | Could I |
+| Could I discuss my diet? | Boleh aku membahas pola makanku? | Could I |
+| Could I bring my sibling? | Boleh aku ajak saudara kandungku? | Could I |
+| Could I pay in advance? | Boleh aku bayar di muka? | Could I |
+| Could I start right away? | Boleh aku mulai sekarang juga? | Could I |
+| Could I have it in writing? | Boleh aku minta itu secara tertulis? | Could I |
 
 **fix**
 - ~~I could discuss my diet?~~ → Could I discuss my diet?
 - ~~Could I to discuss my diet?~~ → Could I discuss my diet?
 
 **drill · word_bank**
-- tugas: Minta: «Boleh saya bayar lunas sekaligus?»
+- tugas: Minta: «Boleh aku bayar lunas sekaligus?»
 - jawaban: `Could` · `I` · `pay` · `in` · `full`
 - label kotak: tidak ada (kalimat panjang)
 - kartu lebih: `to` · `did`
@@ -146,9 +146,9 @@ am / is able to + kata kerja — juga «bisa», tapi dengan am / is dan to: I am
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I am able to cope with the stress. | Saya mampu menghadapi stres ini. | am able to |
+| I am able to cope with the stress. | Aku mampu menghadapi stres ini. | am able to |
 | She is able to recover at home. | Dia bisa pulih di rumah. | is able to |
-| I am able to concentrate here. | Di sini saya bisa berkonsentrasi. | am able to |
+| I am able to concentrate here. | Di sini aku bisa berkonsentrasi. | am able to |
 | We will be able to achieve this goal. | Kita akan bisa mencapai tujuan ini. | will be able to |
 | We will be able to pay this debt. | Kita akan bisa melunasi utang ini. | will be able to |
 
@@ -179,7 +179,7 @@ Setelah can, could, May I, dan Could I — kata kerja seperti di kamus, tanpa to
 
 ---
 
-## 08 · Yang dibawa ke latihan
+## 08 · Bekal untuk latihan
 
 **body**
 Bisa — can. Dulu sudah bisa — could. Minta dengan sopan — May I…? atau Could I…?. Akan bisa — will be able to. Setelah can dan could tanpa to, setelah able pakai to.
@@ -187,6 +187,6 @@ Bisa — can. Dulu sudah bisa — could. Minta dengan sopan — May I…? atau C
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| I can keep up with you. | Saya bisa mengikuti kamu. | can |
-| May I offer an apology? | Izinkan saya minta maaf. | May I |
+| I can keep up with you. | Aku bisa mengikuti kamu. | can |
+| May I offer an apology? | Izinkan aku minta maaf. | May I |
 | She is able to participate in the class. | Dia bisa ikut kelas. | is able to |

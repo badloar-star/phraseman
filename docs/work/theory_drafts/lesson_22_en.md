@@ -12,7 +12,7 @@
 ## 01 · What you will learn to say *(open from the start)*
 
 **body**
-This lesson is about short words that replace people and things: him and her after an action, it for a thing, mine for «belongs to me», yourself, the … one, and another.
+This lesson is about short words that replace people and things: him and her after an action, it for a thing, mine for “belongs to me”, yourself, the … one, and another.
 
 **examples** 🔊
 | en | meaning | hi |

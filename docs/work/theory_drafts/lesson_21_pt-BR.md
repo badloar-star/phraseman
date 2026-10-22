@@ -27,10 +27,10 @@ Esta lição é para juntar duas ações: «gosto de conhecer lugares novos», �
 ## 02 · enjoy, finish, avoid + -ing *(aberta de início)*
 
 **body**
-Depois de enjoy (gostar), finish (terminar), avoid (evitar), do not mind (não me importo) a segunda ação vem com -ing: I enjoy exploring new places. Mesmo que em português seja «gosto de explorar», aqui não vai to.
+Depois de enjoy (gostar), finish (terminar), avoid (evitar), don't mind (não me importo) a segunda ação vem com -ing: I enjoy exploring new places. Mesmo que em português seja «gosto de explorar», aqui não vai to.
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `ação + ing`
+`enjoy / finish / avoid / don't mind` · `ação + ing`
 
 **examples** 🔊
 | en | pt-BR | hi |

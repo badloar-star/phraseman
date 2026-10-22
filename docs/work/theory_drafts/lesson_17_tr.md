@@ -196,7 +196,7 @@ Sayılmayanı paket ve ölçüyle sayarız: two bags of rice, two litres of milk
 
 ---
 
-## 09 · Pratiğe ne götürmeli
+## 09 · Alıştırmaya ne götürmelisin
 
 **body**
 Sayılan — many, a few, few. Sayılmayan — much, a little, little. a ile — «biraz var», a'sız — «yetmiyor». Some düz cümlede, any olumsuzda ve soruda. Paket + s + of.

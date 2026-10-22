@@ -26,10 +26,10 @@
 ## 02 · enjoy, finish, avoid + -ing *(відкрито одразу)*
 
 **body**
-Після enjoy (подобається), finish (закінчити), avoid (уникати), do not mind (не проти) друга дія йде з -ing: I enjoy exploring new places. To тут не ставлять, хоч українською «люблю робити».
+Після enjoy (подобається), finish (закінчити), avoid (уникати), don't mind (не проти) друга дія йде з -ing: I enjoy exploring new places. To тут не ставлять, хоч українською «люблю робити».
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `дія + ing`
+`enjoy / finish / avoid / don't mind` · `дія + ing`
 
 **examples** 🔊
 | en | uk | hi |

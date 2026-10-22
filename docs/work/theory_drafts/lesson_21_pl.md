@@ -26,10 +26,10 @@ Ta lekcja jest o łączeniu dwóch czynności: «lubię odkrywać nowe miejsca»
 ## 02 · enjoy, finish, avoid + -ing *(otwarta od razu)*
 
 **body**
-Po enjoy (lubię), finish (skończyć), avoid (unikać), do not mind (nie mam nic przeciwko) druga czynność ma -ing: I enjoy exploring new places. To tu nie stawiamy, choć po polsku «lubię zwiedzać».
+Po enjoy (lubię), finish (skończyć), avoid (unikać), don't mind (nie mam nic przeciwko) druga czynność ma -ing: I enjoy exploring new places. To tu nie stawiamy, choć po polsku «lubię zwiedzać».
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `czynność + ing`
+`enjoy / finish / avoid / don't mind` · `czynność + ing`
 
 **examples** 🔊
 | en | pl | hi |

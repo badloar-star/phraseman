@@ -210,7 +210,7 @@ Eylemden sonra — him (erkek), her (kadın), them, it. Eşyasız «benim» — 
 
 ---
 
-## 10 · Pratiğe ne götürmeli
+## 10 · Alıştırmaya ne götürmelisin
 
 **body**
 Eylemden sonra kişi — him / her / them. Eşya — it / them. Eşyasız «benim» — mine, yours, ours. «Kendini» — yourself. … olanı — the … one. Başka bir — another.

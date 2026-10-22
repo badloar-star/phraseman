@@ -183,7 +183,7 @@ Arkasından şey gelmiyorsa — so: My close friend is so kind. Sıfattan sonra 
 
 ---
 
-## 08 · Pratiğe ne götürmeli
+## 08 · Alıştırmaya ne götürmelisin
 
 **body**
 -er than — ikisini karşılaştır. the -est — hepsinden birini seç. as … as — «aynı». too / enough — «fazla» ve «yeterince». so / such — so arkasında şey yokken, such şeyle birlikte.

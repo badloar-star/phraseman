@@ -179,7 +179,7 @@ can, could, May I ve Could I'dan sonra eylem sözlükteki hâliyle, to'suz gelir
 
 ---
 
-## 08 · Pratiğe ne götürmeli
+## 08 · Alıştırmaya ne götürmelisin
 
 **body**
 Yapabilirim — can. Eskiden yapabiliyordum — could. Kibarca rica — May I…? ya da Could I…?. Yapabileceğim — will be able to. can ve could'dan sonra to yok, able'dan sonra to var.

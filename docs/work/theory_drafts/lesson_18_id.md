@@ -150,7 +150,7 @@ Kalau tidak ada benda sesudahnya — so: My close friend is so kind («baik seka
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| My close friend is so kind. | Sahabat saya baik sekali. | so |
+| My close friend is so kind. | Sahabatku baik sekali. | so |
 | Our mutual friend is such a helpful person. | Teman kita bersama orangnya suka menolong sekali. | such a |
 | This is such hard work. | Ini pekerjaan yang berat sekali. | such |
 | The live music is so loud. | Musik langsungnya keras sekali. | so |
@@ -183,7 +183,7 @@ Dua hal — -er than. Satu dari semua — the -est. Sama — as … as. Menggang
 
 ---
 
-## 08 · Yang dibawa ke latihan
+## 08 · Bekal untuk latihan
 
 **body**
 -er than — membandingkan dua hal. the -est — memilih satu dari semua. as … as — «sama». too / enough — «terlalu» dan «cukup». so / such — so tanpa benda, such dengan benda.

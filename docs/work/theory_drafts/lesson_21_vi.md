@@ -27,10 +27,10 @@ Bài này về cách nối hai hành động: «tôi thích khám phá nơi mớ
 ## 02 · enjoy, finish, avoid + -ing *(mở sẵn)*
 
 **body**
-Sau enjoy (thích), finish (làm xong), avoid (tránh), do not mind (không ngại), hành động thứ hai thêm -ing: I enjoy exploring new places. Tiếng Việt không đổi động từ, tiếng Anh phải có -ing.
+Sau enjoy (thích), finish (làm xong), avoid (tránh), don't mind (không ngại), hành động thứ hai thêm -ing: I enjoy exploring new places. Tiếng Việt không đổi động từ, tiếng Anh phải có -ing.
 
 **formula**
-`enjoy / finish / avoid / do not mind` · `hành động + ing`
+`enjoy / finish / avoid / don't mind` · `hành động + ing`
 
 **examples** 🔊
 | en | vi | hi |

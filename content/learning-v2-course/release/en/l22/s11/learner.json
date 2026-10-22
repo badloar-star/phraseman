@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-11:word:electric-toothbrush",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — electric toothbrush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:word:electric-toothbrush:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — electric toothbrush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:word:electric-toothbrush:audio",
+          "transcript": "electric toothbrush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:word:electric-toothbrush:r1",
+            "targetText": "electric toothbrush",
+            "meaningByLocale": {
+              "ru": "электрическая зубная щётка.",
+              "uk": "електрична зубна щітка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "electric toothbrush",
+          "definitionByLocale": {
+            "ru": "электрическая зубная щётка.",
+            "uk": "електрична зубна щітка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Щётка принадлежит вам. Скажите: «Эта электрическая зубная щётка — моя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Щётка принадлежит вам. Скажите: «Эта электрическая зубная щётка — моя»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This electric toothbrush is mine.",
+        "localizedMeaning": {
+          "ru": "Щётка принадлежит вам. Скажите: «Эта электрическая зубная щётка — моя»",
+          "uk": "Щітка належить вам. Скажіть: «Ця електрична зубна щітка — моя»"
+        },
+        "orderedTokens": [
+          "This",
+          "electric",
+          "toothbrush",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i02:r1",
+          "text": "This electric toothbrush is mine."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i02:r2",
+          "text": "That electric toothbrush is mine."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i02:r3",
+          "text": "This electric toothbrush is not mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i02:audio",
+          "transcript": "This electric toothbrush is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:i02:r1",
+            "targetText": "This electric toothbrush is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i02:r2",
+            "targetText": "That electric toothbrush is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i02:r3",
+            "targetText": "This electric toothbrush is not mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This electric toothbrush is mine.",
+              "uk": "У записі звучить This electric toothbrush is mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This electric toothbrush is mine.",
+              "uk": "У записі звучить This electric toothbrush is mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i03:r1",
+          "text": "mine"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i03:r2",
+          "text": "my"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i03:r3",
+          "text": "me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This electric toothbrush is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-11:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i03:r3",
+            "text": "me"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:word:electric-razor",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — electric razor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:word:electric-razor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — electric razor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:word:electric-razor:audio",
+          "transcript": "electric razor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:word:electric-razor:r1",
+            "targetText": "electric razor",
+            "meaningByLocale": {
+              "ru": "электробритва.",
+              "uk": "електробритва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "electric razor",
+          "definitionByLocale": {
+            "ru": "электробритва.",
+            "uk": "електробритва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Бритва принадлежит Тому. Скажите: «Эта электробритва — его»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бритва принадлежит Тому. Скажите: «Эта электробритва — его»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This electric razor is his.",
+        "localizedMeaning": {
+          "ru": "Бритва принадлежит Тому. Скажите: «Эта электробритва — его»",
+          "uk": "Бритва належить Тому. Скажіть: «Ця електробритва — його»"
+        },
+        "orderedTokens": [
+          "This",
+          "electric",
+          "razor",
+          "is",
+          "his"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i05:r1",
+          "text": "This electric razor is his."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i05:r2",
+          "text": "That electric razor is his."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i05:r3",
+          "text": "This electric razor is not his."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i05:audio",
+          "transcript": "This electric razor is his."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:i05:r1",
+            "targetText": "This electric razor is his.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i05:r2",
+            "targetText": "That electric razor is his.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i05:r3",
+            "targetText": "This electric razor is not his.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This electric razor is his.",
+              "uk": "У записі звучить This electric razor is his."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This electric razor is his.",
+              "uk": "У записі звучить This electric razor is his."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i06:r1",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i06:r2",
+          "text": "him"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i06:r3",
+          "text": "he"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This electric razor is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-11:i06:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i06:r2",
+            "text": "him"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i06:r3",
+            "text": "he"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:word:hair-straighteners",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hair straighteners",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:word:hair-straighteners:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hair straighteners",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:word:hair-straighteners:audio",
+          "transcript": "hair straighteners"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:word:hair-straighteners:r1",
+            "targetText": "hair straighteners",
+            "meaningByLocale": {
+              "ru": "утюжок для волос.",
+              "uk": "праска для волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hair straighteners",
+          "definitionByLocale": {
+            "ru": "утюжок для волос.",
+            "uk": "праска для волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Утюжок принадлежит Анне. Скажите: «Этот утюжок для волос — её»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Утюжок принадлежит Анне. Скажите: «Этот утюжок для волос — её»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These hair straighteners are hers.",
+        "localizedMeaning": {
+          "ru": "Утюжок принадлежит Анне. Скажите: «Этот утюжок для волос — её»",
+          "uk": "Праска належить Анні. Скажіть: «Ця праска для волосся — її»"
+        },
+        "orderedTokens": [
+          "These",
+          "hair",
+          "straighteners",
+          "are",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i08:r1",
+          "text": "These hair straighteners are hers."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i08:r2",
+          "text": "Those hair straighteners are hers."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i08:r3",
+          "text": "These hair straighteners are not hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i08:audio",
+          "transcript": "These hair straighteners are hers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:i08:r1",
+            "targetText": "These hair straighteners are hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i08:r2",
+            "targetText": "Those hair straighteners are hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i08:r3",
+            "targetText": "These hair straighteners are not hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These hair straighteners are hers.",
+              "uk": "У записі звучить These hair straighteners are hers."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These hair straighteners are hers.",
+              "uk": "У записі звучить These hair straighteners are hers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i09:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i09:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i09:r3",
+          "text": "she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "These hair straighteners are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-11:i09:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i09:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i09:r3",
+            "text": "she"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:word:travel-adapter",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — travel adapter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:word:travel-adapter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — travel adapter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:word:travel-adapter:audio",
+          "transcript": "travel adapter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:word:travel-adapter:r1",
+            "targetText": "travel adapter",
+            "meaningByLocale": {
+              "ru": "переходник для розеток в поездке.",
+              "uk": "перехідник для розеток у подорожі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "travel adapter",
+          "definitionByLocale": {
+            "ru": "переходник для розеток в поездке.",
+            "uk": "перехідник для розеток у подорожі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Переходник общий для вашей семьи. Скажите: «Этот переходник для розеток в поездке — наш»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Переходник общий для вашей семьи. Скажите: «Этот переходник для розеток в поездке — наш»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This travel adapter is ours.",
+        "localizedMeaning": {
+          "ru": "Переходник общий для вашей семьи. Скажите: «Этот переходник для розеток в поездке — наш»",
+          "uk": "Перехідник спільний для вашої родини. Скажіть: «Цей перехідник для розеток у подорожі — наш»"
+        },
+        "orderedTokens": [
+          "This",
+          "travel",
+          "adapter",
+          "is",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i11:r1",
+          "text": "This travel adapter is ours."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i11:r2",
+          "text": "That travel adapter is ours."
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i11:r3",
+          "text": "This travel adapter is not ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i11:audio",
+          "transcript": "This travel adapter is ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-11:i11:r1",
+            "targetText": "This travel adapter is ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i11:r2",
+            "targetText": "That travel adapter is ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i11:r3",
+            "targetText": "This travel adapter is not ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This travel adapter is ours.",
+              "uk": "У записі звучить This travel adapter is ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This travel adapter is ours.",
+              "uk": "У записі звучить This travel adapter is ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-11:i12:r1",
+          "text": "ours"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i12:r2",
+          "text": "our"
+        },
+        {
+          "responseId": "en:lesson-22:session-11:i12:r3",
+          "text": "us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This travel adapter is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-11:i12:r1",
+            "text": "ours"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i12:r2",
+            "text": "our"
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i12:r3",
+            "text": "us"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-11:i13:p1",
+            "target": "electric toothbrush",
+            "meaningByLocale": {
+              "ru": "электрическая зубная щётка",
+              "uk": "електрична зубна щітка"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-11:i13:p2",
+            "target": "electric razor",
+            "meaningByLocale": {
+              "ru": "электробритва",
+              "uk": "електробритва"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-11:i13:p3",
+            "target": "hair straighteners",
+            "meaningByLocale": {
+              "ru": "утюжок для волос",
+              "uk": "праска для волосся"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-11:i13:p4",
+            "target": "travel adapter",
+            "meaningByLocale": {
+              "ru": "переходник для розеток в поездке",
+              "uk": "перехідник для розеток у подорожі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "electric toothbrush",
+          "electric razor",
+          "hair straighteners",
+          "travel adapter"
+        ],
+        "rightColumn": [
+          "электрическая зубная щётка",
+          "электробритва",
+          "утюжок для волос",
+          "переходник для розеток в поездке"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: разговор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: разговор",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: праздник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: праздник",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бритва принадлежит вам. Скажите: «Эта электробритва — моя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Бритва принадлежит вам. Скажите: «Эта электробритва — моя»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i16:audio",
+          "transcript": "This electric razor is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This electric razor is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-11:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Переходник принадлежит собеседнику. Скажите: «Этот переходник для розеток в поездке — твой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Переходник принадлежит собеседнику. Скажите: «Этот переходник для розеток в поездке — твой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-11:i17:audio",
+          "transcript": "This travel adapter is yours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This travel adapter is yours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "050a59a62eb362655656a422218f707a54b2c8bd99183be2131dbc18d276e73e"
+}

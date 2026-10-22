@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-12:word:wash-bag",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wash bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:word:wash-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wash bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:word:wash-bag:audio",
+          "transcript": "wash bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:word:wash-bag:r1",
+            "targetText": "wash bag",
+            "meaningByLocale": {
+              "ru": "дорожная косметичка.",
+              "uk": "дорожня косметичка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wash bag",
+          "definitionByLocale": {
+            "ru": "дорожная косметичка.",
+            "uk": "дорожня косметичка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Косметичка належить вам. Скажіть: «Ця дорожня косметичка — моя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Косметичка належить вам. Скажіть: «Ця дорожня косметичка — моя»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This wash bag is mine.",
+        "localizedMeaning": {
+          "ru": "Косметичка принадлежит вам. Скажите: «Эта дорожная косметичка — моя»",
+          "uk": "Косметичка належить вам. Скажіть: «Ця дорожня косметичка — моя»"
+        },
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i02:r1",
+          "text": "This wash bag is mine."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i02:r2",
+          "text": "That wash bag is mine."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i02:r3",
+          "text": "This wash bag is not mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i02:audio",
+          "transcript": "This wash bag is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:i02:r1",
+            "targetText": "This wash bag is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i02:r2",
+            "targetText": "That wash bag is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i02:r3",
+            "targetText": "This wash bag is not mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This wash bag is mine.",
+              "uk": "У записі звучить This wash bag is mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This wash bag is mine.",
+              "uk": "У записі звучить This wash bag is mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i03:r1",
+          "text": "mine"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i03:r2",
+          "text": "my"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i03:r3",
+          "text": "me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This wash bag is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-12:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i03:r3",
+            "text": "me"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:word:overnight-bag",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overnight bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:word:overnight-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overnight bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:word:overnight-bag:audio",
+          "transcript": "overnight bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:word:overnight-bag:r1",
+            "targetText": "overnight bag",
+            "meaningByLocale": {
+              "ru": "сумка для поездки с ночёвкой.",
+              "uk": "сумка для подорожі з ночівлею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overnight bag",
+          "definitionByLocale": {
+            "ru": "сумка для поездки с ночёвкой.",
+            "uk": "сумка для подорожі з ночівлею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумка належить співрозмовнику. Скажіть: «Ця сумка для подорожі з ночівлею — твоя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка належить співрозмовнику. Скажіть: «Ця сумка для подорожі з ночівлею — твоя»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This overnight bag is yours.",
+        "localizedMeaning": {
+          "ru": "Сумка принадлежит собеседнику. Скажите: «Эта сумка для поездки с ночёвкой — твоя»",
+          "uk": "Сумка належить співрозмовнику. Скажіть: «Ця сумка для подорожі з ночівлею — твоя»"
+        },
+        "orderedTokens": [
+          "This",
+          "overnight",
+          "bag",
+          "is",
+          "yours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i05:r1",
+          "text": "This overnight bag is yours."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i05:r2",
+          "text": "That overnight bag is yours."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i05:r3",
+          "text": "This overnight bag is not yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i05:audio",
+          "transcript": "This overnight bag is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:i05:r1",
+            "targetText": "This overnight bag is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i05:r2",
+            "targetText": "That overnight bag is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i05:r3",
+            "targetText": "This overnight bag is not yours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This overnight bag is yours.",
+              "uk": "У записі звучить This overnight bag is yours."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This overnight bag is yours.",
+              "uk": "У записі звучить This overnight bag is yours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i06:r1",
+          "text": "yours"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i06:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i06:r3",
+          "text": "you"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This overnight bag is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-12:i06:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i06:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i06:r3",
+            "text": "you"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:word:tote-bag",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tote bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:word:tote-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tote bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:word:tote-bag:audio",
+          "transcript": "tote bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:word:tote-bag:r1",
+            "targetText": "tote bag",
+            "meaningByLocale": {
+              "ru": "сумка-шопер.",
+              "uk": "сумка-шопер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tote bag",
+          "definitionByLocale": {
+            "ru": "сумка-шопер.",
+            "uk": "сумка-шопер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Шопер належить Анні. Скажіть: «Ця сумка-шопер — її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шопер належить Анні. Скажіть: «Ця сумка-шопер — її»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This tote bag is hers.",
+        "localizedMeaning": {
+          "ru": "Шопер принадлежит Анне. Скажите: «Эта сумка-шопер — её»",
+          "uk": "Шопер належить Анні. Скажіть: «Ця сумка-шопер — її»"
+        },
+        "orderedTokens": [
+          "This",
+          "tote",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i08:r1",
+          "text": "This tote bag is hers."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i08:r2",
+          "text": "That tote bag is hers."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i08:r3",
+          "text": "This tote bag is not hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i08:audio",
+          "transcript": "This tote bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:i08:r1",
+            "targetText": "This tote bag is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i08:r2",
+            "targetText": "That tote bag is hers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i08:r3",
+            "targetText": "This tote bag is not hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This tote bag is hers.",
+              "uk": "У записі звучить This tote bag is hers."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This tote bag is hers.",
+              "uk": "У записі звучить This tote bag is hers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i09:r1",
+          "text": "hers"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i09:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i09:r3",
+          "text": "she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This tote bag is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-12:i09:r1",
+            "text": "hers"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i09:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i09:r3",
+            "text": "she"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:word:eye-mask",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eye mask",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:word:eye-mask:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eye mask",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:word:eye-mask:audio",
+          "transcript": "eye mask"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:word:eye-mask:r1",
+            "targetText": "eye mask",
+            "meaningByLocale": {
+              "ru": "маска для сна.",
+              "uk": "маска для сну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eye mask",
+          "definitionByLocale": {
+            "ru": "маска для сна.",
+            "uk": "маска для сну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Маска належить Тому. Скажіть: «Ця маска для сну — його»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Маска належить Тому. Скажіть: «Ця маска для сну — його»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This eye mask is his.",
+        "localizedMeaning": {
+          "ru": "Маска принадлежит Тому. Скажите: «Эта маска для сна — его»",
+          "uk": "Маска належить Тому. Скажіть: «Ця маска для сну — його»"
+        },
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "his"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i11:r1",
+          "text": "This eye mask is his."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i11:r2",
+          "text": "That eye mask is his."
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i11:r3",
+          "text": "This eye mask is not his."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i11:audio",
+          "transcript": "This eye mask is his."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-12:i11:r1",
+            "targetText": "This eye mask is his.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i11:r2",
+            "targetText": "That eye mask is his.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i11:r3",
+            "targetText": "This eye mask is not his.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This eye mask is his.",
+              "uk": "У записі звучить This eye mask is his."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This eye mask is his.",
+              "uk": "У записі звучить This eye mask is his."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-12:i12:r1",
+          "text": "his"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i12:r2",
+          "text": "him"
+        },
+        {
+          "responseId": "en:lesson-22:session-12:i12:r3",
+          "text": "he"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "This eye mask is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-12:i12:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i12:r2",
+            "text": "him"
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i12:r3",
+            "text": "he"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна самостоятельная притяжательная форма без существительного.",
+              "uk": "Тут потрібна самостійна присвійна форма без іменника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-12:i13:p1",
+            "target": "wash bag",
+            "meaningByLocale": {
+              "ru": "дорожная косметичка",
+              "uk": "дорожня косметичка"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-12:i13:p2",
+            "target": "overnight bag",
+            "meaningByLocale": {
+              "ru": "сумка для поездки с ночёвкой",
+              "uk": "сумка для подорожі з ночівлею"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-12:i13:p3",
+            "target": "tote bag",
+            "meaningByLocale": {
+              "ru": "сумка-шопер",
+              "uk": "сумка-шопер"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-12:i13:p4",
+            "target": "eye mask",
+            "meaningByLocale": {
+              "ru": "маска для сна",
+              "uk": "маска для сну"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wash bag",
+          "overnight bag",
+          "tote bag",
+          "eye mask"
+        ],
+        "rightColumn": [
+          "дорожня косметичка",
+          "сумка для подорожі з ночівлею",
+          "сумка-шопер",
+          "маска для сну"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Косметичка належить Анні. Скажіть: «Ця дорожня косметичка — її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Косметичка належить Анні. Скажіть: «Ця дорожня косметичка — її»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i16:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This wash bag is hers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Маска належить вам. Скажіть: «Ця маска для сну — моя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Маска належить вам. Скажіть: «Ця маска для сну — моя»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-12:i17:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This eye mask is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1c8c0a01eea3fe7fda7ec2f64732f980bd22ef2f742370345e9fdd52bf04db0f"
+}

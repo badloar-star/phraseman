@@ -8309,4 +8309,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"possessive pronoun without following noun","uk":"possessive pronoun without following noun"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 11,
+    sourceFingerprint: "381bf80fc96f001ca57d909189c3b6976660aecf643f7061bfbd42afd7d5f23b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"possessive pronoun without following noun","uk":"possessive pronoun without following noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 12,
+    sourceFingerprint: "68075a738ec72c66398b9e779965da9d1934c30839b95c574fb1da6dd092ff8e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"possessive pronoun without following noun","uk":"possessive pronoun without following noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

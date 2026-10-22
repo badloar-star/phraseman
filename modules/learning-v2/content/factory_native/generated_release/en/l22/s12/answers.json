@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-12:word:wash-bag",
+    "correctText": "wash bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i01",
+    "correctText": "This wash bag is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i02",
+    "correctText": "This wash bag is mine.",
+    "correctResponseId": "en:lesson-22:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i03",
+    "correctText": "mine",
+    "correctResponseId": "en:lesson-22:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:word:overnight-bag",
+    "correctText": "overnight bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i04",
+    "correctText": "This overnight bag is yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i05",
+    "correctText": "This overnight bag is yours.",
+    "correctResponseId": "en:lesson-22:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i06",
+    "correctText": "yours",
+    "correctResponseId": "en:lesson-22:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:word:tote-bag",
+    "correctText": "tote bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i07",
+    "correctText": "This tote bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i08",
+    "correctText": "This tote bag is hers.",
+    "correctResponseId": "en:lesson-22:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i09",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-22:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:word:eye-mask",
+    "correctText": "eye mask",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i10",
+    "correctText": "This eye mask is his.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i11",
+    "correctText": "This eye mask is his.",
+    "correctResponseId": "en:lesson-22:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i12",
+    "correctText": "his",
+    "correctResponseId": "en:lesson-22:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i13",
+    "correctText": "en:lesson-22:session-12:i13:p1=wash bag\nen:lesson-22:session-12:i13:p2=overnight bag\nen:lesson-22:session-12:i13:p3=tote bag\nen:lesson-22:session-12:i13:p4=eye mask",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i16",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-12:i17",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  }
+]

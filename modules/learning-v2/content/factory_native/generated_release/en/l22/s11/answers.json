@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-11:word:electric-toothbrush",
+    "correctText": "electric toothbrush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i01",
+    "correctText": "This electric toothbrush is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i02",
+    "correctText": "This electric toothbrush is mine.",
+    "correctResponseId": "en:lesson-22:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i03",
+    "correctText": "mine",
+    "correctResponseId": "en:lesson-22:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:word:electric-razor",
+    "correctText": "electric razor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i04",
+    "correctText": "This electric razor is his.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i05",
+    "correctText": "This electric razor is his.",
+    "correctResponseId": "en:lesson-22:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i06",
+    "correctText": "his",
+    "correctResponseId": "en:lesson-22:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:word:hair-straighteners",
+    "correctText": "hair straighteners",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i07",
+    "correctText": "These hair straighteners are hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i08",
+    "correctText": "These hair straighteners are hers.",
+    "correctResponseId": "en:lesson-22:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i09",
+    "correctText": "hers",
+    "correctResponseId": "en:lesson-22:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:word:travel-adapter",
+    "correctText": "travel adapter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i10",
+    "correctText": "This travel adapter is ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i11",
+    "correctText": "This travel adapter is ours.",
+    "correctResponseId": "en:lesson-22:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i12",
+    "correctText": "ours",
+    "correctResponseId": "en:lesson-22:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i13",
+    "correctText": "en:lesson-22:session-11:i13:p1=electric toothbrush\nen:lesson-22:session-11:i13:p2=electric razor\nen:lesson-22:session-11:i13:p3=hair straighteners\nen:lesson-22:session-11:i13:p4=travel adapter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i16",
+    "correctText": "This electric razor is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-11:i17",
+    "correctText": "This travel adapter is yours.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "possessive pronoun without following noun",
+    "uk": "possessive pronoun without following noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Моя косметичка",
+        "uk": "Моя косметичка"
+      },
+      "bodyByLocale": {
+        "ru": "Wash bag — дорожная косметичка: небольшая сумка для зубной щётки, пасты и других средств ухода. Это обычное британское название; в ней необязательно лежит косметика. Mine — моя: название вещи второй раз не повторяем. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Wash bag — дорожня косметичка: невелика сумка для зубної щітки, пасти та інших засобів догляду. Це звичайна британська назва; у ній необов’язково лежить косметика. Mine — моя: назву речі вдруге не повторюємо. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-12:intro1:r1",
+              "text": "This wash bag is mine."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro1:r2",
+              "text": "This wash bag is my."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro1:r3",
+              "text": "This wash bag is me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-12:intro1:r1",
+              "text": "This wash bag is mine."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro1:r2",
+              "text": "This wash bag is my."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro1:r3",
+              "text": "This wash bag is me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Две разные сумки",
+        "uk": "Дві різні сумки"
+      },
+      "bodyByLocale": {
+        "ru": "Overnight bag — небольшая сумка с вещами для короткой поездки с ночёвкой. Tote bag — сумка-шопер с двумя ручками, часто тканевая: её можно взять за покупками или на работу. Yours — твоя, hers — её. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Overnight bag — невелика сумка з речами для короткої подорожі з ночівлею. Tote bag — сумка-шопер із двома ручками, часто тканинна: її можна взяти за покупками або на роботу. Yours — твоя, hers — її. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-12:intro2:r1",
+              "text": "This overnight bag is yours."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro2:r2",
+              "text": "This overnight bag is your."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro2:r3",
+              "text": "This overnight bag is you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-12:intro2:r1",
+              "text": "This overnight bag is yours."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro2:r2",
+              "text": "This overnight bag is your."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro2:r3",
+              "text": "This overnight bag is you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Его маска",
+        "uk": "Його маска"
+      },
+      "bodyByLocale": {
+        "ru": "Eye mask здесь — маска для сна, которая закрывает глаза от света. В примере она принадлежит Тому: This eye mask is his. His здесь означает «принадлежит ему»; после his не нужно повторять eye mask. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Eye mask тут — маска для сну, яка закриває очі від світла. У прикладі вона належить Тому: This eye mask is his. His тут означає «належить йому»; після his не потрібно повторювати eye mask. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-12:intro3:r1",
+              "text": "This eye mask is his."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro3:r2",
+              "text": "This eye mask is him."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro3:r3",
+              "text": "This eye mask is he."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-12:intro3:r1",
+              "text": "This eye mask is his."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro3:r2",
+              "text": "This eye mask is him."
+            },
+            {
+              "responseId": "en:lesson-22:session-12:intro3:r3",
+              "text": "This eye mask is he."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7c537ec067c4765c904f3624c285bbf2ab0c65a63fadeec7c2f96f846a666159"
+}

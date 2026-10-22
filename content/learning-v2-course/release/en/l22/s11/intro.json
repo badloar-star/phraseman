@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "possessive pronoun without following noun",
+    "uk": "possessive pronoun without following noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Моя щётка",
+        "uk": "Моя щітка"
+      },
+      "bodyByLocale": {
+        "ru": "Electric toothbrush — электрическая зубная щётка. Обычное toothbrush уже знакомо; теперь уточняем, что щётка работает от батарейки или аккумулятора. Mine заменяет my electric toothbrush. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Electric toothbrush — електрична зубна щітка. Звичайне toothbrush уже знайоме; тепер уточнюємо, що щітка працює від батарейки або акумулятора. Mine замінює my electric toothbrush. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-11:intro1:r1",
+              "text": "This electric toothbrush is mine."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro1:r2",
+              "text": "This electric toothbrush is my."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro1:r3",
+              "text": "This electric toothbrush is me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-11:intro1:r1",
+              "text": "This electric toothbrush is mine."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro1:r2",
+              "text": "This electric toothbrush is my."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro1:r3",
+              "text": "This electric toothbrush is me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Его бритва и её утюжок",
+        "uk": "Його бритва та її праска"
+      },
+      "bodyByLocale": {
+        "ru": "Electric razor — электробритва. Hair straighteners — утюжок для выпрямления волос. В английском это название во множественном числе, даже если прибор один: These hair straighteners are hers. His означает «его» и может стоять самостоятельно. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Electric razor — електробритва. Hair straighteners — праска для випрямлення волосся. В англійській це назва у множині, навіть якщо прилад один: These hair straighteners are hers. His означає «його» і може стояти самостійно. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-11:intro2:r1",
+              "text": "This electric razor is his."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro2:r2",
+              "text": "This electric razor is him."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro2:r3",
+              "text": "This electric razor is he."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-11:intro2:r1",
+              "text": "This electric razor is his."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro2:r2",
+              "text": "This electric razor is him."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro2:r3",
+              "text": "This electric razor is he."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Наш переходник",
+        "uk": "Наш перехідник"
+      },
+      "bodyByLocale": {
+        "ru": "Travel adapter — переходник, чтобы подключить вилку к розетке другого типа в поездке. Он меняет соединение, но сам по себе не преобразует напряжение. В примере он принадлежит семье: ours — наш. Притяжательные my, your, her, our стоят перед существительным: my bag, your bag. Без повторения названия вещи используем mine, yours, hers, ours: This bag is mine. Ещё две формы — his и theirs. His одинаково выглядит перед существительным и отдельно.",
+        "uk": "Travel adapter — перехідник, щоб під’єднати вилку до розетки іншого типу в подорожі. Він змінює з’єднання, але сам собою не перетворює напругу. У прикладі він належить родині: ours — наш. Присвійні my, your, her, our стоять перед іменником: my bag, your bag. Без повторення назви речі використовуємо mine, yours, hers, ours: This bag is mine. Ще дві форми — his і theirs. His однаково виглядає перед іменником і окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-11:intro3:r1",
+              "text": "This travel adapter is ours."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro3:r2",
+              "text": "This travel adapter is our."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro3:r3",
+              "text": "This travel adapter is us."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-11:intro3:r1",
+              "text": "This travel adapter is ours."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro3:r2",
+              "text": "This travel adapter is our."
+            },
+            {
+              "responseId": "en:lesson-22:session-11:intro3:r3",
+              "text": "This travel adapter is us."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "874d6af4d54918bd2e2647bf6660f09fd5ab463ec63a11424ee09669d8a3be2f"
+}

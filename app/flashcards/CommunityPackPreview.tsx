@@ -10,17 +10,15 @@
  * `CommunityPackSocialBar` (оптимистично, откат при отказе, защита от двойного нажатия),
  * жалоба — `ReportPackModal`, обсуждение — `PackCommentsSheet`.
  *
- * Шаг сетки (1/2/3/5 колонок) меняется щипком и ползунком ZoomBar, запоминается общим для всех списков карточек (useCardsGridStep).
+ * Шаг сетки всегда 0 (одна горизонтальная карточка на строку): ползунок и щипок убраны решением владельца 22.10. Прежнее описание — запоминается общим для всех списков карточек (useCardsGridStep).
  * Уровень набора (A1–C2) в документах пока нет — чип скрыт (packDeckLevel).
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
-import { GestureDetector } from 'react-native-gesture-handler';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { CardsGallery } from '../../components/cards-grid/CardsGallery';
-import { useCardsGridStep } from '../../components/cards-grid/useCardsScale';
-import { ZoomBar } from '../../components/cards-grid/ZoomBar';
+import { useFixedGalleryStep } from '../../components/cards-grid/useFixedGalleryStep';
 import { useGalleryGrids } from '../../components/cards-grid/useGalleryGrids';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { loadWordStrengthMap, strengthDotCount, strengthFor, type WordStrengthMap } from './word_strength';
@@ -164,27 +162,8 @@ export default function CommunityPackPreview({
     void loadWordStrengthMap(studyTarget).then((m) => { if (alive) setStrengthMap(m); });
     return () => { alive = false; };
   }, [studyTarget]);
-  const gridsRef = useRef<ReturnType<typeof useGalleryGrids>['grids'] | null>(null);
-  const { step, setStep, gesture, morph, morphFrom } = useCardsGridStep({
-    count: cards.length,
-    getGrids: () => gridsRef.current,
-    width,
-    viewportH: screenH,
-    sideInset: SIDE,
-    getGridTop: () => gridTopRef.current,
-    getScrollY: () => scrollYRef.current,
-    scrollTo: (y) => {
-      // зачем: докрутка при смене шага — мгновенная (плитки перетекают от прежних позиций с учётом этого сдвига)
-      scrollYRef.current = y;
-      scrollRef.current?.scrollTo({ y, animated: false });
-    },
-  });
-  const onZoomStep = useCallback((next: number) => setStep(next, undefined, 'ползунок'), [setStep]);
-  const zoomCopy = useMemo(() => triLang(lang, {
-    ru: { smaller: 'Мельче', larger: 'Крупнее' }, uk: { smaller: 'Дрібніше', larger: 'Крупніше' }, en: { smaller: 'Smaller', larger: 'Larger' },
-    es: { smaller: 'Más pequeño', larger: 'Más grande' }, 'pt-BR': { smaller: 'Menor', larger: 'Maior' }, vi: { smaller: 'Nhỏ hơn', larger: 'Lớn hơn' },
-    id: { smaller: 'Lebih kecil', larger: 'Lebih besar' }, tr: { smaller: 'Daha küçük', larger: 'Daha büyük' }, pl: { smaller: 'Mniejsze', larger: 'Większe' },
-  }), [lang]);
+  // зачем (владелец 22.10: «ползунок и щипок убираем, оставляем только нормальный вид»): шаг всегда 0 — одна горизонтальная карточка на строку; щипка, ползунка и запоминания нет.
+  const { step, morph } = useFixedGalleryStep();
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const raw = event.nativeEvent.contentOffset.y;
     scrollYRef.current = raw;
@@ -200,7 +179,6 @@ export default function CommunityPackPreview({
     dots: (() => { const s = strengthFor(card.en, strengthMap); return s ? strengthDotCount(s) : 0; })(),
   })), [cardContentLang, cards, strengthMap]);
   const { grids, reportFix } = useGalleryGrids(items, width);
-  gridsRef.current = grids;
   const byId = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
   // зачем: до добавления набор можно послушать — нажатие на плитку озвучивает слово, как раньше на строке слова.
   const speakCard = useCallback((id: string) => {
@@ -211,14 +189,12 @@ export default function CommunityPackPreview({
 
   return (
     <View testID="pack-preview" style={styles.root}>
-      <GestureDetector gesture={gesture}>
         <ScrollView
           ref={scrollRef}
           testID="pack-preview-scroll"
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
-          stickyHeaderIndices={[1]}
           onScroll={onScroll}
           keyboardShouldPersistTaps="handled"
           decelerationRate="fast"
@@ -264,9 +240,6 @@ export default function CommunityPackPreview({
           {pack.videoId ? <View style={{ marginTop: 18 }}><PackVideoHero pack={pack} lang={lang} t={t} /></View> : null}
           </View>
 
-          {/* `zoomBar()` макета: прилипающая полоса масштаба между кнопками и сеткой. */}
-          <ZoomBar g={g} step={step} onStep={onZoomStep} smallerLabel={zoomCopy.smaller} largerLabel={zoomCopy.larger} />
-
           <View
             style={styles.gridWrap}
             onLayout={(event) => { const y = Math.round(event.nativeEvent.layout.y); gridTopRef.current = y; setGridTop(y); }}
@@ -278,7 +251,6 @@ export default function CommunityPackPreview({
                 width={width}
                 step={step}
                 morph={morph}
-                morphFrom={morphFrom}
                 scrollY={Math.max(0, scrollY - gridTop)}
                 viewportH={screenH}
                 grids={grids}
@@ -297,7 +269,6 @@ export default function CommunityPackPreview({
             ) : null}
           </View>
         </ScrollView>
-      </GestureDetector>
     </View>
   );
 }

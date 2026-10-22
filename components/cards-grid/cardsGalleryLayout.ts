@@ -19,8 +19,6 @@ export const GALLERY_STEPS: readonly GalleryStepDef[] = [
 ];
 
 export const GALLERY_LAST_STEP = GALLERY_STEPS.length - 1;
-/** Шаг по умолчанию — 2 колонки (середина шкалы): шаг поиска и запасной при мусорном значении. */
-export const GALLERY_DEFAULT_STEP = 1;
 /**
  * Шаг при ПЕРВОМ открытии и после сброса — горизонтальные карточки на всю ширину (крайнее правое положение ползунка, шаг 0).
  * зачем (владелец 18.10 через координатора: «при ОТКРЫТИИ экран должен выглядеть как на макете — ГОРИЗОНТАЛЬНЫЕ карточки на всю ширину»): сетка из 2 колонок открывалась по
@@ -33,7 +31,7 @@ export const GALLERY_MORPH_EASE = [0.2, 0.8, 0.2, 1] as const;
 
 export function clampStep(step: number): number {
   'worklet';
-  return Math.max(0, Math.min(GALLERY_LAST_STEP, Math.round(Number.isFinite(step) ? step : GALLERY_DEFAULT_STEP)));
+  return Math.max(0, Math.min(GALLERY_LAST_STEP, Math.round(Number.isFinite(step) ? step : GALLERY_OPEN_STEP)));
 }
 
 export type GalleryLayout = Readonly<{ step: number; cols: number; w: number; h: number; gap: number }>;
@@ -96,19 +94,6 @@ export function galleryScrollFor(opts: Readonly<{ n: number; prev: GalleryLayout
   const fy = Math.max(0, Math.min(1, (focalGridY - oldTop) / prev.h));
   const newFingerY = gridTop + galleryPosition(anchor, next).y + fy * next.h;
   return Math.max(0, newFingerY - fvY);
-}
-
-/** Шаг по положению ползунка 0…1: справа — крупнее (шаг 0), слева — мельче (шаг 3). */
-export function stepForSliderFraction(fraction: number): number {
-  'worklet';
-  const f = Math.max(0, Math.min(1, fraction));
-  return GALLERY_LAST_STEP - Math.round(f * GALLERY_LAST_STEP);
-}
-
-/** Положение ползунка 0…1 для шага (обратное к stepForSliderFraction). */
-export function sliderFractionForStep(step: number): number {
-  'worklet';
-  return (GALLERY_LAST_STEP - clampStep(step)) / GALLERY_LAST_STEP;
 }
 
 /**

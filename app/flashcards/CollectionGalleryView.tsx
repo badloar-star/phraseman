@@ -9,14 +9,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
-import { GestureDetector } from 'react-native-gesture-handler';
 
 import { CardsGallery, type GalleryCard } from '../../components/cards-grid/CardsGallery';
 import { cardsPerfCount, cardsPerfFlush } from '../../components/cards-grid/cardsPerfLog';
-import { useCardsGridStep } from '../../components/cards-grid/useCardsScale';
+import { useFixedGalleryStep } from '../../components/cards-grid/useFixedGalleryStep';
 import { useGalleryGrids } from '../../components/cards-grid/useGalleryGrids';
-import { ZoomBar } from '../../components/cards-grid/ZoomBar';
-import { GALLERY_DEFAULT_STEP } from '../../components/cards-grid/cardsGalleryLayout';
+import { StickySearchBar } from '../../components/cards-grid/StickySearchBar';
 import { strengthDotCount, type WordStrength } from './word_strength';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
@@ -90,20 +88,17 @@ const unlimitedLabelFor = (lang: Lang): string => triLang(lang, {
 });
 
 const zoomCopyFor = (lang: Lang) => triLang(lang, {
-  ru: { smaller: 'Мельче', larger: 'Крупнее', more: 'Ещё' },
-  uk: { smaller: 'Дрібніше', larger: 'Крупніше', more: 'Ще' },
-  en: { smaller: 'Smaller', larger: 'Larger', more: 'More' },
-  es: { smaller: 'Más pequeño', larger: 'Más grande', more: 'Más' },
-  'pt-BR': { smaller: 'Menor', larger: 'Maior', more: 'Mais' },
-  vi: { smaller: 'Nhỏ hơn', larger: 'Lớn hơn', more: 'Thêm' },
-  id: { smaller: 'Lebih kecil', larger: 'Lebih besar', more: 'Lainnya' },
-  tr: { smaller: 'Daha küçük', larger: 'Daha büyük', more: 'Daha fazla' },
-  pl: { smaller: 'Mniejsze', larger: 'Większe', more: 'Więcej' },
+  ru: { more: 'Ещё' },
+  uk: { more: 'Ще' },
+  en: { more: 'More' },
+  es: { more: 'Más' },
+  'pt-BR': { more: 'Mais' },
+  vi: { more: 'Thêm' },
+  id: { more: 'Lainnya' },
+  tr: { more: 'Daha fazla' },
+  pl: { more: 'Więcej' },
 });
 
-/** Во время поиска результаты идут в две колонки (макет «Поиск», шаг 1); это не «первый вход»: он открывается горизонтальным видом (GALLERY_OPEN_STEP). */
-const SEARCH_STEP = GALLERY_DEFAULT_STEP;
-const TAG = '[CARDS-ZOOM]';
 
 export default function CollectionGalleryView({
   cards, lang, header, strengthForCard, hiddenByLimitCount, limitCta, onOpenPremiumLimit, onOpenCard, onSpeak, onCardsViewed,
@@ -142,43 +137,13 @@ export default function CollectionGalleryView({
   }), [cards, lang, strengthForCard]);
   // зачем (владелец 18.10): сетки по всем шагам с рядами под текст — их же используют докрутка щипка и окно отрисовки
   const { grids, reportFix } = useGalleryGrids(items, width);
-  const gridsRef = useRef(grids);
-  gridsRef.current = grids;
   const byId = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
 
-  const { step, setStep, gesture, morph, morphFrom } = useCardsGridStep({
-    count: items.length,
-    width,
-    viewportH: screenH,
-    sideInset: SIDE,
-    getGridTop: () => gridTopRef.current,
-    getGrids: () => gridsRef.current,
-    getScrollY: () => scrollYRef.current,
-    scrollTo: (y) => {
-      // зачем: докрутка при смене шага — мгновенная (плитки перетекают от прежних позиций с учётом этого сдвига)
-      scrollYRef.current = y;
-      scrollRef.current?.scrollTo({ y, animated: false });
-    },
-  });
+  // зачем (владелец 22.10: «ползунок и щипок убираем, оставляем только нормальный вид»): шаг всегда 0 — одна горизонтальная карточка на строку (высота 118, радиус 16, как в макете при открытии);
+  // ни щипка, ни ползунка, ни запоминания шага; сохранённый шаг прошлых версий сбрасывается на 0 ([CARDS-GRID] old=… → 0). Поиск тоже на шаге 0.
+  const { step, morph } = useFixedGalleryStep();
 
-  // зачем (макет cards-v2 «Поиск»): пока идёт поиск, результаты — две колонки; после очистки возвращается шаг, который человек выбрал сам
-  // (во время поиска шаг не запоминаем — это временный вид, а не выбор руки).
   const searching = searchQuery.trim().length > 0;
-  const beforeSearchStep = useRef<number | null>(null);
-  const stepNow = useRef(step);
-  stepNow.current = step;
-  useEffect(() => {
-    if (searching && beforeSearchStep.current === null) {
-      beforeSearchStep.current = stepNow.current;
-      console.log(`${TAG} поиск начат: шаг ${stepNow.current} → ${SEARCH_STEP}`);
-      if (stepNow.current !== SEARCH_STEP) setStep(SEARCH_STEP, undefined, 'поиск', false);
-    } else if (!searching && beforeSearchStep.current !== null) {
-      const back = beforeSearchStep.current;
-      beforeSearchStep.current = null;
-      console.log(`${TAG} поиск окончен: возвращаем шаг ${back}`);
-      if (back !== stepNow.current) setStep(back, undefined, 'поиск-конец', false);
-    }
-  }, [searching, setStep]);
 
   // зачем (координатор 05.10, «500 фраз открываются 13,8 с»): [PACK-OPEN] галереи — сколько карточек и когда посчитан список плиток.
   const galleryMountedAtRef = useRef(Date.now());
@@ -240,11 +205,9 @@ export default function CollectionGalleryView({
       setRootWindowY(Math.max(0, y));
     });
   }, [pressedCard, screenH]);
-  const onZoomStep = useCallback((next: number) => setStep(next, undefined, 'ползунок'), [setStep]);
 
   return (
     <View ref={rootRef} collapsable={false} onLayout={measureRoot} style={styles.root}>
-      <GestureDetector gesture={gesture}>
         <ScrollView
           ref={scrollRef}
           testID="fc-gallery-scroll"
@@ -257,7 +220,7 @@ export default function CollectionGalleryView({
           stickyHeaderIndices={[1]}
           keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <View>{header}</View>
-          <ZoomBar g={g} step={step} onStep={onZoomStep} smallerLabel={zoomCopy.smaller} largerLabel={zoomCopy.larger} search={searchField ?? undefined} />
+          <StickySearchBar g={g} search={searchField ?? null} />
           {!selectionMode && activeCat === 'custom' && allowAddCustomCard ? (
             <Pressable testID="fc-create-card" accessibilityRole="button" onPress={onCreateCard} style={({ pressed }) => [styles.addBtn, { backgroundColor: g.hairlineSoft }, pressed && { opacity: 0.82 }]}>
               <Ionicons name="add" size={20} color={g.text} />
@@ -273,7 +236,6 @@ export default function CollectionGalleryView({
               width={width}
               step={step}
               morph={morph}
-              morphFrom={morphFrom}
               scrollY={Math.max(0, scrollY - gridTop)}
               viewportH={screenH}
               grids={grids}
@@ -303,7 +265,6 @@ export default function CollectionGalleryView({
             />
           </View>
         </ScrollView>
-      </GestureDetector>
 
       {selectionMode ? (
         <PanelDock>

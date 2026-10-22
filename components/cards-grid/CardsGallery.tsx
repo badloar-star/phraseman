@@ -11,13 +11,13 @@ import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FlipCard } from './FlipCard';
-import { GALLERY_STEPS, unionRange } from './cardsGalleryLayout';
+import { GALLERY_STEPS } from './cardsGalleryLayout';
 import { FIT_MAX_FONT_SCALE } from './cardsGalleryFit';
 import { gridVisibleRange, type GalleryGrid, type GalleryGrids, type TileGeom } from './cardsGalleryGrid';
 import { cardsPerfCount, cardsPerfMark } from './cardsPerfLog';
 import { GalleryTileFace } from './GalleryTileFace';
 import { galleryFaceColors } from './galleryFaceColors';
-import type { GridMorph, GridState } from './useCardsScale';
+import type { GridMorph } from './useFixedGalleryStep';
 import { useGalleryGrids } from './useGalleryGrids';
 
 export type GalleryCard = Readonly<{
@@ -35,12 +35,9 @@ type Props = Readonly<{
   cards: readonly GalleryCard[];
   /** Ширина сетки (экран минус поля). */
   width: number;
-  step?: number;
-  morph?: GridMorph;
-  /** Если идёт перетекание — из какого шага и с какой прокруткой (окно отрисовки покрывает обе раскладки). */
-  morphFrom?: Readonly<{ step: number; scrollY: number }> | null;
-  /** Совместимость: состояние из старого хука `useCardsScale` вместо `step/morph/morphFrom`. */
-  scale?: GridState;
+  /** Шаг сетки; с 22.10 всегда 0 (useFixedGalleryStep): ползунок и щипок убраны, остался нормальный вид. */
+  step: number;
+  morph: GridMorph;
   /** Смещение прокрутки относительно верха сетки и высота окна — для окна отрисовки. */
   scrollY: number;
   viewportH: number;
@@ -202,10 +199,7 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
   );
 });
 
-function CardsGalleryInner({ g, cards, width, step: stepProp, morph: morphProp, morphFrom: morphFromProp, scale, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selectedIds, highlight, grids: gridsProp, onFix: onFixProp }: Props) {
-  const step = stepProp ?? scale?.step ?? 1;
-  const morph = (morphProp ?? scale?.morph) as GridMorph;
-  const morphFrom = morphFromProp ?? scale?.morphFrom ?? null;
+function CardsGalleryInner({ g, cards, width, step, morph, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, moreLabel, selectedIds, highlight, grids: gridsProp, onFix: onFixProp }: Props) {
   const { to, live, fx, fy } = morph;
   // зачем: экран, который сам считает сетки (Сохранённые), передаёт их сюда; остальные (предпросмотр набора сообщества) получают свои
   const own = useGalleryGrids(gridsProp ? EMPTY_CARDS : cards, width);
@@ -218,11 +212,7 @@ function CardsGalleryInner({ g, cards, width, step: stepProp, morph: morphProp, 
     // живой отклик щипка: сетка тянется за пальцами вокруг точки опоры (translate → scale → translate обратно)
     transform: [{ translateX: fx.value }, { translateY: fy.value }, { scale: live.value }, { translateX: -fx.value }, { translateY: -fy.value }],
   }));
-  const range = useMemo(() => {
-    const now = gridVisibleRange(grids.grids[step]!, cards.length, scrollY, viewportH);
-    if (!morphFrom) return now;
-    return unionRange(now, gridVisibleRange(grids.grids[morphFrom.step]!, cards.length, Math.max(0, morphFrom.scrollY), viewportH));
-  }, [cards.length, grids, morphFrom, scrollY, step, viewportH]);
+  const range = useMemo(() => gridVisibleRange(grids.grids[step]!, cards.length, scrollY, viewportH), [cards.length, grids, scrollY, step, viewportH]);
   const visible = cards.slice(range.from, range.to);
   cardsPerfCount('gallery-render');
   cardsPerfMark('tiles-in-window', visible.length);

@@ -414,11 +414,11 @@ export async function applyDialogQuota(stableId: string, remaining: number | 're
 // следующая строка с той же ссылкой открывалась бы не в исходном виде. Каждая фикстура Карточек начинает с чистого вида.
 export async function resetCardsViewPrefs(): Promise<string> {
   assertDevBuild('cards view prefs');
-  const { saveGalleryStep } = await import('../components/cards-grid/gallery_step_prefs');
+  const { resetStoredGalleryStep } = await import('../components/cards-grid/gallery_step_prefs');
   // зачем (владелец 18.10 через координатора: «первый вход и сброс дают горизонтальный вид»): сброс вида ставит тот же шаг, с которого экран открывается у свежего человека
   const { GALLERY_OPEN_STEP } = await import('../components/cards-grid/cardsGalleryLayout');
   const { setCollectionViewMode } = await import('./flashcards/collection_view_prefs');
-  saveGalleryStep(GALLERY_OPEN_STEP);
+  await resetStoredGalleryStep();
   setCollectionViewMode('list');
   // зачем: черновик нового набора переживает перезапуск — кадр «Новый набор» после кадра «Новая карточка (Test)» открылся бы с чужим текстом
   const { clearCommunityPackCreateDraft } = await import('./community_packs/communityPackDraftStorage');

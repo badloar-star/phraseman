@@ -2568,16 +2568,35 @@ export async function syncPendingLevelSpinStarGrants(
   token: AccountGenerationToken,
 ): Promise<{ synced: number; pending: number }> {
   const ownerStableId = token.stableId?.trim();
-  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return { synced: 0, pending: 0 };
+  // зачем (координатор 22.10, «сперва логи»): после клеймов наград очередь не дошла до сервера ни разу,
+  // а каждый выход ниже был немым. Метка [COIN-WALLET] — вход, каждый ранний выход, ответ, catch и итог.
+  const walletLog = (event: string, fields: Readonly<Record<string, unknown>>): void => {
+    console.warn(`[COIN-WALLET] sync:${event}`, JSON.stringify({ owner: ownerStableId?.slice(0, 8) ?? null, ...fields }));
+  };
+  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
+    walletLog('skip', { reason: ownerStableId ? 'account_generation_stale' : 'owner_missing', generation: token.generation });
+    return { synced: 0, pending: 0 };
+  }
   const recovered = await recoverProjectionShared(token);
   publishProjection(token, recovered);
   const snapshot = await readOutbox(ownerStableId);
+  walletLog('enter', { generation: token.generation, outbox: snapshot.length, ops: snapshot.map((op) => op.operationId).slice(0, 10) });
   let synced = 0;
   for (const operation of snapshot) {
-    if (!isCurrentAccountGeneration(token, ownerStableId)) break;
+    const op = operation.operationId;
+    if (!isCurrentAccountGeneration(token, ownerStableId)) {
+      walletLog('stop', { reason: 'account_generation_stale', at: 'loop_start', op });
+      break;
+    }
     try {
-      if (!await hasValidFingerprint(operation)) continue;
-      if (!isCurrentAccountGeneration(token, ownerStableId)) break;
+      if (!await hasValidFingerprint(operation)) {
+        walletLog('skip_op', { reason: 'fingerprint_invalid', op, promotionEligibility: operation.promotionEligibility ?? null });
+        continue;
+      }
+      if (!isCurrentAccountGeneration(token, ownerStableId)) {
+        walletLog('stop', { reason: 'account_generation_stale', at: 'after_fingerprint', op });
+        break;
+      }
       const stored = await commitPhoneStateNonMonetaryEconomyGrant({
         operationId: operation.operationId,
         kind: 'star_credit',
@@ -2586,9 +2605,18 @@ export async function syncPendingLevelSpinStarGrants(
         expectedAccountGeneration: token.generation,
         exactResult: operation,
       });
-      if (!stored || !isCurrentAccountGeneration(token, ownerStableId)) break;
+      if (!stored || !isCurrentAccountGeneration(token, ownerStableId)) {
+        walletLog('stop', { reason: stored ? 'account_generation_stale' : 'phone_state_commit_refused', at: 'before_network', op, generation: token.generation });
+        break;
+      }
+      const startedAt = Date.now();
+      walletLog('call', { op, amount: operation.amount, promotionEligibility: operation.promotionEligibility ?? null });
       const ack = await callLevelSpinStarComposite(operation);
-      if (!isCurrentAccountGeneration(token, ownerStableId)) break;
+      walletLog('ack', { op, ms: Date.now() - startedAt, materialized: ack.materialized, starsBalance: ack.starsBalance, starsSeq: ack.starsSeq });
+      if (!isCurrentAccountGeneration(token, ownerStableId)) {
+        walletLog('stop', { reason: 'account_generation_stale', at: 'after_network', op });
+        break;
+      }
       if (ack.materialized !== true
         || ack.operationId !== operation.operationId
         || ack.requestFingerprint !== operation.requestFingerprint
@@ -2693,13 +2721,20 @@ export async function syncPendingLevelSpinStarGrants(
         return compacted;
       }));
       if (projection) publishProjection(token, projection);
+      else walletLog('ack_not_applied', { op, reason: 'outbox_entry_changed_or_account_stale' });
     } catch (e) {
       // Sync is persistence only; the locally committed credit remains durable.
+      walletLog('catch', { op, code: (e as { code?: unknown } | null)?.code ?? null, message: e instanceof Error ? e.message : String(e) });
       DebugLogger.error('level_spin_star_grants:compactedIds', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
-  if (!isCurrentAccountGeneration(token, ownerStableId)) return { synced: 0, pending: 0 };
-  return { synced, pending: (await readOutbox(ownerStableId)).length };
+  if (!isCurrentAccountGeneration(token, ownerStableId)) {
+    walletLog('done', { synced, pending: null, reason: 'account_generation_stale' });
+    return { synced: 0, pending: 0 };
+  }
+  const pending = (await readOutbox(ownerStableId)).length;
+  walletLog('done', { synced, pending });
+  return { synced, pending };
 }
 
 // ── Q-COIN (b): квитанция серверной сверки coinReconcileV1 ────────────────────

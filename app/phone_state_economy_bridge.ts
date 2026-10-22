@@ -244,23 +244,47 @@ type NonMonetaryEconomyGrantInput = Readonly<{
   exactResult: CustomizationRunePurchaseExactResultV1 | unknown;
 }>;
 
+// зачем (координатор 22.10, «сперва логи»): отказ моста для star_credit останавливал ВСЮ очередь
+// начислений монет молча — после клеймов наград телефон ни разу не позвал сервер, и причину не видно.
+// Каждый отказ пишет причину и значения, которые её решили. Условия прежние.
+function refuseStarCredit(reason: string, fields: Readonly<Record<string, unknown>>): false {
+  console.warn('[COIN-WALLET] phone_state_commit_refused', JSON.stringify({ reason, ...fields }));
+  return false;
+}
+
 export async function commitPhoneStateNonMonetaryEconomyGrant(
   input: NonMonetaryEconomyGrantInput,
 ): Promise<boolean> {
   const active = runtime;
-  if (!active) return false;
+  if (!active) {
+    return input.kind === 'star_credit'
+      ? refuseStarCredit('runtime_missing', { op: input.operationId })
+      : false;
+  }
   if (input.kind === 'star_credit') {
+    const op = input.operationId;
     const exact = parseLevelSpinStarCreditExactResult(input.exactResult);
-    if (!exact
-      || input.operationId !== exact.operationId
-      || input.entitlementId !== exact.operationId
-      || input.expectedOwnerStableId !== exact.ownerStableId
+    if (!exact) return refuseStarCredit('exact_parse_failed', { op });
+    if (input.operationId !== exact.operationId || input.entitlementId !== exact.operationId) {
+      return refuseStarCredit('operation_id_mismatch', { op, exactOp: exact.operationId, entitlementId: input.entitlementId });
+    }
+    if (input.expectedOwnerStableId !== exact.ownerStableId) {
+      return refuseStarCredit('owner_mismatch_exact', { op, expectedOwner: input.expectedOwnerStableId.slice(0, 8), exactOwner: exact.ownerStableId.slice(0, 8) });
+    }
+    if (active.scope.stableUid !== input.expectedOwnerStableId) {
+      return refuseStarCredit('runtime_owner_mismatch', { op, runtimeOwner: String(active.scope.stableUid).slice(0, 8), expectedOwner: input.expectedOwnerStableId.slice(0, 8) });
+    }
+    if (active.runtimeGeneration !== input.expectedAccountGeneration) {
+      return refuseStarCredit('generation_mismatch', { op, runtimeGeneration: active.runtimeGeneration, expectedGeneration: input.expectedAccountGeneration });
+    }
+    if (!await hasValidLevelSpinStarCreditRequestFingerprint(exact)) {
+      return refuseStarCredit('fingerprint_invalid', { op });
+    }
+    if (runtime !== active
       || active.scope.stableUid !== input.expectedOwnerStableId
-      || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
-    if (!await hasValidLevelSpinStarCreditRequestFingerprint(exact)
-      || runtime !== active
-      || active.scope.stableUid !== input.expectedOwnerStableId
-      || active.runtimeGeneration !== input.expectedAccountGeneration) return false;
+      || active.runtimeGeneration !== input.expectedAccountGeneration) {
+      return refuseStarCredit('runtime_changed_during_check', { op, runtimeReplaced: runtime !== active });
+    }
   }
   if (input.kind === 'star_credit_ack') {
     const exact = parseLevelSpinStarCreditAckExactResult(input.exactResult);

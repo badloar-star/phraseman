@@ -44,6 +44,8 @@ jest.mock(
     parseLearningV2CourseSessionAuxiliaryChildV1: jest.fn(),
     parseLearningV2CourseSessionIntroChildV1: jest.fn(),
     parseLearningV2CourseSessionLearnerChildV1: jest.fn(),
+    bindLearningV2CourseSessionLearnerProjectionToSourceV1: jest.fn(),
+    learnerProjectionFingerprintV1: jest.fn(),
   }),
 );
 jest.mock(
@@ -65,6 +67,7 @@ jest.mock(
 import {
   clearLearningV2CourseReleasedSessionCacheV3,
   getLearningV2CourseSessionReadySummaryV3,
+  hydrateLearningV2CourseReleasedSessionCacheV3,
   isLearningV2CourseSessionReadyHandleV3,
   loadCurrentLearningV2CourseReleasedSessionV3,
   peekCurrentLearningV2CourseReleasedSessionV3,
@@ -76,6 +79,8 @@ import {
   parseLearningV2CourseSessionAuxiliaryChildV1,
   parseLearningV2CourseSessionIntroChildV1,
   parseLearningV2CourseSessionLearnerChildV1,
+  bindLearningV2CourseSessionLearnerProjectionToSourceV1,
+  learnerProjectionFingerprintV1,
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 import { parseLearningV2CourseSessionEvaluatorCapsuleChildV1 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 /* eslint-enable import/first */
@@ -99,7 +104,7 @@ let lastRequest: Record<string, unknown> | null;
 
 function response() {
   return {
-    schemaVersion: "v2-course-released-session-response.v3",
+    schemaVersion: "v2-course-released-session-response.v4",
     releaseId: "release-1",
     activeRootFingerprint: h("a"),
     activeBaseRootFingerprint: h("b"),
@@ -114,20 +119,22 @@ function response() {
     packageFingerprint: h("1"),
     childSetFingerprint: h("0"),
     introFingerprint: h("6"),
-    learnerFingerprint: h("2"),
-    auxiliaryFingerprint: h("7"),
+    sourceLearnerFingerprint: h("2"),
+    learnerProjectionFingerprint: h("9"),
+    sourceAuxiliaryFingerprint: h("7"),
+    auxiliaryProjectionFingerprint: h("0"),
     evaluatorCapsuleSetFingerprint: h("8"),
     audioExtensionFingerprint: h("3"),
     audioFingerprint: h("5"),
     canonicalIntroRaw: '{"intro":true}',
-    canonicalLearnerRaw: '{"learner":true}',
+    canonicalLearnerProjectionRaw: '{"learnerFingerprint":"' + h("9") + '"}',
     canonicalEvaluatorCapsuleRaw: '{"capsule":true}',
-    canonicalAuxiliaryRaw: '{"auxiliary":true}',
+    canonicalAuxiliaryProjectionRaw: '{"auxiliaryFingerprint":"' + h("0") + '"}',
     canonicalAudioChildRaw: '{"audio":true}',
-    transportAuthority: "firebase_callable_auth_and_app_check_boundary",
+    transportAuthority: "authenticated_callable_only",
     repositoryOriginProjection:
       "active_v3_composite_text_audio_exact_session_join",
-    learnerProjection: "intro_learner_capsule_auxiliary_audio_child_only",
+    learnerProjection: "canonical_learner_and_auxiliary_wire_projection_v2",
     evaluatorIsolation: "server_sidecar_not_exposed",
     answerPayload: "absent",
     correctnessAuthority: "local_device_only",
@@ -160,14 +167,22 @@ describe("Learning V2 composite text+audio app client v3", () => {
       courseSessionId,
       introFingerprint: h("6"),
     } as never);
-    jest.mocked(parseLearningV2CourseSessionLearnerChildV1).mockReturnValue({
+    const projectedLearner = {
+      courseSessionId,
+      targetLanguage: "es",
+      learnerFingerprint: h("9"),
+    } as never;
+    const boundLearner = {
       courseSessionId,
       targetLanguage: "es",
       learnerFingerprint: h("2"),
-    } as never);
+    } as never;
+    jest.mocked(parseLearningV2CourseSessionLearnerChildV1).mockReturnValue(projectedLearner);
+    jest.mocked(bindLearningV2CourseSessionLearnerProjectionToSourceV1).mockReturnValue(boundLearner);
+    jest.mocked(learnerProjectionFingerprintV1).mockReturnValue(h("9"));
     jest.mocked(parseLearningV2CourseSessionAuxiliaryChildV1).mockReturnValue({
       courseSessionId,
-      auxiliaryFingerprint: h("7"),
+      auxiliaryFingerprint: h("0"),
     } as never);
     jest
       .mocked(parseLearningV2CourseSessionEvaluatorCapsuleChildV1)
@@ -205,7 +220,7 @@ describe("Learning V2 composite text+audio app client v3", () => {
     expect(httpsCallable).not.toHaveBeenCalled();
   });
 
-  test("persists canonical text+audio descriptors and reuses account-scoped LKG", async () => {
+  test("persists canonical text and audio descriptors and reuses account-scoped LKG", async () => {
     const online = await loadCurrentLearningV2CourseReleasedSessionV3(locator);
     expect(online).toMatchObject({
       source: "network",
@@ -226,6 +241,21 @@ describe("Learning V2 composite text+audio app client v3", () => {
       "targetLanguage",
     ]);
     expect(lastRequest).not.toHaveProperty("answer");
+    expect(httpsCallable).toHaveBeenCalledWith(
+      expect.anything(),
+      "learningV2CourseReleasedSessionGetV4",
+    );
+    expect(bindLearningV2CourseSessionLearnerProjectionToSourceV1).toHaveBeenCalledWith({
+      projectedLearner: expect.objectContaining({ learnerFingerprint: h("9") }),
+      projectedLearnerRaw: response().canonicalLearnerProjectionRaw,
+      expectedProjectionFingerprint: h("9"),
+      sourceLearnerFingerprint: h("2"),
+    });
+    expect(parseLearningV2CourseSessionAuxiliaryChildV1).toHaveBeenCalledWith(
+      response().canonicalAuxiliaryProjectionRaw,
+    );
+    expect([...storage.keys()]).toContain("learning_v2_course_released_session_cache_v4");
+    expect([...storage.keys()]).not.toContain("learning_v2_course_released_session_cache_v3");
     expect(peekCurrentLearningV2CourseReleasedSessionV3(locator)).toMatchObject(
       {
         courseSessionId,
@@ -240,26 +270,26 @@ describe("Learning V2 composite text+audio app client v3", () => {
     ).resolves.toMatchObject({ source: "lkg", transport: "offline_lkg" });
   });
 
-  test("mints readiness only after the canonical response and local MP3 preload complete", async () => {
+  // зачем (владелец 22.10: «аудио убрали и сменили на TTS»): готовность = готов текст; записи не готовятся и не проверяются.
+  test("mints readiness after the canonical response without preparing any recordings", async () => {
     const handle = await prepareCurrentLearningV2CourseSessionV3({
       locator,
       sessionRunId: "run-neutral-1",
     });
     expect(isLearningV2CourseSessionReadyHandleV3(handle)).toBe(true);
-    expect(preloadAudio).toHaveBeenCalledTimes(1);
+    expect(preloadAudio).not.toHaveBeenCalled();
     expect(getLearningV2CourseSessionReadySummaryV3(handle)).toMatchObject({
       courseSessionId,
       sessionRunId: "run-neutral-1",
       textReadiness: "canonical_children_parsed_and_account_scoped_cached",
-      audioReadiness: "all_selected_mp3_hash_verified_local_files",
-      startPolicy: "intro_may_open_only_after_text_and_audio_ready",
+      audioReadiness: "device_system_tts_ready_no_prerecorded_audio",
+      startPolicy: "intro_may_open_after_text_ready_device_speech_covers_all_audio",
       answerPathTransport: "none",
       releaseAuthority: false,
     });
     expect(resolveLearningV2CourseSessionReadyMaterialV3(handle)).toMatchObject(
       {
-        result: { material: { courseSessionId } },
-        audio: audioPreload,
+        result: { material: { courseSessionId, audioChild: null, audioDelivery: "device_system_tts_only" } },
       },
     );
   });
@@ -281,5 +311,42 @@ describe("Learning V2 composite text+audio app client v3", () => {
     await expect(
       loadCurrentLearningV2CourseReleasedSessionV3(locator),
     ).rejects.toMatchObject({ code: "functions/data-loss" });
+  });
+
+  test("never reads a legacy v3 cache row that may contain unprojected learner bytes", async () => {
+    storage.set("learning_v2_course_released_session_cache_v3", JSON.stringify({
+      schemaVersion: "learning-v2-course-released-session-cache.v3",
+      rows: [{ canonicalResponseRaw: JSON.stringify({
+        ...response(),
+        canonicalLearnerRaw: '{"choiceFeedback":[{"correct":true}]}',
+      }) }],
+    }));
+    network = async () => {
+      throw new Error("offline");
+    };
+
+    await expect(loadCurrentLearningV2CourseReleasedSessionV3(locator))
+      .rejects.toThrow("offline");
+    expect(AsyncStorage.getItem).toHaveBeenLastCalledWith(
+      "learning_v2_course_released_session_cache_v4",
+    );
+  });
+
+  test("v4 hydration purges the legacy v3 cache once without migrating it", async () => {
+    storage.set("learning_v2_course_released_session_cache_v3", "legacy-unprojected");
+    jest.mocked(AsyncStorage.removeItem).mockClear();
+
+    await hydrateLearningV2CourseReleasedSessionCacheV3();
+    await hydrateLearningV2CourseReleasedSessionCacheV3();
+
+    expect(AsyncStorage.removeItem).toHaveBeenCalledTimes(1);
+    expect(AsyncStorage.removeItem).toHaveBeenCalledWith(
+      "learning_v2_course_released_session_cache_v3",
+    );
+    expect(storage.has("learning_v2_course_released_session_cache_v3")).toBe(false);
+    expect(AsyncStorage.setItem).not.toHaveBeenCalledWith(
+      "learning_v2_course_released_session_cache_v3",
+      expect.anything(),
+    );
   });
 });

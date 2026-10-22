@@ -126,9 +126,10 @@ describe("Learning V2 continuous map performance contract", () => {
     // R09 (15.10): ленивый загрузчик клиента занятий переехал в общий модуль запуска (вкладка и Главная — один путь)
     expect(readFileSync(join(__dirname, "..", "app", "learning_v2_session_launch_v1.ts"), "utf8")).toContain("loadLearningV2SessionClientV3");
     expect(lessons).toContain("prepareLearningV2SessionRunV1(");
-    expect(lessons).toContain("loadLearningV2AudioPackV1");
-    // Проверка «есть ли озвучка» идёт по лёгкому срезу, а не по 504 КБ.
-    expect(lessons).toContain("learningV2HasPublishedAudioV1");
+    // зачем (владелец 22.10: «аудио убрали и сменили на TTS»): вкладка не грузит пакет записей и не проверяет «есть ли озвучка» —
+    // в занятии звучит только голос телефона.
+    expect(lessons).not.toContain("loadLearningV2AudioPackV1");
+    expect(lessons).not.toContain("learningV2HasPublishedAudioV1");
   });
 
   test("лёгкий срез озвучки совпадает с полным индексом", () => {

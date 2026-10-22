@@ -88,8 +88,14 @@ describe('P23 · подключение экранов', () => {
     expect(home).toContain('useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive)');
     expect(home).not.toMatch(/continueV2\.(done|total)\b/);
   });
-  it('запуск занятия V2 пишет метку, старые уроки пишут время', () => {
-    expect(read('app/(tabs)/lessons.tsx')).toContain('recordHomeContinueV2(studyTarget, {');
+  it('метка V2 появляется после входа в экран занятия, старые уроки пишут время', () => {
+    // Подготовка и закрытие модалки ещё не означают, что урок действительно открылся.
+    expect(read('app/(tabs)/lessons.tsx')).not.toContain('recordHomeContinueV2(');
+    expect(read('app/learning_v2_home_continue_route.ts')).not.toContain('recordHomeContinueV2(');
+    const sessionRoute = read('app/learning-v2/session/[id].tsx');
+    expect(sessionRoute).toContain('function LearningV2DirectSessionArrival()');
+    expect(sessionRoute).toContain('recordHomeContinueV2(studyTarget as RuntimeStudyTarget, {');
+    expect(sessionRoute).toContain('? <LearningV2DirectSessionArrival />');
     expect(read('app/lesson1.tsx')).toContain('recordHomeContinueLegacy(studyTarget);');
     expect(read('app/lesson_menu.tsx')).toContain('recordHomeContinueLegacy(studyTarget);');
   });
@@ -109,7 +115,7 @@ describe('P23 · все входы в занятие V2 ставят метку'
     if (e.isDirectory()) return e.name === 'node_modules' ? [] : walk(rel);
     return /\.(ts|tsx)$/.test(e.name) ? [rel] : [];
   });
-  it('пути в занятие есть только там, где пишется метка', () => {
+  it('пути в занятие не пишут метку до подтверждённого входа в экран', () => {
     const pushers = [...walk('app'), ...walk('components')]
       .filter((rel) => !rel.startsWith('app/learning-v2/session/'))
       .filter((rel) => /pathname:\s*["']\/learning-v2\/session\/\[id\]["']/.test(read(rel)));
@@ -117,7 +123,8 @@ describe('P23 · все входы в занятие V2 ставят метку'
     for (const [rel, marker] of ALLOWED) if (marker) expect(read(rel)).toContain(marker);
     const callers = [...walk('app'), ...walk('components')].filter((rel) => rel !== 'app/learning_v2_session_launch_v1.ts' && read(rel).includes('learningV2SessionHrefV1('));
     expect(callers.sort()).toEqual(['app/(tabs)/lessons.tsx', 'app/learning_v2_home_continue_route.ts']);
-    expect(read('app/(tabs)/lessons.tsx')).toContain('rememberHomeContinueV2(selected, sessionId)');
-    expect(read('app/learning_v2_home_continue_route.ts')).toContain('recordHomeContinueV2(ctx.studyTarget as RuntimeStudyTarget');
+    expect(read('app/(tabs)/lessons.tsx')).not.toContain('rememberHomeContinueV2(');
+    expect(read('app/learning_v2_home_continue_route.ts')).not.toContain('recordHomeContinueV2(');
+    expect(read('app/learning-v2/session/[id].tsx')).toContain('recordHomeContinueV2(studyTarget as RuntimeStudyTarget, {');
   });
 });

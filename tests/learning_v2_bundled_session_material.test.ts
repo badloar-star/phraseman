@@ -58,7 +58,7 @@ const LOCATOR = Object.freeze({
 });
 
 describe("bundled Learning V2 session material (no network)", () => {
-  test("keeps device-speech preview dev-only without weakening released audio", () => {
+  test("uses device system TTS in preview and released bundled sessions", () => {
     const locator = {
       ...LOCATOR,
       sessionOrdinal: 1,
@@ -69,10 +69,11 @@ describe("bundled Learning V2 session material (no network)", () => {
       Object.defineProperty(globalThis, "__DEV__", { configurable: true, value: true });
       expect(previewLearningV2CourseSessionMaterialV3(locator)).toMatchObject({
         audioChild: null,
-        audioDelivery: "device_speech_preview",
+        audioDelivery: "device_system_tts_only",
       });
       expect(bundledLearningV2CourseSessionMaterialV3(locator)).toMatchObject({
-        audioDelivery: "published_mp3",
+        audioChild: null,
+        audioDelivery: "device_system_tts_only",
       });
 
       Object.defineProperty(globalThis, "__DEV__", { configurable: true, value: false });

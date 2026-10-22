@@ -9,17 +9,7 @@ import {
   repairStableAuthLinkAfterIdentityFailure,
 } from "./cloud_sync";
 import { withBackgroundNetworkLease } from "./interactive_network_quiet";
-import {
-  getLearningV2CourseSessionAudioPreloadSummaryV1,
-  isLearningV2CourseSessionAudioPreloadHandleV1,
-  preloadLearningV2CourseSessionAudioV1,
-  type LearningV2CourseSessionAudioPreloadHandleV1,
-} from "./learning_v2_course_session_audio_preload_v1";
 import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_session1_production_audio_v1";
-import {
-  buildLearningV2FactoryBundledAudioChildV1,
-  learningV2FactoryWordAudioFileV1,
-} from "./learning_v2_factory_production_audio_v1";
 import { buildLearningV2EsSession1BundledAudioChildV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { buildLearningV2EsSession2BundledAudioChildV1 } from "./learning_v2_es_session2_production_audio_v1";
 import { peekStableId } from "./stable_id";
@@ -39,7 +29,6 @@ import {
   LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1,
   parseLearningV2CourseSessionAudioChildV1,
   type LearningV2CourseSessionAudioChildV1,
-  type LearningV2CourseSessionAudioFileV1,
 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
 import {
   LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1,
@@ -63,8 +52,7 @@ import { materializeLearningV2CourseSessionAudioChildV1 } from "../modules/learn
 import type { LearningV2GeneratedSessionShardV1 } from "../modules/learning-v2/content/generator_session_shard";
 import { authoredEsLearningV2SessionShard } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
-import { FACTORY_NATIVE_PROJECTION_VERSION_V1, factoryNativeLearningV2CourseIdentityV1, factoryNativeSessionWordEncountersV1, materializeFactoryNativeLearningV2SessionV1, type LearningV2FactoryNativeNewWordEncounterV1, type LearningV2FactoryNativePracticeSemanticV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
-import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
+import { FACTORY_NATIVE_PROJECTION_VERSION_V1, factoryNativeLearningV2CourseIdentityV1, materializeFactoryNativeLearningV2SessionV1, type LearningV2FactoryNativeNewWordEncounterV1, type LearningV2FactoryNativePracticeSemanticV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 import {
   LEARNING_V2_INTERFACE_LOCALES,
   type LearningV2InterfaceLocale,
@@ -125,10 +113,8 @@ export type LearningV2CourseReleasedSessionMaterialV3 = Readonly<{
   evaluatorCapsuleChild: LearningV2CourseSessionEvaluatorCapsuleChildV1;
   auxiliaryChild: LearningV2CourseSessionAuxiliaryChildV1;
   audioChild: LearningV2CourseSessionAudioChildV1 | null;
-  audioDelivery:
-    | "published_mp3"
-    | "recorded_mp3_first_with_device_speech_fallback"
-    | "device_speech_preview";
+  // зачем (владелец 22.10): в занятиях звучит только голос телефона — записи mp3 сняты.
+  audioDelivery: "device_system_tts_only";
   factorySourceFingerprint: string | null;
   factoryWordEncounterQueues: Readonly<Record<string, readonly LearningV2FactoryNativeNewWordEncounterV1[]>> | null;
   factoryPracticeSemantics: Readonly<Record<string, LearningV2FactoryNativePracticeSemanticV1>> | null;
@@ -168,12 +154,8 @@ export interface LearningV2CourseSessionReadySummaryV3 {
   readonly audioFingerprint: string;
   readonly textSource: "network" | "lkg" | "bundled_factory";
   readonly textReadiness: "canonical_children_parsed_and_account_scoped_cached";
-  readonly audioReadiness:
-    | "all_selected_mp3_hash_verified_local_files"
-    | "recorded_mp3_hash_verified_device_speech_fallback_ready";
-  readonly startPolicy:
-    | "intro_may_open_only_after_text_and_audio_ready"
-    | "intro_may_open_after_recorded_audio_verified_device_speech_covers_missing";
+  readonly audioReadiness: "device_system_tts_ready_no_prerecorded_audio";
+  readonly startPolicy: "intro_may_open_after_text_ready_device_speech_covers_all_audio";
   readonly answerPathTransport: "none";
   readonly serverAnswerAuthority: "none_answers_never_transported_or_rechecked";
   readonly releaseAuthority: false;
@@ -248,7 +230,6 @@ type CacheEnvelope = Readonly<{
 
 type ReadyMaterial = Readonly<{
   result: LearningV2CourseReleasedSessionAppResultV3;
-  audio: LearningV2CourseSessionAudioPreloadHandleV1 | null;
   summary: LearningV2CourseSessionReadySummaryV3;
   learnerSourceLocale: string;
   timing: LearningV2CourseSessionReadyTimingV3;
@@ -553,8 +534,8 @@ function parseResponse(
     learnerChild,
     evaluatorCapsuleChild,
     auxiliaryChild,
-    audioChild,
-    audioDelivery: "published_mp3",
+    audioChild: null,
+    audioDelivery: "device_system_tts_only",
     factorySourceFingerprint: null,
     factoryWordEncounterQueues: null,
     factoryPracticeSemantics: null,
@@ -913,9 +894,10 @@ function bundledSessionMaterial(
     const activeBaseRootFingerprint = courseIdentity.activeRootFingerprint;
     const activeHeadFingerprint = courseIdentity.activeHeadFingerprint;
     const activeRootFingerprint = courseIdentity.activeRootFingerprint;
-    const audioChild = deviceSpeechPreview ? null : buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild);
-    const audioFingerprint = audioChild?.audioFingerprint ?? hashCanonicalBody({
-      delivery: "device_speech_preview", source: factory.sourceFingerprint,
+    // зачем (владелец 22.10): записи сняты и в превью, и в выпуске — deviceSpeechPreview больше не меняет звук.
+    void deviceSpeechPreview;
+    const audioFingerprint = hashCanonicalBody({
+      delivery: "device_system_tts_only", source: factory.sourceFingerprint,
     });
     return Object.freeze({
       releaseId, activeRootFingerprint, activeBaseRootFingerprint, activeHeadFingerprint,
@@ -930,10 +912,8 @@ function bundledSessionMaterial(
       learnerChild: factory.learnerChild,
       evaluatorCapsuleChild: factory.evaluatorCapsuleChild,
       auxiliaryChild: factory.auxiliaryChild,
-      audioChild,
-      audioDelivery: deviceSpeechPreview
-        ? "device_speech_preview" as const
-        : "recorded_mp3_first_with_device_speech_fallback" as const,
+      audioChild: null,
+      audioDelivery: "device_system_tts_only" as const,
       factorySourceFingerprint: factory.sourceFingerprint,
       factoryWordEncounterQueues: factory.wordEncounterQueuesByInteractionId,
       factoryPracticeSemantics: factory.practiceSemanticsByInteractionId,
@@ -1120,8 +1100,8 @@ function bundledSessionMaterial(
     learnerChild: children.learner,
     evaluatorCapsuleChild: children.evaluatorCapsule,
     auxiliaryChild: children.auxiliary,
-    audioChild,
-    audioDelivery: "published_mp3",
+    audioChild: null,
+    audioDelivery: "device_system_tts_only",
     factorySourceFingerprint: null,
     factoryWordEncounterQueues: null,
     factoryPracticeSemantics: null,
@@ -1292,124 +1272,22 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     const preparationStartedAtMs = Date.now();
     const result = await loadCurrentLearningV2CourseReleasedSessionV3(locator);
     const materialReadyAtMs = Date.now();
-    let audio: LearningV2CourseSessionAudioPreloadHandleV1 | null = null;
-    let audioReadyAtMs = materialReadyAtMs;
-    let audioFingerprint = result.material.audioExtensionFingerprint;
-    let audioPreloadFingerprint = hashCanonicalBody({
+    const audioReadyAtMs = materialReadyAtMs;
+    const audioFingerprint = result.material.audioExtensionFingerprint;
+    const audioPreloadFingerprint = hashCanonicalBody({
       delivery: result.material.audioDelivery,
       courseSessionId: result.material.courseSessionId,
       audioFingerprint,
     });
-    // Every represented recording is verified locally before the session opens.
-    // Normal EN sessions leave missing recordings unrepresented so the player
-    // can speak those exact learner prompts with the device voice.
-    const prepareWhere = {
+    // зачем (владелец 22.10: «аудио убрали и сменили на TTS»): записи перед открытием не готовятся и не проверяются —
+    // каждую фразу и слово занятие говорит голосом телефона, поэтому готовность = готов текст.
+    console.log("[V2-AUDIO-TTS] prepare:device_speech_only", JSON.stringify({
       lesson: locator.lessonOrdinal,
       session: locator.sessionOrdinal,
       courseSessionId: result.material.courseSessionId,
-    };
-    if (!result.material.audioChild) {
-      fail("audio_child_missing", { ...prepareWhere, audioDelivery: result.material.audioDelivery });
-    }
-    const supplementalWordAudio = new Map<
-      string,
-      LearningV2CourseSessionAudioFileV1
-    >();
-    const requestedLocale = LEARNING_V2_INTERFACE_LOCALES.includes(
-      locator.learnerSourceLocale as LearningV2InterfaceLocale,
-    ) ? locator.learnerSourceLocale as LearningV2InterfaceLocale : "ru";
-    const wordEncounterSets = locator.targetLanguage === "en"
-      ? factoryNativeLearningV2AvailabilityV1().sessions
-          .filter((session) =>
-            session.lessonOrdinal === locator.lessonOrdinal &&
-            session.sessionOrdinal <= locator.sessionOrdinal,
-          )
-          // зачем (координатор 15.10, урок 1 целиком — до 56 занятий): только список слов, без полной сборки каждого
-          // занятия ≤ текущего (раньше до 56 сборок с SHA-256 детей на открытие s56). Лёгкая очередь — тот же код карточек.
-          // Номер занятия слова едет рядом — для причины отказа в журнале.
-          .map((session) => ({
-            wordSession: session.sessionOrdinal,
-            encounters: factoryNativeSessionWordEncountersV1({
-              lessonOrdinal: session.lessonOrdinal,
-              sessionOrdinal: session.sessionOrdinal,
-              interfaceLocale: requestedLocale,
-            }),
-          }))
-      : Object.values(result.material.factoryWordEncounterQueues ?? {})
-          .map((encounters) => ({ wordSession: locator.sessionOrdinal, encounters }));
-    // зачем (координатор 17.10): слово — голосом ash, а если ash не записан — записанным голосом слова (Codex озвучивает
-    // карточки «одним голосом на задание»); см. learningV2FactoryWordAudioFileV1.
-    for (const { wordSession, encounters } of wordEncounterSets) {
-      if (encounters === null) continue;
-      for (const encounter of encounters) {
-        const file = learningV2FactoryWordAudioFileV1(encounter.save.targetText);
-        const wordWhere = {
-          ...prepareWhere,
-          wordSession,
-          wordId: encounter.lexicalItemId,
-          text: encounter.save.targetText,
-          voice: file?.voiceId ?? "none_recorded",
-        };
-        if (!file) {
-          console.warn("[V2-AUDIO] word_device_speech_fallback", JSON.stringify(wordWhere));
-          continue;
-        }
-        const previous = supplementalWordAudio.get(encounter.lexicalItemId);
-        if (previous && previous.fileFingerprint !== file.fileFingerprint) {
-          fail("word_audio_conflict", {
-            ...wordWhere,
-            previousFingerprint: previous.fileFingerprint,
-            fileFingerprint: file.fileFingerprint,
-          });
-        }
-        supplementalWordAudio.set(encounter.lexicalItemId, file);
-      }
-    }
-    audio = await preloadLearningV2CourseSessionAudioV1({
-      learner: result.material.learnerChild,
-      audioChild: result.material.audioChild,
-      sessionRunId: input.sessionRunId,
-      supplementalAudio: Object.freeze(
-        [...supplementalWordAudio].map(([supplementalId, file]) =>
-          Object.freeze({ supplementalId, file }),
-        ),
-      ),
-    });
-    audioReadyAtMs = Date.now();
-    if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail("audio_preload_handle_invalid", prepareWhere);
-    const audioSummary = getLearningV2CourseSessionAudioPreloadSummaryV1(audio);
-    const audioComplete = audioSummary.localFileCount === audioSummary.selectedFileCount;
-    if (
-      audioSummary.courseSessionId !== result.material.courseSessionId ||
-      audioSummary.sessionRunId !== input.sessionRunId ||
-      audioSummary.learnerFingerprint !== result.material.learnerChild.learnerFingerprint ||
-      audioSummary.audioFingerprint !== result.material.audioChild.audioFingerprint ||
-      audioSummary.supplementalAudioCount !== supplementalWordAudio.size
-    ) {
-      fail("audio_summary_mismatch", {
-        ...prepareWhere,
-        courseSessionIdMatch: audioSummary.courseSessionId === result.material.courseSessionId,
-        sessionRunIdMatch: audioSummary.sessionRunId === input.sessionRunId,
-        learnerFingerprintMatch: audioSummary.learnerFingerprint === result.material.learnerChild.learnerFingerprint,
-        audioFingerprintMatch: audioSummary.audioFingerprint === result.material.audioChild.audioFingerprint,
-        supplementalAudioCount: audioSummary.supplementalAudioCount,
-        supplementalExpected: supplementalWordAudio.size,
-      });
-    }
-    // Missing recording entries were excluded before preload and use device
-    // speech. Every represented file must still resolve and verify locally;
-    // never label a partial or corrupt represented set as ready.
-    if (!audioComplete) {
-      fail("audio_preload_incomplete", {
-        courseSessionId: result.material.courseSessionId,
-        localFileCount: audioSummary.localFileCount,
-        selectedFileCount: audioSummary.selectedFileCount,
-      });
-    }
-    audioFingerprint = result.material.audioChild.audioFingerprint;
-    audioPreloadFingerprint = audioSummary.preloadFingerprint;
-    const deviceSpeechFallback = result.material.audioDelivery ===
-      "recorded_mp3_first_with_device_speech_fallback";
+      source: result.source,
+      audioDelivery: result.material.audioDelivery,
+    })); // guard-ok: одна строка на подготовку занятия
     const body = {
       schemaVersion: LEARNING_V2_COURSE_SESSION_READY_SCHEMA_V3,
       activeRootFingerprint: result.material.activeRootFingerprint,
@@ -1421,12 +1299,8 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       textSource: result.source,
       textReadiness:
         "canonical_children_parsed_and_account_scoped_cached" as const,
-      audioReadiness: deviceSpeechFallback
-        ? "recorded_mp3_hash_verified_device_speech_fallback_ready" as const
-        : "all_selected_mp3_hash_verified_local_files" as const,
-      startPolicy: deviceSpeechFallback
-        ? "intro_may_open_after_recorded_audio_verified_device_speech_covers_missing" as const
-        : "intro_may_open_only_after_text_and_audio_ready" as const,
+      audioReadiness: "device_system_tts_ready_no_prerecorded_audio" as const,
+      startPolicy: "intro_may_open_after_text_ready_device_speech_covers_all_audio" as const,
       answerPathTransport: "none" as const,
       serverAnswerAuthority:
         "none_answers_never_transported_or_rechecked" as const,
@@ -1444,7 +1318,6 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     readyHandles.add(handle);
     readyMetadata.set(handle, Object.freeze({
       result,
-      audio,
       summary,
       learnerSourceLocale: locator.learnerSourceLocale,
       timing: Object.freeze({
@@ -1467,10 +1340,7 @@ export function isLearningV2CourseSessionReadyHandleV3(
 ): value is LearningV2CourseSessionReadyHandleV3 {
   if (typeof value !== "object" || value === null || !readyHandles.has(value))
     return false;
-  const material = readyMetadata.get(value);
-  return (
-    !!material && isLearningV2CourseSessionAudioPreloadHandleV1(material.audio)
-  );
+  return readyMetadata.has(value);
 }
 
 export function getLearningV2CourseSessionReadySummaryV3(

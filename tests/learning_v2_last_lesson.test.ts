@@ -122,7 +122,10 @@ describe('подключение: Уроки пишут, карта читает
   it('Уроки запоминают открытие урока на карте и запуск занятия; карте передаётся запомненный урок', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
     expect(lessons).toContain('rememberLearningV2LastLesson(studyTarget, lessonOrdinal, "map_open")');
-    expect(lessons).toContain('rememberLearningV2LastLesson(studyTarget, selected.lessonOrdinal, "launch_session")');
+    // зачем (работа 19.10, восстановлена 22.10): «последний урок» при запуске пишет экран занятия после входа
+    // (session_arrival), а не вкладка до открытия — подготовка и закрытие модалки ещё не значат, что урок открылся.
+    expect(lessons).not.toContain('rememberLearningV2LastLesson(studyTarget, selected.lessonOrdinal, "launch_session")');
+    expect(read('app/learning-v2/session/[id].tsx')).toContain('rememberLearningV2LastLesson(studyTarget as RuntimeStudyTarget, coordinates.lessonOrdinal, "session_arrival")');
     expect(lessons).toContain('const learningV2LastLesson = useLearningV2LastLesson(studyTarget);');
     expect(lessons).toContain('preferredLessonOrdinal={learningV2LastLesson ?? null}');
   });

@@ -90,6 +90,15 @@ describe('useAudio TTS resiliency', () => {
     expect(audioSource).toContain('Speech.speak(spokenText, speechOptions)');
   });
 
+  it('supports an explicit system-TTS-only route without consulting prerecorded clips', () => {
+    expect(audioSource).toContain('systemTtsOnly?: boolean');
+    expect(audioSource).toContain('if (opts?.systemTtsOnly)');
+    expect(audioSource).toMatch(/if \(opts\?\.systemTtsOnly\) \{\s*speakWithSystemTts\(\);\s*return;/);
+    expect(audioSource.indexOf('if (opts?.systemTtsOnly)')).toBeLessThan(
+      audioSource.indexOf('const cardLanguage:'),
+    );
+  });
+
   it('routes playback and prefetch through the same punctuation-tolerant clip lookup', () => {
     expect(phraseAudioSource).toContain('getPlayablePhraseAudioUrl(text)');
     expect(phraseAudioPrefetchSource).toContain('getPlayablePhraseAudioUrl(text)');

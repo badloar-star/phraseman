@@ -8,7 +8,9 @@ describe('process-wide audio ownership wiring', () => {
   it('routes every spoken player surface through the exclusive arbiter', () => {
     expect(read('hooks', 'phrase_audio_player.ts')).toContain('claimSpokenAudio(stopPhraseAudio,');
     expect(read('hooks', 'use-audio.ts')).toContain('claimSpokenAudio(stopSystemSpeechNow,');
-    expect(read('app', 'learning-v2', 'session', '[id].tsx')).toContain('claimSpokenAudio(stopAudioAttempt,');
+    // зачем (работа 19.10, восстановлена 22.10): старый маршрут занятия говорит голосом телефона через общий useAudio —
+    // захват звука делает use-audio.ts (claimSpokenAudio(stopSystemSpeechNow, …) выше), своего плеера записей больше нет.
+    expect(read('app', 'learning-v2', 'session', '[id].tsx')).toContain('const { speak: speakLessonAudio, stop: stopLessonAudio } = useAudio();');
     expect(read('components', 'onboarding_aha', 'aha_audio.ts')).toContain('claimSpokenAudio(');
     expect(read('components', 'onboarding_aha', 'aha_audio.ts')).toContain('claimAmbientAudio(');
     expect(read('components', 'SpeakingPanel.tsx')).toContain('claimSpokenAudio(');
@@ -24,7 +26,6 @@ describe('process-wide audio ownership wiring', () => {
 
     for (const file of [
       ['hooks', 'use_managed_spoken_audio_player.ts'],
-      ['app', 'learning-v2', 'session', '[id].tsx'],
       ['components', 'SpeakingPanel.tsx'],
       ['components', 'onboarding_aha', 'SpeechBeat.tsx'],
     ]) {

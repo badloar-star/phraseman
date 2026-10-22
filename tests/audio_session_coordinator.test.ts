@@ -76,4 +76,44 @@ describe('audio session coordinator', () => {
 
     expect(observed).toEqual([true, false]);
   });
+
+  it('clears the deadline after a native transition settles', async () => {
+    jest.useFakeTimers();
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    (setAudioModeAsync as jest.Mock).mockResolvedValue(undefined);
+
+    await setManagedAudioMode({ allowsRecording: false });
+    await jest.advanceTimersByTimeAsync(2_000);
+
+    expect(warn.mock.calls.some(([message]) => String(message).includes('audio_mode:timeout'))).toBe(false);
+    warn.mockRestore();
+    jest.useRealTimers();
+  });
+
+  it('times out callers without overlapping a still-pending native mode change', async () => {
+    jest.useFakeTimers();
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    let finishFirst!: () => void;
+    const firstPending = new Promise<void>((resolve) => { finishFirst = resolve; });
+    const nativeSet = setAudioModeAsync as jest.MockedFunction<typeof setAudioModeAsync>;
+    nativeSet
+      .mockImplementationOnce(() => firstPending)
+      .mockResolvedValueOnce(undefined);
+
+    const first = setManagedAudioMode({ allowsRecording: true });
+    await Promise.resolve();
+    const second = setManagedAudioMode({ allowsRecording: false });
+    await jest.advanceTimersByTimeAsync(3_000);
+    await Promise.all([first, second]);
+
+    const callsAtDeadline = nativeSet.mock.calls.length;
+    finishFirst();
+    for (let index = 0; index < 10; index += 1) await Promise.resolve();
+    expect(callsAtDeadline).toBe(1);
+    expect(nativeSet).toHaveBeenCalledTimes(2);
+
+    warn.mockRestore();
+    jest.useRealTimers();
+  });
+
 });

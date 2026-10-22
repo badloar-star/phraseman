@@ -5,6 +5,7 @@ import { useStableSafeAreaInsets } from "../../app/stable_safe_area_metrics";
 
 import type { LearningV2UnlockedLessonWordV1 } from "../../app/learning_v2_unlocked_lesson_words_v1";
 import { ttsLocaleForStudyTarget } from "../../app/phrase_target_utils";
+import { createLearningV2PreviewSpeechGenerationGuardV1 } from "../../app/learning_v2_preview_speech_watchdog_v1";
 import type { StudyTargetLang } from "../../app/study_target_lang_dev";
 import { triLang } from "../../constants/i18n";
 import { useAudio } from "../../hooks/use-audio";
@@ -51,6 +52,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const speechGuardRef = useRef(createLearningV2PreviewSpeechGenerationGuardV1());
   const lessonLabel = useCallback(
     (ordinal: number) =>
       triLang(lang, {
@@ -179,6 +181,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
   useEffect(
     () => () => {
       stopAudio();
+      speechGuardRef.current.cancelCurrent();
       if (timerRef.current) clearTimeout(timerRef.current);
     },
     [stopAudio],
@@ -233,20 +236,33 @@ export default function LearningV2LessonDictionaryOverlayV1({
   const replay = useCallback(
     (word: LearningV2UnlockedLessonWordV1) => {
       const id = word.lexicalItemId;
+      speechGuardRef.current.cancelCurrent();
       if (timerRef.current) clearTimeout(timerRef.current);
-      setSpeakingId(id);
-      const clear = () => setSpeakingId((current) => (current === id ? null : current));
+      timerRef.current = null;
+      setSpeakingId(null);
+      stopAudio();
+      const request = speechGuardRef.current.begin(id);
+      const clear = () => {
+        if (!speechGuardRef.current.clear(request)) return;
+        if (timerRef.current) clearTimeout(timerRef.current);
+        timerRef.current = null;
+        setSpeakingId((current) => (current === id ? null : current));
+      };
       timerRef.current = setTimeout(clear, 2_500);
       speakAudio(word.encounter.save.targetText, undefined, {
         language: ttsLocaleForStudyTarget(
           word.targetLanguage as StudyTargetLang,
         ),
+        systemTtsOnly: true,
+        onStart: () => {
+          if (speechGuardRef.current.isCurrent(request)) setSpeakingId(id);
+        },
         onDone: clear,
         onStopped: clear,
         onError: clear,
       });
     },
-    [speakAudio],
+    [speakAudio, stopAudio],
   );
 
   // зачем: вынесено из JSX в стабильную ссылку. При наборе в поиске состояние

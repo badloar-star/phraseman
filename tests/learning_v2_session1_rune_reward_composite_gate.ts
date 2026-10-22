@@ -380,8 +380,9 @@ async function main() {
     resolvedMaterial = localeMaterial;
     assert.equal(
       localeMaterial.audioDelivery,
-      "published_mp3",
-      "the current factory publication must exercise the published-audio reward path",
+      "device_system_tts_only",
+      // зачем (владелец 22.10): в занятиях только голос телефона — награда не должна зависеть от записей.
+      "the current factory publication must exercise the device-speech reward path",
     );
     assert.doesNotThrow(() => {
       publicationToken =

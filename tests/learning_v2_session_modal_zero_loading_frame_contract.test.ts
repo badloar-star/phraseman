@@ -41,9 +41,13 @@ assert.doesNotMatch(
   "completed-session audio preparation must not fan out without a bound",
 );
 assert.match(lessons, /onVisibleSessionsSettled/);
-// зачем (координатор §47, 2026-10-01): аудит 20.09 ужал прогрев повторов с 7 до 2
-// на остановку прокрутки (налог на скролл). Потолок сторожим строже: не больше 2.
-assert.match(lessons, /const repeats = available[\s\S]{0,160}\.slice\(0, 2\)/);
+// Раскрытие главы — пользовательский жест, поэтому оно не может запускать
+// materialize/hash до следующего тапа. Прогрев разрешён только idle-планировщику.
+const visibleSettled = lessons.slice(
+  lessons.indexOf("const handleLearningV2VisibleSessionsSettled"),
+  lessons.indexOf("const [learningV2DenialHint"),
+);
+assert.doesNotMatch(visibleSettled, /prewarmLearningV2SessionLaunch\(/);
 assert.match(lessons, /learningV2PreparedLaunchesRef\.current\.size > 8/);
 
 console.log("LEARNING V2 SESSION MODAL ZERO LOADING FRAME CONTRACT: PASS");

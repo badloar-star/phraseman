@@ -115,13 +115,17 @@ test('the resolver rejects inherited object keys instead of treating them as ass
   expect(learningV2Lesson1AudioSource('constructor')).toBeNull();
 });
 
-test('the active session has no runtime TTS or remote audio fallback', () => {
+// зачем (владелец 22.10: «аудио убрали и сменили на TTS»): занятие говорит только голосом телефона через общий useAudio —
+// без плеера записей, без прямого expo-speech и без сетевых адресов звука.
+test('the active session speaks only with the device voice through the shared audio hook', () => {
   const source = fs.readFileSync(path.join(
     process.cwd(),
     'app/learning-v2/session/[id].tsx',
   ), 'utf8');
-  expect(source).toMatch(/from ["']expo-audio["']/); // зачем: форматтер сменил кавычки на двойные — проверяем смысл, а не написание
-  expect(source).toContain('learningV2Lesson1AudioSource');
+  expect(source).not.toMatch(/from ["']expo-audio["']/);
+  expect(source).not.toContain('learningV2Lesson1AudioSource');
+  expect(source).toContain('const { speak: speakLessonAudio, stop: stopLessonAudio } = useAudio();');
+  expect(source).toContain('systemTtsOnly: true');
   expect(source).not.toContain('expo-speech');
   expect(source).not.toContain('Speech.speak');
   expect(source).not.toMatch(/https?:\/\//);

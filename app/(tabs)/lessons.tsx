@@ -206,16 +206,7 @@ import {
   markLearningV2SessionLaunchStageV1,
   startLearningV2SessionLaunchTraceV1,
 } from "../learning_v2_session_launch_trace_v1";
-// зачем: аудит 20.09 — эти модули тянут 556 КБ + 504 КБ генерированных данных,
-// которые нужны ТОЛЬКО при запуске занятия, а разбирались при каждом открытии
-// раздела. Грузим лениво; проверка «есть ли озвучка» вынесена в лёгкий срез
-// на 1 КБ (learning_v2_published_audio_sessions_v1.generated).
-import { LEARNING_V2_PUBLISHED_AUDIO_SESSIONS_V1 } from "../learning_v2_published_audio_sessions_v1.generated";
 import BackGlyph from '../../components/v2/BackGlyph';
-
-function learningV2HasPublishedAudioV1(lessonOrdinal: number, sessionOrdinal: number): boolean {
-  return LEARNING_V2_PUBLISHED_AUDIO_SESSIONS_V1[lessonOrdinal]?.includes(sessionOrdinal) === true;
-}
 
 // Ленивые загрузчики тяжёлых модулей Learning V2.
 // Промис кэшируется: модуль парсится ОДИН раз, при первом запуске занятия,
@@ -224,28 +215,6 @@ function learningV2HasPublishedAudioV1(lessonOrdinal: number, sessionOrdinal: nu
 // learning_v2_session_launch_v1 — тем же путём запускает занятие карточка «Продолжить» на Главной (в релизе без передачи
 // плеер уходит на карту). Модуль клиента по-прежнему ленивый и кэшируется там.
 
-let learningV2AudioPackPromise:
-  | Promise<typeof import("../learning_v2_lesson_audio_pack_v1")>
-  | null = null;
-function loadLearningV2AudioPackV1() {
-  if (!learningV2AudioPackPromise) {
-    learningV2AudioPackPromise = import("../learning_v2_lesson_audio_pack_v1").catch(
-      (error) => {
-        learningV2AudioPackPromise = null;
-        DebugLogger.error(
-          "learning_v2:audio_pack_lazy_import",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
-        throw error;
-      },
-    );
-  }
-  return learningV2AudioPackPromise;
-}
-// зачем: координатор статически тянет learning_v2_lesson_audio_pack_v1 (556 КБ +
-// 504 КБ). Без ленивого импорта он обходил бы ленивую загрузку аудиопака выше —
-// вес возвращался бы этим путём (аудит 20.09).
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
@@ -253,7 +222,6 @@ import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
 import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } from "../learning_v2_session_availability_v1";
 import { LEARNING_V2_HIDDEN, isLearningV2OpenForUiLangV1, logLearningV2Hidden } from "../learning_v2_visibility_switch";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
-import { recordHomeContinueV2 } from "../home_continue_mark";
 import { rememberLearningV2LastLesson, useLearningV2LastLesson } from "../learning_v2_last_lesson";
 import { noteBackArrived, noteBackDecision, noteBackTap } from "../back_tap_probe";
 import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
@@ -2748,22 +2716,11 @@ export default function LessonsTab({
     }),
     [lang, studyTarget],
   );
+  // Каталог EN материализуется синхронно (32 × 56 занятий + хеши). Никогда
+  // не трогаем его в render: на первом входе /learning-v2/course JS иначе не
+  // принимал касания. До true-idle прогрева безопасны fallback-названия.
   const [learningV2Catalog, setLearningV2Catalog] =
-    useState<LearningV2ActiveCourseCatalogV1 | null>(() => {
-      // зачем (R1, «Уроки ≈2 с до первого кадра»; журнал Сверки with_lessons_body2: ВЕСЬ блок ≈2,07–2,3 с — именно этот инициализатор, между метками j_v2_scope и k_v2_warmup):
-      // для `en` peekLearningV2ActiveCourseCatalogV1 синхронно собирает весь каталог курса (factoryNativeLearningV2CatalogSeedV1 + materializeLearningV2FactoryPartialCourseCatalogV1) прямо в рендере
-      // вкладки. На странице «lessons» (по умолчанию, и в премаунте невидимой вкладки) каталог не нужен ни на первом кадре, ни в списке: названия уроков из него берутся только при page === "v2" (см. legacyTitles),
-      // остальные места читают его с `?.` и запасными значениями. Поэтому не-v2 страница стартует с null, а каталог подтягивает прогрев ниже (peek + load в useFocusEffect, взводится после первого кадра
-      // и взаимодействий), как и было задумано в комментарии к прогреву. Страница v2 (в том числе возврат из сессии с initialPage="v2") получает каталог синхронно, как раньше.
-      if (page !== "v2") return null;
-      const stableId = peekStableId();
-      return stableId
-        ? peekLearningV2ActiveCourseCatalogV1(
-            learningV2CatalogLocator,
-            deriveLocalOfflineProgressAccountScopeHash(stableId),
-          )
-        : null;
-    });
+    useState<LearningV2ActiveCourseCatalogV1 | null>(null);
   const [learningV2Progress, setLearningV2Progress] = useState<{
     completedSessionIds: readonly string[];
     currentSessionId: string | null;
@@ -2785,10 +2742,18 @@ export default function LessonsTab({
   useFocusEffect(
     useCallback(() => {
       // зачем (план Б): при скрытом V2 прогрев каталога V2 не нужен — ни диска, ни памяти.
-      if (!learningV2CanOpen || learningV2WarmupArmed || page !== "lessons") return undefined;
+      if (!learningV2CanOpen || learningV2WarmupArmed || page === "dialogs") return undefined;
       let timer: ReturnType<typeof setTimeout> | null = null;
+      const waitForIdle = () => {
+        const idleMs = Date.now() - lastLessonsTouchAtRef.current;
+        if (idleMs < 2500) {
+          timer = setTimeout(waitForIdle, 2500 - idleMs + 50);
+          return;
+        }
+        setLearningV2WarmupArmed(true);
+      };
       const task = InteractionManager.runAfterInteractions(() => {
-        timer = setTimeout(() => setLearningV2WarmupArmed(true), 2000);
+        timer = setTimeout(waitForIdle, 2500);
       });
       return () => {
         task.cancel?.();
@@ -2796,12 +2761,16 @@ export default function LessonsTab({
       };
     }, [learningV2CanOpen, learningV2WarmupArmed, page]),
   );
-  // зачем (R1, Ядро 12.10: «прогрев каталога — после взаимодействий»): в dev-сборке прогрев стартовал СРАЗУ (ENABLE_DEV_TOOLS), и единственная сборка английского каталога (~2 с в debug) приходилась на холодный старт
-  // предмонтированной вкладки. Теперь и в dev ждём то же, что в релизе: страница v2 или взвод после первого кадра и взаимодействий (+2 с).
-  const learningV2WarmupEnabled = page === "v2" || learningV2WarmupArmed;
+  // Переход на страницу V2 сам по себе не является разрешением занимать
+  // JS-поток: и прямой вход /learning-v2/course ждёт true-idle.
+  const learningV2WarmupEnabled = learningV2WarmupArmed;
+  // Прогресс — не декоративный прогрев, а источник истины для current/locked
+  // и repeat. Читаем его сразу при входе в V2; откладываем только тяжёлый
+  // каталог, материализация которого и блокировала касания.
+  const learningV2ProgressWarmupEnabled = page === "v2" || learningV2WarmupArmed;
   useFocusEffect(
     useCallback(() => {
-      if (!learningV2WarmupEnabled) return undefined;
+      if (!learningV2ProgressWarmupEnabled) return undefined;
       let cancelled = false;
       // зачем: здесь стоял безусловный setLearningV2ProgressHydrated(false).
       // На каждый возврат фокуса он откатывал раздел в «ещё не готов», и
@@ -2884,7 +2853,7 @@ export default function LessonsTab({
       return () => {
         cancelled = true;
       };
-    }, [learningV2WarmupEnabled]),
+    }, [learningV2ProgressWarmupEnabled]),
   );
   useFocusEffect(
     useCallback(() => {
@@ -3174,11 +3143,8 @@ export default function LessonsTab({
     };
   }, [learningV2Progress.currentSessionId]);
 
-  // зачем (D47, владелец): координатор скачивания озвучки удалён целиком —
-  // подготовка текущей сессии живёт В ОДНОМ месте, prepareLearningV2AudioSession
-  // ниже (вызывается после первого кадра карты). Он больше не качает по сети,
-  // только проверяет стартовый бандл и уже скачанное. Второй механизм здесь
-  // был бы дублем. Фоновой закачки целого урока больше нет (PM-205, удалена).
+  // Learning V2 session launch warms canonical text only. Device TTS needs no
+  // downloaded asset, pack coordinator, or post-frame audio preparation.
 
   // зачем: этот проп вызывается для КАЖДОЙ строки карты внутри её рендера.
   // Инлайновая стрелка меняла идентичность на каждый рендер экрана и срывала
@@ -3193,108 +3159,16 @@ export default function LessonsTab({
     [learningV2FactoryNativeSessionIds, studyTarget],
   );
   const currentLessonOrdinal = currentLearningV2SessionCoordinates?.lessonOrdinal ?? 1;
-  const prepareLearningV2AudioSession = useCallback(
-    (lessonOrdinal: number, sessionOrdinal: number) => {
-      if (studyTarget !== "en" && studyTarget !== "es") return Promise.resolve();
-      return loadLearningV2AudioPackV1()
-        .then((mod) =>
-          mod.prepareLearningV2SessionAudioPackV1({
-            lessonOrdinal,
-            sessionOrdinal,
-            targetLanguage: studyTarget,
-          }),
-        )
-        .then(() => undefined);
-    },
-    [studyTarget],
-  );
   const prepareLearningV2SessionLaunch = useCallback(
     (lessonOrdinal: number, sessionOrdinal: number) =>
       prepareLearningV2SessionBeforeModal(lessonOrdinal, sessionOrdinal),
     [prepareLearningV2SessionBeforeModal],
   );
   const prewarmLearningV2SessionLaunch = useCallback(
-    (lessonOrdinal: number, sessionOrdinal: number) => {
-      // Material preparation is local and must never queue behind a remote
-      // audio miss. Audio continues independently and cannot reject the Start
-      // path or suppress the prepared material handle.
-      const material = prepareLearningV2SessionBeforeModal(lessonOrdinal, sessionOrdinal);
-      if (
-        (studyTarget !== "en" && studyTarget !== "es") ||
-        // зачем: тот же ответ, что у isLearningV2SessionAudioPublishedV1, но по
-        // срезу на 1 КБ — иначе ради списка номеров разбирались бы 504 КБ хэшей
-        // при каждом открытии раздела (аудит 20.09).
-        (studyTarget === "en"
-          ? learningV2HasPublishedAudioV1(lessonOrdinal, sessionOrdinal)
-          : lessonOrdinal === 1 && (sessionOrdinal === 1 || sessionOrdinal === 2))
-      ) {
-        // Немой catch запрещён: озвучка может молча не готовиться месяцами,
-        // и человек просто слышит тишину (класс бага «мёртвый прогрев»).
-        // Отказ аудио намеренно НЕ валит подготовку материала — занятие
-        // открывается и без звука.
-        void prepareLearningV2AudioSession(lessonOrdinal, sessionOrdinal).catch((error) => {
-          if (__DEV__) {
-            console.log('[V2-PREWARM] audio_failed', JSON.stringify({
-              courseSessionId: learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
-              reason: String(error),
-            }));
-          }
-          DebugLogger.warn(
-            '[V2-PREWARM]',
-            `audio pack failed ${lessonOrdinal}:${sessionOrdinal}: ${String(error)}`,
-          );
-        });
-      }
-      return material;
-    },
-    [prepareLearningV2AudioSession, prepareLearningV2SessionBeforeModal, studyTarget],
+    (lessonOrdinal: number, sessionOrdinal: number) =>
+      prepareLearningV2SessionBeforeModal(lessonOrdinal, sessionOrdinal),
+    [prepareLearningV2SessionBeforeModal],
   );
-
-  // зачем (D47, владелец): координатор скачивания озвучки V2
-  // (learning_v2_audio_prefetch_coordinator_v1 + соседи) удалён целиком — все
-  // способы СКАЧИВАНИЯ отменены. То, что раньше делал координатор (готовил
-  // локальный пак для текущей+следующей сессии), теперь делает напрямую
-  // prepareLearningV2AudioSession ниже: он больше не качает по сети —
-  // prepareFiles внутри learning_v2_lesson_audio_pack_v1.ts проверяет только
-  // стартовый бандл и уже скачанное прошлыми версиями. Недостающий файл не
-  // отклоняет занятие — компенсирует TTS телефона в самом плеере (D47).
-  useEffect(() => {
-    if (page !== "v2" || !lessonsRuntimeActive || !learningV2ProgressHydrated || (studyTarget !== "en" && studyTarget !== "es"))
-      return;
-    let cancelled = false;
-    const currentSessionOrdinal = currentLearningV2SessionCoordinates?.sessionOrdinal ?? 1;
-    // Fire-and-forget: карта и модалки занятия никогда не ждут аудио-подготовку.
-    //
-    // зачем requestAnimationFrame: даже локальная подготовка (SHA-256, чтение
-    // с диска) занимает JS-поток. Ждём кадр: сначала карта на экране, потом
-    // тяжёлое (аудит 20.09).
-    let frame: number | null = requestAnimationFrame(() => {
-      frame = null;
-      if (cancelled) return;
-      void prepareLearningV2AudioSession(currentLessonOrdinal, currentSessionOrdinal).catch((error) => {
-        if (cancelled) return;
-        DebugLogger.error(
-          "learning_v2:lesson_audio_pack_prepare",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
-      });
-    });
-    return () => {
-      cancelled = true;
-      if (frame !== null) cancelAnimationFrame(frame);
-    };
-  }, [
-    currentLessonOrdinal,
-    currentLearningV2SessionCoordinates?.sessionOrdinal,
-    focusTick,
-    learningV2ProgressHydrated,
-    learningV2ProjectionScopeKey,
-    lessonsRuntimeActive,
-    page,
-    prepareLearningV2AudioSession,
-    studyTarget,
-  ]);
 
   const prewarmCurrentLearningV2SessionOnEntry = useCallback(() => {
     const current = currentLearningV2SessionCoordinates;
@@ -3447,36 +3321,12 @@ export default function LessonsTab({
 
   const handleLearningV2ExpandedLesson = useCallback(
     (lessonOrdinal: number | null) => {
+      lastLessonsTouchAtRef.current = Date.now();
       setExpandedLearningV2Lesson(lessonOrdinal);
       // зачем (поручение владельца через координатора 18.10): открыл урок на карте — запоминаем локально сразу (память + диск в фоне, без сети)
       if (lessonOrdinal !== null) rememberLearningV2LastLesson(studyTarget, lessonOrdinal, "map_open");
-      if (
-        lessonOrdinal !== null &&
-        currentLearningV2SessionCoordinates?.lessonOrdinal === lessonOrdinal
-      ) {
-        // Current session is always high priority. The prepared-promise cache
-        // deduplicates this with the entry prewarm above.
-        // Немой catch запрещён: иначе прогрев молча не работает месяцами.
-        void prewarmLearningV2SessionLaunch(
-          lessonOrdinal,
-          currentLearningV2SessionCoordinates.sessionOrdinal,
-        ).catch((error) => {
-          if (__DEV__) {
-            console.log('[V2-PREWARM] failed', JSON.stringify({
-              where: 'expanded_lesson',
-              lessonOrdinal,
-              sessionOrdinal: currentLearningV2SessionCoordinates.sessionOrdinal,
-              reason: String(error),
-            }));
-          }
-        });
-      }
     },
-    [
-      currentLearningV2SessionCoordinates,
-      prewarmLearningV2SessionLaunch,
-      studyTarget,
-    ],
+    [studyTarget],
   );
 
   const handleLearningV2VisibleSessionsSettled = useCallback(
@@ -3487,72 +3337,14 @@ export default function LessonsTab({
         state: LearningV2AccordionSessionStateV1;
       }>[],
     ) => {
-      const available = sessions.filter((session) => {
-        if (session.state !== "current" && session.state !== "completed")
-          return false;
-        return (
-          studyTarget !== "en" ||
-          learningV2FactoryNativeSessionIds.has(
-            learningV2CourseSessionIdV1(
-              lessonOrdinal,
-              session.sessionOrdinal,
-            ),
-          )
-        );
-      });
-      const current = available.find((session) => session.state === "current");
-      if (current) {
-        // Немой catch запрещён: отказ обязан назвать причину.
-        void prewarmLearningV2SessionLaunch(
-          lessonOrdinal,
-          current.sessionOrdinal,
-        ).catch((error) => {
-          if (__DEV__) {
-            console.log('[V2-PREWARM] failed', JSON.stringify({
-              where: 'visible_settled_current',
-              lessonOrdinal,
-              sessionOrdinal: current.sessionOrdinal,
-              reason: String(error),
-            }));
-          }
-        });
-      }
-      // зачем: было 7 повторов на КАЖДУЮ остановку прокрутки. При листании
-      // карты это до 8 подготовок занятий подряд, каждая из которых грузит
-      // материал сессии — прямой налог на скролл (аудит 20.09). Текущее
-      // занятие прогреваем всегда (человек почти наверняка откроет его),
-      // повторы — два ближайших: остальные всё равно вытеснятся из кэша
-      // подготовок, который держит 8 записей.
-      const repeats = available
-        .filter((session) => session.state === "completed")
-        .slice(0, 2);
-      // This callback is fired only after drag/momentum settles. Repeats are
-      // intentionally sequential so audio verification never competes with
-      // the map's scroll frame budget.
-      void (async () => {
-        for (const session of repeats) {
-          // Немой catch запрещён; отказ одного повтора не рвёт цикл.
-          await prewarmLearningV2SessionLaunch(
-            lessonOrdinal,
-            session.sessionOrdinal,
-          ).catch((error) => {
-            if (__DEV__) {
-              console.log('[V2-PREWARM] failed', JSON.stringify({
-                where: 'visible_settled_repeat',
-                lessonOrdinal,
-                sessionOrdinal: session.sessionOrdinal,
-                reason: String(error),
-              }));
-            }
-          });
-        }
-      })();
+      // Раскрытие главы — пользовательское действие, а не период простоя.
+      // Раньше отсюда materialize/hash блокировал следующий tap. Сохраняем
+      // сигнал активности; единый idle-прогрев сам выберет безопасный момент.
+      void lessonOrdinal;
+      void sessions;
+      lastLessonsTouchAtRef.current = Date.now();
     },
-    [
-      learningV2FactoryNativeSessionIds,
-      prewarmLearningV2SessionLaunch,
-      studyTarget,
-    ],
+    [],
   );
 
   // зачем: «спокойный отказ» закрытого узла (спека mock 08, макет A3) — тап по
@@ -3614,31 +3406,6 @@ export default function LessonsTab({
       learningV2ReduceMotionPreference,
     ],
   );
-  // зачем (Ревизор P23, координатор 15.10): карточка «Продолжить» на Главной знала только старые уроки — запуск занятия V2 пишет
-  // метку «последнее V2» (урок, занятие, маршрут без одноразовых sessionRunId/skipIntro, время). Только локально; «пройдено / выпущено»
-  // Главная считает сама при показе (координатор 15.10, поправка 1).
-  const rememberHomeContinueV2 = useCallback((selected: Readonly<{ lessonOrdinal: number; sessionOrdinal: number; state: LearningV2AccordionSessionStateV1 }>, sessionId: string) => {
-    // зачем (поручение владельца через координатора 18.10): запуск занятия тоже «открытие урока» — карта вернётся на этот урок
-    rememberLearningV2LastLesson(studyTarget, selected.lessonOrdinal, "launch_session");
-    {
-      recordHomeContinueV2(studyTarget, {
-        lessonOrdinal: selected.lessonOrdinal,
-        sessionOrdinal: selected.sessionOrdinal,
-        sessionId,
-        route: {
-          id: sessionId,
-          runtimeMode: "direct_v1",
-          previewOrigin: "course",
-          lessonOrdinal: String(selected.lessonOrdinal),
-          sessionOrdinal: String(selected.sessionOrdinal),
-          releaseEnvironment: learningV2Catalog?.environment ?? "production",
-          releaseSeasonId: learningV2Catalog?.seasonId ?? "learning-v2",
-          runKind: selected.state === "completed" ? "repeat" : "initial",
-        },
-        atMs: Date.now(),
-      });
-    }
-  }, [learningV2Catalog?.environment, learningV2Catalog?.seasonId, studyTarget]);
   const launchSelectedLearningV2Session = useCallback((skipIntro: boolean) => {
     const selected = selectedLearningV2Session;
     if (!selected || !selectedLearningV2PreparationKey) return;
@@ -3678,7 +3445,6 @@ export default function LessonsTab({
         stageLearningV2ReadyHandoffV1(ready.handle);
         console.log(`[V2-START] ready ${JSON.stringify({ lesson: selected.lessonOrdinal, session: selected.sessionOrdinal, tapToReadyMs: Date.now() - v2StartTapAtMs })}`); // guard-ok: подготовка закончена, дальше переход
         setSelectedLearningV2Session(null);
-        rememberHomeContinueV2(selected, sessionId); // зачем (P23): метка «последнее V2» для карточки «Продолжить» на Главной
         requestAnimationFrame(() => {
           if (__DEV__) {
             console.log(
@@ -3749,7 +3515,6 @@ export default function LessonsTab({
     lang,
     learningV2Catalog?.environment,
     learningV2Catalog?.seasonId,
-    rememberHomeContinueV2,
     learningV2DevUnlockAllActive,
     learningV2ReduceMotionPreference,
     markLearningV2PreparedLaunchTrace,

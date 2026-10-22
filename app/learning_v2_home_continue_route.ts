@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { LEARNING_V2_HIDDEN, logLearningV2Hidden } from './learning_v2_visibility_switch';
-import { recordHomeContinueV2 } from './home_continue_mark';
 import {
   learningV2SessionHrefV1,
   logLearningV2PrepareFailureV1,
@@ -13,7 +12,6 @@ import {
   prepareLearningV2SessionRunV1,
   stageLearningV2ReadyHandoffV1,
 } from './learning_v2_session_launch_v1';
-import type { RuntimeStudyTarget } from './target_storage_keys';
 
 const LOG = '[HOME-CONTINUE]';
 
@@ -64,7 +62,6 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
       { devUnlockedDrafts: false },
     );
     stageLearningV2ReadyHandoffV1(ready.handle);
-    recordHomeContinueV2(ctx.studyTarget as RuntimeStudyTarget, { lessonOrdinal, sessionOrdinal, sessionId, route: { ...route }, atMs: Date.now() });
     console.log(`${LOG} launch ready session=${sessionId} run=${ready.sessionRunId} handle=${ready.handle ? 'есть' : 'нет'} ms=${Date.now() - startedAt}`);
     ctx.push(learningV2SessionHrefV1({
       sessionId,

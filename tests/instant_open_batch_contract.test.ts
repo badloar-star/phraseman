@@ -59,7 +59,10 @@ describe('instant open batch', () => {
   it('the lessons tab arms the V2 warmup after the first frame, not only after opening V2', () => {
     const src = read('app/(tabs)/lessons.tsx');
     // зачем (R1 перф, 1968ed8f2): прогрев V2 включается тем же условием, что и сам V2, — без особого случая для dev-сборок, чтобы замеры dev совпадали с релизом
-    expect(src).toContain('const learningV2WarmupEnabled = page === "v2" || learningV2WarmupArmed;');
-    expect(src).toContain('setTimeout(() => setLearningV2WarmupArmed(true), 2000)');
+    // зачем (работа 19.10, восстановлена 22.10): тяжёлый прогрев каталога V2 ждёт паузы в касаниях (2,5 с без жестов),
+    // чтобы первый вход в /learning-v2/course принимал касания; прогресс V2 по-прежнему греется сразу на вкладке V2.
+    expect(src).toContain('const learningV2WarmupEnabled = learningV2WarmupArmed;');
+    expect(src).toContain('const learningV2ProgressWarmupEnabled = page === "v2" || learningV2WarmupArmed;');
+    expect(src).toContain('timer = setTimeout(waitForIdle, 2500);');
   });
 });

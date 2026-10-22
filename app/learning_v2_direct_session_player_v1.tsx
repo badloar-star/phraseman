@@ -3,7 +3,6 @@ import { actionToastTri, emitAppEvent } from "./events";
 import { isAttemptsStopEffect, isAttemptsInputBlocked } from "./session_attempts/session_attempts_stop";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Crypto from "expo-crypto";
-import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { Image } from "expo-image";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { usePremium } from "../components/PremiumContext";
@@ -111,7 +110,6 @@ import { useEnergy, useEnergySessionIntent } from "../components/EnergyContext";
 import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
 import { useAudio } from "../hooks/use-audio";
 import { useLearningV2UnlockedLessonWordsV1 } from "../hooks/use_learning_v2_unlocked_lesson_words_v1";
-import { useManagedSpokenAudioPlayer } from "../hooks/use_managed_spoken_audio_player";
 import { useSessionAttempts } from "../hooks/useSessionAttempts";
 import { useSessionAttemptAutoReset } from "../hooks/useSessionAttemptAutoReset";
 import { SESSION_ATTEMPTS_MOTION } from "../constants/motionHybrid";
@@ -202,14 +200,8 @@ import {
   type LearningV2SessionKindCode,
 } from "../modules/learning-v2/telemetry";
 import { trackLearningV2Telemetry } from "./learning_v2_telemetry";
-import {
-  resolveLearningV2CourseSessionFullPhraseAudioV1,
-  resolveLearningV2CourseSessionSelectableAudioV1,
-  resolveLearningV2CourseSessionSupplementalAudioV1,
-  type LearningV2CourseSessionAudioPreloadHandleV1,
-} from "./learning_v2_course_session_audio_preload_v1";
 import { adaptLearningV2DirectSessionIntroV1 } from "./learning_v2_direct_session_intro_adapter_v1";
-import { resolvePreparedLearningV2FactoryWordAudioV1 } from "./learning_v2_lesson_audio_pack_v1";
+import { peekVoiceIdForLocale } from "./flashcards/voice_prefs";
 import LearningV2SessionIntro from "./learning_v2_session_intro";
 import LearningV2VoiceHeadsupSheet from "../components/learning-v2/LearningV2VoiceHeadsupSheet";
 import {
@@ -436,20 +428,6 @@ function runFrom(
     evaluatorCapsuleChild: material.evaluatorCapsuleChild,
     auxiliaryChild: material.auxiliaryChild,
   });
-}
-
-// Recorded audio is optional by policy, but resolution failures must stay
-// diagnosable so a missing clip falls back to device speech intentionally.
-const playerSwallowedOnce = new Set<string>();
-function logPlayerSwallowed(where: string, id: string, error: unknown): void {
-  const key = `${where}:${id}`;
-  if (playerSwallowedOnce.has(key)) return;
-  playerSwallowedOnce.add(key);
-  console.warn("[V2-PLAYER] swallowed", JSON.stringify({
-    where,
-    id,
-    reason: error instanceof Error ? error.message : String(error),
-  })); // guard-ok: причина проглоченной ошибки
 }
 
 export default function LearningV2DirectSessionPlayerV1() {
@@ -814,59 +792,9 @@ export default function LearningV2DirectSessionPlayerV1() {
     responseId: string | null;
     token: number;
   }>({ responseId: null, token: 0 });
-  const [audioRequest, setAudioRequest] = useState<Readonly<{
-    fileUri: string;
-    requestId: number;
-    rate: number;
-  }> | null>(null);
-  const audioRequestIdRef = useRef(0);
-  const [localAudioPlayback, setLocalAudioPlayback] = useState<Readonly<{
-    requestId: number;
-    state: Exclude<LearningV2ReferenceAudioStateV1, "unavailable">;
-  }> | null>(null);
+  // зачем (владелец 22.10: «аудио убрали и сменили на TTS»): своего плеера записей у занятия нет — любой звук
+  // (фраза, медленно, слово, варианты) говорит голос телефона через общий useAudio. Записи mp3 не играются.
   const { speak: speakPreviewAudio, stop: stopPreviewAudio } = useAudio();
-  // Keep one native player for the session and replace its source between
-  // clips. This avoids exhausting Android decoder slots during long lessons.
-  const audioPlayer = useAudioPlayer(null, {
-    downloadFirst: false,
-    updateInterval: 60_000,
-  });
-  const audioStatus = useAudioPlayerStatus(audioPlayer);
-  useEffect(() => {
-    if (!audioRequest) return;
-    try {
-      audioPlayer.replace({ uri: audioRequest.fileUri });
-    } catch (error: unknown) {
-      DebugLogger.error(
-        "learning_v2_direct_session_player_v1:audioStatus",
-        error instanceof Error ? error : new Error(String(error)),
-        "warning",
-      );
-    }
-  }, [audioRequest, audioPlayer]);
-  const managedAudio = useManagedSpokenAudioPlayer(
-    audioPlayer,
-    audioStatus.didJustFinish,
-  );
-  const playLocalAudio = useCallback(
-    (fileUri: string | null | undefined, rate = 1) => {
-      if (!fileUri) return;
-      if (!Number.isFinite(rate) || rate < 0.5 || rate > 2) return;
-      managedAudio.stop();
-      stopPreviewAudio();
-      previewSpeechGuardRef.current.cancelCurrent();
-      if (previewSpeechWatchdogRef.current !== null) {
-        clearTimeout(previewSpeechWatchdogRef.current);
-        previewSpeechWatchdogRef.current = null;
-      }
-      setPreviewSpeechKey(null);
-      const requestId = audioRequestIdRef.current + 1;
-      audioRequestIdRef.current = requestId;
-      setLocalAudioPlayback({ requestId, state: "loading" });
-      setAudioRequest({ fileUri, requestId, rate });
-    },
-    [managedAudio, stopPreviewAudio],
-  );
   // зачем (Ревизор 15.10, 🟡 к e6392a5a7): предпросмотр слова озвучивался зашитым en-US, а распознавание шло по языку курса —
   // испанское слово читалось английским голосом. Локаль курса считается ниже (voiceRecognitionLocale, после runSummary),
   // поэтому колбэк читает её через ref: в массив зависимостей объявленную ниже константу класть нельзя.
@@ -879,15 +807,26 @@ export default function LearningV2DirectSessionPlayerV1() {
   const speakPreviewText = useCallback(
     (text: string | null | undefined, key: string, rate?: number) => {
       const normalized = text?.trim();
-      if (!allowsDeviceSpeech || !normalized) return;
-      const ttsTrace = { key, reason: "no_local_audio_file" };
-      if (__DEV__) {
-        console.log("[V2-AUDIO-TTS]", JSON.stringify(ttsTrace)); // guard-ok: диагностика фолбэка на TTS
+      if (!allowsDeviceSpeech || !normalized) {
+        // guard-ok: ранний выход пишет причину
+        console.warn("[V2-AUDIO-TTS] skip", JSON.stringify({ key, reason: normalized ? "device_speech_disabled" : "empty_text" }));
+        return;
       }
-      DebugLogger.warn("[V2-AUDIO-TTS]", JSON.stringify(ttsTrace));
-      managedAudio.stop();
-      setAudioRequest(null);
-      setLocalAudioPlayback(null);
+      const language = previewSpeechLocaleRef.current;
+      const ttsTrace = {
+        key,
+        text: normalized,
+        language,
+        voice: peekVoiceIdForLocale(language) ?? "system_default",
+        rate: rate ?? 1,
+      };
+      const ttsStartedAtMs = Date.now();
+      const logTts = (phase: string, extra?: Readonly<Record<string, unknown>>) => {
+        const line = JSON.stringify({ ...ttsTrace, phase, ms: Date.now() - ttsStartedAtMs, ...extra });
+        if (__DEV__) console.log("[V2-AUDIO-TTS]", line); // guard-ok: диагностика озвучки занятия
+        if (phase === "error") DebugLogger.warn("[V2-AUDIO-TTS]", line);
+      };
+      logTts("request");
       previewSpeechGuardRef.current.cancelCurrent();
       if (previewSpeechWatchdogRef.current !== null) {
         clearTimeout(previewSpeechWatchdogRef.current);
@@ -916,44 +855,27 @@ export default function LearningV2DirectSessionPlayerV1() {
         language: previewSpeechLocaleRef.current,
         systemTtsOnly: true,
         onStart: () => {
+          logTts("start");
           if (previewSpeechGuardRef.current.isCurrent(request)) {
             setPreviewSpeechKey(key);
           }
         },
-        onDone: clear,
-        onStopped: clear,
-        onError: clear,
+        onDone: () => {
+          logTts("done");
+          clear();
+        },
+        onStopped: () => {
+          logTts("stopped");
+          clear();
+        },
+        onError: (error: Error) => {
+          logTts("error", { error: error.message });
+          clear();
+        },
       });
     },
-    [allowsDeviceSpeech, managedAudio, speakPreviewAudio, stopPreviewAudio],
+    [allowsDeviceSpeech, speakPreviewAudio, stopPreviewAudio],
   );
-
-  useEffect(() => {
-    if (!audioRequest || !audioStatus.isLoaded) return;
-    let cancelled = false;
-    audioPlayer.setPlaybackRate(audioRequest.rate, "high");
-    void managedAudio.playFromStart().then((started) => {
-      if (cancelled || started) return;
-      setLocalAudioPlayback((current) =>
-        current?.requestId === audioRequest.requestId
-          ? { ...current, state: "error" }
-          : current,
-      );
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [audioPlayer, audioRequest, audioStatus.isLoaded, managedAudio]);
-
-  useEffect(() => {
-    if (!audioRequest) return;
-    setLocalAudioPlayback((current) => {
-      if (!current || current.requestId !== audioRequest.requestId) return current;
-      if (audioStatus.playing) return { ...current, state: "playing" };
-      if (audioStatus.didJustFinish) return { ...current, state: "idle" };
-      return current;
-    });
-  }, [audioRequest, audioStatus.didJustFinish, audioStatus.playing]);
 
   useEffect(
     () => () => {
@@ -967,9 +889,6 @@ export default function LearningV2DirectSessionPlayerV1() {
   );
 
   const cancelPreviewSpeech = useCallback(() => {
-    managedAudio.stop();
-    setAudioRequest(null);
-    setLocalAudioPlayback(null);
     previewSpeechGuardRef.current.cancelCurrent();
     if (previewSpeechWatchdogRef.current !== null) {
       clearTimeout(previewSpeechWatchdogRef.current);
@@ -977,7 +896,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     setPreviewSpeechKey(null);
     stopPreviewAudio();
-  }, [managedAudio, stopPreviewAudio]);
+  }, [stopPreviewAudio]);
 
   useEffect(
     () => () => {
@@ -1060,11 +979,6 @@ export default function LearningV2DirectSessionPlayerV1() {
   const runSummary = run
     ? getLearningV2CourseSessionDeviceRunSummaryV1(run)
     : null;
-  const audioPreload: LearningV2CourseSessionAudioPreloadHandleV1 | null =
-    readyHandle
-      ? resolveLearningV2CourseSessionReadyMaterialV3(readyHandle).audio
-      : null;
-  const activeAudioPreload = isAuthoringPreview ? null : audioPreload;
   // Only English initial runs have the local client-authoritative interaction
   // composite. Repeats and other target languages are policy-priced by the
   // server completion flow, so showing per-interaction runes here would be an
@@ -1142,47 +1056,6 @@ export default function LearningV2DirectSessionPlayerV1() {
       ) as Readonly<Record<string, string>>,
     [newWordEncounters],
   );
-  const newWordAudioByLexicalItemId = useMemo(() => {
-    const audioById: Record<string, string | null> = {};
-    for (const encounter of newWordEncounters) {
-      let fileUri: string | null = null;
-      if (activeAudioPreload) {
-        try {
-          fileUri = resolveLearningV2CourseSessionSupplementalAudioV1({
-            handle: activeAudioPreload,
-            supplementalId: encounter.lexicalItemId,
-          })?.fileUri ?? null;
-        } catch (error: unknown) {
-          logPlayerSwallowed("new_word_audio", encounter.lexicalItemId, error);
-        }
-      }
-      audioById[wordEncounterPresentationId(encounter)] = fileUri;
-    }
-    return Object.freeze(audioById);
-  }, [activeAudioPreload, newWordEncounters]);
-  const preparedWordAudioByText = useMemo(() => {
-    const entries = unlockedWords.map((word) => {
-      const normalized = word.encounter.save.targetText.normalize("NFKC").trim();
-      let readyHandleUri: string | null = null;
-      if (activeAudioPreload) {
-        try {
-          readyHandleUri = resolveLearningV2CourseSessionSupplementalAudioV1({
-            handle: activeAudioPreload,
-            supplementalId: word.lexicalItemId,
-          })?.fileUri ?? null;
-        } catch (error: unknown) {
-          logPlayerSwallowed("unlocked_word_audio", word.lexicalItemId, error);
-        }
-      }
-      return [
-        normalized,
-        readyHandleUri ?? resolvePreparedLearningV2FactoryWordAudioV1(normalized),
-      ] as const;
-    });
-    return Object.freeze(Object.fromEntries(entries)) as Readonly<
-      Record<string, string | null>
-    >;
-  }, [activeAudioPreload, unlockedWords]);
   useEffect(() => {
     const next = createLearningV2InterleavedNewWordFlowV1();
     newWordFlowRef.current = next;
@@ -1211,19 +1084,14 @@ export default function LearningV2DirectSessionPlayerV1() {
         if (effect !== "play_current_audio") return;
         if (transition.state.kind !== "presenting") return;
         const encounterId = transition.state.encounterId;
-        const fileUri = newWordAudioByLexicalItemId[encounterId] ?? null;
-        if (fileUri) playLocalAudio(fileUri);
-        else
-          speakPreviewText(
-            newWordSpeechByLexicalItemId[encounterId],
-            `new-word:${encounterId}`,
-          );
+        speakPreviewText(
+          newWordSpeechByLexicalItemId[encounterId],
+          `new-word:${encounterId}`,
+        );
       });
     },
     [
       newWordSpeechByLexicalItemId,
-      newWordAudioByLexicalItemId,
-      playLocalAudio,
       speakPreviewText,
       cancelPreviewSpeech,
     ],
@@ -1236,17 +1104,9 @@ export default function LearningV2DirectSessionPlayerV1() {
             wordEncounterPresentationId(encounter) === newWordFlow.encounterId,
         ) ?? null)
       : null;
-  const currentNewWordAudioUri = currentNewWordEncounter
-    ? (newWordAudioByLexicalItemId[wordEncounterPresentationId(currentNewWordEncounter)] ??
-      null)
-    : null;
   const currentNewWordAudioState: LearningV2NewWordAudioStateV1 =
-    !currentNewWordAudioUri && !allowsDeviceSpeech
+    !allowsDeviceSpeech
       ? "unavailable"
-      : currentNewWordAudioUri &&
-          audioRequest?.fileUri === currentNewWordAudioUri &&
-          audioStatus.playing
-        ? "playing"
       : currentNewWordEncounter &&
           previewSpeechKey ===
             `new-word:${wordEncounterPresentationId(currentNewWordEncounter)}`
@@ -1460,18 +1320,6 @@ export default function LearningV2DirectSessionPlayerV1() {
       : null;
   const progressOrdinal = introDone ? practiceIndex + 4 : 1;
   const totalInteractions = runSummary?.interactionCount ?? 10;
-  const fullPhraseAudio = useMemo(() => {
-    if (!activeAudioPreload || !practice) return null;
-    try {
-      return resolveLearningV2CourseSessionFullPhraseAudioV1({
-        handle: activeAudioPreload,
-        interactionId: practice.interactionId,
-      });
-    } catch (error: unknown) {
-      logPlayerSwallowed("full_phrase_audio", practice.interactionId, error);
-      return null;
-    }
-  }, [activeAudioPreload, practice]);
   const previewPracticeSpeechText = useMemo(
     () =>
       allowsDeviceSpeech && practice
@@ -1503,39 +1351,26 @@ export default function LearningV2DirectSessionPlayerV1() {
       voiceAttemptSubmitted || result === "correct",
     );
   const practiceReferenceAvailable =
-    practiceAnswerBearingContentRevealed &&
-    (fullPhraseAudio !== null || previewPracticeSpeechText !== null);
+    practiceAnswerBearingContentRevealed && previewPracticeSpeechText !== null;
   const practiceSlowReferenceAvailable =
-    practiceAnswerBearingContentRevealed &&
-    (fullPhraseAudio !== null || previewPracticeSlowSpeechText !== null);
+    practiceAnswerBearingContentRevealed && previewPracticeSlowSpeechText !== null;
   const practiceReferenceKey = practice
     ? `practice:${practice.interactionId}`
     : null;
   const referenceAudioState: LearningV2ReferenceAudioStateV1 =
     !practiceReferenceAvailable
       ? "unavailable"
-      : fullPhraseAudio
-        ? audioRequest?.fileUri === fullPhraseAudio.fileUri &&
-          localAudioPlayback?.requestId === audioRequest.requestId
-          ? localAudioPlayback.state
-          : "idle"
-        : practiceReferenceKey && previewSpeechKey === practiceReferenceKey
-          ? "playing"
-          : "idle";
+      : practiceReferenceKey && previewSpeechKey === practiceReferenceKey
+        ? "playing"
+        : "idle";
   const playPracticeReferenceAudio = useCallback(() => {
     voiceCancelRef.current();
-    if (fullPhraseAudio) {
-      playLocalAudio(fullPhraseAudio.fileUri);
-      return;
-    }
     if (practice)
       speakPreviewText(
         previewPracticeSpeechText,
         `practice:${practice.interactionId}`,
       );
   }, [
-    fullPhraseAudio,
-    playLocalAudio,
     practice,
     previewPracticeSpeechText,
     speakPreviewText,
@@ -1561,35 +1396,16 @@ export default function LearningV2DirectSessionPlayerV1() {
   const playPracticeSlowReferenceAudio = useCallback(() => {
     voiceCancelRef.current();
     if (!practice) return;
-    if (fullPhraseAudio) {
-      playLocalAudio(fullPhraseAudio.fileUri, 0.72);
-      return;
-    }
     speakPreviewText(
       previewPracticeSlowSpeechText,
       `practice:${practice.interactionId}:slow`,
       0.72,
     );
-  }, [fullPhraseAudio, playLocalAudio, practice, previewPracticeSlowSpeechText, speakPreviewText]);
+  }, [practice, previewPracticeSlowSpeechText, speakPreviewText]);
 
   const playSelectableAudio = useCallback(
     (selectableId: string) => {
       if (!practice) return;
-      if (activeAudioPreload) {
-        try {
-          const selectableAudio = resolveLearningV2CourseSessionSelectableAudioV1({
-            handle: activeAudioPreload,
-            interactionId: practice.interactionId,
-            selectableId,
-          });
-          if (selectableAudio) {
-            playLocalAudio(selectableAudio.fileUri);
-            return;
-          }
-        } catch (error: unknown) {
-          logPlayerSwallowed("selectable_audio", practice.interactionId, error);
-        }
-      }
       if (
         allowsDeviceSpeech &&
         practice.modePayload?.family === "sound_contrast"
@@ -1604,13 +1420,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         );
       }
     },
-    [
-      activeAudioPreload,
-      allowsDeviceSpeech,
-      playLocalAudio,
-      practice,
-      speakPreviewText,
-    ],
+    [allowsDeviceSpeech, practice, speakPreviewText],
   );
 
   const resetInteraction = useCallback(() => {
@@ -4161,12 +3971,6 @@ export default function LearningV2DirectSessionPlayerV1() {
           onClose={() => setWordPocketOpen(false)}
           onSpeak={(text) => {
             const normalized = text.normalize("NFKC").trim();
-            const fileUri = preparedWordAudioByText[normalized]
-              ?? resolvePreparedLearningV2FactoryWordAudioV1(normalized);
-            if (fileUri) {
-              playLocalAudio(fileUri);
-              return;
-            }
             speakPreviewText(normalized, `word-pocket:${normalized}`);
           }}
         />
@@ -4204,12 +4008,10 @@ export default function LearningV2DirectSessionPlayerV1() {
           }}
           onPlayAudio={() => {
             dispatchNewWordEvent({ kind: "audio_pressed" });
-            if (currentNewWordAudioUri) playLocalAudio(currentNewWordAudioUri);
-            else
-              speakPreviewText(
-                currentNewWordEncounter.save.targetText,
-                `new-word:${wordEncounterPresentationId(currentNewWordEncounter)}`,
-              );
+            speakPreviewText(
+              currentNewWordEncounter.save.targetText,
+              `new-word:${wordEncounterPresentationId(currentNewWordEncounter)}`,
+            );
           }}
           measurePocketTarget={measureWordPocketTarget}
         />

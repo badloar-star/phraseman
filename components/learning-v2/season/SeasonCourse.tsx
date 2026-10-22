@@ -46,7 +46,7 @@ function SeasonCourse(props: SeasonCourseProps) {
 
   // зачем (закон владельца 22.10): цвет карточек — оттенок текущей темы, а не свой оттенок главы
   const themeHue = hexHue(useLv2Glass().accent);
-  const artFor = useCallback((chapter: number, ordinal: number) => seasonThemedArt(themeHue, chapter, ordinal, theme), [themeHue, theme]);
+  const artFor = useCallback((chapter: number, ordinal: number, exam = false) => seasonThemedArt(themeHue, chapter, ordinal, theme, exam), [themeHue, theme]);
 
   // ── раскрытая карта ──
   const expandedProps = useMemo(() => {
@@ -56,7 +56,7 @@ function SeasonCourse(props: SeasonCourseProps) {
     const chapter = props.chapterInfo(card.chapterOrdinal);
     const locked = card.state === 'locked';
     const close = () => setExpanded(null);
-    const common = { dark, glyph: chapter.icon, closeLabel: seasonCardText(lang, 'closeCard'), onClose: close, reducedMotion: props.reducedMotion, state: card.state, art: artFor(card.chapterOrdinal, card.sessionOrdinal) } as const;
+    const common = { dark, glyph: chapter.icon, closeLabel: seasonCardText(lang, 'closeCard'), onClose: close, reducedMotion: props.reducedMotion, state: card.state, art: artFor(card.chapterOrdinal, card.sessionOrdinal, card.kind === 'exam') } as const;
     const examActions = SEASON_CHAPTER_EXAM_ENABLED;
     if (card.kind === 'exam') {
       const after = seasonUnlockAfter(deck, expanded);

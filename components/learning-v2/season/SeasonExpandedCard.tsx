@@ -24,8 +24,6 @@ const MUTE = 'rgba(8,10,18,0.32)'; // theme-exempt: затемнение зак�
 const INK = '#121318'; // theme-exempt: текст белой кнопки, эталон `.qbtn.white`
 const DIM_LIGHT = 'rgba(23,24,30,0.38)'; // theme-exempt: затемнение экрана под раскрытой картой, эталон `--dimc` (Сумерки)
 const DIM_DARK = 'rgba(0,0,0,0.5)'; // theme-exempt: затемнение экрана под раскрытой картой, эталон `--dimc` (Океан)
-const EXAM_LIGHT = ['#262447', '#12142A'] as const; // theme-exempt: фон карты экзамена, эталон `.c4exam`
-const EXAM_DARK = ['#0B3442', '#04141C'] as const; // theme-exempt: фон карты экзамена, эталон `.th-marine .c4exam`
 const ENERGY_PILL = 'rgba(18,19,24,0.08)'; // theme-exempt: цена ⚡1 на белой кнопке, эталон `.xen`
 const SHADOW = '0 26px 50px -22px rgba(0,0,0,0.6)'; // theme-exempt: тень раскрытой карты, эталон `--sh2`
 
@@ -74,7 +72,7 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
       <Pressable style={[styles.dim, { backgroundColor: p.dark ? DIM_DARK : DIM_LIGHT }]} onPress={p.onClose} accessibilityRole="button" accessibilityLabel={p.closeLabel} />
       <Animated.View style={[styles.card, cardStyle]}>
         {p.kind === 'exam' ? (
-          <LinearGradient colors={p.dark ? EXAM_DARK : EXAM_LIGHT} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
+          <LinearGradient colors={[p.art.from, p.art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         ) : (
           <>
             <LinearGradient colors={[p.art.from, p.art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />

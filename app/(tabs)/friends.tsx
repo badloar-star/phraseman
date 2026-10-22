@@ -2349,7 +2349,8 @@ export default function FriendsTabScreen() {
       acknowledgeFriendEvent(event);
       return;
     }
-    if (event.kind === 'study_invite') {
+    // зачем (идея 2): приглашение на конкретное занятие открывает то же окно — в нём занятие, срок и факты отправителя
+    if (event.kind === 'study_invite' || event.kind === 'lesson_invite') {
       setStudyInvite({ event, friendName: profile.name, friendCoinRank: isValidCoinRank(profile.coinRank) ? profile.coinRank : null });
       return;
     }
@@ -2834,6 +2835,8 @@ export default function FriendsTabScreen() {
         friendCoinRank={studyInvite?.friendCoinRank ?? null}
         // зачем (идея 1, макет friendSide): «Серия вдвоём · N дней» — из снимка «Вместе» на телефоне; без выключателя строки нет
         pairStreak={friendsTogetherUiEnabled && studyInvite ? (togetherSnapshot?.pairs[studyInvite.event.actorStableUid]?.pair?.streak ?? null) : null}
+        lesson={friendsTogetherUiEnabled && studyInvite?.event.kind === 'lesson_invite' ? (studyInvite.event.lesson ?? null) : null}
+        friendName={studyInvite?.friendName}
         onStart={() => {
           if (studyInvite) acknowledgeFriendEvent(studyInvite.event);
           setStudyInvite(null);

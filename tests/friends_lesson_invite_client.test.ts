@@ -39,11 +39,11 @@ beforeEach(() => {
 describe('позвать на занятие', () => {
   it('до трёх друзей без повторов; числа — только целые в пределах; приглашения помним', async () => {
     mockResponses.friendsLessonInvite = [ok({ ok: true, inviteIds: { ira: 'inv-ira', oleg: 'inv-oleg' }, expiresAtMs: { ira: NOW + 3_600_000, oleg: NOW + 7_200_000 } })];
-    const res = await sendLessonInvites({ friendUids: ['ira', 'oleg', 'ira', 'mark', 'den'], lessonKey: 'lv2_en_2_3', minutes: 6, stars: 2.5 });
+    const res = await sendLessonInvites({ friendUids: ['ira', 'oleg', 'ira', 'mark', 'den'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 3, minutes: 6, stars: 2.5 });
     expect(res).toMatchObject({ ok: true, inviteIds: { ira: 'inv-ira', oleg: 'inv-oleg' } });
     expect(mockCalls).toHaveLength(1);
     const payload = mockCalls[0]!.payload;
-    expect(payload).toMatchObject({ stableId: 'me-1', senderDisplayName: 'Алекс', friendUids: ['ira', 'oleg', 'mark'], lessonKey: 'lv2_en_2_3', minutes: 6 });
+    expect(payload).toMatchObject({ stableId: 'me-1', senderDisplayName: 'Алекс', friendUids: ['ira', 'oleg', 'mark'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 3, minutes: 6 });
     expect(payload).not.toHaveProperty('stars');
     expect(String(payload.requestId)).toMatch(/^flt_/);
     const sent = await readSentLessonInvites();
@@ -52,7 +52,7 @@ describe('позвать на занятие', () => {
 
   it('сбой сети — один повтор тем же requestId', async () => {
     mockResponses.friendsLessonInvite = [fail('unavailable'), ok({ ok: true, inviteIds: { ira: 'inv-ira' }, expiresAtMs: { ira: NOW + 1000 } })];
-    const res = await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3' });
+    const res = await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 3 });
     expect(res.ok).toBe(true);
     expect(mockCalls).toHaveLength(2);
     expect(mockCalls[0]!.payload.requestId).toBe(mockCalls[1]!.payload.requestId);
@@ -60,17 +60,23 @@ describe('позвать на занятие', () => {
 
   it('предел или не друзья — без повтора, причина наружу', async () => {
     mockResponses.friendsLessonInvite = [fail('resource-exhausted daily_limit')];
-    expect(await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3' })).toEqual({ ok: false, reason: 'limit' });
+    expect(await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 3 })).toEqual({ ok: false, reason: 'limit' });
     mockResponses.friendsLessonInvite = [fail('failed-precondition not_friends')];
-    expect(await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3' })).toEqual({ ok: false, reason: 'not_friends' });
+    expect(await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 3 })).toEqual({ ok: false, reason: 'not_friends' });
     expect(mockCalls).toHaveLength(2);
   });
 
   it('нет личности отправителя или пустой выбор — сервер не зовём', async () => {
     mockSender.current = null;
-    expect(await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3' })).toEqual({ ok: false, reason: 'no_sender' });
+    expect(await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 3 })).toEqual({ ok: false, reason: 'no_sender' });
     mockSender.current = { stableId: 'me-1' };
-    expect((await sendLessonInvites({ friendUids: [], lessonKey: 'lv2_en_2_3' })).ok).toBe(false);
+    expect((await sendLessonInvites({ friendUids: [], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 3 })).ok).toBe(false);
+    expect(mockCalls).toHaveLength(0);
+  });
+
+  it('без номеров урока и занятия не зовём — у друга другой язык, открыть «это занятие» не по чему (D188)', async () => {
+    expect((await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 0, sessionOrdinal: 3 })).ok).toBe(false);
+    expect((await sendLessonInvites({ friendUids: ['ira'], lessonKey: 'lv2_en_2_3', lessonOrdinal: 2, sessionOrdinal: 2.5 })).ok).toBe(false);
     expect(mockCalls).toHaveLength(0);
   });
 

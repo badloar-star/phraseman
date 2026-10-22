@@ -92,6 +92,15 @@ function compileModal() {
     if (id.endsWith('/LangContext')) return { useLang: () => ({ lang: 'ru' }) };
     // зачем (идея 1, 21.10): строка «Серия вдвоём · N дней» в окне приглашения — текст из pair_copy
     if (id.endsWith('/pair_copy')) return { pairInviteLine: (_lang, n) => `Серия вдвоём · ${n} дней` };
+    // зачем (идея 2, 22.10): вариант окна с занятием — тексты друга; без lesson окно прежнее, факты пустые
+    if (id.endsWith('/lesson_invite_friend_copy')) {
+      return {
+        lessonInviteFriendTitle: (_lang, name) => `${name} зовёт на занятие`,
+        lessonInviteFriendBody: (_lang, l, s) => `Урок ${l} · Занятие ${s}. Пройди сегодня — до полуночи.`,
+        lessonInviteFriendFacts: () => [],
+      };
+    }
+    if (id.endsWith('/friend_social_events')) return {};
     if (id.endsWith('/i18n')) return { triLang: (lang, copy) => copy[lang] };
     if (id.endsWith('/liquidGlassThemePalette')) {
       return {

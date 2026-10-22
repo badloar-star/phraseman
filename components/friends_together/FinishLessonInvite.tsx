@@ -94,7 +94,7 @@ export default function FinishLessonInvite({ lessonKey, lesson, sessionOrdinal, 
     const names = friendUids.map((uid) => rows.find((r) => r.friendUid === uid)?.name ?? '').filter(Boolean);
     setSentNames(names); // зачем (Optimistic UI): «Приглашения ушли…» сразу, до ответа сервера
     toast('success', lessonInviteSentToast());
-    void sendLessonInvites({ friendUids, lessonKey, minutes: Math.round(elapsedMs / 60_000), stars })
+    void sendLessonInvites({ friendUids, lessonKey, lessonOrdinal: lesson, sessionOrdinal, minutes: Math.round(elapsedMs / 60_000), stars })
       .then((result) => {
         log(`finish:invite result ok=${result.ok}${result.ok ? '' : ` reason=${result.reason}`}`);
         if (result.ok) return;
@@ -107,7 +107,7 @@ export default function FinishLessonInvite({ lessonKey, lesson, sessionOrdinal, 
         toast('error', lessonInviteFailToast(false));
       })
       .finally(() => { inFlightRef.current = false; });
-  }, [elapsedMs, lessonKey, rows, stars]);
+  }, [elapsedMs, lesson, lessonKey, rows, sessionOrdinal, stars]);
 
   if (!on) return null;
   const sent = sentNames !== null;

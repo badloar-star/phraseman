@@ -99,11 +99,16 @@ export async function readSentLessonInvites(nowMs: number = Date.now()): Promise
 
 type InviteResponse = { ok?: unknown; inviteIds?: unknown; expiresAtMs?: unknown };
 
-/** Позвать до трёх друзей на занятие lessonKey. Повтор при сбое сети — тем же requestId. */
-export async function sendLessonInvites(input: Readonly<{ friendUids: readonly string[]; lessonKey: string; minutes?: number; stars?: number }>): Promise<LessonInviteSendResult> {
+/**
+ * Позвать до трёх друзей на занятие. Повтор при сбое сети — тем же requestId.
+ * зачем (ЯДРО 22.10, D188): друзья учат разные языки — «это занятие» у друга = те же номера урока и занятия в его курсе;
+ * lessonKey (свой sessionId) уходит только для журнала.
+ */
+export async function sendLessonInvites(input: Readonly<{ friendUids: readonly string[]; lessonKey: string; lessonOrdinal: number; sessionOrdinal: number; minutes?: number; stars?: number }>): Promise<LessonInviteSendResult> {
   const friendUids = [...new Set(input.friendUids)].slice(0, LESSON_INVITE_MAX);
-  if (friendUids.length === 0 || !input.lessonKey) {
-    log(`invite:skip reason=${friendUids.length === 0 ? 'no_friends' : 'no_lesson'}`);
+  const ordinalsOk = isCount(input.lessonOrdinal, 999) && input.lessonOrdinal >= 1 && isCount(input.sessionOrdinal, 999) && input.sessionOrdinal >= 1;
+  if (friendUids.length === 0 || !input.lessonKey || !ordinalsOk) {
+    log(`invite:skip reason=${friendUids.length === 0 ? 'no_friends' : !input.lessonKey ? 'no_lesson' : `bad_ordinals lesson=${input.lessonOrdinal} session=${input.sessionOrdinal}`}`);
     return { ok: false, reason: 'not_friends' };
   }
   const sender = await prepareTogetherSender();
@@ -117,6 +122,8 @@ export async function sendLessonInvites(input: Readonly<{ friendUids: readonly s
     ...(sender.displayName ? { senderDisplayName: sender.displayName } : {}),
     friendUids,
     lessonKey: input.lessonKey,
+    lessonOrdinal: input.lessonOrdinal,
+    sessionOrdinal: input.sessionOrdinal,
     requestId,
     // зачем (ЯДРО 22.10): числа телефона сервер только обрезает — шлём лишь целые в пределах, иначе поле не кладём
     ...(isCount(input.minutes, 180) ? { minutes: input.minutes } : {}),

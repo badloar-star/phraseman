@@ -87,7 +87,21 @@ export type UserNotificationFriendEventAction =
   | 'study_invite'
   | 'duel_invite'
   | 'duel_state'
-  | 'gift';
+  | 'gift'
+  | 'lesson_invite';
+
+/**
+ * «Урок вместе» (идея 2, формат 1 · ЯДРО 22.10): номера урока и занятия — «это занятие» в СВОЁМ курсе друга (языки у пары
+ * могут отличаться, D188); lessonKey — только для журнала; expiresAtMs — полночь друга; minutes/stars — факты отправителя.
+ */
+export type UserNotificationLessonInvite = Readonly<{
+  lessonOrdinal: number;
+  sessionOrdinal: number;
+  lessonKey?: string;
+  expiresAtMs?: number;
+  minutes?: number;
+  stars?: number;
+}>;
 
 export interface UserNotificationNavFriendEvent {
   kind: 'friend_event';
@@ -95,6 +109,7 @@ export interface UserNotificationNavFriendEvent {
   eventId: string;
   action: UserNotificationFriendEventAction;
   inviteId?: string;
+  lesson?: UserNotificationLessonInvite;
   /** Required for a direct Arena invite route; missing legacy rows open the hub. */
   studyTarget?: ArenaStudyTarget;
 }
@@ -189,12 +204,36 @@ function cleanText(value: unknown, maxLen: number): string {
   return String(value ?? '').trim().slice(0, maxLen);
 }
 
+const intIn = (value: unknown, min: number, max: number): number | null =>
+  typeof value === 'number' && Number.isInteger(value) && value >= min && value <= max ? value : null;
+
+/** Приглашение на занятие без номеров урока и занятия бесполезно — такую строку не берём (null). */
+function parseLessonInvite(row: Record<string, unknown>): UserNotificationLessonInvite | null {
+  const lessonOrdinal = intIn(row.lessonOrdinal, 1, 999);
+  const sessionOrdinal = intIn(row.sessionOrdinal, 1, 999);
+  if (lessonOrdinal === null || sessionOrdinal === null) return null;
+  const lessonKey = cleanText(row.lessonKey, 160);
+  const expiresAtMs = intIn(row.expiresAtMs, 1, Number.MAX_SAFE_INTEGER);
+  // зачем (ЯДРО 22.10): числа телефона отправителя сервер только обрезает — здесь так же: вне пределов поле не берём
+  const minutes = intIn(row.minutes, 0, 180);
+  const stars = intIn(row.stars, 0, 999);
+  return {
+    lessonOrdinal,
+    sessionOrdinal,
+    ...(lessonKey ? { lessonKey } : {}),
+    ...(expiresAtMs !== null ? { expiresAtMs } : {}),
+    ...(minutes !== null ? { minutes } : {}),
+    ...(stars !== null ? { stars } : {}),
+  };
+}
+
 const FRIEND_EVENT_ACTIONS: ReadonlySet<string> = new Set<UserNotificationFriendEventAction>([
   'high_five',
   'study_invite',
   'duel_invite',
   'duel_state',
   'gift',
+  'lesson_invite',
 ]);
 
 export function parseUserNotificationNav(value: unknown): UserNotificationNav | null {
@@ -222,6 +261,8 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   if (!actorStableUid || !eventId || !FRIEND_EVENT_ACTIONS.has(action)) return null;
   const inviteId = cleanText(row.inviteId, 256);
   const studyTarget = resolveArenaStudyTarget(row.studyTarget);
+  const lesson = action === 'lesson_invite' ? parseLessonInvite(row) : null;
+  if (action === 'lesson_invite' && !lesson) return null;
   return {
     kind: 'friend_event',
     actorStableUid,
@@ -229,6 +270,7 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
     action: action as UserNotificationFriendEventAction,
     ...(inviteId ? { inviteId } : {}),
     ...(studyTarget ? { studyTarget } : {}),
+    ...(lesson ? { lesson } : {}),
   };
 }
 

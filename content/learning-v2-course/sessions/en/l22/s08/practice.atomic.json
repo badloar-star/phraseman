@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-08:word:calculate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — calculate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:calculate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — calculate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:calculate:audio",
+            "transcript": "calculate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:calculate:r1",
+              "targetText": "calculate",
+              "meaningByLocale": {
+                "ru": "вычислить.",
+                "uk": "обчислити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "calculate",
+            "definitionByLocale": {
+              "ru": "вычислить.",
+              "uk": "обчислити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Речь об общей сумме покупки. Скажите: «Я могу её вычислить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь об общей сумме покупки. Скажите: «Я могу её вычислить»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can calculate it.",
+          "localizedMeaning": {
+            "ru": "Речь об общей сумме покупки. Скажите: «Я могу её вычислить»",
+            "uk": "Йдеться про загальну суму покупки. Скажіть: «Я можу її обчислити»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "calculate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i02:r1",
+            "text": "I can calculate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i02:r2",
+            "text": "You can calculate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i02:r3",
+            "text": "We can calculate it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i02:audio",
+            "transcript": "I can calculate it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i02:r1",
+              "targetText": "I can calculate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i02:r2",
+              "targetText": "You can calculate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i02:r3",
+              "targetText": "We can calculate it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can calculate it.",
+                "uk": "У записі звучить I can calculate it."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can calculate it.",
+                "uk": "У записі звучить I can calculate it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i03:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i03:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i03:r3",
+            "text": "it's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can calculate ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i03:r1",
+              "text": "it"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i03:r2",
+              "text": "its"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i03:r3",
+              "text": "it's"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:word:estimate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — estimate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:estimate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — estimate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:estimate:audio",
+            "transcript": "estimate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:estimate:r1",
+              "targetText": "estimate",
+              "meaningByLocale": {
+                "ru": "оценить приблизительно.",
+                "uk": "оцінити приблизно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "estimate",
+            "definitionByLocale": {
+              "ru": "оценить приблизительно.",
+              "uk": "оцінити приблизно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Точная стоимость ещё неизвестна. Скажите: «Я могу приблизительно её оценить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Точная стоимость ещё неизвестна. Скажите: «Я могу приблизительно её оценить»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can estimate it.",
+          "localizedMeaning": {
+            "ru": "Точная стоимость ещё неизвестна. Скажите: «Я могу приблизительно её оценить»",
+            "uk": "Точна вартість іще невідома. Скажіть: «Я можу приблизно її оцінити»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "estimate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i05:r1",
+            "text": "I can estimate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i05:r2",
+            "text": "You can estimate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i05:r3",
+            "text": "We can estimate it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i05:audio",
+            "transcript": "I can estimate it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i05:r1",
+              "targetText": "I can estimate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i05:r2",
+              "targetText": "You can estimate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i05:r3",
+              "targetText": "We can estimate it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can estimate it.",
+                "uk": "У записі звучить I can estimate it."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can estimate it.",
+                "uk": "У записі звучить I can estimate it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i06:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i06:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i06:r3",
+            "text": "it's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can estimate ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i06:r1",
+              "text": "it"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i06:r2",
+              "text": "its"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i06:r3",
+              "text": "it's"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:word:add-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — add up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:add-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — add up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:add-up:audio",
+            "transcript": "add up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:add-up:r1",
+              "targetText": "add up",
+              "meaningByLocale": {
+                "ru": "сложить числа.",
+                "uk": "додати числа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "add up",
+            "definitionByLocale": {
+              "ru": "сложить числа.",
+              "uk": "додати числа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Речь о ценах. Скажите: «Я могу сложить эти цены»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о ценах. Скажите: «Я могу сложить эти цены»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can add up these prices.",
+          "localizedMeaning": {
+            "ru": "Речь о ценах. Скажите: «Я могу сложить эти цены»",
+            "uk": "Йдеться про ціни. Скажіть: «Я можу додати ці ціни»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "add",
+            "up",
+            "these",
+            "prices"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i08:r1",
+            "text": "I can add them up."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i08:r2",
+            "text": "You can add them up."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i08:r3",
+            "text": "We can add them up."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i08:audio",
+            "transcript": "I can add them up."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i08:r1",
+              "targetText": "I can add them up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i08:r2",
+              "targetText": "You can add them up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i08:r3",
+              "targetText": "We can add them up.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can add them up.",
+                "uk": "У записі звучить I can add them up."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can add them up.",
+                "uk": "У записі звучить I can add them up."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i09:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i09:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i09:r3",
+            "text": "their"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can add ___ up.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i09:r1",
+              "text": "them"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i09:r2",
+              "text": "they"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i09:r3",
+              "text": "their"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:word:round-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — round down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:round-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — round down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:round-down:audio",
+            "transcript": "round down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:round-down:r1",
+              "targetText": "round down",
+              "meaningByLocale": {
+                "ru": "округлить вниз.",
+                "uk": "округлити вниз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "round down",
+            "definitionByLocale": {
+              "ru": "округлить вниз.",
+              "uk": "округлити вниз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Речь о числе. Скажите: «Я могу округлить это число вниз»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о числе. Скажите: «Я могу округлить это число вниз»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can round down this number.",
+          "localizedMeaning": {
+            "ru": "Речь о числе. Скажите: «Я могу округлить это число вниз»",
+            "uk": "Йдеться про число. Скажіть: «Я можу округлити це число вниз»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "round",
+            "down",
+            "this",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i11:r1",
+            "text": "I can round it down."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i11:r2",
+            "text": "You can round it down."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i11:r3",
+            "text": "We can round it down."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i11:audio",
+            "transcript": "I can round it down."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i11:r1",
+              "targetText": "I can round it down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i11:r2",
+              "targetText": "You can round it down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i11:r3",
+              "targetText": "We can round it down.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can round it down.",
+                "uk": "У записі звучить I can round it down."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can round it down.",
+                "uk": "У записі звучить I can round it down."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите местоимение для этой фразы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i12:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i12:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i12:r3",
+            "text": "it's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите местоимение для этой фразы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can round ___ down.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i12:r1",
+              "text": "it"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i12:r2",
+              "text": "its"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i12:r3",
+              "text": "it's"
+            }
+          ],
+          "testedDimension": "Выберите местоимение для этой фразы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите местоимение для этой фразы.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-08:i13:p1",
+              "target": "calculate",
+              "meaningByLocale": {
+                "ru": "вычислить",
+                "uk": "обчислити"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-08:i13:p2",
+              "target": "estimate",
+              "meaningByLocale": {
+                "ru": "оценить приблизительно",
+                "uk": "оцінити приблизно"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-08:i13:p3",
+              "target": "add up",
+              "meaningByLocale": {
+                "ru": "сложить числа",
+                "uk": "додати числа"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-08:i13:p4",
+              "target": "round down",
+              "meaningByLocale": {
+                "ru": "округлить вниз",
+                "uk": "округлити вниз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "calculate",
+            "estimate",
+            "add up",
+            "round down"
+          ],
+          "rightColumn": [
+            "вычислить",
+            "оценить приблизительно",
+            "сложить числа",
+            "округлить вниз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: разговор",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: разговор",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i14:audio",
+            "transcript": "I want to change the subject."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to change the subject.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "change",
+            "the",
+            "subject"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: праздник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: праздник",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i15:audio",
+            "transcript": "I want to raise a glass to Anna."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "raise",
+            "a",
+            "glass",
+            "to",
+            "Anna"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Нужно вычислить две суммы. Скажите: «Я могу их вычислить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Нужно вычислить две суммы. Скажите: «Я могу их вычислить»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i16:audio",
+            "transcript": "I can calculate them."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can calculate them.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Речь о стоимости. Скажите другу: «Я могу приблизительно оценить её для тебя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Речь о стоимости. Скажите другу: «Я могу приблизительно оценить её для тебя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i17:audio",
+            "transcript": "I can estimate it for you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can estimate it for you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-08:word:calculate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — calculate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:calculate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — calculate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:calculate:audio",
+            "transcript": "calculate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:calculate:r1",
+              "targetText": "calculate",
+              "meaningByLocale": {
+                "ru": "вычислить.",
+                "uk": "обчислити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "calculate",
+            "definitionByLocale": {
+              "ru": "вычислить.",
+              "uk": "обчислити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Йдеться про загальну суму покупки. Скажіть: «Я можу її обчислити»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про загальну суму покупки. Скажіть: «Я можу її обчислити»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can calculate it.",
+          "localizedMeaning": {
+            "ru": "Речь об общей сумме покупки. Скажите: «Я могу её вычислить»",
+            "uk": "Йдеться про загальну суму покупки. Скажіть: «Я можу її обчислити»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "calculate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i02:r1",
+            "text": "I can calculate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i02:r2",
+            "text": "You can calculate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i02:r3",
+            "text": "We can calculate it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i02:audio",
+            "transcript": "I can calculate it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i02:r1",
+              "targetText": "I can calculate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i02:r2",
+              "targetText": "You can calculate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i02:r3",
+              "targetText": "We can calculate it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can calculate it.",
+                "uk": "У записі звучить I can calculate it."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can calculate it.",
+                "uk": "У записі звучить I can calculate it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i03:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i03:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i03:r3",
+            "text": "it's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can calculate ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i03:r1",
+              "text": "it"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i03:r2",
+              "text": "its"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i03:r3",
+              "text": "it's"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:word:estimate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — estimate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:estimate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — estimate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:estimate:audio",
+            "transcript": "estimate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:estimate:r1",
+              "targetText": "estimate",
+              "meaningByLocale": {
+                "ru": "оценить приблизительно.",
+                "uk": "оцінити приблизно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "estimate",
+            "definitionByLocale": {
+              "ru": "оценить приблизительно.",
+              "uk": "оцінити приблизно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Точна вартість іще невідома. Скажіть: «Я можу приблизно її оцінити»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Точна вартість іще невідома. Скажіть: «Я можу приблизно її оцінити»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can estimate it.",
+          "localizedMeaning": {
+            "ru": "Точная стоимость ещё неизвестна. Скажите: «Я могу приблизительно её оценить»",
+            "uk": "Точна вартість іще невідома. Скажіть: «Я можу приблизно її оцінити»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "estimate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i05:r1",
+            "text": "I can estimate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i05:r2",
+            "text": "You can estimate it."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i05:r3",
+            "text": "We can estimate it."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i05:audio",
+            "transcript": "I can estimate it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i05:r1",
+              "targetText": "I can estimate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i05:r2",
+              "targetText": "You can estimate it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i05:r3",
+              "targetText": "We can estimate it.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can estimate it.",
+                "uk": "У записі звучить I can estimate it."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can estimate it.",
+                "uk": "У записі звучить I can estimate it."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i06:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i06:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i06:r3",
+            "text": "it's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can estimate ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i06:r1",
+              "text": "it"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i06:r2",
+              "text": "its"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i06:r3",
+              "text": "it's"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:word:add-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — add up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:add-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — add up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:add-up:audio",
+            "transcript": "add up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:add-up:r1",
+              "targetText": "add up",
+              "meaningByLocale": {
+                "ru": "сложить числа.",
+                "uk": "додати числа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "add up",
+            "definitionByLocale": {
+              "ru": "сложить числа.",
+              "uk": "додати числа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Йдеться про ціни. Скажіть: «Я можу додати ці ціни»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про ціни. Скажіть: «Я можу додати ці ціни»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can add up these prices.",
+          "localizedMeaning": {
+            "ru": "Речь о ценах. Скажите: «Я могу сложить эти цены»",
+            "uk": "Йдеться про ціни. Скажіть: «Я можу додати ці ціни»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "add",
+            "up",
+            "these",
+            "prices"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i08:r1",
+            "text": "I can add them up."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i08:r2",
+            "text": "You can add them up."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i08:r3",
+            "text": "We can add them up."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i08:audio",
+            "transcript": "I can add them up."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i08:r1",
+              "targetText": "I can add them up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i08:r2",
+              "targetText": "You can add them up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i08:r3",
+              "targetText": "We can add them up.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can add them up.",
+                "uk": "У записі звучить I can add them up."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can add them up.",
+                "uk": "У записі звучить I can add them up."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i09:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i09:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i09:r3",
+            "text": "their"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can add ___ up.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i09:r1",
+              "text": "them"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i09:r2",
+              "text": "they"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i09:r3",
+              "text": "their"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:word:round-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — round down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:word:round-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — round down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:word:round-down:audio",
+            "transcript": "round down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:word:round-down:r1",
+              "targetText": "round down",
+              "meaningByLocale": {
+                "ru": "округлить вниз.",
+                "uk": "округлити вниз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "round down",
+            "definitionByLocale": {
+              "ru": "округлить вниз.",
+              "uk": "округлити вниз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Йдеться про число. Скажіть: «Я можу округлити це число вниз»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про число. Скажіть: «Я можу округлити це число вниз»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can round down this number.",
+          "localizedMeaning": {
+            "ru": "Речь о числе. Скажите: «Я могу округлить это число вниз»",
+            "uk": "Йдеться про число. Скажіть: «Я можу округлити це число вниз»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "round",
+            "down",
+            "this",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i11:r1",
+            "text": "I can round it down."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i11:r2",
+            "text": "You can round it down."
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i11:r3",
+            "text": "We can round it down."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i11:audio",
+            "transcript": "I can round it down."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-08:i11:r1",
+              "targetText": "I can round it down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i11:r2",
+              "targetText": "You can round it down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i11:r3",
+              "targetText": "We can round it down.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can round it down.",
+                "uk": "У записі звучить I can round it down."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can round it down.",
+                "uk": "У записі звучить I can round it down."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть займенник для цієї фрази.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-08:i12:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i12:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-08:i12:r3",
+            "text": "it's"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите местоимение для этой фразы.",
+            "uk": "Виберіть займенник для цієї фрази."
+          },
+          "gappedTargetPhrase": "I can round ___ down.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-08:i12:r1",
+              "text": "it"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i12:r2",
+              "text": "its"
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i12:r3",
+              "text": "it's"
+            }
+          ],
+          "testedDimension": "Виберіть займенник для цієї фрази.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть займенник для цієї фрази.",
+              "feedbackByLocale": {
+                "ru": "После этого глагола нужна объектная форма местоимения.",
+                "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-08:i13:p1",
+              "target": "calculate",
+              "meaningByLocale": {
+                "ru": "вычислить",
+                "uk": "обчислити"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-08:i13:p2",
+              "target": "estimate",
+              "meaningByLocale": {
+                "ru": "оценить приблизительно",
+                "uk": "оцінити приблизно"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-08:i13:p3",
+              "target": "add up",
+              "meaningByLocale": {
+                "ru": "сложить числа",
+                "uk": "додати числа"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-08:i13:p4",
+              "target": "round down",
+              "meaningByLocale": {
+                "ru": "округлить вниз",
+                "uk": "округлити вниз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "calculate",
+            "estimate",
+            "add up",
+            "round down"
+          ],
+          "rightColumn": [
+            "обчислити",
+            "оцінити приблизно",
+            "додати числа",
+            "округлити вниз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: розмова",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: розмова",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i14:audio",
+            "transcript": "I want to change the subject."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to change the subject.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "change",
+            "the",
+            "subject"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: свято",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: свято",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i15:audio",
+            "transcript": "I want to raise a glass to Anna."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "raise",
+            "a",
+            "glass",
+            "to",
+            "Anna"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Потрібно обчислити дві суми. Скажіть: «Я можу їх обчислити»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Потрібно обчислити дві суми. Скажіть: «Я можу їх обчислити»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i16:audio",
+            "transcript": "I can calculate them."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can calculate them.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Йдеться про вартість. Скажіть другові: «Я можу приблизно оцінити її для тебе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Йдеться про вартість. Скажіть другові: «Я можу приблизно оцінити її для тебе»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-08:i17:audio",
+            "transcript": "I can estimate it for you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can estimate it for you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-08:word:calculate",
+      "correctText": "calculate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i01",
+      "correctText": "I can calculate it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i02",
+      "correctText": "I can calculate it.",
+      "correctResponseId": "en:lesson-22:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i03",
+      "correctText": "it",
+      "correctResponseId": "en:lesson-22:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:word:estimate",
+      "correctText": "estimate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i04",
+      "correctText": "I can estimate it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i05",
+      "correctText": "I can estimate it.",
+      "correctResponseId": "en:lesson-22:session-08:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i06",
+      "correctText": "it",
+      "correctResponseId": "en:lesson-22:session-08:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:word:add-up",
+      "correctText": "add up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i07",
+      "correctText": "I can add up these prices.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i08",
+      "correctText": "I can add them up.",
+      "correctResponseId": "en:lesson-22:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i09",
+      "correctText": "them",
+      "correctResponseId": "en:lesson-22:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:word:round-down",
+      "correctText": "round down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i10",
+      "correctText": "I can round down this number.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i11",
+      "correctText": "I can round it down.",
+      "correctResponseId": "en:lesson-22:session-08:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i12",
+      "correctText": "it",
+      "correctResponseId": "en:lesson-22:session-08:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i14",
+      "correctText": "I want to change the subject.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i15",
+      "correctText": "I want to raise a glass to Anna.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i16",
+      "correctText": "I can calculate them.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-08:i17",
+      "correctText": "I can estimate it for you.",
+      "correctResponseId": null
+    }
+  ]
+}

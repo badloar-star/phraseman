@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "verb + it / them",
+    "uk": "verb + it / them"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вычислить сумму",
+        "uk": "Обчислити суму"
+      },
+      "bodyByLocale": {
+        "ru": "Calculate — вычислить по известным данным, получить результат расчёта. В примере вы можете посчитать общую сумму покупки. It заменяет эту сумму. После глагола it заменяет одну сумму или одно число, them — несколько чисел. В add them up и round it down местоимение стоит между двумя словами выражения. Can показывает, что вы можете выполнить действие.",
+        "uk": "Calculate — обчислити за відомими даними, отримати результат розрахунку. У прикладі ви можете порахувати загальну суму покупки. It замінює цю суму. Після дієслова it замінює одну суму або одне число, them — кілька чисел. У add them up і round it down займенник стоїть між двома словами виразу. Can показує, що ви можете виконати дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-08:intro1:r1",
+              "text": "I can calculate it."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro1:r2",
+              "text": "I can calculate its."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro1:r3",
+              "text": "I can calculate it's."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-08:intro1:r1",
+              "text": "I can calculate it."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro1:r2",
+              "text": "I can calculate its."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro1:r3",
+              "text": "I can calculate it's."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Приблизительно или точно",
+        "uk": "Приблизно чи точно"
+      },
+      "bodyByLocale": {
+        "ru": "Estimate как глагол — приблизительно оценить, когда точного значения пока нет. Ранее estimate было существительным «предварительная оценка». Add up — сложить числа: add them up — сложить их. После глагола it заменяет одну сумму или одно число, them — несколько чисел. В add them up и round it down местоимение стоит между двумя словами выражения. Can показывает, что вы можете выполнить действие.",
+        "uk": "Estimate як дієслово — приблизно оцінити, коли точного значення поки немає. Раніше estimate було іменником «попередня оцінка». Add up — додати числа: add them up — додати їх. Після дієслова it замінює одну суму або одне число, them — кілька чисел. У add them up і round it down займенник стоїть між двома словами виразу. Can показує, що ви можете виконати дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-08:intro2:r1",
+              "text": "I can estimate it."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro2:r2",
+              "text": "I can estimate its."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro2:r3",
+              "text": "I can estimate it's."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-08:intro2:r1",
+              "text": "I can estimate it."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro2:r2",
+              "text": "I can estimate its."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro2:r3",
+              "text": "I can estimate it's."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Округлить вниз",
+        "uk": "Округлити вниз"
+      },
+      "bodyByLocale": {
+        "ru": "Round down — округлить вниз. Например, при округлении вниз до целого число 8,7 превращается в 8. Это не округление до ближайшего целого: важно направление вниз. После глагола it заменяет одну сумму или одно число, them — несколько чисел. В add them up и round it down местоимение стоит между двумя словами выражения. Can показывает, что вы можете выполнить действие.",
+        "uk": "Round down — округлити вниз. Наприклад, під час округлення вниз до цілого число 8,7 перетворюється на 8. Це не округлення до найближчого цілого: важливий напрямок униз. Після дієслова it замінює одну суму або одне число, them — кілька чисел. У add them up і round it down займенник стоїть між двома словами виразу. Can показує, що ви можете виконати дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-08:intro3:r1",
+              "text": "I can round it down."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro3:r2",
+              "text": "I can round its down."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro3:r3",
+              "text": "I can round it's down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-08:intro3:r1",
+              "text": "I can round it down."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro3:r2",
+              "text": "I can round its down."
+            },
+            {
+              "responseId": "en:lesson-22:session-08:intro3:r3",
+              "text": "I can round it's down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eb00856e25eb5892444a1957ef4eed884e4cc1d0e2578f096f24b0da4fc7f132"
+}

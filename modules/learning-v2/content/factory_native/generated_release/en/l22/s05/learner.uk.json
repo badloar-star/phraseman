@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-05:word:untangle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — untangle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:word:untangle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — untangle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:word:untangle:audio",
+          "transcript": "untangle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:word:untangle:r1",
+            "targetText": "untangle",
+            "meaningByLocale": {
+              "ru": "распутать.",
+              "uk": "розплутати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "untangle",
+          "definitionByLocale": {
+            "ru": "распутать.",
+            "uk": "розплутати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Шнурки заплуталися. Запропонуйте допомогу: «Можна мені їх розплутати?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шнурки заплуталися. Запропонуйте допомогу: «Можна мені їх розплутати?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I untangle them?",
+        "localizedMeaning": {
+          "ru": "Шнурки запутались. Предложите помощь: «Можно мне их распутать?»",
+          "uk": "Шнурки заплуталися. Запропонуйте допомогу: «Можна мені їх розплутати?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "untangle",
+          "them"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i02:r1",
+          "text": "Could I untangle them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i02:r2",
+          "text": "Could you untangle them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i02:r3",
+          "text": "Could we untangle them?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i02:audio",
+          "transcript": "Could I untangle them?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:i02:r1",
+            "targetText": "Could I untangle them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i02:r2",
+            "targetText": "Could you untangle them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i02:r3",
+            "targetText": "Could we untangle them?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I untangle them?",
+              "uk": "У записі звучить Could I untangle them?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I untangle them?",
+              "uk": "У записі звучить Could I untangle them?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i03:r1",
+          "text": "them"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i03:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i03:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I untangle ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-05:i03:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i03:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i03:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:word:unscrew",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unscrew",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:word:unscrew:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unscrew",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:word:unscrew:audio",
+          "transcript": "unscrew"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:word:unscrew:r1",
+            "targetText": "unscrew",
+            "meaningByLocale": {
+              "ru": "отвинтить.",
+              "uk": "відкрутити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unscrew",
+          "definitionByLocale": {
+            "ru": "отвинтить.",
+            "uk": "відкрутити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кришка банки міцно закручена. Запитайте: «Можна мені її відкрутити?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кришка банки міцно закручена. Запитайте: «Можна мені її відкрутити?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I unscrew it?",
+        "localizedMeaning": {
+          "ru": "Крышка банки крепко закручена. Спросите: «Можно мне её отвинтить?»",
+          "uk": "Кришка банки міцно закручена. Запитайте: «Можна мені її відкрутити?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "unscrew",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i05:r1",
+          "text": "Could I unscrew it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i05:r2",
+          "text": "Could you unscrew it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i05:r3",
+          "text": "Could we unscrew it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i05:audio",
+          "transcript": "Could I unscrew it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:i05:r1",
+            "targetText": "Could I unscrew it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i05:r2",
+            "targetText": "Could you unscrew it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i05:r3",
+            "targetText": "Could we unscrew it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I unscrew it?",
+              "uk": "У записі звучить Could I unscrew it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I unscrew it?",
+              "uk": "У записі звучить Could I unscrew it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i06:r1",
+          "text": "it"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i06:r2",
+          "text": "its"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i06:r3",
+          "text": "it's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I unscrew ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-05:i06:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i06:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i06:r3",
+            "text": "it's"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:word:unroll",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unroll",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:word:unroll:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unroll",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:word:unroll:audio",
+          "transcript": "unroll"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:word:unroll:r1",
+            "targetText": "unroll",
+            "meaningByLocale": {
+              "ru": "развернуть из рулона.",
+              "uk": "розгорнути з рулону."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unroll",
+          "definitionByLocale": {
+            "ru": "развернуть из рулона.",
+            "uk": "розгорнути з рулону."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Килимок згорнутий у рулон. Запитайте: «Можна мені його розгорнути?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Килимок згорнутий у рулон. Запитайте: «Можна мені його розгорнути?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I unroll it?",
+        "localizedMeaning": {
+          "ru": "Коврик свёрнут в рулон. Спросите: «Можно мне его развернуть?»",
+          "uk": "Килимок згорнутий у рулон. Запитайте: «Можна мені його розгорнути?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "unroll",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i08:r1",
+          "text": "Could I unroll it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i08:r2",
+          "text": "Could you unroll it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i08:r3",
+          "text": "Could we unroll it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i08:audio",
+          "transcript": "Could I unroll it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:i08:r1",
+            "targetText": "Could I unroll it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i08:r2",
+            "targetText": "Could you unroll it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i08:r3",
+            "targetText": "Could we unroll it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I unroll it?",
+              "uk": "У записі звучить Could I unroll it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I unroll it?",
+              "uk": "У записі звучить Could I unroll it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i09:r1",
+          "text": "it"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i09:r2",
+          "text": "its"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i09:r3",
+          "text": "it's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I unroll ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-05:i09:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i09:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i09:r3",
+            "text": "it's"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:word:tape",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:word:tape:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:word:tape:audio",
+          "transcript": "tape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:word:tape:r1",
+            "targetText": "tape",
+            "meaningByLocale": {
+              "ru": "заклеить клейкой лентой.",
+              "uk": "заклеїти клейкою стрічкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tape",
+          "definitionByLocale": {
+            "ru": "заклеить клейкой лентой.",
+            "uk": "заклеїти клейкою стрічкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коробку потрібно закрити для надсилання. Запитайте: «Можна мені її заклеїти клейкою стрічкою?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробку потрібно закрити для надсилання. Запитайте: «Можна мені її заклеїти клейкою стрічкою?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I tape it?",
+        "localizedMeaning": {
+          "ru": "Коробку нужно закрыть для отправки. Спросите: «Можно мне её заклеить клейкой лентой?»",
+          "uk": "Коробку потрібно закрити для надсилання. Запитайте: «Можна мені її заклеїти клейкою стрічкою?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "tape",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i11:r1",
+          "text": "Could I tape it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i11:r2",
+          "text": "Could you tape it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i11:r3",
+          "text": "Could we tape it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i11:audio",
+          "transcript": "Could I tape it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-05:i11:r1",
+            "targetText": "Could I tape it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i11:r2",
+            "targetText": "Could you tape it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i11:r3",
+            "targetText": "Could we tape it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I tape it?",
+              "uk": "У записі звучить Could I tape it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I tape it?",
+              "uk": "У записі звучить Could I tape it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-05:i12:r1",
+          "text": "it"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i12:r2",
+          "text": "its"
+        },
+        {
+          "responseId": "en:lesson-22:session-05:i12:r3",
+          "text": "it's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I tape ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-05:i12:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i12:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i12:r3",
+            "text": "it's"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-05:i13:p1",
+            "target": "untangle",
+            "meaningByLocale": {
+              "ru": "распутать",
+              "uk": "розплутати"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-05:i13:p2",
+            "target": "unscrew",
+            "meaningByLocale": {
+              "ru": "отвинтить",
+              "uk": "відкрутити"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-05:i13:p3",
+            "target": "unroll",
+            "meaningByLocale": {
+              "ru": "развернуть из рулона",
+              "uk": "розгорнути з рулону"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-05:i13:p4",
+            "target": "tape",
+            "meaningByLocale": {
+              "ru": "заклеить клейкой лентой",
+              "uk": "заклеїти клейкою стрічкою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "untangle",
+          "unscrew",
+          "unroll",
+          "tape"
+        ],
+        "rightColumn": [
+          "розплутати",
+          "відкрутити",
+          "розгорнути з рулону",
+          "заклеїти клейкою стрічкою"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Один шнурок заплутався. Запитайте: «Можна мені його розплутати?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Один шнурок заплутався. Запитайте: «Можна мені його розплутати?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i16:audio",
+          "transcript": "Could I untangle it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I untangle it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Два килимки згорнуті. Запитайте: «Можна мені їх розгорнути?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Два килимки згорнуті. Запитайте: «Можна мені їх розгорнути?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-05:i17:audio",
+          "transcript": "Could I unroll them?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I unroll them?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cf9b910bd8b1dfa494197602ab5c0eb393bcf1da218508702ee3e1d4535b7541"
+}

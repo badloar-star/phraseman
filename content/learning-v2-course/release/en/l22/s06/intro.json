@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb + it / them",
+    "uk": "Could I + base verb + it / them"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разложить отдельно",
+        "uk": "Розкласти окремо"
+      },
+      "bodyByLocale": {
+        "ru": "Separate здесь глагол — отделить одно от другого, разложить отдельно. В примере вы разделяете белые и цветные вещи на две группы. Ранее separate было прилагательным «отдельный»; теперь это действие. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Separate тут дієслово — відділити одне від іншого, розкласти окремо. У прикладі ви розділяєте білі й кольорові речі на дві групи. Раніше separate було прикметником «окремий»; тепер це дія. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-06:intro1:r1",
+              "text": "Could I separate them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro1:r2",
+              "text": "Could I separate they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro1:r3",
+              "text": "Could I separate their?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-06:intro1:r1",
+              "text": "Could I separate them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro1:r2",
+              "text": "Could I separate they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro1:r3",
+              "text": "Could I separate their?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Разделить и упорядочить",
+        "uk": "Поділити й упорядкувати"
+      },
+      "bodyByLocale": {
+        "ru": "Divide — разделить целое на части, например пирог на порции. Organise — упорядочить, привести в порядок; в этой ситуации речь о документах. Это британское написание, американское — organize. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Divide — поділити ціле на частини, наприклад пиріг на порції. Organise — упорядкувати, привести до ладу; у цій ситуації йдеться про документи. Це британське написання, американське — organize. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-06:intro2:r1",
+              "text": "Could I divide it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro2:r2",
+              "text": "Could I divide its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro2:r3",
+              "text": "Could I divide it's?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-06:intro2:r1",
+              "text": "Could I divide it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro2:r2",
+              "text": "Could I divide its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro2:r3",
+              "text": "Could I divide it's?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сложить коробки",
+        "uk": "Скласти коробки"
+      },
+      "bodyByLocale": {
+        "ru": "Flatten — сделать плоским. Пустую картонную коробку можно расправить и сложить так, чтобы она занимала меньше места. Them в нашем примере — несколько коробок. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Flatten — зробити пласким. Порожню картонну коробку можна розправити й скласти так, щоб вона займала менше місця. Them у нашому прикладі — кілька коробок. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-06:intro3:r1",
+              "text": "Could I flatten them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro3:r2",
+              "text": "Could I flatten they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro3:r3",
+              "text": "Could I flatten their?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-06:intro3:r1",
+              "text": "Could I flatten them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro3:r2",
+              "text": "Could I flatten they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-06:intro3:r3",
+              "text": "Could I flatten their?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e644cb82435dfc0216a456d251fb1582b142c784155bb8295107e00031a8adba"
+}

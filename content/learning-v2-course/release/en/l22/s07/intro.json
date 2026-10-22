@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb + it / them",
+    "uk": "Could I + base verb + it / them"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Убрать прилипшее тесто",
+        "uk": "Прибрати прилипле тісто"
+      },
+      "bodyByLocale": {
+        "ru": "Scrape off — соскрести прилипший слой с поверхности. В примере it — засохшее тесто, которое нужно убрать с миски. Местоимение стоит между словами: scrape it off. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Scrape off — зішкребти прилиплий шар із поверхні. У прикладі it — засохле тісто, яке потрібно прибрати з миски. Займенник стоїть між словами: scrape it off. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-07:intro1:r1",
+              "text": "Could I scrape it off?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro1:r2",
+              "text": "Could I scrape its off?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro1:r3",
+              "text": "Could I scrape it's off?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-07:intro1:r1",
+              "text": "Could I scrape it off?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro1:r2",
+              "text": "Could I scrape its off?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro1:r3",
+              "text": "Could I scrape it's off?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чай и напитки",
+        "uk": "Чай і напої"
+      },
+      "bodyByLocale": {
+        "ru": "Strain — процедить жидкость через сито, чтобы убрать кусочки или листья. Chill — охладить, обычно в холодильнике. Them в примере — несколько напитков. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Strain — процідити рідину крізь сито, щоб прибрати шматочки чи листя. Chill — охолодити, зазвичай у холодильнику. Them у прикладі — кілька напоїв. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-07:intro2:r1",
+              "text": "Could I strain it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro2:r2",
+              "text": "Could I strain its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro2:r3",
+              "text": "Could I strain it's?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-07:intro2:r1",
+              "text": "Could I strain it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro2:r2",
+              "text": "Could I strain its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro2:r3",
+              "text": "Could I strain it's?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Слить воду",
+        "uk": "Злити воду"
+      },
+      "bodyByLocale": {
+        "ru": "Drain как глагол — слить жидкость. Drain the potatoes — слить воду с картофеля. Ранее drain было названием стока; здесь это действие. В нашем примере them заменяет картофелины, а не воду. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Drain як дієслово — злити рідину. Drain the potatoes — злити воду з картоплі. Раніше drain було назвою стоку; тут це дія. У нашому прикладі them замінює картоплини, а не воду. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-07:intro3:r1",
+              "text": "Could I drain them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro3:r2",
+              "text": "Could I drain they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro3:r3",
+              "text": "Could I drain their?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-07:intro3:r1",
+              "text": "Could I drain them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro3:r2",
+              "text": "Could I drain they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-07:intro3:r3",
+              "text": "Could I drain their?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "924aebcbd2ed0802274b775b3687e3def80abd9d66a76c8115d343f2de940142"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-08:word:calculate",
+    "correctText": "calculate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i01",
+    "correctText": "I can calculate it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i02",
+    "correctText": "I can calculate it.",
+    "correctResponseId": "en:lesson-22:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i03",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-22:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:word:estimate",
+    "correctText": "estimate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i04",
+    "correctText": "I can estimate it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i05",
+    "correctText": "I can estimate it.",
+    "correctResponseId": "en:lesson-22:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i06",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-22:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:word:add-up",
+    "correctText": "add up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i07",
+    "correctText": "I can add up these prices.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i08",
+    "correctText": "I can add them up.",
+    "correctResponseId": "en:lesson-22:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i09",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:word:round-down",
+    "correctText": "round down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i10",
+    "correctText": "I can round down this number.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i11",
+    "correctText": "I can round it down.",
+    "correctResponseId": "en:lesson-22:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i12",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-22:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i13",
+    "correctText": "en:lesson-22:session-08:i13:p1=calculate\nen:lesson-22:session-08:i13:p2=estimate\nen:lesson-22:session-08:i13:p3=add up\nen:lesson-22:session-08:i13:p4=round down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i16",
+    "correctText": "I can calculate them.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-08:i17",
+    "correctText": "I can estimate it for you.",
+    "correctResponseId": null
+  }
+]

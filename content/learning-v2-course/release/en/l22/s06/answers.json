@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-06:word:separate",
+    "correctText": "separate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i01",
+    "correctText": "Could I separate them?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i02",
+    "correctText": "Could I separate them?",
+    "correctResponseId": "en:lesson-22:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i03",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:word:divide",
+    "correctText": "divide",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i04",
+    "correctText": "Could I divide it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i05",
+    "correctText": "Could I divide it?",
+    "correctResponseId": "en:lesson-22:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i06",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-22:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:word:organise",
+    "correctText": "organise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i07",
+    "correctText": "Could I organise them?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i08",
+    "correctText": "Could I organise them?",
+    "correctResponseId": "en:lesson-22:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i09",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:word:flatten",
+    "correctText": "flatten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i10",
+    "correctText": "Could I flatten them?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i11",
+    "correctText": "Could I flatten them?",
+    "correctResponseId": "en:lesson-22:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i12",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i13",
+    "correctText": "en:lesson-22:session-06:i13:p1=separate\nen:lesson-22:session-06:i13:p2=divide\nen:lesson-22:session-06:i13:p3=organise\nen:lesson-22:session-06:i13:p4=flatten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i16",
+    "correctText": "Could I flatten it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-06:i17",
+    "correctText": "Could I divide them?",
+    "correctResponseId": null
+  }
+]

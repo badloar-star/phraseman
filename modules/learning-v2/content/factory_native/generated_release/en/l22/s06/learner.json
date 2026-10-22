@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-06:word:separate",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — separate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:word:separate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — separate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:word:separate:audio",
+          "transcript": "separate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:word:separate:r1",
+            "targetText": "separate",
+            "meaningByLocale": {
+              "ru": "разложить отдельно.",
+              "uk": "розкласти окремо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "separate",
+          "definitionByLocale": {
+            "ru": "разложить отдельно.",
+            "uk": "розкласти окремо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Белые и цветные вещи лежат вместе. Спросите: «Можно мне разложить их отдельно?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Белые и цветные вещи лежат вместе. Спросите: «Можно мне разложить их отдельно?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I separate them?",
+        "localizedMeaning": {
+          "ru": "Белые и цветные вещи лежат вместе. Спросите: «Можно мне разложить их отдельно?»",
+          "uk": "Білі й кольорові речі лежать разом. Запитайте: «Можна мені розкласти їх окремо?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "separate",
+          "them"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i02:r1",
+          "text": "Could I separate them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i02:r2",
+          "text": "Could you separate them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i02:r3",
+          "text": "Could we separate them?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i02:audio",
+          "transcript": "Could I separate them?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:i02:r1",
+            "targetText": "Could I separate them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i02:r2",
+            "targetText": "Could you separate them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i02:r3",
+            "targetText": "Could we separate them?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I separate them?",
+              "uk": "У записі звучить Could I separate them?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I separate them?",
+              "uk": "У записі звучить Could I separate them?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i03:r1",
+          "text": "them"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i03:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i03:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I separate ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-06:i03:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i03:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i03:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:word:divide",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — divide",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:word:divide:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — divide",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:word:divide:audio",
+          "transcript": "divide"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:word:divide:r1",
+            "targetText": "divide",
+            "meaningByLocale": {
+              "ru": "разделить на части.",
+              "uk": "поділити на частини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "divide",
+          "definitionByLocale": {
+            "ru": "разделить на части.",
+            "uk": "поділити на частини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На столе целый пирог. Спросите: «Можно мне разделить его на части?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столе целый пирог. Спросите: «Можно мне разделить его на части?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I divide it?",
+        "localizedMeaning": {
+          "ru": "На столе целый пирог. Спросите: «Можно мне разделить его на части?»",
+          "uk": "На столі цілий пиріг. Запитайте: «Можна мені поділити його на частини?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "divide",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i05:r1",
+          "text": "Could I divide it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i05:r2",
+          "text": "Could you divide it?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i05:r3",
+          "text": "Could we divide it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i05:audio",
+          "transcript": "Could I divide it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:i05:r1",
+            "targetText": "Could I divide it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i05:r2",
+            "targetText": "Could you divide it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i05:r3",
+            "targetText": "Could we divide it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I divide it?",
+              "uk": "У записі звучить Could I divide it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I divide it?",
+              "uk": "У записі звучить Could I divide it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i06:r1",
+          "text": "it"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i06:r2",
+          "text": "its"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i06:r3",
+          "text": "it's"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I divide ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-06:i06:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i06:r2",
+            "text": "its"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i06:r3",
+            "text": "it's"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:word:organise",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — organise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:word:organise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — organise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:word:organise:audio",
+          "transcript": "organise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:word:organise:r1",
+            "targetText": "organise",
+            "meaningByLocale": {
+              "ru": "упорядочить.",
+              "uk": "упорядкувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "organise",
+          "definitionByLocale": {
+            "ru": "упорядочить.",
+            "uk": "упорядкувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Документы лежат вперемешку. Спросите: «Можно мне их упорядочить?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Документы лежат вперемешку. Спросите: «Можно мне их упорядочить?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I organise them?",
+        "localizedMeaning": {
+          "ru": "Документы лежат вперемешку. Спросите: «Можно мне их упорядочить?»",
+          "uk": "Документи лежать упереміш. Запитайте: «Можна мені їх упорядкувати?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "organise",
+          "them"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i08:r1",
+          "text": "Could I organise them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i08:r2",
+          "text": "Could you organise them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i08:r3",
+          "text": "Could we organise them?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i08:audio",
+          "transcript": "Could I organise them?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:i08:r1",
+            "targetText": "Could I organise them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i08:r2",
+            "targetText": "Could you organise them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i08:r3",
+            "targetText": "Could we organise them?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I organise them?",
+              "uk": "У записі звучить Could I organise them?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I organise them?",
+              "uk": "У записі звучить Could I organise them?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i09:r1",
+          "text": "them"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i09:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i09:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I organise ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-06:i09:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i09:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i09:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:word:flatten",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flatten",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:word:flatten:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flatten",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:word:flatten:audio",
+          "transcript": "flatten"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:word:flatten:r1",
+            "targetText": "flatten",
+            "meaningByLocale": {
+              "ru": "сделать плоским.",
+              "uk": "зробити пласким."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flatten",
+          "definitionByLocale": {
+            "ru": "сделать плоским.",
+            "uk": "зробити пласким."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пустые картонные коробки занимают место. Спросите: «Можно мне сделать их плоскими?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пустые картонные коробки занимают место. Спросите: «Можно мне сделать их плоскими?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I flatten them?",
+        "localizedMeaning": {
+          "ru": "Пустые картонные коробки занимают место. Спросите: «Можно мне сделать их плоскими?»",
+          "uk": "Порожні картонні коробки займають місце. Запитайте: «Можна мені зробити їх пласкими?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "flatten",
+          "them"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i11:r1",
+          "text": "Could I flatten them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i11:r2",
+          "text": "Could you flatten them?"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i11:r3",
+          "text": "Could we flatten them?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i11:audio",
+          "transcript": "Could I flatten them?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-06:i11:r1",
+            "targetText": "Could I flatten them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i11:r2",
+            "targetText": "Could you flatten them?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i11:r3",
+            "targetText": "Could we flatten them?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I flatten them?",
+              "uk": "У записі звучить Could I flatten them?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I flatten them?",
+              "uk": "У записі звучить Could I flatten them?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите местоимение для этой фразы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-06:i12:r1",
+          "text": "them"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i12:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-22:session-06:i12:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "Could I flatten ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-06:i12:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i12:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i12:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Выберите местоимение для этой фразы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите местоимение для этой фразы.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-06:i13:p1",
+            "target": "separate",
+            "meaningByLocale": {
+              "ru": "разложить отдельно",
+              "uk": "розкласти окремо"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-06:i13:p2",
+            "target": "divide",
+            "meaningByLocale": {
+              "ru": "разделить на части",
+              "uk": "поділити на частини"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-06:i13:p3",
+            "target": "organise",
+            "meaningByLocale": {
+              "ru": "упорядочить",
+              "uk": "упорядкувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-06:i13:p4",
+            "target": "flatten",
+            "meaningByLocale": {
+              "ru": "сделать плоским",
+              "uk": "зробити пласким"
+            }
+          }
+        ],
+        "leftColumn": [
+          "separate",
+          "divide",
+          "organise",
+          "flatten"
+        ],
+        "rightColumn": [
+          "разложить отдельно",
+          "разделить на части",
+          "упорядочить",
+          "сделать плоским"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: разговор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: разговор",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: праздник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: праздник",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Осталась одна пустая коробка. Спросите: «Можно мне сделать её плоской?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Осталась одна пустая коробка. Спросите: «Можно мне сделать её плоской?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i16:audio",
+          "transcript": "Could I flatten it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I flatten it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-06:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На столе два пирога. Спросите: «Можно мне разделить их на части?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "На столе два пирога. Спросите: «Можно мне разделить их на части?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-06:i17:audio",
+          "transcript": "Could I divide them?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I divide them?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "760492d5646193545c63b4eb704a9f39f99c852044ce53de15e803ea0105e5af"
+}

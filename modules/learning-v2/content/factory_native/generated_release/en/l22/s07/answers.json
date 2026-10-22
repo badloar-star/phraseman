@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-07:word:scrape-off",
+    "correctText": "scrape off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i01",
+    "correctText": "Could I scrape off the dough?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i02",
+    "correctText": "Could I scrape it off?",
+    "correctResponseId": "en:lesson-22:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i03",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-22:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:word:strain",
+    "correctText": "strain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i04",
+    "correctText": "Could I strain it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i05",
+    "correctText": "Could I strain it?",
+    "correctResponseId": "en:lesson-22:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i06",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-22:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:word:chill",
+    "correctText": "chill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i07",
+    "correctText": "Could I chill them?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i08",
+    "correctText": "Could I chill them?",
+    "correctResponseId": "en:lesson-22:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i09",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:word:drain",
+    "correctText": "drain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i10",
+    "correctText": "Could I drain them?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i11",
+    "correctText": "Could I drain them?",
+    "correctResponseId": "en:lesson-22:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i12",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i13",
+    "correctText": "en:lesson-22:session-07:i13:p1=scrape off\nen:lesson-22:session-07:i13:p2=strain\nen:lesson-22:session-07:i13:p3=chill\nen:lesson-22:session-07:i13:p4=drain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i16",
+    "correctText": "Could I chill it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-07:i17",
+    "correctText": "Could I scrape them off?",
+    "correctResponseId": null
+  }
+]

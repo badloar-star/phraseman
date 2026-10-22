@@ -8267,4 +8267,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object pronoun","uk":"verb + object pronoun"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 5,
+    sourceFingerprint: "dd66ad5ae4e133da085d33359619a01d6875efb746f9f494d0647bdd20ba5a5b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb + it / them","uk":"Could I + base verb + it / them"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 6,
+    sourceFingerprint: "42b2ef4770980497e7c86fa9d3f4c04d4c1fbcdfc7d7e84047dcad0ee0c5ad62",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb + it / them","uk":"Could I + base verb + it / them"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 7,
+    sourceFingerprint: "14ea6a551044e1fda8f058656eccbe2856b3e03bf4cf269f42d0cf4ce2384b38",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb + it / them","uk":"Could I + base verb + it / them"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 8,
+    sourceFingerprint: "873609a383da89ed8a14007ea1fb3db699313115163df593071a983bd6acdfb6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + it / them","uk":"verb + it / them"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

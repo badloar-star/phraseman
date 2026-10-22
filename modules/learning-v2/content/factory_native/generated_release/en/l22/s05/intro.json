@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb + it / them",
+    "uk": "Could I + base verb + it / them"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Распутать шнурки",
+        "uk": "Розплутати шнурки"
+      },
+      "bodyByLocale": {
+        "ru": "Untangle — распутать то, что переплелось: шнурки, нитки или провода. В примере шнурков несколько, поэтому после глагола ставим them. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Untangle — розплутати те, що переплелося: шнурки, нитки чи дроти. У прикладі шнурків кілька, тому після дієслова ставимо them. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-05:intro1:r1",
+              "text": "Could I untangle them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro1:r2",
+              "text": "Could I untangle they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro1:r3",
+              "text": "Could I untangle their?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-05:intro1:r1",
+              "text": "Could I untangle them?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro1:r2",
+              "text": "Could I untangle they?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro1:r3",
+              "text": "Could I untangle their?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Крышка и коврик",
+        "uk": "Кришка й килимок"
+      },
+      "bodyByLocale": {
+        "ru": "Unscrew — отвинтить, открыть, поворачивая: например, крышку банки. Unroll — развернуть то, что было скатано в рулон, например коврик. Это не просто unfold — разложить сложенную вещь. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Unscrew — відкрутити, відкрити, повертаючи: наприклад, кришку банки. Unroll — розгорнути те, що було згорнуто в рулон, наприклад килимок. Це не просто unfold — розкласти складену річ. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-05:intro2:r1",
+              "text": "Could I unscrew it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro2:r2",
+              "text": "Could I unscrew its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro2:r3",
+              "text": "Could I unscrew it's?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-05:intro2:r1",
+              "text": "Could I unscrew it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro2:r2",
+              "text": "Could I unscrew its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro2:r3",
+              "text": "Could I unscrew it's?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заклеить коробку",
+        "uk": "Заклеїти коробку"
+      },
+      "bodyByLocale": {
+        "ru": "Tape здесь глагол — заклеить клейкой лентой. Существительное tape — «клейкая лента» — уже знакомо. В примере вы предлагаете заклеить коробку перед отправкой. Could I + начальная форма — вежливо спросить разрешение сделать что-то самому. После глагола it заменяет один предмет, them — несколько предметов. It не меняется по роду: по-русски крышка — «её», коврик — «его», но по-английски оба it.",
+        "uk": "Tape тут дієслово — заклеїти клейкою стрічкою. Іменник tape — «клейка стрічка» — уже знайомий. У прикладі ви пропонуєте заклеїти коробку перед надсиланням. Could I + початкова форма — ввічливо запитати дозволу зробити щось самому. Після дієслова it замінює один предмет, them — кілька предметів. It не змінюється за родом: українською кришка — «її», килимок — «його», але англійською обидва it."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-05:intro3:r1",
+              "text": "Could I tape it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro3:r2",
+              "text": "Could I tape its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro3:r3",
+              "text": "Could I tape it's?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-05:intro3:r1",
+              "text": "Could I tape it?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro3:r2",
+              "text": "Could I tape its?"
+            },
+            {
+              "responseId": "en:lesson-22:session-05:intro3:r3",
+              "text": "Could I tape it's?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b343c0baac335fabede0b27b58f710aa1ae224cd8eceada106914c7edb9f003a"
+}

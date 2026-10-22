@@ -181,6 +181,9 @@ async function sendOne(item) {
       reportRef.get().catch(() => null),
     ]);
     const userData = userSnap?.data() ?? {};
+    // зачем (координатор 22.10, «сперва логи»): increment(1) к строковому счётчику даёт 1, а не N+1 — печатаем, что было до.
+    const helperBefore = userData.progress?.[HELPFUL_REPORTS_CONFIRMED_KEY];
+    console.log(`  [HELPER-TITLE] before value=${JSON.stringify(helperBefore ?? null)} type=${typeof helperBefore}`);
     helperProjection = readLeaderboardProjection(
       leaderboardSnap.data(),
       userData.progress,
@@ -301,7 +304,15 @@ async function sendOne(item) {
     const label = `${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (${rewardLabel(item.rewardBundle)})`;
     try {
       const res = await sendOne(item);
-      if (res.status === 'sent') { sent++; console.log(`  ✅ ${label}`); }
+      if (res.status === 'sent') {
+        sent++;
+        console.log(`  ✅ ${label}`);
+        if (bundleHasReward(item.rewardBundle)) {
+          // зачем (координатор 22.10, «сперва логи»): что стало со счётчиком «Хелпер» после increment(1).
+          const after = (await db.collection('users').doc(item.uid).get().catch(() => null))?.data()?.progress?.[HELPFUL_REPORTS_CONFIRMED_KEY];
+          console.log(`  [HELPER-TITLE] after value=${JSON.stringify(after ?? null)} type=${typeof after}`);
+        }
+      }
       else if (res.status === 'skip') { skipped++; console.log(`  ⏭ уже отвечен: ${label}`); }
       else { missing++; console.log(`  ⚠️ репорт не найден: ${label}`); }
     } catch (e) {

@@ -1939,7 +1939,15 @@ function mergeLessonRestoreValue(
   // concurrent push of a lower value on another device can't lose progress.
   // Allowlist only (never streaks/dates/multipliers — those can legitimately drop).
   if (isMonotonicCounterRestoreKey(key)) {
-    return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
+    const merged = String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
+    // зачем (координатор 22.10, «сперва логи»): сервер прибавляет к счётчику «Хелпер» increment(1), а телефон хранит строку —
+    // прибавка к строке даёт 1, а не N+1. Смотрим, что пришло из облака, что лежит на телефоне и что выбрано.
+    if (key === 'helpful_error_reports_confirmed_v1') {
+      console.warn('[HELPER-TITLE] restore_merge', JSON.stringify({ // guard-ok: только этот ключ, при восстановлении
+        cloud: cloudValue ?? null, cloudType: typeof cloudValue, local: localValue ?? null, localType: typeof localValue, merged,
+      }));
+    }
+    return merged;
   }
   // зачем (аудит 2026-08-24): темы идут ПЕРЕД общим union — их мерж дополнительно
   // отсеивает имена тем, которых в приложении больше нет («coral», «vanilla»).
@@ -3211,6 +3219,10 @@ async function writeUserDocWithNestedProgress(
   const stringPayload: Record<string, unknown> = {};
   for (const key of progressKeys) {
     const value = progressPatch[key];
+    // зачем (координатор 22.10, «сперва логи»): какой тип телефон кладёт в progress для счётчика «Хелпер».
+    if (key === 'helpful_error_reports_confirmed_v1') {
+      console.warn('[HELPER-TITLE] upload', JSON.stringify({ value: value ?? null, type: typeof value })); // guard-ok: только этот ключ
+    }
     if (FieldPathCtor) updatePayload.push(new FieldPathCtor('progress', key), value);
     else stringPayload[`progress.${key}`] = value;
   }

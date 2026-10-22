@@ -13,11 +13,11 @@ const pick = (lang: Lang, copy: L9): string => triLang(lang, copy);
 
 /** Вторичная кнопка в финале занятия, под «Продолжить». */
 export function lessonInviteButton(lang: Lang): string {
-  return pick(lang, L('Позвать друга на это занятие', 'Покликати друга на це заняття', 'Invite a friend to this session', 'Invitar a un amigo a esta sesión', 'Convidar um amigo para esta sessão', 'Rủ bạn học bài này', 'Ajak teman ke sesi ini', 'Bu derse bir arkadaşını çağır', 'Zaproś znajomego na te zajęcia'));
+  return pick(lang, L('Позвать друга на это занятие', 'Покликати друга на це заняття', 'Invite a friend to this session', 'Invitar a un amigo a esta sesión', 'Convidar um amigo para esta sessão', 'Rủ bạn học buổi này', 'Ajak teman ke sesi ini', 'Bu oturuma bir arkadaşını çağır', 'Zaproś znajomego na te zajęcia'));
 }
 
 export function lessonInviteSheetTitle(lang: Lang): string {
-  return pick(lang, L('Позвать на занятие', 'Покликати на заняття', 'Invite to this session', 'Invitar a la sesión', 'Convidar para a sessão', 'Rủ học cùng', 'Ajak ke sesi', 'Derse çağır', 'Zaproś na zajęcia'));
+  return pick(lang, L('Позвать на занятие', 'Покликати на заняття', 'Invite to this session', 'Invitar a la sesión', 'Convidar para a sessão', 'Rủ học cùng', 'Ajak ke sesi', 'Oturuma çağır', 'Zaproś na zajęcia'));
 }
 
 /** «Урок 2 · Занятие 3 · Are you…?. Кто пройдёт его сегодня — получит награду «вместе», и ты тоже.» */
@@ -60,15 +60,15 @@ export function lessonInviteCta(lang: Lang, count: number): string {
 /** Строка под кнопкой: предел виден до нажатия (макет «Выбраны трое»). */
 export function lessonInviteLimitNote(lang: Lang, full: boolean): string {
   return full
-    ? pick(lang, L('Трое — максимум за занятие', 'Троє — максимум за заняття', 'Three is the maximum per session', 'Tres es el máximo por sesión', 'Três é o máximo por sessão', 'Ba bạn là tối đa mỗi bài', 'Tiga adalah batas per sesi', 'Ders başına en fazla üç kişi', 'Trzy osoby to maksimum na zajęcia'))
-    : pick(lang, L('До трёх друзей за занятие', 'До трьох друзів за заняття', 'Up to three friends per session', 'Hasta tres amigos por sesión', 'Até três amigos por sessão', 'Tối đa ba bạn mỗi bài', 'Maksimal tiga teman per sesi', 'Ders başına en fazla üç arkadaş', 'Do trzech znajomych na zajęcia'));
+    ? pick(lang, L('Трое — максимум за занятие', 'Троє — максимум за заняття', 'Three is the maximum per session', 'Tres es el máximo por sesión', 'Três é o máximo por sessão', 'Ba bạn là tối đa mỗi buổi', 'Tiga adalah batas per sesi', 'Oturum başına en fazla üç kişi', 'Trzy osoby to maksimum na zajęcia'))
+    : pick(lang, L('До трёх друзей за занятие', 'До трьох друзів за заняття', 'Up to three friends per session', 'Hasta tres amigos por sesión', 'Até três amigos por sessão', 'Tối đa ba bạn mỗi buổi', 'Maksimal tiga teman per sesi', 'Oturum başına en fazla üç arkadaş', 'Do trzech znajomych na zajęcia'));
 }
 
 /** Нет друзей — пустой выбор (макет «Нет друзей»). */
 export function lessonInviteEmptyCopy(lang: Lang): Readonly<{ title: string; body: string; add: string; later: string }> {
   return {
     title: pick(lang, L('Пока некого позвать', 'Поки нікого покликати', 'No one to invite yet', 'Aún no hay a quién invitar', 'Ainda não há quem convidar', 'Chưa có ai để rủ', 'Belum ada yang bisa diajak', 'Henüz çağıracak kimse yok', 'Na razie nie ma kogo zaprosić')),
-    body: pick(lang, L('Добавь друга — и проходите занятия вместе.', 'Додай друга — і проходьте заняття разом.', 'Add a friend and take sessions together.', 'Añade un amigo y haced las sesiones juntos.', 'Adicione um amigo e façam as sessões juntos.', 'Thêm bạn để cùng học các bài.', 'Tambahkan teman dan ikuti sesi bersama.', 'Bir arkadaş ekle, dersleri birlikte yapın.', 'Dodaj znajomego i róbcie zajęcia razem.')),
+    body: pick(lang, L('Добавь друга — и проходите занятия вместе.', 'Додай друга — і проходьте заняття разом.', 'Add a friend and take sessions together.', 'Añade a un amigo y hagan las sesiones juntos.', 'Adicione um amigo e façam as sessões juntos.', 'Thêm bạn để học cùng nhau.', 'Tambahkan teman dan ikuti sesi bersama.', 'Bir arkadaş ekle, dersleri birlikte yapın.', 'Dodaj znajomego i róbcie zajęcia razem.')),
     add: pick(lang, L('Добавить друга', 'Додати друга', 'Add a friend', 'Añadir amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')),
     later: pick(lang, L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Để sau', 'Nanti saja', 'Şimdi değil', 'Nie teraz')),
   };
@@ -88,7 +88,7 @@ export function lessonInviteSentToast(): Readonly<{ ru: string; uk: string; en: 
     en: 'Invites sent. We’ll let you know when they finish',
     es: 'Invitaciones enviadas. Te avisaremos cuando terminen',
     ptBr: 'Convites enviados. Avisaremos quando concluírem',
-    vi: 'Đã gửi lời mời. Sẽ báo khi các bạn học xong',
+    vi: 'Đã gửi lời mời. Mình sẽ báo khi bạn bè học xong',
     id: 'Undangan terkirim. Kami kabari saat mereka selesai',
     tr: 'Davetler gönderildi. Bitirdiklerinde haber vereceğiz',
     pl: 'Zaproszenia wysłane. Damy znać, gdy skończą',
@@ -97,14 +97,14 @@ export function lessonInviteSentToast(): Readonly<{ ru: string; uk: string; en: 
 
 /** «Урок 2 · Занятие 3» — строка занятия в выборе друзей и в приглашении. */
 export function lessonInviteLessonLine(lang: Lang, lesson: number, session: number): string {
-  return pick(lang, L(`Урок ${lesson} · Занятие ${session}`, `Урок ${lesson} · Заняття ${session}`, `Lesson ${lesson} · Session ${session}`, `Lección ${lesson} · Sesión ${session}`, `Lição ${lesson} · Sessão ${session}`, `Bài ${lesson} · Phần ${session}`, `Pelajaran ${lesson} · Sesi ${session}`, `${lesson}. ders · ${session}. oturum`, `Lekcja ${lesson} · Zajęcia ${session}`));
+  return pick(lang, L(`Урок ${lesson} · Занятие ${session}`, `Урок ${lesson} · Заняття ${session}`, `Lesson ${lesson} · Session ${session}`, `Lección ${lesson} · Sesión ${session}`, `Lição ${lesson} · Sessão ${session}`, `Bài ${lesson} · Buổi ${session}`, `Pelajaran ${lesson} · Sesi ${session}`, `${lesson}. ders · ${session}. oturum`, `Lekcja ${lesson} · Zajęcia ${session}`));
 }
 
 /** Тост, если приглашения не ушли: предел на занятие — честно, остальное — «попробуй ещё раз». */
 export function lessonInviteFailToast(limit: boolean): Readonly<{ ru: string; uk: string; en: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> {
   return limit
-    ? { ru: 'На это занятие сегодня уже позвали троих', uk: 'На це заняття сьогодні вже покликали трьох', en: 'You’ve already invited three friends to this session today', es: 'Hoy ya invitaste a tres amigos a esta sesión', ptBr: 'Você já convidou três amigos para esta sessão hoje', vi: 'Hôm nay bạn đã rủ ba người học bài này', id: 'Hari ini kamu sudah mengajak tiga teman ke sesi ini', tr: 'Bu derse bugün zaten üç kişiyi çağırdın', pl: 'Na te zajęcia zaproszono dziś już trzy osoby' }
-    : { ru: 'Сейчас не получилось. Попробуй ещё раз', uk: 'Зараз не вийшло. Спробуй ще раз', en: 'Didn’t work this time. Try again', es: 'Ahora no ha funcionado. Inténtalo de nuevo', ptBr: 'Não deu certo agora. Tente de novo', vi: 'Lúc này chưa được. Hãy thử lại', id: 'Belum berhasil. Coba lagi', tr: 'Şu an olmadı. Tekrar dene', pl: 'Teraz się nie udało. Spróbuj ponownie' };
+    ? { ru: 'На это занятие сегодня уже позвали троих', uk: 'На це заняття сьогодні вже покликали трьох', en: 'You’ve already invited three friends to this session today', es: 'Hoy ya invitaste a tres amigos a esta sesión', ptBr: 'Você já convidou três amigos para esta sessão hoje', vi: 'Hôm nay bạn đã rủ ba người học buổi này', id: 'Hari ini kamu sudah mengajak tiga teman ke sesi ini', tr: 'Bu oturuma bugün zaten üç kişiyi çağırdın', pl: 'Na te zajęcia zaproszono dziś już trzy osoby' }
+    : { ru: 'Сейчас не получилось. Попробуй ещё раз', uk: 'Зараз не вийшло. Спробуй ще раз', en: 'Didn’t work this time. Try again', es: 'No funcionó esta vez. Inténtalo de nuevo', ptBr: 'Não deu certo agora. Tente de novo', vi: 'Lúc này chưa được. Hãy thử lại', id: 'Belum berhasil. Coba lagi', tr: 'Şu an olmadı. Tekrar dene', pl: 'Teraz się nie udało. Spróbuj ponownie' };
 }
 
 /* expo-router route shim */

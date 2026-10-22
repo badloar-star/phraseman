@@ -62,3 +62,5 @@ Governance-ID: TG-9431470DC4BD
   раз хуже, чем на миг позже). Вид и место кнопки не менялись (`SeasonCourseView.tsx` правит другая сессия).
 - Теста-распределения по макету в коде ещё нет: кнопка открывает список уроков; «прошёл» = нажал.
 - Сторож: `tests/learning_v2_not_from_start_once_v1.test.ts`.
+
+Governance-ID: TG-F6714DE30E0B

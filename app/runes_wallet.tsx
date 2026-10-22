@@ -35,7 +35,7 @@ import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { peekRunesBalance, subscribeRunesBalance, getRunesBalance, type RunesBalance } from './runes_system';
 import { getDevCoinBalanceOverride } from './dev_coin_rank';
-import BackGlyph from '../components/v2/BackGlyph';
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
 
 const COUNT_PULSE_MS = 700;
 const COUNT_PULSE_EASE = Easing.bezier(0.2, 1.25, 0.4, 1);
@@ -126,17 +126,11 @@ export default function RunesWalletScreen() {
       {/* зачем (coins-002): общий фон 2.0 — почти чёрный bg с едва светлым верхом и свечениями темы; собственный градиент bgTop→bgBottom давал плоский тёмно-синий без виньетки. */}
       <V2Backdrop />
       <ContentWrap>
-        <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
-          <V2Pressable
-            testID="runes-wallet-back"
-            accessibilityLabel={backLabel}
-            onPress={goBack}
-            scaleTo={0.94}
-            style={styles.backButton}
-          >
-            <BackGlyph size={21} color={p.text} />
-          </V2Pressable>
+        <View style={[styles.header, { paddingTop: insets.top }]}>
+          {/* зачем (закон владельца 22.10 «назад в одном месте»): «назад» — общая кнопка слоем от верха экрана; здесь её место */}
+          <ScreenBackSlot />
         </View>
+        <ScreenBackButton screen="runes_wallet" testID="runes-wallet-back" accessibilityLabel={backLabel} onPress={goBack} />
         {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как во всех экранах профиля. */}
         <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{title}</Text>
 

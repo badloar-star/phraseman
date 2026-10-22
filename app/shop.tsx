@@ -32,7 +32,7 @@ import {
   type ShopCategoryId,
   type ShopItem,
 } from './shop_catalog';
-import BackGlyph from '../components/v2/BackGlyph';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../components/v2/ScreenBackButton';
 
 /**
  * shop.tsx — магазин: две валюты, товары по три в ряд, фильтр-док снизу.
@@ -328,16 +328,15 @@ function ShopScreenImpl() {
   const sheetBalance = sheetItem ? runes : 0;
   return (
     <View style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}>
+      {/* зачем (закон владельца 22.10 «назад в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+      <SafeTopBackButton
+        screen="shop"
+        testID="shop-back"
+        accessibilityLabel={triLang(lang, COPY.back)}
+        onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
+      />
       <View style={styles.header}>
-        <Pressable
-          testID="shop-back"
-          accessibilityRole="button"
-          accessibilityLabel={triLang(lang, COPY.back)}
-          onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
-          style={({ pressed }) => [styles.backButton, { opacity: pressed ? 0.7 : 1 }]}
-        >
-          <BackGlyph size={24} color={t.textMuted} />
-        </Pressable>
+        <ScreenBackSlot />
         <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{triLang(lang, COPY.screenTitle)}</Text>
       </View>
 
@@ -591,7 +590,8 @@ function ShopScreenImpl() {
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 12, paddingTop: 6 },
+  // строка шапки от безопасного верха: место общей кнопки 48 слева 20 (как у кнопки), заголовок справа
+  header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingLeft: 20, paddingRight: 12, minHeight: SCREEN_BACK_SIZE },
   backButton: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center' },
   title: { fontWeight: '900', letterSpacing: -0.3, flex: 1 },
   devNotice: {

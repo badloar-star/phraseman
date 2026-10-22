@@ -1,3 +1,4 @@
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
@@ -359,17 +360,11 @@ export default function CoinRankScreen() {
       {/* зачем (coins-002): общий фон 2.0 — почти чёрный bg с едва светлым верхом и свечениями темы; собственный градиент bgTop→bgBottom давал плоский тёмно-синий без виньетки. */}
       <V2Backdrop />
 
-      <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
-        <V2Pressable
-          testID="coin-rank-back"
-          accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-          onPress={goBack}
-          scaleTo={0.94}
-          style={styles.backButton}
-        >
-          <BackGlyph size={21} color={p.text} />
-        </V2Pressable>
+      <View style={[styles.header, { paddingTop: insets.top }]}>
+        {/* зачем (закон владельца 22.10 «назад в одном месте»): «назад» — общая кнопка слоем от верха экрана; здесь её место */}
+        <ScreenBackSlot />
       </View>
+      <ScreenBackButton screen="coin_rank" testID="coin-rank-back" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={goBack} />
       {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как кошелёк и профиль. */}
       <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{copy.title}</Text>
 
@@ -584,6 +579,3 @@ const styles = StyleSheet.create({
   ctaText: { ...V2_TYPE.headline, textAlign: 'center' },
   footNote: { ...V2_TYPE.subtitle, textAlign: 'center', marginTop: 10 },
 });
-
-
-import BackGlyph from '../components/v2/BackGlyph';

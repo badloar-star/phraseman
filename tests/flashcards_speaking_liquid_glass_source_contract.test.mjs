@@ -196,7 +196,7 @@ function hashProtectedRuntimeElements() {
 test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchanged', () => {
   assert.deepEqual(hashProtectedRuntimeAst(), {
     // 10.10: f371d6122 — итог по cards-section (время раунда roundStartedAtRef, список ошибок); квоты/попытки не тронуты.
-    count: 36,
+    count: 37,
     // зачем (30.09): D127 — «Устно» отсеивает карточки «без языка» (voicedDeckCards, 2acba6874); квоты/попытки/TTS не менялись.
     // зачем (30.09): D128 — озвучка клипом OpenAI своего языка вместо голоса устройства (7b4631e7e).
     // зачем (03.10): логика старта Ядра — 85f9e7231 (сторож загрузки +1 useEffect, трассировка [FC-SPEAKING-GATE], reconcile missing → fail-open) и 94003821a (компактный manifest, снятие записи до локального старта; ревью Opus).
@@ -220,7 +220,12 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     // и подмена выдачи dev `train_gate=fail_speaking` (getDevTrainGate); квоты, попытки, удержание, озвучка, полёт монеты, итог — без изменений.
     // зачем (15.10 вечер, перепрогон красных; сверено по diff d1b10af11 и 41443be48): d1b10af11 (Ядро) — в acknowledgeAndClearFlashcardTrainingPendingGrant передаётся { energyCharged } (старт у Plus без списания энергии);
     // 41443be48 — украинские тексты «вислів». Квоты, попытки, удержание, озвучка, полёт монеты, итог — без изменений.
-    hash: '887c427bd3a3c408bc2f0637c2c4ced71dca9f24d323312581f30d68e33828e2', // перепин 17.10 (R115): после пина 13.10 намеренные правки — D194 попытка голоса списывается при РЕАЛЬНОМ старте записи (dc5589c86, useVoiceAttemptGate), язык микрофона и озвучки по изучаемому языку (e6392a5a7, cardSpeechLocale), экран «не засчитано» с missingWords (fc7514d76, 9ef805ab1, d58f6357f); кол-во узлов 36 прежнее
+    // зачем (Ревизор 22.10, перепин по просьбе координатора): 7ac005ecf (18.10, правило владельца «экранов-ошибок нигде», опись
+    // fullscreen-error-states-2026-10-18) — +1 useEffect#14: квота/энергия не подтвердились → скелет и тихие повторы retryQuotaStart
+    // через 1/3/8 с, затем тихий уход (useSilentLeave), вместо экрана «Practice didn't open». Сверено поузловым списком хешей
+    // bd24810cb → HEAD: добавлен ТОЛЬКО useEffect#14, остальные 36 узлов побайтно прежние; число узлов 36 → 37.
+    // Квоты, попытки, удержание, озвучка, полёт монеты, итог — без изменений.
+    hash: '539d3257631025012a8f956ed37df79a34a7a10f2a35197a42109b987b002194', // перепин 22.10 (Ревизор): 7ac005ecf +useEffect#14 (автоповтор квоты вместо экрана-ошибки); прежний пин 17.10 R115 — 887c427b… // перепин 17.10 (R115): после пина 13.10 намеренные правки — D194 попытка голоса списывается при РЕАЛЬНОМ старте записи (dc5589c86, useVoiceAttemptGate), язык микрофона и озвучки по изучаемому языку (e6392a5a7, cardSpeechLocale), экран «не засчитано» с missingWords (fc7514d76, 9ef805ab1, d58f6357f); кол-во узлов 36 прежнее
   });
   assert.equal(
     hashProtectedRuntimeElements(),

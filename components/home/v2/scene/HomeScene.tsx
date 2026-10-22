@@ -221,8 +221,16 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [copyInput, liveEnergy, fixedEnergyMinutes]);
   const chips = useMemo<readonly HomeSceneChip[]>(() => copy.chips.map((kind) => ({ kind, label: homeSceneChipLabel(p.lang, kind), icon: CHIP_ICON[kind] })), [copy.chips, p.lang]);
   const offlineLine = useMemo(() => (decision.offlineLine ? homeSceneOfflineLine(p.lang) : null), [decision.offlineLine, p.lang]);
+  // зачем (владелец 22.10 «полоса другого цвета в сейф-зоне»): факт — где по экрану начинается сцена и какой у неё верхний цвет;
+  // сравнивается с [SAFE-TOP] status_strip (высота зоны часов и цвет полосы над ней).
+  const rootRef = useRef<View>(null);
+  const handleRootLayout = useCallback(() => {
+    rootRef.current?.measureInWindow((x, y, width, height) => {
+      console.log('[SAFE-TOP]', JSON.stringify({ at: 'home_scene', state: decision.state, windowY: Math.round(y), windowX: Math.round(x), width: Math.round(width), height: Math.round(height), sceneTop: tokens.sceneTop, statusTint: p.statusTint })); // guard-ok: одна строка на раскладку сцены
+    });
+  }, [decision.state, tokens.sceneTop, p.statusTint]);
   return (
-    <View testID={`home-scene-${decision.state}`} style={s.root}>
+    <View ref={rootRef} onLayout={handleRootLayout} testID={`home-scene-${decision.state}`} style={s.root}>
       <HomeSceneStage
         state={decision.state}
         evening={evening}

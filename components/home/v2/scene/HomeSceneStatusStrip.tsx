@@ -7,7 +7,7 @@
 // (120 dp), — дальше верх экрана такой же, как на других вкладках. Сцены нет или не Главная — ничего не рисуется.
 // Анимация — интерполяция того же Animated.Value прокрутки, что у маски верха (без своих подписок и setState).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 
 import { SPIRE_SCENE_V2_ENABLED } from '../../../spire/scene/spire_scene_flag';
@@ -29,7 +29,12 @@ function HomeSceneStatusStrip({ height, scrollY, visible, source = 'home' }: Pro
   const spireTint = useSpireSceneHeaderTint();
   // зачем (Пик v2, координатор 22.10: «тем же механизмом, что HomeSceneStatusStrip, без второй копии»): одна полоса на Главной и на «Пике»
   const tint = source === 'spire' ? (SPIRE_SCENE_V2_ENABLED ? spireTint : null) : homeTint;
-  if (!visible || tint === null || height <= 0) return null;
+  // зачем (владелец 22.10 «полоса другого цвета в сейф-зоне — запрещаю»): сперва факты — рисуется ли полоса над часами, каким цветом и почему нет.
+  const decision = !visible ? 'skip_not_active_tab' : tint === null ? 'skip_no_scene_tint' : height <= 0 ? 'skip_zero_inset' : 'draw';
+  useEffect(() => {
+    console.log('[SAFE-TOP]', JSON.stringify({ at: 'status_strip', source, visible, tint, height: Math.round(height), spireFlag: SPIRE_SCENE_V2_ENABLED, decision })); // guard-ok: одна строка на смену решения
+  }, [source, visible, tint, height, decision]);
+  if (decision !== 'draw' || tint === null) return null;
   const opacity = scrollY ? scrollY.interpolate({ inputRange: [0, FADE_DISTANCE], outputRange: [1, 0], extrapolate: 'clamp' }) : 1;
   return <Animated.View testID={source === 'spire' ? 'spire-scene-status-strip' : 'home-scene-status-strip'} pointerEvents="none" style={[s.strip, { height, backgroundColor: tint, opacity }]} />;
 }

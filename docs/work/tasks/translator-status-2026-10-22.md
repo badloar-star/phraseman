@@ -110,3 +110,10 @@ en/es/pt-BR «Those flowers are fresh.». Собранные json НЕ комм�
 
 **0a12676e9** — «Ещё N слов откроются в эпизодах урока» (app/learning_v2_lesson_words_closed_v1.ts): формы ru/uk/pl верны, pt-BR
 «liberada(s)», en «unlock(s)»; проверено для 1, 3, 5, 21.
+
+## Дополнение: названия эпизодов и хаб урока
+
+**dee47469f** — названия 168 эпизодов уроков 1–3 на 8 языков: modules/learning-v2/titles/session_titles_i18n_v1.ts,
+learningV2SessionTitleForLocaleV1(lesson, session, locale), откат к русскому для ru/uk и к «Эпизод N». Подключает Learning V2.
+**ce081c88f** — хаб урока: «Все главы / Все уроки / Классический курс» на 8 языках влезают в плитку (≤ 2 строки, как ru
+«Классический курс» в макете), id метка «Дальше» → «Lanjut».

@@ -81,10 +81,11 @@ describe("required-session completion background inbox", () => {
     const functionsSrcRoot = join(__dirname, "..");
     const callableSource = readFileSync(join(__dirname, "required_session_completion_callable.ts"), "utf8");
     const indexSource = readFileSync(join(functionsSrcRoot, "index.ts"), "utf8");
-    const packageSource = readFileSync(join(functionsSrcRoot, "..", "package.json"), "utf8");
     expect(callableSource).toContain("enforceAppCheck: false");
-    expect(indexSource).toContain("exports.submitLearningV2RequiredSessionCompletion");
-    expect(packageSource).toContain("functions:submitLearningV2RequiredSessionCompletion");
+    // зачем (Ядро через координатора 22.10): выкладка идёт через deploy_from_clean_head, а не скрипт package.json —
+    // живость функции сторожим по экспорту в index.ts (имя + привязка к той же функции)
+    expect(indexSource).toContain("exports.submitLearningV2RequiredSessionCompletion =");
+    expect(indexSource).toMatch(/const submitLearningV2RequiredSessionCompletion =/);
   });
 
   it("stores one exact catalog-reconciled but economically unauthorized candidate", async () => {

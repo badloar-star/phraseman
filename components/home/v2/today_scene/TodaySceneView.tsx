@@ -9,11 +9,12 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { memo, useMemo } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useMemo, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useStableSafeAreaInsets } from '../../../../app/stable_safe_area_metrics';
+import { useScaledTextStyles } from '../../../../hooks/useLineScale';
 import TodayRingsSlot from '../../../streak/moments/TodayRingsSlot';
 import type { TodayRingsTask } from '../../../streak/moments/TodayRingsSlot';
 import BackButton from '../../../v2/BackButton';
@@ -28,6 +29,9 @@ import type { TodaySceneCopy } from './today_scene_copy';
 import type { TodaySceneDecision } from './today_scene_state';
 
 const STAGE_MIN_HEIGHT = 540;
+const HERO_SIZE = 200;
+/** Системный шрифт крупнее этого — кольца-герой встают в свободное место между шапкой и текстом (как HERO_BOUND_FONT_SCALE на Главной). */
+export const TODAY_HERO_BOUND_FONT_SCALE = 1.15;
 /** Панель «Задания дня» наезжает на сцену (.a-panel margin-top −38). */
 const PANEL_OVERLAP = 38;
 const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']>> = {
@@ -52,6 +56,13 @@ export type TodaySceneViewProps = Readonly<{
 }>;
 
 const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, ringColors, fromProgress, onBack, backLabel, onOpenTask }: TodaySceneViewProps) {
+  // зачем (FONTSCALE2, 2 · ДИЗАЙН 22.10): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
+  const s = useScaledTextStyles(baseStyles);
+  const { fontScale } = useWindowDimensions();
+  const heroBounded = fontScale > TODAY_HERO_BOUND_FONT_SCALE;
+  const [slotH, setSlotH] = useState(0);
+  // зачем: на крупном шрифте текст занимает больше места, 200×200 на абсолютных координатах заезжали под него — кольца вписываются во flex-слот уменьшением (масштаб ≤ 1), шрифт не трогаем
+  const heroScale = heroBounded && slotH > 0 ? Math.max(0.5, Math.min(1, slotH / HERO_SIZE)) : 1;
   const p = useV2Palette();
   const glass = useShadowGlass();
   const insets = useStableSafeAreaInsets();
@@ -91,9 +102,11 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           {evening ? <Rect x={-40} y={STAGE_MIN_HEIGHT - 200} width={260} height={260} fill="url(#todayEmber)" /> : null}
         </Svg>
         {/* герой — сами кольца дня; место занято с первого кадра (200 × 200), кольца докручиваются внутри */}
-        <View pointerEvents="none" testID="today-scene-rings" style={s.hero}>
-          <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={200} showDayDone={false} />
-        </View>
+        {heroBounded ? null : (
+          <View pointerEvents="none" testID="today-scene-rings" style={s.hero}>
+            <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} />
+          </View>
+        )}
         {/* зачем (эталон): у тёмной сцены затемнения низа нет — иначе стык с панелью сливается */}
         {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
         <View style={[s.top, { paddingTop: insets.top + 8 }]}>
@@ -101,6 +114,13 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           {/* зачем (эталон td-top / .td-tt): крупный белый заголовок «Сегодня» 28/34 справа от «назад» */}
           <Text testID="today-scene-heading" accessibilityRole="header" numberOfLines={1} style={s.heading}>{title}</Text>
         </View>
+        {heroBounded ? (
+          <View pointerEvents="none" style={s.heroSlot} onLayout={(e) => setSlotH(Math.round(e.nativeEvent.layout.height))}>
+            <View testID="today-scene-rings" style={[s.heroBoundedBox, { transform: [{ scale: heroScale }] }]}>
+              <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} />
+            </View>
+          </View>
+        ) : null}
         <View style={s.body}>
           {copy.kicker ? <Text testID="today-scene-kicker" style={s.kicker}>{copy.kicker}</Text> : null}
           <Text testID="today-scene-title" accessibilityRole="header" style={s.title}>{copy.title}</Text>
@@ -114,7 +134,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           {nextTask ? (
             <V2Pressable testID="today-scene-cta" accessibilityRole="button" accessibilityLabel={nextTask.title} onPress={() => onOpenTask(nextTask)} scaleTo={0.97} style={s.cta}>
               <Ionicons name="play" size={18} color="#121318" />
-              <Text style={s.ctaText} numberOfLines={1}>{nextTask.title}</Text>
+              <Text style={s.ctaText}>{nextTask.title}</Text>
             </V2Pressable>
           ) : null}
         </View>
@@ -147,7 +167,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
               <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name={ROW_ICON[task.kind]} size={18} color={card.text} /></View>
               <View style={s.tx}>
                 <Text style={[s.rowTitle, { color: done ? card.secondary : card.text }]} numberOfLines={2}>{task.title}</Text>
-                {task.subtitle ? <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={1}>{task.subtitle}</Text> : null}
+                {task.subtitle ? <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={2}>{task.subtitle}</Text> : null}
               </View>
               <Text style={[s.rowN, { color: urgent ? card.bad : card.secondary }]}>{`${task.progress}/${task.target}`}</Text>
             </V2Pressable>
@@ -161,11 +181,13 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
 
 export default TodaySceneView;
 
-const s = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingBottom: 40 },
   stage: { borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden', justifyContent: 'space-between' },
   hero: { position: 'absolute', right: 22, top: 104, width: 200, height: 200, alignItems: 'center', justifyContent: 'center' },
+  heroSlot: { flex: 1, minHeight: 0, alignItems: 'flex-end', paddingRight: 22 },
+  heroBoundedBox: { width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center', transformOrigin: 'right top' },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 12 },
   heading: { flex: 1, color: '#FFFFFF', fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
@@ -177,7 +199,7 @@ const s = StyleSheet.create({
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   warm: { color: '#FFD9D0', /* аудит контраста 22.10: как на Главной, чуть светлее прежнего #FFD0C4 */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, marginTop: 10 },
-  cta: { marginTop: 16, height: 54, borderRadius: 27, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
+  cta: { marginTop: 16, minHeight: 54, paddingVertical: 8, borderRadius: 27, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
   ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   panel: { marginTop: -PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
   panelHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 2 },

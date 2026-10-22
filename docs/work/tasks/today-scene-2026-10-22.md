@@ -48,3 +48,5 @@ Out of scope: HomeV2TodayCard.tsx, TodayActivityHistory.tsx, HomePollV2Card.tsx 
 ## Rollback
 
 Флаг в false или `git revert`.
+
+Governance-ID: TG-1F8DABA34884

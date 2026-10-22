@@ -17,6 +17,7 @@ import PressableHybrid from '../PressableHybrid';
 import { FlowText } from '../text-integrity';
 import { FriendsCoin, type FriendsGlass } from '../friends/FriendsGlassKit';
 import { plateBoxShadow } from '../v2/ShadowSurface';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 import type { FriendCallState } from './FriendCallPill';
 import { pairFlameColor } from './PairFlameInline';
 
@@ -37,7 +38,8 @@ function WeekPill({ glass, textScale, tone, icon, label, onPress, testID, access
 }>) {
   // зачем (макет `.pb.soft` / `.pb.done` / `.pb.off`): мягкая — тон контрола, «готово» — мягкий успех темы, выключенная — приглушённая
   const fill = tone === 'done' ? glass.goodSoft : glass.opaqueControl;
-  const ink = tone === 'done' ? glass.good : tone === 'off' ? glass.secondary : glass.text;
+  // зачем (контраст новых экранов 22.10): «готово» — good, углублённый до ≥ 4,55 на мягкой подложке (в светлых темах сырой good давал 3,75–3,90)
+  const ink = tone === 'done' ? semanticInk(glass).goodText : tone === 'off' ? glass.secondary : glass.text;
   return (
     <PressableHybrid
       testID={testID}

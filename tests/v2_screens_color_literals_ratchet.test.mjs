@@ -23,6 +23,8 @@ const ZONE = [
   'components/NotificationCenterButton.tsx', 'components/AppMessagesInbox.tsx', 'components/AppMessageAnnouncementModal.tsx',
   'components/PersonalAdminMessageModal.tsx', 'components/NotificationPermissionModal', 'components/notification_center_tones.ts',
   // зона «Видео» (волна 3): вкладка, плеер, карточки и премьера YouTube, строка и набор видео в Карточках
+  // зона «новые экраны 22.10» (координатор → 4 · ТЕМЫ): «Моя неделя», «Вместе» (app), экран темы Диалогов, «Слова» Сезона, окно согласия перед «Свободным разговором» — на момент добавления литералов 0
+  'app/friends_week_mine.tsx', 'app/friends_together', 'app/dialogue_v2_theme.tsx', 'app/learning_v2_lesson_words.tsx', 'components/AiDialogConsentModal.tsx',
   'app/(tabs)/video.tsx', 'components/video', 'components/youtube', 'app/flashcards/VideoPackRow.tsx', 'app/flashcards/VideoSetView.tsx',
 ];
 const SKIP = /\.test\.|preview|fixtures|\.generated\.|v2_kit|KitLiquidGlass|plateTone/i;

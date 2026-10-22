@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-38:word:sort-out-a-problem",
+    "correctText": "sort out a problem",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i01",
+    "correctText": "I call the shop to sort out a problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i02",
+    "correctText": "I call the shop to sort out a problem.",
+    "correctResponseId": "en:lesson-22:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:word:find-a-solution",
+    "correctText": "find a solution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i04",
+    "correctText": "I read the instructions to find a solution.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i05",
+    "correctText": "I read the instructions to find a solution.",
+    "correctResponseId": "en:lesson-22:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:word:reach-an-agreement",
+    "correctText": "reach an agreement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i07",
+    "correctText": "I talk to my neighbour to reach an agreement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i08",
+    "correctText": "I talk to my neighbour to reach an agreement.",
+    "correctResponseId": "en:lesson-22:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:word:make-a-decision",
+    "correctText": "make a decision",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i10",
+    "correctText": "I compare the options to make a decision.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i11",
+    "correctText": "I compare the options to make a decision.",
+    "correctResponseId": "en:lesson-22:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i13",
+    "correctText": "en:lesson-22:session-38:i13:p1=sort out a problem\nen:lesson-22:session-38:i13:p2=find a solution\nen:lesson-22:session-38:i13:p3=reach an agreement\nen:lesson-22:session-38:i13:p4=make a decision",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i16",
+    "correctText": "I need to make a decision.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-38:i17",
+    "correctText": "I want to find a solution.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Привести пример",
+        "uk": "Навести приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Give an example — привести пример, чтобы мысль стала понятнее. Example начинается с гласного звука: an example. Вы спрашиваете разрешение привести свой пример. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Give an example — навести приклад, щоб думка стала зрозумілішою. Example починається з голосного звука: an example. Ви питаєте дозволу навести свій приклад. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-39:intro1:r1",
+              "text": "Could I give an example?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro1:r2",
+              "text": "Could I gives an example?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro1:r3",
+              "text": "Could I giving an example?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-39:intro1:r1",
+              "text": "Could I give an example?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro1:r2",
+              "text": "Could I gives an example?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro1:r3",
+              "text": "Could I giving an example?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проблема и совет",
+        "uk": "Проблема й порада"
+      },
+      "bodyByLocale": {
+        "ru": "Explain the problem — объяснить, в чём проблема. Ask for advice — попросить совета. Advice здесь неисчисляемое: без a и без окончания -s. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Explain the problem — пояснити, у чому проблема. Ask for advice — попросити поради. Advice тут незлічуване: без a і без закінчення -s. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-39:intro2:r1",
+              "text": "Could I explain the problem?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro2:r2",
+              "text": "Could I explains the problem?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro2:r3",
+              "text": "Could I explaining the problem?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-39:intro2:r1",
+              "text": "Could I explain the problem?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro2:r2",
+              "text": "Could I explains the problem?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro2:r3",
+              "text": "Could I explaining the problem?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Добавить подробность",
+        "uk": "Додати подробицю"
+      },
+      "bodyByLocale": {
+        "ru": "Add a detail — добавить одну подробность к рассказу. Вы не обязательно меняете сказанное: вы дополняете его. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Add a detail — додати одну подробицю до розповіді. Ви не обов’язково змінюєте сказане: ви доповнюєте його. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-39:intro3:r1",
+              "text": "Could I add a detail?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro3:r2",
+              "text": "Could I adds a detail?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro3:r3",
+              "text": "Could I adding a detail?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-39:intro3:r1",
+              "text": "Could I add a detail?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro3:r2",
+              "text": "Could I adds a detail?"
+            },
+            {
+              "responseId": "en:lesson-22:session-39:intro3:r3",
+              "text": "Could I adding a detail?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e2a99f28c7768eca05109e4f14c98ec4808472a3a85ba99044d5dca3ae584375"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-39:word:give-an-example",
+    "correctText": "give an example",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i01",
+    "correctText": "Could I give an example?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i02",
+    "correctText": "Could I give an example?",
+    "correctResponseId": "en:lesson-22:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i03",
+    "correctText": "give",
+    "correctResponseId": "en:lesson-22:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:word:explain-the-problem",
+    "correctText": "explain the problem",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i04",
+    "correctText": "Could I explain the problem?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i05",
+    "correctText": "Could I explain the problem?",
+    "correctResponseId": "en:lesson-22:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i06",
+    "correctText": "explain",
+    "correctResponseId": "en:lesson-22:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:word:ask-for-advice",
+    "correctText": "ask for advice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i07",
+    "correctText": "Could I ask for advice?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i08",
+    "correctText": "Could I ask for advice?",
+    "correctResponseId": "en:lesson-22:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i09",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-22:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:word:add-a-detail",
+    "correctText": "add a detail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i10",
+    "correctText": "Could I add a detail?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i11",
+    "correctText": "Could I add a detail?",
+    "correctResponseId": "en:lesson-22:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i12",
+    "correctText": "add",
+    "correctResponseId": "en:lesson-22:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i13",
+    "correctText": "en:lesson-22:session-39:i13:p1=give an example\nen:lesson-22:session-39:i13:p2=explain the problem\nen:lesson-22:session-39:i13:p3=ask for advice\nen:lesson-22:session-39:i13:p4=add a detail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i16",
+    "correctText": "Could we give an example?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-39:i17",
+    "correctText": "Could we ask for advice?",
+    "correctResponseId": null
+  }
+]

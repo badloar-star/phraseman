@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-39:word:give-an-example",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — give an example",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:word:give-an-example:audio"
+      ],
+      "accessibilityLabel": "Картка слова — give an example",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:word:give-an-example:audio",
+          "transcript": "give an example"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:word:give-an-example:r1",
+            "targetText": "give an example",
+            "meaningByLocale": {
+              "ru": "привести пример.",
+              "uk": "навести приклад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "give an example",
+          "definitionByLocale": {
+            "ru": "привести пример.",
+            "uk": "навести приклад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хочете пояснити думку. Запитайте: «Можна мені навести приклад?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете пояснити думку. Запитайте: «Можна мені навести приклад?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I give an example?",
+        "localizedMeaning": {
+          "ru": "Вы хотите пояснить мысль. Спросите: «Можно мне привести пример?»",
+          "uk": "Ви хочете пояснити думку. Запитайте: «Можна мені навести приклад?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "give",
+          "an",
+          "example"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i02:r1",
+          "text": "Could I give an example?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i02:r2",
+          "text": "Could you give an example?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i02:r3",
+          "text": "Could we give an example?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i02:audio",
+          "transcript": "Could I give an example?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:i02:r1",
+            "targetText": "Could I give an example?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i02:r2",
+            "targetText": "Could you give an example?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i02:r3",
+            "targetText": "Could we give an example?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I give an example?",
+              "uk": "У записі звучить Could I give an example?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I give an example?",
+              "uk": "У записі звучить Could I give an example?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i03:r1",
+          "text": "give"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i03:r2",
+          "text": "gives"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i03:r3",
+          "text": "giving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ an example?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-39:i03:r1",
+            "text": "give"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i03:r2",
+            "text": "gives"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i03:r3",
+            "text": "giving"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:word:explain-the-problem",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — explain the problem",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:word:explain-the-problem:audio"
+      ],
+      "accessibilityLabel": "Картка слова — explain the problem",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:word:explain-the-problem:audio",
+          "transcript": "explain the problem"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:word:explain-the-problem:r1",
+            "targetText": "explain the problem",
+            "meaningByLocale": {
+              "ru": "объяснить проблему.",
+              "uk": "пояснити проблему."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "explain the problem",
+          "definitionByLocale": {
+            "ru": "объяснить проблему.",
+            "uk": "пояснити проблему."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Співрозмовник ще не знає подробиць. Запитайте: «Можна мені пояснити проблему?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Співрозмовник ще не знає подробиць. Запитайте: «Можна мені пояснити проблему?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I explain the problem?",
+        "localizedMeaning": {
+          "ru": "Собеседник ещё не знает подробностей. Спросите: «Можно мне объяснить проблему?»",
+          "uk": "Співрозмовник ще не знає подробиць. Запитайте: «Можна мені пояснити проблему?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "explain",
+          "the",
+          "problem"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i05:r1",
+          "text": "Could I explain the problem?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i05:r2",
+          "text": "Could you explain the problem?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i05:r3",
+          "text": "Could we explain the problem?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i05:audio",
+          "transcript": "Could I explain the problem?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:i05:r1",
+            "targetText": "Could I explain the problem?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i05:r2",
+            "targetText": "Could you explain the problem?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i05:r3",
+            "targetText": "Could we explain the problem?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain the problem?",
+              "uk": "У записі звучить Could I explain the problem?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I explain the problem?",
+              "uk": "У записі звучить Could I explain the problem?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i06:r1",
+          "text": "explain"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i06:r2",
+          "text": "explains"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i06:r3",
+          "text": "explaining"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the problem?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-39:i06:r1",
+            "text": "explain"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i06:r2",
+            "text": "explains"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i06:r3",
+            "text": "explaining"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:word:ask-for-advice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ask for advice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:word:ask-for-advice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ask for advice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:word:ask-for-advice:audio",
+          "transcript": "ask for advice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:word:ask-for-advice:r1",
+            "targetText": "ask for advice",
+            "meaningByLocale": {
+              "ru": "попросить совета.",
+              "uk": "попросити поради."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ask for advice",
+          "definitionByLocale": {
+            "ru": "попросить совета.",
+            "uk": "попросити поради."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам потрібна порада. Запитайте: «Можна мені попросити поради?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам потрібна порада. Запитайте: «Можна мені попросити поради?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I ask for advice?",
+        "localizedMeaning": {
+          "ru": "Вам нужен совет. Спросите: «Можно мне попросить совета?»",
+          "uk": "Вам потрібна порада. Запитайте: «Можна мені попросити поради?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "for",
+          "advice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i08:r1",
+          "text": "Could I ask for advice?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i08:r2",
+          "text": "Could you ask for advice?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i08:r3",
+          "text": "Could we ask for advice?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i08:audio",
+          "transcript": "Could I ask for advice?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:i08:r1",
+            "targetText": "Could I ask for advice?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i08:r2",
+            "targetText": "Could you ask for advice?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i08:r3",
+            "targetText": "Could we ask for advice?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask for advice?",
+              "uk": "У записі звучить Could I ask for advice?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I ask for advice?",
+              "uk": "У записі звучить Could I ask for advice?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i09:r1",
+          "text": "ask"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i09:r2",
+          "text": "asks"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i09:r3",
+          "text": "asking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ for advice?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-39:i09:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i09:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i09:r3",
+            "text": "asking"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:word:add-a-detail",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — add a detail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:word:add-a-detail:audio"
+      ],
+      "accessibilityLabel": "Картка слова — add a detail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:word:add-a-detail:audio",
+          "transcript": "add a detail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:word:add-a-detail:r1",
+            "targetText": "add a detail",
+            "meaningByLocale": {
+              "ru": "добавить подробность.",
+              "uk": "додати подробицю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "add a detail",
+          "definitionByLocale": {
+            "ru": "добавить подробность.",
+            "uk": "додати подробицю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хочете доповнити розповідь. Запитайте: «Можна мені додати подробицю?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете доповнити розповідь. Запитайте: «Можна мені додати подробицю?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I add a detail?",
+        "localizedMeaning": {
+          "ru": "Вы хотите дополнить рассказ. Спросите: «Можно мне добавить подробность?»",
+          "uk": "Ви хочете доповнити розповідь. Запитайте: «Можна мені додати подробицю?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "add",
+          "a",
+          "detail"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i11:r1",
+          "text": "Could I add a detail?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i11:r2",
+          "text": "Could you add a detail?"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i11:r3",
+          "text": "Could we add a detail?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i11:audio",
+          "transcript": "Could I add a detail?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-39:i11:r1",
+            "targetText": "Could I add a detail?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i11:r2",
+            "targetText": "Could you add a detail?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i11:r3",
+            "targetText": "Could we add a detail?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I add a detail?",
+              "uk": "У записі звучить Could I add a detail?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I add a detail?",
+              "uk": "У записі звучить Could I add a detail?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-39:i12:r1",
+          "text": "add"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i12:r2",
+          "text": "adds"
+        },
+        {
+          "responseId": "en:lesson-22:session-39:i12:r3",
+          "text": "adding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a detail?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-39:i12:r1",
+            "text": "add"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i12:r2",
+            "text": "adds"
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i12:r3",
+            "text": "adding"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-39:i13:p1",
+            "target": "give an example",
+            "meaningByLocale": {
+              "ru": "привести пример",
+              "uk": "навести приклад"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-39:i13:p2",
+            "target": "explain the problem",
+            "meaningByLocale": {
+              "ru": "объяснить проблему",
+              "uk": "пояснити проблему"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-39:i13:p3",
+            "target": "ask for advice",
+            "meaningByLocale": {
+              "ru": "попросить совета",
+              "uk": "попросити поради"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-39:i13:p4",
+            "target": "add a detail",
+            "meaningByLocale": {
+              "ru": "добавить подробность",
+              "uk": "додати подробицю"
+            }
+          }
+        ],
+        "leftColumn": [
+          "give an example",
+          "explain the problem",
+          "ask for advice",
+          "add a detail"
+        ],
+        "rightColumn": [
+          "навести приклад",
+          "пояснити проблему",
+          "попросити поради",
+          "додати подробицю"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: її річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: її річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: моя річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: моя річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам навести приклад?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам навести приклад?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i16:audio",
+          "transcript": "Could we give an example?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we give an example?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-39:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам попросити поради?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам попросити поради?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-39:i17:audio",
+          "transcript": "Could we ask for advice?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we ask for advice?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9df8cc3d3aea1bc061ae8a44f0d0ec4096c04dc572ba906804cbe053929f9ba5"
+}

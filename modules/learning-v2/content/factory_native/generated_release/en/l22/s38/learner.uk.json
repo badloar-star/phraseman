@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-38:word:sort-out-a-problem",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sort out a problem",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:word:sort-out-a-problem:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sort out a problem",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:word:sort-out-a-problem:audio",
+          "transcript": "sort out a problem"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:word:sort-out-a-problem:r1",
+            "targetText": "sort out a problem",
+            "meaningByLocale": {
+              "ru": "разобраться с проблемой.",
+              "uk": "розібратися з проблемою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sort out a problem",
+          "definitionByLocale": {
+            "ru": "разобраться с проблемой.",
+            "uk": "розібратися з проблемою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви телефонуєте щодо покупки. Скажіть: «Я телефоную в магазин, щоб розібратися з проблемою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви телефонуєте щодо покупки. Скажіть: «Я телефоную в магазин, щоб розібратися з проблемою»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I call the shop to sort out a problem.",
+        "localizedMeaning": {
+          "ru": "Вы звоните по поводу покупки. Скажите: «Я звоню в магазин, чтобы разобраться с проблемой»",
+          "uk": "Ви телефонуєте щодо покупки. Скажіть: «Я телефоную в магазин, щоб розібратися з проблемою»"
+        },
+        "orderedTokens": [
+          "I",
+          "call",
+          "the",
+          "shop",
+          "to",
+          "sort",
+          "out",
+          "a",
+          "problem"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i02:r1",
+          "text": "I call the shop to sort out a problem."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i02:r2",
+          "text": "We call the shop to sort out a problem."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i02:r3",
+          "text": "You call the shop to sort out a problem."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i02:audio",
+          "transcript": "I call the shop to sort out a problem."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:i02:r1",
+            "targetText": "I call the shop to sort out a problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i02:r2",
+            "targetText": "We call the shop to sort out a problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i02:r3",
+            "targetText": "You call the shop to sort out a problem.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I call the shop to sort out a problem.",
+              "uk": "У записі звучить I call the shop to sort out a problem."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I call the shop to sort out a problem.",
+              "uk": "У записі звучить I call the shop to sort out a problem."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово, яке вводить мету.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i03:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i03:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I call the shop ___ sort out a problem.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-38:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Виберіть слово, яке вводить мету.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:word:find-a-solution",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — find a solution",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:word:find-a-solution:audio"
+      ],
+      "accessibilityLabel": "Картка слова — find a solution",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:word:find-a-solution:audio",
+          "transcript": "find a solution"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:word:find-a-solution:r1",
+            "targetText": "find a solution",
+            "meaningByLocale": {
+              "ru": "найти решение.",
+              "uk": "знайти рішення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "find a solution",
+          "definitionByLocale": {
+            "ru": "найти решение.",
+            "uk": "знайти рішення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте відповідь в інструкції. Скажіть: «Я читаю інструкцію, щоб знайти рішення»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте відповідь в інструкції. Скажіть: «Я читаю інструкцію, щоб знайти рішення»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I read the instructions to find a solution.",
+        "localizedMeaning": {
+          "ru": "Вы ищете ответ в инструкции. Скажите: «Я читаю инструкцию, чтобы найти решение»",
+          "uk": "Ви шукаєте відповідь в інструкції. Скажіть: «Я читаю інструкцію, щоб знайти рішення»"
+        },
+        "orderedTokens": [
+          "I",
+          "read",
+          "the",
+          "instructions",
+          "to",
+          "find",
+          "a",
+          "solution"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i05:r1",
+          "text": "I read the instructions to find a solution."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i05:r2",
+          "text": "We read the instructions to find a solution."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i05:r3",
+          "text": "You read the instructions to find a solution."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i05:audio",
+          "transcript": "I read the instructions to find a solution."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:i05:r1",
+            "targetText": "I read the instructions to find a solution.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i05:r2",
+            "targetText": "We read the instructions to find a solution.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i05:r3",
+            "targetText": "You read the instructions to find a solution.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I read the instructions to find a solution.",
+              "uk": "У записі звучить I read the instructions to find a solution."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I read the instructions to find a solution.",
+              "uk": "У записі звучить I read the instructions to find a solution."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово, яке вводить мету.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i06:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i06:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i06:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I read the instructions ___ find a solution.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-38:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i06:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Виберіть слово, яке вводить мету.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:word:reach-an-agreement",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reach an agreement",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:word:reach-an-agreement:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reach an agreement",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:word:reach-an-agreement:audio",
+          "transcript": "reach an agreement"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:word:reach-an-agreement:r1",
+            "targetText": "reach an agreement",
+            "meaningByLocale": {
+              "ru": "достичь договорённости.",
+              "uk": "досягти домовленості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reach an agreement",
+          "definitionByLocale": {
+            "ru": "достичь договорённости.",
+            "uk": "досягти домовленості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обговорюєте спільну проблему. Скажіть: «Я розмовляю із сусідом, щоб досягти домовленості»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обговорюєте спільну проблему. Скажіть: «Я розмовляю із сусідом, щоб досягти домовленості»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I talk to my neighbour to reach an agreement.",
+        "localizedMeaning": {
+          "ru": "Вы обсуждаете общую проблему. Скажите: «Я разговариваю с соседом, чтобы достичь договорённости»",
+          "uk": "Ви обговорюєте спільну проблему. Скажіть: «Я розмовляю із сусідом, щоб досягти домовленості»"
+        },
+        "orderedTokens": [
+          "I",
+          "talk",
+          "to",
+          "my",
+          "neighbour",
+          "to",
+          "reach",
+          "an",
+          "agreement"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i08:r1",
+          "text": "I talk to my neighbour to reach an agreement."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i08:r2",
+          "text": "We talk to our neighbour to reach an agreement."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i08:r3",
+          "text": "You talk to your neighbour to reach an agreement."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i08:audio",
+          "transcript": "I talk to my neighbour to reach an agreement."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:i08:r1",
+            "targetText": "I talk to my neighbour to reach an agreement.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i08:r2",
+            "targetText": "We talk to our neighbour to reach an agreement.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i08:r3",
+            "targetText": "You talk to your neighbour to reach an agreement.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I talk to my neighbour to reach an agreement.",
+              "uk": "У записі звучить I talk to my neighbour to reach an agreement."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I talk to my neighbour to reach an agreement.",
+              "uk": "У записі звучить I talk to my neighbour to reach an agreement."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово, яке вводить мету.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i09:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i09:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I talk to my neighbour ___ reach an agreement.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-38:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Виберіть слово, яке вводить мету.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:word:make-a-decision",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — make a decision",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:word:make-a-decision:audio"
+      ],
+      "accessibilityLabel": "Картка слова — make a decision",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:word:make-a-decision:audio",
+          "transcript": "make a decision"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:word:make-a-decision:r1",
+            "targetText": "make a decision",
+            "meaningByLocale": {
+              "ru": "принять решение.",
+              "uk": "ухвалити рішення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make a decision",
+          "definitionByLocale": {
+            "ru": "принять решение.",
+            "uk": "ухвалити рішення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте між варіантами. Скажіть: «Я порівнюю варіанти, щоб ухвалити рішення»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте між варіантами. Скажіть: «Я порівнюю варіанти, щоб ухвалити рішення»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I compare the options to make a decision.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете между вариантами. Скажите: «Я сравниваю варианты, чтобы принять решение»",
+          "uk": "Ви обираєте між варіантами. Скажіть: «Я порівнюю варіанти, щоб ухвалити рішення»"
+        },
+        "orderedTokens": [
+          "I",
+          "compare",
+          "the",
+          "options",
+          "to",
+          "make",
+          "a",
+          "decision"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i11:r1",
+          "text": "I compare the options to make a decision."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i11:r2",
+          "text": "We compare the options to make a decision."
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i11:r3",
+          "text": "You compare the options to make a decision."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i11:audio",
+          "transcript": "I compare the options to make a decision."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-38:i11:r1",
+            "targetText": "I compare the options to make a decision.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i11:r2",
+            "targetText": "We compare the options to make a decision.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i11:r3",
+            "targetText": "You compare the options to make a decision.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I compare the options to make a decision.",
+              "uk": "У записі звучить I compare the options to make a decision."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I compare the options to make a decision.",
+              "uk": "У записі звучить I compare the options to make a decision."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово, яке вводить мету.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-38:i12:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i12:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-38:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I compare the options ___ make a decision.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-38:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Виберіть слово, яке вводить мету.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-38:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-38:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово, яке вводить мету.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-38:i13:p1",
+            "target": "sort out a problem",
+            "meaningByLocale": {
+              "ru": "разобраться с проблемой",
+              "uk": "розібратися з проблемою"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-38:i13:p2",
+            "target": "find a solution",
+            "meaningByLocale": {
+              "ru": "найти решение",
+              "uk": "знайти рішення"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-38:i13:p3",
+            "target": "reach an agreement",
+            "meaningByLocale": {
+              "ru": "достичь договорённости",
+              "uk": "досягти домовленості"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-38:i13:p4",
+            "target": "make a decision",
+            "meaningByLocale": {
+              "ru": "принять решение",
+              "uk": "ухвалити рішення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sort out a problem",
+          "find a solution",
+          "reach an agreement",
+          "make a decision"
+        ],
+        "rightColumn": [
+          "розібратися з проблемою",
+          "знайти рішення",
+          "досягти домовленості",
+          "ухвалити рішення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: місце біля вікна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: місце біля вікна",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i14:audio",
+          "transcript": "Could I sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I sit by the window?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: прогулянка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: прогулянка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i15:audio",
+          "transcript": "Could I go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I go for a walk?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Мені потрібно ухвалити рішення»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Мені потрібно ухвалити рішення»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i16:audio",
+          "transcript": "I need to make a decision."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to make a decision.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-38:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу знайти рішення»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу знайти рішення»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-38:i17:audio",
+          "transcript": "I want to find a solution."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to find a solution.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "18c810f90db34ff69602f8628bdc5ff252bf7bc0016717a78249b8d3dadda0cb"
+}

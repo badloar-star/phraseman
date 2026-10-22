@@ -8491,4 +8491,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"another + singular noun; other + noun","uk":"another + singular noun; other + noun"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 37,
+    sourceFingerprint: "9e6b2f62ae2329a5cf20a05b63ac8ae89f7a619430e5baebc0d02c9a3ce5ad8b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 38,
+    sourceFingerprint: "26bce93be1d85f425178df8daa3e084ace71b731ee89d517f9f51af9a3bab977",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 39,
+    sourceFingerprint: "c398811aaa0915a30bd4f431025dd45ae61844b35f0de86a90b8644c35066abc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 40,
+    sourceFingerprint: "1d7c817e0a8e02b267e5586f249a94a72cd2cf61151325443f9ad75f079245f8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

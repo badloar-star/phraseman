@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-40:word:pay-in-advance",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pay in advance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:pay-in-advance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pay in advance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:pay-in-advance:audio",
+            "transcript": "pay in advance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:pay-in-advance:r1",
+              "targetText": "pay in advance",
+              "meaningByLocale": {
+                "ru": "заплатить заранее.",
+                "uk": "заплатити заздалегідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pay in advance",
+            "definitionByLocale": {
+              "ru": "заплатить заранее.",
+              "uk": "заплатити заздалегідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите оплатить до получения услуги. Спросите: «Можно мне заплатить заранее?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите оплатить до получения услуги. Спросите: «Можно мне заплатить заранее?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I pay in advance?",
+          "localizedMeaning": {
+            "ru": "Вы хотите оплатить до получения услуги. Спросите: «Можно мне заплатить заранее?»",
+            "uk": "Ви хочете оплатити до отримання послуги. Запитайте: «Можна мені заплатити заздалегідь?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "pay",
+            "in",
+            "advance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i02:r1",
+            "text": "Could I pay in advance?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i02:r2",
+            "text": "Could you pay in advance?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i02:r3",
+            "text": "Could we pay in advance?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i02:audio",
+            "transcript": "Could I pay in advance?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i02:r1",
+              "targetText": "Could I pay in advance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i02:r2",
+              "targetText": "Could you pay in advance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i02:r3",
+              "targetText": "Could we pay in advance?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay in advance?",
+                "uk": "У записі звучить Could I pay in advance?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay in advance?",
+                "uk": "У записі звучить Could I pay in advance?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i03:r1",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i03:r2",
+            "text": "pays"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i03:r3",
+            "text": "paying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ in advance?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i03:r1",
+              "text": "pay"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i03:r2",
+              "text": "pays"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i03:r3",
+              "text": "paying"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:word:check-the-bill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check the bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:check-the-bill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check the bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:check-the-bill:audio",
+            "transcript": "check the bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:check-the-bill:r1",
+              "targetText": "check the bill",
+              "meaningByLocale": {
+                "ru": "проверить счёт.",
+                "uk": "перевірити рахунок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check the bill",
+            "definitionByLocale": {
+              "ru": "проверить счёт.",
+              "uk": "перевірити рахунок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите посмотреть позиции в счёте. Спросите: «Можно мне проверить счёт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите посмотреть позиции в счёте. Спросите: «Можно мне проверить счёт?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I check the bill?",
+          "localizedMeaning": {
+            "ru": "Вы хотите посмотреть позиции в счёте. Спросите: «Можно мне проверить счёт?»",
+            "uk": "Ви хочете подивитися позиції в рахунку. Запитайте: «Можна мені перевірити рахунок?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "check",
+            "the",
+            "bill"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i05:r1",
+            "text": "Could I check the bill?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i05:r2",
+            "text": "Could you check the bill?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i05:r3",
+            "text": "Could we check the bill?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i05:audio",
+            "transcript": "Could I check the bill?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i05:r1",
+              "targetText": "Could I check the bill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i05:r2",
+              "targetText": "Could you check the bill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i05:r3",
+              "targetText": "Could we check the bill?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the bill?",
+                "uk": "У записі звучить Could I check the bill?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the bill?",
+                "uk": "У записі звучить Could I check the bill?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i06:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i06:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i06:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the bill?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i06:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i06:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i06:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:word:count-the-change",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — count the change",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:count-the-change:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — count the change",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:count-the-change:audio",
+            "transcript": "count the change"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:count-the-change:r1",
+              "targetText": "count the change",
+              "meaningByLocale": {
+                "ru": "пересчитать сдачу.",
+                "uk": "перерахувати решту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "count the change",
+            "definitionByLocale": {
+              "ru": "пересчитать сдачу.",
+              "uk": "перерахувати решту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы проверяете выданные монеты. Спросите: «Можно мне пересчитать сдачу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы проверяете выданные монеты. Спросите: «Можно мне пересчитать сдачу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I count the change?",
+          "localizedMeaning": {
+            "ru": "Вы проверяете выданные монеты. Спросите: «Можно мне пересчитать сдачу?»",
+            "uk": "Ви перевіряєте видані монети. Запитайте: «Можна мені перерахувати решту?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "count",
+            "the",
+            "change"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i08:r1",
+            "text": "Could I count the change?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i08:r2",
+            "text": "Could you count the change?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i08:r3",
+            "text": "Could we count the change?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i08:audio",
+            "transcript": "Could I count the change?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i08:r1",
+              "targetText": "Could I count the change?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i08:r2",
+              "targetText": "Could you count the change?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i08:r3",
+              "targetText": "Could we count the change?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I count the change?",
+                "uk": "У записі звучить Could I count the change?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I count the change?",
+                "uk": "У записі звучить Could I count the change?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i09:r1",
+            "text": "count"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i09:r2",
+            "text": "counts"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i09:r3",
+            "text": "counting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the change?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i09:r1",
+              "text": "count"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i09:r2",
+              "text": "counts"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i09:r3",
+              "text": "counting"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:word:round-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — round up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:round-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — round up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:round-up:audio",
+            "transcript": "round up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:round-up:r1",
+              "targetText": "round up",
+              "meaningByLocale": {
+                "ru": "округлить вверх.",
+                "uk": "округлити вгору."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "round up",
+            "definitionByLocale": {
+              "ru": "округлить вверх.",
+              "uk": "округлити вгору."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите увеличить платёж до ближайшей целой суммы. Спросите: «Можно мне округлить вверх?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите увеличить платёж до ближайшей целой суммы. Спросите: «Можно мне округлить вверх?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I round up?",
+          "localizedMeaning": {
+            "ru": "Вы хотите увеличить платёж до ближайшей целой суммы. Спросите: «Можно мне округлить вверх?»",
+            "uk": "Ви хочете збільшити платіж до найближчої цілої суми. Запитайте: «Можна мені округлити вгору?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "round",
+            "up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i11:r1",
+            "text": "Could I round up?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i11:r2",
+            "text": "Could you round up?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i11:r3",
+            "text": "Could we round up?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i11:audio",
+            "transcript": "Could I round up?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i11:r1",
+              "targetText": "Could I round up?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i11:r2",
+              "targetText": "Could you round up?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i11:r3",
+              "targetText": "Could we round up?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I round up?",
+                "uk": "У записі звучить Could I round up?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I round up?",
+                "uk": "У записі звучить Could I round up?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i12:r1",
+            "text": "round"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i12:r2",
+            "text": "rounds"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i12:r3",
+            "text": "rounding"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ up?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i12:r1",
+              "text": "round"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i12:r2",
+              "text": "rounds"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i12:r3",
+              "text": "rounding"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-40:i13:p1",
+              "target": "pay in advance",
+              "meaningByLocale": {
+                "ru": "заплатить заранее",
+                "uk": "заплатити заздалегідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-40:i13:p2",
+              "target": "check the bill",
+              "meaningByLocale": {
+                "ru": "проверить счёт",
+                "uk": "перевірити рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-40:i13:p3",
+              "target": "count the change",
+              "meaningByLocale": {
+                "ru": "пересчитать сдачу",
+                "uk": "перерахувати решту"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-40:i13:p4",
+              "target": "round up",
+              "meaningByLocale": {
+                "ru": "округлить вверх",
+                "uk": "округлити вгору"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pay in advance",
+            "check the bill",
+            "count the change",
+            "round up"
+          ],
+          "rightColumn": [
+            "заплатить заранее",
+            "проверить счёт",
+            "пересчитать сдачу",
+            "округлить вверх"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: её вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: её вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: моя вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: моя вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам заплатить заранее?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам заплатить заранее?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i16:audio",
+            "transcript": "Could we pay in advance?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we pay in advance?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам проверить счёт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам проверить счёт?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i17:audio",
+            "transcript": "Could we check the bill?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we check the bill?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-40:word:pay-in-advance",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pay in advance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:pay-in-advance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pay in advance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:pay-in-advance:audio",
+            "transcript": "pay in advance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:pay-in-advance:r1",
+              "targetText": "pay in advance",
+              "meaningByLocale": {
+                "ru": "заплатить заранее.",
+                "uk": "заплатити заздалегідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pay in advance",
+            "definitionByLocale": {
+              "ru": "заплатить заранее.",
+              "uk": "заплатити заздалегідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете оплатити до отримання послуги. Запитайте: «Можна мені заплатити заздалегідь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете оплатити до отримання послуги. Запитайте: «Можна мені заплатити заздалегідь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I pay in advance?",
+          "localizedMeaning": {
+            "ru": "Вы хотите оплатить до получения услуги. Спросите: «Можно мне заплатить заранее?»",
+            "uk": "Ви хочете оплатити до отримання послуги. Запитайте: «Можна мені заплатити заздалегідь?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "pay",
+            "in",
+            "advance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i02:r1",
+            "text": "Could I pay in advance?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i02:r2",
+            "text": "Could you pay in advance?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i02:r3",
+            "text": "Could we pay in advance?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i02:audio",
+            "transcript": "Could I pay in advance?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i02:r1",
+              "targetText": "Could I pay in advance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i02:r2",
+              "targetText": "Could you pay in advance?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i02:r3",
+              "targetText": "Could we pay in advance?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay in advance?",
+                "uk": "У записі звучить Could I pay in advance?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I pay in advance?",
+                "uk": "У записі звучить Could I pay in advance?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i03:r1",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i03:r2",
+            "text": "pays"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i03:r3",
+            "text": "paying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ in advance?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i03:r1",
+              "text": "pay"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i03:r2",
+              "text": "pays"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i03:r3",
+              "text": "paying"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:word:check-the-bill",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check the bill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:check-the-bill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check the bill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:check-the-bill:audio",
+            "transcript": "check the bill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:check-the-bill:r1",
+              "targetText": "check the bill",
+              "meaningByLocale": {
+                "ru": "проверить счёт.",
+                "uk": "перевірити рахунок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check the bill",
+            "definitionByLocale": {
+              "ru": "проверить счёт.",
+              "uk": "перевірити рахунок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете подивитися позиції в рахунку. Запитайте: «Можна мені перевірити рахунок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете подивитися позиції в рахунку. Запитайте: «Можна мені перевірити рахунок?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I check the bill?",
+          "localizedMeaning": {
+            "ru": "Вы хотите посмотреть позиции в счёте. Спросите: «Можно мне проверить счёт?»",
+            "uk": "Ви хочете подивитися позиції в рахунку. Запитайте: «Можна мені перевірити рахунок?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "check",
+            "the",
+            "bill"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i05:r1",
+            "text": "Could I check the bill?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i05:r2",
+            "text": "Could you check the bill?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i05:r3",
+            "text": "Could we check the bill?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i05:audio",
+            "transcript": "Could I check the bill?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i05:r1",
+              "targetText": "Could I check the bill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i05:r2",
+              "targetText": "Could you check the bill?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i05:r3",
+              "targetText": "Could we check the bill?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the bill?",
+                "uk": "У записі звучить Could I check the bill?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the bill?",
+                "uk": "У записі звучить Could I check the bill?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i06:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i06:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i06:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the bill?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i06:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i06:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i06:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:word:count-the-change",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — count the change",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:count-the-change:audio"
+        ],
+        "accessibilityLabel": "Картка слова — count the change",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:count-the-change:audio",
+            "transcript": "count the change"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:count-the-change:r1",
+              "targetText": "count the change",
+              "meaningByLocale": {
+                "ru": "пересчитать сдачу.",
+                "uk": "перерахувати решту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "count the change",
+            "definitionByLocale": {
+              "ru": "пересчитать сдачу.",
+              "uk": "перерахувати решту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви перевіряєте видані монети. Запитайте: «Можна мені перерахувати решту?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви перевіряєте видані монети. Запитайте: «Можна мені перерахувати решту?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I count the change?",
+          "localizedMeaning": {
+            "ru": "Вы проверяете выданные монеты. Спросите: «Можно мне пересчитать сдачу?»",
+            "uk": "Ви перевіряєте видані монети. Запитайте: «Можна мені перерахувати решту?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "count",
+            "the",
+            "change"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i08:r1",
+            "text": "Could I count the change?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i08:r2",
+            "text": "Could you count the change?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i08:r3",
+            "text": "Could we count the change?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i08:audio",
+            "transcript": "Could I count the change?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i08:r1",
+              "targetText": "Could I count the change?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i08:r2",
+              "targetText": "Could you count the change?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i08:r3",
+              "targetText": "Could we count the change?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I count the change?",
+                "uk": "У записі звучить Could I count the change?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I count the change?",
+                "uk": "У записі звучить Could I count the change?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i09:r1",
+            "text": "count"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i09:r2",
+            "text": "counts"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i09:r3",
+            "text": "counting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the change?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i09:r1",
+              "text": "count"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i09:r2",
+              "text": "counts"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i09:r3",
+              "text": "counting"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:word:round-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — round up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:word:round-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — round up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:word:round-up:audio",
+            "transcript": "round up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:word:round-up:r1",
+              "targetText": "round up",
+              "meaningByLocale": {
+                "ru": "округлить вверх.",
+                "uk": "округлити вгору."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "round up",
+            "definitionByLocale": {
+              "ru": "округлить вверх.",
+              "uk": "округлити вгору."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете збільшити платіж до найближчої цілої суми. Запитайте: «Можна мені округлити вгору?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете збільшити платіж до найближчої цілої суми. Запитайте: «Можна мені округлити вгору?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I round up?",
+          "localizedMeaning": {
+            "ru": "Вы хотите увеличить платёж до ближайшей целой суммы. Спросите: «Можно мне округлить вверх?»",
+            "uk": "Ви хочете збільшити платіж до найближчої цілої суми. Запитайте: «Можна мені округлити вгору?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "round",
+            "up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i11:r1",
+            "text": "Could I round up?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i11:r2",
+            "text": "Could you round up?"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i11:r3",
+            "text": "Could we round up?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i11:audio",
+            "transcript": "Could I round up?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-40:i11:r1",
+              "targetText": "Could I round up?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i11:r2",
+              "targetText": "Could you round up?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i11:r3",
+              "targetText": "Could we round up?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I round up?",
+                "uk": "У записі звучить Could I round up?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I round up?",
+                "uk": "У записі звучить Could I round up?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-40:i12:r1",
+            "text": "round"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i12:r2",
+            "text": "rounds"
+          },
+          {
+            "responseId": "en:lesson-22:session-40:i12:r3",
+            "text": "rounding"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ up?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-40:i12:r1",
+              "text": "round"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i12:r2",
+              "text": "rounds"
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i12:r3",
+              "text": "rounding"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-40:i13:p1",
+              "target": "pay in advance",
+              "meaningByLocale": {
+                "ru": "заплатить заранее",
+                "uk": "заплатити заздалегідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-40:i13:p2",
+              "target": "check the bill",
+              "meaningByLocale": {
+                "ru": "проверить счёт",
+                "uk": "перевірити рахунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-40:i13:p3",
+              "target": "count the change",
+              "meaningByLocale": {
+                "ru": "пересчитать сдачу",
+                "uk": "перерахувати решту"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-40:i13:p4",
+              "target": "round up",
+              "meaningByLocale": {
+                "ru": "округлить вверх",
+                "uk": "округлити вгору"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pay in advance",
+            "check the bill",
+            "count the change",
+            "round up"
+          ],
+          "rightColumn": [
+            "заплатити заздалегідь",
+            "перевірити рахунок",
+            "перерахувати решту",
+            "округлити вгору"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: її річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: її річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: моя річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: моя річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам заплатити заздалегідь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам заплатити заздалегідь?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i16:audio",
+            "transcript": "Could we pay in advance?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we pay in advance?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-40:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам перевірити рахунок?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам перевірити рахунок?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-40:i17:audio",
+            "transcript": "Could we check the bill?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we check the bill?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-40:word:pay-in-advance",
+      "correctText": "pay in advance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i01",
+      "correctText": "Could I pay in advance?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i02",
+      "correctText": "Could I pay in advance?",
+      "correctResponseId": "en:lesson-22:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i03",
+      "correctText": "pay",
+      "correctResponseId": "en:lesson-22:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:word:check-the-bill",
+      "correctText": "check the bill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i04",
+      "correctText": "Could I check the bill?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i05",
+      "correctText": "Could I check the bill?",
+      "correctResponseId": "en:lesson-22:session-40:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i06",
+      "correctText": "check",
+      "correctResponseId": "en:lesson-22:session-40:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:word:count-the-change",
+      "correctText": "count the change",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i07",
+      "correctText": "Could I count the change?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i08",
+      "correctText": "Could I count the change?",
+      "correctResponseId": "en:lesson-22:session-40:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i09",
+      "correctText": "count",
+      "correctResponseId": "en:lesson-22:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:word:round-up",
+      "correctText": "round up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i10",
+      "correctText": "Could I round up?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i11",
+      "correctText": "Could I round up?",
+      "correctResponseId": "en:lesson-22:session-40:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i12",
+      "correctText": "round",
+      "correctResponseId": "en:lesson-22:session-40:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i14",
+      "correctText": "This wash bag is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i15",
+      "correctText": "This eye mask is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i16",
+      "correctText": "Could we pay in advance?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-40:i17",
+      "correctText": "Could we check the bill?",
+      "correctResponseId": null
+    }
+  ]
+}

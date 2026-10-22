@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Начать заново",
+        "uk": "Почати заново"
+      },
+      "bodyByLocale": {
+        "ru": "Make a fresh start — начать с чистого листа после прежних трудностей или перемен. Fresh здесь значит новый, а не свежий продукт. В примере человек переезжает ради нового начала. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Make a fresh start — почати з чистого аркуша після попередніх труднощів чи змін. Fresh тут означає новий, а не свіжий продукт. У прикладі людина переїжджає заради нового початку. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-37:intro1:r1",
+              "text": "I move to another town to make a fresh start."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro1:r2",
+              "text": "I move to another town for make a fresh start."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro1:r3",
+              "text": "I move to another town of make a fresh start."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-37:intro1:r1",
+              "text": "I move to another town to make a fresh start."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro1:r2",
+              "text": "I move to another town for make a fresh start."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro1:r3",
+              "text": "I move to another town of make a fresh start."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Запасной план и другой подход",
+        "uk": "Запасний план та інший підхід"
+      },
+      "bodyByLocale": {
+        "ru": "Have a backup plan — иметь запасной план на случай, если первый не сработает. Try a different approach — попробовать другой способ действовать. Backup здесь обычный запасной вариант, а не компьютерная копия. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Have a backup plan — мати запасний план на випадок, якщо перший не спрацює. Try a different approach — спробувати інший спосіб діяти. Backup тут звичайний запасний варіант, а не комп’ютерна копія. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-37:intro2:r1",
+              "text": "I check other routes to have a backup plan."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro2:r2",
+              "text": "I check other routes for have a backup plan."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro2:r3",
+              "text": "I check other routes of have a backup plan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-37:intro2:r1",
+              "text": "I check other routes to have a backup plan."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro2:r2",
+              "text": "I check other routes for have a backup plan."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro2:r3",
+              "text": "I check other routes of have a backup plan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сменить обстановку",
+        "uk": "Змінити обстановку"
+      },
+      "bodyByLocale": {
+        "ru": "Get a change of scene — сменить обстановку, побыть в другом месте. Для этого не обязательно переезжать навсегда: можно съездить в соседний город на день. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Get a change of scene — змінити обстановку, побути в іншому місці. Для цього не обов’язково переїжджати назавжди: можна поїхати в сусіднє місто на день. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-37:intro3:r1",
+              "text": "I visit another town to get a change of scene."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro3:r2",
+              "text": "I visit another town for get a change of scene."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro3:r3",
+              "text": "I visit another town of get a change of scene."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-37:intro3:r1",
+              "text": "I visit another town to get a change of scene."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro3:r2",
+              "text": "I visit another town for get a change of scene."
+            },
+            {
+              "responseId": "en:lesson-22:session-37:intro3:r3",
+              "text": "I visit another town of get a change of scene."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2c0eaaad3ce46d7f034dbefb6af91b5942d6e9d2ba036acb80756da79f081e82"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разобраться с проблемой",
+        "uk": "Розібратися з проблемою"
+      },
+      "bodyByLocale": {
+        "ru": "Sort out a problem — разобраться с проблемой и уладить её. Это разговорное выражение, например о неверном заказе. В примере звонок нужен именно для решения проблемы. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Sort out a problem — розібратися з проблемою й владнати її. Це розмовний вислів, наприклад про неправильне замовлення. У прикладі дзвінок потрібен саме для розв’язання проблеми. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-38:intro1:r1",
+              "text": "I call the shop to sort out a problem."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro1:r2",
+              "text": "I call the shop for sort out a problem."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro1:r3",
+              "text": "I call the shop of sort out a problem."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-38:intro1:r1",
+              "text": "I call the shop to sort out a problem."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro1:r2",
+              "text": "I call the shop for sort out a problem."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro1:r3",
+              "text": "I call the shop of sort out a problem."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Решение и договорённость",
+        "uk": "Рішення й домовленість"
+      },
+      "bodyByLocale": {
+        "ru": "Find a solution — найти решение проблемы. Reach an agreement — достичь договорённости с другим человеком. Solution — способ решить проблему; agreement — то, о чём стороны договорились. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Find a solution — знайти розв’язання проблеми. Reach an agreement — досягти домовленості з іншою людиною. Solution — спосіб розв’язати проблему; agreement — те, про що сторони домовилися. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-38:intro2:r1",
+              "text": "I read the instructions to find a solution."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro2:r2",
+              "text": "I read the instructions for find a solution."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro2:r3",
+              "text": "I read the instructions of find a solution."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-38:intro2:r1",
+              "text": "I read the instructions to find a solution."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro2:r2",
+              "text": "I read the instructions for find a solution."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro2:r3",
+              "text": "I read the instructions of find a solution."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Принять решение",
+        "uk": "Ухвалити рішення"
+      },
+      "bodyByLocale": {
+        "ru": "Make a decision — принять решение, выбрать, что делать. Это отличается от find a solution: можно принять решение о поездке, когда никакой проблемы нет. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Make a decision — ухвалити рішення, обрати, що робити. Це відрізняється від find a solution: можна ухвалити рішення про поїздку, коли жодної проблеми немає. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-38:intro3:r1",
+              "text": "I compare the options to make a decision."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro3:r2",
+              "text": "I compare the options for make a decision."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro3:r3",
+              "text": "I compare the options of make a decision."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-38:intro3:r1",
+              "text": "I compare the options to make a decision."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro3:r2",
+              "text": "I compare the options for make a decision."
+            },
+            {
+              "responseId": "en:lesson-22:session-38:intro3:r3",
+              "text": "I compare the options of make a decision."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e1b501af55fe3ae6a3cfa1b711471f2d74fb1e3a4681266bd4ae799142e2a8f1"
+}

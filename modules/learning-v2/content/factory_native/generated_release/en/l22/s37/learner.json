@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-37:word:make-a-fresh-start",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — make a fresh start",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:word:make-a-fresh-start:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — make a fresh start",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:word:make-a-fresh-start:audio",
+          "transcript": "make a fresh start"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:word:make-a-fresh-start:r1",
+            "targetText": "make a fresh start",
+            "meaningByLocale": {
+              "ru": "начать с чистого листа.",
+              "uk": "почати з чистого аркуша."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make a fresh start",
+          "definitionByLocale": {
+            "ru": "начать с чистого листа.",
+            "uk": "почати з чистого аркуша."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы начинаете новую жизнь. Скажите: «Я переезжаю в другой город, чтобы начать с чистого листа»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы начинаете новую жизнь. Скажите: «Я переезжаю в другой город, чтобы начать с чистого листа»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I move to another town to make a fresh start.",
+        "localizedMeaning": {
+          "ru": "Вы начинаете новую жизнь. Скажите: «Я переезжаю в другой город, чтобы начать с чистого листа»",
+          "uk": "Ви починаєте нове життя. Скажіть: «Я переїжджаю в інше місто, щоб почати з чистого аркуша»"
+        },
+        "orderedTokens": [
+          "I",
+          "move",
+          "to",
+          "another",
+          "town",
+          "to",
+          "make",
+          "a",
+          "fresh",
+          "start"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i02:r1",
+          "text": "I move to another town to make a fresh start."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i02:r2",
+          "text": "We move to another town to make a fresh start."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i02:r3",
+          "text": "You move to another town to make a fresh start."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i02:audio",
+          "transcript": "I move to another town to make a fresh start."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:i02:r1",
+            "targetText": "I move to another town to make a fresh start.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i02:r2",
+            "targetText": "We move to another town to make a fresh start.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i02:r3",
+            "targetText": "You move to another town to make a fresh start.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I move to another town to make a fresh start.",
+              "uk": "У записі звучить I move to another town to make a fresh start."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I move to another town to make a fresh start.",
+              "uk": "У записі звучить I move to another town to make a fresh start."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i03:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i03:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I move to another town ___ make a fresh start.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-37:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:word:have-a-backup-plan",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — have a backup plan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:word:have-a-backup-plan:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — have a backup plan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:word:have-a-backup-plan:audio",
+          "transcript": "have a backup plan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:word:have-a-backup-plan:r1",
+            "targetText": "have a backup plan",
+            "meaningByLocale": {
+              "ru": "иметь запасной план.",
+              "uk": "мати запасний план."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "have a backup plan",
+          "definitionByLocale": {
+            "ru": "иметь запасной план.",
+            "uk": "мати запасний план."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы готовитесь к задержкам. Скажите: «Я проверяю другие маршруты, чтобы иметь запасной план»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовитесь к задержкам. Скажите: «Я проверяю другие маршруты, чтобы иметь запасной план»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I check other routes to have a backup plan.",
+        "localizedMeaning": {
+          "ru": "Вы готовитесь к задержкам. Скажите: «Я проверяю другие маршруты, чтобы иметь запасной план»",
+          "uk": "Ви готуєтеся до затримок. Скажіть: «Я перевіряю інші маршрути, щоб мати запасний план»"
+        },
+        "orderedTokens": [
+          "I",
+          "check",
+          "other",
+          "routes",
+          "to",
+          "have",
+          "a",
+          "backup",
+          "plan"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i05:r1",
+          "text": "I check other routes to have a backup plan."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i05:r2",
+          "text": "We check other routes to have a backup plan."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i05:r3",
+          "text": "You check other routes to have a backup plan."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i05:audio",
+          "transcript": "I check other routes to have a backup plan."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:i05:r1",
+            "targetText": "I check other routes to have a backup plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i05:r2",
+            "targetText": "We check other routes to have a backup plan.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i05:r3",
+            "targetText": "You check other routes to have a backup plan.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check other routes to have a backup plan.",
+              "uk": "У записі звучить I check other routes to have a backup plan."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check other routes to have a backup plan.",
+              "uk": "У записі звучить I check other routes to have a backup plan."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i06:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i06:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i06:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I check other routes ___ have a backup plan.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-37:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i06:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:word:try-a-different-approach",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — try a different approach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:word:try-a-different-approach:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — try a different approach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:word:try-a-different-approach:audio",
+          "transcript": "try a different approach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:word:try-a-different-approach:r1",
+            "targetText": "try a different approach",
+            "meaningByLocale": {
+              "ru": "попробовать другой подход.",
+              "uk": "спробувати інший підхід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "try a different approach",
+          "definitionByLocale": {
+            "ru": "попробовать другой подход.",
+            "uk": "спробувати інший підхід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы меняете привычный порядок занятий. Скажите: «Я меняю свой распорядок, чтобы попробовать другой подход»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы меняете привычный порядок занятий. Скажите: «Я меняю свой распорядок, чтобы попробовать другой подход»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I change my routine to try a different approach.",
+        "localizedMeaning": {
+          "ru": "Вы меняете привычный порядок занятий. Скажите: «Я меняю свой распорядок, чтобы попробовать другой подход»",
+          "uk": "Ви змінюєте звичний порядок занять. Скажіть: «Я змінюю свій розпорядок, щоб спробувати інший підхід»"
+        },
+        "orderedTokens": [
+          "I",
+          "change",
+          "my",
+          "routine",
+          "to",
+          "try",
+          "a",
+          "different",
+          "approach"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i08:r1",
+          "text": "I change my routine to try a different approach."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i08:r2",
+          "text": "We change our routine to try a different approach."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i08:r3",
+          "text": "You change your routine to try a different approach."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i08:audio",
+          "transcript": "I change my routine to try a different approach."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:i08:r1",
+            "targetText": "I change my routine to try a different approach.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i08:r2",
+            "targetText": "We change our routine to try a different approach.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i08:r3",
+            "targetText": "You change your routine to try a different approach.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I change my routine to try a different approach.",
+              "uk": "У записі звучить I change my routine to try a different approach."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I change my routine to try a different approach.",
+              "uk": "У записі звучить I change my routine to try a different approach."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i09:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i09:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I change my routine ___ try a different approach.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-37:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:word:get-a-change-of-scene",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — get a change of scene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:word:get-a-change-of-scene:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — get a change of scene",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:word:get-a-change-of-scene:audio",
+          "transcript": "get a change of scene"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:word:get-a-change-of-scene:r1",
+            "targetText": "get a change of scene",
+            "meaningByLocale": {
+              "ru": "сменить обстановку.",
+              "uk": "змінити обстановку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get a change of scene",
+          "definitionByLocale": {
+            "ru": "сменить обстановку.",
+            "uk": "змінити обстановку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы едете куда-то на день. Скажите: «Я посещаю другой город, чтобы сменить обстановку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы едете куда-то на день. Скажите: «Я посещаю другой город, чтобы сменить обстановку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I visit another town to get a change of scene.",
+        "localizedMeaning": {
+          "ru": "Вы едете куда-то на день. Скажите: «Я посещаю другой город, чтобы сменить обстановку»",
+          "uk": "Ви їдете кудись на день. Скажіть: «Я відвідую інше місто, щоб змінити обстановку»"
+        },
+        "orderedTokens": [
+          "I",
+          "visit",
+          "another",
+          "town",
+          "to",
+          "get",
+          "a",
+          "change",
+          "of",
+          "scene"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i11:r1",
+          "text": "I visit another town to get a change of scene."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i11:r2",
+          "text": "We visit another town to get a change of scene."
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i11:r3",
+          "text": "You visit another town to get a change of scene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i11:audio",
+          "transcript": "I visit another town to get a change of scene."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-37:i11:r1",
+            "targetText": "I visit another town to get a change of scene.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i11:r2",
+            "targetText": "We visit another town to get a change of scene.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i11:r3",
+            "targetText": "You visit another town to get a change of scene.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visit another town to get a change of scene.",
+              "uk": "У записі звучить I visit another town to get a change of scene."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visit another town to get a change of scene.",
+              "uk": "У записі звучить I visit another town to get a change of scene."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-37:i12:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i12:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-37:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I visit another town ___ get a change of scene.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-37:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-37:i13:p1",
+            "target": "make a fresh start",
+            "meaningByLocale": {
+              "ru": "начать с чистого листа",
+              "uk": "почати з чистого аркуша"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-37:i13:p2",
+            "target": "have a backup plan",
+            "meaningByLocale": {
+              "ru": "иметь запасной план",
+              "uk": "мати запасний план"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-37:i13:p3",
+            "target": "try a different approach",
+            "meaningByLocale": {
+              "ru": "попробовать другой подход",
+              "uk": "спробувати інший підхід"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-37:i13:p4",
+            "target": "get a change of scene",
+            "meaningByLocale": {
+              "ru": "сменить обстановку",
+              "uk": "змінити обстановку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "make a fresh start",
+          "have a backup plan",
+          "try a different approach",
+          "get a change of scene"
+        ],
+        "rightColumn": [
+          "начать с чистого листа",
+          "иметь запасной план",
+          "попробовать другой подход",
+          "сменить обстановку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: место у окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: место у окна",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i14:audio",
+          "transcript": "Could I sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I sit by the window?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: прогулка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: прогулка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i15:audio",
+          "transcript": "Could I go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I go for a walk?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я хочу начать с чистого листа»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я хочу начать с чистого листа»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i16:audio",
+          "transcript": "I want to make a fresh start."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to make a fresh start.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мне нужно сменить обстановку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мне нужно сменить обстановку»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-37:i17:audio",
+          "transcript": "I need to get a change of scene."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to get a change of scene.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a48feb3531e7484f45ebcc0a567b5e0fdc7990ebdbccab84b4747c3036dae2ce"
+}

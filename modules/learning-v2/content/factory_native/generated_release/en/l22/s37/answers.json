@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-37:word:make-a-fresh-start",
+    "correctText": "make a fresh start",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i01",
+    "correctText": "I move to another town to make a fresh start.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i02",
+    "correctText": "I move to another town to make a fresh start.",
+    "correctResponseId": "en:lesson-22:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:word:have-a-backup-plan",
+    "correctText": "have a backup plan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i04",
+    "correctText": "I check other routes to have a backup plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i05",
+    "correctText": "I check other routes to have a backup plan.",
+    "correctResponseId": "en:lesson-22:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:word:try-a-different-approach",
+    "correctText": "try a different approach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i07",
+    "correctText": "I change my routine to try a different approach.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i08",
+    "correctText": "I change my routine to try a different approach.",
+    "correctResponseId": "en:lesson-22:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:word:get-a-change-of-scene",
+    "correctText": "get a change of scene",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i10",
+    "correctText": "I visit another town to get a change of scene.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i11",
+    "correctText": "I visit another town to get a change of scene.",
+    "correctResponseId": "en:lesson-22:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i13",
+    "correctText": "en:lesson-22:session-37:i13:p1=make a fresh start\nen:lesson-22:session-37:i13:p2=have a backup plan\nen:lesson-22:session-37:i13:p3=try a different approach\nen:lesson-22:session-37:i13:p4=get a change of scene",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i16",
+    "correctText": "I want to make a fresh start.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-37:i17",
+    "correctText": "I need to get a change of scene.",
+    "correctResponseId": null
+  }
+]

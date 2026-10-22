@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-40:word:pay-in-advance",
+    "correctText": "pay in advance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i01",
+    "correctText": "Could I pay in advance?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i02",
+    "correctText": "Could I pay in advance?",
+    "correctResponseId": "en:lesson-22:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i03",
+    "correctText": "pay",
+    "correctResponseId": "en:lesson-22:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:word:check-the-bill",
+    "correctText": "check the bill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i04",
+    "correctText": "Could I check the bill?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i05",
+    "correctText": "Could I check the bill?",
+    "correctResponseId": "en:lesson-22:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i06",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-22:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:word:count-the-change",
+    "correctText": "count the change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i07",
+    "correctText": "Could I count the change?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i08",
+    "correctText": "Could I count the change?",
+    "correctResponseId": "en:lesson-22:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i09",
+    "correctText": "count",
+    "correctResponseId": "en:lesson-22:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:word:round-up",
+    "correctText": "round up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i10",
+    "correctText": "Could I round up?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i11",
+    "correctText": "Could I round up?",
+    "correctResponseId": "en:lesson-22:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i12",
+    "correctText": "round",
+    "correctResponseId": "en:lesson-22:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i13",
+    "correctText": "en:lesson-22:session-40:i13:p1=pay in advance\nen:lesson-22:session-40:i13:p2=check the bill\nen:lesson-22:session-40:i13:p3=count the change\nen:lesson-22:session-40:i13:p4=round up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i16",
+    "correctText": "Could we pay in advance?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-40:i17",
+    "correctText": "Could we check the bill?",
+    "correctResponseId": null
+  }
+]

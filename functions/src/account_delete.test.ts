@@ -1050,6 +1050,48 @@ describe('accountDelete query deletion safety', () => {
     expect(stats.queriesRun).toBe(2);
   });
 
+  it('deletes «Акция с видео» requests only by promo.resolvedUid, never a stranger with the same name', async () => {
+    // зачем (владелец 22.10, вариант «г»): почта в заявке необязательна, ключ — uid, которому сервер выдал Plus.
+    // Имя в заявке — свободный текст и не уникально: чужая заявка с тем же именем обязана пережить удаление.
+    const inbox: Record<string, Record<string, unknown>> = {
+      mine: { topic: 'video_promo', email: null, promo: { username: 'Anna', resolvedUid: 'stable-del' } },
+      mineMerged: { topic: 'video_promo', email: null, promo: { username: 'Anna K', resolvedUid: 'guest-old' } },
+      stranger: { topic: 'video_promo', email: null, promo: { username: 'Anna', resolvedUid: 'someone-else' } },
+      pending: { topic: 'video_promo', email: null, promo: { username: 'Anna' } },
+    };
+    const deleted: string[] = [];
+    const fieldOf = (data: Record<string, unknown>, path: string): unknown =>
+      path.split('.').reduce<unknown>((acc, key) => (acc as Record<string, unknown> | undefined)?.[key], data);
+    const db = {
+      collection: (name: string) => ({
+        where: (field: string, op: string, value: unknown) => ({
+          limit: () => ({
+            get: async () => {
+              const docs = Object.entries(inbox)
+                .filter(([id, data]) => !deleted.includes(`${name}/${id}`) && op === '==' && fieldOf(data, field) === value)
+                .map(([id]) => ({ ref: { path: `${name}/${id}` } }));
+              return { empty: docs.length === 0, docs };
+            },
+          }),
+        }),
+      }),
+      recursiveDelete: jest.fn(async (ref: { path: string }) => { deleted.push(ref.path); }),
+    };
+    const ctx = {
+      db, writer: { flush: jest.fn(async () => {}) }, seen: new Set<string>(), runId: 'test',
+      stableUidHash: 'stable', authUidHash: 'auth', startedAtMs: 0, lastProgressLogDocs: 0, writerClosed: false,
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+
+    await __accountDeleteTestHooks.deletePromoResolvedMatches(db as any, ['stable-del', 'guest-old', 'stable-del', ''], ctx as any, stats as any);
+
+    expect(deleted.sort()).toEqual(['website_contact_inbox/mine', 'website_contact_inbox/mineMerged']);
+    expect(deleted).not.toContain('website_contact_inbox/stranger');
+    expect(deleted).not.toContain('website_contact_inbox/pending');
+    const source = readFileSync(join(__dirname, 'account_delete.ts'), 'utf8');
+    expect(source).not.toMatch(/where\(\s*['"]promo\.username['"]/);
+  });
+
   it('returns when all query docs were already scheduled by another delete stage', async () => {
     const ref = { path: 'stuck/doc' };
     const query = {

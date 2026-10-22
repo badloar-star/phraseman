@@ -966,6 +966,26 @@ async function deleteEmailMatches(
 }
 
 /**
+ * Заявки «Акция с видео» в `website_contact_inbox`, по которым админ выдал Plus этому человеку.
+ *
+ * зачем (владелец 22.10, вариант «г» координатора): почта в заявке необязательна, поэтому удаление по почте
+ * находит не все заявки человека. Ключ — `promo.resolvedUid`: uid, которому сервер САМ выдал Plus по заявке
+ * (adminGrantAccess, в той же транзакции). По `promo.username` НЕ ищем никогда: это свободный текст из формы,
+ * имена не уникальны, поиск по имени удалял бы чужие заявки. Ищем по каждой личности замыкания — после склейки
+ * аккаунтов канонический uid мог смениться.
+ */
+async function deletePromoResolvedMatches(
+  db: admin.firestore.Firestore,
+  identities: string[],
+  ctx: DeleteContext,
+  stats: DeleteStats,
+): Promise<void> {
+  for (const identity of Array.from(new Set(identities.map(cleanId).filter(Boolean)))) {
+    await deleteQuery(db.collection('website_contact_inbox').where('promo.resolvedUid', '==', identity), ctx, stats);
+  }
+}
+
+/**
  * Контактная запись по адресу почты (`email_contacts`).
  *
  * зачем (владелец, 2026-09-01): ИИ-аудит покрытия нашёл эту коллекцию ВНЕ плана
@@ -1965,6 +1985,9 @@ export async function executeAccountDeletion(
       }
     });
     await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
+    await runDeleteStage(ctx, stats, 'promo_resolved_matches', () => (
+      deletePromoResolvedMatches(db, identities, ctx, stats)
+    ));
     // зачем отдельной стадией (владелец, 2026-09-01): контактные записи лежат
     // по хешу адреса, а не по uid — общий план по личностям их не находил, и
     // почта переживала «полное» удаление. Найдено ИИ-аудитом покрытия.
@@ -2653,6 +2676,7 @@ export const __accountDeleteTestHooks = {
   credentialReceiptDecision,
   accountDeleteEmailQueryCollections,
   emailMatchDocumentBelongsToDeletionGeneration,
+  deletePromoResolvedMatches,
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,
   deleteArenaSeasonEntries,

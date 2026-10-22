@@ -182,6 +182,22 @@ export function levelSpinStarAmount(giftId: string): number {
   return amount;
 }
 
+/**
+ * Сумма операции кошелька. Множитель «Супер-воскресенья» — только для игровых источников с плавающей суммой.
+ * зачем (Ядро 22.10): экзамен главы (chapterexam_) сервер принимает РОВНО 20 на часть; если множитель вернут, удвоенная
+ * сумма была бы отклонена сервером и начисление вечно висело бы в очереди. Поэтому у экзамена сумма фиксирована всегда.
+ */
+export function levelSpinStarOperationAmountV1(input: Readonly<{
+  requestId: string;
+  giftId: string;
+  promotionEligibility: 'gameplay' | 'excluded_compensation';
+  createdAtMs: number;
+}>): number {
+  const baseAmount = levelSpinStarAmount(input.giftId);
+  if (input.promotionEligibility !== 'gameplay' || input.requestId.startsWith('chapterexam_')) return baseAmount;
+  return applySuperSundayRuneMultiplier(baseAmount, input.createdAtMs);
+}
+
 export function levelSpinStarGrantOutboxKey(ownerStableId: string): string {
   const owner = ownerStableId.trim();
   if (!owner) throw new Error('level_spin_star_owner_invalid');
@@ -2244,10 +2260,7 @@ export async function enqueueLevelSpinStarGrant(
   const giftId = input.giftId as LevelSpinStarGiftId;
   const promotionEligibility = input.promotionEligibility ?? 'gameplay';
   const createdAtMs = Date.now();
-  const baseAmount = levelSpinStarAmount(giftId);
-  const amount = promotionEligibility === 'gameplay'
-    ? applySuperSundayRuneMultiplier(baseAmount, createdAtMs)
-    : baseAmount;
+  const amount = levelSpinStarOperationAmountV1({ requestId, giftId, promotionEligibility, createdAtMs });
   const operationId = operationIdFor(requestId, input.lane);
   const deliveryToken = input.deliveryToken?.trim();
   const requestFingerprint = await fingerprintFor({

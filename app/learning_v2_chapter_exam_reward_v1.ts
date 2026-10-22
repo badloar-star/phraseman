@@ -28,7 +28,8 @@ export async function grantChapterExamCoinsV1(input: Readonly<{ lessonOrdinal: n
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const wallet = require('./level_spin_star_grants') as typeof import('./level_spin_star_grants');
     for (const requestId of requestIds) {
-      await wallet.enqueueLevelSpinStarGrant({ token, requestId, lane: 'base', giftId: 'stars_20', promotionEligibility: 'gameplay' });
+      // зачем (Ревизор 22.10): без синка на каждую постановку — один проход синка ниже; иначе две части давали до трёх проходов к серверу
+      await wallet.enqueueLevelSpinStarGrant({ token, requestId, lane: 'base', giftId: 'stars_20', promotionEligibility: 'gameplay' }, { syncNow: false });
     }
     const sync = await wallet.syncPendingLevelSpinStarGrants(token);
     const raw = await AsyncStorage.getItem(wallet.levelSpinStarGrantOutboxKey(owner));

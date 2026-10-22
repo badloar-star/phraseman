@@ -111,6 +111,31 @@ export const ScreenCloseButton = memo(function ScreenCloseButton(props: Props) {
 });
 
 /**
+ * Для экранов, где всё содержимое уже под безопасным верхом (SafeAreaView с верхним краем или paddingTop: insets.top):
+ * ставится ПЕРВЫМ ребёнком в потоке. Верх первого ребёнка = безопасный верх, кнопка считает верх от него.
+ *
+ * зачем (закон владельца 22.10 «назад/✕ в одном месте»): абсолютный слой не учитывает отступ родителя — положенная прямо в
+ * SafeAreaView кнопка ушла бы под строку состояния. Якорь в потоке нулевой высоты держит точку, zIndex — поверх шапки ниже.
+ */
+const IN_FLOW_ANCHOR = { zIndex: 40 } as const;
+
+export const SafeTopBackButton = memo(function SafeTopBackButton(props: Props) {
+  return (
+    <View style={IN_FLOW_ANCHOR}>
+      <ScreenOriginBelowSafeTop><ScreenBackButtonBase {...props} glyph="back" /></ScreenOriginBelowSafeTop>
+    </View>
+  );
+});
+
+export const SafeTopCloseButton = memo(function SafeTopCloseButton(props: Props) {
+  return (
+    <View style={IN_FLOW_ANCHOR}>
+      <ScreenOriginBelowSafeTop><ScreenBackButtonBase {...props} glyph="close" /></ScreenOriginBelowSafeTop>
+    </View>
+  );
+});
+
+/**
  * Полноэкранный слой (Modal) внутри вкладки: отсчёт верха — снова от верха экрана.
  *
  * зачем (координатор 22.10, вариант А: подвиды вкладки — «Все участники», «Шаг» Пика… — открываются полноэкранно поверх шапки вкладки):

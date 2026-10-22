@@ -84,8 +84,9 @@ test('protected hydration, navigation, recovery, refs, target, and modal props r
   assert.match(source, /const prefsRef = useRef\(prefs\); prefsRef\.current = prefs;\s*const sRef = useRef\(s\); sRef\.current = s;/);
   assert.match(source, /const \{ studyTarget \} = useStudyTarget\(\);/);
 
+  // 22.10: вибрацию «назад» даёт общая ScreenBackButton — второй hapticTap в обработчике снят (двойной отклик)
   const expectedNavigation = `() => {
-          hapticTap();
+          // зачем: вибрацию даёт сама общая кнопка (PressableHybrid) — второй hapticTap дал бы двойной отклик
           // Экран открывается из вкладки «Настройки» — возвращаемся на settings, не на home.
           safeRouterBack(router, '/(tabs)/settings' as any);
         }`;
@@ -113,7 +114,8 @@ test('protected hydration, navigation, recovery, refs, target, and modal props r
 
 test('notification settings use the approved safe liquid-glass shell and card geometry', () => {
   const scrollStart = source.indexOf('<BouncyScrollView');
-  const backStart = source.indexOf('accessibilityLabel={backLabel}', scrollStart);
+  // 22.10: «назад» — общая ScreenBackButton слоем; в начале прокрутки — её место (ScreenBackSlot)
+  const backStart = source.indexOf('<ScreenBackSlot />', scrollStart);
   const titleStart = source.indexOf('{screenTitle}', scrollStart);
   const masterStart = source.indexOf('{masterLabel}', scrollStart);
   assert.ok(scrollStart >= 0 && scrollStart < backStart && backStart < titleStart && titleStart < masterStart, 'header and body live inside the scroll view');
@@ -121,7 +123,7 @@ test('notification settings use the approved safe liquid-glass shell and card ge
   assert.match(source, /useStableSafeAreaInsets\(\)/);
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
   // 04.10 (profile.html `.rb.bare`): «назад» — голый шеврон, область нажатия 48×44.
-  assert.match(source, /style=\{\{ width: 48, height: 44,[^}]*marginTop: 4 \}\}/);
+  assert.match(source, /<ScreenBackButton screen="settings_notifications" accessibilityLabel=\{backLabel\}/);
   // 11.10 (паритет profile.html PRF-04): заголовок с разрядкой −0.5.
   assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.5,\s*marginTop:\s*10/);
   assert.match(source, /const statusCardStyle[^;]*paddingVertical:\s*14[^;]*paddingHorizontal:\s*16[^;]*alignItems:\s*'flex-start'/s);

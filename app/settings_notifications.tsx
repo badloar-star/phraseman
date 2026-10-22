@@ -17,6 +17,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import PressableHybrid from '../components/PressableHybrid';
 import { hapticTap } from '../hooks/use-haptics';
@@ -477,24 +478,8 @@ export default function SettingsNotifications() {
         <ContentWrap>
           <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 40 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <PressableHybrid
-                accessibilityLabel={backLabel}
-                accessibilityRole="button"
-        onPress={() => {
-          hapticTap();
-          // Экран открывается из вкладки «Настройки» — возвращаемся на settings, не на home.
-          safeRouterBack(router, '/(tabs)/settings' as any);
-        }}
-                withHaptic={false}
-                withSound={false}
-                variant="icon"
-                style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
-                // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
-                contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
-              >
-                {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
-              <BackGlyph size={21} color={glass.text} />
-              </PressableHybrid>
+              {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
+              <ScreenBackSlot />
               <View
                 pointerEvents="none"
                 accessibilityElementsHidden={!saved || needsPermission}
@@ -615,6 +600,11 @@ export default function SettingsNotifications() {
         onCancel={() => setTimeOpen(false)}
       />
       </View>
+      <ScreenBackButton screen="settings_notifications" accessibilityLabel={backLabel} onPress={() => {
+          // зачем: вибрацию даёт сама общая кнопка (PressableHybrid) — второй hapticTap дал бы двойной отклик
+          // Экран открывается из вкладки «Настройки» — возвращаемся на settings, не на home.
+          safeRouterBack(router, '/(tabs)/settings' as any);
+        }} />
     </ScreenGradient>
   );
 }

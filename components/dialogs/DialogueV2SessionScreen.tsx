@@ -12,12 +12,8 @@ import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_me
 import type { DialogueV2CoachingMood } from '../../app/dialogue_v2_turn_coaching_client';
 import type { DialogueV2SessionCoachingLabels } from '../../app/dialogue_v2_session_coaching_labels';
 import type { Lang } from '../../constants/i18n';
-import {
-  DialogueGlassBackButton,
-  DialogueGlassSquareButton,
-  DialogueGlassSysError,
-  useDialogueGlass,
-} from './glass/DialogueGlassKit';
+import { DialogueGlassSquareButton, DialogueGlassSysError, useDialogueGlass } from './glass/DialogueGlassKit';
+import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import {
   DialogueGlassBubble,
   DialogueGlassBubbleText,
@@ -334,12 +330,14 @@ export function DialogueV2SessionScreen({
       testID="dialogue-v2-session-screen"
     >
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
+        {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+        <SafeTopBackButton screen="dialogue_v2_session" accessibilityLabel={labels.back} onPress={requestBack} />
         <View
           testID="dialogue-v2-session-header"
           style={{ paddingHorizontal: 14, paddingTop: 2, paddingBottom: 12, backgroundColor: glass.bg }}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <DialogueGlassBackButton glass={glass} onPress={requestBack} accessibilityLabel={labels.back} />
+            <ScreenBackSlot />
             <View style={{ flex: 1, minWidth: 0, marginLeft: 4 }}>
               {/* зачем (разбор зон 13.10, dialogs-013 / dialogs-036 / dialogs-gap-016; образец dialogs.html `.dh .ti { white-space: nowrap; text-overflow: ellipsis }`): название сцены — одна строка с «…», а не перенос на две; полное название читает озвучка (header) и показывает брифинг */}
               <Text accessibilityRole="header" numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>

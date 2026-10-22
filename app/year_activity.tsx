@@ -12,7 +12,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
-import { ResultsGlassBackButton } from '../components/results/ResultsGlass';
+import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenBackSlot, ScreenOriginBelowSafeTop } from '../components/v2/ScreenBackButton';
 import { buildCanonicalYear, heatPalette, MonthExplorerModal } from '../components/ActivityHeatmap365';
 import { PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -91,9 +91,13 @@ function YearActivityScreen() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
+          {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; в шапке — её место */}
           <View style={styles.header}>
-            <ResultsGlassBackButton glass={glass} testID="year-activity-back" accessibilityLabel={triLang(lang, COPY.back)} onPress={() => safeRouterBack(router)} />
+            <ScreenBackSlot />
           </View>
+          <ScreenOriginBelowSafeTop>
+            <ScreenBackButton screen="year_activity" testID="year-activity-back" accessibilityLabel={triLang(lang, COPY.back)} onPress={() => safeRouterBack(router)} />
+          </ScreenOriginBelowSafeTop>
           <ScrollView testID="year-activity-screen" decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: SCREEN_PADDING, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
             <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.12), marginTop: 6 }}>
               {triLang(lang, COPY.title)}
@@ -166,7 +170,8 @@ function YearActivityScreen() {
 }
 
 const styles = StyleSheet.create({
-  header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 10 },
+  // зачем (закон «назад в одном месте»): строка шапки от безопасного верха и высотой с общую кнопку
+  header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, minHeight: SCREEN_BACK_SIZE },
   card: { borderRadius: 22, padding: CARD_PADDING, overflow: 'hidden' },
   cardHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   pill: { height: 30, borderRadius: 15, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' },

@@ -27,7 +27,8 @@ import type { AchievementCategoryOption } from '../components/achievements/Achie
 import HybridAlertShell from '../components/modal_fx/HybridAlertShell';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { glassFill } from '../components/GlassSurface';
-import { ResultsGlassBackButton, ResultsGlassCountPill, ResultsGlassEmptyState } from '../components/results/ResultsGlass';
+import { ResultsGlassCountPill, ResultsGlassEmptyState } from '../components/results/ResultsGlass';
+import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenBackSlot, ScreenOriginBelowSafeTop } from '../components/v2/ScreenBackButton';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { safeRouterBack } from './navigation_back';
@@ -1144,18 +1145,14 @@ export default function AchievementsScreen() {
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
 
+        {/* зачем (закон владельца 22.10 «назад везде в одном месте»): «назад» — общая кнопка слоем от безопасного верха; в шапке — её место */}
+        <ScreenOriginBelowSafeTop>
+          <ScreenBackButton screen="achievements" testID="achievements-back" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz', })} onPress={() => safeRouterBack(router)} />
+        </ScreenOriginBelowSafeTop>
         {/* Хедер */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, minHeight: SCREEN_BACK_SIZE, paddingBottom: 14 }}>
           {/* зачем (владелец 2026-09-30): круглая кнопка «назад» 44 dp по макету results.html RES-ACH. */}
-          <ResultsGlassBackButton
-            glass={glass}
-            testID="achievements-back"
-            accessibilityLabel={triLang(lang, {
-              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
-              vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-            })}
-            onPress={() => safeRouterBack(router)}
-          />
+          <ScreenBackSlot />
           <View style={{ flex: 1, marginLeft: 14, minWidth: 0 }}>
             <Text
               numberOfLines={1}

@@ -21,7 +21,8 @@ test('results glass kit keeps 44dp targets, 61 tile and no thick borders', () =>
 });
 
 test('achievements shelf header/empty state follow results.html RES-ACH', () => {
-  assert.match(achievements, /ResultsGlassBackButton/);
+  // 22.10 (закон владельца «назад везде в одном месте»): «назад» — общая ScreenBackButton, свой ResultsGlassBackButton снят
+  assert.match(achievements, /<ScreenBackButton screen="achievements"/);
   assert.match(achievements, /ResultsGlassCountPill/);
   assert.match(achievements, /ResultsGlassEmptyState/);
   assert.match(achievements, /testID="achievements-back"/);
@@ -31,7 +32,9 @@ test('achievements shelf header/empty state follow results.html RES-ACH', () => 
 });
 
 test('lesson completion uses glass back button and glass feedback card', () => {
-  assert.match(lesson, /ResultsGlassBackButton/);
+  // 22.10: «назад» итога — общая ScreenBackButton (заставка сохранения и основной экран)
+  assert.match(lesson, /<ScreenBackButton screen="lesson_complete"/);
+  assert.match(lesson, /<ScreenBackButton screen="lesson_complete_loading"/);
   assert.match(lesson, /presentation="liquid-glass-rate"/);
   assert.match(lesson, /<ResultsSequence/);
 });

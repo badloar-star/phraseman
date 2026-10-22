@@ -12,12 +12,8 @@ import { logMemCoin } from '../coins/mem_coin_probe';
 import EnergyBar from '../EnergyBar';
 import V2Backdrop from '../v2/V2Backdrop';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
-import {
-  DialogueGlassBackButton,
-  DialogueGlassCta,
-  dialogueGlassCardStyle,
-  useDialogueGlass,
-} from './glass/DialogueGlassKit';
+import { DialogueGlassCta, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
+import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import { glassTone } from './glass/glassTone';
 import { formatDialogObjectiveLabel } from './dialog_objective_label';
 import { BriefingRevealRow } from './DialogueIncomingCall';
@@ -89,8 +85,10 @@ export function DialogueV2BriefingScreen({
       {/* зачем (Макеты d7cf7113d, dialogs-007/008, тон темы): в образце B1/B2 за брифингом — пятна Авроры (зелёное слева, фиолетовое справа), у экрана был ровный чёрный. Тот же статичный слой, что у хаба Карточек, кошелька и рангов; у тем без пятен слоя нет */}
       <V2Backdrop />
       <View style={[styles.fill, { paddingTop: insets.top }]} testID="dialogue-v2-briefing-safe-top">
+        {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+        <SafeTopBackButton screen="dialogue_v2_briefing" accessibilityLabel={labels.back} onPress={onBack} />
         <View style={styles.top}>
-          <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
+          <ScreenBackSlot />
           {/* зачем (Сверка dialogs-007/008, координатор 12.10): в образце B1/B2 справа в шапке пилюля энергии «⚡ N» (диалог тратит энергию) — как в шапке сессии */}
           {showEnergy ? <EnergyBar glass solidBolt /> : null}
         </View>

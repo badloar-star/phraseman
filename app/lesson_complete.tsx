@@ -1,6 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -11,7 +10,7 @@ import KitTouchable from '../components/KitTouchable';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 import { decidePerfectMoment, perfectMomentKey } from '../components/lesson_moments/perfect_moment_gate';
 import { streakMilestoneHostLoadFailed, useStreakMilestoneHold } from './streak_milestone_pending';
-import BackGlyph from '../components/v2/BackGlyph';
+import ScreenBackButton from '../components/v2/ScreenBackButton';
 // зачем (координатор 15.10): окно рубежа серии грузится лениво и только когда есть ожидающий или открытый рубеж при moments_v3; идёт ПЕРВЫМ, остальные окна экрана ждут
 // зачем (R64): модуль не загрузился — снимаем удержание слота #36, иначе следующий момент ждёт вечно
 const StreakMilestoneHost = lazy(() => import('../components/streak/moments/StreakMilestoneHost').catch(streakMilestoneHostLoadFailed));
@@ -23,7 +22,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
 import ContentWrap from '../components/ContentWrap';
 import { glassFill } from '../components/GlassSurface';
-import { ResultsGlassBackButton } from '../components/results/ResultsGlass';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { useLang } from '../components/LangContext';
@@ -1653,13 +1651,7 @@ export default function LessonComplete() {
       <ScreenGradient>
         <SafeAreaView testID="lesson-complete-loading" style={{ flex: 1 }}>
           {/* зачем (владелец 2026-09-30): «назад» 44 dp в стиле макета results.html; логика выхода прежняя. */}
-          <View style={{ position: 'absolute', top: Math.max(16, insets.top + 8), left: 20, zIndex: 10 }}>
-            <ResultsGlassBackButton
-              glass={liquidGlassTokens(liquidGlassThemeId)}
-              accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-              onPress={goBackFromComplete}
-            />
-          </View>
+          <ScreenBackButton screen="lesson_complete_loading" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={goBackFromComplete} />
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 }}>
             <Text style={{ color: t.accentText, fontSize: 16, textAlign: 'center' }}>
               {triLang(lang, {
@@ -1685,26 +1677,8 @@ export default function LessonComplete() {
     <SafeAreaView style={{ flex: 1 }}>
       {/* Кнопка «Назад» прячется под секвенцией: выход из празднования — CTA/тап/back. */}
       {!sequenceShowing && (
-      <TapScale
-        accessibilityRole="button"
-        accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-        onPress={goBackFromComplete}
-        style={{
-          position: 'absolute',
-          top: Math.max(16, insets.top + 8),
-          left: 20,
-          zIndex: 10,
-          width: 36,
-          height: 36,
-          borderRadius: 18,
-          backgroundColor: glassFill(t.bgCard, 0.46),
-          justifyContent: 'center',
-          alignItems: 'center',
-          overflow: 'hidden',
-        }}
-      >
-        <BackGlyph size={20} color={t.textPrimary} />
-      </TapScale>
+      // зачем (закон владельца 22.10 «назад везде в одном месте»): общая кнопка; под секвенцией по-прежнему спрятана
+      <ScreenBackButton screen="lesson_complete" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={goBackFromComplete} />
       )}
       <ContentWrap>
       <BouncyScrollView testID="lesson-complete-screen" decelerationRate="fast" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>

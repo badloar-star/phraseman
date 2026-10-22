@@ -8,7 +8,8 @@ import MicAllowanceBadge from '../MicAllowanceBadge';
 import { describeDialogueVoiceMessage, type DialogueVoiceDraft } from '../../app/dialogue_voice_message';
 import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_message';
 import type { Lang } from '../../constants/i18n';
-import { DialogueGlassBackButton, DialogueGlassSysError, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
+import { DialogueGlassSysError, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
+import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import {
   DialogueGlassBubble,
   DialogueGlassBubbleText,
@@ -99,8 +100,10 @@ export function DialogueV2FreeformScreen({
       testID="dialogue-v2-freeform-screen"
     >
       <SafeAreaView style={styles.fill} edges={['top', 'bottom']}>
+        {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+        <SafeTopBackButton screen="dialogue_v2_freeform" accessibilityLabel={labels.back} onPress={onBack} />
         <View style={styles.header}>
-          <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
+          <ScreenBackSlot />
           <View style={styles.headerText}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
           </View>

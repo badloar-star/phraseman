@@ -18,12 +18,8 @@ import PlusBadge from '../components/PlusBadge';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useDialogueV2CoinReward } from '../hooks/useDialogueV2CoinReward';
 import { useDialogueV2MistakeCapture } from '../hooks/useDialogueV2MistakeCapture';
-import {
-  DialogueGlassBackButton,
-  DialogueGlassCta,
-  dialogueGlassCardStyle,
-  useDialogueGlass,
-} from '../components/dialogs/glass/DialogueGlassKit';
+import { DialogueGlassCta, dialogueGlassCardStyle, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
+import { ScreenBackSlot, SafeTopCloseButton } from '../components/v2/ScreenBackButton';
 import { DialogueGlassMoodFace, dialogueMoodLabel } from '../components/dialogs/glass/DialogueGlassSessionParts';
 import { LV2_BAD, LV2_GOOD, useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { BalancePill, CoinAward } from '../components/completion/V2DoneScreen';
@@ -509,9 +505,11 @@ export default function DialogueV2CompletionRoute() {
   return (
     <View style={[styles.fill, { backgroundColor: glass.bg }]} testID="dialogue-v2-completion-screen">
       <SafeAreaView style={styles.fill} edges={['top', 'bottom']}>
+        {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): общая кнопка первым ребёнком под безопасным верхом; в шапке — её место */}
+        <SafeTopCloseButton screen="dialogue_v2_completion" accessibilityLabel={labels.close} onPress={close} />
         {chainScope(<>
         <View style={styles.header} testID="dialogue-v2-completion-header">
-          <DialogueGlassBackButton glass={glass} icon="close" onPress={close} accessibilityLabel={labels.close} />
+          <ScreenBackSlot />
           <View style={styles.headerSpacer} />
           <BalancePill g={lv2Glass} lang={lang} />
         </View>

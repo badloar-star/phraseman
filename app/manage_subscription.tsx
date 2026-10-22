@@ -28,6 +28,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ScreenBackButton, { ScreenBackSlot, ScreenOriginBelowSafeTop } from '../components/v2/ScreenBackButton';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Purchases, { type CustomerInfo } from 'react-native-purchases';
@@ -818,21 +819,13 @@ export default function ManageSubscription() {
           importantForAccessibility={overlayActive ? 'no-hide-descendants' : 'auto'}
         >
           <ContentWrap>
+            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): общая кнопка слоем; верх ContentWrap = безопасный верх */}
+            <ScreenOriginBelowSafeTop>
+              <ScreenBackButton screen="manage_subscription" testID="manage-subscription-close" accessibilityLabel={LP('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')} onPress={() => safeRouterBack(router, closeFallback)} />
+            </ScreenOriginBelowSafeTop>
             <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
-            <PressableHybrid
-              testID="manage-subscription-close"
-              accessibilityRole="button"
-              accessibilityLabel={LP('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
-              onPress={() => { hapticTap(); safeRouterBack(router, closeFallback); }}
-              withHaptic={false}
-              withSound={false}
-              variant="icon"
-              style={S.closeHit}
-              contentStyle={[S.closeFace, { backgroundColor: glass.opaqueControl }]}
-            >
-              {/* зачем: паритет с макетом profile.html PRF-10 — «назад» шевроном */}
-              <BackGlyph size={22} color={glass.lightTint} />
-            </PressableHybrid>
+            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
+            <ScreenBackSlot />
 
             <Text testID="manage-subscription-title" style={[S.screenTitle, { color: glass.text, fontSize: scaled(34), lineHeight: scaled(40) }]}>
               {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): русский заголовок сменили на «Подписка Plus»

@@ -203,6 +203,7 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     '../components/keyboardAvoidance': { useKeyboardBottomInset: () => 0 },
     '../components/PressableHybrid': { __esModule: true, default: 'PressableHybrid' },
     '../components/v2/BackGlyph': { __esModule: true, default: 'BackGlyph' }, // 17.10: «назад» — общий значок BackGlyph (слово владельца)
+    '../components/v2/ScreenBackButton': { __esModule: true, default: 'ScreenBackButton', ScreenBackSlot: 'ScreenBackSlot', ScreenOriginBelowSafeTop: ({ children }) => children }, // 22.10: «назад» — общая кнопка
     '../hooks/use-screen': { useScreen: () => ({ contentMaxW: 640, rawBottomInset: 0 }) },
     '../constants/liquidGlassThemePalette': { liquidGlassTokens: id => { calls.tokenIds.push(id); return glass; } },
     '../constants/i18n': { triLang: (active, copy) => copy[active], Lang: {} },
@@ -343,7 +344,10 @@ test('keeps loading, monthly, yearly, lifetime, absent-store-data, and busy cont
   const restore = byId(tree, 'manage-subscription-restore');
   const cancel = byId(tree, 'manage-subscription-cancel');
   const close = byId(tree, 'manage-subscription-close');
-  for (const control of [change, restore, cancel, close]) {
+  // 22.10: «назад» — общая ScreenBackButton (роль, вибрация и тишина — внутри неё); остальные действия держат свой контракт
+  assert.equal(close.type, 'ScreenBackButton');
+  assert.equal(typeof close.props.onPress, 'function');
+  for (const control of [change, restore, cancel]) {
     assert.ok(control);
     assert.equal(control.props.accessibilityRole, 'button');
     assert.equal(control.props.withHaptic, false);
@@ -358,7 +362,8 @@ test('keeps loading, monthly, yearly, lifetime, absent-store-data, and busy cont
   assert.equal(byId(tree, 'manage-subscription-restore').props.accessibilityState.disabled, true);
   monthly.releaseRestore();
   await pendingRestore;
-  assert.equal(monthly.calls.haptics, 4, 'each original callback owns exactly one haptic');
+  // 22.10: «назад» — общая ScreenBackButton, вибрацию даёт она сама (PressableHybrid) — у обработчика её больше нет: 4 → 3
+  assert.equal(monthly.calls.haptics, 3, 'each original callback owns exactly one haptic');
   assert.equal(monthly.calls.change, 1);
   assert.equal(monthly.calls.restore, 1);
   assert.deepEqual(monthly.calls.backs, ['/(tabs)/settings']);

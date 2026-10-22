@@ -95,8 +95,8 @@ function booleanProp(candidate, testID, prop) {
 }
 
 function assertFeedbackContract(candidate) {
-  assert.equal(booleanProp(candidate, 'support-report-back', 'withHaptic'), true);
-  assert.equal(booleanProp(candidate, 'support-report-back', 'withSound'), false);
+  // 22.10: «назад» — общая ScreenBackButton (вибрация при нажатии и тишина — внутри неё), свой PressableHybrid снят
+  assert.ok(candidate.includes('<ScreenBackButton screen="support_report" testID="support-report-back"'), 'back is the shared ScreenBackButton');
   for (const id of ['support-report-submit', 'support-report-done', 'support-diagnostics-preview-toggle']) {
     assert.equal(booleanProp(candidate, id, 'withHaptic'), false, `${id} wrapper haptic stays disabled`);
     assert.equal(booleanProp(candidate, id, 'withSound'), false, `${id} wrapper sound stays disabled`);
@@ -168,6 +168,7 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
     '../components/SafeLinearGradient': { __esModule: true, default: 'SafeLinearGradient' },
     '../components/v2/ShadowSurface': { plateBoxShadow: () => [{ stub: 'plate' }], raisedBoxShadow: () => [{ stub: 'raised' }], nestedBoxShadow: () => [{ stub: 'nested' }], actionBoxShadow: () => [{ stub: 'action' }], PlateFill: 'PlateFill', RAISED_LIFT: -3 },
     '../components/ScreenGradient': { __esModule: true, default: 'ScreenGradient' },
+    '../components/v2/ScreenBackButton': { __esModule: true, default: 'ScreenBackButton', ScreenBackSlot: 'ScreenBackSlot' },
     '../components/ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },
       useTheme: () => ({
@@ -223,7 +224,7 @@ test('support screen uses the approved bounded liquid-glass geometry and font no
   assert.match(source, /FONT_SCALE\[fontSize\]\s*\/\s*FONT_SCALE\.medium\s*\*\s*uiScale/);
   for (const side of ['top', 'bottom', 'left', 'right']) assert.match(source, new RegExp(`padding${side[0].toUpperCase()}${side.slice(1)}:\\s*insets\\.${side}`));
   // 04.10 (profile.html `.rb.bare`, 7aae452a2): «назад» — голый шеврон, область нажатия 48×44.
-  assert.match(source, /testID="support-report-back"[\s\S]*?width:\s*48,\s*height:\s*44/);
+  assert.ok(source.includes('<ScreenBackSlot />'), 'the scroll keeps the shared button slot');
   assert.match(source, /fontSize:\s*scaled\(34\),\s*lineHeight:\s*scaled\(40\)/);
   assert.match(source, /fontSize:\s*scaled\(15\),\s*lineHeight:\s*scaled\(20\)/);
   assert.match(source, /fontSize:\s*scaled\(13\)[\s\S]*?letterSpacing:\s*1\.7/);
@@ -243,9 +244,9 @@ test('actual handlers keep validation, duplicate guard, optimistic confirmation,
   await Promise.resolve();
   tree = harness.render();
   let nodes = visit(tree);
-  const header = nodes.find(node => node.type === 'PressableHybrid' && node.props.testID === 'support-report-back');
-  assert.equal(header.props.withHaptic, true, 'the header preserves its original wrapper haptic');
-  assert.equal(header.props.withSound, false, 'the header remains silent');
+  const header = nodes.find(node => node.type === 'ScreenBackButton' && node.props.testID === 'support-report-back');
+  assert.ok(header, 'the header back is the shared ScreenBackButton');
+  assert.equal(typeof header.props.onPress, 'function');
   const input = nodes.find(node => node.type === 'TextInput' && node.props.testID === 'support-report-input');
   let submit = nodes.find(node => node.type === 'PressableHybrid' && node.props.testID === 'support-report-submit');
   assert.equal(submit.props.disabled, true, 'short reports stay disabled');

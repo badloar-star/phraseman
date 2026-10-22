@@ -8,6 +8,7 @@ import { useLang } from '../components/LangContext';
 import PressableHybrid from '../components/PressableHybrid';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import ScreenGradient from '../components/ScreenGradient';
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
 import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -141,20 +142,8 @@ export default function SupportReportScreen() {
           contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingBottom: 32 }}
           showsVerticalScrollIndicator={false} decelerationRate="fast"
         >
-          <PressableHybrid
-            testID="support-report-back"
-            accessibilityLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
-            onPress={close}
-            withHaptic={true}
-            withSound={false}
-            variant="icon"
-            style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
-            // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
-            contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
-          >
-            {/* зачем: паритет с макетом profile.html PRF-09 — «назад» шевроном */}
-            <BackGlyph size={21} color={glass.text} />
-          </PressableHybrid>
+          {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
+          <ScreenBackSlot />
           <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', letterSpacing: -0.5 /* зачем: паритет profile.html PRF-09 (13.10) */, marginTop: 10 }}>
             {L('Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc')}
           </Text>
@@ -331,6 +320,7 @@ export default function SupportReportScreen() {
           )}
         </BouncyScrollView>
       </View>
+      <ScreenBackButton screen="support_report" testID="support-report-back" accessibilityLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')} onPress={close} />
     </ScreenGradient>
   );
 }

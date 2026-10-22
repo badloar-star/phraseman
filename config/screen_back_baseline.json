@@ -2,7 +2,6 @@
   "//": "зачем (закон владельца 22.10: «кнопка назад везде в одном месте»): экраны со СВОЕЙ кнопкой «назад», ещё не переведённые на components/v2/ScreenBackButton. Список ТОЛЬКО уменьшается; новый экран — только ScreenBackButton. Сторож: tests/screen_back_button_contract.test.ts",
   "files": [
     "app/(tabs)/lessons.tsx",
-    "app/account_details.tsx",
     "app/achievements_screen.tsx",
     "app/ai_companion_session.tsx",
     "app/ai_dialog_consent_gate.tsx",
@@ -38,9 +37,7 @@
     "app/preposition_drill.tsx",
     "app/privacy_settings.tsx",
     "app/runes_wallet.tsx",
-    "app/settings_edu.tsx",
     "app/settings_notifications.tsx",
-    "app/settings_themes.tsx",
     "app/shop.tsx",
     "app/streak_stats.tsx",
     "app/support_report.tsx",

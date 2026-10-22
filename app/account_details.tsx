@@ -27,6 +27,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Clipboard from 'expo-clipboard';
 
 import ScreenGradient from '../components/ScreenGradient';
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
 import PressableHybrid from '../components/PressableHybrid';
@@ -303,19 +304,8 @@ export default function AccountDetailsScreen() {
             showsVerticalScrollIndicator={false}
             scrollEventThrottle={16}
           >
-            <PressableHybrid
-              testID="account-sheet-close"
-              accessibilityLabel={backLabel}
-              onPress={() => { if (isBlockedByLogout('back_button')) return; safeRouterBack(router, '/(tabs)/settings' as never); }}
-              variant="icon"
-              withHaptic={false}
-              withSound={false}
-              style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
-              // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
-              contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
-            >
-              <BackGlyph size={21} color={glass.text} />
-            </PressableHybrid>
+            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
+            <ScreenBackSlot />
             <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
@@ -480,6 +470,7 @@ export default function AccountDetailsScreen() {
           </BouncyScrollView>
         </ContentWrap>
       </View>
+      <ScreenBackButton screen="account_details" testID="account-sheet-close" accessibilityLabel={backLabel} onPress={() => { if (isBlockedByLogout('back_button')) return; safeRouterBack(router, '/(tabs)/settings' as never); }} />
 
       <NicknameEditModal
         visible={nameModalVisible}

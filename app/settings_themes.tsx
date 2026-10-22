@@ -11,6 +11,7 @@ import { ThemeGlassSmoke } from '../components/v2/ThemeGlassSmoke';
 import { RowDivider } from '../components/v2/RowDivider';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
 import ContentWrap from '../components/ContentWrap';
 import { useTheme } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
@@ -221,19 +222,8 @@ export default function SettingsThemes() {
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
           <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
-            <PressableHybrid
-              testID="themes-back"
-              accessibilityLabel={backLabel}
-              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
-              variant="icon"
-              withHaptic={false}
-              withSound={false}
-              style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
-              // зачем: паритет profile.html PRF-06 (13.10): «назад» — голый шеврон 21 без круга, как на соседних экранах настроек; область нажатия 48×44
-              contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
-            >
-              <BackGlyph size={21} color={glass.text} />
-            </PressableHybrid>
+            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
+            <ScreenBackSlot />
             <View style={styles.head}>
               <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(styles.title.lineHeight) }]}>
                 {triLang(lang, { ru: 'Темы', uk: 'Теми', en: 'Themes', es: 'Temas', 'pt-BR': 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Motywy' })}
@@ -289,6 +279,7 @@ export default function SettingsThemes() {
           </BouncyScrollView>
         </ContentWrap>
       </View>
+      <ScreenBackButton screen="settings_themes" testID="themes-back" accessibilityLabel={backLabel} onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} />
     </ScreenGradient>
   );
 }

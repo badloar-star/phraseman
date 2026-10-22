@@ -9,6 +9,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
 import { useTheme } from '../components/ThemeContext';
 import PressableHybrid from '../components/PressableHybrid';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
@@ -383,19 +384,8 @@ export default function SettingsEdu() {
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
           <BouncyScrollView contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 20 }} decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
-            <PressableHybrid
-              accessibilityLabel={L({ ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
-              variant="icon"
-              withHaptic={false}
-              withSound={false}
-              style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
-              // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
-              contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
-            >
-              {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
-              <BackGlyph size={21} color={glass.text} />
-            </PressableHybrid>
+            {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место */}
+            <ScreenBackSlot />
             <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {loc.edu.title}
             </Text>
@@ -496,6 +486,7 @@ export default function SettingsEdu() {
           </BouncyScrollView>
         </ContentWrap>
       </View>
+      <ScreenBackButton screen="settings_edu" accessibilityLabel={L({ ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} />
     </ScreenGradient>
   );
 }

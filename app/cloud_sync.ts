@@ -285,6 +285,14 @@ import {
   uploadFlashcardListsToPages,
 } from './flashcards_cloud_upload';
 import {
+  buildFlashcardPagesRevPatch,
+  decideFlashcardPagesRead,
+  noteFlashcardPagesRead,
+  noteFlashcardPagesRevWritten,
+  readCloudFlashcardPagesRev,
+  readFlashcardPagesRevSeen,
+} from './flashcard_pages_rev';
+import {
   FLASHCARD_FUTURE_KEPT_STASH_KEY,
   logFutureKeptStashBeforeWipe,
   mergeFutureKeptStashRaw,
@@ -3719,6 +3727,8 @@ async function doSyncToCloud(): Promise<void> {
       ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
       ...(needActivityStamp || needHeartbeat || shouldSendCreatedAt ? { updatedAt: now, last_active_at: now } : {}),
       ...(shouldSendCreatedAt ? { created_at: now } : {}),
+      // зачем (вопрос 27, app/flashcard_pages_rev.ts): страницы записаны → ревизия в ЭТОМ ЖЕ патче (без отдельной записи).
+      ...buildFlashcardPagesRevPatch(flashcardUpload.pagesWrittenTargets, now),
     });
     // зачем: docRef объявлен выше try (диагностике отказа нужна ссылка), поэтому
     // тип допускает null. Сюда мы попадаем только после его присваивания — но
@@ -3736,6 +3746,10 @@ async function doSyncToCloud(): Promise<void> {
     if (!isSyncGenerationCurrent()) return;
     const wrote = await writeUserDocWithNestedProgress(docRef, rootPatch, progressPatch);
     if (!wrote) return;
+    if (flashcardUpload.pagesWrittenTargets.size > 0) {
+      void noteFlashcardPagesRevWritten(uid, flashcardUpload.pagesWrittenTargets, now);
+      console.log('[READ-TTL]', JSON.stringify({ area: 'flashcard_pages', event: 'rev_written', targets: [...flashcardUpload.pagesWrittenTargets], path: 'sync' })); // guard-ok: без uid
+    }
     lastSuccessfulSyncAt = now;
     if (needActivityStamp || needHeartbeat || shouldSendCreatedAt) {
       lastActivityStampAt = now;
@@ -3922,6 +3936,7 @@ async function restoreFlashcardPagesForKeys(
   assertCurrent: () => void,
   lockedBefore: ReadonlySet<string>,
   onlyKey: ((key: string) => boolean) | null,
+  cloudRoot: Readonly<Record<string, unknown>> = {},
 ): Promise<FlashcardPagesRestoreOutcome> {
   const outcome: FlashcardPagesRestoreOutcome = { pairs: [], source: new Map(), unlockKeys: new Map() };
   const restoreUid = await getCanonicalUserId().catch((error) => {
@@ -3963,9 +3978,32 @@ async function restoreFlashcardPagesForKeys(
     }
     // зачем (Пакет 7A): V2 ведёт карточки — страницы старого облака не читаем (лог уже в omit).
     if (legacyV2SkipOnRestore && isAccountsV2LegacyDomainKey(key)) continue;
+    // зачем (вопрос 27, решение координатора (а) + 24 ч, app/flashcard_pages_rev.ts): ревизия облака та же, что этот
+    // телефон уже видел, и читал её меньше суток назад → страницы не читаем, локальный список не трогаем (как будто
+    // страницы совпали). Запертый ключ, пустой локальный список или ревизии нет — читаем как раньше.
+    const cloudPagesRev = readCloudFlashcardPagesRev(cloudRoot, target);
+    const localRaw = await AsyncStorage.getItem(key).catch((error: unknown) => {
+      // Не прочитали локальный список — считаем его пустым: страницы будут прочитаны, как раньше.
+      console.warn('[READ-TTL]', JSON.stringify({ area: 'flashcard_pages', event: 'local_unreadable', target, message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+      return null;
+    });
+    const localHasCards = typeof localRaw === 'string' && localRaw.length > 2 && localRaw.trim() !== '[]';
+    const pagesVerdict = decideFlashcardPagesRead({
+      uid: restoreUid,
+      target,
+      cloudRev: cloudPagesRev,
+      seen: await readFlashcardPagesRevSeen(),
+      locked: lockedBefore.has(key),
+      localHasCards,
+      nowMs: Date.now(),
+    });
+    assertCurrent();
+    console.log('[READ-TTL]', JSON.stringify({ area: 'flashcard_pages', target, source: pagesVerdict.read ? 'network' : 'cache', reason: pagesVerdict.reason, cloudRev: cloudPagesRev, seenRev: pagesVerdict.seenRev, lastReadAgeMs: pagesVerdict.lastReadAgeMs })); // guard-ok: без uid
+    if (!pagesVerdict.read) continue;
     // зачем (8J): трёхзначный результат — «страниц нет» (сервер подтвердил) ≠ «не прочитали».
     const pagesRead = await readFlashcardPagesResult(restoreUid, target);
     assertCurrent();
+    if (pagesRead.status !== 'error') void noteFlashcardPagesRead(restoreUid, target, cloudPagesRev);
     if (pagesRead.status === 'error') {
       // зачем (8J): правды о страницах нет — локальное НЕ трогаем, древнее поле НЕ берём
       // (источник 'error'), и запираем запись страниц этого ключа до удачного чтения:
@@ -4613,7 +4651,7 @@ async function applyRestoreFromUserDocTraced(
   const flashcardPagesLocksBefore = await readFlashcardPagesWriteLocks(FLASHCARD_PAGES_RESTORE_KEYS.map(([key]) => key));
   assertCurrent();
   const flashcardPagesRestore = await restoreFlashcardPagesForKeys(
-    cloudData, legacyV2SkipOnRestore, assertCurrent, flashcardPagesLocksBefore, null,
+    cloudData, legacyV2SkipOnRestore, assertCurrent, flashcardPagesLocksBefore, null, root,
   );
   // зачем (8J): объединённое значение заменяет поле документа, уже лежащее в pairs из общего
   // цикла, — без дубля ключа в multiSet (порядок применения дублей не гарантирован).
@@ -5238,11 +5276,31 @@ type UnchangedDocSkipDecision = Readonly<{
  * createdAt уже записан, списки карточек в документ не уходят и поля не обнуляются. Иначе — запись (ветка и причина в
  * логе; хеши — 8 знаков, uid не печатаем).
  */
+/**
+ * Снимок последнего синка ТОГО ЖЕ владельца — для выхода: совпавший с ним список карточек не переписывается.
+ * Нет снимка, чужой владелец или нечитаемый — null: выход пишет страницы, как раньше.
+ */
+async function readExitFlashcardSnapshot(uid: string): Promise<Record<string, string | null> | null> {
+  try {
+    const [[, snapRaw], [, ownerHash]] = await AsyncStorage.multiGet([LAST_SYNC_SNAPSHOT_KEY, LAST_SYNC_SNAPSHOT_OWNER_KEY]);
+    if (!snapRaw || !ownerHash || ownerHash !== sha256Utf8(uid)) {
+      console.log('[READ-TTL]', JSON.stringify({ area: 'flashcard_pages_exit', event: 'no_trusted_snapshot', hasSnapshot: Boolean(snapRaw), ownerMatches: Boolean(ownerHash) && ownerHash === sha256Utf8(uid) })); // guard-ok: ранний выход, без uid
+      return null;
+    }
+    const parsed = JSON.parse(snapRaw) as unknown;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    return parsed as Record<string, string | null>;
+  } catch (error) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'flashcard_pages_exit', event: 'snapshot_unreadable', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return null;
+  }
+}
+
 async function decideUnchangedForceDocSkip(
   uid: string,
   sendData: Readonly<Record<string, string | null>>,
   rootData: Readonly<Record<string, string | null>>,
-  upload: Readonly<{ clearDocField: ReadonlySet<string>; sentToDoc: ReadonlySet<string> }>,
+  upload: Readonly<{ clearDocField: ReadonlySet<string>; sentToDoc: ReadonlySet<string>; pagesWrittenTargets?: ReadonlySet<string> }>,
   shouldSendCreatedAt: boolean,
 ): Promise<UnchangedDocSkipDecision> {
   const sendKeys = Object.keys(sendData);
@@ -5254,6 +5312,11 @@ async function decideUnchangedForceDocSkip(
     if (shouldSendCreatedAt) return write('created_at_not_synced');
     if (upload.clearDocField.size > 0 || upload.sentToDoc.size > 0) {
       return write('flashcard_doc_fields_change', { clearDocField: upload.clearDocField.size, sentToDoc: upload.sentToDoc.size });
+    }
+    // зачем (вопрос 27): страницы записаны — ревизию flashcardPagesRev_<язык> нужно донести патчем документа,
+    // иначе другой телефон сочтёт страницы неизменными до суток.
+    if ((upload.pagesWrittenTargets?.size ?? 0) > 0) {
+      return write('flashcard_pages_rev_change', { pagesWritten: upload.pagesWrittenTargets?.size ?? 0 });
     }
     const [[, snapRaw], [, ownerHash]] = await AsyncStorage.multiGet([LAST_SYNC_SNAPSHOT_KEY, LAST_SYNC_SNAPSHOT_OWNER_KEY]);
     if (!snapRaw) return write('no_snapshot');
@@ -5450,6 +5513,8 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
       data: forceData,
       isCurrent: isForceGenerationCurrent,
       timeoutMs: FORCE_SYNC_FIRESTORE_WRITE_MS,
+      // зачем (координатор 22.10, вопрос 27): при выходе неизменный список карточек не переписываем (без ревизии и записи документа).
+      exitSnapshot: options.skipUnchangedDocWrite === true ? await readExitFlashcardSnapshot(uid) : null,
     });
     syncStep('flashcards', flashcardOutcome.ok
       ? { ok: true, pagesWritten: flashcardOutcome.plan.clearDocField.size, sentToDoc: flashcardOutcome.plan.sentToDoc.size, locked: flashcardOutcome.plan.lockedNow.size }
@@ -5514,12 +5579,18 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
           updatedAt: now,
           last_active_at: now,
           ...(shouldSendCreatedAt ? { created_at: now } : {}),
+          // зачем (вопрос 27): страницы записаны переносом → ревизия в том же патче документа.
+          ...buildFlashcardPagesRevPatch(flashcardUpload.pagesWrittenTargets, now),
         },
         forceDocProgress,
       ),
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
     );
+    if (flashcardUpload.pagesWrittenTargets.size > 0) {
+      void noteFlashcardPagesRevWritten(uid, flashcardUpload.pagesWrittenTargets, now);
+      console.log('[READ-TTL]', JSON.stringify({ area: 'flashcard_pages', event: 'rev_written', targets: [...flashcardUpload.pagesWrittenTargets], path: 'force' })); // guard-ok: без uid
+    }
     syncStep('doc_write', {
       progressFields: Object.keys(forceDocProgress).length,
       approxBytes: JSON.stringify(forceDocProgress).length,

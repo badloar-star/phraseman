@@ -65,6 +65,11 @@ export type FlashcardCloudUploadPlan = Readonly<{
    * в облако не ушла. forceSyncToCloud кладёт эти локальные версии в аварийную копию владельца.
    */
   remoteFutureKept: readonly FutureKeptLocalGroup[];
+  /**
+   * Языки, чьи страницы реально записаны в этот такт. Вызывающий кладёт по ним flashcardPagesRev_<язык> в тот же
+   * патч users/{uid} (вопрос 27, app/flashcard_pages_rev.ts).
+   */
+  pagesWrittenTargets: ReadonlySet<string>;
 }>;
 
 export type FlashcardCloudUploadDeps = Readonly<{
@@ -91,6 +96,11 @@ export type FlashcardCloudUploadInput = Readonly<{
   previousSnapshot: Readonly<Record<string, string | null>>;
   mode: FlashcardCloudUploadMode;
   isCurrent: () => boolean;
+  /**
+   * Только force при выходе: снимок последнего синка ТОГО ЖЕ владельца. Список совпадает со снимком → страницы и
+   * ревизию не пишем (облако уже держит этот список). Нет — force снимку не верит, как раньше.
+   */
+  exitSnapshot?: Readonly<Record<string, string | null>> | null;
   /** Только для тестов. */
   deps?: FlashcardCloudUploadDeps;
 }>;
@@ -128,6 +138,7 @@ export async function uploadFlashcardListsToPages(
   const sentToDoc = new Set<string>();
   const lockedNow = new Set<string>();
   const remoteFutureKept: FutureKeptLocalGroup[] = [];
+  const pagesWrittenTargets = new Set<string>();
 
   // зачем (8J): restore не смог прочитать страницы ключа → облачная правда неизвестна.
   // Такой ключ не уходит НИКУДА: ни в страницы (writeFlashcardPages удалил бы хвост),
@@ -154,6 +165,17 @@ export async function uploadFlashcardListsToPages(
     if (mode === 'sync' && cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {
       offloaded.add(key);
       continue;
+    }
+    // зачем (координатор 22.10, вопрос 27): выход переписывал страницы всегда, а с ревизией это значило +1 запись документа
+    // на каждый выход (ускорение выхода 18.10 пропадало). Список тот же, что в снимке синка этого владельца, — облако уже
+    // держит его: ни страниц, ни ревизии. Другой телефон верно видит «не изменилось».
+    if (mode === 'force' && input.exitSnapshot) {
+      const sameAsSnapshot = cloudSyncSnapshotValueMatches(input.exitSnapshot[key], value);
+      console.log('[READ-TTL]', JSON.stringify({ area: 'flashcard_pages_exit', key, reason: sameAsSnapshot ? 'same_as_snapshot' : 'changed', localLen: String(value).length })); // guard-ok: ветка и значение, без uid
+      if (sameAsSnapshot) {
+        offloaded.add(key);
+        continue;
+      }
     }
     const pagesWritten = await deps.writePages(uid, target, String(value));
     if (!isCurrent()) {
@@ -189,6 +211,7 @@ export async function uploadFlashcardListsToPages(
       remoteFutureKept.push({ key, target, versions: futureKeptPairs });
       console.log(`${LOG} force_sync key=${key} remote_future_kept_local=${futureKeptPairs.length}`);
     }
+    if (pagesWritten !== null) pagesWrittenTargets.add(target);
     const decision = decideFlashcardDocField(previousSnapshot, key, pagesWritten !== null);
     if (decision !== 'keep_in_doc') {
       offloaded.add(key);
@@ -208,7 +231,7 @@ export async function uploadFlashcardListsToPages(
       console.log(`${LOG} force_sync key=${key} decision=${shown} pages=${pagesWritten ?? 'failed'}`);
     }
   }
-  return { keys, offloaded, clearDocField, sentToDoc, lockedNow, remoteFutureKept };
+  return { keys, offloaded, clearDocField, sentToDoc, lockedNow, remoteFutureKept, pagesWrittenTargets };
 }
 
 /** 8N: зависимости выгрузки + решения крючка «объединить с облаком» по языку. */
@@ -263,6 +286,8 @@ export type ForceFlashcardUploadInput = Readonly<{
   isCurrent: () => boolean;
   /** Потолок на всю выгрузку страниц (тот же, что у записи документа). */
   timeoutMs: number;
+  /** Снимок последнего синка того же владельца — только при выходе (см. FlashcardCloudUploadInput.exitSnapshot). */
+  exitSnapshot?: Readonly<Record<string, string | null>> | null;
   /** Только для тестов. */
   deps?: FlashcardCloudUploadDeps;
 }>;
@@ -314,6 +339,7 @@ async function runForceFlashcardUploadInner(input: ForceFlashcardUploadInput): P
     previousSnapshot: EMPTY_SNAPSHOT,
     mode: 'force',
     isCurrent: input.isCurrent,
+    exitSnapshot: input.exitSnapshot ?? null,
     deps: input.deps,
   });
   const deadline = new Promise<typeof PAGES_TIMEOUT>((resolve) => {

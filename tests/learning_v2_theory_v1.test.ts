@@ -60,6 +60,19 @@ describe("Learning V2 lesson theory", () => {
     expect(learningV2TheorySectionForSessionV1(theory, null)).toBe("01");
   });
 
+  test("every session 1–56 of lessons 1–14 opens an existing theory section on every language (координатор 22.10)", () => {
+    for (let lesson = 1; lesson <= 14; lesson += 1) {
+      for (const lang of ["ru", "uk", "en", "es", "pt-BR", "vi", "id", "tr", "pl"]) {
+        const theory = loadLearningV2TheoryV1(lesson, lang)!;
+        const nums = new Set(theory.sections.map((s) => s.num));
+        for (let session = 1; session <= 56; session += 1) {
+          const mapped = theory.sessionSection[String(session)];
+          expect({ lesson, lang, session, ok: Boolean(mapped && nums.has(mapped)) }).toEqual({ lesson, lang, session, ok: true });
+        }
+      }
+    }
+  });
+
   test("missing language falls back to English, then Russian; unknown lesson → null with a reason", () => {
     expect(hasLearningV2TheoryV1(1, "xx")).toBe(true);
     expect(loadLearningV2TheoryV1(1, "xx")?.lang).toBe("en");

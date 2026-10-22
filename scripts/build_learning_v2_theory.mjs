@@ -155,6 +155,19 @@ for (const file of files) {
     problems.push(`${file}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
+// Карта разделов для уроков без карты в черновике — scripts/learning_v2_theory_session_sections.json (координатор 22.10).
+const sessionMapFile = JSON.parse(readFileSync(join(ROOT, 'scripts', 'learning_v2_theory_session_sections.json'), 'utf8'));
+for (const [name, json] of out) {
+  const data = JSON.parse(json);
+  if (data.lang !== 'ru' || Object.keys(data.sessionSection).length > 0) continue;
+  const ranges = sessionMapFile[String(data.lesson)];
+  if (!Array.isArray(ranges)) continue;
+  for (const [from, to, num] of ranges) {
+    if (!data.sections.some((s) => s.num === num)) problems.push(`карта урока ${data.lesson}: раздела ${num} нет`);
+    for (let s = from; s <= to; s += 1) data.sessionSection[s] = num;
+  }
+  out.set(name, `${JSON.stringify(data)}\n`);
+}
 // Карта разделов по занятиям — из RU-файла урока на все языки урока (разделы нумеруются одинаково).
 for (const [name, json] of out) {
   const data = JSON.parse(json);

@@ -57,6 +57,8 @@ type Props = Readonly<{
   skillReviewLabel?: string;
   /** «Серия вдвоём» (идея 1, макет friends-full.html «Финал занятия»): карточки серии с друзьями — под итогом, до разбора ошибок. */
   friendsSlot?: React.ReactNode;
+  /** «Урок вместе» (идея 2, макет friends-full.html «Финал занятия»): вторичная кнопка под «Продолжить». */
+  afterCtaSlot?: React.ReactNode;
   mistakesSlot?: React.ReactNode;
   feedbackSlot?: React.ReactNode;
   ctaLabel: string;
@@ -156,7 +158,7 @@ const ResultAward = memo(function ResultAward({
 export default function HorizonResultGlass({
   title, subtitle, stars, correct, wrong, labels, gain, gainWord, gainA11yLabel,
   rewardsSettled, reducedMotion, skills, skillsTitle, skillOkLabel, skillReviewLabel,
-  friendsSlot, mistakesSlot, feedbackSlot, ctaLabel, ctaTestID, ctaEnabled, onContinue, bottomInset,
+  friendsSlot, afterCtaSlot, mistakesSlot, feedbackSlot, ctaLabel, ctaTestID, ctaEnabled, onContinue, bottomInset,
 }: Props) {
   const sx = useScaledTextStyles(styles);
   const g = useLv2Glass();
@@ -247,6 +249,7 @@ export default function HorizonResultGlass({
           >
             {ctaLabel}
           </Lv2Cta>
+          {afterCtaSlot}
         </View>
       </Animated.View>
     </ScrollView>

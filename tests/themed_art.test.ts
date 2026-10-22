@@ -14,11 +14,12 @@ import {
 const ROOT = path.join(__dirname, '..');
 
 describe('themed art registry', () => {
-  it('has the 110 names from ASSETS_V2_PROMPTS.md + intro_profile_card (06dd77148) + spire_tile (плитка Шпиль, заказ Codex 15.10)', () => {
-    expect(THEMED_ART_ALL_NAMES).toHaveLength(118);
-    expect(new Set(THEMED_ART_ALL_NAMES).size).toBe(118);
-    for (let rank = 1; rank <= 6; rank += 1) expect(THEMED_ART_ALL_NAMES).toContain(`spire_rank_${rank}`);
+  it('has the 110 names from ASSETS_V2_PROMPTS.md + intro_profile_card + spire tile, AI-off art, six Spire badges and 18 Home/Dialogs scenes', () => {
+    expect(THEMED_ART_ALL_NAMES).toHaveLength(137);
+    expect(new Set(THEMED_ART_ALL_NAMES).size).toBe(137);
     expect(THEMED_ART_ALL_NAMES).toContain('spire_tile');
+    expect(THEMED_ART_ALL_NAMES).toContain('ai_off');
+    for (let rank = 1; rank <= 6; rank += 1) expect(THEMED_ART_ALL_NAMES).toContain(`spire_rank_${rank}`);
     for (const n of ['lessons', 'today', 'mistakes_done', 'cards_from_video', 'course_map', 'league_diamond',
       'streak_10', 'streak_freeze_overlay', 'ach_special', 'prize_1y', 'shop', 'intro_mistake_practice', 'lesson_01', 'lesson_50']) {
       expect(THEMED_ART_ALL_NAMES).toContain(n);
@@ -88,22 +89,35 @@ describe('honest gaps', () => {
 describe('first real assets (adfaa8c34) and set choice', () => {
   const HOME = ['lessons', 'dialogs', 'cards', 'continue', 'phrase_of_day', 'mistakes_entry', 'today'] as const;
 
-  // зачем (S2_clay, выбор владельца 15.10): «Уроки», «Диалоги» и «Шпиль» — стиль S2 с цветной деталью (.accent); остальные предметы Главной пока прежние, без accent-слоя,
-  // пока Codex не дорисует их в S2 (тогда сюда переедут из списка NO_ACCENT_YET).
-  it('the 7 Home items are real files in both sets; S2_clay items carry an accent layer, the rest do not yet', () => {
-    const WITH_ACCENT = ['lessons', 'dialogs'] as const;
+  // Selected Home items use the approved S2_clay art; dialog art remains unchanged.
+  it('selected Home art resolves in both brightnesses with aligned accent layers where supplied', () => {
+    const WITH_ACCENT = ['lessons', 'dialogs', 'cards', 'cards_empty_saved', 'continue', 'mistakes_entry', 'today', 'cards_from_video'] as const;
     for (const name of HOME) {
       for (const brightness of ['dark', 'light'] as const) {
         const art = resolveThemedArt(name, brightness);
         expect(art.origin).toBe('v2art');
-        if ((WITH_ACCENT as readonly string[]).includes(name)) expect(art.accent).not.toBeNull();
-        else expect(art.accent).toBeNull();
+        // зачем (22.10): цветной слой dark/mistakes_entry.accent от Codex отвергнут сторожем (12,2 % на перепадах при пороге 12 %) и в сборку не идёт — ждёт замены
+        if (name === 'mistakes_entry' && brightness === 'dark') expect(art.accent).toBeNull();
+        else if ((WITH_ACCENT as readonly string[]).includes(name)) expect(art.accent).not.toBeNull();
+        else if (name === 'phrase_of_day' && brightness === 'dark') expect(art.accent).toBeNull();
+        else expect(art.accent).not.toBeNull();
       }
     }
     for (const brightness of ['dark', 'light'] as const) {
       const spire = resolveThemedArt('spire_tile', brightness);
       expect(spire.origin).toBe('v2art');
       expect(spire.accent).not.toBeNull();
+    }
+  });
+
+  it('the six selected Spire badges and AI-off art have dark/light base and accent assets', () => {
+    for (const name of ['ai_off', 'spire_rank_1', 'spire_rank_2', 'spire_rank_3', 'spire_rank_4', 'spire_rank_5', 'spire_rank_6'] as const) {
+      for (const brightness of ['dark', 'light'] as const) {
+        const art = resolveThemedArt(name, brightness);
+        expect(art.origin).toBe('v2art');
+        expect(art.base).not.toBeNull();
+        expect(art.accent).not.toBeNull();
+      }
     }
   });
 

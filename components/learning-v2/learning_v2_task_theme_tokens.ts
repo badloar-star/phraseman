@@ -54,16 +54,16 @@ export type Lv2TaskTokens = Readonly<{
 
 const LIGHT_SHADOW: readonly BoxShadowValue[] = [
   { offsetX: 0, offsetY: 10, blurRadius: 26, spreadDistance: -14, color: 'rgba(51,51,87,0.30)' },
-  { offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.9)', inset: true },
+  { offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.9)', inset: true }, // shadow-ok: макет №23, hairline 1px, владелец 24.09
 ];
 const DARK_SHADOW: readonly BoxShadowValue[] = [
   { offsetX: 0, offsetY: 12, blurRadius: 28, spreadDistance: -14, color: 'rgba(0,0,0,0.7)' },
-  { offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.06)', inset: true },
+  { offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.06)', inset: true }, // shadow-ok: макет №23, hairline 1px, владелец 24.09
 ];
 
 /** `.ans { box-shadow: inset 0 -1px 0 var(--edge) }`: линия под строкой ответа — внутренняя тень 1 px снизу (не border), цвет — `hairlineSoft` (--edge = текст α .10). */
 export function lv2TaskAnswerLineShadow(g: Lv2Glass): readonly BoxShadowValue[] {
-  return [{ offsetX: 0, offsetY: -1, blurRadius: 0, spreadDistance: 0, color: g.hairlineSoft, inset: true }];
+  return [{ offsetX: 0, offsetY: -1, blurRadius: 0, spreadDistance: 0, color: g.hairlineSoft, inset: true }]; // shadow-ok: макет №23, hairline 1px, владелец 24.09
 }
 
 /** Плита заданий: заливка карточки + тень `--sh` макета №23 (обводок нет). Живёт здесь, чтобы тело заданий не тянуло тяжёлые импорты; публичное имя lv2TaskPlateStyle — в layout_tokens (тонкая обёртка). */

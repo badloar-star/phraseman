@@ -22,7 +22,10 @@ describe('«Новое слово» и интро', () => {
   });
 
   it('интро: ситуация, «Скажи так» с разбором по словам и одна строка «почему»; нет фразы — прежняя карточка', () => {
-    expect(intro).toContain('learningV2IntroSayPartsForPageV1({ pageId: screen.screenId ?? "", body: plainIntroText(screen, lang, studyTarget) ?? "", interfaceLocale: lang })');
+    // зачем (Сверка 22.10, 🔴): текст для разбора — из строк экрана (адаптер новых занятий кладёт текст в lines, а не в textRU)
+    expect(intro).toContain('const sayBody = lines.map(lineText).join(" ").trim();');
+    expect(intro).toContain('learningV2IntroSayPartsForPageV1({ pageId: screen.screenId ?? "", body: sayBody, interfaceLocale: lang })');
+    expect(intro).toContain('"[V2-INTRO-PARTS]"');
     expect(intro).toContain('<LearningV2SayCard');
     expect(intro).toContain('kicker={learningV2TaskBodyCopy(lang, "sayThis")}');
     expect(intro).toContain('chips={sayParts.parts}');

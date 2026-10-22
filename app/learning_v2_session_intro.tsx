@@ -443,11 +443,30 @@ export default function LearningV2SessionIntro({
   );
   const isLast = safeIndex === screens.length - 1;
   // зачем (колонка «Предлагаем»): разбор страницы на «ситуацию / Скажи так / почему» по правилам Learning V2; нет фразы в тексте — прежняя карточка (ничего не выдумываем)
+  // зачем (Сверка 22.10, 🔴: интро урока 1 шло старой карточкой): адаптер новых занятий кладёт текст страницы в строки
+  // (linesRU…, bodyRunsByLocale), а не в textRU — plainIntroText давал пусто, разбор не находил фразу. Текст для разбора —
+  // из тех же строк, что экран показывает.
+  const sayBody = lines.map(lineText).join(" ").trim();
   const sayParts = useMemo(
-    () => screen ? learningV2IntroSayPartsForPageV1({ pageId: screen.screenId ?? "", body: plainIntroText(screen, lang, studyTarget) ?? "", interfaceLocale: lang }) : null,
-    [screen, lang, studyTarget],
+    () => screen ? learningV2IntroSayPartsForPageV1({ pageId: screen.screenId ?? "", body: sayBody, interfaceLocale: lang }) : null,
+    [screen, sayBody, lang],
   );
   const sayLayout = sayParts !== null && sayParts.phrase !== null;
+  useEffect(() => {
+    if (!screen) return;
+    console.log("[V2-INTRO-PARTS]", JSON.stringify({
+      pageId: screen.screenId ?? null,
+      lang,
+      bodySource: localizedLines.length > 0 ? "lines" : "plainIntroText",
+      bodyLength: sayBody.length,
+      situation: sayParts?.situation ? sayParts.situation.length : 0,
+      phrase: sayParts?.phrase?.text ?? null,
+      parts: sayParts?.parts.length ?? 0,
+      why: sayParts?.why ? sayParts.why.length : 0,
+      missing: sayParts?.missing ?? [],
+      branch: sayLayout ? "say_layout" : "legacy_card",
+    })); // guard-ok: какую ветку выбрал экран и почему
+  }, [screen, lang, localizedLines.length, sayBody, sayParts, sayLayout]);
   const compact = height < 720;
   // зачем: алфавитная развилка «латиница = изучаемый язык» верна только там, где
   // родной язык кириллический. Для es/pt-BR/vi/id/tr/pl родной сам на латинице.

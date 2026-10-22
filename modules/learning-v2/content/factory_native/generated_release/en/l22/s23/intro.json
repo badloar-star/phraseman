@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для друга",
+        "uk": "Місце для друга"
+      },
+      "bodyByLocale": {
+        "ru": "Save a seat — занять или придержать место для человека, который придёт позже. Save здесь не о деньгах. Вы уточняете, можно ли оставить рядом свободное место для друга. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Save a seat — зайняти або притримати місце для людини, яка прийде пізніше. Save тут не про гроші. Ви уточнюєте, чи можна залишити поруч вільне місце для друга. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-23:intro1:r1",
+              "text": "Could I save a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro1:r2",
+              "text": "Could I saves a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro1:r3",
+              "text": "Could I saving a seat?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-23:intro1:r1",
+              "text": "Could I save a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro1:r2",
+              "text": "Could I saves a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro1:r3",
+              "text": "Could I saving a seat?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пересесть к окну",
+        "uk": "Пересісти до вікна"
+      },
+      "bodyByLocale": {
+        "ru": "Change seats — поменяться местами или пересесть. Sit by the window — сесть или сидеть у окна. В просьбе Could I sit by the window? вы выбираете, где сесть. By здесь означает «рядом с». Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Change seats — помінятися місцями або пересісти. Sit by the window — сісти або сидіти біля вікна. У проханні Could I sit by the window? ви обираєте, де сісти. By тут означає «поруч із». Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-23:intro2:r1",
+              "text": "Could I change seats?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro2:r2",
+              "text": "Could I changes seats?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro2:r3",
+              "text": "Could I changing seats?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-23:intro2:r1",
+              "text": "Could I change seats?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro2:r2",
+              "text": "Could I changes seats?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro2:r3",
+              "text": "Could I changing seats?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попросить подвезти",
+        "uk": "Попросити підвезти"
+      },
+      "bodyByLocale": {
+        "ru": "Get a lift — доехать с кем-то на машине, когда вас подвозят. Give a lift — подвезти — вы уже знаете: теперь говорите со стороны пассажира. В этом выражении lift не означает лифт в здании. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Get a lift — доїхати з кимось машиною, коли вас підвозять. Give a lift — підвезти — ви вже знаєте: тепер говорите з боку пасажира. У цьому вислові lift не означає ліфт у будівлі. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-23:intro3:r1",
+              "text": "Could I get a lift?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro3:r2",
+              "text": "Could I gets a lift?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro3:r3",
+              "text": "Could I getting a lift?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-23:intro3:r1",
+              "text": "Could I get a lift?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro3:r2",
+              "text": "Could I gets a lift?"
+            },
+            {
+              "responseId": "en:lesson-22:session-23:intro3:r3",
+              "text": "Could I getting a lift?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7990e7162d6453d6e7d2a0ca47642a1d7ce0d032df7a8ff69c125cad3709b4bd"
+}

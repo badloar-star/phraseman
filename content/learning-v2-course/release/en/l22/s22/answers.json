@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-22:word:go-for-a-walk",
+    "correctText": "go for a walk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i01",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i02",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": "en:lesson-22:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i03",
+    "correctText": "go",
+    "correctResponseId": "en:lesson-22:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:word:go-for-a-swim",
+    "correctText": "go for a swim",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i04",
+    "correctText": "Could I go for a swim?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i05",
+    "correctText": "Could I go for a swim?",
+    "correctResponseId": "en:lesson-22:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i06",
+    "correctText": "go",
+    "correctResponseId": "en:lesson-22:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:word:go-for-a-run",
+    "correctText": "go for a run",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i07",
+    "correctText": "Could I go for a run?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i08",
+    "correctText": "Could I go for a run?",
+    "correctResponseId": "en:lesson-22:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i09",
+    "correctText": "go",
+    "correctResponseId": "en:lesson-22:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:word:do-some-exercise",
+    "correctText": "do some exercise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i10",
+    "correctText": "Could I do some exercise?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i11",
+    "correctText": "Could I do some exercise?",
+    "correctResponseId": "en:lesson-22:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i12",
+    "correctText": "do",
+    "correctResponseId": "en:lesson-22:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i13",
+    "correctText": "en:lesson-22:session-22:i13:p1=go for a walk\nen:lesson-22:session-22:i13:p2=go for a swim\nen:lesson-22:session-22:i13:p3=go for a run\nen:lesson-22:session-22:i13:p4=do some exercise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i16",
+    "correctText": "Could we go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-22:i17",
+    "correctText": "Could we go for a swim?",
+    "correctResponseId": null
+  }
+]

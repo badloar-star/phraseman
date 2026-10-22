@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-23:word:save-a-seat",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — save a seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:word:save-a-seat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — save a seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:word:save-a-seat:audio",
+          "transcript": "save a seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:word:save-a-seat:r1",
+            "targetText": "save a seat",
+            "meaningByLocale": {
+              "ru": "занять место для другого человека.",
+              "uk": "зайняти місце для іншої людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "save a seat",
+          "definitionByLocale": {
+            "ru": "занять место для другого человека.",
+            "uk": "зайняти місце для іншої людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг прийде трохи пізніше. Запитайте: «Можна мені зайняти місце для іншої людини?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг прийде трохи пізніше. Запитайте: «Можна мені зайняти місце для іншої людини?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I save a seat?",
+        "localizedMeaning": {
+          "ru": "Друг придёт чуть позже. Спросите: «Можно мне занять место для другого человека?»",
+          "uk": "Друг прийде трохи пізніше. Запитайте: «Можна мені зайняти місце для іншої людини?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "save",
+          "a",
+          "seat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i02:r1",
+          "text": "Could I save a seat?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i02:r2",
+          "text": "Could you save a seat?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i02:r3",
+          "text": "Could we save a seat?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i02:audio",
+          "transcript": "Could I save a seat?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:i02:r1",
+            "targetText": "Could I save a seat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i02:r2",
+            "targetText": "Could you save a seat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i02:r3",
+            "targetText": "Could we save a seat?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I save a seat?",
+              "uk": "У записі звучить Could I save a seat?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I save a seat?",
+              "uk": "У записі звучить Could I save a seat?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i03:r1",
+          "text": "save"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i03:r2",
+          "text": "saves"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i03:r3",
+          "text": "saving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a seat?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-23:i03:r1",
+            "text": "save"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i03:r2",
+            "text": "saves"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i03:r3",
+            "text": "saving"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:word:change-seats",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — change seats",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:word:change-seats:audio"
+      ],
+      "accessibilityLabel": "Картка слова — change seats",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:word:change-seats:audio",
+          "transcript": "change seats"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:word:change-seats:r1",
+            "targetText": "change seats",
+            "meaningByLocale": {
+              "ru": "поменяться местами.",
+              "uk": "помінятися місцями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "change seats",
+          "definitionByLocale": {
+            "ru": "поменяться местами.",
+            "uk": "помінятися місцями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хочете пересісти на інше місце. Запитайте: «Можна мені помінятися місцями?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете пересісти на інше місце. Запитайте: «Можна мені помінятися місцями?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I change seats?",
+        "localizedMeaning": {
+          "ru": "Вы хотите пересесть на другое место. Спросите: «Можно мне поменяться местами?»",
+          "uk": "Ви хочете пересісти на інше місце. Запитайте: «Можна мені помінятися місцями?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "change",
+          "seats"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i05:r1",
+          "text": "Could I change seats?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i05:r2",
+          "text": "Could you change seats?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i05:r3",
+          "text": "Could we change seats?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i05:audio",
+          "transcript": "Could I change seats?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:i05:r1",
+            "targetText": "Could I change seats?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i05:r2",
+            "targetText": "Could you change seats?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i05:r3",
+            "targetText": "Could we change seats?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I change seats?",
+              "uk": "У записі звучить Could I change seats?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I change seats?",
+              "uk": "У записі звучить Could I change seats?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i06:r1",
+          "text": "change"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i06:r2",
+          "text": "changes"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i06:r3",
+          "text": "changing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ seats?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-23:i06:r1",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i06:r2",
+            "text": "changes"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i06:r3",
+            "text": "changing"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:word:sit-by-the-window",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sit by the window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:word:sit-by-the-window:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sit by the window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:word:sit-by-the-window:audio",
+          "transcript": "sit by the window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:word:sit-by-the-window:r1",
+            "targetText": "sit by the window",
+            "meaningByLocale": {
+              "ru": "сесть у окна.",
+              "uk": "сісти біля вікна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sit by the window",
+          "definitionByLocale": {
+            "ru": "сесть у окна.",
+            "uk": "сісти біля вікна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В автобусі є вільне місце біля вікна. Запитайте: «Можна мені сісти біля вікна?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В автобусі є вільне місце біля вікна. Запитайте: «Можна мені сісти біля вікна?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I sit by the window?",
+        "localizedMeaning": {
+          "ru": "В автобусе есть свободное место у окна. Спросите: «Можно мне сесть у окна?»",
+          "uk": "В автобусі є вільне місце біля вікна. Запитайте: «Можна мені сісти біля вікна?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i08:r1",
+          "text": "Could I sit by the window?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i08:r2",
+          "text": "Could you sit by the window?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i08:r3",
+          "text": "Could we sit by the window?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i08:audio",
+          "transcript": "Could I sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:i08:r1",
+            "targetText": "Could I sit by the window?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i08:r2",
+            "targetText": "Could you sit by the window?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i08:r3",
+            "targetText": "Could we sit by the window?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I sit by the window?",
+              "uk": "У записі звучить Could I sit by the window?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I sit by the window?",
+              "uk": "У записі звучить Could I sit by the window?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i09:r1",
+          "text": "sit"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i09:r2",
+          "text": "sits"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i09:r3",
+          "text": "sitting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ by the window?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-23:i09:r1",
+            "text": "sit"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i09:r2",
+            "text": "sits"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i09:r3",
+            "text": "sitting"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:word:get-a-lift",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — get a lift",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:word:get-a-lift:audio"
+      ],
+      "accessibilityLabel": "Картка слова — get a lift",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:word:get-a-lift:audio",
+          "transcript": "get a lift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:word:get-a-lift:r1",
+            "targetText": "get a lift",
+            "meaningByLocale": {
+              "ru": "доехать с кем-то на машине.",
+              "uk": "доїхати з кимось машиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get a lift",
+          "definitionByLocale": {
+            "ru": "доехать с кем-то на машине.",
+            "uk": "доїхати з кимось машиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Знайомий їде у ваш бік. Запитайте: «Можна мене підвезти?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Знайомий їде у ваш бік. Запитайте: «Можна мене підвезти?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I get a lift?",
+        "localizedMeaning": {
+          "ru": "Знакомый едет в вашу сторону. Спросите: «Можно меня подвезти?»",
+          "uk": "Знайомий їде у ваш бік. Запитайте: «Можна мене підвезти?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "get",
+          "a",
+          "lift"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i11:r1",
+          "text": "Could I get a lift?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i11:r2",
+          "text": "Could you get a lift?"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i11:r3",
+          "text": "Could we get a lift?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i11:audio",
+          "transcript": "Could I get a lift?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-23:i11:r1",
+            "targetText": "Could I get a lift?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i11:r2",
+            "targetText": "Could you get a lift?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i11:r3",
+            "targetText": "Could we get a lift?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I get a lift?",
+              "uk": "У записі звучить Could I get a lift?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I get a lift?",
+              "uk": "У записі звучить Could I get a lift?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-23:i12:r1",
+          "text": "get"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i12:r2",
+          "text": "gets"
+        },
+        {
+          "responseId": "en:lesson-22:session-23:i12:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a lift?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-23:i12:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i12:r2",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i12:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-23:i13:p1",
+            "target": "save a seat",
+            "meaningByLocale": {
+              "ru": "занять место для другого человека",
+              "uk": "зайняти місце для іншої людини"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-23:i13:p2",
+            "target": "change seats",
+            "meaningByLocale": {
+              "ru": "поменяться местами",
+              "uk": "помінятися місцями"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-23:i13:p3",
+            "target": "sit by the window",
+            "meaningByLocale": {
+              "ru": "сесть у окна",
+              "uk": "сісти біля вікна"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-23:i13:p4",
+            "target": "get a lift",
+            "meaningByLocale": {
+              "ru": "доехать с кем-то на машине",
+              "uk": "доїхати з кимось машиною"
+            }
+          }
+        ],
+        "leftColumn": [
+          "save a seat",
+          "change seats",
+          "sit by the window",
+          "get a lift"
+        ],
+        "rightColumn": [
+          "зайняти місце для іншої людини",
+          "помінятися місцями",
+          "сісти біля вікна",
+          "доїхати з кимось машиною"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: її річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: її річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: моя річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: моя річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте дозволу для вашої групи: «Можна нам помінятися місцями?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте дозволу для вашої групи: «Можна нам помінятися місцями?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i16:audio",
+          "transcript": "Could we change seats?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we change seats?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-23:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте дозволу для вашої групи: «Можна нам сісти біля вікна?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте дозволу для вашої групи: «Можна нам сісти біля вікна?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-23:i17:audio",
+          "transcript": "Could we sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we sit by the window?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7c9392b7825b7d9a96363089c75fd84a3191452e9219f6c193d44986909ad0f5"
+}

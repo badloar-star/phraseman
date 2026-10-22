@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-21:word:get-some-fresh-air",
+    "correctText": "get some fresh air",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i01",
+    "correctText": "Could I get some fresh air?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i02",
+    "correctText": "Could I get some fresh air?",
+    "correctResponseId": "en:lesson-22:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i03",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-22:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:word:stretch-my-legs",
+    "correctText": "stretch my legs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i04",
+    "correctText": "Could I stretch my legs?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i05",
+    "correctText": "Could I stretch my legs?",
+    "correctResponseId": "en:lesson-22:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i06",
+    "correctText": "stretch",
+    "correctResponseId": "en:lesson-22:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:word:have-a-lie-down",
+    "correctText": "have a lie-down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i07",
+    "correctText": "Could I have a lie-down?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i08",
+    "correctText": "Could I have a lie-down?",
+    "correctResponseId": "en:lesson-22:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i09",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-22:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:word:take-a-nap",
+    "correctText": "take a nap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i10",
+    "correctText": "Could I take a nap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i11",
+    "correctText": "Could I take a nap?",
+    "correctResponseId": "en:lesson-22:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i12",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-22:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i13",
+    "correctText": "en:lesson-22:session-21:i13:p1=get some fresh air\nen:lesson-22:session-21:i13:p2=stretch my legs\nen:lesson-22:session-21:i13:p3=have a lie-down\nen:lesson-22:session-21:i13:p4=take a nap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i16",
+    "correctText": "Could we stretch our legs?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-21:i17",
+    "correctText": "Could we take a nap?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Успеть на поезд",
+        "uk": "Встигнути на потяг"
+      },
+      "bodyByLocale": {
+        "ru": "Catch a train — успеть на поезд и уехать на нём. Catch the bus уже знакомо; теперь речь о поезде. Это не буквальное «поймать» поезд руками. Чтобы назвать цель действия, используем to + начальную форму: I leave early to catch a train. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Catch a train — встигнути на потяг і поїхати ним. Catch the bus уже знайоме; тепер йдеться про потяг. Це не буквальне «спіймати» потяг руками. Щоб назвати мету дії, використовуємо to + початкову форму: I leave early to catch a train. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-24:intro1:r1",
+              "text": "I leave early to catch a train."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro1:r2",
+              "text": "I leave early for catch a train."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro1:r3",
+              "text": "I leave early of catch a train."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-24:intro1:r1",
+              "text": "I leave early to catch a train."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro1:r2",
+              "text": "I leave early for catch a train."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro1:r3",
+              "text": "I leave early of catch a train."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Такси и короткий путь",
+        "uk": "Таксі й короткий шлях"
+      },
+      "bodyByLocale": {
+        "ru": "Get a taxi — взять или вызвать такси. Take a shortcut — срезать путь, воспользоваться более короткой дорогой. В примерах телефон помогает вызвать машину, а тропинка — сократить дорогу. Чтобы назвать цель действия, используем to + начальную форму: I leave early to catch a train. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Get a taxi — взяти або викликати таксі. Take a shortcut — скоротити шлях, скористатися коротшою дорогою. У прикладах телефон допомагає викликати машину, а стежка — скоротити дорогу. Щоб назвати мету дії, використовуємо to + початкову форму: I leave early to catch a train. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-24:intro2:r1",
+              "text": "I use my phone to get a taxi."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro2:r2",
+              "text": "I use my phone for get a taxi."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro2:r3",
+              "text": "I use my phone of get a taxi."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-24:intro2:r1",
+              "text": "I use my phone to get a taxi."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro2:r2",
+              "text": "I use my phone for get a taxi."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro2:r3",
+              "text": "I use my phone of get a taxi."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перейти дорогу",
+        "uk": "Перейти дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Cross the road — перейти дорогу с одной стороны на другую. Crossing — место для перехода, а cross — действие. В примере вы пользуетесь этим переходом именно для того, чтобы перейти дорогу. Чтобы назвать цель действия, используем to + начальную форму: I leave early to catch a train. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Cross the road — перейти дорогу з одного боку на інший. Crossing — місце для переходу, а cross — дія. У прикладі ви користуєтеся цим переходом саме для того, щоб перейти дорогу. Щоб назвати мету дії, використовуємо to + початкову форму: I leave early to catch a train. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-24:intro3:r1",
+              "text": "I use this crossing to cross the road."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro3:r2",
+              "text": "I use this crossing for cross the road."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro3:r3",
+              "text": "I use this crossing of cross the road."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-24:intro3:r1",
+              "text": "I use this crossing to cross the road."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro3:r2",
+              "text": "I use this crossing for cross the road."
+            },
+            {
+              "responseId": "en:lesson-22:session-24:intro3:r3",
+              "text": "I use this crossing of cross the road."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "18032563a1e5ce7e0cc5995644e936522af8969061be58c4f8467dbd64919547"
+}

@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-22:word:go-for-a-walk",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — go for a walk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:word:go-for-a-walk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — go for a walk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:word:go-for-a-walk:audio",
+          "transcript": "go for a walk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:word:go-for-a-walk:r1",
+            "targetText": "go for a walk",
+            "meaningByLocale": {
+              "ru": "сходить на прогулку.",
+              "uk": "піти на прогулянку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go for a walk",
+          "definitionByLocale": {
+            "ru": "сходить на прогулку.",
+            "uk": "піти на прогулянку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите ненадолго прогуляться. Спросите: «Можно мне сходить на прогулку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите ненадолго прогуляться. Спросите: «Можно мне сходить на прогулку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I go for a walk?",
+        "localizedMeaning": {
+          "ru": "Вы хотите ненадолго прогуляться. Спросите: «Можно мне сходить на прогулку?»",
+          "uk": "Ви хочете ненадовго прогулятися. Запитайте: «Можна мені піти на прогулянку?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i02:r1",
+          "text": "Could I go for a walk?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i02:r2",
+          "text": "Could you go for a walk?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i02:r3",
+          "text": "Could we go for a walk?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i02:audio",
+          "transcript": "Could I go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:i02:r1",
+            "targetText": "Could I go for a walk?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i02:r2",
+            "targetText": "Could you go for a walk?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i02:r3",
+            "targetText": "Could we go for a walk?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go for a walk?",
+              "uk": "У записі звучить Could I go for a walk?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go for a walk?",
+              "uk": "У записі звучить Could I go for a walk?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i03:r1",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i03:r2",
+          "text": "goes"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i03:r3",
+          "text": "going"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ for a walk?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-22:i03:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i03:r2",
+            "text": "goes"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i03:r3",
+            "text": "going"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:word:go-for-a-swim",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — go for a swim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:word:go-for-a-swim:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — go for a swim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:word:go-for-a-swim:audio",
+          "transcript": "go for a swim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:word:go-for-a-swim:r1",
+            "targetText": "go for a swim",
+            "meaningByLocale": {
+              "ru": "пойти поплавать.",
+              "uk": "піти поплавати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go for a swim",
+          "definitionByLocale": {
+            "ru": "пойти поплавать.",
+            "uk": "піти поплавати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы отдыхаете рядом с бассейном. Спросите: «Можно мне пойти поплавать?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы отдыхаете рядом с бассейном. Спросите: «Можно мне пойти поплавать?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I go for a swim?",
+        "localizedMeaning": {
+          "ru": "Вы отдыхаете рядом с бассейном. Спросите: «Можно мне пойти поплавать?»",
+          "uk": "Ви відпочиваєте біля басейну. Запитайте: «Можна мені піти поплавати?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "swim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i05:r1",
+          "text": "Could I go for a swim?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i05:r2",
+          "text": "Could you go for a swim?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i05:r3",
+          "text": "Could we go for a swim?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i05:audio",
+          "transcript": "Could I go for a swim?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:i05:r1",
+            "targetText": "Could I go for a swim?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i05:r2",
+            "targetText": "Could you go for a swim?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i05:r3",
+            "targetText": "Could we go for a swim?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go for a swim?",
+              "uk": "У записі звучить Could I go for a swim?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go for a swim?",
+              "uk": "У записі звучить Could I go for a swim?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i06:r1",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i06:r2",
+          "text": "goes"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i06:r3",
+          "text": "going"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ for a swim?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-22:i06:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i06:r2",
+            "text": "goes"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i06:r3",
+            "text": "going"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:word:go-for-a-run",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — go for a run",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:word:go-for-a-run:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — go for a run",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:word:go-for-a-run:audio",
+          "transcript": "go for a run"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:word:go-for-a-run:r1",
+            "targetText": "go for a run",
+            "meaningByLocale": {
+              "ru": "сходить на пробежку.",
+              "uk": "піти на пробіжку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go for a run",
+          "definitionByLocale": {
+            "ru": "сходить на пробежку.",
+            "uk": "піти на пробіжку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вас есть время до встречи. Спросите: «Можно мне сходить на пробежку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вас есть время до встречи. Спросите: «Можно мне сходить на пробежку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I go for a run?",
+        "localizedMeaning": {
+          "ru": "У вас есть время до встречи. Спросите: «Можно мне сходить на пробежку?»",
+          "uk": "У вас є час до зустрічі. Запитайте: «Можна мені піти на пробіжку?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "run"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i08:r1",
+          "text": "Could I go for a run?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i08:r2",
+          "text": "Could you go for a run?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i08:r3",
+          "text": "Could we go for a run?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i08:audio",
+          "transcript": "Could I go for a run?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:i08:r1",
+            "targetText": "Could I go for a run?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i08:r2",
+            "targetText": "Could you go for a run?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i08:r3",
+            "targetText": "Could we go for a run?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go for a run?",
+              "uk": "У записі звучить Could I go for a run?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go for a run?",
+              "uk": "У записі звучить Could I go for a run?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i09:r1",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i09:r2",
+          "text": "goes"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i09:r3",
+          "text": "going"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ for a run?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-22:i09:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i09:r2",
+            "text": "goes"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i09:r3",
+            "text": "going"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:word:do-some-exercise",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — do some exercise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:word:do-some-exercise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — do some exercise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:word:do-some-exercise:audio",
+          "transcript": "do some exercise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:word:do-some-exercise:r1",
+            "targetText": "do some exercise",
+            "meaningByLocale": {
+              "ru": "немного позаниматься физическими упражнениями.",
+              "uk": "трохи позайматися фізичними вправами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "do some exercise",
+          "definitionByLocale": {
+            "ru": "немного позаниматься физическими упражнениями.",
+            "uk": "трохи позайматися фізичними вправами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотите воспользоваться свободной комнатой для упражнений. Спросите: «Можно мне немного позаниматься физическими упражнениями?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите воспользоваться свободной комнатой для упражнений. Спросите: «Можно мне немного позаниматься физическими упражнениями?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I do some exercise?",
+        "localizedMeaning": {
+          "ru": "Вы хотите воспользоваться свободной комнатой для упражнений. Спросите: «Можно мне немного позаниматься физическими упражнениями?»",
+          "uk": "Ви хочете скористатися вільною кімнатою для вправ. Запитайте: «Можна мені трохи позайматися фізичними вправами?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "do",
+          "some",
+          "exercise"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i11:r1",
+          "text": "Could I do some exercise?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i11:r2",
+          "text": "Could you do some exercise?"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i11:r3",
+          "text": "Could we do some exercise?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i11:audio",
+          "transcript": "Could I do some exercise?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-22:i11:r1",
+            "targetText": "Could I do some exercise?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i11:r2",
+            "targetText": "Could you do some exercise?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i11:r3",
+            "targetText": "Could we do some exercise?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I do some exercise?",
+              "uk": "У записі звучить Could I do some exercise?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I do some exercise?",
+              "uk": "У записі звучить Could I do some exercise?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-22:i12:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i12:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-22:session-22:i12:r3",
+          "text": "doing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ some exercise?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-22:i12:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i12:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i12:r3",
+            "text": "doing"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-22:i13:p1",
+            "target": "go for a walk",
+            "meaningByLocale": {
+              "ru": "сходить на прогулку",
+              "uk": "піти на прогулянку"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-22:i13:p2",
+            "target": "go for a swim",
+            "meaningByLocale": {
+              "ru": "пойти поплавать",
+              "uk": "піти поплавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-22:i13:p3",
+            "target": "go for a run",
+            "meaningByLocale": {
+              "ru": "сходить на пробежку",
+              "uk": "піти на пробіжку"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-22:i13:p4",
+            "target": "do some exercise",
+            "meaningByLocale": {
+              "ru": "немного позаниматься физическими упражнениями",
+              "uk": "трохи позайматися фізичними вправами"
+            }
+          }
+        ],
+        "leftColumn": [
+          "go for a walk",
+          "go for a swim",
+          "go for a run",
+          "do some exercise"
+        ],
+        "rightColumn": [
+          "сходить на прогулку",
+          "пойти поплавать",
+          "сходить на пробежку",
+          "немного позаниматься физическими упражнениями"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: её вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: её вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: моя вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: моя вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите разрешения для вашей группы: «Можно нам сходить на прогулку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите разрешения для вашей группы: «Можно нам сходить на прогулку?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i16:audio",
+          "transcript": "Could we go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we go for a walk?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-22:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите разрешения для вашей группы: «Можно нам пойти поплавать?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите разрешения для вашей группы: «Можно нам пойти поплавать?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-22:i17:audio",
+          "transcript": "Could we go for a swim?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we go for a swim?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0981b1eacc73328e48da5f9fca21584985750b1b6a814d85afe9a8b8f29b6f7f"
+}

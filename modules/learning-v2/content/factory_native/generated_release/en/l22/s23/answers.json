@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-23:word:save-a-seat",
+    "correctText": "save a seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i01",
+    "correctText": "Could I save a seat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i02",
+    "correctText": "Could I save a seat?",
+    "correctResponseId": "en:lesson-22:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i03",
+    "correctText": "save",
+    "correctResponseId": "en:lesson-22:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:word:change-seats",
+    "correctText": "change seats",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i04",
+    "correctText": "Could I change seats?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i05",
+    "correctText": "Could I change seats?",
+    "correctResponseId": "en:lesson-22:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i06",
+    "correctText": "change",
+    "correctResponseId": "en:lesson-22:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:word:sit-by-the-window",
+    "correctText": "sit by the window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i07",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i08",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": "en:lesson-22:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i09",
+    "correctText": "sit",
+    "correctResponseId": "en:lesson-22:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:word:get-a-lift",
+    "correctText": "get a lift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i10",
+    "correctText": "Could I get a lift?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i11",
+    "correctText": "Could I get a lift?",
+    "correctResponseId": "en:lesson-22:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i12",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-22:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i13",
+    "correctText": "en:lesson-22:session-23:i13:p1=save a seat\nen:lesson-22:session-23:i13:p2=change seats\nen:lesson-22:session-23:i13:p3=sit by the window\nen:lesson-22:session-23:i13:p4=get a lift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i16",
+    "correctText": "Could we change seats?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-23:i17",
+    "correctText": "Could we sit by the window?",
+    "correctResponseId": null
+  }
+]

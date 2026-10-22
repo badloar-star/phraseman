@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-24:word:catch-a-train",
+    "correctText": "catch a train",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i01",
+    "correctText": "I leave early to catch a train.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i02",
+    "correctText": "I leave early to catch a train.",
+    "correctResponseId": "en:lesson-22:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:word:get-a-taxi",
+    "correctText": "get a taxi",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i04",
+    "correctText": "I use my phone to get a taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i05",
+    "correctText": "I use my phone to get a taxi.",
+    "correctResponseId": "en:lesson-22:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:word:take-a-shortcut",
+    "correctText": "take a shortcut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i07",
+    "correctText": "I use this path to take a shortcut.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i08",
+    "correctText": "I use this path to take a shortcut.",
+    "correctResponseId": "en:lesson-22:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:word:cross-the-road",
+    "correctText": "cross the road",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i10",
+    "correctText": "I use this crossing to cross the road.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i11",
+    "correctText": "I use this crossing to cross the road.",
+    "correctResponseId": "en:lesson-22:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i13",
+    "correctText": "en:lesson-22:session-24:i13:p1=catch a train\nen:lesson-22:session-24:i13:p2=get a taxi\nen:lesson-22:session-24:i13:p3=take a shortcut\nen:lesson-22:session-24:i13:p4=cross the road",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i16",
+    "correctText": "I need to get a taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-24:i17",
+    "correctText": "I want to take a shortcut.",
+    "correctResponseId": null
+  }
+]

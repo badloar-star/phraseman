@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Свежий воздух",
+        "uk": "Свіже повітря"
+      },
+      "bodyByLocale": {
+        "ru": "Get some fresh air — подышать свежим воздухом, обычно выйти из помещения на улицу. Some здесь означает немного; мы не считаем воздух по отдельным предметам. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Get some fresh air — подихати свіжим повітрям, зазвичай вийти з приміщення надвір. Some тут означає трохи; ми не рахуємо повітря окремими предметами. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-21:intro1:r1",
+              "text": "Could I get some fresh air?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro1:r2",
+              "text": "Could I gets some fresh air?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro1:r3",
+              "text": "Could I getting some fresh air?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-21:intro1:r1",
+              "text": "Could I get some fresh air?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro1:r2",
+              "text": "Could I gets some fresh air?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro1:r3",
+              "text": "Could I getting some fresh air?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Размять ноги или полежать",
+        "uk": "Розім’яти ноги або полежати"
+      },
+      "bodyByLocale": {
+        "ru": "Stretch my legs — размять ноги: немного пройтись после долгого сидения. Для себя говорим my legs, для собеседника — your legs. Have a lie-down — немного полежать и отдохнуть; засыпать необязательно. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Stretch my legs — розім’яти ноги: трохи пройтися після тривалого сидіння. Для себе кажемо my legs, для співрозмовника — your legs. Have a lie-down — трохи полежати й відпочити; засинати необов’язково. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-21:intro2:r1",
+              "text": "Could I stretch my legs?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro2:r2",
+              "text": "Could I stretches my legs?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro2:r3",
+              "text": "Could I stretching my legs?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-21:intro2:r1",
+              "text": "Could I stretch my legs?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro2:r2",
+              "text": "Could I stretches my legs?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro2:r3",
+              "text": "Could I stretching my legs?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Немного поспать",
+        "uk": "Трохи поспати"
+      },
+      "bodyByLocale": {
+        "ru": "Take a nap — вздремнуть, поспать недолго, часто днём. Это отличается от have a lie-down: nap предполагает сон, а lie-down — положение лёжа и отдых. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Take a nap — подрімати, поспати недовго, часто вдень. Це відрізняється від have a lie-down: nap передбачає сон, а lie-down — лежання й відпочинок. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-21:intro3:r1",
+              "text": "Could I take a nap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro3:r2",
+              "text": "Could I takes a nap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro3:r3",
+              "text": "Could I taking a nap?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-21:intro3:r1",
+              "text": "Could I take a nap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro3:r2",
+              "text": "Could I takes a nap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-21:intro3:r3",
+              "text": "Could I taking a nap?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00cccf9443b2fb08f723f9c0434e64093b8cb294e94adfaf20e6121937ee30fa"
+}

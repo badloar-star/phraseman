@@ -8379,4 +8379,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"subject + verb + matching reflexive pronoun","uk":"subject + verb + matching reflexive pronoun"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 21,
+    sourceFingerprint: "bc9f868c4bc18dbf71e1c2cdf22a818e352e316cca3542bb819fd2f1a096f1e4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 22,
+    sourceFingerprint: "252ec869b3113f84de004120b2f55fee0cf1eee0e5bb5c5aa705c44245e4e96f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 23,
+    sourceFingerprint: "54f00c3b56463e470253d3952280003259bc5da5b594e43d3c518f1fb7057bc6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Could I + base verb?","uk":"Could I + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 24,
+    sourceFingerprint: "8302f9a6f5f9c99340eab0f8e42960d5cda9bbdf13f79205be236bf9bb689341",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

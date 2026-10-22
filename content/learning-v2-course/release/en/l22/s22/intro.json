@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прогулка",
+        "uk": "Прогулянка"
+      },
+      "bodyByLocale": {
+        "ru": "Go for a walk — сходить на прогулку. Выходите не для конкретного дела, а чтобы пройтись. В сочетании a walk слово walk — существительное: одна прогулка. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Go for a walk — піти на прогулянку. Виходите не заради конкретної справи, а щоб пройтися. У сполученні a walk слово walk — іменник: одна прогулянка. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-22:intro1:r1",
+              "text": "Could I go for a walk?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro1:r2",
+              "text": "Could I goes for a walk?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro1:r3",
+              "text": "Could I going for a walk?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-22:intro1:r1",
+              "text": "Could I go for a walk?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro1:r2",
+              "text": "Could I goes for a walk?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro1:r3",
+              "text": "Could I going for a walk?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поплавать или пробежаться",
+        "uk": "Поплавати чи пробігтися"
+      },
+      "bodyByLocale": {
+        "ru": "Go for a swim — пойти поплавать, а go for a run — сходить на пробежку. Обе фразы строятся как go for a walk: go for a + название занятия. Здесь swim и run тоже существительные. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Go for a swim — піти поплавати, а go for a run — піти на пробіжку. Обидві фрази будуються як go for a walk: go for a + назва заняття. Тут swim і run теж іменники. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-22:intro2:r1",
+              "text": "Could I go for a swim?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro2:r2",
+              "text": "Could I goes for a swim?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro2:r3",
+              "text": "Could I going for a swim?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-22:intro2:r1",
+              "text": "Could I go for a swim?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro2:r2",
+              "text": "Could I goes for a swim?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro2:r3",
+              "text": "Could I going for a swim?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Физические упражнения",
+        "uk": "Фізичні вправи"
+      },
+      "bodyByLocale": {
+        "ru": "Do some exercise — немного позаниматься физическими упражнениями. Exercise здесь обозначает физическую активность в целом, поэтому some exercise без -s. Это не школьное упражнение из учебника. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Do some exercise — трохи позайматися фізичними вправами. Exercise тут означає фізичну активність загалом, тому some exercise без -s. Це не шкільна вправа з підручника. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-22:intro3:r1",
+              "text": "Could I do some exercise?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro3:r2",
+              "text": "Could I does some exercise?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro3:r3",
+              "text": "Could I doing some exercise?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-22:intro3:r1",
+              "text": "Could I do some exercise?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro3:r2",
+              "text": "Could I does some exercise?"
+            },
+            {
+              "responseId": "en:lesson-22:session-22:intro3:r3",
+              "text": "Could I doing some exercise?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "04f4ee569a53ab55d46387db8f362e7e5992605ac2f28ecebc23d486ad9214ab"
+}

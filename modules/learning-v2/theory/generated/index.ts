@@ -173,6 +173,15 @@ export const LEARNING_V2_THEORY_AVAILABLE: Readonly<Record<string, true>> = {
   "lesson_19.tr": true,
   "lesson_19.uk": true,
   "lesson_19.vi": true,
+  "lesson_20.en": true,
+  "lesson_20.es": true,
+  "lesson_20.id": true,
+  "lesson_20.pl": true,
+  "lesson_20.pt-BR": true,
+  "lesson_20.ru": true,
+  "lesson_20.tr": true,
+  "lesson_20.uk": true,
+  "lesson_20.vi": true,
 };
 
 export function requireLearningV2TheoryJson(key: string): unknown {
@@ -348,6 +357,15 @@ export function requireLearningV2TheoryJson(key: string): unknown {
     case "lesson_19.tr": return require("./lesson_19.tr.json");
     case "lesson_19.uk": return require("./lesson_19.uk.json");
     case "lesson_19.vi": return require("./lesson_19.vi.json");
+    case "lesson_20.en": return require("./lesson_20.en.json");
+    case "lesson_20.es": return require("./lesson_20.es.json");
+    case "lesson_20.id": return require("./lesson_20.id.json");
+    case "lesson_20.pl": return require("./lesson_20.pl.json");
+    case "lesson_20.pt-BR": return require("./lesson_20.pt-BR.json");
+    case "lesson_20.ru": return require("./lesson_20.ru.json");
+    case "lesson_20.tr": return require("./lesson_20.tr.json");
+    case "lesson_20.uk": return require("./lesson_20.uk.json");
+    case "lesson_20.vi": return require("./lesson_20.vi.json");
     default: return null;
   }
 }

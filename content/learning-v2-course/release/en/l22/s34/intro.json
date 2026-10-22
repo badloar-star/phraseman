@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "another + singular noun; other + noun",
+    "uk": "another + singular noun; other + noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Другой рейс",
+        "uk": "Інший рейс"
+      },
+      "bodyByLocale": {
+        "ru": "Train service здесь — железнодорожный рейс, поезд по определённому расписанию. Это сочетание о перевозке, а не об обслуживании пассажира в вагоне. Нужен один другой рейс. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Train service тут — залізничний рейс, потяг за певним розкладом. Це сполучення про перевезення, а не про обслуговування пасажира у вагоні. Потрібен один інший рейс. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-34:intro1:r1",
+              "text": "We need another train service."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro1:r2",
+              "text": "We need other train service."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro1:r3",
+              "text": "We need others train service."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-34:intro1:r1",
+              "text": "We need another train service."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro1:r2",
+              "text": "We need other train service."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro1:r3",
+              "text": "We need others train service."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выход и дата",
+        "uk": "Вихід і дата"
+      },
+      "bodyByLocale": {
+        "ru": "Departure gate — выход на посадку в аэропорту. Travel date — дата поездки. В примере выход поменяли, и вы сообщаете, что пользуетесь другим. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Departure gate — вихід на посадку в аеропорту. Travel date — дата поїздки. У прикладі вихід змінили, і ви повідомляєте, що користуєтеся іншим. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-34:intro2:r1",
+              "text": "We use another departure gate."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro2:r2",
+              "text": "We use other departure gate."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro2:r3",
+              "text": "We use others departure gate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-34:intro2:r1",
+              "text": "We use another departure gate."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro2:r2",
+              "text": "We use other departure gate."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro2:r3",
+              "text": "We use others departure gate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Номер места",
+        "uk": "Номер місця"
+      },
+      "bodyByLocale": {
+        "ru": "Seat number — номер места в билете, например 12A. Это не число свободных мест. В новом билете у вас другой номер места. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Seat number — номер місця у квитку, наприклад 12A. Це не кількість вільних місць. У новому квитку у вас інший номер місця. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-34:intro3:r1",
+              "text": "I have another seat number."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro3:r2",
+              "text": "I have other seat number."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro3:r3",
+              "text": "I have others seat number."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-34:intro3:r1",
+              "text": "I have another seat number."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro3:r2",
+              "text": "I have other seat number."
+            },
+            {
+              "responseId": "en:lesson-22:session-34:intro3:r3",
+              "text": "I have others seat number."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e334798f78cd39866453d6ffd0a2e9dd7ec84c55109ca8299a91dae0aa6eb903"
+}

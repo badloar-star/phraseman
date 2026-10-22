@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "another + singular noun; other + noun",
+    "uk": "another + singular noun; other + noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тип номера",
+        "uk": "Тип номера"
+      },
+      "bodyByLocale": {
+        "ru": "Room type — тип гостиничного номера, например одноместный или семейный. Это категория номера, а не его номер на двери. Вы хотите один другой тип. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Room type — тип готельного номера, наприклад одномісний або сімейний. Це категорія номера, а не його номер на дверях. Ви хочете один інший тип. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-35:intro1:r1",
+              "text": "I want another room type."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro1:r2",
+              "text": "I want other room type."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro1:r3",
+              "text": "I want others room type."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-35:intro1:r1",
+              "text": "I want another room type."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro1:r2",
+              "text": "I want other room type."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro1:r3",
+              "text": "I want others room type."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кровать и цена",
+        "uk": "Ліжко й ціна"
+      },
+      "bodyByLocale": {
+        "ru": "Bed size — размер кровати. Room rate — цена номера, обычно за ночь; при бронировании уточняют, что входит в эту цену. Здесь вам нужна кровать другого размера. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Bed size — розмір ліжка. Room rate — ціна номера, зазвичай за ніч; під час бронювання уточнюють, що входить у цю ціну. Тут вам потрібне ліжко іншого розміру. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-35:intro2:r1",
+              "text": "I need another bed size."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro2:r2",
+              "text": "I need other bed size."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro2:r3",
+              "text": "I need others bed size."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-35:intro2:r1",
+              "text": "I need another bed size."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro2:r2",
+              "text": "I need other bed size."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro2:r3",
+              "text": "I need others bed size."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Время завтрака",
+        "uk": "Час сніданку"
+      },
+      "bodyByLocale": {
+        "ru": "Breakfast time — время завтрака. Например, вашей группе предложили прийти позже, чем остальным: у вас другое время. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Breakfast time — час сніданку. Наприклад, вашій групі запропонували прийти пізніше за інших: у вас інший час. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-35:intro3:r1",
+              "text": "We have another breakfast time."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro3:r2",
+              "text": "We have other breakfast time."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro3:r3",
+              "text": "We have others breakfast time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-35:intro3:r1",
+              "text": "We have another breakfast time."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro3:r2",
+              "text": "We have other breakfast time."
+            },
+            {
+              "responseId": "en:lesson-22:session-35:intro3:r3",
+              "text": "We have others breakfast time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "019b4360daf8491a4ca4a3c34332980792933eefa84d353f815ec591d9cb8a22"
+}

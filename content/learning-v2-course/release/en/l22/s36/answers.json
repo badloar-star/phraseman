@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-36:word:recipe-book",
+    "correctText": "recipe book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i01",
+    "correctText": "I use another recipe book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i02",
+    "correctText": "I use another recipe book.",
+    "correctResponseId": "en:lesson-22:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i03",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:word:main-ingredient",
+    "correctText": "main ingredient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i04",
+    "correctText": "We use another main ingredient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i05",
+    "correctText": "We use another main ingredient.",
+    "correctResponseId": "en:lesson-22:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i06",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:word:meal-plan",
+    "correctText": "meal plan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i07",
+    "correctText": "I need another meal plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i08",
+    "correctText": "I need another meal plan.",
+    "correctResponseId": "en:lesson-22:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i09",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:word:shopping-budget",
+    "correctText": "shopping budget",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i10",
+    "correctText": "We agree on another shopping budget.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i11",
+    "correctText": "We agree on another shopping budget.",
+    "correctResponseId": "en:lesson-22:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i12",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i13",
+    "correctText": "en:lesson-22:session-36:i13:p1=recipe book\nen:lesson-22:session-36:i13:p2=main ingredient\nen:lesson-22:session-36:i13:p3=meal plan\nen:lesson-22:session-36:i13:p4=shopping budget",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i14",
+    "correctText": "We have other recipe books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i15",
+    "correctText": "We use other main ingredients.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i16",
+    "correctText": "I want another main ingredient.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-36:i17",
+    "correctText": "Could we agree on another shopping budget?",
+    "correctResponseId": null
+  }
+]

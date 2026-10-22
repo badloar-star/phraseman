@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-35:word:room-type",
+    "correctText": "room type",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i01",
+    "correctText": "I want another room type.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i02",
+    "correctText": "I want another room type.",
+    "correctResponseId": "en:lesson-22:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i03",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:word:bed-size",
+    "correctText": "bed size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i04",
+    "correctText": "I need another bed size.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i05",
+    "correctText": "I need another bed size.",
+    "correctResponseId": "en:lesson-22:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i06",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:word:room-rate",
+    "correctText": "room rate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i07",
+    "correctText": "They offer another room rate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i08",
+    "correctText": "They offer another room rate.",
+    "correctResponseId": "en:lesson-22:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i09",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:word:breakfast-time",
+    "correctText": "breakfast time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i10",
+    "correctText": "We have another breakfast time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i11",
+    "correctText": "We have another breakfast time.",
+    "correctResponseId": "en:lesson-22:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i12",
+    "correctText": "another",
+    "correctResponseId": "en:lesson-22:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i13",
+    "correctText": "en:lesson-22:session-35:i13:p1=room type\nen:lesson-22:session-35:i13:p2=bed size\nen:lesson-22:session-35:i13:p3=room rate\nen:lesson-22:session-35:i13:p4=breakfast time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i14",
+    "correctText": "We have other room types.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i15",
+    "correctText": "They offer other room rates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i16",
+    "correctText": "We need another bed size.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-35:i17",
+    "correctText": "They have another breakfast time.",
+    "correctResponseId": null
+  }
+]

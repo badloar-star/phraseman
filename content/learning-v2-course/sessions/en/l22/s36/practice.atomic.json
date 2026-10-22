@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-36:word:recipe-book",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recipe book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:recipe-book:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recipe book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:recipe-book:audio",
+            "transcript": "recipe book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:recipe-book:r1",
+              "targetText": "recipe book",
+              "meaningByLocale": {
+                "ru": "книга рецептов.",
+                "uk": "книга рецептів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recipe book",
+            "definitionByLocale": {
+              "ru": "книга рецептов.",
+              "uk": "книга рецептів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я использую другую книгу рецептов»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я использую другую книгу рецептов»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use another recipe book.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я использую другую книгу рецептов»",
+            "uk": "Скажіть: «Я використовую іншу книгу рецептів»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "another",
+            "recipe",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i02:r1",
+            "text": "I use another recipe book."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i02:r2",
+            "text": "You use another recipe book."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i02:r3",
+            "text": "People use another recipe book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i02:audio",
+            "transcript": "I use another recipe book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i02:r1",
+              "targetText": "I use another recipe book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i02:r2",
+              "targetText": "You use another recipe book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i02:r3",
+              "targetText": "People use another recipe book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use another recipe book.",
+                "uk": "У записі звучить I use another recipe book."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use another recipe book.",
+                "uk": "У записі звучить I use another recipe book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь об одном другом варианте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i03:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i03:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i03:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь об одном другом варианте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "I use ___ recipe book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i03:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i03:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i03:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Речь об одном другом варианте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:word:main-ingredient",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — main ingredient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:main-ingredient:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — main ingredient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:main-ingredient:audio",
+            "transcript": "main ingredient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:main-ingredient:r1",
+              "targetText": "main ingredient",
+              "meaningByLocale": {
+                "ru": "основной ингредиент.",
+                "uk": "основний інгредієнт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "main ingredient",
+            "definitionByLocale": {
+              "ru": "основной ингредиент.",
+              "uk": "основний інгредієнт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы используем другой основной ингредиент»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы используем другой основной ингредиент»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We use another main ingredient.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы используем другой основной ингредиент»",
+            "uk": "Скажіть: «Ми використовуємо інший основний інгредієнт»"
+          },
+          "orderedTokens": [
+            "We",
+            "use",
+            "another",
+            "main",
+            "ingredient"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i05:r1",
+            "text": "We use another main ingredient."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i05:r2",
+            "text": "You use another main ingredient."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i05:r3",
+            "text": "People use another main ingredient."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i05:audio",
+            "transcript": "We use another main ingredient."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i05:r1",
+              "targetText": "We use another main ingredient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i05:r2",
+              "targetText": "You use another main ingredient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i05:r3",
+              "targetText": "People use another main ingredient.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We use another main ingredient.",
+                "uk": "У записі звучить We use another main ingredient."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We use another main ingredient.",
+                "uk": "У записі звучить We use another main ingredient."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь об одном другом варианте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i06:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i06:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i06:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь об одном другом варианте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "We use ___ main ingredient.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i06:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i06:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i06:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Речь об одном другом варианте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:word:meal-plan",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — meal plan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:meal-plan:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — meal plan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:meal-plan:audio",
+            "transcript": "meal plan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:meal-plan:r1",
+              "targetText": "meal plan",
+              "meaningByLocale": {
+                "ru": "план питания.",
+                "uk": "план харчування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meal plan",
+            "definitionByLocale": {
+              "ru": "план питания.",
+              "uk": "план харчування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мне нужен другой план питания»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мне нужен другой план питания»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need another meal plan.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужен другой план питания»",
+            "uk": "Скажіть: «Мені потрібен інший план харчування»"
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "another",
+            "meal",
+            "plan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i08:r1",
+            "text": "I need another meal plan."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i08:r2",
+            "text": "You need another meal plan."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i08:r3",
+            "text": "People need another meal plan."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i08:audio",
+            "transcript": "I need another meal plan."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i08:r1",
+              "targetText": "I need another meal plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i08:r2",
+              "targetText": "You need another meal plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i08:r3",
+              "targetText": "People need another meal plan.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need another meal plan.",
+                "uk": "У записі звучить I need another meal plan."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need another meal plan.",
+                "uk": "У записі звучить I need another meal plan."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь об одном другом варианте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i09:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i09:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i09:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь об одном другом варианте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "I need ___ meal plan.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i09:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i09:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i09:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Речь об одном другом варианте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:word:shopping-budget",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shopping budget",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:shopping-budget:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shopping budget",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:shopping-budget:audio",
+            "transcript": "shopping budget"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:shopping-budget:r1",
+              "targetText": "shopping budget",
+              "meaningByLocale": {
+                "ru": "бюджет на покупки.",
+                "uk": "бюджет на покупки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopping budget",
+            "definitionByLocale": {
+              "ru": "бюджет на покупки.",
+              "uk": "бюджет на покупки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы согласовываем другой бюджет на покупки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы согласовываем другой бюджет на покупки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We agree on another shopping budget.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы согласовываем другой бюджет на покупки»",
+            "uk": "Скажіть: «Ми узгоджуємо інший бюджет на покупки»"
+          },
+          "orderedTokens": [
+            "We",
+            "agree",
+            "on",
+            "another",
+            "shopping",
+            "budget"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i11:r1",
+            "text": "We agree on another shopping budget."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i11:r2",
+            "text": "You agree on another shopping budget."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i11:r3",
+            "text": "People agree on another shopping budget."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i11:audio",
+            "transcript": "We agree on another shopping budget."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i11:r1",
+              "targetText": "We agree on another shopping budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i11:r2",
+              "targetText": "You agree on another shopping budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i11:r3",
+              "targetText": "People agree on another shopping budget.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We agree on another shopping budget.",
+                "uk": "У записі звучить We agree on another shopping budget."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We agree on another shopping budget.",
+                "uk": "У записі звучить We agree on another shopping budget."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь об одном другом варианте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i12:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i12:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i12:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь об одном другом варианте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "We agree on ___ shopping budget.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i12:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i12:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i12:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Речь об одном другом варианте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь об одном другом варианте.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-36:i13:p1",
+              "target": "recipe book",
+              "meaningByLocale": {
+                "ru": "книга рецептов",
+                "uk": "книга рецептів"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-36:i13:p2",
+              "target": "main ingredient",
+              "meaningByLocale": {
+                "ru": "основной ингредиент",
+                "uk": "основний інгредієнт"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-36:i13:p3",
+              "target": "meal plan",
+              "meaningByLocale": {
+                "ru": "план питания",
+                "uk": "план харчування"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-36:i13:p4",
+              "target": "shopping budget",
+              "meaningByLocale": {
+                "ru": "бюджет на покупки",
+                "uk": "бюджет на покупки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recipe book",
+            "main ingredient",
+            "meal plan",
+            "shopping budget"
+          ],
+          "rightColumn": [
+            "книга рецептов",
+            "основной ингредиент",
+            "план питания",
+            "бюджет на покупки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «У нас есть другие книги рецептов»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Скажите: «У нас есть другие книги рецептов»",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i14:audio",
+            "transcript": "We have other recipe books."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have other recipe books.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "other",
+            "recipe",
+            "books"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы используем другие основные ингредиенты»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы используем другие основные ингредиенты»",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i15:audio",
+            "transcript": "We use other main ingredients."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We use other main ingredients.",
+          "orderedTokens": [
+            "We",
+            "use",
+            "other",
+            "main",
+            "ingredients"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я хочу другой основной ингредиент»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я хочу другой основной ингредиент»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i16:audio",
+            "transcript": "I want another main ingredient."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want another main ingredient.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Можем мы согласовать другой бюджет на покупки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Можем мы согласовать другой бюджет на покупки?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i17:audio",
+            "transcript": "Could we agree on another shopping budget?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we agree on another shopping budget?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-36:word:recipe-book",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recipe book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:recipe-book:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recipe book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:recipe-book:audio",
+            "transcript": "recipe book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:recipe-book:r1",
+              "targetText": "recipe book",
+              "meaningByLocale": {
+                "ru": "книга рецептов.",
+                "uk": "книга рецептів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recipe book",
+            "definitionByLocale": {
+              "ru": "книга рецептов.",
+              "uk": "книга рецептів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я використовую іншу книгу рецептів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я використовую іншу книгу рецептів»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use another recipe book.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я использую другую книгу рецептов»",
+            "uk": "Скажіть: «Я використовую іншу книгу рецептів»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "another",
+            "recipe",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i02:r1",
+            "text": "I use another recipe book."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i02:r2",
+            "text": "You use another recipe book."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i02:r3",
+            "text": "People use another recipe book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i02:audio",
+            "transcript": "I use another recipe book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i02:r1",
+              "targetText": "I use another recipe book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i02:r2",
+              "targetText": "You use another recipe book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i02:r3",
+              "targetText": "People use another recipe book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use another recipe book.",
+                "uk": "У записі звучить I use another recipe book."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use another recipe book.",
+                "uk": "У записі звучить I use another recipe book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ідеться про один інший варіант.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i03:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i03:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i03:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ідеться про один інший варіант.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "I use ___ recipe book.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i03:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i03:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i03:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Ідеться про один інший варіант.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:word:main-ingredient",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — main ingredient",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:main-ingredient:audio"
+        ],
+        "accessibilityLabel": "Картка слова — main ingredient",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:main-ingredient:audio",
+            "transcript": "main ingredient"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:main-ingredient:r1",
+              "targetText": "main ingredient",
+              "meaningByLocale": {
+                "ru": "основной ингредиент.",
+                "uk": "основний інгредієнт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "main ingredient",
+            "definitionByLocale": {
+              "ru": "основной ингредиент.",
+              "uk": "основний інгредієнт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми використовуємо інший основний інгредієнт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми використовуємо інший основний інгредієнт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We use another main ingredient.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы используем другой основной ингредиент»",
+            "uk": "Скажіть: «Ми використовуємо інший основний інгредієнт»"
+          },
+          "orderedTokens": [
+            "We",
+            "use",
+            "another",
+            "main",
+            "ingredient"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i05:r1",
+            "text": "We use another main ingredient."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i05:r2",
+            "text": "You use another main ingredient."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i05:r3",
+            "text": "People use another main ingredient."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i05:audio",
+            "transcript": "We use another main ingredient."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i05:r1",
+              "targetText": "We use another main ingredient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i05:r2",
+              "targetText": "You use another main ingredient.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i05:r3",
+              "targetText": "People use another main ingredient.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We use another main ingredient.",
+                "uk": "У записі звучить We use another main ingredient."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We use another main ingredient.",
+                "uk": "У записі звучить We use another main ingredient."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ідеться про один інший варіант.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i06:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i06:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i06:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ідеться про один інший варіант.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "We use ___ main ingredient.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i06:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i06:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i06:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Ідеться про один інший варіант.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:word:meal-plan",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — meal plan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:meal-plan:audio"
+        ],
+        "accessibilityLabel": "Картка слова — meal plan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:meal-plan:audio",
+            "transcript": "meal plan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:meal-plan:r1",
+              "targetText": "meal plan",
+              "meaningByLocale": {
+                "ru": "план питания.",
+                "uk": "план харчування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meal plan",
+            "definitionByLocale": {
+              "ru": "план питания.",
+              "uk": "план харчування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Мені потрібен інший план харчування»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Мені потрібен інший план харчування»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need another meal plan.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мне нужен другой план питания»",
+            "uk": "Скажіть: «Мені потрібен інший план харчування»"
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "another",
+            "meal",
+            "plan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i08:r1",
+            "text": "I need another meal plan."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i08:r2",
+            "text": "You need another meal plan."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i08:r3",
+            "text": "People need another meal plan."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i08:audio",
+            "transcript": "I need another meal plan."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i08:r1",
+              "targetText": "I need another meal plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i08:r2",
+              "targetText": "You need another meal plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i08:r3",
+              "targetText": "People need another meal plan.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need another meal plan.",
+                "uk": "У записі звучить I need another meal plan."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need another meal plan.",
+                "uk": "У записі звучить I need another meal plan."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ідеться про один інший варіант.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i09:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i09:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i09:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ідеться про один інший варіант.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "I need ___ meal plan.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i09:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i09:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i09:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Ідеться про один інший варіант.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:word:shopping-budget",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shopping budget",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:word:shopping-budget:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shopping budget",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:word:shopping-budget:audio",
+            "transcript": "shopping budget"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:word:shopping-budget:r1",
+              "targetText": "shopping budget",
+              "meaningByLocale": {
+                "ru": "бюджет на покупки.",
+                "uk": "бюджет на покупки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopping budget",
+            "definitionByLocale": {
+              "ru": "бюджет на покупки.",
+              "uk": "бюджет на покупки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми узгоджуємо інший бюджет на покупки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми узгоджуємо інший бюджет на покупки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We agree on another shopping budget.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы согласовываем другой бюджет на покупки»",
+            "uk": "Скажіть: «Ми узгоджуємо інший бюджет на покупки»"
+          },
+          "orderedTokens": [
+            "We",
+            "agree",
+            "on",
+            "another",
+            "shopping",
+            "budget"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i11:r1",
+            "text": "We agree on another shopping budget."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i11:r2",
+            "text": "You agree on another shopping budget."
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i11:r3",
+            "text": "People agree on another shopping budget."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i11:audio",
+            "transcript": "We agree on another shopping budget."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-36:i11:r1",
+              "targetText": "We agree on another shopping budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i11:r2",
+              "targetText": "You agree on another shopping budget.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i11:r3",
+              "targetText": "People agree on another shopping budget.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We agree on another shopping budget.",
+                "uk": "У записі звучить We agree on another shopping budget."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We agree on another shopping budget.",
+                "uk": "У записі звучить We agree on another shopping budget."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ідеться про один інший варіант.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-36:i12:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i12:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-36:i12:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ідеться про один інший варіант.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь об одном другом варианте.",
+            "uk": "Ідеться про один інший варіант."
+          },
+          "gappedTargetPhrase": "We agree on ___ shopping budget.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-36:i12:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i12:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i12:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Ідеться про один інший варіант.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Ідеться про один інший варіант.",
+              "feedbackByLocale": {
+                "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+                "uk": "Тут один новий варіант: another + іменник в однині."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-36:i13:p1",
+              "target": "recipe book",
+              "meaningByLocale": {
+                "ru": "книга рецептов",
+                "uk": "книга рецептів"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-36:i13:p2",
+              "target": "main ingredient",
+              "meaningByLocale": {
+                "ru": "основной ингредиент",
+                "uk": "основний інгредієнт"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-36:i13:p3",
+              "target": "meal plan",
+              "meaningByLocale": {
+                "ru": "план питания",
+                "uk": "план харчування"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-36:i13:p4",
+              "target": "shopping budget",
+              "meaningByLocale": {
+                "ru": "бюджет на покупки",
+                "uk": "бюджет на покупки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recipe book",
+            "main ingredient",
+            "meal plan",
+            "shopping budget"
+          ],
+          "rightColumn": [
+            "книга рецептів",
+            "основний інгредієнт",
+            "план харчування",
+            "бюджет на покупки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «У нас є інші книги рецептів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «У нас є інші книги рецептів»",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i14:audio",
+            "transcript": "We have other recipe books."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have other recipe books.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "other",
+            "recipe",
+            "books"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми використовуємо інші основні інгредієнти»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми використовуємо інші основні інгредієнти»",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i15:audio",
+            "transcript": "We use other main ingredients."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We use other main ingredients.",
+          "orderedTokens": [
+            "We",
+            "use",
+            "other",
+            "main",
+            "ingredients"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я хочу інший основний інгредієнт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я хочу інший основний інгредієнт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i16:audio",
+            "transcript": "I want another main ingredient."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want another main ingredient.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Можемо ми узгодити інший бюджет на покупки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Можемо ми узгодити інший бюджет на покупки?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-36:i17:audio",
+            "transcript": "Could we agree on another shopping budget?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we agree on another shopping budget?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-36:word:recipe-book",
+      "correctText": "recipe book",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i01",
+      "correctText": "I use another recipe book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i02",
+      "correctText": "I use another recipe book.",
+      "correctResponseId": "en:lesson-22:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i03",
+      "correctText": "another",
+      "correctResponseId": "en:lesson-22:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:word:main-ingredient",
+      "correctText": "main ingredient",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i04",
+      "correctText": "We use another main ingredient.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i05",
+      "correctText": "We use another main ingredient.",
+      "correctResponseId": "en:lesson-22:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i06",
+      "correctText": "another",
+      "correctResponseId": "en:lesson-22:session-36:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:word:meal-plan",
+      "correctText": "meal plan",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i07",
+      "correctText": "I need another meal plan.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i08",
+      "correctText": "I need another meal plan.",
+      "correctResponseId": "en:lesson-22:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i09",
+      "correctText": "another",
+      "correctResponseId": "en:lesson-22:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:word:shopping-budget",
+      "correctText": "shopping budget",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i10",
+      "correctText": "We agree on another shopping budget.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i11",
+      "correctText": "We agree on another shopping budget.",
+      "correctResponseId": "en:lesson-22:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i12",
+      "correctText": "another",
+      "correctResponseId": "en:lesson-22:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i14",
+      "correctText": "We have other recipe books.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i15",
+      "correctText": "We use other main ingredients.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i16",
+      "correctText": "I want another main ingredient.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-36:i17",
+      "correctText": "Could we agree on another shopping budget?",
+      "correctResponseId": null
+    }
+  ]
+}

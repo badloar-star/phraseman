@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "another + singular noun; other + noun",
+    "uk": "another + singular noun; other + noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга рецептов",
+        "uk": "Книга рецептів"
+      },
+      "bodyByLocale": {
+        "ru": "Recipe book — книга рецептов. Recipe — рецепт одного блюда, а recipe book содержит много рецептов. Вы берёте другую книгу вместо первой. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Recipe book — книга рецептів. Recipe — рецепт однієї страви, а recipe book містить багато рецептів. Ви берете іншу книгу замість першої. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-36:intro1:r1",
+              "text": "I use another recipe book."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro1:r2",
+              "text": "I use other recipe book."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro1:r3",
+              "text": "I use others recipe book."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-36:intro1:r1",
+              "text": "I use another recipe book."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro1:r2",
+              "text": "I use other recipe book."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro1:r3",
+              "text": "I use others recipe book."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ингредиент и план",
+        "uk": "Інгредієнт і план"
+      },
+      "bodyByLocale": {
+        "ru": "Main ingredient — основной ингредиент блюда. Meal plan — план того, что вы будете есть, например на неделю; это не обязательно диета. В примере вы готовите другой вариант блюда с другим основным ингредиентом. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Main ingredient — основний інгредієнт страви. Meal plan — план того, що ви їстимете, наприклад на тиждень; це не обов’язково дієта. У прикладі ви готуєте інший варіант страви з іншим основним інгредієнтом. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-36:intro2:r1",
+              "text": "We use another main ingredient."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro2:r2",
+              "text": "We use other main ingredient."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro2:r3",
+              "text": "We use others main ingredient."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-36:intro2:r1",
+              "text": "We use another main ingredient."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro2:r2",
+              "text": "We use other main ingredient."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro2:r3",
+              "text": "We use others main ingredient."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бюджет на покупки",
+        "uk": "Бюджет на покупки"
+      },
+      "bodyByLocale": {
+        "ru": "Shopping budget — сумма, которую планируют потратить на покупки. Agree on вам уже знакомо: согласовать что-либо. Теперь вы согласовываете другой бюджет. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии речь идёт о другом варианте вместо прежнего.",
+        "uk": "Shopping budget — сума, яку планують витратити на покупки. Agree on вам уже знайоме: узгодити щось. Тепер ви узгоджуєте інший бюджет. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті йдеться про інший варіант замість попереднього."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-36:intro3:r1",
+              "text": "We agree on another shopping budget."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro3:r2",
+              "text": "We agree on other shopping budget."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro3:r3",
+              "text": "We agree on others shopping budget."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-36:intro3:r1",
+              "text": "We agree on another shopping budget."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro3:r2",
+              "text": "We agree on other shopping budget."
+            },
+            {
+              "responseId": "en:lesson-22:session-36:intro3:r3",
+              "text": "We agree on others shopping budget."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b94ef9fceccd4d5389a3189e01800fc90a40fd8bd7816d21bf6d0bb10400e3f1"
+}

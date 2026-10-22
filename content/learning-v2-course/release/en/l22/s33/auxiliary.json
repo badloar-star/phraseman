@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-22:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-22:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-33:intro1:r2": {
+          "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+          "uk": "Тут один новий варіант: another + іменник в однині."
+        },
+        "en:lesson-22:session-33:intro1:r3": {
+          "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+          "uk": "Тут один новий варіант: another + іменник в однині."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-33:intro2:r2": {
+          "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+          "uk": "Тут один новий варіант: another + іменник в однині."
+        },
+        "en:lesson-22:session-33:intro2:r3": {
+          "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+          "uk": "Тут один новий варіант: another + іменник в однині."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-33:intro3:r2": {
+          "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+          "uk": "Тут один новий варіант: another + іменник в однині."
+        },
+        "en:lesson-22:session-33:intro3:r3": {
+          "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+          "uk": "Тут один новий варіант: another + іменник в однині."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2d0fcdd1502988aaec9e752fd4df16f4c8f0b9bf91205a64821380a1ed078e44"
+}

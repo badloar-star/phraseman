@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "another + singular noun; other + noun",
+    "uk": "another + singular noun; other + noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Другой способ оплаты",
+        "uk": "Інший спосіб оплати"
+      },
+      "bodyByLocale": {
+        "ru": "Payment method — способ оплаты, например наличными или картой. Слова знакомы по отдельности; здесь учимся называть способ оплаты целиком. Вам нужен один другой способ. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии вы просите другой вариант вместо предложенного.",
+        "uk": "Payment method — спосіб оплати, наприклад готівкою або карткою. Слова знайомі окремо; тут вчимося називати спосіб оплати цілком. Вам потрібен один інший спосіб. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті ви просите інший варіант замість запропонованого."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-33:intro1:r1",
+              "text": "I need another payment method."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro1:r2",
+              "text": "I need other payment method."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro1:r3",
+              "text": "I need others payment method."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-33:intro1:r1",
+              "text": "I need another payment method."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro1:r2",
+              "text": "I need other payment method."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro1:r3",
+              "text": "I need others payment method."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другое место",
+        "uk": "Інше місце"
+      },
+      "bodyByLocale": {
+        "ru": "Meeting place — место встречи. Delivery date — дата доставки. Вы не добавляете ещё одну встречу: вы просите заменить предложенное место на другое. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии вы просите другой вариант вместо предложенного.",
+        "uk": "Meeting place — місце зустрічі. Delivery date — дата доставки. Ви не додаєте ще одну зустріч: ви просите замінити запропоноване місце іншим. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті ви просите інший варіант замість запропонованого."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-33:intro2:r1",
+              "text": "I need another meeting place."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro2:r2",
+              "text": "I need other meeting place."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro2:r3",
+              "text": "I need others meeting place."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-33:intro2:r1",
+              "text": "I need another meeting place."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro2:r2",
+              "text": "I need other meeting place."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro2:r3",
+              "text": "I need others meeting place."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другое время",
+        "uk": "Інший час"
+      },
+      "bodyByLocale": {
+        "ru": "Collection time — время, когда вы забираете заказ. Это не delivery date: при delivery заказ привозят вам, при collection вы забираете его. Сейчас нужно одно другое время. Another ставим перед исчисляемым существительным в единственном числе: another date — другая или ещё одна дата. Other используем перед множественным числом без another: other dates — другие даты. В этом занятии вы просите другой вариант вместо предложенного.",
+        "uk": "Collection time — час, коли ви забираєте замовлення. Це не delivery date: при delivery замовлення привозять вам, при collection ви забираєте його. Зараз потрібен один інший час. Another ставимо перед злічуваним іменником в однині: another date — інша або ще одна дата. Other використовуємо перед множиною без another: other dates — інші дати. У цьому занятті ви просите інший варіант замість запропонованого."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-33:intro3:r1",
+              "text": "I need another collection time."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro3:r2",
+              "text": "I need other collection time."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro3:r3",
+              "text": "I need others collection time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-33:intro3:r1",
+              "text": "I need another collection time."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro3:r2",
+              "text": "I need other collection time."
+            },
+            {
+              "responseId": "en:lesson-22:session-33:intro3:r3",
+              "text": "I need others collection time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0e76c6808b94136dce2c00489452fe57e943ec4b3022ae03f18fac94c60fc687"
+}

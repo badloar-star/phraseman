@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-35:word:room-type",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — room type",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:word:room-type:audio"
+      ],
+      "accessibilityLabel": "Картка слова — room type",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:word:room-type:audio",
+          "transcript": "room type"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:word:room-type:r1",
+            "targetText": "room type",
+            "meaningByLocale": {
+              "ru": "тип номера.",
+              "uk": "тип номера."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room type",
+          "definitionByLocale": {
+            "ru": "тип номера.",
+            "uk": "тип номера."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я хочу інший тип номера»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я хочу інший тип номера»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want another room type.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я хочу другой тип номера»",
+          "uk": "Скажіть: «Я хочу інший тип номера»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "another",
+          "room",
+          "type"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i02:r1",
+          "text": "I want another room type."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i02:r2",
+          "text": "You want another room type."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i02:r3",
+          "text": "People want another room type."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i02:audio",
+          "transcript": "I want another room type."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:i02:r1",
+            "targetText": "I want another room type.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i02:r2",
+            "targetText": "You want another room type.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i02:r3",
+            "targetText": "People want another room type.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want another room type.",
+              "uk": "У записі звучить I want another room type."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want another room type.",
+              "uk": "У записі звучить I want another room type."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про один інший варіант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i03:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i03:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i03:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про один інший варіант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном другом варианте.",
+          "uk": "Ідеться про один інший варіант."
+        },
+        "gappedTargetPhrase": "I want ___ room type.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-35:i03:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i03:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i03:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Ідеться про один інший варіант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:word:bed-size",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bed size",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:word:bed-size:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bed size",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:word:bed-size:audio",
+          "transcript": "bed size"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:word:bed-size:r1",
+            "targetText": "bed size",
+            "meaningByLocale": {
+              "ru": "размер кровати.",
+              "uk": "розмір ліжка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bed size",
+          "definitionByLocale": {
+            "ru": "размер кровати.",
+            "uk": "розмір ліжка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Мені потрібен інший розмір ліжка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Мені потрібен інший розмір ліжка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need another bed size.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужен другой размер кровати»",
+          "uk": "Скажіть: «Мені потрібен інший розмір ліжка»"
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "bed",
+          "size"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i05:r1",
+          "text": "I need another bed size."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i05:r2",
+          "text": "You need another bed size."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i05:r3",
+          "text": "People need another bed size."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i05:audio",
+          "transcript": "I need another bed size."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:i05:r1",
+            "targetText": "I need another bed size.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i05:r2",
+            "targetText": "You need another bed size.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i05:r3",
+            "targetText": "People need another bed size.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another bed size.",
+              "uk": "У записі звучить I need another bed size."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another bed size.",
+              "uk": "У записі звучить I need another bed size."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про один інший варіант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i06:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i06:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i06:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про один інший варіант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном другом варианте.",
+          "uk": "Ідеться про один інший варіант."
+        },
+        "gappedTargetPhrase": "I need ___ bed size.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-35:i06:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i06:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i06:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Ідеться про один інший варіант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i06:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:word:room-rate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — room rate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:word:room-rate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — room rate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:word:room-rate:audio",
+          "transcript": "room rate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:word:room-rate:r1",
+            "targetText": "room rate",
+            "meaningByLocale": {
+              "ru": "стоимость номера за ночь.",
+              "uk": "вартість номера за ніч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room rate",
+          "definitionByLocale": {
+            "ru": "стоимость номера за ночь.",
+            "uk": "вартість номера за ніч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вони пропонують іншу вартість номера за ніч»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Вони пропонують іншу вартість номера за ніч»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They offer another room rate.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Они предлагают другую стоимость номера за ночь»",
+          "uk": "Скажіть: «Вони пропонують іншу вартість номера за ніч»"
+        },
+        "orderedTokens": [
+          "They",
+          "offer",
+          "another",
+          "room",
+          "rate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i08:r1",
+          "text": "They offer another room rate."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i08:r2",
+          "text": "You offer another room rate."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i08:r3",
+          "text": "People offer another room rate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i08:audio",
+          "transcript": "They offer another room rate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:i08:r1",
+            "targetText": "They offer another room rate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i08:r2",
+            "targetText": "You offer another room rate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i08:r3",
+            "targetText": "People offer another room rate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They offer another room rate.",
+              "uk": "У записі звучить They offer another room rate."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They offer another room rate.",
+              "uk": "У записі звучить They offer another room rate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про один інший варіант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i09:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i09:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i09:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про один інший варіант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном другом варианте.",
+          "uk": "Ідеться про один інший варіант."
+        },
+        "gappedTargetPhrase": "They offer ___ room rate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-35:i09:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i09:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i09:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Ідеться про один інший варіант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:word:breakfast-time",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — breakfast time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:word:breakfast-time:audio"
+      ],
+      "accessibilityLabel": "Картка слова — breakfast time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:word:breakfast-time:audio",
+          "transcript": "breakfast time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:word:breakfast-time:r1",
+            "targetText": "breakfast time",
+            "meaningByLocale": {
+              "ru": "время завтрака.",
+              "uk": "час сніданку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breakfast time",
+          "definitionByLocale": {
+            "ru": "время завтрака.",
+            "uk": "час сніданку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У нас інший час сніданку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У нас інший час сніданку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have another breakfast time.",
+        "localizedMeaning": {
+          "ru": "Скажите: «У нас другое время завтрака»",
+          "uk": "Скажіть: «У нас інший час сніданку»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "another",
+          "breakfast",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i11:r1",
+          "text": "We have another breakfast time."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i11:r2",
+          "text": "You have another breakfast time."
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i11:r3",
+          "text": "People have another breakfast time."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i11:audio",
+          "transcript": "We have another breakfast time."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-35:i11:r1",
+            "targetText": "We have another breakfast time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i11:r2",
+            "targetText": "You have another breakfast time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i11:r3",
+            "targetText": "People have another breakfast time.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have another breakfast time.",
+              "uk": "У записі звучить We have another breakfast time."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have another breakfast time.",
+              "uk": "У записі звучить We have another breakfast time."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про один інший варіант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-35:i12:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i12:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-35:i12:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про один інший варіант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном другом варианте.",
+          "uk": "Ідеться про один інший варіант."
+        },
+        "gappedTargetPhrase": "We have ___ breakfast time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-35:i12:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i12:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i12:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Ідеться про один інший варіант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-35:i12:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-35:i12:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про один інший варіант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-35:i13:p1",
+            "target": "room type",
+            "meaningByLocale": {
+              "ru": "тип номера",
+              "uk": "тип номера"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-35:i13:p2",
+            "target": "bed size",
+            "meaningByLocale": {
+              "ru": "размер кровати",
+              "uk": "розмір ліжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-35:i13:p3",
+            "target": "room rate",
+            "meaningByLocale": {
+              "ru": "стоимость номера за ночь",
+              "uk": "вартість номера за ніч"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-35:i13:p4",
+            "target": "breakfast time",
+            "meaningByLocale": {
+              "ru": "время завтрака",
+              "uk": "час сніданку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "room type",
+          "bed size",
+          "room rate",
+          "breakfast time"
+        ],
+        "rightColumn": [
+          "тип номера",
+          "розмір ліжка",
+          "вартість номера за ніч",
+          "час сніданку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У нас є інші типи номерів»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «У нас є інші типи номерів»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i14:audio",
+          "transcript": "We have other room types."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have other room types.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "other",
+          "room",
+          "types"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вони пропонують інші ціни на номери»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вони пропонують інші ціни на номери»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i15:audio",
+          "transcript": "They offer other room rates."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They offer other room rates.",
+        "orderedTokens": [
+          "They",
+          "offer",
+          "other",
+          "room",
+          "rates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Нам потрібен інший розмір ліжка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Нам потрібен інший розмір ліжка»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i16:audio",
+          "transcript": "We need another bed size."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need another bed size.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-35:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «У них інший час сніданку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «У них інший час сніданку»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-35:i17:audio",
+          "transcript": "They have another breakfast time."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They have another breakfast time.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dc7ffd8ff01d03064aefc2809448f241b871b9a4c17d2be9d136db398d0336b7"
+}

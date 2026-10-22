@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-33:word:payment-method",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — payment method",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:word:payment-method:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — payment method",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:word:payment-method:audio",
+          "transcript": "payment method"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:word:payment-method:r1",
+            "targetText": "payment method",
+            "meaningByLocale": {
+              "ru": "способ оплаты.",
+              "uk": "спосіб оплати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "payment method",
+          "definitionByLocale": {
+            "ru": "способ оплаты.",
+            "uk": "спосіб оплати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мне нужен другой способ оплаты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мне нужен другой способ оплаты»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need another payment method.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужен другой способ оплаты»",
+          "uk": "Скажіть: «Мені потрібен інший спосіб оплати»"
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "payment",
+          "method"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i02:r1",
+          "text": "I need another payment method."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i02:r2",
+          "text": "We need another payment method."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i02:r3",
+          "text": "You need another payment method."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i02:audio",
+          "transcript": "I need another payment method."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:i02:r1",
+            "targetText": "I need another payment method.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i02:r2",
+            "targetText": "We need another payment method.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i02:r3",
+            "targetText": "You need another payment method.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another payment method.",
+              "uk": "У записі звучить I need another payment method."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another payment method.",
+              "uk": "У записі звучить I need another payment method."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите один другой вариант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i03:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i03:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i03:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите один другой вариант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите один другой вариант.",
+          "uk": "Попросіть один інший варіант."
+        },
+        "gappedTargetPhrase": "I need ___ payment method.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-33:i03:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i03:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i03:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Попросите один другой вариант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:word:meeting-place",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — meeting place",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:word:meeting-place:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — meeting place",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:word:meeting-place:audio",
+          "transcript": "meeting place"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:word:meeting-place:r1",
+            "targetText": "meeting place",
+            "meaningByLocale": {
+              "ru": "место встречи.",
+              "uk": "місце зустрічі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "meeting place",
+          "definitionByLocale": {
+            "ru": "место встречи.",
+            "uk": "місце зустрічі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мне нужно другое место встречи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мне нужно другое место встречи»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need another meeting place.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно другое место встречи»",
+          "uk": "Скажіть: «Мені потрібне інше місце зустрічі»"
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "meeting",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i05:r1",
+          "text": "I need another meeting place."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i05:r2",
+          "text": "We need another meeting place."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i05:r3",
+          "text": "You need another meeting place."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i05:audio",
+          "transcript": "I need another meeting place."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:i05:r1",
+            "targetText": "I need another meeting place.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i05:r2",
+            "targetText": "We need another meeting place.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i05:r3",
+            "targetText": "You need another meeting place.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another meeting place.",
+              "uk": "У записі звучить I need another meeting place."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another meeting place.",
+              "uk": "У записі звучить I need another meeting place."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите один другой вариант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i06:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i06:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i06:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите один другой вариант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите один другой вариант.",
+          "uk": "Попросіть один інший варіант."
+        },
+        "gappedTargetPhrase": "I need ___ meeting place.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-33:i06:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i06:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i06:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Попросите один другой вариант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:word:delivery-date",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — delivery date",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:word:delivery-date:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — delivery date",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:word:delivery-date:audio",
+          "transcript": "delivery date"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:word:delivery-date:r1",
+            "targetText": "delivery date",
+            "meaningByLocale": {
+              "ru": "дата доставки.",
+              "uk": "дата доставки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delivery date",
+          "definitionByLocale": {
+            "ru": "дата доставки.",
+            "uk": "дата доставки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мне нужна другая дата доставки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мне нужна другая дата доставки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need another delivery date.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужна другая дата доставки»",
+          "uk": "Скажіть: «Мені потрібна інша дата доставки»"
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "delivery",
+          "date"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i08:r1",
+          "text": "I need another delivery date."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i08:r2",
+          "text": "We need another delivery date."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i08:r3",
+          "text": "You need another delivery date."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i08:audio",
+          "transcript": "I need another delivery date."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:i08:r1",
+            "targetText": "I need another delivery date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i08:r2",
+            "targetText": "We need another delivery date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i08:r3",
+            "targetText": "You need another delivery date.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another delivery date.",
+              "uk": "У записі звучить I need another delivery date."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another delivery date.",
+              "uk": "У записі звучить I need another delivery date."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите один другой вариант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i09:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i09:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i09:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите один другой вариант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите один другой вариант.",
+          "uk": "Попросіть один інший варіант."
+        },
+        "gappedTargetPhrase": "I need ___ delivery date.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-33:i09:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i09:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i09:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Попросите один другой вариант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:word:collection-time",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — collection time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:word:collection-time:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — collection time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:word:collection-time:audio",
+          "transcript": "collection time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:word:collection-time:r1",
+            "targetText": "collection time",
+            "meaningByLocale": {
+              "ru": "время получения.",
+              "uk": "час отримання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "collection time",
+          "definitionByLocale": {
+            "ru": "время получения.",
+            "uk": "час отримання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мне нужно другое время получения»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мне нужно другое время получения»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need another collection time.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мне нужно другое время получения»",
+          "uk": "Скажіть: «Мені потрібен інший час отримання»"
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "collection",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i11:r1",
+          "text": "I need another collection time."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i11:r2",
+          "text": "We need another collection time."
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i11:r3",
+          "text": "You need another collection time."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i11:audio",
+          "transcript": "I need another collection time."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-33:i11:r1",
+            "targetText": "I need another collection time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i11:r2",
+            "targetText": "We need another collection time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i11:r3",
+            "targetText": "You need another collection time.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another collection time.",
+              "uk": "У записі звучить I need another collection time."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need another collection time.",
+              "uk": "У записі звучить I need another collection time."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Попросите один другой вариант.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-33:i12:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i12:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-22:session-33:i12:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите один другой вариант.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Попросите один другой вариант.",
+          "uk": "Попросіть один інший варіант."
+        },
+        "gappedTargetPhrase": "I need ___ collection time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-33:i12:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i12:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i12:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Попросите один другой вариант.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Попросите один другой вариант.",
+            "feedbackByLocale": {
+              "ru": "Здесь один новый вариант: another + существительное в единственном числе.",
+              "uk": "Тут один новий варіант: another + іменник в однині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-33:i13:p1",
+            "target": "payment method",
+            "meaningByLocale": {
+              "ru": "способ оплаты",
+              "uk": "спосіб оплати"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-33:i13:p2",
+            "target": "meeting place",
+            "meaningByLocale": {
+              "ru": "место встречи",
+              "uk": "місце зустрічі"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-33:i13:p3",
+            "target": "delivery date",
+            "meaningByLocale": {
+              "ru": "дата доставки",
+              "uk": "дата доставки"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-33:i13:p4",
+            "target": "collection time",
+            "meaningByLocale": {
+              "ru": "время получения",
+              "uk": "час отримання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "payment method",
+          "meeting place",
+          "delivery date",
+          "collection time"
+        ],
+        "rightColumn": [
+          "способ оплаты",
+          "место встречи",
+          "дата доставки",
+          "время получения"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «У нас есть другие способы оплаты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите: «У нас есть другие способы оплаты»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i14:audio",
+          "transcript": "We have other payment methods."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have other payment methods.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "other",
+          "payment",
+          "methods"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «У нас есть другие даты доставки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите: «У нас есть другие даты доставки»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i15:audio",
+          "transcript": "We have other delivery dates."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have other delivery dates.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "other",
+          "delivery",
+          "dates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Можно мне использовать другое место встречи?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Можно мне использовать другое место встречи?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i16:audio",
+          "transcript": "Could I use another meeting place?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I use another meeting place?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «У нас есть другое время получения»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «У нас есть другое время получения»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-33:i17:audio",
+          "transcript": "We have another collection time."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have another collection time.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d22020831ee3b4e75c5b3740bea40e91d592ada0411b994cbb0d5e13ba6c0bbc"
+}

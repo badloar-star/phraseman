@@ -8463,4 +8463,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 33,
+    sourceFingerprint: "229239681cce19c465a88b0943b7fc2a2954067c36955d312bbb2bfcd829c5f6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"another + singular noun; other + noun","uk":"another + singular noun; other + noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 34,
+    sourceFingerprint: "46aedf03c2d04d199a6032d7a4469b57d773f80b17ff89c31231a0d9185ce1be",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"another + singular noun; other + noun","uk":"another + singular noun; other + noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 35,
+    sourceFingerprint: "3d905f6fff1cabb26ecfbf69184129889e2c8e7e794307755132c4ab68d7a3ac",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"another + singular noun; other + noun","uk":"another + singular noun; other + noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 36,
+    sourceFingerprint: "b1382fa9a9ebb56ba1e80d773663bf2553eb3cdfa4fefdb382a80ef6e27ac839",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"another + singular noun; other + noun","uk":"another + singular noun; other + noun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

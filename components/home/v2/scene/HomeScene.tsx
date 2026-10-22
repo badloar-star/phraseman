@@ -258,6 +258,7 @@ const s = StyleSheet.create({
   root: { marginHorizontal: -V2.homePad },
   top: { position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 12, paddingHorizontal: 20, gap: 10 },
   offline: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: 'rgba(255,255,255,0.16)' },
-  offlineText: { flex: 1, color: '#FFFFFF', fontSize: 14, lineHeight: 19 },
+  // зачем (D145): строка «Нет сети» — шкала 13/17
+  offlineText: { flex: 1, color: '#FFFFFF', fontSize: 13, lineHeight: 17 },
   offlineBold: { fontWeight: '700' },
 });

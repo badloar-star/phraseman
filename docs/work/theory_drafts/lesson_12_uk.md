@@ -113,7 +113,7 @@
 ## 06 · Особливі слова: chose, went, saw, had
 
 **body**
-Деякі часті дії в минулому змінюються повністю, без -ed. Їх запам'ятовують парами: choose → chose, go → went, see → saw, have → had, rise → rose, hide → hid, find → found.
+Деякі часті дії в минулому змінюються повністю, без -ed. Їх запам'ятовують парами: choose → chose, go → went, see → saw, have → had, rise → rose («підніматися»), hide → hid («ховати»), find → found («знаходити»).
 
 **examples** 🔊
 | en | uk | hi |

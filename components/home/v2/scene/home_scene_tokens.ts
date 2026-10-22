@@ -75,6 +75,14 @@ export type HomeSceneStageTokens = HomeSceneTokens & Readonly<{
   scrim: boolean;
   /** Шов: контраст низа сцены с карточкой под ней (эталон: в тёмном ≥ 1,34). */
   seam: number;
+  /**
+   * Кольца «Сегодня» (урок, диалог, карточки) — три светлых оттенка акцента ТЕКУЩЕЙ темы, ≥ 3:1 на верху и низу сцены.
+   * зачем (закон владельца 22.10: «ЦВЕТА СТРОГО ОТТЕНКИ ТЕКУЩЕЙ ТЕМЫ»; RC эталона #FF6B5B/#3DD6A3/#55A8FF красил кольца мимо темы).
+   */
+  todayRing: readonly [string, string, string];
+  /** Дорожка колец и отметка «выполнено»: тот же оттенок темы, дорожка — полупрозрачная. */
+  todayRingTrack: string;
+  todayRingDone: string;
 }>;
 
 /** Доля акцента над фоном в тёмном оформлении (эталон: «30 % акцента поверх фона»). */
@@ -138,6 +146,19 @@ export function homeSceneFromOklch(L: number, C: number, H: number): Rgb {
 /** Угли вечера снизу слева (эталон .a-ember: oklch(.66 .19 28 / .55)). */
 const EMBER = rgbaOf(homeSceneFromOklch(0.66, 0.19, 28), 0.55);
 
+/**
+ * Три светлых оттенка акцента темы для колец «Сегодня»: разница — светлотой и небольшим сдвигом оттенка (±18°), чтобы кольца читались порознь.
+ * Светлота 0,94 / 0,86 / 0,78 держит ≥ 3:1 на верху сцены (контракт tests/home_today_ring_tokens).
+ */
+function todayRingTokens(accent: Rgb): Readonly<{ todayRing: readonly [string, string, string]; todayRingTrack: string; todayRingDone: string }> {
+  const [, C, H] = homeSceneOklchOf(accent);
+  const chroma = Math.max(0.06, Math.min(C, 0.14));
+  const ring1 = hexOf(homeSceneFromOklch(0.94, chroma * 0.7, H));
+  const ring2 = hexOf(homeSceneFromOklch(0.86, chroma, (H + 18) % 360));
+  const ring3 = hexOf(homeSceneFromOklch(0.78, chroma, (H + 342) % 360));
+  return { todayRing: [ring1, ring2, ring3], todayRingTrack: rgbaOf(homeSceneFromOklch(0.94, chroma * 0.7, H), 0.22), todayRingDone: ring1 };
+}
+
 export type HomeSceneThemeInput = Readonly<{
   themeId: string;
   appearance: 'dark' | 'light';
@@ -159,6 +180,7 @@ export function homeSceneThemeTokens(input: HomeSceneThemeInput, evening = false
       eveningGlow,
       scrim,
       seam,
+      ...todayRingTokens(accent),
     });
   };
   if (input.appearance === 'dark') {

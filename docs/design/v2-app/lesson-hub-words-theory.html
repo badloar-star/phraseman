@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Слова и Теория в хабе урока — три варианта</title>
+<style>
+/* ───────── PhraseMan 2.0 · хаб урока: куда деть «Слова» и «Теория» (владелец 22.10 через координатора) ─────────
+   «НЕ ПОДХОДИТ МЕСТО И КНОПКИ» — две голые текстовые кнопки «Слова» / «Теория» под строкой «Эпизод 12, задание 3 из 20»; закон хаба: «всё максимально эргономично, все кнопки в одном стиле».
+   Три варианта: 1 — пять плиток одного стиля (3 + 2); 2 — плитки рядом с «Продолжить» в обложке; 3 — две плитки под подписью выбранного эпизода. Основа — хаб урока (lesson-hub-final.html, dc8422e36):
+   обложка 392, три плитки «Все главы / Все уроки / Классический курс», карусель карточек (номер и звёзды), подпись. Цвета — токены темы, высота плиток 58 (в обложке 50), без обводок. Классы lh-, телефон .ph 390 × 844. */
+
+/* ───────── PhraseMan 2.0 · хаб урока (решение владельца 22.10 через координатора) ─────────
+   «Выбор главы мне нравится, выбор эпизода тоже … нравится и тот стиль, который уже в приложении — оставить: хаб, когда заходишь — сразу карусель карточек
+   (только все в оттенках темы, без глупых текстур). Именно там всё должно быть удобнее … максимально понятно, где „Классический курс“, где „Все уроки“, где „Все главы“».
+   ВЕРХ = текущий Сезон из приложения 1:1 (SeasonCourseView): «Урок N ⌄», обложка 392, кикер, название, главная «Продолжить эпизод N» + строка с полосой, чипы «Слова» / «Теория»,
+   строка главы, карусель карточек 172 × 230 с перспективой (сдвиг 116, глубина 80, поворот 26°, дальние .5), подпись эпизода. Веер «Вся глава» и чипы глав убраны; вместо них три явные кнопки
+   одного стиля прямо под обложкой: «Все главы», «Все уроки», «Классический курс». Они открывают полноэкранные списки поверх шапки вкладки с общей кнопкой «назад» (ScreenBackButton: круг 48, слева 20, сверху у безопасного края).
+   Цвета — только оттенки текущей темы (.ph.dk / .ph.lt), текстур нет, обводок нет. Данные — урок 2; названия глав и арки уроков из каталога курса, названия эпизодов в два слова
+   и ключевые фразы на карточках — образцы автора макета. Классы lh-, телефон .ph 390 × 844. */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.lh-page { max-width: 1800px; margin: 0 auto; padding: 32px 24px 80px; }
+.lh-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.lh-lead { color: #A9A9AE; font-size: 16px; line-height: 24px; max-width: 1000px; margin: 0 0 12px; }
+.lh-bar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 0; background: #101113; }
+.lh-seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.lh-seg button { font: 600 16px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.lh-seg button.on { background: #ECECEE; color: #111214; }
+.lh-frames { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 20px; }
+.lh-col { display: flex; flex-direction: column; gap: 10px; width: 390px; flex: none; }
+.lh-frame { font-size: 13px; line-height: 19px; font-weight: 600; color: #A9A9AE; min-height: 38px; }
+.lh-frame b { color: #ECECEE; font-size: 16px; }
+
+/* ── телефон и токены тем ── */
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 21px; }
+.ph.dk { --bg: #0E171C; --card: #172329; --ctl: #213139; --tx: #FFFFFF; --sec: #9BB0B9; --acc: oklch(.80 .09 205); --sh: 0 8px 20px rgba(0, 0, 0, .28); --h: 205; --cc: .085;
+  --st-top: oklch(.36 .08 214); --st-bot: oklch(.15 .05 222); --st-glow: oklch(.55 .10 200 / .85); --tab: rgba(23, 35, 41, .94); --tabtx: #9BB0B9; }
+.ph.lt { --bg: #F2F1F6; --card: #FFFFFF; --ctl: #E6E7F4; --tx: #16141D; --sec: #6A6777; --acc: oklch(.48 .17 285); --sh: 0 8px 20px rgba(40, 30, 80, .10); --h: 285; --cc: .15;
+  --st-top: oklch(.47 .14 282); --st-bot: oklch(.28 .10 276); --st-glow: oklch(.66 .13 300 / .9); --tab: rgba(255, 255, 255, .94); --tabtx: #6A6777; }
+.ph * { min-width: 0; }
+
+.lh-sb { position: absolute; z-index: 9; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 34px; font-size: 13px; font-weight: 700; }
+.lh-sb.on-scene { color: #fff; }
+.lh-sb .sys { display: inline-flex; gap: 6px; align-items: center; }
+.lh-sb .sys i { display: block; background: currentColor; border-radius: 2px; }
+.lh-ind { position: absolute; z-index: 9; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+.lh-tb { position: absolute; z-index: 8; left: 12px; right: 12px; bottom: 14px; height: 64px; border-radius: 32px; background: var(--tab); display: flex; justify-content: space-around; align-items: center; box-shadow: 0 12px 28px rgba(0, 0, 0, .30); }
+.lh-tb div { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 13px; font-weight: 600; color: var(--tabtx); }
+.lh-tb div .io { font-size: 22px; }
+.lh-tb div.on { color: var(--tx); }
+
+/* ── обложка (SeasonCourseView hero, 392) ── */
+.lh-hero { position: absolute; left: 0; right: 0; top: 0; height: 392px; border-radius: 0 0 32px 32px; overflow: hidden; color: #fff;
+  background: radial-gradient(70% 55% at 85% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%); }
+.lh-hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 320px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .36)); }
+.lh-top { position: absolute; z-index: 5; top: 52px; left: 20px; right: 20px; display: flex; align-items: center; justify-content: space-between; }
+.lh-pill { height: 40px; padding: 0 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; background: rgba(255, 255, 255, .16); transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+.ph.lt .lh-pill { background: rgba(0, 0, 0, .18); }
+.lh-pill:active { transform: scale(.97); }
+.lh-pill .io { font-size: 13px; }
+.lh-en { display: inline-flex; gap: 4px; align-items: center; font-size: 16px; font-weight: 700; }
+.lh-body { position: absolute; z-index: 5; left: 20px; right: 20px; bottom: 44px; }
+.lh-kick { font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .86); }
+.lh-ttl { margin-top: 4px; font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.lh-primary { margin-top: 16px; height: 50px; border-radius: 25px; background: #fff; color: #121318; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+.lh-primary:active { transform: scale(.97); }
+.lh-primary .io { font-size: 18px; }
+.lh-resume { margin-top: 10px; display: flex; align-items: center; gap: 10px; font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .86); }
+.lh-resume .bar { flex: 0 0 64px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.lh-resume .bar i { display: block; height: 100%; background: #fff; }
+.lh-chips { margin-top: 12px; display: flex; gap: 8px; }
+.lh-chip { height: 34px; padding: 0 12px; border-radius: 17px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; background: rgba(255, 255, 255, .16); }
+.lh-chip .io { font-size: 16px; }
+
+/* ── три явные кнопки под обложкой (новое) ── */
+.lh-trio { position: absolute; z-index: 4; left: 16px; right: 16px; top: 404px; display: flex; gap: 8px; }
+.lh-nav { flex: 1; height: 58px; border-radius: 20px; background: var(--ctl); color: var(--tx); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; font-size: 13px; line-height: 15px; font-weight: 700;
+  transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+.lh-nav:active { transform: scale(.97); }
+.lh-nav .io { font-size: 20px; color: var(--acc); }
+
+/* ── строка главы и карусель ── */
+.lh-sec { position: absolute; z-index: 4; left: 20px; right: 20px; top: 474px; display: flex; align-items: flex-end; gap: 8px; }
+.lh-sec .l { flex: 1; }
+.lh-sec .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.lh-sec .t { font-size: 21px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.lh-sec .r { padding-bottom: 3px; font-size: 16px; color: var(--sec); font-variant-numeric: tabular-nums; }
+.lh-flow { position: absolute; z-index: 3; left: 0; right: 0; top: 520px; height: 244px; perspective: 900px; }
+.lh-c { position: absolute; left: 50%; top: 12px; width: 172px; height: 230px; margin-left: -86px; border-radius: 24px; overflow: hidden; color: #fff; padding: 12px 12px 14px; display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: 0 22px 40px -20px rgba(0, 0, 0, .65); transform: translateX(var(--x)) translateZ(var(--z)) rotateY(var(--r)); opacity: var(--o);
+  background: radial-gradient(60% 45% at 90% 0%, oklch(.6 var(--cc) var(--h) / .55), transparent 70%), linear-gradient(160deg, oklch(var(--l1) var(--cc) var(--h)) 0%, oklch(var(--l2) var(--cc) var(--h)) 100%); }
+.lh-c .mk { align-self: flex-start; height: 26px; padding: 0 9px; border-radius: 13px; background: rgba(0, 0, 0, .24); display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; }
+.lh-c .mk .io { font-size: 12px; }
+.lh-c .ph-t { font-size: 22px; line-height: 26px; font-weight: 700; letter-spacing: -.3px; }
+.lh-c .pg { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .26); }
+.lh-c .pg i { display: block; height: 100%; background: #fff; }
+.lh-c.mute::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .36); }
+
+/* ── полноэкранные списки поверх шапки вкладки (общая кнопка «назад») ── */
+.lh-back { position: absolute; z-index: 6; left: 20px; top: 50px; width: 48px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 22px; transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+.lh-back:active { transform: scale(.94); }
+.lh-hd { position: absolute; z-index: 5; top: 50px; left: 80px; right: 20px; min-height: 48px; display: flex; flex-direction: column; justify-content: center; }
+.lh-hd .k { font-size: 13px; line-height: 17px; color: var(--sec); }
+.lh-hd .t { font-size: 20px; line-height: 25px; font-weight: 800; letter-spacing: -.3px; }
+.lh-list { position: absolute; left: 16px; right: 16px; top: 118px; display: flex; flex-direction: column; gap: 8px; }
+.lh-row { display: flex; align-items: center; gap: 14px; background: var(--card); border-radius: 22px; padding: 0 18px 0 14px; box-shadow: var(--sh); }
+.lh-row .bd { width: 40px; height: 40px; border-radius: 20px; background: var(--ctl); display: flex; align-items: center; justify-content: center; flex: none; font-size: 16px; font-weight: 800; color: var(--sec); }
+.lh-row .bd .io { font-size: 18px; }
+.lh-row .tx { flex: 1; }
+.lh-row .nm { font-size: 16px; line-height: 19px; font-weight: 600; }
+.lh-row .sb { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; }
+.lh-row .rt { flex: none; color: var(--sec); font-size: 18px; display: flex; align-items: center; gap: 6px; }
+.lh-row.done .bd { color: var(--acc); }
+.lh-row.cur { background: color-mix(in oklab, var(--acc) 14%, var(--card)); }
+.lh-row.cur .bd { background: var(--acc); color: var(--card); }
+.lh-row.cur .rt { color: var(--acc); }
+.lh-row.cur .rt.t { font-size: 13px; font-weight: 700; }
+.lh-row.lock { box-shadow: none; }
+.lh-row.lock .nm, .lh-row.lock .bd { opacity: .55; }
+.lh-chs .lh-row { height: 68px; }
+.lh-eps .lh-row { height: 58px; }
+.lh-eps .lh-list { gap: 6px; top: 122px; }
+.lh-ls .lh-row { height: 66px; }
+.lh-ls .lh-list { gap: 6px; }
+.lh-sep { margin: 8px 4px 0; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.lh-dock { position: absolute; z-index: 7; left: 16px; right: 16px; bottom: 34px; }
+.lh-main { height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+.lh-main:active { transform: scale(.97); }
+.lh-main .io { font-size: 18px; }
+
+/* ───────── блок «Название на карточке» и звёзды (владелец 22.10: «НАЗВАНИЯ МНЕ НЕ НРАВИТСЯ, КАК РАСПОЛОЖЕНЫ!», «оценка пройденного урока — звёздочки», «карточки разных оттенков темы») ───────── */
+.lh-h2 { margin: 56px 0 6px; font-size: 24px; line-height: 30px; letter-spacing: -.3px; }
+.lh-pick { font: 600 16px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: #1C1D21; border: 0; border-radius: 18px; padding: 12px 20px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+.lh-pick b { font-weight: 800; font-size: 22px; }
+.lh-pick.on { background: #ECECEE; color: #111214; }
+.lh-sum { color: #A9A9AE; font-size: 13px; margin-left: 12px; }
+.lh-sum b { color: #ECECEE; }
+.lh-cap { font-size: 13px; line-height: 19px; color: #A9A9AE; min-height: 96px; }
+.lh-cap b { color: #ECECEE; }
+.lh-sc { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+.lh-scin { position: absolute; inset: 0; transform: translateY(-262px); }
+.lh-b2 .lh-c { background: radial-gradient(60% 45% at 90% 0%, oklch(.6 calc(var(--cc) * var(--cm)) var(--h) / .45), transparent 70%), linear-gradient(160deg, oklch(var(--l1) calc(var(--cc) * var(--cm)) var(--h)) 0%, oklch(var(--l2) calc(var(--cc) * var(--cm)) var(--h)) 100%); }
+.lh-c .stars { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 4px; }
+.lh-c .stars .io, .lh-row .stars .io { font-size: 18px; }
+.lh-c .stars .off, .lh-row .stars .off { opacity: .38; }
+.lh-c.v1 .nmc { position: absolute; left: 16px; right: 16px; top: 50%; transform: translateY(-50%); text-align: center; font-size: 22px; line-height: 26px; font-weight: 800; letter-spacing: -.3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.lh-c.v2 { padding: 16px; }
+.lh-c.v2 .nml { margin-top: 12px; font-size: 22px; line-height: 26px; font-weight: 800; letter-spacing: -.3px; text-align: left; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.lh-c.v2 .stars { left: 16px; right: auto; justify-content: flex-start; }
+.lh-c.v3 .bn { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-58%); text-align: center; font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -1px; }
+.lh-c.side .nmc, .lh-c.side .nml { opacity: 0; }
+.lh-c.sl .stars { justify-content: flex-start; padding-left: 16px; }
+.lh-b2 .lh-c .mk { background: rgba(0, 0, 0, .28); }
+.lh-capt { position: absolute; left: 20px; right: 20px; top: 770px; text-align: center; }
+.lh-capt .k { font-size: 16px; line-height: 21px; color: var(--sec); }
+.lh-capt .t { margin-top: 2px; font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; }
+.lh-row .stars { display: flex; gap: 2px; color: var(--acc); flex: none; }
+
+.wt-bar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 12px 0; background: #101113; }
+.wt-var { margin-top: 44px; }
+.wt-cap { font-size: 13px; line-height: 19px; color: #A9A9AE; max-width: 1040px; margin: 10px 0 0; }
+.wt-cap b { color: #ECECEE; }
+.lh-page { max-width: 1400px; }
+/* плитки «Слова» / «Теория» в обложке: стеклянные, в тоне обложки */
+.wt-prow { margin-top: 16px; display: flex; gap: 8px; }
+.wt-prow .lh-primary { margin-top: 0; flex: 1; }
+.wt-gt { flex: none; width: 70px; height: 50px; border-radius: 18px; background: rgba(255, 255, 255, .16); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 13px; line-height: 15px; font-weight: 700; transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
+.ph.lt .wt-gt { background: rgba(0, 0, 0, .18); }
+.wt-gt:active { transform: scale(.97); }
+.wt-gt .io { font-size: 18px; }
+.wt-prow .lh-primary { padding: 0 12px; font-size: 16px; }
+.lh-trio2 { position: absolute; z-index: 4; left: 16px; right: 16px; display: flex; gap: 8px; }
+.wt-tiles2 { position: absolute; z-index: 4; left: 16px; right: 16px; display: flex; gap: 8px; }
+.wt-tiles2 .lh-nav { flex: 1; }
+.lh-scin { transform: translateY(var(--sc, -262px)); }
+</style>
+</head>
+<body>
+<div class="lh-page">
+  <h1>«Слова» и «Теория» в хабе урока — три варианта</h1>
+  <p class="lh-lead">Владелец 22.10: две голые текстовые кнопки «Слова» и «Теория» под строкой «Эпизод 12, задание 3 из 20» — «не подходит место и кнопки»; закон хаба — «максимально эргономично, все кнопки в одном стиле». Во всех вариантах голого текста больше нет: «Слова» и «Теория» — плитки того же семейства, что «Все главы / Все уроки / Классический курс» (заливка «контрол» темы, радиус 20, значок + подпись, без обводок). Два кадра у каждого варианта: первый экран и прокрученный вниз (карусель, подпись). Тёмная тема по умолчанию, светлая — переключателем.</p>
+  <div class="wt-bar">
+    <div class="lh-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div>
+    <div class="lh-sum" id="wt-sum"></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script>
+window.__ICODE = {"star":"f595","star-outline":"f599","chevron-back":"f229","chevron-forward":"f23b","chevron-down":"f232","book-outline":"f1a6","albums-outline":"f110","play":"f4c6","checkmark":"f21d","lock-closed":"f3c7","list-outline":"f3bf","layers-outline":"f3b0","school-outline":"f55d","flash":"f316","home":"f382","book":"f1a5","play-circle-outline":"f4ce","people":"f49f","settings-outline":"f56c","apps-outline":"f122"};
+(() => {
+  const CODE = window.__ICODE;
+  const io = (n, st = '') => `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${CODE[n]};</i>`;
+  let AP = 'dk';
+  const CH2 = 'Кафе, разглядываем людей';
+  const NM = { 9: 'Столик рядом', 10: 'Шумное кафе', 11: 'Про третьего', 12: 'Через столик', 13: 'Ловушка вопроса' };
+  const STARS = { 9: 3, 10: 2 };
+  const sb = (scene) => `<div class="lh-sb${scene ? ' on-scene' : ''}"><span>18:10</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="lh-ind"></div>`;
+  const tabs = `<div class="lh-tb">${[['home', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people', 'Сообщество'], ['settings-outline', 'Настройки']].map(([i, t]) => `<div class="${t === 'Обучение' ? 'on' : ''}">${io(i)}${t}</div>`).join('')}</div>`;
+  const nav = (icon, label, value) => `<div class="lh-nav">${value ? `<div style="display:flex;align-items:center;gap:6px;height:20px">${io(icon)}<span style="font-size:13px;line-height:17px;font-weight:700">${value}</span></div>` : io(icon)}${label}</div>`;
+  const T = { chapters: ['list-outline', 'Все главы'], lessons: ['layers-outline', 'Все уроки'], classic: ['school-outline', 'Классический курс', '12 из 50'], words: ['albums-outline', 'Слова'], theory: ['book-outline', 'Теория'] };
+  const tile = (k) => nav(...T[k]);
+  const TONES = [{ l1: .46, l2: .34, cm: .95 }, { l1: .33, l2: .23, cm: .6 }, { l1: .52, l2: .38, cm: 1.35 }, { l1: .39, l2: .28, cm: .8 }, { l1: .49, l2: .35, cm: 1.15 }];
+  const starsHtml = (n) => '<div class="stars" style="color:#fff">' + [1, 2, 3].map((i) => '<span class="' + (i <= n ? '' : 'off') + '">' + io(i <= n ? 'star' : 'star-outline') + '</span>').join('') + '</div>';
+  const cardsData = [{ k: -2, n: 9, st: 'done' }, { k: -1, n: 10, st: 'done' }, { k: 0, n: 11, st: 'cur' }, { k: 1, n: 12, st: 'lock' }, { k: 2, n: 13, st: 'lock' }];
+  const card = (c, i) => { const a = Math.abs(c.k); const t = TONES[i]; const icon = c.st === 'lock' ? 'lock-closed' : c.st === 'done' ? 'checkmark' : 'play';
+    const foot = c.st === 'done' ? starsHtml(STARS[c.n] || 0) : c.st === 'cur' ? '<div class="pg"><i style="width:30%"></i></div>' : '';
+    return `<div class="lh-c v3${a ? ' side' : ''}${c.st === 'lock' ? ' mute' : ''}" style="--x:${c.k * 116}px;--z:${-a * 80}px;--r:${-c.k * 26}deg;--o:${a >= 2 ? .5 : 1};--l1:${t.l1};--l2:${t.l2};--cm:${t.cm};z-index:${10 - a}"><div class="mk">${io(icon)}${c.n}</div><div class="bn">${c.n}</div>${foot}</div>`; };
+  const flow = (top) => `<div class="lh-flow" style="top:${top}px">${cardsData.map(card).join('')}</div>`;
+  const sec = (top) => `<div class="lh-sec" style="top:${top}px"><div class="l"><div class="k">Глава 2 из 7</div><div class="t">${CH2}</div></div><div class="r">2 из 8</div></div>`;
+  const capt = (top, withTiles) => `<div class="lh-capt" style="top:${top}px"><div class="k">Эпизод 11, задание 3 из 20</div><div class="t">${NM[11]}</div></div>`;
+  const hero = (variant) => {
+    const primary = `<div class="lh-primary">${io('play')}${variant === 2 ? 'Продолжить' : 'Продолжить эпизод 11'}</div>`;
+    const row = variant === 2 ? `<div class="wt-prow">${primary}<div class="wt-gt">${io('albums-outline')}Слова</div><div class="wt-gt">${io('book-outline')}Теория</div></div>` : primary;
+    return `<div class="lh-hero"><div class="lh-top"><div class="lh-pill">Урок 2${io('chevron-down')}</div><span class="lh-en">${io('flash')} 3</span></div>
+      <div class="lh-body"><div class="lh-kick">Урок 2 · Знакомство с городом: спрашиваем всех</div><div class="lh-ttl">Знакомство с городом</div>${row}
+      <div class="lh-resume"><span class="bar"><i style="width:30%"></i></span>Про третьего, задание 3 из 20</div></div></div>`;
+  };
+  // кадр: контент в «прокручиваемой» обёртке; sc — сдвиг прокрутки
+  const frame = (inner, sc, scene) => `${sb(scene)}<div class="lh-sc"><div class="lh-scin" style="--sc:${-sc}px">${inner}</div></div>${tabs}`;
+
+  const VARIANTS = [
+    { n: 1, name: 'Пять плиток, 3 + 2', text: '<b>Все пять кнопок — плитки одного стиля</b> под обложкой: ряд «Все главы / Все уроки / Классический курс (12 из 50)» и под ним «Слова / Теория» двумя плитками вполовину ширины. Из обложки и из-под каруселью чипы и голый текст убраны полностью. Цена — второй ряд плиток сдвигает карусель вниз на 66 px.',
+      f: () => ({
+        a: frame(`${hero(1)}<div class="lh-trio">${tile('chapters')}${tile('lessons')}${tile('classic')}</div><div class="wt-tiles2" style="top:470px">${tile('words')}${tile('theory')}</div>${sec(548)}${flow(594)}${capt(840)}`, 0, true),
+        b: frame(`${hero(1)}<div class="lh-trio">${tile('chapters')}${tile('lessons')}${tile('classic')}</div><div class="wt-tiles2" style="top:470px">${tile('words')}${tile('theory')}</div>${sec(548)}${flow(594)}${capt(840)}`, 360, true) }) },
+    { n: 2, name: 'Рядом с «Продолжить»', text: '<b>«Слова» и «Теория» — стеклянные плитки 70 × 50 прямо в строке с «Продолжить»</b> (в тоне обложки, значок + подпись, как кнопки обложки); тремя плитками под обложкой остаются только переходы «Все главы / Все уроки / Классический курс». Под каруселью ничего нет, карусель на прежнем месте. Цена — «Продолжить» уже (около 190 px), поэтому на кнопке слово «Продолжить» без номера эпизода (он есть в строке прогресса и в подписи под каруселью).',
+      f: () => ({
+        a: frame(`${hero(2)}<div class="lh-trio">${tile('chapters')}${tile('lessons')}${tile('classic')}</div>${sec(474)}${flow(520)}${capt(770)}`, 0, true),
+        b: frame(`${hero(2)}<div class="lh-trio">${tile('chapters')}${tile('lessons')}${tile('classic')}</div>${sec(474)}${flow(520)}${capt(770)}`, 360, true) }) },
+    { n: 3, name: 'Две плитки под подписью эпизода', text: '<b>Слова и теория — про выбранный эпизод, поэтому две плитки стоят под его подписью</b>, там, где сейчас голый текст, но теперь тем же стилем, что остальные кнопки хаба. Обложка и верх хаба без изменений (чипов в обложке нет), карусель на месте, переходы — три плитки под обложкой. Цена — плитки ниже первого экрана (видны после прокрутки).',
+      f: () => ({
+        a: frame(`${hero(3)}<div class="lh-trio">${tile('chapters')}${tile('lessons')}${tile('classic')}</div>${sec(474)}${flow(520)}${capt(770)}<div class="wt-tiles2" style="top:846px">${tile('words')}${tile('theory')}</div>`, 0, true),
+        b: frame(`${hero(3)}<div class="lh-trio">${tile('chapters')}${tile('lessons')}${tile('classic')}</div>${sec(474)}${flow(520)}${capt(770)}<div class="wt-tiles2" style="top:846px">${tile('words')}${tile('theory')}</div>`, 360, true) }) },
+  ];
+  let picked = null;
+  const sum = () => { document.getElementById('wt-sum').innerHTML = 'Выбор: <b>' + (picked ? picked + ' · ' + VARIANTS[picked - 1].name : '—') + '</b>'; };
+  const render = () => {
+    document.getElementById('root').innerHTML = VARIANTS.map((v) => { const fr = v.f();
+      return `<section class="wt-var"><button type="button" class="lh-pick${picked === v.n ? ' on' : ''}" data-v="${v.n}"><b>${v.n}</b>${v.name}</button><p class="wt-cap">${v.text}</p>`
+        + `<div class="lh-frames"><div class="lh-col"><div class="lh-frame"><b>Первый экран</b></div><div class="ph lh-b2 ${AP}">${fr.a}</div></div><div class="lh-col"><div class="lh-frame"><b>Прокручено вниз</b></div><div class="ph lh-b2 ${AP}">${fr.b}</div></div></div></section>`; }).join('');
+    sum();
+  };
+  document.addEventListener('click', (e) => {
+    const ap = e.target.closest('[data-ap]');
+    if (ap) { AP = ap.dataset.ap; document.querySelectorAll('[data-ap]').forEach((b) => b.classList.toggle('on', b === ap)); render(); return; }
+    const p = e.target.closest('.lh-pick');
+    if (p) { picked = Number(p.dataset.v); render(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 
 import SeasonChapterFan, { type SeasonFanCard, type SeasonFanChapterPill } from './SeasonChapterFan';
 import SeasonCourseView, { type SeasonCourseViewProps } from './SeasonCourseView';
-import SeasonExpandedCard, { type SeasonExpandedAction } from './SeasonExpandedCard';
+import SeasonExpandedCard, { type SeasonExamPanel, type SeasonExpandedAction } from './SeasonExpandedCard';
 import { seasonArtCached, seasonCardShift, seasonChapterHue } from './season_art';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
@@ -22,6 +22,8 @@ export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onWh
   /** Действия экзамена главы: вызываются только при включённом флаге. */
   onStartExam?: (chapterOrdinal: number) => void;
   onOpenByExam?: (chapterOrdinal: number) => void;
+  /** Окно экзамена: описание, факты, цена ⚡1 / строка Plus по главе (данные Learning V2). */
+  examInfo?: (chapterOrdinal: number) => Readonly<{ description: string | null; panel: SeasonExamPanel }> | null;
   /** Только превью/Сверка (dev_season_preview): стартовая карта, раскрытая карта и открытый веер. В бою не передаётся. */
   initialState?: Readonly<{ selectedIndex: number; expandedIndex: number | null; fanChapter: number | null }>;
 }>;
@@ -55,10 +57,11 @@ function SeasonCourse(props: SeasonCourseProps) {
     const examActions = SEASON_CHAPTER_EXAM_ENABLED;
     if (card.kind === 'exam') {
       const after = seasonUnlockAfter(deck, expanded);
+      const examInfo = props.examInfo ? props.examInfo(card.chapterOrdinal) : null;
       const primary: SeasonExpandedAction | null = examActions && !locked && props.onStartExam
         ? { label: seasonCardText(lang, 'startExam'), icon: 'trophy', onPress: () => { close(); props.onStartExam?.(card.chapterOrdinal); } }
         : null;
-      return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: null, title: null, words: [] as readonly string[], lockLine: locked && after !== null ? seasonText(lang, 'locked', { n: after }) : null, primary, secondary: null };
+      return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: examInfo ? examInfo.description : null, exam: examInfo ? examInfo.panel : null, title: null, words: [] as readonly string[], lockLine: locked && after !== null ? seasonText(lang, 'locked', { n: after }) : null, primary, secondary: null };
     }
     const info = props.episodeInfo(card);
     const after = seasonUnlockAfter(deck, expanded);

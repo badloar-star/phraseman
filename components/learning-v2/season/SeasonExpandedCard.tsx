@@ -27,7 +27,11 @@ const DIM_LIGHT = 'rgba(23,24,30,0.38)'; // theme-exempt: затемнение �
 const DIM_DARK = 'rgba(0,0,0,0.5)'; // theme-exempt: затемнение экрана под раскрытой картой, эталон `--dimc` (Океан)
 const EXAM_LIGHT = ['#262447', '#12142A'] as const; // theme-exempt: фон карты экзамена, эталон `.c4exam`
 const EXAM_DARK = ['#0B3442', '#04141C'] as const; // theme-exempt: фон карты экзамена, эталон `.th-marine .c4exam`
+const ENERGY_PILL = 'rgba(18,19,24,0.08)'; // theme-exempt: цена ⚡1 на белой кнопке, эталон `.xen`
 const SHADOW = '0 26px 50px -22px rgba(0,0,0,0.6)'; // theme-exempt: тень раскрытой карты, эталон `--sh2`
+
+/** Окно перед стартом экзамена (chapter-exam-season.html `zoomX`): факты, цена ⚡1 для Free, строка для Plus. */
+export type SeasonExamPanel = Readonly<{ facts: readonly string[]; energyBadge: boolean; plusLine: string | null }>;
 
 export type SeasonExpandedAction = Readonly<{ label: string; icon: IonName; onPress: () => void }>;
 
@@ -50,6 +54,8 @@ export type SeasonExpandedCardProps = Readonly<{
   lockLine: string | null;
   primary: SeasonExpandedAction | null;
   secondary: SeasonExpandedAction | null;
+  /** Только у карты экзамена. */
+  exam?: SeasonExamPanel | null;
   closeLabel: string;
   onClose: () => void;
   reducedMotion: boolean;
@@ -95,6 +101,9 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
         <Text style={styles.big} numberOfLines={4}>{p.phrase}</Text>
         {p.translation ? <Text style={styles.sub}>{p.translation}</Text> : null}
         {p.title ? <Text style={styles.title}>{p.title}</Text> : null}
+        {p.exam && p.exam.facts.length > 0 ? (
+          <View style={styles.facts} testID="season-exam-facts">{p.exam.facts.map((f) => <View key={f} style={styles.fact}><Text style={styles.factText}>{f}</Text></View>)}</View>
+        ) : null}
         {p.words.length > 0 ? (
           <View style={styles.chips}>{p.words.map((w) => <View key={w} style={styles.wordChip}><Text style={styles.wordText}>{w}</Text></View>)}</View>
         ) : null}
@@ -105,8 +114,12 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
           <V2Pressable hitSlop={6} accessibilityRole="button" onPress={p.primary.onPress} style={styles.primary} testID="season-expanded-primary">
             <Ionicons name={p.primary.icon} size={18} color={INK} />
             <Text style={styles.primaryText}>{p.primary.label}</Text>
+            {p.exam?.energyBadge ? (
+              <View style={styles.energy} testID="season-exam-energy"><Ionicons name="flash" size={13} color={INK} /><Text style={styles.energyText}>1</Text></View>
+            ) : null}
           </V2Pressable>
         ) : null}
+        {p.primary && p.exam?.plusLine ? <Text style={styles.plusLine} testID="season-exam-plus">{p.exam.plusLine}</Text> : null}
         {p.secondary ? (
           <V2Pressable hitSlop={6} accessibilityRole="button" onPress={p.secondary.onPress} style={styles.secondary} testID="season-expanded-secondary">
             <Ionicons name={p.secondary.icon} size={18} color={WHITE} />
@@ -137,6 +150,12 @@ const styles = StyleSheet.create({
   chips: { marginTop: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   wordChip: { height: 34, paddingHorizontal: 12, borderRadius: 17, backgroundColor: GLASS, alignItems: 'center', justifyContent: 'center' },
   wordText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: WHITE },
+  facts: { marginTop: 14, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  fact: { height: 30, paddingHorizontal: 9, borderRadius: 15, backgroundColor: GLASS, alignItems: 'center', justifyContent: 'center' },
+  factText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: WHITE },
+  energy: { height: 26, paddingHorizontal: 9, borderRadius: 13, marginLeft: 6, flexDirection: 'row', alignItems: 'center', gap: 3, backgroundColor: ENERGY_PILL },
+  energyText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: INK },
+  plusLine: { marginTop: 10, textAlign: 'center', fontSize: 13, lineHeight: 17, color: WHITE_SOFT },
   lockRow: { marginTop: 12, flexDirection: 'row', alignItems: 'center', gap: 8 },
   lockText: { flex: 1, fontSize: 16, lineHeight: 21, color: WHITE_SOFT },
   primary: { marginTop: 16, height: 54, borderRadius: 27, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: WHITE },

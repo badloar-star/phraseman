@@ -15,7 +15,7 @@ import { useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
+import { learningV2ChapterExamHrefV1, learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
 import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
 import { pickInitialLessonOrdinal } from '../../../app/learning_v2_last_lesson';
 import { getStableId, peekStableId } from '../../../app/stable_id';
@@ -25,7 +25,10 @@ import { learningV2ChapterSceneV1, learningV2LessonArcV1, learningV2SessionTitle
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
+import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
+import { useEnergy } from '../../EnergyContext';
 import PressableHybrid from '../../PressableHybrid';
+import { usePremium } from '../../PremiumContext';
 import { useTheme } from '../../ThemeContext';
 import { useTabTopBleedInset } from '../../tab_top_bleed';
 import BackGlyph from '../../v2/BackGlyph';
@@ -33,12 +36,15 @@ import { learningV2ChapterIonIcon } from '../icons/learningV2IonIcons';
 import LearningV2AllLessonsList, { type AllLessonsRow } from '../LearningV2AllLessonsList';
 import type LearningV2ChaptersCourse from '../LearningV2ChaptersCourse';
 import { useLv2Glass } from '../LearningV2Glass';
+import { LEARNING_V2_CHAPTER_EXAM_MINUTES_V1, learningV2ChapterExamEpisodeRangeV1 } from '../LearningV2ChapterExamSheet';
+import { learningV2ChapterExamCopy } from '../learning_v2_chapter_exam_copy';
 import LearningV2TheorySheet from '../LearningV2TheorySheet';
+import type { SeasonExamPanel } from './SeasonExpandedCard';
 import SeasonCourse from './SeasonCourse';
 import type { SeasonChapterInfo, SeasonEpisodeInfo } from './SeasonCourseView';
 import { seasonEpisodeLabel, seasonText } from './season_copy';
 import { buildSeasonDeck, type SeasonEpisodeCard } from './season_course_model';
-import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
+import { SEASON_CHAPTER_EXAM_ENABLED, SEASON_CHAPTER_EXAM_START_ENABLED } from './season_flags';
 
 const LOG = '[SEASON-WIRE]';
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'session' }>;
@@ -184,6 +190,36 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     console.log(`${LOG} нажатие → «Теория»`, JSON.stringify({ lesson, found: theory !== null, section: theorySection })); // guard-ok: куда ведёт нажатие
     if (theory) setTheoryOpen(true);
   }, [lesson, theory, theorySection]);
+  // зачем (координатор 22.10, эталон chapter-exam-season.html `zoomX`): окно перед стартом — факты «12 вопросов · 10 чтобы сдать · ~N минут», цена ⚡1 для Free, «С Plus экзамен бесплатный» для Plus;
+  // числа и минуты — из данных Learning V2 (движок экзамена и темп курса), тексты на 9 языках — их словарь. Free/Plus — как в их шторке: Premium или безлимитная энергия.
+  const { hasPremiumAccess } = usePremium();
+  const { isUnlimited } = useEnergy();
+  const examFree = hasPremiumAccess || isUnlimited;
+  const examInfo = useCallback((chapterOrdinal: number): Readonly<{ description: string | null; panel: SeasonExamPanel }> => {
+    const range = learningV2ChapterExamEpisodeRangeV1(chapterOrdinal);
+    const next = chapterOrdinal < chapterCount ? chapterOrdinal + 1 : null;
+    const description = [
+      learningV2ChapterExamCopy(lang, 'scope', { a: range.first, b: range.last }),
+      next ? learningV2ChapterExamCopy(lang, 'unlocks', { n: next }) : null,
+    ].filter(Boolean).join(' ');
+    const facts = [
+      `${CHAPTER_EXAM_QUESTION_COUNT_V1} ${learningV2ChapterExamCopy(lang, 'questions')}`,
+      `${CHAPTER_EXAM_PASS_CORRECT_V1} ${learningV2ChapterExamCopy(lang, 'toPass')}`,
+      `~${LEARNING_V2_CHAPTER_EXAM_MINUTES_V1} ${learningV2ChapterExamCopy(lang, 'minutes')}`,
+    ];
+    return { description, panel: { facts, energyBadge: !examFree, plusLine: examFree ? learningV2ChapterExamCopy(lang, 'plusFree') : null } };
+  }, [chapterCount, examFree, lang]);
+  const onStartExam = useCallback((chapterOrdinal: number) => {
+    const href = learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal, source: 'exam_card' });
+    console.log(`${LOG} нажатие → «Начать экзамен»`, JSON.stringify({ href, free: examFree })); // guard-ok: куда ведёт нажатие
+    router.push(href as never);
+  }, [examFree, lesson, router]);
+  const onOpenByExam = useCallback((chapterOrdinal: number) => {
+    // закрытый эпизод следующей главы открывается экзаменом ПРЕДЫДУЩЕЙ главы (контракт Learning V2)
+    const href = learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal: chapterOrdinal - 1, source: 'open_by_exam' });
+    console.log(`${LOG} нажатие → «Открыть экзаменом главы»`, JSON.stringify({ href })); // guard-ok: куда ведёт нажатие
+    router.push(href as never);
+  }, [lesson, router]);
   const onChapterPicker = useCallback(() => {
     console.log(`${LOG} нажатие → выбор главы`, JSON.stringify({ lesson, to: 'отдельного экрана нет: главы листает веер «Вся глава»' })); // guard-ok: куда ведёт нажатие
   }, [lesson]);
@@ -241,6 +277,9 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         onChapterPicker={onChapterPicker}
         onWords={onWords}
         onTheory={onTheory}
+        examInfo={SEASON_CHAPTER_EXAM_ENABLED ? examInfo : undefined}
+        onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}
+        onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}
       />
       <LearningV2TheorySheet visible={theoryOpen} theory={theory} lang={lang} initialSection={theorySection} onClose={() => setTheoryOpen(false)} />
     </View>

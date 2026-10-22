@@ -47,9 +47,21 @@ describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
     expect(wire).toContain('loadLearningV2ChapterExamRecordsV1');
     expect(wire).toContain("learningV2PassedChaptersV1(examRecords, 'en', lesson)");
   });
-  it('кнопки прохождения экзамена не передаются, пока нет экрана', () => {
-    expect(wire).not.toContain('onStartExam');
-    expect(wire).not.toContain('onOpenByExam');
+  it('кнопки экзамена идут на экран Learning V2 только по флагу запуска (до сигнала не рисуются)', () => {
+    expect(flags).toMatch(/SEASON_CHAPTER_EXAM_START_ENABLED = false as boolean/);
+    expect(wire).toContain('onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}');
+    expect(wire).toContain('onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}');
+    expect(wire).toContain("learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal, source: 'exam_card' })");
+    expect(wire).toContain("chapterOrdinal: chapterOrdinal - 1, source: 'open_by_exam'");
+  });
+  it('окно экзамена: факты из данных Learning V2, цена ⚡1 для Free, строка для Plus', () => {
+    expect(wire).toContain('CHAPTER_EXAM_QUESTION_COUNT_V1');
+    expect(wire).toContain('LEARNING_V2_CHAPTER_EXAM_MINUTES_V1');
+    expect(wire).toContain("energyBadge: !examFree, plusLine: examFree ? learningV2ChapterExamCopy(lang, 'plusFree') : null");
+    const card = readSource('components/learning-v2/season/SeasonExpandedCard.tsx');
+    expect(card).toContain('testID="season-exam-facts"');
+    expect(card).toContain('testID="season-exam-energy"');
+    expect(card).toContain('testID="season-exam-plus"');
   });
 });
 

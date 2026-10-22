@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу",
+      "prompt": "Послухайте й виберіть — подруга обговорює з вами зустріч книжкового клубу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-28:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-28:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу",
+      "accessibilityLabel": "Послухайте й виберіть — подруга обговорює з вами зустріч книжкового клубу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-28:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу",
+            "testedDimension": "Послухайте й виберіть — подруга обговорює з вами зустріч книжкового клубу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `correct`, а в этом варианте — `serious`.",
               "uk": "У записі останнє слово — `correct`, а в цьому варіанті — `serious`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-28:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу",
+            "testedDimension": "Послухайте й виберіть — подруга обговорює з вами зустріч книжкового клубу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `correct`, а в этом варианте — `flexible`.",
               "uk": "У записі останнє слово — `correct`, а в цьому варіанті — `flexible`."
@@ -594,7 +594,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що подруга каже про новий роман",
+      "prompt": "Послухайте й виберіть — подруга ділиться з вами думкою про книжку місяця",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-28:i09:r1",
@@ -613,7 +613,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-28:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що подруга каже про новий роман",
+      "accessibilityLabel": "Послухайте й виберіть — подруга ділиться з вами думкою про книжку місяця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -643,7 +643,7 @@
           {
             "responseId": "en:lesson-02:session-28:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про новий роман",
+            "testedDimension": "Послухайте й виберіть — подруга ділиться з вами думкою про книжку місяця",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `thick`, а в этом варианте — `correct`.",
               "uk": "У записі останнє слово — `thick`, а в цьому варіанті — `correct`."
@@ -652,7 +652,7 @@
           {
             "responseId": "en:lesson-02:session-28:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про новий роман",
+            "testedDimension": "Послухайте й виберіть — подруга ділиться з вами думкою про книжку місяця",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `thick`, а в этом варианте — `serious`.",
               "uk": "У записі останнє слово — `thick`, а в цьому варіанті — `serious`."
@@ -979,7 +979,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте й виберіть — друг телефонує вам перед зустріччю клубу",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-28:i15:r1",
@@ -998,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-28:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте й виберіть — друг телефонує вам перед зустріччю клубу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1028,7 +1028,7 @@
           {
             "responseId": "en:lesson-02:session-28:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — друг телефонує вам перед зустріччю клубу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `certain`, а в этом варианте — `innocent`.",
               "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `innocent`."
@@ -1037,7 +1037,7 @@
           {
             "responseId": "en:lesson-02:session-28:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — друг телефонує вам перед зустріччю клубу",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `certain`, а в этом варианте — `flexible`.",
               "uk": "У записі останнє слово — `certain`, а в цьому варіанті — `flexible`."
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e5f41e75f512541c1600f2b702c581ebac8bd95ff7d1447e36a0011f9ca7a440"
+  "learnerFingerprint": "787f871dd31b9012812c4da0170fd8b55ac6e1cbe6080e5a70c11de75e3822e4"
 }

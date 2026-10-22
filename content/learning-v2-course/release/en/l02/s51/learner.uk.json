@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що продавець каже про рукавички",
+      "prompt": "Послухайте й виберіть — продавець приносить вам речі для приміряння",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-51:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що продавець каже про рукавички",
+      "accessibilityLabel": "Послухайте й виберіть — продавець приносить вам речі для приміряння",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-51:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про рукавички",
+            "testedDimension": "Послухайте й виберіть — продавець приносить вам речі для приміряння",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `soft`, а в этом варианте — `tight`.",
               "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `tight`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-51:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про рукавички",
+            "testedDimension": "Послухайте й виберіть — продавець приносить вам речі для приміряння",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `soft`, а в этом варианте — `short`.",
               "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `short`."
@@ -637,7 +637,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що продавець каже про футболку",
+      "prompt": "Послухайте й виберіть — поки ви обираєте куртку, продавець стоїть поруч",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i09:r1",
@@ -656,7 +656,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-51:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що продавець каже про футболку",
+      "accessibilityLabel": "Послухайте й виберіть — поки ви обираєте куртку, продавець стоїть поруч",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -686,7 +686,7 @@
           {
             "responseId": "en:lesson-02:session-51:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про футболку",
+            "testedDimension": "Послухайте й виберіть — поки ви обираєте куртку, продавець стоїть поруч",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `plain`, а в этом варианте — `dark`.",
               "uk": "У записі останнє слово — `plain`, а в цьому варіанті — `dark`."
@@ -695,7 +695,7 @@
           {
             "responseId": "en:lesson-02:session-51:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про футболку",
+            "testedDimension": "Послухайте й виберіть — поки ви обираєте куртку, продавець стоїть поруч",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `plain`, а в этом варианте — `tight`.",
               "uk": "У записі останнє слово — `plain`, а в цьому варіанті — `tight`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання продавця",
+      "prompt": "Послухайте й виберіть — біля дзеркала до вас підходить продавець",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-51:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-51:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання продавця",
+      "accessibilityLabel": "Послухайте й виберіть — біля дзеркала до вас підходить продавець",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-51:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання продавця",
+            "testedDimension": "Послухайте й виберіть — біля дзеркала до вас підходить продавець",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `baggy`, а в этом варианте — `plain`.",
               "uk": "У записі останнє слово — `baggy`, а в цьому варіанті — `plain`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-51:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання продавця",
+            "testedDimension": "Послухайте й виберіть — біля дзеркала до вас підходить продавець",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `baggy`, а в этом варианте — `stylish`.",
               "uk": "У записі останнє слово — `baggy`, а в цьому варіанті — `stylish`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "48cb20c984a493302076e3bf7ce83e370d047d4104497dc292afe03dcc6c3e9f"
+  "learnerFingerprint": "6c09b43f349656caa9c38e69ecb6236b2035b56a249474a279d71985f04163d4"
 }

@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що брат каже про сторінку",
+      "prompt": "Послухайте й виберіть — брат гортає з вами зошит перед школою",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-52:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-52:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що брат каже про сторінку",
+      "accessibilityLabel": "Послухайте й виберіть — брат гортає з вами зошит перед школою",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-52:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що брат каже про сторінку",
+            "testedDimension": "Послухайте й виберіть — брат гортає з вами зошит перед школою",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `neat`, а в этом варианте — `messy`.",
               "uk": "У записі останнє слово — `neat`, а в цьому варіанті — `messy`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-52:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що брат каже про сторінку",
+            "testedDimension": "Послухайте й виберіть — брат гортає з вами зошит перед школою",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `neat`, а в этом варианте — `torn`.",
               "uk": "У записі останнє слово — `neat`, а в цьому варіанті — `torn`."
@@ -637,7 +637,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що вчителька каже про домашню роботу",
+      "prompt": "Послухайте й виберіть — учителька приймає зошит вашого брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-52:i09:r1",
@@ -656,7 +656,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-52:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що вчителька каже про домашню роботу",
+      "accessibilityLabel": "Послухайте й виберіть — учителька приймає зошит вашого брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -686,7 +686,7 @@
           {
             "responseId": "en:lesson-02:session-52:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що вчителька каже про домашню роботу",
+            "testedDimension": "Послухайте й виберіть — учителька приймає зошит вашого брата",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `thorough`, а в этом варианте — `sloppy`.",
               "uk": "У записі останнє слово — `thorough`, а в цьому варіанті — `sloppy`."
@@ -695,7 +695,7 @@
           {
             "responseId": "en:lesson-02:session-52:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що вчителька каже про домашню роботу",
+            "testedDimension": "Послухайте й виберіть — учителька приймає зошит вашого брата",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `thorough`, а в этом варианте — `legible`.",
               "uk": "У записі останнє слово — `thorough`, а в цьому варіанті — `legible`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання вчительки",
+      "prompt": "Послухайте й виберіть — у класі вчителька дивиться на роботу брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-52:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-52:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання вчительки",
+      "accessibilityLabel": "Послухайте й виберіть — у класі вчителька дивиться на роботу брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-52:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання вчительки",
+            "testedDimension": "Послухайте й виберіть — у класі вчителька дивиться на роботу брата",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `legible`, а в этом варианте — `smudged`.",
               "uk": "У записі останнє слово — `legible`, а в цьому варіанті — `smudged`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-52:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання вчительки",
+            "testedDimension": "Послухайте й виберіть — у класі вчителька дивиться на роботу брата",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `legible`, а в этом варианте — `sloppy`.",
               "uk": "У записі останнє слово — `legible`, а в цьому варіанті — `sloppy`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cf281a196cdee3f5842de1e49a85187700c59e6a5fb29c6a2b1852aee9ea0d65"
+  "learnerFingerprint": "9343af48e3d51ed634821cab6489208da8c2b0688dab711560b6972e69875a24"
 }

@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — подруга поправляє квіти на сцені поруч із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-06:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-06:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — подруга поправляє квіти на сцені поруч із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-02:session-06:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — подруга поправляє квіти на сцені поруч із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `fake`, а в этом варианте — `fresh`.",
               "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `fresh`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-02:session-06:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — подруга поправляє квіти на сцені поруч із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `fake`, а в этом варианте — `familiar`.",
               "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `familiar`."
@@ -638,7 +638,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олега",
+      "prompt": "Послухайте й виберіть — друг говорить з вами про знайомого біля сцени",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-06:i09:r1",
@@ -657,7 +657,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-06:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олега",
+      "accessibilityLabel": "Послухайте й виберіть — друг говорить з вами про знайомого біля сцени",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -687,7 +687,7 @@
           {
             "responseId": "en:lesson-02:session-06:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте й виберіть — друг говорить з вами про знайомого біля сцени",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `calm`, а в этом варианте — `nervous`.",
               "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `nervous`."
@@ -696,7 +696,7 @@
           {
             "responseId": "en:lesson-02:session-06:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олега",
+            "testedDimension": "Послухайте й виберіть — друг говорить з вами про знайомого біля сцени",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `calm`, а в этом варианте — `excited`.",
               "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `excited`."
@@ -981,7 +981,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте коротку фразу про півонії й виберіть її",
+      "prompt": "Послухайте й виберіть — привозять замовлення з квіткового магазину",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-06:i15:r1",
@@ -1000,7 +1000,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-06:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте коротку фразу про півонії й виберіть її",
+      "accessibilityLabel": "Послухайте й виберіть — привозять замовлення з квіткового магазину",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1030,7 +1030,7 @@
           {
             "responseId": "en:lesson-02:session-06:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про півонії й виберіть її",
+            "testedDimension": "Послухайте й виберіть — привозять замовлення з квіткового магазину",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `pink`, а в этом варианте — `fresh`.",
               "uk": "У записі останнє слово — `pink`, а в цьому варіанті — `fresh`."
@@ -1039,7 +1039,7 @@
           {
             "responseId": "en:lesson-02:session-06:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про півонії й виберіть її",
+            "testedDimension": "Послухайте й виберіть — привозять замовлення з квіткового магазину",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They're`, а в этом варианте — `It's`.",
               "uk": "У записі перше слово — `They're`, а в цьому варіанті — `It's`."
@@ -1172,5 +1172,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d2a890df372efa70c3cdbe773ce8785797b0ee4ecb7f975bfc2d1494c90421f8"
+  "learnerFingerprint": "0ada757edaa12b60b322148953250cdf6ddf039f346a147bc1af202f7f7a7d5a"
 }

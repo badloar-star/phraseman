@@ -1,13 +1,15 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// SpireScenePedestal.tsx — «Комната недели» слева от башни на «Сцене» Пика: список топ-3, своя строка, «до повышения», «Все участники».
+// SpireScenePedestal.tsx — «Комната недели» слева от башни на «Сцене» Пика: список топ-3, своя строка, «Все участники».
 //
 // зачем (владелец 22.10 по макету docs/design/v2-app/peak-pedestal-left.html, вариант 3 «Список топ-3»; координатор: «всё на одном экране
 // без прокрутки; люди → визитка»): пьедестал переехал из панели под сценой в левую колонку под «Этаж N / ступень». Три строки — место,
-// монета, имя, монеты недели (при подсчёте по ступеням — ступени); ниже своя строка «N место / имя · монеты», строка «N мест до
-// повышения» и «Все участники ›». Строка любого человека открывает его визитку. Монеты без колец (владелец: «вот так не надо» про кольцо
-// вокруг монеты). Цвета — свет сцены (белое стекло макета, одинаковое во всех темах; сила — от белого сцены, без своих литералов).
-// Подбор комнаты — пустые строки той же высоты, без сети — приглушено. Не влезает над «Играть» (низкий экран, крупный шрифт) —
-// сжатый вид: строки 44, без имени под местом и строки повышения, «Все участники» — нажатием на заголовок (spireScenePedestalCompact).
+// монета, ник; ниже своя строка «N место / ник» и «Все участники ›». Строка любого человека открывает его визитку. Монеты без колец
+// (владелец: «вот так не надо» про кольцо вокруг монеты). Цвета — свет сцены (белое стекло макета, одинаковое во всех темах; сила — от
+// белого сцены, без своих литералов). Подбор комнаты — пустые строки той же высоты, без сети — приглушено. Не влезает над «Играть»
+// (низкий экран, крупный шрифт) — сжатый вид: строки 44, без ника под местом, «Все участники» — нажатием на заголовок.
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «не надо писать 1 ступ и тд! просто ник полностью» — ни ступеней, ни монет недели в строках; ник целиком,
+// длинный переносится (spireNickWrap), без многоточия и без ужатия шрифта.
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот это убери текст» — строки «N мест до повышения» здесь нет (и тёплой строкой сцены тоже).
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo } from 'react';
@@ -18,8 +20,8 @@ import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { colorWithAlpha } from '../../v2/plateAlpha';
 import V2Pressable from '../../v2/V2Pressable';
 import SpireRankCoin from '../SpireRankCoin';
-import { spireGroupThousands, spireStepsShort } from '../spire_plurals';
-import type { SpireMemberRow, SpireRankByView } from '../spire_room_types';
+import { spireNickWrap } from '../spire_nick_wrap';
+import type { SpireMemberRow } from '../spire_room_types';
 import { spireText } from '../spire_strings';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
 import { spireSceneText } from './spire_scene_strings';
@@ -48,15 +50,12 @@ type Props = Readonly<{
   width: number;
   /** Тройка лидеров по местам 1, 2, 3 (spireSceneRoom). */
   top: readonly SpireMemberRow[];
-  rankBy: SpireRankByView;
   /** Людей в комнате (правее заголовка). */
   count: number;
   myPlace: number | null;
   /** Своя строка комнаты (кэш недели); нет — своя строка показывает только место. */
   me: SpireMemberRow | null;
   myCoinRank: number | null;
-  /** «N мест до повышения»; null — уже в зоне, зоны нет или то же сказано строкой сцены. */
-  promo: string | null;
   /** Не влезает над «Играть» — сжатый вид (spireScenePedestalCompact). */
   compact: boolean;
   /** Комната подбирается: пустые строки той же высоты. */
@@ -68,11 +67,7 @@ type Props = Readonly<{
   onOpenAll: () => void;
 }>;
 
-function scoreOf(lang: Lang, m: SpireMemberRow, rankBy: SpireRankByView): string {
-  return rankBy === 'coins' ? spireGroupThousands(m.weekCoins ?? 0) : `${m.steps} ${spireStepsShort(lang, m.steps)}`;
-}
-
-function SpireScenePedestal({ lang, width, top, rankBy, count, myPlace, me, myCoinRank, promo, compact, loading, dim, onPressMember, onPressMe, onOpenAll }: Props) {
+function SpireScenePedestal({ lang, width, top, count, myPlace, me, myCoinRank, compact, loading, dim, onPressMember, onPressMe, onOpenAll }: Props) {
   // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, строки не наезжают
   const ts = useScaledTextStyles(s, TEXT_MAX_SCALE);
   const rows: readonly (SpireMemberRow | null)[] = loading ? Array.from({ length: TOP_N }, () => null) : top.slice(0, TOP_N);
@@ -108,20 +103,19 @@ function SpireScenePedestal({ lang, width, top, rankBy, count, myPlace, me, myCo
                 </View>
               );
             }
-            const score = scoreOf(lang, m, rankBy);
             return (
               <V2Pressable
                 key={place}
                 testID={`spire-scene-pedestal-${place}`}
                 onPress={() => onPressMember(m)}
                 scaleTo={0.97}
-                accessibilityLabel={`${place}. ${m.name}, ${score}`}
+                accessibilityLabel={`${place}. ${m.name}`}
                 style={rowStyle}
               >
                 <Text style={ts.place} maxFontSizeMultiplier={1}>{place}</Text>
                 <SpireRankCoin rank={m.coinRank ?? null} size={coin} plus={false} />
-                <Text style={[ts.name, s.grow]} numberOfLines={1} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{m.name}</Text>
-                <Text style={ts.score} numberOfLines={1} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{score}</Text>
+                {/* ЗАМОК ВЛАДЕЛЬЦА 22.10: «просто ник полностью» — без ограничения строк: длинный ник переносится, не режется */}
+                <Text style={[ts.name, s.grow]} maxFontSizeMultiplier={TEXT_MAX_SCALE} android_hyphenationFrequency="full">{spireNickWrap(m.name)}</Text>
               </V2Pressable>
             );
           })}
@@ -137,16 +131,10 @@ function SpireScenePedestal({ lang, width, top, rankBy, count, myPlace, me, myCo
           <SpireRankCoin rank={myCoinRank} size={ME_COIN} plus={false} />
           <View style={s.grow}>
             <Text style={ts.name} numberOfLines={1} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{placeText}</Text>
-            {me && !compact ? <Text style={ts.sub} numberOfLines={1} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{`${me.name} · ${scoreOf(lang, me, rankBy)}`}</Text> : null}
+            {me && !compact ? <Text style={ts.sub} maxFontSizeMultiplier={TEXT_MAX_SCALE} android_hyphenationFrequency="full">{spireNickWrap(me.name)}</Text> : null}
           </View>
         </V2Pressable>
       )}
-      {promo && !loading && !compact ? (
-        <View style={s.promo}>
-          <Ionicons name="arrow-up" size={14} color={SPIRE_SCENE_INK.kicker} style={s.promoIcon} />
-          <Text style={[ts.promoText, s.grow]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{promo}</Text>
-        </View>
-      ) : null}
       {compact ? null : (
       <V2Pressable testID="spire-scene-pedestal-all" onPress={onOpenAll} disabled={loading || count === 0} scaleTo={0.96} hitSlop={10} outerStyle={s.allOuter} style={s.all}>
         <Text style={ts.allText} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireText(lang, 'allMembers')}</Text>
@@ -175,15 +163,11 @@ const s = StyleSheet.create({
   rowDivider: { boxShadow: `inset 0 1px 0 ${DIVIDER}` },
   place: { width: 14, color: SPIRE_SCENE_INK.text, fontSize: 16, lineHeight: 21, fontWeight: '800', textAlign: 'center' },
   name: { color: SPIRE_SCENE_INK.text, fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  score: { marginLeft: 2, color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] }, // guard-ok: монеты недели лидера (макет .pp-li .v) — данные, не подпись-расшифровка
   coinEmpty: { backgroundColor: SPIRE_SCENE_INK.skeletonCoin },
   nameEmpty: { flex: 1, height: 12, borderRadius: 6, backgroundColor: SPIRE_SCENE_INK.skeleton },
   // макет `.pp-me`: стекло 26 %, скругление 18, поля 10 / 12, блик 30 %
   me: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10, borderRadius: 18, paddingVertical: 10, paddingHorizontal: 12, backgroundColor: ME_GLASS, boxShadow: `inset 0 1px 0 ${ME_HIGHLIGHT}` },
-  sub: { color: SPIRE_SCENE_INK.label, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }, // guard-ok: имя и монеты под своим местом (макет .pp-me .pp-sub) — данные, не подпись-расшифровка
-  promo: { flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 8, marginHorizontal: SPIRE_SCENE_PEDESTAL_INSET },
-  promoIcon: { marginTop: 1 },
-  promoText: { color: SPIRE_SCENE_INK.kicker, fontSize: 13, lineHeight: 17, fontWeight: '600' },
+  sub: { color: SPIRE_SCENE_INK.label, fontSize: 13, lineHeight: 17, fontWeight: '600' }, // guard-ok: ник под своим местом (макет .pp-me .pp-sub) — данные, не подпись-расшифровка
   allOuter: { alignSelf: 'flex-start', marginTop: 10, marginHorizontal: SPIRE_SCENE_PEDESTAL_INSET },
   all: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   allText: { color: LINK, fontSize: 13, lineHeight: 17, fontWeight: '700' },

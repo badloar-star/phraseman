@@ -22,7 +22,6 @@ import { SPIRE_SCENE_TOWER, useSpireScene } from './useSpireScene';
 import { spireSceneHiddenRows } from './scene/spire_scene_layout';
 import { spireSkinForTier, spireThemedSkinForTier, type SpireTowerThemeColors } from '../../modules/spire/tower_skins';
 import { getDevSpireScrollOverride, getDevSpireTierOverride } from '../../app/dev_spire_tier';
-import { useIsPlus } from '../plus/use_is_plus';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
 import { SPIRE_WINDOW_MAX } from './spire_tower_window';
@@ -70,8 +69,6 @@ type Props = Readonly<{
   onPressMore?: () => void;
   /** Только «Сцена»: тап по своей метке — своя карточка. */
   onPressMe?: () => void;
-  /** Только «Сцена»: мягкое свечение своей монеты — цвет сцены из темы (вместо колец). */
-  markerGlow?: string;
   /** Только «Сцена»: цвета темы для наряда башни (владелец 22.10: «башню — в оттенки темы»); нет — наряд лиги как был. */
   themeColors?: SpireTowerThemeColors;
 }>;
@@ -107,9 +104,8 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom, hideFloorWords = false, onPressRival, onPressMore, onPressMe, markerGlow, themeColors }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom, hideFloorWords = false, onPressRival, onPressMore, onPressMe, themeColors }: Props) {
   const p = useSpirePalette();
-  const myIsPlus = useIsPlus(); // зачем (владелец 21.10, реестр №6): мой маркер на башне — с кольцом, если у меня Plus
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
   const fontScale = useWindowDimensions().fontScale;
@@ -328,7 +324,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
             ) : null}
             {myFloor !== null ? (
               <Animated.View pointerEvents={onPressMe ? 'box-none' : 'none'} style={[s.marker, { transform: [{ translateX: tx }, { translateY: ty }] }]}>
-                <SpireTowerMarker lang={lang} sceneMode={sceneMode} myCoinRank={myCoinRank} myIsPlus={myIsPlus} cta={p.cta} ctaText={p.ctaText} glow={markerGlow} onPressMe={onPressMe} />
+                <SpireTowerMarker lang={lang} sceneMode={sceneMode} myCoinRank={myCoinRank} onPressMe={onPressMe} />
               </Animated.View>
             ) : null}
           </View>

@@ -61,7 +61,7 @@ async function main(): Promise<void> {
   const eve = buildSpireSceneCopy("ru", "eve", { ...facts, msLeft: 2 * H + 20 * 60_000 });
   assert.equal(eve.kicker, "Гранит · до конца недели");
   assert.equal(eve.title, `2${nb}ч 20${nb}мин`, "между часами и минутами — обычный пробел: заголовок переносится, как в эталоне");
-  assert.equal(eve.warm, "Ещё 2 места до повышения");
+  assert.equal("warm" in eve, false, "ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот это убери текст» — вечером строки «N мест до повышения» нет");
   assert.deepEqual([...eve.rewards], [], "вечером наград нет — как в эталоне");
   const zero = buildSpireSceneCopy("ru", "zero", facts);
   assert.equal(zero.kicker, "Энергия через");
@@ -204,12 +204,12 @@ async function main(): Promise<void> {
   // зачем (владелец 22.10: «башню перекрашиваем в оттенки темы»; «цвета строго оттенками текущей темы»)
   assert.ok(scene.includes("themeColors={themeColors}") && scene.includes("const themeColors = useMemo(() => ({ accent: sceneAccent, sceneTop: tokens.sceneTop, sceneBottom: tokens.sceneBottom })"), "сцена передаёт башне цвета темы: акцент «Максимума» и цвета сцены");
   assert.ok(tower.includes("sceneMode && themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)"), "на «Сцене» наряд башни — в оттенках темы, вне её — прежний наряд лиги");
-  assert.ok(scene.includes("const warmColor = homeSceneWarmTone(sceneAccent).flame;") && scene.includes("color={warmColor} style={s.warmIcon}") && scene.includes("<Text style={[ts.warm, { color: warmColor }]}"), "строка «N мест до повышения» — тёплый тон сцены в оттенке темы, как на Главной");
+  assert.ok(!scene.includes("homeSceneWarmTone") && !scene.includes("p.copy.warm") && !scene.includes("spireScenePromoText"), "ЗАМОК ВЛАДЕЛЬЦА 22.10: строки «N мест до повышения» на сцене нет — ни тёплой строкой, ни у пьедестала");
   const inkPalette = read("components/spire/scene/spire_scene_palette.ts");
   assert.ok(!/#(?!FFFFFF)[0-9A-Fa-f]{6}/.test(inkPalette) && !/rgba\((?!255,255,255,|0,0,0,)/.test(inkPalette) && !scene.includes("SPIRE_SCENE_INK.warm"), "свет сцены Пика — только белый и чёрный: цветных литералов (персик, мята) нет, цвет — от темы");
   const marker = read("components/spire/SpireTowerMarker.tsx");
   const rivals = read("components/spire/SpireTowerRivals.tsx");
-  assert.ok(scene.includes("markerGlow={tokens.sceneGlow}") && marker.includes("plus={false} /> : null}") && marker.includes("const MARKER_SCENE_SIZE = 44;"), "своя монета на сцене — без колец, ×1,1, свечение темы");
+  assert.ok(!scene.includes("markerGlow") && !marker.includes("boxShadow") && marker.includes("const MARKER_SCENE_SIZE = 44;"), "своя монета на сцене — ×1,1, без колец и без свечения (ЗАМОК ВЛАДЕЛЬЦА 22.10)");
   assert.ok(tower.includes("sceneClean={sceneMode} />") && towerSvg.includes("{!sceneClean && (scene ? scene.star !== null : true) ? STARS.map(") && towerSvg.includes("textTooSmall || hideWords || sceneClean ? null"), "башня на сцене без своего неба: без звёзд, облаков и «НАД ОБЛАКАМИ»");
   assert.ok(tower.includes("logSpireLayout('tower:render', { skin: skin.id, themed: themeColors ? 'yes' : 'no', drawn: width > 0"), "журнал: наряд башни, в цветах ли темы, нарисована ли и почему");
   assert.ok(read("components/spire/scene/spire_scene_header.tsx").includes("<View style={[styles.tabs, tabsInset]}"), "рисованные вкладки сдвигаются вместе с настоящими под общую «назад»");

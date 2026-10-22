@@ -56,9 +56,10 @@ describe('кольцо Plus: 7 мест эталона', () => {
     expect(s).toContain('{isPlus ? <PlusTag testID="account-plus-tag"');
   });
 
-  it('3 · Пик, жители на башне: плоское кольцо без значка у соперников, у стопки на этаже и у моего маркера', () => {
+  it('3 · Пик, жители на башне: плоское кольцо без значка у соперников и у стопки на этаже; у своей монеты кольца нет', () => {
     expect(src('components/spire/SpireTowerRivals.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
-    expect(src('components/spire/SpireTowerMarker.tsx')).toContain('plus={myIsPlus} plusKind="flat"');
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот тут я сказал убрать обводку!!!!» — у своей монеты на башне кольца Plus нет (для башни заменяет №6)
+    expect(src('components/spire/SpireTowerMarker.tsx')).not.toMatch(/myIsPlus|plusKind/);
     expect(src('components/spire/SpireFloorInfo.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
   });
 

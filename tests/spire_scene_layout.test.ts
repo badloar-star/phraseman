@@ -107,13 +107,13 @@ describe('высокая «Сцена» Пика: башня целиком на
     expect(scene).not.toMatch(/adjustsFontSizeToFit/);
     const pedestal = read('components/spire/scene/SpireScenePedestal.tsx');
     expect(pedestal).toContain('const ts = useScaledTextStyles(s, TEXT_MAX_SCALE);');
-    expect(pedestal).toContain('<Text style={[ts.name, s.grow]} numberOfLines={1} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{m.name}</Text>');
+    expect(pedestal).toContain('<Text style={[ts.name, s.grow]} maxFontSizeMultiplier={TEXT_MAX_SCALE} android_hyphenationFrequency="full">{spireNickWrap(m.name)}</Text>');
     expect(pedestal).not.toMatch(/adjustsFontSizeToFit/);
   });
 
   it('«Комната недели» слева от башни (владелец 22.10, вариант 3): полный вид, где влезает над «Играть»; иначе сжатый — и он влезает', () => {
-    const DAY = { kicker2: false, warm: false, line: true, promo: true } as const;
-    const EVE = { kicker2: true, warm: true, line: true, promo: false } as const;
+    const DAY = { kicker2: false, line: true } as const;
+    const EVE = { kicker2: true, line: true } as const;
     for (const visibleH of VISIBLE) for (const fontScale of FONTS) for (const shape of [DAY, EVE]) {
       const room = Math.max(SPIRE_SCENE_MIN_VISIBLE, visibleH);
       const compact = spireScenePedestalCompact({ visibleH, fontScale, copyTop: 12, shape });

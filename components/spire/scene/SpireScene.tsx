@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // SpireScene.tsx — «Сцена» Пика: свет темы, башня целиком — герой справа; слева этаж и «Комната недели» — список топ-3, своё место,
-// «до повышения» и «Все участники»; всё на одном экране без прокрутки.
+// и «Все участники»; всё на одном экране без прокрутки.
 //
 // зачем (владелец 22.10: «интегрировать пик в общий дизайн… башня — герой сцены, комната недели — всё ещё как пьедестал»; эталон V2
 // peak-scene-v2.html; владелец 22.10 кнопкой: «Сцена выше, башня крупнее» — Пик исключение из правила 46 %): сцена почти на весь экран,
@@ -24,7 +24,6 @@ import type { PlayerInfo } from '../../PlayerProfileModal';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { useTheme } from '../../ThemeContext';
 import { homeSceneTokensForTheme } from '../../home/v2/scene/home_scene_tokens';
-import { homeSceneWarmTone } from '../../home/v2/scene/home_scene_warm_tone';
 import SpireTower from '../SpireTower';
 import { spireGameText } from '../spire_game_strings';
 import type { SpireMemberRow, SpireRankByView } from '../spire_room_types';
@@ -37,7 +36,6 @@ import type { SpireSceneCopy, SpireSceneDecision, SpireSceneRoom } from './spire
 import { setSpireSceneHeaderTint } from './spire_scene_header_tint';
 import { spireSceneFrame, spireScenePedestalCompact, spireSceneVisibleH } from './spire_scene_layout';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
-import { spireScenePromoText } from './spire_scene_strings';
 
 /**
  * Звёзды сцены — по всей плоскости до краёв, одни и те же в каждом кадре (владелец 22.10: «звёздочки рассыпь по всей плоскости, а не только
@@ -126,10 +124,8 @@ function SpireScene(p: Props) {
   const glow = evening ? tokens.eveningGlow : tokens.sceneGlow;
   // зачем (Сверка 22.10 по 7961dde6a: «звёзды белые в обеих темах»): звёзды — оттенок свечения темы с четвертью белого, а не почти белые
   const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.25), [tokens.sceneGlow]);
-  // зачем (владелец 22.10: «цвета строго оттенками текущей темы»; сцена всегда на «Максимуме»): акцент темы — для тёплой строки и наряда башни
+  // зачем (владелец 22.10: «цвета строго оттенками текущей темы»; сцена всегда на «Максимуме»): акцент темы — для наряда башни
   const sceneAccent = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }).accent, [liquidGlassThemeId, liquidGlassAppearance]);
-  // строка «N мест до повышения» — тёплый тон сцены, как на Главной (был свой #FFD0C4; ≥ 4,5 во всех темах — аудит scene_contrast_audit)
-  const warmColor = homeSceneWarmTone(sceneAccent).flame;
   // наряд башни (владелец 22.10: «башню перекрашиваем в оттенки темы») — из акцента темы и цветов сцены
   const themeColors = useMemo(() => ({ accent: sceneAccent, sceneTop: tokens.sceneTop, sceneBottom: tokens.sceneBottom }), [sceneAccent, tokens.sceneTop, tokens.sceneBottom]);
   // зачем (эталон: сцена уходит под вкладки и под часы): пока «Пик» на экране — верхний цвет сцены шапке «Сообщества» и полосе статуса
@@ -167,10 +163,9 @@ function SpireScene(p: Props) {
   const onPressPodium = useCallback((m: SpireMemberRow) => openMember(m, 'podium'), [openMember]);
   const onPressMyPlace = useCallback(() => openMember(me, 'my_place'), [me, openMember]);
   const closePlayer = useCallback(() => setPlayer(null), []);
-  const promo = p.room.placesToPromo !== null && p.room.placesToPromo > 0 ? spireScenePromoText(p.lang, p.room.placesToPromo, false) : null;
-  // зачем (владелец 22.10, вариант 3 «Список топ-3»: всё на одном экране без прокрутки): «до повышения» у пьедестала — если этого не
-  // сказала тёплая строка сцены; колонка не влезает над «Играть» — сжатый пьедестал
-  const shape = useMemo(() => ({ kicker2: p.copy.kicker2 !== null, warm: p.copy.warm !== null, line: p.copy.line !== null, promo: promo !== null && p.copy.warm === null }), [p.copy.kicker2, p.copy.warm, p.copy.line, promo]);
+  // зачем (владелец 22.10, вариант 3 «Список топ-3»: всё на одном экране без прокрутки): колонка не влезает над «Играть» — сжатый пьедестал.
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот это убери текст» — строки «N мест до повышения» на сцене нет: ни у пьедестала, ни тёплой строкой
+  const shape = useMemo(() => ({ kicker2: p.copy.kicker2 !== null, line: p.copy.line !== null }), [p.copy.kicker2, p.copy.line]);
   const pedestalCompact = spireScenePedestalCompact({ visibleH, fontScale, copyTop: off ? COPY_TOP_OFFLINE : COPY_TOP, shape });
   useEffect(() => {
     console.log('[SPIRE-LAYOUT] pedestal', JSON.stringify({ compact: pedestalCompact, visibleH: Math.round(visibleH), fontScale, offline: off, ...shape })); // guard-ok: вид пьедестала (вариант 3)
@@ -217,7 +212,6 @@ function SpireScene(p: Props) {
             onPressRival={onPressRival}
             onPressMore={p.onOpenAll}
             onPressMe={onPressMe}
-            markerGlow={tokens.sceneGlow}
             themeColors={themeColors}
           />
         </View>
@@ -225,12 +219,6 @@ function SpireScene(p: Props) {
           <Text style={ts.kicker} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.kicker}</Text>
           {p.copy.kicker2 ? <Text style={ts.kicker} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.kicker2}</Text> : null}
           {p.copy.liveEnergyTitle ? <LiveEnergyTitle override={p.energyTime} /> : <Text accessibilityRole="header" testID="spire-scene-title" maxFontSizeMultiplier={DISPLAY_MAX_SCALE} style={s.title}>{p.copy.title}</Text>}
-          {p.copy.warm ? (
-            <View style={s.warmRow}>
-              <Ionicons name="trending-up" size={16} color={warmColor} style={s.warmIcon} />
-              <Text style={[ts.warm, { color: warmColor }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.warm}</Text>
-            </View>
-          ) : null}
           {p.copy.line ? (
             <View style={s.lineRow}>
               {p.copy.bar !== null ? <View style={s.bar}><View style={[s.barFill, { width: `${Math.round(p.copy.bar * 100)}%` }]} /></View> : null}
@@ -243,12 +231,10 @@ function SpireScene(p: Props) {
             lang={p.lang}
             width={frame.copyW + SPIRE_SCENE_PEDESTAL_INSET}
             top={p.room.top}
-            rankBy={p.rankBy}
             count={p.room.count}
             myPlace={p.room.myPlace}
             me={me}
             myCoinRank={p.myCoinRank}
-            promo={shape.promo ? promo : null}
             compact={pedestalCompact}
             loading={searching}
             dim={off}
@@ -280,9 +266,6 @@ const s = StyleSheet.create({
   copy: { position: 'absolute', left: 20 },
   kicker: { color: SPIRE_SCENE_INK.kicker, fontSize: 13, lineHeight: 17 },
   title: { color: SPIRE_SCENE_INK.text, fontSize: 40, lineHeight: 44, fontWeight: '700', letterSpacing: -0.8, marginTop: 4 },
-  warmRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 8 },
-  warmIcon: { marginTop: 2 },
-  warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   bar: { width: 48, height: 4, borderRadius: 2, backgroundColor: SPIRE_SCENE_INK.barTrack, overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: SPIRE_SCENE_INK.text },

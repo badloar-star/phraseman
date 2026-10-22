@@ -107,22 +107,23 @@ export function spireSceneVisibleH(windowH: number, topInset: number, dockClear:
   return windowH - Math.max(SPIRE_SCENE_HEADER_MIN, SPIRE_SCENE_HEADER_CONTENT + Math.max(0, topInset)) - Math.max(0, dockClear);
 }
 
-/** Из чего состоит левая колонка (spire_scene_model): вторая подпись, тёплая строка, строка прогресса; «до повышения» у пьедестала. */
-export type SpireScenePedestalShape = Readonly<{ kicker2: boolean; warm: boolean; line: boolean; promo: boolean }>;
+/** Из чего состоит левая колонка (spire_scene_model): вторая подпись и строка прогресса (строки «до повышения» нет — замок владельца 22.10). */
+export type SpireScenePedestalShape = Readonly<{ kicker2: boolean; line: boolean }>;
 
 /**
  * Высота левой колонки «Сцены» (владелец 22.10, вариант 3 «Список топ-3»): от верха сцены через текст и «Комнату недели» до зазора
  * над «Играть», dp. Высоты макета при шрифте 1,0; мелкий текст растёт до 1,3, заголовок 40/44 — нет. Текст: подпись 17, заголовок
- * 4 + 44, тёплая строка 8 + 21, прогресс 10 + 17. Пьедестал: отступ 18, заголовок 21 + 10, список 12 + 3 × 56 (сжатый 44), своя
- * строка 10 + 20 + место 21 и имя 17 (сжатый — без имени, не ниже монеты 32), «до повышения» 8 + две строки по 17, «Все участники»
- * 10 + 17 (в сжатом нет — их открывает заголовок).
+ * 4 + 44, прогресс 10 + 17. Пьедестал: отступ 18, заголовок 21 + 10, список 12 + 3 × 56 (сжатый 44; ник в две строки 2 × 21 влезает),
+ * своя строка 10 + 20 + место 21 и ник до двух строк 2 × 17 (сжатый — без ника, не ниже монеты 32), «Все участники» 10 + 17 (в сжатом
+ * нет — их открывает заголовок). Строки «до повышения» и тёплой строки нет (замок владельца 22.10).
  */
 export function spireScenePedestalNeed(i: Readonly<{ fontScale: number; copyTop: number; compact: boolean; shape: SpireScenePedestalShape }>): number {
   const k = fontOf(i.fontScale);
   const sh = i.shape;
-  const copy = 17 * k + (sh.kicker2 ? 17 * k : 0) + 48 + (sh.warm ? 8 + 21 * k : 0) + (sh.line ? 10 + 17 * k : 0);
-  const me = 10 + 20 + Math.max(32, 21 * k + (i.compact ? 0 : 17 * k));
-  const tail = i.compact ? 0 : (sh.promo ? 8 + 34 * k : 0) + 10 + 17 * k;
+  const copy = 17 * k + (sh.kicker2 ? 17 * k : 0) + 48 + (sh.line ? 10 + 17 * k : 0);
+  // зачем (замок владельца 22.10 «просто ник полностью»): ник под своим местом не режется — запас на две строки
+  const me = 10 + 20 + Math.max(32, 21 * k + (i.compact ? 0 : 2 * 17 * k));
+  const tail = i.compact ? 0 : 10 + 17 * k;
   return i.copyTop + copy + 18 + 21 * k + 10 + 12 + 3 * (i.compact ? 44 : 56) + me + tail + DOCK_GAP;
 }
 

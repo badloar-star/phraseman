@@ -11,7 +11,7 @@ import type { Lang } from '../../../constants/i18n';
 import { spireText, spireTimeLeftText } from '../spire_strings';
 import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from '../spire_room_types';
 import { spireZonesFor } from '../spire_zones';
-import { spireScenePromoText, spireSceneText } from './spire_scene_strings';
+import { spireSceneText } from './spire_scene_strings';
 
 // зачем: выключатель живёт в крошечном spire_scene_flag.ts (его читает и полоса под часами на старте); здесь — для прежних импортов
 export { SPIRE_SCENE_V2_ENABLED } from './spire_scene_flag';
@@ -102,8 +102,6 @@ export type SpireSceneCopy = Readonly<{
   /** Полоска ступеней 0..1; null — нет. */
   bar: number | null;
   line: string | null;
-  /** Тёплая строка вечера («Ещё 2 места до повышения»). */
-  warm: string | null;
   rewards: readonly string[];
 }>;
 
@@ -117,16 +115,16 @@ export function buildSpireSceneCopy(lang: Lang, state: SpireSceneState, f: Spire
   const left = spireSceneLeft(f.msLeft);
   switch (state) {
     case 'search':
-      return { kicker: `${spireSceneText(lang, 'newWeek')} · ${f.tierName}`, kicker2: null, title: floorTitle, liveEnergyTitle: false, bar, line: stepLine, warm: null, rewards };
+      return { kicker: `${spireSceneText(lang, 'newWeek')} · ${f.tierName}`, kicker2: null, title: floorTitle, liveEnergyTitle: false, bar, line: stepLine, rewards };
     case 'eve': {
       const hm = left.hours > 0 ? `${left.hours}${nb}${spireText(lang, 'hourUnit')} ${left.minutes}${nb}${spireSceneText(lang, 'minUnit')}` : `${left.minutes}${nb}${spireSceneText(lang, 'minUnit')}`;
-      const warm = f.placesToPromo !== null && f.placesToPromo > 0 ? spireScenePromoText(lang, f.placesToPromo, true) : null;
-      return { kicker: `${f.tierName} · ${spireText(lang, 'untilEnd')}`, kicker2: null, title: hm, liveEnergyTitle: false, bar: null, line: null, warm, rewards: [] };
+      // ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот это убери текст» — вечером без строки «N мест до повышения»: только отсчёт до конца недели
+      return { kicker: `${f.tierName} · ${spireText(lang, 'untilEnd')}`, kicker2: null, title: hm, liveEnergyTitle: false, bar: null, line: null, rewards: [] };
     }
     case 'zero':
-      return { kicker: spireSceneText(lang, 'energyIn'), kicker2: null, title: '—', liveEnergyTitle: true, bar: null, line: `${spireText(lang, 'floor').toLocaleLowerCase()} ${f.floor} · ${stepLine}`, warm: null, rewards: [] };
+      return { kicker: spireSceneText(lang, 'energyIn'), kicker2: null, title: '—', liveEnergyTitle: true, bar: null, line: `${spireText(lang, 'floor').toLocaleLowerCase()} ${f.floor} · ${stepLine}`, rewards: [] };
     case 'day':
     default:
-      return { kicker: f.tierName, kicker2: spireTimeLeftText(lang, left.days, left.hours), title: floorTitle, liveEnergyTitle: false, bar, line: stepLine, warm: null, rewards };
+      return { kicker: f.tierName, kicker2: spireTimeLeftText(lang, left.days, left.hours), title: floorTitle, liveEnergyTitle: false, bar, line: stepLine, rewards };
   }
 }

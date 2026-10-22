@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Башня Пика — оттенки темы</title>
+<style>
+/* зачем (владелец 22.10: «башню перекрашиваем в оттенки темы, монеты-ранги — металл»): сравнение правил перекраски наряда башни из
+   акцента темы на фоне сцены Пика (homeSceneTokensForTheme) в четырёх темах; рисует общий рендер эталонов spire-tower-render.js с
+   нарядом, собранным тем же рецептом, что modules/spire/tower_skins.ts (skinFromLeague). Governance-ID: TG-0F44F864E6AC */
+body { margin: 0; background: #101113; color: #ECECEE; font: 14px/1.4 Inter, system-ui, sans-serif; }
+.wrap { padding: 24px; }
+h1 { font-size: 24px; margin: 0 0 6px; }
+p { color: #A9A9AE; margin: 0 0 16px; max-width: 980px; }
+table { border-collapse: separate; border-spacing: 12px; }
+th { font-weight: 700; text-align: left; color: #ECECEE; font-size: 14px; }
+td.l { color: #A9A9AE; font-size: 13px; width: 150px; vertical-align: middle; }
+.cell { width: 190px; height: 440px; border-radius: 18px; overflow: hidden; position: relative; }
+.cell svg { position: absolute; left: 24px; bottom: -6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Башня Пика — оттенки темы</h1>
+  <p>Строки: нынешний наряд лиги; правило A — камень светлым оттенком акцента темы (освещённая сторона светлее фона сцены, края темнее), металл и окна — светлые оттенки акцента; правило B — тёмный камень тона темы со светлой отделкой. Лиги: Гранит (0) и Аметист (7) — форма навершия, ободки и фактура остаются у лиги, цвет — от темы.</p>
+  <div id="root"></div>
+</div>
+<script src="spire-tower-render.js"></script>
+<script>
+(() => {
+  const T = {"marine:dark":{"accent":"#5CCFEB","accentText":"#64D1EC","accentGraphic":"#5CCFEB","accentGradient":["#5CCFEB","#58D1C5"],"text":"#F6FBFD","sceneTop":"#1C5B6C","sceneBottom":"#1A494B","sceneGlow":"rgba(0,138,164,0.7803921568627451)"},"ink:light":{"accent":"#5F5CB1","accentText":"#514EA1","accentGraphic":"#54529B","accentGradient":["#6765BB","#4C489B"],"text":"#17181E","sceneTop":"#514CA6","sceneBottom":"#1E2059","sceneGlow":"rgba(159,126,214,0.9)"},"terracotta:light":{"accent":"#B53621","accentText":"#A4240E","accentGraphic":"#9F311F","accentGradient":["#B53621","#A15200"],"text":"#211513","sceneTop":"#A12915","sceneBottom":"#530307","sceneGlow":"rgba(213,117,58,0.9)"},"graphite:dark":{"accent":"#ABC0D7","accentText":"#ABC0D7","accentGraphic":"#ABC0D7","accentGradient":["#DDE9F6","#9EB4CA","#CDE2E8","#92A7BD"],"text":"#F7FAFE","sceneTop":"#545C66","sceneBottom":"#313B45","sceneGlow":"rgba(97,112,129,0.6588235294117647)"}};
+  const R = window.SpireTowerRender;
+  const mix = R.mixHex;
+  const lighten = (c, t) => mix(c, '#ffffff', t);
+  const darken = (c, t) => mix(c, '#000000', t);
+  const hex = (c) => {
+    const m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(c);
+    return m ? '#' + [m[1], m[2], m[3]].map((v) => Number(v).toString(16).padStart(2, '0')).join('') : c;
+  };
+  const rgb = (h) => [0, 2, 4].map((i) => parseInt(h.replace('#', '').slice(i, i + 2), 16));
+  // рецепт tower_skins.ts skinFromLeague (перенесён без изменений)
+  function skinFromLeague(L) {
+    const b = L.stone;
+    const light = rgb(b).reduce((s, v) => s + v, 0) / 3 > 140;
+    const k = light ? 0.75 : 1;
+    return {
+      id: L.id, premium: true,
+      cyl: [darken(b, 0.7 * k), darken(b, 0.38 * k), b, darken(b, 0.24 * k), darken(b, 0.55 * k), darken(b, 0.78 * k)],
+      cylG: [darken(b, 0.64 * k), darken(b, 0.28 * k), lighten(b, 0.06), darken(b, 0.14 * k), darken(b, 0.5 * k), darken(b, 0.74 * k)],
+      corn: [darken(b, 0.6), mix(lighten(b, 0.2), L.metal, 0.25), darken(b, 0.08), darken(b, 0.7)],
+      cone: [darken(b, 0.72), darken(b, 0.1), darken(b, 0.4), darken(b, 0.8)],
+      lit: L.lit, winPast: mix(darken(b, 0.35), L.lit, 0.14), winDark: darken(b, 0.86), winSill: mix(darken(b, 0.1), L.metal, 0.35),
+      sky: [L.sky, mix(L.sky, b, 0.07), darken(L.sky, 0.15)], ground: [mix(L.sky, b, 0.18), darken(L.sky, 0.15)],
+      glow: L.lit, glowR: L.glow, spec: L.spec, edge: L.edge, tex: L.tex, metal: L.metal, rim: L.rim, finial: L.finial,
+      gem: L.gem || '#FFFFFF', pennant: L.pennant || null, light,
+      seam: light ? 0.2 : 0.34, seamLight: light ? 0.14 : 0.05, underTop: light ? 0.3 : 0.42, merlonLo: darken(b, 0.6), merlonHi: lighten(b, 0.18),
+    };
+  }
+  const RULES = {
+    A: (L, t) => {
+      const stone = lighten(mix(t.sceneTop, t.accent, 0.5), 0.22);
+      return { ...L, stone, edge: lighten(t.accent, 0.6), metal: lighten(mix(t.accent, t.sceneTop, 0.2), 0.42), gem: lighten(t.accent, 0.3), pennant: L.pennant ? mix(t.accent, t.sceneBottom, 0.35) : undefined, lit: lighten(t.accent, 0.84), sky: t.sceneBottom };
+    },
+    B: (L, t) => {
+      const stone = mix(darken(t.sceneBottom, 0.45), t.accent, 0.14);
+      return { ...L, stone, edge: lighten(t.accent, 0.62), metal: lighten(t.accent, 0.4), gem: lighten(t.accent, 0.35), pennant: L.pennant ? lighten(t.accent, 0.1) : undefined, lit: lighten(t.accent, 0.86), sky: t.sceneBottom };
+    },
+  };
+  const scene = { light: false, num: '#FFFFFF00', numMine: '#FFFFFF00', cloudsLabel: '#FFFFFF00', tone: '#FFFFFF', star: null, shadow: 'rgba(0,0,0,0.45)', plate: 'transparent' };
+  const themes = Object.keys(T);
+  const rows = [];
+  for (const tier of [0, 7]) {
+    const L = R.LEAGUES[tier];
+    rows.push({ label: `${L.ru}: сейчас`, skin: () => R.skinFor(tier) });
+    rows.push({ label: `${L.ru}: правило A`, skin: (t) => skinFromLeague(RULES.A(L, t)) });
+    rows.push({ label: `${L.ru}: правило B`, skin: (t) => skinFromLeague(RULES.B(L, t)) });
+  }
+  const cell = (t, skin) => {
+    const bg = `radial-gradient(70% 50% at 18% 0%, ${t.sceneGlow}, transparent), linear-gradient(160deg, ${t.sceneTop}, ${t.sceneBottom})`;
+    const s = R.svg({ tier: 0, skin, myFloor: 4, selected: 0, scene, width: 142, labels: false });
+    return `<div class="cell" style="background:${bg}">${s}</div>`;
+  };
+  document.getElementById('root').innerHTML = `<table><tr><th></th>${themes.map((k) => `<th>${k}</th>`).join('')}</tr>`
+    + rows.map((r) => `<tr><td class="l">${r.label}</td>${themes.map((k) => { const t = { ...T[k], sceneGlow: T[k].sceneGlow }; return `<td>${cell(t, r.skin(t))}</td>`; }).join('')}</tr>`).join('') + '</table>';
+})();
+</script>
+</body>
+</html>

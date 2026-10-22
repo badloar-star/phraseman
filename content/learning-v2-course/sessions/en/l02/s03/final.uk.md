@@ -65,7 +65,7 @@ concerned тут — «стурбований». We are not concerned — «Ми
 <!-- interaction_id: en:lesson-02:session-03:word:convinced; family: word_card -->
 > **convinced** — переконаний, аргументи подіяли. I'm convinced — «Я переконаний». I'm not convinced — «Мене не переконали».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг пише вам про новий час зустрічі**
 <!-- interaction_id: en:lesson-02:session-03:i02; family: listen_choose -->
 🔊 *I am not convinced.* → **I am not convinced.** · I am not concerned. · I am not aware.
 - I am not concerned. — *У записі останнє слово — `convinced`, а в цьому варіанті — `concerned`.*
@@ -105,7 +105,7 @@ I ___ not busy. → **am** · is · are
 - is — *Про себе — `I am not`.*
 - are — *Після `I` потрібно `am`.*
 
-**12 · Послухайте фразу про друзів**
+**12 · Послухайте й виберіть — ви обговорюєте з подругою, хто прийде на зустріч**
 <!-- interaction_id: en:lesson-02:session-03:i09; family: listen_choose -->
 🔊 *They are not late.* → **They are not late.** · They are not free. · They are not relaxed.
 - They are not free. — *У записі останнє слово — `late`, а в цьому варіанті — `free`.*
@@ -139,7 +139,7 @@ He ___ not convinced. → **is** · am · are
 - am — *Після `He` потрібно `is`.*
 - are — *Про Олега — `He is not`.*
 
-**19 · Послухайте коротку фразу й виберіть її**
+**19 · Послухайте й виберіть — друг говорить з вами про перенесену зустріч**
 <!-- interaction_id: en:lesson-02:session-03:i15; family: listen_choose -->
 🔊 *We're not concerned.* → **We're not concerned.** · We're not convinced. · We're not aware.
 - We're not convinced. — *У записі останнє слово — `concerned`, а в цьому варіанті — `convinced`.*

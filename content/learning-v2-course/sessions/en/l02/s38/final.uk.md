@@ -61,7 +61,7 @@
 Плитки: `leaky` `is` `It` `are` → **It is leaky.**
 *(плитка `are` зайва: тут потрібно `is` — `It is leaky.`)*
 
-**3 · Послухайте, що майстер каже про замок**
+**3 · Послухайте й виберіть — майстер заходить у вашу квартиру й роззирається**
 <!-- interaction_id: en:lesson-02:session-38:i02; family: listen_choose -->
 🔊 *It is broken.* → **It is broken.** · It is old. · It is open.
 - It is old. — *У записі останнє слово — `broken`, а в цьому варіанті — `old`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-38:word:wobbly; family: word_card -->
 > **wobbly** — хиткий, що гойдається. It is wobbly — «Він хитається». Про стілець, стіл, драбину, зуб.
 
-**13 · Послухайте, що сусідка каже про стілець**
+**13 · Послухайте й виберіть — сусідка заходить до вас у винайняту квартиру**
 <!-- interaction_id: en:lesson-02:session-38:i09; family: listen_choose -->
 🔊 *It is wobbly.* → **It is wobbly.** · It is broken. · It is heavy.
 - It is broken. — *У записі останнє слово — `wobbly`, а в цьому варіанті — `broken`.*
@@ -139,7 +139,7 @@ It ___ not dented. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not dented`.*
 
-**19 · Послухайте запитання майстра**
+**19 · Послухайте й виберіть — майстер ходить вашою квартирою й питає**
 <!-- interaction_id: en:lesson-02:session-38:i15; family: listen_choose -->
 🔊 *Are they leaky?* → **Are they leaky?** · Are they dented? · Are they creaky?
 - Are they dented? — *У записі останнє слово — `leaky`, а в цьому варіанті — `dented`.*

@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що бабуся каже про чай",
+        "prompt": "Послухайте й виберіть — бабуся зустрічає вас удома на вихідних",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-40:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-40:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що бабуся каже про чай",
+        "accessibilityLabel": "Послухайте й виберіть — бабуся зустрічає вас удома на вихідних",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-02:session-40:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що бабуся каже про чай",
+              "testedDimension": "Послухайте й виберіть — бабуся зустрічає вас удома на вихідних",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `hot`, а в этом варианте — `cozy`.",
                 "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `cozy`."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-02:session-40:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що бабуся каже про чай",
+              "testedDimension": "Послухайте й виберіть — бабуся зустрічає вас удома на вихідних",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `hot`, а в этом варианте — `tasty`.",
                 "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `tasty`."
@@ -1800,7 +1800,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що бабуся каже про крісло",
+        "prompt": "Послухайте й виберіть — бабуся показує вам кімнату",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-40:i09:r1",
@@ -1819,7 +1819,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-40:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що бабуся каже про крісло",
+        "accessibilityLabel": "Послухайте й виберіть — бабуся показує вам кімнату",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1849,7 +1849,7 @@
             {
               "responseId": "en:lesson-02:session-40:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що бабуся каже про крісло",
+              "testedDimension": "Послухайте й виберіть — бабуся показує вам кімнату",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `shabby`, а в этом варианте — `old`.",
                 "uk": "У записі останнє слово — `shabby`, а в цьому варіанті — `old`."
@@ -1858,7 +1858,7 @@
             {
               "responseId": "en:lesson-02:session-40:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що бабуся каже про крісло",
+              "testedDimension": "Послухайте й виберіть — бабуся показує вам кімнату",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `shabby`, а в этом варианте — `small`.",
                 "uk": "У записі останнє слово — `shabby`, а в цьому варіанті — `small`."
@@ -2143,7 +2143,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання бабусі",
+        "prompt": "Послухайте й виберіть — бабуся про щось питає вас у кімнаті",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-40:i15:r1",
@@ -2162,7 +2162,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-40:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання бабусі",
+        "accessibilityLabel": "Послухайте й виберіть — бабуся про щось питає вас у кімнаті",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2192,7 +2192,7 @@
             {
               "responseId": "en:lesson-02:session-40:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання бабусі",
+              "testedDimension": "Послухайте й виберіть — бабуся про щось питає вас у кімнаті",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `snug`, а в этом варианте — `cramped`.",
                 "uk": "У записі останнє слово — `snug`, а в цьому варіанті — `cramped`."
@@ -2201,7 +2201,7 @@
             {
               "responseId": "en:lesson-02:session-40:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання бабусі",
+              "testedDimension": "Послухайте й виберіть — бабуся про щось питає вас у кімнаті",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `snug`, а в этом варианте — `shabby`.",
                 "uk": "У записі останнє слово — `snug`, а в цьому варіанті — `shabby`."

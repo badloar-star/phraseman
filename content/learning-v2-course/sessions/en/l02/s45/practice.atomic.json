@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що брат каже про старий ключ",
+        "prompt": "Послухайте й виберіть — брат розбирає з вами дідів гараж",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-45:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-45:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що брат каже про старий ключ",
+        "accessibilityLabel": "Послухайте й виберіть — брат розбирає з вами дідів гараж",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-02:session-45:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що брат каже про старий ключ",
+              "testedDimension": "Послухайте й виберіть — брат розбирає з вами дідів гараж",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `rusty`, а в этом варианте — `loose`.",
                 "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `loose`."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-02:session-45:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що брат каже про старий ключ",
+              "testedDimension": "Послухайте й виберіть — брат розбирає з вами дідів гараж",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `rusty`, а в этом варианте — `heavy`.",
                 "uk": "У записі останнє слово — `rusty`, а в цьому варіанті — `heavy`."
@@ -1800,7 +1800,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що брат каже про дошки біля стіни",
+        "prompt": "Послухайте й виберіть — брат ходить гаражем і оглядає речі",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-45:i09:r1",
@@ -1819,7 +1819,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-45:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що брат каже про дошки біля стіни",
+        "accessibilityLabel": "Послухайте й виберіть — брат ходить гаражем і оглядає речі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1849,7 +1849,7 @@
             {
               "responseId": "en:lesson-02:session-45:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що брат каже про дошки біля стіни",
+              "testedDimension": "Послухайте й виберіть — брат ходить гаражем і оглядає речі",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `rough`, а в этом варианте — `loose`.",
                 "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `loose`."
@@ -1858,7 +1858,7 @@
             {
               "responseId": "en:lesson-02:session-45:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що брат каже про дошки біля стіни",
+              "testedDimension": "Послухайте й виберіть — брат ходить гаражем і оглядає речі",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `rough`, а в этом варианте — `rusty`.",
                 "uk": "У записі останнє слово — `rough`, а в цьому варіанті — `rusty`."
@@ -2143,7 +2143,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання брата",
+        "prompt": "Послухайте й виберіть — ви з братом оглядаєте полиці в гаражі",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-45:i15:r1",
@@ -2162,7 +2162,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-45:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання брата",
+        "accessibilityLabel": "Послухайте й виберіть — ви з братом оглядаєте полиці в гаражі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2192,7 +2192,7 @@
             {
               "responseId": "en:lesson-02:session-45:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання брата",
+              "testedDimension": "Послухайте й виберіть — ви з братом оглядаєте полиці в гаражі",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `cluttered`.",
                 "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `cluttered`."
@@ -2201,7 +2201,7 @@
             {
               "responseId": "en:lesson-02:session-45:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання брата",
+              "testedDimension": "Послухайте й виберіть — ви з братом оглядаєте полиці в гаражі",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `rough`.",
                 "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `rough`."

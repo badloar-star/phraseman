@@ -61,7 +61,7 @@
 Плитки: `am` `I` `Yes,` `No,` → **Yes, I am.**
 *(плитка `No,` зайва: тут потрібно `Yes,` — `Yes, I am.`)*
 
-**3 · За годину сестра встала з дивана. Послухайте, що каже брат**
+**3 · Послухайте й виберіть — брат говорить з вами вдома в подруги**
 <!-- interaction_id: en:lesson-02:session-17:i02; family: listen_choose -->
 🔊 *She is well.* → **She is well.** · She is safe. · She is right.
 - She is safe. — *У записі останнє слово — `well`, а в цьому варіанті — `safe`.*
@@ -97,7 +97,7 @@ No, I ___ not. → **am** · is · are
 - is — *Про себе — `I am not`.*
 - are — *З `I` потрібно `am`, навіть якщо в запитанні було `Are you`.*
 
-**10 · Подруга хоче залишити машину біля будинку на ніч. Послухайте її запитання**
+**10 · Послухайте й виберіть — подруга зустрічає вас біля будинку після довгої дороги**
 <!-- interaction_id: en:lesson-02:session-17:i09; family: listen_choose -->
 🔊 *Is it possible?* → **Is it possible?** · Is it safe? · Is it right?
 - Is it safe? — *У записі останнє слово — `possible`, а в цьому варіанті — `safe`.*
@@ -139,7 +139,7 @@ They ___ unpacked. → **are** · am · is
 <!-- interaction_id: en:lesson-02:session-17:word:carsick; family: word_card -->
 > **carsick** — якого заколисало в дорозі. Is she carsick? — «Її заколисало?» У машині, автобусі.
 
-**19 · Подруга питає, чи не заколисало брата. Послухайте, що каже сестра**
+**19 · Послухайте й виберіть — сестра відповідає подрузі біля будинку**
 <!-- interaction_id: en:lesson-02:session-17:i15; family: listen_choose -->
 🔊 *He is not carsick.* → **He is not carsick.** · He is not safe. · He is not well.
 - He is not safe. — *У записі останнє слово — `carsick`, а в цьому варіанті — `safe`.*

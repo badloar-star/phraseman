@@ -61,7 +61,7 @@
 Плитки: `sour` `is` `It` `are` → **It is sour.**
 *(плитка `are` зайва: тут потрібно `is` — `It is sour.`)*
 
-**3 · Послухайте, що подруга каже про картоплю**
+**3 · Послухайте й виберіть — подруга куштує страву в кафе біля вокзалу**
 <!-- interaction_id: en:lesson-02:session-46:i02; family: listen_choose -->
 🔊 *It is salty.* → **It is salty.** · It is spicy. · It is bitter.
 - It is spicy. — *У записі останнє слово — `salty`, а в цьому варіанті — `spicy`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-46:word:runny; family: word_card -->
 > **runny** — рідкий, той, що розтікається. They're runny — «Вони рідкі». Про жовтки, мед, джем, соус.
 
-**13 · Послухайте, що подруга каже про яйця**
+**13 · Послухайте й виберіть — подруга показує вам страву на столі**
 <!-- interaction_id: en:lesson-02:session-46:i09; family: listen_choose -->
 🔊 *They are runny.* → **They are runny.** · They are tasty. · They are greasy.
 - They are tasty. — *У записі останнє слово — `runny`, а в цьому варіанті — `tasty`.*
@@ -139,7 +139,7 @@ It ___ not sour. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not sour`.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — за сніданком подруга ставить вам запитання**
 <!-- interaction_id: en:lesson-02:session-46:i15; family: listen_choose -->
 🔊 *Is it bland?* → **Is it bland?** · Is it sour? · Is it runny?
 - Is it sour? — *У записі останнє слово — `bland`, а в цьому варіанті — `sour`.*

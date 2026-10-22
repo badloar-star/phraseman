@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання подруги про сквер",
+        "prompt": "Послухайте й виберіть — подруга кличе вас у сквер біля річки в спеку",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-13:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-13:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання подруги про сквер",
+        "accessibilityLabel": "Послухайте й виберіть — подруга кличе вас у сквер біля річки в спеку",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-02:session-13:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги про сквер",
+              "testedDimension": "Послухайте й виберіть — подруга кличе вас у сквер біля річки в спеку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `big`, а в этом варианте — `small`.",
                 "uk": "У записі останнє слово — `big`, а в цьому варіанті — `small`."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-02:session-13:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги про сквер",
+              "testedDimension": "Послухайте й виберіть — подруга кличе вас у сквер біля річки в спеку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `big`, а в этом варианте — `clean`.",
                 "uk": "У записі останнє слово — `big`, а в цьому варіанті — `clean`."
@@ -1757,7 +1757,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що ви кажете подрузі про лавки біля річки",
+        "prompt": "Послухайте й виберіть — ви з подругою обираєте місце для зустрічі в спеку",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-13:i09:r1",
@@ -1776,7 +1776,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-13:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що ви кажете подрузі про лавки біля річки",
+        "accessibilityLabel": "Послухайте й виберіть — ви з подругою обираєте місце для зустрічі в спеку",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1806,7 +1806,7 @@
             {
               "responseId": "en:lesson-02:session-13:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що ви кажете подрузі про лавки біля річки",
+              "testedDimension": "Послухайте й виберіть — ви з подругою обираєте місце для зустрічі в спеку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `windy`, а в этом варианте — `shady`.",
                 "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `shady`."
@@ -1815,7 +1815,7 @@
             {
               "responseId": "en:lesson-02:session-13:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що ви кажете подрузі про лавки біля річки",
+              "testedDimension": "Послухайте й виберіть — ви з подругою обираєте місце для зустрічі в спеку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `windy`, а в этом варианте — `clean`.",
                 "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `clean`."
@@ -2143,7 +2143,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що подруга каже про подвір’я після дощу",
+        "prompt": "Послухайте й виберіть — після дощу подруга оглядає двір біля будинку",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-13:i15:r1",
@@ -2162,7 +2162,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-13:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте, що подруга каже про подвір’я після дощу",
+        "accessibilityLabel": "Послухайте й виберіть — після дощу подруга оглядає двір біля будинку",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2192,7 +2192,7 @@
             {
               "responseId": "en:lesson-02:session-13:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про подвір’я після дощу",
+              "testedDimension": "Послухайте й виберіть — після дощу подруга оглядає двір біля будинку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `clean`, а в этом варианте — `big`.",
                 "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `big`."
@@ -2201,7 +2201,7 @@
             {
               "responseId": "en:lesson-02:session-13:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про подвір’я після дощу",
+              "testedDimension": "Послухайте й виберіть — після дощу подруга оглядає двір біля будинку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `clean`, а в этом варианте — `public`.",
                 "uk": "У записі останнє слово — `clean`, а в цьому варіанті — `public`."

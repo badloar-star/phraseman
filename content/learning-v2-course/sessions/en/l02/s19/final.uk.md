@@ -61,7 +61,7 @@
 Плитки: `guilty` `am` `I` `is` → **I am guilty.**
 *(плитка `is` зайва: тут потрібно `am` — `I am guilty.`)*
 
-**3 · Послухайте запитання мами про брата**
+**3 · Послухайте й виберіть — мама кличе всіх на кухню за годину до гостей**
 <!-- interaction_id: en:lesson-02:session-19:i02; family: listen_choose -->
 🔊 *Is he alone?* → **Is he alone?** · Is he nearby? · Is he guilty?
 - Is he nearby? — *У записі останнє слово — `alone`, а в цьому варіанті — `nearby`.*
@@ -101,7 +101,7 @@ ___ he greedy? → **Is** · Am · Are
 - Am — *З `he` потрібно `Is`.*
 - Are — *Про брата — `Is he`.*
 
-**11 · Послухайте, що мама каже про брата й сестру**
+**11 · Послухайте й виберіть — біля майже порожньої тарілки мама розмовляє з вами**
 <!-- interaction_id: en:lesson-02:session-19:i09; family: listen_choose -->
 🔊 *They are together.* → **They are together.** · They are nearby. · They are guilty.
 - They are nearby. — *У записі останнє слово — `together`, а в цьому варіанті — `nearby`.*
@@ -139,7 +139,7 @@ Yes, I ___. → **am** · is · are
 <!-- interaction_id: en:lesson-02:session-19:word:gone; family: word_card -->
 > **gone** — зниклий, який закінчився. They are gone — «Їх більше немає». Про печиво, гроші, ключі.
 
-**19 · Мама відкриває коробку із запасним печивом. Послухайте, що вона каже**
+**19 · Послухайте й виберіть — мама заходить з вами на кухню**
 <!-- interaction_id: en:lesson-02:session-19:i15; family: listen_choose -->
 🔊 *They are gone.* → **They are gone.** · They are together. · They are nearby.
 - They are together. — *У записі останнє слово — `gone`, а в цьому варіанті — `together`.*

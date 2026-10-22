@@ -61,7 +61,7 @@
 Плитки: `valid` `is` `It` `are` → **It is valid.**
 *(плитка `are` зайва: тут потрібно `is` — `It is valid.`)*
 
-**3 · Послухайте, що друг каже про подругу**
+**3 · Послухайте й виберіть — друг чекає на вас із подругою біля входу на фестиваль**
 <!-- interaction_id: en:lesson-02:session-23:i02; family: listen_choose -->
 🔊 *She is married.* → **She is married.** · She is single. · She is silent.
 - She is single. — *У записі останнє слово — `married`, а в цьому варіанті — `single`.*
@@ -105,7 +105,7 @@ Yes, she ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-23:word:subtitled; family: word_card -->
 > **subtitled** — із субтитрами. It's subtitled — «Він із субтитрами». Про фільм, серіал, відео.
 
-**12 · Послухайте, що подруга каже про французький фільм**
+**12 · Послухайте й виберіть — подруга обирає з вами фільм на фестивалі**
 <!-- interaction_id: en:lesson-02:session-23:i09; family: listen_choose -->
 🔊 *It is subtitled.* → **It is subtitled.** · It is silent. · It is touching.
 - It is silent. — *У записі останнє слово — `subtitled`, а в цьому варіанті — `silent`.*
@@ -139,7 +139,7 @@ He ___ not married. → **is** · am · are
 - am — *Після `He` потрібно `is`.*
 - are — *Про друга — `He is not married`.*
 
-**19 · Послухайте запитання друга про квитки**
+**19 · Послухайте й виберіть — на вході фестивалю друг розглядає квитки**
 <!-- interaction_id: en:lesson-02:session-23:i15; family: listen_choose -->
 🔊 *Are they different?* → **Are they different?** · Are they valid? · Are they silent?
 - Are they valid? — *У записі останнє слово — `different`, а в цьому варіанті — `valid`.*

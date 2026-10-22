@@ -61,7 +61,7 @@
 Плитки: `playful` `is` `He` `are` → **He is playful.**
 *(плитка `are` зайва: тут потрібно `is` — `He is playful.`)*
 
-**3 · Послухайте, що волонтер каже про собаку в сусідньому вольєрі**
+**3 · Послухайте й виберіть — волонтер веде вас уздовж вольєрів**
 <!-- interaction_id: en:lesson-02:session-55:i02; family: listen_choose -->
 🔊 *She is calm.* → **She is calm.** · She is lazy. · She is friendly.
 - She is lazy. — *У записі останнє слово — `calm`, а в цьому варіанті — `lazy`.*
@@ -109,7 +109,7 @@ Yes, he ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-55:word:obedient; family: word_card -->
 > **obedient** — слухняний, що виконує команди. She is obedient — «Вона слухняна». Про собаку, дитину, учня, коня.
 
-**13 · Послухайте, що волонтер каже про собаку біля входу**
+**13 · Послухайте й виберіть — ви з другом слухаєте розповідь волонтера**
 <!-- interaction_id: en:lesson-02:session-55:i09; family: listen_choose -->
 🔊 *She is obedient.* → **She is obedient.** · She is lazy. · She is kind.
 - She is lazy. — *У записі останнє слово — `obedient`, а в цьому варіанті — `lazy`.*
@@ -139,7 +139,7 @@ He ___ loyal. → **is** · am · are
 - am — *З `He` потрібно `is`.*
 - are — *Фраза — `He is loyal`.*
 
-**19 · Послухайте запитання друга**
+**19 · Послухайте й виберіть — друг підходить до вольєра поруч із вами**
 <!-- interaction_id: en:lesson-02:session-55:i15; family: listen_choose -->
 🔊 *Is she timid?* → **Is she timid?** · Is she obedient? · Is she playful?
 - Is she obedient? — *У записі останнє слово — `timid`, а в цьому варіанті — `obedient`.*

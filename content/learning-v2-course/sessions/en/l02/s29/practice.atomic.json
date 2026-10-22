@@ -1301,7 +1301,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте фразу про лампу",
+        "prompt": "Послухайте й виберіть — помічник простягає вам лампу в майстерні",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-29:i02:r1",
@@ -1320,7 +1320,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-29:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте фразу про лампу",
+        "accessibilityLabel": "Послухайте й виберіть — помічник простягає вам лампу в майстерні",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1350,7 +1350,7 @@
             {
               "responseId": "en:lesson-02:session-29:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте фразу про лампу",
+              "testedDimension": "Послухайте й виберіть — помічник простягає вам лампу в майстерні",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `fixed`, а в этом варианте — `broken`.",
                 "uk": "У записі останнє слово — `fixed`, а в цьому варіанті — `broken`."
@@ -1359,7 +1359,7 @@
             {
               "responseId": "en:lesson-02:session-29:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте фразу про лампу",
+              "testedDimension": "Послухайте й виберіть — помічник простягає вам лампу в майстерні",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `fixed`, а в этом варианте — `local`.",
                 "uk": "У записі останнє слово — `fixed`, а в цьому варіанті — `local`."
@@ -1799,7 +1799,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання",
+        "prompt": "Послухайте й виберіть — подруга оглядає лампу разом із помічником",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-29:i09:r1",
@@ -1818,7 +1818,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-29:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання",
+        "accessibilityLabel": "Послухайте й виберіть — подруга оглядає лампу разом із помічником",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1848,7 +1848,7 @@
             {
               "responseId": "en:lesson-02:session-29:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання",
+              "testedDimension": "Послухайте й виберіть — подруга оглядає лампу разом із помічником",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `scratched`, а в этом варианте — `fixed`.",
                 "uk": "У записі останнє слово — `scratched`, а в цьому варіанті — `fixed`."
@@ -1857,7 +1857,7 @@
             {
               "responseId": "en:lesson-02:session-29:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання",
+              "testedDimension": "Послухайте й виберіть — подруга оглядає лампу разом із помічником",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `scratched`, а в этом варианте — `worn`.",
                 "uk": "У записі останнє слово — `scratched`, а в цьому варіанті — `worn`."
@@ -2141,7 +2141,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання",
+        "prompt": "Послухайте й виберіть — у майстерні подруга говорить із помічником",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-29:i15:r1",
@@ -2160,7 +2160,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-29:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання",
+        "accessibilityLabel": "Послухайте й виберіть — у майстерні подруга говорить із помічником",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2190,7 +2190,7 @@
             {
               "responseId": "en:lesson-02:session-29:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання",
+              "testedDimension": "Послухайте й виберіть — у майстерні подруга говорить із помічником",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `away`, а в этом варианте — `online`.",
                 "uk": "У записі останнє слово — `away`, а в цьому варіанті — `online`."
@@ -2199,7 +2199,7 @@
             {
               "responseId": "en:lesson-02:session-29:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання",
+              "testedDimension": "Послухайте й виберіть — у майстерні подруга говорить із помічником",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `away`, а в этом варианте — `local`.",
                 "uk": "У записі останнє слово — `away`, а в цьому варіанті — `local`."

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-34:word:outdated; family: word_card -->
 > **outdated** — застарілий. It is outdated — «Воно застаріло». Про оголошення, мапу, розклад, телефон.
 
-**4 · Послухайте фразу про оголошення**
+**4 · Послухайте й виберіть — подруга читає з вами оголошення про клуб**
 <!-- interaction_id: en:lesson-02:session-34:i02; family: listen_choose -->
 🔊 *It is outdated.* → **It is outdated.** · It is active. · It is dark.
 - It is active. — *У записі останнє слово — `outdated`, а в цьому варіанті — `active`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте запитання**
+**13 · Послухайте й виберіть — ви з подругою дивитеся розклад клубу прогулянок**
 <!-- interaction_id: en:lesson-02:session-34:i09; family: listen_choose -->
 🔊 *Is it inactive?* → **Is it inactive?** · Is it outdated? · Is it dark?
 - Is it outdated? — *У записі останнє слово — `inactive`, а в цьому варіанті — `outdated`.*
@@ -139,7 +139,7 @@ They ___ not afraid. → **are** · am · is
 - am — *З `They` потрібно `are`.*
 - is — *Фраза — `They are not afraid`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — перед вечірнім походом подруга питає вас**
 <!-- interaction_id: en:lesson-02:session-34:i15; family: listen_choose -->
 🔊 *Who is cautious?* → **Who is cautious?** · Who is careless? · Who is afraid?
 - Who is careless? — *У записі останнє слово — `cautious`, а в цьому варіанті — `careless`.*

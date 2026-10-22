@@ -61,7 +61,7 @@
 Плитки: `anxious` `am` `I` `is` → **I am anxious.**
 *(плитка `is` зайва: тут потрібно `am` — `I am anxious.`)*
 
-**3 · Послухайте, що сестра каже про себе**
+**3 · Послухайте й виберіть — сестра сидить з вами вдома в неділю ввечері**
 <!-- interaction_id: en:lesson-02:session-43:i02; family: listen_choose -->
 🔊 *I am nervous.* → **I am nervous.** · I am calm. · I am busy.
 - I am calm. — *У записі останнє слово — `nervous`, а в цьому варіанті — `calm`.*
@@ -109,7 +109,7 @@ Yes, I ___. → **am** · is · are
 <!-- interaction_id: en:lesson-02:session-43:word:cheerful; family: word_card -->
 > **cheerful** — веселий, бадьорий, у гарному настрої. He is cheerful — «Він веселий». Про людину, голос, ранок.
 
-**13 · Послухайте, що сестра каже про брата**
+**13 · Послухайте й виберіть — за столом сестра розповідає вам про брата**
 <!-- interaction_id: en:lesson-02:session-43:i09; family: listen_choose -->
 🔊 *He is cheerful.* → **He is cheerful.** · He is nervous. · He is jealous.
 - He is nervous. — *У записі останнє слово — `cheerful`, а в цьому варіанті — `nervous`.*
@@ -139,7 +139,7 @@ I ___ not anxious. → **am** · is · are
 - is — *З `I` потрібно `am`.*
 - are — *Фраза — `I am not anxious`.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — подруга заходить до вас у неділю ввечері**
 <!-- interaction_id: en:lesson-02:session-43:i15; family: listen_choose -->
 🔊 *Are you tense?* → **Are you tense?** · Are you jealous? · Are you cheerful?
 - Are you jealous? — *У записі останнє слово — `tense`, а в цьому варіанті — `jealous`.*

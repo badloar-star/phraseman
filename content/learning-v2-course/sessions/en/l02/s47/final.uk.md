@@ -61,7 +61,7 @@
 Плитки: `shallow` `is` `It` `are` → **It is shallow.**
 *(плитка `are` зайва: тут потрібно `is` — `It is shallow.`)*
 
-**3 · Послухайте, що сусідка каже про річку за мостом**
+**3 · Послухайте й виберіть — сусідка йде з вами вздовж води в парку**
 <!-- interaction_id: en:lesson-02:session-47:i02; family: listen_choose -->
 🔊 *It is deep.* → **It is deep.** · It is narrow. · It is wide.
 - It is narrow. — *У записі останнє слово — `deep`, а в цьому варіанті — `narrow`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-47:word:cuddly; family: word_card -->
 > **cuddly** — милий, м’який: хочеться обійняти. They're cuddly — «Вони такі милі, що хочеться обійняти». Про ведмедика, щеня, кошеня, іграшку.
 
-**13 · Послухайте, що продавець каже про ведмедиків у кіоску**
+**13 · Послухайте й виберіть — продавець у кіоску з іграшками звертається до вас**
 <!-- interaction_id: en:lesson-02:session-47:i09; family: listen_choose -->
 🔊 *They are cuddly.* → **They are cuddly.** · They are soft. · They are cute.
 - They are soft. — *У записі останнє слово — `cuddly`, а в цьому варіанті — `soft`.*
@@ -139,7 +139,7 @@ It ___ not shallow. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not shallow`.*
 
-**19 · Послухайте запитання сусідки**
+**19 · Послухайте й виберіть — сусідка відпочиває з вами на лавці в парку**
 <!-- interaction_id: en:lesson-02:session-47:i15; family: listen_choose -->
 🔊 *Is it peaceful?* → **Is it peaceful?** · Is it overgrown? · Is it shallow?
 - Is it overgrown? — *У записі останнє слово — `peaceful`, а в цьому варіанті — `overgrown`.*

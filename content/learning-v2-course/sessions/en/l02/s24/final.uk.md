@@ -57,7 +57,7 @@
 Плитки: `valid` `it` `Is` `Are` → **Is it valid?**
 *(плитка `Are` зайва: тут потрібно `Is` — `Is it valid?`)*
 
-**2 · Послухайте, що друг каже про подругу**
+**2 · Послухайте й виберіть — друг збирається з вами на виставку**
 <!-- interaction_id: en:lesson-02:session-24:i02; family: listen_choose -->
 🔊 *She is unwell.* → **She is unwell.** · She is well. · She is innocent.
 - She is well. — *У записі останнє слово — `unwell`, а в цьому варіанті — `well`.*
@@ -105,7 +105,7 @@ No, she ___ not. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-24:word:sweet; family: word_card -->
 > **sweet** — солодкий. It's not sweet — «Воно не солодке». Про печиво, чай, яблуко, торт.
 
-**12 · Послухайте, що подруга каже про печиво з магазину**
+**12 · Послухайте й виберіть — перед виставкою подруга ділиться з вами враженням**
 <!-- interaction_id: en:lesson-02:session-24:i09; family: listen_choose -->
 🔊 *It is sweet.* → **It is sweet.** · It is cloudy. · It is broken.
 - It is cloudy. — *У записі останнє слово — `sweet`, а в цьому варіанті — `cloudy`.*
@@ -139,7 +139,7 @@ ___ it complete? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Запитання — `Is it complete?`.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — подруга зустрічає вас перед виставкою**
 <!-- interaction_id: en:lesson-02:session-24:i15; family: listen_choose -->
 🔊 *Are you well?* → **Are you well?** · Are you unwell? · Are you guilty?
 - Are you unwell? — *У записі останнє слово — `well`, а в цьому варіанті — `unwell`.*

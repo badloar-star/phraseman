@@ -61,7 +61,7 @@
 Плитки: `shady` `it` `Is` `Are` → **Is it shady?**
 *(плитка `Are` зайва: тут потрібно `Is` — `Is it shady?`)*
 
-**3 · Послухайте запитання подруги про сквер**
+**3 · Послухайте й виберіть — подруга кличе вас у сквер біля річки в спеку**
 <!-- interaction_id: en:lesson-02:session-13:i02; family: listen_choose -->
 🔊 *Is it big?* → **Is it big?** · Is it small? · Is it clean?
 - Is it small? — *У записі останнє слово — `big`, а в цьому варіанті — `small`.*
@@ -105,7 +105,7 @@ ___ they real? → **Are** · Am · Is
 <!-- interaction_id: en:lesson-02:session-13:word:windy; family: word_card -->
 > **windy** — вітряний. It is not windy — «Там не вітряно». Про набережну, дах, вулицю.
 
-**12 · Послухайте, що ви кажете подрузі про лавки біля річки**
+**12 · Послухайте й виберіть — ви з подругою обираєте місце для зустрічі в спеку**
 <!-- interaction_id: en:lesson-02:session-13:i09; family: listen_choose -->
 🔊 *It is not windy.* → **It is not windy.** · It is not shady. · It is not clean.
 - It is not shady. — *У записі останнє слово — `windy`, а в цьому варіанті — `shady`.*
@@ -139,7 +139,7 @@ ___ it private? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Запитання про один сад — `Is it`.*
 
-**19 · Послухайте, що подруга каже про подвір’я після дощу**
+**19 · Послухайте й виберіть — після дощу подруга оглядає двір біля будинку**
 <!-- interaction_id: en:lesson-02:session-13:i15; family: listen_choose -->
 🔊 *It is not clean.* → **It is not clean.** · It is not big. · It is not public.
 - It is not big. — *У записі останнє слово — `clean`, а в цьому варіанті — `big`.*

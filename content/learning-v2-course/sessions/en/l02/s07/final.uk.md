@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-07:word:formal; family: word_card -->
 > **formal** — офіційний, суворий. It's not formal — «Він не офіційний». Про вечір, зустріч, одяг, лист.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг планує з вами домашній вечір ігор**
 <!-- interaction_id: en:lesson-02:session-07:i02; family: listen_choose -->
 🔊 *It is not necessary.* → **It is not necessary.** · It is not formal. · It is not real.
 - It is not formal. — *У записі останнє слово — `necessary`, а в цьому варіанті — `formal`.*
@@ -109,7 +109,7 @@ I ___ not angry. → **am** · is · are
 - is — *Про себе — `I am not`.*
 - are — *Після `I` потрібно `am`.*
 
-**13 · Послухайте фразу про Діму**
+**13 · Послухайте й виберіть — подруга обговорює з вами тих, хто прийде на вечір**
 <!-- interaction_id: en:lesson-02:session-07:i09; family: listen_choose -->
 🔊 *He is not scared.* → **He is not scared.** · He is not angry. · He is not responsible.
 - He is not angry. — *У записі останнє слово — `scared`, а в цьому варіанті — `angry`.*
@@ -139,7 +139,7 @@ It ___ not formal. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Вечір один, тому `It is not`.*
 
-**19 · Послухайте коротку фразу й виберіть її**
+**19 · Послухайте й виберіть — друг пояснює вам правила нової гри**
 <!-- interaction_id: en:lesson-02:session-07:i15; family: listen_choose -->
 🔊 *It's not important.* → **It's not important.** · It's not necessary. · It's not formal.
 - It's not necessary. — *У записі останнє слово — `important`, а в цьому варіанті — `necessary`.*

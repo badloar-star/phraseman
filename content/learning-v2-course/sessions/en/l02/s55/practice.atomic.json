@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+        "prompt": "Послухайте й виберіть — волонтер веде вас уздовж вольєрів",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-55:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-55:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+        "accessibilityLabel": "Послухайте й виберіть — волонтер веде вас уздовж вольєрів",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-02:session-55:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+              "testedDimension": "Послухайте й виберіть — волонтер веде вас уздовж вольєрів",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `calm`, а в этом варианте — `lazy`.",
                 "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `lazy`."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-02:session-55:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що волонтер каже про собаку в сусідньому вольєрі",
+              "testedDimension": "Послухайте й виберіть — волонтер веде вас уздовж вольєрів",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `calm`, а в этом варианте — `friendly`.",
                 "uk": "У записі останнє слово — `calm`, а в цьому варіанті — `friendly`."
@@ -1800,7 +1800,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що волонтер каже про собаку біля входу",
+        "prompt": "Послухайте й виберіть — ви з другом слухаєте розповідь волонтера",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-55:i09:r1",
@@ -1819,7 +1819,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-55:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що волонтер каже про собаку біля входу",
+        "accessibilityLabel": "Послухайте й виберіть — ви з другом слухаєте розповідь волонтера",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1849,7 +1849,7 @@
             {
               "responseId": "en:lesson-02:session-55:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що волонтер каже про собаку біля входу",
+              "testedDimension": "Послухайте й виберіть — ви з другом слухаєте розповідь волонтера",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `obedient`, а в этом варианте — `lazy`.",
                 "uk": "У записі останнє слово — `obedient`, а в цьому варіанті — `lazy`."
@@ -1858,7 +1858,7 @@
             {
               "responseId": "en:lesson-02:session-55:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що волонтер каже про собаку біля входу",
+              "testedDimension": "Послухайте й виберіть — ви з другом слухаєте розповідь волонтера",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `obedient`, а в этом варианте — `kind`.",
                 "uk": "У записі останнє слово — `obedient`, а в цьому варіанті — `kind`."
@@ -2143,7 +2143,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання друга",
+        "prompt": "Послухайте й виберіть — друг підходить до вольєра поруч із вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-55:i15:r1",
@@ -2162,7 +2162,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-55:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання друга",
+        "accessibilityLabel": "Послухайте й виберіть — друг підходить до вольєра поруч із вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2192,7 +2192,7 @@
             {
               "responseId": "en:lesson-02:session-55:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання друга",
+              "testedDimension": "Послухайте й виберіть — друг підходить до вольєра поруч із вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `timid`, а в этом варианте — `obedient`.",
                 "uk": "У записі останнє слово — `timid`, а в цьому варіанті — `obedient`."
@@ -2201,7 +2201,7 @@
             {
               "responseId": "en:lesson-02:session-55:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання друга",
+              "testedDimension": "Послухайте й виберіть — друг підходить до вольєра поруч із вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `timid`, а в этом варианте — `playful`.",
                 "uk": "У записі останнє слово — `timid`, а в цьому варіанті — `playful`."

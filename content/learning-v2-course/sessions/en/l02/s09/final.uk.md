@@ -61,7 +61,7 @@
 Плитки: `possible` `it` `Is` `Are` → **Is it possible?**
 *(плитка `Are` зайва: тут потрібно `Is` — `Is it possible?`)*
 
-**3 · Послухайте запитання Кості**
+**3 · Послухайте й виберіть — у театрі друг ставить запитання поруч із вами**
 <!-- interaction_id: en:lesson-02:session-09:i02; family: listen_choose -->
 🔊 *Are you sure?* → **Are you sure?** · Are you comfortable? · Are you interested?
 - Are you comfortable? — *У записі останнє слово — `sure`, а в цьому варіанті — `comfortable`.*
@@ -109,7 +109,7 @@ ___ they close? → **Are** · Am · Is
 <!-- interaction_id: en:lesson-02:session-09:word:soft; family: word_card -->
 > **soft** — м’який. Is it soft? — «Воно м’яке?» Про крісло, подушку, хліб, светр.
 
-**13 · Послухайте запитання про крісла**
+**13 · Послухайте й виберіть — ви з другом дивитеся на крісла ближче до сцени**
 <!-- interaction_id: en:lesson-02:session-09:i09; family: listen_choose -->
 🔊 *Are they soft?* → **Are they soft?** · Are they close? · Are they taken?
 - Are they close? — *У записі останнє слово — `soft`, а в цьому варіанті — `close`.*
@@ -139,7 +139,7 @@ ___ it soft? → **Is** · Are · Am
 - Are — *З `it` потрібно `Is`.*
 - Am — *З `it` питаємо `Is it`.*
 
-**19 · Послухайте запитання про акторку**
+**19 · Послухайте й виберіть — друг тихо говорить з вами перед початком**
 <!-- interaction_id: en:lesson-02:session-09:i15; family: listen_choose -->
 🔊 *Is she young?* → **Is she young?** · Is she tall? · Is she short?
 - Is she tall? — *У записі останнє слово — `young`, а в цьому варіанті — `tall`.*

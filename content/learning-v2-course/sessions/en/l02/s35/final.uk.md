@@ -61,7 +61,7 @@
 Плитки: `invited` `are` `They` `is` → **They are invited.**
 *(плитка `is` зайва: тут потрібно `are` — `They are invited.`)*
 
-**3 · Послухайте фразу про знайомого**
+**3 · Послухайте й виберіть — подруга читає вам лист організатора**
 <!-- interaction_id: en:lesson-02:session-35:i02; family: listen_choose -->
 🔊 *He is ill.* → **He is ill.** · He is absent. · He is generous.
 - He is absent. — *У записі останнє слово — `ill`, а в цьому варіанті — `absent`.*
@@ -109,7 +109,7 @@ No, I ___ not. → **am** · is · are
 <!-- interaction_id: en:lesson-02:session-35:word:optional; family: word_card -->
 > **optional** — необов’язковий, за бажанням. It is optional — «Це за бажанням». Про краватку, подарунок, доплату, урок.
 
-**13 · Послухайте запитання**
+**13 · Послухайте й виберіть — подруга обирає з вами вбрання на вечір нагород**
 <!-- interaction_id: en:lesson-02:session-35:i09; family: listen_choose -->
 🔊 *Is it optional?* → **Is it optional?** · Is it required? · Is it formal?
 - Is it required? — *У записі останнє слово — `optional`, а в цьому варіанті — `required`.*
@@ -139,7 +139,7 @@ He ___ not ill. → **is** · am · are
 - am — *З `He` потрібно `is`.*
 - are — *Фраза — `He is not ill`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — подруга уточнює у вас деталі вечора нагород**
 <!-- interaction_id: en:lesson-02:session-35:i15; family: listen_choose -->
 🔊 *Who is invited?* → **Who is invited?** · Who is ill? · Who is absent?
 - Who is ill? — *У записі останнє слово — `invited`, а в цьому варіанті — `ill`.*

@@ -61,7 +61,7 @@
 Плитки: `queasy` `am` `I` `is` → **I am queasy.**
 *(плитка `is` зайва: тут потрібно `am` — `I am queasy.`)*
 
-**3 · Послухайте, що господар човна каже про подругу**
+**3 · Послухайте й виберіть — власник човна зустрічає вас на березі озера**
 <!-- interaction_id: en:lesson-02:session-42:i02; family: listen_choose -->
 🔊 *She is pale.* → **She is pale.** · She is tired. · She is calm.
 - She is tired. — *У записі останнє слово — `pale`, а в цьому варіанті — `tired`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте, що подруга каже про руку**
+**13 · Послухайте й виберіть — подруга підходить до аптекаря разом із вами**
 <!-- interaction_id: en:lesson-02:session-42:i09; family: listen_choose -->
 🔊 *It is itchy.* → **It is itchy.** · It is swollen. · It is pale.
 - It is swollen. — *У записі останнє слово — `itchy`, а в цьому варіанті — `swollen`.*
@@ -139,7 +139,7 @@ I ___ not shaky. → **am** · is · are
 - is — *З `I` потрібно `am`.*
 - are — *Фраза — `I am not shaky`.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — надвечір подруга питає вас на березі**
 <!-- interaction_id: en:lesson-02:session-42:i15; family: listen_choose -->
 🔊 *Are you queasy?* → **Are you queasy?** · Are you shaky? · Are you sleepy?
 - Are you shaky? — *У записі останнє слово — `queasy`, а в цьому варіанті — `shaky`.*

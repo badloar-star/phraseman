@@ -61,7 +61,7 @@
 Плитки: `foggy` `is` `It` `are` → **It is foggy.**
 *(плитка `are` зайва: тут потрібно `is` — `It is foggy.`)*
 
-**3 · Послухайте, що диктор каже про завтрашню погоду**
+**3 · Послухайте й виберіть — уранці ви слухаєте прогноз перед поїздкою за місто**
 <!-- interaction_id: en:lesson-02:session-37:i02; family: listen_choose -->
 🔊 *It is windy.* → **It is windy.** · It is cold. · It is wet.
 - It is cold. — *У записі останнє слово — `windy`, а в цьому варіанті — `cold`.*
@@ -105,7 +105,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**12 · Послухайте, що брат каже про дорогу**
+**12 · Послухайте й виберіть — брат телефонує вам із траси**
 <!-- interaction_id: en:lesson-02:session-37:i09; family: listen_choose -->
 🔊 *It is icy.* → **It is icy.** · It is foggy. · It is stormy.
 - It is foggy. — *У записі останнє слово — `icy`, а в цьому варіанті — `foggy`.*
@@ -139,7 +139,7 @@ It ___ not icy. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not icy`.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — подруга чекає біля вікна перед поїздкою**
 <!-- interaction_id: en:lesson-02:session-37:i15; family: listen_choose -->
 🔊 *Are they gloomy?* → **Are they gloomy?** · Are they quiet? · Are they cold?
 - Are they quiet? — *У записі останнє слово — `gloomy`, а в цьому варіанті — `quiet`.*

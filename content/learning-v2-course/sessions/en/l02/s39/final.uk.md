@@ -61,7 +61,7 @@
 Плитки: `tasty` `is` `It` `are` → **It is tasty.**
 *(плитка `are` зайва: тут потрібно `is` — `It is tasty.`)*
 
-**3 · Послухайте, що офіціант каже про пиріг**
+**3 · Послухайте й виберіть — офіціант підходить до вашого столика в кафе**
 <!-- interaction_id: en:lesson-02:session-39:i02; family: listen_choose -->
 🔊 *It is fresh.* → **It is fresh.** · It is salty. · It is sweet.
 - It is salty. — *У записі останнє слово — `fresh`, а в цьому варіанті — `salty`.*
@@ -109,7 +109,7 @@ No, it ___ not. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-39:word:tender; family: word_card -->
 > **tender** — м’який, ніжний, про м’ясо: легко ріжеться й жується. It's tender — «Воно м’яке». Про печеню, курку, стейк.
 
-**13 · Послухайте, що подруга каже про печеню**
+**13 · Послухайте й виберіть — подруга ділиться з вами враженням від обіду**
 <!-- interaction_id: en:lesson-02:session-39:i09; family: listen_choose -->
 🔊 *It is tender.* → **It is tender.** · It is tasty. · It is salty.
 - It is tasty. — *У записі останнє слово — `tender`, а в цьому варіанті — `tasty`.*
@@ -139,7 +139,7 @@ It ___ not greasy. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not greasy`.*
 
-**19 · Послухайте запитання офіціанта**
+**19 · Послухайте й виберіть — офіціант забирає тарілки й ставить запитання**
 <!-- interaction_id: en:lesson-02:session-39:i15; family: listen_choose -->
 🔊 *Is it tender?* → **Is it tender?** · Is it tasty? · Is it lumpy?
 - Is it tasty? — *У записі останнє слово — `tender`, а в цьому варіанті — `tasty`.*

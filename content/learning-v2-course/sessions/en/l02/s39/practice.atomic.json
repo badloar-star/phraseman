@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що офіціант каже про пиріг",
+        "prompt": "Послухайте й виберіть — офіціант підходить до вашого столика в кафе",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-39:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-39:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що офіціант каже про пиріг",
+        "accessibilityLabel": "Послухайте й виберіть — офіціант підходить до вашого столика в кафе",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-02:session-39:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що офіціант каже про пиріг",
+              "testedDimension": "Послухайте й виберіть — офіціант підходить до вашого столика в кафе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `fresh`, а в этом варианте — `salty`.",
                 "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `salty`."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-02:session-39:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що офіціант каже про пиріг",
+              "testedDimension": "Послухайте й виберіть — офіціант підходить до вашого столика в кафе",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `fresh`, а в этом варианте — `sweet`.",
                 "uk": "У записі останнє слово — `fresh`, а в цьому варіанті — `sweet`."
@@ -1800,7 +1800,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що подруга каже про печеню",
+        "prompt": "Послухайте й виберіть — подруга ділиться з вами враженням від обіду",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-39:i09:r1",
@@ -1819,7 +1819,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-39:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що подруга каже про печеню",
+        "accessibilityLabel": "Послухайте й виберіть — подруга ділиться з вами враженням від обіду",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1849,7 +1849,7 @@
             {
               "responseId": "en:lesson-02:session-39:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про печеню",
+              "testedDimension": "Послухайте й виберіть — подруга ділиться з вами враженням від обіду",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tender`, а в этом варианте — `tasty`.",
                 "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `tasty`."
@@ -1858,7 +1858,7 @@
             {
               "responseId": "en:lesson-02:session-39:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про печеню",
+              "testedDimension": "Послухайте й виберіть — подруга ділиться з вами враженням від обіду",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tender`, а в этом варианте — `salty`.",
                 "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `salty`."
@@ -2143,7 +2143,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання офіціанта",
+        "prompt": "Послухайте й виберіть — офіціант забирає тарілки й ставить запитання",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-39:i15:r1",
@@ -2162,7 +2162,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-39:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання офіціанта",
+        "accessibilityLabel": "Послухайте й виберіть — офіціант забирає тарілки й ставить запитання",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2192,7 +2192,7 @@
             {
               "responseId": "en:lesson-02:session-39:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання офіціанта",
+              "testedDimension": "Послухайте й виберіть — офіціант забирає тарілки й ставить запитання",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tender`, а в этом варианте — `tasty`.",
                 "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `tasty`."
@@ -2201,7 +2201,7 @@
             {
               "responseId": "en:lesson-02:session-39:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання офіціанта",
+              "testedDimension": "Послухайте й виберіть — офіціант забирає тарілки й ставить запитання",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tender`, а в этом варианте — `lumpy`.",
                 "uk": "У записі останнє слово — `tender`, а в цьому варіанті — `lumpy`."

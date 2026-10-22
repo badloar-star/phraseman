@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-30:word:healthy; family: word_card -->
 > **healthy** — здоровий, міцний. It is healthy — «Воно здорове». Про рослину, людину, харчування.
 
-**4 · Послухайте фразу про рослину**
+**4 · Послухайте й виберіть — подруга обирає з вами квітку для пересаджування**
 <!-- interaction_id: en:lesson-02:session-30:i02; family: listen_choose -->
 🔊 *It is healthy.* → **It is healthy.** · It is dead. · It is alive.
 - It is dead. — *У записі останнє слово — `healthy`, а в цьому варіанті — `dead`.*
@@ -109,7 +109,7 @@ No, it ___ not. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `No, it is not`.*
 
-**13 · Послухайте запитання**
+**13 · Послухайте й виберіть — подруга схилилася над горщиками й питає вас**
 <!-- interaction_id: en:lesson-02:session-30:i09; family: listen_choose -->
 🔊 *Is it wilted?* → **Is it wilted?** · Is it healthy? · Is it missing?
 - Is it healthy? — *У записі останнє слово — `wilted`, а в цьому варіанті — `healthy`.*
@@ -139,7 +139,7 @@ They ___ elsewhere. → **are** · am · is
 - am — *З `They` потрібно `are`.*
 - is — *Про два горщики — `They are elsewhere`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — посеред пересаджування подруга питає вас**
 <!-- interaction_id: en:lesson-02:session-30:i15; family: listen_choose -->
 🔊 *Where is it?* → **Where is it?** · Who is it? · What is it?
 - Who is it? — *У записі перше слово — `Where`, а в цьому варіанті — `Who`.*

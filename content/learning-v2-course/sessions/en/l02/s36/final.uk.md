@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-36:word:casual; family: word_card -->
 > **casual** — повсякденний, простий в одязі. It is casual — «Це повсякденно». Про одяг: джинси, футболка, кросівки.
 
-**4 · Послухайте фразу про одяг**
+**4 · Послухайте й виберіть — друг пише вам про вечір у нього вдома**
 <!-- interaction_id: en:lesson-02:session-36:i02; family: listen_choose -->
 🔊 *It is casual.* → **It is casual.** · It is formal. · It is optional.
 - It is formal. — *У записі останнє слово — `casual`, а в цьому варіанті — `formal`.*
@@ -109,7 +109,7 @@ No, he ___ not. → **is** · am · are
 - am — *З `he` потрібно `is`.*
 - are — *Відповідь — `No, he is not`.*
 
-**13 · Послухайте запитання**
+**13 · Послухайте й виберіть — удома після робочого тижня на вас чекає друг**
 <!-- interaction_id: en:lesson-02:session-36:i09; family: listen_choose -->
 🔊 *Is it delivered?* → **Is it delivered?** · Is it casual? · Is it informal?
 - Is it casual? — *У записі останнє слово — `delivered`, а в цьому варіанті — `casual`.*
@@ -139,7 +139,7 @@ I ___ not sleepy. → **am** · is · are
 - is — *З `I` потрібно `am`.*
 - are — *Фраза — `I am not sleepy`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — подруга сідає поруч із вами в гостях у друга**
 <!-- interaction_id: en:lesson-02:session-36:i15; family: listen_choose -->
 🔊 *Are you sleepy?* → **Are you sleepy?** · Are you flexible? · Are you hungry?
 - Are you flexible? — *У записі останнє слово — `sleepy`, а в цьому варіанті — `flexible`.*

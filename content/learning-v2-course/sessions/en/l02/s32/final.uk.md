@@ -61,7 +61,7 @@
 Плитки: `homemade` `is` `It` `are` → **It is homemade.**
 *(плитка `are` зайва: тут потрібно `is` — `It is homemade.`)*
 
-**3 · Послухайте фразу про одного із сусідів**
+**3 · Послухайте й виберіть — сусідка розповідає вам про ярмарок у дворі**
 <!-- interaction_id: en:lesson-02:session-32:i02; family: listen_choose -->
 🔊 *He is away.* → **He is away.** · He is absent. · He is generous.
 - He is absent. — *У записі останнє слово — `away`, а в цьому варіанті — `absent`.*
@@ -105,7 +105,7 @@ Yes, he ___. → **is** · am · are
 - am — *З `he` потрібно `is`.*
 - are — *Відповідь — `Yes, he is`.*
 
-**12 · Послухайте запитання**
+**12 · Послухайте й виберіть — ви із сусідами розставляєте коробки у дворі**
 <!-- interaction_id: en:lesson-02:session-32:i09; family: listen_choose -->
 🔊 *Who is generous?* → **Who is generous?** · Who is absent? · Who is away?
 - Who is absent? — *У записі останнє слово — `generous`, а в цьому варіанті — `absent`.*
@@ -139,7 +139,7 @@ They ___ not away. → **are** · am · is
 - am — *З `They` потрібно `are`.*
 - is — *Фраза — `They are not away`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — через дощ сусід звертається до вас**
 <!-- interaction_id: en:lesson-02:session-32:i15; family: listen_choose -->
 🔊 *Where is she?* → **Where is she?** · Where is he? · Who is she?
 - Where is he? — *У записі останнє слово — `she`, а в цьому варіанті — `he`.*

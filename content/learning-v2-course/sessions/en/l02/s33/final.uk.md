@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-33:word:fit; family: word_card -->
 > **fit** — у хорошій фізичній формі. She is fit — «Вона у хорошій формі». Про людину, яка регулярно тренується.
 
-**4 · Послухайте фразу про подругу**
+**4 · Послухайте й виберіть — друг гуляє з вами парком у неділю**
 <!-- interaction_id: en:lesson-02:session-33:i02; family: listen_choose -->
 🔊 *She is fit.* → **She is fit.** · She is tired. · She is awake.
 - She is tired. — *У записі останнє слово — `fit`, а в цьому варіанті — `tired`.*
@@ -109,7 +109,7 @@ Yes, he ___. → **is** · am · are
 - am — *З `he` потрібно `is`.*
 - are — *Відповідь — `Yes, he is`.*
 
-**13 · Послухайте запитання**
+**13 · Послухайте й виберіть — на доріжці парку вас наздоганяє друг**
 <!-- interaction_id: en:lesson-02:session-33:i09; family: listen_choose -->
 🔊 *Are you breathless?* → **Are you breathless?** · Are you energetic? · Are you awake?
 - Are you energetic? — *У записі останнє слово — `breathless`, а в цьому варіанті — `energetic`.*
@@ -139,7 +139,7 @@ She ___ not absent. → **is** · am · are
 - am — *З `She` потрібно `is`.*
 - are — *Фраза — `She is not absent`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — ви з другом відпочиваєте в парку на траві**
 <!-- interaction_id: en:lesson-02:session-33:i15; family: listen_choose -->
 🔊 *Is she active?* → **Is she active?** · Is she fit? · Is she energetic?
 - Is she fit? — *У записі останнє слово — `active`, а в цьому варіанті — `fit`.*

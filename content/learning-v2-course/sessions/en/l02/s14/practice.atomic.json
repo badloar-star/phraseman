@@ -1258,7 +1258,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання перехожого про майстерню",
+        "prompt": "Послухайте й виберіть — перехожий зупиняється біля вітрини майстерні",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-14:i02:r1",
@@ -1277,7 +1277,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-14:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання перехожого про майстерню",
+        "accessibilityLabel": "Послухайте й виберіть — перехожий зупиняється біля вітрини майстерні",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1307,7 +1307,7 @@
             {
               "responseId": "en:lesson-02:session-14:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання перехожого про майстерню",
+              "testedDimension": "Послухайте й виберіть — перехожий зупиняється біля вітрини майстерні",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
                 "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
@@ -1316,7 +1316,7 @@
             {
               "responseId": "en:lesson-02:session-14:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання перехожого про майстерню",
+              "testedDimension": "Послухайте й виберіть — перехожий зупиняється біля вітрини майстерні",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `open`, а в этом варианте — `clean`.",
                 "uk": "У записі останнє слово — `open`, а в цьому варіанті — `clean`."
@@ -1713,7 +1713,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що подруга каже про лимон",
+        "prompt": "Послухайте й виберіть — подруга перебирає прикраси для вітрини",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-14:i09:r1",
@@ -1732,7 +1732,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-14:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що подруга каже про лимон",
+        "accessibilityLabel": "Послухайте й виберіть — подруга перебирає прикраси для вітрини",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1762,7 +1762,7 @@
             {
               "responseId": "en:lesson-02:session-14:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про лимон",
+              "testedDimension": "Послухайте й виберіть — подруга перебирає прикраси для вітрини",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `fake`, а в этом варианте — `dirty`.",
                 "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `dirty`."
@@ -1771,7 +1771,7 @@
             {
               "responseId": "en:lesson-02:session-14:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про лимон",
+              "testedDimension": "Послухайте й виберіть — подруга перебирає прикраси для вітрини",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `fake`, а в этом варианте — `open`.",
                 "uk": "У записі останнє слово — `fake`, а в цьому варіанті — `open`."
@@ -2141,7 +2141,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Подруга помила скло. Послухайте, що вона каже",
+        "prompt": "Послухайте й виберіть — подруга разом із вами милується вітриною",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-14:i15:r1",
@@ -2160,7 +2160,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-14:i15:audio"
         ],
-        "accessibilityLabel": "Подруга помила скло. Послухайте, що вона каже",
+        "accessibilityLabel": "Послухайте й виберіть — подруга разом із вами милується вітриною",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2190,7 +2190,7 @@
             {
               "responseId": "en:lesson-02:session-14:i15:r2",
               "correct": false,
-              "testedDimension": "Подруга помила скло. Послухайте, що вона каже",
+              "testedDimension": "Послухайте й виберіть — подруга разом із вами милується вітриною",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `dirty`, а в этом варианте — `fake`.",
                 "uk": "У записі останнє слово — `dirty`, а в цьому варіанті — `fake`."
@@ -2199,7 +2199,7 @@
             {
               "responseId": "en:lesson-02:session-14:i15:r3",
               "correct": false,
-              "testedDimension": "Подруга помила скло. Послухайте, що вона каже",
+              "testedDimension": "Послухайте й виберіть — подруга разом із вами милується вітриною",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `dirty`, а в этом варианте — `closed`.",
                 "uk": "У записі останнє слово — `dirty`, а в цьому варіанті — `closed`."

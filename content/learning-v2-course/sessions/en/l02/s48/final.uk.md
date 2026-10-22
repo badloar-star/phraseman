@@ -61,7 +61,7 @@
 Плитки: `blank` `is` `It` `are` → **It is blank.**
 *(плитка `are` зайва: тут потрібно `is` — `It is blank.`)*
 
-**3 · Послухайте, що учителька каже про підставку під плакат**
+**3 · Послухайте й виберіть — учителька ставить з вами стенд для малюнків**
 <!-- interaction_id: en:lesson-02:session-48:i02; family: listen_choose -->
 🔊 *It is flimsy.* → **It is flimsy.** · It is blunt. · It is sour.
 - It is blunt. — *У записі останнє слово — `flimsy`, а в цьому варіанті — `blunt`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-48:word:bare; family: word_card -->
 > **bare** — голий, порожній: без прикрас і покриття. They're bare — «Вони голі». Про стіни, гілки, полиці, ноги.
 
-**13 · Послухайте, що учителька каже про стіни в коридорі**
+**13 · Послухайте й виберіть — перед відкриттям учителька обходить коридор**
 <!-- interaction_id: en:lesson-02:session-48:i09; family: listen_choose -->
 🔊 *They are bare.* → **They are bare.** · They are clean. · They are dirty.
 - They are clean. — *У записі останнє слово — `bare`, а в цьому варіанті — `clean`.*
@@ -139,7 +139,7 @@ It ___ not lopsided. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not lopsided`.*
 
-**19 · Послухайте запитання вчительки**
+**19 · Послухайте й виберіть — учителька перевіряє з вами ескізи до виставки**
 <!-- interaction_id: en:lesson-02:session-48:i15; family: listen_choose -->
 🔊 *Is it faint?* → **Is it faint?** · Is it blank? · Is it bare?
 - Is it blank? — *У записі останнє слово — `faint`, а в цьому варіанті — `blank`.*

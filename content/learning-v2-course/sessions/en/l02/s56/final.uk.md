@@ -61,7 +61,7 @@
 Плитки: `hectic` `is` `It` `are` → **It is hectic.**
 *(плитка `are` зайва: тут потрібно `is` — `It is hectic.`)*
 
-**3 · Послухайте, що подруга каже про залу**
+**3 · Послухайте й виберіть — подруга оглядає аеропорт разом із вами**
 <!-- interaction_id: en:lesson-02:session-56:i02; family: listen_choose -->
 🔊 *It is crowded.* → **It is crowded.** · It is noisy. · It is quiet.
 - It is noisy. — *У записі останнє слово — `crowded`, а в цьому варіанті — `noisy`.*
@@ -109,7 +109,7 @@ Yes, he ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-56:word:tedious; family: word_card -->
 > **tedious** — нудний, виснажливо нецікавий. It is tedious — «Це нудно». Про чергу, перевірку, очікування, переліт.
 
-**13 · Послухайте, що подруга каже про чергу**
+**13 · Послухайте й виберіть — ви з подругою стоїте біля стійки реєстрації**
 <!-- interaction_id: en:lesson-02:session-56:i09; family: listen_choose -->
 🔊 *It is tedious.* → **It is tedious.** · It is fast. · It is slow.
 - It is fast. — *У записі останнє слово — `tedious`, а в цьому варіанті — `fast`.*
@@ -139,7 +139,7 @@ It ___ tedious. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is tedious`.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — подруга стиха говорить з вами біля табло**
 <!-- interaction_id: en:lesson-02:session-56:i15; family: listen_choose -->
 🔊 *Is it hectic?* → **Is it hectic?** · Is it tedious? · Is he restless?
 - Is it tedious? — *У записі останнє слово — `hectic`, а в цьому варіанті — `tedious`.*

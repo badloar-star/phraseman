@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-05:word:raw; family: word_card -->
 > **raw** — сирий. It's not raw — «Воно не сире». Про м’ясо, рибу, яйця.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — гід веде вас знімальним майданчиком**
 <!-- interaction_id: en:lesson-02:session-05:i02; family: listen_choose -->
 🔊 *It is not real.* → **It is not real.** · It is not raw. · It is not full.
 - It is not raw. — *У записі останнє слово — `real`, а в цьому варіанті — `raw`.*
@@ -109,7 +109,7 @@ It ___ not cold. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Чай один, тому `It is not`.*
 
-**13 · Послухайте фразу про суп**
+**13 · Послухайте й виберіть — ви з другом заходите в кафе біля майданчика**
 <!-- interaction_id: en:lesson-02:session-05:i09; family: listen_choose -->
 🔊 *It is not hot.* → **It is not hot.** · It is not cold. · It is not real.
 - It is not cold. — *У записі останнє слово — `hot`, а в цьому варіанті — `cold`.*
@@ -139,7 +139,7 @@ It ___ not salty. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Сир один, тому `It is not`.*
 
-**19 · Послухайте коротку фразу про хліб і виберіть її**
+**19 · Послухайте й виберіть — за столиком у кафе друг ділиться з вами враженням**
 <!-- interaction_id: en:lesson-02:session-05:i15; family: listen_choose -->
 🔊 *It's not stale.* → **It's not stale.** · It's not salty. · They're not stale.
 - It's not salty. — *У записі останнє слово — `stale`, а в цьому варіанті — `salty`.*

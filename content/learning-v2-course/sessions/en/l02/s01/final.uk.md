@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-02:session-01:word:interested; family: word_card -->
 > **interested** — зацікавлений, цікаво. I am interested — «Мені цікаво». I am not interested — «Мені нецікаво».
 
-**3 · Послухайте фразу про сестру**
+**3 · Послухайте й виберіть — друг розповідає вам про сестру, читаючи програму**
 <!-- interaction_id: en:lesson-02:session-01:i02; family: listen_choose -->
 🔊 *She is not interested.* → **She is not interested.** · She is not ready. · She is not sure.
 - She is not ready. — *У записі останнє слово — `interested`, а в цьому варіанті — `ready`.*
@@ -109,7 +109,7 @@ I ___ not ready. → **am** · is · are
 <!-- interaction_id: en:lesson-02:session-01:word:included; family: word_card -->
 > **included** — входить у ціну, включено. It is included — «Це входить у ціну». It is not included — «Не входить».
 
-**13 · Послухайте фразу про квитки до музею**
+**13 · Послухайте й виберіть — біля каси друг звіряє з вами програму екскурсії**
 <!-- interaction_id: en:lesson-02:session-01:i09; family: listen_choose -->
 🔊 *It is not included.* → **It is not included.** · It is not far. · It is included.
 - It is not far. — *У записі останнє слово — `included`, а в цьому варіанті — `far`.*
@@ -139,7 +139,7 @@ She ___ not interested. → **is** · am · are
 - am — *Після `She` потрібно `is`, потім `not`.*
 - are — *Про сестру — `She is not`.*
 
-**19 · Послухайте й виберіть почуте**
+**19 · Послухайте й виберіть — друзі обговорюють разом із вами вечірню поїздку**
 <!-- interaction_id: en:lesson-02:session-01:i15; family: listen_choose -->
 🔊 *We are not comfortable.* → **We are not comfortable.** · We are not ready. · We are not keen.
 - We are not ready. — *У записі останнє слово — `comfortable`, а в цьому варіанті — `ready`.*

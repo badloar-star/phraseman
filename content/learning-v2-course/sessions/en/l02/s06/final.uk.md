@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-06:word:fresh; family: word_card -->
 > **fresh** — свіжий. It's not fresh — «Він не свіжий». Про квіти, хліб, рибу, молоко.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — подруга поправляє квіти на сцені поруч із вами**
 <!-- interaction_id: en:lesson-02:session-06:i02; family: listen_choose -->
 🔊 *It is not fake.* → **It is not fake.** · It is not fresh. · It is not familiar.
 - It is not fresh. — *У записі останнє слово — `fake`, а в цьому варіанті — `fresh`.*
@@ -109,7 +109,7 @@ I ___ not nervous. → **am** · is · are
 - is — *Про себе — `I am not`.*
 - are — *Після `I` потрібно `am`.*
 
-**13 · Послухайте фразу про Олега**
+**13 · Послухайте й виберіть — друг говорить з вами про знайомого біля сцени**
 <!-- interaction_id: en:lesson-02:session-06:i09; family: listen_choose -->
 🔊 *He is not calm.* → **He is not calm.** · He is not nervous. · He is not excited.
 - He is not nervous. — *У записі останнє слово — `calm`, а в цьому варіанті — `nervous`.*
@@ -139,7 +139,7 @@ It ___ not plastic. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Лійка одна, тому `It is not`.*
 
-**19 · Послухайте коротку фразу про півонії й виберіть її**
+**19 · Послухайте й виберіть — привозять замовлення з квіткового магазину**
 <!-- interaction_id: en:lesson-02:session-06:i15; family: listen_choose -->
 🔊 *They're not pink.* → **They're not pink.** · They're not fresh. · It's not pink.
 - They're not fresh. — *У записі останнє слово — `pink`, а в цьому варіанті — `fresh`.*

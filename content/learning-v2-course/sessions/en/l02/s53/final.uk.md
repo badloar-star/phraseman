@@ -61,7 +61,7 @@
 Плитки: `sweaty` `is` `It` `are` → **It is sweaty.**
 *(плитка `are` зайва: тут потрібно `is` — `It is sweaty.`)*
 
-**3 · Послухайте, що тренер каже про погоду в парку**
+**3 · Послухайте й виберіть — тренер веде вашу групу парковою доріжкою**
 <!-- interaction_id: en:lesson-02:session-53:i02; family: listen_choose -->
 🔊 *It is windy.* → **It is windy.** · It is cold. · It is hot.
 - It is cold. — *У записі останнє слово — `windy`, а в цьому варіанті — `cold`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-53:word:steady; family: word_card -->
 > **steady** — рівний, стійкий, без ривків. It is steady — «Тут рівний темп». Про темп, крок, дихання, руку.
 
-**13 · Послухайте, що тренер каже про темп**
+**13 · Послухайте й виберіть — тренер на ходу змінює вправу**
 <!-- interaction_id: en:lesson-02:session-53:i09; family: listen_choose -->
 🔊 *It is steady.* → **It is steady.** · It is fast. · It is slow.
 - It is fast. — *У записі останнє слово — `steady`, а в цьому варіанті — `fast`.*
@@ -139,7 +139,7 @@ It ___ tough. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is tough`.*
 
-**19 · Послухайте запитання тренера**
+**19 · Послухайте й виберіть — посеред заняття тренер питає групу**
 <!-- interaction_id: en:lesson-02:session-53:i15; family: listen_choose -->
 🔊 *Is it steady?* → **Is it steady?** · Is it tough? · Is it upbeat?
 - Is it tough? — *У записі останнє слово — `steady`, а в цьому варіанті — `tough`.*

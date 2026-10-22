@@ -61,7 +61,7 @@
 Плитки: `complete` `is` `It` `are` → **It is complete.**
 *(плитка `are` зайва: тут потрібно `is` — `It is complete.`)*
 
-**3 · Послухайте, що друг каже про короля на картинці**
+**3 · Послухайте й виберіть — друг складає з вами пазл на столі**
 <!-- interaction_id: en:lesson-02:session-22:i02; family: listen_choose -->
 🔊 *He is rich.* → **He is rich.** · He is poor. · He is famous.
 - He is poor. — *У записі останнє слово — `rich`, а в цьому варіанті — `poor`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-22:word:extra; family: word_card -->
 > **extra** — зайвий, додатковий. Are they extra? — «Вони зайві?» Про деталі, квиток, стілець, подушку.
 
-**13 · Послухайте, що друг каже про дві смугасті деталі**
+**13 · Послухайте й виберіть — друг розбирає з вами деталі з двох коробок**
 <!-- interaction_id: en:lesson-02:session-22:i09; family: listen_choose -->
 🔊 *They are extra.* → **They are extra.** · They are bent. · They are square.
 - They are bent. — *У записі останнє слово — `extra`, а в цьому варіанті — `bent`.*
@@ -139,7 +139,7 @@ It ___ not obvious. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Фраза — `It is not obvious`.*
 
-**19 · Послухайте запитання друга про вікно у вежі**
+**19 · Послухайте й виберіть — ви з другом розглядаєте вежу з пазла**
 <!-- interaction_id: en:lesson-02:session-22:i15; family: listen_choose -->
 🔊 *Is it square?* → **Is it square?** · Is it bent? · Is it complete?
 - Is it bent? — *У записі останнє слово — `square`, а в цьому варіанті — `bent`.*

@@ -61,7 +61,7 @@
 Плитки: `unwell` `am` `I` `is` → **I am unwell.**
 *(плитка `is` зайва: тут потрібно `am` — `I am unwell.`)*
 
-**3 · Послухайте запитання керівниці про партнера по сцені**
+**3 · Послухайте й виберіть — керівниця оглядає акторів перед репетицією**
 <!-- interaction_id: en:lesson-02:session-18:i02; family: listen_choose -->
 🔊 *Is he unwell?* → **Is he unwell?** · Is he early? · Is he lucky?
 - Is he early? — *У записі останнє слово — `unwell`, а в цьому варіанті — `early`.*
@@ -101,7 +101,7 @@ No, it ___ not. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь: `No, it is not`.*
 
-**11 · Партнер по сцені сперечається з керівницею про час. Послухайте, що ви кажете про неї**
+**11 · Послухайте й виберіть — ви з партнером по сцені чекаєте на керівницю**
 <!-- interaction_id: en:lesson-02:session-18:i09; family: listen_choose -->
 🔊 *She is not wrong.* → **She is not wrong.** · She is not early. · She is not unwell.
 - She is not early. — *У записі останнє слово — `wrong`, а в цьому варіанті — `early`.*
@@ -139,7 +139,7 @@ They ___ allergic. → **are** · am · is
 <!-- interaction_id: en:lesson-02:session-18:word:stuffy; family: word_card -->
 > **stuffy** — задушливий. Is it stuffy? — «Там задушливо?» Про зал, кімнату, автобус.
 
-**19 · Керівниця заходить до зали з вулиці. Послухайте її запитання**
+**19 · Послухайте й виберіть — керівниця заходить у залу перед репетицією**
 <!-- interaction_id: en:lesson-02:session-18:i15; family: listen_choose -->
 🔊 *Is it stuffy?* → **Is it stuffy?** · Is it possible? · Is it urgent?
 - Is it possible? — *У записі останнє слово — `stuffy`, а в цьому варіанті — `possible`.*

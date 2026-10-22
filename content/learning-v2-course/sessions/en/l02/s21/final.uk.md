@@ -57,7 +57,7 @@
 Плитки: `broken` `is` `It` `are` → **It is broken.**
 *(плитка `are` зайва: тут потрібно `is` — `It is broken.`)*
 
-**2 · Послухайте запитання подруги про друга**
+**2 · Послухайте й виберіть — подруга телефонує вам, поки ви готуєте виставку**
 <!-- interaction_id: en:lesson-02:session-21:i02; family: listen_choose -->
 🔊 *Is he upstairs?* → **Is he upstairs?** · Is he inside? · Is he outside?
 - Is he inside? — *У записі останнє слово — `upstairs`, а в цьому варіанті — `inside`.*
@@ -105,7 +105,7 @@ ___ it public? → **Is** · Am · Are
 <!-- interaction_id: en:lesson-02:session-21:word:torn; family: word_card -->
 > **torn** — порваний. They're not torn — «Вони не порвані». Про афішу, пакет, джинси, квиток.
 
-**12 · Послухайте, що друг каже про афіші**
+**12 · Послухайте й виберіть — друг іде з вами вздовж стін у будинку**
 <!-- interaction_id: en:lesson-02:session-21:i09; family: listen_choose -->
 🔊 *They are not torn.* → **They are not torn.** · They are not broken. · They are not straight.
 - They are not broken. — *У записі останнє слово — `torn`, а в цьому варіанті — `broken`.*
@@ -139,7 +139,7 @@ They ___ not torn. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Афіш дві — `They are not torn`.*
 
-**19 · Послухайте, що друг каже про виставку**
+**19 · Послухайте й виберіть — друг завершує підготовку виставки**
 <!-- interaction_id: en:lesson-02:session-21:i15; family: listen_choose -->
 🔊 *It is not private.* → **It is not private.** · It is not public. · It is not tidy.
 - It is not public. — *У записі останнє слово — `private`, а в цьому варіанті — `public`.*

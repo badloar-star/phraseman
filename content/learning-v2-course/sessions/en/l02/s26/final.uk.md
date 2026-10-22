@@ -61,7 +61,7 @@
 Плитки: `careless` `is` `He` `are` → **He is careless.**
 *(плитка `are` зайва: тут потрібно `is` — `He is careless.`)*
 
-**3 · Послухайте фразу про подругу**
+**3 · Послухайте й виберіть — подруга сидить поруч із вами біля дерев’яних іграшок**
 <!-- interaction_id: en:lesson-02:session-26:i02; family: listen_choose -->
 🔊 *She is confused.* → **She is confused.** · She is worried. · She is bored.
 - She is worried. — *У записі останнє слово — `confused`, а в цьому варіанті — `worried`.*
@@ -105,7 +105,7 @@ No, she ___ not. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-26:word:glossy; family: word_card -->
 > **glossy** — блискучий, глянцевий. It's glossy — «Вона блищить». Про фарбу, журнал, фотографію, волосся.
 
-**12 · Фарба на конячці висохла. Послухайте, що каже подруга**
+**12 · Послухайте й виберіть — подруга показує вам розписаного коника**
 <!-- interaction_id: en:lesson-02:session-26:i09; family: listen_choose -->
 🔊 *It is glossy.* → **It is glossy.** · It is ugly. · It is wooden.
 - It is wooden. — *У записі останнє слово — `glossy`, а в цьому варіанті — `wooden`.*
@@ -139,7 +139,7 @@ They ___ not careless. → **are** · am · is
 - am — *З `They` потрібно `are`.*
 - is — *Фраза — `They are not careless`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — друг переставляє банки, поки ви шукаєте пензель**
 <!-- interaction_id: en:lesson-02:session-26:i15; family: listen_choose -->
 🔊 *Who is worried?* → **Who is worried?** · Who is bored? · Who is careless?
 - Who is bored? — *У записі останнє слово — `worried`, а в цьому варіанті — `bored`.*

@@ -105,7 +105,7 @@ Yes, he ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-54:word:stunning; family: word_card -->
 > **stunning** — потрясающий, захватывающий дух. It's stunning — «Это потрясающе». О номере, виде, платье, голосе.
 
-**12 · Послушайте, что ведущий говорит о последнем номере**
+**12 · Послушайте и выберите — ведущий объявляет последний номер концерта**
 <!-- interaction_id: en:lesson-02:session-54:i09; family: listen_choose -->
 🔊 *It is stunning.* → **It is stunning.** · It is loud. · It is dramatic.
 - It is loud. — *В записи последнее слово — `stunning`, а в этом варианте — `loud`.*

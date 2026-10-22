@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що сестра каже про себе",
+        "prompt": "Послухайте й виберіть — сестра сидить з вами вдома в неділю ввечері",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-43:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-43:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що сестра каже про себе",
+        "accessibilityLabel": "Послухайте й виберіть — сестра сидить з вами вдома в неділю ввечері",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-02:session-43:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що сестра каже про себе",
+              "testedDimension": "Послухайте й виберіть — сестра сидить з вами вдома в неділю ввечері",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `nervous`, а в этом варианте — `calm`.",
                 "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `calm`."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-02:session-43:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що сестра каже про себе",
+              "testedDimension": "Послухайте й виберіть — сестра сидить з вами вдома в неділю ввечері",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `nervous`, а в этом варианте — `busy`.",
                 "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `busy`."
@@ -1800,7 +1800,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що сестра каже про брата",
+        "prompt": "Послухайте й виберіть — за столом сестра розповідає вам про брата",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-43:i09:r1",
@@ -1819,7 +1819,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-43:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що сестра каже про брата",
+        "accessibilityLabel": "Послухайте й виберіть — за столом сестра розповідає вам про брата",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1849,7 +1849,7 @@
             {
               "responseId": "en:lesson-02:session-43:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що сестра каже про брата",
+              "testedDimension": "Послухайте й виберіть — за столом сестра розповідає вам про брата",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `nervous`.",
                 "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `nervous`."
@@ -1858,7 +1858,7 @@
             {
               "responseId": "en:lesson-02:session-43:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що сестра каже про брата",
+              "testedDimension": "Послухайте й виберіть — за столом сестра розповідає вам про брата",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `cheerful`, а в этом варианте — `jealous`.",
                 "uk": "У записі останнє слово — `cheerful`, а в цьому варіанті — `jealous`."
@@ -2143,7 +2143,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання подруги",
+        "prompt": "Послухайте й виберіть — подруга заходить до вас у неділю ввечері",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-43:i15:r1",
@@ -2162,7 +2162,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-43:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання подруги",
+        "accessibilityLabel": "Послухайте й виберіть — подруга заходить до вас у неділю ввечері",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2192,7 +2192,7 @@
             {
               "responseId": "en:lesson-02:session-43:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга заходить до вас у неділю ввечері",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tense`, а в этом варианте — `jealous`.",
                 "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `jealous`."
@@ -2201,7 +2201,7 @@
             {
               "responseId": "en:lesson-02:session-43:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга заходить до вас у неділю ввечері",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tense`, а в этом варианте — `cheerful`.",
                 "uk": "У записі останнє слово — `tense`, а в цьому варіанті — `cheerful`."

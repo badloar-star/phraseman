@@ -61,7 +61,7 @@
 Плитки: `wrinkled` `is` `It` `are` → **It is wrinkled.**
 *(плитка `are` зайва: тут потрібно `is` — `It is wrinkled.`)*
 
-**3 · Послухайте, що мама каже про рукав**
+**3 · Послухайте й виберіть — мама розбирає з вами шафу перед поїздкою**
 <!-- interaction_id: en:lesson-02:session-49:i02; family: listen_choose -->
 🔊 *It is torn.* → **It is torn.** · It is worn. · It is damp.
 - It is worn. — *У записі останнє слово — `torn`, а в цьому варіанті — `worn`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-49:word:smelly; family: word_card -->
 > **smelly** — смердючий, той, що погано пахне. They're smelly — «Вони погано пахнуть». Про шкарпетки, взуття, сміття, білизну.
 
-**13 · Послухайте, що мама каже про кросівки після дощу**
+**13 · Послухайте й виберіть — мама перебирає з вами речі біля дверей**
 <!-- interaction_id: en:lesson-02:session-49:i09; family: listen_choose -->
 🔊 *They are smelly.* → **They are smelly.** · They are dirty. · They are damp.
 - They are dirty. — *У записі останнє слово — `smelly`, а в цьому варіанті — `dirty`.*
@@ -139,7 +139,7 @@ It ___ not stained. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not stained`.*
 
-**19 · Послухайте запитання мами**
+**19 · Послухайте й виберіть — мама перебирає з вами білизну з кошика**
 <!-- interaction_id: en:lesson-02:session-49:i15; family: listen_choose -->
 🔊 *Is it frayed?* → **Is it frayed?** · Is it stained? · Is it wrinkled?
 - Is it stained? — *У записі останнє слово — `frayed`, а в цьому варіанті — `stained`.*

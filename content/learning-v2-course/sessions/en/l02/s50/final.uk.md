@@ -61,7 +61,7 @@
 Плитки: `sleek` `is` `It` `are` → **It is sleek.**
 *(плитка `are` зайва: тут потрібно `is` — `It is sleek.`)*
 
-**3 · Послухайте, що продавець каже про чохол**
+**3 · Послухайте й виберіть — продавець підходить до вас у магазині подарунків**
 <!-- interaction_id: en:lesson-02:session-50:i02; family: listen_choose -->
 🔊 *It is cheap.* → **It is cheap.** · It is expensive. · It is shiny.
 - It is expensive. — *У записі останнє слово — `cheap`, а в цьому варіанті — `expensive`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-50:word:fancy; family: word_card -->
 > **fancy** — нарядний, шикарний, з прикрасами. They're fancy — «Вони нарядні». Про коробки, сукні, стрічки, ресторани.
 
-**13 · Послухайте, що продавець каже про подарункові коробки**
+**13 · Послухайте й виберіть — продавець веде вас уздовж полиць із коробками**
 <!-- interaction_id: en:lesson-02:session-50:i09; family: listen_choose -->
 🔊 *They are fancy.* → **They are fancy.** · They are shiny. · They are cheap.
 - They are shiny. — *У записі останнє слово — `fancy`, а в цьому варіанті — `shiny`.*
@@ -139,7 +139,7 @@ It ___ not pricey. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not pricey`.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — подруга обирає подарунок для брата разом із вами**
 <!-- interaction_id: en:lesson-02:session-50:i15; family: listen_choose -->
 🔊 *Is it pricey?* → **Is it pricey?** · Is it sleek? · Is it handy?
 - Is it sleek? — *У записі останнє слово — `pricey`, а в цьому варіанті — `sleek`.*

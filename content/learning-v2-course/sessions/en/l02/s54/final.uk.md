@@ -61,7 +61,7 @@
 Плитки: `talented` `is` `He` `are` → **He is talented.**
 *(плитка `are` зайва: тут потрібно `is` — `He is talented.`)*
 
-**3 · Послухайте, що сусідка каже про хлопчика перед виходом**
+**3 · Послухайте й виберіть — сусідка по ряду нахиляється до вас перед виходом**
 <!-- interaction_id: en:lesson-02:session-54:i02; family: listen_choose -->
 🔊 *He is nervous.* → **He is nervous.** · He is shy. · He is brave.
 - He is shy. — *У записі останнє слово — `nervous`, а в цьому варіанті — `shy`.*
@@ -105,7 +105,7 @@ Yes, he ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-54:word:stunning; family: word_card -->
 > **stunning** — приголомшливий, що захоплює подих. It's stunning — «Це приголомшливо». Про номер, краєвид, сукню, голос.
 
-**12 · Послухайте, що ведучий каже про останній номер**
+**12 · Послухайте й виберіть — ведучий оголошує останній номер концерту**
 <!-- interaction_id: en:lesson-02:session-54:i09; family: listen_choose -->
 🔊 *It is stunning.* → **It is stunning.** · It is loud. · It is dramatic.
 - It is loud. — *У записі останнє слово — `stunning`, а в цьому варіанті — `loud`.*
@@ -139,7 +139,7 @@ He ___ not shy. → **is** · am · are
 - am — *З `He` потрібно `is`.*
 - are — *Фраза — `He is not shy`.*
 
-**19 · Послухайте запитання мами**
+**19 · Послухайте й виберіть — мама шепочеться з вами на шкільному концерті**
 <!-- interaction_id: en:lesson-02:session-54:i15; family: listen_choose -->
 🔊 *Is he talented?* → **Is he talented?** · Is he graceful? · Is he shy?
 - Is he graceful? — *У записі останнє слово — `talented`, а в цьому варіанті — `graceful`.*

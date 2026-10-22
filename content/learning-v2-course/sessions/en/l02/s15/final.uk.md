@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-15:word:easy; family: word_card -->
 > **easy** — легкий, простий. It's easy — «Це легко». Про фразу, завдання, дорогу.
 
-**4 · Послухайте запитання сестри про фразу**
+**4 · Послухайте й виберіть — сестра сидить поруч, поки ви пишете привітання**
 <!-- interaction_id: en:lesson-02:session-15:i02; family: listen_choose -->
 🔊 *Is it easy?* → **Is it easy?** · Is it difficult? · Is it important?
 - Is it difficult? — *У записі останнє слово — `easy`, а в цьому варіанті — `difficult`.*
@@ -105,7 +105,7 @@ It ___ not difficult. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Про одну фразу — `It is not`.*
 
-**12 · Послухайте, що мама каже про привітання**
+**12 · Послухайте й виберіть — мама говорить з вами перед записом відео**
 <!-- interaction_id: en:lesson-02:session-15:i09; family: listen_choose -->
 🔊 *It is important.* → **It is important.** · It is easy. · It is necessary.
 - It is easy. — *У записі останнє слово — `important`, а в цьому варіанті — `easy`.*
@@ -139,7 +139,7 @@ ___ they silent? → **Are** · Am · Is
 - Am — *З `they` потрібно `Are`.*
 - Is — *Про двох — `Are they`.*
 
-**19 · Послухайте, що мама каже про вірш**
+**19 · Послухайте й виберіть — мама перечитує з вами текст для бабусі**
 <!-- interaction_id: en:lesson-02:session-15:i15; family: listen_choose -->
 🔊 *It is not easy.* → **It is not easy.** · It is not important. · It is not necessary.
 - It is not important. — *У записі останнє слово — `easy`, а в цьому варіанті — `important`.*

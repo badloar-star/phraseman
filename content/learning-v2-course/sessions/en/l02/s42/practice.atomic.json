@@ -1258,7 +1258,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що господар човна каже про подругу",
+        "prompt": "Послухайте й виберіть — власник човна зустрічає вас на березі озера",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-42:i02:r1",
@@ -1277,7 +1277,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-42:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що господар човна каже про подругу",
+        "accessibilityLabel": "Послухайте й виберіть — власник човна зустрічає вас на березі озера",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1307,7 +1307,7 @@
             {
               "responseId": "en:lesson-02:session-42:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що господар човна каже про подругу",
+              "testedDimension": "Послухайте й виберіть — власник човна зустрічає вас на березі озера",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `pale`, а в этом варианте — `tired`.",
                 "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `tired`."
@@ -1316,7 +1316,7 @@
             {
               "responseId": "en:lesson-02:session-42:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що господар човна каже про подругу",
+              "testedDimension": "Послухайте й виберіть — власник човна зустрічає вас на березі озера",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `pale`, а в этом варианте — `calm`.",
                 "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `calm`."
@@ -1798,7 +1798,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що подруга каже про руку",
+        "prompt": "Послухайте й виберіть — подруга підходить до аптекаря разом із вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-42:i09:r1",
@@ -1817,7 +1817,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-42:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що подруга каже про руку",
+        "accessibilityLabel": "Послухайте й виберіть — подруга підходить до аптекаря разом із вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1847,7 +1847,7 @@
             {
               "responseId": "en:lesson-02:session-42:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про руку",
+              "testedDimension": "Послухайте й виберіть — подруга підходить до аптекаря разом із вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `itchy`, а в этом варианте — `swollen`.",
                 "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `swollen`."
@@ -1856,7 +1856,7 @@
             {
               "responseId": "en:lesson-02:session-42:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про руку",
+              "testedDimension": "Послухайте й виберіть — подруга підходить до аптекаря разом із вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `itchy`, а в этом варианте — `pale`.",
                 "uk": "У записі останнє слово — `itchy`, а в цьому варіанті — `pale`."
@@ -2141,7 +2141,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання подруги",
+        "prompt": "Послухайте й виберіть — надвечір подруга питає вас на березі",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-42:i15:r1",
@@ -2160,7 +2160,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-42:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання подруги",
+        "accessibilityLabel": "Послухайте й виберіть — надвечір подруга питає вас на березі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2190,7 +2190,7 @@
             {
               "responseId": "en:lesson-02:session-42:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — надвечір подруга питає вас на березі",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `queasy`, а в этом варианте — `shaky`.",
                 "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `shaky`."
@@ -2199,7 +2199,7 @@
             {
               "responseId": "en:lesson-02:session-42:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — надвечір подруга питає вас на березі",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `queasy`, а в этом варианте — `sleepy`.",
                 "uk": "У записі останнє слово — `queasy`, а в цьому варіанті — `sleepy`."

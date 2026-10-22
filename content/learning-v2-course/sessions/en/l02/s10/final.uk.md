@@ -61,7 +61,7 @@
 Плитки: `impossible` `is` `It` `are` → **It is impossible.**
 *(плитка `are` зайва: тут потрібно `is` — `It is impossible.`)*
 
-**3 · Послухайте запитання Олегові**
+**3 · Послухайте й виберіть — ви стоїте з Олегом біля дверей із шафою**
 <!-- interaction_id: en:lesson-02:session-10:i02; family: listen_choose -->
 🔊 *Are you confident?* → **Are you confident?** · Are you relaxed? · Are you satisfied?
 - Are you relaxed? — *У записі останнє слово — `confident`, а в цьому варіанті — `relaxed`.*
@@ -105,7 +105,7 @@ He ___ not relaxed. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-10:word:wide; family: word_card -->
 > **wide** — широкий. Is it wide? — «Він широкий?» Про коридор, двері, дорогу, ліжко.
 
-**12 · Послухайте запитання про коридор**
+**12 · Послухайте й виберіть — олег обговорює з вами, як нести шафу**
 <!-- interaction_id: en:lesson-02:session-10:i09; family: listen_choose -->
 🔊 *Is it wide?* → **Is it wide?** · Is it narrow? · Is it wooden?
 - Is it narrow? — *У записі останнє слово — `wide`, а в цьому варіанті — `narrow`.*
@@ -139,7 +139,7 @@ ___ they satisfied? → **Are** · Am · Is
 - Am — *З `they` потрібно `Are`.*
 - Is — *Їх двоє, тому `Are they`.*
 
-**19 · Послухайте фразу про Анну**
+**19 · Послухайте й виберіть — на перерві Олег розповідає вам про знайому**
 <!-- interaction_id: en:lesson-02:session-10:i15; family: listen_choose -->
 🔊 *She is not relaxed.* → **She is not relaxed.** · She is not confident. · She is not satisfied.
 - She is not confident. — *У записі останнє слово — `relaxed`, а в цьому варіанті — `confident`.*

@@ -61,7 +61,7 @@
 Плитки: `innocent` `is` `He` `are` → **He is innocent.**
 *(плитка `are` зайва: тут потрібно `is` — `He is innocent.`)*
 
-**3 · Послухайте запитання мами про сестру**
+**3 · Послухайте й виберіть — мама перевіряє святковий стіл**
 <!-- interaction_id: en:lesson-02:session-20:i02; family: listen_choose -->
 🔊 *Is she prepared?* → **Is she prepared?** · Is she careful? · Is she lost?
 - Is she careful? — *У записі останнє слово — `prepared`, а в цьому варіанті — `careful`.*
@@ -101,7 +101,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-20:word:suspicious; family: word_card -->
 > **suspicious** — підозрілий. He is suspicious — «Він підозрілий». Про людину, яка поводиться дивно, або про дивний дзвінок.
 
-**11 · Брат ховає руки за спину. Послухайте, що шепоче вам сестра**
+**11 · Послухайте й виберіть — сестра шепоче вам біля святкового столу**
 <!-- interaction_id: en:lesson-02:session-20:i09; family: listen_choose -->
 🔊 *He is suspicious.* → **He is suspicious.** · He is prepared. · He is innocent.
 - He is prepared. — *У записі останнє слово — `suspicious`, а в цьому варіанті — `prepared`.*
@@ -139,7 +139,7 @@ ___ it washable? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Про одну серветку — `Is it`.*
 
-**19 · Послухайте, що брат каже про сестру**
+**19 · Послухайте й виберіть — брат говорить з мамою біля столу**
 <!-- interaction_id: en:lesson-02:session-20:i15; family: listen_choose -->
 🔊 *She is innocent.* → **She is innocent.** · She is prepared. · She is careful.
 - She is prepared. — *У записі останнє слово — `innocent`, а в цьому варіанті — `prepared`.*

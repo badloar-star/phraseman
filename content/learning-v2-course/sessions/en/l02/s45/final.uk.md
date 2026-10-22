@@ -61,7 +61,7 @@
 Плитки: `blunt` `is` `It` `are` → **It is blunt.**
 *(плитка `are` зайва: тут потрібно `is` — `It is blunt.`)*
 
-**3 · Послухайте, що брат каже про старий ключ**
+**3 · Послухайте й виберіть — брат розбирає з вами дідів гараж**
 <!-- interaction_id: en:lesson-02:session-45:i02; family: listen_choose -->
 🔊 *It is rusty.* → **It is rusty.** · It is loose. · It is heavy.
 - It is loose. — *У записі останнє слово — `rusty`, а в цьому варіанті — `loose`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-02:session-45:word:rough; family: word_card -->
 > **rough** — шорсткий, нерівний на дотик. They're rough — «Вони шорсткі». Про дошки, шкіру, руки, камінь.
 
-**13 · Послухайте, що брат каже про дошки біля стіни**
+**13 · Послухайте й виберіть — брат ходить гаражем і оглядає речі**
 <!-- interaction_id: en:lesson-02:session-45:i09; family: listen_choose -->
 🔊 *They are rough.* → **They are rough.** · They are loose. · They are rusty.
 - They are loose. — *У записі останнє слово — `rough`, а в цьому варіанті — `loose`.*
@@ -139,7 +139,7 @@ It ___ not blunt. → **is** · am · are
 - am — *З `It` потрібно `is`.*
 - are — *Фраза — `It is not blunt`.*
 
-**19 · Послухайте запитання брата**
+**19 · Послухайте й виберіть — ви з братом оглядаєте полиці в гаражі**
 <!-- interaction_id: en:lesson-02:session-45:i15; family: listen_choose -->
 🔊 *Is it flimsy?* → **Is it flimsy?** · Is it cluttered? · Is it rough?
 - Is it cluttered? — *У записі останнє слово — `flimsy`, а в цьому варіанті — `cluttered`.*

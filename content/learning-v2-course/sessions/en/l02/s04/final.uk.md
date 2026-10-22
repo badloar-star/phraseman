@@ -65,7 +65,7 @@ clear тут — «ясний», «зрозумілий». It is not clear — �
 <!-- interaction_id: en:lesson-02:session-04:word:hidden; family: word_card -->
 > **hidden** — схований, прихований. It is hidden — «Це сховано». It is not hidden — «Не сховано».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг шукає разом із вами вхід на виставку**
 <!-- interaction_id: en:lesson-02:session-04:i02; family: listen_choose -->
 🔊 *It is not hidden.* → **It is not hidden.** · It is not visible. · It is not clear.
 - It is not visible. — *У записі останнє слово — `hidden`, а в цьому варіанті — `visible`.*
@@ -105,7 +105,7 @@ He ___ not aware. → **is** · am · are
 - am — *Після `He` потрібно `is`.*
 - are — *Про Олега — `He is not`.*
 
-**12 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть — організатор відповідає на запитання біля входу**
 <!-- interaction_id: en:lesson-02:session-04:i09; family: listen_choose -->
 🔊 *I am not concerned.* → **I am not concerned.** · I am not convinced. · I am not hungry.
 - I am not convinced. — *У записі останнє слово — `concerned`, а в цьому варіанті — `convinced`.*
@@ -139,7 +139,7 @@ We ___ not convinced. → **are** · am · is
 - am — *Після `We` потрібно `are`.*
 - is — *Про нас — `We are not`.*
 
-**19 · Послухайте коротку фразу й виберіть її**
+**19 · Послухайте й виберіть — друг звіряє з вами мапу виставки**
 <!-- interaction_id: en:lesson-02:session-04:i15; family: listen_choose -->
 🔊 *It's not visible.* → **It's not visible.** · It's not hidden. · It's not clear.
 - It's not hidden. — *У записі останнє слово — `visible`, а в цьому варіанті — `hidden`.*

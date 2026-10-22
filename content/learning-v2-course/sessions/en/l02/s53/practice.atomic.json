@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що тренер каже про погоду в парку",
+        "prompt": "Послухайте й виберіть — тренер веде вашу групу парковою доріжкою",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-53:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-53:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що тренер каже про погоду в парку",
+        "accessibilityLabel": "Послухайте й виберіть — тренер веде вашу групу парковою доріжкою",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-02:session-53:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що тренер каже про погоду в парку",
+              "testedDimension": "Послухайте й виберіть — тренер веде вашу групу парковою доріжкою",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `windy`, а в этом варианте — `cold`.",
                 "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `cold`."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-02:session-53:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що тренер каже про погоду в парку",
+              "testedDimension": "Послухайте й виберіть — тренер веде вашу групу парковою доріжкою",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `windy`, а в этом варианте — `hot`.",
                 "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `hot`."
@@ -1800,7 +1800,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що тренер каже про темп",
+        "prompt": "Послухайте й виберіть — тренер на ходу змінює вправу",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-53:i09:r1",
@@ -1819,7 +1819,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-53:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що тренер каже про темп",
+        "accessibilityLabel": "Послухайте й виберіть — тренер на ходу змінює вправу",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1849,7 +1849,7 @@
             {
               "responseId": "en:lesson-02:session-53:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що тренер каже про темп",
+              "testedDimension": "Послухайте й виберіть — тренер на ходу змінює вправу",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `steady`, а в этом варианте — `fast`.",
                 "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `fast`."
@@ -1858,7 +1858,7 @@
             {
               "responseId": "en:lesson-02:session-53:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що тренер каже про темп",
+              "testedDimension": "Послухайте й виберіть — тренер на ходу змінює вправу",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `steady`, а в этом варианте — `slow`.",
                 "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `slow`."
@@ -2143,7 +2143,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання тренера",
+        "prompt": "Послухайте й виберіть — посеред заняття тренер питає групу",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-53:i15:r1",
@@ -2162,7 +2162,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-53:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання тренера",
+        "accessibilityLabel": "Послухайте й виберіть — посеред заняття тренер питає групу",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2192,7 +2192,7 @@
             {
               "responseId": "en:lesson-02:session-53:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання тренера",
+              "testedDimension": "Послухайте й виберіть — посеред заняття тренер питає групу",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `steady`, а в этом варианте — `tough`.",
                 "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `tough`."
@@ -2201,7 +2201,7 @@
             {
               "responseId": "en:lesson-02:session-53:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання тренера",
+              "testedDimension": "Послухайте й виберіть — посеред заняття тренер питає групу",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `steady`, а в этом варианте — `upbeat`.",
                 "uk": "У записі останнє слово — `steady`, а в цьому варіанті — `upbeat`."

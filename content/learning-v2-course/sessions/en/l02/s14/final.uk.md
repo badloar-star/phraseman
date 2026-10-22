@@ -61,7 +61,7 @@
 Плитки: `obvious` `is` `It` `are` → **It is obvious.**
 *(плитка `are` зайва: тут потрібно `is` — `It is obvious.`)*
 
-**3 · Послухайте запитання перехожого про майстерню**
+**3 · Послухайте й виберіть — перехожий зупиняється біля вітрини майстерні**
 <!-- interaction_id: en:lesson-02:session-14:i02; family: listen_choose -->
 🔊 *Is it open?* → **Is it open?** · Is it closed? · Is it clean?
 - Is it closed? — *У записі останнє слово — `open`, а в цьому варіанті — `closed`.*
@@ -101,7 +101,7 @@ They ___ dirty. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Про дві полиці — `They are`.*
 
-**11 · Послухайте, що подруга каже про лимон**
+**11 · Послухайте й виберіть — подруга перебирає прикраси для вітрини**
 <!-- interaction_id: en:lesson-02:session-14:i09; family: listen_choose -->
 🔊 *It is fake.* → **It is fake.** · It is dirty. · It is open.
 - It is dirty. — *У записі останнє слово — `fake`, а в цьому варіанті — `dirty`.*
@@ -139,7 +139,7 @@ ___ they fake? → **Are** · Am · Is
 - Am — *З `they` потрібно `Are`.*
 - Is — *Про два яблука — `Are they`.*
 
-**19 · Подруга помила скло. Послухайте, що вона каже**
+**19 · Послухайте й виберіть — подруга разом із вами милується вітриною**
 <!-- interaction_id: en:lesson-02:session-14:i15; family: listen_choose -->
 🔊 *It is not dirty.* → **It is not dirty.** · It is not fake. · It is not closed.
 - It is not fake. — *У записі останнє слово — `dirty`, а в цьому варіанті — `fake`.*

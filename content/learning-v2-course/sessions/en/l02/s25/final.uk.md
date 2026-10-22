@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-02:session-25:word:where; family: word_card -->
 > **where** — де. Where is he? — «Де він?» Питаємо про місце.
 
-**4 · Послухайте запитання**
+**4 · Послухайте й виберіть — друг озирається серед декорацій на репетиції**
 <!-- interaction_id: en:lesson-02:session-25:i02; family: listen_choose -->
 🔊 *Where is she?* → **Where is she?** · Who is she? · Where is he?
 - Who is she? — *У записі перше слово — `Where`, а в цьому варіанті — `Who`.*
@@ -109,7 +109,7 @@ ___ is it? → **What** · Who · Where
 - Who — *`Who` запитує про людину. Тут предмет: `What`.*
 - Where — *`Where` — «де». Ви вже бачите предмет і запитуєте, що це.*
 
-**13 · Послухайте фразу про друга**
+**13 · Послухайте й виберіть — до зали з декораціями повертається друг**
 <!-- interaction_id: en:lesson-02:session-25:i09; family: listen_choose -->
 🔊 *He is proud.* → **He is proud.** · He is ashamed. · He is surprised.
 - He is ashamed. — *У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`.*
@@ -139,7 +139,7 @@ She ___ well. → **is** · am · are
 - am — *Після `She` потрібно `is`.*
 - are — *Фраза про подругу — `She is well`.*
 
-**19 · Послухайте запитання**
+**19 · Послухайте й виберіть — серед декорацій друг ставить вам запитання**
 <!-- interaction_id: en:lesson-02:session-25:i15; family: listen_choose -->
 🔊 *Who is absent?* → **Who is absent?** · Who is surprised? · Who is ashamed?
 - Who is surprised? — *У записі останнє слово — `absent`, а в цьому варіанті — `surprised`.*

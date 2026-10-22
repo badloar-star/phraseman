@@ -1214,7 +1214,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що друг каже про подругу",
+        "prompt": "Послухайте й виберіть — друг збирається з вами на виставку",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-24:i02:r1",
@@ -1233,7 +1233,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-24:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що друг каже про подругу",
+        "accessibilityLabel": "Послухайте й виберіть — друг збирається з вами на виставку",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1263,7 +1263,7 @@
             {
               "responseId": "en:lesson-02:session-24:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що друг каже про подругу",
+              "testedDimension": "Послухайте й виберіть — друг збирається з вами на виставку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `unwell`, а в этом варианте — `well`.",
                 "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `well`."
@@ -1272,7 +1272,7 @@
             {
               "responseId": "en:lesson-02:session-24:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що друг каже про подругу",
+              "testedDimension": "Послухайте й виберіть — друг збирається з вами на виставку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `unwell`, а в этом варианте — `innocent`.",
                 "uk": "У записі останнє слово — `unwell`, а в цьому варіанті — `innocent`."
@@ -1754,7 +1754,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що подруга каже про печиво з магазину",
+        "prompt": "Послухайте й виберіть — перед виставкою подруга ділиться з вами враженням",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-24:i09:r1",
@@ -1773,7 +1773,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-24:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що подруга каже про печиво з магазину",
+        "accessibilityLabel": "Послухайте й виберіть — перед виставкою подруга ділиться з вами враженням",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1803,7 +1803,7 @@
             {
               "responseId": "en:lesson-02:session-24:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про печиво з магазину",
+              "testedDimension": "Послухайте й виберіть — перед виставкою подруга ділиться з вами враженням",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sweet`, а в этом варианте — `cloudy`.",
                 "uk": "У записі останнє слово — `sweet`, а в цьому варіанті — `cloudy`."
@@ -1812,7 +1812,7 @@
             {
               "responseId": "en:lesson-02:session-24:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що подруга каже про печиво з магазину",
+              "testedDimension": "Послухайте й виберіть — перед виставкою подруга ділиться з вами враженням",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sweet`, а в этом варианте — `broken`.",
                 "uk": "У записі останнє слово — `sweet`, а в цьому варіанті — `broken`."
@@ -2139,7 +2139,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання подруги",
+        "prompt": "Послухайте й виберіть — подруга зустрічає вас перед виставкою",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-24:i15:r1",
@@ -2158,7 +2158,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-24:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання подруги",
+        "accessibilityLabel": "Послухайте й виберіть — подруга зустрічає вас перед виставкою",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2188,7 +2188,7 @@
             {
               "responseId": "en:lesson-02:session-24:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга зустрічає вас перед виставкою",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `well`, а в этом варианте — `unwell`.",
                 "uk": "У записі останнє слово — `well`, а в цьому варіанті — `unwell`."
@@ -2197,7 +2197,7 @@
             {
               "responseId": "en:lesson-02:session-24:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга зустрічає вас перед виставкою",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `well`, а в этом варианте — `guilty`.",
                 "uk": "У записі останнє слово — `well`, а в цьому варіанті — `guilty`."

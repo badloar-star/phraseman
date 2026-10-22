@@ -31,7 +31,7 @@ describe('friend week arithmetic', () => {
       streak: 48,
       floor: 7,
     });
-    expect(week).toEqual({ week: '2026-10-19', streak: 48, lessons: 8, days: 4, floor: 7, best: { dow: 6, lessons: 3 } });
+    expect(week).toEqual({ week: '2026-10-19', streak: 48, lessons: 8, days: 4, floor: 7, rise: null, best: { dow: 6, lessons: 3 } });
   });
 
   it('серия на конец дня — подряд идущие активные дни назад', () => {
@@ -44,7 +44,7 @@ describe('friend week arithmetic', () => {
     const stored: FriendWeekRecord = {
       v: 1,
       hidden: true,
-      cur: { week: '2026-10-19', streak: 40, lessons: 5, days: 3, floor: 6, best: { dow: 2, lessons: 3 } },
+      cur: { week: '2026-10-19', streak: 40, lessons: 5, days: 3, floor: 6, rise: 1, best: { dow: 2, lessons: 3 } },
       prev: null,
     };
     const next = nextMyFriendWeekRecord({
@@ -54,17 +54,18 @@ describe('friend week arithmetic', () => {
       lessonsByDay: { '2026-10-19': 1, '2026-10-21': 3, '2026-10-22': 1, '2026-10-25': 4, '2026-10-26': 2 },
       activeDays: new Set(['2026-10-19', '2026-10-21', '2026-10-22', '2026-10-25', '2026-10-26']),
       streakNow: 2,
-      floorThisWeek: 1,
+      floorThisWeek: 8,
     });
     expect(next.hidden).toBe(true);
-    expect(next.cur).toEqual({ week: '2026-10-26', streak: 2, lessons: 2, days: 1, floor: 1, best: { dow: 0, lessons: 2 } });
-    expect(next.prev).toEqual({ week: '2026-10-19', streak: 40, lessons: 9, days: 4, floor: 6, best: { dow: 6, lessons: 4 } });
+    // этаж 8 против 6 прошлой недели — «↑2»; подъём закрытой недели сохранён из её идущей записи
+    expect(next.cur).toEqual({ week: '2026-10-26', streak: 2, lessons: 2, days: 1, floor: 8, rise: 2, best: { dow: 0, lessons: 2 } });
+    expect(next.prev).toEqual({ week: '2026-10-19', streak: 40, lessons: 9, days: 4, floor: 6, rise: 1, best: { dow: 6, lessons: 4 } });
   });
 
   it('пропущенная неделя целиком — закрытой нет, старая запись не выдаётся за прошлую неделю', () => {
     const next = nextMyFriendWeekRecord({
       todayKey: '2026-11-02',
-      stored: { v: 1, hidden: false, cur: { week: '2026-10-19', streak: 9, lessons: 4, days: 2, floor: null, best: null }, prev: null },
+      stored: { v: 1, hidden: false, cur: { week: '2026-10-19', streak: 9, lessons: 4, days: 2, floor: null, rise: null, best: null }, prev: null },
       lessonsByDay: {},
       activeDays: new Set(),
       streakNow: 0,
@@ -75,7 +76,7 @@ describe('friend week arithmetic', () => {
   });
 
   it('что видит друг: его прошлая неделя из prev, а если друг ещё не открывал новую — из cur; скрытая — ничего', () => {
-    const w = (week: string) => ({ week, streak: 3, lessons: 2, days: 2, floor: null, best: null });
+    const w = (week: string) => ({ week, streak: 3, lessons: 2, days: 2, floor: null, rise: null, best: null });
     expect(friendWeekToShow({ v: 1, hidden: false, cur: w('2026-10-26'), prev: w('2026-10-19') }, '2026-10-27')?.week).toBe('2026-10-19');
     expect(friendWeekToShow({ v: 1, hidden: false, cur: w('2026-10-19'), prev: null }, '2026-10-26')?.week).toBe('2026-10-19');
     expect(friendWeekToShow({ v: 1, hidden: true, cur: w('2026-10-26'), prev: w('2026-10-19') }, '2026-10-27')).toBeNull();
@@ -83,17 +84,17 @@ describe('friend week arithmetic', () => {
   });
 
   it('чужая запись разбирается строго: не понедельник, мусор и чужая версия — отброшены, числа в границах', () => {
-    const good = { week: '2026-10-19', streak: 48, lessons: 9, days: 5, floor: 7, best: { dow: 4, lessons: 3 } };
+    const good = { week: '2026-10-19', streak: 48, lessons: 9, days: 5, floor: 7, rise: 2, best: { dow: 4, lessons: 3 } };
     expect(parseFriendWeekRecord(JSON.stringify({ v: 1, cur: good, prev: null }))?.cur).toEqual(good);
     expect(parseFriendWeekRecord({ v: 1, cur: { ...good, week: '2026-10-20' }, prev: null })).toBeNull();
     expect(parseFriendWeekRecord({ v: 2, cur: good })).toBeNull();
     expect(parseFriendWeekRecord('{oops')).toBeNull();
     const clamped = parseFriendWeekRecord({ v: 1, cur: { ...good, days: 40, streak: -5, lessons: 1e9, floor: 0, best: { dow: 9, lessons: 2 } } });
-    expect(clamped?.cur).toEqual({ week: '2026-10-19', streak: 0, lessons: 2000, days: 7, floor: null, best: null });
+    expect(clamped?.cur).toEqual({ week: '2026-10-19', streak: 0, lessons: 2000, days: 7, floor: null, rise: null, best: null });
   });
 
   it('одинаковая запись — одинаковая строка: без лишних записей в хранилище и синхронизацию', () => {
-    const a: FriendWeekRecord = { v: 1, hidden: false, cur: { week: '2026-10-19', streak: 1, lessons: 1, days: 1, floor: null, best: { dow: 0, lessons: 1 } }, prev: null };
+    const a: FriendWeekRecord = { v: 1, hidden: false, cur: { week: '2026-10-19', streak: 1, lessons: 1, days: 1, floor: 3, rise: 1, best: { dow: 0, lessons: 1 } }, prev: null };
     const b = parseFriendWeekRecord(serializeFriendWeekRecord(a));
     expect(b && serializeFriendWeekRecord(b)).toBe(serializeFriendWeekRecord(a));
   });

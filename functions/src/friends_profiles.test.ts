@@ -95,7 +95,7 @@ describe('friendsGetProfiles reads', () => {
 
   it('passes the friend week record (idea 6) from the already-read user doc; hidden or broken records give null, no new reads', async () => {
     // зачем (закон владельца «телефон решает, сервер только хранит записи»): неделю считает телефон друга, сервер её только отдаёт.
-    const week = { week: '2026-10-19', streak: 48, lessons: 9, days: 5, floor: 7, best: { dow: 4, lessons: 3 } };
+    const week = { week: '2026-10-19', streak: 48, lessons: 9, days: 5, floor: 7, rise: 2, best: { dow: 4, lessons: 3 } };
     const rows: Record<string, Row> = {
       ...friendRows('caller-d5', 'shown'),
       ...friendRows('caller-d5', 'hidden-week'),

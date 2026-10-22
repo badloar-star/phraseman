@@ -152,6 +152,10 @@ import { LEVEL_NAMES, nextThreshold } from '../friends_together/together_days';
 import { pairQueuedToast, pairRowSubline } from '../friends_together/pair_copy';
 import FriendListRow from '../../components/friends_together/FriendListRow';
 import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
+import FriendWeekRail from '../../components/friends_together/FriendWeekRail';
+import FriendWeekSheet from '../../components/friends_together/FriendWeekSheet';
+import { buildFriendWeekRail, type FriendWeekCard } from '../friends_together/friend_week_rail';
+import { highFiveToastTexts } from '../friends_together/friend_week_copy';
 import FriendPairSheet from '../../components/friends_together/FriendPairSheet';
 import FriendPairMilestoneHost from '../../components/friends_together/FriendPairMilestoneHost';
 import FriendsOfflineStrip from '../../components/friends_together/FriendsOfflineStrip';
@@ -293,7 +297,7 @@ function cleanFriendDisplayName(value: unknown): string {
 
 function shouldUseLookupDisplayName(profile: FriendProfile | null): boolean {
   const current = cleanFriendDisplayName(profile?.name);
-  return !current || current === '…' || current === '...' || current === 'Phraseman' || current === 'Friend' || current === 'Player' || current === 'Игрок';
+  return !current || current === '…' || current === '...' || current === 'Phraseman' || current === 'Friend' || current === 'Player' || current === 'Игрок'; // i18n-ok: сравнение с именем-заглушкой из старых профилей, не текст на экране
 }
 
 function placeholderFriendProfile(uid: string, candidateName?: string): FriendProfile {
@@ -894,6 +898,9 @@ export default function FriendsTabScreen() {
   const [studyInvite, setStudyInvite] = useState<{ event: FriendSocialEvent; friendName: string; friendCoinRank: number | null } | null>(null);
   // зачем (идея 1, макет «30 дней»): окно вехи серии вдвоём на экране — вкладка не открывает поверх свои окна
   const [pairMilestoneOpen, setPairMilestoneOpen] = useState(false);
+  // «Итоги недели» (идея 6): чья неделя открыта в шторке; вызов на дуэль из шторки открывается после её закрытия
+  const [weekSheet, setWeekSheet] = useState<{ uid: string; visible: boolean } | null>(null);
+  const weekDuelAfterCloseRef = useRef(false);
   // зачем (идея 3, макет «Вызов у Ирины»): вызов на «Дуэль на 5 фраз» от друга — шторка «Принять / Отказаться»
   const [duelIncoming, setDuelIncoming] = useState<DuelIncoming | null>(null);
   const clearDuelIncoming = useCallback(() => setDuelIncoming(null), []);
@@ -2326,7 +2333,7 @@ export default function FriendsTabScreen() {
   const modalWedgeActive = selectedPlayer !== null || deleteTarget !== null || blockTarget !== null
     || addModalOpen
     || togetherSheetSession !== null || profileDismissPending
-    || pairMilestoneOpen || duelChallenge.open || duelIncoming !== null;
+    || pairMilestoneOpen || duelChallenge.open || duelIncoming !== null || weekSheet !== null;
   modalWedgeGuardRef.current = modalWedgeActive;
 
   useEffect(() => {
@@ -2563,6 +2570,82 @@ export default function FriendsTabScreen() {
     }
   }), []);
 
+  // ── «Итоги недели» (идея 6, макет friends-full.html #week) ─────────────────
+  // зачем (закон владельца «телефон решает»): кого показать — чистая функция над снапшотом пар (0 чтений); focusTick — новый день и
+  // новая неделя при возврате на вкладку. Своя неделя пересчитывается при входе на вкладку (после занятия — в stats_daily_breakdown).
+  const weekRail = useMemo(() => {
+    if (!friendsTogetherUiEnabled) return null;
+    void focusTick;
+    return buildFriendWeekRail(
+      sortedFriends.map((f) => ({ uid: f.uid, name: f.name, coinRank: isValidCoinRank(f.coinRank) ? f.coinRank : null, isPlus: isPlusProfile(f) })),
+      togetherSnapshot?.pairs ?? {},
+      new Date(),
+    );
+  }, [focusTick, friendsTogetherUiEnabled, sortedFriends, togetherSnapshot]);
+  useEffect(() => {
+    if (!FRIENDS_TOGETHER_UI_ENABLED || !friendsRuntimeActive) return;
+    void import('../friends_together/friend_week_store')
+      .then(({ refreshMyFriendWeek }) => refreshMyFriendWeek('friends_tab'))
+      .catch(noteSwallowedHandler('friends:friend_week_refresh'));
+  }, [focusTick, friendsRuntimeActive]);
+  const weekRailLogRef = useRef('');
+  useEffect(() => {
+    if (!weekRail) return;
+    const key = `${weekRail.open}|${weekRail.week}|${weekRail.cards.map((c) => `${c.uid.slice(0, 6)}:${c.kind}`).join(',')}`;
+    if (weekRailLogRef.current === key) return;
+    weekRailLogRef.current = key;
+    console.log(`[FRIEND-WEEK] лента open=${weekRail.open} неделя=${weekRail.week} карточек=${weekRail.cards.length} ${weekRail.cards.map((c) => `${c.uid.slice(0, 6)}:${c.kind}`).join(' ')}`); // guard-ok: одна строка на смену ленты
+  }, [weekRail]);
+  // «Дать пять» из ленты и шторки: кнопка сразу «Пять отправлено» и тост (Optimistic UI); сбой — handleHighFive откатывает к правде сервера
+  const handleWeekHighFive = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (!profile) {
+      console.log(`[FRIEND-WEEK] пять → пропуск: друга нет в списке ${friendUid.slice(0, 6)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    if (highFivedUids.has(friendUid) || highFiveInFlightRef.current.has(friendUid)) {
+      console.log(`[FRIEND-WEEK] пять → пропуск: уже отправлено или в полёте ${friendUid.slice(0, 6)}`); // guard-ok: двойной тап
+      return;
+    }
+    handleHighFive(profile);
+    const texts = highFiveToastTexts();
+    emitAppEvent('action_toast', {
+      type: 'success',
+      messageRu: texts.ru, messageUk: texts.uk, messageEn: texts.en, messageEs: texts.es, messagePtBr: texts.ptBr,
+      messageVi: texts.vi, messageId: texts.id, messageTr: texts.tr, messagePl: texts.pl,
+    });
+  }, [handleHighFive, highFivedUids]);
+  const openWeekSheet = useCallback((friendUid: string) => {
+    if (modalWedgeGuardRef.current) {
+      console.log(`[FRIEND-WEEK] шторка → пропуск: открыто другое окно ${friendUid.slice(0, 6)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    hapticTap();
+    setWeekSheet({ uid: friendUid, visible: true });
+  }, []);
+  const weekSheetCard = useMemo<Extract<FriendWeekCard, { kind: 'active' }> | null>(() => {
+    const card = weekSheet ? weekRail?.cards.find((item) => item.uid === weekSheet.uid) : undefined;
+    return card && card.kind === 'active' ? card : null;
+  }, [weekRail, weekSheet]);
+  const prepareWeekDuel = useCallback((friendUid: string) => {
+    const profile = sortedFriendsRef.current.find((item) => item.uid === friendUid);
+    if (!profile) {
+      console.log(`[FRIEND-WEEK] дуэль → пропуск: друга нет в списке ${friendUid.slice(0, 6)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    duelChallenge.prepare({ ...duelFriendView(profile), studyLanguages: togetherSnapshot?.pairs[friendUid]?.studyLanguages ?? null });
+    weekDuelAfterCloseRef.current = true;
+  }, [duelChallenge.prepare, togetherSnapshot]);
+  const closeWeekSheet = useCallback(() => {
+    setWeekSheet((current) => (current ? { ...current, visible: false } : current));
+  }, []);
+  const weekSheetDismissed = useCallback(() => {
+    setWeekSheet(null);
+    if (!weekDuelAfterCloseRef.current) return;
+    weekDuelAfterCloseRef.current = false;
+    duelChallenge.show();
+  }, [duelChallenge.show]);
+
   // ── Render ─────────────────────────────────────────────────────────────────
 
   // D3: вместо общего ScrollView каждый таб — собственный FlashList (виртуализация,
@@ -2668,6 +2751,22 @@ export default function FriendsTabScreen() {
     </>
   );
 
+  const weekRailNode = weekRail ? (
+    <FriendWeekRail
+      glass={glass}
+      textScale={textScale}
+      lang={lang as Lang}
+      rail={weekRail}
+      sidePad={PX}
+      showEmpty={hasFriendRows}
+      highFivedUids={highFivedUids}
+      callStateByUid={callStateByUid}
+      onOpen={openWeekSheet}
+      onHighFive={handleWeekHighFive}
+      onCall={callFriendByUid}
+    />
+  ) : null;
+
   const friendsEmptyState = (
     <FriendsEmptyState
       onAdd={() => { hapticTap(); setAddModalOpen(true); }}
@@ -2732,7 +2831,7 @@ export default function FriendsTabScreen() {
               </Reanimated.View>
             );
           }}
-          ListHeaderComponent={<>{dailyPollCard}{offlineStrip}{listHeader}{friendsPreList}</>}
+          ListHeaderComponent={<>{dailyPollCard}{offlineStrip}{weekRailNode}{listHeader}{friendsPreList}</>}
           ListEmptyComponent={friendsEmptyState}
           ListFooterComponent={listFooter}
         />
@@ -2915,6 +3014,21 @@ export default function FriendsTabScreen() {
         />
       )}
 
+      {/* зачем (идея 6, макет #week «Неделя Ирины»): шторка недели друга — из ленты «Итоги недели»; дуэль из неё — после закрытия */}
+      {friendsTogetherUiEnabled && weekSheetCard ? (
+        <FriendWeekSheet
+          visible={weekSheet?.visible === true}
+          friendName={weekSheetCard.name}
+          friendCoinRank={weekSheetCard.coinRank}
+          friendIsPlus={weekSheetCard.isPlus}
+          week={weekSheetCard.week}
+          highFived={highFivedUids.has(weekSheetCard.uid)}
+          onHighFive={() => handleWeekHighFive(weekSheetCard.uid)}
+          onDuel={() => prepareWeekDuel(weekSheetCard.uid)}
+          onClose={closeWeekSheet}
+          onDismissed={weekSheetDismissed}
+        />
+      ) : null}
       {/* зачем (идея 3, макет «Вызов» / «Нет общих занятий»): шторка вызова на «Дуэль на 5 фраз» — открывается после шторки друга */}
       {friendsTogetherUiEnabled && duelChallenge.sheet ? <FriendDuelChallengeSheet {...duelChallenge.sheet} /> : null}
       {/* зачем (идея 3, макет «Вызов у Ирины»): вызов друга — «Принять» ведёт на ход в ответ, «Отказаться» гасит щит */}

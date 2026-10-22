@@ -50,6 +50,8 @@ export interface FriendWeekSummaryWire {
   /** Дней с занятиями, 0…7. */
   days: number;
   floor: number | null;
+  /** На сколько этажей выше прошлой недели; null — не выше или неизвестно. */
+  rise: number | null;
   /** 0 — понедельник … 6 — воскресенье. */
   best: { dow: number; lessons: number } | null;
 }
@@ -253,6 +255,7 @@ function friendWeekSummaryFromWire(raw: unknown): FriendWeekSummaryWire | null {
     lessons: bounded(r.lessons, 2_000),
     days: bounded(r.days, 7),
     floor: floor > 0 ? floor : null,
+    rise: floor > 0 && bounded(r.rise, 999) > 0 ? bounded(r.rise, 999) : null,
     best: bestRaw && Number.isFinite(dow) && dow >= 0 && dow <= 6 && bestLessons > 0 ? { dow, lessons: bestLessons } : null,
   };
 }

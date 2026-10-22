@@ -29,6 +29,8 @@ export type FriendWeekSummary = Readonly<{
   days: number;
   /** Лучший этаж Пика за неделю; null — не поднимался. */
   floor: number | null;
+  /** На сколько этажей выше прошлой недели («7 ↑2» макета); null — не выше или сравнить не с чем. */
+  rise: number | null;
   /** День с наибольшим числом занятий; null — занятий не было. */
   best: FriendWeekBestDay | null;
 }>;
@@ -91,6 +93,8 @@ export type FriendWeekInput = Readonly<{
   activeDays: ReadonlySet<string>;
   streak: number;
   floor: number | null;
+  /** Этаж прошлой недели — для подъёма; null — неизвестен. */
+  floorBefore?: number | null;
 }>;
 
 export function summarizeFriendWeek(input: FriendWeekInput): FriendWeekSummary {
@@ -107,7 +111,9 @@ export function summarizeFriendWeek(input: FriendWeekInput): FriendWeekSummary {
     if (n > 0 && (best === null || n >= best.lessons)) best = { dow, lessons: n };
   }
   const floor = input.floor === null ? null : int(input.floor, MAX_FLOOR) || null;
-  return { week: input.week, streak: int(input.streak, MAX_STREAK), lessons: Math.min(lessons, MAX_WEEK_LESSONS), days, floor, best };
+  const before = input.floorBefore ?? null;
+  const rise = floor !== null && before !== null && floor > before ? floor - before : null;
+  return { week: input.week, streak: int(input.streak, MAX_STREAK), lessons: Math.min(lessons, MAX_WEEK_LESSONS), days, floor, rise, best };
 }
 
 /** Серия на конец дня `endDay` по дням активности: подряд идущие активные дни назад от него (окно active_days — 120 дней). */
@@ -131,6 +137,8 @@ function mergeClosedWeek(calc: FriendWeekSummary, old: FriendWeekSummary | null)
     lessons: Math.max(calc.lessons, old.lessons),
     days: Math.max(calc.days, old.days),
     floor: old.floor ?? calc.floor,
+    // подъём закрытой недели посчитан, пока она шла (тогда была известна неделя перед ней)
+    rise: old.rise,
     best,
   };
 }
@@ -157,7 +165,14 @@ export function nextMyFriendWeekRecord(input: MyFriendWeekInput): FriendWeekReco
   const oldLast = old?.cur?.week === lastWeek ? old.cur : old?.prev?.week === lastWeek ? old.prev : null;
   const floorNow = input.floorThisWeek ?? null;
   const floor = floorNow === null ? oldThis?.floor ?? null : Math.max(floorNow, oldThis?.floor ?? 0);
-  const cur = summarizeFriendWeek({ week: thisWeek, lessonsByDay: input.lessonsByDay, activeDays: input.activeDays, streak: input.streakNow, floor });
+  const cur = summarizeFriendWeek({
+    week: thisWeek,
+    lessonsByDay: input.lessonsByDay,
+    activeDays: input.activeDays,
+    streak: input.streakNow,
+    floor,
+    floorBefore: oldLast?.floor ?? null,
+  });
   const lastCalc = summarizeFriendWeek({
     week: lastWeek,
     lessonsByDay: input.lessonsByDay,
@@ -193,6 +208,7 @@ function parseSummary(raw: unknown): FriendWeekSummary | null {
     lessons: int(r.lessons, MAX_WEEK_LESSONS),
     days: Math.min(int(r.days, 7), 7),
     floor,
+    rise: floor === null ? null : int(r.rise, MAX_FLOOR) || null,
     best: bestRaw && Number.isFinite(dow) && dow >= 0 && dow <= 6 && bestLessons > 0 ? { dow, lessons: bestLessons } : null,
   };
 }
@@ -220,7 +236,7 @@ export function parseFriendWeekRecord(raw: unknown): FriendWeekRecord | null {
 /** Постоянный порядок ключей — одинаковая строка для одинаковой записи (сравнение без лишних записей в хранилище). */
 export function serializeFriendWeekRecord(record: FriendWeekRecord): string {
   const s = (w: FriendWeekSummary | null) => (w
-    ? { week: w.week, streak: w.streak, lessons: w.lessons, days: w.days, floor: w.floor, best: w.best ? { dow: w.best.dow, lessons: w.best.lessons } : null }
+    ? { week: w.week, streak: w.streak, lessons: w.lessons, days: w.days, floor: w.floor, rise: w.rise, best: w.best ? { dow: w.best.dow, lessons: w.best.lessons } : null }
     : null);
   return JSON.stringify({ v: 1, hidden: record.hidden, cur: s(record.cur), prev: s(record.prev) });
 }

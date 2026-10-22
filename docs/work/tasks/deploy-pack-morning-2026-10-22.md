@@ -113,6 +113,44 @@
 **Дополнение 22.10 — «Серия вдвоём» (8 · МОМЕНТЫ, `f1c6e19c3` / `4f33676dc`).** В абзац «Together» (§5, en и en_ios — других языков у политики нет) добавлено: друзья видят, **в какие дни текущей недели** человек занимался, и **общую серию подряд — текущую и лучшую**. Новых данных нет (те же active_days), меняется только показ. Заодно исправлена опечатка «progress, Friends» → «progress. Friends». Новая формулировка: *«…those friends may see whether you studied today, which days of the current week you studied, how many days you both studied on the same day — including your shared streak in a row and its best length — the resulting friendship level and progress. Friends may also send or receive nudge signals through this feature.»*
 Повторный прогон «патч v3 → legal:sync» на копии (`C:/Temp/claude/legal-dryrun3`): `app/legal` и `legal` совпадают байт в байт (все 4 файла), на сайте (`privacy/`, `privacy-ios/`) все 27 разделов и новая фраза; хэши для теста выше обновлены под v3.
 
+**✅ Д выложена 22.10:** коммит `cd3658991`, `hosting:knowlywww` + `hosting:admin` по прямому «да» владельца (9 · САЙТ). Вживую проверены `/legal/privacy/`, `/legal/privacy-ios/`, `oauth-privacy.html`.
+
+### Д2. Политика v4 — вычитка — `docs/work/tasks/privacy-1022-v4.patch` (НЕ применён; 9 · САЙТ, 22.10)
+
+Источник — вычитка английской политики v3 (список координатору 22.10), правки по его выбору. Сборщик патча: `C:/Temp/claude/privacy-1021/build_v4.py` (каждая замена с проверкой «ровно одно вхождение»). Меняются только `legal/privacy_policy_en.json` и `legal/privacy_policy_en_ios.json`; `git apply --check` на HEAD чисто.
+
+**Что меняется (en и en_ios одинаково, кроме §9):**
+
+- **§9 оплата** — больше не противоречит §14: «Phraseman Plus subscriptions… made in the App are billed through the Apple App Store or Google Play [в iOS — только App Store]… Purchases and gifts made on the Knowly website are paid through Stripe or PayPal, as described in section 14.»
+- **§8 опросы** — оговорка, что выбранный вариант идёт только в общие счётчики и не хранится с аккаунтом; хранится лишь отметка «уже ответил» (как в §5).
+- **§5 удалённые функции** — «the old friend duels (not the current duels with friends described above)», «the old friend gifts (not the current energy gift)».
+- **Одно имя — Plus:** «premium status metadata / premium markers / Premium status / premium status» → Plus. Pro — «the Pro profile card, a card style you can get with coins; it is not a subscription» (по `components/profile-card/profile_card_copy.ts`: Pro card покупается за монеты).
+- **§14 подарок:** «An unused gift code or gift link expires 365 days after purchase» — факт из кода (`GIFT_CODE_TTL_DAYS = 365`, `functions/src/web_checkout.ts:89`; статус `expired` в `web_gift_endpoints.ts`). Возврат: «issued manually within 5 business days to the original payment method» — как в письме `50b0b6251`.
+- **§7** «Friend, gift, referral…» → «Friend, energy-gift, referral…».
+- **§5 «Серия вдвоём»** — грамматика и названия как в интерфейсе: «When you study with friends in the Friends section, those friends may see …, how many days you both studied on the same day, your current and longest shared streak, and the resulting friendship level and progress. Friends may also send or receive nudges…»; «Learn Together and Duel» → «Learn together and duels».
+- **Дата** «Last updated: October 22, 2026» — если патч применят в другой день, поменять дату в обоих файлах до `legal:sync`.
+- **Повтор про сохранённые видео** убран из §5 (полный абзац остаётся в §4).
+- **§13** «pronounce English phrases» → «phrases … in the language you are learning».
+- **§10** «user name» → «your in-app nickname» (это поле `userName` в `app/error_report.ts`).
+- **§18 и §16** — «mistake-explanation … (app versions earlier than 2.0.0)»; «AI dialogues, phrase explanations, mistake feedback (app versions earlier than 2.0.0)».
+- **Регистр:** «coin and energy balances», «Peak groups players».
+- **Британское написание по всему тексту:** favourites, recognised/recogniser, catalogue, reorganisation, personalise/personalisation, normalised, defence, behaviour, AI dialogues. **Исключение:** «cross-context behavioral advertising» оставлено как есть — это термин закона (CCPA).
+- **Не тронуто (решение владельца):** §2 — возраст 16+ против «children under 13».
+
+**Вычитка iOS-версии:** отличается от основной только платформенными строками (App Store, iOS Keychain, APNs, ATT/IDFA, сроки хранения записей сайта расписаны подробнее). В ней было то же противоречие §9 — исправлено своим вариантом. Других ошибок нет. Замечание без правки: в iOS-версии остались абзацы про Android (системное распознавание речи, Whisper/Hugging Face) — для общего аккаунта на разных платформах это допустимо.
+
+**Прогон на копии** (`C:/Temp/claude/privacy-1021/sync4`, рабочее дерево не тронуто): патч → `node scripts/sync-legal-html.mjs` → меняются те же 10 файлов, что в Д. `app/legal` и `legal` совпадают байт в байт; дата в en и ios одна, она же во всех 6 HTML-копиях; на сайте есть новые фразы (365 days, 5 business days, shared streak, favourites, AI dialogues). `legal_document_liquid_glass_source_contract` + `legal_sync_idempotent_contract` — **18/18**. Фразы, на которые опираются `support_diagnostics_privacy_contract`, `aa_guest_honesty_contract`, `smart_reminder_wiring_contract`, `spire_old_names_guard`, на месте; ни один тест не ссылается на изменённые фразы.
+
+**Применение (одним коммитом, выкладка — по «да» владельца в чате 9 · САЙТ):**
+
+1. `git apply docs/work/tasks/privacy-1022-v4.patch`
+2. `npm run legal:sync`
+3. В `tests/legal_document_liquid_glass_source_contract.test.mjs` (строки 67–68):
+   - `privacy_policy_en.json` → `f80eef46e759a7ca4bcdd44e289d79e8daa4396b889a609095d7c6762958907c`
+   - `privacy_policy_en_ios.json` → `c0f4f38ce3bbc2bbac95ac84a49e6e30b4ca6fa3f1f38941fb6c4183a79d1d5d`
+   (при другой дате хэши пересчитать.)
+4. Legal-тесты зелёные → коммит → `hosting:knowlywww` + `hosting:admin`. Копия в приложении — со следующей сборкой.
+
 ## Что ещё лежит невыложенным в `functions/` (с 21.10, кроме групп выше)
 
 | Коммит | Функция | В проде с | Статус |

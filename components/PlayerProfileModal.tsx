@@ -62,7 +62,9 @@ import ReanimatedView from 'react-native-reanimated';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 import { NATIVE_MODAL_DISMISS_GAP_MS } from '../app/safe_modal_navigation';
-import FriendCardStats, { type FriendCardStatsData } from './friends_together/FriendCardStats';
+import FriendCardStats from './friends_together/FriendCardStats';
+// зачем (координатор 22.10, tsc на HEAD): тип — прямо из модуля, где он объявлен, без переэкспорта через компонент
+import type { FriendCardStatsData } from '../app/friends_together/pair_card_stats';
 
 const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
 const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный

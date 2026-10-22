@@ -156,3 +156,9 @@ Governance-ID: TG-F9A463DCBAE5
   - Ревизия: -00014-fiz → **-00015-lim**. Откат: `gcloud run services update-traffic mistakepracticesyncevents --to-revisions=mistakepracticesyncevents-00014-fiz=100 --region us-central1`.
   - Отсчёт чтений до выкладки (24 ч на 11:53Z): всего 234 494, NOT_FOUND 49 356, LOOKUP 87 682, QUERY 97 456. Повторный замер — 23.10 после 12:00Z.
   - 15 минут логов [MP-SYNC] идут.
+
+- **levelSpinStarGrant** (кошелёк монет 2.0, 6d5835ef8; «Да, после ✅ Ревизора» владельца + ✅ Ревизора) — выложена 12:41Z из чистого HEAD e8d65a831.
+  - Ревизия: -00008-zev (02.09) → **-00009-meq**, трафик 100 %.
+  - Откат: `gcloud run services update-traffic levelspinstargrant --to-revisions=levelspinstargrant-00008-zev=100 --region us-central1`.
+  - Повод: с 20.10 старая версия отбивала 400 начисления 2.0 (поле promotionEligibility). Пакет — coin-grant-server-not-deployed-2026-10-22.md.
+  - Смягчение дневного лимита не включалось: в коде его нет, хвост ниже лимита (≤450 за «Дневной путь», 1 200 за жалобы).

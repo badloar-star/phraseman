@@ -396,7 +396,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
                   название вкладки остаётся в accessibilityLabel для TalkBack/VoiceOver. */}
               <Animated.View style={[HOME_SCENE_V2_ENABLED ? s.tabStack : null, pressedIdx === i ? { transform: [{ scale: iconPressScale }] } : null]}>
                 <Ionicons name={on ? item.activeIcon : item.icon} size={HOME_SCENE_V2_ENABLED ? 22 : ICON_SIZE} color={color} />
-                {/* зачем (аудит контраста 22.10): подпись активной вкладки на светлой теме — accentText (accentBright давал 3,9–4,5 < 4,5); значок остаётся accentBright. Ревизор: крупный шрифт системы разрешён до 1.2 (доступность); numberOfLines=1 + lineHeight 14 ≥ 11×1.2 — подпись не переносится и не режется */}
+                {/* зачем (аудит контраста 22.10): подпись активной вкладки на светлой теме — accentText (accentBright давал 3,9–4,5 < 4,5); значок остаётся accentBright. Ревизор: крупный шрифт системы разрешён до 1.2 (доступность); numberOfLines=1 + lineHeight 17 ≥ 13×1.2 — подпись не переносится и не режется */}
                 {HOME_SCENE_V2_ENABLED ? <Text numberOfLines={1} maxFontSizeMultiplier={1.2} style={[s.tabLabel, { color: on && palette.isLight ? palette.accentText : color }]}>{item.label}</Text> : null}
                 {item.badge ? (
                   <View
@@ -446,6 +446,6 @@ const s = StyleSheet.create({
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   // зачем (Сверка home4, scenes-compact `.tb div`: значок 22, подпись 11/600, зазор 3): со «Сценой» у вкладок есть подписи; без неё таббар прежний (владелец 29.09, только иконки)
   tabStack: { alignItems: 'center', gap: 3 },
-  tabLabel: { fontSize: 11, lineHeight: 14, fontWeight: '600' }, // typo-exempt: подпись вкладки по CSS макета (11/600)
+  tabLabel: { fontSize: 13, lineHeight: 17, fontWeight: '600' }, // зачем (координатор 22.10): кегль по шкале D145 (16/13) вместо 11 макета; lineHeight 17 ≥ 13×1,2
   badge: { position: 'absolute', top: -1, right: -3, width: 12, height: 12, borderRadius: 6, borderWidth: 2 }, // shadow-ok: кольцо-вырез значка непрочитанного на иконке вкладки, не контейнер
 });

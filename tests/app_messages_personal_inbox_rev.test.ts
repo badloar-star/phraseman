@@ -72,6 +72,21 @@ describe('личные сообщения по inboxRev', () => {
     expect(personalReads()).toBe(6);
   });
 
+  // зачем (№45, Ревизор: главный расход клиента — полный перечит «Входящих»): у человека без личных сообщений поля inboxRev нет;
+  // раньше он каждые 6 ч перечитывал user_messages и до 80 состояний, теперь — раз в сутки.
+  it('поля inboxRev нет (версия 0) → копия на сутки: повторный старт без чтений личных, через сутки — снова сеть', async () => {
+    noteRestoreUserDocInboxRev('account-A', undefined);
+    await refreshAppMessagesSnapshotOnce({ force: true, nowMs: 10_000 });
+    expect(personalReads()).toBe(2);
+    noteRestoreUserDocInboxRev('account-A', undefined);
+    await refreshAppMessagesSnapshotOnce({ force: true, nowMs: 20_000 });
+    expect(personalReads()).toBe(2);
+    const dayLater = 10_000 + 24 * 60 * 60 * 1000;
+    noteRestoreUserDocInboxRev('account-A', undefined);
+    await refreshAppMessagesSnapshotOnce({ force: true, nowMs: dayLater });
+    expect(personalReads()).toBe(4);
+  });
+
   it('сбой чтения личных не сохраняет пустую копию — следующий старт снова читает', async () => {
     noteRestoreUserDocInboxRev('account-A', 3);
     mockFailUserMessages = true;
@@ -84,7 +99,13 @@ describe('личные сообщения по inboxRev', () => {
   it('решение: причины и страховка 7 дней', () => {
     const stored = { rev: 5, fetchedAtMs: 0, userMessages: [], states: [] };
     expect(decideAppMessagesPersonalReuse({ remoteRev: null, stored, nowMs: 1 }).reason).toBe('no_inbox_rev');
-    expect(decideAppMessagesPersonalReuse({ remoteRev: 0, stored, nowMs: 1 }).reason).toBe('no_inbox_rev');
+    // №45: 0 — поле прочитано и пусто (личных от сервера не было) — это версия, а не «нет версии»
+    expect(decideAppMessagesPersonalReuse({ remoteRev: 0, stored, nowMs: 1 }).reason).toBe('rev_changed');
+    const storedZero = { rev: 0, fetchedAtMs: 0, userMessages: [], states: [] };
+    expect(decideAppMessagesPersonalReuse({ remoteRev: 0, stored: storedZero, nowMs: 1 })).toMatchObject({ reuse: true, reason: 'same_rev_zero' });
+    // страховка версии 0 — сутки, а не 7 дней (пока счётчик не выложен на сервер)
+    expect(decideAppMessagesPersonalReuse({ remoteRev: 0, stored: storedZero, nowMs: 24 * 60 * 60 * 1000 }).reason).toBe('max_age');
+    expect(decideAppMessagesPersonalReuse({ remoteRev: 5, stored: { ...storedZero, rev: 5 }, nowMs: 24 * 60 * 60 * 1000 }).reuse).toBe(true);
     expect(decideAppMessagesPersonalReuse({ remoteRev: 5, stored: null, nowMs: 1 }).reason).toBe('no_local_copy');
     expect(decideAppMessagesPersonalReuse({ remoteRev: 6, stored, nowMs: 1 }).reason).toBe('rev_changed');
     expect(decideAppMessagesPersonalReuse({ remoteRev: 5, stored, nowMs: 1 }).reuse).toBe(true);

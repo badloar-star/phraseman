@@ -1618,6 +1618,8 @@ export type AppMessagesRefreshOutcome =
 const APP_MESSAGES_GLOBAL_FEED_CACHE_KEY = 'global_news_feed_copy_v1';
 /** Страховка: даже без смены версии общая лента перечитывается не реже раза в 7 дней. */
 export const APP_MESSAGES_GLOBAL_FEED_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+/** Копия личных при inboxRev = 0 (поля нет) — не дольше суток (№45, страховка до выкладки счётчика на сервер). */
+export const APP_MESSAGES_PERSONAL_REV0_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
 type StoredGlobalFeed = Readonly<{ rev: number; fetchedAtMs: number; messages: AppMessage[] }>;
 
@@ -1688,7 +1690,7 @@ type StoredPersonalInbox = Readonly<{ rev: number; fetchedAtMs: number; userMess
 
 export type AppMessagesPersonalDecision = Readonly<{
   reuse: boolean;
-  reason: 'no_inbox_rev' | 'no_local_copy' | 'rev_changed' | 'max_age' | 'same_rev';
+  reason: 'no_inbox_rev' | 'no_local_copy' | 'rev_changed' | 'max_age' | 'same_rev' | 'same_rev_zero';
   remoteRev: number | null;
   localRev: number | null;
   ageMs: number | null;
@@ -1702,11 +1704,15 @@ export function decideAppMessagesPersonalReuse(input: Readonly<{
   const localRev = input.stored ? input.stored.rev : null;
   const ageMs = input.stored ? input.nowMs - input.stored.fetchedAtMs : null;
   const base = { remoteRev: input.remoteRev, localRev, ageMs };
-  if (input.remoteRev === null || input.remoteRev <= 0) return { reuse: false, reason: 'no_inbox_rev', ...base };
+  // null — документ пользователя не прочитан (версия неизвестна) → сеть. 0 — прочитан, поля нет: личных сообщений от сервера
+  // не было; это тоже версия (зачем — №45: раньше такие люди каждые 6 ч перечитывали до 80 состояний).
+  if (input.remoteRev === null || input.remoteRev < 0) return { reuse: false, reason: 'no_inbox_rev', ...base };
   if (!input.stored) return { reuse: false, reason: 'no_local_copy', ...base };
   if (input.stored.rev !== input.remoteRev) return { reuse: false, reason: 'rev_changed', ...base };
-  if (ageMs === null || ageMs < 0 || ageMs >= APP_MESSAGES_GLOBAL_FEED_MAX_AGE_MS) return { reuse: false, reason: 'max_age', ...base };
-  return { reuse: true, reason: 'same_rev', ...base };
+  // Версия 0 — страховка сутки: пока счётчик не выложен на сервер, личное сообщение старого сервера его не поднимет.
+  const maxAgeMs = input.remoteRev === 0 ? APP_MESSAGES_PERSONAL_REV0_MAX_AGE_MS : APP_MESSAGES_GLOBAL_FEED_MAX_AGE_MS;
+  if (ageMs === null || ageMs < 0 || ageMs >= maxAgeMs) return { reuse: false, reason: 'max_age', ...base };
+  return { reuse: true, reason: input.remoteRev === 0 ? 'same_rev_zero' : 'same_rev', ...base };
 }
 
 async function readStoredPersonalInbox(ownerUid: string): Promise<StoredPersonalInbox | null> {
@@ -1716,7 +1722,8 @@ async function readStoredPersonalInbox(ownerUid: string): Promise<StoredPersonal
     const parsed = JSON.parse(raw) as Partial<StoredPersonalInbox>;
     const rev = Math.floor(Number(parsed.rev));
     const fetchedAtMs = Math.floor(Number(parsed.fetchedAtMs));
-    if (!Number.isFinite(rev) || rev <= 0 || !Number.isFinite(fetchedAtMs)
+    // версия 0 допустима (поля inboxRev нет — личных от сервера не было), №45
+    if (!Number.isFinite(rev) || rev < 0 || !Number.isFinite(fetchedAtMs)
       || !Array.isArray(parsed.userMessages) || !Array.isArray(parsed.states)) return null;
     return { rev, fetchedAtMs, userMessages: parsed.userMessages, states: parsed.states };
   } catch (error) {
@@ -1888,8 +1895,8 @@ export async function refreshAppMessagesSnapshotOnce(options: {
       ? (statesSnap.docs || []).map((docSnap: any) => normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}))
       : (storedPersonal?.states ?? []);
     if (userMessagesSnap && statesSnap && !userMessagesReadFailed
-      && personalDecision.remoteRev !== null && personalDecision.remoteRev > 0) {
-      // Копию личных храним только при известной версии сервера — иначе сравнивать не с чем.
+      && personalDecision.remoteRev !== null && personalDecision.remoteRev >= 0) {
+      // Копию личных храним только при известной версии сервера (0 — поле прочитано и пусто) — иначе сравнивать не с чем.
       await writeStoredPersonalInbox(uid, { rev: personalDecision.remoteRev, fetchedAtMs: nowMs, userMessages, states });
     }
     const pendingVisibility = await acknowledgePendingAppMessageVisibility(uid, states);

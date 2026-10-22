@@ -13,7 +13,11 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIRS = ['app', 'components', 'constants', 'hooks'];
 
 // Зоны других владельцев и учебные корпуса — не интерфейсные фразы к человеку.
-const SKIP_PATH = /learning[_-]v2|gustav|spire|\/dev\/|_dev|theory_content|lesson_intro_screens|lesson_words_data|lesson_data|lessons_data|phrases|vocab|dictionary|irregular|preposition|aha_scenes|level_exam|quiz|daily_phrase|curriculum/i;
+// зачем (координатор 22.10): маски `learning[_-]v2` и `dictionary` сняты — они прятали экраны Learning V2 целиком, и «когда вы
+// встретите» в «Словах» дошло до кода (7cd198406). Голос КУРСА Learning V2 — уроки, инструкции заданий («Соберите фразу»,
+// «Скажите по-английски»), теория — живёт в modules/learning-v2 и по стилю курса обращается на «вы»; сторож туда не ходит
+// по правилу DIRS (modules не сканируется), а не по списку файлов. Интерфейс Learning V2 (app/learning_v2_*, components/learning-v2) — на «ты».
+const SKIP_PATH = /gustav|spire|\/dev\/|_dev|theory_content|lesson_intro_screens|lesson_words_data|lesson_data|lessons_data|phrases|vocab|irregular|preposition|aha_scenes|level_exam|quiz|daily_phrase|curriculum/i;
 
 /** Осознанные исключения: файл → причина. */
 const ALLOWED_FILES = new Map([
@@ -94,6 +98,14 @@ test('шаблон «к двоим» не ослабляет сторож: од�
   for (const s of ['Пять фраз из уроков, которые вы оба прошли.', 'Сегодня ещё никто из вас', 'ви обоє займаєтеся щодня.', 'Сьогодні ще ніхто з вас']) {
     assert.ok(!isPolite(s), `множественное к двоим, не обращение: «${s}»`);
   }
+});
+
+test('интерфейс Learning V2 под сторожем: экраны и тексты хаба не попадают под пропуски', () => {
+  for (const rel of ['app/learning_v2_lesson_words.tsx', 'components/learning-v2/season/season_copy.ts', 'components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx']) {
+    assert.ok(fs.existsSync(path.join(ROOT, rel)), `${rel} переехал — обнови самопроверку`);
+    assert.ok(!SKIP_PATH.test(rel) && !ALLOWED_FILES.has(rel), `${rel} выпал из сторожа — интерфейс Learning V2 обязан быть на «ты»`);
+  }
+  assert.ok(!DIRS.includes('modules'), 'modules/learning-v2 — голос курса на «вы», сторож туда не ходит');
 });
 
 test('замки владельца не протухают: закреплённая фраза есть в файле', () => {

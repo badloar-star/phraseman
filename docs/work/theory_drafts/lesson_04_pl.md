@@ -210,7 +210,7 @@ some dajemy, gdy mówisz, że coś jest. any — gdy pytasz, czy w ogóle jest, 
 ## 09 · in, on, under — w, na, pod
 
 **body**
-in — wewnątrz: in the sink, in the basement. on — na wierzchu, na powierzchni: on the worktop, on the windowsill. under — pod: under the doormat. Polskie «na» to zwykle on, «w» — in.
+in — wewnątrz: in the sink (w zlewie), in the basement (w piwnicy). on — na wierzchu: on the worktop (na blacie), on the windowsill (na parapecie). under — pod: under the doormat (pod wycieraczką). Polskie «na» to zwykle on, «w» — in.
 
 **examples** 🔊
 | en | pl | hi |

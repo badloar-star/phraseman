@@ -134,7 +134,7 @@ our — «наш», their — «їхній». its — «його» про річ
 | Our printer is next to the window. | Наш принтер біля вікна. | Our |
 | Its collar is red. | Його нашийник червоний. *(у цуценяти)* | Its |
 | Its tail is short. | У нього короткий хвіст. *(у цуценяти)* | Its |
-| Where is my laptop? | Де мій ноутбук? | my |
+| Their laptops are on the desk. | Їхні ноутбуки на столі. | their |
 
 **fix**
 - ~~It's collar is red.~~ → Its collar is red.

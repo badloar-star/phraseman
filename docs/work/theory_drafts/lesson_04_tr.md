@@ -210,7 +210,7 @@ Türkçede «yok» tek kelime, İngilizcede not eklenir: There is not → There 
 ## 09 · in, on, under — içinde, üstünde, altında
 
 **body**
-Türkçede «-de/-da» hem içi hem üstü söyler: lavaboda, tezgâhta. İngilizcede üç ayrı kelime. in — içinde: in the sink. on — üstünde: on the worktop. under — altında: under the doormat.
+Türkçede «-de/-da» hem içi hem üstü söyler: lavaboda, tezgâhta. İngilizcede üç ayrı kelime. in — içinde: in the sink. on — üstünde: on the worktop. under — altında: under the doormat (paspasın altında).
 
 **examples** 🔊
 | en | tr | hi |

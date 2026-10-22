@@ -130,7 +130,7 @@ our — «bizim», their — «onların». its — hayvanın ya da eşyanın «o
 | Our printer is next to the window. | Bizim yazıcımız pencerenin yanında. | Our |
 | Its collar is red. | Tasması kırmızı. *(yavru köpeğin)* | Its |
 | Its tail is short. | Kuyruğu kısa. *(yavru köpeğin)* | Its |
-| Where is my laptop? | Dizüstü bilgisayarım nerede? | my |
+| Their laptops are on the desk. | Onların dizüstü bilgisayarları masada. | their |
 
 **fix**
 - ~~It's collar is red.~~ → Its collar is red.

@@ -212,7 +212,7 @@ Tiếng Việt «không có» là hai từ liền nhau, tiếng Anh nói: There 
 ## 09 · in, on, under — trong, trên, dưới
 
 **body**
-Ba từ này khớp với tiếng Việt: in — trong: in the sink. on — trên: on the worktop. under — dưới: under the doormat. Chỉ cần nhớ đặt chúng ở cuối câu, sau «có gì».
+Ba từ này khớp với tiếng Việt: in — trong: in the sink (trong bồn rửa). on — trên: on the worktop (trên mặt bếp). under — dưới: under the doormat (dưới thảm chùi chân). Chỉ cần nhớ đặt chúng ở cuối câu, sau «có gì».
 
 **examples** 🔊
 | en | vi | hi |

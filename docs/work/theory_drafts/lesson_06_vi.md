@@ -78,7 +78,7 @@ Với I, you, we và they, hành động giữ nguyên như trong từ điển: 
 ## 04 · He, she, it — thêm s ở cuối
 
 **body**
-Đây là chỗ khác tiếng Việt. Với he, she, it, hoặc một người — the host, my brother — hành động phải thêm s: he drives, she waits, the host greets. Tiếng Việt không đổi nên rất dễ quên: He drive là lỗi phổ biến nhất.
+Đây là chỗ khác tiếng Việt. Với he, she, it, hoặc một người — the host (chủ nhà), my brother (anh trai tôi) — hành động phải thêm s: he drives, she waits, the host greets. Tiếng Việt không đổi nên rất dễ quên: He drive là lỗi phổ biến nhất.
 
 **formula**
 `he / she / it / một người` · `hành động + s`

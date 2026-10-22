@@ -80,7 +80,7 @@ Türkçede her kişinin eki var: çalışırım, çalışırız, çalışırlar.
 ## 04 · He, she, it — sonda s belirir
 
 **body**
-he, she, it ile ya da tek bir kişiyle — the host, my brother — eyleme s eklenir: he drives, she waits, the host greets. Tek değişiklik bu, o yüzden çok unutulur: He drive dersteki en sık hata.
+he, she, it ile ya da tek bir kişiyle — the host (ev sahibi), my brother (erkek kardeşim) — eyleme s eklenir: he drives, she waits, the host greets. Tek değişiklik bu, o yüzden çok unutulur: He drive dersteki en sık hata.
 
 **formula**
 `he / she / it / tek kişi` · `eylem + s`

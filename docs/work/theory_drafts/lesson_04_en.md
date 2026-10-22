@@ -209,7 +209,7 @@ To say something isn't there, add not: There is not → There isn't, There are n
 ## 09 · in, on, under
 
 **body**
-in — inside something: in the sink, in the basement. on — on top, touching the surface: on the worktop, on the windowsill. under — below: under the doormat. Careful: a windowsill is on, not in.
+in — inside something: in the sink, in the basement. on — on top, touching the surface: on the worktop (kitchen counter), on the windowsill (window ledge). under — below: under the doormat (mat by the door). Careful: a windowsill is on, not in.
 
 **examples** 🔊
 | en | meaning | hi |

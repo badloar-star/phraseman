@@ -130,7 +130,7 @@ our es «nuestro», their es «su» de ellos. its es «su» de una cosa o un ani
 | Our printer is next to the window. | Nuestra impresora está junto a la ventana. | Our |
 | Its collar is red. | Su collar es rojo. *(del cachorro)* | Its |
 | Its tail is short. | Tiene la cola corta. *(el cachorro)* | Its |
-| Where is my laptop? | ¿Dónde está mi laptop? | my |
+| Their laptops are on the desk. | Sus laptops están en el escritorio. | their |
 
 **fix**
 - ~~It's collar is red.~~ → Its collar is red.

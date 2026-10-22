@@ -132,7 +132,7 @@ our — «kami / kita», their — «mereka». its — «-nya» untuk benda atau
 | Our printer is next to the window. | Printer kami ada di samping jendela. | Our |
 | Its collar is red. | Kalungnya merah. *(anak anjing)* | Its |
 | Its tail is short. | Ekornya pendek. *(anak anjing)* | Its |
-| Where is my laptop? | Laptopku di mana? | my |
+| Their laptops are on the desk. | Laptop mereka ada di meja. | their |
 
 **fix**
 - ~~It's collar is red.~~ → Its collar is red.

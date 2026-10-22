@@ -79,7 +79,7 @@ Em português cada pessoa muda: trabalho, trabalhamos, trabalham. Em inglês, co
 ## 04 · He, she, it — no fim aparece um s
 
 **body**
-Com he, she, it, ou com uma só pessoa — the host, my brother — a ação ganha s: he drives, she waits, the host greets. É a única mudança, e por isso se esquece tanto: He drive é o erro mais comum da lição.
+Com he, she, it, ou com uma só pessoa — the host (o anfitrião), my brother (meu irmão) — a ação ganha s: he drives, she waits, the host greets. É a única mudança, e por isso se esquece tanto: He drive é o erro mais comum da lição.
 
 **formula**
 `he / she / it / uma pessoa` · `ação + s`

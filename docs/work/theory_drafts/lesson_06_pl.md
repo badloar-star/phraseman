@@ -79,7 +79,7 @@ Po polsku każda osoba ma swoją końcówkę: pracuję, pracujemy, pracują. Po 
 ## 04 · He, she, it — na końcu pojawia się s
 
 **body**
-Z he, she, it albo z jedną osobą — the host, my brother — czynność dostaje s: he drives, she waits, the host greets. To jedyna zmiana i dlatego łatwo o niej zapomnieć: He drive to najczęstszy błąd lekcji.
+Z he, she, it albo z jedną osobą — the host (gospodarz), my brother (mój brat) — czynność dostaje s: he drives, she waits, the host greets. To jedyna zmiana i dlatego łatwo o niej zapomnieć: He drive to najczęstszy błąd lekcji.
 
 **formula**
 `he / she / it / jedna osoba` · `czynność + s`

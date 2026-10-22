@@ -131,7 +131,7 @@ our — «nasz», their — «ich». its — «jego» o rzeczy albo zwierzęciu:
 | Our printer is next to the window. | Nasza drukarka stoi przy oknie. | Our |
 | Its collar is red. | Jego obroża jest czerwona. *(szczeniaka)* | Its |
 | Its tail is short. | Ma krótki ogon. *(szczeniak)* | Its |
-| Where is my laptop? | Gdzie jest mój laptop? | my |
+| Their laptops are on the desk. | Ich laptopy są na biurku. | their |
 
 **fix**
 - ~~It's collar is red.~~ → Its collar is red.

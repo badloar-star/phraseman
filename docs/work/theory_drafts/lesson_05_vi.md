@@ -129,7 +129,7 @@ our — «của chúng tôi», their — «của họ». its — «của nó» k
 | Our printer is next to the window. | Máy in của chúng tôi ở cạnh cửa sổ. | Our |
 | Its collar is red. | Vòng cổ của nó màu đỏ. *(chó con)* | Its |
 | Its tail is short. | Đuôi của nó ngắn. *(chó con)* | Its |
-| Where is my laptop? | Máy tính xách tay của tôi đâu? | my |
+| Their laptops are on the desk. | Máy tính xách tay của họ ở trên bàn. | their |
 
 **fix**
 - ~~It's collar is red.~~ → Its collar is red.

@@ -78,7 +78,7 @@ Dengan I, you, we, dan they kegiatannya tetap seperti di kamus: work, wash, carr
 ## 04 · He, she, it — di akhir muncul s
 
 **body**
-Ini yang beda dari bahasa Indonesia. Dengan he, she, it, atau satu orang — the host, my brother — kegiatannya ditambah s: he drives, she waits, the host greets. Karena kata kerja kita tidak berubah, s ini gampang terlupa: She wait salah.
+Ini yang beda dari bahasa Indonesia. Dengan he, she, it, atau satu orang — the host (tuan rumah), my brother (saudara laki-lakiku) — kegiatannya ditambah s: he drives, she waits, the host greets. Karena kata kerja kita tidak berubah, s ini gampang terlupa: She wait salah.
 
 **formula**
 `he / she / it / satu orang` · `kegiatan + s`

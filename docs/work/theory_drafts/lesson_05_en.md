@@ -129,7 +129,7 @@ our is for you and others, their is for other people. its is for a thing or an a
 | Our printer is next to the window. | The printer we share. | Our |
 | Its collar is red. | The puppy's collar is red. | Its |
 | Its tail is short. | The puppy's tail is short. | Its |
-| Where is my laptop? | I can't find the laptop that belongs to me. | my |
+| Their laptops are on the desk. | The laptops that belong to them are on the desk. | their |
 
 **fix**
 - ~~It's collar is red.~~ → Its collar is red.

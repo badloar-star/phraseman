@@ -210,7 +210,7 @@ Para decir que algo no hay, añade not: There is not → There isn't, There are 
 ## 09 · in, on, under — en, sobre, debajo
 
 **body**
-in — dentro: in the sink, in the basement. on — encima, sobre una superficie: on the worktop, on the windowsill. under — debajo: under the doormat. Ojo: el español dice «en» para las dos. «En la mesa» es on the table, no in.
+in — dentro: in the sink (en el fregadero), in the basement (en el sótano). on — encima: on the worktop (en la encimera), on the windowsill (en el alféizar). under — debajo: under the doormat (bajo el felpudo). Ojo: el español dice «en» para las dos. «En la mesa» es on the table, no in.
 
 **examples** 🔊
 | en | es | hi |

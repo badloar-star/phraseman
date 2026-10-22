@@ -212,7 +212,7 @@ Di bahasa Indonesia «tidak ada» sudah satu paket. Di bahasa Inggris tambahkan 
 ## 09 · in, on, under — di dalam, di atas, di bawah
 
 **body**
-Bahasa Indonesia memakai «di» untuk semuanya, bahasa Inggris memilih. in — di dalam: in the sink. on — di atas, menempel di permukaan: on the worktop. under — di bawah: under the doormat.
+Bahasa Indonesia memakai «di» untuk semuanya, bahasa Inggris memilih. in — di dalam: in the sink (di wastafel). on — di atas, menempel di permukaan: on the worktop (di meja dapur). under — di bawah: under the doormat (di bawah keset).
 
 **examples** 🔊
 | en | id | hi |

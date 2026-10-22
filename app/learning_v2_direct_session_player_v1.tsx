@@ -60,6 +60,7 @@ import CoinRewardFlight, {
 import { HOME_RUNE_ICON_SOURCE } from "../components/home/homeRuneAsset";
 import EnergyBar from "../components/EnergyBar";
 import ReportErrorButton from "../components/ReportErrorButton";
+import { submitLearningV2TaskReportV1 } from "./learning_v2_task_report_v1";
 import SessionAttemptsHud from "../components/session_attempts/SessionAttemptsHud";
 import SpeakingPanel, {
   buildSpeakingPanelTheme,
@@ -3831,6 +3832,23 @@ export default function LearningV2DirectSessionPlayerV1() {
             }
             variant="icon-flag"
             accessibilityLabel={copy.reportTask}
+            // зачем (владелец 21.10, реестр №9): жалоба в каждом задании — для ВСЕХ, а не только для тестеров (свой транспорт
+            // снимает тестерский гейт «Нашёл ошибку?»); в жалобе урок, эпизод и тип задания, повтор той же жалобы не пишется.
+            submitOverride={({ comment }) => submitLearningV2TaskReportV1({
+              courseSessionId: runSummary.courseSessionId,
+              lessonOrdinal: runSummary.lessonOrdinal,
+              sessionOrdinal: runSummary.sessionOrdinal,
+              family: practice.family,
+              interactionId: practice.interactionId,
+              taskText: learnerFacingPracticePrompt ?? practice.interactionId,
+              userAnswer: practice.inputMode === "single_choice" || practice.inputMode === "pair_grid"
+                ? practice.responseOptions.find((entry) => entry.responseId === selectedChoiceId)?.text
+                : practice.inputMode === "scripted_speech" || practice.inputMode === "tap_record_compare"
+                  ? transcript
+                  : selectedText,
+              comment,
+              lang,
+            })}
           />
         </View>
 

@@ -94,6 +94,8 @@ jest.mock('../components/dialogs/DialogueV2CatalogueSection', () => ({
 jest.mock('../components/dialogs/DialogueV2CatalogueSkeleton', () => ({
   DialogueV2CatalogueSkeleton: () => null,
 }));
+// зачем (владелец 22.10, плитки тем хаба): плитки тянут Ionicons (ESM) — в этом тесте их вид не важен
+jest.mock('../components/dialogs/hub/DialogsHubThemes', () => ({ __esModule: true, default: () => null }));
 
 import { DialogueV2CatalogueContainer } from '../components/dialogs/DialogueV2CatalogueContainer';
 

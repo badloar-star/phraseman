@@ -162,7 +162,8 @@ export const SeasonChapterEpisodesScreen = memo(function SeasonChapterEpisodesSc
     <Shell screen="season_chapter_episodes" testID="season-episodes-screen" kicker={seasonText(lang, 'chapterOf', { n: props.chapterOrdinal, m: props.chapterCount })}
       title={props.chapterScene} onBack={props.onBack} bottomPadding={props.bottomPadding} primary={props.primary}>
       {items.map(({ card, index }) => {
-        const state: SeasonRowState = card.state === 'done' ? 'done' : card.state === 'current' ? 'cur' : 'lock';
+        // зачем (Learning V2 84d5b73d0): 'open' (открыт экзаменом / входным тестом) — не замок: строка играбельная, без галочки
+        const state: SeasonRowState = card.state === 'done' ? 'done' : card.state === 'current' ? 'cur' : card.state === 'open' ? 'open' : 'lock';
         const exam = card.kind === 'exam';
         const info = exam ? null : props.episodeInfo(card);
         // 'pending' — звёзды ещё не подняты: слева номер, справа пусто (без галочки и без «1»); число — звёзды

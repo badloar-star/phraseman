@@ -21,7 +21,7 @@ import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
 /** Колода превью: карта «Экзамен главы» есть, только когда экзамен включён флагом (иначе её нет и на экране). */
 const buildSeasonDeck = (rows: readonly LearningV2CourseAccordionRowV1[]): SeasonDeck => buildDeck(rows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED });
 
-export const SEASON_PREVIEW_STATES = ['cover', 'newcomer', 'carousel', 'locked_open', 'chapters_list', 'chapter_episodes', 'exam_card', 'exam_open'] as const;
+export const SEASON_PREVIEW_STATES = ['cover', 'newcomer', 'carousel', 'chapters_list', 'chapter_episodes', 'exam_card', 'exam_open'] as const;
 export type SeasonPreviewState = (typeof SEASON_PREVIEW_STATES)[number];
 
 export function isSeasonPreviewState(value: unknown): value is SeasonPreviewState {
@@ -126,8 +126,7 @@ export function seasonPreviewSetup(state: SeasonPreviewState): SeasonPreviewSetu
     }
     case 'carousel': // phone 7: карусель сдвинута на закрытый эпизод 14
       return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx14, expandedIndex: null, screen: null } };
-    case 'locked_open': // тап по закрытому эпизоду: раскрытая закрытая карта
-      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx14, expandedIndex: idx14, screen: null } };
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «не надо открыть вот этот модал его не должно быть!» — состояния «раскрытая закрытая карта» (locked_open) больше нет: тап по закрытому эпизоду трясёт замок и вибрирует
     case 'chapters_list': // макет lesson-hub-final.html, кадр 2: «Все главы»
       return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx12, expandedIndex: null, screen: { kind: 'chapters' } } };
     case 'chapter_episodes': // макет lesson-hub-final.html, кадр 3: эпизоды главы 2

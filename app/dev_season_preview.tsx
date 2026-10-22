@@ -3,9 +3,9 @@
 //
 // зачем (координатор 21.10, Сверка): состояния экрана снимаются по ссылке рядом с эталоном course-hybrid-1-4.html / chapter-exam-season.html, а боевая вкладка
 // «Уроки» не подменяется и боевой прогресс не трогается:
-//   /dev_season_preview?state=cover | newcomer | carousel | locked_open | chapters_list | chapter_episodes | exam_card | exam_open &theme=dark|light
+//   /dev_season_preview?state=cover | newcomer | carousel | chapters_list | chapter_episodes | exam_card | exam_open &theme=dark|light
 //   cover — «в процессе» (эпизод 12, phone 5); newcomer — «Начать с эпизода 1» + «Не хочу с начала» (phone 6); carousel — карусель на закрытом эпизоде 14 (phone 7);
-//   locked_open — раскрытая закрытая карта; chapters_list — полноэкранный список «Все главы»; chapter_episodes — эпизоды главы 2 (макет lesson-hub-final.html); exam_card — карусель на карте «Экзамен главы 2» (phone 9);
+//   chapters_list — полноэкранный список «Все главы»; chapter_episodes — эпизоды главы 2 (макет lesson-hub-final.html); exam_card — карусель на карте «Экзамен главы 2» (phone 9);
 //   exam_open — раскрытая карта экзамена (кнопки «Сдать экзамен» нет: SEASON_CHAPTER_EXAM_ENABLED=false). По умолчанию state=cover, theme — как сейчас в приложении.
 // Экран — тот же SeasonCourse, что пойдёт в бой; прогресс — моки в тех же строках курса (components/learning-v2/season/season_preview_fixtures.ts). Тема меняется
 // ТОЛЬКО в памяти процесса (app/dev_appearance_override.ts): сохранённый выбор темы и облако не тронуты; уходя с экрана, возвращаем прежнее.
@@ -82,7 +82,6 @@ function Inner() {
             theme={theme}
             lessonOrdinal={SEASON_PREVIEW_LESSON.ordinal}
             lessonTitle={SEASON_PREVIEW_LESSON.title}
-            arcTitle={SEASON_PREVIEW_LESSON.arc}
             chapterCount={SEASON_PREVIEW_LESSON.chapterCount}
             deck={setup.deck}
             newcomer={setup.newcomer}

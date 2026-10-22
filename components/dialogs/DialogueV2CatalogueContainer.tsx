@@ -32,7 +32,8 @@ import {
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
 import { HubHeaderCollapsible } from './hub_header_collapse';
 import { DialogueV2CatalogueSkeleton } from './DialogueV2CatalogueSkeleton';
-import DialogsSceneCatalogue from './scene/DialogsSceneCatalogue';
+import DialogsHubThemes from './hub/DialogsHubThemes';
+import { dialogsHubTotals, dialogsHubWorldCounts } from './hub/dialogs_hub_model';
 import { isDevDialogLanguageGateHeld } from '../../app/dev_dialog_state';
 import { getDialogueV2DoneVersion, hydrateDialogueV2DoneIds, peekDialogueV2DoneIds, subscribeDialogueV2Done } from '../../app/dialogue_v2_done_store';
 import {
@@ -75,7 +76,8 @@ export function dialogueV2WorldHeadings(lang: ReturnType<typeof useLang>['lang']
   ]);
 }
 
-function catalogueCopy(lang: ReturnType<typeof useLang>['lang']): Readonly<{
+// зачем (экран темы, 22.10): подпись «Откроется на ранге N» — одна на хаб и экран темы
+export function catalogueCopy(lang: ReturnType<typeof useLang>['lang']): Readonly<{
   lockedAtRank: (rank: number) => string;
   worldSubtitle: (worldId: string) => string | null;
 }> {
@@ -267,6 +269,14 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true, sc
     const ui = dialogueV2UiCopy(lang, item.id);
     return ui?.title ? { ...item, title: ui.title } : item;
   }), [lang, projection]);
+  // зачем (владелец 22.10, «Да, переносить», макет dialogs-hub-v4, решение (г)): плитки тем 2 × 2 и «Все диалоги» на хабе, тема открывается ОТДЕЛЬНЫМ экраном (/dialogue_v2_theme); счётчики — из той же проекции, чтений нет
+  const hubWorlds = useMemo(() => dialogsHubWorldCounts(projection?.worlds ?? [], localizedItems), [localizedItems, projection]);
+  const hubTotals = useMemo(() => dialogsHubTotals(localizedItems), [localizedItems]);
+  const openTheme = useCallback((worldId: string) => {
+    console.log('[DIALOGS-HUB] tile → theme screen', JSON.stringify({ world: worldId })); // guard-ok: одна строка на тап, значение — id темы
+    router.push({ pathname: '/dialogue_v2_theme', params: { world: worldId } } as never);
+  }, [router]);
+  const openAllThemes = useCallback(() => openTheme('all'), [openTheme]);
   const quotaRow = showQuotaRow && freeTier && quotaRemaining !== null ? (
     <DialogueV2HubQuotaRow
       text={`${quotaRemaining}/${quotaTotal}`}
@@ -346,7 +356,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true, sc
     <>
       {plusTools}
       {sceneCatalogue ? (
-        <DialogsSceneCatalogue worlds={projection.worlds} items={localizedItems} lockedAtRank={copy.lockedAtRank} onPressItem={onPressItem} />
+        <DialogsHubThemes worlds={hubWorlds} totals={hubTotals} onWorld={openTheme} onAll={openAllThemes} />
       ) : (
         <DialogueV2CatalogueSection
           worlds={projection.worlds}

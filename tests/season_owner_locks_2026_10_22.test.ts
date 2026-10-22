@@ -18,6 +18,12 @@ describe('Замки владельца 22.10: хаб урока', () => {
     expect(face).not.toMatch(/mark: \{[^}]*alignSelf: 'flex-start'/);
   });
 
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «замочки справа а не слева» — замок только у закрытого ('locked'); 'open' (открыт экзаменом / входным тестом, 21.10 «ПРОСТО ОТКРЫТЫ») без замка и без галочки, в списке эпизодов не «lock»
+  it("замок только у 'locked': 'open' — без замка и без галочки", () => {
+    expect(face).toContain("const markIcon: IonName | null = state === 'locked' ? 'lock-closed' : state === 'done' ? 'checkmark' : state === 'current' ? 'play' : null;");
+    expect(read(`${S}SeasonPickScreens.tsx`)).toContain("card.state === 'current' ? 'cur' : card.state === 'open' ? 'open' : 'lock'");
+  });
+
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «звёздочки даже если не пройдено — просто пустые» — три звезды на каждой карточке, у непройденных пустые (контур)
   it('три звезды на каждой карточке: ряд не зависит от числа, пустые — контур', () => {
     expect(face).toContain('const starsShown = stars !== \'pending\' && starTones !== undefined;');

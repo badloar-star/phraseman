@@ -87,18 +87,24 @@ describe('Следующий диалог — только открытый; о�
 });
 
 describe('Подключение карточек: один проп, тот же источник каталога', () => {
-  it('контейнер при sceneCatalogue отдаёт проекцию панели, иначе — прежняя секция', () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «Да, переносить» (макет dialogs-hub-v4, решения (в) и (г)) — вместо панели с чипами и карточками под сценой плитки тем 2 × 2 и «Все диалоги»; тема открывается отдельным экраном
+  it('контейнер при sceneCatalogue отдаёт плитки тем, иначе — прежняя секция', () => {
     const c = read('components/dialogs/DialogueV2CatalogueContainer.tsx');
     expect(c).toMatch(/sceneCatalogue = false/);
-    expect(c).toMatch(/<DialogsSceneCatalogue worlds=\{projection\.worlds\} items=\{localizedItems\} lockedAtRank=\{copy\.lockedAtRank\} onPressItem=\{onPressItem\} \/>/);
+    expect(c).toMatch(/<DialogsHubThemes worlds=\{hubWorlds\} totals=\{hubTotals\} onWorld=\{openTheme\} onAll=\{openAllThemes\} \/>/);
+    expect(c).toContain("pathname: '/dialogue_v2_theme'");
+    expect(c).not.toContain('DialogsSceneCatalogue');
     expect(c).toMatch(/<DialogueV2CatalogueSection\n\s+worlds=\{projection\.worlds\}/);
   });
   it('вкладка и хаб пробрасывают проп; панель не читает каталог сама', () => {
     expect(read('components/DialogsTabContent.tsx')).toMatch(/sceneCatalogue=\{sceneCatalogue\}/);
     expect(read('app/ai_dialog_home.tsx')).toMatch(/<DialogsTabContent headerSlot=\{headerSlot\} quotaInHeader sceneCatalogue=\{scene\} \/>/);
-    const panel = read('components/dialogs/scene/DialogsSceneCatalogue.tsx');
-    expect(panel).not.toMatch(/peekDialogueV2Catalogue|fetchReleasedDialogueV2Catalogue|httpsCallable|getDoc|firestore/i);
-    expect(panel).toMatch(/DIALOGS_SCENE_CATALOGUE_PAGE = 8/);
+    // плитки тем и экран темы не ходят в сеть: счётчики — из проекции хаба, экран темы читает только локальный кэш
+    for (const rel of ['components/dialogs/hub/DialogsHubThemes.tsx', 'components/dialogs/hub/DialogueV2ThemeScreen.tsx', 'components/dialogs/hub/use_dialogue_v2_hub_catalogue.ts']) {
+      // комментарии не в счёт: в шапках файлов слово «Firestore» стоит как «чтений нет»
+      const body = read(rel).replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+      expect(body).not.toMatch(/fetchReleasedDialogueV2Catalogue|httpsCallable|getDoc|firestore/i);
+    }
   });
   it('сцена прячет кнопку, когда её нет', () => {
     expect(read('components/dialogs/scene/DialogsSceneStage.tsx')).toMatch(/\{copy\.cta !== null \? \(/);

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
-import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import EnergyBar from '../components/EnergyBar';
@@ -9,14 +8,15 @@ import { dialogueV2HubCopy } from '../components/dialogs/DialogueV2HubNotices';
 import { DialogueGlassQuotaPill } from '../components/dialogs/glass/DialogueGlassSessionParts';
 import { useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useDialogueHubQuota } from '../hooks/use_dialogue_hub_quota';
-import { V2IconButton, V2LargeTitle } from '../components/v2/V2Kit';
+import { V2LargeTitle } from '../components/v2/V2Kit';
+import ScreenBackButton, { ScreenBackSlot } from '../components/v2/ScreenBackButton';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
-import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
-import { safeRouterBack } from './navigation_back';
 import { HubHeaderCollapseProvider, useHubHeaderCollapsed } from '../components/dialogs/hub_header_collapse';
 import DialogsSceneHub from '../components/dialogs/scene/DialogsSceneHub';
+import { useDialogsSceneTheme } from '../components/dialogs/scene/use_dialogs_scene_theme';
 import { DIALOGS_SCENE_V2_ENABLED } from '../components/dialogs/scene/dialogs_scene_flags';
 
 // зачем (dialogs-003, координатор 13.10): состояние «шапка схлопнута, пока открыта категория» живёт в провайдере над экраном — перерисовывается только шапка, список миров нет.
@@ -30,10 +30,12 @@ export default function AiDialogHome() {
 
 function AiDialogHomeBody() {
   const { lang } = useLang();
-  const router = useRouter();
   const { width, fontScale } = useWindowDimensions();
   const subtitleHidden = useHubHeaderCollapsed();
   const isNarrowOrLargeText = width < 360 || fontScale >= 1.3;
+  const insets = useStableSafeAreaInsets();
+  // зачем (4 · ТЕМЫ 7d5dceb94, g.backOnScene): круг «назад» лежит на сцене — верх цвета сцены нужен кнопке, чтобы круг и значок не сливались со сценой; место и размер кнопки не меняются
+  const sceneTheme = useDialogsSceneTheme();
 
   const backLabel = triLang(lang, {
     ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
@@ -89,13 +91,10 @@ function AiDialogHomeBody() {
   const centeredQuota = subtitleHidden && quotaPill ? (
     <View testID="ai-dialog-home-quota-centered" style={{ alignItems: 'center', marginTop: 10 }}>{quotaPill}</View>
   ) : null;
-  // зачем (координатор 12.10, п.72): хаб открыт с Главной — стрелка назад остаётся, хаптик есть, testID нужен роботу съёмки
-  const backButton = <V2IconButton testID="ai-dialog-home-back" icon="chevron-back" accessibilityLabel={backLabel} onPress={() => {
-    hapticTap();
-    safeRouterBack(router, '/(tabs)/home' as any);
-  }} />;
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «КНОПКА НАЗАД ВООБЩЕ ВЕЗДЕ ДОЛЖНА БЫТЬ В ОДНОМ И ТОМ ЖЕ МЕСТЕ» — кнопка хаба Диалогов — общая ScreenBackButton (слой экрана, возврат на Главную); в шапке остаётся только место под неё
+  const backButton = <ScreenBackSlot />;
   const header = (
-    <View style={{ paddingHorizontal: V2.screenPad, paddingTop: 22 }}>
+    <View style={{ paddingHorizontal: V2.screenPad, paddingTop: insets.top }}>
       {isNarrowOrLargeText ? (
         <View>
           <View testID="ai-dialog-home-header-actions" style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -122,10 +121,11 @@ function AiDialogHomeBody() {
   // Сцена идёт под статус-бар (свой отступ сверху), поэтому верхний край безопасной зоны у неё снимается. Без флага — прежнее поведение.
   const scene = DIALOGS_SCENE_V2_ENABLED;
   const headerSlot = scene ? (
-    <DialogsSceneHub fallback={header} backLabel={backLabel} onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/home' as any); }} />
+    <DialogsSceneHub fallback={header} />
   ) : header;
   return (
     <ScreenGradient>
+      <ScreenBackButton screen="ai_dialog_home" fallback="/(tabs)/home" testID="ai-dialog-home-back" accessibilityLabel={backLabel} sceneTop={sceneTheme.colors.top} />
       <SafeAreaView style={{ flex: 1 }} edges={scene ? ['left', 'right', 'bottom'] : undefined}>
         <DialogsTabContent headerSlot={headerSlot} quotaInHeader sceneCatalogue={scene} />
       </SafeAreaView>

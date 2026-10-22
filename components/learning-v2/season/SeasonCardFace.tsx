@@ -75,13 +75,15 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, sta
       </View>
     );
   }
-  const markIcon: IonName = state === 'locked' ? 'lock-closed' : state === 'done' ? 'checkmark' : 'play';
+  // зачем (Learning V2 84d5b73d0, владелец 21.10 №8/№10 «ПРОСТО ОТКРЫТЫ»): 'open' — эпизод открыт экзаменом или входным тестом: играбельный, но не пройден — без замка и без галочки, плашка только с номером, звёзды пустые;
+  // замок — ТОЛЬКО у 'locked', ✓ — у 'done', ▶ — у 'current'
+  const markIcon: IonName | null = state === 'locked' ? 'lock-closed' : state === 'done' ? 'checkmark' : state === 'current' ? 'play' : null;
   return (
     <View style={styles.card}>
       <LinearGradient colors={[art.from, art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
       <LinearGradient colors={[art.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
       <Animated.View style={[styles.mark, lockShake]} testID="season-card-mark">
-        <Ionicons name={markIcon} size={12} color={WHITE} />
+        {markIcon ? <Ionicons name={markIcon} size={12} color={WHITE} /> : null}
         <Text style={styles.markText}>{ordinal}</Text>
       </Animated.View>
       {/* зачем (владелец 22.10, выбор варианта 3): по центру карточки крупный номер, под ним звёзды результата (у пройденных, в том числе у боковых; у текущей — полоска прогресса внизу, у закрытых звёзд нет);

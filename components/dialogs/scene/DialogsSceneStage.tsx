@@ -95,8 +95,8 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
       <View style={[s.top, { paddingTop: p.topInset }]}>
         {p.topStart ?? null}
         {copy.quota ? (
-          <View testID="dialogs-scene-quota" style={[s.pill, { backgroundColor: copy.quota.unlimited ? alphaHex(c.accent, 0.26) : c.glass }]}>
-            <Ionicons name={copy.quota.unlimited ? 'infinite' : 'chatbubbles-outline'} size={16} color={c.text} />
+          <View testID="dialogs-scene-quota" style={[s.pill, { backgroundColor: c.glass }]}>
+            <Ionicons name="chatbubbles-outline" size={16} color={c.text} />
             <Text style={[s.pillText, { color: c.text }]}>{copy.quota.label}</Text>
           </View>
         ) : null}

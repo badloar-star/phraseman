@@ -16,7 +16,7 @@ const read = (rel: string): string => readFileSync(rel, "utf8").replace(/\r\n/g,
 
 async function main(): Promise<void> {
   // ── состояния ──
-  assert.deepEqual([...SEASON_PREVIEW_STATES], ["cover", "newcomer", "carousel", "locked_open", "chapters_list", "chapter_episodes", "exam_card", "exam_open"]);
+  assert.deepEqual([...SEASON_PREVIEW_STATES], ["cover", "newcomer", "carousel", "chapters_list", "chapter_episodes", "exam_card", "exam_open"]);
   assert.ok(isSeasonPreviewState("exam_card"));
   assert.ok(!isSeasonPreviewState("lobby"));
   assert.ok(!isSeasonPreviewState(undefined));
@@ -45,8 +45,8 @@ async function main(): Promise<void> {
   assert.equal(carousel.deck.cards[carousel.initialState.selectedIndex].state, "locked", "карусель стоит на закрытом эпизоде 14");
   assert.equal(carousel.deck.cards[carousel.initialState.selectedIndex].sessionOrdinal, 14);
   assert.equal(carousel.initialState.expandedIndex, null);
-  const lockedOpen = seasonPreviewSetup("locked_open");
-  assert.equal(lockedOpen.initialState.expandedIndex, lockedOpen.initialState.selectedIndex, "закрытая карта раскрыта");
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «не надо открыть вот этот модал его не должно быть!» — раскрытой закрытой карты в превью нет
+  assert.ok(!(SEASON_PREVIEW_STATES as readonly string[]).includes("locked_open"));
 
   const chapters = seasonPreviewSetup("chapters_list");
   assert.deepEqual(chapters.initialState.screen, { kind: "chapters" }, "«Все главы»");
@@ -98,8 +98,9 @@ async function main(): Promise<void> {
   // ── экзамен за флагом ──
   const course = read("components/learning-v2/season/SeasonCourse.tsx");
   assert.match(course, /const examActions = SEASON_CHAPTER_EXAM_ENABLED;/);
-  assert.match(course, /examActions && !locked && props\.onStartExam/, "«Сдать экзамен» только при включённом флаге");
-  assert.match(course, /locked && examActions && props\.onOpenByExam/, "«Открыть экзаменом главы» только при включённом флаге");
+  assert.match(course, /examActions && props\.onStartExam/, "«Сдать экзамен» только при включённом флаге");
+  // проп onOpenByExam остался в API (его ведёт Learning V2), но кнопки «Открыть экзаменом главы» в карте больше нет: закрытая карта не раскрывается
+  assert.doesNotMatch(course, /seasonCardText\(lang, 'openByExam'\)/, "закрытая карта не раскрывается — «Открыть экзаменом главы» из модала убрано");
 
   // ── тексты раскрытой карты: 9 языков, одинаковые подстановки ──
   const placeholders = (s: string) => [...s.matchAll(/\{[a-z]+\}/g)].map((m) => m[0]).sort().join(",");

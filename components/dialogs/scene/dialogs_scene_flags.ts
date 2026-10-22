@@ -5,6 +5,5 @@
 // пока Сверка не пройдёт состояния, а 4 · ТЕМЫ не добавит картинки dialogs_scene_* в реестр. Выключатель одной строкой: DIALOGS_SCENE_V2_ENABLED.
 // Без флага раздел рисует прежнюю шапку (app/ai_dialog_home.tsx) — ничего не меняется.
 // ═══════════════════════════════════════════════════════════════════════════
-import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from '../../../app/config';
-
-export const DIALOGS_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «Да, переносить» (макет dialogs-hub-v4, решение (а)) — сцена Диалогов включена ВСЕМ, в том числе в сторе; прежняя шапка «Диалоги» остаётся только запасной (язык без каталога).
+export const DIALOGS_SCENE_V2_ENABLED: boolean = true;

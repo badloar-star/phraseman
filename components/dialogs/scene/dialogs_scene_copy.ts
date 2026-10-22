@@ -46,6 +46,9 @@ export const DIALOGS_SCENE_COPY = {
   plusRowVoice: ['Голосом без лимита', 'Голосом без ліміту', 'Unlimited voice replies', 'Por voz sin límite', 'Por voz sem limite', 'Nói bằng giọng không giới hạn', 'Suara tanpa batas', 'Sınırsız sesli yanıt', 'Głosem bez limitu'],
   plusRowLessons: ['Уроки без энергии', 'Уроки без енергії', 'Lessons without energy', 'Lecciones sin energía', 'Lições sem energia', 'Bài học không cần năng lượng', 'Pelajaran tanpa energi', 'Enerjisiz dersler', 'Lekcje bez energii'],
   allWorlds: ['Все', 'Усі', 'All', 'Todos', 'Todos', 'Tất cả', 'Semua', 'Tümü', 'Wszystkie'],
+  // зачем (макет dialogs-hub-v4, «Да, переносить» 22.10): подпись над плитками тем и широкая плитка; ⚠ ЖДУТ ревью «Переводчика» (10) на 7 языках
+  topics: ['Темы', 'Теми', 'Topics', 'Temas', 'Temas', 'Chủ đề', 'Topik', 'Konular', 'Tematy'],
+  allDialogs: ['Все диалоги', 'Усі діалоги', 'All dialogues', 'Todos los diálogos', 'Todos os diálogos', 'Tất cả hội thoại', 'Semua dialog', 'Tüm diyaloglar', 'Wszystkie dialogi'],
   showMore: ['Показать ещё', 'Показати ще', 'Show more', 'Mostrar más', 'Mostrar mais', 'Xem thêm', 'Tampilkan lebih banyak', 'Daha fazla göster', 'Pokaż więcej'],
   noOpenTitle: ['Пока всё открытое пройдено', 'Поки все відкрите пройдено', 'You’ve finished everything unlocked', 'Ya completaste todo lo desbloqueado', 'Tudo o que está liberado foi concluído', 'Đã xong mọi hội thoại đang mở', 'Semua yang terbuka sudah selesai', 'Açık olan her şey tamamlandı', 'Wszystko odblokowane już ukończone'],
   noOpenSub: ['Следующие диалоги откроются с новым рангом.', 'Наступні діалоги відкриються з новим рангом.', 'The next dialogues open with a new rank.', 'Los siguientes diálogos se abren con un nuevo rango.', 'Os próximos diálogos abrem com um novo rank.', 'Hội thoại tiếp theo sẽ mở khi bạn lên hạng mới.', 'Dialog berikutnya terbuka dengan peringkat baru.', 'Sonraki diyaloglar yeni rütbeyle açılır.', 'Kolejne dialogi odblokują się z nową rangą.'],
@@ -197,7 +200,7 @@ export type DialogsSceneCopy = Readonly<{
   /** Строка «Нет сети» над текстом (только состояние offline). */
   offlineLine: Readonly<{ bold: string; rest: string }> | null;
   /** Пилюля в шапке сцены: «28 из 30» у Free, «∞ Без лимита» у Plus; null — остаток неизвестен. */
-  quota: Readonly<{ label: string; unlimited: boolean }> | null;
+  quota: Readonly<{ label: string }> | null;
 }>;
 
 const BASE: Omit<DialogsSceneCopy, 'title' | 'cta'> = {
@@ -216,9 +219,8 @@ function worldKicker(lang: Lang, d: DialogsSceneDialogInfo | null): string | nul
 
 export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsSceneCopy {
   const { lang, state, dialog } = input;
-  const quota = input.plus
-    ? { label: dialogsSceneText(lang, 'unlimited'), unlimited: true }
-    : input.quotaRemaining === null ? null : { label: dialogsSceneText(lang, 'ofPair', { k: input.quotaRemaining, n: input.quotaTotal }), unlimited: false };
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «без пилюль энергии и лимита» у Plus (макет dialogs-hub-v4, решение (б)) — у Plus пилюли остатка нет совсем; у Free — «N/30», как на экране диалога
+  const quota = input.plus || input.quotaRemaining === null ? null : { label: `${input.quotaRemaining}/${input.quotaTotal}` };
   const done = { ...BASE, quota };
   const voice = input.voicePerDay !== null ? ` · ${dialogsSceneText(lang, 'limitVoice', { voice: input.voicePerDay })}` : '';
   // зачем (координатор 22.10): следующий — первый ОТКРЫТЫЙ непройденный диалог. Если его нет (всё открытое пройдено, остальное закрыто по рангу),

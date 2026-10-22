@@ -5,30 +5,20 @@ import path from 'node:path';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
-describe('«Свободный разговор»: акцент темы на плашке и плитке', () => {
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «Да, переносить» (макет dialogs-hub-v4, решение (б)) — «Свободный разговор» стал плиткой одного стиля с плитками тем (заливка «контрол» темы из dialogs_hub_tokens, без перелива и приподнятой плиты, значок Plus — токены plus.bg / plus.ink); прежний акцент темы на плашке (перелив 14 %, плитка значка 22 %) заменён этим решением
+describe('«Свободный разговор»: цвета плитки — только токены темы', () => {
   const tools = read('components/dialogs/DialogueV2PlusTools.tsx');
 
-  it('перелив 135° от 14% акцента к нулю на 70%: цвет — токен accentText с альфой, не hex; слой не ловит нажатия', () => {
-    const start = tools.indexOf('testID="dialogue-v2-freeform-tint"');
-    expect(start).toBeGreaterThan(-1);
-    const block = tools.slice(tools.lastIndexOf('<LinearGradient', start), tools.indexOf('/>', start));
-    expect(block).toContain('pointerEvents="none"');
-    expect(block).toContain('colors={[glassTone(g.accentText, 0.14), glassTone(g.accentText, 0)]}');
-    expect(block).toContain('locations={[0, 0.7]}');
-    expect(block).toContain('end={{ x: 1, y: 1 }}');
-    expect(block).not.toMatch(/#[0-9A-Fa-f]{3,8}/);
+  it('заливка плитки, значок, подписи и значок Plus — токены dialogsHubTokens, без hex и без обводок', () => {
+    expect(tools).toContain('backgroundColor: t.tile.bg');
+    expect(tools).toContain('color={t.tile.icon}');
+    expect(tools).toContain('backgroundColor: t.plus.bg');
+    expect(tools).toContain('color: t.plus.ink');
+    expect(tools).not.toMatch(/#[0-9A-Fa-f]{3,8}|borderWidth|borderColor/);
   });
 
-  it('градиент лежит над заливкой плиты и под содержимым ряда', () => {
-    expect(tools.indexOf('<PlateFill g={g} radius={V2.radius.row} raised />')).toBeLessThan(tools.indexOf('dialogue-v2-freeform-tint'));
-    expect(tools.indexOf('dialogue-v2-freeform-tint')).toBeLessThan(tools.indexOf('dialogue-v2-freeform-tile'));
-  });
-
-  it('плитка значка — 22% акцента темы (образец `.fr .fi`), значок, PLUS и замок остаются цветом темы', () => {
-    expect(tools).toContain('testID="dialogue-v2-freeform-tile"');
-    expect(tools).toContain('backgroundColor: glassTone(g.accentText, 0.22)');
-    expect(tools).toContain('backgroundColor: g.accent, justifyContent');
-    expect(tools).toContain('color={g.accentText}');
+  it('нет прежних слоёв: перелив, приподнятая плита, плитка значка', () => {
+    expect(tools).not.toMatch(/dialogue-v2-freeform-tint|dialogue-v2-freeform-tile|PlateFill|raisedBoxShadow|glassTone/);
   });
 });
 

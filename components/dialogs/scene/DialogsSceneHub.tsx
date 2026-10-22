@@ -18,7 +18,7 @@ import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import EnergyBar from '../../EnergyBar';
 import { useLang } from '../../LangContext';
 import { useStudyTarget } from '../../StudyTargetContext';
-import { V2IconButton } from '../../v2/V2Kit';
+import { ScreenBackSlot } from '../../v2/ScreenBackButton';
 import DialogsScene from './DialogsScene';
 import type { DialogsSceneState } from './dialogs_scene_state';
 import { useDialogsSceneHub } from './use_dialogs_scene_hub';
@@ -28,11 +28,9 @@ const LOG = '[DIALOGS-SCENE]';
 type Props = Readonly<{
   /** Прежняя шапка хаба — когда сцене нечего показать. */
   fallback: React.ReactNode;
-  onBack: () => void;
-  backLabel: string;
 }>;
 
-function DialogsSceneHub({ fallback, onBack, backLabel }: Props) {
+function DialogsSceneHub({ fallback }: Props) {
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -82,8 +80,9 @@ function DialogsSceneHub({ fallback, onBack, backLabel }: Props) {
         resetDate={hub.resetDate}
         voicePerDay={hub.voicePerDay}
         personaId={next ? next.personaId : null}
-        topInset={insets.top + 8}
-        topStart={<V2IconButton testID="ai-dialog-home-back" icon="chevron-back" accessibilityLabel={backLabel} onPress={onBack} />}
+        // ЗАМОК ВЛАДЕЛЬЦА 22.10: «назад» — одна общая кнопка (ScreenBackButton) в одном месте, слоем экрана (app/ai_dialog_home.tsx); здесь только место под неё, верхняя строка сцены стоит на её уровне
+        topInset={insets.top}
+        topStart={<ScreenBackSlot />}
         topEnd={<EnergyBar size={30} glass solidBolt />}
         onCta={onCta}
         onRound={onRound}

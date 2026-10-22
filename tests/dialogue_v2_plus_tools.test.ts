@@ -15,20 +15,26 @@ describe('Dialogue V2 Plus tools discovery', () => {
   test('shows the neutral free conversation row (memory lives in Privacy settings) in Design 2.0 styling', () => {
     expect(toolsSource).toContain("ru: 'Свободный разговор'");
     expect(toolsSource).not.toContain("ru: 'Память диалогов'");
-    expect(toolsSource).toContain('V2.gapTight');
-    expect(toolsSource).toContain('V2.radius.row');
-    expect(toolsSource).toContain('useV2Palette');
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «Да, переносить» (макет dialogs-hub-v4) — плитка одного стиля с плитками тем: V2Pressable, токены dialogs_hub_tokens (заливка «контрол»), высота 58, радиус 20, без hex-цветов
+    expect(toolsSource).toContain('V2Pressable');
+    expect(toolsSource).toContain('dialogsHubTokens');
+    expect(toolsSource).toMatch(/tile: \{ height: 58, borderRadius: 20,/);
     expect(toolsSource).not.toMatch(/Компас|Compass/);
     expect(toolsSource).not.toMatch(/#[0-9a-fA-F]{3,8}/);
   });
 
   // зачем (координатор 12.10, dialogs-001/002; эталон «Тень» etalon.html .dc/.pp): значок PLUS рядом с названием, плитка 52/18, значки и замок/шеврон цвета темы
-  test('free conversation row carries the PLUS badge and theme-accent glyphs from the approved Shadow reference', () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «ЕСЛИ PLUS ЮЗЕР ТО УБРАТЬ PLUS ИКОНКУ» — значок Plus и замок только у Free; у Plus шеврон и никакого значка (раньше значок был виден всегда)
+  test('free conversation tile: Plus badge and lock only for Free, chevron without a badge for Plus', () => {
     expect(toolsSource).toContain('dialogue-v2-freeform-plus-badge');
-    expect(toolsSource).toMatch(/height: 20, paddingHorizontal: 7, borderRadius: 8, backgroundColor: g\.accent/);
-    expect(toolsSource).toMatch(/width: 52, height: 52, borderRadius: 18/);
-    expect(toolsSource).toContain('color={g.accentText}');
-    expect(toolsSource).toContain('>PLUS</Text>');
+    const badge = toolsSource.indexOf('dialogue-v2-freeform-plus-badge');
+    const gate = toolsSource.lastIndexOf('!hasPremiumAccess ? (', badge);
+    expect(gate).toBeGreaterThan(-1);
+    // значок стоит ВНУТРИ ветки «нет Plus», а шеврон — в ветке «есть Plus»
+    expect(toolsSource.indexOf('chevron-forward')).toBeGreaterThan(badge);
+    expect(toolsSource.indexOf('lock-closed')).toBeGreaterThan(badge);
+    expect(toolsSource).toContain('t.plus.bg');
+    expect(toolsSource).toContain('t.plus.ink');
   });
 
   test('keeps free conversation Plus-gated; memory route is reached from Privacy settings', () => {

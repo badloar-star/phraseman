@@ -117,9 +117,10 @@ describe('Сцена Диалогов: тексты', () => {
     expect(c.prog).toBe('2 из 6 целей');
     expect(c.bar).toBeCloseTo(2 / 6, 5);
   });
-  it('пилюля остатка: Free «28 из 30», Plus «Без лимита», неизвестный остаток — без пилюли', () => {
-    expect(copyFor('next').quota).toEqual({ label: '28 из 30', unlimited: false });
-    expect(copyFor('next', { plus: true }).quota).toEqual({ label: 'Без лимита', unlimited: true });
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «без пилюль энергии и лимита» у Plus (макет dialogs-hub-v4, решение (б)) — у Plus пилюли остатка нет совсем; у Free «N/30», как на экране диалога
+  it('пилюля остатка: Free «28/30», у Plus пилюли нет, неизвестный остаток — без пилюли', () => {
+    expect(copyFor('next').quota).toEqual({ label: '28/30' });
+    expect(copyFor('next', { plus: true }).quota).toBeNull();
     expect(copyFor('next', { quotaRemaining: null }).quota).toBeNull();
   });
   it('все восемь состояний собираются на всех 9 языках: заголовок и кнопка не пусты, подстановки закрыты', () => {
@@ -193,7 +194,7 @@ describe('Сцена Диалогов: превью и защита релиза
     }
     expect(isDialogsScenePreviewState('hub')).toBe(false);
   });
-  it('у Plus лимит и «мало» превращаются в обычное состояние, пилюля — «Без лимита»', () => {
+  it('у Plus лимит и «мало» превращаются в обычное состояние, пилюли остатка нет', () => {
     expect(pickDialogsSceneState(dialogsScenePreviewSetup('limit', true).input).state).toBe('next');
     expect(pickDialogsSceneState(dialogsScenePreviewSetup('low', true).input).state).toBe('next');
     expect(pickDialogsSceneState(dialogsScenePreviewSetup('consent', true).input).state).toBe('consent');
@@ -216,8 +217,11 @@ describe('Сцена Диалогов: превью и защита релиза
     expect(route).toMatch(/useStableSafeAreaInsets/);
     expect(route).not.toMatch(/useSafeAreaInsets\(/);
   });
-  it('флаг: в разработке вкл, в стор-релизе выкл — одной строкой', () => {
-    expect(read('components/dialogs/scene/dialogs_scene_flags.ts')).toMatch(/DIALOGS_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;/);
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «Да, переносить» (макет dialogs-hub-v4, решение (а)) — сцена Диалогов включена ВСЕМ, в том числе в стор-релизе (раньше: в разработке вкл, в сторе выкл)
+  it('флаг: сцена включена всем, в том числе в стор-релизе', () => {
+    const flags = read('components/dialogs/scene/dialogs_scene_flags.ts');
+    expect(flags).toMatch(/DIALOGS_SCENE_V2_ENABLED: boolean = true;/);
+    expect(flags).not.toMatch(/ENABLE_DEV_TOOLS|IS_STORE_RELEASE/);
   });
   it('вёрстка без обводок и без ужатия шрифта', () => {
     for (const file of ['DialogsSceneStage.tsx', 'DialogsScenePanel.tsx', 'DialogsScene.tsx']) {

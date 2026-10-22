@@ -366,7 +366,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       >
         {width > 0 ? (
           <View style={{ width: renderWidth, height: SPIRE_TOWER_GEOM.height * scale, alignSelf: 'center' }}>
-            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} />
+            {/* зачем (владелец 22.10: «НОМЕРА ЭТАЖЕЙ УБЕРИ»): на «Сцене» номера этажей и подписи под ними не рисуются; прежнее окно Пика — с номерами */}
+            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents={onPressRival ? 'box-none' : 'none'} style={StyleSheet.absoluteFill}>
                 <RivalsLayer onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={sceneMode ? SPIRE_SCENE_TOWER.num : undefined} sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0} />

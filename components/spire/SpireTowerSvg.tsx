@@ -90,9 +90,11 @@ type FloorProps = Readonly<{
   bare?: boolean;
   /** Цвета сцены из темы (номер этажа, подписи). Нет пропа = прежние серые литералы ночной сцены. */
   scene?: SpireScene;
+  /** «Сцена» Пика (владелец 22.10: «НОМЕРА ЭТАЖЕЙ УБЕРИ»): без номера этажа и подписи под ним; окна, карнизы, рамка выбора и зона нажатия — как были. */
+  noLabels?: boolean;
 }>;
 
-const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSelect, bare = false, scene }: FloorProps) {
+const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSelect, bare = false, scene, noLabels = false }: FloorProps) {
   const { f, y, h, w, x0 } = fl;
   const guard = spireIsGuard(f);
   const stones = useMemo(() => stonesPath(fl), [fl]);
@@ -114,8 +116,8 @@ const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSel
           <Rect x={x0 - 5} y={y - 3} width={w + 10} height={1.4} rx={0.7} fill={TOWER_ART.white28} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
         </>
       )}
-      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={scene ? (mine ? scene.numMine : scene.num) : mine ? TOWER_ART.white : TOWER_ART.c8E8E92} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      {label && !bare ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill={scene ? scene.num : TOWER_ART.c8E8E92} textAnchor="middle">{label}</SvgText> : null}
+      {bare || noLabels ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={scene ? (mine ? scene.numMine : scene.num) : mine ? TOWER_ART.white : TOWER_ART.c8E8E92} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {label && !bare && !noLabels ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill={scene ? scene.num : TOWER_ART.c8E8E92} textAnchor="middle">{label}</SvgText> : null}
       {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke={scene && scene.light ? scene.numMine : TOWER_ART.white80} strokeOpacity={scene && scene.light ? 0.85 : 1} strokeWidth={1.4} /> : null}{/* theme-exempt: рамка выбранного этажа; зачем (Макеты 13.10, кадры spirecheck-001/002): на светлой плите белая рамка не видна — берём цвет текста темы, как у номеров этажей; в тёмной без изменений */}
       {bare ? null : <Rect x={0} y={y - 4} width={SPIRE_TW} height={h + 4} fill="transparent" />}
     </G>
@@ -306,9 +308,11 @@ type Props = Readonly<{
   illustration?: boolean;
   /** «Сцена» Пика, башня целиком (владелец 22.10): слова под номерами («страж», вершина) и «над облаками» мельче 4 dp не рисуются, номера остаются. */
   hideWords?: boolean;
+  /** «Сцена» Пика (владелец 22.10: «НОМЕРА ЭТАЖЕЙ УБЕРИ»): номера этажей и подписи под ними не рисуются ни на каком экране. */
+  hideFloorLabels?: boolean;
 }>;
 
-function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene, cropHeight, illustration = false, hideWords = false }: Props) {
+function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene, cropHeight, illustration = false, hideWords = false, hideFloorLabels = false }: Props) {
   const geom = SPIRE_TOWER_GEOM;
   const scale = width / SPIRE_TW;
   // зачем (Макеты 18.10, promo_open/floor_open: «шкала этажей и НАД ОБЛАКАМИ микроскопические»): в окнах моментов башня ≤ 196 из 390 —
@@ -372,7 +376,7 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
         const state = spireFloorState(fl.f, myFloor);
         const tone: WindowTone = state === 'mine' ? 'lit' : state === 'passed' ? 'past' : 'dark';
         const label = hideWords ? '' : spireIsSummit(fl.f) ? summitLabel : spireIsGuard(fl.f) ? guardLabel : '';
-        return <Floor key={fl.f} fl={fl} tone={tone} skin={skin} mine={state === 'mine'} selected={fl.f === selected} label={label} onSelect={onSelect} scene={scene} bare={textTooSmall} />;
+        return <Floor key={fl.f} fl={fl} tone={tone} skin={skin} mine={state === 'mine'} selected={fl.f === selected} label={label} onSelect={onSelect} scene={scene} bare={textTooSmall} noLabels={hideFloorLabels} />;
       })}
       {skin.rim === 'full' ? <CornRims /> : null}
       {geom.floors.filter((fl) => spireIsGuard(fl.f) && !spireIsSummit(fl.f)).map((fl) => <Parapet key={`p${fl.f}`} fl={fl} skin={skin} />)}

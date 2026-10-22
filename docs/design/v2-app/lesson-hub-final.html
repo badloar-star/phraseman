@@ -131,6 +131,34 @@ body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, syste
 .lh-main { height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; transition: transform 240ms cubic-bezier(.3, 1.4, .5, 1); }
 .lh-main:active { transform: scale(.97); }
 .lh-main .io { font-size: 18px; }
+
+/* ───────── блок «Название на карточке» и звёзды (владелец 22.10: «НАЗВАНИЯ МНЕ НЕ НРАВИТСЯ, КАК РАСПОЛОЖЕНЫ!», «оценка пройденного урока — звёздочки», «карточки разных оттенков темы») ───────── */
+.lh-h2 { margin: 56px 0 6px; font-size: 24px; line-height: 30px; letter-spacing: -.3px; }
+.lh-pick { font: 600 16px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: #1C1D21; border: 0; border-radius: 18px; padding: 12px 20px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+.lh-pick b { font-weight: 800; font-size: 22px; }
+.lh-pick.on { background: #ECECEE; color: #111214; }
+.lh-sum { color: #A9A9AE; font-size: 13px; margin-left: 12px; }
+.lh-sum b { color: #ECECEE; }
+.lh-cap { font-size: 13px; line-height: 19px; color: #A9A9AE; min-height: 96px; }
+.lh-cap b { color: #ECECEE; }
+.lh-sc { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+.lh-scin { position: absolute; inset: 0; transform: translateY(-262px); }
+.lh-b2 .lh-c { background: radial-gradient(60% 45% at 90% 0%, oklch(.6 calc(var(--cc) * var(--cm)) var(--h) / .45), transparent 70%), linear-gradient(160deg, oklch(var(--l1) calc(var(--cc) * var(--cm)) var(--h)) 0%, oklch(var(--l2) calc(var(--cc) * var(--cm)) var(--h)) 100%); }
+.lh-c .stars { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 4px; }
+.lh-c .stars .io, .lh-row .stars .io { font-size: 18px; }
+.lh-c .stars .off, .lh-row .stars .off { opacity: .38; }
+.lh-c.v1 .nmc { position: absolute; left: 16px; right: 16px; top: 50%; transform: translateY(-50%); text-align: center; font-size: 22px; line-height: 26px; font-weight: 800; letter-spacing: -.3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.lh-c.v2 { padding: 16px; }
+.lh-c.v2 .nml { margin-top: 12px; font-size: 22px; line-height: 26px; font-weight: 800; letter-spacing: -.3px; text-align: left; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.lh-c.v2 .stars { left: 16px; right: auto; justify-content: flex-start; }
+.lh-c.v3 .bn { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-58%); text-align: center; font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -1px; }
+.lh-c.side .nmc, .lh-c.side .nml { opacity: 0; }
+.lh-c.sl .stars { justify-content: flex-start; padding-left: 16px; }
+.lh-b2 .lh-c .mk { background: rgba(0, 0, 0, .28); }
+.lh-capt { position: absolute; left: 20px; right: 20px; top: 770px; text-align: center; }
+.lh-capt .k { font-size: 16px; line-height: 21px; color: var(--sec); }
+.lh-capt .t { margin-top: 2px; font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; }
+.lh-row .stars { display: flex; gap: 2px; color: var(--acc); flex: none; }
 </style>
 </head>
 <body>
@@ -141,9 +169,13 @@ body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, syste
     <div class="lh-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div>
   </div>
   <div class="lh-frames" id="root"></div>
+  <h2 class="lh-h2">Название на карточке и звёзды результата</h2>
+  <p class="lh-lead">Владелец 22.10: «НАЗВАНИЯ МНЕ НЕ НРАВИТСЯ, КАК РАСПОЛОЖЕНЫ!», «оценка пройденного урока должна быть так же на карточках — звёздочки», «карточки должны быть разных оттенков темы». Три варианта расположения названия; во всех — название короткое (до двух слов, по-русски), поля не меньше 16, перенос по словам, у боковых карточек названия нет (их закрывает соседняя карточка), у пройденных — звёзды результата 0–3 (у текущей и закрытых звёзд нет), каждая карточка своего оттенка темы (соседние различаются светлотой и насыщенностью, белый текст не хуже 4,5:1). Кадр хаба прокручен вниз, чтобы были видны карусель и подпись под ней. <b>Сейчас в приложении</b> на карточке — полное название занятия из каталога (длинное, до 50 знаков, прижато к нижнему-левому краю, режется соседями) или «Эпизод N» на языках кроме русского.</p>
+  <div class="lh-bar" style="position:static"><span class="lh-sum" id="lh-sum2"></span></div>
+  <div class="lh-frames" id="root2"></div>
 </div>
 <script>
-window.__ICODE = {"chevron-back":"f229","chevron-forward":"f23b","chevron-down":"f232","book-outline":"f1a6","albums-outline":"f110","play":"f4c6","checkmark":"f21d","lock-closed":"f3c7","list-outline":"f3bf","layers-outline":"f3b0","school-outline":"f55d","flash":"f316","home":"f382","book":"f1a5","play-circle-outline":"f4ce","people":"f49f","settings-outline":"f56c"};
+window.__ICODE = {"star":"f595","star-outline":"f599","chevron-back":"f229","chevron-forward":"f23b","chevron-down":"f232","book-outline":"f1a6","albums-outline":"f110","play":"f4c6","checkmark":"f21d","lock-closed":"f3c7","list-outline":"f3bf","layers-outline":"f3b0","school-outline":"f55d","flash":"f316","home":"f382","book":"f1a5","play-circle-outline":"f4ce","people":"f49f","settings-outline":"f56c"};
 (() => {
   const CODE = window.__ICODE;
   const io = (n, st = '') => `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${CODE[n]};</i>`;
@@ -211,6 +243,46 @@ window.__ICODE = {"chevron-back":"f229","chevron-forward":"f23b","chevron-down":
     if (ap) { AP = ap.dataset.ap; document.querySelectorAll('[data-ap]').forEach((b) => b.classList.toggle('on', b === ap)); render(); }
   });
   render();
+
+  // ───────── блок «Название на карточке» ─────────
+  const NM = { 9: 'Столик рядом', 10: 'Шумное кафе', 11: 'Про третьего', 12: 'Через столик', 13: 'Ловушка вопроса', 14: 'Ещё продаётся?', 15: 'Обеденное кафе', 16: 'Угадай человека' };
+  const STARS = { 9: 3, 10: 2 }; // образцы: звёзды лучшего прохождения занятия (0–3); есть только у пройденных
+  // разные оттенки ОДНОЙ темы: светлота/насыщенность шагами; белый текст ≥ 4,5:1 (L ≤ .52)
+  const TONES = [{ l1: .46, l2: .34, cm: .95 }, { l1: .33, l2: .23, cm: .6 }, { l1: .52, l2: .38, cm: 1.35 }, { l1: .39, l2: .28, cm: .8 }, { l1: .49, l2: .35, cm: 1.15 }];
+  const starsHtml = (n) => '<div class="stars" style="color:#fff">' + [1, 2, 3].map((i) => '<span class="' + (i <= n ? '' : 'off') + '">' + io(i <= n ? 'star' : 'star-outline') + '</span>').join('') + '</div>';
+  const cardV = (c, i, v) => { const a = Math.abs(c.k); const o = a >= 2 ? 0.5 : 1; const t = TONES[i]; const icon = c.st === 'lock' ? 'lock-closed' : c.st === 'done' ? 'checkmark' : 'play';
+    const body = v === 1 ? '<div class="nmc">' + NM[c.n] + '</div>' : v === 2 ? '<div class="nml">' + NM[c.n] + '</div>' : '<div class="bn">' + c.n + '</div>';
+    const foot = c.st === 'done' ? starsHtml(STARS[c.n] || 0) : c.st === 'cur' ? '<div class="pg"><i style="width:30%"></i></div>' : '';
+    return '<div class="lh-c v' + v + (a ? ' side' : '') + (c.k < 0 ? ' sl' : '') + (c.st === 'lock' ? ' mute' : '') + '" style="--x:' + c.k * 116 + 'px;--z:' + (-a * 80) + 'px;--r:' + (-c.k * 26) + 'deg;--o:' + o + ';--l1:' + t.l1 + ';--l2:' + t.l2 + ';--cm:' + t.cm + ';z-index:' + (10 - a) + '"><div class="mk">' + io(icon) + c.n + '</div>' + body + foot + '</div>'; };
+  const hubScrolled = (v) => sb(true) + '<div class="lh-sc"><div class="lh-scin">'
+    + '<div class="lh-hero"><div class="lh-top"></div></div>'
+    + '<div class="lh-trio"><div class="lh-nav">' + io('list-outline') + 'Все главы</div><div class="lh-nav">' + io('layers-outline') + 'Все уроки</div><div class="lh-nav">' + io('school-outline') + 'Классический курс</div></div>'
+    + '<div class="lh-sec"><div class="l"><div class="k">Глава 2 из 7</div><div class="t">' + CH[1] + '</div></div><div class="r">2 из 8</div></div>'
+    + '<div class="lh-flow">' + cards.map((c, i) => cardV(c, i, v)).join('') + '</div>'
+    + '<div class="lh-capt"><div class="k">Эпизод 11</div>' + (v === 3 ? '<div class="t">' + NM[11] + '</div>' : '') + '</div></div></div>' + tabs;
+  const epRowS = (nm, i) => { const e = i + 1; const st = e < CUR_EP ? 'done' : e === CUR_EP ? 'cur' : 'lock'; const n = STARS[(CUR_CH - 1) * 8 + e] || 0;
+    const right = st === 'done' ? '<div class="stars">' + [1, 2, 3].map((k) => '<span class="' + (k <= n ? '' : 'off') + '">' + io(k <= n ? 'star' : 'star-outline') + '</span>').join('') + '</div>' : st === 'lock' ? '<div class="rt">' + io('lock-closed') + '</div>' : '<div class="rt t">Дальше</div>';
+    return '<div class="lh-row ' + st + '"><div class="bd">' + (st === 'cur' ? io('play') : (CUR_CH - 1) * 8 + e) + '</div><div class="tx"><div class="nm">' + NM[(CUR_CH - 1) * 8 + e] + '</div></div>' + right + '</div>'; };
+  const listStars = () => sb(false) + back + hd('Глава 2 из 7', CH[1]) + '<div class="lh-eps"><div class="lh-list">' + EP2.map((nm, i) => epRowS(nm, i)).join('') + '</div></div>' + dock;
+  const B2 = [
+    { n: 1, name: 'По центру', text: '<b>Название по центру карточки</b>, крупно (22/26, жирно), до двух строк, поля 16, перенос по словам. Номер — слева сверху, звёзды — по центру внизу. У боковых карточек остаются номер и звёзды, название скрыто — его не режут соседи.', f: () => hubScrolled(1) },
+    { n: 2, name: 'Сверху слева', text: '<b>Название сверху под номером</b>, слева, поля 16 со всех сторон, до трёх строк. Звёзды — слева внизу. Читается как заголовок карточки; боковые карточки — номер и звёзды.', f: () => hubScrolled(2) },
+    { n: 3, name: 'Номер и подпись под каруселью', text: '<b>На карточке только номер</b> (крупно по центру) и звёзды; название — одной строкой под каруселью для карточки в фокусе (у боковых текста нет). Самые чистые карточки, название всегда читается целиком.', f: () => hubScrolled(3) },
+  ];
+  let picked2 = null;
+  const sum2 = () => { document.getElementById('lh-sum2').innerHTML = 'Выбор: <b>' + (picked2 ? picked2 + ' · ' + B2[picked2 - 1].name : '—') + '</b>'; };
+  const render2 = () => {
+    document.getElementById('root2').innerHTML = B2.map((v) => '<div class="lh-col"><button type="button" class="lh-pick' + (picked2 === v.n ? ' on' : '') + '" data-v2="' + v.n + '"><b>' + v.n + '</b>' + v.name + '</button><div class="lh-cap">' + v.text + '</div><div class="ph lh-b2 ' + AP + '">' + v.f() + '</div></div>').join('')
+      + '<div class="lh-col"><div class="lh-cap"><b>Звёзды в списке эпизодов главы</b>: у пройденных справа вместо галочки — звёзды результата (заполненные и пустые, цвет акцента темы); слева — номер эпизода. У текущего «Дальше», у закрытых замок. Звёзды берутся из уже хранимых звёзд занятий — новых чтений нет.</div><div class="ph lh-b2 ' + AP + '">' + listStars() + '</div></div>';
+    sum2();
+  };
+  document.addEventListener('click', (e) => {
+    const ap = e.target.closest('[data-ap]');
+    if (ap) { render2(); return; }
+    const p = e.target.closest('[data-v2]');
+    if (p) { picked2 = Number(p.dataset.v2); render2(); }
+  });
+  render2();
 })();
 </script>
 </body>

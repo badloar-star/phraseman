@@ -10,7 +10,11 @@ const tiles = fs.readFileSync(path.join(root, 'components/home/v2/HomeV2FeatureT
 const continueCard = fs.readFileSync(path.join(root, 'components/home/v2/HomeV2ContinueCard.tsx'), 'utf8');
 const dailyPhrase = fs.readFileSync(path.join(root, 'components/DailyPhraseCard.tsx'), 'utf8');
 const home = fs.readFileSync(path.join(root, 'app/(tabs)/home.tsx'), 'utf8');
-const v2Home = home.slice(home.indexOf('const renderHomeV2 = () =>'), home.indexOf('const renderHomeV2 = () =>') + 10500);
+// зачем (координатор 22.10, после 567585366): шапка Главной V2 вынесена в renderHomeV2Header прямо перед renderHomeV2 —
+// срез начинается с шапки (если её нет — с renderHomeV2) и идёт до прежней границы тела Главной
+const v2HomeStart = home.indexOf('const renderHomeV2 = () =>');
+const v2HeaderStart = home.indexOf('const renderHomeV2Header');
+const v2Home = home.slice(v2HeaderStart >= 0 && v2HeaderStart < v2HomeStart ? v2HeaderStart : v2HomeStart, v2HomeStart + 10500);
 
 test('all three feature illustrations sit at the left on one uninterrupted glass surface', () => {
   assert.match(tiles, /style=\{s\.art\}/);
@@ -25,6 +29,8 @@ test('V2 home identity and balance use one real coin-rank asset, never the hex a
   assert.match(home, /coinRankDisplaySource\(myCoinRank, STORY_RING_SLOT\)/);
   // зачем (17.10, шапка Главной перестроена: HomeV2Header со StoryAvatarSlot и строкой монет): тот же смысл — и аватар, и баланс берут ОДИН ассет ранга монет
   assert.match(v2Home, /testID: 'home-v2-coins'/);
+  // шапка с монетой действительно рисуется Главной V2, а не лежит рядом мёртвым кодом
+  if (v2HeaderStart >= 0 && v2HeaderStart < v2HomeStart) assert.match(home.slice(v2HomeStart, v2HomeStart + 10500), /renderHomeV2Header\(/);
   assert.match(v2Home, /<StoryAvatarSlot[\s\S]{0,400}coinSource=\{homeCoinRankSource\}/);
   assert.match(v2Home, /source=\{homeCoinRankSource\}/);
   assert.doesNotMatch(v2Home, /<AvatarView|source=\{homeHeaderRuneIconSource\}/);

@@ -44,6 +44,14 @@ function renderHeader({ bellSlot, avatarSlot, stats }) {
   return node;
 }
 
+// зачем (координатор 22.10, после 567585366): style строки статов стал массивом [s.stats, scene ? s.statsScene : null] —
+// разворачиваем его так же, как StyleSheet.flatten в React Native (вложенные массивы, null/false пропускаются, позднее перекрывает раннее)
+function flattenStyle(style) {
+  if (!style) return {};
+  if (!Array.isArray(style)) return style;
+  return style.reduce((acc, item) => Object.assign(acc, flattenStyle(item)), {});
+}
+
 function childrenOf(node) {
   return Array.isArray(node.props.children) ? node.props.children : [node.props.children];
 }
@@ -140,12 +148,14 @@ test('Home header renders stats left and a non-shrinking bell-avatar action grou
   });
   const [topRow] = childrenOf(header);
   const [stats, actions] = childrenOf(topRow);
-  assert.equal(stats.props.style.flex, 1);
-  assert.equal(stats.props.style.minWidth, 0);
-  assert.equal(actions.props.style.flexShrink, 0);
-  assert.equal(actions.props.style.flexDirection, 'row');
-  assert.equal(actions.props.style.alignItems, 'center');
-  assert.equal(actions.props.style.gap, 7);
+  const statsStyle = flattenStyle(stats.props.style);
+  const actionsStyle = flattenStyle(actions.props.style);
+  assert.equal(statsStyle.flex, 1);
+  assert.equal(statsStyle.minWidth, 0);
+  assert.equal(actionsStyle.flexShrink, 0);
+  assert.equal(actionsStyle.flexDirection, 'row');
+  assert.equal(actionsStyle.alignItems, 'center');
+  assert.equal(actionsStyle.gap, 7);
   assert.deepEqual(childrenOf(actions), [{ type: 'Bell' }, { type: 'Avatar' }]);
 
   const [streak, coins] = childrenOf(stats);

@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пик v2: башня на пьедестале</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · экран курса Learning V2 · 5 новых концепций (№40, владелец 21.10) ─────────
+   зачем: владелец отклонил прежние 5 вариантов («старые макеты переделанные») и просит ПРИНЦИПИАЛЬНО новые подачи экрана «Обучение»:
+   уроки → главы → эпизоды, «Продолжить», входной тест, закрытые эпизоды можно посмотреть, теория, прогресс. Язык 2.0 сохраняем:
+   темы «Сумерки» (ink) и «Океан» (marine), Inter, стекло, плавающий таббар, кольцо Plus. Без старой карты кружков 4×2 и плашек глав.
+   Веса шрифта только 400 и 700 (DESIGN.md). Обводок контейнеров нет (стиль «Тень»: тон, тень, скругление). */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+
+/* ── темы ── */
+.ph.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --top: #F3F4FD; --bot: #ECE4F7; --tx: #17181E; --sec: #595A63;
+  --card: #FCFCFF; --ctl: #E6E7F4; --ctl2: #D8D9EA; --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9);
+  --sh2: 0 26px 50px -22px rgba(51, 51, 87, .55); --acc: oklch(.52 .14 282); --solid: #17181E; --on-solid: #FFFFFF; --good: #2B8A5E;
+  --sb: #111; --dimc: rgba(23, 24, 30, .38); --lz: .55; --cz: .15; --lw: .58; --cw: .14; }
+.ph.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --top: #002936; --bot: #001B17; --tx: #F6FBFD; --sec: #B8CFD6;
+  --card: #002027; --ctl: #123037; --ctl2: #1D3F47; --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06);
+  --sh2: 0 30px 60px -24px rgba(0, 0, 0, .9); --acc: oklch(.82 .11 215); --solid: #F6FBFD; --on-solid: #00131A; --good: #4CC98C;
+  --sb: #fff; --dimc: rgba(0, 0, 0, .55); --lz: .40; --cz: .11; --lw: .78; --cw: .11; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+/* статус-бар поверх обложки — белый в обеих темах */
+.ph.onart .sb { color: #fff; } .ph.onart .sb .sys svg { filter: none !important; }
+
+/* ── общие детали ── */
+.qhd { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.qhd .tt { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; display: flex; align-items: center; gap: 6px; }
+.qhd .tt .io { font-size: 17px; color: var(--sec); margin-top: 3px; }
+.qhd .sp { flex: 1; }
+.qsub { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 2px; }
+.qround { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: var(--card); box-shadow: var(--sh); font-size: 20px; color: var(--tx); flex: none; }
+.qround.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; padding: 0 22px; white-space: nowrap; }
+.qbtn .io { font-size: 18px; }
+.qbtn.solid { background: var(--solid); color: var(--on-solid); }
+.qbtn.white { background: #FFFFFF; color: #121318; }
+.qbtn.ctl { background: var(--ctl); color: var(--tx); height: 50px; border-radius: 25px; font-size: 16px; }
+.qbtn.glass { background: rgba(255, 255, 255, .16); color: #fff; height: 50px; border-radius: 25px; font-size: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.qbtn + .qbtn { margin-top: 12px; }
+.qnote { font-size: 13px; line-height: 17px; color: var(--sec); text-align: center; margin-top: 8px; }
+.qchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.qchip { height: 34px; padding: 0 12px; border-radius: 17px; background: var(--ctl); font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; color: var(--tx); }
+.qchip.glass { background: rgba(255, 255, 255, .16); color: #fff; }
+.qcard { border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.qk { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.qk .io { font-size: 14px; }
+.qt { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.3px; text-wrap: balance; margin-top: 4px; }
+.qm { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qsay { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.qsay .sp { width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 19px; flex: none; color: var(--tx); }
+.qsay .sp.on { background: var(--solid); color: var(--on-solid); }
+.qsay .en { font-size: 19px; line-height: 24px; font-weight: 700; }
+.qsay .ru { font-size: 14px; line-height: 19px; color: var(--sec); }
+.qlock { display: flex; align-items: center; gap: 8px; font-size: 15px; line-height: 20px; color: var(--sec); }
+.qlock .io { font-size: 15px; }
+.stars { display: inline-flex; gap: 2px; font-size: 12px; color: var(--acc); vertical-align: middle; }
+.stars .off { opacity: .28; }
+.rbar { height: 4px; border-radius: 2px; background: var(--ctl); overflow: hidden; }
+.rbar i { display: block; height: 100%; background: var(--acc); border-radius: 2px; }
+
+/* аватар с кольцом Plus (эталон plus-ring-etalon.html): зазор — подложкой, чтобы его не снимала страховка обводок */
+.pav { position: relative; display: inline-flex; border-radius: 50%; padding: 2.5px; flex: none; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.pav .gap { display: flex; padding: 2px; border-radius: 50%; background: var(--top); }
+.pav .gap img { display: block; border-radius: 50%; }
+.pav .pin { position: absolute; right: -2px; bottom: -2px; width: 15px; height: 15px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 8.5px; box-shadow: 0 0 0 2px var(--top); }
+.onart .pav .gap { background: rgba(0, 0, 0, .25); } .onart .pav .pin { box-shadow: 0 0 0 2px rgba(0, 0, 0, .25); }
+
+/* плавающий таббар 2.0 (как в эталоне Главной), подписи из кода: Главная · Обучение · Видео · Сообщество · Настройки */
+.qfade { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; z-index: 30; pointer-events: none; background: linear-gradient(to bottom, color-mix(in srgb, var(--bot) 0%, transparent), var(--bot) 72%); }
+.tbar { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .tbar { background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(246, 246, 253, .92)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .95), 0 20px 40px -18px rgba(51, 51, 87, .5); }
+.th-marine .tbar { background: linear-gradient(180deg, rgba(6, 56, 70, .84), rgba(0, 28, 36, .94)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .16), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.tbar .cap { position: absolute; top: 9px; bottom: 9px; left: calc(9px + (100% - 18px) / 5); width: calc((100% - 18px) / 5); border-radius: 18px; }
+.th-ink .tbar .cap { background: rgba(23, 24, 30, .07); }
+.th-marine .tbar .cap { background: rgba(255, 255, 255, .11); box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .14); }
+.tbar .ti { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 10.5px; line-height: 12px; position: relative; z-index: 1; color: var(--sec); }
+.tbar .ti .io { font-size: 22px; }
+.tbar .ti.on { color: var(--tx); font-weight: 700; }
+
+/* шторка и затемнение */
+.qdim { position: absolute; inset: 0; z-index: 40; background: var(--dimc); }
+.qsheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 45; border-radius: 30px 30px 0 0; background: var(--card); box-shadow: 0 -20px 50px -20px rgba(0, 0, 0, .45); padding: 10px 20px 34px; }
+.qgrab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl2); margin: 0 auto 14px; }
+
+/* кадр эпизода: градиент главы + фраза эпизода (вместо стоп-кадра сериала) */
+.still { position: relative; border-radius: 18px; overflow: hidden; color: #fff; }
+.still .gl { position: absolute; right: -14px; top: -10px; font-size: 120px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.still .ph1 { position: absolute; left: 14px; right: 14px; bottom: 12px; font-size: 21px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; text-wrap: balance; }
+.still .no { position: absolute; left: 10px; top: 10px; height: 26px; padding: 0 9px; border-radius: 13px; background: rgba(0, 0, 0, .24); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.still .no .io { font-size: 12px; }
+.still .st { position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 13px; background: rgba(255, 255, 255, .24); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.still .prog { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .26); }
+.still .prog i { display: block; height: 100%; background: #fff; }
+.still.lock::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .40); }
+.still.lock .no, .still.lock .ph1 { z-index: 1; }
+.still.lock .ph1 { opacity: .78; }
+
+/* ═════ 1 · Сезон ═════ */
+.c1hero { position: relative; height: 512px; border-radius: 0 0 34px 34px; overflow: hidden; color: #fff; }
+.c1hero .gl { position: absolute; right: -54px; top: 64px; font-size: 310px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.c1hero .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 320px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .36)); }
+.c1top { position: absolute; left: 20px; right: 20px; top: 58px; display: flex; align-items: center; gap: 10px; }
+.c1pill { height: 40px; padding: 0 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); font-size: 16px; font-weight: 700; }
+.c1pill .io { font-size: 13px; }
+.c1body { position: absolute; left: 20px; right: 20px; bottom: 22px; }
+.c1kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.c1title { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.5px; margin-top: 6px; text-wrap: balance; }
+.c1desc { font-size: 16px; line-height: 22px; color: rgba(255, 255, 255, .88); margin-top: 8px; text-wrap: pretty; }
+.c1body .qbtn { margin-top: 16px; }
+.c1res { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.c1res .bar { flex: 0 0 64px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.c1res .bar i { display: block; height: 100%; background: #fff; }
+.c1sec { display: flex; align-items: flex-end; gap: 8px; padding: 22px 20px 0; }
+.c1sec .r { padding-bottom: 3px; }
+.c1sec .h { font-size: 21px; line-height: 26px; font-weight: 700; display: flex; align-items: center; gap: 6px; letter-spacing: -.2px; }
+.c1sec .h .io { font-size: 14px; color: var(--sec); }
+.c1sec .r { margin-left: auto; font-size: 15px; color: var(--sec); white-space: nowrap; }
+.c1shelf { display: flex; gap: 12px; padding: 14px 20px 0; overflow: hidden; }
+.c1ep { flex: none; width: 236px; }
+.c1ep .still { height: 133px; box-shadow: var(--sh); }
+.c1ep .t { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.c1ep .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 4px; display: flex; align-items: center; gap: 6px; }
+.c1ep .m .io { font-size: 13px; }
+.c1extra { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; padding: 18px 20px 0; }
+.c1x { border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 14px; }
+.c1x .io { font-size: 24px; color: var(--acc); }
+.c1x b { display: block; font-size: 16px; line-height: 21px; margin-top: 10px; }
+.c1x span { font-size: 14px; color: var(--sec); }
+.c1exam { flex: none; width: 300px; }
+.c1exam .still { height: 300px; border-radius: 22px; box-shadow: var(--sh2); }
+.c1exam .ex { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 1; }
+.c1exam .ex .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.c1exam .ex .h { font-size: 26px; line-height: 31px; font-weight: 700; margin-top: 4px; }
+.c1exam .ex .f { display: flex; gap: 8px; margin-top: 12px; }
+.c1exam .ex .f span { height: 30px; padding: 0 10px; border-radius: 15px; background: rgba(255, 255, 255, .18); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; }
+.c1exam .ex .qbtn { margin-top: 14px; height: 48px; border-radius: 24px; font-size: 16px; }
+.c1exam .seal { position: absolute; left: 18px; top: 18px; width: 52px; height: 52px; border-radius: 16px; background: rgba(255, 255, 255, .18); display: flex; align-items: center; justify-content: center; font-size: 26px; z-index: 1; }
+.c1after { padding: 14px 20px 0; font-size: 15px; line-height: 21px; color: var(--sec); }
+.c1nav { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.qpills { display: flex; gap: 8px; overflow: hidden; margin: 16px -20px 0; padding: 0 20px; }
+.qpill { flex: none; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--ctl); display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: var(--tx); }
+.qpill.on { background: var(--solid); color: var(--on-solid); }
+.qpill.lock { color: var(--sec); }
+.qpill .io { font-size: 13px; }
+.c1row { display: flex; gap: 14px; align-items: center; padding: 9px 0; }
+.c1row .still { width: 132px; height: 74px; border-radius: 13px; flex: none; }
+.c1row .still .ph1 { font-size: 14px; line-height: 17px; left: 10px; right: 8px; bottom: 8px; }
+.c1row .still .st { width: 22px; height: 22px; top: 7px; right: 7px; font-size: 12px; }
+.c1row .n { font-size: 13px; line-height: 17px; color: var(--sec); }
+.c1row .t { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 1px; text-wrap: balance; }
+.c1row .m { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 3px; display: flex; gap: 6px; align-items: center; }
+.c1row .m .io { font-size: 13px; }
+.c1row.cur .n { color: var(--acc); font-weight: 700; }
+.c1sheetart { height: 196px; border-radius: 20px; }
+.c1sheetart .ph1 { font-size: 30px; line-height: 34px; }
+
+/* ═════ 2 · Циферблат ═════ */
+.c2wrap { position: relative; width: 370px; height: 370px; margin: 8px auto 0; }
+.c2wrap.sm { width: 300px; height: 300px; }
+.c2wrap svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.c2center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 86px; }
+.c2wrap.sm .c2center { padding: 0 70px; }
+.c2center .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.c2center .h { font-size: 22px; line-height: 27px; font-weight: 700; letter-spacing: -.3px; margin-top: 4px; text-wrap: balance; }
+.c2wrap.sm .c2center .h { font-size: 19px; line-height: 24px; }
+.c2center .m { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 6px; }
+.tk { stroke-linecap: round; stroke-width: 5; }
+.tk.done { stroke: var(--acc); } .tk.fut { stroke: var(--sec); opacity: .38; } .tk.far { stroke: var(--sec); opacity: .2; } .tk.open { stroke: var(--acc); opacity: .42; }
+.band { fill: none; stroke: var(--acc); stroke-opacity: .14; stroke-width: 36; stroke-linecap: round; }
+.dm.pass { fill: var(--acc); } .dm.open { fill: none; stroke: var(--tx); stroke-width: 2.2; } .dm.lock { fill: var(--sec); opacity: .22; }
+.cur { fill: var(--acc); } .curg { fill: var(--acc); fill-opacity: .22; }
+.knob { fill: none; stroke: var(--tx); stroke-width: 2.6; }
+.chi { font-family: IoniconsApp; font-size: 20px; fill: var(--sec); text-anchor: middle; dominant-baseline: central; }
+.chi.sel { fill: var(--tx); } .chi.lk { opacity: .45; }
+.c2lbl { font-size: 15px; font-weight: 700; fill: var(--sec); text-anchor: middle; dominant-baseline: central; font-family: Inter, system-ui, sans-serif; }
+.c2lbl.cur { fill: var(--acc); } .c2lbl.lk { opacity: .55; }
+.c2card { margin-top: 10px; }
+.c2card .top { display: flex; align-items: center; gap: 8px; }
+.c2card .top .r { margin-left: auto; font-size: 14px; color: var(--sec); white-space: nowrap; }
+.c2card .qbtn { margin-top: 16px; }
+.c2facts { display: flex; gap: 8px; margin-top: 14px; }
+.c2facts div { flex: 1; border-radius: 16px; background: var(--ctl); padding: 10px 8px; text-align: center; }
+.c2facts b { display: block; font-size: 20px; line-height: 24px; } .c2facts span { font-size: 13px; color: var(--sec); }
+.c2list { margin-top: 4px; }
+.c2li { display: flex; align-items: center; gap: 12px; padding: 11px 0; box-shadow: inset 0 -1px 0 var(--ctl); }
+.c2li:last-child { box-shadow: none; }
+.c2li .n { width: 28px; font-size: 15px; font-weight: 700; color: var(--sec); text-align: center; flex: none; }
+.c2li .t { flex: 1; font-size: 16px; line-height: 21px; font-weight: 700; }
+.c2li .s { font-size: 14px; color: var(--sec); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.c2li.cur .n, .c2li.cur .s { color: var(--acc); }
+.c2li.lk .t { color: var(--sec); font-weight: 400; }
+
+/* ═════ 3 · Волна ═════ */
+.c3card { position: relative; border-radius: 28px; overflow: hidden; color: #fff; padding: 16px; margin-top: 14px; box-shadow: var(--sh2); }
+.c3card .gl { position: absolute; right: -30px; top: -26px; font-size: 190px; color: rgba(255, 255, 255, .11); transform: rotate(-8deg); }
+.c3card > * { position: relative; }
+.c3card .top { display: flex; align-items: center; gap: 8px; }
+.c3card .top .r { margin-left: auto; font-size: 14px; color: rgba(255, 255, 255, .86); white-space: nowrap; }
+.c3card .h { font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; margin-top: 14px; text-wrap: balance; }
+.c3card .qsay .sp { background: rgba(255, 255, 255, .18); color: #fff; }
+.c3card .qsay .ru { color: rgba(255, 255, 255, .84); }
+.c3card .qbtn { margin-top: 16px; }
+.c3card .qchips { margin-top: 12px; }
+.c3card .lk { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 15px; color: rgba(255, 255, 255, .88); }
+.c3card.mute::before { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .30); }
+.c3sec { display: flex; align-items: baseline; gap: 8px; margin-top: 22px; }
+.c3sec .h { font-size: 18px; line-height: 23px; font-weight: 700; }
+.c3sec .r { margin-left: auto; font-size: 15px; color: var(--sec); white-space: nowrap; }
+.c3wave { position: relative; margin-top: 10px; }
+.c3wave svg { display: block; width: 390px; height: 120px; overflow: visible; }
+.wf { fill: var(--ctl2); } .wf.far { opacity: .5; }
+.wph { stroke: var(--tx); stroke-width: 2; } .wph.ghost { stroke-dasharray: 3 4; stroke-width: 1.6; }
+.wkn { fill: var(--tx); } .wkn.ghost { fill: var(--top); stroke: var(--tx); stroke-width: 2; }
+.c3lbl { position: relative; height: 18px; margin-top: 6px; }
+.c3lbl span { position: absolute; transform: translateX(-50%); font-size: 13px; line-height: 18px; color: var(--sec); }
+.c3lbl span.on { color: var(--tx); font-weight: 700; }
+.c3teach { font-size: 14px; line-height: 20px; color: var(--sec); margin-top: 12px; }
+.c3row { display: flex; align-items: center; gap: 12px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 12px 14px; margin-top: 16px; }
+.c3row .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--acc); flex: none; }
+.c3row b { display: block; font-size: 16px; line-height: 21px; } .c3row span { font-size: 14px; color: var(--sec); }
+.c3row .io.chev { margin-left: auto; font-size: 16px; color: var(--sec); }
+.c3zoom svg { display: block; width: 390px; height: 190px; overflow: visible; }
+.c3zl { font-size: 14px; font-weight: 700; fill: var(--sec); text-anchor: middle; font-family: Inter, system-ui, sans-serif; }
+.c3zl.cur { fill: var(--acc); }
+
+/* ═════ 4 · Колода ═════ */
+.c4deck { position: relative; height: 492px; margin-top: 14px; }
+.c4card { position: absolute; top: 0; left: 34px; width: 322px; height: 476px; border-radius: 32px; overflow: hidden; color: #fff; box-shadow: var(--sh2); padding: 18px; display: flex; flex-direction: column; }
+.c4card .gl { position: absolute; right: -40px; top: 40px; font-size: 230px; color: rgba(255, 255, 255, .11); transform: rotate(-8deg); }
+.c4card > * { position: relative; }
+.c4card .top { display: flex; align-items: center; gap: 8px; }
+.c4card .top .r { margin-left: auto; font-size: 14px; color: rgba(255, 255, 255, .86); white-space: nowrap; }
+.c4card .big { font-size: 36px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: auto; text-wrap: balance; }
+.c4card .ru { font-size: 16px; line-height: 21px; color: rgba(255, 255, 255, .86); margin-top: 6px; }
+.c4card .h { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 14px; text-wrap: balance; }
+.c4card .qchips { margin-top: 12px; }
+.c4card .qbtn { margin-top: 16px; }
+.c4card .lk { display: flex; align-items: center; gap: 8px; font-size: 15px; color: rgba(255, 255, 255, .9); margin-top: 12px; }
+.c4card.mute::before { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .32); }
+.c4card.b1 { transform: translateX(18px) scale(.95); transform-origin: 100% 50%; opacity: .92; }
+.c4card.b2 { transform: translateX(34px) scale(.90); transform-origin: 100% 50%; opacity: .7; }
+.c4card.prev { transform: translateX(-314px) scale(.95); transform-origin: 100% 50%; opacity: .9; }
+.c4card.next { transform: translateX(314px) scale(.95); transform-origin: 0 50%; opacity: .9; }
+.c4dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 2px; }
+.c4dots i { width: 8px; height: 8px; border-radius: 4px; background: var(--ctl2); }
+.c4dots i.d { background: var(--acc); opacity: .55; }
+.c4dots i.c { width: 26px; background: var(--tx); }
+.c4dots i.x { width: 10px; height: 10px; border-radius: 2px; transform: rotate(45deg); background: none; box-shadow: inset 0 0 0 2px var(--sec); margin: 0 3px; }
+.c4dots i.x.c { background: var(--tx); box-shadow: none; width: 12px; height: 12px; }
+.c4tools { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
+.c4fan { position: relative; height: 300px; margin-top: 18px; }
+.fcard { position: absolute; left: 50%; bottom: 52px; width: 88px; height: 132px; margin-left: -44px; border-radius: 16px; overflow: hidden; color: #fff; transform-origin: 50% 220%; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .55); padding: 10px; display: flex; flex-direction: column; }
+.fcard .n { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.fcard.cur { width: 112px; height: 160px; margin-left: -56px; }
+.fcard .n .io { font-size: 12px; }
+.fcard .p { font-size: 14px; line-height: 17px; font-weight: 700; margin-top: auto; }
+.fcard.lock::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .38); }
+.fcard.lock > * { position: relative; z-index: 1; opacity: .85; }
+.c4sel { text-align: center; }
+.c4sel .k { font-size: 14px; color: var(--sec); }
+.c4sel .h { font-size: 21px; line-height: 27px; font-weight: 700; margin-top: 2px; }
+.c4sel .qbtn { margin-top: 14px; }
+.c4exam { background: radial-gradient(90% 60% at 80% 0%, rgba(142, 124, 255, .55), transparent 60%), radial-gradient(80% 60% at 0% 100%, rgba(127, 224, 216, .35), transparent 60%), linear-gradient(160deg, #262447, #12142A 70%); }
+.th-marine .c4exam { background: radial-gradient(90% 60% at 80% 0%, rgba(127, 224, 216, .40), transparent 60%), radial-gradient(80% 60% at 0% 100%, rgba(142, 124, 255, .35), transparent 60%), linear-gradient(160deg, #0B3442, #04141C 70%); }
+.c4exam .seal { width: 64px; height: 64px; border-radius: 20px; background: rgba(255, 255, 255, .16); display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.c4exam .f { display: flex; gap: 8px; margin-top: 14px; }
+.c4exam .f span { height: 30px; padding: 0 9px; border-radius: 15px; background: rgba(255, 255, 255, .16); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; white-space: nowrap; }
+
+/* ═════ 5 · Разговорник ═════ */
+.c5ch { margin-top: 22px; }
+.c5h { display: flex; align-items: center; gap: 8px; }
+.c5h .t { font-size: 15px; line-height: 20px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.c5h .t .io { font-size: 14px; }
+.c5h .r { margin-left: auto; font-size: 14px; color: var(--sec); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.c5h .r .io { font-size: 13px; color: var(--good); }
+.c5scene { font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.3px; margin-top: 4px; }
+.c5wall { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 10px; align-items: baseline; }
+.ph5 { font-size: 28px; line-height: 38px; font-weight: 700; letter-spacing: -.4px; position: relative; white-space: nowrap; }
+.ph5 sup { font-size: 12px; line-height: 12px; font-weight: 700; color: var(--sec); margin-right: 4px; vertical-align: super; letter-spacing: 0; }
+.ph5.cur { color: var(--acc); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 7px; }
+.ph5 .pl { display: inline-flex; width: 30px; height: 30px; border-radius: 15px; background: var(--acc); color: var(--on-solid); align-items: center; justify-content: center; font-size: 13px; margin-left: 6px; vertical-align: 4px; }
+.th-ink .ph5 .pl { color: #fff; }
+.ph5.lk .w { filter: blur(6px); opacity: .5; }
+.ph5.lk sup { opacity: .7; }
+.c5wall.sm .ph5 { font-size: 18px; line-height: 27px; letter-spacing: -.2px; color: var(--sec); }
+.c5wall.sm .ph5 sup { font-size: 10px; }
+.c5seal { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 20px; background: var(--ctl); font-size: 15px; font-weight: 700; margin-top: 14px; }
+.c5seal .io { font-size: 16px; color: var(--acc); }
+.c5seal.pass { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+.c5seal.pass .io { color: var(--good); }
+.c5ghost { display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 10px; }
+.c5ghost i { height: 22px; border-radius: 11px; background: var(--ctl); opacity: .8; }
+.c5mini { position: absolute; left: 12px; right: 12px; bottom: 104px; height: 66px; border-radius: 22px; z-index: 34; display: flex; align-items: center; gap: 12px; padding: 0 10px 0 10px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .c5mini { background: linear-gradient(180deg, rgba(255, 255, 255, .86), rgba(246, 246, 253, .94)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .95), 0 18px 36px -18px rgba(51, 51, 87, .5); }
+.th-marine .c5mini { background: linear-gradient(180deg, rgba(6, 56, 70, .86), rgba(0, 28, 36, .95)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255, 255, 255, .16), 0 22px 44px -14px rgba(0, 0, 0, .85); }
+.c5mini .art { width: 46px; height: 46px; border-radius: 14px; flex: none; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; }
+.c5mini .tx { flex: 1; min-width: 0; }
+.c5mini .tx b { display: block; font-size: 15px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.c5mini .tx span { font-size: 13px; line-height: 17px; color: var(--sec); white-space: nowrap; }
+.c5mini .pl { width: 46px; height: 46px; border-radius: 23px; background: var(--solid); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 19px; flex: none; }
+.c5intro { font-size: 16px; line-height: 23px; color: var(--sec); margin-top: 10px; text-wrap: pretty; }
+.qpop { position: absolute; left: 16px; right: 16px; z-index: 45; border-radius: 26px; background: var(--card); box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .55); padding: 16px; }
+.qpop::before { content: ''; position: absolute; top: -8px; width: 18px; height: 18px; border-radius: 4px; background: var(--card); transform: rotate(45deg); left: var(--ax, 60px); }
+.qdim.soft { background: color-mix(in srgb, var(--dimc) 70%, transparent); }
+.c5ly .ln { margin-top: 18px; }
+.c5ly .ln .w { display: block; font-size: 30px; line-height: 37px; font-weight: 700; letter-spacing: -.5px; }
+.c5ly .ln small { display: flex; align-items: center; gap: 6px; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 3px; }
+.c5ly .ln small .io { font-size: 12px; }
+.c5ly .ln.past .w { opacity: .42; }
+.c5ly .ln.cur .w { color: var(--tx); }
+.c5ly .ln.cur small { color: var(--acc); font-weight: 700; }
+.c5ly .ln.n1 .w { filter: blur(2px); opacity: .5; }
+.c5ly .ln.n2 .w { filter: blur(4px); opacity: .42; }
+.c5ly .ln.n3 .w { filter: blur(6px); opacity: .35; }
+.c5art { position: relative; height: 150px; border-radius: 24px; overflow: hidden; color: #fff; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; margin-top: 10px; }
+.c5art .gl { position: absolute; right: -24px; top: -20px; font-size: 150px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.c5art > * { position: relative; }
+.c5art .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.c5art .h { font-size: 24px; line-height: 29px; font-weight: 700; margin-top: 2px; }
+.c5exam { margin-top: 26px; border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 18px; }
+.c5exam .seal { width: 52px; height: 52px; border-radius: 16px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--acc); }
+.c5exam .h { font-size: 24px; line-height: 30px; font-weight: 700; margin-top: 12px; }
+.c5exam p { font-size: 16px; line-height: 23px; color: var(--sec); margin: 8px 0 0; }
+.c5exam .qbtn { margin-top: 16px; }
+
+/* ── страница ── */
+.thm { padding: 14px 0 0; display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+.chp { height: 38px; padding: 0 14px; border-radius: 19px; background: #1C1C1F; color: #C9C9CF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; cursor: pointer; }
+.chp.on { background: #F2F1F6; color: #0B0C0E; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110, 200, 140, .16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.cmp { border-collapse: collapse; width: 100%; max-width: 1400px; font-size: 14px; line-height: 20px; color: #C9C9CF; margin-top: 6px; }
+.cmp th, .cmp td { text-align: left; vertical-align: top; padding: 11px 16px 11px 0; box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .08); }
+.cmp th { color: #8E8E96; font-size: 13px; font-weight: 700; }
+.cmp td b { color: #F2F2F4; }
+@media (prefers-reduced-motion: reduce) { .ph *, .ph *::before, .ph *::after { transition: none !important; animation: none !important; } }
+
+/* ───────── PhraseMan 2.0 · Главная · 4 новые концепции (№54, владелец 21.10) ─────────
+   зачем: «чтобы она реально красивее стала во множество раз, несколько вариантов». Не косметика: глубина, свет, иерархия, движение.
+   Блоки — из кода HomeV2 (шапка: серия, монеты; «Продолжить»; плитки; «Сегодня»; «Фраза дня»; Пик; строка «вместе» друзей).
+   Токены тем, таббар и кольцо Plus — из course-new-concepts (concepts.css). Классы с префиксом hm-/a-/b-/c-/d-, без .dim. */
+
+/* ── общее ── */
+.hm-top { display: flex; align-items: center; gap: 8px; }
+.hm-pill { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; background: var(--card); box-shadow: var(--sh); font-size: 15px; font-weight: 700; color: var(--tx); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.hm-pill img { width: 20px; height: 20px; border-radius: 50%; display: block; }
+.hm-pill .io { font-size: 18px; }
+.hm-pill.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.hm-pill.ember { color: oklch(.64 .19 28); }
+.th-marine .hm-pill.ember { color: oklch(.76 .15 30); }
+.hm-pill.glass.ember { color: #FFB4A3; }
+.hm-pill .sub { font-size: 12px; font-weight: 700; opacity: .8; }
+.hm-bell { position: relative; }
+.hm-bell i.dot { position: absolute; right: 9px; top: 9px; width: 8px; height: 8px; border-radius: 4px; background: oklch(.64 .19 28); box-shadow: 0 0 0 2px var(--card); }
+.hm-sp { flex: 1; }
+.hm-off { display: flex; align-items: center; gap: 10px; border-radius: 16px; padding: 10px 14px; font-size: 14px; line-height: 19px; background: var(--card); box-shadow: var(--sh); color: var(--tx); }
+.hm-off .io { font-size: 18px; color: var(--sec); }
+.hm-off b { font-weight: 700; }
+.hm-off.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2); backdrop-filter: blur(16px); }
+.hm-off.glass .io { color: #fff; }
+.hm-h { display: flex; align-items: baseline; gap: 8px; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.hm-h span { margin-left: auto; font-size: 15px; font-weight: 400; color: var(--sec); }
+.hm-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--tx) 7%, transparent); }
+.hm-row:last-child { box-shadow: none; }
+.hm-row .ck { width: 26px; height: 26px; border-radius: 13px; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--tx) 22%, transparent); display: flex; align-items: center; justify-content: center; flex: none; font-size: 14px; color: transparent; }
+.hm-row .ck.on { background: var(--acc); box-shadow: none; color: var(--on-solid); }
+.th-ink .hm-row .ck.on { color: #fff; }
+.hm-row .ic { width: 36px; height: 36px; border-radius: 11px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; color: var(--tx); }
+.hm-row .tx { flex: 1; min-width: 0; }
+.hm-row .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.hm-row .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.hm-row .n { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hm-row.done .t { color: var(--sec); }
+.hm-row.urgent .n { color: oklch(.64 .19 28); }
+.th-marine .hm-row.urgent .n { color: oklch(.76 .15 30); }
+.hm-pair { display: inline-flex; flex: none; }
+.hm-pair > * + * { margin-left: -10px; }
+.hm-coin { border-radius: 50%; display: block; box-shadow: 0 0 0 2px var(--card); }
+.hm-chips { display: flex; gap: 8px; }
+.hm-chips .qchip { height: 36px; }
+.hm-alt { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.hm-art { display: block; object-fit: contain; pointer-events: none; }
+.hm-rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110, 200, 140, .16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.hm-why { max-width: 1100px; margin-top: 14px; font-size: 15px; line-height: 23px; color: #C9C9CF; }
+.hm-why b { color: #F2F2F4; }
+.hm-why ul { margin: 8px 0 0; padding-left: 20px; }
+.hm-why li { margin: 4px 0; }
+
+/* ═════ A · Сцена ═════ */
+.a-stage { position: relative; height: 540px; border-radius: 0 0 36px 36px; overflow: hidden; color: #fff; }
+.th-ink .a-stage { background: radial-gradient(70% 50% at 18% 0%, oklch(.66 .13 300 / .9), transparent 70%), linear-gradient(165deg, oklch(.47 .14 282) 0%, oklch(.28 .10 276) 100%); }
+.th-marine .a-stage { background: radial-gradient(70% 50% at 18% 0%, oklch(.55 .10 200 / .85), transparent 70%), linear-gradient(165deg, oklch(.36 .08 214) 0%, oklch(.15 .05 222) 100%); }
+.a-stage.eve { background: radial-gradient(70% 50% at 82% 4%, oklch(.58 .17 25 / .75), transparent 70%), linear-gradient(170deg, oklch(.30 .09 285) 0%, oklch(.14 .05 280) 100%) !important; }
+.a-stage .a-art { position: absolute; right: -26px; top: 92px; width: 214px; height: 214px; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .45)); opacity: .96; }
+.a-stage .a-glow { position: absolute; right: 0; top: 96px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 70%); }
+.a-stage .a-scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .40)); }
+.a-top { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 2; }
+.a-body { position: absolute; left: 20px; right: 20px; bottom: 58px; z-index: 2; }
+.a-kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.a-title { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: 4px; text-wrap: balance; }
+.a-prog { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; color: rgba(255, 255, 255, .88); }
+.a-prog .bar { flex: 0 0 72px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.a-prog .bar i { display: block; height: 100%; background: #fff; }
+.a-cta { display: flex; gap: 10px; margin-top: 16px; }
+.a-cta .qbtn { flex: 1; margin: 0; }
+.a-cta .qbtn.glass { flex: none; width: 54px; height: 54px; padding: 0; border-radius: 27px; }
+.a-panel { position: relative; z-index: 3; margin: -38px 16px 0; border-radius: 28px; background: var(--card); box-shadow: var(--sh2); padding: 14px 16px 6px; }
+.a-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 16px 0; }
+.a-tile { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 8px 8px 12px; text-align: center; font-size: 15px; font-weight: 700; }
+.a-tile img { width: 100%; height: 78px; }
+.a-tile small { display: block; font-size: 12px; font-weight: 700; color: var(--sec); margin-top: 1px; }
+.a-pod { display: flex; align-items: center; gap: 12px; margin: 12px 16px 0; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 10px 14px 10px 10px; }
+.a-pod img.art { width: 56px; height: 56px; }
+.a-pod .tx { flex: 1; min-width: 0; }
+.a-pod .k { font-size: 13px; font-weight: 700; color: var(--sec); }
+.a-pod .p { font-size: 18px; line-height: 23px; font-weight: 700; margin-top: 1px; }
+.a-pod .s { font-size: 13px; color: var(--sec); margin-top: 3px; display: flex; align-items: center; gap: 6px; }
+.a-ember { position: absolute; left: -40px; bottom: -60px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, oklch(.66 .19 28 / .55), transparent 68%); }
+.a-count { font-size: 15px; font-weight: 700; color: #FFD0C4; margin-top: 8px; display: flex; align-items: center; gap: 6px; }
+
+/* ═════ B · Виджеты ═════ */
+.b-head { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.b-head .d { font-size: 15px; line-height: 20px; color: var(--sec); }
+.b-head .t { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.b-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.b-w { position: relative; border-radius: 26px; padding: 14px; background: var(--card); box-shadow: var(--sh); overflow: hidden; min-height: 148px; display: flex; flex-direction: column; }
+.b-w.big { grid-column: span 2; min-height: 218px; color: #fff; padding: 16px; }
+.b-w.wide { grid-column: span 2; min-height: 0; }
+.b-w .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; gap: 6px; }
+.b-w .k .io { font-size: 15px; }
+.b-w .v { font-size: 46px; line-height: 50px; font-weight: 800; letter-spacing: -1.4px; margin-top: auto; font-variant-numeric: tabular-nums; }
+.b-w .v small { font-size: 17px; font-weight: 700; letter-spacing: 0; color: var(--sec); margin-left: 4px; }
+.b-w .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.b-w.big .art { position: absolute; right: -24px; top: 6px; width: 210px; height: 210px; filter: drop-shadow(0 22px 30px rgba(0, 0, 0, .4)); }
+.b-w.big .tx { position: relative; margin-top: auto; max-width: 70%; }
+.b-w.big .kk { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.b-w.big .h { font-size: 26px; line-height: 31px; font-weight: 700; letter-spacing: -.4px; margin-top: 2px; text-wrap: balance; }
+.b-w.big .pl { position: absolute; right: 16px; bottom: 16px; width: 58px; height: 58px; border-radius: 29px; background: #fff; color: #121318; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .55); }
+.b-w.big .bar { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; margin-top: 10px; width: 140px; }
+.b-w.big .bar i { display: block; height: 100%; background: #fff; }
+.b-w.big .lk { position: relative; display: flex; align-items: center; gap: 8px; font-size: 14px; margin-top: 8px; color: rgba(255, 255, 255, .9); }
+.b-flame { position: absolute; right: -14px; top: -10px; font-size: 104px; color: color-mix(in srgb, oklch(.64 .19 28) 26%, transparent); }
+.b-w.ember { background: linear-gradient(160deg, oklch(.36 .12 25), oklch(.20 .07 15)); color: #fff; }
+.b-w.ember .k, .b-w.ember .s, .b-w.ember .v small { color: rgba(255, 255, 255, .86); }
+.b-w.ember .b-flame { color: rgba(255, 170, 150, .35); }
+.b-en { display: flex; gap: 4px; margin-top: 8px; }
+.b-en i { flex: 1; height: 6px; border-radius: 3px; background: var(--ctl); }
+.b-en i.on { background: var(--acc); }
+.b-today { display: flex; gap: 10px; margin-top: 12px; }
+.b-today > div { flex: 1; min-width: 0; }
+.b-today .tt { font-size: 14px; line-height: 18px; font-weight: 700; }
+.b-today .nn { font-size: 13px; color: var(--sec); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.b-today .tr { height: 6px; border-radius: 3px; background: var(--ctl); overflow: hidden; margin-top: 8px; }
+.b-today .tr i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
+.b-w .art2 { position: absolute; right: 8px; top: 8px; width: 62px; height: 62px; }
+.b-w .ph5 { font-size: 20px; line-height: 25px; font-weight: 700; margin-top: auto; max-width: 70%; letter-spacing: -.3px; }
+.b-w.mute { opacity: .55; }
+.b-plus { background: linear-gradient(140deg, rgba(142, 124, 255, .32), rgba(111, 168, 255, .14) 60%, rgba(127, 224, 216, .10)), var(--card); }
+
+/* ═════ C · Один шаг ═════ */
+.c-stage { position: relative; margin: 0 -20px; padding: 18px 20px 0; min-height: 560px; }
+.c-light { position: absolute; left: 50%; top: 30px; width: 420px; height: 420px; margin-left: -210px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 34%, transparent), transparent 66%); pointer-events: none; }
+.c-light.ember { background: radial-gradient(circle, oklch(.66 .19 28 / .34), transparent 66%); }
+.c-focus { position: relative; text-align: center; padding-top: 44px; }
+.c-focus .k { font-size: 15px; line-height: 20px; color: var(--sec); }
+.c-focus .cph { font-size: 50px; line-height: 56px; font-weight: 700; letter-spacing: -1.2px; margin-top: 18px; text-wrap: balance; }
+.c-focus .ru { font-size: 20px; line-height: 26px; color: var(--sec); margin-top: 6px; }
+.c-go { width: 104px; height: 104px; border-radius: 52px; margin: 30px auto 0; background: var(--solid); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 24px 50px -18px color-mix(in srgb, var(--acc) 70%, transparent), 0 0 0 10px color-mix(in srgb, var(--acc) 12%, transparent); }
+.c-go.off { background: var(--ctl); color: var(--sec); box-shadow: none; }
+.c-sub { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 14px; }
+.c-sub b { color: var(--tx); }
+.c-focus .hm-chips { justify-content: center; margin-top: 16px; }
+.c-drawer { position: absolute; left: 0; right: 0; bottom: 0; z-index: 32; border-radius: 30px 30px 0 0; padding: 10px 16px 120px; backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); }
+.th-ink .c-drawer { background: linear-gradient(180deg, rgba(255, 255, 255, .86), rgba(246, 246, 253, .96)); box-shadow: 0 -18px 40px -24px rgba(51, 51, 87, .5), inset 0 1px 0 rgba(255, 255, 255, .95); }
+.th-marine .c-drawer { background: linear-gradient(180deg, rgba(6, 56, 70, .88), rgba(0, 28, 36, .97)); box-shadow: 0 -18px 40px -24px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .12); }
+.c-drawer .gb { width: 40px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--tx) 22%, transparent); margin: 0 auto 10px; }
+.c-drawer .hd { display: flex; align-items: baseline; font-size: 17px; font-weight: 700; padding: 0 4px; }
+.c-drawer .hd span { margin-left: auto; font-size: 14px; font-weight: 400; color: var(--sec); }
+.c-mini { display: flex; gap: 10px; margin-top: 10px; overflow: hidden; }
+.c-mc { flex: none; width: 150px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 10px 12px; }
+.c-mc .t { font-size: 14px; line-height: 18px; font-weight: 700; }
+.c-mc .s { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 2px; }
+.c-mc .tr { height: 5px; border-radius: 3px; background: var(--ctl); overflow: hidden; margin-top: 8px; }
+.c-mc .tr i { display: block; height: 100%; background: var(--acc); }
+.c-mc.urgent .s { color: oklch(.64 .19 28); }
+.th-marine .c-mc.urgent .s { color: oklch(.76 .15 30); }
+.c-mc .mute { opacity: .5; }
+
+/* ═════ D · День ═════ */
+.d-head { margin-top: 12px; }
+.d-head .w { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; }
+.d-head .dt { font-size: 15px; color: var(--sec); }
+.d-line { position: relative; margin-top: 14px; padding-left: 30px; }
+.d-line::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 0; width: 2px; border-radius: 1px; background: color-mix(in srgb, var(--tx) 12%, transparent); }
+.d-sec { position: relative; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); margin: 14px 0 6px; }
+.d-sec::before { content: ''; position: absolute; left: -25px; top: 4px; width: 10px; height: 10px; border-radius: 5px; background: var(--bg-dot, color-mix(in srgb, var(--tx) 22%, transparent)); }
+.d-sec.now { color: var(--acc); }
+.d-sec.now::before { left: -27px; top: 1px; width: 14px; height: 14px; border-radius: 7px; background: var(--acc); box-shadow: 0 0 0 6px color-mix(in srgb, var(--acc) 22%, transparent); }
+.d-sec.ember { color: oklch(.64 .19 28); }
+.th-marine .d-sec.ember { color: oklch(.76 .15 30); }
+.d-sec.ember::before { background: oklch(.64 .19 28); box-shadow: 0 0 0 6px oklch(.64 .19 28 / .22); left: -27px; top: 1px; width: 14px; height: 14px; border-radius: 7px; }
+.d-item { display: flex; align-items: center; gap: 12px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 10px 12px; margin-top: 8px; }
+.d-item .tx { flex: 1; min-width: 0; }
+.d-item .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.d-item .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.d-item .n { font-size: 14px; font-weight: 700; color: var(--sec); white-space: nowrap; }
+.d-item img.art { width: 44px; height: 44px; }
+.d-item.done { background: transparent; box-shadow: none; padding: 6px 2px; }
+.d-item.done .t { color: var(--sec); font-weight: 400; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--sec) 60%, transparent); }
+.d-item.done .ok { width: 22px; height: 22px; border-radius: 11px; background: var(--acc); color: var(--on-solid); display: flex; align-items: center; justify-content: center; font-size: 13px; flex: none; }
+.th-ink .d-item.done .ok { color: #fff; }
+.d-now { position: relative; border-radius: 26px; overflow: hidden; color: #fff; padding: 16px; margin-top: 8px; box-shadow: var(--sh2); }
+.d-now .art { position: absolute; right: -20px; top: -6px; width: 170px; height: 170px; filter: drop-shadow(0 20px 26px rgba(0, 0, 0, .4)); }
+.d-now > * { position: relative; }
+.d-now .k { font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .86); }
+.d-now .h { font-size: 24px; line-height: 29px; font-weight: 700; letter-spacing: -.3px; margin-top: 2px; max-width: 66%; text-wrap: balance; }
+.d-now .p { font-size: 14px; color: rgba(255, 255, 255, .88); margin-top: 6px; }
+.d-now .qbtn { margin-top: 14px; height: 50px; border-radius: 25px; }
+.d-now .hm-chips { margin-top: 10px; }
+.d-now .hm-chips .qchip { background: rgba(255, 255, 255, .16); color: #fff; }
+/* серия в шапке — две строки, как в коде (значение и «Серия» / «Сегодня ещё нет») */
+.hm-pill.two { height: 42px; border-radius: 21px; padding: 0 12px 0 10px; }
+.hm-pill.two .vv { display: flex; flex-direction: column; line-height: 1.1; }
+.hm-pill.two .vv b { font-size: 15px; font-weight: 700; }
+.hm-pill.two .vv small { font-size: 11px; font-weight: 700; opacity: .78; }
+.hm-top .hm-pill { flex: none; }
+.hm-pill i.dv { width: 1px; height: 18px; background: currentColor; opacity: .22; margin: 0 4px; }
+.hm-emb { color: oklch(.64 .19 28); }
+.th-marine .hm-emb, .glass .hm-emb { color: #FFB4A3; }
+
+/* ───────── Пик в языке «Сцены» (владелец 21.10 ~00:00: «в таком же стиле, как вот Сцена, мне показать макеты раздела ПИК») ─────────
+   Основа — утверждённая Главная A «Сцена»: сцена со светом и глубиной, герой справа, крупный заголовок, стеклянная панель наезжает
+   на сцену, тёплый свет для вечера и угрозы. Классы с префиксом pk- (у kit.css заняты .dim, .ph, .row, .opt, .tile, .pill, .cta и др.). */
+.pk-top { display: flex; align-items: center; gap: 12px; min-height: 40px; }
+.pk-seg { display: flex; gap: 22px; font-size: 17px; line-height: 22px; font-weight: 700; color: rgba(255, 255, 255, .62); }
+.pk-seg span { padding-bottom: 7px; }
+.pk-seg span.on { color: #fff; box-shadow: inset 0 -3px 0 #fff; }
+/* зачем (приказ владельца 01.10): энергия в шапке Пика — только значок и число, без капсулы */
+.pk-en { margin-left: auto; display: inline-flex; align-items: center; gap: 3px; color: #fff; font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pk-en .io { font-size: 17px; }
+.pk-en.zero { color: #FFB4A3; }
+.pk-off { margin-top: 12px; }
+.pk-rew { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pk-rew span { height: 30px; padding: 0 11px 0 6px; border-radius: 15px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #fff; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.pk-rew span.np { padding-left: 11px; }
+.pk-rew img { width: 20px; height: 20px; border-radius: 50%; display: block; }
+.pk-rew .io { font-size: 14px; }
+.pk-spin { width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 0 0 2.5px rgba(18, 19, 24, .16); border-top: 2.5px solid #121318; flex: none; }
+.qbtn.pk-wait { background: rgba(255, 255, 255, .82); }
+.qbtn.pk-off { background: rgba(255, 255, 255, .16); color: rgba(255, 255, 255, .78); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18); }
+.pk-plus { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 12px; font-size: 15px; font-weight: 700; color: rgba(255, 255, 255, .78); }
+.pk-plus b { color: #fff; }
+.pk-plus .io { font-size: 15px; }
+
+/* панель «Комната недели» */
+.pk-pod { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 2px; }
+.pk-pod .p { text-align: center; padding: 10px 4px 9px; border-radius: 18px; background: color-mix(in srgb, var(--tx) 5%, transparent); }
+.pk-pod .p.first { background: color-mix(in srgb, var(--acc) 14%, transparent); }
+.pk-pod .p img { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto; }
+.pk-pod .p .nm { font-size: 15px; line-height: 19px; font-weight: 700; margin-top: 5px; }
+.pk-pod .p .c { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; display: inline-flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; }
+.pk-pod .p .c img { width: 14px; height: 14px; display: inline-block; margin: 0; }
+.pk-pod .p .pl { font-size: 12px; font-weight: 700; color: var(--sec); }
+.pk-me { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 18px; margin-top: 8px; background: color-mix(in srgb, var(--acc) 13%, transparent); }
+.pk-me .n { width: 22px; font-size: 16px; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
+.pk-me .tx { flex: 1; min-width: 0; }
+.pk-me .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.pk-me .s { font-size: 14px; line-height: 19px; color: var(--sec); display: flex; align-items: center; gap: 4px; }
+.pk-me .s .io { font-size: 14px; color: var(--good); }
+.pk-me .c { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pk-me img.cn { width: 40px; height: 40px; border-radius: 50%; display: block; flex: none; }
+.pk-link { display: flex; align-items: center; gap: 8px; padding: 13px 2px 9px; font-size: 16px; font-weight: 700; }
+.pk-link .io { margin-left: auto; font-size: 18px; color: var(--sec); }
+.pk-link small { font-size: 15px; font-weight: 400; color: var(--sec); }
+.pk-panel-dim { opacity: .55; }
+/* зачем (№49, владелец 21.10): пустых комнат нет — комната своего уровня доливается всю неделю; места видны, пустые — тоном */
+.pk-seats { display: grid; grid-template-columns: repeat(10, 1fr); gap: 7px; margin: 14px 0 4px; }
+.pk-seats img, .pk-seats i { width: 100%; aspect-ratio: 1; border-radius: 50%; display: block; }
+.pk-seats i { background: color-mix(in srgb, var(--tx) 8%, transparent); }
+.pk-note { font-size: 14px; line-height: 19px; color: var(--sec); margin: 8px 2px 4px; }
+/* заготовка комнаты, пока ищем — без спиннера на весь экран */
+.pk-sk { border-radius: 10px; background: color-mix(in srgb, var(--tx) 7%, transparent); }
+
+/* окно башни под панелью */
+.pk-tw { margin: 14px 16px 0; border-radius: 28px; background: var(--card); box-shadow: var(--sh); padding: 10px; }
+.pk-fi { display: flex; align-items: center; gap: 12px; padding: 12px 8px 6px; }
+.pk-fi .tx { flex: 1; min-width: 0; }
+.pk-fi .t { font-size: 17px; line-height: 22px; font-weight: 700; }
+.pk-fi .s { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.pk-fi .who { display: flex; }
+.pk-fi .who img { width: 28px; height: 28px; border-radius: 50%; margin-left: -8px; box-shadow: 0 0 0 2px var(--card); display: block; }
+.pk-h2 { display: flex; align-items: baseline; margin: 22px 20px 0; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.pk-fr { display: flex; gap: 8px; margin: 12px 16px 0; overflow: hidden; }
+.pk-fr .c { flex: none; height: 42px; border-radius: 21px; padding: 0 13px 0 5px; display: inline-flex; align-items: center; gap: 8px; background: var(--card); box-shadow: var(--sh); font-size: 15px; font-weight: 700; }
+.pk-fr .c img { width: 32px; height: 32px; border-radius: 50%; display: block; }
+.pk-fr .c small { font-size: 13px; font-weight: 600; color: var(--sec); }
+
+/* B · башня — герой сцены */
+.pkb .a-stage { height: 664px; }
+.pkb-tw { position: absolute; right: -10px; top: 96px; width: 236px; z-index: 1; }
+.pkb-tw .spire-window { box-shadow: none !important; }
+.pkb-tw [data-st-scroll] { background: transparent !important; }
+.pkb .a-body { right: 20px; bottom: 58px; }
+.pkb-col { width: 200px; }
+.pkb .a-prog .bar { flex-basis: 48px; }
+.pkb .a-title { font-size: 36px; line-height: 40px; }
+.pkb-badge { position: absolute; left: 14px; top: 104px; width: 108px; height: 108px; z-index: 2; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .45)); }
+
+/* C · комната — герой сцены */
+.pkc .a-stage { height: 500px; }
+.pkc .a-title { font-size: 48px; line-height: 52px; letter-spacing: -1px; }
+.pkc-ladder { display: flex; gap: 3px; margin-top: 12px; width: 236px; }
+.pkc-ladder i { flex: 1; height: 8px; border-radius: 4px; background: rgba(255, 255, 255, .2); }
+.pkc-ladder i.up { background: rgba(160, 240, 200, .72); }
+.pkc-ladder i.me { background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .25); }
+.pkc-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; }
+.pkc-row .pl { width: 20px; font-size: 15px; font-weight: 700; color: var(--sec); text-align: center; font-variant-numeric: tabular-nums; }
+.pkc-row img { width: 34px; height: 34px; border-radius: 50%; display: block; flex: none; }
+.pkc-row .nm { flex: 1; min-width: 0; font-size: 16px; font-weight: 700; }
+.pkc-row .c { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.pkc-row .z { font-size: 14px; color: var(--good); }
+.pkc-row.me { margin: 2px -10px; padding: 8px 10px; border-radius: 16px; background: color-mix(in srgb, var(--acc) 13%, transparent); }
+.pkc-row.me .c { color: var(--tx); }
+.pkc-gap { text-align: center; font-size: 14px; color: var(--sec); line-height: 14px; padding: 2px 0 4px; }
+.pkc-zone { font-size: 13px; font-weight: 700; color: var(--good); margin: 10px 0 2px; }
+.pkc-zone.st { color: var(--sec); }
+
+/* ступень в языке «Сцены»: полоса сцены сверху, таймер в свете, задание на стеклянной панели */
+.pks-stage { position: relative; height: 336px; border-radius: 0 0 36px 36px; overflow: hidden; color: #fff; }
+.th-ink .pks-stage { background: radial-gradient(70% 60% at 50% 32%, oklch(.66 .13 300 / .75), transparent 70%), linear-gradient(165deg, oklch(.47 .14 282) 0%, oklch(.28 .10 276) 100%); }
+.th-marine .pks-stage { background: radial-gradient(70% 60% at 50% 32%, oklch(.55 .10 200 / .7), transparent 70%), linear-gradient(165deg, oklch(.36 .08 214) 0%, oklch(.15 .05 222) 100%); }
+.pks-head { position: absolute; left: 20px; right: 20px; top: 54px; display: flex; align-items: center; gap: 12px; }
+.pks-head .tt { flex: 1; min-width: 0; }
+.pks-head .tt b { display: block; font-size: 20px; line-height: 25px; font-weight: 700; }
+.pks-head .tt span { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .82); white-space: nowrap; }
+.pks-hearts { height: 38px; padding: 0 13px; border-radius: 19px; display: inline-flex; align-items: center; gap: 7px; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); font-size: 18px; color: #fff; }
+.pks-hearts .lost { opacity: .3; }
+.pks-ring { position: absolute; left: 50%; top: 122px; width: 150px; height: 150px; margin-left: -75px; }
+.pks-ring svg { width: 150px; height: 150px; display: block; transform: rotate(-90deg); }
+.pks-ring .tm { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 34px; font-weight: 700; letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+.pks-ring .tm small { font-size: 13px; font-weight: 600; letter-spacing: 0; color: rgba(255, 255, 255, .8); margin-top: 2px; }
+.pks-glow { position: absolute; left: 50%; top: 92px; width: 240px; height: 240px; margin-left: -120px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .2), transparent 68%); }
+.pks-panel { position: relative; z-index: 3; margin: -56px 16px 0; border-radius: 30px; background: var(--card); box-shadow: var(--sh2); padding: 18px 16px 16px; }
+.pks-ask { font-size: 15px; font-weight: 700; color: var(--sec); }
+.pks-q { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.4px; margin-top: 6px; text-wrap: balance; }
+.pks-opts { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.pks-o { min-height: 56px; border-radius: 18px; padding: 15px 16px; font-size: 16px; line-height: 21px; font-weight: 600; background: color-mix(in srgb, var(--tx) 6%, transparent); }
+.pks-o.ok { background: color-mix(in srgb, var(--good) 22%, transparent); }
+.pks-o.no { background: color-mix(in srgb, oklch(.62 .2 25) 24%, transparent); }
+.pks-n { text-align: center; margin-top: 14px; font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.pks-err { margin-top: 14px; border-radius: 20px; padding: 14px 16px 16px; background: color-mix(in srgb, oklch(.62 .2 25) 15%, var(--card)); }
+.pks-err .r { font-size: 16px; line-height: 22px; }
+.pks-err .m { font-size: 13px; line-height: 18px; color: var(--sec); margin-top: 4px; }
+.pks-err .qbtn { margin-top: 12px; }
+/* «Собери перевод» — утверждённый вариант A (peak-phrase-builder.html): ячейки по числу слов + «Проверить» */
+.pks-cells { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.pks-cell { min-width: 64px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; padding: 0 6px; background: color-mix(in srgb, var(--tx) 6%, transparent); font-size: 14px; font-weight: 700; color: var(--sec); }
+.pks-cell.bad { background: color-mix(in srgb, oklch(.62 .2 25) 24%, transparent); }
+.pks-cell.ok { background: color-mix(in srgb, var(--good) 20%, transparent); }
+.pks-tk { height: 38px; padding: 0 14px; border-radius: 12px; display: inline-flex; align-items: center; font-size: 17px; font-weight: 700; color: var(--tx); background: var(--card); box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .5); }
+.th-marine .pks-tk { background: #1D3F47; box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .08); }
+.pks-tk.used { color: transparent; box-shadow: none; background: color-mix(in srgb, var(--tx) 6%, transparent); }
+.pks-bank { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px; }
+.pks-chk { margin-top: 18px; }
+.qbtn.pks-dis { background: color-mix(in srgb, var(--tx) 8%, transparent); color: var(--sec); }
+.pks-cnt { text-align: center; margin-top: 10px; font-size: 14px; color: var(--sec); }
+.pks-ring .tm .cd { font-size: 64px; line-height: 64px; letter-spacing: -2px; }
+.pks-wait { filter: blur(7px); opacity: .5; }
+.pks-veil { position: absolute; inset: 0; z-index: 40; background: rgba(8, 9, 14, .42); }
+.pks-digit { position: absolute; left: 0; right: 0; top: 330px; z-index: 41; text-align: center; font-size: 132px; line-height: 132px; font-weight: 700; color: #fff; letter-spacing: -4px; text-shadow: 0 20px 50px rgba(0, 0, 0, .45); }
+.pks-sheet { position: absolute; left: 8px; right: 8px; bottom: 8px; z-index: 41; border-radius: 34px; background: var(--card); box-shadow: var(--sh2); padding: 10px 20px 22px; }
+.pks-sheet .grabber { width: 40px; height: 5px; border-radius: 3px; margin: 0 auto 18px; background: color-mix(in srgb, var(--tx) 18%, transparent); }
+.pks-sheet h3 { font-size: 22px; line-height: 28px; font-weight: 700; text-align: center; margin: 0; }
+.pks-sheet p { font-size: 16px; line-height: 22px; color: var(--sec); text-align: center; margin: 8px 0 0; }
+.qbtn.pks-red { background: none; color: oklch(.6 .2 25); }
+.th-marine .qbtn.pks-red { color: oklch(.74 .16 25); }
+
+/* итог: сцена с героем + панель цифр */
+.pkr .a-stage { height: 520px; }
+.pkw .a-stage { height: 640px; }
+.pkr-red { color: #FFB4A3 !important; }
+.pkr-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pkr-stats div { border-radius: 18px; padding: 10px 10px 11px; background: color-mix(in srgb, var(--tx) 5%, transparent); }
+.pkr-stats b { display: block; font-size: 19px; line-height: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pkr-stats span { font-size: 13px; line-height: 17px; color: var(--sec); }
+.pkr-two { display: flex; gap: 10px; margin-top: 16px; }
+.pkr-two .qbtn { flex: 1; margin: 0; }
+
+/* рейтинг: сцена-полоса и список по зонам */
+.pkl .a-stage { height: 330px; }
+.pkl-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--tx) 7%, transparent); }
+.pkl-row:last-child { box-shadow: none; }
+.pkl-row .pl { width: 22px; text-align: center; font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.pkl-row img { width: 38px; height: 38px; border-radius: 50%; display: block; flex: none; }
+.pkl-row .nm { flex: 1; min-width: 0; font-size: 16px; font-weight: 700; }
+.pkl-row .c { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pkl-row .c span { font-weight: 400; color: var(--sec); margin-left: 4px; }
+.pkl-row .ar { font-size: 15px; }
+.pkl-row .ar.up { color: var(--good); }
+.pkl-row .ar.dn { color: oklch(.62 .2 25); }
+.pkl-row.me { margin: 0 -10px; padding: 8px 10px; border-radius: 16px; box-shadow: none; background: color-mix(in srgb, var(--acc) 13%, transparent); }
+.pkl-z { font-size: 13px; font-weight: 700; margin: 14px 0 2px; }
+.pkl-z.up { color: var(--good); }
+.pkl-z.st { color: var(--sec); }
+.pkl-z.dn { color: oklch(.62 .2 25); }
+.pkl-bar { flex: 0 0 64px; height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--tx) 10%, transparent); overflow: hidden; }
+.pkl-bar i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
+
+/* таблицы под страницей */
+.pk-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; background: #8E8E96; vertical-align: middle; }
+@media (prefers-reduced-motion: reduce) { .pk-spin { animation: none; } }
+
+/* ───────── «Сцена» по токенам темы (владелец 22.10 ~02:15: «в тёмной теме оно сливается и некрасиво, а в светлой — отлично») ─────────
+   Переменные --st-* телефона считает scene_body.js из снимка тем приложения. В тёмном оформлении нижнего чёрного затемнения
+   нет — иначе низ сцены совпадает с тёмной панелью «Сегодня» (тот же приём, что у «Диалогов», Пика и «Сегодня»). */
+.ph.hs-tok .a-stage { background: radial-gradient(70% 50% at 18% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%) !important; }
+.ph.hs-tok .a-stage.eve { background: radial-gradient(70% 50% at 82% 4%, rgba(214, 92, 70, .62), transparent 70%), linear-gradient(170deg, var(--st-eve-top) 0%, var(--st-eve-bot) 100%) !important; }
+.ph.hs-tok.dk .a-scrim { display: none; }
+/* зачем (проверка картинок 9 · САЙТ: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя (13 из 214) */
+.a-stage .a-art { padding: 13px; box-sizing: border-box; }
+.hs-seam { font-weight: 400; color: #A6A6AE; }
+.hs-seam.bad { color: #FF8A8A; font-weight: 700; }
+.thm + .thm { margin-top: 8px; }
+
+/* ───────── Пик v2 (владелец 22.10): «где башня — герой сцены, мне нравится больше, а комната недели внизу — я хочу, чтобы была
+   всё ещё как пьедестал»; «интегрировать в общий дизайн, чтобы он не был как отдельная часть в отдельном окошке».
+   Башня — герой общей «Сцены» без рамки и плиты; комната недели — пьедестал, на котором стоит башня. Три способа сращения:
+   V1 башня на центральном блоке, V2 пьедестал перед башней во всю ширину, V3 плита-подножие. Классы с префиксом pk2-. */
+.pk2 .a-stage { height: 760px; border-radius: 0 0 36px 36px; }
+.pk2-copy { position: absolute; left: 20px; top: 116px; width: 184px; z-index: 3; }
+.pk2-copy.off { top: 184px; }
+.pk2-copy .a-kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.pk2-copy .a-title { font-size: 40px; line-height: 44px; font-weight: 700; letter-spacing: -.8px; margin-top: 4px; }
+.pk2-copy .a-prog { margin-top: 10px; }
+.pk2-copy .a-prog .bar { flex-basis: 48px; }
+.pk2-copy .pk-rew { margin-top: 12px; }
+.pk2-tw { position: absolute; right: -6px; width: 240px; z-index: 1; }
+.pk2-tw .spire-window { box-shadow: none !important; border-radius: 0 !important; }
+.pk2-tw [data-st-scroll] { background: transparent !important; border-radius: 0 !important; scrollbar-width: none; }
+/* блоки пьедестала — та же «материя» сцены: светлое стекло с бликом сверху и мягкой тенью вниз, без рамок */
+.pk2-blk { position: absolute; z-index: 2; border-radius: 16px 16px 6px 6px; background: linear-gradient(180deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, .08) 70%, rgba(255, 255, 255, .04));
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .42), 0 24px 34px -22px rgba(0, 0, 0, .6); color: #fff; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 8px; }
+.pk2-blk .pl { font-size: 22px; line-height: 24px; font-weight: 800; opacity: .9; }
+.pk2-blk .nm { font-size: 13px; line-height: 16px; font-weight: 700; margin-top: 2px; white-space: nowrap; }
+.pk2-blk .cn { font-size: 12px; line-height: 15px; opacity: .86; display: inline-flex; align-items: center; gap: 3px; font-variant-numeric: tabular-nums; }
+.pk2-blk .cn img { width: 12px; height: 12px; border-radius: 50%; }
+.pk2-blk.first { background: linear-gradient(180deg, rgba(255, 255, 255, .34), rgba(255, 255, 255, .12) 70%, rgba(255, 255, 255, .05)); }
+/* V1 — ступени: монета лидера в строке с именем; на верхней ступени отступ под карнизом башни */
+.pk2-step .nm { display: inline-flex; align-items: center; gap: 5px; margin-top: 3px; }
+.pk2-step .nm img { border-radius: 50%; flex: none; }
+.pk2-step.first { padding-top: 18px; }
+.pk2-step.first .pl { font-size: 28px; line-height: 30px; }
+.pk2-step.first .nm { font-size: 15px; line-height: 20px; gap: 6px; margin-top: 4px; }
+.pk2-step.first .cn { font-size: 13px; line-height: 17px; }
+.pk2-coin { position: absolute; z-index: 3; border-radius: 50%; box-shadow: 0 10px 18px -8px rgba(0, 0, 0, .55); }
+.pk2-coin img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+.pk2-sk { background: rgba(255, 255, 255, .14) !important; box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .22) !important; }
+.pk2-sk-coin { position: absolute; z-index: 3; border-radius: 50%; background: rgba(255, 255, 255, .16); }
+.pk2-me { position: absolute; z-index: 3; color: #fff; }
+.pk2-me .k { font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .8); }
+.pk2-me .v { font-size: 26px; line-height: 30px; font-weight: 700; letter-spacing: -.4px; margin-top: 2px; display: flex; align-items: center; gap: 8px; }
+.pk2-me .v img { width: 30px; height: 30px; border-radius: 50%; }
+.pk2-me .s { font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .86); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+.pk2-me .s .io { font-size: 13px; color: #A6F0C6; }
+.pk2-link { position: absolute; left: 20px; right: 20px; z-index: 3; display: flex; align-items: center; gap: 8px; color: #fff; font-size: 16px; font-weight: 700; }
+.pk2-link small { font-weight: 400; color: rgba(255, 255, 255, .78); font-size: 15px; }
+.pk2-link .io { margin-left: auto; font-size: 18px; color: rgba(255, 255, 255, .8); }
+.pk2-dim { opacity: .55; }
+/* V3 — плита-подножие во всю ширину */
+.pk2-slab { position: absolute; left: 12px; right: 12px; z-index: 2; border-radius: 26px 26px 18px 18px; color: #fff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .24), rgba(255, 255, 255, .07) 60%, rgba(255, 255, 255, .03)); box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, .4), 0 26px 40px -26px rgba(0, 0, 0, .65); padding: 14px 14px 12px; }
+.pk2-slab .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.pk2-slab .ld { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.pk2-slab .ld img { width: 30px; height: 30px; border-radius: 50%; flex: none; }
+.pk2-slab .ld b { display: block; font-size: 13px; line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pk2-slab .ld span { font-size: 12px; line-height: 15px; opacity: .86; font-variant-numeric: tabular-nums; }
+.pk2-slab .ld .pl { font-size: 18px; font-weight: 800; opacity: .9; width: 14px; flex: none; }
+.pk2-slab .mine { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 10px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16); font-size: 14px; }
+.pk2-slab .mine img { width: 28px; height: 28px; border-radius: 50%; }
+.pk2-slab .mine b { font-size: 16px; }
+.pk2-slab .mine .io { color: #A6F0C6; font-size: 13px; }
+/* «Играть» — закреплена внизу над вкладками, как SpireClimbDock */
+.pk2-dock { position: absolute; left: 0; right: 0; bottom: 92px; z-index: 32; padding: 26px 16px 10px; background: linear-gradient(to bottom, transparent, var(--bot) 46%); }
+.pk2-dock .qbtn { margin: 0; }
+.pk2-dock .qbtn.solid { box-shadow: 0 18px 30px -18px rgba(0, 0, 0, .6); }
+.pk2-dock .pk-plus { color: var(--sec); }
+.pk2-dock .pk-plus b { color: var(--tx); }
+.pk2-dock .qbtn.pk2-wait { background: color-mix(in srgb, var(--solid) 82%, transparent); color: var(--on-solid); }
+.pk2-dock .qbtn.pk2-off { background: color-mix(in srgb, var(--tx) 10%, transparent); color: var(--sec); }
+.pk2-dock .pk-spin { box-shadow: inset 0 0 0 2.5px color-mix(in srgb, var(--on-solid) 20%, transparent); border-top-color: var(--on-solid); }
+.pk2-after { padding-bottom: 210px; }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Пик v2: башня — герой «Сцены», комната недели — пьедестал</h1>
+  <p class="page-lead">Слово владельца 22.10: «пик вроде неплохо, но я хочу как-то более интересно в общий дизайн сам пик интегрировать, чтобы он не был как отдельная часть в отдельном окошке; вот где башня — герой сцены, мне нравится больше, а вот комната недели внизу — я хочу, чтобы была всё ещё как пьедестал». Основа — вариант B «Башня — герой»: башня из кода приложения стоит прямо на сцене, без плиты и рамки; комната недели — пьедестал, на котором она стоит. Три способа сращения пьедестала со сценой (V1–V3), у каждого пять состояний входа. «Играть» — закреплённой кнопкой над вкладками, как сейчас в приложении. Цвета — из каждой из 23 тем приложения (переключатели сверху); тёмное оформление — тот же приём, что у «Сцены» Главной. Прежняя страница peak-scene-concepts.html не менялась. Код приложения не менялся.</p>
+  <div class="thm"><span style="font-size:13px;color:#8E8E96;font-weight:700;margin-right:6px">Оформление</span><span id="apList"></span></div>
+  <div class="thm" id="thmList" style="flex-wrap:wrap;row-gap:8px"></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>window.__THEMES = {"graphite": {"name": "Затмение", "gradient": false, "dark": {"bg": "#070C11", "bgTop": "#192028", "bgBottom": "#091619", "opaqueCard": "#171C22", "opaqueSheet": "#101418", "opaqueControl": "#262C32", "card": "#171C22EB", "text": "#F7FAFE", "secondary": "#C6CBD1", "mutedText": "#A3A8AD", "cta": "#F2F1F6", "ctaInk": "#0B0C0E", "accent": "#ABC0D7", "accentInk": "#11171D", "accentText": "#ABC0D7", "accentBright": "#D0E0F1", "accentSoft": "#4D60749E", "accentGlow": "#74889E8C", "accentGradient": ["#DDE9F6", "#9EB4CA", "#CDE2E8", "#92A7BD"], "bgGlow": ["#617081A8", "#4C626875", "#3F4F5F85"], "shadowTint": "#000000", "isLight": false, "selected": "#A5BAD133"}, "light": {"bg": "#E6EEF7", "bgTop": "#F2F5F9", "bgBottom": "#DCEBEF", "opaqueCard": "#FBFDFF", "opaqueSheet": "#FBFCFD", "opaqueControl": "#D9DFE5", "card": "#FBFDFFED", "text": "#16191C", "secondary": "#575B60", "mutedText": "#5C6064", "cta": "#182029", "ctaInk": "#FFFFFF", "accent": "#4D6C8C", "accentInk": "#FFFFFF", "accentText": "#3F5D7D", "accentBright": "#4D6C8C", "accentSoft": "#E1EDFAF7", "accentGlow": "#44576B66", "accentGradient": ["#597491", "#3B5876", "#507D88", "#365270"], "bgGlow": ["#C2D3E6B3", "#C4DDE399", "#DCE6F080"], "shadowTint": "#2D3C4C29", "isLight": true, "selected": "#252F3A14"}}, "polar": {"name": "Иней", "gradient": false, "dark": {"bg": "#010C18", "bgTop": "#02243B", "bgBottom": "#001920", "opaqueCard": "#0D1D2B", "opaqueSheet": "#0A151E", "opaqueControl": "#1D2D3A", "card": "#0D1D2BEB", "text": "#F7FBFE", "secondary": "#BFCDD9", "mutedText": "#9EA9B3", "cta": "#D2E9F3", "ctaInk": "#01070A", "accent": "#88C5F7", "accentInk": "#061825", "accentText": "#88C5F7", "accentBright": "#B8E4FF", "accentSoft": "#26628F9E", "accentGlow": "#518CBB8C", "accentGradient": ["#88C5F7", "#6ACBDE"], "bgGlow": ["#4480AEC7", "#1B899BB3", "#20517685"], "shadowTint": "#000000", "isLight": false, "selected": "#81BEF033"}, "light": {"bg": "#DEEFFE", "bgTop": "#EEF6FE", "bgBottom": "#D2EEF4", "opaqueCard": "#F9FDFF", "opaqueSheet": "#FAFCFE", "opaqueControl": "#D1E0ED", "card": "#F9FDFFED", "text": "#13191E", "secondary": "#535C64", "mutedText": "#596168", "cta": "#10212F", "ctaInk": "#FFFFFF", "accent": "#166EA8", "accentInk": "#FFFFFF", "accentText": "#006098", "accentBright": "#166EA8", "accentSoft": "#D3EFFFF7", "accentGlow": "#1C5A8666", "accentGradient": ["#166EA8", "#007991"], "bgGlow": ["#A7D7FFB3", "#A4E4F199", "#CDE9FF80"], "shadowTint": "#173E5B29", "isLight": true, "selected": "#1A304214"}}, "slate": {"name": "Шторм", "gradient": false, "dark": {"bg": "#020921", "bgTop": "#061E4D", "bgBottom": "#021133", "opaqueCard": "#0D1B35", "opaqueSheet": "#0A1325", "opaqueControl": "#1D2B45", "card": "#0D1B35EB", "text": "#F8FAFE", "secondary": "#BECBE3", "mutedText": "#9DA8BB", "cta": "#D6E7F6", "ctaInk": "#02060C", "accent": "#88BCFF", "accentInk": "#07152F", "accentText": "#8EBFFF", "accentBright": "#B7DFFF", "accentSoft": "#2B58B19E", "accentGlow": "#5283E08C", "accentGradient": ["#B7DFFF", "#88BCFF", "#5B8FF1"], "bgGlow": ["#4C7DD9D1", "#3B6AC59E", "#24499185"], "shadowTint": "#000000", "isLight": false, "selected": "#82B6FF33"}, "light": {"bg": "#DFEEFF", "bgTop": "#EEF6FF", "bgBottom": "#D8E9FF", "opaqueCard": "#F8FDFF", "opaqueSheet": "#FAFCFF", "opaqueControl": "#D1DFF8", "card": "#F8FDFFED", "text": "#131822", "secondary": "#535B6A", "mutedText": "#59606C", "cta": "#111F37", "ctaInk": "#FFFFFF", "accent": "#2A61CD", "accentInk": "#FFFFFF", "accentText": "#1C52BC", "accentBright": "#2A61CD", "accentSoft": "#D3ECFFF7", "accentGlow": "#224FA766", "accentGradient": ["#336AD7", "#2A61CD", "#154BB5"], "bgGlow": ["#A6D1FFB3", "#B2D8FF99", "#CCE6FF80"], "shadowTint": "#1C386E29", "isLight": true, "selected": "#1C2D4D14"}}, "ink": {"name": "Сумерки", "gradient": false, "dark": {"bg": "#090918", "bgTop": "#1E1E3A", "bgBottom": "#180F22", "opaqueCard": "#191A2A", "opaqueSheet": "#12131E", "opaqueControl": "#292A3A", "card": "#191A2AEB", "text": "#F9FAFE", "secondary": "#C8C9D8", "mutedText": "#A5A6B2", "cta": "#DFE4F8", "ctaInk": "#04050C", "accent": "#C1C4FF", "accentInk": "#141424", "accentText": "#C1C4FF", "accentBright": "#DEE1FF", "accentSoft": "#56578C9E", "accentGlow": "#7E80B88C", "accentGradient": ["#DEE1FF", "#C1C4FF"], "bgGlow": ["#6061A0B3", "#644A8085", "#47487385"], "shadowTint": "#000000", "isLight": false, "selected": "#AEB1ED33"}, "light": {"bg": "#EAEBFE", "bgTop": "#F3F4FD", "bgBottom": "#ECE4F7", "opaqueCard": "#FCFCFF", "opaqueSheet": "#FBFBFE", "opaqueControl": "#DBDDEC", "card": "#FCFCFFED", "text": "#17181E", "secondary": "#595A63", "mutedText": "#5E5F67", "cta": "#1D1D2F", "ctaInk": "#FFFFFF", "accent": "#5F5CB1", "accentInk": "#FFFFFF", "accentText": "#514EA1", "accentBright": "#5F5CB1", "accentSoft": "#E6E9FFF7", "accentGlow": "#4E4F8366", "accentGradient": ["#6765BB", "#4C489B"], "bgGlow": ["#C9CCFDB3", "#E0CEF899", "#E0E2FE80"], "shadowTint": "#36365929", "isLight": true, "selected": "#2A2B4114"}}, "lavender": {"name": "Туманность", "gradient": false, "dark": {"bg": "#11041D", "bgTop": "#2C1144", "bgBottom": "#1C082D", "opaqueCard": "#221430", "opaqueSheet": "#180F22", "opaqueControl": "#312440", "card": "#221430EB", "text": "#FBF9FD", "secondary": "#D0C5DE", "mutedText": "#A79FB3", "cta": "#E7E1F5", "ctaInk": "#07050B", "accent": "#D4A3FF", "accentInk": "#1C0E2A", "accentText": "#D4A3FF", "accentBright": "#EFCCFF", "accentSoft": "#7241A09E", "accentGlow": "#9B6BCE8C", "accentGradient": ["#EFCCFF", "#D4A3FF", "#A976DE"], "bgGlow": ["#9565C7D1", "#8353B39E", "#5E368485"], "shadowTint": "#000000", "isLight": false, "selected": "#CE9DFF33"}, "light": {"bg": "#F3E7FF", "bgTop": "#F8F2FF", "bgBottom": "#EFE1FF", "opaqueCard": "#FFFBFF", "opaqueSheet": "#FCFBFE", "opaqueControl": "#E4D8F3", "card": "#FFFBFFED", "text": "#1A1620", "secondary": "#5E5767", "mutedText": "#625C6A", "cta": "#251832", "ctaInk": "#FFFFFF", "accent": "#8145B9", "accentInk": "#FFFFFF", "accentText": "#7335A8", "accentBright": "#8145B9", "accentSoft": "#F5E1FFF7", "accentGlow": "#69399666", "accentGradient": ["#8A4EC3", "#8145B9", "#6D2FA2"], "bgGlow": ["#E3BDFFB3", "#E7C6FF99", "#EFDAFF80"], "shadowTint": "#472A6429", "isLight": true, "selected": "#35254714"}}, "iris": {"name": "Комета", "gradient": false, "dark": {"bg": "#130611", "bgTop": "#30172D", "bgBottom": "#141024", "opaqueCard": "#241622", "opaqueSheet": "#1A1018", "opaqueControl": "#342632", "card": "#241622EB", "text": "#FDF9FC", "secondary": "#D3C6D0", "mutedText": "#AFA4AD", "cta": "#EDDFF0", "ctaInk": "#080409", "accent": "#ECB7E3", "accentInk": "#1F101D", "accentText": "#ECB7E3", "accentBright": "#FAD9F4", "accentSoft": "#794B739E", "accentGlow": "#A5739D8C", "accentGradient": ["#FAD9F4", "#ECB7E3"], "bgGlow": ["#895382B3", "#594E8685", "#643E5F85"], "shadowTint": "#000000", "isLight": false, "selected": "#D8A4D033"}, "light": {"bg": "#F7E7F4", "bgTop": "#FAF2F9", "bgBottom": "#E8E5FA", "opaqueCard": "#FFFBFF", "opaqueSheet": "#FDFBFD", "opaqueControl": "#E7D9E4", "card": "#FFFBFFED", "text": "#1C161B", "secondary": "#60585F", "mutedText": "#645D63", "cta": "#281926", "ctaInk": "#FFFFFF", "accent": "#93498A", "accentInk": "#FFFFFF", "accentText": "#833A7B", "accentBright": "#93498A", "accentSoft": "#FCE2F7F7", "accentGlow": "#70436A66", "accentGradient": ["#9C5293", "#7D3475"], "bgGlow": ["#ECC1E5B3", "#D8D1FC99", "#F5DCF080"], "shadowTint": "#4D2E4929", "isLight": true, "selected": "#3A263714"}}, "rose": {"name": "Рассвет", "gradient": false, "dark": {"bg": "#150706", "bgTop": "#2D1918", "bgBottom": "#200F04", "opaqueCard": "#271716", "opaqueSheet": "#1C1010", "opaqueControl": "#372626", "card": "#271716EB", "text": "#FEF9F8", "secondary": "#D6C6C5", "mutedText": "#B2A4A3", "cta": "#F4DDE7", "ctaInk": "#0A0406", "accent": "#EAABA8", "accentInk": "#221110", "accentText": "#EAABA8", "accentBright": "#FFD1CE", "accentSoft": "#834C4A9E", "accentGlow": "#AF74728C", "accentGradient": ["#FFDEDC", "#DD9F9C", "#F6D7C1", "#D0928F"], "bgGlow": ["#8E615FA8", "#74564075", "#6C3F3D85"], "shadowTint": "#000000", "isLight": false, "selected": "#E4A5A233"}, "light": {"bg": "#FCE7E6", "bgTop": "#FCF2F2", "bgBottom": "#F6E4D8", "opaqueCard": "#FFFBFB", "opaqueSheet": "#FDFBFB", "opaqueControl": "#EAD9D8", "card": "#FFFBFBED", "text": "#1D1616", "secondary": "#625857", "mutedText": "#665D5C", "cta": "#2C1919", "ctaInk": "#FFFFFF", "accent": "#9A504F", "accentInk": "#FFFFFF", "accentText": "#8A4241", "accentBright": "#9A504F", "accentSoft": "#FFE2E0F7", "accentGlow": "#7A444266", "accentGradient": ["#9E5C5A", "#823D3D", "#986844", "#7C3838"], "bgGlow": ["#F6C2BFB3", "#F3D0B699", "#FBDCDA80"], "shadowTint": "#542E2D29", "isLight": true, "selected": "#3E262614"}}, "terracotta": {"name": "Закат", "gradient": false, "dark": {"bg": "#1C0201", "bgTop": "#420A03", "bgBottom": "#250C00", "opaqueCard": "#2F120C", "opaqueSheet": "#220D09", "opaqueControl": "#40221C", "card": "#2F120CEB", "text": "#FEF9F8", "secondary": "#E0C3BD", "mutedText": "#B59D98", "cta": "#F6DFD7", "ctaInk": "#0B0402", "accent": "#FF9A84", "accentInk": "#2A0B06", "accentText": "#FF9F8A", "accentBright": "#FFC6B4", "accentSoft": "#9D37259E", "accentGlow": "#CC624E8C", "accentGradient": ["#FF9A84", "#F1AA47"], "bgGlow": ["#BF5542C7", "#AC6900B3", "#812E1F85"], "shadowTint": "#000000", "isLight": false, "selected": "#FF937E33"}, "light": {"bg": "#FFE5DE", "bgTop": "#FFF1ED", "bgBottom": "#FAE4CA", "opaqueCard": "#FFFAF8", "opaqueSheet": "#FFFBFA", "opaqueControl": "#F4D6D0", "card": "#FFFAF8ED", "text": "#211513", "secondary": "#685652", "mutedText": "#6B5B59", "cta": "#331610", "ctaInk": "#FFFFFF", "accent": "#B53621", "accentInk": "#FFFFFF", "accentText": "#A4240E", "accentBright": "#B53621", "accentSoft": "#FFDDD2F7", "accentGlow": "#932D1C66", "accentGradient": ["#B53621", "#A15200"], "bgGlow": ["#FFB6A3B3", "#FFCD8F99", "#FFD6CB80"], "shadowTint": "#62231829", "isLight": true, "selected": "#47221A14"}}, "taupe": {"name": "Дюна", "gradient": false, "dark": {"bg": "#150801", "bgTop": "#2D1A0C", "bgBottom": "#1E1100", "opaqueCard": "#27180D", "opaqueSheet": "#1B110A", "opaqueControl": "#36281D", "card": "#27180DEB", "text": "#FDF9F6", "secondary": "#D5C8BE", "mutedText": "#B1A59D", "cta": "#F2E1D2", "ctaInk": "#0A0501", "accent": "#E8B187", "accentInk": "#211207", "accentText": "#E8B187", "accentBright": "#FED5B7", "accentSoft": "#8151299E", "accentGlow": "#AD79518C", "accentGradient": ["#FFE1CA", "#DAA47B", "#F1DBB9", "#CD976F"], "bgGlow": ["#8C6547A8", "#70593675", "#6A422285"], "shadowTint": "#000000", "isLight": false, "selected": "#E1AA8133"}, "light": {"bg": "#FAE9DD", "bgTop": "#FCF3ED", "bgBottom": "#F2E6D4", "opaqueCard": "#FFFCF8", "opaqueSheet": "#FDFBFA", "opaqueControl": "#E9DBD1", "card": "#FFFCF8ED", "text": "#1D1713", "secondary": "#625953", "mutedText": "#665E59", "cta": "#2B1B0F", "ctaInk": "#FFFFFF", "accent": "#97571D", "accentInk": "#FFFFFF", "accentText": "#874807", "accentBright": "#97571D", "accentSoft": "#FFE5D2F7", "accentGlow": "#78482066", "accentGradient": ["#9B6234", "#7F4405", "#916E33", "#793E00"], "bgGlow": ["#F4C7A5B3", "#EED3AC99", "#F9DFCC80"], "shadowTint": "#52321829", "isLight": true, "selected": "#3D291914"}}, "olive": {"name": "Саванна", "gradient": false, "dark": {"bg": "#140800", "bgTop": "#2C1B00", "bgBottom": "#1D1200", "opaqueCard": "#261903", "opaqueSheet": "#1B1204", "opaqueControl": "#362914", "card": "#261903EB", "text": "#FCFAF6", "secondary": "#D5C9B7", "mutedText": "#B0A698", "cta": "#E5E7D2", "ctaInk": "#060601", "accent": "#E6B463", "accentInk": "#211300", "accentText": "#E6B463", "accentBright": "#FDD8A0", "accentSoft": "#8053009E", "accentGlow": "#AC7C268C", "accentGradient": ["#FFE3B9", "#D9A856", "#EEDDAA", "#CC9B49"], "bgGlow": ["#8B682BA8", "#6E5C2175", "#6A450085"], "shadowTint": "#000000", "isLight": false, "selected": "#E0AE5D33"}, "light": {"bg": "#F9EBD6", "bgTop": "#FBF4E9", "bgBottom": "#F0E8CD", "opaqueCard": "#FFFCF6", "opaqueSheet": "#FDFBF9", "opaqueControl": "#E9DCC9", "card": "#FFFCF6ED", "text": "#1C1710", "secondary": "#615A4E", "mutedText": "#655E55", "cta": "#2A1D06", "ctaInk": "#FFFFFF", "accent": "#945B00", "accentInk": "#FFFFFF", "accentText": "#844C00", "accentBright": "#945B00", "accentSoft": "#FFE8C5F7", "accentGlow": "#774B0066", "accentGradient": ["#986600", "#7D4800", "#8C7109", "#774200"], "bgGlow": ["#F2CA8BB3", "#EAD79A99", "#F8E1BF80"], "shadowTint": "#51340029", "isLight": true, "selected": "#3C2A0D14"}}, "sage": {"name": "Мята", "gradient": false, "dark": {"bg": "#001104", "bgTop": "#002D12", "bgBottom": "#001C08", "opaqueCard": "#002313", "opaqueSheet": "#03190E", "opaqueControl": "#133323", "card": "#002313EB", "text": "#F7FBF9", "secondary": "#B9D2C3", "mutedText": "#99AEA2", "cta": "#D8EADB", "ctaInk": "#030703", "accent": "#5ED99E", "accentInk": "#001D0D", "accentText": "#66DBA3", "accentBright": "#A1F3C7", "accentSoft": "#0074419E", "accentGlow": "#019F688C", "accentGradient": ["#A1F3C7", "#5ED99E", "#14AD73"], "bgGlow": ["#009962D1", "#0086519E", "#00603585"], "shadowTint": "#000000", "isLight": false, "selected": "#56D29833"}, "light": {"bg": "#D9F5E4", "bgTop": "#EBF9F1", "bgBottom": "#D1F1DE", "opaqueCard": "#F7FFFA", "opaqueSheet": "#F9FDFB", "opaqueControl": "#CBE6D6", "card": "#F7FFFAED", "text": "#101B15", "secondary": "#4F5F56", "mutedText": "#56645B", "cta": "#052617", "ctaInk": "#FFFFFF", "accent": "#008445", "accentInk": "#FFFFFF", "accentText": "#006B2F", "accentBright": "#008445", "accentSoft": "#C8F9DDF7", "accentGlow": "#006B3866", "accentGradient": ["#008748", "#008445", "#006E32"], "bgGlow": ["#8CE8B8B3", "#9DECC199", "#C1F2D680"], "shadowTint": "#00492929", "isLight": true, "selected": "#0B372314"}}, "eucalyptus": {"name": "Лагуна", "gradient": false, "dark": {"bg": "#00100E", "bgTop": "#002C27", "bgBottom": "#011A03", "opaqueCard": "#00221F", "opaqueSheet": "#011816", "opaqueControl": "#0F322E", "card": "#00221FEB", "text": "#F6FBFB", "secondary": "#B7D1CD", "mutedText": "#98ADAA", "cta": "#D2EBE5", "ctaInk": "#010806", "accent": "#4BD7C9", "accentInk": "#001C19", "accentText": "#54D9CC", "accentBright": "#99F1E6", "accentSoft": "#0072689E", "accentGlow": "#009D918C", "accentGradient": ["#4BD7C9", "#88CF8A"], "bgGlow": ["#009085C7", "#478D4BB3", "#005E5585"], "shadowTint": "#000000", "isLight": false, "selected": "#42D0C333"}, "light": {"bg": "#D6F4F0", "bgTop": "#E9F9F7", "bgBottom": "#D9EFD9", "opaqueCard": "#F6FFFE", "opaqueSheet": "#F9FDFC", "opaqueControl": "#C9E5E1", "card": "#F6FFFEED", "text": "#0F1B19", "secondary": "#4E5F5C", "mutedText": "#556361", "cta": "#002622", "ctaInk": "#FFFFFF", "accent": "#008275", "accentInk": "#FFFFFF", "accentText": "#006A5F", "accentBright": "#008275", "accentSoft": "#C3F8F0F7", "accentGlow": "#00695F66", "accentGradient": ["#008275", "#207E2C"], "bgGlow": ["#82E6DAB3", "#B5E7B699", "#BDF1EA80"], "shadowTint": "#00474129", "isLight": true, "selected": "#01363214"}}, "marine": {"name": "Океан", "gradient": false, "dark": {"bg": "#000F16", "bgTop": "#002936", "bgBottom": "#001B17", "opaqueCard": "#002027", "opaqueSheet": "#03171C", "opaqueControl": "#123037", "card": "#002027EB", "text": "#F6FBFD", "secondary": "#B8CFD6", "mutedText": "#98ACB1", "cta": "#D0EAED", "ctaInk": "#010708", "accent": "#5CCFEB", "accentInk": "#001A22", "accentText": "#64D1EC", "accentBright": "#A0ECFF", "accentSoft": "#006C859E", "accentGlow": "#0196B08C", "accentGradient": ["#5CCFEB", "#58D1C5"], "bgGlow": ["#008AA4C7", "#008F84B3", "#00596D85"], "shadowTint": "#000000", "isLight": false, "selected": "#55C9E433"}, "light": {"bg": "#D7F2FA", "bgTop": "#EAF8FC", "bgBottom": "#CFF0EB", "opaqueCard": "#F7FEFF", "opaqueSheet": "#F9FCFD", "opaqueControl": "#CBE3EA", "card": "#F7FEFFED", "text": "#101A1D", "secondary": "#4F5E62", "mutedText": "#566266", "cta": "#03242B", "ctaInk": "#FFFFFF", "accent": "#007A9A", "accentInk": "#FFFFFF", "accentText": "#006B8B", "accentBright": "#007A9A", "accentSoft": "#C6F4FFF7", "accentGlow": "#00637C66", "accentGradient": ["#007A9A", "#008075"], "bgGlow": ["#8BE0F6B3", "#9CE9DF99", "#C0EEFA80"], "shadowTint": "#00445429", "isLight": true, "selected": "#07343D14"}}, "grad_aurora": {"name": "Аврора", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#202B29", "opaqueSheet": "#2B3839", "opaqueControl": "#2B3839", "card": "#263532BF", "text": "#FFFFFF", "secondary": "#CACBCE", "mutedText": "#CACBCE", "cta": "#7EF0C8", "ctaInk": "#04261D", "accent": "#7EF0C8", "accentInk": "#04261D", "accentText": "#98F3D3", "accentBright": "#7EF0C8", "accentSoft": "#7EF0C83D", "accentGlow": "#7EF0C88C", "accentGradient": ["#7EF0C8", "#7EF0C8"], "bgGlow": ["#38E0AAB3", "#7C5CFFB3", "#38E0AAB3"], "shadowTint": "#000000", "isLight": false, "selected": "#7EF0C830"}, "light": {"bg": "#DED7F9", "bgTop": "#CCF1E7", "bgBottom": "#DED7F9", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#7EF0C8", "ctaInk": "#04261D", "accent": "#7EF0C8", "accentInk": "#04261D", "accentText": "#185E47", "accentBright": "#185E47", "accentSoft": "#7EF0C84D", "accentGlow": "#7EF0C866", "accentGradient": ["#7EF0C8", "#7EF0C8"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#7EF0C84D"}}, "grad_iris": {"name": "Ирис", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#27272E", "opaqueSheet": "#33353E", "opaqueControl": "#33353E", "card": "#2F3039BF", "text": "#FFFFFF", "secondary": "#C6C7CA", "mutedText": "#C6C7CA", "cta": "#C7C9FF", "ctaInk": "#1B1C4A", "accent": "#C7C9FF", "accentInk": "#1B1C4A", "accentText": "#D5D7FF", "accentBright": "#C7C9FF", "accentSoft": "#C7C9FF3D", "accentGlow": "#C7C9FF8C", "accentGradient": ["#C7C9FF", "#C7C9FF"], "bgGlow": ["#788CFFB3", "#FF78C8B3", "#788CFFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#C7C9FF30"}, "light": {"bg": "#F8DDEE", "bgTop": "#DADFFA", "bgBottom": "#F8DDEE", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#C7C9FF", "ctaInk": "#1B1C4A", "accent": "#C7C9FF", "accentInk": "#1B1C4A", "accentText": "#323B6B", "accentBright": "#323B6B", "accentSoft": "#C7C9FF4D", "accentGlow": "#C7C9FF66", "accentGradient": ["#C7C9FF", "#C7C9FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#C7C9FF4D"}}, "grad_magma": {"name": "Магма", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2C2521", "opaqueSheet": "#383231", "opaqueControl": "#383231", "card": "#372D28BF", "text": "#FFFFFF", "secondary": "#BFC0C4", "mutedText": "#BFC0C4", "cta": "#FFB27A", "ctaInk": "#3A1204", "accent": "#FFB27A", "accentInk": "#3A1204", "accentText": "#FFC9A2", "accentBright": "#FFB27A", "accentSoft": "#FFB27A3D", "accentGlow": "#FFB27A8C", "accentGradient": ["#FFB27A", "#FFB27A"], "bgGlow": ["#FF5A28B3", "#FFAA3CB3", "#FF5A28B3"], "shadowTint": "#000000", "isLight": false, "selected": "#FFB27A30"}, "light": {"bg": "#F8E7D2", "bgTop": "#F8D4CA", "bgBottom": "#F8E7D2", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#FFB27A", "ctaInk": "#3A1204", "accent": "#FFB27A", "accentInk": "#3A1204", "accentText": "#6B2611", "accentBright": "#6B2611", "accentSoft": "#FFB27A4D", "accentGlow": "#FFB27A66", "accentGradient": ["#FFB27A", "#FFB27A"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#FFB27A4D"}}, "grad_midnight": {"name": "Полночь", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#21272E", "opaqueSheet": "#2D343E", "opaqueControl": "#2D343E", "card": "#272F39BF", "text": "#FFFFFF", "secondary": "#BFC0C4", "mutedText": "#BFC0C4", "cta": "#8CC4FF", "ctaInk": "#06224D", "accent": "#8CC4FF", "accentInk": "#06224D", "accentText": "#AFD6FF", "accentBright": "#8CC4FF", "accentSoft": "#8CC4FF3D", "accentGlow": "#8CC4FF8C", "accentGradient": ["#8CC4FF", "#8CC4FF"], "bgGlow": ["#286EFFB3", "#00D2FFB3", "#286EFFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#8CC4FF30"}, "light": {"bg": "#C5EFF9", "bgTop": "#C9D8FA", "bgBottom": "#C5EFF9", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#8CC4FF", "ctaInk": "#06224D", "accent": "#8CC4FF", "accentInk": "#06224D", "accentText": "#112E6B", "accentBright": "#112E6B", "accentSoft": "#8CC4FF4D", "accentGlow": "#8CC4FF66", "accentGradient": ["#8CC4FF", "#8CC4FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#8CC4FF4D"}}, "grad_champagne": {"name": "Шампань", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2B2824", "opaqueSheet": "#373634", "opaqueControl": "#373634", "card": "#35312CBF", "text": "#FFFFFF", "secondary": "#CACBCE", "mutedText": "#CACBCE", "cta": "#F3D39A", "ctaInk": "#3A2608", "accent": "#F3D39A", "accentInk": "#3A2608", "accentText": "#F6DEB3", "accentBright": "#F3D39A", "accentSoft": "#F3D39A3D", "accentGlow": "#F3D39A8C", "accentGradient": ["#F3D39A", "#F3D39A"], "bgGlow": ["#F0BE78B3", "#E68296B3", "#F0BE78B3"], "shadowTint": "#000000", "isLight": false, "selected": "#F3D39A30"}, "light": {"bg": "#F3DFE4", "bgTop": "#F5EADC", "bgBottom": "#F3DFE4", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#F3D39A", "ctaInk": "#3A2608", "accent": "#F3D39A", "accentInk": "#3A2608", "accentText": "#655032", "accentBright": "#655032", "accentSoft": "#F3D39A4D", "accentGlow": "#F3D39A66", "accentGradient": ["#F3D39A", "#F3D39A"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#F3D39A4D"}}, "grad_jade": {"name": "Нефрит", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#202A2A", "opaqueSheet": "#2B373A", "opaqueControl": "#2B373A", "card": "#263333BF", "text": "#FFFFFF", "secondary": "#C6C7CA", "mutedText": "#C6C7CA", "cta": "#7FE6D2", "ctaInk": "#032A24", "accent": "#7FE6D2", "accentInk": "#032A24", "accentText": "#9FECDD", "accentBright": "#7FE6D2", "accentSoft": "#7FE6D23D", "accentGlow": "#7FE6D28C", "accentGradient": ["#7FE6D2", "#7FE6D2"], "bgGlow": ["#14BEA0B3", "#1E78C8B3", "#14BEA0B3"], "shadowTint": "#000000", "isLight": false, "selected": "#7FE6D230"}, "light": {"bg": "#CBDDEE", "bgTop": "#C4EAE5", "bgBottom": "#CBDDEE", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#7FE6D2", "ctaInk": "#032A24", "accent": "#7FE6D2", "accentInk": "#032A24", "accentText": "#085043", "accentBright": "#085043", "accentSoft": "#7FE6D24D", "accentGlow": "#7FE6D266", "accentGradient": ["#7FE6D2", "#7FE6D2"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#7FE6D24D"}}, "grad_orchid": {"name": "Орхидея", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2A242E", "opaqueSheet": "#36313E", "opaqueControl": "#36313E", "card": "#342B39BF", "text": "#FFFFFF", "secondary": "#BFC0C4", "mutedText": "#BFC0C4", "cta": "#EAA6FF", "ctaInk": "#3A0A4A", "accent": "#EAA6FF", "accentInk": "#3A0A4A", "accentText": "#F0C1FF", "accentBright": "#EAA6FF", "accentSoft": "#EAA6FF3D", "accentGlow": "#EAA6FF8C", "accentGradient": ["#EAA6FF", "#EAA6FF"], "bgGlow": ["#D246FFB3", "#FF3C8CB3", "#D246FFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#EAA6FF30"}, "light": {"bg": "#F8D1E2", "bgTop": "#EECFFA", "bgBottom": "#F8D1E2", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#58585F", "mutedText": "#57575D", "cta": "#EAA6FF", "ctaInk": "#3A0A4A", "accent": "#EAA6FF", "accentInk": "#3A0A4A", "accentText": "#581D6B", "accentBright": "#581D6B", "accentSoft": "#EAA6FF4D", "accentGlow": "#EAA6FF66", "accentGradient": ["#EAA6FF", "#EAA6FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#EAA6FF4D"}}, "grad_ice": {"name": "Лёд", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#262A2E", "opaqueSheet": "#32373E", "opaqueControl": "#32373E", "card": "#2E3339BF", "text": "#FFFFFF", "secondary": "#CDCED1", "mutedText": "#CDCED1", "cta": "#BFE6FF", "ctaInk": "#0A2A44", "accent": "#BFE6FF", "accentInk": "#0A2A44", "accentText": "#C9EAFF", "accentBright": "#BFE6FF", "accentSoft": "#BFE6FF3D", "accentGlow": "#BFE6FF8C", "accentGradient": ["#BFE6FF", "#BFE6FF"], "bgGlow": ["#96DCFFB3", "#78A0FFB3", "#96DCFFB3"], "shadowTint": "#000000", "isLight": false, "selected": "#BFE6FF30"}, "light": {"bg": "#DDE5F9", "bgTop": "#E1F0FA", "bgBottom": "#DDE5F9", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#5B5B62", "cta": "#BFE6FF", "ctaInk": "#0A2A44", "accent": "#BFE6FF", "accentInk": "#0A2A44", "accentText": "#3F5C6B", "accentBright": "#3F5C6B", "accentSoft": "#BFE6FF4D", "accentGlow": "#BFE6FF66", "accentGradient": ["#BFE6FF", "#BFE6FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#BFE6FF4D"}}, "grad_coral": {"name": "Коралл", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#2C2525", "opaqueSheet": "#383235", "opaqueControl": "#383235", "card": "#372C2DBF", "text": "#FFFFFF", "secondary": "#C3C4C7", "mutedText": "#C3C4C7", "cta": "#FFB0A0", "ctaInk": "#4A0F0A", "accent": "#FFB0A0", "accentInk": "#4A0F0A", "accentText": "#FFC8BD", "accentBright": "#FFB0A0", "accentSoft": "#FFB0A03D", "accentGlow": "#FFB0A08C", "accentGradient": ["#FFB0A0", "#FFB0A0"], "bgGlow": ["#FF645AB3", "#FFA046B3", "#FF645AB3"], "shadowTint": "#000000", "isLight": false, "selected": "#FFB0A030"}, "light": {"bg": "#F8E5D4", "bgTop": "#F8D6D5", "bgBottom": "#F8E5D4", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#FFB0A0", "ctaInk": "#4A0F0A", "accent": "#FFB0A0", "accentInk": "#4A0F0A", "accentText": "#6B2A26", "accentBright": "#6B2A26", "accentSoft": "#FFB0A04D", "accentGlow": "#FFB0A066", "accentGradient": ["#FFB0A0", "#FFB0A0"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#FFB0A04D"}}, "grad_lilac": {"name": "Сирень", "gradient": true, "dark": {"bg": "#0C0D10", "bgTop": "#181A1F", "bgBottom": "#16181D", "opaqueCard": "#28272E", "opaqueSheet": "#34343E", "opaqueControl": "#34343E", "card": "#312F39BF", "text": "#FFFFFF", "secondary": "#C6C7CA", "mutedText": "#C6C7CA", "cta": "#D4C8FF", "ctaInk": "#24164A", "accent": "#D4C8FF", "accentInk": "#24164A", "accentText": "#DFD6FF", "accentBright": "#D4C8FF", "accentSoft": "#D4C8FF3D", "accentGlow": "#D4C8FF8C", "accentGradient": ["#D4C8FF", "#D4C8FF"], "bgGlow": ["#A78BFAB3", "#60A5FAB3", "#A78BFAB3"], "shadowTint": "#000000", "isLight": false, "selected": "#D4C8FF30"}, "light": {"bg": "#D8E6F8", "bgTop": "#E5DEF8", "bgBottom": "#D8E6F8", "opaqueCard": "#FFFFFF", "opaqueSheet": "#FFFFFF", "opaqueControl": "#ECECEF", "card": "#FFFFFF", "text": "#111114", "secondary": "#5C5C63", "mutedText": "#606066", "cta": "#D4C8FF", "ctaInk": "#24164A", "accent": "#D4C8FF", "accentInk": "#24164A", "accentText": "#463A69", "accentBright": "#463A69", "accentSoft": "#D4C8FF4D", "accentGlow": "#D4C8FF66", "accentGradient": ["#D4C8FF", "#D4C8FF"], "bgGlow": ["#00000000", "#00000000", "#00000000"], "shadowTint": "#00000038", "isLight": true, "selected": "#D4C8FF4D"}}};</script>
+<script src="spire-tower-render.js"></script>
+<script>window.__ICODE = {"albums-outline":"f110","arrow-up":"f145","book":"f1a5","book-outline":"f1a6","business-outline":"f1c7","cafe-outline":"f1ca","call-outline":"f1d9","chatbubble-ellipses-outline":"f213","chatbubbles-outline":"f218","checkmark":"f21d","chevron-back":"f229","chevron-down":"f232","chevron-forward":"f23b","cloud-offline-outline":"f25b","copy-outline":"f290","diamond":"f2a1","flame":"f313","flame-outline":"f314","flash":"f316","happy":"f361","home":"f382","home-outline":"f383","lock-closed":"f3c7","notifications-outline":"f47f","people":"f49f","people-outline":"f4a3","play":"f4c6","play-circle-outline":"f4ce","restaurant-outline":"f536","school-outline":"f55d","search":"f55f","settings-outline":"f56c","star":"f595","today":"f5e3","trending-up":"f5fb","trophy":"f601","volume-high":"f613"};</script>
+<script>
+/* зачем (владелец 21.10, №40): 5 принципиально новых концепций экрана «Обучение» Learning V2. Прежние 5 вариантов отклонены целиком
+   («старые макеты переделанные»). Каждая концепция — свой принцип подачи: 1 Сезон (сериал), 2 Циферблат (круг), 3 Волна (запись голоса),
+   4 Колода (карта в фокусе), 5 Разговорник (фразы вместо номеров). Данные — из курса: план урока 1 (ПЛАН_КУРСА.md), названия эпизодов
+   (session_titles_v1.generated.ts), фразы, слова и число заданий — из learner.json эпизодов. */
+(() => {
+const { phone, block, col, coinImg } = K;
+const CODE = window.__ICODE || {};
+const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[COURSE-NEW] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+const gl = (n) => { const c = CODE[n]; if (!c) throw new Error('[COURSE-NEW] нет значка ' + n); return `&#x${c};`; };
+let TH = 'ink';
+const T = (h, extra = '') => h.replace('class="ph"', `class="ph th-${TH}${extra ? ' ' + extra : ''}"`);
+const pl = (n, f) => { const a = n % 10, b = n % 100; return f[(a === 1 && b !== 11) ? 0 : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? 1 : 2]; };
+const tasks = (n) => `${n} ${pl(n, ['задание', 'задания', 'заданий'])}`;
+
+/* ── данные курса ── */
+const LES = { n: 1, title: 'Present be: утверждение + not', arc: 'Первая неделя в Дублине' };
+const CH = [
+  { n: 1, scene: 'Первый рабочий день', name: 'I am (+ not)', ic: 'business-outline', h: 258 },
+  { n: 2, scene: 'Кофе с коллегой', name: 'You are (+ not)', ic: 'cafe-outline', h: 200 },
+  { n: 3, scene: 'Знакомство с командой', name: 'He / she is (+ not)', ic: 'people-outline', h: 304 },
+  { n: 4, scene: 'Квартира, погода, вещи', name: 'It is (+ not)', ic: 'home-outline', h: 168 },
+  { n: 5, scene: 'Обед с командой', name: 'We / they are (+ not)', ic: 'restaurant-outline', h: 340 },
+  { n: 6, scene: 'Пятница, паб', name: 'Сокращения', ic: 'chatbubbles-outline', h: 228 },
+  { n: 7, scene: 'Воскресный звонок домой', name: 'Вся система be', ic: 'call-outline', h: 282 },
+];
+const EP = {
+  1: { t: 'Вошли в офис', p: 'I am here.', ru: 'Я здесь.', k: 20, w: ['here', 'ready', 'fine', 'happy'] },
+  2: { t: 'День продолжается', p: 'I am busy.', k: 21 },
+  3: { t: 'Заботливый начальник', p: 'I am not sure.', k: 21 },
+  4: { t: 'Утренняя планёрка вслух', p: 'I am early.', k: 21 },
+  5: { t: 'Типичные ошибки: I fine, I no sure', p: 'I am new.', k: 21 },
+  6: { t: 'Вечером в квартире, звонок другу', p: 'I am home.', k: 20 },
+  7: { t: 'Конец дня, всё вперемешку', p: 'I am full.', k: 18 },
+  8: { t: 'Итог первого дня: ответить на 10 вопросов о себе', p: 'I am excited.', k: 25 },
+  9: { t: 'Коллега приносит кофе', p: 'He is tall.', k: 21 },
+  10: { t: 'Замечаем и говорим о собеседнике', p: 'You are early.', k: 21 },
+  11: { t: 'Успокаиваем коллегу', p: 'You are not lazy.', k: 18 },
+  12: { t: 'Комплименты вслух', p: 'I am calm.', ru: 'Я спокоен.', k: 20, w: ['polite', 'brave', 'honest', 'smart'] },
+  13: { t: 'Ловушки: you am, I are', p: 'You are kind.', k: 18 },
+  14: { t: 'Помогаем туристу под дождём', p: 'You are safe.', ru: 'Ты в безопасности.', k: 18, w: ['safe', 'warm', 'dry', 'wet'] },
+  15: { t: 'Вечер, разбор дня', p: 'I am serious.', k: 22 },
+  16: { t: '«Скажи коллеге пять вещей о нём»', p: 'It is open.', k: 21 },
+  17: { t: 'Начальник представляет людей', p: 'You are welcome.', k: 21 },
+  18: { t: 'Обсуждаем коллег шёпотом', p: 'She is funny.', k: 21 },
+};
+const STARS = { 1: 3, 2: 3, 3: 2, 4: 3, 5: 3, 6: 2, 7: 3, 8: 3, 9: 3, 10: 2, 11: 3 };
+const CUR = 12;
+const chOf = (e) => Math.ceil(e / 8);
+const epState = (e, mode = 'mid') => mode === 'new' ? (e === 1 ? 'cur' : 'lock') : (e < CUR ? 'done' : e === CUR ? 'cur' : 'lock');
+
+/* цвет главы: обложка — глубокий градиент её оттенка (без жёлтого), на обеих темах текст белый */
+const art = (h, k = 0) => TH === 'ink'
+  ? `radial-gradient(120% 90% at 88% 0%, oklch(.70 .13 ${h + 28}) 0%, transparent 58%), linear-gradient(160deg, oklch(.53 .15 ${h + k}) 0%, oklch(.33 .13 ${h + 18 + k}) 100%)`
+  : `radial-gradient(120% 90% at 88% 0%, oklch(.56 .12 ${h + 28}) 0%, transparent 58%), linear-gradient(160deg, oklch(.40 .11 ${h + k}) 0%, oklch(.20 .07 ${h + 18 + k}) 100%)`;
+const hueFill = (h) => `fill:oklch(var(--lw) var(--cw) ${h})`;
+
+/* ── общие детали ── */
+const avatar = (s = 36, plus = true) => plus
+  ? `<span class="pav"><span class="gap">${coinImg(5, s)}</span><span class="pin">${io('diamond')}</span></span>`
+  : `<span class="pav" style="background:none;padding:0"><span class="gap" style="padding:0;background:none">${coinImg(5, s + 9)}</span></span>`;
+const TABS = [['home-outline', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people-outline', 'Сообщество'], ['settings-outline', 'Настройки']];
+const tabbar = (extra = '') => `<div class="qfade"></div>${extra}<div class="tbar"><div class="cap"></div>${TABS.map(([i, l], k) => `<div class="ti${k === 1 ? ' on' : ''}">${io(i)}<span>${l}</span></div>`).join('')}</div>`;
+const stars = (n) => `<span class="stars">${[0, 1, 2].map((i) => `<span class="${i < n ? '' : 'off'}">${io('star')}</span>`).join('')}</span>`;
+const hdr = (title, sub, plus = true) => `<div class="qhd"><div class="tt t">${title}${io('chevron-down')}</div><span class="sp"></span><span class="qround t">${io('book-outline')}</span>${avatar(36, plus)}</div>${sub ? `<div class="qsub">${sub}</div>` : ''}`;
+const nav = (k, h) => `<div class="c1nav"><span class="qround t">${io('chevron-back')}</span><div style="flex:1;min-width:0"><div class="qk">${k}</div><div style="font-size:19px;line-height:24px;font-weight:700">${h}</div></div><span class="qround t">${io('book-outline')}</span></div>`;
+const words = (e, glass) => `<div class="qchips">${(EP[e].w || []).map((w) => `<span class="qchip${glass ? ' glass' : ''}">${w}</span>`).join('')}</div>`;
+const say = (e, on) => `<div class="qsay"><span class="sp${on ? ' on' : ''} t">${io('volume-high')}</span><div><div class="en">${EP[e].p}</div><div class="ru">${EP[e].ru || ''}</div></div></div>`;
+const c1sec = (kick, title, right, chev = true) => `<div class="c1sec"><div style="min-width:0"><div class="qk">${kick}</div><div class="h t">${title}${chev ? io('chevron-down') : ''}</div></div><div class="r">${right}</div></div>`;
+const pills = (cur = 1) => `<div class="qpills">${CH.slice(0, 5).map((c, i) => `<span class="qpill${i === cur ? ' on' : ''}${i > cur ? ' lock' : ''} t">${i < cur ? io('checkmark') : i > cur ? io('lock-closed') : ''}Глава ${c.n}</span>`).join('')}</div>`;
+const c4back = (e, cls) => { const c = CH[chOf(e) - 1]; return `<div class="c4card ${cls}${epState(e) === 'lock' ? ' mute' : ''}" style="background:${art(c.h, (e % 8) * 4)}"><span class="gl">${io(c.ic)}</span><div class="top"><span class="qchip glass">${epState(e) === 'lock' ? io('lock-closed') : epState(e) === 'done' ? io('checkmark') : ''}Эпизод ${e}</span></div><div class="big">${EP[e].p}</div></div>`; };
+const c4front = (e, o) => {
+  const c = CH[chOf(e) - 1];
+  return `<div class="c4card${o.dim ? ' mute' : ''}" style="background:${art(c.h, (e % 8) * 4)}"><span class="gl">${io(c.ic)}</span>`
+    + `<div class="top"><span class="qchip glass">${o.dim ? io('lock-closed') : ''}Эпизод ${e}</span><span class="r">${o.right}</span></div>`
+    + `<div class="big">${EP[e].p}</div><div class="ru">${EP[e].ru || ''}</div><div class="h">${EP[e].t}</div>${words(e, true)}${o.lock ? `<div class="lk">${io('lock-closed')}${o.lock}</div>` : ''}${o.btns}</div>`;
+};
+const dots = (pos, mode = 'mid') => `<div class="c4dots">${Array.from({ length: 9 }, (_, i) => {
+  if (i === 8) return `<i class="x${pos === 'x' ? ' c' : ''}"></i>`;
+  const e = (mode === 'new' ? 1 : 9) + i; const st = epState(e, mode); return `<i class="${e === pos ? 'c' : st === 'done' ? 'd' : ''}"></i>`;
+}).join('')}</div>`;
+const c4tools = () => `<div class="c4tools"><span class="qchip t">${io('book-outline')}Теория урока</span><span class="qchip t">${io('albums-outline')}Вся глава</span></div>`;
+const fan = () => {
+  const list = [9, 10, 11, 12, 13, 14, 15, 16, 'x'];
+  return `<div class="c4fan">${list.map((e, i) => {
+    const r = -30 + i * 7.5; const isCur = e === CUR; const st = e === 'x' ? 'x' : epState(e);
+    const tr = `rotate(${r}deg)${isCur ? ' translateY(-40px)' : ''}`;
+    if (e === 'x') return `<div class="fcard c4exam" style="transform:${tr};z-index:${i}"><span class="n">${io('trophy')}</span><span class="p">Экзамен главы</span></div>`;
+    const c = CH[chOf(e) - 1];
+    return `<div class="fcard${st === 'lock' ? ' lock' : ''}${isCur ? ' cur' : ''}" style="transform:${tr};z-index:${isCur ? 20 : i};background:${art(c.h, (e % 8) * 4)}"><span class="n">${isCur ? io('play') : ''}${e}</span>${isCur ? `<span class="p">${EP[e].p}</span>` : ''}</div>`;
+  }).join('')}</div>`;
+};
+/* ═════════ ГЛАВНАЯ · 4 НОВЫЕ КОНЦЕПЦИИ (№54, владелец 21.10) ═════════
+   Выше — общие детали из course-new-concepts (тема, данные курса, кольцо Plus). Блоки и тексты — из HomeV2 и макета друзей «строго как на экране»:
+   серия «N дней» / «Сегодня ещё нет», монеты, «Продолжить», «Сегодня» (Пройти урок, Потренировать диалог, Повторить карточки «Не менее 10 слов»),
+   строка «Серия вдвоём с Лидией», «Фраза дня» (We are together., «2 друга уже ответили»), плитки Уроки / Диалоги / Карточки, Пик «Поднимайся выше всех». */
+const IMG = (name, cls = '', st = '') => `<img class="hm-art ${cls}" src="assets/v2art/${TH === 'ink' ? 'light' : 'dark'}/${name}.webp" alt="" style="${st}">`;
+const COINR = (r, s) => `<img class="hm-coin" src="${K.coin(r)}" width="${s}" height="${s}" style="width:${s}px;height:${s}px" alt="">`;
+const tabbarH = (extra = '') => `<div class="qfade"></div>${extra}<div class="tbar"><div class="cap" style="left:9px"></div>${TABS.map(([i, l], k) => `<div class="ti${k === 0 ? ' on' : ''}">${io(k === 0 ? 'home' : i === 'book' ? 'book-outline' : i)}<span>${l}</span></div>`).join('')}</div>`;
+const MID_TODAY = [['book-outline', 'Пройти урок', '', '1/1', 1], ['chatbubbles-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '6/10']];
+const S = {
+  new: { time: '9:41', streak: '0 дней', pend: true, coins: '0', en: '5', ep: 1, today: [['book-outline', 'Пройти урок', '', '0/1'], ['chatbubbles-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '0/10']], done: 0 },
+  mid: { time: '18:10', streak: '5 дней', coins: '2 340', en: '4', ep: 12, today: MID_TODAY, done: 1, friend: true },
+  eve: { time: '21:40', streak: '5 дней', pend: true, warn: true, coins: '2 340', en: '3', ep: 12, today: [['book-outline', 'Пройти урок', '', '0/1', 0, 1], ['chatbubbles-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '0/10']], done: 0, friend: true },
+  plus: { time: '18:10', streak: '5 дней', coins: '2 340', en: '∞', plus: true, ep: 12, today: MID_TODAY, done: 1, friend: true },
+  off: { time: '13:05', streak: '5 дней', coins: '2 340', en: '4', off: true, ep: 12, today: MID_TODAY, done: 1, friend: true },
+  zero: { time: '16:20', streak: '5 дней', coins: '2 340', en: '0', zero: true, ep: 12, today: MID_TODAY, done: 1, friend: true },
+};
+const ORDER = ['new', 'mid', 'eve', 'plus', 'off', 'zero'];
+const LBL = ['Новичок, первый день', 'Активный ученик', 'Серия под угрозой, 21:40', 'Plus', 'Нет сети', '0 энергии'];
+
+/* ── шапка: серия (две строки, как в коде), монеты, энергия, колокол, аватар ── */
+const stats = (s, glass) => {
+  const g = glass ? ' glass' : '';
+  const streak = `<span class="hm-pill two${g}${s.warn ? ' ember' : ''} t">${io(s.pend ? 'flame-outline' : 'flame')}<span class="vv"><b>${s.streak}</b><small>${s.pend ? 'Сегодня ещё нет' : 'Серия'}</small></span></span>`;
+  const money = `<span class="hm-pill${g} t"><img src="${K.coin(5)}" alt="">${s.coins}<i class="dv"></i><span class="${s.zero ? 'hm-emb' : ''}" style="display:inline-flex;align-items:center;gap:3px">${io('flash')}${s.en}</span></span>`;
+  return `${streak}${money}`;
+};
+const bell = (glass) => `<span class="qround hm-bell${glass ? ' glass' : ''} t">${io('notifications-outline')}<i class="dot"></i></span>`;
+const me = (s) => avatar(34, !!s.plus);
+const head = (s, glass) => `<div class="hm-top">${stats(s, glass)}<span class="hm-sp"></span>${bell(glass)}${me(s)}</div>`;
+const offBar = (glass) => `<div class="hm-off${glass ? ' glass' : ''}">${io('cloud-offline-outline')}<span><b>Нет сети.</b> Занятия и карточки работают, остальное догонит.</span></div>`;
+const chipsLesson = (s, glass) => s.ep === 1 ? `<div class="hm-chips"><span class="qchip${glass ? ' glass' : ''} t">${io('school-outline')}Не хочу с начала</span></div>`
+  : `<div class="hm-chips"><span class="qchip${glass ? ' glass' : ''} t">${io('albums-outline')}Слова</span><span class="qchip${glass ? ' glass' : ''} t">${io('book-outline')}Теория</span></div>`;
+const noEnergy = (glass) => `<div class="hm-alt"><span class="qchip${glass ? ' glass' : ''} t">${io('copy-outline')}Карточки</span><span class="qchip${glass ? ' glass' : ''} t">${io('chatbubble-ellipses-outline')}Фраза дня</span><span class="qchip${glass ? ' glass' : ''} t">${io('play-circle-outline')}Видео</span></div>`;
+const row = ([ic, t, sub, n, done, urgent]) => `<div class="hm-row${done ? ' done' : ''}${urgent ? ' urgent' : ''} t"><span class="ck${done ? ' on' : ''}">${io('checkmark')}</span><span class="ic">${io(ic)}</span><div class="tx"><div class="t">${t}</div>${sub ? `<div class="s">${sub}</div>` : ''}</div><span class="n">${n}</span></div>`;
+const friendRow = (s) => `<div class="hm-row t"><span class="ck"></span>${COINR(8, 36)}<div class="tx"><div class="t">Серия вдвоём с Лидией</div><div class="s">${s.off ? 'Обновится, когда будет сеть' : s.warn ? 'Лидия уже занималась сегодня' : 'Лидия уже занималась · 3 дня'}</div></div><span class="n">0/1</span></div>`;
+const todayList = (s) => `${s.today.map(row).join('')}${s.friend ? friendRow(s) : ''}`;
+const pair = (s = 22) => `<span class="hm-pair">${COINR(9, s)}${COINR(11, s)}</span>`;
+
+/* ═════ A · Сцена ═════ */
+const aStage = (s) => {
+  const e = EP[s.ep];
+  let body;
+  if (s.zero) body = `<div class="a-kick">Эпизод 12 · ${e.t}</div><div class="a-title">Энергия вернётся через 42 мин</div><div class="a-prog">Пока можно заниматься без энергии</div>${noEnergy(true)}<div class="a-prog" style="margin-top:12px">${io('diamond')}С Plus без энергии</div>`;
+  else if (s.warn) body = `<div class="a-kick">Серия 5 дней</div><div class="a-title">До полуночи 2 ч 20 мин</div><div class="a-count">${io('flame')}Одно занятие сохранит серию</div><div class="a-cta"><div class="qbtn white t">${io('play')}Продолжить эпизод 12</div></div>`;
+  else if (s.ep === 1) body = `<div class="a-kick">Урок 1 · ${LES.arc}</div><div class="a-title">${e.t}</div><div class="a-prog">Эпизод 1 · ${tasks(e.k)}</div><div class="a-cta"><div class="qbtn white t">${io('play')}Начать</div></div><div style="margin-top:12px">${chipsLesson(s, true)}</div>`;
+  else body = `<div class="a-kick">Урок 1 · Эпизод 12</div><div class="a-title">${e.t}</div><div class="a-prog"><span class="bar"><i style="width:30%"></i></span>задание 6 из 20</div><div class="a-cta"><div class="qbtn white t">${io('play')}Продолжить</div></div><div style="margin-top:12px">${chipsLesson(s, true)}</div>`;
+  return `<div class="a-stage${s.warn ? ' eve' : ''}">${s.warn ? '<div class="a-ember"></div>' : ''}<div class="a-glow"></div>${IMG(s.warn ? 'today' : 'continue', 'a-art', s.zero ? 'opacity:.55;filter:grayscale(.4) drop-shadow(0 30px 40px rgba(0,0,0,.45))' : '')}<div class="a-scrim"></div>`
+    + `<div class="a-top">${head(s, true)}${s.off ? `<div style="margin-top:10px">${offBar(true)}</div>` : ''}</div><div class="a-body">${body}</div></div>`;
+};
+const aTiles = (s) => `<div class="a-tiles">${[['lessons', 'Уроки'], ['dialogs', 'Диалоги', s.plus ? 'без лимита' : ''], ['cards', 'Карточки']].map(([a, t, sm]) => `<div class="a-tile t">${IMG(a)}${t}${sm ? `<small>${sm}</small>` : ''}</div>`).join('')}</div>`;
+const aPod = (s) => `<div class="a-pod t"${s.off ? ' style="opacity:.55"' : ''}>${IMG('phrase_of_day', 'art')}<div class="tx"><div class="k">Фраза дня</div><div class="p">We are together.</div><div class="s">${s.off ? 'Ответишь, когда будет сеть' : `${pair()}2 друга уже ответили`}</div></div>${io('chevron-forward', 'font-size:18px;color:var(--sec)')}</div>`;
+const A = (s) => T(phone(`${aStage(s)}<div class="a-panel"><div class="hm-h">Сегодня<span>${s.done} из 3</span></div>${todayList(s)}</div>${aTiles(s)}${aPod(s)}<div style="height:140px"></div>`,
+  { time: s.time, inStyle: 'padding:0', fixed: tabbarH() }), 'onart');
+
+
+/* ═════════ ПИК В ЯЗЫКЕ «СЦЕНЫ» (владелец 21.10 ~00:00: «в таком же стиле, как вот Сцена, мне показать макеты раздела ПИК») ═════════
+   Выше — детали «Сцены» из home_body.js (сцена, IMG, кольцо Plus) и общие детали курса (тема, значки). Башня — только единый рендер
+   spire-tower-render.js (приказ владельца 13.10: «все башни во всех макетах — именно так, как в приложении»).
+   Данные — эталон spire.html и код Пика: комната 30 человек, 15 этажей (ступеней 5, 6, 7, 8, 9, дальше по 10), Страж каждые 5 этажей
+   (монеты ×2), этаж N = 10×N монет, вершина +200; ступень = 10 заданий, общий таймер, 3 сердца, перед ступенью отсчёт 3-2-1.
+   Место — по монетам недели; зоны D190: 5 лучших вверх, 5 последних вниз. Тексты — spire_strings.ts и spire_game_strings.ts.
+   Решения реестра: пустых комнат нет — комната своего уровня доливается всю неделю (№49); «Собери перевод» — ячейки и «Проверить» (вар. A). */
+const R = SpireTowerRender;
+const P_NAMES = ['Аня', 'Марк', 'Ольга', 'Тимур', 'Лея', 'Иван', 'Денис', 'Nadia', 'Kirill', 'Софья', 'Dmytro', 'Юля', 'Артём', 'Halyna', 'Роман', 'Вера', 'Oleh', 'Мария', 'Глеб', 'Ирина', 'Sergio', 'Даша', 'Павел', 'Лидия', 'Natalia', 'Егор', 'Кира', 'Богдан', 'Алина', 'Максим'];
+const P_STEPS = [47, 39, 33, 31, 29, 27, 25, 24, 22, 21, 19, 18, 17, 15, 14, 12, 11, 11, 9, 8, 7, 6, 5, 5, 4, 3, 2, 1, 0, 0];
+const P_RANKS = [12, 9, 7, 11, 6, 8, 5, 4, 10, 3, 7, 6, 2, 9, 5, 1, 8, 4, 3, 6, 2, 0, 7, 1, 5, 3, 0, 2, 1, 0];
+const P_COINS = [612, 538, 455, 470, 402, 395, 340, 318, 330, 290, 268, 255, 240, 215, 198, 180, 166, 150, 140, 122, 110, 96, 88, 70, 64, 52, 40, 26, 0, 0];
+const ROOM = P_NAMES.map((name, i) => ({ name, steps: P_STEPS[i], coins: P_COINS[i], rank: P_RANKS[i], me: name === 'Денис' }));
+const ME = ROOM.find((m) => m.me);
+const SORTED = [...ROOM].sort((a, b) => b.coins - a.coins || b.steps - a.steps);
+const PLACE = SORTED.indexOf(ME) + 1;
+const ZK = 5; // D190: при 15+ живых — 5 вверх и 5 вниз
+const FLOORS = 15;
+const stepsIn = (f) => (f <= 5 ? 4 + f : 10);
+const cum = (f) => { let s = 0; for (let i = 1; i <= f; i++) s += stepsIn(i); return s; };
+const isGuard = (f) => f % 5 === 0;
+const floorCoins = (f) => 10 * f * (isGuard(f) ? 2 : 1);
+const floorOf = (steps) => { for (let f = 1; f <= FLOORS; f++) if (steps < cum(f)) return f; return FLOORS; };
+const onFloor = (f) => ROOM.filter((m) => !m.me && floorOf(m.steps) === f);
+const fmt = (n) => n.toLocaleString('ru-RU');
+const plC = (n) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'монета' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'монеты' : 'монет'; };
+const FRIENDS = [['Аня', 12, 'Агат'], ['Kirill', 10, 'Гранит'], ['Лидия', 1, 'Базальт'], ['Sergio', 2, 'Гранит']];
+const ci = (r, s, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="${K.coin(r)}" alt="" style="width:${s}px;height:${s}px">`;
+const rivalsAll = () => ROOM.filter((m) => !m.me).reduce((a, m) => { const f = floorOf(m.steps); (a[f] = a[f] || []).push(m.rank); return a; }, {});
+const rivalsFresh = () => ({ 1: SORTED.filter((m) => !m.me).slice(0, 11).map((m) => m.rank) });
+const tw = (o, w, h, extra = {}) => R.windowHtml(Object.assign({ coin: K.coin, tier: 0, myFloor: o.floor || 4, selected: o.floor || 4, theme: TH === 'ink' ? 'light' : 'dark', width: w, height: h, myRank: ME.rank, rivals: o.fresh ? rivalsFresh() : rivalsAll(), dimRivals: !!o.off }, extra));
+const tabbarP = () => `<div class="qfade"></div><div class="tbar"><div class="cap" style="left:calc(9px + 3 * (100% - 18px) / 5)"></div>${TABS.map(([i, l], k) => `<div class="ti${k === 3 ? ' on' : ''}">${io(k === 3 ? 'people' : i === 'book' ? 'book-outline' : i)}<span>${l}</span></div>`).join('')}</div>`;
+
+/* ── шапка сцены: вкладки «Сообщества» (Пик · Друзья · Наборы, как в коде) и энергия значком с числом ── */
+const seg = (o) => `<div class="pk-top"><div class="pk-seg"><span class="on t">Пик</span><span class="t">Друзья</span><span class="t">Наборы</span></div><span class="pk-en${o.en === '0' ? ' zero' : ''}">${io('flash')}${o.en}</span></div>`;
+const offP = () => `<div class="hm-off glass pk-off">${io('cloud-offline-outline')}<span><b>Нет сети.</b> Свой прогресс сохраняется, чужие цифры обновим при связи.</span></div>`;
+const rew = (list) => `<div class="pk-rew">${list.map(([r, t]) => (r === null ? `<span class="np">${t}</span>` : `<span>${ci(r, 20)}${t}</span>`)).join('')}</div>`;
+const artSt = (o) => (o.grey ? 'opacity:.55;filter:grayscale(.4) drop-shadow(0 30px 40px rgba(0,0,0,.45))' : '');
+const plusLink = () => `<div class="a-cta"><div class="qbtn glass t" style="width:auto;flex:1;height:54px;border-radius:27px;padding:0 22px">Играй без ожидания с Plus${io('chevron-forward')}</div></div>`;
+const cta = (o, side = '') => {
+  if (o.cta === 'wait') return `<div class="a-cta"><div class="qbtn white pk-wait"><span class="pk-spin"></span>Ищем комнату…</div>${side}</div>`;
+  if (o.cta === 'zero') return plusLink();
+  return `<div class="a-cta"><div class="qbtn white t">${io('play')}Играть</div>${side}</div>${o.ctaNote ? `<div class="pk-plus">${o.ctaNote}</div>` : ''}`;
+};
+const kt = (o, v = '') => {
+  const k = o['kick' + v] ?? o.kick, t = o['title' + v] ?? o.title, c = o['count' + v] ?? o.count, p = o['prog' + v] === undefined ? o.prog : o['prog' + v];
+  return `<div class="a-kick">${k}</div><div class="a-title">${t}</div>${c ? `<div class="a-count">${io('trending-up')}${c}</div>` : ''}${p ? `<div class="a-prog">${p[0] === null ? '' : `<span class="bar"><i style="width:${p[0]}%"></i></span>`}${p[1]}</div>` : ''}`;
+};
+const stageOpen = (o, extra = '') => `<div class="a-stage${o.eve ? ' eve' : ''}">${o.eve ? '<div class="a-ember"></div>' : ''}${extra}`;
+const topOf = (o, top) => `<div class="a-top">${top || seg(o)}${o.off ? offP() : ''}</div>`;
+
+/* ── панель «Комната недели» ── */
+const meRow = (o, coins = ME.coins, place = PLACE, sub = `${io('arrow-up')}2 места до повышения`) => `<div class="pk-me t"><span class="n">${place}</span>${o.plus ? avatar(34, true) : ci(ME.rank, 40, 'cn')}<div class="tx"><div class="t">Ты</div><div class="s">${sub}</div></div><span class="c">${fmt(coins)} ${plC(coins)}</span></div>`;
+const podA = () => `<div class="pk-pod">${SORTED.slice(0, 3).map((m, i) => `<div class="p${i === 0 ? ' first' : ''} t">${ci(m.rank, 40)}<div class="nm">${m.name}</div><div class="c">${fmt(m.coins)}${ci(0, 14)}</div></div>`).join('')}</div>`;
+const skPod = () => `<div class="pk-pod">${[0, 1, 2].map(() => `<div class="p"><div class="pk-sk" style="width:40px;height:40px;border-radius:20px;margin:0 auto"></div><div class="pk-sk" style="height:14px;width:56px;margin:9px auto 0"></div><div class="pk-sk" style="height:12px;width:40px;margin:7px auto 2px"></div></div>`).join('')}</div>`;
+const seats = () => `<div class="pk-seats">${SORTED.filter((m) => !m.me).slice(0, 11).map((m) => ci(m.rank, 30)).join('')}${ci(ME.rank, 30)}${'<i></i>'.repeat(18)}</div>`;
+const roomPanel = (o) => {
+  if (o.room === 'search') return `<div class="a-panel"><div class="hm-h">Комната недели<span>ищем…</span></div>${skPod()}<div class="pk-note">Подбираем комнату твоего уровня</div></div>`;
+  if (o.room === 'fill') return `<div class="a-panel"><div class="hm-h">Комната недели<span>12 из 30</span></div>${seats()}<div class="pk-note">Комната твоего уровня. Новые участники приходят всю неделю</div>${meRow(o, 10, 6)}<div class="pk-link t">Все участники <small>12</small>${io('chevron-forward')}</div></div>`;
+  return `<div class="a-panel${o.off ? ' pk-panel-dim' : ''}"><div class="hm-h">Комната недели<span>${PLACE} место из 30</span></div>${podA()}${meRow(o)}<div class="pk-link t">Все участники <small>30</small>${io('chevron-forward')}</div></div>`;
+};
+const floorLine = (o) => { const f = o.floor || 4; return `<div class="pk-fi"><div class="tx"><div class="t">Этаж ${f}</div><div class="s">Ты здесь · ${o.done ?? 7} из ${stepsIn(f)} ступеней · ${floorCoins(f)} монет за этаж</div></div><div class="who">${(o.fresh ? SORTED.filter((m) => !m.me).slice(0, 4) : onFloor(f).slice(0, 4)).map((m) => ci(m.rank, 28)).join('')}</div></div>`; };
+const towerCard = (o, h = 300) => `<div class="pk-tw">${tw(o, 378, h)}${floorLine(o)}</div>`;
+const friendsP = () => `<div class="pk-h2">Друзья на этой неделе</div><div class="pk-fr">${FRIENDS.map(([n, r, st]) => `<span class="c t">${ci(r, 32)}${n}<small>${st}</small></span>`).join('')}</div>`;
+const shell = (o, body, overlay = '', scrolled = false) => { const h = T(phone(`${body}<div style="height:150px"></div>`, { time: o.time, inStyle: 'padding:0', fixed: tabbarP(), overlay }), scrolled ? '' : 'onart'); return scrolled ? h.replace('<div class="scr">', '<div class="scr" data-scroll="bottom">') : h; };
+
+/* ── семь состояний входа (одинаковые для A, B, C) ── */
+const REW4 = [[0, '+10 за ступень'], [0, '+40 за этаж']];
+const REW1 = [[0, '+10 за ступень'], [0, '+10 за этаж']];
+const ST = {
+  day: { time: '18:10', en: '3', kick: 'Гранит · до конца недели 2 д 14 ч', title: 'Этаж 4', prog: [88, 'ступень 7 из 8'], rew: REW4,
+    kickB: 'Гранит<br>до конца недели 2 д 14 ч', kickC: 'Комната недели · Гранит', progC: [null, 'до зоны повышения 2 места'] },
+  search: { time: '9:05', en: '5', fresh: true, floor: 1, done: 0, room: 'search', cta: 'wait', kick: 'Новая неделя · Гранит', title: 'Этаж 1', prog: [0, 'ступень 0 из 5'], rew: REW1,
+    kickC: 'Новая неделя · Гранит', titleC: 'Ищем комнату', progC: [null, 'комната твоего уровня, пара секунд'], noLadder: true },
+  fill: { time: '9:12', en: '4', fresh: true, floor: 1, done: 1, room: 'fill', kick: 'Гранит · до конца недели 6 д 14 ч', kickB: 'Гранит<br>до конца недели 6 д 14 ч', title: 'Этаж 1', prog: [20, 'ступень 1 из 5'], rew: REW1,
+    kickC: 'Комната набирается · 12 из 30', titleC: '6 место', progC: [null, 'до зоны повышения 2 места'], ladder: { n: 12, k: 4, place: 6 } },
+  eve: { time: '21:40', en: '2', eve: true, kick: 'Гранит · ты 7-й в комнате', title: 'До конца недели 2 ч 20 мин', count: 'Ещё 2 места до зоны повышения',
+    kickB: 'Гранит · до конца недели', titleB: '2 ч 20 мин', countB: 'Ещё 2 места до повышения', kickC: 'До конца недели 2 ч 20 мин', countC: '', progC: [null, 'ещё 2 места до зоны повышения'], badge: true },
+  zero: { time: '16:20', en: '0', grey: true, cta: 'zero', kick: 'Гранит · этаж 4 · ступень 7 из 8', title: 'Энергия через 6:40',
+    kickB: 'Энергия через', titleB: '6:40', progB: [null, 'этаж 4 · ступень 7 из 8'], kickC: 'Комната недели · Гранит', progC: [null, 'энергия через 6:40'], badge: true },
+  off: { time: '13:05', en: '3', off: true, kick: 'Гранит · до конца недели 2 д 9 ч', kickB: 'Гранит<br>до конца недели 2 д 9 ч', title: 'Этаж 4', prog: [88, 'ступень 7 из 8'], rew: REW4,
+    kickC: 'Комната недели · Гранит', progC: [null, 'место обновится, когда будет сеть'] },
+  plus: { time: '18:10', en: '∞', plus: true, kick: 'Гранит · до конца недели 2 д 14 ч', kickB: 'Гранит<br>до конца недели 2 д 14 ч', title: 'Этаж 4', prog: [88, 'ступень 7 из 8'], rew: REW4,
+    kickC: 'Комната недели · Гранит', progC: [null, 'до зоны повышения 2 места'] },
+};
+const P_ORDER = ['day', 'search', 'fill', 'eve', 'zero', 'off', 'plus'];
+const P_LBL = ['Обычный день: 4 этаж, ступень 7 из 8', 'Новая неделя: ищем комнату, «Играть» уже нажат', 'Комната набирается: 12 из 30', 'Вечер воскресенья: неделя кончается', 'Нет энергии', 'Нет сети', 'Plus'];
+
+
+/* ═════ цвета каждой темы приложения (владелец 22.10 ~02:15: «в тёмной теме оно сливается и некрасиво, а в светлой — отлично…
+   у каждой темы свои цвета»). Снимок 23 тем — window.__THEMES (liquidGlassTokens, уровень «Акцент»), тот же, что у Пика,
+   «Сегодня» и «Диалогов» (9 · САЙТ). Тёмное оформление — тот же приём, что у них: основа сцены = 30 % акцента темы поверх фона,
+   без чёрного затемнения снизу → шов сцена/панель ≥ 1,34 (замер — под каждой парой экранов). Светлое: «Сумерки» — ровно как
+   утвердил владелец; у остальных тем та же глубина сцены (OKLCH L .47 → .28), но оттенок и насыщенность — от акцента темы. ═════ */
+const THEMES = window.__THEMES || {};
+const THEME_IDS = Object.keys(THEMES);
+const SEAM_MIN = 1.34;
+let THEME_ID = 'marine';
+let AP = 'dark';
+const hx = (h) => { const s = String(h).replace('#', ''); return [0, 2, 4].map((i) => parseInt(s.slice(i, i + 2), 16)); };
+const ha = (h) => { const s = String(h).replace('#', ''); return s.length === 8 ? parseInt(s.slice(6), 16) / 255 : 1; };
+const mixc = (a, b, w) => a.map((v, i) => v * w + b[i] * (1 - w));
+const rgba = (c, a = 1) => `rgba(${c.map((v) => Math.round(Math.max(0, Math.min(255, v)))).join(',')},${a})`;
+const lumc = (c) => { const s = c.map((v) => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); }); return 0.2126 * s[0] + 0.7152 * s[1] + 0.0722 * s[2]; };
+const ratioc = (a, b) => { const x = lumc(a); const y = lumc(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+const toLin = (v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); };
+const toSrgb = (v) => 255 * (v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055);
+/* sRGB ↔ OKLCH (Björn Ottosson) — светлая сцена каждой темы на той же глубине, что утверждённые «Сумерки» */
+const oklchOf = (c) => {
+  const [r, g, b] = c.map(toLin);
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  const A = 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s;
+  const B = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s;
+  return [0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s, Math.hypot(A, B), (Math.atan2(B, A) * 180 / Math.PI + 360) % 360];
+};
+const fromOklch = (L, C, H) => {
+  const a = C * Math.cos(H * Math.PI / 180); const b = C * Math.sin(H * Math.PI / 180);
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (L - 0.0894841775 * a - 1.2914855480 * b) ** 3;
+  return [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s]
+    .map((v) => Math.max(0, Math.min(255, toSrgb(Math.max(0, Math.min(1, v))))));
+};
+const sceneTok = (id, ap) => {
+  const t = THEMES[id][ap]; const g = t.accentGradient || [t.accent, t.accent];
+  if (ap === 'dark') {
+    const top = mixc(hx(g[0]), hx(t.bgTop), 0.3); const bot = mixc(hx(g[g.length - 1]), hx(t.bg), 0.3);
+    const gl = (t.bgGlow && t.bgGlow[0]) || t.accentGlow;
+    return { t, top, bot, glow: rgba(hx(gl), ha(gl)), eveTop: top, eveBot: bot, seam: ratioc(bot, hx(t.opaqueCard)) };
+  }
+  if (id === 'ink') {
+    /* утверждённый владельцем светлый вид — числа эталона home-new-concepts.html без изменений */
+    const top = fromOklch(0.47, 0.14, 282); const bot = fromOklch(0.28, 0.10, 276);
+    return { t, top, bot, glow: 'oklch(.66 .13 300 / .9)', eveTop: fromOklch(0.30, 0.09, 285), eveBot: fromOklch(0.14, 0.05, 280), seam: ratioc(bot, hx('#FCFCFF')) };
+  }
+  const [, C, H] = oklchOf(hx(t.accent));
+  const top = fromOklch(0.47, Math.min(C, 0.16), H); const bot = fromOklch(0.28, Math.min(C, 0.11), (H + 354) % 360);
+  return { t, top, bot, glow: rgba(fromOklch(0.66, Math.min(C, 0.14), (H + 18) % 360), 0.9), eveTop: fromOklch(0.30, Math.min(C, 0.09), H), eveBot: fromOklch(0.14, Math.min(C, 0.05), H), seam: ratioc(bot, hx(t.opaqueCard)) };
+};
+const tokCss = (id, ap) => {
+  const k = sceneTok(id, ap); const t = k.t;
+  return [`--bg:linear-gradient(180deg,${t.bgTop} 0%,${t.bg} 55%,${t.bgBottom} 100%)`, `--top:${t.bgTop}`, `--bot:${t.bgBottom}`, `--tx:${t.text}`, `--sec:${t.secondary}`,
+    `--card:${t.opaqueCard}`, `--ctl:${t.opaqueControl}`, `--acc:${t.accentText}`, `--solid:${t.cta}`, `--on-solid:${t.ctaInk}`, `--sb:${t.text}`,
+    `--st-top:${rgba(k.top)}`, `--st-bot:${rgba(k.bot)}`, `--st-glow:${k.glow}`, `--st-eve-top:${rgba(k.eveTop)}`, `--st-eve-bot:${rgba(k.eveBot)}`].join(';');
+};
+/* «Сумерки» в светлом — утверждённый вид как есть; остальные — переменные темы на телефоне */
+const tok = (html, id, ap) => (id === 'ink' && ap === 'light' ? html
+  : html.replace(/class="ph th-(ink|marine)([^"]*)"/, (m, th, rest) => `class="ph th-${th}${rest} hs-tok${ap === 'dark' ? ' dk' : ''}" style="${tokCss(id, ap)}"`));
+
+/* ═════════ ПИК v2 (владелец 22.10 через координатора) ═════════
+   «пик вроде неплохо, но я хочу как-то более интересно в общий дизайн сам пик интегрировать, чтобы он не был как отдельная часть
+   в отдельном окошке; вот где башня — герой сцены, мне нравится больше, а вот комната недели внизу — я хочу, чтобы была всё ещё
+   как пьедестал». Основа — вариант B прежней страницы: башня (единый рендер приложения, без плиты и рамки) — герой «Сцены»;
+   комната недели — пьедестал 2-1-3, на котором башня стоит. Три способа сращения пьедестала со сценой. Цвета — из каждой
+   из 23 тем (тот же слой, что у «Сцены» Главной): в тёмном сцена = 30 % акцента поверх фона, без чёрного затемнения. */
+const LEAD = SORTED.slice(0, 3);
+const seamTxt = (k) => k.seam.toFixed(2).replace('.', ',');
+const towerAt = (o, top, height) => `<div class="pk2-tw" style="top:${top}px;height:${height}px">${tw(o, 240, height, { theme: 'dark', scene: { plate: 'transparent', plateShadow: 'none' }, scrollTop: 99999 })}</div>`;
+// зачем: строка «Нет сети» стоит под вкладками (как в приложении) — текст сцены в этом состоянии опускаем под неё, а не под неё подкладываем
+const copyB = (o) => `<div class="pk2-copy${o.off ? ' off' : ''}">${kt(o, 'B')}${o.rew && !o.eve && o.cta !== 'zero' ? rew(o.rew) : ''}</div>`;
+const coinAt = (r, x, y, s) => `<div class="pk2-coin" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px">${ci(r, s)}</div>`;
+const blk = (x, y, w, h, inner, cls = '') => `<div class="pk2-blk${cls}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px">${inner}</div>`;
+const face = (place, m, coin = 0) => `${coin ? `<span style="display:block;margin-bottom:3px">${ci(m.rank, coin)}</span>` : ''}<span class="pl">${place}</span><span class="nm">${m.name}</span><span class="cn">${fmt(m.coins)}${ci(0, 12)}</span>`;
+const meAt = (o, x, y) => (o.room === 'search'
+  ? `<div class="pk2-me" style="left:${x}px;top:${y}px"><div class="k">Комната недели · Гранит</div><div class="v">Ищем…</div><div class="s">комната твоего уровня</div></div>`
+  : `<div class="pk2-me${o.off ? ' pk2-dim' : ''}" style="left:${x}px;top:${y}px"><div class="k">Комната недели · Гранит</div><div class="v">${o.plus ? avatar(24, true) : ci(ME.rank, 30)}${PLACE} место</div><div class="s">${io('arrow-up')}2 места до повышения</div></div>`);
+const linkAt = (o, y) => `<div class="pk2-link t${o.off ? ' pk2-dim' : ''}" style="top:${y}px">Все участники <small>${o.room === 'search' ? '…' : '30'}</small>${io('chevron-forward')}</div>`;
+const stageV2Open = (o) => stageOpen(o, '<div class="a-glow" style="right:12px;top:150px;width:260px;height:260px"></div>');
+const closeStage = (o) => `<div class="a-scrim"></div>${topOf(o)}</div>`;
+
+/* V1 · ступени к башне: пьедестал лесенкой 3-2-1 поднимается слева направо, башня стоит на верхней ступени — месте первого.
+   зачем лесенка, а не 2-1-3: башня справа, и блок под ней должен быть шире её карниза (157) — справа от неё третьему блоку
+   места нет; лесенка к башне — та же «пьедестальная» тройка и заодно образ подъёма. Своё место — слева над ступенями. */
+const STEP = { x: [14, 118, 222], w: [100, 100, 188], top: [608, 578, 548], bot: 680 };
+// низ окна башни = верх опоры + 45: от карниза (GEOM.base + 30) до низа рисунка 66 единиц × 240/390 = 40,6, ещё 3,5 — зазор
+// под строчной svg в окне (замер в браузере), и 1 px карниз «утоплен» в опору, чтобы между ними не светила щель
+const TOWER_FOOT = 45;
+const stepFace = (place, m, coin) => `<span class="pl">${place}</span><span class="nm">${ci(m.rank, coin)}${m.name}</span><span class="cn">${fmt(m.coins)}${ci(0, 12)}</span>`;
+const stageV1 = (o) => {
+  const sk = o.room === 'search';
+  const at = (i, inner, cls) => blk(STEP.x[i], STEP.top[i], STEP.w[i], STEP.bot - STEP.top[i], inner, cls);
+  const steps = sk
+    ? at(0, '', ' pk2-step pk2-sk') + at(1, '', ' pk2-step pk2-sk') + at(2, '', ' pk2-step first pk2-sk')
+    : `<div${o.off ? ' class="pk2-dim"' : ''}>${at(0, stepFace(3, LEAD[2], 18), ' pk2-step')}${at(1, stepFace(2, LEAD[1], 18), ' pk2-step')}${at(2, stepFace(1, LEAD[0], 26), ' pk2-step first')}</div>`;
+  const twTop = 112;
+  return `${stageV2Open(o)}${towerAt(o, twTop, Math.round(STEP.top[2] + TOWER_FOOT - twTop))}${copyB(o)}${steps}${meAt(o, 20, 470)}${linkAt(o, 694)}${closeStage(o)}`;
+};
+/* V2 · пьедестал перед башней: классический 2-1-3 во всю ширину на переднем плане, башня поднимается за ним;
+   монеты лидеров стоят на блоках, имена и монеты — на лицевой стороне */
+// зачем: у третьего блока тоже есть цифра «3» — второй и третий блоки чуть выше, их монеты 38 и наезжают на блок на 20 px;
+// первый блок и его монета не двигаются: выше монета первого задела бы монеты соперников у первого этажа башни
+const stageV2 = (o) => {
+  const sk = o.room === 'search';
+  const lead = sk ? '' : `<div${o.off ? ' class="pk2-dim"' : ''}>${coinAt(LEAD[1].rank, 65, 560, 38)}${coinAt(LEAD[0].rank, 191, 530, 48)}${coinAt(LEAD[2].rank, 327, 580, 38)}</div>`;
+  const blocks = sk
+    ? blk(22, 580, 124, 100, '', ' pk2-sk') + blk(153, 556, 124, 124, '', ' first pk2-sk') + blk(284, 600, 124, 80, '', ' pk2-sk')
+      + `<div class="pk2-sk-coin" style="left:65px;top:560px;width:38px;height:38px"></div><div class="pk2-sk-coin" style="left:191px;top:530px;width:48px;height:48px"></div><div class="pk2-sk-coin" style="left:327px;top:580px;width:38px;height:38px"></div>`
+    : `<div${o.off ? ' class="pk2-dim"' : ''}>${blk(22, 580, 124, 100, `<span style="height:12px"></span>${face(2, LEAD[1])}`)}${blk(153, 556, 124, 124, `<span style="height:22px"></span>${face(1, LEAD[0])}`, ' first')}${blk(284, 600, 124, 80, `<span style="height:12px"></span>${face(3, LEAD[2])}`)}</div>`;
+  return `${stageV2Open(o)}${towerAt(o, 150, 450)}${copyB(o)}${blocks}${lead}${meAt(o, 20, 448)}${linkAt(o, 700)}${closeStage(o)}`;
+};
+/* V3 · плита-подножие: башня стоит на широкой плите во всю ширину; тройка лидеров «выбита» на лицевой стороне плиты, ниже — своё место */
+const stageV3 = (o) => {
+  const sk = o.room === 'search';
+  const row = sk
+    ? `<div class="row3">${[0, 1, 2].map(() => '<div class="ld"><span class="pk2-sk-coin" style="position:static;width:30px;height:30px;display:block"></span><span class="pk2-sk" style="display:block;width:54px;height:12px;border-radius:6px"></span></div>').join('')}</div><div class="mine">Ищем комнату твоего уровня…</div>`
+    : `<div class="row3${o.off ? ' pk2-dim' : ''}">${LEAD.map((m, i) => `<div class="ld"><span class="pl">${i + 1}</span>${ci(m.rank, 30)}<div style="min-width:0"><b>${m.name}</b><span>${fmt(m.coins)}</span></div></div>`).join('')}</div>`
+      + `<div class="mine${o.off ? ' pk2-dim' : ''}">${o.plus ? avatar(22, true) : ci(ME.rank, 28)}<b>${PLACE} место</b><span>· ${fmt(ME.coins)} ${plC(ME.coins)}</span><span style="margin-left:auto">${io('arrow-up')} 2 места до повышения</span></div>`;
+  // зачем: башня стоит на плите (карниз ровно на её верхней грани), а «Все участники» кончаются выше закреплённой кнопки и в «Нет энергии»
+  const slabTop = 572;
+  const twTop = 112;
+  return `${stageV2Open(o)}${towerAt(o, twTop, Math.round(slabTop + TOWER_FOOT - twTop))}${copyB(o)}<div class="pk2-slab" style="top:${slabTop}px">${row}</div>${linkAt(o, 694)}${closeStage(o)}`;
+};
+
+/* «Играть» — закреплённая кнопка над вкладками (как SpireClimbDock), её состояния */
+const dock = (o) => {
+  if (o.cta === 'wait') return `<div class="pk2-dock"><div class="qbtn pk2-wait"><span class="pk-spin"></span>Ищем комнату…</div></div>`;
+  if (o.cta === 'zero') return `<div class="pk2-dock"><div class="qbtn pk2-off">${io('flash')}Играть через 6:40</div><div class="pk-plus t">Играй без ожидания <b>с Plus</b>${io('chevron-forward')}</div></div>`;
+  return `<div class="pk2-dock"><div class="qbtn solid t">${io('play')}Играть</div></div>`;
+};
+const phV2 = (o, stage, id = THEME_ID) => { TH = AP === 'light' ? 'ink' : 'marine'; return tok(T(phone(`<div class="pk2">${stage(o)}</div>${friendsP()}<div class="pk2-after"></div>`, { time: o.time, inStyle: 'padding:0', fixed: dock(o) + tabbarP() }), 'onart'), id, AP); };
+
+const V2_STATES = ['day', 'search', 'eve', 'zero', 'off'];
+const V2_LBL = ['Обычный день: 4 этаж, ступень 7 из 8', 'Новая неделя: ищем комнату', 'Вечер воскресенья: неделя кончается', 'Нет энергии', 'Нет сети'];
+const VARIANTS = [
+  ['p2a', 'V1 · Ступени к башне', 'Пьедестал лесенкой поднимается к башне: третье место, второе, и на верхней ступени — первое, на ней же стоит башня. Порядок 3-2-1, а не 2-1-3: башня стоит справа, и третьему блоку справа от неё места нет. Своё место — слева над ступенями. Самый «памятник» и образ подъёма.', stageV1],
+  ['p2b', 'V2 · Пьедестал перед башней · рекомендую', 'Классический пьедестал 2-1-3 во всю ширину на переднем плане, башня поднимается за ним. Ближе всего к нынешнему пьедесталу «Комнаты недели» — «всё ещё как пьедестал», но уже внутри сцены, без отдельной карточки.', stageV2],
+  ['p2c', 'V3 · Плита-подножие', 'Башня стоит на широкой каменной плите во всю ширину; тройка лидеров «выбита» на лицевой стороне плиты, ниже — своё место. Самый спокойный вариант.', stageV3],
+];
+
+const allThemes = () => {
+  const seams = THEME_IDS.map((id) => [id, sceneTok(id, AP)]);
+  const worst = seams.reduce((a, b) => (b[1].seam < a[1].seam ? b : a));
+  const lead = AP === 'dark'
+    ? `Рекомендуемый V2 в тёмном оформлении каждой темы: сцена = 30 % акцента поверх фона, без чёрного затемнения. Шов сцены с карточками ниже во всех ${THEME_IDS.length} темах ≥ ${String(SEAM_MIN).replace('.', ',')}; наименьший — ${seamTxt(worst[1])} («${THEMES[worst[0]].name}»).`
+    : 'Рекомендуемый V2 в светлом оформлении каждой темы: «Сумерки» — как утверждённая «Сцена» Главной, у остальных та же глубина сцены, оттенок — от акцента темы.';
+  return block('p2-all', `Все темы приложения — ${AP === 'dark' ? 'тёмное' : 'светлое'} оформление`, lead, seams.map(([id, k]) => {
+    const bad = AP === 'dark' && k.seam < SEAM_MIN;
+    return col(`${THEMES[id].name} · <span class="hs-seam${bad ? ' bad' : ''}">шов ${seamTxt(k)}</span>`, phV2(ST.day, stageV2, id));
+  }));
+};
+const controls = () => {
+  document.getElementById('apList').innerHTML = [['light', 'Светлое'], ['dark', 'Тёмное']].map(([k, n]) => `<span class="chp${AP === k ? ' on' : ''}" data-ap="${k}">${n}</span>`).join('');
+  document.getElementById('thmList').innerHTML = THEME_IDS.map((id) => `<span class="chp${THEME_ID === id ? ' on' : ''}" data-th="${id}">${THEMES[id].name}</span>`).join('');
+};
+const render = () => {
+  const name = THEMES[THEME_ID] ? THEMES[THEME_ID].name : THEME_ID;
+  document.getElementById('root').innerHTML = VARIANTS.map(([id, title, lead, stage]) => block(id, `${title} — «${name}», ${AP === 'dark' ? 'тёмное' : 'светлое'}`, lead, V2_STATES.map((k, i) => col(V2_LBL[i], phV2(ST[k], stage))))).join('') + allThemes();
+  controls();
+  R.applyScroll(document.getElementById('root'));
+};
+document.body.addEventListener('click', (e) => {
+  const c = e.target.closest('.chp[data-ap], .chp[data-th]');
+  if (!c) return;
+  if (c.dataset.ap) AP = c.dataset.ap;
+  if (c.dataset.th) THEME_ID = c.dataset.th;
+  render();
+});
+{
+  const q = new URLSearchParams(location.search);
+  if (q.get('ap') === 'light' || q.get('ap') === 'dark') AP = q.get('ap');
+  if (THEMES[q.get('th')]) THEME_ID = q.get('th');
+}
+render();
+K.init();
+})();
+
+</script>
+</body>
+</html>

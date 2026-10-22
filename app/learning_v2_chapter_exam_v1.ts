@@ -16,44 +16,110 @@ import {
   type ChapterExamResultV1,
 } from '../modules/learning-v2/exam/chapter_exam_v1';
 import { learningV2CourseSessionIdV1 } from '../modules/learning-v2/content/course_topology_v1';
+import type { LearningV2CourseSessionPracticeInteractionV1 } from '../modules/learning-v2/runtime/course_session_client_children_v1';
+import {
+  evaluateLearningV2CourseSessionInteractionV1,
+  type LearningV2CourseSessionEvaluatorCapsuleChildV1,
+} from '../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1';
+import type { V2LocalEvaluatorResponseV1 } from '../modules/learning-v2/runtime/local_evaluator_capsule_v1';
 import { loadLearningV2ChapterExamRecordsV1, saveLearningV2ChapterExamRecordV1 } from './learning_v2_chapter_exam_store_v1';
 
 const LOG = '[CHAPTER-EXAM]';
 
-type LearnerJson = { interactions?: { interactionId?: string; family?: string; modePayload?: { isWordCard?: boolean } }[] };
+type MaterializedSession = Readonly<{
+  sessionOrdinal: number;
+  courseSessionId: string;
+  interactions: readonly LearningV2CourseSessionPracticeInteractionV1[];
+  evaluatorCapsuleChild: LearningV2CourseSessionEvaluatorCapsuleChildV1;
+}>;
 
-/** Кандидаты в вопросы: все задания эпизодов главы из встроенного выпуска (английский курс; ru/uk). */
+// Сборки занятий в памяти процесса: окно перед экзаменом готовит их заранее, экран вопросов берёт мгновенно.
+const sessionCache = new Map<string, MaterializedSession | null>();
+
+function materializeChapterSession(lessonOrdinal: number, sessionOrdinal: number, locale: 'ru' | 'uk'): MaterializedSession | null {
+  const key = `${lessonOrdinal}:${sessionOrdinal}:${locale}`;
+  if (sessionCache.has(key)) return sessionCache.get(key) ?? null;
+  let out: MaterializedSession | null = null;
+  try {
+    // зачем: модуль курса тяжёлый — грузим лениво, только когда человек открыл экзамен
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { materializeFactoryNativeLearningV2SessionV1 } = require('../modules/learning-v2/content/factory_native/factory_native_course_v1') as typeof import('../modules/learning-v2/content/factory_native/factory_native_course_v1');
+    const factory = materializeFactoryNativeLearningV2SessionV1({ lessonOrdinal, sessionOrdinal, interfaceLocale: locale });
+    if (factory) {
+      out = Object.freeze({
+        sessionOrdinal,
+        courseSessionId: factory.courseSessionId,
+        interactions: factory.learnerChild.interactions,
+        evaluatorCapsuleChild: factory.evaluatorCapsuleChild,
+      });
+    } else {
+      console.warn(`${LOG} session:not_materialized`, JSON.stringify({ lessonOrdinal, sessionOrdinal, locale })); // guard-ok: ранний выход пишет причину
+    }
+  } catch (error) {
+    console.warn(`${LOG} session:materialize_failed`, JSON.stringify({ lessonOrdinal, sessionOrdinal, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+  }
+  sessionCache.set(key, out);
+  return out;
+}
+
+/** Задания главы в виде плеера: id, плитки, режим — по номеру задания. */
+export function learningV2ChapterExamInteractionV1(input: Readonly<{
+  lessonOrdinal: number;
+  sessionOrdinal: number;
+  interactionId: string;
+  locale: 'ru' | 'uk';
+}>): LearningV2CourseSessionPracticeInteractionV1 | null {
+  const session = materializeChapterSession(input.lessonOrdinal, input.sessionOrdinal, input.locale);
+  return session?.interactions.find((interaction) => interaction.interactionId === input.interactionId) ?? null;
+}
+
+/** Проверка ответа тем же движком капсул, что у плеера: верно / неверно; сбой проверки — неверно с причиной в журнале. */
+export function checkLearningV2ChapterExamAnswerV1(input: Readonly<{
+  lessonOrdinal: number;
+  sessionOrdinal: number;
+  interactionId: string;
+  locale: 'ru' | 'uk';
+  response: V2LocalEvaluatorResponseV1;
+}>): boolean {
+  const session = materializeChapterSession(input.lessonOrdinal, input.sessionOrdinal, input.locale);
+  if (!session) {
+    console.warn(`${LOG} check:no_session`, JSON.stringify({ interactionId: input.interactionId })); // guard-ok: ранний выход пишет причину
+    return false;
+  }
+  try {
+    const verdict = evaluateLearningV2CourseSessionInteractionV1(session.evaluatorCapsuleChild, input.interactionId, input.response);
+    console.log(`${LOG} check`, JSON.stringify({ interactionId: input.interactionId, kind: input.response.kind, resultCode: verdict.resultCode })); // guard-ok: ветка и значение
+    return verdict.resultCode === 'provisional_correct';
+  } catch (error) {
+    console.warn(`${LOG} check:failed`, JSON.stringify({ interactionId: input.interactionId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+    return false;
+  }
+}
+
+/** Кандидаты в вопросы: все задания эпизодов главы из встроенного выпуска (английский курс; ru/uk), в виде плеера. */
 export function gatherLearningV2ChapterExamCandidatesV1(input: Readonly<{
   lessonOrdinal: number;
   chapterOrdinal: number;
   locale: 'ru' | 'uk';
 }>): readonly ChapterExamCandidateV1[] {
-  // зачем: каталог выпуска тяжёлый — грузим лениво, только когда человек открыл экзамен
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { FACTORY_NATIVE_MANIFEST_V1 } = require('../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated') as typeof import('../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated');
-  const sessions = new Set(chapterSessionOrdinalsV1(input.chapterOrdinal));
-  const rows = FACTORY_NATIVE_MANIFEST_V1.filter((row) => row.lessonOrdinal === input.lessonOrdinal && sessions.has(row.sessionOrdinal));
   const out: ChapterExamCandidateV1[] = [];
-  for (const row of rows) {
-    let learner: LearnerJson;
-    try {
-      learner = row.loadLearner(input.locale) as LearnerJson;
-    } catch (error) {
-      console.warn(`${LOG} candidates:session_load_failed`, JSON.stringify({ lesson: input.lessonOrdinal, session: row.sessionOrdinal, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
-      continue;
-    }
-    for (const interaction of learner.interactions ?? []) {
-      if (!interaction.interactionId || !interaction.family) continue;
+  let sessions = 0;
+  for (const sessionOrdinal of chapterSessionOrdinalsV1(input.chapterOrdinal)) {
+    const session = materializeChapterSession(input.lessonOrdinal, sessionOrdinal, input.locale);
+    if (!session) continue;
+    sessions += 1;
+    for (const interaction of session.interactions) {
+      const payload = interaction.modePayload as { isWordCard?: boolean } | undefined;
       out.push({
         interactionId: interaction.interactionId,
-        courseSessionId: learningV2CourseSessionIdV1(input.lessonOrdinal, row.sessionOrdinal),
-        sessionOrdinal: row.sessionOrdinal,
+        courseSessionId: session.courseSessionId,
+        sessionOrdinal,
         family: interaction.family,
-        isWordCard: interaction.modePayload?.isWordCard === true,
+        isWordCard: payload?.isWordCard === true,
       });
     }
   }
-  console.log(`${LOG} candidates`, JSON.stringify({ lesson: input.lessonOrdinal, chapter: input.chapterOrdinal, sessionsInRelease: rows.length, candidates: out.length, source: 'bundled_release' })); // guard-ok: откуда пришло
+  console.log(`${LOG} candidates`, JSON.stringify({ lesson: input.lessonOrdinal, chapter: input.chapterOrdinal, sessionsBuilt: sessions, candidates: out.length, source: 'bundled_release_materialized' })); // guard-ok: откуда пришло
   return Object.freeze(out);
 }
 

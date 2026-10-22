@@ -35,11 +35,12 @@
   ответы придётся проверять на сервере (фразы и ответы, а не отметки), это отдельная работа.
 
 ## Контракт сервера (для 1 · ЯДРО)
-1. `friendsDuelChallenge` {friendUid, phraseIds[5], move: {results: boolean[5], elapsedMs}, requestId}
-   → {ok, duelId, expiresAtMs}. Личность и имя — с сервера (как у «Урока вместе»). Проверки: дружба; ≤3 вызовов в день;
+1. `friendsDuelChallenge` {stableId, senderDisplayName?, friendUid, phraseIds[5], move: {results: boolean[5], elapsedMs}, requestId}
+   → {ok, duelId, expiresAtMs}. stableId и senderDisplayName телефон шлёт так же, как friendsLessonInvite
+   (prepareTogetherSender): сервер сверяет stableId с вызывающим, имя — запасное. Проверки: дружба; ≤3 вызовов в день;
    нет открытой дуэли с этим другом; phraseIds — 5 разных строк ≤ 96 символов. Уведомление другу:
    nav {kind:'friend_event', action:'duel_challenge', duelId, expiresAtMs, lessonsLabel}. Пуш без счёта вызвавшего.
-2. `friendsDuelMove` {duelId, move: {results: boolean[5], elapsedMs}, requestId}
+2. `friendsDuelMove` {stableId, duelId, move: {results: boolean[5], elapsedMs}, requestId}
    → {ok, outcome: 'win'|'loss'|'draw', mine: {correct, elapsedMs}, theirs: {correct, elapsedMs, results}}.
    Только адресат, только до срока, один раз (повтор того же requestId — тот же ответ). Вызвавшему — уведомление «Итог дуэли».
 3. `friendsDuelDecline` {duelId} → {ok}. Вызвавшему — тихая строка «X не принял(а) дуэль».
@@ -59,6 +60,16 @@
 - **Пройденные фразы:** тексты занятий лежат в приложении (ленивые статические require по номеру занятия); какие занятия
   пройдены — прогресс курса на телефоне. id фразы дуэли = язык·урок·занятие·номер задания; у обоих один язык, поэтому id
   совпадает.
+
+## Сделано на телефоне (8 · МОМЕНТЫ, 22.10, за выключателем)
+- **id фразы** — id задания курса из сборки: `en:lesson-02:session-03:i01` (бывают хвосты вида `:i15:s02`,
+  `:practice:payment`; сейчас не длиннее 40 символов). Сервер проверяет только «5 разных строк ≤ 96» — разбирать не нужно.
+- **Фразы:** только «Собери фразу» из пройденных занятий (app/friends_together/duel_phrases.ts, duel_phrase_source.ts);
+  у друга фразы собираются по id из курса на его телефоне — сеть не нужна.
+- **Ход без сети:** ход сначала ложится на телефон, потом уходит; повтор — тем же requestId (досылка при входе во «Друзей»).
+  Поэтому оба вызова обязаны узнавать повтор по requestId и отвечать тем же, без второго хода и второго пуша.
+- **Экран:** /friends_duel?mode=challenge|answer&friend&name&rank&plus&ids&duel&me (app/friends_duel.tsx); после пятой фразы
+  сразу «Ход отправлен» со своими отметками, сеть поправляет на «Ход готов» (нет сети) или итог (ход друга).
 
 ## Открытые вопросы
 - **Реванш** — решение координатора 22.10: новый вызов от нажавшего, он ходит первым (обратимо).

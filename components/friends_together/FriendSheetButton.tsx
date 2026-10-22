@@ -18,7 +18,7 @@ type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 /** primary — главное действие; secondary — обычное; off — сделано / недоступно; danger — «Удалить»; bare — «Заблокировать». */
 export type FriendSheetButtonTone = 'primary' | 'secondary' | 'off' | 'danger' | 'bare';
 
-function FriendSheetButton({ glass, textScale, tone, icon, label, onPress, testID, style }: Readonly<{
+function FriendSheetButton({ glass, textScale, tone, icon, label, onPress, testID, style, pill }: Readonly<{
   glass: FriendsGlass;
   textScale: number;
   tone: FriendSheetButtonTone;
@@ -27,6 +27,8 @@ function FriendSheetButton({ glass, textScale, tone, icon, label, onPress, testI
   onPress?: () => void;
   testID: string;
   style?: React.ComponentProps<typeof PressableHybrid>['style'];
+  /** Кнопка экрана (`.c1` макета) вместо кнопки шторки: m — 52 / радиус 26, l — 54 / радиус 27 (подвал «Проверить»). */
+  pill?: 'm' | 'l';
 }>) {
   // зачем (макет `.sb2`): главная — заливка цветом текста и подпись цветом карточки; вторичная — контрол темы + малая тень (без обводки);
   // «опасная» — токены dangerFill/dangerInk (подпись ≥ 4,6 : 1); «Заблокировать» — без подложки, цвет ошибки, обычный вес
@@ -43,7 +45,7 @@ function FriendSheetButton({ glass, textScale, tone, icon, label, onPress, testI
       accessibilityState={{ disabled }}
       variant={tone === 'primary' ? 'primary' : 'secondary'}
       style={style}
-      contentStyle={[styles.button, { backgroundColor: fill, boxShadow: tone === 'secondary' || tone === 'off' ? nestedBoxShadow(glass) : undefined }]}
+      contentStyle={[styles.button, pill === 'm' && styles.pillM, pill === 'l' && styles.pillL, { backgroundColor: fill, boxShadow: tone === 'secondary' || tone === 'off' ? nestedBoxShadow(glass) : undefined }]}
     >
       {icon ? <Ionicons name={icon} size={19} color={ink} accessible={false} /> : null}
       <FlowText testID={`${testID}-label`} provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: ink, fontSize: 16 * textScale, lineHeight: 21 * textScale, fontWeight: tone === 'bare' ? '400' : '700' }}>
@@ -57,4 +59,6 @@ export default memo(FriendSheetButton);
 
 const styles = StyleSheet.create({
   button: { minHeight: 52, borderRadius: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 16, paddingVertical: 8 },
+  pillM: { borderRadius: 26 },
+  pillL: { minHeight: 54, borderRadius: 27 },
 });

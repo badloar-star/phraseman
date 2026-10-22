@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
-import PremiumGoldUserName from '../PremiumGoldUserName';
 import { FriendsCard, FriendsCoin, FriendsGlassButton, useFriendsGlass } from './FriendsGlassKit';
 import { isPlusProfile } from '../plus/plus_ring_spec';
 import { FlowText } from '../text-integrity';
@@ -53,9 +52,8 @@ function FriendsRequestCard({ profile, onAccept, onDecline }: {
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={44} glass={glass} plus={isPlusProfile(profile)} />
         <View style={{ flex: 1, minWidth: 0 }}>
-          {profile.isPremium || profile.isVip
-            ? <PremiumGoldUserName text={profile.name} fontSize={nameSize} />
-            : <FlowText testID="friends-request-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 21 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>}
+          {/* зачем (владелец 22.10): золотое имя у друзей убрано — Plus теперь показывает кольцо у аватара (isPlusProfile); имя обычного цвета, без градиента */}
+          <FlowText testID="friends-request-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 21 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>
           <Text style={{ /* guard-ok: короткая подпись по макету 2.0 */ color: glass.mutedText, fontSize: 13 * textScale, lineHeight: 18 * textScale, marginTop: 2 }}>{wants}</Text>
         </View>
       </View>

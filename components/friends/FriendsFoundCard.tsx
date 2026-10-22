@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
-import PremiumGoldUserName from '../PremiumGoldUserName';
 import { StreakChainIcon } from '../StreakChainIcon';
 import { useTheme } from '../ThemeContext';
 import { FriendsCard, FriendsCoin, FriendsGlassButton, FriendsRoundButton, useFriendsGlass } from './FriendsGlassKit';
@@ -51,9 +50,8 @@ export default function FriendsFoundCard({ profile, onAdd, onClose, isAdding }: 
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={48} glass={glass} plus={isPlusProfile(profile)} />
         <View style={{ flex: 1, minWidth: 0 }}>
-          {profile.isPremium || profile.isVip
-            ? <PremiumGoldUserName text={profile.name} fontSize={nameSize} />
-            : <FlowText testID="friends-found-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 22 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>}
+          {/* зачем (владелец 22.10): золотое имя у друзей убрано — Plus теперь показывает кольцо у аватара (isPlusProfile); имя обычного цвета, без градиента */}
+          <FlowText testID="friends-found-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 22 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>
           {profile.streak > 0 ? (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
               <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />

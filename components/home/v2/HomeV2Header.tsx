@@ -102,13 +102,15 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
   const subColor = scene ? 'rgba(255,255,255,0.78)' : p.textSecondary;
   return (
     <View testID="home-v2-header" style={s.root}>
-      <View style={s.topRow}>
-        <View style={s.stats}>
+      <View style={[s.topRow, scene ? s.topRowScene : null]}>
+        <View style={[s.stats, scene ? s.statsScene : null]}>
           {stats.map((stat) => {
+            // зачем: на сцене монеты | энергия не сжимаются — сжимается только плашка серии
+            const keep = scene && stat.testID === 'home-v2-coins';
             const content = <>
               <View style={s.statIcon}>{refreshing ? <KitSpinner testID={`${stat.testID}-refreshing`} color={textColor} /> : stat.icon}</View>
               {/* зачем (Сверка font13, координатор 18.10): при системном шрифте 1,3 «Hoy aún no» (es/pt-BR/vi/id) уходило в 3 строки плашки (значение + 2 строки подписи); потолок роста кегля 1,1 держит 2 строки (значение + подпись), не ужатие. Расчёт по кадру: подпись ≈65 dp при 1,0 в колонке ≈72 dp */}
-              <View style={s.statCopy}>
+              <View style={keep ? s.statCopyKeep : s.statCopy}>
                 <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statValue, { color: textColor }]}>{stat.value}</FlowText>
                 {stat.testID !== 'home-v2-coins' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={1.1} style={[s.statLabel, { color: subColor }]}>{stat.label}</FlowText> : null}
               </View>
@@ -122,12 +124,12 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
                 accessibilityLabel={stat.accessibilityLabel}
                 onPress={() => latestRef.current.stats.find((x) => x.testID === stat.testID)?.onPress?.()}
                 scaleTo={0.96}
-                outerStyle={s.statSlot}
-                style={[s.stat, plate]}
+                outerStyle={keep ? s.statSlotKeep : s.statSlot}
+                style={[s.stat, plate, keep ? s.statKeep : null]}
               >{content}</V2Pressable>
             ) : (
               <View key={stat.testID} testID={stat.testID} accessible accessibilityRole="text"
-                accessibilityLabel={stat.accessibilityLabel} style={[s.statSlot, s.stat, plate]}>
+                accessibilityLabel={stat.accessibilityLabel} style={[keep ? s.statSlotKeep : s.statSlot, s.stat, plate, keep ? s.statKeep : null]}>
                 {content}
               </View>
             );
@@ -151,6 +153,12 @@ const s = StyleSheet.create({
   // зачем (Макеты 18.10, memhome/cold.png; эталон home-concepts .p-pill — ширина по содержимому): равные половины давали «Сегодня ещё / нет» в 2 строки
   // и раздутую плашку. Плашка берёт ширину своего текста; на узком экране по-прежнему ужимается (flexShrink), длинное переносится, не режется.
   statSlot: { flexGrow: 0, flexShrink: 1, minWidth: 0 },
+  // зачем (Сверка 22.10): на сцене зазоры 8 — подписи серии нужны эти dp, чтобы «Сегодня ещё нет» не переносилась на 411 dp
+  topRowScene: { gap: 8 },
+  statsScene: { gap: 8 },
+  statSlotKeep: { flexGrow: 0, flexShrink: 0 },
+  statKeep: { flexShrink: 0 },
+  statCopyKeep: { flexShrink: 0 },
   stat: {
     flexGrow: 0,
     flexShrink: 1,

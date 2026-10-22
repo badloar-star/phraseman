@@ -70,7 +70,7 @@ describe('Сцена Главной: тексты состояний', () => {
   });
   it('вечер: серия, время до полуночи, тёплая строка, эпизод в кнопке', () => {
     const c = buildHomeSceneCopy({ ...copyBase, state: 'streak_risk' });
-    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До полуночи 2 ч 20 мин', warm: 'Одно занятие сохранит серию', cta: 'Продолжить эпизод 12' });
+    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До полуночи 2 ч 20 мин' /* неразрывные пробелы: строка рвётся только между фразой и временем (Сверка 22.10) */, warm: 'Одно занятие сохранит серию', cta: 'Продолжить эпизод 12' });
   });
   it('вечер при 0 энергии говорит, когда энергия', () => {
     const c = buildHomeSceneCopy({ ...copyBase, state: 'streak_risk', zeroEnergyNote: true, energyMinutes: 42 });

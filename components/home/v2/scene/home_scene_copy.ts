@@ -55,6 +55,9 @@ const ukDays = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'день' : n %
 const plDays = (n: number) => (n === 1 ? 'dzień' : 'dni');
 const en1 = (n: number, one: string, many: string) => (n === 1 ? one : many);
 
+/** Неразрывный пробел: держит вместе слова одного куска заголовка (см. untilMidnight). */
+const NBSP = ' ';
+
 const T = {
   episode: (lang: Lang) => triLang(lang, { ru: 'Эпизод', uk: 'Епізод', en: 'Episode', es: 'Episodio', 'pt-BR': 'Episódio', vi: 'Tập', id: 'Episode', tr: 'Bölüm', pl: 'Odcinek' }),
   start: (lang: Lang) => triLang(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' }),
@@ -65,8 +68,20 @@ const T = {
   streak: (lang: Lang, n: number) => triLang(lang, { ru: `Серия ${n} ${ruDays(n)}`, uk: `Серія ${n} ${ukDays(n)}`, en: `${n}-day streak`, es: `Racha de ${n} ${en1(n, 'día', 'días')}`, 'pt-BR': `Sequência de ${n} ${en1(n, 'dia', 'dias')}`, vi: `Chuỗi ${n} ngày`, id: `Runtunan ${n} hari`, tr: `${n} günlük seri`, pl: `Seria ${n} ${plDays(n)}` }),
   untilMidnight: (lang: Lang, mins: number) => {
     const h = Math.floor(mins / 60); const m = mins % 60;
-    if (h === 0) return triLang(lang, { ru: `До полуночи ${m} мин`, uk: `До півночі ${m} хв`, en: `${m} min until midnight`, es: `${m} min hasta medianoche`, 'pt-BR': `${m} min até a meia-noite`, vi: `Còn ${m} phút đến nửa đêm`, id: `${m} menit sebelum tengah malam`, tr: `Gece yarısına ${m} dk`, pl: `Do północy ${m} min` });
-    return triLang(lang, { ru: `До полуночи ${h} ч ${m} мин`, uk: `До півночі ${h} год ${m} хв`, en: `${h} h ${m} min until midnight`, es: `${h} h ${m} min hasta medianoche`, 'pt-BR': `${h} h ${m} min até a meia-noite`, vi: `Còn ${h} giờ ${m} phút đến nửa đêm`, id: `${h} jam ${m} menit sebelum tengah malam`, tr: `Gece yarısına ${h} sa ${m} dk`, pl: `Do północy ${h} godz. ${m} min` });
+    const t = (hs: string, ms: string): string => (h === 0 ? `${m} ${ms}` : `${h} ${hs} ${m} ${ms}`);
+    // два куска: фраза и время; внутри куска пробелы неразрывные, между кусками — обычный (там и рвётся строка)
+    const pair = triLang(lang, {
+      ru: ['До полуночи', t('ч', 'мин')],
+      uk: ['До півночі', t('год', 'хв')],
+      en: [t('h', 'min'), 'until midnight'],
+      es: [t('h', 'min'), 'hasta medianoche'],
+      'pt-BR': [t('h', 'min'), 'até a meia-noite'],
+      vi: [`Còn ${t('giờ', 'phút')}`, 'đến nửa đêm'],
+      id: [t('jam', 'menit'), 'sebelum tengah malam'],
+      tr: ['Gece yarısına', t('sa', 'dk')],
+      pl: ['Do północy', t('godz.', 'min')],
+    });
+    return (pair as readonly string[]).map((chunk) => chunk.replace(/ /g, NBSP)).join(' ');
   },
   keeps: (lang: Lang) => triLang(lang, { ru: 'Одно занятие сохранит серию', uk: 'Одне заняття збереже серію', en: 'One session keeps your streak', es: 'Una sesión mantiene tu racha', 'pt-BR': 'Uma sessão mantém sua sequência', vi: 'Một buổi học giữ chuỗi của bạn', id: 'Satu sesi menjaga runtunanmu', tr: 'Bir oturum serini korur', pl: 'Jedne zajęcia utrzymają serię' }),
   energyBeforeMidnight: (lang: Lang, n: number) => triLang(lang, { ru: `Энергия +1 через ${n} мин — успеешь до полуночи`, uk: `Енергія +1 через ${n} хв — встигнеш до півночі`, en: `+1 energy in ${n} min — you'll make it before midnight`, es: `+1 de energía en ${n} min: llegas antes de medianoche`, 'pt-BR': `+1 de energia em ${n} min — dá tempo antes da meia-noite`, vi: `+1 năng lượng sau ${n} phút — kịp trước nửa đêm`, id: `+1 energi dalam ${n} menit — masih sempat sebelum tengah malam`, tr: `${n} dk sonra +1 enerji — gece yarısından önce yetişirsin`, pl: `+1 energii za ${n} min — zdążysz przed północą` }),

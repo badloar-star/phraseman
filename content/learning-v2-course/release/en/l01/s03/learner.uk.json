@@ -465,35 +465,34 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — ви ще в офісі й не самі",
+      "prompt": "Складіть фразу — ви точно знаєте час зустрічі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — ви ще в офісі й не самі",
+      "accessibilityLabel": "Складіть фразу — ви точно знаєте час зустрічі",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am not alone.",
+        "targetPhrase": "I am sure.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы всё ещё в офисе и не один",
-          "uk": "Складіть фразу — ви ще в офісі й не самі"
+          "ru": "Соберите фразу — вы точно знаете время встречи",
+          "uk": "Складіть фразу — ви точно знаєте час зустрічі"
         },
         "orderedTokens": [
           "I",
           "am",
-          "not",
-          "alone"
+          "sure"
         ],
         "authoredDistractorTokens": [
-          "sure"
+          "alone"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-01:session-03:i10:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — ви ще в офісі й не самі",
+            "testedDimension": "Складіть фразу — ви точно знаєте час зустрічі",
             "feedbackByLocale": {
-              "ru": "«уверен», но здесь вы сообщаете: «я не один»",
-              "uk": "«впевнений», але тут ви повідомляєте: «я не сам»"
+              "ru": "«один», а здесь вы уверены",
+              "uk": "«сам», а тут ви впевнені"
             }
           }
         ],
@@ -1127,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "714262cf9c6e0b8eeaa995b280eb288a8eeb684f58a4e3a5f414c8fe3d776f7c"
+  "learnerFingerprint": "5d2a672851632be82622b59bad9c2b5efd5c9f3845531295e75fab235faafd2f"
 }

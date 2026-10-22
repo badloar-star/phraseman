@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — подруга за кофе рассказывает про свой день",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — подруга за кофе рассказывает про свой день",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-01:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — подруга за кофе рассказывает про свой день",
             "feedbackByLocale": {
               "ru": "В записи звучит friendly, а не free.",
               "uk": "У записі звучить friendly, а не free."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-01:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — подруга за кофе рассказывает про свой день",
             "feedbackByLocale": {
               "ru": "В записи звучит friendly, а не ready.",
               "uk": "У записі звучить friendly, а не ready."
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — вы с подругой допиваете кофе после работы",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i04:r1",
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — вы с подругой допиваете кофе после работы",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-01:session-15:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — вы с подругой допиваете кофе после работы",
             "feedbackByLocale": {
               "ru": "В записи звучит serious, а не sure.",
               "uk": "У записі звучить serious, а не sure."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-01:session-15:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — вы с подругой допиваете кофе после работы",
             "feedbackByLocale": {
               "ru": "В записи звучит serious, а не strong.",
               "uk": "У записі звучить serious, а не strong."
@@ -403,7 +403,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — подруга за кофе оценивает ваш день",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i08:r1",
@@ -422,7 +422,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — подруга за кофе оценивает ваш день",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -452,7 +452,7 @@
           {
             "responseId": "en:lesson-01:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — подруга за кофе оценивает ваш день",
             "feedbackByLocale": {
               "ru": "В записи звучит lucky, а не lazy.",
               "uk": "У записі звучить lucky, а не lazy."
@@ -461,7 +461,7 @@
           {
             "responseId": "en:lesson-01:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — подруга за кофе оценивает ваш день",
             "feedbackByLocale": {
               "ru": "В записи звучит lucky, а не lost.",
               "uk": "У записі звучить lucky, а не lost."
@@ -522,7 +522,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — подруга ставит чашку и продолжает рассказ",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i10:r1",
@@ -541,7 +541,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — подруга ставит чашку и продолжает рассказ",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -571,7 +571,7 @@
           {
             "responseId": "en:lesson-01:session-15:i10:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — подруга ставит чашку и продолжает рассказ",
             "feedbackByLocale": {
               "ru": "В записи звучит helpful, а не happy.",
               "uk": "У записі звучить helpful, а не happy."
@@ -580,7 +580,7 @@
           {
             "responseId": "en:lesson-01:session-15:i10:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — подруга ставит чашку и продолжает рассказ",
             "feedbackByLocale": {
               "ru": "В записи звучит helpful, а не honest.",
               "uk": "У записі звучить helpful, а не honest."
@@ -857,7 +857,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — вечерний разговор за кофе продолжается",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-15:i15:r1",
@@ -876,7 +876,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-15:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — вечерний разговор за кофе продолжается",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -906,7 +906,7 @@
           {
             "responseId": "en:lesson-01:session-15:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — вечерний разговор за кофе продолжается",
             "feedbackByLocale": {
               "ru": "В записи звучит calm, а не cold.",
               "uk": "У записі звучить calm, а не cold."
@@ -915,7 +915,7 @@
           {
             "responseId": "en:lesson-01:session-15:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — вечерний разговор за кофе продолжается",
             "feedbackByLocale": {
               "ru": "В записи звучит calm, а не kind.",
               "uk": "У записі звучить calm, а не kind."
@@ -1215,5 +1215,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2f27b07617c2f429763ca9e7fbdd7abe6d580cec4fd893b9fdcba75ec39a8a6d"
+  "learnerFingerprint": "aa88dc22c294dfde636b37b337d6cfad21fce02ee44b5389d7e9a012e4f437ec"
 }

@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — утром в гостевом доме вы собираете друзей",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-27:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-27:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — утром в гостевом доме вы собираете друзей",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-27:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — утром в гостевом доме вы собираете друзей",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-27:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — утром в гостевом доме вы собираете друзей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `asleep`, а в этом варианте — `awake`.",
               "uk": "У записі останнє слово — `asleep`, а в цьому варіанті — `awake`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте и выберите — друг в гостевом доме говорит с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-27:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-27:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте и выберите — друг в гостевом доме говорит с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-01:session-27:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте и выберите — друг в гостевом доме говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-01:session-27:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте и выберите — друг в гостевом доме говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `available`, а в этом варианте — `confused`.",
               "uk": "У записі останнє слово — `available`, а в цьому варіанті — `confused`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — перед прогулкой друзья собираются у двери",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-27:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-27:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — перед прогулкой друзья собираются у двери",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — перед прогулкой друзья собираются у двери",
             "feedbackByLocale": {
               "ru": "В записи We, а не They.",
               "uk": "У записі We, а не They."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — перед прогулкой друзья собираются у двери",
             "feedbackByLocale": {
               "ru": "В записи dressed, а не available.",
               "uk": "У записі dressed, а не available."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f5e5822c3e78defef3455cb6c3665edfedbf50fef308a4f73ed8242fa56e8eb2"
+  "learnerFingerprint": "92ad693270b626918d407f3946619465829bd0ffc784262eadb1fa143490c52b"
 }

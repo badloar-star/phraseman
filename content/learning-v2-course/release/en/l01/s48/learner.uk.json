@@ -100,15 +100,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-48:i02:r1",
-          "text": "They are sticky."
+          "text": "They are sharp."
         },
         {
           "responseId": "en:lesson-01:session-48:i02:r2",
-          "text": "We are sticky."
+          "text": "We are sharp."
         },
         {
           "responseId": "en:lesson-01:session-48:i02:r3",
-          "text": "They are sharp."
+          "text": "They are sticky."
         }
       ],
       "mediaIds": [],
@@ -120,23 +120,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-48:i02:audio",
-          "transcript": "They are sticky."
+          "transcript": "They are sharp."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-48:i02:r1",
-            "targetText": "They are sticky.",
+            "targetText": "They are sharp.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r2",
-            "targetText": "We are sticky.",
+            "targetText": "We are sharp.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r3",
-            "targetText": "They are sharp.",
+            "targetText": "They are sticky.",
             "meaningByLocale": null
           }
         ],
@@ -156,8 +156,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `sticky`, а в этом варианте — `sharp`.",
-              "uk": "У записі останнє слово — `sticky`, а в цьому варіанті — `sharp`."
+              "ru": "В записи последнее слово — `sharp`, а в этом варианте — `sticky`.",
+              "uk": "У записі останнє слово — `sharp`, а в цьому варіанті — `sticky`."
             }
           }
         ],
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e9d4ecac90c6cf0f6f859c364b7403a33efa8cbb1a8d8021e596d9fb453a045a"
+  "learnerFingerprint": "aa29f5f06ed68963d9307a7d63a74469204a9eee4d756cc1cc6d92f3bd8f61c7"
 }

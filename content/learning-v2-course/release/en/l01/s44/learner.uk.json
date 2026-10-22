@@ -143,15 +143,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i02:r1",
-          "text": "It is ancient."
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i02:r2",
           "text": "It is weird."
         },
         {
+          "responseId": "en:lesson-01:session-44:i02:r2",
+          "text": "It is ancient."
+        },
+        {
           "responseId": "en:lesson-01:session-44:i02:r3",
-          "text": "He is ancient."
+          "text": "He is weird."
         }
       ],
       "mediaIds": [],
@@ -163,23 +163,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-44:i02:audio",
-          "transcript": "It is ancient."
+          "transcript": "It is weird."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-44:i02:r1",
-            "targetText": "It is ancient.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i02:r2",
             "targetText": "It is weird.",
             "meaningByLocale": null
           },
           {
+            "responseId": "en:lesson-01:session-44:i02:r2",
+            "targetText": "It is ancient.",
+            "meaningByLocale": null
+          },
+          {
             "responseId": "en:lesson-01:session-44:i02:r3",
-            "targetText": "He is ancient.",
+            "targetText": "He is weird.",
             "meaningByLocale": null
           }
         ],
@@ -190,8 +190,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ancient`, а в этом варианте — `weird`.",
-              "uk": "У записі останнє слово — `ancient`, а в цьому варіанті — `weird`."
+              "ru": "В записи последнее слово — `weird`, а в этом варианте — `ancient`.",
+              "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `ancient`."
             }
           },
           {
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f9680f5d5c2bd29cfc7cfbd4e419c071d3db7986cf93f768b78b757a9c4429ac"
+  "learnerFingerprint": "c5b86f24cb35cedcbe19798a9122da6d3740df71cf754bf8f5f606fa8d017a56"
 }

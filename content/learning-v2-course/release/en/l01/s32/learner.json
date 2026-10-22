@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — вы развешиваете снимки, друг говорит с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-32:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-32:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — вы развешиваете снимки, друг говорит с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-01:session-32:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — вы развешиваете снимки, друг говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
               "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-01:session-32:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — вы развешиваете снимки, друг говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `worried`, а в этом варианте — `surprised`.",
               "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `surprised`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Подпись под снимком напечатана таким мелким шрифтом, что её почти не видно. Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — перед открытием вы проверяете подписи под снимками",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-32:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-32:i09:audio"
       ],
-      "accessibilityLabel": "Подпись под снимком напечатана таким мелким шрифтом, что её почти не видно. Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — перед открытием вы проверяете подписи под снимками",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-01:session-32:i09:r2",
             "correct": false,
-            "testedDimension": "Подпись под снимком напечатана таким мелким шрифтом, что её почти не видно. Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — перед открытием вы проверяете подписи под снимками",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `tiny`, а в этом варианте — `huge`.",
               "uk": "У записі останнє слово — `tiny`, а в цьому варіанті — `huge`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-01:session-32:i09:r3",
             "correct": false,
-            "testedDimension": "Подпись под снимком напечатана таким мелким шрифтом, что её почти не видно. Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — перед открытием вы проверяете подписи под снимками",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `tiny`, а в этом варианте — `blurry`.",
               "uk": "У записі останнє слово — `tiny`, а в цьому варіанті — `blurry`."
@@ -935,7 +935,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу о фотографиях",
+      "prompt": "Послушайте и выберите — друг оценивает развешанные фотографии",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-32:i15:r1",
@@ -954,7 +954,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-32:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу о фотографиях",
+      "accessibilityLabel": "Послушайте и выберите — друг оценивает развешанные фотографии",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -984,7 +984,7 @@
           {
             "responseId": "en:lesson-01:session-32:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу о фотографиях",
+            "testedDimension": "Послушайте и выберите — друг оценивает развешанные фотографии",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `similar`, а в этом варианте — `equal`.",
               "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `equal`."
@@ -993,7 +993,7 @@
           {
             "responseId": "en:lesson-01:session-32:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу о фотографиях",
+            "testedDimension": "Послушайте и выберите — друг оценивает развешанные фотографии",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `similar`, а в этом варианте — `separate`.",
               "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `separate`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b76ef87255c927924b2d2d4d6cd1c713823a7953d5cbe8d663635bfbb8f2f8e1"
+  "learnerFingerprint": "e4a90e60f2dd45fe950919da8001b89ef795853d7ebc47caff2d75ff43fab871"
 }

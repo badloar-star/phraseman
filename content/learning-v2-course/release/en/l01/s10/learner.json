@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — на встрече коллега обращается к вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-10:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-10:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — на встрече коллега обращается к вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — один из коллег берёт слово на встрече",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-10:i04:r1",
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-10:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — один из коллег берёт слово на встрече",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -403,7 +403,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — встреча с коллегами идёт своим ходом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-10:i08:r1",
@@ -422,7 +422,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-10:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — встреча с коллегами идёт своим ходом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1128,5 +1128,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7b0336f203f0031887036b6ce38a74fe3382164dae65067eb34cf522b101248e"
+  "learnerFingerprint": "32de5a06142eb3daf55fe0a2a521f16af13419dacbbb317a5239cb291cbacd99"
 }

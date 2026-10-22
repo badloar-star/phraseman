@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — семья собирается к родственникам на поезде",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-55:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — семья собирается к родственникам на поезде",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-55:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — семья собирается к родственникам на поезде",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
               "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-55:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — семья собирается к родственникам на поезде",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `forgetful`, а в этом варианте — `responsible`.",
               "uk": "У записі останнє слово — `forgetful`, а в цьому варіанті — `responsible`."
@@ -635,7 +635,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о крутой лестнице на перрон",
+      "prompt": "Послушайте и выберите — накануне поездки вы обсуждаете дорогу до перрона",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i09:r1",
@@ -654,7 +654,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-55:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о крутой лестнице на перрон",
+      "accessibilityLabel": "Послушайте и выберите — накануне поездки вы обсуждаете дорогу до перрона",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -684,7 +684,7 @@
           {
             "responseId": "en:lesson-01:session-55:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о крутой лестнице на перрон",
+            "testedDimension": "Послушайте и выберите — накануне поездки вы обсуждаете дорогу до перрона",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `familiar`.",
               "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `familiar`."
@@ -693,7 +693,7 @@
           {
             "responseId": "en:lesson-01:session-55:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о крутой лестнице на перрон",
+            "testedDimension": "Послушайте и выберите — накануне поездки вы обсуждаете дорогу до перрона",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `dangerous`, а в этом варианте — `unfamiliar`.",
               "uk": "У записі останнє слово — `dangerous`, а в цьому варіанті — `unfamiliar`."
@@ -976,7 +976,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте короткую фразу о тёте и выберите её",
+      "prompt": "Послушайте и выберите — семья обсуждает тётю перед поездкой",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-55:i15:r1",
@@ -995,7 +995,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-55:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте короткую фразу о тёте и выберите её",
+      "accessibilityLabel": "Послушайте и выберите — семья обсуждает тётю перед поездкой",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1025,7 +1025,7 @@
           {
             "responseId": "en:lesson-01:session-55:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте короткую фразу о тёте и выберите её",
+            "testedDimension": "Послушайте и выберите — семья обсуждает тётю перед поездкой",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `independent`, а в этом варианте — `dependent`.",
               "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `dependent`."
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-01:session-55:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте короткую фразу о тёте и выберите её",
+            "testedDimension": "Послушайте и выберите — семья обсуждает тётю перед поездкой",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `independent`, а в этом варианте — `responsible`.",
               "uk": "У записі останнє слово — `independent`, а в цьому варіанті — `responsible`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a0cc30c583cf34a6fb75a734d6facc84020b73d5275c4fe8fd7c749ed91199fa"
+  "learnerFingerprint": "85fa43e3364e3c6c6080de33d64ec1850f765b555cb058641505a5310bf5aa45"
 }

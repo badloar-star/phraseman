@@ -4,9 +4,8 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
-// Legacy survey delivery stays available through its scoped route. Home itself now
-// owns the bundled V2 poll entry, so this guard prevents the old survey sheet from
-// reclaiming the Today row.
+// зачем (владелец 22.10, «вернуть анкеты»): анкета-кампания из админки снова на Главной — через хук и лениво смонтированную
+// шторку, без прежней цепочки на каждый фокус. Строка «Сегодня» одна на два источника: анкета первой, иначе Poll V2.
 describe('Home-owned survey entry (Today row + sheet)', () => {
   const home = read('app/(tabs)/home.tsx');
   const hook = read('hooks/use_home_survey_entry.ts');
@@ -15,19 +14,22 @@ describe('Home-owned survey entry (Today row + sheet)', () => {
   const route = read('app/survey_screen.tsx');
   const layout = read('app/_layout.tsx');
 
-  test('Home no longer mounts the legacy survey chain', () => {
-    expect(home).not.toContain('useHomeSurveyEntry(');
+  test('Home mounts the survey only through the hook and the lazy sheet, never the legacy chain', () => {
+    expect(home).toContain('const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);');
+    expect(home).toContain('{homeSurvey.launch ? (<Suspense fallback={null}>');
+    expect(home).toContain('<SurveySheetModal');
     expect(home).not.toContain('fetchActiveSurveyWithRetry(');
     expect(home).not.toContain('setSurveyOffer');
     expect(home).not.toContain('openSurveyLaunch');
-    expect(home).not.toContain('<SurveySheetModal');
     // никакого обхода через роут и prime
     expect(home).not.toContain('primeSurvey(');
     expect(home).not.toContain("pathname: '/survey_screen'");
   });
 
-  test('the Today card retains its row surface for the replacement poll', () => {
-    expect(home).toContain("surveyRow={homePollV2.phase !== 'hidden' ? {");
+  test('one Today row for both: an active survey campaign first, otherwise the V2 poll', () => {
+    expect(home).toContain("const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
+    expect(home).toContain("surveyRow={homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' ? {");
+    expect(home).toContain("console.log('[SURVEY-ROW]'");
     expect(home).toContain('onPress: () => setHomePollV2Open(true)');
     expect(todayCard).toContain('surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void }> | null;');
     expect(todayCard).toContain('{surveyRow ? (');

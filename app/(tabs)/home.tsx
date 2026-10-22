@@ -70,6 +70,7 @@ import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayActiveKey, useOverlayVisible } from '../../components/OverlayArbiter';
 import { useSpireWeekMoment } from '../spire/use_spire_week_moment';
+import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { useWelcomeBackMoment } from '../../hooks/use_welcome_back_moment';
 import { useCoinRankEnoughMoment } from '../use_coin_rank_enough_moment';
 import { peekEnergy } from '../energy_peek_cache';
@@ -180,11 +181,13 @@ const NotificationCenterButton = withHomeChildCost('bell', NotificationCenterBut
 const CoinRankEnoughDialog = lazy(() => import('../../components/coin_rank_moments/CoinRankEnoughDialog'));
 const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');
 const loadVipCelebrationModal = () => import('../../components/VipCelebrationModal');
+const loadSurveySheetModal = () => import('../../components/survey/SurveySheetModal');
 const loadSavedCardsFlight = () => import('../../components/SavedCardsFlight');
 const loadPlayerProfileModal = () => import('../../components/PlayerProfileModal');
 const loadFeatureIntroEntry = () => import('../../components/feature_intro/FeatureIntroEntry');
 const PremiumCelebrationModal = lazy(loadPremiumCelebrationModal);
 const VipCelebrationModal = lazy(loadVipCelebrationModal);
+const SurveySheetModal = lazy(loadSurveySheetModal);
 const SavedCardsFlight = lazy(loadSavedCardsFlight);
 const PlayerProfileModal = lazy(loadPlayerProfileModal);
 const FeatureIntroEntry = lazy(loadFeatureIntroEntry);
@@ -198,7 +201,7 @@ function useMountedAfterFirstOpen(open: boolean): boolean {
 function prewarmHomeDeferredModules(): void {
   const started = Date.now();
   void Promise.all([
-    loadPremiumCelebrationModal(), loadVipCelebrationModal(),
+    loadPremiumCelebrationModal(), loadVipCelebrationModal(), loadSurveySheetModal(),
     loadSavedCardsFlight(), loadPlayerProfileModal(), loadFeatureIntroEntry(),
   ]).then(() => {
     console.log(`[HOME-LAZY] prewarm:done ${Date.now() - started}мс`);
@@ -726,6 +729,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         if (homePollV2.phase === 'hidden') closeHomePollV2();
     }, [closeHomePollV2, homePollV2.phase]);
     // зачем (D191, Ядро 14.10): окно итога недели берёт слот в общей очереди окон, «показано» отмечает хук; здесь только точка монтирования
+    // зачем (владелец 22.10, «вернуть анкеты»): анкета-кампания из админки — строка в «Сегодня»; загрузка раз при входе с кэшем 6 ч,
+    // шторка монтируется только пока открыта (hooks/use_home_survey_entry.ts). Делит строку с Poll V2 — анкета первой.
+    const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);
+    // Одна строка «Сегодня» на два источника (владелец 22.10): анкета-кампания из админки первой, иначе Poll V2.
+    const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';
+    useEffect(() => {
+      console.log('[SURVEY-ROW]', JSON.stringify({ source: homeTodayRowSource, surveyOffered: homeSurvey.row !== null, pollPhase: homePollV2.phase, reason: homeTodayRowSource === 'survey' ? 'active_survey_campaign' : homeTodayRowSource === 'poll_v2' ? 'no_survey_poll_active' : 'nothing_active' })); // guard-ok: одна строка на смену выбора
+    }, [homeTodayRowSource, homeSurvey.row, homePollV2.phase]);
     const weekMoment = useSpireWeekMoment({ uiLang: lang, studyTarget: String(studyTarget), tabEnabled: spireTabEnabled, active: homeRuntimeActive });
     // зачем (координатор 14.10; эталон v3-all: Играть ведёт в игру): после синхронного закрытия окна — в раздел Пика; Пик недоступен этому языку / вкладка выключена → кнопка только закрывает окно
     const weekMomentPlay = useMemo(() => (spireTabEnabled && isLearningSurfaceReady(studyTarget, 'spire') ? () => { nav.push('/(tabs)/community?section=spire' as never); } : undefined), [nav, spireTabEnabled, studyTarget]);
@@ -2773,7 +2784,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               title={triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' }).toUpperCase()}
               tasks={homeV2Tasks}
               onOpenTask={(task) => go(task.route)}
-              surveyRow={homePollV2.phase !== 'hidden' ? {
+              surveyRow={homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' ? {
                 title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
                 subtitle: triLang(lang, { ru: `${homePollV2.total} вопроса`, uk: `${homePollV2.total} питання`, en: `${homePollV2.total} questions`, es: `${homePollV2.total} preguntas`, 'pt-BR': `${homePollV2.total} perguntas`, vi: `${homePollV2.total} câu hỏi`, id: `${homePollV2.total} pertanyaan`, tr: `${homePollV2.total} soru`, pl: `${homePollV2.total} pytania` }),
                 onPress: () => setHomePollV2Open(true),
@@ -2869,7 +2880,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
         celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance, runesKnown, belowFoldReady,
         overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
-        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
+        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch,weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,
         // зачем ([HOME-SETSTATE] 18.10): значения, которых не было в снимке — «parent_or_unlisted» на возврате (~0,3 с и ~1,2 с) не имел названной причины; onOpenDevHub — признак «перерисовал родитель»
         continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount, homeMotionReduceMotion, homePriorityCardReduceMotion, homeFeatureTipReduceMotion, onOpenDevHub,
@@ -2900,6 +2911,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         onClose={() => setHomeProfilePlayer(null)}
       /></Suspense>) : null}
       {profileIntroMounted ? (<Suspense fallback={null}><FeatureIntroEntry id="profile_card_first_visit" enabled={profileIntroEnabled} /></Suspense>) : null}
+
+      {homeSurvey.launch ? (<Suspense fallback={null}>
+        <SurveySheetModal
+          visible
+          launch={homeSurvey.launch}
+          onClose={homeSurvey.closeSurvey}
+          onDurablyReconciled={homeSurvey.onDurablyReconciled}
+        />
+      </Suspense>) : null}
 
       <HybridSheetShell
         visible={homePollV2Open}

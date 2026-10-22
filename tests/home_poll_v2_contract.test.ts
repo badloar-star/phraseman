@@ -39,13 +39,16 @@ describe('home polls v2 bundled content and application wiring', () => {
     const client = read('app/home_polls/home_polls_v2_client.ts');
     expect(home).toContain("import { useHomePollV2 } from '../../hooks/use_home_poll_v2'");
     expect(home).toContain('const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });');
-    expect(home).toContain('surveyRow={homePollV2.phase !== \'hidden\' ? {');
+    // зачем (владелец 22.10, «вернуть анкеты»): одна строка «Сегодня» — анкета-кампания первой, иначе Poll V2
+    expect(home).toContain("const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
+    expect(home).toContain("homeTodayRowSource === 'poll_v2' ? {");
     expect(home).toContain('onPress: () => setHomePollV2Open(true)');
     expect(home).toContain('<HybridSheetShell');
     expect(home).toContain('testID="home-poll-v2-sheet"');
     expect(home).toContain('<HomePollV2Card model={homePollV2}');
     expect(home).not.toContain('<HomePollV2Card lang={lang} active={homeRuntimeActive} />');
-    expect(home).not.toContain('useHomeSurveyEntry(');
+    // опрос не берёт тексты из сервера анкет (анкета-кампания идёт своим хуком, владелец 22.10)
+    expect(home).not.toContain('fetchActiveSurveyWithRetry(');
     expect(client).toContain("require('./home_polls_v2.json')");
     expect(client).not.toMatch(/collection\(['"]home_polls_v2/);
   });

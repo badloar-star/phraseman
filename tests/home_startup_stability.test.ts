@@ -23,7 +23,8 @@ describe('home startup stability', () => {
 
   // зачем (22.10, владелец: «опрос СНОВА отдельно на Главной — какого»; восстановлена работа 19.10): отдельного блока опроса
   // на Главной нет — опрос дня (Poll V2) живёт строкой «Сегодня» и открывается шторкой; прежняя анкета-строка (Q90,
-  // useHomeSurveyEntry + SurveySheetModal) с Главной снята. Кэш анкет по-прежнему прогревается при старте приложения.
+  // useHomeSurveyEntry + SurveySheetModal) снималась, но владелец 22.10 вернул анкеты: строка «Сегодня» одна — анкета первой, иначе
+  // Poll V2. Кэш анкет по-прежнему прогревается при старте приложения.
   it('keeps the survey cache primed at startup and shows the poll only as a Today row with a sheet', () => {
     const cache = read('app/survey_offer_cache.ts');
     const rootLayout = read('app/_layout.tsx');
@@ -33,13 +34,15 @@ describe('home startup stability', () => {
     expect(rootLayout).toMatch(/primeSurveyOfferCacheFromStorage\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
     // Опрос — модель в Главной, строка «Сегодня» и шторка; без отдельной карточки на экране.
     expect(home).toContain('const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });');
-    expect(home).toContain('surveyRow={homePollV2.phase !== \'hidden\' ? {');
+    // зачем (владелец 22.10, «вернуть анкеты»): одна строка «Сегодня» — анкета-кампания первой, иначе Poll V2
+    expect(home).toContain("const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
+    expect(home).toContain("homeTodayRowSource === 'poll_v2' ? {");
     expect(home).toContain('testID="home-poll-v2-sheet"');
     expect(home).toContain('<HomePollV2Card model={homePollV2} lang={lang} onFinished={closeHomePollV2} />');
     expect(home).not.toMatch(/<HomePollV2Card lang=\{lang\} active=/u);
-    // Прежняя анкета-строка с Главной снята.
-    expect(home).not.toContain('useHomeSurveyEntry(');
-    expect(home).not.toContain('SurveySheetModal');
+    // Анкета-кампания вернулась (владелец 22.10) — через хук и ленивую шторку, без обхода через отдельный экран.
+    expect(home).toContain('const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);');
+    expect(home).toContain('const SurveySheetModal = lazy(loadSurveySheetModal);');
     expect(home).not.toContain("pathname: '/survey_screen'");
   });
 });

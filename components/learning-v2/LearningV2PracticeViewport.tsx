@@ -48,5 +48,6 @@ export default function LearningV2PracticeViewport({
 
 const styles = StyleSheet.create({
   viewport: { flex: 1, minHeight: 0 },
-  content: { flexGrow: 1, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 44 },
+  // зачем (Сверка 22.10, №23): поля заданий — 20, как `--pad` макета (измерено ≈16,5)
+  content: { flexGrow: 1, paddingHorizontal: 20, paddingTop: 8, paddingBottom: 44 },
 });

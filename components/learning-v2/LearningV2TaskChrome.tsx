@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   titleLeft: { flexDirection: 'row', alignItems: 'center', gap: T.title.gap, flexShrink: 1, minWidth: 0 },
   titleTile: { width: T.title.tile, height: T.title.tile, borderRadius: T.title.tileRadius, alignItems: 'center', justifyContent: 'center' },
   titleText: { flexShrink: 1, fontSize: T.title.textSize, lineHeight: T.title.textLine, fontWeight: '800', letterSpacing: T.title.letterSpacing },
-  topBar: { flexDirection: 'row', alignItems: 'center', gap: T.topBar.gap, minHeight: T.topBar.minHeight, marginTop: T.topBar.marginTop, paddingHorizontal: 16 },
+  topBar: { flexDirection: 'row', alignItems: 'center', gap: T.topBar.gap, minHeight: T.topBar.minHeight, marginTop: T.topBar.marginTop, paddingHorizontal: 20 }, // зачем (Сверка 22.10, №23): поля 20 как `--pad` макета
   close: { width: T.close.size, height: T.close.size, borderRadius: T.close.size / 2, alignItems: 'center', justifyContent: 'center' },
   progressColumn: { flex: 1, minWidth: 0 },
   track: { height: T.progress.height, borderRadius: T.progress.radius, overflow: 'hidden' },

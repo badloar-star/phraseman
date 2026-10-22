@@ -31,7 +31,9 @@ import {
 import type { LearningV2InterfaceLocale } from "../../modules/learning-v2/content/generator_course_contract";
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { useTheme } from "../ThemeContext";
-import { Lv2Cta, Lv2Explain, useLv2Glass } from "./LearningV2Glass";
+import { Lv2Explain, useLv2Glass } from "./LearningV2Glass";
+import { LearningV2TaskCta } from "./LearningV2TaskBody";
+import { lv2TaskTokens } from "./learning_v2_task_theme_tokens";
 import { plateBoxShadow } from "../v2/ShadowSurface";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learningV2OwnerLayout";
 import { useLineScale } from '../../hooks/useLineScale';
@@ -412,17 +414,18 @@ export default function LearningV2NewWordEncounterOverlay({
         </ScrollView>
 
         <View style={styles.continueRow}>
-          <Lv2Cta
+          {/* зачем (Сверка 22.10, №23): в макете `.nw .tcta` — тёмная плоская кнопка (фон = цвет текста, надпись = цвет карточки), а не светло-сиреневая CTA темы */}
+          <LearningV2TaskCta
             accessibilityLabel={copy.continue}
             disabled={continuing}
             onPress={() => {
               void continueToPocket();
             }}
             style={styles.continue}
-            right={<Ionicons name="arrow-forward" size={20} color={continuing ? g.mutedText : g.ctaInk} />}
+            right={<Ionicons name="arrow-forward" size={18} color={continuing ? g.secondary : lv2TaskTokens(g).ctaInk} />}
           >
             {copy.continue}
-          </Lv2Cta>
+          </LearningV2TaskCta>
         </View>
 
         {/* макет 61/62: «Перевёрнута и сохранена» — галочка, «Не сохранилось» — лампочка */}

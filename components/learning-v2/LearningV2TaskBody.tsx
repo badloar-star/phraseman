@@ -104,12 +104,15 @@ export const LearningV2SayCard = memo(function LearningV2SayCard({ primary, seco
  * Кнопка задания `.tcta` (макет №23): высота 52, радиус 26, фон — цвет текста, надпись — цвет карточки 16/700, gap 8; недоступная — `--ctl` и `--sec`. Плоская, без тени и градиента.
  * Хаптик — только на управляющей кнопке (правило владельца).
  */
-export const LearningV2TaskCta = memo(function LearningV2TaskCta({ children, onPress, disabled, style, testID }: Readonly<{
+export const LearningV2TaskCta = memo(function LearningV2TaskCta({ children, onPress, disabled, style, testID, accessibilityLabel, right }: Readonly<{
   children: React.ReactNode;
   onPress?: () => void;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
+  accessibilityLabel?: string;
+  /** Значок справа от надписи (стрелка у «Понятно»). */
+  right?: React.ReactNode;
 }>) {
   const g = useLv2Glass();
   const task = lv2TaskTokens(g);
@@ -118,6 +121,7 @@ export const LearningV2TaskCta = memo(function LearningV2TaskCta({ children, onP
     <Pressable
       testID={testID}
       accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
       accessibilityState={{ disabled: !!disabled }}
       disabled={disabled}
       onPress={() => {
@@ -128,6 +132,7 @@ export const LearningV2TaskCta = memo(function LearningV2TaskCta({ children, onP
       style={({ pressed }) => [s.cta, { backgroundColor: disabled ? task.controlSoft : task.ctaFill, opacity: pressed ? 0.88 : 1 }, style]}
     >
       <Text style={[s.ctaText, { color: disabled ? g.secondary : task.ctaInk }]}>{children}</Text>
+      {right ?? null}
     </Pressable>
   );
 });

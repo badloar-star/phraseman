@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Платформа",
+        "uk": "Платформа"
+      },
+      "bodyByLocale": {
+        "ru": "Check the platform — проверить, с какой платформы отправляется поезд. В этом контексте вы сверяете номер на табло, а не осматриваете саму платформу. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Check the platform — перевірити, з якої платформи вирушає потяг. У цьому контексті ви звіряєте номер на табло, а не оглядаєте саму платформу. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-52:intro1:r1",
+              "text": "I look at the board to check the platform."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro1:r2",
+              "text": "I look at the board for check the platform."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro1:r3",
+              "text": "I look at the board of check the platform."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-52:intro1:r1",
+              "text": "I look at the board to check the platform."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro1:r2",
+              "text": "I look at the board for check the platform."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro1:r3",
+              "text": "I look at the board of check the platform."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Добраться и избежать пробок",
+        "uk": "Дістатися й уникнути заторів"
+      },
+      "bodyByLocale": {
+        "ru": "Reach the station — добраться до вокзала. После reach сразу ставим место: reach the station, без to. Avoid the traffic — избежать плотного движения или пробок. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Reach the station — дістатися до вокзалу. Після reach одразу ставимо місце: reach the station, без to. Avoid the traffic — уникнути щільного руху або заторів. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-52:intro2:r1",
+              "text": "I take a taxi to reach the station."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro2:r2",
+              "text": "I take a taxi for reach the station."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro2:r3",
+              "text": "I take a taxi of reach the station."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-52:intro2:r1",
+              "text": "I take a taxi to reach the station."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro2:r2",
+              "text": "I take a taxi for reach the station."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro2:r3",
+              "text": "I take a taxi of reach the station."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Место для машины",
+        "uk": "Місце для машини"
+      },
+      "bodyByLocale": {
+        "ru": "Find a parking space — найти место для парковки одной машины. Car park — вся парковка, parking space — отдельное место на ней. Эти знакомые существительные теперь входят в действие. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Find a parking space — знайти місце для паркування однієї машини. Car park — увесь паркувальний майданчик, parking space — окреме місце на ньому. Ці знайомі іменники тепер входять у дію. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-52:intro3:r1",
+              "text": "I drive to the car park to find a parking space."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro3:r2",
+              "text": "I drive to the car park for find a parking space."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro3:r3",
+              "text": "I drive to the car park of find a parking space."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-52:intro3:r1",
+              "text": "I drive to the car park to find a parking space."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro3:r2",
+              "text": "I drive to the car park for find a parking space."
+            },
+            {
+              "responseId": "en:lesson-22:session-52:intro3:r3",
+              "text": "I drive to the car park of find a parking space."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "56f3aec51e0284147cbbb6a13939b43cb74894babd9356cddac01695de5c4b37"
+}

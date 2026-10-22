@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-51:word:buy-a-return-ticket",
+    "correctText": "buy a return ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i01",
+    "correctText": "Could I buy a return ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i02",
+    "correctText": "Could I buy a return ticket?",
+    "correctResponseId": "en:lesson-22:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i03",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-22:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:word:reserve-a-seat",
+    "correctText": "reserve a seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i04",
+    "correctText": "Could I reserve a seat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i05",
+    "correctText": "Could I reserve a seat?",
+    "correctResponseId": "en:lesson-22:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i06",
+    "correctText": "reserve",
+    "correctResponseId": "en:lesson-22:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:word:change-my-ticket",
+    "correctText": "change my ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i07",
+    "correctText": "Could I change my ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i08",
+    "correctText": "Could I change my ticket?",
+    "correctResponseId": "en:lesson-22:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i09",
+    "correctText": "change",
+    "correctResponseId": "en:lesson-22:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:word:cancel-my-ticket",
+    "correctText": "cancel my ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i10",
+    "correctText": "Could I cancel my ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i11",
+    "correctText": "Could I cancel my ticket?",
+    "correctResponseId": "en:lesson-22:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i12",
+    "correctText": "cancel",
+    "correctResponseId": "en:lesson-22:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i13",
+    "correctText": "en:lesson-22:session-51:i13:p1=buy a return ticket\nen:lesson-22:session-51:i13:p2=reserve a seat\nen:lesson-22:session-51:i13:p3=change my ticket\nen:lesson-22:session-51:i13:p4=cancel my ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i16",
+    "correctText": "Could we buy a return ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-51:i17",
+    "correctText": "Could we reserve a seat?",
+    "correctResponseId": null
+  }
+]

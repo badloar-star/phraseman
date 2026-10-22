@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-22:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-22:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-52:intro1:r2": {
+          "ru": "Цель выражается через to + начальную форму глагола.",
+          "uk": "Мета виражається через to + початкову форму дієслова."
+        },
+        "en:lesson-22:session-52:intro1:r3": {
+          "ru": "Цель выражается через to + начальную форму глагола.",
+          "uk": "Мета виражається через to + початкову форму дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-52:intro2:r2": {
+          "ru": "Цель выражается через to + начальную форму глагола.",
+          "uk": "Мета виражається через to + початкову форму дієслова."
+        },
+        "en:lesson-22:session-52:intro2:r3": {
+          "ru": "Цель выражается через to + начальную форму глагола.",
+          "uk": "Мета виражається через to + початкову форму дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-52:intro3:r2": {
+          "ru": "Цель выражается через to + начальную форму глагола.",
+          "uk": "Мета виражається через to + початкову форму дієслова."
+        },
+        "en:lesson-22:session-52:intro3:r3": {
+          "ru": "Цель выражается через to + начальную форму глагола.",
+          "uk": "Мета виражається через to + початкову форму дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "91f854bd4729e5ad621a7b6de7ffc5791f502a8f4898195a60e1674074b3f934"
+}

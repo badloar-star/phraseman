@@ -1,0 +1,1132 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-52:word:check-the-platform",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — check the platform",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:word:check-the-platform:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — check the platform",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:word:check-the-platform:audio",
+          "transcript": "check the platform"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:word:check-the-platform:r1",
+            "targetText": "check the platform",
+            "meaningByLocale": {
+              "ru": "проверить платформу отправления.",
+              "uk": "перевірити платформу відправлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "check the platform",
+          "definitionByLocale": {
+            "ru": "проверить платформу отправления.",
+            "uk": "перевірити платформу відправлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы смотрите табло на вокзале. Скажите: «Я смотрю на табло, чтобы проверить платформу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы смотрите табло на вокзале. Скажите: «Я смотрю на табло, чтобы проверить платформу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I look at the board to check the platform.",
+        "localizedMeaning": {
+          "ru": "Вы смотрите табло на вокзале. Скажите: «Я смотрю на табло, чтобы проверить платформу»",
+          "uk": "Ви дивитеся на табло на вокзалі. Скажіть: «Я дивлюся на табло, щоб перевірити платформу»"
+        },
+        "orderedTokens": [
+          "I",
+          "look",
+          "at",
+          "the",
+          "board",
+          "to",
+          "check",
+          "the",
+          "platform"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i02:r1",
+          "text": "I look at the board to check the platform."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i02:r2",
+          "text": "We look at the board to check the platform."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i02:r3",
+          "text": "You look at the board to check the platform."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i02:audio",
+          "transcript": "I look at the board to check the platform."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:i02:r1",
+            "targetText": "I look at the board to check the platform.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i02:r2",
+            "targetText": "We look at the board to check the platform.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i02:r3",
+            "targetText": "You look at the board to check the platform.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I look at the board to check the platform.",
+              "uk": "У записі звучить I look at the board to check the platform."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I look at the board to check the platform.",
+              "uk": "У записі звучить I look at the board to check the platform."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i03:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i03:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I look at the board ___ check the platform.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-52:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:word:reach-the-station",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reach the station",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:word:reach-the-station:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reach the station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:word:reach-the-station:audio",
+          "transcript": "reach the station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:word:reach-the-station:r1",
+            "targetText": "reach the station",
+            "meaningByLocale": {
+              "ru": "добраться до вокзала.",
+              "uk": "дістатися до вокзалу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reach the station",
+          "definitionByLocale": {
+            "ru": "добраться до вокзала.",
+            "uk": "дістатися до вокзалу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы едете на вокзал. Скажите: «Я беру такси, чтобы добраться до вокзала»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы едете на вокзал. Скажите: «Я беру такси, чтобы добраться до вокзала»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I take a taxi to reach the station.",
+        "localizedMeaning": {
+          "ru": "Вы едете на вокзал. Скажите: «Я беру такси, чтобы добраться до вокзала»",
+          "uk": "Ви їдете на вокзал. Скажіть: «Я беру таксі, щоб дістатися до вокзалу»"
+        },
+        "orderedTokens": [
+          "I",
+          "take",
+          "a",
+          "taxi",
+          "to",
+          "reach",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i05:r1",
+          "text": "I take a taxi to reach the station."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i05:r2",
+          "text": "We take a taxi to reach the station."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i05:r3",
+          "text": "You take a taxi to reach the station."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i05:audio",
+          "transcript": "I take a taxi to reach the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:i05:r1",
+            "targetText": "I take a taxi to reach the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i05:r2",
+            "targetText": "We take a taxi to reach the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i05:r3",
+            "targetText": "You take a taxi to reach the station.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I take a taxi to reach the station.",
+              "uk": "У записі звучить I take a taxi to reach the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I take a taxi to reach the station.",
+              "uk": "У записі звучить I take a taxi to reach the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i06:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i06:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i06:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I take a taxi ___ reach the station.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-52:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i06:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:word:avoid-the-traffic",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — avoid the traffic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:word:avoid-the-traffic:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — avoid the traffic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:word:avoid-the-traffic:audio",
+          "transcript": "avoid the traffic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:word:avoid-the-traffic:r1",
+            "targetText": "avoid the traffic",
+            "meaningByLocale": {
+              "ru": "избежать пробок.",
+              "uk": "уникнути заторів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "avoid the traffic",
+          "definitionByLocale": {
+            "ru": "избежать пробок.",
+            "uk": "уникнути заторів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы не хотите стоять в пробках. Скажите: «Я выезжаю рано, чтобы избежать пробок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не хотите стоять в пробках. Скажите: «Я выезжаю рано, чтобы избежать пробок»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I leave early to avoid the traffic.",
+        "localizedMeaning": {
+          "ru": "Вы не хотите стоять в пробках. Скажите: «Я выезжаю рано, чтобы избежать пробок»",
+          "uk": "Ви не хочете стояти в заторах. Скажіть: «Я виїжджаю рано, щоб уникнути заторів»"
+        },
+        "orderedTokens": [
+          "I",
+          "leave",
+          "early",
+          "to",
+          "avoid",
+          "the",
+          "traffic"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i08:r1",
+          "text": "I leave early to avoid the traffic."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i08:r2",
+          "text": "We leave early to avoid the traffic."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i08:r3",
+          "text": "You leave early to avoid the traffic."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i08:audio",
+          "transcript": "I leave early to avoid the traffic."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:i08:r1",
+            "targetText": "I leave early to avoid the traffic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i08:r2",
+            "targetText": "We leave early to avoid the traffic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i08:r3",
+            "targetText": "You leave early to avoid the traffic.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I leave early to avoid the traffic.",
+              "uk": "У записі звучить I leave early to avoid the traffic."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I leave early to avoid the traffic.",
+              "uk": "У записі звучить I leave early to avoid the traffic."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i09:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i09:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I leave early ___ avoid the traffic.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-52:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:word:find-a-parking-space",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — find a parking space",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:word:find-a-parking-space:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — find a parking space",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:word:find-a-parking-space:audio",
+          "transcript": "find a parking space"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:word:find-a-parking-space:r1",
+            "targetText": "find a parking space",
+            "meaningByLocale": {
+              "ru": "найти место для парковки.",
+              "uk": "знайти місце для паркування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "find a parking space",
+          "definitionByLocale": {
+            "ru": "найти место для парковки.",
+            "uk": "знайти місце для паркування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ищете, где оставить машину. Скажите: «Я еду на парковку, чтобы найти место для парковки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете, где оставить машину. Скажите: «Я еду на парковку, чтобы найти место для парковки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I drive to the car park to find a parking space.",
+        "localizedMeaning": {
+          "ru": "Вы ищете, где оставить машину. Скажите: «Я еду на парковку, чтобы найти место для парковки»",
+          "uk": "Ви шукаєте, де залишити машину. Скажіть: «Я їду на паркувальний майданчик, щоб знайти місце для паркування»"
+        },
+        "orderedTokens": [
+          "I",
+          "drive",
+          "to",
+          "the",
+          "car",
+          "park",
+          "to",
+          "find",
+          "a",
+          "parking",
+          "space"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i11:r1",
+          "text": "I drive to the car park to find a parking space."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i11:r2",
+          "text": "We drive to the car park to find a parking space."
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i11:r3",
+          "text": "You drive to the car park to find a parking space."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i11:audio",
+          "transcript": "I drive to the car park to find a parking space."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-52:i11:r1",
+            "targetText": "I drive to the car park to find a parking space.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i11:r2",
+            "targetText": "We drive to the car park to find a parking space.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i11:r3",
+            "targetText": "You drive to the car park to find a parking space.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I drive to the car park to find a parking space.",
+              "uk": "У записі звучить I drive to the car park to find a parking space."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I drive to the car park to find a parking space.",
+              "uk": "У записі звучить I drive to the car park to find a parking space."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-52:i12:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i12:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-52:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I drive to the car park ___ find a parking space.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-52:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-52:i13:p1",
+            "target": "check the platform",
+            "meaningByLocale": {
+              "ru": "проверить платформу отправления",
+              "uk": "перевірити платформу відправлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-52:i13:p2",
+            "target": "reach the station",
+            "meaningByLocale": {
+              "ru": "добраться до вокзала",
+              "uk": "дістатися до вокзалу"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-52:i13:p3",
+            "target": "avoid the traffic",
+            "meaningByLocale": {
+              "ru": "избежать пробок",
+              "uk": "уникнути заторів"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-52:i13:p4",
+            "target": "find a parking space",
+            "meaningByLocale": {
+              "ru": "найти место для парковки",
+              "uk": "знайти місце для паркування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "check the platform",
+          "reach the station",
+          "avoid the traffic",
+          "find a parking space"
+        ],
+        "rightColumn": [
+          "проверить платформу отправления",
+          "добраться до вокзала",
+          "избежать пробок",
+          "найти место для парковки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: место у окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: место у окна",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i14:audio",
+          "transcript": "Could I sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I sit by the window?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: прогулка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: прогулка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i15:audio",
+          "transcript": "Could I go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I go for a walk?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мне нужно проверить платформу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мне нужно проверить платформу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i16:audio",
+          "transcript": "I need to check the platform."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to check the platform.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-52:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я хочу избежать пробок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я хочу избежать пробок»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-52:i17:audio",
+          "transcript": "I want to avoid the traffic."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to avoid the traffic.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4bda16e2b2443df5fea71e9f9ba4b4fb66771b70725cc757dabcd4bf1a404ab0"
+}

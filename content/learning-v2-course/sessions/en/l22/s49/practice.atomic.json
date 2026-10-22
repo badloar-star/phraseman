@@ -1,0 +1,2347 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-49:word:book-a-flight",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — book a flight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:book-a-flight:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — book a flight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:book-a-flight:audio",
+            "transcript": "book a flight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:book-a-flight:r1",
+              "targetText": "book a flight",
+              "meaningByLocale": {
+                "ru": "забронировать авиабилет.",
+                "uk": "забронювати авіаквиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "book a flight",
+            "definitionByLocale": {
+              "ru": "забронировать авиабилет.",
+              "uk": "забронювати авіаквиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы выбираете перелёт. Скажите: «Я использую этот сайт, чтобы забронировать авиабилет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы выбираете перелёт. Скажите: «Я использую этот сайт, чтобы забронировать авиабилет»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use this website to book a flight.",
+          "localizedMeaning": {
+            "ru": "Вы выбираете перелёт. Скажите: «Я использую этот сайт, чтобы забронировать авиабилет»",
+            "uk": "Ви обираєте переліт. Скажіть: «Я використовую цей сайт, щоб забронювати авіаквиток»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "this",
+            "website",
+            "to",
+            "book",
+            "a",
+            "flight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i02:r1",
+            "text": "I use this website to book a flight."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i02:r2",
+            "text": "We use this website to book a flight."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i02:r3",
+            "text": "You use this website to book a flight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i02:audio",
+            "transcript": "I use this website to book a flight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i02:r1",
+              "targetText": "I use this website to book a flight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i02:r2",
+              "targetText": "We use this website to book a flight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i02:r3",
+              "targetText": "You use this website to book a flight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this website to book a flight.",
+                "uk": "У записі звучить I use this website to book a flight."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this website to book a flight.",
+                "uk": "У записі звучить I use this website to book a flight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i03:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use this website ___ book a flight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i03:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i03:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i03:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:word:pack-my-bag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pack my bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:pack-my-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pack my bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:pack-my-bag:audio",
+            "transcript": "pack my bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:pack-my-bag:r1",
+              "targetText": "pack my bag",
+              "meaningByLocale": {
+                "ru": "собрать свою сумку.",
+                "uk": "зібрати свою сумку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack my bag",
+            "definitionByLocale": {
+              "ru": "собрать свою сумку.",
+              "uk": "зібрати свою сумку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не хотите забыть вещи. Скажите: «Я составляю список, чтобы собрать свою сумку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не хотите забыть вещи. Скажите: «Я составляю список, чтобы собрать свою сумку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I make a list to pack my bag.",
+          "localizedMeaning": {
+            "ru": "Вы не хотите забыть вещи. Скажите: «Я составляю список, чтобы собрать свою сумку»",
+            "uk": "Ви не хочете забути речі. Скажіть: «Я складаю список, щоб зібрати свою сумку»"
+          },
+          "orderedTokens": [
+            "I",
+            "make",
+            "a",
+            "list",
+            "to",
+            "pack",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i05:r1",
+            "text": "I make a list to pack my bag."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i05:r2",
+            "text": "We make a list to pack our bag."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i05:r3",
+            "text": "You make a list to pack your bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i05:audio",
+            "transcript": "I make a list to pack my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i05:r1",
+              "targetText": "I make a list to pack my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i05:r2",
+              "targetText": "We make a list to pack our bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i05:r3",
+              "targetText": "You make a list to pack your bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a list to pack my bag.",
+                "uk": "У записі звучить I make a list to pack my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a list to pack my bag.",
+                "uk": "У записі звучить I make a list to pack my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i06:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I make a list ___ pack my bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i06:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i06:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i06:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:word:check-my-passport",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check my passport",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:check-my-passport:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check my passport",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:check-my-passport:audio",
+            "transcript": "check my passport"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:check-my-passport:r1",
+              "targetText": "check my passport",
+              "meaningByLocale": {
+                "ru": "проверить свой паспорт.",
+                "uk": "перевірити свій паспорт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check my passport",
+            "definitionByLocale": {
+              "ru": "проверить свой паспорт.",
+              "uk": "перевірити свій паспорт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Паспорт лежит в ящике. Скажите: «Я открываю ящик, чтобы проверить свой паспорт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Паспорт лежит в ящике. Скажите: «Я открываю ящик, чтобы проверить свой паспорт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I open the drawer to check my passport.",
+          "localizedMeaning": {
+            "ru": "Паспорт лежит в ящике. Скажите: «Я открываю ящик, чтобы проверить свой паспорт»",
+            "uk": "Паспорт лежить у шухляді. Скажіть: «Я відчиняю шухляду, щоб перевірити свій паспорт»"
+          },
+          "orderedTokens": [
+            "I",
+            "open",
+            "the",
+            "drawer",
+            "to",
+            "check",
+            "my",
+            "passport"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i08:r1",
+            "text": "I open the drawer to check my passport."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i08:r2",
+            "text": "We open the drawer to check our passports."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i08:r3",
+            "text": "You open the drawer to check your passport."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i08:audio",
+            "transcript": "I open the drawer to check my passport."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i08:r1",
+              "targetText": "I open the drawer to check my passport.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i08:r2",
+              "targetText": "We open the drawer to check our passports.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i08:r3",
+              "targetText": "You open the drawer to check your passport.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the drawer to check my passport.",
+                "uk": "У записі звучить I open the drawer to check my passport."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the drawer to check my passport.",
+                "uk": "У записі звучить I open the drawer to check my passport."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i09:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I open the drawer ___ check my passport.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i09:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i09:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i09:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:word:print-my-ticket",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — print my ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:print-my-ticket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — print my ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:print-my-ticket:audio",
+            "transcript": "print my ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:print-my-ticket:r1",
+              "targetText": "print my ticket",
+              "meaningByLocale": {
+                "ru": "распечатать свой билет.",
+                "uk": "роздрукувати свій квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "print my ticket",
+            "definitionByLocale": {
+              "ru": "распечатать свой билет.",
+              "uk": "роздрукувати свій квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите бумажную копию билета. Скажите: «Я использую принтер, чтобы распечатать свой билет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите бумажную копию билета. Скажите: «Я использую принтер, чтобы распечатать свой билет»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use the printer to print my ticket.",
+          "localizedMeaning": {
+            "ru": "Вы хотите бумажную копию билета. Скажите: «Я использую принтер, чтобы распечатать свой билет»",
+            "uk": "Ви хочете паперову копію квитка. Скажіть: «Я використовую принтер, щоб роздрукувати свій квиток»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "the",
+            "printer",
+            "to",
+            "print",
+            "my",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i11:r1",
+            "text": "I use the printer to print my ticket."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i11:r2",
+            "text": "We use the printer to print our tickets."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i11:r3",
+            "text": "You use the printer to print your ticket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i11:audio",
+            "transcript": "I use the printer to print my ticket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i11:r1",
+              "targetText": "I use the printer to print my ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i11:r2",
+              "targetText": "We use the printer to print our tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i11:r3",
+              "targetText": "You use the printer to print your ticket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use the printer to print my ticket.",
+                "uk": "У записі звучить I use the printer to print my ticket."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use the printer to print my ticket.",
+                "uk": "У записі звучить I use the printer to print my ticket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i12:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use the printer ___ print my ticket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i12:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i12:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i12:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-49:i13:p1",
+              "target": "book a flight",
+              "meaningByLocale": {
+                "ru": "забронировать авиабилет",
+                "uk": "забронювати авіаквиток"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-49:i13:p2",
+              "target": "pack my bag",
+              "meaningByLocale": {
+                "ru": "собрать свою сумку",
+                "uk": "зібрати свою сумку"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-49:i13:p3",
+              "target": "check my passport",
+              "meaningByLocale": {
+                "ru": "проверить свой паспорт",
+                "uk": "перевірити свій паспорт"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-49:i13:p4",
+              "target": "print my ticket",
+              "meaningByLocale": {
+                "ru": "распечатать свой билет",
+                "uk": "роздрукувати свій квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "book a flight",
+            "pack my bag",
+            "check my passport",
+            "print my ticket"
+          ],
+          "rightColumn": [
+            "забронировать авиабилет",
+            "собрать свою сумку",
+            "проверить свой паспорт",
+            "распечатать свой билет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: место у окна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: место у окна",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i14:audio",
+            "transcript": "Could I sit by the window?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I sit by the window?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "sit",
+            "by",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: прогулка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: прогулка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i15:audio",
+            "transcript": "Could I go for a walk?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I go for a walk?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "go",
+            "for",
+            "a",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мне нужно собрать свою сумку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мне нужно собрать свою сумку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i16:audio",
+            "transcript": "I need to pack my bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to pack my bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я хочу проверить свой паспорт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я хочу проверить свой паспорт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i17:audio",
+            "transcript": "I want to check my passport."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to check my passport.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-49:word:book-a-flight",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — book a flight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:book-a-flight:audio"
+        ],
+        "accessibilityLabel": "Картка слова — book a flight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:book-a-flight:audio",
+            "transcript": "book a flight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:book-a-flight:r1",
+              "targetText": "book a flight",
+              "meaningByLocale": {
+                "ru": "забронировать авиабилет.",
+                "uk": "забронювати авіаквиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "book a flight",
+            "definitionByLocale": {
+              "ru": "забронировать авиабилет.",
+              "uk": "забронювати авіаквиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви обираєте переліт. Скажіть: «Я використовую цей сайт, щоб забронювати авіаквиток»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обираєте переліт. Скажіть: «Я використовую цей сайт, щоб забронювати авіаквиток»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use this website to book a flight.",
+          "localizedMeaning": {
+            "ru": "Вы выбираете перелёт. Скажите: «Я использую этот сайт, чтобы забронировать авиабилет»",
+            "uk": "Ви обираєте переліт. Скажіть: «Я використовую цей сайт, щоб забронювати авіаквиток»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "this",
+            "website",
+            "to",
+            "book",
+            "a",
+            "flight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i02:r1",
+            "text": "I use this website to book a flight."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i02:r2",
+            "text": "We use this website to book a flight."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i02:r3",
+            "text": "You use this website to book a flight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i02:audio",
+            "transcript": "I use this website to book a flight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i02:r1",
+              "targetText": "I use this website to book a flight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i02:r2",
+              "targetText": "We use this website to book a flight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i02:r3",
+              "targetText": "You use this website to book a flight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this website to book a flight.",
+                "uk": "У записі звучить I use this website to book a flight."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this website to book a flight.",
+                "uk": "У записі звучить I use this website to book a flight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i03:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use this website ___ book a flight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i03:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i03:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i03:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:word:pack-my-bag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pack my bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:pack-my-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pack my bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:pack-my-bag:audio",
+            "transcript": "pack my bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:pack-my-bag:r1",
+              "targetText": "pack my bag",
+              "meaningByLocale": {
+                "ru": "собрать свою сумку.",
+                "uk": "зібрати свою сумку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack my bag",
+            "definitionByLocale": {
+              "ru": "собрать свою сумку.",
+              "uk": "зібрати свою сумку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не хочете забути речі. Скажіть: «Я складаю список, щоб зібрати свою сумку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не хочете забути речі. Скажіть: «Я складаю список, щоб зібрати свою сумку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I make a list to pack my bag.",
+          "localizedMeaning": {
+            "ru": "Вы не хотите забыть вещи. Скажите: «Я составляю список, чтобы собрать свою сумку»",
+            "uk": "Ви не хочете забути речі. Скажіть: «Я складаю список, щоб зібрати свою сумку»"
+          },
+          "orderedTokens": [
+            "I",
+            "make",
+            "a",
+            "list",
+            "to",
+            "pack",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i05:r1",
+            "text": "I make a list to pack my bag."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i05:r2",
+            "text": "We make a list to pack our bag."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i05:r3",
+            "text": "You make a list to pack your bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i05:audio",
+            "transcript": "I make a list to pack my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i05:r1",
+              "targetText": "I make a list to pack my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i05:r2",
+              "targetText": "We make a list to pack our bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i05:r3",
+              "targetText": "You make a list to pack your bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a list to pack my bag.",
+                "uk": "У записі звучить I make a list to pack my bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I make a list to pack my bag.",
+                "uk": "У записі звучить I make a list to pack my bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i06:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I make a list ___ pack my bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i06:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i06:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i06:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:word:check-my-passport",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check my passport",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:check-my-passport:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check my passport",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:check-my-passport:audio",
+            "transcript": "check my passport"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:check-my-passport:r1",
+              "targetText": "check my passport",
+              "meaningByLocale": {
+                "ru": "проверить свой паспорт.",
+                "uk": "перевірити свій паспорт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check my passport",
+            "definitionByLocale": {
+              "ru": "проверить свой паспорт.",
+              "uk": "перевірити свій паспорт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Паспорт лежить у шухляді. Скажіть: «Я відчиняю шухляду, щоб перевірити свій паспорт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Паспорт лежить у шухляді. Скажіть: «Я відчиняю шухляду, щоб перевірити свій паспорт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I open the drawer to check my passport.",
+          "localizedMeaning": {
+            "ru": "Паспорт лежит в ящике. Скажите: «Я открываю ящик, чтобы проверить свой паспорт»",
+            "uk": "Паспорт лежить у шухляді. Скажіть: «Я відчиняю шухляду, щоб перевірити свій паспорт»"
+          },
+          "orderedTokens": [
+            "I",
+            "open",
+            "the",
+            "drawer",
+            "to",
+            "check",
+            "my",
+            "passport"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i08:r1",
+            "text": "I open the drawer to check my passport."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i08:r2",
+            "text": "We open the drawer to check our passports."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i08:r3",
+            "text": "You open the drawer to check your passport."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i08:audio",
+            "transcript": "I open the drawer to check my passport."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i08:r1",
+              "targetText": "I open the drawer to check my passport.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i08:r2",
+              "targetText": "We open the drawer to check our passports.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i08:r3",
+              "targetText": "You open the drawer to check your passport.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the drawer to check my passport.",
+                "uk": "У записі звучить I open the drawer to check my passport."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the drawer to check my passport.",
+                "uk": "У записі звучить I open the drawer to check my passport."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i09:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I open the drawer ___ check my passport.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i09:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i09:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i09:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:word:print-my-ticket",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — print my ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:word:print-my-ticket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — print my ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:word:print-my-ticket:audio",
+            "transcript": "print my ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:word:print-my-ticket:r1",
+              "targetText": "print my ticket",
+              "meaningByLocale": {
+                "ru": "распечатать свой билет.",
+                "uk": "роздрукувати свій квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "print my ticket",
+            "definitionByLocale": {
+              "ru": "распечатать свой билет.",
+              "uk": "роздрукувати свій квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете паперову копію квитка. Скажіть: «Я використовую принтер, щоб роздрукувати свій квиток»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете паперову копію квитка. Скажіть: «Я використовую принтер, щоб роздрукувати свій квиток»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use the printer to print my ticket.",
+          "localizedMeaning": {
+            "ru": "Вы хотите бумажную копию билета. Скажите: «Я использую принтер, чтобы распечатать свой билет»",
+            "uk": "Ви хочете паперову копію квитка. Скажіть: «Я використовую принтер, щоб роздрукувати свій квиток»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "the",
+            "printer",
+            "to",
+            "print",
+            "my",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i11:r1",
+            "text": "I use the printer to print my ticket."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i11:r2",
+            "text": "We use the printer to print our tickets."
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i11:r3",
+            "text": "You use the printer to print your ticket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i11:audio",
+            "transcript": "I use the printer to print my ticket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-49:i11:r1",
+              "targetText": "I use the printer to print my ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i11:r2",
+              "targetText": "We use the printer to print our tickets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i11:r3",
+              "targetText": "You use the printer to print your ticket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use the printer to print my ticket.",
+                "uk": "У записі звучить I use the printer to print my ticket."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use the printer to print my ticket.",
+                "uk": "У записі звучить I use the printer to print my ticket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-49:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-49:i12:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use the printer ___ print my ticket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-49:i12:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i12:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i12:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-49:i13:p1",
+              "target": "book a flight",
+              "meaningByLocale": {
+                "ru": "забронировать авиабилет",
+                "uk": "забронювати авіаквиток"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-49:i13:p2",
+              "target": "pack my bag",
+              "meaningByLocale": {
+                "ru": "собрать свою сумку",
+                "uk": "зібрати свою сумку"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-49:i13:p3",
+              "target": "check my passport",
+              "meaningByLocale": {
+                "ru": "проверить свой паспорт",
+                "uk": "перевірити свій паспорт"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-49:i13:p4",
+              "target": "print my ticket",
+              "meaningByLocale": {
+                "ru": "распечатать свой билет",
+                "uk": "роздрукувати свій квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "book a flight",
+            "pack my bag",
+            "check my passport",
+            "print my ticket"
+          ],
+          "rightColumn": [
+            "забронювати авіаквиток",
+            "зібрати свою сумку",
+            "перевірити свій паспорт",
+            "роздрукувати свій квиток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: місце біля вікна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: місце біля вікна",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i14:audio",
+            "transcript": "Could I sit by the window?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I sit by the window?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "sit",
+            "by",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: прогулянка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: прогулянка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i15:audio",
+            "transcript": "Could I go for a walk?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I go for a walk?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "go",
+            "for",
+            "a",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Мені потрібно зібрати свою сумку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Мені потрібно зібрати свою сумку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i16:audio",
+            "transcript": "I need to pack my bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to pack my bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я хочу перевірити свій паспорт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я хочу перевірити свій паспорт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-49:i17:audio",
+            "transcript": "I want to check my passport."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to check my passport.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-49:word:book-a-flight",
+      "correctText": "book a flight",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i01",
+      "correctText": "I use this website to book a flight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i02",
+      "correctText": "I use this website to book a flight.",
+      "correctResponseId": "en:lesson-22:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i03",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:word:pack-my-bag",
+      "correctText": "pack my bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i04",
+      "correctText": "I make a list to pack my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i05",
+      "correctText": "I make a list to pack my bag.",
+      "correctResponseId": "en:lesson-22:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i06",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-49:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:word:check-my-passport",
+      "correctText": "check my passport",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i07",
+      "correctText": "I open the drawer to check my passport.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i08",
+      "correctText": "I open the drawer to check my passport.",
+      "correctResponseId": "en:lesson-22:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i09",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:word:print-my-ticket",
+      "correctText": "print my ticket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i10",
+      "correctText": "I use the printer to print my ticket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i11",
+      "correctText": "I use the printer to print my ticket.",
+      "correctResponseId": "en:lesson-22:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i12",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-49:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i14",
+      "correctText": "Could I sit by the window?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i15",
+      "correctText": "Could I go for a walk?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i16",
+      "correctText": "I need to pack my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-49:i17",
+      "correctText": "I want to check my passport.",
+      "correctResponseId": null
+    }
+  ]
+}

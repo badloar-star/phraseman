@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-51",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-51:word:buy-a-return-ticket",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — buy a return ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:buy-a-return-ticket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — buy a return ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:buy-a-return-ticket:audio",
+            "transcript": "buy a return ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:buy-a-return-ticket:r1",
+              "targetText": "buy a return ticket",
+              "meaningByLocale": {
+                "ru": "купить билет туда и обратно.",
+                "uk": "купити квиток туди й назад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buy a return ticket",
+            "definitionByLocale": {
+              "ru": "купить билет туда и обратно.",
+              "uk": "купити квиток туди й назад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам нужен билет в обе стороны. Спросите: «Можно мне купить билет туда и обратно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам нужен билет в обе стороны. Спросите: «Можно мне купить билет туда и обратно?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I buy a return ticket?",
+          "localizedMeaning": {
+            "ru": "Вам нужен билет в обе стороны. Спросите: «Можно мне купить билет туда и обратно?»",
+            "uk": "Вам потрібен квиток в обидва боки. Запитайте: «Можна мені купити квиток туди й назад?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "buy",
+            "a",
+            "return",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i02:r1",
+            "text": "Could I buy a return ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i02:r2",
+            "text": "Could you buy a return ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i02:r3",
+            "text": "Could we buy a return ticket?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i02:audio",
+            "transcript": "Could I buy a return ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i02:r1",
+              "targetText": "Could I buy a return ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i02:r2",
+              "targetText": "Could you buy a return ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i02:r3",
+              "targetText": "Could we buy a return ticket?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I buy a return ticket?",
+                "uk": "У записі звучить Could I buy a return ticket?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I buy a return ticket?",
+                "uk": "У записі звучить Could I buy a return ticket?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i03:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i03:r2",
+            "text": "buys"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i03:r3",
+            "text": "buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a return ticket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i03:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i03:r2",
+              "text": "buys"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i03:r3",
+              "text": "buying"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:word:reserve-a-seat",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reserve a seat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:reserve-a-seat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reserve a seat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:reserve-a-seat:audio",
+            "transcript": "reserve a seat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:reserve-a-seat:r1",
+              "targetText": "reserve a seat",
+              "meaningByLocale": {
+                "ru": "забронировать место.",
+                "uk": "забронювати місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reserve a seat",
+            "definitionByLocale": {
+              "ru": "забронировать место.",
+              "uk": "забронювати місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите заранее выбрать место. Спросите: «Можно мне забронировать место?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите заранее выбрать место. Спросите: «Можно мне забронировать место?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I reserve a seat?",
+          "localizedMeaning": {
+            "ru": "Вы хотите заранее выбрать место. Спросите: «Можно мне забронировать место?»",
+            "uk": "Ви хочете заздалегідь обрати місце. Запитайте: «Можна мені забронювати місце?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "reserve",
+            "a",
+            "seat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i05:r1",
+            "text": "Could I reserve a seat?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i05:r2",
+            "text": "Could you reserve a seat?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i05:r3",
+            "text": "Could we reserve a seat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i05:audio",
+            "transcript": "Could I reserve a seat?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i05:r1",
+              "targetText": "Could I reserve a seat?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i05:r2",
+              "targetText": "Could you reserve a seat?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i05:r3",
+              "targetText": "Could we reserve a seat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I reserve a seat?",
+                "uk": "У записі звучить Could I reserve a seat?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I reserve a seat?",
+                "uk": "У записі звучить Could I reserve a seat?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i06:r1",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i06:r2",
+            "text": "reserves"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i06:r3",
+            "text": "reserving"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a seat?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i06:r1",
+              "text": "reserve"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i06:r2",
+              "text": "reserves"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i06:r3",
+              "text": "reserving"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:word:change-my-ticket",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — change my ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:change-my-ticket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — change my ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:change-my-ticket:audio",
+            "transcript": "change my ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:change-my-ticket:r1",
+              "targetText": "change my ticket",
+              "meaningByLocale": {
+                "ru": "изменить свой билет.",
+                "uk": "змінити свій квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "change my ticket",
+            "definitionByLocale": {
+              "ru": "изменить свой билет.",
+              "uk": "змінити свій квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам нужна другая дата поездки. Спросите: «Можно мне изменить свой билет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам нужна другая дата поездки. Спросите: «Можно мне изменить свой билет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I change my ticket?",
+          "localizedMeaning": {
+            "ru": "Вам нужна другая дата поездки. Спросите: «Можно мне изменить свой билет?»",
+            "uk": "Вам потрібна інша дата поїздки. Запитайте: «Можна мені змінити свій квиток?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "change",
+            "my",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i08:r1",
+            "text": "Could I change my ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i08:r2",
+            "text": "Could you change your ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i08:r3",
+            "text": "Could we change our tickets?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i08:audio",
+            "transcript": "Could I change my ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i08:r1",
+              "targetText": "Could I change my ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i08:r2",
+              "targetText": "Could you change your ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i08:r3",
+              "targetText": "Could we change our tickets?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I change my ticket?",
+                "uk": "У записі звучить Could I change my ticket?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I change my ticket?",
+                "uk": "У записі звучить Could I change my ticket?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i09:r1",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i09:r2",
+            "text": "changes"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i09:r3",
+            "text": "changing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ my ticket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i09:r1",
+              "text": "change"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i09:r2",
+              "text": "changes"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i09:r3",
+              "text": "changing"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:word:cancel-my-ticket",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cancel my ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:cancel-my-ticket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cancel my ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:cancel-my-ticket:audio",
+            "transcript": "cancel my ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:cancel-my-ticket:r1",
+              "targetText": "cancel my ticket",
+              "meaningByLocale": {
+                "ru": "отменить свой билет.",
+                "uk": "скасувати свій квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cancel my ticket",
+            "definitionByLocale": {
+              "ru": "отменить свой билет.",
+              "uk": "скасувати свій квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поездка не состоится. Спросите: «Можно мне отменить свой билет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поездка не состоится. Спросите: «Можно мне отменить свой билет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I cancel my ticket?",
+          "localizedMeaning": {
+            "ru": "Поездка не состоится. Спросите: «Можно мне отменить свой билет?»",
+            "uk": "Поїздка не відбудеться. Запитайте: «Можна мені скасувати свій квиток?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "cancel",
+            "my",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i11:r1",
+            "text": "Could I cancel my ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i11:r2",
+            "text": "Could you cancel your ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i11:r3",
+            "text": "Could we cancel our tickets?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i11:audio",
+            "transcript": "Could I cancel my ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i11:r1",
+              "targetText": "Could I cancel my ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i11:r2",
+              "targetText": "Could you cancel your ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i11:r3",
+              "targetText": "Could we cancel our tickets?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I cancel my ticket?",
+                "uk": "У записі звучить Could I cancel my ticket?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I cancel my ticket?",
+                "uk": "У записі звучить Could I cancel my ticket?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i12:r1",
+            "text": "cancel"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i12:r2",
+            "text": "cancels"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i12:r3",
+            "text": "cancelling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ my ticket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i12:r1",
+              "text": "cancel"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i12:r2",
+              "text": "cancels"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i12:r3",
+              "text": "cancelling"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-51:i13:p1",
+              "target": "buy a return ticket",
+              "meaningByLocale": {
+                "ru": "купить билет туда и обратно",
+                "uk": "купити квиток туди й назад"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-51:i13:p2",
+              "target": "reserve a seat",
+              "meaningByLocale": {
+                "ru": "забронировать место",
+                "uk": "забронювати місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-51:i13:p3",
+              "target": "change my ticket",
+              "meaningByLocale": {
+                "ru": "изменить свой билет",
+                "uk": "змінити свій квиток"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-51:i13:p4",
+              "target": "cancel my ticket",
+              "meaningByLocale": {
+                "ru": "отменить свой билет",
+                "uk": "скасувати свій квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "buy a return ticket",
+            "reserve a seat",
+            "change my ticket",
+            "cancel my ticket"
+          ],
+          "rightColumn": [
+            "купить билет туда и обратно",
+            "забронировать место",
+            "изменить свой билет",
+            "отменить свой билет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: её вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: её вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: моя вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: моя вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам купить билет туда и обратно?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам купить билет туда и обратно?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i16:audio",
+            "transcript": "Could we buy a return ticket?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we buy a return ticket?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам забронировать место?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам забронировать место?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i17:audio",
+            "transcript": "Could we reserve a seat?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we reserve a seat?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-51:word:buy-a-return-ticket",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — buy a return ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:buy-a-return-ticket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — buy a return ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:buy-a-return-ticket:audio",
+            "transcript": "buy a return ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:buy-a-return-ticket:r1",
+              "targetText": "buy a return ticket",
+              "meaningByLocale": {
+                "ru": "купить билет туда и обратно.",
+                "uk": "купити квиток туди й назад."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buy a return ticket",
+            "definitionByLocale": {
+              "ru": "купить билет туда и обратно.",
+              "uk": "купити квиток туди й назад."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам потрібен квиток в обидва боки. Запитайте: «Можна мені купити квиток туди й назад?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам потрібен квиток в обидва боки. Запитайте: «Можна мені купити квиток туди й назад?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I buy a return ticket?",
+          "localizedMeaning": {
+            "ru": "Вам нужен билет в обе стороны. Спросите: «Можно мне купить билет туда и обратно?»",
+            "uk": "Вам потрібен квиток в обидва боки. Запитайте: «Можна мені купити квиток туди й назад?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "buy",
+            "a",
+            "return",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i02:r1",
+            "text": "Could I buy a return ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i02:r2",
+            "text": "Could you buy a return ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i02:r3",
+            "text": "Could we buy a return ticket?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i02:audio",
+            "transcript": "Could I buy a return ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i02:r1",
+              "targetText": "Could I buy a return ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i02:r2",
+              "targetText": "Could you buy a return ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i02:r3",
+              "targetText": "Could we buy a return ticket?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I buy a return ticket?",
+                "uk": "У записі звучить Could I buy a return ticket?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I buy a return ticket?",
+                "uk": "У записі звучить Could I buy a return ticket?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i03:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i03:r2",
+            "text": "buys"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i03:r3",
+            "text": "buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a return ticket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i03:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i03:r2",
+              "text": "buys"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i03:r3",
+              "text": "buying"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:word:reserve-a-seat",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reserve a seat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:reserve-a-seat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reserve a seat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:reserve-a-seat:audio",
+            "transcript": "reserve a seat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:reserve-a-seat:r1",
+              "targetText": "reserve a seat",
+              "meaningByLocale": {
+                "ru": "забронировать место.",
+                "uk": "забронювати місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reserve a seat",
+            "definitionByLocale": {
+              "ru": "забронировать место.",
+              "uk": "забронювати місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете заздалегідь обрати місце. Запитайте: «Можна мені забронювати місце?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете заздалегідь обрати місце. Запитайте: «Можна мені забронювати місце?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I reserve a seat?",
+          "localizedMeaning": {
+            "ru": "Вы хотите заранее выбрать место. Спросите: «Можно мне забронировать место?»",
+            "uk": "Ви хочете заздалегідь обрати місце. Запитайте: «Можна мені забронювати місце?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "reserve",
+            "a",
+            "seat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i05:r1",
+            "text": "Could I reserve a seat?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i05:r2",
+            "text": "Could you reserve a seat?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i05:r3",
+            "text": "Could we reserve a seat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i05:audio",
+            "transcript": "Could I reserve a seat?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i05:r1",
+              "targetText": "Could I reserve a seat?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i05:r2",
+              "targetText": "Could you reserve a seat?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i05:r3",
+              "targetText": "Could we reserve a seat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I reserve a seat?",
+                "uk": "У записі звучить Could I reserve a seat?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I reserve a seat?",
+                "uk": "У записі звучить Could I reserve a seat?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i06:r1",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i06:r2",
+            "text": "reserves"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i06:r3",
+            "text": "reserving"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ a seat?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i06:r1",
+              "text": "reserve"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i06:r2",
+              "text": "reserves"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i06:r3",
+              "text": "reserving"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:word:change-my-ticket",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — change my ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:change-my-ticket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — change my ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:change-my-ticket:audio",
+            "transcript": "change my ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:change-my-ticket:r1",
+              "targetText": "change my ticket",
+              "meaningByLocale": {
+                "ru": "изменить свой билет.",
+                "uk": "змінити свій квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "change my ticket",
+            "definitionByLocale": {
+              "ru": "изменить свой билет.",
+              "uk": "змінити свій квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам потрібна інша дата поїздки. Запитайте: «Можна мені змінити свій квиток?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам потрібна інша дата поїздки. Запитайте: «Можна мені змінити свій квиток?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I change my ticket?",
+          "localizedMeaning": {
+            "ru": "Вам нужна другая дата поездки. Спросите: «Можно мне изменить свой билет?»",
+            "uk": "Вам потрібна інша дата поїздки. Запитайте: «Можна мені змінити свій квиток?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "change",
+            "my",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i08:r1",
+            "text": "Could I change my ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i08:r2",
+            "text": "Could you change your ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i08:r3",
+            "text": "Could we change our tickets?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i08:audio",
+            "transcript": "Could I change my ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i08:r1",
+              "targetText": "Could I change my ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i08:r2",
+              "targetText": "Could you change your ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i08:r3",
+              "targetText": "Could we change our tickets?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I change my ticket?",
+                "uk": "У записі звучить Could I change my ticket?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I change my ticket?",
+                "uk": "У записі звучить Could I change my ticket?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i09:r1",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i09:r2",
+            "text": "changes"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i09:r3",
+            "text": "changing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ my ticket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i09:r1",
+              "text": "change"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i09:r2",
+              "text": "changes"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i09:r3",
+              "text": "changing"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:word:cancel-my-ticket",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cancel my ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:word:cancel-my-ticket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cancel my ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:word:cancel-my-ticket:audio",
+            "transcript": "cancel my ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:word:cancel-my-ticket:r1",
+              "targetText": "cancel my ticket",
+              "meaningByLocale": {
+                "ru": "отменить свой билет.",
+                "uk": "скасувати свій квиток."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cancel my ticket",
+            "definitionByLocale": {
+              "ru": "отменить свой билет.",
+              "uk": "скасувати свій квиток."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поїздка не відбудеться. Запитайте: «Можна мені скасувати свій квиток?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поїздка не відбудеться. Запитайте: «Можна мені скасувати свій квиток?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I cancel my ticket?",
+          "localizedMeaning": {
+            "ru": "Поездка не состоится. Спросите: «Можно мне отменить свой билет?»",
+            "uk": "Поїздка не відбудеться. Запитайте: «Можна мені скасувати свій квиток?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "cancel",
+            "my",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i11:r1",
+            "text": "Could I cancel my ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i11:r2",
+            "text": "Could you cancel your ticket?"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i11:r3",
+            "text": "Could we cancel our tickets?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i11:audio",
+            "transcript": "Could I cancel my ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-51:i11:r1",
+              "targetText": "Could I cancel my ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i11:r2",
+              "targetText": "Could you cancel your ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i11:r3",
+              "targetText": "Could we cancel our tickets?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I cancel my ticket?",
+                "uk": "У записі звучить Could I cancel my ticket?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I cancel my ticket?",
+                "uk": "У записі звучить Could I cancel my ticket?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-51:i12:r1",
+            "text": "cancel"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i12:r2",
+            "text": "cancels"
+          },
+          {
+            "responseId": "en:lesson-22:session-51:i12:r3",
+            "text": "cancelling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ my ticket?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-51:i12:r1",
+              "text": "cancel"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i12:r2",
+              "text": "cancels"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i12:r3",
+              "text": "cancelling"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-51:i13:p1",
+              "target": "buy a return ticket",
+              "meaningByLocale": {
+                "ru": "купить билет туда и обратно",
+                "uk": "купити квиток туди й назад"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-51:i13:p2",
+              "target": "reserve a seat",
+              "meaningByLocale": {
+                "ru": "забронировать место",
+                "uk": "забронювати місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-51:i13:p3",
+              "target": "change my ticket",
+              "meaningByLocale": {
+                "ru": "изменить свой билет",
+                "uk": "змінити свій квиток"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-51:i13:p4",
+              "target": "cancel my ticket",
+              "meaningByLocale": {
+                "ru": "отменить свой билет",
+                "uk": "скасувати свій квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "buy a return ticket",
+            "reserve a seat",
+            "change my ticket",
+            "cancel my ticket"
+          ],
+          "rightColumn": [
+            "купити квиток туди й назад",
+            "забронювати місце",
+            "змінити свій квиток",
+            "скасувати свій квиток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: її річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: її річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: моя річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: моя річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам купити квиток туди й назад?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам купити квиток туди й назад?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i16:audio",
+            "transcript": "Could we buy a return ticket?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we buy a return ticket?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-51:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам забронювати місце?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам забронювати місце?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-51:i17:audio",
+            "transcript": "Could we reserve a seat?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we reserve a seat?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-51:word:buy-a-return-ticket",
+      "correctText": "buy a return ticket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i01",
+      "correctText": "Could I buy a return ticket?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i02",
+      "correctText": "Could I buy a return ticket?",
+      "correctResponseId": "en:lesson-22:session-51:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i03",
+      "correctText": "buy",
+      "correctResponseId": "en:lesson-22:session-51:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:word:reserve-a-seat",
+      "correctText": "reserve a seat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i04",
+      "correctText": "Could I reserve a seat?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i05",
+      "correctText": "Could I reserve a seat?",
+      "correctResponseId": "en:lesson-22:session-51:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i06",
+      "correctText": "reserve",
+      "correctResponseId": "en:lesson-22:session-51:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:word:change-my-ticket",
+      "correctText": "change my ticket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i07",
+      "correctText": "Could I change my ticket?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i08",
+      "correctText": "Could I change my ticket?",
+      "correctResponseId": "en:lesson-22:session-51:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i09",
+      "correctText": "change",
+      "correctResponseId": "en:lesson-22:session-51:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:word:cancel-my-ticket",
+      "correctText": "cancel my ticket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i10",
+      "correctText": "Could I cancel my ticket?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i11",
+      "correctText": "Could I cancel my ticket?",
+      "correctResponseId": "en:lesson-22:session-51:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i12",
+      "correctText": "cancel",
+      "correctResponseId": "en:lesson-22:session-51:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i14",
+      "correctText": "This wash bag is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i15",
+      "correctText": "This eye mask is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i16",
+      "correctText": "Could we buy a return ticket?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-51:i17",
+      "correctText": "Could we reserve a seat?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-50:word:check-in-online",
+    "correctText": "check in online",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i01",
+    "correctText": "Could I check in online?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i02",
+    "correctText": "Could I check in online?",
+    "correctResponseId": "en:lesson-22:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i03",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-22:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:word:drop-off-my-bag",
+    "correctText": "drop off my bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i04",
+    "correctText": "Could I drop off my bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i05",
+    "correctText": "Could I drop off my bag?",
+    "correctResponseId": "en:lesson-22:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i06",
+    "correctText": "drop",
+    "correctResponseId": "en:lesson-22:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:word:go-through-security",
+    "correctText": "go through security",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i07",
+    "correctText": "Could I go through security?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i08",
+    "correctText": "Could I go through security?",
+    "correctResponseId": "en:lesson-22:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i09",
+    "correctText": "go",
+    "correctResponseId": "en:lesson-22:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:word:join-the-queue",
+    "correctText": "join the queue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i10",
+    "correctText": "Could I join the queue?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i11",
+    "correctText": "Could I join the queue?",
+    "correctResponseId": "en:lesson-22:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i12",
+    "correctText": "join",
+    "correctResponseId": "en:lesson-22:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i13",
+    "correctText": "en:lesson-22:session-50:i13:p1=check in online\nen:lesson-22:session-50:i13:p2=drop off my bag\nen:lesson-22:session-50:i13:p3=go through security\nen:lesson-22:session-50:i13:p4=join the queue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i16",
+    "correctText": "Could we check in online?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-50:i17",
+    "correctText": "Could we join the queue?",
+    "correctResponseId": null
+  }
+]

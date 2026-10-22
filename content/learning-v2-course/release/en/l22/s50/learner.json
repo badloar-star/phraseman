@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-50:word:check-in-online",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — check in online",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:word:check-in-online:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — check in online",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:word:check-in-online:audio",
+          "transcript": "check in online"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:word:check-in-online:r1",
+            "targetText": "check in online",
+            "meaningByLocale": {
+              "ru": "зарегистрироваться онлайн.",
+              "uk": "зареєструватися онлайн."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "check in online",
+          "definitionByLocale": {
+            "ru": "зарегистрироваться онлайн.",
+            "uk": "зареєструватися онлайн."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы спрашиваете о способе регистрации. Спросите: «Можно мне зарегистрироваться онлайн?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы спрашиваете о способе регистрации. Спросите: «Можно мне зарегистрироваться онлайн?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I check in online?",
+        "localizedMeaning": {
+          "ru": "Вы спрашиваете о способе регистрации. Спросите: «Можно мне зарегистрироваться онлайн?»",
+          "uk": "Ви питаєте про спосіб реєстрації. Запитайте: «Можна мені зареєструватися онлайн?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "check",
+          "in",
+          "online"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i02:r1",
+          "text": "Could I check in online?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i02:r2",
+          "text": "Could you check in online?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i02:r3",
+          "text": "Could we check in online?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i02:audio",
+          "transcript": "Could I check in online?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:i02:r1",
+            "targetText": "Could I check in online?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i02:r2",
+            "targetText": "Could you check in online?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i02:r3",
+            "targetText": "Could we check in online?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check in online?",
+              "uk": "У записі звучить Could I check in online?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I check in online?",
+              "uk": "У записі звучить Could I check in online?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i03:r1",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i03:r2",
+          "text": "checks"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i03:r3",
+          "text": "checking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ in online?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-50:i03:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i03:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i03:r3",
+            "text": "checking"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:word:drop-off-my-bag",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drop off my bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:word:drop-off-my-bag:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drop off my bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:word:drop-off-my-bag:audio",
+          "transcript": "drop off my bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:word:drop-off-my-bag:r1",
+            "targetText": "drop off my bag",
+            "meaningByLocale": {
+              "ru": "сдать свою сумку.",
+              "uk": "здати свою сумку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drop off my bag",
+          "definitionByLocale": {
+            "ru": "сдать свою сумку.",
+            "uk": "здати свою сумку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы стоите у стойки сдачи багажа. Спросите: «Можно мне сдать свою сумку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы стоите у стойки сдачи багажа. Спросите: «Можно мне сдать свою сумку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I drop off my bag?",
+        "localizedMeaning": {
+          "ru": "Вы стоите у стойки сдачи багажа. Спросите: «Можно мне сдать свою сумку?»",
+          "uk": "Ви стоїте біля стійки здавання багажу. Запитайте: «Можна мені здати свою сумку?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "drop",
+          "off",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i05:r1",
+          "text": "Could I drop off my bag?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i05:r2",
+          "text": "Could you drop off your bag?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i05:r3",
+          "text": "Could we drop off our bags?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i05:audio",
+          "transcript": "Could I drop off my bag?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:i05:r1",
+            "targetText": "Could I drop off my bag?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i05:r2",
+            "targetText": "Could you drop off your bag?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i05:r3",
+            "targetText": "Could we drop off our bags?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I drop off my bag?",
+              "uk": "У записі звучить Could I drop off my bag?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I drop off my bag?",
+              "uk": "У записі звучить Could I drop off my bag?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i06:r1",
+          "text": "drop"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i06:r2",
+          "text": "drops"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i06:r3",
+          "text": "dropping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ off my bag?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-50:i06:r1",
+            "text": "drop"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i06:r2",
+            "text": "drops"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i06:r3",
+            "text": "dropping"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:word:go-through-security",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — go through security",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:word:go-through-security:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — go through security",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:word:go-through-security:audio",
+          "transcript": "go through security"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:word:go-through-security:r1",
+            "targetText": "go through security",
+            "meaningByLocale": {
+              "ru": "пройти контроль безопасности.",
+              "uk": "пройти контроль безпеки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go through security",
+          "definitionByLocale": {
+            "ru": "пройти контроль безопасности.",
+            "uk": "пройти контроль безпеки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы спрашиваете сотрудника, можно ли проходить. Спросите: «Можно мне пройти контроль безопасности?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы спрашиваете сотрудника, можно ли проходить. Спросите: «Можно мне пройти контроль безопасности?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I go through security?",
+        "localizedMeaning": {
+          "ru": "Вы спрашиваете сотрудника, можно ли проходить. Спросите: «Можно мне пройти контроль безопасности?»",
+          "uk": "Ви питаєте працівника, чи можна проходити. Запитайте: «Можна мені пройти контроль безпеки?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "through",
+          "security"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i08:r1",
+          "text": "Could I go through security?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i08:r2",
+          "text": "Could you go through security?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i08:r3",
+          "text": "Could we go through security?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i08:audio",
+          "transcript": "Could I go through security?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:i08:r1",
+            "targetText": "Could I go through security?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i08:r2",
+            "targetText": "Could you go through security?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i08:r3",
+            "targetText": "Could we go through security?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go through security?",
+              "uk": "У записі звучить Could I go through security?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I go through security?",
+              "uk": "У записі звучить Could I go through security?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i09:r1",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i09:r2",
+          "text": "goes"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i09:r3",
+          "text": "going"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ through security?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-50:i09:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i09:r2",
+            "text": "goes"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i09:r3",
+            "text": "going"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:word:join-the-queue",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — join the queue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:word:join-the-queue:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — join the queue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:word:join-the-queue:audio",
+          "transcript": "join the queue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:word:join-the-queue:r1",
+            "targetText": "join the queue",
+            "meaningByLocale": {
+              "ru": "встать в очередь.",
+              "uk": "стати в чергу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "join the queue",
+          "definitionByLocale": {
+            "ru": "встать в очередь.",
+            "uk": "стати в чергу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы уточняете, можно ли встать в эту очередь. Спросите: «Можно мне встать в очередь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уточняете, можно ли встать в эту очередь. Спросите: «Можно мне встать в очередь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I join the queue?",
+        "localizedMeaning": {
+          "ru": "Вы уточняете, можно ли встать в эту очередь. Спросите: «Можно мне встать в очередь?»",
+          "uk": "Ви уточнюєте, чи можна стати в цю чергу. Запитайте: «Можна мені стати в чергу?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "join",
+          "the",
+          "queue"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i11:r1",
+          "text": "Could I join the queue?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i11:r2",
+          "text": "Could you join the queue?"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i11:r3",
+          "text": "Could we join the queue?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i11:audio",
+          "transcript": "Could I join the queue?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-50:i11:r1",
+            "targetText": "Could I join the queue?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i11:r2",
+            "targetText": "Could you join the queue?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i11:r3",
+            "targetText": "Could we join the queue?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I join the queue?",
+              "uk": "У записі звучить Could I join the queue?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I join the queue?",
+              "uk": "У записі звучить Could I join the queue?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-50:i12:r1",
+          "text": "join"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i12:r2",
+          "text": "joins"
+        },
+        {
+          "responseId": "en:lesson-22:session-50:i12:r3",
+          "text": "joining"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the queue?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-50:i12:r1",
+            "text": "join"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i12:r2",
+            "text": "joins"
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i12:r3",
+            "text": "joining"
+          }
+        ],
+        "testedDimension": "Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-50:i13:p1",
+            "target": "check in online",
+            "meaningByLocale": {
+              "ru": "зарегистрироваться онлайн",
+              "uk": "зареєструватися онлайн"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-50:i13:p2",
+            "target": "drop off my bag",
+            "meaningByLocale": {
+              "ru": "сдать свою сумку",
+              "uk": "здати свою сумку"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-50:i13:p3",
+            "target": "go through security",
+            "meaningByLocale": {
+              "ru": "пройти контроль безопасности",
+              "uk": "пройти контроль безпеки"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-50:i13:p4",
+            "target": "join the queue",
+            "meaningByLocale": {
+              "ru": "встать в очередь",
+              "uk": "стати в чергу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "check in online",
+          "drop off my bag",
+          "go through security",
+          "join the queue"
+        ],
+        "rightColumn": [
+          "зарегистрироваться онлайн",
+          "сдать свою сумку",
+          "пройти контроль безопасности",
+          "встать в очередь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: её вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: её вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: моя вещь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: моя вещь",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Можно нам зарегистрироваться онлайн?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Можно нам зарегистрироваться онлайн?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i16:audio",
+          "transcript": "Could we check in online?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we check in online?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: «Можно нам встать в очередь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите: «Можно нам встать в очередь?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-50:i17:audio",
+          "transcript": "Could we join the queue?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we join the queue?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "30045efd777e6a3296dcb0baf0a7c7aef1ed490689a5ae65bc76e98a7082da33"
+}

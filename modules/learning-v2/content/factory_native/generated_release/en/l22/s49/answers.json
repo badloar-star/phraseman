@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-49:word:book-a-flight",
+    "correctText": "book a flight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i01",
+    "correctText": "I use this website to book a flight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i02",
+    "correctText": "I use this website to book a flight.",
+    "correctResponseId": "en:lesson-22:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:word:pack-my-bag",
+    "correctText": "pack my bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i04",
+    "correctText": "I make a list to pack my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i05",
+    "correctText": "I make a list to pack my bag.",
+    "correctResponseId": "en:lesson-22:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:word:check-my-passport",
+    "correctText": "check my passport",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i07",
+    "correctText": "I open the drawer to check my passport.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i08",
+    "correctText": "I open the drawer to check my passport.",
+    "correctResponseId": "en:lesson-22:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:word:print-my-ticket",
+    "correctText": "print my ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i10",
+    "correctText": "I use the printer to print my ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i11",
+    "correctText": "I use the printer to print my ticket.",
+    "correctResponseId": "en:lesson-22:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i13",
+    "correctText": "en:lesson-22:session-49:i13:p1=book a flight\nen:lesson-22:session-49:i13:p2=pack my bag\nen:lesson-22:session-49:i13:p3=check my passport\nen:lesson-22:session-49:i13:p4=print my ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i16",
+    "correctText": "I need to pack my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-49:i17",
+    "correctText": "I want to check my passport.",
+    "correctResponseId": null
+  }
+]

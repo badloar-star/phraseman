@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Онлайн-регистрация",
+        "uk": "Онлайн-реєстрація"
+      },
+      "bodyByLocale": {
+        "ru": "Check in online — зарегистрироваться на рейс через интернет. Это не book a flight: билет уже забронирован, теперь вы проходите регистрацию. Вопрос уточняет доступный для вашей поездки способ. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Check in online — зареєструватися на рейс через інтернет. Це не book a flight: квиток уже заброньований, тепер ви проходите реєстрацію. Питання уточнює доступний для вашої поїздки спосіб. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-50:intro1:r1",
+              "text": "Could I check in online?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro1:r2",
+              "text": "Could I checks in online?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro1:r3",
+              "text": "Could I checking in online?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-50:intro1:r1",
+              "text": "Could I check in online?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro1:r2",
+              "text": "Could I checks in online?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro1:r3",
+              "text": "Could I checking in online?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Багаж и контроль",
+        "uk": "Багаж і контроль"
+      },
+      "bodyByLocale": {
+        "ru": "Drop off my bag — сдать сумку сотруднику, чтобы её приняли как багаж. Go through security — пройти контроль безопасности. Это название действия; конкретные правила вы уточняете у сотрудников. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Drop off my bag — здати сумку працівнику, щоб її прийняли як багаж. Go through security — пройти контроль безпеки. Це назва дії; конкретні правила ви уточнюєте у працівників. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-50:intro2:r1",
+              "text": "Could I drop off my bag?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro2:r2",
+              "text": "Could I drops off my bag?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro2:r3",
+              "text": "Could I dropping off my bag?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-50:intro2:r1",
+              "text": "Could I drop off my bag?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro2:r2",
+              "text": "Could I drops off my bag?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro2:r3",
+              "text": "Could I dropping off my bag?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очередь",
+        "uk": "Черга"
+      },
+      "bodyByLocale": {
+        "ru": "Join the queue — встать в очередь, присоединиться к ожидающим. Это не пройти вперёд очереди. Queue — британское слово, которое вам уже знакомо. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Join the queue — стати в чергу, приєднатися до тих, хто чекає. Це не пройти вперед черги. Queue — британське слово, яке вам уже знайоме. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-50:intro3:r1",
+              "text": "Could I join the queue?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro3:r2",
+              "text": "Could I joins the queue?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro3:r3",
+              "text": "Could I joining the queue?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-50:intro3:r1",
+              "text": "Could I join the queue?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro3:r2",
+              "text": "Could I joins the queue?"
+            },
+            {
+              "responseId": "en:lesson-22:session-50:intro3:r3",
+              "text": "Could I joining the queue?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fd0761783df77acddeb69198ba13dd2131a53eb53ecc3d846f1a17b96c9dcdf1"
+}

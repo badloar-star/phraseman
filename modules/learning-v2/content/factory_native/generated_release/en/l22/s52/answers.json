@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-52:word:check-the-platform",
+    "correctText": "check the platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i01",
+    "correctText": "I look at the board to check the platform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i02",
+    "correctText": "I look at the board to check the platform.",
+    "correctResponseId": "en:lesson-22:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:word:reach-the-station",
+    "correctText": "reach the station",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i04",
+    "correctText": "I take a taxi to reach the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i05",
+    "correctText": "I take a taxi to reach the station.",
+    "correctResponseId": "en:lesson-22:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:word:avoid-the-traffic",
+    "correctText": "avoid the traffic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i07",
+    "correctText": "I leave early to avoid the traffic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i08",
+    "correctText": "I leave early to avoid the traffic.",
+    "correctResponseId": "en:lesson-22:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:word:find-a-parking-space",
+    "correctText": "find a parking space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i10",
+    "correctText": "I drive to the car park to find a parking space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i11",
+    "correctText": "I drive to the car park to find a parking space.",
+    "correctResponseId": "en:lesson-22:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i13",
+    "correctText": "en:lesson-22:session-52:i13:p1=check the platform\nen:lesson-22:session-52:i13:p2=reach the station\nen:lesson-22:session-52:i13:p3=avoid the traffic\nen:lesson-22:session-52:i13:p4=find a parking space",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i16",
+    "correctText": "I need to check the platform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-52:i17",
+    "correctText": "I want to avoid the traffic.",
+    "correctResponseId": null
+  }
+]

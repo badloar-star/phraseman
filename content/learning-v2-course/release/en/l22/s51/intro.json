@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Туда и обратно",
+        "uk": "Туди й назад"
+      },
+      "bodyByLocale": {
+        "ru": "Buy a return ticket — купить билет туда и обратно. Return ticket — знакомое название билета; теперь вы используете его в просьбе о покупке. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Buy a return ticket — купити квиток туди й назад. Return ticket — знайома назва квитка; тепер ви використовуєте її у проханні про купівлю. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-51:intro1:r1",
+              "text": "Could I buy a return ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro1:r2",
+              "text": "Could I buys a return ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro1:r3",
+              "text": "Could I buying a return ticket?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-51:intro1:r1",
+              "text": "Could I buy a return ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro1:r2",
+              "text": "Could I buys a return ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro1:r3",
+              "text": "Could I buying a return ticket?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Место и изменение",
+        "uk": "Місце й зміна"
+      },
+      "bodyByLocale": {
+        "ru": "Reserve a seat — забронировать место. Seat reservation уже знакомо как название услуги. Change my ticket — изменить свой билет, например дату или рейс. Вопрос не предполагает, что изменение обязательно разрешено. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Reserve a seat — забронювати місце. Seat reservation уже знайоме як назва послуги. Change my ticket — змінити свій квиток, наприклад дату або рейс. Питання не передбачає, що зміна обов’язково дозволена. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-51:intro2:r1",
+              "text": "Could I reserve a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro2:r2",
+              "text": "Could I reserves a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro2:r3",
+              "text": "Could I reserving a seat?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-51:intro2:r1",
+              "text": "Could I reserve a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro2:r2",
+              "text": "Could I reserves a seat?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro2:r3",
+              "text": "Could I reserving a seat?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отмена",
+        "uk": "Скасування"
+      },
+      "bodyByLocale": {
+        "ru": "Cancel my ticket — отменить билет. Это отличается от change my ticket: вы отказываетесь от поездки по этому билету, а не выбираете другой вариант. Возврат денег — отдельный вопрос. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Cancel my ticket — скасувати квиток. Це відрізняється від change my ticket: ви відмовляєтеся від поїздки за цим квитком, а не обираєте інший варіант. Повернення грошей — окреме питання. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-51:intro3:r1",
+              "text": "Could I cancel my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro3:r2",
+              "text": "Could I cancels my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro3:r3",
+              "text": "Could I cancelling my ticket?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-51:intro3:r1",
+              "text": "Could I cancel my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro3:r2",
+              "text": "Could I cancels my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-51:intro3:r3",
+              "text": "Could I cancelling my ticket?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f608c427aae67bc68d787184b80e4549ffcb88964b4a9e196ba6eac135e0982"
+}

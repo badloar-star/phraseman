@@ -57,15 +57,15 @@ describe('герой сцены', () => {
   const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
 
   it('привязан к шапке: верх героя = верх шапки + 36 из эталона, а не 92 от верха сцены', () => {
-    expect(stage).toContain('const HEADER_TOP = 12;');
-    expect(stage).toContain('const HERO_BELOW_HEADER = 92 - 56;');
+    expect(stage).toContain('const HEADER_TOP = 8;'); // вариант 2 scenes-compact: шапка на 8 под часами (владелец 22.10)
+    expect(stage).toContain('const HERO_BELOW_HEADER = 52 - 8;');
     expect(stage).toContain('const HERO_TOP = HEADER_TOP + HERO_BELOW_HEADER;');
     // герой лежит в слоте свободного места под шапкой (heroSpace): относительно слота верх = HERO_TOP минус высота места под шапку (TOP_SPACE) — в координатах сцены те же 48
-    expect(stage).toContain('const TOP_SPACE = 64;');
-    expect(stage).toMatch(/hero: \{ position: 'absolute', right: -26, top: HERO_TOP - TOP_SPACE,/);
+    expect(stage).toContain('const TOP_SPACE = 52;');
+    expect(stage).toMatch(/hero: \{ position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE,/);
   });
 
   it('верх шапки в HomeScene совпадает с HEADER_TOP', () => {
-    expect(read('components/home/v2/scene/HomeScene.tsx')).toMatch(/top: \{ position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 12,/);
+    expect(read('components/home/v2/scene/HomeScene.tsx')).toMatch(/top: \{ position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 8,/);
   });
 });

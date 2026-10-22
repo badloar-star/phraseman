@@ -125,11 +125,11 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
                 onPress={() => latestRef.current.stats.find((x) => x.testID === stat.testID)?.onPress?.()}
                 scaleTo={0.96}
                 outerStyle={keep ? s.statSlotKeep : s.statSlot}
-                style={[s.stat, plate, keep ? s.statKeep : null]}
+                style={[s.stat, scene ? s.statScene : null, plate, keep ? s.statKeep : null]}
               >{content}</V2Pressable>
             ) : (
               <View key={stat.testID} testID={stat.testID} accessible accessibilityRole="text"
-                accessibilityLabel={stat.accessibilityLabel} style={[keep ? s.statSlotKeep : s.statSlot, s.stat, plate, keep ? s.statKeep : null]}>
+                accessibilityLabel={stat.accessibilityLabel} style={[keep ? s.statSlotKeep : s.statSlot, s.stat, scene ? s.statScene : null, plate, keep ? s.statKeep : null]}>
                 {content}
               </View>
             );
@@ -158,6 +158,8 @@ const s = StyleSheet.create({
   statsScene: { gap: 8 },
   statSlotKeep: { flexGrow: 0, flexShrink: 0 },
   statKeep: { flexShrink: 0 },
+  // зачем (владелец 22.10: «перенеси 1:1 плашки шапки (36)»; эталон .hm-pill): на сцене плашка 36, радиус 18, поле 12 — две строки 13/17 входят
+  statScene: { minHeight: 36, borderRadius: 18, paddingHorizontal: 12 },
   statCopyKeep: { flexShrink: 0 },
   stat: {
     flexGrow: 0,

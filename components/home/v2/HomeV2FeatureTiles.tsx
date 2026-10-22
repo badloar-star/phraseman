@@ -30,7 +30,7 @@ import type { Lang } from '../../../constants/i18n';
  * (рендерится с родителем, только кладёт свежие tiles в ref) и memo-вид, который сравнивает ДАННЫЕ плитки (ключ, тексты, арт) и не смотрит на onPress:
  * тап зовёт самый свежий onPress из ref, поэтому устаревших замыканий нет. Счётчики [HOME-RENDER] tiles — только dev, снять после проверки Сверкой.
  */
-type TilesViewProps = Readonly<{ tiles: readonly HomeFeatureTile[]; pressRef: React.MutableRefObject<readonly HomeFeatureTile[]>; spireLang: string | null; uiLang: Lang }>;
+type TilesViewProps = Readonly<{ tiles: readonly HomeFeatureTile[]; pressRef: React.MutableRefObject<readonly HomeFeatureTile[]>; spireLang: string | null; uiLang: Lang; row: boolean }>;
 
 function sameTileData(a: readonly HomeFeatureTile[], b: readonly HomeFeatureTile[]): boolean {
   if (a.length !== b.length) return false;
@@ -44,7 +44,7 @@ let wrapperRenders = 0;
 let viewRenders = 0;
 let lastTilesLog = '';
 
-export default function HomeV2FeatureTiles({ tiles, reason, spireLang = null, uiLang = 'en' }: { tiles: readonly HomeFeatureTile[]; reason?: string; spireLang?: string | null; uiLang?: Lang }) {
+export default function HomeV2FeatureTiles({ tiles, reason, spireLang = null, uiLang = 'en', row = false }: { tiles: readonly HomeFeatureTile[]; reason?: string; spireLang?: string | null; uiLang?: Lang; row?: boolean }) {
   useRenderCause('home:tiles', () => ({ tiles }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const pressRef = useRef<readonly HomeFeatureTile[]>(tiles);
   pressRef.current = tiles;
@@ -58,10 +58,10 @@ export default function HomeV2FeatureTiles({ tiles, reason, spireLang = null, ui
     wrapperRenders += 1;
     console.log('[HOME-RENDER] tiles wrapper', JSON.stringify({ wrapperRenders, viewRenders, keys: tiles.map((tile) => tile.key) })); // guard-ok: счётчик рендеров плиток, только dev
   }
-  return <HomeV2FeatureTilesView tiles={tiles} pressRef={pressRef} spireLang={spireLang} uiLang={uiLang} />;
+  return <HomeV2FeatureTilesView tiles={tiles} pressRef={pressRef} spireLang={spireLang} uiLang={uiLang} row={row} />;
 }
 
-const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pressRef, spireLang, uiLang }: TilesViewProps) {
+const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pressRef, spireLang, uiLang, row }: TilesViewProps) {
   const p = useV2Palette();
   const g = useShadowGlass(); // зачем (Темы 17.10): заливка бейджа — ctaFill/ctaFillInk, сырой accent на светлых темах сливается с фоном
   const spirePlace = useSpireHomePlace(tiles.length === 4 ? spireLang : null); // только из копии на устройстве, без сети
@@ -90,6 +90,36 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
   }, [tiles.length]);
   // зачем (владелец 17.10, «Пик — кнопка-иконка»; эталон #four-tiles вариант (а)): 4 плитки — квадрат только с артом по центру, название ПОД плашкой.
   // На 360 dp внутри плашки ~72 dp название не помещается, а ужимать шрифт запрещено; длинное переносится, не обрезается.
+  // зачем (владелец 22.10, вариант 2: «иконки Уроки, Карточки — вот так же, без скролла»): со «Сценой» четыре равные плитки одним рядом, все видны
+  if (tiles.length === 4 && row) {
+    return (
+      <View testID="home-v2-feature-tiles" style={s.row}>
+        {tiles.map((tile) => (
+          <V2Pressable
+            key={tile.key}
+            testID={`home-quick-tile-${tile.key}`}
+            accessibilityRole="button"
+            accessibilityLabel={`${tile.title}. ${tile.subtitle}`}
+            onPress={() => press(tile.key)}
+            scaleTo={0.96}
+            outerStyle={s.tileSlot}
+          >
+            <View pointerEvents="none">
+              <View style={[s.iconPlate, glass]}>
+                <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={tile.key === 'spire' && spirePlace !== null ? s.iconArtWithBadge : s.iconArt} />
+                {tile.key === 'spire' && spirePlace !== null ? (
+                  <View style={[s.badge, { backgroundColor: g.ctaFill }]}>
+                    <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{spirePlaceBadgeText(uiLang, spirePlace)}</Text>
+                  </View>
+                ) : null}
+              </View>
+            </View>
+            <Text style={[s.iconTitle, { color: p.text }]} maxFontSizeMultiplier={1.05}>{tile.title}</Text>
+          </V2Pressable>
+        ))}
+      </View>
+    );
+  }
   if (tiles.length === 4) {
     return (
       <View style={s.scroller}>
@@ -158,7 +188,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
       ))}
     </View>
   );
-}, (prev, next) => prev.pressRef === next.pressRef && prev.spireLang === next.spireLang && prev.uiLang === next.uiLang && sameTileData(prev.tiles, next.tiles));
+}, (prev, next) => prev.pressRef === next.pressRef && prev.spireLang === next.spireLang && prev.uiLang === next.uiLang && prev.row === next.row && sameTileData(prev.tiles, next.tiles));
 
 // зачем (координатор 18.10, Сверка font13: на es при шрифте 1,3 «Lecciones» рвётся «Leccione/s»; правило «сперва логи»): фактическая ширина слова и плитки, fontScale,
 // итоговый множитель, число строк — чтобы чинить по цифрам, а не по догадке. Снять после починки; [TILE-LABEL] — префикс для grep.

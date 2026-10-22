@@ -20,7 +20,7 @@ import type { Lang } from '../../../../constants/i18n';
 import { V2 } from '../../../../constants/v2Style';
 import { useTheme } from '../../../ThemeContext';
 import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
-import HomeSceneStage, { type HomeSceneChip } from './HomeSceneStage';
+import HomeSceneStage, { HOME_SCENE_PANEL_OVERLAP, type HomeSceneChip } from './HomeSceneStage';
 import { resolveHomeSceneArt } from './home_scene_art';
 import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput } from './home_scene_copy';
 import { homeSceneAllReleasedDone, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
@@ -32,7 +32,7 @@ import { useTabTopBleedInset } from '../../../tab_top_bleed';
 
 const LOG = '[HOME-SCENE]';
 /** Верх шапки внутри сцены — под зоной часов (s.top paddingTop). */
-const HEADER_TOP = 12;
+const HEADER_TOP = 8;
 
 /**
  * зачем (координатор 22.10): «Сцена» на Главной — в dev-сборке да, в релизе нет, пока владелец не посмотрит её на эмуляторе.
@@ -276,8 +276,9 @@ export function HomeSceneView(p: HomeSceneViewProps) {
 
 const s = StyleSheet.create({
   // зачем: сцена во всю ширину — гасим боковой отступ ленты Главной (V2.homePad)
-  root: { marginHorizontal: -V2.homePad },
-  top: { position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 12, paddingHorizontal: 20, gap: 10 },
+  // зачем (владелец 22.10, вариант 2 scenes-compact.html): карточка «Сегодня» наезжает на низ сцены на 22 (зазор ленты Главной гасим)
+  root: { marginHorizontal: -V2.homePad, marginBottom: -(HOME_SCENE_PANEL_OVERLAP + V2.gap) },
+  top: { position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 8, paddingHorizontal: 20, gap: 10 },
   offline: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: 'rgba(255,255,255,0.14)' }, // аудит контраста 22.10: 14 % вместо 16 % — «Нет сети» ≥ 4,5 в светлых sage/grad_aurora
   // зачем (D145): строка «Нет сети» — шкала 13/17
   offlineText: { flex: 1, color: '#FFFFFF', fontSize: 13, lineHeight: 17 },

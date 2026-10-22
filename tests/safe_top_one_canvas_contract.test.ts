@@ -73,7 +73,7 @@ describe('верх экрана: зона часов — часть общего
     expect(scene).toContain('topInset={topInset}');
     expect(scene).toContain('paddingTop: HEADER_TOP + topInset');
     const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
-    expect(stage).toContain('style={[s.stage, topInset > 0 ? { paddingTop: topInset } : null]}');
+    expect(stage).toContain('style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}');
     // градиент сцены — во весь блок, включая зону часов
     expect(stage).toContain('<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />');
   });

@@ -2755,6 +2755,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               />
             ) : null}
             </>)}
+            {/* зачем (владелец 22.10, вариант 2: «нет блока видео, иконки Уроки, Карточки — без скролла, и внизу под блоком Сегодня»): со «Сценой»
+                плитки идут под «Сегодня» одним рядом (ниже), ленты видео на Главной нет; без «Сцены» — прежний порядок */}
+            {HOME_SCENE_V2_ENABLED ? null : (
             <View style={{ gap: 4 }}>
               {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget}`} spireLang={String(studyTarget)} uiLang={lang} /> : null}
               {isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
@@ -2765,6 +2768,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 />
               ) : null}
             </View>
+            )}
             <HomeV2TodayCard
               title={triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' }).toUpperCase()}
               tasks={homeV2Tasks}
@@ -2783,6 +2787,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 },
               }}
             />
+            {HOME_SCENE_V2_ENABLED && homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget};row`} spireLang={String(studyTarget)} uiLang={lang} row /> : null}
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
             {homeDailyPhraseVisible ? (
             <View onLayout={(event: LayoutChangeEvent) => {

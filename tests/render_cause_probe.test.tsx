@@ -84,6 +84,7 @@ describe('по замеру coldstart_1315_r2: результат хука «Д�
     const home = read('app/(tabs)/home.tsx');
     expect(home).toContain('rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close');
     // перепин 18.10 ([HOME-SETSTATE], Дизайн): опрос, окно недели и «С возвращением» отдают новый объект на каждый рендер — в снимке их значимые поля, иначе в журнале они «менялись» всегда
-    expect(home).toContain('goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot');
+    // перепин 22.10: опрос переехал в строку «Сегодня» (4ee8c2585) — в снимке его фаза и открытие
+    expect(home).toContain('goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot');
   });
 });

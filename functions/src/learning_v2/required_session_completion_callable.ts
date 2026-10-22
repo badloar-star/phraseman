@@ -541,12 +541,19 @@ export const createRequiredSessionCompletionHandler = (
   });
 };
 
+// зачем (координатор 22.10, «Урок вместе» Ядра): та же формула id нужна помощнику чтения засчитанного занятия —
+// одна функция на обе стороны, чтобы id не разошлись; поведение засчитывания не меняется
+export const requiredSessionCompletionInboxDocumentIdV1 = (
+  progressAccountScopeHash: string,
+  mutationId: string,
+): string => `rsciv1_${hashCanonicalBody({
+  schemaVersion: "learning-v2-required-session-completion-inbox-key.v1",
+  progressAccountScopeHash,
+  mutationId,
+})}`;
+
 const inboxDocumentId = (record: RequiredSessionCompletionInboxRecordV1): string =>
-  `rsciv1_${hashCanonicalBody({
-    schemaVersion: "learning-v2-required-session-completion-inbox-key.v1",
-    progressAccountScopeHash: record.progressAccountScopeHash,
-    mutationId: record.mutationId,
-  })}`;
+  requiredSessionCompletionInboxDocumentIdV1(record.progressAccountScopeHash, record.mutationId);
 
 const performanceAwardStateDocumentId = (
   record: RequiredSessionCompletionInboxRecordV1,

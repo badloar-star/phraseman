@@ -21,6 +21,7 @@ import { spireSceneHiddenRows, spireSceneRivalsFit, spireSceneRowHalf } from './
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { getDevSpireScrollOverride, getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import SpireRankCoin from './SpireRankCoin';
+import V2Pressable from '../v2/V2Pressable';
 import { useIsPlus } from '../plus/use_is_plus';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
@@ -61,6 +62,14 @@ type Props = Readonly<{
   variant?: 'window' | 'scene';
   /** Только «Сцена»: ряды соперников с центром ниже этой высоты над низом окна прячутся (там монеты пьедестала), dp. */
   sceneRowsClearBottom?: number;
+  /** Только «Сцена», башня целиком (владелец 22.10): слова под номерами этажей мельче 4 dp не рисуются, ряды меряются от номера. */
+  hideFloorWords?: boolean;
+  /** Только «Сцена»: тап по монете соперника — его карточка (владелец 22.10: «аватарки нажимались»). */
+  onPressRival?: (uid: string) => void;
+  /** Только «Сцена»: тап по «+N» у этажа — «Все участники». */
+  onPressMore?: () => void;
+  /** Только «Сцена»: тап по своей метке — своя карточка. */
+  onPressMe?: () => void;
 }>;
 
 const RIVAL = 22;
@@ -74,7 +83,22 @@ const RIVAL_BIG_FONT = 1.15;
  * Соперники слева от этажа (floorSvg макета): до двух кружков внахлёст и «+N».
  * зачем: монета ранга участника (владелец 13.10), неизвестный ранг — базовая монета, не буква. Слой RN поверх SVG, без касаний (тап по этажу проходит насквозь).
  */
-const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth, singleCoin, extraColor, sceneFit, hiddenBelow = 0 }: Readonly<{ extraColor?: string; rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean; renderWidth: number; singleCoin: boolean; sceneFit?: Readonly<{ fontScale: number; guardChars: number }>; hiddenBelow?: number }>) {
+/** Наименьшая зона касания монеты соперника и «+N» на «Сцене» (монета ~12 dp), dp. */
+const RIVAL_TAP = 44;
+
+// зачем (владелец 22.10: «аватарки нажимались»): на «Сцене» монета соперника — кнопка с зоной касания не меньше 44, без «Сцены» — прежний значок
+const RivalCoin = memo(function RivalCoin({ m, size, marginLeft, onPress }: Readonly<{ m: SpireRival; size: number; marginLeft: number; onPress?: (uid: string) => void }>) {
+  // зачем (эталон plus-ring-etalon.html, «Пик · жители этажей»): монеты мелкие и стопкой — плоское кольцо 3 + зазор 2, без значка
+  const coin = <SpireRankCoin rank={m.coinRank} size={size} plus={m.isPremium} plusKind="flat" />;
+  if (!onPress) return <View style={{ marginLeft }}>{coin}</View>;
+  return (
+    <V2Pressable outerStyle={{ marginLeft }} hitSlop={Math.max(0, Math.ceil((RIVAL_TAP - size) / 2))} scaleTo={0.9} onPress={() => onPress(m.uid)} accessibilityRole="button" accessibilityLabel={m.name}>
+      {coin}
+    </V2Pressable>
+  );
+});
+
+const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth, singleCoin, extraColor, sceneFit, hiddenBelow = 0, onPressRival, onPressMore }: Readonly<{ onPressRival?: (uid: string) => void; onPressMore?: () => void; extraColor?: string; rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean; renderWidth: number; singleCoin: boolean; sceneFit?: Readonly<{ fontScale: number; guardChars: number }>; hiddenBelow?: number }>) {
   const p = useSpirePalette();
   const rowHalf = sceneFit ? spireSceneRowHalf(scale, sceneFit.fontScale) : 0;
   const items: React.ReactNode[] = [];
@@ -91,14 +115,15 @@ const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth,
     // зачем (Макеты 15.10, кадры v3_p8_fs10/v2_p8_fs13: «+20» заходил на тело башни): ряд (монеты + «+N») привязан ПРАВЫМ краем в 10 единицах левее тела этажа, а не левым с запасом 22 на текст, —
     // ширина «+N» берётся настоящая (и растёт со шрифтом), налезть на кладку она не может.
     items.push(
-      <View key={`rivals-${fl.f}`} style={[s.rivals, { right: renderWidth - (fl.x0 - RIVAL_GAP) * scale, top, opacity: dim ? 0.55 : 1 }, fit ? { right: renderWidth - fit.rightX, top: (fl.y + fl.h / 2) * scale - rowHalf, height: rowHalf * 2 } : null]}>
+      <View key={`rivals-${fl.f}`} pointerEvents={onPressRival ? 'box-none' : undefined} style={[s.rivals, { right: renderWidth - (fl.x0 - RIVAL_GAP) * scale, top, opacity: dim ? 0.55 : 1 }, fit ? { right: renderWidth - fit.rightX, top: (fl.y + fl.h / 2) * scale - rowHalf, height: rowHalf * 2 } : null]}>
         {list.slice(0, coins).map((m, k) => (
-          <View key={m.uid} style={{ marginLeft: k === 0 ? 0 : (RIVAL_STEP - RIVAL) * scale }}>
-            {/* зачем (эталон plus-ring-etalon.html, «Пик · жители этажей»): монеты мелкие и стопкой — плоское кольцо 3 + зазор 2, без значка */}
-            <SpireRankCoin rank={m.coinRank} size={RIVAL * scale} plus={m.isPremium} plusKind="flat" />
-          </View>
+          <RivalCoin key={m.uid} m={m} size={RIVAL * scale} marginLeft={k === 0 ? 0 : (RIVAL_STEP - RIVAL) * scale} onPress={onPressRival} />
         ))}
-        {extra > 0 ? <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra, { color: extraColor ?? p.textSecondary }, fit ? (coins > 0 ? s.rivalExtraScene : s.rivalExtraSceneSolo) : null]}>{`+${extra}`}</Text> : null}
+        {extra > 0 ? (onPressMore ? (
+          <V2Pressable hitSlop={{ top: 14, bottom: 14, left: 8, right: 8 }} scaleTo={0.92} onPress={onPressMore} accessibilityRole="button" accessibilityLabel={`+${extra}`}>
+            <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra, { color: extraColor ?? p.textSecondary }, fit ? (coins > 0 ? s.rivalExtraScene : s.rivalExtraSceneSolo) : null]}>{`+${extra}`}</Text>
+          </V2Pressable>
+        ) : <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra, { color: extraColor ?? p.textSecondary }, fit ? (coins > 0 ? s.rivalExtraScene : s.rivalExtraSceneSolo) : null]}>{`+${extra}`}</Text>) : null}
       </View>,
     );
   }
@@ -136,7 +161,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom, hideFloorWords = false, onPressRival, onPressMore, onPressMe }: Props) {
   const p = useSpirePalette();
   const myIsPlus = useIsPlus(); // зачем (владелец 21.10, реестр №6): мой маркер на башне — с кольцом, если у меня Plus
   const g = useShadowGlass();
@@ -147,7 +172,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   const sceneMode = variant === 'scene';
   // зачем (Пик v2, координатор 22.10: «сетка без пересечений на 360–430 dp»): ряды соперников «Сцены» — по spire_scene_layout; окно без изменений
   const guardChars = useMemo(() => spireText(lang, 'guard').toUpperCase().length, [lang]);
-  const sceneFit = useMemo(() => (sceneMode ? { fontScale, guardChars } : undefined), [sceneMode, fontScale, guardChars]);
+  const sceneFit = useMemo(() => (sceneMode ? { fontScale, guardChars: hideFloorWords ? 0 : guardChars } : undefined), [sceneMode, fontScale, guardChars, hideFloorWords]);
   const [rowsHidden, setRowsHidden] = useState(0);
   // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не перерисовывается зря;
   // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются.
@@ -209,8 +234,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     const devTop = getDevSpireScrollOverride() === 'top';
     const nearTop = floor !== null && floor >= SPIRE_FLOOR_COUNT - 1;
     const contentH = SPIRE_TOWER_GEOM.height * scale;
-    // зачем (вариант 2: сцена 46 %, окно ниже): на «Сцене» окно у низа башни, а метка своего этажа видна целиком; на 14–15 этаже — показ вершины
-    const y = devTop ? 0 : sceneMode && !nearTop ? Math.max(0, Math.min(contentH - wh, cy - Math.max((fl.h / 2) * scale, MARKER_SIZE / 2) - 4)) : spireWindowScrollY({ cy, windowH: wh, crownTopY, floorHalf: (fl.h / 2) * scale, nearTop });
+    // зачем (владелец 22.10: «башня вся»): на «Сцене» окно — вся башня от короны до низа, прижато к низу на любом этаже (показ вершины не нужен)
+    const y = devTop ? 0 : sceneMode ? Math.max(0, contentH - wh) : spireWindowScrollY({ cy, windowH: wh, crownTopY, floorHalf: (fl.h / 2) * scale, nearTop });
     const cut = rowsCutRef.current;
     if (cut) setRowsHidden(spireSceneHiddenRows({ offsetY: Math.min(y, Math.max(0, contentH - wh)), windowH: wh, clearBottom: cut.clear, scale }));
     console.log('[SPIRE-DOCK-INSET] top', JSON.stringify({ why, floor, windowH: roundLayout(wh), contentTop: 0, sceneTopY: roundLayout(crownTopY), requestedY: roundLayout(y), devTop, maxScroll: roundLayout(Math.max(0, contentH - wh)), topReachable: 'да (содержимое начинается с запаса над кровлей)', floor1Bottom: roundLayout(SPIRE_TOWER_GEOM.base * scale), contentH: roundLayout(contentH), floor1Reachable: SPIRE_TOWER_GEOM.base * scale <= contentH ? 'да' : 'нет' })); // guard-ok: журнал краёв окна башни
@@ -341,20 +366,21 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       >
         {width > 0 ? (
           <View style={{ width: renderWidth, height: SPIRE_TOWER_GEOM.height * scale, alignSelf: 'center' }}>
-            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} />
+            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
-              <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-                <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={sceneMode ? SPIRE_SCENE_TOWER.num : undefined} sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0} />
+              <View pointerEvents={onPressRival ? 'box-none' : 'none'} style={StyleSheet.absoluteFill}>
+                <RivalsLayer onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={sceneMode ? SPIRE_SCENE_TOWER.num : undefined} sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0} />
               </View>
             ) : null}
             {myFloor !== null ? (
-              <Animated.View pointerEvents="none" style={[s.marker, { transform: [{ translateX: tx }, { translateY: ty }] }]}>
+              <Animated.View pointerEvents={onPressMe ? 'box-none' : 'none'} style={[s.marker, { transform: [{ translateX: tx }, { translateY: ty }] }]}>
                 <View style={[s.markerGlow, scene.light ? { backgroundColor: scene.tone, opacity: 0.12 } : null]} />
-                <View style={[s.markerRing, scene.light ? { backgroundColor: scene.numMine } : null]}>
+                {/* зачем (владелец 22.10: «аватарки нажимались»): своя метка на «Сцене» — кнопка своей карточки (40 + 2 × 2 = 44) */}
+                <V2Pressable disabled={!onPressMe} onPress={onPressMe} hitSlop={2} scaleTo={0.94} accessibilityRole={onPressMe ? 'button' : undefined} style={[s.markerRing, scene.light ? { backgroundColor: scene.numMine } : null]}>
                   <View style={s.markerInner}>
                     {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={MARKER_SIZE - 6} plus={myIsPlus} plusKind="flat" /> : null}
                   </View>
-                </View>
+                </V2Pressable>
               </Animated.View>
             ) : null}
           </View>

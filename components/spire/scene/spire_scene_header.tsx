@@ -36,18 +36,22 @@ export type SpireSceneHeaderStyles = Readonly<{
   headerRight: StyleProp<ViewStyle>;
 }>;
 
-type Props = Readonly<{ onPeak: boolean; tabs: readonly Tab[]; active: string; styles: SpireSceneHeaderStyles }>;
+type Props = Readonly<{
+  onPeak: boolean; tabs: readonly Tab[]; active: string; styles: SpireSceneHeaderStyles;
+  /** Отступ полноэкранной шапки под часы (как у настоящей шапки «Сообщества»): рисованные вкладки — ровно на месте настоящих. */
+  topInset?: number;
+}>;
 
-function SpireSceneHeaderLayer({ onPeak, tabs, active, styles }: Props) {
+function SpireSceneHeaderLayer({ onPeak, tabs, active, styles, topInset = 0 }: Props) {
   const tint = useSpireSceneHeaderTint();
   const tone = spireSceneHeaderTone({ enabled: SPIRE_SCENE_V2_ENABLED, onPeak, tint });
   if (tone === null) return null;
-  return <LitLayer tone={tone} tabs={tabs} active={active} styles={styles} />;
+  return <LitLayer tone={tone} tabs={tabs} active={active} styles={styles} topInset={topInset} />;
 }
 
 export default memo(SpireSceneHeaderLayer);
 
-function LitLayer({ tone, tabs, active, styles }: Readonly<{ tone: SpireSceneHeaderTone; tabs: readonly Tab[]; active: string; styles: SpireSceneHeaderStyles }>) {
+function LitLayer({ tone, tabs, active, styles, topInset }: Readonly<{ tone: SpireSceneHeaderTone; tabs: readonly Tab[]; active: string; styles: SpireSceneHeaderStyles; topInset: number }>) {
   const topFade = useTopFadeScroll();
   const scrollY = topFade?.scrollY;
   // зачем: слой появляется, когда Пик уже на экране и мог быть прокручен, — начинаем с текущего вида маски, без ожидания следующей смены
@@ -67,7 +71,8 @@ function LitLayer({ tone, tabs, active, styles }: Readonly<{ tone: SpireSceneHea
   // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: строка журнала — только на появление слоя, смена цвета темы её не повторяет
   }, [scrollY, fade]);
   return (
-    <Animated.View pointerEvents="none" testID="spire-scene-header-tint" style={[StyleSheet.absoluteFill, styles.header, { backgroundColor: tone.tint, opacity: fade }]}>
+    <Animated.View pointerEvents="none" testID="spire-scene-header-tint" style={[StyleSheet.absoluteFill, styles.header, topInset > 0 ? { paddingTop: 12 + topInset } : null, { backgroundColor: tone.tint, opacity: fade }]}>
+      {/* зачем (аудит кнопок Ревизора 22.10, F5): тот же отступ под часы, что у настоящей шапки — рисованные вкладки там же, куда попадает палец */}
       <View style={styles.tabs} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {tabs.map((t) => {
           const on = t.key === active;

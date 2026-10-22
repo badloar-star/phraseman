@@ -146,9 +146,11 @@ async function main(): Promise<void> {
   assert.ok(community.includes("      <View style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null]}>\n"), "шапка без подложки; со «Сценой» Пика — отступ на зону часов (полноэкранная вкладка)");
   assert.ok(community.includes("borderBottomColor: on ? accentGfx.border : 'transparent'"), "черта вкладки — прежний цвет");
   assert.ok(community.includes("<Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>"), "текст вкладок — прежние цвета");
-  assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : null}"), "справа — как раньше");
+  assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}"), "справа — как раньше; на Пике со «Сценой» — настоящий EnergyBar (аудит F4)");
+  assert.ok(community.includes("hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}"), "вкладки: зона касания ≥ 44 и без щелей между ними");
   assert.ok(!community.includes("peakHeader") && !community.includes("SPIRE_SCENE_INK"), "строка вкладок не знает о «Сцене»");
-  assert.ok(community.includes("<SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} />\n      </View>"), "слой «Сцены» — последним в шапке, поверх вкладок");
+  assert.ok(community.includes("<SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} />\n      </View>"), "слой «Сцены» — последним в шапке, поверх вкладок, с тем же отступом под часы");
+  assert.ok(read("components/spire/scene/spire_scene_header.tsx").includes("topInset > 0 ? { paddingTop: 12 + topInset } : null"), "рисованные вкладки — на месте настоящих (аудит F5)");
 
   // ── шаг 3b-3: прокрутка Пика гасит цвет шапки тем же механизмом, что маску Главной ──
   const mask = read("components/TopFadeMask.tsx");
@@ -174,10 +176,18 @@ async function main(): Promise<void> {
   const strip = read("components/home/v2/scene/HomeSceneStatusStrip.tsx");
   assert.ok(strip.includes("source === 'spire' ? (SPIRE_SCENE_V2_ENABLED ? spireTint : null) : homeTint"), "цвет Пика — только при флаге");
   // ── сетка без пересечений на 360–430 dp (координатор 22.10 после съёмки Сверки; расчёт — tests/spire_scene_layout.test.ts) ──
-  assert.ok(scene.includes("const frame = useMemo(() => spireSceneFrame({ width, windowH, topInset: insets.top, fontScale, guardChars }), [width, windowH, insets.top, fontScale, guardChars]);"), "окно башни и колонка текста — из расчёта сетки");
+  assert.ok(scene.includes("const frame = useMemo(() => spireSceneFrame({ width, visibleH, fontScale, guardChars, headroom }), [width, visibleH, fontScale, guardChars, headroom]);"), "высокая сцена: башня целиком над «Играть» (видимая высота), запас короны своей лиги");
+  assert.ok(scene.includes("const visibleH = spireSceneVisibleH(windowH, insets.top, p.dockClear ?? DEFAULT_DOCK_CLEAR);"), "видимая высота — экран минус шапка и зона «Играть»");
+  assert.ok(scene.includes("hideFloorWords={frame.wordsHidden}"), "слова мельче 4 dp на сцене не рисуются — решает расчёт сетки");
   assert.ok(scene.includes("windowHeight={frame.windowH}") && scene.includes("sceneRowsClearBottom={frame.rowsClearBottom}"), "башня знает высоту окна и где начинаются монеты пьедестала");
-  assert.ok(scene.includes("<View testID=\"spire-scene-me\" style={[s.panel, { backgroundColor: pal.card, marginTop: -SPIRE_SCENE_PANEL_OVERLAP }"), "своё место и пьедестал — в панели под сценой (вариант 2)");
-  assert.ok(tower.includes("sceneMode && !nearTop ? Math.max(0, Math.min(contentH - wh, cy - Math.max((fl.h / 2) * scale, MARKER_SIZE / 2) - 4))"), "на «Сцене» окно у низа башни, своя метка видна (кроме вершины)");
+  assert.ok(scene.includes("style={[s.panel, { backgroundColor: pal.card, marginTop: -SPIRE_SCENE_PANEL_OVERLAP }, off ? s.dim : null]}") && scene.includes('testID="spire-scene-all"'), "«Комната недели» — карточка под сценой, вся нажимается (аудит F3)");
+  assert.ok(scene.includes("onPressMember={onPressPodium}") && scene.includes('testID="spire-scene-my-coin" onPress={onPressMyPlace}'), "призёры и своя монета открывают карточку игрока");
+  assert.ok(scene.includes("onPressRival={onPressRival}") && scene.includes("onPressMe={onPressMe}") && scene.includes("<SpirePlayerCard player={player}"), "аватарки на башне и своя метка — карточка игрока");
+  assert.ok(scene.includes('testID="spire-scene-offline" pointerEvents="none"'), "плашка «нет сети» не глотает касания (аудит F6)");
+  assert.ok(tower.includes("sceneMode ? Math.max(0, contentH - wh)"), "на «Сцене» окно — вся башня от короны до низа, на любом этаже");
+  assert.ok(tower.includes("hideWords={sceneMode && hideFloorWords}"), "флаг «без мелких слов» — только на «Сцене»");
+  assert.ok(tower.includes("hitSlop={Math.max(0, Math.ceil((RIVAL_TAP - size) / 2))}") && tower.includes("const RIVAL_TAP = 44;"), "монета соперника — кнопка с зоной касания ≥ 44");
+  assert.ok(tower.includes("pointerEvents={onPressRival ? 'box-none' : 'none'}"), "без обработчиков (прежнее окно) ряды по-прежнему не ловят касания");
   assert.ok(tower.includes("sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0}"), "ряды соперников на «Сцене» — по расчёту сетки");
   assert.ok(tower.includes("if (fl.f <= hiddenBelow) continue;"), "ряды под монетами пьедестала не рисуются");
   const podium = read("components/spire/scene/SpireScenePodium.tsx");

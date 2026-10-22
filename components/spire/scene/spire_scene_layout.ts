@@ -1,51 +1,49 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// spire_scene_layout.ts — сетка «Сцены» Пика без пересечений на 360–430 dp: высота сцены, окно башни, колонка текста, ряд соперников у этажа.
+// spire_scene_layout.ts — сетка «Сцены» Пика: высота сцены, окно башни целиком, колонка текста, ряд соперников у этажа.
 //
-// зачем (координатор 22.10 после съёмки Сверки: «нижние этажи перекрыты монетами жителей — нужна сетка без пересечений на 360–430 dp»;
-// владелец 22.10 выбрал вариант 2 scenes-compact.html: «сцены не должны быть такими огромными», высота всех сцен 46 %):
-// - сцена — 392 из 844 вместе со строкой статуса и вкладками «Сообщества» (доля высоты экрана); пьедестал и своё место — в панели под ней;
-// - окно башни справа во всю высоту сцены (188 из 390), прижато к низу башни; ряды соперников кончаются над панелью, которая наезжает на 22;
+// зачем (владелец 22.10 кнопкой: «Сцена выше, башня крупнее»; координатор: Пик — исключение из правила 46 %): сцена почти на весь экран,
+// башня видна ЦЕЛИКОМ и крупно — все 15 этажей, корона и ореол; масштаб как у эталона V2 (колонка 240 из 430), не меньше; меньше — только
+// если иначе башня от короны до низа 1-го этажа не встаёт над закреплённой «Играть». «Комната недели» и пьедестал — ниже сцены, прокруткой.
 // - ряд соперников стоит между подписью этажа и телом башни; не влезает — монет меньше (2 → 1 → только «+N»), подпись не закрывается;
-// - башня шире доли эталона только там, где длинное слово «страж» иначе отняло бы у 5-го этажа «+29» (vi на 360–378 dp);
-// - верх окна не режет номер этажа; колонка текста кончается левее подписей этажей.
-// Тот же расчёт проверяет tests/spire_scene_layout.test.ts на каждой ширине 360–430, высотах 640–960 и шрифтах 1,0 и 1,3.
+// - слова под номерами мельче 4 dp («страж», вершина, «над облаками») не рисуются — ряд меряется от номера, число людей не теряется;
+// - колонка текста кончается левее подписей этажей.
+// Тот же расчёт проверяет tests/spire_scene_layout.test.ts: ширины 360–430, высоты экрана, шрифты 1,0 и 1,3, запас короны любой лиги.
 // ═══════════════════════════════════════════════════════════════════════════
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireIsGuard } from '../spire_tower_model';
-import { SPIRE_ROOM_SIZE } from '../../../modules/spire/residents';
 
-/** Ширина варианта 2 (scenes-compact.html): горизонтальные места сцены — доли от неё. */
-export const SPIRE_SCENE_BASE_W = 390;
-/** Доля экрана под сцену вместе со строкой статуса и вкладками «Сообщества» (владелец 22.10, вариант 2: 392 из 844). */
-export const SPIRE_SCENE_SCREEN_SHARE = 392 / 844;
-/** Строка вкладок «Сообщества» над сценой (community.tsx: header minHeight 58). */
-export const SPIRE_SCENE_HEADER_H = 58;
-/** Сцена не ниже этого на очень низких экранах: башне и тексту нужно место (текст сцены при шрифте 1,3 — до ~250 вместе с отступом снизу). */
-const SCENE_MIN_H = 280;
-/** Панель «Комната недели» под сценой наезжает на 22 (как «Сегодня» на Главной). */
+/** Ширина эталона V2: колонка башни — доля от неё. */
+export const SPIRE_SCENE_BASE_W = 430;
+/** Шапка «Сообщества» без зоны часов (community.tsx: поле 12, вкладка 6 + 22 + 8 + 3, поле 4) и её наименьшая высота, dp. */
+export const SPIRE_SCENE_HEADER_CONTENT = 55;
+export const SPIRE_SCENE_HEADER_MIN = 58;
+/** Панель «Комната недели» под сценой наезжает на её низ на 22 (как карточки под сценами Главной и «Сегодня»). */
 export const SPIRE_SCENE_PANEL_OVERLAP = 22;
-/** Низ текста сцены над её низом: наезд панели 22 и зазор 22. */
-export const SPIRE_SCENE_COPY_BOTTOM = 44;
 /** Пьедестал в панели «Комната недели»: блоки 96 / 86 / 84, монеты 40 / 32 / 32 заходят на блок на 47 %. */
 export const SPIRE_SCENE_PODIUM = Object.freeze({
   blockH: Object.freeze([96, 86, 84] as const),
   coin: Object.freeze([40, 32, 32] as const),
   coinOverlap: 0.47,
 });
-
-/** Окно башни варианта 2: 188 из 390 по ширине, правый край на 6 за краем экрана; по высоте — вся сцена. */
-const TOWER = Object.freeze({ w: 188, overRight: 6 });
+/** Колонка башни эталона V2: 240 из 430, правый край на 6 за краем экрана; рисунок башни целиком стоит по её оси. */
+const TOWER = Object.freeze({ w: 240, overRight: 6 });
 /** Колонка текста слева: отступ эталона. */
 export const SPIRE_SCENE_COPY_LEFT = 20;
-/** Зазор между соседями в сетке (ряд — тело башни; текст — подписи), dp. Между подписью и рядом зазора нет: обе ширины — с запасом. */
+/** Зазор между соседями в сетке (подпись — ряд — тело башни; текст — подписи), dp. */
 const GAP = 2;
-/** Зазор между рядом первого этажа и монетой первого места, dp. */
-const BAND_GAP = 3;
+/** Поле над короной у верха сцены и зазор между низом 1-го этажа и верхом «Играть», dp. */
+const TOP_GAP = 8;
+const DOCK_GAP = 6;
+/** Видимая часть сцены не меньше этого (низкие экраны): ниже низ башни уходит под «Играть», а масштаб не мельчает дальше, dp. */
+export const SPIRE_SCENE_MIN_VISIBLE = 440;
+/** Слова-подписи этажей в SVG башни: «СТРАЖ» и вершина — кегль 7,5 (у «НАД ОБЛАКАМИ» 11, он прячется вместе с ними). */
+const LABEL_WORD_FONT = 7.5;
+/** Мельче этого слова под номерами на сцене не рисуются — их не прочесть, номер этажа остаётся, dp. */
+export const SPIRE_SCENE_WORD_MIN_DP = 4;
+
 /** Ряд соперников (SpireTower RivalsLayer): монета 22 и шаг 13 в единицах башни, «+N» — 13 жирным, строка 17, рост шрифта до 1,3. */
 const RIVAL = Object.freeze({ coin: 22, step: 13, maxCoins: 2, textGap: 5, font: 13, line: 17, maxFontScale: 1.3, charEm: 0.64 });
 /** Подписи этажей в SVG башни (SpireTowerSvg): номер — центр 14, кегль 14; «СТРАЖ» — центр 20, кегль 7,5, разрядка 0,5, заглавные. */
 const LABEL = Object.freeze({ numX: 14, numDigitW: 8.4, guardX: 20, guardCharW: 5.9, guardSpacing: 0.5 });
-/** Подписи этажа по вертикали в единицах башни от центра этажа: номер (кегль 14) от −10, слово «СТРАЖ» под ним до +14. */
-const LABEL_BAND = Object.freeze({ above: 10, below: 14 });
 
 const clampFloor = (floor: number): number => Math.min(Math.max(Math.trunc(floor) || 1, 1), SPIRE_FLOOR_COUNT);
 const fontOf = (fontScale: number): number => Math.min(Math.max(fontScale, 1), RIVAL.maxFontScale);
@@ -90,7 +88,7 @@ export type SpireSceneRivalsFit = Readonly<{
   extra: number;
   /** Правый край ряда от левого края рисунка башни, dp. */
   rightX: number;
-  /** Левая граница, за которую ряд не заходит (правый край подписи этажа), dp. */
+  /** Левая граница, за которую ряд не заходит (правый край подписи этажа + зазор), dp. */
   leftLimitX: number;
 }>;
 
@@ -101,9 +99,7 @@ export type SpireSceneRivalsFit = Readonly<{
 export function spireSceneRivalsFit(i: Readonly<{ floor: number; count: number; scale: number; fontScale: number; guardChars: number }>): SpireSceneRivalsFit {
   const fl = SPIRE_TOWER_GEOM.floors[clampFloor(i.floor) - 1];
   const rightX = fl.x0 * i.scale - GAP;
-  // зачем (22.10, компактная башня 188): слева зазор 0 — подпись считается по 5,9 на знак при кегле 7,5, «+N» по 0,64 кегля на знак,
-  // живой зазор остаётся ~3 dp; так «+29» у стража влезает без ужатия шрифта. До тела башни — прежние GAP.
-  const leftLimitX = spireSceneLabelRight(fl.f, i.guardChars) * i.scale;
+  const leftLimitX = spireSceneLabelRight(fl.f, i.guardChars) * i.scale + GAP;
   const count = Math.max(0, Math.trunc(i.count) || 0);
   const room = rightX - leftLimitX;
   for (let coins = Math.min(count, RIVAL.maxCoins); coins >= 1; coins -= 1) { // guard-ok: число значков соперников в ряду, не баланс
@@ -114,20 +110,15 @@ export function spireSceneRivalsFit(i: Readonly<{ floor: number; count: number; 
   return { coins: Math.min(count, 1), extra: 0, rightX, leftLimitX };
 }
 
-/**
- * Ширина окна башни, при которой «+N» всей комнаты (до 29 соперников) при обычном шрифте встаёт между подписью и телом башни на любом
- * этаже — сколько людей на этаже, не теряется. Шире доли эталона только для длинного слова «страж»: vi «NGƯỜI CANH» на 360–378 dp.
- */
-function rivalMinTowerW(guardChars: number): number {
-  let roomUnits = Number.POSITIVE_INFINITY;
-  for (const fl of SPIRE_TOWER_GEOM.floors) roomUnits = Math.min(roomUnits, fl.x0 - spireSceneLabelRight(fl.f, guardChars));
-  const needDp = spireSceneRivalRowW(0, SPIRE_ROOM_SIZE - 1, 1, 1) + GAP;
-  return Math.ceil((needDp / roomUnits) * SPIRE_TW);
+/** Видимая под шапкой «Сообщества» высота экрана до верха закреплённой «Играть» (dockClear — от низа экрана до верха кнопки), dp. */
+export function spireSceneVisibleH(windowH: number, topInset: number, dockClear: number): number {
+  return windowH - Math.max(SPIRE_SCENE_HEADER_MIN, SPIRE_SCENE_HEADER_CONTENT + Math.max(0, topInset)) - Math.max(0, dockClear);
 }
 
 export type SpireSceneFrame = Readonly<{
-  /** Высота сцены (без строки статуса и вкладок над ней), dp. */
+  /** Высота сцены: до низа рисунка башни (подножие уходит под «Играть», ниже — «Комната недели»), dp. */
   sceneH: number;
+  /** Ширина рисунка башни и её окна, dp. */
   towerW: number;
   /** Левый край окна башни на сцене, dp. */
   towerLeft: number;
@@ -135,47 +126,55 @@ export type SpireSceneFrame = Readonly<{
   scale: number;
   windowTop: number;
   windowH: number;
-  /** Ряды соперников с центром ниже этой высоты над низом окна прячутся (там панель «Комната недели»), dp. */
+  /** Ряды соперников с центром ниже этой высоты над низом окна прячутся; на высокой сцене их нечем закрыть — 0. */
   rowsClearBottom: number;
   /** Ширина колонки текста: до подписей этажей, dp. */
   copyW: number;
+  /** Слова под номерами этажей мельче 4 dp — на сцене не рисуются. */
+  wordsHidden: boolean;
+  /** Сколько знаков слова «страж» учитывает сетка: 0, когда слова не рисуются. */
+  guardChars: number;
 }>;
 
+/** Слова-подписи этажей при этом масштабе мельче 4 dp: не рисуются (их не прочесть), номер этажа остаётся. */
+export function spireSceneWordsHidden(scale: number): boolean {
+  return scale * LABEL_WORD_FONT < SPIRE_SCENE_WORD_MIN_DP;
+}
+
 /**
- * Сцена, окно башни и колонка текста для экрана. Высота — доля экрана за вычетом строки статуса и вкладок; окно башни во всю высоту сцены
- * (верх не режет номер этажа), ряды соперников кончаются над панелью «Комната недели», текст — левее подписей этажей.
+ * Высокая сцена Пика (владелец 22.10: «Сцена выше, башня крупнее»): башня целиком — от верха границы короны лиги (headroom: острие,
+ * навершие, ореол и поле — spire_tower_bounds) до низа 1-го этажа, который стоит над верхом «Играть»; подножие уходит под кнопку.
+ * Масштаб — колонки эталона V2 (240 из 430), меньше — только если иначе башня не встаёт в видимую часть экрана.
  */
-export function spireSceneFrame(i: Readonly<{ width: number; windowH: number; topInset: number; fontScale: number; guardChars: number }>): SpireSceneFrame {
-  const sceneH = Math.max(SCENE_MIN_H, Math.round(i.windowH * SPIRE_SCENE_SCREEN_SHARE) - i.topInset - SPIRE_SCENE_HEADER_H);
-  const towerW = Math.max(Math.round((TOWER.w * i.width) / SPIRE_SCENE_BASE_W), rivalMinTowerW(i.guardChars));
-  const towerLeft = i.width + TOWER.overRight - towerW;
+export function spireSceneFrame(i: Readonly<{ width: number; visibleH: number; fontScale: number; guardChars: number; headroom: number }>): SpireSceneFrame {
+  const colW = (TOWER.w * i.width) / SPIRE_SCENE_BASE_W;
+  const colLeft = i.width + TOWER.overRight - colW;
+  const f1 = SPIRE_TOWER_GEOM.floors[0];
+  const floor1Bottom = f1.y + f1.h;
+  const crownTop = SPIRE_TOWER_GEOM.top - Math.max(0, i.headroom);
+  const visible = Math.max(SPIRE_SCENE_MIN_VISIBLE, i.visibleH);
+  const fit = Math.min(colW / SPIRE_TW, (visible - TOP_GAP - DOCK_GAP) / (floor1Bottom - crownTop));
+  const towerW = Math.floor(SPIRE_TW * fit);
   const scale = towerW / SPIRE_TW;
-  const rowsFloor = sceneH - SPIRE_SCENE_PANEL_OVERLAP - BAND_GAP - spireSceneRowHalf(scale, i.fontScale);
-  const windowTop = spireSceneTopClearOfLabels(0, sceneH, scale);
-  const labelLeftX = towerLeft + spireSceneLabelLeft(i.guardChars) * scale;
+  const floor1Y = visible - DOCK_GAP;
+  const windowTop = floor1Y - (floor1Bottom - crownTop) * scale;
+  const windowBottom = floor1Y + (SPIRE_TOWER_GEOM.height - floor1Bottom) * scale;
+  const towerLeft = Math.round(colLeft + (colW - towerW) / 2);
+  const wordsHidden = spireSceneWordsHidden(scale);
+  const guardChars = wordsHidden ? 0 : i.guardChars;
+  const labelLeftX = towerLeft + spireSceneLabelLeft(guardChars) * scale;
   return {
-    sceneH,
+    sceneH: Math.ceil(windowBottom),
     towerW,
     towerLeft,
     scale,
     windowTop,
-    windowH: sceneH - windowTop,
-    rowsClearBottom: sceneH - rowsFloor,
+    windowH: windowBottom - windowTop,
+    rowsClearBottom: 0,
     copyW: Math.floor(labelLeftX - GAP - SPIRE_SCENE_COPY_LEFT),
+    wordsHidden,
+    guardChars,
   };
-}
-
-/** Верх окна башни, прижатого к низу башни, который не проходит по подписи этажа: если прошёл бы — опускается до низа подписи. */
-export function spireSceneTopClearOfLabels(windowTop: number, windowBottom: number, scale: number, maxTop: number = Number.POSITIVE_INFINITY): number {
-  const topUnit = SPIRE_TOWER_GEOM.height - (windowBottom - windowTop) / scale;
-  for (const fl of SPIRE_TOWER_GEOM.floors) {
-    const c = fl.y + fl.h / 2;
-    if (topUnit <= c - LABEL_BAND.above || topUnit >= c + LABEL_BAND.below) continue;
-    const below = windowTop + (c + LABEL_BAND.below + 1 - topUnit) * scale;
-    if (below <= maxTop) return below;
-    return Math.max(0, windowTop - (topUnit - (c - LABEL_BAND.above - 1)) * scale);
-  }
-  return windowTop;
 }
 
 /**

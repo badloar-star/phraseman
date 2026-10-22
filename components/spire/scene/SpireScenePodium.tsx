@@ -6,6 +6,7 @@
 // блоках (наезжают на верх блока), на лицевой стороне место, имя и монеты недели (при подсчёте по ступеням — ступени). Цвета — темы (панель
 // не на свету сцены): блоки — тон «контрола» темы, без рамок и теней внутри карточки. Подбор комнаты — пустые блоки и кружки той же
 // высоты, без сети — приглушён. Ширина колонок — от панели, высоты — постоянные (spire_scene_layout).
+// Владелец 22.10: «аватарки нажимались» — колонка призёра открывает его карточку (onPressMember), пустая колонка не нажимается.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
@@ -13,6 +14,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import type { Lang } from '../../../constants/i18n';
 import AvatarView from '../../AvatarView';
+import V2Pressable from '../../v2/V2Pressable';
 import SpireRankCoin from '../SpireRankCoin';
 import { spireGroupThousands, spireStepsShort } from '../spire_plurals';
 import type { SpireMemberRow, SpireRankByView } from '../spire_room_types';
@@ -38,9 +40,11 @@ type Props = Readonly<{
   loading: boolean;
   /** Нет сети: чужие цифры приглушены. */
   dim: boolean;
+  /** Тап по призёру — карточка игрока; нет — колонки не нажимаются. */
+  onPressMember?: (m: SpireMemberRow) => void;
 }>;
 
-function SpireScenePodium({ lang, top, rankBy, loading, dim }: Props) {
+function SpireScenePodium({ lang, top, rankBy, loading, dim, onPressMember }: Props) {
   const pal = useSpirePalette();
   // зачем (координатор 22.10, крайние случаи: шрифт 1,3): ник и монеты на блоке растут до 1,1 вместе с межстрочным — лицо третьего блока вмещает строки
   const ts = useScaledTextStyles(s, FACE_MAX_SCALE);
@@ -53,10 +57,15 @@ function SpireScenePodium({ lang, top, rankBy, loading, dim }: Props) {
         const overlap = Math.round(coin * COIN_OVERLAP);
         const score = m ? (rankBy === 'coins' ? spireGroupThousands(m.weekCoins ?? 0) : `${m.steps} ${spireStepsShort(lang, m.steps)}`) : '';
         return (
-          <View
+          <V2Pressable
             key={place}
-            style={s.col}
+            outerStyle={s.col}
+            style={s.colInner}
+            disabled={!m || !onPressMember}
+            onPress={() => { if (m && onPressMember) onPressMember(m); }}
+            scaleTo={0.97}
             accessible={m !== undefined}
+            accessibilityRole={m && onPressMember ? 'button' : undefined}
             accessibilityLabel={m ? `${place}. ${m.name}, ${score}` : undefined}
             testID={`spire-scene-podium-${place}`}
           >
@@ -76,7 +85,7 @@ function SpireScenePodium({ lang, top, rankBy, loading, dim }: Props) {
                 </View>
               ) : null}
             </View>
-          </View>
+          </V2Pressable>
         );
       })}
     </View>
@@ -88,7 +97,8 @@ export default memo(SpireScenePodium);
 const s = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'flex-end', gap: 7, paddingTop: 4 },
   dim: { opacity: 0.55 },
-  col: { flex: 1, alignItems: 'center' },
+  col: { flex: 1 },
+  colInner: { alignItems: 'center' },
   coin: { zIndex: 2, alignItems: 'center', justifyContent: 'center' },
   coinEmpty: { opacity: 0.7 },
   // зачем (вариант 2, .podium .b): блок — тон «контрола» темы внутри карточки, без рамки и тени; скругление сверху 14, снизу 6

@@ -14,6 +14,8 @@ import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
 import { hapticTap } from '../../hooks/use-haptics';
 import SpireSceneHeaderLayer from '../../components/spire/scene/spire_scene_header';
 import { useTabTopBleedInset } from '../../components/tab_top_bleed';
+import SpireEnergyPill from '../../components/spire/SpireEnergyPill';
+import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
 
 type Section = SubRuntimeOwnerId;
 type SectionScreen = React.ComponentType<{ presentation?: 'push' | 'embedded' }>;
@@ -146,7 +148,8 @@ export default function CommunityTabRoute() {
                 // зачем: как у прежнего переключателя — отклик на нажатие только при смене вкладки.
                 onPressIn={() => { if (!on) hapticTap(); }}
                 onPress={() => setSection(seg.key)}
-                hitSlop={{ top: 12, bottom: 6, left: 8, right: 8 }}
+                // зачем (координатор 22.10: «тап при x≈93 dp не попадает»): зазор между вкладками 22 перекрыт целиком (11 + 11), высота зоны ≥ 44
+                hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}
                 // зачем (packs-simple.html `.tabs3`): активная вкладка — белый текст и полоса 3px акцента под словом.
                 style={[s.tab, { borderBottomColor: on ? accentGfx.border : 'transparent' }]}
               >
@@ -155,11 +158,12 @@ export default function CommunityTabRoute() {
             );
           })}
         </View>
-        <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : null}</View>
+        {/* зачем (аудит кнопок Ревизора 22.10, F4): на Пике со «Сценой» энергия — настоящий EnergyBar (тап открывает его окно), рисунок слоя «Сцены» — только вид */}
+        <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}</View>
         </>)}
         {/* зачем (Пик v2, эталон peak-scene-v2.html; координатор 22.10): «Сцена» Пика уходит под вкладки — слой цвета сцены с белыми вкладками и энергией
             поверх этой шапки, гаснет при прокрутке Пика как маска Главной; флаг SPIRE_SCENE_V2_ENABLED выключен или вкладка не «Пик» — слоя нет */}
-        <SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} />
+        <SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} />
       </View>
       <View style={s.body}>
         {renderSection('friends')}

@@ -1,7 +1,7 @@
 # Task packet: poll of the day moves to the «Сегодня» screen; Peak scene taller with a large whole tower and tappable parts
 
 Governance-ID: TG-639E700458D3
-Status: In progress
+Status: Done — poll 89515f3c9; Peak tall with tappable avatars, energy and tab fixes in the commit feat(spire): Peak scene tall with a large whole tower
 Owner: 3 · МАКЕТЫ (coordinator 22.10 ~13:50, owner's button answers)
 Related epic/enabler: 3c68a67b8 (Home by the owner's mockup, poll row removed — 4 · ТЕМЫ), peak-full-tower (TG-D9066484C74E, not committed)
 

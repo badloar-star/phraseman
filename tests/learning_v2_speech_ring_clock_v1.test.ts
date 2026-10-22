@@ -1,61 +1,119 @@
 /**
  * speech_ring_clock_v1 — кольцо кнопки звука идёт по реальной речи (владелец 22.10: «строго по длине аудио, без резкого
- * дозаполнения»). Сторож: до замеров — оценка по словам с поправкой на скорость, после — по замеру этой скорости; граница слова
- * пересчитывает темп с текущего места; до onDone кольцо не уходит выше 95 %; доведение по onDone — от 60 до 150 мс.
+ * дозаполнения»). Сторож: до замеров — 72 мс на символ слышимой части; потом — выученные задержка голоса (onStart → первое слово)
+ * и слышимая часть, сумма которых идёт за длиной onStart→onDone; первая граница слова — «звук пошёл»; до onDone кольцо не выше
+ * 95 %; доведение по onDone — от 60 до 150 мс. Числа замера — из журнала [AUDIO-RING] Сверки 22.10 (эмулятор, «I am ready.»).
  */
 import {
+  SPEECH_RING_DEFAULT_MS_PER_CHAR_V1,
   SPEECH_RING_FINISH_MAX_MS_V1,
   SPEECH_RING_HOLD_V1,
   createSpeechRingCalibrationV1,
-  speechRingBoundaryPlanV1,
   speechRingDonePlanV1,
+  speechRingFirstWordPlanV1,
   speechRingStartPlanV1,
+  speechRingTowardEndPlanV1,
 } from "../modules/learning-v2/runtime/speech_ring_clock_v1";
-import { learningV2RingFillMsForPhraseV1 } from "../modules/learning-v2/modes/mode_motion_tokens_v1";
+
+const PHRASE = "I am ready.";
+// Сверка 22.10: длина onStart→onDone и первое слово (мс после onStart) четырёх полных запусков.
+const EMULATOR_RUNS = [
+  { totalMs: 1030, leadMs: 246 },
+  { totalMs: 1071, leadMs: 329 },
+  { totalMs: 1065, leadMs: 234 },
+  { totalMs: 1060, leadMs: 412 },
+] as const;
 
 describe("оценка длины и замеры", () => {
-  it("до замеров — прежняя оценка по словам, медленный голос — дольше", () => {
+  it("до замеров — 72 мс на символ, задержка голоса не выучена; медленный голос — дольше", () => {
     const calibration = createSpeechRingCalibrationV1();
-    const words = learningV2RingFillMsForPhraseV1("I am not cold.");
-    expect(calibration.estimate("I am not cold.", 1)).toEqual({ ms: words, source: "words" });
-    expect(calibration.estimate("I am not cold.", 0.72).ms).toBe(Math.round(words / 0.72));
+    expect(calibration.estimate(PHRASE, 1)).toEqual({
+      leadMs: 0,
+      leadKnown: false,
+      audibleMs: 11 * SPEECH_RING_DEFAULT_MS_PER_CHAR_V1,
+      source: "default",
+    });
+    expect(calibration.estimate(PHRASE, 0.72).audibleMs).toBe(Math.round((SPEECH_RING_DEFAULT_MS_PER_CHAR_V1 / 0.72) * 11));
   });
 
-  it("после замера — мс на символ этой скорости; другая скорость — своя", () => {
+  it("журнал Сверки: задержка + слышимая часть идут за длиной onStart→onDone, хоть первое слово и пляшет", () => {
     const calibration = createSpeechRingCalibrationV1();
-    expect(calibration.record("I am here.", 1, 1000)).toBe(true);
-    expect(calibration.estimate("We are together.", 1)).toEqual({ ms: Math.round((1000 / 10) * 16), source: "measured" });
-    expect(calibration.estimate("We are together.", 0.72).source).toBe("words");
+    for (const run of EMULATOR_RUNS) expect(calibration.record(PHRASE, 1, run)).toEqual({ lead: true, audible: true });
+    const estimate = calibration.estimate(PHRASE, 1);
+    expect(estimate).toMatchObject({ leadKnown: true, source: "measured" });
+    // скользящая длина четырёх запусков ≈ 1059 мс; ошибка суммы — округление
+    expect(Math.abs(estimate.leadMs + estimate.audibleMs - 1059)).toBeLessThanOrEqual(3);
+    expect(estimate.leadMs).toBeGreaterThan(200);
   });
 
-  it("скользящее среднее; сбойные замеры не портят оценку", () => {
+  it("запуск без границ слов: слышимая часть = длина минус выученная задержка, задержка не меняется", () => {
     const calibration = createSpeechRingCalibrationV1();
-    calibration.record("abcdefghij", 1, 1000);
-    calibration.record("abcdefghij", 1, 2000);
-    expect(calibration.estimate("abcdefghij", 1).ms).toBe(1500);
-    expect(calibration.record("abcdefghij", 1, 50)).toBe(false);
-    expect(calibration.record("a", 1, 900)).toBe(false);
-    expect(calibration.record("abcdefghij", 1, 45_000)).toBe(false);
-    expect(calibration.estimate("abcdefghij", 1).ms).toBe(1500);
+    calibration.record(PHRASE, 1, { totalMs: 1000, leadMs: 300 });
+    expect(calibration.record(PHRASE, 1, { totalMs: 1100, leadMs: null })).toEqual({ lead: false, audible: true });
+    const estimate = calibration.estimate(PHRASE, 1);
+    expect(estimate.leadMs).toBe(300);
+    expect(Math.abs(estimate.leadMs + estimate.audibleMs - 1050)).toBeLessThanOrEqual(1);
+  });
+
+  it("другая скорость голоса — своя память; сбойные замеры не портят оценку", () => {
+    const calibration = createSpeechRingCalibrationV1();
+    calibration.record(PHRASE, 1, { totalMs: 1000, leadMs: 300 });
+    expect(calibration.estimate(PHRASE, 0.72).source).toBe("default");
+    const before = calibration.estimate(PHRASE, 1);
+    expect(calibration.record(PHRASE, 1, { totalMs: 100, leadMs: 50 })).toEqual({ lead: false, audible: false });
+    expect(calibration.record(PHRASE, 1, { totalMs: 45_000, leadMs: 300 })).toEqual({ lead: false, audible: false });
+    expect(calibration.record(PHRASE, 1, { totalMs: 900, leadMs: 950 }).lead).toBe(false);
+    expect(calibration.record(PHRASE, 1, { totalMs: 900, leadMs: -5 }).lead).toBe(false);
+    expect(calibration.record("a", 1, { totalMs: 900, leadMs: null }).audible).toBe(false);
+    expect(calibration.estimate(PHRASE, 1).leadMs).toBe(before.leadMs);
   });
 });
 
 describe("планы кольца", () => {
-  it("старт: к 95 % за ожидаемое время", () => {
-    expect(speechRingStartPlanV1(2000)).toEqual({ target: SPEECH_RING_HOLD_V1, durationMs: 1900 });
+  it("старт: ждать выученную задержку и идти к 95 % за 95 % слышимой части; не выучена — сразу", () => {
+    expect(speechRingStartPlanV1({ leadMs: 0, leadKnown: false, audibleMs: 800, source: "default" }))
+      .toEqual({ target: SPEECH_RING_HOLD_V1, durationMs: 760, delayMs: 0 });
+    expect(speechRingStartPlanV1({ leadMs: 280, leadKnown: true, audibleMs: 760, source: "measured" }))
+      .toEqual({ target: SPEECH_RING_HOLD_V1, durationMs: 722, delayMs: 280 });
   });
 
-  it("граница слова: голос быстрее оценки — кольцо ускоряется, медленнее — замедляется", () => {
-    // половина текста сказана за 400 мс → вся речь ≈ 800 мс → до 95 % ещё 360 мс
-    expect(speechRingBoundaryPlanV1({ charIndex: 10, textLength: 20, elapsedMs: 400, current: 0.3 })).toEqual({ target: SPEECH_RING_HOLD_V1, durationMs: 360 });
-    // половина за 1500 мс → вся ≈ 3000 мс → ещё 1350 мс
-    expect(speechRingBoundaryPlanV1({ charIndex: 10, textLength: 20, elapsedMs: 1500, current: 0.6 })).toEqual({ target: SPEECH_RING_HOLD_V1, durationMs: 1350 });
+  it("путь к концу: постоянная скорость с текущего места; у 95 % или после конца — плана нет", () => {
+    expect(speechRingTowardEndPlanV1({ current: 0, elapsedMs: 200, endAtMs: 1200 })).toEqual({ target: SPEECH_RING_HOLD_V1, durationMs: 950, delayMs: 0 });
+    expect(speechRingTowardEndPlanV1({ current: 0.5, elapsedMs: 200, endAtMs: 1200 })?.durationMs).toBe(900);
+    expect(speechRingTowardEndPlanV1({ current: SPEECH_RING_HOLD_V1, elapsedMs: 200, endAtMs: 1200 })).toBeNull();
+    expect(speechRingTowardEndPlanV1({ current: 0.4, elapsedMs: 1300, endAtMs: 1200 })).toBeNull();
   });
 
-  it("граница слова слишком рано, без длины или у 95 % — плана нет", () => {
-    expect(speechRingBoundaryPlanV1({ charIndex: 1, textLength: 20, elapsedMs: 100, current: 0.05 })).toBeNull();
-    expect(speechRingBoundaryPlanV1({ charIndex: 5, textLength: 0, elapsedMs: 100, current: 0.2 })).toBeNull();
-    expect(speechRingBoundaryPlanV1({ charIndex: 15, textLength: 20, elapsedMs: 900, current: SPEECH_RING_HOLD_V1 })).toBeNull();
+  it("первое слово раньше выученной задержки — старт сейчас, конец не сдвигается", () => {
+    const decision = speechRingFirstWordPlanV1({
+      estimate: { leadMs: 300, leadKnown: true, audibleMs: 760, source: "measured" },
+      elapsedMs: 234,
+      current: 0,
+      charIndex: 0,
+      textLength: 11,
+    });
+    expect(decision.reason).toBe("voice_earlier");
+    expect(decision.plan).toEqual({ target: SPEECH_RING_HOLD_V1, durationMs: Math.round(0.95 * (1060 - 234)), delayMs: 0 });
+  });
+
+  it("задержка не выучена — кольцо перестраивается от звука с текущего места (журнал: 0,208 через 246 мс)", () => {
+    const decision = speechRingFirstWordPlanV1({
+      estimate: { leadMs: 0, leadKnown: false, audibleMs: 792, source: "default" },
+      elapsedMs: 246,
+      current: 0.208,
+      charIndex: 0,
+      textLength: 11,
+    });
+    expect(decision.reason).toBe("anchor_unlearned_lead");
+    expect(decision.plan?.durationMs).toBe(Math.round(((0.95 - 0.208) / (1 - 0.208)) * 792));
+  });
+
+  it("задержка выучена и кольцо уже идёт — план не трогаем; поздняя граница не считается первым словом", () => {
+    const estimate = { leadMs: 300, leadKnown: true, audibleMs: 760, source: "measured" } as const;
+    expect(speechRingFirstWordPlanV1({ estimate, elapsedMs: 329, current: 0.04, charIndex: 0, textLength: 11 }))
+      .toEqual({ plan: null, reason: "on_plan" });
+    expect(speechRingFirstWordPlanV1({ estimate, elapsedMs: 374, current: 0.1, charIndex: 5, textLength: 11 }))
+      .toEqual({ plan: null, reason: "not_first_word" });
   });
 
   it("onDone: плавное доведение 60–150 мс, чем меньше осталось — тем короче; полное — сразу", () => {
@@ -65,6 +123,6 @@ describe("планы кольца", () => {
     expect(fromHold.durationMs).toBeGreaterThanOrEqual(60);
     expect(fromHold.durationMs).toBeLessThan(fromHalf.durationMs);
     expect(fromHalf.durationMs).toBe(SPEECH_RING_FINISH_MAX_MS_V1);
-    expect(speechRingDonePlanV1(1)).toEqual({ target: 1, durationMs: 0 });
+    expect(speechRingDonePlanV1(1)).toEqual({ target: 1, durationMs: 0, delayMs: 0 });
   });
 });

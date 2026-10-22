@@ -2,13 +2,13 @@
 // moments_effects.tsx — общие эффекты моментов Пика: фейерверк и дрожь экрана (эталон engagement-moments-v3.js: firework(), emRumble).
 //
 // зачем (координатор 14.10): анимация и тайминги — как в образце, Reanimated на UI-треде, reduceMotion — без движения. Фейерверк: 26 искр по кругу r 90–130 (+30 вниз),
-// ядро-вспышка 500 мс, искры 1,2 с; цвета — оттенки текущей темы (золото медали, «хорошо», «инфо», светлые чернила, «внимание») на месте золота, мяты, синего,
-// белого и оранжа образца (закон владельца 22.10). Дрожь «emRumble» — 700 мс, 8 шагов затухающей амплитуды.
+// ядро-вспышка 500 мс, искры 1,2 с; цвета искр — шаги светлоты и насыщенности вокруг тона акцента текущей темы, ядро — mediaInk темы
+// (закон владельца 22.10). Дрожь «emRumble» — 700 мс, 8 шагов затухающей амплитуды.
 // Случайность образца заменена детерминированной (по индексу): кадры воспроизводимы, тесты не мигают.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import type { GlassTokens } from '../../../constants/liquidGlassThemePalette';
+import { momentFireworkColors } from './moment_firework_colors';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import Animated, {
   Easing,
@@ -20,14 +20,6 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-
-/**
- * Цвета искр — оттенки ТЕКУЩЕЙ темы в ролях образца: золото → medalGold, мята → good, синий → info, белый → mediaInk, оранж → warn.
- * зачем (закон владельца 22.10: «цвета должны быть строго цветами и оттенками текущей темы»): прежде пять зашитых HEX образца.
- */
-export function momentFireworkColors(g: GlassTokens): readonly string[] {
-  return [g.medalGold, g.good, g.info, g.mediaInk, g.warn];
-}
 
 /** Детерминированное «случайное» 0…1 по индексу и соли (вместо Math.random образца). */
 export function momentJitter(i: number, salt: number): number {

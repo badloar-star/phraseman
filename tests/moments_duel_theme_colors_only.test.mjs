@@ -74,6 +74,16 @@ test('moment windows and the friends duel use only current-theme colours — no 
   assert.deepEqual(found, [], `зашитые цвета (берите токен темы или colorWithAlpha(токен, α)):\n${found.join('\n')}`);
 });
 
+test('firework sparks are shades of the theme accent, not fixed roles with the same hue in every theme', () => {
+  // зачем (4 · ТЕМЫ через координатора 22.10): шаги светлоты/насыщенности от тона акцента, как seasonThemedArt; числа — moment_firework_theme_shades.test.ts
+  const colors = readFileSync(join(ROOT, 'components', 'spire', 'moments', 'moment_firework_colors.ts'), 'utf8');
+  assert.match(colors, /g\.accentGraphic/);
+  assert.match(colors, /hueOfHex\(source\)/);
+  const fx = readFileSync(join(ROOT, 'components', 'spire', 'moments', 'moments_effects.tsx'), 'utf8');
+  assert.match(fx, /momentFireworkColors\(g\)/);
+  assert.doesNotMatch(fx, /g\.(good|info|warn|medalGold)\b/);
+});
+
 test('the separate «moment art» palette is gone — corona, coin shadow and coin glint come from the theme', () => {
   // зачем (координатор 22.10): constants/momentArtPalette.ts держал арт моментов «одинаковым во всех темах» — по закону владельца так нельзя
   assert.equal(existsSync(join(ROOT, 'constants', 'momentArtPalette.ts')), false, 'палитра арта моментов вернулась');

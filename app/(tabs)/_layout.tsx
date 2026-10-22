@@ -11,6 +11,8 @@ import { triLang, type PlannedTriLangCopy } from '../../constants/i18n';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
+// зачем (координатор 22.10, Главная «Сцена»): полоса под часами цветом сцены — только над Главной
+import HomeSceneStatusStrip from '../../components/home/v2/scene/HomeSceneStatusStrip';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
@@ -795,6 +797,8 @@ function TabScaffold({
     >
       {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
+      {/* зачем (координатор 22.10: тон полосы статуса только на вкладке Главной): «Сцена» уходит под часы, как в эталоне; другие вкладки не меняются */}
+      <HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === 0} />
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
       <View
         onLayout={notifyFirstContentReady}

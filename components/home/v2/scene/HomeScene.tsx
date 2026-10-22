@@ -23,6 +23,7 @@ import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type Home
 import { homeSceneAllReleasedDone, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
 import { minutesUntilMidnight, pickHomeSceneState } from './home_scene_state';
 import { homeSceneTokens } from './home_scene_tokens';
+import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
 
 const LOG = '[HOME-SCENE]';
@@ -129,6 +130,11 @@ export default function HomeScene(p: Props) {
     console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, offlineLine: decision.offlineLine, zeroEnergyNote: decision.zeroEnergyNote, offline, streakToday: p.streakToday, energy: p.energy, plus: p.plus, lastDay, daysAway, streakCount: personal.streakCount, streakLostToday, allReleasedDone, course: p.courseProgress, examReady: 'off:no_exam_yet' })); // guard-ok: одна строка на смену решения
   }, [decision, offline, p.energy, p.plus, p.streakToday, lastDay, daysAway, personal.streakCount, streakLostToday, allReleasedDone, p.courseProgress]);
   const tokens = useMemo(() => homeSceneTokens(p.accent, evening), [p.accent, evening]);
+  // зачем (координатор 22.10): верхний цвет сцены — полосе под часами над Главной (HomeSceneStatusStrip в оболочке вкладок); сцены нет — полосы нет
+  useEffect(() => {
+    setHomeSceneStatusTint(tokens.sceneTop);
+    return () => setHomeSceneStatusTint(null);
+  }, [tokens.sceneTop]);
   const art = useMemo(() => resolveHomeSceneArt(decision.state, p.artTone), [decision.state, p.artTone]);
   useEffect(() => {
     console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)) })); // guard-ok: одна строка на смену героя

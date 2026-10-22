@@ -4,6 +4,12 @@
 
 ## 22.10, вечер
 
+- **ФИНАЛ OTA-заплатки монет: ✅ к выпуску** (с «да» владельца; сначала Android, iOS 143 — по его условию, сверка бандла совпала).
+  1. Полный дифф папки против 108b37562 с выравниванием CRLF — запись abef86071: ровно 5 файлов монет, лишних и пропавших 0.
+  2. **79 ошибок типов — не блокер.** Все в `functions-admin` (64), `functions-content` (9) и `scripts` (6), вид `TS2307 Cannot find module '../functions/src/…'`. Причина — в снимок не положили папку `functions`, а эти пакеты в бандл приложения не входят. В файлах заплатки 0. Код приложения при этом — 142 + 5 файлов, а те же 5 файлов на HEAD проходят полный tsc с 0 ошибок (мой прогон 127791f21). `events.ts` добавил только тип события `phone_state_economy_ready` — tsc его покрыл.
+  3. **Parity Learning V2 BLOCKED — не блокер для заплатки.** Расхождения source 929 / app-copy 920 — это содержание курса в коде 142, с которым он уже в сторах. Заплатка содержание курса не трогает: дифф = 5 файлов монет, `modules/learning-v2` и `content` совпадают с 142 байт в байт. 🧩 Для следующей нативной сборки parity надо разбирать отдельно — это не про заплатку.
+  4. Тесты монет 133/133, lint 0/0, `release:keys` OK, сверка награды №2 (§30) ✅. Полную jest-сюиту на снимке не гоняли — для заплатки из 5 файлов монет с зелёными тестами модуля это приемлемо.
+  - После выхода смотреть: [COIN-WALLET] `credited` / `replay` / `phone_state_already_committed` / `sync:rerun_cap_reached`, долю 400 у `levelSpinStarGrant`, рост записей stars_ledger. Ожидаемо — разовый всплеск хвоста с 20.10 и `resource-exhausted` на дневных потолках у активных людей.
 - **OTA-заплатка монет — ПОЛНАЯ сверка папки ✅** (`C:\Temp\claude\ota_patch_108b37562` против `git archive 108b37562`, переводы строк выровнены, скрипт `C:\Temp\claude\cmpota.py`):
   - во всех путях бандла (`app`, `components`, `hooks`, `modules`, `constants`, `lib`, `assets`, `locales`, `plugins`, `tests`, `shared`, `config` и прочих) плюс `package.json`, `app.json`, `app.config.js`, `babel`/`metro`/`tsconfig`/`eas`/lock-файлы отличаются ровно 5 файлов: `app/events.ts`, `app/level_spin_star_grants.ts`, `app/phone_state_economy_bridge.ts`, `tests/level_spin_star_grants.test.ts`, `tests/phone_state_economy_bridge.test.ts`;
   - лишних или пропавших файлов 0;

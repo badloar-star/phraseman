@@ -102,7 +102,14 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   return (
     // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ»): градиент и свет сцены — от верха экрана, под часами;
     // высота сцены считается от верха экрана, как в эталоне (.a-stage 540 вместе со строкой статуса), раскладка отступает на зону часов
-    <View testID="home-scene-stage" style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}>
+    <View
+      testID="home-scene-stage"
+      style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}
+      onLayout={(e) => {
+        // зачем (Сверка home5, «Фраза дня» срезана на 390): цифры вместо догадки — расчётная и фактическая высота сцены, окно, верх капсулы; временно, [HOME-FIT]
+        console.log('[HOME-FIT]', JSON.stringify({ planned: stageH, actual: Math.round(e.nativeEvent.layout.height), windowH, windowW, pillTop, fontScale, title: copy.title })); // guard-ok: одна строка на смену высоты
+      }}
+    >
       <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>

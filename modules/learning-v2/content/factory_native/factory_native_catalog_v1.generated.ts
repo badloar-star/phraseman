@@ -7959,4 +7959,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + to-infinitive","uk":"verb + to-infinitive"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 17,
+    sourceFingerprint: "82dacaa7cabeb7d420ee54be298c887efa20728641480443a17a9086e03f6365",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want/need + to-infinitive; like/prefer + learned complement","uk":"want/need + to-infinitive; like/prefer + learned complement"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 18,
+    sourceFingerprint: "87ab91fa9ca9557cb855785ed3b21d6fb0216e131f6026469690491212f7bcba",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + to-infinitive","uk":"verb + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 19,
+    sourceFingerprint: "3cab798652601c399498252e3bf439ad29aac5d9034edf45d94519ea0837512c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + gerund (-ing)","uk":"verb + gerund (-ing)"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 21, sessionOrdinal: 20,
+    sourceFingerprint: "f2b8040f2441ad9a8c07bae5aa7530c09eb3acd38b8d697fd9951e17bd055688",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + to-infinitive","uk":"verb + to-infinitive"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
+  }),
 ]);

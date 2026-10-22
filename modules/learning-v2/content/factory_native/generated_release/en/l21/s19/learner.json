@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-19:word:risk",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — risk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:word:risk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — risk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:word:risk:audio",
+          "transcript": "risk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:word:risk:r1",
+            "targetText": "risk",
+            "meaningByLocale": {
+              "ru": "рисковать.",
+              "uk": "ризикувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "risk",
+          "definitionByLocale": {
+            "ru": "рисковать.",
+            "uk": "ризикувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я не могу рисковать потерей работы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я не могу рисковать потерей работы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cannot risk losing my job.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не могу рисковать потерей работы».",
+          "uk": "Скажіть: «Я не можу ризикувати втратою роботи»."
+        },
+        "orderedTokens": [
+          "I",
+          "cannot",
+          "risk",
+          "losing",
+          "my",
+          "job"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i02:r1",
+          "text": "I cannot risk losing my job."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i02:r2",
+          "text": "We cannot risk losing our jobs."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i02:r3",
+          "text": "They cannot risk losing their jobs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i02:audio",
+          "transcript": "I cannot risk losing my job."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:i02:r1",
+            "targetText": "I cannot risk losing my job.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i02:r2",
+            "targetText": "We cannot risk losing our jobs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i02:r3",
+            "targetText": "They cannot risk losing their jobs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cannot risk losing my job.",
+              "uk": "У записі звучить I cannot risk losing my job."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cannot risk losing my job.",
+              "uk": "У записі звучить I cannot risk losing my job."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия на -ing.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i03:r1",
+          "text": "losing"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i03:r2",
+          "text": "lose"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i03:r3",
+          "text": "to lose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия на -ing.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия на -ing.",
+          "uk": "Виберіть форму дії на -ing."
+        },
+        "gappedTargetPhrase": "I cannot risk ___ my job.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-19:i03:r1",
+            "text": "losing"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i03:r2",
+            "text": "lose"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i03:r3",
+            "text": "to lose"
+          }
+        ],
+        "testedDimension": "Выберите форму действия на -ing.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна форма на -ing.",
+              "uk": "Після цього дієслова потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола не используем to + глагол.",
+              "uk": "Після цього дієслова не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:word:deny",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — deny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:word:deny:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — deny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:word:deny:audio",
+          "transcript": "deny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:word:deny:r1",
+            "targetText": "deny",
+            "meaningByLocale": {
+              "ru": "отрицать.",
+              "uk": "заперечувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deny",
+          "definitionByLocale": {
+            "ru": "отрицать.",
+            "uk": "заперечувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я отрицаю, что взял ваши ключи».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я отрицаю, что взял ваши ключи».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I deny taking your keys.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я отрицаю, что взял ваши ключи».",
+          "uk": "Скажіть: «Я заперечую, що взяв ваші ключі»."
+        },
+        "orderedTokens": [
+          "I",
+          "deny",
+          "taking",
+          "your",
+          "keys"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i05:r1",
+          "text": "I deny taking your keys."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i05:r2",
+          "text": "We deny taking your keys."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i05:r3",
+          "text": "They deny taking your keys."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i05:audio",
+          "transcript": "I deny taking your keys."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:i05:r1",
+            "targetText": "I deny taking your keys.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i05:r2",
+            "targetText": "We deny taking your keys.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i05:r3",
+            "targetText": "They deny taking your keys.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I deny taking your keys.",
+              "uk": "У записі звучить I deny taking your keys."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I deny taking your keys.",
+              "uk": "У записі звучить I deny taking your keys."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия на -ing.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i06:r1",
+          "text": "taking"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i06:r2",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i06:r3",
+          "text": "to take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия на -ing.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия на -ing.",
+          "uk": "Виберіть форму дії на -ing."
+        },
+        "gappedTargetPhrase": "I deny ___ your keys.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-19:i06:r1",
+            "text": "taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i06:r2",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i06:r3",
+            "text": "to take"
+          }
+        ],
+        "testedDimension": "Выберите форму действия на -ing.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна форма на -ing.",
+              "uk": "Після цього дієслова потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола не используем to + глагол.",
+              "uk": "Після цього дієслова не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:word:resist",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — resist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:word:resist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — resist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:word:resist:audio",
+          "transcript": "resist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:word:resist:r1",
+            "targetText": "resist",
+            "meaningByLocale": {
+              "ru": "сопротивляться, удерживаться от.",
+              "uk": "опиратися, утримуватися від."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "resist",
+          "definitionByLocale": {
+            "ru": "сопротивляться, удерживаться от.",
+            "uk": "опиратися, утримуватися від."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я удерживаюсь от покупок в интернете».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я удерживаюсь от покупок в интернете».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I resist buying things online.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я удерживаюсь от покупок в интернете».",
+          "uk": "Скажіть: «Я утримуюся від покупок в інтернеті»."
+        },
+        "orderedTokens": [
+          "I",
+          "resist",
+          "buying",
+          "things",
+          "online"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i08:r1",
+          "text": "I resist buying things online."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i08:r2",
+          "text": "We resist buying things online."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i08:r3",
+          "text": "They resist buying things online."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i08:audio",
+          "transcript": "I resist buying things online."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:i08:r1",
+            "targetText": "I resist buying things online.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i08:r2",
+            "targetText": "We resist buying things online.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i08:r3",
+            "targetText": "They resist buying things online.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I resist buying things online.",
+              "uk": "У записі звучить I resist buying things online."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I resist buying things online.",
+              "uk": "У записі звучить I resist buying things online."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия на -ing.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i09:r1",
+          "text": "buying"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i09:r2",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i09:r3",
+          "text": "to buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия на -ing.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия на -ing.",
+          "uk": "Виберіть форму дії на -ing."
+        },
+        "gappedTargetPhrase": "I resist ___ things online.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-19:i09:r1",
+            "text": "buying"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i09:r2",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i09:r3",
+            "text": "to buy"
+          }
+        ],
+        "testedDimension": "Выберите форму действия на -ing.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна форма на -ing.",
+              "uk": "Після цього дієслова потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола не используем to + глагол.",
+              "uk": "Після цього дієслова не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:word:involve",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — involve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:word:involve:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — involve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:word:involve:audio",
+          "transcript": "involve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:word:involve:r1",
+            "targetText": "involve",
+            "meaningByLocale": {
+              "ru": "включать в себя, предполагать.",
+              "uk": "включати в себе, передбачати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "involve",
+          "definitionByLocale": {
+            "ru": "включать в себя, предполагать.",
+            "uk": "включати в себе, передбачати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мои планы предполагают поездки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мои планы предполагают поездки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My plans involve travelling.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мои планы предполагают поездки».",
+          "uk": "Скажіть: «Мої плани передбачають подорожі»."
+        },
+        "orderedTokens": [
+          "My",
+          "plans",
+          "involve",
+          "travelling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i11:r1",
+          "text": "My plans involve travelling."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i11:r2",
+          "text": "Our plans involve travelling."
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i11:r3",
+          "text": "Their plans involve travelling."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i11:audio",
+          "transcript": "My plans involve travelling."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-19:i11:r1",
+            "targetText": "My plans involve travelling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i11:r2",
+            "targetText": "Our plans involve travelling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i11:r3",
+            "targetText": "Their plans involve travelling.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My plans involve travelling.",
+              "uk": "У записі звучить My plans involve travelling."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My plans involve travelling.",
+              "uk": "У записі звучить My plans involve travelling."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия на -ing.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-19:i12:r1",
+          "text": "travelling"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i12:r2",
+          "text": "to travelling"
+        },
+        {
+          "responseId": "en:lesson-21:session-19:i12:r3",
+          "text": "to travel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия на -ing.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия на -ing.",
+          "uk": "Виберіть форму дії на -ing."
+        },
+        "gappedTargetPhrase": "My plans involve ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-19:i12:r1",
+            "text": "travelling"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i12:r2",
+            "text": "to travelling"
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i12:r3",
+            "text": "to travel"
+          }
+        ],
+        "testedDimension": "Выберите форму действия на -ing.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна форма на -ing.",
+              "uk": "Після цього дієслова потрібна форма на -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия на -ing.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола не используем to + глагол.",
+              "uk": "Після цього дієслова не використовуємо to + дієслово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-19:i13:p1",
+            "target": "risk",
+            "meaningByLocale": {
+              "ru": "рисковать",
+              "uk": "ризикувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-19:i13:p2",
+            "target": "deny",
+            "meaningByLocale": {
+              "ru": "отрицать",
+              "uk": "заперечувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-19:i13:p3",
+            "target": "resist",
+            "meaningByLocale": {
+              "ru": "сопротивляться, удерживаться от",
+              "uk": "опиратися, утримуватися від"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-19:i13:p4",
+            "target": "involve",
+            "meaningByLocale": {
+              "ru": "включать в себя, предполагать",
+              "uk": "включати в себе, передбачати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "risk",
+          "deny",
+          "resist",
+          "involve"
+        ],
+        "rightColumn": [
+          "рисковать",
+          "отрицать",
+          "сопротивляться, удерживаться от",
+          "включать в себя, предполагать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i14:audio",
+          "transcript": "You must not ignore the rules."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You must not ignore the rules.",
+        "orderedTokens": [
+          "You",
+          "must",
+          "not",
+          "ignore",
+          "the",
+          "rules"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: необходимость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: необходимость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы удерживаетесь от покупок в интернете",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы удерживаетесь от покупок в интернете",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i16:audio",
+          "transcript": "I resist buying things online."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I resist buying things online.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ваши планы предполагают поездки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ваши планы предполагают поездки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-19:i17:audio",
+          "transcript": "My plans involve travelling."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My plans involve travelling.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b8f2e136d1324d163a3fcd0adaf92a32d535f70e26615cdf7be7916589df6e60"
+}

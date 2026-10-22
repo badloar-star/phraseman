@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-20:word:apparently",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — apparently",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:word:apparently:audio"
+      ],
+      "accessibilityLabel": "Картка слова — apparently",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:word:apparently:audio",
+          "transcript": "apparently"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:word:apparently:r1",
+            "targetText": "apparently",
+            "meaningByLocale": {
+              "ru": "по всей видимости.",
+              "uk": "судячи з усього."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apparently",
+          "definitionByLocale": {
+            "ru": "по всей видимости.",
+            "uk": "судячи з усього."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Судячи з усього, мені потрібно забронювати заздалегідь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Судячи з усього, мені потрібно забронювати заздалегідь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Apparently, I need to book ahead.",
+        "localizedMeaning": {
+          "ru": "Скажите: «По всей видимости, мне нужно забронировать заранее».",
+          "uk": "Скажіть: «Судячи з усього, мені потрібно забронювати заздалегідь»."
+        },
+        "orderedTokens": [
+          "Apparently,",
+          "I",
+          "need",
+          "to",
+          "book",
+          "ahead"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i02:r1",
+          "text": "Apparently, I need to book ahead."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i02:r2",
+          "text": "Apparently, we need to book ahead."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i02:r3",
+          "text": "Apparently, they need to book ahead."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i02:audio",
+          "transcript": "Apparently, I need to book ahead."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:i02:r1",
+            "targetText": "Apparently, I need to book ahead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i02:r2",
+            "targetText": "Apparently, we need to book ahead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i02:r3",
+            "targetText": "Apparently, they need to book ahead.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Apparently, I need to book ahead.",
+              "uk": "У записі звучить Apparently, I need to book ahead."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Apparently, I need to book ahead.",
+              "uk": "У записі звучить Apparently, I need to book ahead."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i03:r1",
+          "text": "to book"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i03:r2",
+          "text": "to booking"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i03:r3",
+          "text": "to books"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "Apparently, I need ___ ahead.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-20:i03:r1",
+            "text": "to book"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i03:r2",
+            "text": "to booking"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i03:r3",
+            "text": "to books"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:word:hopefully",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hopefully",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:word:hopefully:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hopefully",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:word:hopefully:audio",
+          "transcript": "hopefully"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:word:hopefully:r1",
+            "targetText": "hopefully",
+            "meaningByLocale": {
+              "ru": "надеюсь, хочется надеяться.",
+              "uk": "сподіваюся, хочеться сподіватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hopefully",
+          "definitionByLocale": {
+            "ru": "надеюсь, хочется надеяться.",
+            "uk": "сподіваюся, хочеться сподіватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Сподіваюся, мені вдасться закінчити сьогодні».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Сподіваюся, мені вдасться закінчити сьогодні».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hopefully, I will manage to finish today.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Надеюсь, мне удастся закончить сегодня».",
+          "uk": "Скажіть: «Сподіваюся, мені вдасться закінчити сьогодні»."
+        },
+        "orderedTokens": [
+          "Hopefully,",
+          "I",
+          "will",
+          "manage",
+          "to",
+          "finish",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i05:r1",
+          "text": "Hopefully, I will manage to finish today."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i05:r2",
+          "text": "Hopefully, we will manage to finish today."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i05:r3",
+          "text": "Hopefully, they will manage to finish today."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i05:audio",
+          "transcript": "Hopefully, I will manage to finish today."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:i05:r1",
+            "targetText": "Hopefully, I will manage to finish today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i05:r2",
+            "targetText": "Hopefully, we will manage to finish today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i05:r3",
+            "targetText": "Hopefully, they will manage to finish today.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Hopefully, I will manage to finish today.",
+              "uk": "У записі звучить Hopefully, I will manage to finish today."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Hopefully, I will manage to finish today.",
+              "uk": "У записі звучить Hopefully, I will manage to finish today."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i06:r1",
+          "text": "to finish"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i06:r2",
+          "text": "to finishing"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i06:r3",
+          "text": "to finishes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "Hopefully, I will manage ___ today.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-20:i06:r1",
+            "text": "to finish"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i06:r2",
+            "text": "to finishing"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i06:r3",
+            "text": "to finishes"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:word:eventually",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eventually",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:word:eventually:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eventually",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:word:eventually:audio",
+          "transcript": "eventually"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:word:eventually:r1",
+            "targetText": "eventually",
+            "meaningByLocale": {
+              "ru": "со временем, в конце концов.",
+              "uk": "з часом, зрештою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eventually",
+          "definitionByLocale": {
+            "ru": "со временем, в конце концов.",
+            "uk": "з часом, зрештою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «З часом я хочу переїхати ближче».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «З часом я хочу переїхати ближче».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eventually, I want to move closer.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Со временем я хочу переехать поближе».",
+          "uk": "Скажіть: «З часом я хочу переїхати ближче»."
+        },
+        "orderedTokens": [
+          "Eventually,",
+          "I",
+          "want",
+          "to",
+          "move",
+          "closer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i08:r1",
+          "text": "Eventually, I want to move closer."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i08:r2",
+          "text": "Eventually, we want to move closer."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i08:r3",
+          "text": "Eventually, they want to move closer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i08:audio",
+          "transcript": "Eventually, I want to move closer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:i08:r1",
+            "targetText": "Eventually, I want to move closer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i08:r2",
+            "targetText": "Eventually, we want to move closer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i08:r3",
+            "targetText": "Eventually, they want to move closer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Eventually, I want to move closer.",
+              "uk": "У записі звучить Eventually, I want to move closer."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Eventually, I want to move closer.",
+              "uk": "У записі звучить Eventually, I want to move closer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i09:r1",
+          "text": "to move"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i09:r2",
+          "text": "to moving"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i09:r3",
+          "text": "to moves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "Eventually, I want ___ closer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-20:i09:r1",
+            "text": "to move"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i09:r2",
+            "text": "to moving"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i09:r3",
+            "text": "to moves"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:word:otherwise",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — otherwise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:word:otherwise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — otherwise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:word:otherwise:audio",
+          "transcript": "otherwise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:word:otherwise:r1",
+            "targetText": "otherwise",
+            "meaningByLocale": {
+              "ru": "иначе, в противном случае.",
+              "uk": "інакше, у протилежному разі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "otherwise",
+          "definitionByLocale": {
+            "ru": "иначе, в противном случае.",
+            "uk": "інакше, у протилежному разі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Інакше мені потрібно їхати автобусом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Інакше мені потрібно їхати автобусом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Otherwise, I need to take a bus.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Иначе мне нужно ехать на автобусе».",
+          "uk": "Скажіть: «Інакше мені потрібно їхати автобусом»."
+        },
+        "orderedTokens": [
+          "Otherwise,",
+          "I",
+          "need",
+          "to",
+          "take",
+          "a",
+          "bus"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i11:r1",
+          "text": "Otherwise, I need to take a bus."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i11:r2",
+          "text": "Otherwise, we need to take a bus."
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i11:r3",
+          "text": "Otherwise, they need to take a bus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i11:audio",
+          "transcript": "Otherwise, I need to take a bus."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-20:i11:r1",
+            "targetText": "Otherwise, I need to take a bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i11:r2",
+            "targetText": "Otherwise, we need to take a bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i11:r3",
+            "targetText": "Otherwise, they need to take a bus.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Otherwise, I need to take a bus.",
+              "uk": "У записі звучить Otherwise, I need to take a bus."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Otherwise, I need to take a bus.",
+              "uk": "У записі звучить Otherwise, I need to take a bus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильну форму з to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-20:i12:r1",
+          "text": "to take"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i12:r2",
+          "text": "to taking"
+        },
+        {
+          "responseId": "en:lesson-21:session-20:i12:r3",
+          "text": "to takes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильну форму з to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму с to.",
+          "uk": "Виберіть правильну форму з to."
+        },
+        "gappedTargetPhrase": "Otherwise, I need ___ a bus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-20:i12:r1",
+            "text": "to take"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i12:r2",
+            "text": "to taking"
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i12:r3",
+            "text": "to takes"
+          }
+        ],
+        "testedDimension": "Виберіть правильну форму з to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужен глагол без -ing.",
+              "uk": "Після to тут потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильну форму з to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нет окончания -s.",
+              "uk": "Після to тут немає закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-20:i13:p1",
+            "target": "apparently",
+            "meaningByLocale": {
+              "ru": "по всей видимости",
+              "uk": "судячи з усього"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-20:i13:p2",
+            "target": "hopefully",
+            "meaningByLocale": {
+              "ru": "надеюсь, хочется надеяться",
+              "uk": "сподіваюся, хочеться сподіватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-20:i13:p3",
+            "target": "eventually",
+            "meaningByLocale": {
+              "ru": "со временем, в конце концов",
+              "uk": "з часом, зрештою"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-20:i13:p4",
+            "target": "otherwise",
+            "meaningByLocale": {
+              "ru": "иначе, в противном случае",
+              "uk": "інакше, у протилежному разі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "apparently",
+          "hopefully",
+          "eventually",
+          "otherwise"
+        ],
+        "rightColumn": [
+          "судячи з усього",
+          "сподіваюся, хочеться сподіватися",
+          "з часом, зрештою",
+          "інакше, у протилежному разі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: приємне заняття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: приємне заняття",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i14:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: закінчити справу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: закінчити справу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i15:audio",
+          "transcript": "I must finish reading the description."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I must finish reading the description.",
+        "orderedTokens": [
+          "I",
+          "must",
+          "finish",
+          "reading",
+          "the",
+          "description"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що з часом ви хочете переїхати ближче",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що з часом ви хочете переїхати ближче",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i16:audio",
+          "transcript": "Eventually, I want to move closer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eventually, I want to move closer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг може вас підвезти. Скажіть, що інакше вам потрібно їхати автобусом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Друг може вас підвезти. Скажіть, що інакше вам потрібно їхати автобусом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-20:i17:audio",
+          "transcript": "Otherwise, I need to take a bus."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Otherwise, I need to take a bus.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "adae2e110392fe9298caa44fb1a3d076e248f954299d49254d4ce40ae87218ee"
+}

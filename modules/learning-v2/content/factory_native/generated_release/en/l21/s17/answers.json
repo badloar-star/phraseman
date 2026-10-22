@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-17:word:internship",
+    "correctText": "internship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i01",
+    "correctText": "I want to find an internship.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i02",
+    "correctText": "I want to find an internship.",
+    "correctResponseId": "en:lesson-21:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i03",
+    "correctText": "to find",
+    "correctResponseId": "en:lesson-21:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:word:job-search",
+    "correctText": "job search",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i04",
+    "correctText": "I need to start my job search.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i05",
+    "correctText": "I need to start my job search.",
+    "correctResponseId": "en:lesson-21:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i06",
+    "correctText": "to start",
+    "correctResponseId": "en:lesson-21:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:word:probation",
+    "correctText": "probation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i07",
+    "correctText": "I want to finish probation first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i08",
+    "correctText": "I want to finish probation first.",
+    "correctResponseId": "en:lesson-21:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i09",
+    "correctText": "to finish",
+    "correctResponseId": "en:lesson-21:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:word:career-change",
+    "correctText": "career change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i10",
+    "correctText": "I prefer to discuss a career change in person.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i11",
+    "correctText": "I prefer to discuss a career change in person.",
+    "correctResponseId": "en:lesson-21:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i12",
+    "correctText": "to discuss",
+    "correctResponseId": "en:lesson-21:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i13",
+    "correctText": "en:lesson-21:session-17:i13:p1=internship\nen:lesson-21:session-17:i13:p2=job search\nen:lesson-21:session-17:i13:p3=probation\nen:lesson-21:session-17:i13:p4=career change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i14",
+    "correctText": "I like to travel light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i16",
+    "correctText": "I want to finish probation first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-17:i17",
+    "correctText": "I prefer to discuss a career change in person.",
+    "correctResponseId": null
+  }
+]

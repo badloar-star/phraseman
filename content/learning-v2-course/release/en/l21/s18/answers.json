@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-18:word:have-seconds",
+    "correctText": "have seconds",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i01",
+    "correctText": "I want to have seconds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i02",
+    "correctText": "I want to have seconds.",
+    "correctResponseId": "en:lesson-21:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i03",
+    "correctText": "to have",
+    "correctResponseId": "en:lesson-21:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:word:leave-a-tip",
+    "correctText": "leave a tip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i04",
+    "correctText": "I want to leave a tip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i05",
+    "correctText": "I want to leave a tip.",
+    "correctResponseId": "en:lesson-21:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i06",
+    "correctText": "to leave",
+    "correctResponseId": "en:lesson-21:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:word:on-the-side",
+    "correctText": "on the side",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i07",
+    "correctText": "I prefer to have the sauce on the side.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i08",
+    "correctText": "I prefer to have the sauce on the side.",
+    "correctResponseId": "en:lesson-21:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i09",
+    "correctText": "to have",
+    "correctResponseId": "en:lesson-21:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:word:go-halves",
+    "correctText": "go halves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i10",
+    "correctText": "I want to go halves with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i11",
+    "correctText": "I want to go halves with you.",
+    "correctResponseId": "en:lesson-21:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i12",
+    "correctText": "to go",
+    "correctResponseId": "en:lesson-21:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i13",
+    "correctText": "en:lesson-21:session-18:i13:p1=have seconds\nen:lesson-21:session-18:i13:p2=leave a tip\nen:lesson-21:session-18:i13:p3=on the side\nen:lesson-21:session-18:i13:p4=go halves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i14",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i15",
+    "correctText": "I must finish reading the description.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i16",
+    "correctText": "I prefer to have the sauce on the side.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-18:i17",
+    "correctText": "I want to go halves with you.",
+    "correctResponseId": null
+  }
+]

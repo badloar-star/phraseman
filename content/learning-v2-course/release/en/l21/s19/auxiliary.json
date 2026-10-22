@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-19:intro1:r2": {
+          "ru": "После этого глагола нужна форма на -ing, а не to + глагол.",
+          "uk": "Після цього дієслова потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-19:intro1:r3": {
+          "ru": "После этого глагола действие выражаем формой на -ing.",
+          "uk": "Після цього дієслова дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-19:intro2:r2": {
+          "ru": "После этого глагола нужна форма на -ing, а не to + глагол.",
+          "uk": "Після цього дієслова потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-19:intro2:r3": {
+          "ru": "После этого глагола действие выражаем формой на -ing.",
+          "uk": "Після цього дієслова дію виражаємо формою на -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-19:intro3:r2": {
+          "ru": "После этого глагола нужна форма на -ing, а не to + глагол.",
+          "uk": "Після цього дієслова потрібна форма на -ing, а не to + дієслово."
+        },
+        "en:lesson-21:session-19:intro3:r3": {
+          "ru": "После этого глагола действие выражаем формой на -ing.",
+          "uk": "Після цього дієслова дію виражаємо формою на -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "30dd971ba6e1bd7082db2502f15d3d145747186793203e42c60de2cc582c8e15"
+}

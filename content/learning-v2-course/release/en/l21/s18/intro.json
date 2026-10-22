@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Взять добавку",
+        "uk": "Взяти добавку"
+      },
+      "bodyByLocale": {
+        "ru": "Have seconds — взять добавку после первой порции. Вам понравился обед, и вы хотите ещё. Seconds в этом выражении не означает секунды времени. После want здесь используем to + начальную форму. С prefer тренируем тот же вариант: prefer to have. Вариант prefer having тоже возможен, но после уже написанного to нужна начальная форма have.",
+        "uk": "Have seconds — взяти добавку після першої порції. Вам сподобався обід, і ви хочете ще. Seconds у цьому виразі не означає секунди часу. Після want тут використовуємо to + початкову форму. З prefer тренуємо той самий варіант: prefer to have. Варіант prefer having теж можливий, але після вже написаного to потрібна початкова форма have."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-18:intro1:r1",
+              "text": "I want to have seconds."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro1:r2",
+              "text": "I want to having seconds."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro1:r3",
+              "text": "I want to has seconds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-18:intro1:r1",
+              "text": "I want to have seconds."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro1:r2",
+              "text": "I want to having seconds."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro1:r3",
+              "text": "I want to has seconds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обслуживание и подача",
+        "uk": "Обслуговування й подача"
+      },
+      "bodyByLocale": {
+        "ru": "Leave a tip — оставить чаевые. Вы довольны обслуживанием и хотите это сделать. On the side при заказе еды означает «отдельно»: например, соус подают рядом с блюдом, а не выливают на него. После want здесь используем to + начальную форму. С prefer тренируем тот же вариант: prefer to have. Вариант prefer having тоже возможен, но после уже написанного to нужна начальная форма have.",
+        "uk": "Leave a tip — залишити чайові. Ви задоволені обслуговуванням і хочете це зробити. On the side під час замовлення їжі означає «окремо»: наприклад, соус подають поруч зі стравою, а не виливають на неї. Після want тут використовуємо to + початкову форму. З prefer тренуємо той самий варіант: prefer to have. Варіант prefer having теж можливий, але після вже написаного to потрібна початкова форма have."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-18:intro2:r1",
+              "text": "I want to leave a tip."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro2:r2",
+              "text": "I want to leaving a tip."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro2:r3",
+              "text": "I want to leaves a tip."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-18:intro2:r1",
+              "text": "I want to leave a tip."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro2:r2",
+              "text": "I want to leaving a tip."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro2:r3",
+              "text": "I want to leaves a tip."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заплатить пополам",
+        "uk": "Сплатити навпіл"
+      },
+      "bodyByLocale": {
+        "ru": "Go halves — оплатить пополам: каждый из двух человек платит половину. Вы обращаетесь к другу и предлагаете разделить оплату поровну. Знакомое split the bill означает разделить счёт; go halves уточняет, что доли равны и участников двое. После want здесь используем to + начальную форму. С prefer тренируем тот же вариант: prefer to have. Вариант prefer having тоже возможен, но после уже написанного to нужна начальная форма have.",
+        "uk": "Go halves — сплатити навпіл: кожен із двох людей платить половину. Ви звертаєтеся до друга й пропонуєте поділити оплату порівну. Знайоме split the bill означає розділити рахунок; go halves уточнює, що частки рівні й учасників двоє. Після want тут використовуємо to + початкову форму. З prefer тренуємо той самий варіант: prefer to have. Варіант prefer having теж можливий, але після вже написаного to потрібна початкова форма have."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-18:intro3:r1",
+              "text": "I want to go halves with you."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro3:r2",
+              "text": "I want to going halves with you."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro3:r3",
+              "text": "I want to goes halves with you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-18:intro3:r1",
+              "text": "I want to go halves with you."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro3:r2",
+              "text": "I want to going halves with you."
+            },
+            {
+              "responseId": "en:lesson-21:session-18:intro3:r3",
+              "text": "I want to goes halves with you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6ad96861a1d9afaa4523ae2c79aed2f86371c7d41d53869b68baedd8147bdd72"
+}

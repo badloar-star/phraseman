@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "verb + gerund (-ing)",
+    "uk": "verb + gerund (-ing)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не рисковать работой",
+        "uk": "Не ризикувати роботою"
+      },
+      "bodyByLocale": {
+        "ru": "Risk — рисковать. Раньше в at risk это было существительное; теперь слово обозначает действие. Вы не хотите поступать так, чтобы потерять работу: I cannot risk losing my job. После risk, deny, resist и involve действие выражаем формой на -ing: risk losing, deny taking, resist buying, involve travelling. Здесь не ставим to перед этим действием.",
+        "uk": "Risk — ризикувати. Раніше в at risk це був іменник; тепер слово позначає дію. Ви не хочете чинити так, щоб втратити роботу: I cannot risk losing my job. Після risk, deny, resist та involve дію виражаємо формою на -ing: risk losing, deny taking, resist buying, involve travelling. Тут не ставимо to перед цією дією."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-19:intro1:r1",
+              "text": "I cannot risk losing my job."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro1:r2",
+              "text": "I cannot risk to lose my job."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro1:r3",
+              "text": "I cannot risk lose my job."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-19:intro1:r1",
+              "text": "I cannot risk losing my job."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro1:r2",
+              "text": "I cannot risk to lose my job."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro1:r3",
+              "text": "I cannot risk lose my job."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Отрицать и удерживаться",
+        "uk": "Заперечувати й утримуватися"
+      },
+      "bodyByLocale": {
+        "ru": "Deny — отрицать. Собеседник думает, что вы взяли его ключи, а вы говорите, что этого не делали. Resist — сопротивляться желанию что-то сделать; например, удерживаться от ненужных покупок в интернете. После risk, deny, resist и involve действие выражаем формой на -ing: risk losing, deny taking, resist buying, involve travelling. Здесь не ставим to перед этим действием.",
+        "uk": "Deny — заперечувати. Співрозмовник думає, що ви взяли його ключі, а ви кажете, що цього не робили. Resist — опиратися бажанню щось зробити; наприклад, утримуватися від непотрібних покупок в інтернеті. Після risk, deny, resist та involve дію виражаємо формою на -ing: risk losing, deny taking, resist buying, involve travelling. Тут не ставимо to перед цією дією."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-19:intro2:r1",
+              "text": "I deny taking your keys."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro2:r2",
+              "text": "I deny to take your keys."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro2:r3",
+              "text": "I deny take your keys."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-19:intro2:r1",
+              "text": "I deny taking your keys."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro2:r2",
+              "text": "I deny to take your keys."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro2:r3",
+              "text": "I deny take your keys."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что входит в планы",
+        "uk": "Що входить у плани"
+      },
+      "bodyByLocale": {
+        "ru": "Involve — включать в себя, предполагать какое-то действие. Вы планируете поездки, поэтому говорите: My plans involve travelling. Подлежащее plans стоит во множественном числе, и после него используется involve без -s. После risk, deny, resist и involve действие выражаем формой на -ing: risk losing, deny taking, resist buying, involve travelling. Здесь не ставим to перед этим действием.",
+        "uk": "Involve — включати в себе, передбачати певну дію. Ви плануєте поїздки, тому кажете: My plans involve travelling. Підмет plans стоїть у множині, і після нього вживається involve без -s. Після risk, deny, resist та involve дію виражаємо формою на -ing: risk losing, deny taking, resist buying, involve travelling. Тут не ставимо to перед цією дією."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-19:intro3:r1",
+              "text": "My plans involve travelling."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro3:r2",
+              "text": "My plans involve to travel."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro3:r3",
+              "text": "My plans involve to travelling."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-19:intro3:r1",
+              "text": "My plans involve travelling."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro3:r2",
+              "text": "My plans involve to travel."
+            },
+            {
+              "responseId": "en:lesson-21:session-19:intro3:r3",
+              "text": "My plans involve to travelling."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b3f926ed93d6207de464eb84c70a70b90c751d1209d172ad67f4dde2745beb4d"
+}

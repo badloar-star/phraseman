@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-19:word:risk",
+    "correctText": "risk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i01",
+    "correctText": "I cannot risk losing my job.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i02",
+    "correctText": "I cannot risk losing my job.",
+    "correctResponseId": "en:lesson-21:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i03",
+    "correctText": "losing",
+    "correctResponseId": "en:lesson-21:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:word:deny",
+    "correctText": "deny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i04",
+    "correctText": "I deny taking your keys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i05",
+    "correctText": "I deny taking your keys.",
+    "correctResponseId": "en:lesson-21:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i06",
+    "correctText": "taking",
+    "correctResponseId": "en:lesson-21:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:word:resist",
+    "correctText": "resist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i07",
+    "correctText": "I resist buying things online.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i08",
+    "correctText": "I resist buying things online.",
+    "correctResponseId": "en:lesson-21:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i09",
+    "correctText": "buying",
+    "correctResponseId": "en:lesson-21:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:word:involve",
+    "correctText": "involve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i10",
+    "correctText": "My plans involve travelling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i11",
+    "correctText": "My plans involve travelling.",
+    "correctResponseId": "en:lesson-21:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i12",
+    "correctText": "travelling",
+    "correctResponseId": "en:lesson-21:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i13",
+    "correctText": "en:lesson-21:session-19:i13:p1=risk\nen:lesson-21:session-19:i13:p2=deny\nen:lesson-21:session-19:i13:p3=resist\nen:lesson-21:session-19:i13:p4=involve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i16",
+    "correctText": "I resist buying things online.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-19:i17",
+    "correctText": "My plans involve travelling.",
+    "correctResponseId": null
+  }
+]

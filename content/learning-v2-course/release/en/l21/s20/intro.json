@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "verb + to-infinitive",
+    "uk": "verb + to-infinitive"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сделать вывод",
+        "uk": "Зробити висновок"
+      },
+      "bodyByLocale": {
+        "ru": "Apparently — по всей видимости. Вы прочитали, что в ресторане часто нет свободных столиков, и делаете вывод: по всей видимости, нужно бронировать заранее. Это вывод по имеющейся информации, а не обещание. После need, want и manage здесь используем to + начальную форму действия. Слово в начале предложения добавляет отношение или связь с предыдущей мыслью, но не меняет эту форму: need to book, manage to finish.",
+        "uk": "Apparently — судячи з усього. Ви прочитали, що в ресторані часто немає вільних столиків, і робите висновок: судячи з усього, потрібно бронювати заздалегідь. Це висновок із наявної інформації, а не обіцянка. Після need, want і manage тут використовуємо to + початкову форму дії. Слово на початку речення додає ставлення або звʼязок із попередньою думкою, але не змінює цієї форми: need to book, manage to finish."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-20:intro1:r1",
+              "text": "Apparently, I need to book ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro1:r2",
+              "text": "Apparently, I need to booking ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro1:r3",
+              "text": "Apparently, I need to books ahead."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-20:intro1:r1",
+              "text": "Apparently, I need to book ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro1:r2",
+              "text": "Apparently, I need to booking ahead."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro1:r3",
+              "text": "Apparently, I need to books ahead."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выразить надежду",
+        "uk": "Висловити надію"
+      },
+      "bodyByLocale": {
+        "ru": "Hopefully в начале фразы означает «надеюсь». Вы ещё работаете, но надеетесь закончить сегодня. Eventually — со временем, в конце концов: действие произойдёт позже, возможно после долгого ожидания. Вы хотите со временем переехать поближе к работе. После need, want и manage здесь используем to + начальную форму действия. Слово в начале предложения добавляет отношение или связь с предыдущей мыслью, но не меняет эту форму: need to book, manage to finish.",
+        "uk": "Hopefully на початку речення означає «сподіваюся». Ви ще працюєте, але сподіваєтеся закінчити сьогодні. Eventually — з часом, зрештою: дія відбудеться пізніше, можливо після тривалого очікування. Ви хочете з часом переїхати ближче до роботи. Після need, want і manage тут використовуємо to + початкову форму дії. Слово на початку речення додає ставлення або звʼязок із попередньою думкою, але не змінює цієї форми: need to book, manage to finish."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-20:intro2:r1",
+              "text": "Hopefully, I will manage to finish today."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro2:r2",
+              "text": "Hopefully, I will manage to finishing today."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro2:r3",
+              "text": "Hopefully, I will manage to finishes today."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-20:intro2:r1",
+              "text": "Hopefully, I will manage to finish today."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro2:r2",
+              "text": "Hopefully, I will manage to finishing today."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro2:r3",
+              "text": "Hopefully, I will manage to finishes today."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Запасной вариант",
+        "uk": "Запасний варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Otherwise — иначе, в противном случае. Друг, возможно, сможет вас подвезти. Если это не получится, вам нужно ехать на автобусе. Otherwise связывает этот запасной вариант с предыдущей мыслью. После need, want и manage здесь используем to + начальную форму действия. Слово в начале предложения добавляет отношение или связь с предыдущей мыслью, но не меняет эту форму: need to book, manage to finish.",
+        "uk": "Otherwise — інакше, у протилежному разі. Друг, можливо, зможе вас підвезти. Якщо це не вийде, вам потрібно їхати автобусом. Otherwise повʼязує цей запасний варіант із попередньою думкою. Після need, want і manage тут використовуємо to + початкову форму дії. Слово на початку речення додає ставлення або звʼязок із попередньою думкою, але не змінює цієї форми: need to book, manage to finish."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-20:intro3:r1",
+              "text": "Otherwise, I need to take a bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro3:r2",
+              "text": "Otherwise, I need to taking a bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro3:r3",
+              "text": "Otherwise, I need to takes a bus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-20:intro3:r1",
+              "text": "Otherwise, I need to take a bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro3:r2",
+              "text": "Otherwise, I need to taking a bus."
+            },
+            {
+              "responseId": "en:lesson-21:session-20:intro3:r3",
+              "text": "Otherwise, I need to takes a bus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "855abffc6e0eb89ee07bcfc018c7493cdfa2ee4cd9d7212a2151c9f41048df32"
+}

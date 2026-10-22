@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-20:intro1:r2": {
+          "ru": "Здесь после to нужна начальная форма, без -ing.",
+          "uk": "Тут після to потрібна початкова форма, без -ing."
+        },
+        "en:lesson-21:session-20:intro1:r3": {
+          "ru": "После to не добавляем -s к глаголу.",
+          "uk": "Після to не додаємо -s до дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-20:intro2:r2": {
+          "ru": "Здесь после to нужна начальная форма, без -ing.",
+          "uk": "Тут після to потрібна початкова форма, без -ing."
+        },
+        "en:lesson-21:session-20:intro2:r3": {
+          "ru": "После to не добавляем -s к глаголу.",
+          "uk": "Після to не додаємо -s до дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-20:intro3:r2": {
+          "ru": "Здесь после to нужна начальная форма, без -ing.",
+          "uk": "Тут після to потрібна початкова форма, без -ing."
+        },
+        "en:lesson-21:session-20:intro3:r3": {
+          "ru": "После to не добавляем -s к глаголу.",
+          "uk": "Після to не додаємо -s до дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0d683649b1e1f930f87c147b9b4832f6b4f7261b84617466b079019ed1172a80"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "want/need + to-infinitive; like/prefer + learned complement",
+    "uk": "want/need + to-infinitive; like/prefer + learned complement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Получить опыт",
+        "uk": "Отримати досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Internship — стажировка: работа на ограниченный срок, чтобы получить практический опыт. Вы хотите найти такую возможность. Want выражает желание; need — необходимость. Когда после want или need называем действие, используем to + начальную форму: want to find, need to start. После like и prefer возможны и to + глагол, и форма -ing. Здесь тренируем вариант с to: I prefer to discuss…",
+        "uk": "Internship — стажування: робота на обмежений термін, щоб отримати практичний досвід. Ви хочете знайти таку можливість. Want виражає бажання; need — необхідність. Коли після want або need називаємо дію, використовуємо to + початкову форму: want to find, need to start. Після like та prefer можливі й to + дієслово, і форма -ing. Тут тренуємо варіант із to: I prefer to discuss…"
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-17:intro1:r1",
+              "text": "I want to find an internship."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro1:r2",
+              "text": "I want to finding an internship."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro1:r3",
+              "text": "I want to finds an internship."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-17:intro1:r1",
+              "text": "I want to find an internship."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro1:r2",
+              "text": "I want to finding an internship."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro1:r3",
+              "text": "I want to finds an internship."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начать поиск",
+        "uk": "Почати пошук"
+      },
+      "bodyByLocale": {
+        "ru": "Job search — поиск работы. Вы решили начать искать работу и говорите, что это нужно сделать. Probation здесь означает испытательный срок на новой работе; вы хотите сначала закончить его, а потом обсуждать дальнейшие планы. Когда после want или need называем действие, используем to + начальную форму: want to find, need to start. После like и prefer возможны и to + глагол, и форма -ing. Здесь тренируем вариант с to: I prefer to discuss…",
+        "uk": "Job search — пошук роботи. Ви вирішили почати шукати роботу й кажете, що це потрібно зробити. Probation тут означає випробувальний термін на новій роботі; ви хочете спочатку закінчити його, а потім обговорювати подальші плани. Коли після want або need називаємо дію, використовуємо to + початкову форму: want to find, need to start. Після like та prefer можливі й to + дієслово, і форма -ing. Тут тренуємо варіант із to: I prefer to discuss…"
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-17:intro2:r1",
+              "text": "I need to start my job search."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro2:r2",
+              "text": "I need to starting my job search."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro2:r3",
+              "text": "I need to starts my job search."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-17:intro2:r1",
+              "text": "I need to start my job search."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro2:r2",
+              "text": "I need to starting my job search."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro2:r3",
+              "text": "I need to starts my job search."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обсудить перемены",
+        "uk": "Обговорити зміни"
+      },
+      "bodyByLocale": {
+        "ru": "Career change — смена профессии или направления работы. Вы хотите обсудить её с консультантом лично. Prefer выражает предпочтение. Like говорит о том, что нравится: I like to travel light — «Мне нравится путешествовать налегке». Фраза I like travelling light тоже правильная. Когда после want или need называем действие, используем to + начальную форму: want to find, need to start. После like и prefer возможны и to + глагол, и форма -ing. Здесь тренируем вариант с to: I prefer to discuss…",
+        "uk": "Career change — зміна професії або напряму роботи. Ви хочете обговорити її з консультантом особисто. Prefer виражає перевагу. Like говорить про те, що подобається: I like to travel light — «Мені подобається подорожувати без зайвого багажу». Речення I like travelling light теж правильне. Коли після want або need називаємо дію, використовуємо to + початкову форму: want to find, need to start. Після like та prefer можливі й to + дієслово, і форма -ing. Тут тренуємо варіант із to: I prefer to discuss…"
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-17:intro3:r1",
+              "text": "I prefer to discuss a career change in person."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro3:r2",
+              "text": "I prefer to discussing a career change in person."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro3:r3",
+              "text": "I prefer to discusses a career change in person."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-17:intro3:r1",
+              "text": "I prefer to discuss a career change in person."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro3:r2",
+              "text": "I prefer to discussing a career change in person."
+            },
+            {
+              "responseId": "en:lesson-21:session-17:intro3:r3",
+              "text": "I prefer to discusses a career change in person."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2bb24396ce13065a51297ac59804eecfd8c16f10520ab7243521569c590fd7e9"
+}

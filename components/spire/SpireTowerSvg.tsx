@@ -310,9 +310,14 @@ type Props = Readonly<{
   hideWords?: boolean;
   /** «Сцена» Пика (владелец 22.10: «НОМЕРА ЭТАЖЕЙ УБЕРИ»): номера этажей и подписи под ними не рисуются ни на каком экране. */
   hideFloorLabels?: boolean;
+  /**
+   * «Сцена» Пика (владелец 22.10: «фон за башней — чтобы не отличался, убери облака», «НАД ОБЛАКАМИ убрать», звёзды — по всей плоскости):
+   * башня без своего неба — без звёзд, облаков и подписи над ними; фон и звёзды рисует сама сцена во всю ширину.
+   */
+  sceneClean?: boolean;
 }>;
 
-function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene, cropHeight, illustration = false, hideWords = false, hideFloorLabels = false }: Props) {
+function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene, cropHeight, illustration = false, hideWords = false, hideFloorLabels = false, sceneClean = false }: Props) {
   const geom = SPIRE_TOWER_GEOM;
   const scale = width / SPIRE_TW;
   // зачем (Макеты 18.10, promo_open/floor_open: «шкала этажей и НАД ОБЛАКАМИ микроскопические»): в окнах моментов башня ≤ 196 из 390 —
@@ -360,12 +365,16 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
       {/* зачем (владелец 13.10): со сценой темы небо не рисуем — окно остаётся плитой темы (SpireTower.window), башня стоит на ней */}
       {scene ? null : <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />}
       {scene ? null : <Ellipse cx={SPIRE_CX} cy={geom.top - 120} rx={200} ry={260} fill={TOWER_ART.white03} />}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      {(scene ? scene.star !== null : true) ? STARS.map(([x, yy], i) => <Circle key={`s${i}`} cx={x} cy={skyY - 40 + yy} r={i % 3 ? 0.8 : 1.2} fill={scene && scene.star ? scene.star : `rgba(255,255,255,${i % 2 ? 0.35 : 0.55})`} opacity={scene ? (i % 2 ? 0.35 : 0.55) : 1} />) : null}{/* theme-exempt: звёзды на ночном небе сцены (spireSky всегда тёмное) */}
-      <Ellipse cx={60} cy={geom.top - 150} rx={130} ry={28} fill="url(#spireCloud)" />
-      <Ellipse cx={330} cy={geom.top - 170} rx={140} ry={30} fill="url(#spireCloud)" />
-      <Ellipse cx={80} cy={geom.top - 96} rx={110} ry={22} fill="url(#spireCloud)" />
-      <Ellipse cx={320} cy={geom.top - 90} rx={120} ry={22} fill="url(#spireCloud)" />
-      {textTooSmall || hideWords ? null : <SvgText x={SPIRE_CX} y={geom.top - 272} fontSize={11} fontWeight="700" letterSpacing={3} fill={scene ? scene.cloudsLabel : TOWER_ART.c5E5E62} textAnchor="middle">{cloudsLabel}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {!sceneClean && (scene ? scene.star !== null : true) ? STARS.map(([x, yy], i) => <Circle key={`s${i}`} cx={x} cy={skyY - 40 + yy} r={i % 3 ? 0.8 : 1.2} fill={scene && scene.star ? scene.star : `rgba(255,255,255,${i % 2 ? 0.35 : 0.55})`} opacity={scene ? (i % 2 ? 0.35 : 0.55) : 1} />) : null}{/* theme-exempt: звёзды на ночном небе сцены (spireSky всегда тёмное) */}
+      {sceneClean ? null : (
+        <>
+          <Ellipse cx={60} cy={geom.top - 150} rx={130} ry={28} fill="url(#spireCloud)" />
+          <Ellipse cx={330} cy={geom.top - 170} rx={140} ry={30} fill="url(#spireCloud)" />
+          <Ellipse cx={80} cy={geom.top - 96} rx={110} ry={22} fill="url(#spireCloud)" />
+          <Ellipse cx={320} cy={geom.top - 90} rx={120} ry={22} fill="url(#spireCloud)" />
+        </>
+      )}
+      {textTooSmall || hideWords || sceneClean ? null : <SvgText x={SPIRE_CX} y={geom.top - 272} fontSize={11} fontWeight="700" letterSpacing={3} fill={scene ? scene.cloudsLabel : TOWER_ART.c5E5E62} textAnchor="middle">{cloudsLabel}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       <Ellipse cx={SPIRE_CX} cy={geom.base + 44} rx={210} ry={40} fill={scene ? 'url(#spireGroundTheme)' : 'url(#spireGround)'} />
       <Ellipse cx={SPIRE_CX} cy={geom.base + 30} rx={b.w / 2 + 64} ry={12} fill={scene ? scene.shadow : TOWER_ART.black55} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       <Rect x={b.x0 - 30} y={geom.base + 16} width={b.w + 60} height={14} rx={3} fill="url(#spireCylCorn)" opacity={0.7} />

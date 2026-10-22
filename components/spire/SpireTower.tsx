@@ -32,6 +32,8 @@ import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type Spir
 
 const WINDOW_HEIGHT = SPIRE_WINDOW_MAX;
 const MARKER_SIZE = 40;
+/** Своя монета на «Сцене» без колец — ×1,1 от метки (владелец 22.10: «ВОТ ТАК НЕ НАДО» про монету в цветном круге). */
+const MARKER_SCENE_SIZE = 44;
 /** Высота мягкого затухания у верхнего края окна, dp, и порог смещения, с которого выше окна есть этажи. */
 const TOP_FADE_H = 36;
 const TOP_FADE_THRESHOLD = 4;
@@ -70,6 +72,8 @@ type Props = Readonly<{
   onPressMore?: () => void;
   /** Только «Сцена»: тап по своей метке — своя карточка. */
   onPressMe?: () => void;
+  /** Только «Сцена»: мягкое свечение своей монеты — цвет сцены из темы (вместо колец). */
+  markerGlow?: string;
 }>;
 
 const RIVAL = 22;
@@ -161,7 +165,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom, hideFloorWords = false, onPressRival, onPressMore, onPressMe }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom, hideFloorWords = false, onPressRival, onPressMore, onPressMe, markerGlow }: Props) {
   const p = useSpirePalette();
   const myIsPlus = useIsPlus(); // зачем (владелец 21.10, реестр №6): мой маркер на башне — с кольцом, если у меня Plus
   const g = useShadowGlass();
@@ -188,6 +192,12 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     ? spireTowerFitScale(baseScale, windowHeight, spireTowerNeedUnits(headroom, ownFloor.y + ownFloor.h - SPIRE_TOWER_GEOM.top))
     : baseScale;
   const renderWidth = SPIRE_TW * scale;
+  // зачем (владелец 22.10: «башни НЕТ», пока «Ищем комнату…»; правило «сперва логи»): нарисована ли башня на «Сцене» и почему — до замера
+  // ширины окна рисунка нет; масштаб, высота окна, этаж и лига — одна строка на смену этих значений
+  useEffect(() => {
+    if (!sceneMode) return;
+    logSpireLayout('tower:render', { drawn: width > 0 ? 'yes' : 'no', reason: width > 0 ? 'measured' : 'window_not_measured', width, scale: roundLayout(scale), renderW: roundLayout(SPIRE_TW * scale), windowH: roundLayout(windowHeight), myFloor, tier: tier ?? null });
+  }, [sceneMode, width, scale, windowHeight, myFloor, tier]);
   const tx = useRef(new Animated.Value(0)).current;
   const ty = useRef(new Animated.Value(0)).current;
   const placedRef = useRef(false);
@@ -367,7 +377,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         {width > 0 ? (
           <View style={{ width: renderWidth, height: SPIRE_TOWER_GEOM.height * scale, alignSelf: 'center' }}>
             {/* зачем (владелец 22.10: «НОМЕРА ЭТАЖЕЙ УБЕРИ»): на «Сцене» номера этажей и подписи под ними не рисуются; прежнее окно Пика — с номерами */}
-            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} />
+            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} sceneClean={sceneMode} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents={onPressRival ? 'box-none' : 'none'} style={StyleSheet.absoluteFill}>
                 <RivalsLayer onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={sceneMode ? SPIRE_SCENE_TOWER.num : undefined} sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0} />
@@ -375,13 +385,22 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
             ) : null}
             {myFloor !== null ? (
               <Animated.View pointerEvents={onPressMe ? 'box-none' : 'none'} style={[s.marker, { transform: [{ translateX: tx }, { translateY: ty }] }]}>
-                <View style={[s.markerGlow, scene.light ? { backgroundColor: scene.tone, opacity: 0.12 } : null]} />
-                {/* зачем (владелец 22.10: «аватарки нажимались»): своя метка на «Сцене» — кнопка своей карточки (40 + 2 × 2 = 44) */}
-                <V2Pressable disabled={!onPressMe} onPress={onPressMe} hitSlop={2} scaleTo={0.94} accessibilityRole={onPressMe ? 'button' : undefined} style={[s.markerRing, scene.light ? { backgroundColor: scene.numMine } : null]}>
-                  <View style={s.markerInner}>
-                    {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={MARKER_SIZE - 6} plus={myIsPlus} plusKind="flat" /> : null}
-                  </View>
-                </V2Pressable>
+                {sceneMode ? (
+                  // зачем (владелец 22.10: «ВОТ ТАК НЕ НАДО» — монета в цветном круге): на «Сцене» своя монета без колец — крупнее (×1,1) и с мягким
+                  // свечением цвета сцены из темы; тап — своя карточка (отклик — только масштаб V2Pressable, зона 44)
+                  <V2Pressable disabled={!onPressMe} onPress={onPressMe} scaleTo={0.94} accessibilityRole={onPressMe ? 'button' : undefined} style={[s.markerScene, markerGlow ? { boxShadow: `0 0 18px 2px ${markerGlow}` } : null]}>
+                    {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={MARKER_SCENE_SIZE} plus={false} /> : null}
+                  </V2Pressable>
+                ) : (
+                  <>
+                    <View style={[s.markerGlow, scene.light ? { backgroundColor: scene.tone, opacity: 0.12 } : null]} />
+                    <View style={[s.markerRing, scene.light ? { backgroundColor: scene.numMine } : null]}>
+                      <View style={s.markerInner}>
+                        {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={MARKER_SIZE - 6} plus={myIsPlus} plusKind="flat" /> : null}
+                      </View>
+                    </View>
+                  </>
+                )}
               </Animated.View>
             ) : null}
           </View>
@@ -417,6 +436,7 @@ const s = StyleSheet.create({
   rivalExtraSceneSolo: { marginLeft: 0, lineHeight: 17 },
   marker: { position: 'absolute', left: 0, top: 0, width: MARKER_SIZE, height: MARKER_SIZE, alignItems: 'center', justifyContent: 'center' },
   markerGlow: { position: 'absolute', width: MARKER_SIZE + 24, height: MARKER_SIZE + 24, borderRadius: (MARKER_SIZE + 24) / 2, backgroundColor: 'rgba(255,255,255,0.12)' }, // theme-exempt: метка текущего этажа башни — иллюстрация Шпиля
+  markerScene: { width: MARKER_SCENE_SIZE, height: MARKER_SCENE_SIZE, borderRadius: MARKER_SCENE_SIZE / 2, alignItems: 'center', justifyContent: 'center' },
   markerRing: { width: MARKER_SIZE, height: MARKER_SIZE, borderRadius: MARKER_SIZE / 2, backgroundColor: '#F2F1F6', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: метка текущего этажа башни — иллюстрация Шпиля
   markerInner: { width: MARKER_SIZE - 4, height: MARKER_SIZE - 4, borderRadius: (MARKER_SIZE - 4) / 2, backgroundColor: '#0C0C0D', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: метка текущего этажа башни — иллюстрация Шпиля
 });

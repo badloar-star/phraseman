@@ -187,12 +187,21 @@ async function main(): Promise<void> {
   assert.ok(tower.includes("sceneMode ? Math.max(0, contentH - wh)"), "на «Сцене» окно — вся башня от короны до низа, на любом этаже");
   assert.ok(tower.includes("hideWords={sceneMode && hideFloorWords}"), "флаг «без мелких слов» — только на «Сцене»");
   // зачем (владелец 22.10: «НОМЕРА ЭТАЖЕЙ УБЕРИ»): сторож — на «Сцене» номеров этажей нет ни на каком экране, вне «Сцены» — как были
-  assert.ok(tower.includes("hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} />"), "на «Сцене» номера этажей и подписи под ними не рисуются");
+  assert.ok(tower.includes("hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} sceneClean={sceneMode} />"), "на «Сцене» номера этажей и подписи под ними не рисуются");
   const towerSvg = read("components/spire/SpireTowerSvg.tsx");
   assert.ok(towerSvg.includes("{bare || noLabels ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14}"), "номер этажа не рисуется при noLabels");
   assert.ok(towerSvg.includes("{label && !bare && !noLabels ? <SvgText x={20}"), "подпись под номером не рисуется при noLabels");
   assert.ok(towerSvg.includes("bare={textTooSmall} noLabels={hideFloorLabels} />"), "флаг доходит до каждого этажа");
-  assert.ok(towerSvg.includes("hideWords = false, hideFloorLabels = false }: Props) {"), "по умолчанию номера есть: тур, моменты, истории и прежнее окно не меняются");
+  assert.ok(towerSvg.includes("hideWords = false, hideFloorLabels = false, sceneClean = false }: Props) {"), "по умолчанию номера есть: тур, моменты, истории и прежнее окно не меняются");
+  // зачем (владелец 22.10: «ВОТ ЭТОТ ТЕКСТ УБИРАЙ», «ВОТ ТАК НЕ НАДО» про монету в круге, «убери НАД ОБЛАКАМИ и облака, звёзды по всей плоскости»)
+  assert.ok(!scene.includes("p.copy.rewards.map(") && scene.includes("плашек «+10 за ступень / этаж» на сцене нет"), "на сцене Пика нет плашек «+10 за ступень / этаж»");
+  assert.ok(!scene.includes("spireSceneHalo") && !scene.includes("HALO."), "за башней нет отдельного ореола — фон сцены единый");
+  assert.ok(scene.includes("{SCENE_STARS.map(([x, y, r, o], i) => <Circle") && scene.includes("cx={x * width} cy={y * frame.sceneH}"), "звёзды — по всей сцене до краёв");
+  assert.ok(scene.includes("const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.55), [tokens.sceneGlow]);"), "звёзды — светлый оттенок свечения темы");
+  assert.ok(scene.includes("markerGlow={tokens.sceneGlow}") && tower.includes("plus={false} /> : null}") && tower.includes("const MARKER_SCENE_SIZE = 44;"), "своя монета на сцене — без колец, ×1,1, свечение темы");
+  assert.ok(tower.includes("sceneClean={sceneMode} />") && towerSvg.includes("{!sceneClean && (scene ? scene.star !== null : true) ? STARS.map(") && towerSvg.includes("textTooSmall || hideWords || sceneClean ? null"), "башня на сцене без своего неба: без звёзд, облаков и «НАД ОБЛАКАМИ»");
+  assert.ok(tower.includes("logSpireLayout('tower:render', { drawn: width > 0"), "журнал: нарисована ли башня на сцене и почему");
+  assert.ok(read("components/spire/scene/spire_scene_header.tsx").includes("<View style={[styles.tabs, tabsInset]}"), "рисованные вкладки сдвигаются вместе с настоящими под общую «назад»");
   assert.ok(tower.includes("hitSlop={Math.max(0, Math.ceil((RIVAL_TAP - size) / 2))}") && tower.includes("const RIVAL_TAP = 44;"), "монета соперника — кнопка с зоной касания ≥ 44");
   assert.ok(tower.includes("pointerEvents={onPressRival ? 'box-none' : 'none'}"), "без обработчиков (прежнее окно) ряды по-прежнему не ловят касания");
   assert.ok(tower.includes("sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0}"), "ряды соперников на «Сцене» — по расчёту сетки");

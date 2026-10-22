@@ -13,12 +13,11 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
-import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
+import Svg, { Circle, Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import type { Lang } from '../../../constants/i18n';
 import { spireSkinForTier } from '../../../modules/spire/tower_skins';
-import AvatarView from '../../AvatarView';
 import { useEnergyCountdown } from '../../EnergyContext';
 import type { PlayerInfo } from '../../PlayerProfileModal';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
@@ -37,15 +36,31 @@ import SpirePlayerCard from './SpirePlayerCard';
 import SpireScenePodium from './SpireScenePodium';
 import type { SpireSceneCopy, SpireSceneDecision, SpireSceneRoom } from './spire_scene_model';
 import { setSpireSceneHeaderTint } from './spire_scene_header_tint';
-import { SPIRE_SCENE_BASE_W, SPIRE_SCENE_PANEL_OVERLAP, spireSceneFrame, spireSceneVisibleH } from './spire_scene_layout';
+import { SPIRE_SCENE_PANEL_OVERLAP, spireSceneFrame, spireSceneVisibleH } from './spire_scene_layout';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
 import { spireScenePromoText, spireSceneText } from './spire_scene_strings';
 
-const HALO = Object.freeze({ top: 38, size: 260, right: 12 });
+/**
+ * Звёзды сцены — по всей плоскости до краёв, одни и те же в каждом кадре (владелец 22.10: «звёздочки рассыпь по всей плоскости, а не только
+ * справа»). Доли ширины и высоты сцены, радиус и непрозрачность; генератор с постоянным зерном — без перерисовки.
+ */
+const SCENE_STARS: readonly (readonly [number, number, number, number])[] = (() => {
+  let seed = 22102026;
+  const next = (): number => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+  return Object.freeze(Array.from({ length: 46 }, (_, i) => Object.freeze([next(), next(), i % 5 === 0 ? 1.4 : 0.9, i % 3 === 0 ? 0.7 : 0.4] as const)));
+})();
+
+/** Светлый оттенок цвета темы (rgb/rgba/#rrggbb) — смесь с белым; не разобрался — цвет как есть. Звёзды — оттенок свечения сцены темы. */
+function lightShade(color: string, white: number): string {
+  const m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(color);
+  const h = /^#([0-9a-f]{6})/i.exec(color);
+  const rgb = m ? [Number(m[1]), Number(m[2]), Number(m[3])] : h ? [0, 2, 4].map((i) => parseInt(h[1].slice(i, i + 2), 16)) : null;
+  if (!rgb) return color;
+  return `rgb(${rgb.map((c) => Math.round(c + (255 - c) * white)).join(',')})`;
+}
 const COPY_TOP = 12;
 /** «Нет сети» стоит строкой сверху — текст сцены опускается под неё (эталон: 116 → 184). */
 const COPY_TOP_OFFLINE = 76;
-const BASE_COIN_RANK = 0;
 /** Рост мелких подписей сцены с системным шрифтом (межстрочный растёт так же — useScaledTextStyles). */
 const TEXT_MAX_SCALE = 1.3;
 /** Крупные числа-заголовки сцены («Этаж 4» 40) уже крупные и не растут: иначе на 360 dp «Этаж 4» переносится. */
@@ -90,7 +105,6 @@ function LiveEnergyTitle({ override }: Readonly<{ override?: string }>) {
 function SpireScene(p: Props) {
   const { width, height: windowH, fontScale } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
-  const k = width / SPIRE_SCENE_BASE_W;
   const pal = useSpirePalette();
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const evening = p.decision.state === 'eve';
@@ -106,13 +120,13 @@ function SpireScene(p: Props) {
   // зачем (владелец 22.10 кнопкой: «Сцена выше, башня крупнее»): видимая под шапкой высота до верха «Играть» — башня целиком над кнопкой
   const visibleH = spireSceneVisibleH(windowH, insets.top, p.dockClear ?? DEFAULT_DOCK_CLEAR);
   const frame = useMemo(() => spireSceneFrame({ width, visibleH, fontScale, guardChars, headroom }), [width, visibleH, fontScale, guardChars, headroom]);
-  const haloSize = Math.round(HALO.size * k);
   const offText = useMemo(() => {
     const full = spireGameText(p.lang, 'offline');
     const cut = full.indexOf('. ');
     return cut > 0 ? { bold: full.slice(0, cut + 1), rest: full.slice(cut + 1) } : { bold: full, rest: '' };
   }, [p.lang]);
   const glow = evening ? tokens.eveningGlow : tokens.sceneGlow;
+  const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.55), [tokens.sceneGlow]);
   // зачем (эталон: сцена уходит под вкладки и под часы): пока «Пик» на экране — верхний цвет сцены шапке «Сообщества» и полосе статуса
   useEffect(() => {
     if (!p.headerTint) return undefined;
@@ -124,12 +138,12 @@ function SpireScene(p: Props) {
     const topUnit = SPIRE_TOWER_GEOM.height - frame.windowH / frame.scale;
     const shown = SPIRE_TOWER_GEOM.floors.filter((fl) => fl.y >= topUnit - 0.5).map((fl) => fl.f);
     console.log('[SPIRE-LAYOUT]', JSON.stringify({ // guard-ok: журнал сетки Пика (координатор 22.10)
-      width, windowH, visibleH: Math.round(visibleH), fontScale, tier: p.tier, myFloor: p.myFloor, headroom: Math.round(headroom),
+      state: p.decision.state, width, windowH, visibleH: Math.round(visibleH), fontScale, tier: p.tier, myFloor: p.myFloor, headroom: Math.round(headroom),
       scale: Number(frame.scale.toFixed(3)), towerW: frame.towerW, towerH: Math.round(frame.windowH), towerLeft: frame.towerLeft,
       windowTop: Math.round(frame.windowTop), sceneH: frame.sceneH, floors: shown.length > 0 ? `${shown[0]}–${shown[shown.length - 1]}` : 'none',
       crown: topUnit <= SPIRE_TOWER_GEOM.top - headroom + 0.5, wordsHidden: frame.wordsHidden, copyW: frame.copyW,
     }));
-  }, [frame, width, windowH, visibleH, fontScale, headroom, p.tier, p.myFloor]);
+  }, [frame, width, windowH, visibleH, fontScale, headroom, p.tier, p.myFloor, p.decision.state]);
   // зачем (владелец 22.10: «аватарки нажимались»): карточка игрока — по строке комнаты (кэш недели); нет строки — журнал причины, без окна
   const [player, setPlayer] = useState<PlayerInfo | null>(null);
   const members = p.members ?? null;
@@ -160,10 +174,6 @@ function SpireScene(p: Props) {
               <Stop offset="0" stopColor={glow} stopOpacity="1" />
               <Stop offset="1" stopColor={glow} stopOpacity="0" />
             </RadialGradient>
-            <RadialGradient id="spireSceneHalo" cx="50%" cy="50%" r="50%">
-              <Stop offset="0" stopColor={SPIRE_SCENE_INK.text} stopOpacity="0.22" />
-              <Stop offset="0.7" stopColor={SPIRE_SCENE_INK.text} stopOpacity="0" />
-            </RadialGradient>
             {evening ? (
               <RadialGradient id="spireSceneEmber" cx="50%" cy="50%" r="50%">
                 <Stop offset="0" stopColor={tokens.sceneEmber} stopOpacity="1" />
@@ -172,8 +182,9 @@ function SpireScene(p: Props) {
             ) : null}
           </Defs>
           <Rect x="0" y="0" width="100%" height="100%" fill="url(#spireSceneLight)" />
-          {/* мягкий ореол за башней (эталон .a-glow: справа 12, сверху 150 − 112, 260 × 260) */}
-          <Rect x={width - Math.round(HALO.right * k) - haloSize} y={HALO.top} width={haloSize} height={haloSize} fill="url(#spireSceneHalo)" />
+          {/* зачем (владелец 22.10: «фон за башней — чтобы не отличался»; «звёздочки по всей плоскости до краёв»): ореола за башней нет — фон
+              единый; звёзды — по всей сцене, светлый оттенок свечения темы */}
+          {SCENE_STARS.map(([x, y, r, o], i) => <Circle key={`st${i}` /* guard-ok: постоянный список звёзд */} cx={x * width} cy={y * frame.sceneH} r={r} fill={starColor} opacity={o} />)}
           {evening ? <Rect x={-40} y={frame.sceneH - 200} width={260} height={260} fill="url(#spireSceneEmber)" /> : null}
         </Svg>
         {tokens.scrim ? <LinearGradient pointerEvents="none" colors={[SPIRE_SCENE_INK.clear, SPIRE_SCENE_INK.scrim]} style={s.scrim} /> : null}
@@ -195,6 +206,7 @@ function SpireScene(p: Props) {
             onPressRival={onPressRival}
             onPressMore={p.onOpenAll}
             onPressMe={onPressMe}
+            markerGlow={tokens.sceneGlow}
           />
         </View>
         <View testID="spire-scene-copy" style={[s.copy, { top: off ? COPY_TOP_OFFLINE : COPY_TOP, width: frame.copyW }]}>
@@ -213,16 +225,7 @@ function SpireScene(p: Props) {
               <Text style={ts.line} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.line}</Text>
             </View>
           ) : null}
-          {p.copy.rewards.length > 0 ? (
-            <View style={s.rewards}>
-              {p.copy.rewards.map((r) => (
-                <View key={r} style={s.reward}>
-                  <AvatarView avatar="" coinRank={BASE_COIN_RANK} size={20} />
-                  <Text style={ts.rewardText} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{r}</Text>
-                </View>
-              ))}
-            </View>
-          ) : null}
+          {/* зачем (владелец 22.10: «ВОТ ЭТОТ ТЕКСТ УБИРАЙ»): плашек «+10 за ступень / этаж» на сцене нет; строки наград в модели остаются */}
         </View>
         {off ? (
           // зачем (аудит кнопок Ревизора 22.10, F6): плашка «нет сети» лежит поверх верха башни — касания проходят сквозь неё к этажам
@@ -295,9 +298,6 @@ const s = StyleSheet.create({
   bar: { width: 48, height: 4, borderRadius: 2, backgroundColor: SPIRE_SCENE_INK.barTrack, overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: SPIRE_SCENE_INK.text },
   line: { color: SPIRE_SCENE_INK.line, fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] }, // guard-ok: «ступень 7 из 8» — строка прогресса этажа (эталон V2), не подпись-расшифровка
-  rewards: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },
-  reward: { minHeight: 30, maxWidth: '100%', borderRadius: 15, paddingLeft: 6, paddingRight: 11, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: SPIRE_SCENE_INK.glass },
-  rewardText: { color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17, fontWeight: '700', flexShrink: 1 },
   // зачем (scenes-compact .pn): «Комната недели» — карточка темы без рамки, скругление 24, поверх низа сцены
   panel: { marginHorizontal: 16, borderRadius: 24, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 12 },
   panelHead: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44 },

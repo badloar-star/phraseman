@@ -43,7 +43,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 142,
+      "versionCode": 143,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",

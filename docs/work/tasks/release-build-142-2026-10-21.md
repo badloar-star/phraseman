@@ -4,6 +4,7 @@ Governance-ID: TG-97E9B7537C74
 Governance-ID: TG-6C14C90569A1
 Governance-ID: TG-EC4B2AB16177
 Governance-ID: TG-A297F43F3F45
+Governance-ID: TG-9D2D0074FBDF
 
 ## 22.10: iOS 2.0.1 (143) — Apple закрыл поезд 2.0.0
 
@@ -18,6 +19,8 @@ Governance-ID: TG-A297F43F3F45
   - (а) versionCode 143, рекомендован;
   - (в) iOS 142 под 2.0.1.
   Перезапуск только после его ответа.
+- Координатор выбрал (а): в снимке и в общей ветке выставлен versionCode 143. Android при этом не собирается. Сторож прошёл локально (`[release-keys-gate] OK static`).
+- Повтор EAS 0c6c5015-7036-48da-b601-6354176f3b57: 2.0.1, номер сборки 143. Отправка в App Store запланирована, b5b3cf37-faf4-4414-83c9-15b5cca68551.
 
 ## Ход 21.10 (вечер)
 

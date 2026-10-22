@@ -20,7 +20,7 @@ const COPY = {
   yourAnswer: { ru: "Твой ответ:", uk: "Твоя відповідь:", en: "Your answer:", es: "Tu respuesta:", "pt-BR": "Sua resposta:", vi: "Bạn trả lời:", id: "Jawabanmu:", tr: "Cevabın:", pl: "Twoja odpowiedź:" },
   repeatEpisode: { ru: "Повторить эпизод {n}", uk: "Повторити епізод {n}", en: "Replay episode {n}", es: "Repetir el episodio {n}", "pt-BR": "Repetir o episódio {n}", vi: "Học lại tập {n}", id: "Ulangi episode {n}", tr: "{n}. bölümü tekrarla", pl: "Powtórz odcinek {n}" },
   // зачем (Ревизор 22.10): прямой вход в экзамен во время паузы после провала; ru — макет «Пересдать через 59 мин», остальное — черновик для Переводчика
-  retryIn: { ru: "Пересдать через {m} мин", uk: "Перескласти через {m} хв", en: "Retake in {m} min", es: "Repetir en {m} min", "pt-BR": "Refazer em {m} min", vi: "Thi lại sau {m} phút", id: "Ulang dalam {m} menit", tr: "{m} dk sonra yeniden gir", pl: "Ponownie za {m} min" },
+  retryIn: { ru: "Пересдать через {m} мин", uk: "Перескласти за {m} хв", en: "Retake in {m} min", es: "Repetir en {m} min", "pt-BR": "Refazer em {m} min", vi: "Thi lại sau {m} phút", id: "Ulang dalam {m} menit", tr: "{m} dk sonra yeniden gir", pl: "Ponownie za {m} min" },
 } as const satisfies Record<string, Row>;
 
 export type LearningV2ChapterExamResultCopyKey = keyof typeof COPY;

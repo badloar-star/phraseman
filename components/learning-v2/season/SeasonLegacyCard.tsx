@@ -22,7 +22,7 @@ type Props = Readonly<{ lang: Lang; progress: SeasonLegacyProgress; onPress: () 
 export function seasonLegacyTitle(lang: Lang): string {
   return triLang(lang, {
     ru: 'Ваши прошлые уроки', uk: 'Ваші попередні уроки', en: 'Your earlier lessons', es: 'Tus lecciones anteriores', 'pt-BR': 'Suas lições anteriores',
-    vi: 'Các bài học trước đây của bạn', id: 'Pelajaran Anda sebelumnya', tr: 'Önceki dersleriniz', pl: 'Twoje wcześniejsze lekcje',
+    vi: 'Các bài học trước đây của bạn', id: 'Pelajaranmu sebelumnya', tr: 'Önceki derslerin', pl: 'Twoje wcześniejsze lekcje',
   });
 }
 

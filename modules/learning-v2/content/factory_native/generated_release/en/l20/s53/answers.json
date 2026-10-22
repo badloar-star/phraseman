@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-53:word:realise",
+    "correctText": "realise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i01",
+    "correctText": "You should realise the importance of rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i02",
+    "correctText": "You should realise the importance of rest.",
+    "correctResponseId": "en:lesson-20:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i03",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:word:imagine",
+    "correctText": "imagine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i04",
+    "correctText": "You should imagine a different route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i05",
+    "correctText": "You should imagine a different route.",
+    "correctResponseId": "en:lesson-20:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i06",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:word:rely",
+    "correctText": "rely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i07",
+    "correctText": "We should rely on the timetable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i08",
+    "correctText": "We should rely on the timetable.",
+    "correctResponseId": "en:lesson-20:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i09",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:word:assume",
+    "correctText": "assume",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i10",
+    "correctText": "We should assume a price of fifty pounds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i11",
+    "correctText": "We should assume a price of fifty pounds.",
+    "correctResponseId": "en:lesson-20:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i12",
+    "correctText": "should",
+    "correctResponseId": "en:lesson-20:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i13",
+    "correctText": "en:lesson-20:session-53:i13:p1=realise\nen:lesson-20:session-53:i13:p2=imagine\nen:lesson-20:session-53:i13:p3=rely\nen:lesson-20:session-53:i13:p4=assume",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i16",
+    "correctText": "You should imagine a different route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-53:i17",
+    "correctText": "We should rely on the timetable.",
+    "correctResponseId": null
+  }
+]

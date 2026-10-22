@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-49:word:ignore",
+    "correctText": "ignore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i01",
+    "correctText": "You mustn't ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i02",
+    "correctText": "You mustn't ignore the rules.",
+    "correctResponseId": "en:lesson-20:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i03",
+    "correctText": "mustn't",
+    "correctResponseId": "en:lesson-20:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:word:reveal",
+    "correctText": "reveal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i04",
+    "correctText": "We mustn't reveal the answer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i05",
+    "correctText": "We mustn't reveal the answer.",
+    "correctResponseId": "en:lesson-20:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i06",
+    "correctText": "mustn't",
+    "correctResponseId": "en:lesson-20:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:word:exclude",
+    "correctText": "exclude",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i07",
+    "correctText": "She mustn't exclude any player.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i08",
+    "correctText": "She mustn't exclude any player.",
+    "correctResponseId": "en:lesson-20:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i09",
+    "correctText": "mustn't",
+    "correctResponseId": "en:lesson-20:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:word:insult",
+    "correctText": "insult",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i10",
+    "correctText": "You mustn't insult other players.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i11",
+    "correctText": "You mustn't insult other players.",
+    "correctResponseId": "en:lesson-20:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i12",
+    "correctText": "mustn't",
+    "correctResponseId": "en:lesson-20:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i13",
+    "correctText": "en:lesson-20:session-49:i13:p1=ignore\nen:lesson-20:session-49:i13:p2=reveal\nen:lesson-20:session-49:i13:p3=exclude\nen:lesson-20:session-49:i13:p4=insult",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i16",
+    "correctText": "You mustn't insult other players.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-49:i17",
+    "correctText": "She mustn't exclude any player.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Двигаться по шагам",
+        "uk": "Рухатися крок за кроком"
+      },
+      "bodyByLocale": {
+        "ru": "Step by step — пошагово. В общем плане много пунктов, и вы предлагаете разбирать их последовательно: закончить один шаг и перейти к следующему. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Step by step — покроково. У спільному плані багато пунктів, і ви пропонуєте розбирати їх послідовно: закінчити один крок і перейти до наступного. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-55:intro1:r1",
+              "text": "We ought to work step by step."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro1:r2",
+              "text": "We oughts to work step by step."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro1:r3",
+              "text": "We ought work step by step."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-55:intro1:r1",
+              "text": "We ought to work step by step."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro1:r2",
+              "text": "We oughts to work step by step."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro1:r3",
+              "text": "We ought work step by step."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начать заново",
+        "uk": "Почати заново"
+      },
+      "bodyByLocale": {
+        "ru": "From scratch — с нуля, без использования прежнего результата. Старый план больше не подходит, и вы предлагаете составить его заново. Side by side — рядом, бок о бок: вы хотите сесть рядом, чтобы обоим было видно один лист. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "From scratch — з нуля, без використання попереднього результату. Старий план більше не підходить, і ви пропонуєте скласти його заново. Side by side — поруч, пліч-о-пліч: ви хочете сісти поруч, щоб обом було видно один аркуш. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-55:intro2:r1",
+              "text": "We ought to start from scratch."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro2:r2",
+              "text": "We oughts to start from scratch."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro2:r3",
+              "text": "We ought start from scratch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-55:intro2:r1",
+              "text": "We ought to start from scratch."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro2:r2",
+              "text": "We oughts to start from scratch."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro2:r3",
+              "text": "We ought start from scratch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Говорить по очереди",
+        "uk": "Говорити по черзі"
+      },
+      "bodyByLocale": {
+        "ru": "In turn — по очереди. Участники перебивают друг друга, и вы предлагаете дать каждому возможность высказаться. Speak in turn — говорить по очереди, а не одновременно. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "In turn — по черзі. Учасники перебивають одне одного, і ви пропонуєте дати кожному можливість висловитися. Speak in turn — говорити по черзі, а не одночасно. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-55:intro3:r1",
+              "text": "We ought to speak in turn."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro3:r2",
+              "text": "We oughts to speak in turn."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro3:r3",
+              "text": "We ought speak in turn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-55:intro3:r1",
+              "text": "We ought to speak in turn."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro3:r2",
+              "text": "We oughts to speak in turn."
+            },
+            {
+              "responseId": "en:lesson-20:session-55:intro3:r3",
+              "text": "We ought speak in turn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5c740b33117d3a64cf25ba33584d0aa8744265d0113a5f5e424981598e9197dc"
+}

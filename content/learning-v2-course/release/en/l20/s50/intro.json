@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "mustn't + base verb",
+    "uk": "mustn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не причинять вред",
+        "uk": "Не завдавати шкоди"
+      },
+      "bodyByLocale": {
+        "ru": "Harm — причинять вред. В парке можно наблюдать за животными, но нельзя причинять им вред. Слово относится к последствиям для здоровья или благополучия, а не только к намеренному удару. Mustn’t + начальная форма глагола означает запрет: «нельзя». Mustn’t — сокращение must not. Это отличается от needn’t и don’t have to: там действие необязательно, а здесь оно запрещено. После mustn’t не ставим to, и с she форма не меняется.",
+        "uk": "Harm — завдавати шкоди. У парку можна спостерігати за тваринами, але не можна завдавати їм шкоди. Слово стосується наслідків для здоровʼя або добробуту, а не лише навмисного удару. Mustn’t + початкова форма дієслова означає заборону: «не можна». Mustn’t — скорочення must not. Це відрізняється від needn’t і don’t have to: там дія необовʼязкова, а тут вона заборонена. Після mustn’t не ставимо to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-50:intro1:r1",
+              "text": "You mustn't harm the animals."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro1:r2",
+              "text": "You mustn't to harm the animals."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro1:r3",
+              "text": "You mustn'ts harm the animals."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-50:intro1:r1",
+              "text": "You mustn't harm the animals."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro1:r2",
+              "text": "You mustn't to harm the animals."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro1:r3",
+              "text": "You mustn'ts harm the animals."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Без угроз и обмана",
+        "uk": "Без погроз і обману"
+      },
+      "bodyByLocale": {
+        "ru": "Threaten — угрожать: например, обещать кому-то неприятности, чтобы заставить его согласиться. Mislead — вводить в заблуждение. Мы не должны давать гостям неверное представление об условиях проживания: если рядом шумная дорога, нельзя обещать полную тишину. Mustn’t + начальная форма глагола означает запрет: «нельзя». Mustn’t — сокращение must not. Это отличается от needn’t и don’t have to: там действие необязательно, а здесь оно запрещено. После mustn’t не ставим to, и с she форма не меняется.",
+        "uk": "Threaten — погрожувати: наприклад, обіцяти комусь неприємності, щоб змусити його погодитися. Mislead — вводити в оману. Ми не повинні створювати в гостей хибне уявлення про умови проживання: якщо поруч шумна дорога, не можна обіцяти цілковиту тишу. Mustn’t + початкова форма дієслова означає заборону: «не можна». Mustn’t — скорочення must not. Це відрізняється від needn’t і don’t have to: там дія необовʼязкова, а тут вона заборонена. Після mustn’t не ставимо to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-50:intro2:r1",
+              "text": "You mustn't threaten other people."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro2:r2",
+              "text": "You mustn't to threaten other people."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro2:r3",
+              "text": "You mustn'ts threaten other people."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-50:intro2:r1",
+              "text": "You mustn't threaten other people."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro2:r2",
+              "text": "You mustn't to threaten other people."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro2:r3",
+              "text": "You mustn'ts threaten other people."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не задевать чувства",
+        "uk": "Не зачіпати почуття"
+      },
+      "bodyByLocale": {
+        "ru": "Offend — обижать, задевать чувства; это может произойти и без намерения. Известное insult обозначает оскорбление, а offend подчёркивает, что человек почувствовал обиду. Перед общей встречей мы договариваемся не задевать соседей обидными шутками. Mustn’t + начальная форма глагола означает запрет: «нельзя». Mustn’t — сокращение must not. Это отличается от needn’t и don’t have to: там действие необязательно, а здесь оно запрещено. После mustn’t не ставим to, и с she форма не меняется.",
+        "uk": "Offend — ображати, зачіпати почуття; це може статися й ненавмисно. Відоме insult позначає образу, а offend підкреслює, що людина відчула себе скривдженою. Перед спільною зустріччю ми домовляємося не зачіпати сусідів образливими жартами. Mustn’t + початкова форма дієслова означає заборону: «не можна». Mustn’t — скорочення must not. Це відрізняється від needn’t і don’t have to: там дія необовʼязкова, а тут вона заборонена. Після mustn’t не ставимо to, і з she форма не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-50:intro3:r1",
+              "text": "We mustn't offend our neighbours."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro3:r2",
+              "text": "We mustn't to offend our neighbours."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro3:r3",
+              "text": "We mustn'ts offend our neighbours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-50:intro3:r1",
+              "text": "We mustn't offend our neighbours."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro3:r2",
+              "text": "We mustn't to offend our neighbours."
+            },
+            {
+              "responseId": "en:lesson-20:session-50:intro3:r3",
+              "text": "We mustn'ts offend our neighbours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "17f90d2570643dbd7d26e96abc654ffea524b98f37f8e3048b10f1dac67355f9"
+}

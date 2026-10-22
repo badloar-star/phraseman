@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отправить по почте",
+        "uk": "Надіслати поштою"
+      },
+      "bodyByLocale": {
+        "ru": "By post — обычной почтой. Вы спрашиваете, можно ли отправить документ письмом, чтобы не отвозить его лично. It — этот документ. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "By post — звичайною поштою. Ви питаєте, чи можна надіслати документ листом, щоб не відвозити його особисто. It — цей документ. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-54:intro1:r1",
+              "text": "Could I send it by post?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro1:r2",
+              "text": "Could I to send it by post?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro1:r3",
+              "text": "I could send it by post?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-54:intro1:r1",
+              "text": "Could I send it by post?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro1:r2",
+              "text": "Could I to send it by post?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro1:r3",
+              "text": "I could send it by post?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поговорить лично",
+        "uk": "Поговорити особисто"
+      },
+      "bodyByLocale": {
+        "ru": "Face to face — при личной встрече, лицом к лицу. Вам удобнее обсудить вопрос при встрече, чем по телефону. Вы вежливо спрашиваете собеседника, можно ли так поговорить. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Face to face — під час особистої зустрічі, віч-на-віч. Вам зручніше обговорити питання під час зустрічі, ніж телефоном. Ви ввічливо питаєте співрозмовника, чи можна так поговорити. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-54:intro2:r1",
+              "text": "Could I speak to you face to face?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro2:r2",
+              "text": "Could I to speak to you face to face?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro2:r3",
+              "text": "I could speak to you face to face?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-54:intro2:r1",
+              "text": "Could I speak to you face to face?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro2:r2",
+              "text": "Could I to speak to you face to face?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro2:r3",
+              "text": "I could speak to you face to face?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перенести без доплаты",
+        "uk": "Перенести без доплати"
+      },
+      "bodyByLocale": {
+        "ru": "Ahead of time — заранее: вы хотите оплатить поездку до дня отправления. At no extra cost — без дополнительной платы: вы уже оплатили билет и уточняете, можно ли перенести поездку без доплаты. Это вопрос об условиях, а не обещание, что перенос бесплатный. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "Ahead of time — заздалегідь: ви хочете оплатити поїздку до дня відправлення. At no extra cost — без додаткової плати: ви вже оплатили квиток і уточнюєте, чи можна перенести поїздку без доплати. Це питання про умови, а не обіцянка, що перенесення безкоштовне. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-54:intro3:r1",
+              "text": "Could I change the date at no extra cost?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro3:r2",
+              "text": "Could I to change the date at no extra cost?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro3:r3",
+              "text": "I could change the date at no extra cost?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-54:intro3:r1",
+              "text": "Could I change the date at no extra cost?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro3:r2",
+              "text": "Could I to change the date at no extra cost?"
+            },
+            {
+              "responseId": "en:lesson-20:session-54:intro3:r3",
+              "text": "I could change the date at no extra cost?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "52bb471e2b76b3b26b1d7357f93cf6a1136454c0e0d518d68f80a61693bc099b"
+}

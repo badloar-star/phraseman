@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-55:word:step-by-step",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — step by step",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:word:step-by-step:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — step by step",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:word:step-by-step:audio",
+          "transcript": "step by step"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:word:step-by-step:r1",
+            "targetText": "step by step",
+            "meaningByLocale": {
+              "ru": "пошагово, шаг за шагом.",
+              "uk": "покроково, крок за кроком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "step by step",
+          "definitionByLocale": {
+            "ru": "пошагово, шаг за шагом.",
+            "uk": "покроково, крок за кроком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Нам стоит работать пошагово».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Нам стоит работать пошагово».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We ought to work step by step.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Нам стоит работать пошагово».",
+          "uk": "Дайте пораду з ought to: «Нам варто працювати покроково»."
+        },
+        "orderedTokens": [
+          "We",
+          "ought",
+          "to",
+          "work",
+          "step",
+          "by",
+          "step"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i02:r1",
+          "text": "We ought to work step by step."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i02:r2",
+          "text": "We can work step by step."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i02:r3",
+          "text": "We could work step by step."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i02:audio",
+          "transcript": "We ought to work step by step."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:i02:r1",
+            "targetText": "We ought to work step by step.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i02:r2",
+            "targetText": "We can work step by step.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i02:r3",
+            "targetText": "We could work step by step.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to work step by step.",
+              "uk": "У записі звучить We ought to work step by step."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to work step by step.",
+              "uk": "У записі звучить We ought to work step by step."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i03:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i03:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i03:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ work step by step.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-55:i03:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i03:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i03:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:word:from-scratch",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — from scratch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:word:from-scratch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — from scratch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:word:from-scratch:audio",
+          "transcript": "from scratch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:word:from-scratch:r1",
+            "targetText": "from scratch",
+            "meaningByLocale": {
+              "ru": "с нуля.",
+              "uk": "з нуля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "from scratch",
+          "definitionByLocale": {
+            "ru": "с нуля.",
+            "uk": "з нуля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Нам стоит начать с нуля».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Нам стоит начать с нуля».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We ought to start from scratch.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Нам стоит начать с нуля».",
+          "uk": "Дайте пораду з ought to: «Нам варто почати з нуля»."
+        },
+        "orderedTokens": [
+          "We",
+          "ought",
+          "to",
+          "start",
+          "from",
+          "scratch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i05:r1",
+          "text": "We ought to start from scratch."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i05:r2",
+          "text": "We can start from scratch."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i05:r3",
+          "text": "We could start from scratch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i05:audio",
+          "transcript": "We ought to start from scratch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:i05:r1",
+            "targetText": "We ought to start from scratch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i05:r2",
+            "targetText": "We can start from scratch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i05:r3",
+            "targetText": "We could start from scratch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to start from scratch.",
+              "uk": "У записі звучить We ought to start from scratch."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to start from scratch.",
+              "uk": "У записі звучить We ought to start from scratch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i06:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i06:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i06:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ start from scratch.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-55:i06:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i06:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i06:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:word:side-by-side",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — side by side",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:word:side-by-side:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — side by side",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:word:side-by-side:audio",
+          "transcript": "side by side"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:word:side-by-side:r1",
+            "targetText": "side by side",
+            "meaningByLocale": {
+              "ru": "бок о бок, рядом.",
+              "uk": "пліч-о-пліч, поруч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "side by side",
+          "definitionByLocale": {
+            "ru": "бок о бок, рядом.",
+            "uk": "пліч-о-пліч, поруч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Нам стоит сесть рядом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Нам стоит сесть рядом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We ought to sit side by side.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Нам стоит сесть рядом».",
+          "uk": "Дайте пораду з ought to: «Нам варто сісти поруч»."
+        },
+        "orderedTokens": [
+          "We",
+          "ought",
+          "to",
+          "sit",
+          "side",
+          "by",
+          "side"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i08:r1",
+          "text": "We ought to sit side by side."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i08:r2",
+          "text": "We can sit side by side."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i08:r3",
+          "text": "We could sit side by side."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i08:audio",
+          "transcript": "We ought to sit side by side."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:i08:r1",
+            "targetText": "We ought to sit side by side.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i08:r2",
+            "targetText": "We can sit side by side.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i08:r3",
+            "targetText": "We could sit side by side.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to sit side by side.",
+              "uk": "У записі звучить We ought to sit side by side."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to sit side by side.",
+              "uk": "У записі звучить We ought to sit side by side."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i09:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i09:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i09:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ sit side by side.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-55:i09:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i09:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i09:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:word:in-turn",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — in turn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:word:in-turn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — in turn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:word:in-turn:audio",
+          "transcript": "in turn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:word:in-turn:r1",
+            "targetText": "in turn",
+            "meaningByLocale": {
+              "ru": "по очереди.",
+              "uk": "по черзі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in turn",
+          "definitionByLocale": {
+            "ru": "по очереди.",
+            "uk": "по черзі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте совет с ought to: «Нам стоит говорить по очереди».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет с ought to: «Нам стоит говорить по очереди».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We ought to speak in turn.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с ought to: «Нам стоит говорить по очереди».",
+          "uk": "Дайте пораду з ought to: «Нам варто говорити по черзі»."
+        },
+        "orderedTokens": [
+          "We",
+          "ought",
+          "to",
+          "speak",
+          "in",
+          "turn"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i11:r1",
+          "text": "We ought to speak in turn."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i11:r2",
+          "text": "We can speak in turn."
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i11:r3",
+          "text": "We could speak in turn."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i11:audio",
+          "transcript": "We ought to speak in turn."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-55:i11:r1",
+            "targetText": "We ought to speak in turn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i11:r2",
+            "targetText": "We can speak in turn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i11:r3",
+            "targetText": "We could speak in turn.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to speak in turn.",
+              "uk": "У записі звучить We ought to speak in turn."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We ought to speak in turn.",
+              "uk": "У записі звучить We ought to speak in turn."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-55:i12:r1",
+          "text": "ought to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i12:r2",
+          "text": "oughts to"
+        },
+        {
+          "responseId": "en:lesson-20:session-55:i12:r3",
+          "text": "ought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ speak in turn.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-55:i12:r1",
+            "text": "ought to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i12:r2",
+            "text": "oughts to"
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i12:r3",
+            "text": "ought"
+          }
+        ],
+        "testedDimension": "Дополните совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-55:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "Ought не получает окончания -s.",
+              "uk": "Ought не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-55:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните совет.",
+            "feedbackByLocale": {
+              "ru": "После ought нужно to.",
+              "uk": "Після ought потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-55:i13:p1",
+            "target": "step by step",
+            "meaningByLocale": {
+              "ru": "пошагово, шаг за шагом",
+              "uk": "покроково, крок за кроком"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-55:i13:p2",
+            "target": "from scratch",
+            "meaningByLocale": {
+              "ru": "с нуля",
+              "uk": "з нуля"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-55:i13:p3",
+            "target": "side by side",
+            "meaningByLocale": {
+              "ru": "бок о бок, рядом",
+              "uk": "пліч-о-пліч, поруч"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-55:i13:p4",
+            "target": "in turn",
+            "meaningByLocale": {
+              "ru": "по очереди",
+              "uk": "по черзі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "step by step",
+          "from scratch",
+          "side by side",
+          "in turn"
+        ],
+        "rightColumn": [
+          "пошагово, шаг за шагом",
+          "с нуля",
+          "бок о бок, рядом",
+          "по очереди"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное разрешение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное разрешение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: необходимость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: необходимость",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите начать с нуля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i16:audio"
+      ],
+      "accessibilityLabel": "Предложите начать с нуля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i16:audio",
+          "transcript": "We ought to start from scratch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We ought to start from scratch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-55:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите говорить по очереди",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Предложите говорить по очереди",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-55:i17:audio",
+          "transcript": "We ought to speak in turn."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We ought to speak in turn.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "897d18d48b24bc157fce690e0f0e9c05dd1cca10ceef0f877903b7c059fd0037"
+}

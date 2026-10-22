@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-51:word:law",
+    "correctText": "law",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i01",
+    "correctText": "You ought to read about this law.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i02",
+    "correctText": "You ought to read about this law.",
+    "correctResponseId": "en:lesson-20:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:word:crime",
+    "correctText": "crime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i04",
+    "correctText": "We ought to report the crime.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i05",
+    "correctText": "We ought to report the crime.",
+    "correctResponseId": "en:lesson-20:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:word:witness",
+    "correctText": "witness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i07",
+    "correctText": "She ought to speak to the witness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i08",
+    "correctText": "She ought to speak to the witness.",
+    "correctResponseId": "en:lesson-20:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:word:evidence",
+    "correctText": "evidence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i10",
+    "correctText": "We ought to look at the evidence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i11",
+    "correctText": "We ought to look at the evidence.",
+    "correctResponseId": "en:lesson-20:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i13",
+    "correctText": "en:lesson-20:session-51:i13:p1=law\nen:lesson-20:session-51:i13:p2=crime\nen:lesson-20:session-51:i13:p3=witness\nen:lesson-20:session-51:i13:p4=evidence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i16",
+    "correctText": "She ought to speak to the witness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-51:i17",
+    "correctText": "We ought to look at the evidence.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прочитать о законе",
+        "uk": "Прочитати про закон"
+      },
+      "bodyByLocale": {
+        "ru": "Law — закон. Вы прочитали короткий заголовок о новом законе и советуете другу узнать подробности. Здесь речь о конкретном законе: this law. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Law — закон. Ви прочитали короткий заголовок про новий закон і радите другові дізнатися подробиці. Тут ідеться про конкретний закон: this law. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-51:intro1:r1",
+              "text": "You ought to read about this law."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro1:r2",
+              "text": "You oughts to read about this law."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro1:r3",
+              "text": "You ought read about this law."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-51:intro1:r1",
+              "text": "You ought to read about this law."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro1:r2",
+              "text": "You oughts to read about this law."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro1:r3",
+              "text": "You ought read about this law."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сообщить о происшествии",
+        "uk": "Повідомити про подію"
+      },
+      "bodyByLocale": {
+        "ru": "Crime — преступление. Вы узнали, что у соседей украли вещи, и предлагаете сообщить об этом. Witness — свидетель: человек, который видел событие. Знакомая хочет понять, что произошло; вы советуете поговорить с очевидцем. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Crime — злочин. Ви дізналися, що в сусідів украли речі, і пропонуєте повідомити про це. Witness — свідок: людина, яка бачила подію. Знайома хоче зрозуміти, що сталося; ви радите поговорити з очевидцем. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-51:intro2:r1",
+              "text": "We ought to report the crime."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro2:r2",
+              "text": "We oughts to report the crime."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro2:r3",
+              "text": "We ought report the crime."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-51:intro2:r1",
+              "text": "We ought to report the crime."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro2:r2",
+              "text": "We oughts to report the crime."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro2:r3",
+              "text": "We ought report the crime."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Посмотреть на доказательства",
+        "uk": "Подивитися на докази"
+      },
+      "bodyByLocale": {
+        "ru": "Evidence — доказательства или сведения, по которым можно судить о событии. Вы обсуждаете рассказ и предлагаете сначала посмотреть на имеющиеся фотографии. Evidence — неисчисляемое слово: здесь не нужны a или окончание -s. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Evidence — докази або відомості, за якими можна судити про подію. Ви обговорюєте розповідь і пропонуєте спершу подивитися на наявні фотографії. Evidence — незлічуване слово: тут не потрібні a або закінчення -s. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-51:intro3:r1",
+              "text": "We ought to look at the evidence."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro3:r2",
+              "text": "We oughts to look at the evidence."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro3:r3",
+              "text": "We ought look at the evidence."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-51:intro3:r1",
+              "text": "We ought to look at the evidence."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro3:r2",
+              "text": "We oughts to look at the evidence."
+            },
+            {
+              "responseId": "en:lesson-20:session-51:intro3:r3",
+              "text": "We ought look at the evidence."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8ef294654fdbabe99b9b104f39b32bc0f0fc82e3ed91a07220916830df8d5b13"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-56:word:handful",
+    "correctText": "handful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i01",
+    "correctText": "Could I add a handful of rice?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i02",
+    "correctText": "Could I add a handful of rice?",
+    "correctResponseId": "en:lesson-20:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:word:spoonful",
+    "correctText": "spoonful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i04",
+    "correctText": "Could I add a spoonful of sugar?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i05",
+    "correctText": "Could I add a spoonful of sugar?",
+    "correctResponseId": "en:lesson-20:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:word:mouthful",
+    "correctText": "mouthful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i07",
+    "correctText": "Could I try a mouthful of soup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i08",
+    "correctText": "Could I try a mouthful of soup?",
+    "correctResponseId": "en:lesson-20:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:word:helping",
+    "correctText": "helping",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i10",
+    "correctText": "Could I have another helping of soup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i11",
+    "correctText": "Could I have another helping of soup?",
+    "correctResponseId": "en:lesson-20:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i13",
+    "correctText": "en:lesson-20:session-56:i13:p1=handful\nen:lesson-20:session-56:i13:p2=spoonful\nen:lesson-20:session-56:i13:p3=mouthful\nen:lesson-20:session-56:i13:p4=helping",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i14",
+    "correctText": "You must not ignore the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i15",
+    "correctText": "You do not have to pay now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i16",
+    "correctText": "Could I add a handful of rice?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-56:i17",
+    "correctText": "Could I add a spoonful of sugar?",
+    "correctResponseId": null
+  }
+]

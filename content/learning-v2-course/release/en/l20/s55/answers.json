@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-55:word:step-by-step",
+    "correctText": "step by step",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i01",
+    "correctText": "We ought to work step by step.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i02",
+    "correctText": "We ought to work step by step.",
+    "correctResponseId": "en:lesson-20:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i03",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:word:from-scratch",
+    "correctText": "from scratch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i04",
+    "correctText": "We ought to start from scratch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i05",
+    "correctText": "We ought to start from scratch.",
+    "correctResponseId": "en:lesson-20:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i06",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:word:side-by-side",
+    "correctText": "side by side",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i07",
+    "correctText": "We ought to sit side by side.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i08",
+    "correctText": "We ought to sit side by side.",
+    "correctResponseId": "en:lesson-20:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i09",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:word:in-turn",
+    "correctText": "in turn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i10",
+    "correctText": "We ought to speak in turn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i11",
+    "correctText": "We ought to speak in turn.",
+    "correctResponseId": "en:lesson-20:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i12",
+    "correctText": "ought to",
+    "correctResponseId": "en:lesson-20:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i13",
+    "correctText": "en:lesson-20:session-55:i13:p1=step by step\nen:lesson-20:session-55:i13:p2=from scratch\nen:lesson-20:session-55:i13:p3=side by side\nen:lesson-20:session-55:i13:p4=in turn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i15",
+    "correctText": "We have to leave now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i16",
+    "correctText": "We ought to start from scratch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-55:i17",
+    "correctText": "We ought to speak in turn.",
+    "correctResponseId": null
+  }
+]

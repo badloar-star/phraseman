@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-50:intro1:r2": {
+          "ru": "После mustn't не нужно to.",
+          "uk": "Після mustn't не потрібне to."
+        },
+        "en:lesson-20:session-50:intro1:r3": {
+          "ru": "Mustn't не получает окончания -s.",
+          "uk": "Mustn't не отримує закінчення -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-50:intro2:r2": {
+          "ru": "После mustn't не нужно to.",
+          "uk": "Після mustn't не потрібне to."
+        },
+        "en:lesson-20:session-50:intro2:r3": {
+          "ru": "Mustn't не получает окончания -s.",
+          "uk": "Mustn't не отримує закінчення -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-50:intro3:r2": {
+          "ru": "После mustn't не нужно to.",
+          "uk": "Після mustn't не потрібне to."
+        },
+        "en:lesson-20:session-50:intro3:r3": {
+          "ru": "Mustn't не получает окончания -s.",
+          "uk": "Mustn't не отримує закінчення -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9cda43e910282ea0e0aed29055454ac8a863cd52e2894c945cbedac004b99bbe"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-54:word:by-post",
+    "correctText": "by post",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i01",
+    "correctText": "Could I send it by post?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i02",
+    "correctText": "Could I send it by post?",
+    "correctResponseId": "en:lesson-20:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:word:face-to-face",
+    "correctText": "face to face",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i04",
+    "correctText": "Could I speak to you face to face?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i05",
+    "correctText": "Could I speak to you face to face?",
+    "correctResponseId": "en:lesson-20:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:word:ahead-of-time",
+    "correctText": "ahead of time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i07",
+    "correctText": "Could I pay ahead of time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i08",
+    "correctText": "Could I pay ahead of time?",
+    "correctResponseId": "en:lesson-20:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:word:at-no-extra-cost",
+    "correctText": "at no extra cost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i10",
+    "correctText": "Could I change the date at no extra cost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i11",
+    "correctText": "Could I change the date at no extra cost?",
+    "correctResponseId": "en:lesson-20:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i13",
+    "correctText": "en:lesson-20:session-54:i13:p1=by post\nen:lesson-20:session-54:i13:p2=face to face\nen:lesson-20:session-54:i13:p3=ahead of time\nen:lesson-20:session-54:i13:p4=at no extra cost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i16",
+    "correctText": "Could I send it by post?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-54:i17",
+    "correctText": "Could I speak to you face to face?",
+    "correctResponseId": null
+  }
+]

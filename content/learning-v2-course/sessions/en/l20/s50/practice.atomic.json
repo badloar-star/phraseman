@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-50:word:harm",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — harm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:harm:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — harm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:harm:audio",
+            "transcript": "harm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:harm:r1",
+              "targetText": "harm",
+              "meaningByLocale": {
+                "ru": "причинять вред.",
+                "uk": "завдавати шкоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "harm",
+            "definitionByLocale": {
+              "ru": "причинять вред.",
+              "uk": "завдавати шкоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с mustn’t: «Тебе нельзя причинять вред животным».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с mustn’t: «Тебе нельзя причинять вред животным».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You mustn't harm the animals.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Тебе нельзя причинять вред животным».",
+            "uk": "Скажіть із mustn’t: «Тобі не можна завдавати шкоди тваринам»."
+          },
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "harm",
+            "the",
+            "animals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i02:r1",
+            "text": "You mustn't harm the animals."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i02:r2",
+            "text": "You must harm the animals."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i02:r3",
+            "text": "You should harm the animals."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i02:audio",
+            "transcript": "You mustn't harm the animals."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i02:r1",
+              "targetText": "You mustn't harm the animals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i02:r2",
+              "targetText": "You must harm the animals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i02:r3",
+              "targetText": "You should harm the animals.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't harm the animals.",
+                "uk": "У записі звучить You mustn't harm the animals."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't harm the animals.",
+                "uk": "У записі звучить You mustn't harm the animals."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите запрет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i03:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i03:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i03:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите запрет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "You ___ harm the animals.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i03:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i03:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i03:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Выразите запрет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:word:threaten",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — threaten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:threaten:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — threaten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:threaten:audio",
+            "transcript": "threaten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:threaten:r1",
+              "targetText": "threaten",
+              "meaningByLocale": {
+                "ru": "угрожать.",
+                "uk": "погрожувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "threaten",
+            "definitionByLocale": {
+              "ru": "угрожать.",
+              "uk": "погрожувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с mustn’t: «Тебе нельзя угрожать другим людям».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с mustn’t: «Тебе нельзя угрожать другим людям».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You mustn't threaten other people.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Тебе нельзя угрожать другим людям».",
+            "uk": "Скажіть із mustn’t: «Тобі не можна погрожувати іншим людям»."
+          },
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "threaten",
+            "other",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i05:r1",
+            "text": "You mustn't threaten other people."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i05:r2",
+            "text": "You must threaten other people."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i05:r3",
+            "text": "You should threaten other people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i05:audio",
+            "transcript": "You mustn't threaten other people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i05:r1",
+              "targetText": "You mustn't threaten other people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i05:r2",
+              "targetText": "You must threaten other people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i05:r3",
+              "targetText": "You should threaten other people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't threaten other people.",
+                "uk": "У записі звучить You mustn't threaten other people."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't threaten other people.",
+                "uk": "У записі звучить You mustn't threaten other people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите запрет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i06:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i06:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i06:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите запрет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "You ___ threaten other people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i06:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i06:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i06:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Выразите запрет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:word:mislead",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mislead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:mislead:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mislead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:mislead:audio",
+            "transcript": "mislead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:mislead:r1",
+              "targetText": "mislead",
+              "meaningByLocale": {
+                "ru": "вводить в заблуждение.",
+                "uk": "вводити в оману."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mislead",
+            "definitionByLocale": {
+              "ru": "вводить в заблуждение.",
+              "uk": "вводити в оману."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с mustn’t: «Нам нельзя вводить гостей в заблуждение».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с mustn’t: «Нам нельзя вводить гостей в заблуждение».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We mustn't mislead our guests.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Нам нельзя вводить гостей в заблуждение».",
+            "uk": "Скажіть із mustn’t: «Нам не можна вводити гостей в оману»."
+          },
+          "orderedTokens": [
+            "We",
+            "mustn't",
+            "mislead",
+            "our",
+            "guests"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i08:r1",
+            "text": "We mustn't mislead our guests."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i08:r2",
+            "text": "We must mislead our guests."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i08:r3",
+            "text": "We should mislead our guests."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i08:audio",
+            "transcript": "We mustn't mislead our guests."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i08:r1",
+              "targetText": "We mustn't mislead our guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i08:r2",
+              "targetText": "We must mislead our guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i08:r3",
+              "targetText": "We should mislead our guests.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't mislead our guests.",
+                "uk": "У записі звучить We mustn't mislead our guests."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't mislead our guests.",
+                "uk": "У записі звучить We mustn't mislead our guests."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите запрет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i09:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i09:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i09:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите запрет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "We ___ mislead our guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i09:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i09:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i09:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Выразите запрет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:word:offend",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — offend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:offend:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — offend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:offend:audio",
+            "transcript": "offend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:offend:r1",
+              "targetText": "offend",
+              "meaningByLocale": {
+                "ru": "обижать, задевать чувства.",
+                "uk": "ображати, зачіпати почуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "offend",
+            "definitionByLocale": {
+              "ru": "обижать, задевать чувства.",
+              "uk": "ображати, зачіпати почуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с mustn’t: «Нам нельзя обижать соседей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с mustn’t: «Нам нельзя обижать соседей».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We mustn't offend our neighbours.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Нам нельзя обижать соседей».",
+            "uk": "Скажіть із mustn’t: «Нам не можна ображати сусідів»."
+          },
+          "orderedTokens": [
+            "We",
+            "mustn't",
+            "offend",
+            "our",
+            "neighbours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i11:r1",
+            "text": "We mustn't offend our neighbours."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i11:r2",
+            "text": "We must offend our neighbours."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i11:r3",
+            "text": "We should offend our neighbours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i11:audio",
+            "transcript": "We mustn't offend our neighbours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i11:r1",
+              "targetText": "We mustn't offend our neighbours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i11:r2",
+              "targetText": "We must offend our neighbours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i11:r3",
+              "targetText": "We should offend our neighbours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't offend our neighbours.",
+                "uk": "У записі звучить We mustn't offend our neighbours."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't offend our neighbours.",
+                "uk": "У записі звучить We mustn't offend our neighbours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите запрет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i12:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i12:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i12:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите запрет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "We ___ offend our neighbours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i12:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i12:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i12:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Выразите запрет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Выразите запрет.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-50:i13:p1",
+              "target": "harm",
+              "meaningByLocale": {
+                "ru": "причинять вред",
+                "uk": "завдавати шкоди"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-50:i13:p2",
+              "target": "threaten",
+              "meaningByLocale": {
+                "ru": "угрожать",
+                "uk": "погрожувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-50:i13:p3",
+              "target": "mislead",
+              "meaningByLocale": {
+                "ru": "вводить в заблуждение",
+                "uk": "вводити в оману"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-50:i13:p4",
+              "target": "offend",
+              "meaningByLocale": {
+                "ru": "обижать, задевать чувства",
+                "uk": "ображати, зачіпати почуття"
+              }
+            }
+          ],
+          "leftColumn": [
+            "harm",
+            "threaten",
+            "mislead",
+            "offend"
+          ],
+          "rightColumn": [
+            "причинять вред",
+            "угрожать",
+            "вводить в заблуждение",
+            "обижать, задевать чувства"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: совет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: совет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i15:audio",
+            "transcript": "You should check the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You should check the address.",
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нам нельзя обижать соседей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нам нельзя обижать соседей",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i16:audio",
+            "transcript": "We mustn't offend our neighbours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We mustn't offend our neighbours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нам нельзя вводить гостей в заблуждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нам нельзя вводить гостей в заблуждение",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i17:audio",
+            "transcript": "We mustn't mislead our guests."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We mustn't mislead our guests.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-50:word:harm",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — harm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:harm:audio"
+        ],
+        "accessibilityLabel": "Картка слова — harm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:harm:audio",
+            "transcript": "harm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:harm:r1",
+              "targetText": "harm",
+              "meaningByLocale": {
+                "ru": "причинять вред.",
+                "uk": "завдавати шкоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "harm",
+            "definitionByLocale": {
+              "ru": "причинять вред.",
+              "uk": "завдавати шкоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із mustn’t: «Тобі не можна завдавати шкоди тваринам».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із mustn’t: «Тобі не можна завдавати шкоди тваринам».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You mustn't harm the animals.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Тебе нельзя причинять вред животным».",
+            "uk": "Скажіть із mustn’t: «Тобі не можна завдавати шкоди тваринам»."
+          },
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "harm",
+            "the",
+            "animals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i02:r1",
+            "text": "You mustn't harm the animals."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i02:r2",
+            "text": "You must harm the animals."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i02:r3",
+            "text": "You should harm the animals."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i02:audio",
+            "transcript": "You mustn't harm the animals."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i02:r1",
+              "targetText": "You mustn't harm the animals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i02:r2",
+              "targetText": "You must harm the animals.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i02:r3",
+              "targetText": "You should harm the animals.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't harm the animals.",
+                "uk": "У записі звучить You mustn't harm the animals."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't harm the animals.",
+                "uk": "У записі звучить You mustn't harm the animals."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть заборону.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i03:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i03:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i03:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть заборону.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "You ___ harm the animals.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i03:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i03:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i03:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Висловіть заборону.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:word:threaten",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — threaten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:threaten:audio"
+        ],
+        "accessibilityLabel": "Картка слова — threaten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:threaten:audio",
+            "transcript": "threaten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:threaten:r1",
+              "targetText": "threaten",
+              "meaningByLocale": {
+                "ru": "угрожать.",
+                "uk": "погрожувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "threaten",
+            "definitionByLocale": {
+              "ru": "угрожать.",
+              "uk": "погрожувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із mustn’t: «Тобі не можна погрожувати іншим людям».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із mustn’t: «Тобі не можна погрожувати іншим людям».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You mustn't threaten other people.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Тебе нельзя угрожать другим людям».",
+            "uk": "Скажіть із mustn’t: «Тобі не можна погрожувати іншим людям»."
+          },
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "threaten",
+            "other",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i05:r1",
+            "text": "You mustn't threaten other people."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i05:r2",
+            "text": "You must threaten other people."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i05:r3",
+            "text": "You should threaten other people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i05:audio",
+            "transcript": "You mustn't threaten other people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i05:r1",
+              "targetText": "You mustn't threaten other people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i05:r2",
+              "targetText": "You must threaten other people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i05:r3",
+              "targetText": "You should threaten other people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't threaten other people.",
+                "uk": "У записі звучить You mustn't threaten other people."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You mustn't threaten other people.",
+                "uk": "У записі звучить You mustn't threaten other people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть заборону.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i06:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i06:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i06:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть заборону.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "You ___ threaten other people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i06:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i06:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i06:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Висловіть заборону.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:word:mislead",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mislead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:mislead:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mislead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:mislead:audio",
+            "transcript": "mislead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:mislead:r1",
+              "targetText": "mislead",
+              "meaningByLocale": {
+                "ru": "вводить в заблуждение.",
+                "uk": "вводити в оману."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mislead",
+            "definitionByLocale": {
+              "ru": "вводить в заблуждение.",
+              "uk": "вводити в оману."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із mustn’t: «Нам не можна вводити гостей в оману».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із mustn’t: «Нам не можна вводити гостей в оману».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We mustn't mislead our guests.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Нам нельзя вводить гостей в заблуждение».",
+            "uk": "Скажіть із mustn’t: «Нам не можна вводити гостей в оману»."
+          },
+          "orderedTokens": [
+            "We",
+            "mustn't",
+            "mislead",
+            "our",
+            "guests"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i08:r1",
+            "text": "We mustn't mislead our guests."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i08:r2",
+            "text": "We must mislead our guests."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i08:r3",
+            "text": "We should mislead our guests."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i08:audio",
+            "transcript": "We mustn't mislead our guests."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i08:r1",
+              "targetText": "We mustn't mislead our guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i08:r2",
+              "targetText": "We must mislead our guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i08:r3",
+              "targetText": "We should mislead our guests.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't mislead our guests.",
+                "uk": "У записі звучить We mustn't mislead our guests."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't mislead our guests.",
+                "uk": "У записі звучить We mustn't mislead our guests."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть заборону.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i09:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i09:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i09:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть заборону.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "We ___ mislead our guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i09:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i09:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i09:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Висловіть заборону.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:word:offend",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — offend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:word:offend:audio"
+        ],
+        "accessibilityLabel": "Картка слова — offend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:word:offend:audio",
+            "transcript": "offend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:word:offend:r1",
+              "targetText": "offend",
+              "meaningByLocale": {
+                "ru": "обижать, задевать чувства.",
+                "uk": "ображати, зачіпати почуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "offend",
+            "definitionByLocale": {
+              "ru": "обижать, задевать чувства.",
+              "uk": "ображати, зачіпати почуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із mustn’t: «Нам не можна ображати сусідів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із mustn’t: «Нам не можна ображати сусідів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We mustn't offend our neighbours.",
+          "localizedMeaning": {
+            "ru": "Скажите с mustn’t: «Нам нельзя обижать соседей».",
+            "uk": "Скажіть із mustn’t: «Нам не можна ображати сусідів»."
+          },
+          "orderedTokens": [
+            "We",
+            "mustn't",
+            "offend",
+            "our",
+            "neighbours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i11:r1",
+            "text": "We mustn't offend our neighbours."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i11:r2",
+            "text": "We must offend our neighbours."
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i11:r3",
+            "text": "We should offend our neighbours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i11:audio",
+            "transcript": "We mustn't offend our neighbours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-50:i11:r1",
+              "targetText": "We mustn't offend our neighbours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i11:r2",
+              "targetText": "We must offend our neighbours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i11:r3",
+              "targetText": "We should offend our neighbours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't offend our neighbours.",
+                "uk": "У записі звучить We mustn't offend our neighbours."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We mustn't offend our neighbours.",
+                "uk": "У записі звучить We mustn't offend our neighbours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть заборону.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-50:i12:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i12:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-50:i12:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть заборону.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите запрет.",
+            "uk": "Висловіть заборону."
+          },
+          "gappedTargetPhrase": "We ___ offend our neighbours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-50:i12:r1",
+              "text": "mustn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i12:r2",
+              "text": "needn't"
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i12:r3",
+              "text": "mustn't to"
+            }
+          ],
+          "testedDimension": "Висловіть заборону.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+                "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Висловіть заборону.",
+              "feedbackByLocale": {
+                "ru": "После mustn't не нужно to.",
+                "uk": "Після mustn't не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-50:i13:p1",
+              "target": "harm",
+              "meaningByLocale": {
+                "ru": "причинять вред",
+                "uk": "завдавати шкоди"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-50:i13:p2",
+              "target": "threaten",
+              "meaningByLocale": {
+                "ru": "угрожать",
+                "uk": "погрожувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-50:i13:p3",
+              "target": "mislead",
+              "meaningByLocale": {
+                "ru": "вводить в заблуждение",
+                "uk": "вводити в оману"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-50:i13:p4",
+              "target": "offend",
+              "meaningByLocale": {
+                "ru": "обижать, задевать чувства",
+                "uk": "ображати, зачіпати почуття"
+              }
+            }
+          ],
+          "leftColumn": [
+            "harm",
+            "threaten",
+            "mislead",
+            "offend"
+          ],
+          "rightColumn": [
+            "завдавати шкоди",
+            "погрожувати",
+            "вводити в оману",
+            "ображати, зачіпати почуття"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: порада",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: порада",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i15:audio",
+            "transcript": "You should check the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You should check the address.",
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що нам не можна ображати сусідів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що нам не можна ображати сусідів",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i16:audio",
+            "transcript": "We mustn't offend our neighbours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We mustn't offend our neighbours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що нам не можна вводити гостей в оману",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що нам не можна вводити гостей в оману",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-50:i17:audio",
+            "transcript": "We mustn't mislead our guests."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We mustn't mislead our guests.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-50:word:harm",
+      "correctText": "harm",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i01",
+      "correctText": "You mustn't harm the animals.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i02",
+      "correctText": "You mustn't harm the animals.",
+      "correctResponseId": "en:lesson-20:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i03",
+      "correctText": "mustn't",
+      "correctResponseId": "en:lesson-20:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:word:threaten",
+      "correctText": "threaten",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i04",
+      "correctText": "You mustn't threaten other people.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i05",
+      "correctText": "You mustn't threaten other people.",
+      "correctResponseId": "en:lesson-20:session-50:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i06",
+      "correctText": "mustn't",
+      "correctResponseId": "en:lesson-20:session-50:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:word:mislead",
+      "correctText": "mislead",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i07",
+      "correctText": "We mustn't mislead our guests.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i08",
+      "correctText": "We mustn't mislead our guests.",
+      "correctResponseId": "en:lesson-20:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i09",
+      "correctText": "mustn't",
+      "correctResponseId": "en:lesson-20:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:word:offend",
+      "correctText": "offend",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i10",
+      "correctText": "We mustn't offend our neighbours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i11",
+      "correctText": "We mustn't offend our neighbours.",
+      "correctResponseId": "en:lesson-20:session-50:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i12",
+      "correctText": "mustn't",
+      "correctResponseId": "en:lesson-20:session-50:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i15",
+      "correctText": "You should check the address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i16",
+      "correctText": "We mustn't offend our neighbours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-50:i17",
+      "correctText": "We mustn't mislead our guests.",
+      "correctResponseId": null
+    }
+  ]
+}

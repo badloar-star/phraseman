@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-53:word:realise",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — realise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:word:realise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — realise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:word:realise:audio",
+          "transcript": "realise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:word:realise:r1",
+            "targetText": "realise",
+            "meaningByLocale": {
+              "ru": "осознать, понять.",
+              "uk": "усвідомити, зрозуміти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "realise",
+          "definitionByLocale": {
+            "ru": "осознать, понять.",
+            "uk": "усвідомити, зрозуміти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Тобі варто усвідомити важливість відпочинку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Тобі варто усвідомити важливість відпочинку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should realise the importance of rest.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит осознать важность отдыха».",
+          "uk": "Дайте пораду із should: «Тобі варто усвідомити важливість відпочинку»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "realise",
+          "the",
+          "importance",
+          "of",
+          "rest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i02:r1",
+          "text": "You should realise the importance of rest."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i02:r2",
+          "text": "You can realise the importance of rest."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i02:r3",
+          "text": "You could realise the importance of rest."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i02:audio",
+          "transcript": "You should realise the importance of rest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:i02:r1",
+            "targetText": "You should realise the importance of rest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i02:r2",
+            "targetText": "You can realise the importance of rest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i02:r3",
+            "targetText": "You could realise the importance of rest.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should realise the importance of rest.",
+              "uk": "У записі звучить You should realise the importance of rest."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should realise the importance of rest.",
+              "uk": "У записі звучить You should realise the importance of rest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i03:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i03:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i03:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ realise the importance of rest.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-53:i03:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i03:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i03:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:word:imagine",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — imagine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:word:imagine:audio"
+      ],
+      "accessibilityLabel": "Картка слова — imagine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:word:imagine:audio",
+          "transcript": "imagine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:word:imagine:r1",
+            "targetText": "imagine",
+            "meaningByLocale": {
+              "ru": "представлять, воображать.",
+              "uk": "уявляти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "imagine",
+          "definitionByLocale": {
+            "ru": "представлять, воображать.",
+            "uk": "уявляти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Тобі варто уявити інший маршрут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Тобі варто уявити інший маршрут».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You should imagine a different route.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Тебе стоит представить другой маршрут».",
+          "uk": "Дайте пораду із should: «Тобі варто уявити інший маршрут»."
+        },
+        "orderedTokens": [
+          "You",
+          "should",
+          "imagine",
+          "a",
+          "different",
+          "route"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i05:r1",
+          "text": "You should imagine a different route."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i05:r2",
+          "text": "You can imagine a different route."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i05:r3",
+          "text": "You could imagine a different route."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i05:audio",
+          "transcript": "You should imagine a different route."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:i05:r1",
+            "targetText": "You should imagine a different route.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i05:r2",
+            "targetText": "You can imagine a different route.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i05:r3",
+            "targetText": "You could imagine a different route.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should imagine a different route.",
+              "uk": "У записі звучить You should imagine a different route."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You should imagine a different route.",
+              "uk": "У записі звучить You should imagine a different route."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i06:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i06:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i06:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "You ___ imagine a different route.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-53:i06:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i06:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i06:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:word:rely",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:word:rely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:word:rely:audio",
+          "transcript": "rely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:word:rely:r1",
+            "targetText": "rely",
+            "meaningByLocale": {
+              "ru": "полагаться.",
+              "uk": "покладатися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rely",
+          "definitionByLocale": {
+            "ru": "полагаться.",
+            "uk": "покладатися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Нам варто покладатися на розклад».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Нам варто покладатися на розклад».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should rely on the timetable.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит полагаться на расписание».",
+          "uk": "Дайте пораду із should: «Нам варто покладатися на розклад»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "rely",
+          "on",
+          "the",
+          "timetable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i08:r1",
+          "text": "We should rely on the timetable."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i08:r2",
+          "text": "We can rely on the timetable."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i08:r3",
+          "text": "We could rely on the timetable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i08:audio",
+          "transcript": "We should rely on the timetable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:i08:r1",
+            "targetText": "We should rely on the timetable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i08:r2",
+            "targetText": "We can rely on the timetable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i08:r3",
+            "targetText": "We could rely on the timetable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should rely on the timetable.",
+              "uk": "У записі звучить We should rely on the timetable."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should rely on the timetable.",
+              "uk": "У записі звучить We should rely on the timetable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i09:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i09:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i09:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ rely on the timetable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-53:i09:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i09:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i09:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:word:assume",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — assume",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:word:assume:audio"
+      ],
+      "accessibilityLabel": "Картка слова — assume",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:word:assume:audio",
+          "transcript": "assume"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:word:assume:r1",
+            "targetText": "assume",
+            "meaningByLocale": {
+              "ru": "предполагать, принимать за исходное допущение.",
+              "uk": "припускати, брати за вихідне припущення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "assume",
+          "definitionByLocale": {
+            "ru": "предполагать, принимать за исходное допущение.",
+            "uk": "припускати, брати за вихідне припущення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дайте пораду із should: «Нам варто виходити з ціни в пʼятдесят фунтів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте пораду із should: «Нам варто виходити з ціни в пʼятдесят фунтів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We should assume a price of fifty pounds.",
+        "localizedMeaning": {
+          "ru": "Дайте совет с should: «Нам стоит исходить из цены в пятьдесят фунтов».",
+          "uk": "Дайте пораду із should: «Нам варто виходити з ціни в пʼятдесят фунтів»."
+        },
+        "orderedTokens": [
+          "We",
+          "should",
+          "assume",
+          "a",
+          "price",
+          "of",
+          "fifty",
+          "pounds"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i11:r1",
+          "text": "We should assume a price of fifty pounds."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i11:r2",
+          "text": "We can assume a price of fifty pounds."
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i11:r3",
+          "text": "We could assume a price of fifty pounds."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i11:audio",
+          "transcript": "We should assume a price of fifty pounds."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-53:i11:r1",
+            "targetText": "We should assume a price of fifty pounds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i11:r2",
+            "targetText": "We can assume a price of fifty pounds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i11:r3",
+            "targetText": "We could assume a price of fifty pounds.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should assume a price of fifty pounds.",
+              "uk": "У записі звучить We should assume a price of fifty pounds."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We should assume a price of fifty pounds.",
+              "uk": "У записі звучить We should assume a price of fifty pounds."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-53:i12:r1",
+          "text": "should"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i12:r2",
+          "text": "shoulds"
+        },
+        {
+          "responseId": "en:lesson-20:session-53:i12:r3",
+          "text": "should to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните совет.",
+          "uk": "Доповніть пораду."
+        },
+        "gappedTargetPhrase": "We ___ assume a price of fifty pounds.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-53:i12:r1",
+            "text": "should"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i12:r2",
+            "text": "shoulds"
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i12:r3",
+            "text": "should to"
+          }
+        ],
+        "testedDimension": "Доповніть пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "Should не получает окончания -s.",
+              "uk": "Should не отримує закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пораду.",
+            "feedbackByLocale": {
+              "ru": "После should не нужно to.",
+              "uk": "Після should не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-53:i13:p1",
+            "target": "realise",
+            "meaningByLocale": {
+              "ru": "осознать, понять",
+              "uk": "усвідомити, зрозуміти"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-53:i13:p2",
+            "target": "imagine",
+            "meaningByLocale": {
+              "ru": "представлять, воображать",
+              "uk": "уявляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-53:i13:p3",
+            "target": "rely",
+            "meaningByLocale": {
+              "ru": "полагаться",
+              "uk": "покладатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-53:i13:p4",
+            "target": "assume",
+            "meaningByLocale": {
+              "ru": "предполагать, принимать за исходное допущение",
+              "uk": "припускати, брати за вихідне припущення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "realise",
+          "imagine",
+          "rely",
+          "assume"
+        ],
+        "rightColumn": [
+          "усвідомити, зрозуміти",
+          "уявляти",
+          "покладатися",
+          "припускати, брати за вихідне припущення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: необхідність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: необхідність",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i15:audio",
+          "transcript": "We have to leave now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We have to leave now.",
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "leave",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Порадьте уявити інший маршрут",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Порадьте уявити інший маршрут",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i16:audio",
+          "transcript": "You should imagine a different route."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You should imagine a different route.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте орієнтуватися на розклад",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте орієнтуватися на розклад",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-53:i17:audio",
+          "transcript": "We should rely on the timetable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We should rely on the timetable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f3f1fb33c219968ba092e0a7c03d749d7afc567501331f6be4c42199ced09dba"
+}

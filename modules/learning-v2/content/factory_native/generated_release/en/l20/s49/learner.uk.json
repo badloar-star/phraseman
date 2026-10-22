@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-49:word:ignore",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ignore",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:word:ignore:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ignore",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:word:ignore:audio",
+          "transcript": "ignore"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:word:ignore:r1",
+            "targetText": "ignore",
+            "meaningByLocale": {
+              "ru": "игнорировать, не обращать внимания.",
+              "uk": "ігнорувати, не звертати уваги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ignore",
+          "definitionByLocale": {
+            "ru": "игнорировать, не обращать внимания.",
+            "uk": "ігнорувати, не звертати уваги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із mustn’t: «Тобі не можна ігнорувати правила».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із mustn’t: «Тобі не можна ігнорувати правила».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You mustn't ignore the rules.",
+        "localizedMeaning": {
+          "ru": "Скажите с mustn’t: «Тебе нельзя игнорировать правила».",
+          "uk": "Скажіть із mustn’t: «Тобі не можна ігнорувати правила»."
+        },
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "ignore",
+          "the",
+          "rules"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i02:r1",
+          "text": "You mustn't ignore the rules."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i02:r2",
+          "text": "You must ignore the rules."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i02:r3",
+          "text": "You should ignore the rules."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i02:audio",
+          "transcript": "You mustn't ignore the rules."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:i02:r1",
+            "targetText": "You mustn't ignore the rules.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i02:r2",
+            "targetText": "You must ignore the rules.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i02:r3",
+            "targetText": "You should ignore the rules.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You mustn't ignore the rules.",
+              "uk": "У записі звучить You mustn't ignore the rules."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You mustn't ignore the rules.",
+              "uk": "У записі звучить You mustn't ignore the rules."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть заборону.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i03:r1",
+          "text": "mustn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i03:r2",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i03:r3",
+          "text": "mustn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть заборону.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите запрет.",
+          "uk": "Висловіть заборону."
+        },
+        "gappedTargetPhrase": "You ___ ignore the rules.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-49:i03:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i03:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i03:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "testedDimension": "Висловіть заборону.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+              "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "После mustn't не нужно to.",
+              "uk": "Після mustn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:word:reveal",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reveal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:word:reveal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reveal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:word:reveal:audio",
+          "transcript": "reveal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:word:reveal:r1",
+            "targetText": "reveal",
+            "meaningByLocale": {
+              "ru": "раскрывать, сообщать скрытое.",
+              "uk": "розкривати, повідомляти приховане."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reveal",
+          "definitionByLocale": {
+            "ru": "раскрывать, сообщать скрытое.",
+            "uk": "розкривати, повідомляти приховане."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із mustn’t: «Нам не можна розкривати відповідь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із mustn’t: «Нам не можна розкривати відповідь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We mustn't reveal the answer.",
+        "localizedMeaning": {
+          "ru": "Скажите с mustn’t: «Нам нельзя раскрывать ответ».",
+          "uk": "Скажіть із mustn’t: «Нам не можна розкривати відповідь»."
+        },
+        "orderedTokens": [
+          "We",
+          "mustn't",
+          "reveal",
+          "the",
+          "answer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i05:r1",
+          "text": "We mustn't reveal the answer."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i05:r2",
+          "text": "We must reveal the answer."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i05:r3",
+          "text": "We should reveal the answer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i05:audio",
+          "transcript": "We mustn't reveal the answer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:i05:r1",
+            "targetText": "We mustn't reveal the answer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i05:r2",
+            "targetText": "We must reveal the answer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i05:r3",
+            "targetText": "We should reveal the answer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We mustn't reveal the answer.",
+              "uk": "У записі звучить We mustn't reveal the answer."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We mustn't reveal the answer.",
+              "uk": "У записі звучить We mustn't reveal the answer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть заборону.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i06:r1",
+          "text": "mustn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i06:r2",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i06:r3",
+          "text": "mustn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть заборону.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите запрет.",
+          "uk": "Висловіть заборону."
+        },
+        "gappedTargetPhrase": "We ___ reveal the answer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-49:i06:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i06:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i06:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "testedDimension": "Висловіть заборону.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+              "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "После mustn't не нужно to.",
+              "uk": "Після mustn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:word:exclude",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — exclude",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:word:exclude:audio"
+      ],
+      "accessibilityLabel": "Картка слова — exclude",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:word:exclude:audio",
+          "transcript": "exclude"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:word:exclude:r1",
+            "targetText": "exclude",
+            "meaningByLocale": {
+              "ru": "исключать, не включать.",
+              "uk": "виключати, не включати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exclude",
+          "definitionByLocale": {
+            "ru": "исключать, не включать.",
+            "uk": "виключати, не включати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із mustn’t: «Їй не можна виключати когось із гравців».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із mustn’t: «Їй не можна виключати когось із гравців».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She mustn't exclude any player.",
+        "localizedMeaning": {
+          "ru": "Скажите с mustn’t: «Ей нельзя исключать кого-либо из игроков».",
+          "uk": "Скажіть із mustn’t: «Їй не можна виключати когось із гравців»."
+        },
+        "orderedTokens": [
+          "She",
+          "mustn't",
+          "exclude",
+          "any",
+          "player"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i08:r1",
+          "text": "She mustn't exclude any player."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i08:r2",
+          "text": "She must exclude a player."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i08:r3",
+          "text": "She should exclude a player."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i08:audio",
+          "transcript": "She mustn't exclude any player."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:i08:r1",
+            "targetText": "She mustn't exclude any player.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i08:r2",
+            "targetText": "She must exclude a player.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i08:r3",
+            "targetText": "She should exclude a player.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She mustn't exclude any player.",
+              "uk": "У записі звучить She mustn't exclude any player."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She mustn't exclude any player.",
+              "uk": "У записі звучить She mustn't exclude any player."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть заборону.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i09:r1",
+          "text": "mustn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i09:r2",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i09:r3",
+          "text": "mustn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть заборону.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите запрет.",
+          "uk": "Висловіть заборону."
+        },
+        "gappedTargetPhrase": "She ___ exclude any player.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-49:i09:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i09:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i09:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "testedDimension": "Висловіть заборону.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+              "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "После mustn't не нужно to.",
+              "uk": "Після mustn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:word:insult",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — insult",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:word:insult:audio"
+      ],
+      "accessibilityLabel": "Картка слова — insult",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:word:insult:audio",
+          "transcript": "insult"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:word:insult:r1",
+            "targetText": "insult",
+            "meaningByLocale": {
+              "ru": "оскорблять.",
+              "uk": "ображати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "insult",
+          "definitionByLocale": {
+            "ru": "оскорблять.",
+            "uk": "ображати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із mustn’t: «Тобі не можна ображати інших гравців».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із mustn’t: «Тобі не можна ображати інших гравців».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You mustn't insult other players.",
+        "localizedMeaning": {
+          "ru": "Скажите с mustn’t: «Тебе нельзя оскорблять других игроков».",
+          "uk": "Скажіть із mustn’t: «Тобі не можна ображати інших гравців»."
+        },
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "insult",
+          "other",
+          "players"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i11:r1",
+          "text": "You mustn't insult other players."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i11:r2",
+          "text": "You must insult other players."
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i11:r3",
+          "text": "You should insult other players."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i11:audio",
+          "transcript": "You mustn't insult other players."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-49:i11:r1",
+            "targetText": "You mustn't insult other players.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i11:r2",
+            "targetText": "You must insult other players.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i11:r3",
+            "targetText": "You should insult other players.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You mustn't insult other players.",
+              "uk": "У записі звучить You mustn't insult other players."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You mustn't insult other players.",
+              "uk": "У записі звучить You mustn't insult other players."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть заборону.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-49:i12:r1",
+          "text": "mustn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i12:r2",
+          "text": "needn't"
+        },
+        {
+          "responseId": "en:lesson-20:session-49:i12:r3",
+          "text": "mustn't to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть заборону.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите запрет.",
+          "uk": "Висловіть заборону."
+        },
+        "gappedTargetPhrase": "You ___ insult other players.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-49:i12:r1",
+            "text": "mustn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i12:r2",
+            "text": "needn't"
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i12:r3",
+            "text": "mustn't to"
+          }
+        ],
+        "testedDimension": "Висловіть заборону.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "Needn’t означает «необязательно»; здесь нужен запрет.",
+              "uk": "Needn’t означає «необовʼязково»; тут потрібна заборона."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Висловіть заборону.",
+            "feedbackByLocale": {
+              "ru": "После mustn't не нужно to.",
+              "uk": "Після mustn't не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-49:i13:p1",
+            "target": "ignore",
+            "meaningByLocale": {
+              "ru": "игнорировать, не обращать внимания",
+              "uk": "ігнорувати, не звертати уваги"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-49:i13:p2",
+            "target": "reveal",
+            "meaningByLocale": {
+              "ru": "раскрывать, сообщать скрытое",
+              "uk": "розкривати, повідомляти приховане"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-49:i13:p3",
+            "target": "exclude",
+            "meaningByLocale": {
+              "ru": "исключать, не включать",
+              "uk": "виключати, не включати"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-49:i13:p4",
+            "target": "insult",
+            "meaningByLocale": {
+              "ru": "оскорблять",
+              "uk": "ображати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ignore",
+          "reveal",
+          "exclude",
+          "insult"
+        ],
+        "rightColumn": [
+          "ігнорувати, не звертати уваги",
+          "розкривати, повідомляти приховане",
+          "виключати, не включати",
+          "ображати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: порада",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: порада",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i15:audio",
+          "transcript": "You should check the address."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You should check the address.",
+        "orderedTokens": [
+          "You",
+          "should",
+          "check",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ображати гравців не можна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ображати гравців не можна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i16:audio",
+          "transcript": "You mustn't insult other players."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You mustn't insult other players.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-49:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що їй не можна виключати гравців",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що їй не можна виключати гравців",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-49:i17:audio",
+          "transcript": "She mustn't exclude any player."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She mustn't exclude any player.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "652720b8cd6f1a9ab03ae09ed3ed7e00a376140859f9c27801944f8cfe3ad920"
+}

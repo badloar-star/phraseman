@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "ought to + base verb",
+    "uk": "ought to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Проявить сочувствие",
+        "uk": "Виявити співчуття"
+      },
+      "bodyByLocale": {
+        "ru": "Sympathy — сочувствие, а не русское «симпатия». Знакомый переживает из-за неприятности, и вы советуете другому человеку отнестись к нему с сочувствием. Show some sympathy — проявить немного сочувствия. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Sympathy — співчуття, а не українське «симпатія». Знайомий переживає через неприємність, і ви радите іншій людині поставитися до нього зі співчуттям. Show some sympathy — виявити трохи співчуття. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-52:intro1:r1",
+              "text": "You ought to show some sympathy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro1:r2",
+              "text": "You oughts to show some sympathy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro1:r3",
+              "text": "You ought show some sympathy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-52:intro1:r1",
+              "text": "You ought to show some sympathy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro1:r2",
+              "text": "You oughts to show some sympathy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro1:r3",
+              "text": "You ought show some sympathy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Признать ревность",
+        "uk": "Визнати ревнощі"
+      },
+      "bodyByLocale": {
+        "ru": "Jealousy — ревность или зависть. Здесь знакомый ревнует партнёра и хочет спокойно обсудить свои чувства. Pride — гордость. Take pride in your work — гордиться своей работой, ценить её качество; знакомая хорошо справилась, но не замечает своего успеха. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Jealousy — ревнощі або заздрість. Тут знайомий ревнує партнера й хоче спокійно обговорити свої почуття. Pride — гордість. Take pride in your work — пишатися своєю роботою, цінувати її якість; знайома добре впоралася, але не помічає свого успіху. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-52:intro2:r1",
+              "text": "He ought to talk about his jealousy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro2:r2",
+              "text": "He oughts to talk about his jealousy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro2:r3",
+              "text": "He ought talk about his jealousy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-52:intro2:r1",
+              "text": "He ought to talk about his jealousy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro2:r2",
+              "text": "He oughts to talk about his jealousy."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro2:r3",
+              "text": "He ought talk about his jealousy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выразить благодарность",
+        "uk": "Висловити вдячність"
+      },
+      "bodyByLocale": {
+        "ru": "Gratitude — благодарность за помощь или доброе отношение. Друзья помогли вам с переездом, и вы предлагаете поблагодарить их. Express our gratitude — выразить нашу благодарность. Это чуть более торжественный способ сказать, что вы признательны. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
+        "uk": "Gratitude — вдячність за допомогу або добре ставлення. Друзі допомогли вам із переїздом, і ви пропонуєте подякувати їм. Express our gratitude — висловити нашу вдячність. Це трохи урочистіший спосіб сказати, що ви вдячні. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-52:intro3:r1",
+              "text": "We ought to express our gratitude."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro3:r2",
+              "text": "We oughts to express our gratitude."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro3:r3",
+              "text": "We ought express our gratitude."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-52:intro3:r1",
+              "text": "We ought to express our gratitude."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro3:r2",
+              "text": "We oughts to express our gratitude."
+            },
+            {
+              "responseId": "en:lesson-20:session-52:intro3:r3",
+              "text": "We ought express our gratitude."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3607a951a5e28ecd5d377c03f5097563dd997114789f89af528cd4031dbb9913"
+}

@@ -5730,8 +5730,11 @@ export const LESSON_29_PHRASES: LessonPhrase[] = [
 
 export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
+    // зачем (обращение №28, координатор 22.10): в русском нет артикля — перед словом с придаточным засчитываем и a/an,
+    // и the, если русский сам не говорит «тот/та/те» и слово не во множественном.
     id: 'lesson30_phrase_1',
     english: 'I know a man who works here',
+    alternatives: ['I know the man who works here'],
     russian: 'Я знаю мужчину, который работает здесь',
     ukrainian: 'Я знаю чоловіка, який працює тут',
     spanish: 'Conozco a un hombre que trabaja aquí',
@@ -5756,6 +5759,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_2',
     english: 'She knows a woman who speaks English',
+    alternatives: ['She knows the woman who speaks English'],
     russian: 'Она знает женщину, которая говорит по-английски',
     ukrainian: 'Вона знає жінку, яка говорить англійською',
     spanish: 'Ella conoce a una mujer que habla inglés',
@@ -5780,6 +5784,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_3',
     english: 'We met a person who can help us',
+    alternatives: ['We met the person who can help us'],
     russian: 'Мы встретили человека, который может помочь нам',
     ukrainian: 'Ми зустріли людину, яка може допомогти нам',
     spanish: 'Conocimos a una persona que puede ayudarnos',
@@ -5806,6 +5811,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_4',
     english: 'They called a doctor who lives nearby',
+    alternatives: ['They called the doctor who lives nearby'],
     russian: 'Они позвонили врачу, который живёт рядом',
     ukrainian: 'Вони зателефонували лікарю, який живе поруч',
     spanish: 'Llamaron a un médico que vive cerca',
@@ -5907,6 +5913,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_8',
     english: 'This is the student who answered correctly',
+    alternatives: ['This is a student who answered correctly'],
     russian: 'Это студент, который ответил правильно',
     ukrainian: 'Це студент, який відповів правильно',
     spanish: 'Este es el estudiante que respondió correctamente',
@@ -5930,6 +5937,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_9',
     english: 'I saw the man who lost his phone',
+    alternatives: ['I saw a man who lost his phone'],
     russian: 'Я видел мужчину, который потерял свой телефон',
     ukrainian: 'Я бачив чоловіка, який загубив свій телефон',
     spanish: 'Vi al hombre que perdió su teléfono',
@@ -5956,6 +5964,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_10',
     english: 'We helped the woman who forgot her keys',
+    alternatives: ['We helped a woman who forgot her keys'],
     russian: 'Мы помогли женщине, которая забыла свои ключи',
     ukrainian: 'Ми допомогли жінці, яка забула свої ключі',
     spanish: 'Ayudamos a la mujer que olvidó sus llaves',
@@ -6031,6 +6040,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_13',
     english: 'This is the app that helps me learn',
+    alternatives: ['This is an app that helps me learn'],
     russian: 'Это приложение, которое помогает мне учиться',
     ukrainian: 'Це додаток, який допомагає мені вчитися',
     spanish: 'Esta es la aplicación que me ayuda a aprender',
@@ -6056,6 +6066,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_14',
     english: 'This is the phone that I bought yesterday',
+    alternatives: ['This is a phone that I bought yesterday'],
     russian: 'Это телефон, который я купил вчера',
     ukrainian: 'Це телефон, який я купив учора',
     spanish: 'Este es el teléfono que compré ayer',
@@ -6081,6 +6092,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_15',
     english: 'This is the book that she read',
+    alternatives: ['This is a book that she read'],
     russian: 'Это книга, которую она прочитала',
     ukrainian: 'Це книга, яку вона прочитала',
     spanish: 'Este es el libro que ella leyó',
@@ -6127,6 +6139,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_17',
     english: 'This is the message that he sent me',
+    alternatives: ['This is a message that he sent me'],
     russian: 'Это сообщение, которое он отправил мне',
     ukrainian: 'Це повідомлення, яке він надіслав мені',
     spanish: 'Este es el mensaje que él me envió',
@@ -6152,6 +6165,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_18',
     english: 'This is the problem that we solved',
+    alternatives: ['This is a problem that we solved'],
     russian: 'Это проблема, которую мы решили',
     ukrainian: 'Це проблема, яку ми вирішили',
     spanish: 'Este es el problema que resolvimos',
@@ -6175,6 +6189,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_19',
     english: 'This is the question that I asked',
+    alternatives: ['This is a question that I asked'],
     russian: 'Это вопрос, который я задал',
     ukrainian: 'Це питання, яке я поставив',
     spanish: 'Esta es la pregunta que hice',
@@ -6198,6 +6213,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_20',
     english: 'This is the answer that she gave me',
+    alternatives: ['This is an answer that she gave me'],
     russian: 'Это ответ, который она дала мне',
     ukrainian: 'Це відповідь, яку вона дала мені',
     spanish: 'Esta es la respuesta que ella me dio',
@@ -6246,7 +6262,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_22',
     english: 'This is the plan which we chose',
-    alternatives: ['This is the plan that we chose'],
+    alternatives: ['This is the plan that we chose', 'This is a plan which we chose'],
     russian: 'Это план, который мы выбрали',
     ukrainian: 'Це план, який ми обрали',
     spanish: 'Este es el plan que elegimos',
@@ -6270,6 +6286,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_23',
     english: 'This is the place where we met',
+    alternatives: ['This is a place where we met'],
     russian: 'Это место, где мы встретились',
     ukrainian: 'Це місце, де ми зустрілися',
     spanish: 'Este es el lugar donde nos encontramos',
@@ -6293,6 +6310,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_24',
     english: 'This is the room where I work',
+    alternatives: ['This is a room where I work'],
     russian: 'Это комната, где я работаю',
     ukrainian: 'Це кімната, де я працюю',
     spanish: 'Esta es la habitación donde trabajo',
@@ -6316,6 +6334,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_25',
     english: 'This is the house where she lives',
+    alternatives: ['This is a house where she lives'],
     russian: 'Это дом, где она живёт',
     ukrainian: 'Це будинок, де вона живе',
     spanish: 'Esta es la casa donde ella vive',
@@ -6339,6 +6358,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_26',
     english: 'This is the shop where I bought the phone',
+    alternatives: ['This is a shop where I bought the phone'],
     russian: 'Это магазин, где я купил телефон',
     ukrainian: 'Це магазин, де я купив телефон',
     spanish: 'Esta es la tienda donde compré el teléfono',
@@ -6365,6 +6385,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_27',
     english: 'This is the hotel where they stayed',
+    alternatives: ['This is a hotel where they stayed'],
     russian: 'Это отель, где они остановились',
     ukrainian: 'Це готель, де вони зупинилися',
     spanish: 'Este es el hotel donde se quedaron',
@@ -6388,6 +6409,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_28',
     english: 'This is the bank where he works',
+    alternatives: ['This is a bank where he works'],
     russian: 'Это банк, где он работает',
     ukrainian: 'Це банк, де він працює',
     spanish: 'Este es el banco donde él trabaja',
@@ -6411,6 +6433,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_29',
     english: 'This is the table where I left the keys',
+    alternatives: ['This is a table where I left the keys'],
     russian: 'Это стол, где я оставил ключи',
     ukrainian: 'Це стіл, де я залишив ключі',
     spanish: 'Esta es la mesa donde dejé las llaves',
@@ -6437,6 +6460,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_30',
     english: 'This is the place where we waited',
+    alternatives: ['This is a place where we waited'],
     russian: 'Это место, где мы ждали',
     ukrainian: 'Це місце, де ми чекали',
     spanish: 'Este es el lugar donde esperamos',
@@ -6460,6 +6484,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_31',
     english: 'I know a man whose phone is lost',
+    alternatives: ['I know the man whose phone is lost'],
     russian: 'Я знаю мужчину, чей телефон потерян',
     ukrainian: 'Я знаю чоловіка, чий телефон загублено',
     spanish: 'Conozco a un hombre cuyo teléfono está perdido',
@@ -6540,6 +6565,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_34',
     english: 'They called a driver whose car was outside',
+    alternatives: ['They called the driver whose car was outside'],
     russian: 'Они позвонили водителю, чья машина была снаружи',
     ukrainian: 'Вони зателефонували водієві, чия машина була ззовні',
     spanish: 'Llamaron a un conductor cuyo coche estaba afuera',
@@ -6566,6 +6592,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_35',
     english: 'I met a person whose name I remember',
+    alternatives: ['I met the person whose name I remember'],
     russian: 'Я встретил человека, чьё имя я помню',
     ukrainian: "Я зустрів людину, чиє ім\'я я пам\'ятаю",
     spanish: 'Conocí a una persona cuyo nombre recuerdo',
@@ -6592,6 +6619,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_36',
     english: 'This is the teacher whose lesson helped me',
+    alternatives: ['This is a teacher whose lesson helped me'],
     russian: 'Это учитель, чей урок помог мне',
     ukrainian: 'Це вчитель, чий урок допоміг мені',
     spanish: 'Este es el maestro cuya lección me ayudó',
@@ -6617,6 +6645,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_37',
     english: 'This is the friend whose message I read',
+    alternatives: ['This is a friend whose message I read'],
     russian: 'Это друг, чьё сообщение я прочитал',
     ukrainian: 'Це друг, чиє повідомлення я прочитав',
     spanish: 'Este es el amigo cuyo mensaje leí',
@@ -6642,6 +6671,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_38',
     english: 'This is the woman whose keys we found',
+    alternatives: ['This is a woman whose keys we found'],
     russian: 'Это женщина, чьи ключи мы нашли',
     ukrainian: 'Це жінка, чиї ключі ми знайшли',
     spanish: 'Esta es la mujer cuyas llaves encontramos',
@@ -6836,6 +6866,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_46',
     english: 'I need a person who can explain this',
+    alternatives: ['I need the person who can explain this'],
     russian: 'Мне нужен человек, который может объяснить это',
     ukrainian: 'Мені потрібна людина, яка може пояснити це',
     spanish: 'Necesito una persona que pueda explicar esto',
@@ -6862,6 +6893,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_47',
     english: 'We need an app that works well',
+    alternatives: ['We need the app that works well'],
     russian: 'Нам нужно приложение, которое хорошо работает',
     ukrainian: 'Нам потрібен додаток, який добре працює',
     spanish: 'Necesitamos una aplicación que funcione bien',
@@ -6886,6 +6918,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_48',
     english: 'Find a place where you can study',
+    alternatives: ['Find the place where you can study'],
     russian: 'Найди место, где ты можешь заниматься',
     ukrainian: 'Знайди місце, де ти можеш займатися',
     spanish: 'Encuentra un lugar donde puedas estudiar',
@@ -6954,6 +6987,8 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
 
 export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
+    // зачем (обращение №24, координатор 22.10): после saw/heard/felt/noticed русский перевод стоит в прошедшем
+    // («упала», «чинил»), поэтому ловушки «fell / fixed / fixing» нечестны; в слоте голого инфинитива их нет.
     id: 'lesson31_phrase_1',
     english: 'They made that inexperienced driver pay that huge fine.',
     russian: 'Они заставили того неопытного водителя заплатить тот огромный штраф.',
@@ -6983,7 +7018,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'experienced', correct: 'experienced', distractors: ['experience', 'expensive', 'expert', 'expect', 'expand'] },
       { text: 'pilot', correct: 'pilot', distractors: ['pillow', 'pillar', 'pipe', 'piece', 'pile'] },
-      { text: 'explain', correct: 'explain', distractors: ['explains', 'explained', 'explore', 'expand', 'expert'] },
+      { text: 'explain', correct: 'explain', distractors: ['explains', 'explanation', 'explore', 'expand', 'expert'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'complex', correct: 'complex', distractors: ['complete', 'compare', 'comfort', 'command', 'common'] },
       { text: 'flight', correct: 'flight', distractors: ['fight', 'light', 'bright', 'night', 'fright'] },
@@ -7002,7 +7037,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'cold', correct: 'cold', distractors: ['gold', 'hold', 'bold', 'could', 'called'] },
       { text: 'raindrop', correct: 'raindrop', distractors: ['rainbow', 'raincoat', 'railroad', 'railway', 'rainy'] },
-      { text: 'fall', correct: 'fall', distractors: ['fell', 'fallen', 'feels', 'fills', 'full'] },
+      { text: 'fall', correct: 'fall', distractors: ['falls', 'fallen', 'feels', 'fills', 'full'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'to', 'for', 'by'], category: 'preposition' },
       { text: 'her', correct: 'her', distractors: ['she', 'hers', 'him', 'his', 'them'] },
       { text: 'shoulder', correct: 'shoulder', distractors: ['soldier', 'shadow', 'shower', 'shorter', 'shelter'] },
@@ -7043,7 +7078,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'famous', correct: 'famous', distractors: ['family', 'familiar', 'farmer', 'fashion', 'favor'] },
       { text: 'singer', correct: 'singer', distractors: ['sing', 'song', 'single', 'signal', 'sugar'] },
-      { text: 'sing', correct: 'sing', distractors: ['sang', 'sung', 'song', 'sink', 'sign'] },
+      { text: 'sing', correct: 'sing', distractors: ['sings', 'sung', 'song', 'sink', 'sign'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'old', correct: 'old', distractors: ['older', 'oldest', 'gold', 'cold', 'hold'] },
       { text: 'jazz', correct: 'jazz', distractors: ['jaw', 'joy', 'jar', 'jam', 'jet'] },
@@ -7082,7 +7117,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'powerful', correct: 'powerful', distractors: ['power', 'powder', 'pocket', 'polish', 'popular'] },
       { text: 'earth', correct: 'earth', distractors: ['early', 'earn', 'east', 'each', 'easy'] },
       { text: 'tremor', correct: 'tremor', distractors: ['trembles', 'treasure', 'treatment', 'treaty', 'trend'] },
-      { text: 'shake', correct: 'shake', distractors: ['shook', 'shaken', 'shape', 'shark', 'share'] },
+      { text: 'shake', correct: 'shake', distractors: ['shakes', 'shaken', 'shape', 'shark', 'share'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'old', correct: 'old', distractors: ['older', 'oldest', 'gold', 'cold', 'hold'] },
       { text: 'brick', correct: 'brick', distractors: ['bridge', 'bright', 'bring', 'branch', 'brave'] },
@@ -7102,7 +7137,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'unknown', correct: 'unknown', distractors: ['unknowing', 'knew', 'know', 'knows', 'knowing'] },
       { text: 'man', correct: 'man', distractors: ['men', 'many', 'main', 'mail', 'mad'] },
       { text: 'quickly', correct: 'quickly', distractors: ['quick', 'quiet', 'quite', 'quarter', 'quality'] },
-      { text: 'put', correct: 'put', distractors: ['puts', 'putting', 'pull', 'push', 'part'] },
+      { text: 'put', correct: 'put', distractors: ['puts', 'pot', 'pull', 'push', 'part'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'envelope', correct: 'envelope', distractors: ['environment', 'envelop', 'entry', 'energy', 'engine'] },
       { text: 'into', correct: 'into', distractors: ['in', 'onto', 'to', 'for', 'by'], category: 'preposition' },
@@ -7123,7 +7158,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'those', correct: 'those', distractors: ['this', 'that', 'these', 'then', 'thus'] },
       { text: 'angry', correct: 'angry', distractors: ['anger', 'angle', 'ancient', 'animal', 'annual'] },
       { text: 'protesters', correct: 'protesters', distractors: ['protest', 'protected', 'property', 'progress', 'project'] },
-      { text: 'shout', correct: 'shout', distractors: ['shouts', 'shouted', 'shirt', 'short', 'sheet'] },
+      { text: 'shout', correct: 'shout', distractors: ['shouts', 'shoot', 'shirt', 'short', 'sheet'] },
       { text: 'those', correct: 'those', distractors: ['this', 'that', 'these', 'then', 'thus'] },
       { text: 'loud', correct: 'loud', distractors: ['loudly', 'long', 'low', 'land', 'lord'] },
       { text: 'political', correct: 'political', distractors: ['politics', 'policy', 'police', 'polish', 'polite'] },
@@ -7201,7 +7236,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'skillful', correct: 'skillful', distractors: ['skill', 'skilled', 'skin', 'skirt', 'skull'] },
       { text: 'carpenter', correct: 'carpenter', distractors: ['carpet', 'captain', 'capital', 'careful', 'carrier'] },
-      { text: 'fix', correct: 'fix', distractors: ['fixed', 'fixing', 'fax', 'fox', 'fits'] },
+      { text: 'fix', correct: 'fix', distractors: ['fixes', 'mix', 'fax', 'fox', 'fits'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'broken', correct: 'broken', distractors: ['broke', 'break', 'brake', 'block', 'brook'] },
       { text: 'wooden', correct: 'wooden', distractors: ['wood', 'wool', 'woolly', 'word', 'world'] },
@@ -7220,7 +7255,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'those', correct: 'those', distractors: ['this', 'that', 'these', 'then', 'thus'] },
       { text: 'tired', correct: 'tired', distractors: ['tire', 'tried', 'trend', 'trim', 'true'] },
       { text: 'workers', correct: 'workers', distractors: ['worker', 'work', 'works', 'words', 'worlds'] },
-      { text: 'discuss', correct: 'discuss', distractors: ['discusses', 'discussed', 'discovery', 'distance', 'display'] },
+      { text: 'discuss', correct: 'discuss', distractors: ['discusses', 'discussion', 'discovery', 'distance', 'display'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'new', correct: 'new', distractors: ['now', 'know', 'no', 'nor', 'not'] },
       { text: 'production', correct: 'production', distractors: ['produce', 'product', 'profile', 'project', 'progress'] },
@@ -7356,7 +7391,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'furious', correct: 'furious', distractors: ['future', 'further', 'famous', 'forest', 'formal'] },
       { text: 'customer', correct: 'customer', distractors: ['custom', 'costume', 'curtain', 'current', 'cupboard'] },
-      { text: 'demand', correct: 'demand', distractors: ['demands', 'demanded', 'damage', 'danger', 'degree'] },
+      { text: 'demand', correct: 'demand', distractors: ['demands', 'diamond', 'damage', 'danger', 'degree'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'immediate', correct: 'immediate', distractors: ['immediately', 'imagine', 'improve', 'impact', 'image'] },
       { text: 'refund', correct: 'refund', distractors: ['refuse', 'record', 'refine', 'refunds', 'result'] },
@@ -7455,7 +7490,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'hot', correct: 'hot', distractors: ['hat', 'hit', 'hut', 'hop', 'hots'] },
       { text: 'steam', correct: 'steam', distractors: ['stream', 'steal', 'steel', 'steer', 'steak'] },
-      { text: 'burn', correct: 'burn', distractors: ['born', 'barn', 'burns', 'burned', 'burning'] },
+      { text: 'burn', correct: 'burn', distractors: ['born', 'barn', 'burns', 'bury', 'turn'] },
       { text: 'her', correct: 'her', distractors: ['she', 'hers', 'him', 'his', 'them'] },
       { text: 'right', correct: 'right', distractors: ['light', 'night', 'bright', 'flight', 'write'] },
       { text: 'hand', correct: 'hand', distractors: ['head', 'hard', 'hands', 'land', 'band'] },
@@ -7513,7 +7548,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'heavy', correct: 'heavy', distractors: ['heaven', 'healthy', 'heart', 'heat', 'heater'] },
       { text: 'object', correct: 'object', distractors: ['objective', 'obtain', 'obscure', 'observe', 'obvious'] },
-      { text: 'hit', correct: 'hit', distractors: ['hat', 'hut', 'hot', 'hits', 'hitting'] },
+      { text: 'hit', correct: 'hit', distractors: ['hat', 'hut', 'hot', 'hits', 'hip'] },
       { text: 'her', correct: 'her', distractors: ['she', 'hers', 'him', 'his', 'them'] },
       { text: 'left', correct: 'left', distractors: ['leaf', 'lift', 'let', 'light', 'last'] },
       { text: 'knee', correct: 'knee', distractors: ['knew', 'knife', 'knit', 'knot', 'knees'] },
@@ -7550,7 +7585,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'stray', correct: 'stray', distractors: ['string', 'straight', 'street', 'strength', 'strange'] },
       { text: 'dog', correct: 'dog', distractors: ['logs', 'door', 'dark', 'done', 'down'] },
-      { text: 'cross', correct: 'cross', distractors: ['crosses', 'crossed', 'cry', 'crush', 'crown'] },
+      { text: 'cross', correct: 'cross', distractors: ['crosses', 'across', 'cry', 'crush', 'crown'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'busy', correct: 'busy', distractors: ['bus', 'buzz', 'bury', 'burn', 'buyer'] },
       { text: 'street', correct: 'street', distractors: ['sheet', 'sweet', 'streak', 'stress', 'strict'] },
@@ -7568,7 +7603,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'quiet', correct: 'quiet', distractors: ['quite', 'quarter', 'queen', 'query', 'quickly'] },
       { text: 'student', correct: 'student', distractors: ['study', 'studio', 'staff', 'stuff', 'stay'] },
-      { text: 'ask', correct: 'ask', distractors: ['asks', 'asked', 'task', 'pack', 'mask'] },
+      { text: 'ask', correct: 'ask', distractors: ['asks', 'ash', 'task', 'pack', 'mask'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'difficult', correct: 'difficult', distractors: ['different', 'distant', 'digital', 'directly', 'double'] },
       { text: 'question', correct: 'question', distractors: ['quietly', 'quickly', 'quarterly', 'quality', 'quarter'] },
@@ -7604,7 +7639,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'tall', correct: 'tall', distractors: ['tell', 'wall', 'fall', 'dull', 'till'] },
       { text: 'stranger', correct: 'stranger', distractors: ['strength', 'stressed', 'street', 'strong', 'strict'] },
-      { text: 'leave', correct: 'leave', distractors: ['left', 'lives', 'lived', 'large', 'letter'] },
+      { text: 'leave', correct: 'leave', distractors: ['leaves', 'lives', 'lived', 'large', 'letter'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'crowded', correct: 'crowded', distractors: ['crown', 'crossed', 'crazy', 'cream', 'crashed'] },
       { text: 'station', correct: 'station', distractors: ['stationary', 'statue', 'status', 'stat', 'stare'] },
@@ -7813,7 +7848,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'the', correct: 'the', distractors: ['this', 'these', 'those', 'than', 'them'] },
       { text: 'whole', correct: 'whole', distractors: ['hole', 'heal', 'while', 'whose', 'where'] },
       { text: 'building', correct: 'building', distractors: ['builder', 'built', 'butter', 'basket', 'bundle'] },
-      { text: 'shake', correct: 'shake', distractors: ['shook', 'shaken', 'shape', 'shark', 'share'] },
+      { text: 'shake', correct: 'shake', distractors: ['shakes', 'shaken', 'shape', 'shark', 'share'] },
       { text: 'during', correct: 'during', distractors: ['dinner', 'durable', 'driving', 'dirty', 'divide'], category: 'preposition' },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'short', correct: 'short', distractors: ['shirt', 'shore', 'shelf', 'shout', 'share'] },
@@ -7874,7 +7909,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'skilled', correct: 'skilled', distractors: ['killed', 'kills', 'skillet', 'spill', 'skill'] },
       { text: 'mechanic', correct: 'mechanic', distractors: ['machine', 'method', 'metal', 'melted', 'metrics'] },
-      { text: 'explain', correct: 'explain', distractors: ['explains', 'explained', 'explore', 'expand', 'expert'] },
+      { text: 'explain', correct: 'explain', distractors: ['explains', 'explanation', 'explore', 'expand', 'expert'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'serious', correct: 'serious', distractors: ['series', 'serves', 'servant', 'cereal', 'certainly'] },
       { text: 'engine', correct: 'engine', distractors: ['engineer', 'energy', 'enjoy', 'enter', 'enemies'] },
@@ -7893,7 +7928,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'heavy', correct: 'heavy', distractors: ['heaven', 'health', 'heart', 'heat', 'heater'] },
       { text: 'branch', correct: 'branch', distractors: ['bench', 'breach', 'brought', 'brand', 'bread'] },
-      { text: 'fall', correct: 'fall', distractors: ['fell', 'fallen', 'feels', 'fills', 'full'] },
+      { text: 'fall', correct: 'fall', distractors: ['falls', 'fallen', 'feels', 'fills', 'full'] },
       { text: 'onto', correct: 'onto', distractors: ['into', 'on', 'upon', 'open', 'outer'], category: 'preposition' },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'parked', correct: 'parked', distractors: ['parks', 'parking', 'party', 'patch', 'pardon'] },

@@ -427,4 +427,50 @@ describe('reported content regressions', () => {
     expect(findSlot!.distractors).not.toContain('finding');
   });
 
+  // зачем (координатор 22.10, после обращения №24): весь урок 31 — после saw/heard/felt/noticed русский стоит в прошедшем,
+  // поэтому прошедшее и -ing того же глагола среди ловушек нечестны (к первому толкает перевод, второе — правильный английский).
+  it('has no past or -ing form of the same word among traps in lesson 31 perception phrases', () => {
+    const perception = /\b(saw|heard|felt|watched|noticed|observed)\b/;
+    const irregularPast: Record<string, string> = { fall: 'fell', shake: 'shook', sing: 'sang', leave: 'left', find: 'found', strike: 'struck' };
+    const forms = (word: string): Set<string> => {
+      const out = new Set([`${word}ed`, `${word}ing`, `${word.replace(/e$/, '')}ing`, `${word}${word.slice(-1)}ing`, `${word}${word.slice(-1)}ed`]);
+      if (word.endsWith('e')) out.add(`${word}d`);
+      if (irregularPast[word]) out.add(irregularPast[word]);
+      out.delete(word);
+      return out;
+    };
+    const violations: string[] = [];
+    let checked = 0;
+    for (const phrase of LESSON_DATA[31].phrases) {
+      if (!perception.test(phrase.english)) continue;
+      checked += 1;
+      for (const slot of phrase.words ?? []) {
+        const bad = slot.distractors.filter((d) => forms(slot.correct).has(d));
+        if (bad.length) violations.push(`${phrase.id}: ${slot.correct} → ${bad.join(', ')}`);
+      }
+    }
+    expect(checked).toBeGreaterThan(20);
+    expect(violations).toEqual([]);
+  });
+
+  // зачем (координатор 22.10, после обращения №28): в русском нет артикля — в уроке 30 перед словом с придаточным
+  // засчитываются и a/an, и the, если русский сам не говорит «тот/та/те», слово не во множественном и второй артикль не ломает фразу.
+  it('accepts both articles before the relative-clause head in lesson 30 where Russian leaves it open', () => {
+    const skip = new Set([5, 6, 7, 11, 12, 16, 21, 39, 40, 41, 42, 43, 44, 45, 49, 50].map((n) => `lesson30_phrase_${n}`));
+    const head = /\b(a|an|the)\s+([A-Za-z]+)\s+(who|that|which|where|whose)\b/i;
+    const rejected: string[] = [];
+    let checked = 0;
+    for (const phrase of LESSON_DATA[30].phrases) {
+      if (skip.has(phrase.id)) continue;
+      const match = phrase.english.match(head);
+      if (!match) continue;
+      checked += 1;
+      const swapped = /^the$/i.test(match[1]) ? (/^[aeiou]/i.test(match[2]) ? 'an' : 'a') : 'the';
+      const variant = phrase.english.replace(head, `${swapped} ${match[2]} ${match[3]}`);
+      if (!isCorrectAnswer(variant, phraseCanonicalAnswer(phrase, 'en'), phraseAnswerAlternatives(phrase, 'en'))) rejected.push(`${phrase.id}: ${variant}`);
+    }
+    expect(checked).toBeGreaterThan(30);
+    expect(rejected).toEqual([]);
+  });
+
 });

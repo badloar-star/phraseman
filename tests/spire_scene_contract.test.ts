@@ -137,12 +137,32 @@ async function main(): Promise<void> {
   assert.deepEqual({ ...spireSceneHeaderTone({ enabled: true, onPeak: true, tint: "#123456" }) }, { tint: "#123456", text: "#FFFFFF", muted: "rgba(255,255,255,0.78)" });
   const header = read("components/spire/scene/spire_scene_header.tsx");
   assert.ok(header.includes("spireSceneHeaderTone({ enabled: SPIRE_SCENE_V2_ENABLED, onPeak, tint })"), "тон шапки — через флаг");
+  assert.ok(header.includes("if (tone === null) return null;"), "нет тона — слоя нет");
   const community = read("app/(tabs)/community.tsx");
-  assert.ok(community.includes("const peakHeader = useSpireSceneHeader(section === 'spire');"), "«Сообщество» берёт тон только для «Пика»");
-  assert.ok(community.includes("<View style={s.header}>{peakHeader.backdrop}"), "стиль шапки прежний, подложка — отдельным ребёнком");
-  assert.ok(community.includes("borderBottomColor: on ? (peakHeader.tone?.text ?? accentGfx.border) : 'transparent'"), "черта вкладки: без тона — прежний цвет");
-  assert.ok(community.includes("color: on ? (peakHeader.tone?.text ?? p.text) : (peakHeader.tone?.muted ?? p.textSecondary)"), "текст вкладок: без тона — прежние цвета");
-  assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : peakHeader.right}"), "справа: без тона — пусто, как раньше");
+  // строка вкладок «Сообщества» — прежний код (как до «Сцены»): при выключенном флаге шапка та же, слой поверх неё не рисуется
+  assert.ok(community.includes("      <View style={s.header}>\n"), "шапка без подложки");
+  assert.ok(community.includes("borderBottomColor: on ? accentGfx.border : 'transparent'"), "черта вкладки — прежний цвет");
+  assert.ok(community.includes("<Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>"), "текст вкладок — прежние цвета");
+  assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : null}"), "справа — как раньше");
+  assert.ok(!community.includes("peakHeader") && !community.includes("SPIRE_SCENE_INK"), "строка вкладок не знает о «Сцене»");
+  assert.ok(community.includes("<SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} />\n      </View>"), "слой «Сцены» — последним в шапке, поверх вкладок");
+
+  // ── шаг 3b-3: прокрутка Пика гасит цвет шапки тем же механизмом, что маску Главной ──
+  const mask = read("components/TopFadeMask.tsx");
+  assert.ok(mask.includes("showThreshold = 6,") && mask.includes("duration: shouldShow ? 180 : 260,"), "у маски Главной порог 6 и 180/260 мс");
+  assert.ok(header.includes("const SHOW_THRESHOLD = 6;") && header.includes("const FADE_OUT_MS = 180;") && header.includes("const FADE_IN_MS = 260;"), "у слоя шапки те же порог и время");
+  assert.ok(header.includes("const scrollY = topFade?.scrollY;") && header.includes("scrollY.addListener(") && header.includes("return () => scrollY.removeListener(id);"), "слой слушает общий признак прокрутки");
+  assert.ok(header.includes("duration: shown ? FADE_OUT_MS : FADE_IN_MS, useNativeDriver: true"), "гаснет на нативном драйвере, без перерисовки");
+  assert.ok(header.includes("topFade?.isMaskShown() ?? false"), "слой, появившийся после прокрутки, начинает с текущего вида маски");
+  assert.ok(header.includes('pointerEvents="none"') && header.includes('importantForAccessibility="no-hide-descendants"'), "касания и чтение с экрана — у настоящих вкладок");
+  assert.ok(!/useState|setState/.test(header), "прокрутка не перерисовывает «Сообщество»");
+  const fadeCtx = read("components/TopFadeScrollContext.tsx");
+  assert.ok(fadeCtx.includes("isMaskShown: () => maskShownRef.current,"), "общий признак отдаёт текущий вид маски (только чтение)");
+  const scroll = read("components/spire/scene/use_spire_scene_scroll.ts");
+  assert.ok(scroll.includes("topFade?.onScrollMaskOnly(e);") && !scroll.includes("topFade?.onScroll(") && !scroll.includes("reportTabBarOffset"), "Пик кормит только маску — нижнее меню не сворачивается, как раньше");
+  assert.ok(scroll.includes("topFade.onScrollMaskOnly({ nativeEvent: { contentOffset: { y: lastYRef.current } } });"), "Пик при появлении сообщает своё место заново");
+  assert.ok(scroll.includes("enabled ? Object.freeze({ onScroll, scrollEventThrottle: 16 }) : NONE"), "без «Сцены» Пик ничего не сообщает");
+  assert.ok(screen.includes("const sceneScroll = useSpireSceneScroll(scene !== null, runtimeOwnerId === 'spire');") && screen.includes("{...sceneScroll}"), "прокрутка Пика — только со «Сценой»");
 
   // ── одна полоса под часами (HomeSceneStatusStrip), без второй копии ──
   const layout = read("app/(tabs)/_layout.tsx");

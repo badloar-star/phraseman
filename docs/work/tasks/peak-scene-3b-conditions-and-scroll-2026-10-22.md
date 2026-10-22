@@ -2,7 +2,7 @@
 
 Governance-ID: TG-B2420D2E7E0E
 Governance-ID: TG-5FE0C83833F2
-Status: In progress
+Status: Done (3b conditions 113c55ca5, 3b-3 this commit; old tokens 7369bf476)
 Owner: 3 · МАКЕТЫ (coordinator conditions 22.10 for Peak v2 3b and step 3b-3)
 Related epic/enabler: Peak v2 scene (c83690658, 735052c46, 4709384a8), HomeSceneStatusStrip, TopFadeScrollContext
 
@@ -21,7 +21,7 @@ Out of scope: Today/Dialogs screens, Peak data and game logic, foreign uncommitt
 
 ## Architecture
 
-Header tone = spireSceneHeaderTone({ enabled, onPeak, tint, scrolled }) (pure). community.tsx renders an absolute animated backdrop and uses tone colours with the old colours as fallback. Scroll: Peak ScrollView onScroll → topFade.onScrollMaskOnly (+ last offset kept in the tint store) only while the scene is on. No new reads.
+Header tone = spireSceneHeaderTone({ enabled, onPeak, tint }) (pure, null with the flag off). 3b-3 as built: community.tsx keeps its own tab row code exactly as before 3b-2 and renders SpireSceneHeaderLayer as the last header child; the layer (only while the tone is not null) lays the scene colour, the same tabs in white and the energy over the header with the header's own styles, pointerEvents none and hidden from screen readers. The layer opacity follows the shared TopFadeScroll scrollY like TopFadeMask (threshold 6, 180 ms out, 260 ms back, native driver), so the colour crossfades to the normal tabs underneath with no React re-render on scroll. TopFadeScrollContext gains a read-only isMaskShown() so a layer that appears later starts in the right state. Peak ScrollView reports to topFade.onScrollMaskOnly (no tab bar collapse) only while the scene is on (use_spire_scene_scroll.ts) and re-reports its last offset when Peak shows again. No new reads.
 
 ## Security and privacy
 

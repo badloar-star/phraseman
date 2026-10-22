@@ -63,6 +63,7 @@ import SpireTower from './SpireTower';
 import SpireWeekResultCard from './SpireWeekResultCard';
 import { useSpirePreview } from './spire_preview_context';
 import SpireScene from './scene/SpireScene'; import { useSpireSceneTop } from './scene/use_spire_scene_top';
+import { useSpireSceneScroll } from './scene/use_spire_scene_scroll';
 import type { SpireMemberRow } from './spire_room_types';
 import { useIsPlus } from '../plus/use_is_plus';
 import { spireTimeLeftText } from './spire_strings';
@@ -265,6 +266,7 @@ export default function SpireHomeScreen() {
   const podiumLoading = members === null && game.live && game.roomLoad === null; const roomCeilingPassed = useSpireRoomCeiling({ live: game.live, roomLoad: game.roomLoad, hasRows: members !== null, key: `${spireLang}|${preview ? 'preview' : 'live'}` }); const podiumSkeleton = podiumLoading && !roomCeilingPassed; const podiumColumns = podiumSkeleton || (members !== null && members.length > 0); useSpirePikRenderTrace({ langLocked: langLock.locked, configNull: config === null, unlocked, preview: preview !== null, live: game.live, roomLoad: game.roomLoad, members: members?.length ?? null, tierNull: game.tier === null, showAll, podiumSkeleton, ceilingPassed: roomCeilingPassed }); // зачем (Ревизор по c5ccfd458): колонки подиума есть (комната или скелет) — компакт экономит 40 dp; пустая комната/офлайн — 0, иначе ступень качается
   const budget = useSpireTowerBudget(DOCK_GAP, podiumColumns); const towerWindowH = budget.windowH; // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и ступени ужатия — из замеров верха башни, дока и карточки (use_spire_tower_budget), не из модели высоты
   const scene = useSpireSceneTop({ lang, members, rankBy: game.rankBy, roomSearching: podiumSkeleton, offline, plus: hasPremiumAccess, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, floor: myFloor, stepInFloor: week ? week.stepInFloor : null, coins: config?.coins ?? null, active: runtimeOwnerId === 'spire' }); // зачем (Пик v2, владелец 22.10): «Сцена» за флагом SPIRE_SCENE_V2_ENABLED; null — прежний верх экрана
+  const sceneScroll = useSpireSceneScroll(scene !== null, runtimeOwnerId === 'spire'); // зачем (3b-3): прокрутка гасит цвет шапки «Сообщества», как маска Главной
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
 
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
@@ -282,6 +284,7 @@ export default function SpireHomeScreen() {
       <ScrollView
         contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }, budget.headerThin ? thin.content : null]}
         showsVerticalScrollIndicator={false}
+        {...sceneScroll}
         decelerationRate="fast"
         scrollEnabled={!towerTouch.locked}
         // зачем (смета Firebase 13.10, п. 5): друзья в кэше 30 мин — вручную обновляются потягиванием; спиннер системный, экран не блокируется

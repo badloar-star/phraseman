@@ -12,7 +12,7 @@ import { SUB_RUNTIME_OWNER_IDS, type SubRuntimeOwnerId } from '../tab_page_model
 import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../spire_tab_flag';
 import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
 import { hapticTap } from '../../hooks/use-haptics';
-import { useSpireSceneHeader } from '../../components/spire/scene/spire_scene_header';
+import SpireSceneHeaderLayer from '../../components/spire/scene/spire_scene_header';
 
 type Section = SubRuntimeOwnerId;
 type SectionScreen = React.ComponentType<{ presentation?: 'push' | 'embedded' }>;
@@ -56,9 +56,6 @@ export default function CommunityTabRoute() {
   const [visited, setVisited] = useState<ReadonlySet<Section>>(() => new Set([section]));
   // зачем: кнопки справа (лупа, язык) и раскрытый поиск отдаёт сам раздел «Наборы» — их состояние живёт там.
   const [packsSlot, setPacksSlot] = useState<CommunityHeaderSlot | null>(null);
-  // зачем (Пик v2, эталон peak-scene-v2.html): «Сцена» Пика уходит под вкладки — шапка в цвет верха сцены, вкладки белые, справа энергия;
-  // флаг SPIRE_SCENE_V2_ENABLED выключен или вкладка не «Пик» — тон, подложка и энергия пустые, шапка побайтно прежняя
-  const peakHeader = useSpireSceneHeader(section === 'spire');
 
   useEffect(() => {
     const fromParam = sectionFromParam(sectionParam);
@@ -128,7 +125,7 @@ export default function CommunityTabRoute() {
 
   return (
     <View testID="community-tab" style={s.root}>
-      <View style={s.header}>{peakHeader.backdrop}
+      <View style={s.header}>
         {section === 'packs' && packsSlot?.overlay ? (
           // зачем (packs-simple.html кадр 2): открытый поиск «Наборов» встаёт на место строки вкладок.
           <View style={s.headerOverlay}>{packsSlot.overlay}</View>
@@ -147,15 +144,18 @@ export default function CommunityTabRoute() {
                 onPress={() => setSection(seg.key)}
                 hitSlop={{ top: 12, bottom: 6, left: 8, right: 8 }}
                 // зачем (packs-simple.html `.tabs3`): активная вкладка — белый текст и полоса 3px акцента под словом.
-                style={[s.tab, { borderBottomColor: on ? (peakHeader.tone?.text ?? accentGfx.border) : 'transparent' }]}
+                style={[s.tab, { borderBottomColor: on ? accentGfx.border : 'transparent' }]}
               >
-                <Text style={[s.tabText, { color: on ? (peakHeader.tone?.text ?? p.text) : (peakHeader.tone?.muted ?? p.textSecondary) }]}>{seg.label}</Text>
+                <Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>
               </Pressable>
             );
           })}
         </View>
-        <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : peakHeader.right}</View>
+        <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : null}</View>
         </>)}
+        {/* зачем (Пик v2, эталон peak-scene-v2.html; координатор 22.10): «Сцена» Пика уходит под вкладки — слой цвета сцены с белыми вкладками и энергией
+            поверх этой шапки, гаснет при прокрутке Пика как маска Главной; флаг SPIRE_SCENE_V2_ENABLED выключен или вкладка не «Пик» — слоя нет */}
+        <SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} />
       </View>
       <View style={s.body}>
         {renderSection('friends')}

@@ -32,6 +32,11 @@ interface TopFadeScrollCtx {
    */
   onScrollMaskOnly: (e: { nativeEvent: { contentOffset: { y: number } } }) => void;
   reportTabBarOffset: (y: number) => void;
+  /**
+   * Показана ли сейчас верхняя маска (последний сдвиг > 6). Только чтение: слой, который появляется позже прокрутки
+   * (цвет шапки «Сообщества» над «Сценой» Пика), начинает с верного вида, не дожидаясь следующей смены.
+   */
+  isMaskShown: () => boolean;
   setTabBarManualLift: (manual: boolean) => void;
   isTabBarManualLift: () => boolean;
 }
@@ -75,6 +80,7 @@ export function TopFadeScrollProvider({ children }: { children: React.ReactNode 
       reportTabBarOffset: (y) => {
         if (typeof y === 'number') reportOffset(y, true);
       },
+      isMaskShown: () => maskShownRef.current,
       setTabBarManualLift: (manual) => {
         tabBarManualLiftRef.current = manual;
       },

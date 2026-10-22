@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що учителька каже про підставку під плакат",
+      "prompt": "Послухайте й виберіть — учителька ставить з вами стенд для малюнків",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-48:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що учителька каже про підставку під плакат",
+      "accessibilityLabel": "Послухайте й виберіть — учителька ставить з вами стенд для малюнків",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що учителька каже про підставку під плакат",
+            "testedDimension": "Послухайте й виберіть — учителька ставить з вами стенд для малюнків",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `blunt`.",
               "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `blunt`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що учителька каже про підставку під плакат",
+            "testedDimension": "Послухайте й виберіть — учителька ставить з вами стенд для малюнків",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `flimsy`, а в этом варианте — `sour`.",
               "uk": "У записі останнє слово — `flimsy`, а в цьому варіанті — `sour`."
@@ -637,7 +637,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що учителька каже про стіни в коридорі",
+      "prompt": "Послухайте й виберіть — перед відкриттям учителька обходить коридор",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i09:r1",
@@ -656,7 +656,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-48:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що учителька каже про стіни в коридорі",
+      "accessibilityLabel": "Послухайте й виберіть — перед відкриттям учителька обходить коридор",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -686,7 +686,7 @@
           {
             "responseId": "en:lesson-02:session-48:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що учителька каже про стіни в коридорі",
+            "testedDimension": "Послухайте й виберіть — перед відкриттям учителька обходить коридор",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `bare`, а в этом варианте — `clean`.",
               "uk": "У записі останнє слово — `bare`, а в цьому варіанті — `clean`."
@@ -695,7 +695,7 @@
           {
             "responseId": "en:lesson-02:session-48:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що учителька каже про стіни в коридорі",
+            "testedDimension": "Послухайте й виберіть — перед відкриттям учителька обходить коридор",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `bare`, а в этом варианте — `dirty`.",
               "uk": "У записі останнє слово — `bare`, а в цьому варіанті — `dirty`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання вчительки",
+      "prompt": "Послухайте й виберіть — учителька перевіряє з вами ескізи до виставки",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-48:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-48:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання вчительки",
+      "accessibilityLabel": "Послухайте й виберіть — учителька перевіряє з вами ескізи до виставки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-48:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання вчительки",
+            "testedDimension": "Послухайте й виберіть — учителька перевіряє з вами ескізи до виставки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `faint`, а в этом варианте — `blank`.",
               "uk": "У записі останнє слово — `faint`, а в цьому варіанті — `blank`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-48:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання вчительки",
+            "testedDimension": "Послухайте й виберіть — учителька перевіряє з вами ескізи до виставки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `faint`, а в этом варианте — `bare`.",
               "uk": "У записі останнє слово — `faint`, а в цьому варіанті — `bare`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e2fe26cab19bc0d537772f0aea2b44f4cfd69aa1f9d4f7ff89d72b7c6f9260e3"
+  "learnerFingerprint": "77308cb46b1ab3878a96dcb1dc1b7c89118db204181e08335a85e762efec0edf"
 }

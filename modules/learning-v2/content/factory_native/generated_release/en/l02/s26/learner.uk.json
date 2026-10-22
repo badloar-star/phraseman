@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про подругу",
+      "prompt": "Послухайте й виберіть — подруга сидить поруч із вами біля дерев’яних іграшок",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-26:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-26:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про подругу",
+      "accessibilityLabel": "Послухайте й виберіть — подруга сидить поруч із вами біля дерев’яних іграшок",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-26:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про подругу",
+            "testedDimension": "Послухайте й виберіть — подруга сидить поруч із вами біля дерев’яних іграшок",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `confused`, а в этом варианте — `worried`.",
               "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `worried`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-26:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про подругу",
+            "testedDimension": "Послухайте й виберіть — подруга сидить поруч із вами біля дерев’яних іграшок",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `confused`, а в этом варианте — `bored`.",
               "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `bored`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Фарба на конячці висохла. Послухайте, що каже подруга",
+      "prompt": "Послухайте й виберіть — подруга показує вам розписаного коника",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-26:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-26:i09:audio"
       ],
-      "accessibilityLabel": "Фарба на конячці висохла. Послухайте, що каже подруга",
+      "accessibilityLabel": "Послухайте й виберіть — подруга показує вам розписаного коника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-02:session-26:i09:r2",
             "correct": false,
-            "testedDimension": "Фарба на конячці висохла. Послухайте, що каже подруга",
+            "testedDimension": "Послухайте й виберіть — подруга показує вам розписаного коника",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `glossy`, а в этом варианте — `ugly`.",
               "uk": "У записі останнє слово — `glossy`, а в цьому варіанті — `ugly`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-02:session-26:i09:r3",
             "correct": false,
-            "testedDimension": "Фарба на конячці висохла. Послухайте, що каже подруга",
+            "testedDimension": "Послухайте й виберіть — подруга показує вам розписаного коника",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `glossy`, а в этом варианте — `wooden`.",
               "uk": "У записі останнє слово — `glossy`, а в цьому варіанті — `wooden`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте й виберіть — друг переставляє банки, поки ви шукаєте пензель",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-26:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-26:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте й виберіть — друг переставляє банки, поки ви шукаєте пензель",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-02:session-26:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — друг переставляє банки, поки ви шукаєте пензель",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `worried`, а в этом варианте — `bored`.",
               "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `bored`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-02:session-26:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — друг переставляє банки, поки ви шукаєте пензель",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `worried`, а в этом варианте — `careless`.",
               "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `careless`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "35c7556c5ba8a0109a74ee76725aa3015bb8ac90bf82f9a7adc26db05965587c"
+  "learnerFingerprint": "ca9ebc4d7d031f432f93f1cccced843bbf3a75eb32f49d78821c8ae242ff9a36"
 }

@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про одного із сусідів",
+      "prompt": "Послухайте й виберіть — сусідка розповідає вам про ярмарок у дворі",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-32:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-32:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про одного із сусідів",
+      "accessibilityLabel": "Послухайте й виберіть — сусідка розповідає вам про ярмарок у дворі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-32:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про одного із сусідів",
+            "testedDimension": "Послухайте й виберіть — сусідка розповідає вам про ярмарок у дворі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `away`, а в этом варианте — `absent`.",
               "uk": "У записі останнє слово — `away`, а в цьому варіанті — `absent`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-32:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про одного із сусідів",
+            "testedDimension": "Послухайте й виберіть — сусідка розповідає вам про ярмарок у дворі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `away`, а в этом варианте — `generous`.",
               "uk": "У записі останнє слово — `away`, а в цьому варіанті — `generous`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте й виберіть — ви із сусідами розставляєте коробки у дворі",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-32:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-32:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте й виберіть — ви із сусідами розставляєте коробки у дворі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-02:session-32:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — ви із сусідами розставляєте коробки у дворі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `generous`, а в этом варианте — `absent`.",
               "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `absent`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-02:session-32:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — ви із сусідами розставляєте коробки у дворі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `generous`, а в этом варианте — `away`.",
               "uk": "У записі останнє слово — `generous`, а в цьому варіанті — `away`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте й виберіть — через дощ сусід звертається до вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-32:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-32:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте й виберіть — через дощ сусід звертається до вас",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-02:session-32:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — через дощ сусід звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `she`, а в этом варианте — `he`.",
               "uk": "У записі останнє слово — `she`, а в цьому варіанті — `he`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-02:session-32:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте й виберіть — через дощ сусід звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `Where`, а в этом варианте — `Who`.",
               "uk": "У записі перше слово — `Where`, а в цьому варіанті — `Who`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0ae223ebb7138cd82fe7e9e7cd35d904e8cda282643d32873efa963c7b6d0006"
+  "learnerFingerprint": "b5499021ad4e4b7ebe6f5da14509b6f1d681089d3762ae119ed8f4f23c4d6c28"
 }

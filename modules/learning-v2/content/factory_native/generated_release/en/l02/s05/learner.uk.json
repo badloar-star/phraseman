@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — гід веде вас знімальним майданчиком",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-05:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-05:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — гід веде вас знімальним майданчиком",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-02:session-05:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — гід веде вас знімальним майданчиком",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `real`, а в этом варианте — `raw`.",
               "uk": "У записі останнє слово — `real`, а в цьому варіанті — `raw`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-02:session-05:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — гід веде вас знімальним майданчиком",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `real`, а в этом варианте — `full`.",
               "uk": "У записі останнє слово — `real`, а в цьому варіанті — `full`."
@@ -638,7 +638,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про суп",
+      "prompt": "Послухайте й виберіть — ви з другом заходите в кафе біля майданчика",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-05:i09:r1",
@@ -657,7 +657,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-05:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про суп",
+      "accessibilityLabel": "Послухайте й виберіть — ви з другом заходите в кафе біля майданчика",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -687,7 +687,7 @@
           {
             "responseId": "en:lesson-02:session-05:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про суп",
+            "testedDimension": "Послухайте й виберіть — ви з другом заходите в кафе біля майданчика",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hot`, а в этом варианте — `cold`.",
               "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `cold`."
@@ -696,7 +696,7 @@
           {
             "responseId": "en:lesson-02:session-05:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про суп",
+            "testedDimension": "Послухайте й виберіть — ви з другом заходите в кафе біля майданчика",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hot`, а в этом варианте — `real`.",
               "uk": "У записі останнє слово — `hot`, а в цьому варіанті — `real`."
@@ -981,7 +981,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте коротку фразу про хліб і виберіть її",
+      "prompt": "Послухайте й виберіть — за столиком у кафе друг ділиться з вами враженням",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-05:i15:r1",
@@ -1000,7 +1000,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте коротку фразу про хліб і виберіть її",
+      "accessibilityLabel": "Послухайте й виберіть — за столиком у кафе друг ділиться з вами враженням",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1030,7 +1030,7 @@
           {
             "responseId": "en:lesson-02:session-05:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про хліб і виберіть її",
+            "testedDimension": "Послухайте й виберіть — за столиком у кафе друг ділиться з вами враженням",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `stale`, а в этом варианте — `salty`.",
               "uk": "У записі останнє слово — `stale`, а в цьому варіанті — `salty`."
@@ -1039,7 +1039,7 @@
           {
             "responseId": "en:lesson-02:session-05:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про хліб і виберіть її",
+            "testedDimension": "Послухайте й виберіть — за столиком у кафе друг ділиться з вами враженням",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `It's`, а в этом варианте — `They're`.",
               "uk": "У записі перше слово — `It's`, а в цьому варіанті — `They're`."
@@ -1172,5 +1172,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3f0986c2645823dd46e6ec169e3699fc8a303fed13121403873b2fe1b5290806"
+  "learnerFingerprint": "1f64bd7af44287ac2ce1be811ccc44fa2f5e8e24e1cdb524cd5c4181bd735160"
 }

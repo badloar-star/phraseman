@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про Олену",
+      "prompt": "Послухайте й виберіть — друг говорить про Лену, пакуючи коробку",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-11:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про Олену",
+      "accessibilityLabel": "Послухайте й виберіть — друг говорить про Лену, пакуючи коробку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олену",
+            "testedDimension": "Послухайте й виберіть — друг говорить про Лену, пакуючи коробку",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `aware`, а в этом варианте — `convinced`.",
               "uk": "У записі останнє слово — `aware`, а в цьому варіанті — `convinced`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про Олену",
+            "testedDimension": "Послухайте й виберіть — друг говорить про Лену, пакуючи коробку",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `aware`, а в этом варианте — `concerned`.",
               "uk": "У записі останнє слово — `aware`, а в цьому варіанті — `concerned`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання про малюнок",
+      "prompt": "Послухайте й виберіть — лена показує вам малюнки біля коробки",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-11:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання про малюнок",
+      "accessibilityLabel": "Послухайте й виберіть — лена показує вам малюнки біля коробки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-02:session-11:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання про малюнок",
+            "testedDimension": "Послухайте й виберіть — лена показує вам малюнки біля коробки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `signed`, а в этом варианте — `sealed`.",
               "uk": "У записі останнє слово — `signed`, а в цьому варіанті — `sealed`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-02:session-11:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання про малюнок",
+            "testedDimension": "Послухайте й виберіть — лена показує вам малюнки біля коробки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `signed`, а в этом варианте — `framed`.",
               "uk": "У записі останнє слово — `signed`, а в цьому варіанті — `framed`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте коротку фразу про Олега",
+      "prompt": "Послухайте й виберіть — поки кур’єр їде, Лена ділиться з вами думками",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-11:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-11:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте коротку фразу про Олега",
+      "accessibilityLabel": "Послухайте й виберіть — поки кур’єр їде, Лена ділиться з вами думками",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-02:session-11:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про Олега",
+            "testedDimension": "Послухайте й виберіть — поки кур’єр їде, Лена ділиться з вами думками",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `convinced`, а в этом варианте — `aware`.",
               "uk": "У записі останнє слово — `convinced`, а в цьому варіанті — `aware`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-02:session-11:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте коротку фразу про Олега",
+            "testedDimension": "Послухайте й виберіть — поки кур’єр їде, Лена ділиться з вами думками",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `convinced`, а в этом варианте — `concerned`.",
               "uk": "У записі останнє слово — `convinced`, а в цьому варіанті — `concerned`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7af6979d37c5acf82d5c61757f9d02e79eca56e19bbb3ace3ce9bae6f1b384f4"
+  "learnerFingerprint": "ec0206dd87fa009efb72445d8a9d6acc81cb3d6d0c8fd31ba54faa66e1de5710"
 }

@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що мама каже про рукав",
+      "prompt": "Послухайте й виберіть — мама розбирає з вами шафу перед поїздкою",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-49:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що мама каже про рукав",
+      "accessibilityLabel": "Послухайте й виберіть — мама розбирає з вами шафу перед поїздкою",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-49:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про рукав",
+            "testedDimension": "Послухайте й виберіть — мама розбирає з вами шафу перед поїздкою",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `torn`, а в этом варианте — `worn`.",
               "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `worn`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-49:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про рукав",
+            "testedDimension": "Послухайте й виберіть — мама розбирає з вами шафу перед поїздкою",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `torn`, а в этом варианте — `damp`.",
               "uk": "У записі останнє слово — `torn`, а в цьому варіанті — `damp`."
@@ -637,7 +637,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що мама каже про кросівки після дощу",
+      "prompt": "Послухайте й виберіть — мама перебирає з вами речі біля дверей",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i09:r1",
@@ -656,7 +656,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-49:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що мама каже про кросівки після дощу",
+      "accessibilityLabel": "Послухайте й виберіть — мама перебирає з вами речі біля дверей",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -686,7 +686,7 @@
           {
             "responseId": "en:lesson-02:session-49:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про кросівки після дощу",
+            "testedDimension": "Послухайте й виберіть — мама перебирає з вами речі біля дверей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `smelly`, а в этом варианте — `dirty`.",
               "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `dirty`."
@@ -695,7 +695,7 @@
           {
             "responseId": "en:lesson-02:session-49:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про кросівки після дощу",
+            "testedDimension": "Послухайте й виберіть — мама перебирає з вами речі біля дверей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `smelly`, а в этом варианте — `damp`.",
               "uk": "У записі останнє слово — `smelly`, а в цьому варіанті — `damp`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання мами",
+      "prompt": "Послухайте й виберіть — мама перебирає з вами білизну з кошика",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-49:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-49:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання мами",
+      "accessibilityLabel": "Послухайте й виберіть — мама перебирає з вами білизну з кошика",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-49:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання мами",
+            "testedDimension": "Послухайте й виберіть — мама перебирає з вами білизну з кошика",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `frayed`, а в этом варианте — `stained`.",
               "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `stained`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-49:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання мами",
+            "testedDimension": "Послухайте й виберіть — мама перебирає з вами білизну з кошика",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `frayed`, а в этом варианте — `wrinkled`.",
               "uk": "У записі останнє слово — `frayed`, а в цьому варіанті — `wrinkled`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d46f735f13d3e85830d32bc3135944286d11042cc2039fa865a3677f8422d653"
+  "learnerFingerprint": "a3c51b2cd528de7fccb2d7126acd25c92730d4b4832c0a0a6a4c4788151d77f5"
 }

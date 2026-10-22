@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання сестри про фразу",
+      "prompt": "Послухайте й виберіть — сестра сидить поруч, поки ви пишете привітання",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-15:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-15:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання сестри про фразу",
+      "accessibilityLabel": "Послухайте й виберіть — сестра сидить поруч, поки ви пишете привітання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-02:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри про фразу",
+            "testedDimension": "Послухайте й виберіть — сестра сидить поруч, поки ви пишете привітання",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `easy`, а в этом варианте — `difficult`.",
               "uk": "У записі останнє слово — `easy`, а в цьому варіанті — `difficult`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-02:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри про фразу",
+            "testedDimension": "Послухайте й виберіть — сестра сидить поруч, поки ви пишете привітання",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `easy`, а в этом варианте — `important`.",
               "uk": "У записі останнє слово — `easy`, а в цьому варіанті — `important`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що мама каже про привітання",
+      "prompt": "Послухайте й виберіть — мама говорить з вами перед записом відео",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-15:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-15:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що мама каже про привітання",
+      "accessibilityLabel": "Послухайте й виберіть — мама говорить з вами перед записом відео",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-02:session-15:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про привітання",
+            "testedDimension": "Послухайте й виберіть — мама говорить з вами перед записом відео",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `important`, а в этом варианте — `easy`.",
               "uk": "У записі останнє слово — `important`, а в цьому варіанті — `easy`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-02:session-15:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про привітання",
+            "testedDimension": "Послухайте й виберіть — мама говорить з вами перед записом відео",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `important`, а в этом варианте — `necessary`.",
               "uk": "У записі останнє слово — `important`, а в цьому варіанті — `necessary`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що мама каже про вірш",
+      "prompt": "Послухайте й виберіть — мама перечитує з вами текст для бабусі",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-15:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-15:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що мама каже про вірш",
+      "accessibilityLabel": "Послухайте й виберіть — мама перечитує з вами текст для бабусі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-02:session-15:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про вірш",
+            "testedDimension": "Послухайте й виберіть — мама перечитує з вами текст для бабусі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `easy`, а в этом варианте — `important`.",
               "uk": "У записі останнє слово — `easy`, а в цьому варіанті — `important`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-02:session-15:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що мама каже про вірш",
+            "testedDimension": "Послухайте й виберіть — мама перечитує з вами текст для бабусі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `easy`, а в этом варианте — `necessary`.",
               "uk": "У записі останнє слово — `easy`, а в цьому варіанті — `necessary`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8f77e5ca9d8e6fe23e3c090bf8a893150856753f54d28797c9a42bf9819a1047"
+  "learnerFingerprint": "249731cb8bc8e14bb6439a312f8bfa5eaaa875d14a5a60bbe055154f21ba5619"
 }

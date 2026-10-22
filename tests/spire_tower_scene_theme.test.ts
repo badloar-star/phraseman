@@ -5,7 +5,7 @@ import path from 'node:path';
 
 import { liquidGlassTokens, LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 
-const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n'); // зачем (Ревизор 22.10, сторож EOL): CRLF рабочей копии не ломает проверки по переводу строки
 const lum = (hex: string) => {
   const h = hex.replace('#', '').slice(0, 6);
   const c = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));

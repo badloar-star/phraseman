@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання продавця про банку",
+      "prompt": "Послухайте й виберіть — продавець допомагає вам перевірити покупки",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-40:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання продавця про банку",
+      "accessibilityLabel": "Послухайте й виберіть — продавець допомагає вам перевірити покупки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-40:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання продавця про банку",
+            "testedDimension": "Послухайте й виберіть — продавець допомагає вам перевірити покупки",
             "feedbackByLocale": {
               "ru": "В записи `Is that jar` — банка одна, а в этом варианте `Are those jars` — несколько.",
               "uk": "У записі `Is that jar` — банка одна, а в цьому варіанті `Are those jars` — кілька."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-40:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання продавця про банку",
+            "testedDimension": "Послухайте й виберіть — продавець допомагає вам перевірити покупки",
             "feedbackByLocale": {
               "ru": "В записи первое слово после Is — `that` (далеко), а в этом варианте — `this` (рядом).",
               "uk": "У записі перше слово після Is — `that` (далеко), а в цьому варіанті — `this` (поруч)."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже продавець про штрихкод",
+      "prompt": "Послухайте й виберіть — біля виходу з магазину стоїть продавець",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-40:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже продавець про штрихкод",
+      "accessibilityLabel": "Послухайте й виберіть — біля виходу з магазину стоїть продавець",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-40:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець про штрихкод",
+            "testedDimension": "Послухайте й виберіть — біля виходу з магазину стоїть продавець",
             "feedbackByLocale": {
               "ru": "В записи `That barcode` — штрихкод один, а в этом варианте `Those barcodes` — несколько.",
               "uk": "У записі `That barcode` — штрихкод один, а в цьому варіанті `Those barcodes` — кілька."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-40:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець про штрихкод",
+            "testedDimension": "Послухайте й виберіть — біля виходу з магазину стоїть продавець",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
               "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже подруга про купони",
+      "prompt": "Послухайте й виберіть — подруга перевіряє покупки разом із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-40:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже подруга про купони",
+      "accessibilityLabel": "Послухайте й виберіть — подруга перевіряє покупки разом із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-40:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про купони",
+            "testedDimension": "Послухайте й виберіть — подруга перевіряє покупки разом із вами",
             "feedbackByLocale": {
               "ru": "В записи `Those coupons` — купонов несколько, а в этом варианте `That coupon` — один.",
               "uk": "У записі `Those coupons` — купонів кілька, а в цьому варіанті `That coupon` — один."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-40:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про купони",
+            "testedDimension": "Послухайте й виберіть — подруга перевіряє покупки разом із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
               "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6bd4e066d5be69d421f7edc68bb2063bd10765fb5d2119f02afacbabc4a180d0"
+  "learnerFingerprint": "d065f7482c0e589df70a21d9ae29f8f27fe9111754ed05fe82ebfc24f608ddbb"
 }

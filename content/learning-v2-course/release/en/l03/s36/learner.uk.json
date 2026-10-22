@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже подруга про двері",
+      "prompt": "Послухайте й виберіть — подруга гуляє з вами вулицею",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-36:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-36:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже подруга про двері",
+      "accessibilityLabel": "Послухайте й виберіть — подруга гуляє з вами вулицею",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-36:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про двері",
+            "testedDimension": "Послухайте й виберіть — подруга гуляє з вами вулицею",
             "feedbackByLocale": {
               "ru": "В записи `That door` — дверь одна, а в этом варианте `Those doors` — несколько.",
               "uk": "У записі `That door` — двері одні, а в цьому варіанті `Those doors` — кілька."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-36:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про двері",
+            "testedDimension": "Послухайте й виберіть — подруга гуляє з вами вулицею",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
               "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже брат про дерево",
+      "prompt": "Послухайте й виберіть — брат дивиться на вітрини разом із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-36:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-36:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже брат про дерево",
+      "accessibilityLabel": "Послухайте й виберіть — брат дивиться на вітрини разом із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-36:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже брат про дерево",
+            "testedDimension": "Послухайте й виберіть — брат дивиться на вітрини разом із вами",
             "feedbackByLocale": {
               "ru": "В записи `That tree` — дерево одно, а в этом варианте `Those trees` — несколько.",
               "uk": "У записі `That tree` — дерево одне, а в цьому варіанті `Those trees` — кілька."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-36:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже брат про дерево",
+            "testedDimension": "Послухайте й виберіть — брат дивиться на вітрини разом із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
               "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
@@ -982,7 +982,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже подруга про велосипеди",
+      "prompt": "Послухайте й виберіть — подруга зупиняється біля вітрини",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-36:i15:r1",
@@ -1001,7 +1001,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-36:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже подруга про велосипеди",
+      "accessibilityLabel": "Послухайте й виберіть — подруга зупиняється біля вітрини",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1031,7 +1031,7 @@
           {
             "responseId": "en:lesson-03:session-36:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про велосипеди",
+            "testedDimension": "Послухайте й виберіть — подруга зупиняється біля вітрини",
             "feedbackByLocale": {
               "ru": "В записи `That bicycle` — велосипед один, а в этом варианте `Those bicycles` — несколько.",
               "uk": "У записі `That bicycle` — велосипед один, а в цьому варіанті `Those bicycles` — кілька."
@@ -1040,7 +1040,7 @@
           {
             "responseId": "en:lesson-03:session-36:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про велосипеди",
+            "testedDimension": "Послухайте й виберіть — подруга зупиняється біля вітрини",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cheap`, а в этом варианте — `new`.",
               "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `new`."
@@ -1173,5 +1173,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "47d9067fbea6ee267871f25f62daf9f88d3e16d79d5d199965bc80e7a08a8340"
+  "learnerFingerprint": "4d30dd0f05677196bfd9b5d67d8b318417f62652032c7c98d4ea8448aff64911"
 }

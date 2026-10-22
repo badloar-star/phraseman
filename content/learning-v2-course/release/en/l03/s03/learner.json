@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о вещи у двери",
+      "prompt": "Послушайте и выберите — подруга показывает на вещь у двери",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о вещи у двери",
+      "accessibilityLabel": "Послушайте и выберите — подруга показывает на вещь у двери",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о вещи у двери",
+            "testedDimension": "Послушайте и выберите — подруга показывает на вещь у двери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mirror`, а в этом варианте — `rug`.",
               "uk": "У записі останнє слово — `mirror`, а в цьому варіанті — `rug`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о вещи у двери",
+            "testedDimension": "Послушайте и выберите — подруга показывает на вещь у двери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mirror`, а в этом варианте — `stool`.",
               "uk": "У записі останнє слово — `mirror`, а в цьому варіанті — `stool`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "915d25f4c968b6beedaad501cf295af91bce8d8e212ef374e118f1b329afae0e"
+  "learnerFingerprint": "e803315e0c47f0f46b2d0348dab3c5f7d0541323d18e85f8d57470137878c188"
 }

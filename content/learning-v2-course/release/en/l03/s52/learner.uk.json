@@ -316,7 +316,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що продавець каже про дзеркало",
+      "prompt": "Послухайте й виберіть — продавець розповідає про речі в залі",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-52:i05:r1",
@@ -335,7 +335,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-52:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, що продавець каже про дзеркало",
+      "accessibilityLabel": "Послухайте й виберіть — продавець розповідає про речі в залі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -365,7 +365,7 @@
           {
             "responseId": "en:lesson-03:session-52:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про дзеркало",
+            "testedDimension": "Послухайте й виберіть — продавець розповідає про речі в залі",
             "feedbackByLocale": {
               "ru": "В записи форма — `round`, а в этом варианте — `oval`.",
               "uk": "У записі форма — `round`, а в цьому варіанті — `oval`."
@@ -374,7 +374,7 @@
           {
             "responseId": "en:lesson-03:session-52:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про дзеркало",
+            "testedDimension": "Послухайте й виберіть — продавець розповідає про речі в залі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
               "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
@@ -748,7 +748,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання подруги",
+      "prompt": "Послухайте й виберіть — подруга розглядає речі поруч із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-52:i11:r1",
@@ -767,7 +767,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-52:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання подруги",
+      "accessibilityLabel": "Послухайте й виберіть — подруга розглядає речі поруч із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -797,7 +797,7 @@
           {
             "responseId": "en:lesson-03:session-52:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга розглядає речі поруч із вами",
             "feedbackByLocale": {
               "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
               "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
@@ -806,7 +806,7 @@
           {
             "responseId": "en:lesson-03:session-52:i11:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга розглядає речі поруч із вами",
             "feedbackByLocale": {
               "ru": "В записи форма — `oval`, а в этом варианте — `round`.",
               "uk": "У записі форма — `oval`, а в цьому варіанті — `round`."
@@ -1136,5 +1136,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c9827a2cd7288752f080600de5a8213bd9b0fc6cce4816661eb0154659753f1d"
+  "learnerFingerprint": "e969d671da4e9d47331f0dbb45bd55a795d22d8431580724211a4db0f457797b"
 }

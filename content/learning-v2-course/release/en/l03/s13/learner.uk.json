@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що продавчиня каже про річ у вітрині",
+      "prompt": "Послухайте й виберіть — біля прилавка продавчиня дістає речі з вітрини",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що продавчиня каже про річ у вітрині",
+      "accessibilityLabel": "Послухайте й виберіть — біля прилавка продавчиня дістає речі з вітрини",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-13:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що продавчиня каже про річ у вітрині",
+            "testedDimension": "Послухайте й виберіть — біля прилавка продавчиня дістає речі з вітрини",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `necklace`, а в этом варианте — `earring`.",
               "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `earring`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-13:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що продавчиня каже про річ у вітрині",
+            "testedDimension": "Послухайте й виберіть — біля прилавка продавчиня дістає речі з вітрини",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `necklace`, а в этом варианте — `vase`.",
               "uk": "У записі останнє слово — `necklace`, а в цьому варіанті — `vase`."
@@ -638,7 +638,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання сестри",
+      "prompt": "Послухайте й виберіть — ви обираєте подарунок мамі, сестра питає",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i09:r1",
@@ -657,7 +657,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-13:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання сестри",
+      "accessibilityLabel": "Послухайте й виберіть — ви обираєте подарунок мамі, сестра питає",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -687,7 +687,7 @@
           {
             "responseId": "en:lesson-03:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри",
+            "testedDimension": "Послухайте й виберіть — ви обираєте подарунок мамі, сестра питає",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `earring`, а в этом варианте — `pearl`.",
               "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `pearl`."
@@ -696,7 +696,7 @@
           {
             "responseId": "en:lesson-03:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри",
+            "testedDimension": "Послухайте й виберіть — ви обираєте подарунок мамі, сестра питає",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
               "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже сестра",
+      "prompt": "Послухайте й виберіть — сестра обирає з вами подарунок для мами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-13:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-13:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже сестра",
+      "accessibilityLabel": "Послухайте й виберіть — сестра обирає з вами подарунок для мами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-13:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже сестра",
+            "testedDimension": "Послухайте й виберіть — сестра обирає з вами подарунок для мами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `earring`, а в этом варианте — `necklace`.",
               "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `necklace`."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-13:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже сестра",
+            "testedDimension": "Послухайте й виберіть — сестра обирає з вами подарунок для мами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `earring`, а в этом варианте — `bracelet`.",
               "uk": "У записі останнє слово — `earring`, а в цьому варіанті — `bracelet`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d6cd085cce3a8c2179869a90767c68e9ef0ddaee07290149fb237074200ce344"
+  "learnerFingerprint": "582600d5b0a41c6fbef63594bc9c3d0338739e30aa0f430814eddc8ce7854963"
 }

@@ -316,7 +316,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що продавець каже про стільці",
+      "prompt": "Послухайте й виберіть — продавець показує вам меблі в магазині",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-50:i05:r1",
@@ -335,7 +335,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-50:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, що продавець каже про стільці",
+      "accessibilityLabel": "Послухайте й виберіть — продавець показує вам меблі в магазині",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -365,7 +365,7 @@
           {
             "responseId": "en:lesson-03:session-50:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про стільці",
+            "testedDimension": "Послухайте й виберіть — продавець показує вам меблі в магазині",
             "feedbackByLocale": {
               "ru": "В записи `Those are` и несколько стульев, а в этом варианте `That is a` и один стул.",
               "uk": "У записі `Those are` і кілька стільців, а в цьому варіанті `That is a` і один стілець."
@@ -374,7 +374,7 @@
           {
             "responseId": "en:lesson-03:session-50:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про стільці",
+            "testedDimension": "Послухайте й виберіть — продавець показує вам меблі в магазині",
             "feedbackByLocale": {
               "ru": "В записи цвет — `white`, а в этом варианте — `black`.",
               "uk": "У записі колір — `white`, а в цьому варіанті — `black`."
@@ -746,7 +746,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання подруги",
+      "prompt": "Послухайте й виберіть — подруга обирає з вами речі для квартири",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-50:i11:r1",
@@ -765,7 +765,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-50:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання подруги",
+      "accessibilityLabel": "Послухайте й виберіть — подруга обирає з вами речі для квартири",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -795,7 +795,7 @@
           {
             "responseId": "en:lesson-03:session-50:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга обирає з вами речі для квартири",
             "feedbackByLocale": {
               "ru": "В записи `Is it a` и один предмет, а в этом варианте `Are those` и несколько.",
               "uk": "У записі `Is it a` і один предмет, а в цьому варіанті `Are those` і кілька."
@@ -804,7 +804,7 @@
           {
             "responseId": "en:lesson-03:session-50:i11:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга обирає з вами речі для квартири",
             "feedbackByLocale": {
               "ru": "В записи цвет — `grey`, а в этом варианте — `white`.",
               "uk": "У записі колір — `grey`, а в цьому варіанті — `white`."
@@ -1133,5 +1133,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2b1f7aac44dbba14f186b437f694c02b9a79134c15bcfc165e6ab2d2cc634b44"
+  "learnerFingerprint": "989a9cdd9c544f52aa37638f95ef1195f16065e1c892dec66c6a4d7186c41aeb"
 }

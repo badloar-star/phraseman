@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже майстер",
+      "prompt": "Послухайте й виберіть — майстер у майстерні оглядає ваші речі",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-25:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-25:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже майстер",
+      "accessibilityLabel": "Послухайте й виберіть — майстер у майстерні оглядає ваші речі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-25:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже майстер",
+            "testedDimension": "Послухайте й виберіть — майстер у майстерні оглядає ваші речі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `box`, а в этом варианте — `key`.",
               "uk": "У записі останнє слово — `box`, а в цьому варіанті — `key`."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-25:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже майстер",
+            "testedDimension": "Послухайте й виберіть — майстер у майстерні оглядає ваші речі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `box`, а в этом варианте — `bag`.",
               "uk": "У записі останнє слово — `box`, а в цьому варіанті — `bag`."
@@ -554,7 +554,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже подруга",
+      "prompt": "Послухайте й виберіть — подруга чекає поруч, поки ви здаєте речі",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-25:i09:r1",
@@ -573,7 +573,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-25:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже подруга",
+      "accessibilityLabel": "Послухайте й виберіть — подруга чекає поруч, поки ви здаєте речі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -603,7 +603,7 @@
           {
             "responseId": "en:lesson-03:session-25:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга",
+            "testedDimension": "Послухайте й виберіть — подруга чекає поруч, поки ви здаєте речі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `charger`, а в этом варианте — `box`.",
               "uk": "У записі останнє слово — `charger`, а в цьому варіанті — `box`."
@@ -612,7 +612,7 @@
           {
             "responseId": "en:lesson-03:session-25:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга",
+            "testedDimension": "Послухайте й виберіть — подруга чекає поруч, поки ви здаєте речі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `charger`, а в этом варианте — `key`.",
               "uk": "У записі останнє слово — `charger`, а в цьому варіанті — `key`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже майстер",
+      "prompt": "Послухайте й виберіть — у вас у руках річ, майстер бере її в ремонт",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-25:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-25:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже майстер",
+      "accessibilityLabel": "Послухайте й виберіть — у вас у руках річ, майстер бере її в ремонт",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-25:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже майстер",
+            "testedDimension": "Послухайте й виберіть — у вас у руках річ, майстер бере її в ремонт",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `adapter`, а в этом варианте — `charger`.",
               "uk": "У записі останнє слово — `adapter`, а в цьому варіанті — `charger`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-25:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже майстер",
+            "testedDimension": "Послухайте й виберіть — у вас у руках річ, майстер бере її в ремонт",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `adapter`, а в этом варианте — `cable`.",
               "uk": "У записі останнє слово — `adapter`, а в цьому варіанті — `cable`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "85d2ba192b35fe7591f94d3dad57af1dba87564b972586c476cd88525843ad8b"
+  "learnerFingerprint": "b85b2fda5f3f16b8a85dbb0ac67e5c2168d09feac37c9b9e57dd0fce05c0137a"
 }

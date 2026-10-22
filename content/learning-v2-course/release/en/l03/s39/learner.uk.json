@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання брата про груші",
+      "prompt": "Послухайте й виберіть — брат питає вас біля овочевого намету",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-39:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання брата про груші",
+      "accessibilityLabel": "Послухайте й виберіть — брат питає вас біля овочевого намету",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-39:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання брата про груші",
+            "testedDimension": "Послухайте й виберіть — брат питає вас біля овочевого намету",
             "feedbackByLocale": {
               "ru": "В записи `Are those pears` — груш несколько, а в этом варианте `Is that pear` — одна.",
               "uk": "У записі `Are those pears` — груш кілька, а в цьому варіанті `Is that pear` — одна."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-39:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання брата про груші",
+            "testedDimension": "Послухайте й виберіть — брат питає вас біля овочевого намету",
             "feedbackByLocale": {
               "ru": "В записи слово `those` — груши далеко, а в этом варианте `these` — рядом.",
               "uk": "У записі слово `those` — груші далеко, а в цьому варіанті `these` — поруч."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже продавець про виноград",
+      "prompt": "Послухайте й виберіть — продавець кладе продукти в сумки",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-39:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже продавець про виноград",
+      "accessibilityLabel": "Послухайте й виберіть — продавець кладе продукти в сумки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-39:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець про виноград",
+            "testedDimension": "Послухайте й виберіть — продавець кладе продукти в сумки",
             "feedbackByLocale": {
               "ru": "В записи `Those grapes` — виноградин несколько, а в этом варианте `That grape` — одна.",
               "uk": "У записі `Those grapes` — виноградин кілька, а в цьому варіанті `That grape` — одна."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-39:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець про виноград",
+            "testedDimension": "Послухайте й виберіть — продавець кладе продукти в сумки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `ripe`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `ripe`, а в цьому варіанті — `old`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання подруги про цибулю",
+      "prompt": "Послухайте й виберіть — у наметі подруга ставить запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-39:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-39:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання подруги про цибулю",
+      "accessibilityLabel": "Послухайте й виберіть — у наметі подруга ставить запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-39:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги про цибулю",
+            "testedDimension": "Послухайте й виберіть — у наметі подруга ставить запитання",
             "feedbackByLocale": {
               "ru": "В записи `Are those onions` — луковиц несколько, а в этом варианте `Is that onion` — одна.",
               "uk": "У записі `Are those onions` — цибулин кілька, а в цьому варіанті `Is that onion` — одна."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-39:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги про цибулю",
+            "testedDimension": "Послухайте й виберіть — у наметі подруга ставить запитання",
             "feedbackByLocale": {
               "ru": "В записи слово `those` — луковицы далеко, а в этом варианте `these` — рядом.",
               "uk": "У записі слово `those` — цибулини далеко, а в цьому варіанті `these` — поруч."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fa70a83300544cda1bc44c30d0dc60cf79b8f9526c369ce121f8c4c2c699ffe2"
+  "learnerFingerprint": "8f42681d8255e14066fc680ebf59eeaf27ad3eb9b69bc8dc5edee1e4dd381469"
 }

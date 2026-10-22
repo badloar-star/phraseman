@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о вещах в коридоре",
+      "prompt": "Послушайте и выберите — подруга проверяет вещи в коридоре по списку",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-08:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о вещах в коридоре",
+      "accessibilityLabel": "Послушайте и выберите — подруга проверяет вещи в коридоре по списку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-08:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
+            "testedDimension": "Послушайте и выберите — подруга проверяет вещи в коридоре по списку",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hammer`, а в этом варианте — `ladder`.",
               "uk": "У записі останнє слово — `hammer`, а в цьому варіанті — `ladder`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-08:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
+            "testedDimension": "Послушайте и выберите — подруга проверяет вещи в коридоре по списку",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hammer`, а в этом варианте — `bucket`.",
               "uk": "У записі останнє слово — `hammer`, а в цьому варіанті — `bucket`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "87ef5f778db29b050389682cee8cd72234050de44c0afa607db643671a8585f1"
+  "learnerFingerprint": "d7bc85580d15452ec0b590b63c7c07ffdee957506b77d77429e738e0178e03a0"
 }

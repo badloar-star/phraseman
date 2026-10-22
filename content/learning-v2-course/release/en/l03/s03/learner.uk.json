@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що подруга каже про річ біля дверей",
+      "prompt": "Послухайте й виберіть — подруга показує на річ біля дверей",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що подруга каже про річ біля дверей",
+      "accessibilityLabel": "Послухайте й виберіть — подруга показує на річ біля дверей",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про річ біля дверей",
+            "testedDimension": "Послухайте й виберіть — подруга показує на річ біля дверей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mirror`, а в этом варианте — `rug`.",
               "uk": "У записі останнє слово — `mirror`, а в цьому варіанті — `rug`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про річ біля дверей",
+            "testedDimension": "Послухайте й виберіть — подруга показує на річ біля дверей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mirror`, а в этом варианте — `stool`.",
               "uk": "У записі останнє слово — `mirror`, а в цьому варіанті — `stool`."
@@ -639,7 +639,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання подруги",
+      "prompt": "Послухайте й виберіть — подруга питає про річ у коморі",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i09:r1",
@@ -658,7 +658,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-03:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання подруги",
+      "accessibilityLabel": "Послухайте й виберіть — подруга питає про річ у коморі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -688,7 +688,7 @@
           {
             "responseId": "en:lesson-03:session-03:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга питає про річ у коморі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `picture`, а в этом варианте — `mirror`.",
               "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `mirror`."
@@ -697,7 +697,7 @@
           {
             "responseId": "en:lesson-03:session-03:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга питає про річ у коморі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
               "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що подруга каже про картину",
+      "prompt": "Послухайте й виберіть — ви розставляєте речі, подруга тримає одну",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-03:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що подруга каже про картину",
+      "accessibilityLabel": "Послухайте й виберіть — ви розставляєте речі, подруга тримає одну",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-03:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про картину",
+            "testedDimension": "Послухайте й виберіть — ви розставляєте речі, подруга тримає одну",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `picture`, а в этом варианте — `rug`.",
               "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `rug`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-03:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про картину",
+            "testedDimension": "Послухайте й виберіть — ви розставляєте речі, подруга тримає одну",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `picture`, а в этом варианте — `stool`.",
               "uk": "У записі останнє слово — `picture`, а в цьому варіанті — `stool`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5fbffd4dca2a2d55f218bca4662667a651389b6cb4e2f2761a225b50b3fd0aa8"
+  "learnerFingerprint": "f5d0964a4d31b8131acf29aa5a1727a0086f6f68b74065d51da242440857de70"
 }

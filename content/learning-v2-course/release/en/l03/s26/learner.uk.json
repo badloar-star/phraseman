@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже технік",
+      "prompt": "Послухайте й виберіть — технік перевіряє обладнання в залі",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-26:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже технік",
+      "accessibilityLabel": "Послухайте й виберіть — технік перевіряє обладнання в залі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-26:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже технік",
+            "testedDimension": "Послухайте й виберіть — технік перевіряє обладнання в залі",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
               "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-26:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже технік",
+            "testedDimension": "Послухайте й виберіть — технік перевіряє обладнання в залі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `window`, а в этом варианте — `shelf`.",
               "uk": "У записі останнє слово — `window`, а в цьому варіанті — `shelf`."
@@ -554,7 +554,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже подруга",
+      "prompt": "Послухайте й виберіть — подруга готує залу разом із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i09:r1",
@@ -573,7 +573,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-26:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже подруга",
+      "accessibilityLabel": "Послухайте й виберіть — подруга готує залу разом із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -603,7 +603,7 @@
           {
             "responseId": "en:lesson-03:session-26:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга",
+            "testedDimension": "Послухайте й виберіть — подруга готує залу разом із вами",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
               "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
@@ -612,7 +612,7 @@
           {
             "responseId": "en:lesson-03:session-26:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга",
+            "testedDimension": "Послухайте й виберіть — подруга готує залу разом із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `screen`, а в этом варианте — `door`.",
               "uk": "У записі останнє слово — `screen`, а в цьому варіанті — `door`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже ведуча",
+      "prompt": "Послухайте й виберіть — технік заходить у залу перед презентацією",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-26:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-26:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже ведуча",
+      "accessibilityLabel": "Послухайте й виберіть — технік заходить у залу перед презентацією",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-26:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже ведуча",
+            "testedDimension": "Послухайте й виберіть — технік заходить у залу перед презентацією",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
               "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-26:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже ведуча",
+            "testedDimension": "Послухайте й виберіть — технік заходить у залу перед презентацією",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `speaker`, а в этом варианте — `screen`.",
               "uk": "У записі останнє слово — `speaker`, а в цьому варіанті — `screen`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "988f1c4b6969bb5cf27757e48abeefc1c8a5659d40d53d6f9d76f325a03eb606"
+  "learnerFingerprint": "626f29d059e51a942dc17472eee726661c54002d997dc3c014dede30630596de"
 }

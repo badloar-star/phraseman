@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что мастер говорит о ремонте",
+      "prompt": "Послушайте и выберите — мастер ходит по комнате и показывает вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-05:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что мастер говорит о ремонте",
+      "accessibilityLabel": "Послушайте и выберите — мастер ходит по комнате и показывает вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-05:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что мастер говорит о ремонте",
+            "testedDimension": "Послушайте и выберите — мастер ходит по комнате и показывает вам",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `floor`, а в этом варианте — `wall`.",
               "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `wall`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что мастер говорит о ремонте",
+            "testedDimension": "Послушайте и выберите — мастер ходит по комнате и показывает вам",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `floor`, а в этом варианте — `crack`.",
               "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `crack`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "71b33ba55c2751e32ee111bfbcfbbbec83e5947999c363aa7efb07bf8b47c83d"
+  "learnerFingerprint": "05e3df65bda132a63662ea8fd0caeacae7b5971bcf3181cfb36f5a9417e7c217"
 }

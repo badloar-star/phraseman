@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що співробітниця каже про річ на стійці",
+      "prompt": "Послухайте й виберіть — співробітниця за стійкою уточнює деталі",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-11:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-11:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що співробітниця каже про річ на стійці",
+      "accessibilityLabel": "Послухайте й виберіть — співробітниця за стійкою уточнює деталі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що співробітниця каже про річ на стійці",
+            "testedDimension": "Послухайте й виберіть — співробітниця за стійкою уточнює деталі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `uniform`, а в этом варианте — `hour`.",
               "uk": "У записі останнє слово — `uniform`, а в цьому варіанті — `hour`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що співробітниця каже про річ на стійці",
+            "testedDimension": "Послухайте й виберіть — співробітниця за стійкою уточнює деталі",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `uniform`, а в этом варианте — `armchair`.",
               "uk": "У записі останнє слово — `uniform`, а в цьому варіанті — `armchair`."
@@ -638,7 +638,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання сестри",
+      "prompt": "Послухайте й виберіть — сестра питає, поки ви чекаєте біля стійки",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-11:i09:r1",
@@ -657,7 +657,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-11:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання сестри",
+      "accessibilityLabel": "Послухайте й виберіть — сестра питає, поки ви чекаєте біля стійки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -687,7 +687,7 @@
           {
             "responseId": "en:lesson-03:session-11:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри",
+            "testedDimension": "Послухайте й виберіть — сестра питає, поки ви чекаєте біля стійки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `euro`, а в этом варианте — `hour`.",
               "uk": "У записі останнє слово — `euro`, а в цьому варіанті — `hour`."
@@ -696,7 +696,7 @@
           {
             "responseId": "en:lesson-03:session-11:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри",
+            "testedDimension": "Послухайте й виберіть — сестра питає, поки ви чекаєте біля стійки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `euro`, а в этом варианте — `uniform`.",
               "uk": "У записі останнє слово — `euro`, а в цьому варіанті — `uniform`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже співробітниця",
+      "prompt": "Послухайте й виберіть — співробітниця за стійкою знову звертається до вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-11:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-11:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже співробітниця",
+      "accessibilityLabel": "Послухайте й виберіть — співробітниця за стійкою знову звертається до вас",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-11:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже співробітниця",
+            "testedDimension": "Послухайте й виберіть — співробітниця за стійкою знову звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hour`, а в этом варианте — `uniform`.",
               "uk": "У записі останнє слово — `hour`, а в цьому варіанті — `uniform`."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-11:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже співробітниця",
+            "testedDimension": "Послухайте й виберіть — співробітниця за стійкою знову звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hour`, а в этом варианте — `utensil`.",
               "uk": "У записі останнє слово — `hour`, а в цьому варіанті — `utensil`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f0a61b87938ad285a63990932fc834098ab5b6e10c21bb65a7d8e60153b41e7c"
+  "learnerFingerprint": "83a19dafcfcdf8c36dd2bba4619f6abf444dbc5d31dbd9327f87e4d7acc8d74c"
 }

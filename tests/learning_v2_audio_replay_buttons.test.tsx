@@ -247,3 +247,58 @@ test("sound contrast option audio remains independent from the resolved answer c
   expect(optionReplay).toHaveBeenNthCalledWith(2, "r1");
   await screen.unmount();
 });
+
+// зачем (владелец 22.10): «все кнопки плей в занятиях — динамик и всегда можно нажать повторно».
+type HostNode = { type?: unknown; props?: { name?: string }; children?: unknown[] };
+// Значки внутри кнопки: обход дерева хост-элементов (Ionicons замокан строкой "Ionicons").
+const iconNames = (node: HostNode): (string | undefined)[] => {
+  const out: (string | undefined)[] = [];
+  const walk = (n: unknown) => {
+    if (!n || typeof n !== "object") return;
+    const h = n as HostNode;
+    if (h.type === "Ionicons") out.push(h.props?.name);
+    for (const c of h.children ?? []) walk(c);
+  };
+  walk(node);
+  return out;
+};
+
+test("every replay button shows a speaker, never play/pause or a note", async () => {
+  const screen = await render(
+    <SoundContrastModeV1
+      {...commonProps}
+      family="sound_contrast"
+      onPlaySelectableAudio={jest.fn()}
+      modePayload={{ family: "sound_contrast", ipaA: "/sɪd/", ipaB: "/siːd/" } as never}
+    />,
+  );
+  for (const button of screen.getAllByTestId("learning-v2-audio-replay-button")) {
+    expect(iconNames(button as never)).toEqual(["volume-high"]);
+  }
+  expect(screen.queryByText("♪")).toBeNull();
+  await screen.unmount();
+});
+
+test("scripted repeat: while the phrase plays the button stays a speaker, enabled, and a press restarts it", async () => {
+  const replay = jest.fn();
+  const screen = await render(
+    <ScriptedRepeatCompareModeV1
+      {...commonProps}
+      family="scripted_repeat_compare"
+      referenceAudioState="playing"
+      onPlayFullPhraseAudio={replay}
+      modePayload={{ family: "scripted_repeat_compare", targetPhrase: "I am sad" } as never}
+      voiceStatus="requesting"
+      transcript=""
+      instruction={null}
+      attemptSubmitted
+    />,
+  );
+  const button = screen.getByTestId("learning-v2-repeat-reference-play");
+  expect(iconNames(button as never)).toEqual(["volume-high"]);
+  expect(button.props.disabled).toBe(false);
+  await fireEvent.press(button);
+  await fireEvent.press(button);
+  expect(replay).toHaveBeenCalledTimes(2);
+  await screen.unmount();
+});

@@ -13,6 +13,7 @@
  * ровно как приходит из player'а (2 варианта в responseOptions).
  */
 
+import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useEffect, useRef } from "react";
 import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
 import Animated, {
@@ -30,6 +31,14 @@ import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { SOUND_CONTRAST_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
 import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
+import type { LearningV2InterfaceLocale } from "../content/generator_course_contract";
+
+// зачем (координатор 22.10): подпись кнопки «послушать вариант» была только по-русски.
+const LISTEN_LABEL_V1: Readonly<Record<string, (label: string) => string>> = {
+  ru: (l) => `Слушать ${l}`, uk: (l) => `Слухати ${l}`, en: (l) => `Listen to ${l}`, es: (l) => `Escuchar ${l}`,
+  "pt-BR": (l) => `Ouvir ${l}`, vi: (l) => `Nghe ${l}`, id: (l) => `Dengarkan ${l}`, tr: (l) => `${l} dinle`, pl: (l) => `Posłuchaj ${l}`,
+};
+const listenLabelV1 = (locale: LearningV2InterfaceLocale | string, label: string) => (LISTEN_LABEL_V1[locale] ?? LISTEN_LABEL_V1.en)(label);
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 
@@ -47,6 +56,7 @@ function SoundContrastCardV1({
   bg,
   textColor,
   accent,
+  interfaceLocale,
 }: {
   readonly label: string;
   readonly ipa: string;
@@ -58,6 +68,7 @@ function SoundContrastCardV1({
   readonly disabled: boolean;
   readonly onPress: () => void;
   readonly onListen: () => void;
+  readonly interfaceLocale: LearningV2InterfaceLocale | string;
   readonly bg: string;
   readonly selectedBg: string;
   readonly textColor: string;
@@ -102,7 +113,7 @@ function SoundContrastCardV1({
         style={styles.card}
         right={
           <LearningV2AudioReplayPressableV1
-            accessibilityLabel={`Слушать ${label}`}
+            accessibilityLabel={listenLabelV1(interfaceLocale, label)}
             contentStyle={[styles.listenBtn, { backgroundColor: bg }]}
             onPress={(event) => {
               event.stopPropagation();
@@ -110,7 +121,7 @@ function SoundContrastCardV1({
             }}
             reducedMotion={reducedMotion}
           >
-            <Text style={{ color: accent, fontSize: 13 }}>♪</Text>
+            <Ionicons name="volume-high" size={16} color={accent} />
           </LearningV2AudioReplayPressableV1>
         }
       >
@@ -138,6 +149,7 @@ export function SoundContrastModeV1(props: LearningV2ModeCommonPropsV1) {
     onPlaySelectableAudio,
     phase,
     modePayload,
+    interfaceLocale,
   } = props;
   if (!modePayload || modePayload.family !== "sound_contrast") {
     throw new Error("learning_v2_sound_contrast_payload_missing");
@@ -183,6 +195,7 @@ export function SoundContrastModeV1(props: LearningV2ModeCommonPropsV1) {
               disabled={resolved || phase === "processing"}
               onPress={() => onPick(option.responseId)}
               onListen={() => onPlaySelectableAudio(option.responseId)}
+              interfaceLocale={interfaceLocale}
               bg={t.bgCard}
               selectedBg={t.accentBg}
               accent={t.accent}

@@ -93,10 +93,12 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
   // смысл экрана (иконка Ⅱ/▶ и подпись «идёт запись»), а не только движение.
   const runtimeActive = useRuntimeActive();
   const recording = voiceStatus === "listening";
-  const requesting = voiceStatus === "requesting" || voiceStatus === "finishing";
   const referencePlaying = referenceAudioState === "playing";
   const referenceLoading = referenceAudioState === "loading";
-  const referenceDisabled = recording || requesting;
+  // зачем (владелец 22.10 «динамик и всегда можно нажать повторно»): кнопку образца не гасим ни во время звучания, ни пока
+  // ждём оценку — нажатие перезапускает фразу (обработчик плеера останавливает звук и играет заново). Единственное
+  // исключение — идёт запись голоса: иначе образец попадёт в микрофон и испортит попытку.
+  const referenceDisabled = recording;
   const copy = learningV2ModeRepeatCompareCopyV1(interfaceLocale);
   const revealPolicyValue =
     modePayload?.family === "scripted_repeat_compare"
@@ -243,7 +245,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
               reducedMotion={reducedMotion}
               testID="learning-v2-repeat-reference-play"
             >
-              <Ionicons name={referencePlaying ? "pause" : "volume-high"} size={40} color={g.text} />
+              <Ionicons name="volume-high" size={40} color={g.text} />
             </LearningV2AudioReplayPressableV1>
           </Animated.View>
         </View>

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Записаться на приём",
+        "uk": "Записатися на прийом"
+      },
+      "bodyByLocale": {
+        "ru": "Make an appointment — записаться на приём, договориться о времени встречи со специалистом. В этой ситуации вы записываетесь к стоматологу. Это выражение описывает организацию встречи. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Make an appointment — записатися на прийом, домовитися про час зустрічі з фахівцем. У цій ситуації ви записуєтеся до стоматолога. Цей вираз описує організацію зустрічі. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-41:intro1:r1",
+              "text": "I make an appointment to see the dentist."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro1:r2",
+              "text": "I make an appointment to seeing the dentist."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro1:r3",
+              "text": "I make an appointment for see the dentist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-41:intro1:r1",
+              "text": "I make an appointment to see the dentist."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro1:r2",
+              "text": "I make an appointment to seeing the dentist."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro1:r3",
+              "text": "I make an appointment for see the dentist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить зрение",
+        "uk": "Перевірити зір"
+      },
+      "bodyByLocale": {
+        "ru": "Eye test — проверка зрения. В учебной ситуации вы записываетесь на неё перед покупкой новых очков. Hearing test — проверка слуха; hearing здесь означает способность слышать. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Eye test — перевірка зору. У навчальній ситуації ви записуєтеся на неї перед купівлею нових окулярів. Hearing test — перевірка слуху; hearing тут означає здатність чути. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-41:intro2:r1",
+              "text": "I book an eye test to get new glasses."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro2:r2",
+              "text": "I book an eye test to getting new glasses."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro2:r3",
+              "text": "I book an eye test for get new glasses."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-41:intro2:r1",
+              "text": "I book an eye test to get new glasses."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro2:r2",
+              "text": "I book an eye test to getting new glasses."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro2:r3",
+              "text": "I book an eye test for get new glasses."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Забрать документ",
+        "uk": "Забрати документ"
+      },
+      "bodyByLocale": {
+        "ru": "Collect a prescription — забрать рецепт, который уже подготовили. В этой ситуации рецепт находится в регистратуре; вы забираете его, чтобы затем получить лекарство. Здесь prescription — документ, а не само лекарство. Зачем вы это делаете? Цель можно выразить через to + начальную форму: I join a group to learn — «я вступаю в группу, чтобы учиться». Действие и его цель относятся к одному человеку. После to в этой конструкции цели нужна начальная форма глагола, без -ing.",
+        "uk": "Collect a prescription — забрати рецепт, який уже підготували. У цій ситуації рецепт лежить у реєстратурі; ви забираєте його, щоб потім отримати ліки. Тут prescription — документ, а не самі ліки. Навіщо ви це робите? Мету можна виразити через to + початкову форму: I join a group to learn — «я вступаю до групи, щоб навчатися». Дія та її мета стосуються однієї людини. Після to у цій конструкції мети потрібна початкова форма дієслова, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-41:intro3:r1",
+              "text": "I collect a prescription to get my medicine."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro3:r2",
+              "text": "I collect a prescription to getting my medicine."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro3:r3",
+              "text": "I collect a prescription for get my medicine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-41:intro3:r1",
+              "text": "I collect a prescription to get my medicine."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro3:r2",
+              "text": "I collect a prescription to getting my medicine."
+            },
+            {
+              "responseId": "en:lesson-21:session-41:intro3:r3",
+              "text": "I collect a prescription for get my medicine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a0d4460bfb6fb16fe036ed7dd813081041c82b1fb27eedaf0d1969d0e81b1922"
+}

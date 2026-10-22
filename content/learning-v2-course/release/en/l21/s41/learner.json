@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-41:word:make-an-appointment",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — make an appointment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:word:make-an-appointment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — make an appointment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:word:make-an-appointment:audio",
+          "transcript": "make an appointment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:word:make-an-appointment:r1",
+            "targetText": "make an appointment",
+            "meaningByLocale": {
+              "ru": "записаться на приём.",
+              "uk": "записатися на прийом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make an appointment",
+          "definitionByLocale": {
+            "ru": "записаться на приём.",
+            "uk": "записатися на прийом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я записываюсь на приём, чтобы попасть к стоматологу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я записываюсь на приём, чтобы попасть к стоматологу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I make an appointment to see the dentist.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я записываюсь на приём, чтобы попасть к стоматологу».",
+          "uk": "Скажіть: «Я записуюся на прийом, щоб потрапити до стоматолога»."
+        },
+        "orderedTokens": [
+          "I",
+          "make",
+          "an",
+          "appointment",
+          "to",
+          "see",
+          "the",
+          "dentist"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i02:r1",
+          "text": "I make an appointment to see the dentist."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i02:r2",
+          "text": "We make an appointment to see the dentist."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i02:r3",
+          "text": "They make an appointment to see the dentist."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i02:audio",
+          "transcript": "I make an appointment to see the dentist."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:i02:r1",
+            "targetText": "I make an appointment to see the dentist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i02:r2",
+            "targetText": "We make an appointment to see the dentist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i02:r3",
+            "targetText": "They make an appointment to see the dentist.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I make an appointment to see the dentist.",
+              "uk": "У записі звучить I make an appointment to see the dentist."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I make an appointment to see the dentist.",
+              "uk": "У записі звучить I make an appointment to see the dentist."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i03:r1",
+          "text": "to see"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i03:r2",
+          "text": "to seeing"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i03:r3",
+          "text": "for see"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I make an appointment ___ the dentist.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-41:i03:r1",
+            "text": "to see"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i03:r2",
+            "text": "to seeing"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i03:r3",
+            "text": "for see"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:word:eye-test",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eye test",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:word:eye-test:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eye test",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:word:eye-test:audio",
+          "transcript": "eye test"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:word:eye-test:r1",
+            "targetText": "eye test",
+            "meaningByLocale": {
+              "ru": "проверка зрения.",
+              "uk": "перевірка зору."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eye test",
+          "definitionByLocale": {
+            "ru": "проверка зрения.",
+            "uk": "перевірка зору."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я записываюсь на проверку зрения, чтобы подобрать новые очки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я записываюсь на проверку зрения, чтобы подобрать новые очки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I book an eye test to get new glasses.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я записываюсь на проверку зрения, чтобы подобрать новые очки».",
+          "uk": "Скажіть: «Я записуюся на перевірку зору, щоб підібрати нові окуляри»."
+        },
+        "orderedTokens": [
+          "I",
+          "book",
+          "an",
+          "eye",
+          "test",
+          "to",
+          "get",
+          "new",
+          "glasses"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i05:r1",
+          "text": "I book an eye test to get new glasses."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i05:r2",
+          "text": "We book an eye test to get new glasses."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i05:r3",
+          "text": "They book an eye test to get new glasses."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i05:audio",
+          "transcript": "I book an eye test to get new glasses."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:i05:r1",
+            "targetText": "I book an eye test to get new glasses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i05:r2",
+            "targetText": "We book an eye test to get new glasses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i05:r3",
+            "targetText": "They book an eye test to get new glasses.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I book an eye test to get new glasses.",
+              "uk": "У записі звучить I book an eye test to get new glasses."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I book an eye test to get new glasses.",
+              "uk": "У записі звучить I book an eye test to get new glasses."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i06:r1",
+          "text": "to get"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i06:r2",
+          "text": "to getting"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i06:r3",
+          "text": "for get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I book an eye test ___ new glasses.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-41:i06:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i06:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i06:r3",
+            "text": "for get"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:word:hearing-test",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hearing test",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:word:hearing-test:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hearing test",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:word:hearing-test:audio",
+          "transcript": "hearing test"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:word:hearing-test:r1",
+            "targetText": "hearing test",
+            "meaningByLocale": {
+              "ru": "проверка слуха.",
+              "uk": "перевірка слуху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hearing test",
+          "definitionByLocale": {
+            "ru": "проверка слуха.",
+            "uk": "перевірка слуху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я звоню в клинику, чтобы договориться о проверке слуха».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я звоню в клинику, чтобы договориться о проверке слуха».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I call the clinic to arrange a hearing test.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я звоню в клинику, чтобы договориться о проверке слуха».",
+          "uk": "Скажіть: «Я телефоную до клініки, щоб домовитися про перевірку слуху»."
+        },
+        "orderedTokens": [
+          "I",
+          "call",
+          "the",
+          "clinic",
+          "to",
+          "arrange",
+          "a",
+          "hearing",
+          "test"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i08:r1",
+          "text": "I call the clinic to arrange a hearing test."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i08:r2",
+          "text": "We call the clinic to arrange a hearing test."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i08:r3",
+          "text": "They call the clinic to arrange a hearing test."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i08:audio",
+          "transcript": "I call the clinic to arrange a hearing test."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:i08:r1",
+            "targetText": "I call the clinic to arrange a hearing test.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i08:r2",
+            "targetText": "We call the clinic to arrange a hearing test.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i08:r3",
+            "targetText": "They call the clinic to arrange a hearing test.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I call the clinic to arrange a hearing test.",
+              "uk": "У записі звучить I call the clinic to arrange a hearing test."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I call the clinic to arrange a hearing test.",
+              "uk": "У записі звучить I call the clinic to arrange a hearing test."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i09:r1",
+          "text": "to arrange"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i09:r2",
+          "text": "to arranging"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i09:r3",
+          "text": "for arrange"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I call the clinic ___ a hearing test.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-41:i09:r1",
+            "text": "to arrange"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i09:r2",
+            "text": "to arranging"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i09:r3",
+            "text": "for arrange"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:word:collect-a-prescription",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — collect a prescription",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:word:collect-a-prescription:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — collect a prescription",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:word:collect-a-prescription:audio",
+          "transcript": "collect a prescription"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:word:collect-a-prescription:r1",
+            "targetText": "collect a prescription",
+            "meaningByLocale": {
+              "ru": "забрать рецепт.",
+              "uk": "забрати рецепт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "collect a prescription",
+          "definitionByLocale": {
+            "ru": "забрать рецепт.",
+            "uk": "забрати рецепт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я забираю рецепт, чтобы получить своё лекарство».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я забираю рецепт, чтобы получить своё лекарство».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I collect a prescription to get my medicine.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я забираю рецепт, чтобы получить своё лекарство».",
+          "uk": "Скажіть: «Я забираю рецепт, щоб отримати свої ліки»."
+        },
+        "orderedTokens": [
+          "I",
+          "collect",
+          "a",
+          "prescription",
+          "to",
+          "get",
+          "my",
+          "medicine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i11:r1",
+          "text": "I collect a prescription to get my medicine."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i11:r2",
+          "text": "We collect a prescription to get our medicine."
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i11:r3",
+          "text": "They collect a prescription to get their medicine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i11:audio",
+          "transcript": "I collect a prescription to get my medicine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-41:i11:r1",
+            "targetText": "I collect a prescription to get my medicine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i11:r2",
+            "targetText": "We collect a prescription to get our medicine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i11:r3",
+            "targetText": "They collect a prescription to get their medicine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I collect a prescription to get my medicine.",
+              "uk": "У записі звучить I collect a prescription to get my medicine."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I collect a prescription to get my medicine.",
+              "uk": "У записі звучить I collect a prescription to get my medicine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-41:i12:r1",
+          "text": "to get"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i12:r2",
+          "text": "to getting"
+        },
+        {
+          "responseId": "en:lesson-21:session-41:i12:r3",
+          "text": "for get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I collect a prescription ___ my medicine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-41:i12:r1",
+            "text": "to get"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i12:r2",
+            "text": "to getting"
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i12:r3",
+            "text": "for get"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-41:i13:p1",
+            "target": "make an appointment",
+            "meaningByLocale": {
+              "ru": "записаться на приём",
+              "uk": "записатися на прийом"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-41:i13:p2",
+            "target": "eye test",
+            "meaningByLocale": {
+              "ru": "проверка зрения",
+              "uk": "перевірка зору"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-41:i13:p3",
+            "target": "hearing test",
+            "meaningByLocale": {
+              "ru": "проверка слуха",
+              "uk": "перевірка слуху"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-41:i13:p4",
+            "target": "collect a prescription",
+            "meaningByLocale": {
+              "ru": "забрать рецепт",
+              "uk": "забрати рецепт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "make an appointment",
+          "eye test",
+          "hearing test",
+          "collect a prescription"
+        ],
+        "rightColumn": [
+          "записаться на приём",
+          "проверка зрения",
+          "проверка слуха",
+          "забрать рецепт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: попросить проверить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: попросить проверить",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: общение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: общение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните: «Я звоню в клинику, чтобы договориться о проверке слуха»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Объясните: «Я звоню в клинику, чтобы договориться о проверке слуха»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i16:audio",
+          "transcript": "I call the clinic to arrange a hearing test."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I call the clinic to arrange a hearing test.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните, зачем забираете рецепт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Объясните, зачем забираете рецепт",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-41:i17:audio",
+          "transcript": "I collect a prescription to get my medicine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I collect a prescription to get my medicine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cb825cf723640bff47bd33252b7496da23408612c956a8a0b07fb7c9323c0b74"
+}

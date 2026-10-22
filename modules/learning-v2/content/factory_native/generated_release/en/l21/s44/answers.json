@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-44:word:ask-for-directions",
+    "correctText": "ask for directions",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i01",
+    "correctText": "I ask for directions to find the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i02",
+    "correctText": "I ask for directions to find the station.",
+    "correctResponseId": "en:lesson-21:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i03",
+    "correctText": "to find",
+    "correctResponseId": "en:lesson-21:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:word:read-a-map",
+    "correctText": "read a map",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i04",
+    "correctText": "I read a map to choose a route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i05",
+    "correctText": "I read a map to choose a route.",
+    "correctResponseId": "en:lesson-21:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i06",
+    "correctText": "to choose",
+    "correctResponseId": "en:lesson-21:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:word:follow-the-signs",
+    "correctText": "follow the signs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i07",
+    "correctText": "I follow the signs to reach the exit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i08",
+    "correctText": "I follow the signs to reach the exit.",
+    "correctResponseId": "en:lesson-21:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i09",
+    "correctText": "to reach",
+    "correctResponseId": "en:lesson-21:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:word:find-my-way-back",
+    "correctText": "find my way back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i10",
+    "correctText": "I use the map to find my way back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i11",
+    "correctText": "I use the map to find my way back.",
+    "correctResponseId": "en:lesson-21:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i12",
+    "correctText": "to find",
+    "correctResponseId": "en:lesson-21:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i13",
+    "correctText": "en:lesson-21:session-44:i13:p1=ask for directions\nen:lesson-21:session-44:i13:p2=read a map\nen:lesson-21:session-44:i13:p3=follow the signs\nen:lesson-21:session-44:i13:p4=find my way back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i16",
+    "correctText": "I want you to follow the signs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-44:i17",
+    "correctText": "I need to find my way back.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-41:word:make-an-appointment",
+    "correctText": "make an appointment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i01",
+    "correctText": "I make an appointment to see the dentist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i02",
+    "correctText": "I make an appointment to see the dentist.",
+    "correctResponseId": "en:lesson-21:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i03",
+    "correctText": "to see",
+    "correctResponseId": "en:lesson-21:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:word:eye-test",
+    "correctText": "eye test",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i04",
+    "correctText": "I book an eye test to get new glasses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i05",
+    "correctText": "I book an eye test to get new glasses.",
+    "correctResponseId": "en:lesson-21:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i06",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:word:hearing-test",
+    "correctText": "hearing test",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i07",
+    "correctText": "I call the clinic to arrange a hearing test.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i08",
+    "correctText": "I call the clinic to arrange a hearing test.",
+    "correctResponseId": "en:lesson-21:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i09",
+    "correctText": "to arrange",
+    "correctResponseId": "en:lesson-21:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:word:collect-a-prescription",
+    "correctText": "collect a prescription",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i10",
+    "correctText": "I collect a prescription to get my medicine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i11",
+    "correctText": "I collect a prescription to get my medicine.",
+    "correctResponseId": "en:lesson-21:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i12",
+    "correctText": "to get",
+    "correctResponseId": "en:lesson-21:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i13",
+    "correctText": "en:lesson-21:session-41:i13:p1=make an appointment\nen:lesson-21:session-41:i13:p2=eye test\nen:lesson-21:session-41:i13:p3=hearing test\nen:lesson-21:session-41:i13:p4=collect a prescription",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i16",
+    "correctText": "I call the clinic to arrange a hearing test.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-41:i17",
+    "correctText": "I collect a prescription to get my medicine.",
+    "correctResponseId": null
+  }
+]

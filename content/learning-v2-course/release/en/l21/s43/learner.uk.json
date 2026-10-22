@@ -1,0 +1,1134 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-43:word:full-name",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — full name",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:word:full-name:audio"
+      ],
+      "accessibilityLabel": "Картка слова — full name",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:word:full-name:audio",
+          "transcript": "full name"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:word:full-name:r1",
+            "targetText": "full name",
+            "meaningByLocale": {
+              "ru": "полное имя и фамилия.",
+              "uk": "повне ім’я та прізвище."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "full name",
+          "definitionByLocale": {
+            "ru": "полное имя и фамилия.",
+            "uk": "повне ім’я та прізвище."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я пишу своє повне ім’я та прізвище, щоб заповнити анкету».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я пишу своє повне ім’я та прізвище, щоб заповнити анкету».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I write my full name to complete the form.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я пишу своё полное имя и фамилию, чтобы заполнить анкету».",
+          "uk": "Скажіть: «Я пишу своє повне ім’я та прізвище, щоб заповнити анкету»."
+        },
+        "orderedTokens": [
+          "I",
+          "write",
+          "my",
+          "full",
+          "name",
+          "to",
+          "complete",
+          "the",
+          "form"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i02:r1",
+          "text": "I write my full name to complete the form."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i02:r2",
+          "text": "We write our full name to complete the form."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i02:r3",
+          "text": "They write their full name to complete the form."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i02:audio",
+          "transcript": "I write my full name to complete the form."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:i02:r1",
+            "targetText": "I write my full name to complete the form.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i02:r2",
+            "targetText": "We write our full name to complete the form.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i02:r3",
+            "targetText": "They write their full name to complete the form.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I write my full name to complete the form.",
+              "uk": "У записі звучить I write my full name to complete the form."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I write my full name to complete the form.",
+              "uk": "У записі звучить I write my full name to complete the form."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i03:r1",
+          "text": "to complete"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i03:r2",
+          "text": "to completing"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i03:r3",
+          "text": "for complete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I write my full name ___ the form.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-43:i03:r1",
+            "text": "to complete"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i03:r2",
+            "text": "to completing"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i03:r3",
+            "text": "for complete"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:word:home-address",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — home address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:word:home-address:audio"
+      ],
+      "accessibilityLabel": "Картка слова — home address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:word:home-address:audio",
+          "transcript": "home address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:word:home-address:r1",
+            "targetText": "home address",
+            "meaningByLocale": {
+              "ru": "домашний адрес.",
+              "uk": "домашня адреса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "home address",
+          "definitionByLocale": {
+            "ru": "домашний адрес.",
+            "uk": "домашня адреса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я перевіряю свою домашню адресу, щоб уникнути помилки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я перевіряю свою домашню адресу, щоб уникнути помилки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I check my home address to avoid a mistake.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я проверяю свой домашний адрес, чтобы избежать ошибки».",
+          "uk": "Скажіть: «Я перевіряю свою домашню адресу, щоб уникнути помилки»."
+        },
+        "orderedTokens": [
+          "I",
+          "check",
+          "my",
+          "home",
+          "address",
+          "to",
+          "avoid",
+          "a",
+          "mistake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i05:r1",
+          "text": "I check my home address to avoid a mistake."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i05:r2",
+          "text": "We check our home address to avoid a mistake."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i05:r3",
+          "text": "They check their home address to avoid a mistake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i05:audio",
+          "transcript": "I check my home address to avoid a mistake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:i05:r1",
+            "targetText": "I check my home address to avoid a mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i05:r2",
+            "targetText": "We check our home address to avoid a mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i05:r3",
+            "targetText": "They check their home address to avoid a mistake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check my home address to avoid a mistake.",
+              "uk": "У записі звучить I check my home address to avoid a mistake."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check my home address to avoid a mistake.",
+              "uk": "У записі звучить I check my home address to avoid a mistake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i06:r1",
+          "text": "to avoid"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i06:r2",
+          "text": "to avoiding"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i06:r3",
+          "text": "for avoid"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I check my home address ___ a mistake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-43:i06:r1",
+            "text": "to avoid"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i06:r2",
+            "text": "to avoiding"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i06:r3",
+            "text": "for avoid"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:word:place-of-birth",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — place of birth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:word:place-of-birth:audio"
+      ],
+      "accessibilityLabel": "Картка слова — place of birth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:word:place-of-birth:audio",
+          "transcript": "place of birth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:word:place-of-birth:r1",
+            "targetText": "place of birth",
+            "meaningByLocale": {
+              "ru": "место рождения.",
+              "uk": "місце народження."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "place of birth",
+          "definitionByLocale": {
+            "ru": "место рождения.",
+            "uk": "місце народження."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я перевіряю своє місце народження, щоб заповнити анкету».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я перевіряю своє місце народження, щоб заповнити анкету».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I check my place of birth to complete the form.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я проверяю своё место рождения, чтобы заполнить анкету».",
+          "uk": "Скажіть: «Я перевіряю своє місце народження, щоб заповнити анкету»."
+        },
+        "orderedTokens": [
+          "I",
+          "check",
+          "my",
+          "place",
+          "of",
+          "birth",
+          "to",
+          "complete",
+          "the",
+          "form"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i08:r1",
+          "text": "I check my place of birth to complete the form."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i08:r2",
+          "text": "We check our place of birth to complete the form."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i08:r3",
+          "text": "They check their place of birth to complete the form."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i08:audio",
+          "transcript": "I check my place of birth to complete the form."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:i08:r1",
+            "targetText": "I check my place of birth to complete the form.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i08:r2",
+            "targetText": "We check our place of birth to complete the form.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i08:r3",
+            "targetText": "They check their place of birth to complete the form.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check my place of birth to complete the form.",
+              "uk": "У записі звучить I check my place of birth to complete the form."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I check my place of birth to complete the form.",
+              "uk": "У записі звучить I check my place of birth to complete the form."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i09:r1",
+          "text": "to complete"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i09:r2",
+          "text": "to completing"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i09:r3",
+          "text": "for complete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I check my place of birth ___ the form.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-43:i09:r1",
+            "text": "to complete"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i09:r2",
+            "text": "to completing"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i09:r3",
+            "text": "for complete"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:word:block-capitals",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — block capitals",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:word:block-capitals:audio"
+      ],
+      "accessibilityLabel": "Картка слова — block capitals",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:word:block-capitals:audio",
+          "transcript": "block capitals"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:word:block-capitals:r1",
+            "targetText": "block capitals",
+            "meaningByLocale": {
+              "ru": "печатные заглавные буквы.",
+              "uk": "друковані великі літери."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "block capitals",
+          "definitionByLocale": {
+            "ru": "печатные заглавные буквы.",
+            "uk": "друковані великі літери."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я використовую друковані великі літери, щоб моє ім’я було легко прочитати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я використовую друковані великі літери, щоб моє ім’я було легко прочитати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use block capitals to make my name clear.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я использую печатные заглавные буквы, чтобы моё имя было легко прочитать».",
+          "uk": "Скажіть: «Я використовую друковані великі літери, щоб моє ім’я було легко прочитати»."
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "block",
+          "capitals",
+          "to",
+          "make",
+          "my",
+          "name",
+          "clear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i11:r1",
+          "text": "I use block capitals to make my name clear."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i11:r2",
+          "text": "We use block capitals to make our name clear."
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i11:r3",
+          "text": "They use block capitals to make their name clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i11:audio",
+          "transcript": "I use block capitals to make my name clear."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-43:i11:r1",
+            "targetText": "I use block capitals to make my name clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i11:r2",
+            "targetText": "We use block capitals to make our name clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i11:r3",
+            "targetText": "They use block capitals to make their name clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use block capitals to make my name clear.",
+              "uk": "У записі звучить I use block capitals to make my name clear."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use block capitals to make my name clear.",
+              "uk": "У записі звучить I use block capitals to make my name clear."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виразіть мету дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-43:i12:r1",
+          "text": "to make"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i12:r2",
+          "text": "to making"
+        },
+        {
+          "responseId": "en:lesson-21:session-43:i12:r3",
+          "text": "for make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виразіть мету дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I use block capitals ___ my name clear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-43:i12:r1",
+            "text": "to make"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i12:r2",
+            "text": "to making"
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i12:r3",
+            "text": "for make"
+          }
+        ],
+        "testedDimension": "Виразіть мету дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Виразіть мету дії.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-43:i13:p1",
+            "target": "full name",
+            "meaningByLocale": {
+              "ru": "полное имя и фамилия",
+              "uk": "повне ім’я та прізвище"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-43:i13:p2",
+            "target": "home address",
+            "meaningByLocale": {
+              "ru": "домашний адрес",
+              "uk": "домашня адреса"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-43:i13:p3",
+            "target": "place of birth",
+            "meaningByLocale": {
+              "ru": "место рождения",
+              "uk": "місце народження"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-43:i13:p4",
+            "target": "block capitals",
+            "meaningByLocale": {
+              "ru": "печатные заглавные буквы",
+              "uk": "друковані великі літери"
+            }
+          }
+        ],
+        "leftColumn": [
+          "full name",
+          "home address",
+          "place of birth",
+          "block capitals"
+        ],
+        "rightColumn": [
+          "повне ім’я та прізвище",
+          "домашня адреса",
+          "місце народження",
+          "друковані великі літери"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: попросити перевірити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: попросити перевірити",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: спілкування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: спілкування",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Мені потрібно перевірити своє місце народження»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Мені потрібно перевірити своє місце народження»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i16:audio",
+          "transcript": "I need to check my place of birth."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to check my place of birth.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я хочу, щоб ти використовував друковані великі літери»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я хочу, щоб ти використовував друковані великі літери»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-43:i17:audio",
+          "transcript": "I want you to use block capitals."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want you to use block capitals.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9d10a8d6a75c48d88dbe9a3d411d0e82c5025cacf625dc2430946ad45e3aa215"
+}

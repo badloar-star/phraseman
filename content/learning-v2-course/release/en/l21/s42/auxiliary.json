@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-21:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-21:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-42:intro1:r2": {
+          "ru": "После to в этой конструкции нужна начальная форма.",
+          "uk": "Після to у цій конструкції потрібна початкова форма."
+        },
+        "en:lesson-21:session-42:intro1:r3": {
+          "ru": "Перед начальной формой здесь нужно to, а не for.",
+          "uk": "Перед початковою формою тут потрібне to, а не for."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-42:intro2:r2": {
+          "ru": "После to в этой конструкции нужна начальная форма.",
+          "uk": "Після to у цій конструкції потрібна початкова форма."
+        },
+        "en:lesson-21:session-42:intro2:r3": {
+          "ru": "Перед начальной формой здесь нужно to, а не for.",
+          "uk": "Перед початковою формою тут потрібне to, а не for."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-21:session-42:intro3:r2": {
+          "ru": "После to в этой конструкции нужна начальная форма.",
+          "uk": "Після to у цій конструкції потрібна початкова форма."
+        },
+        "en:lesson-21:session-42:intro3:r3": {
+          "ru": "Перед начальной формой здесь нужно to, а не for.",
+          "uk": "Перед початковою формою тут потрібне to, а не for."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "892feafa00d740f73299bce399d875227e3cba994a90535062c95857760f54a0"
+}

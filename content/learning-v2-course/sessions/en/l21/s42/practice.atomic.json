@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-21:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-21:session-42:word:take-a-number",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — take a number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:take-a-number:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — take a number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:take-a-number:audio",
+            "transcript": "take a number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:take-a-number:r1",
+              "targetText": "take a number",
+              "meaningByLocale": {
+                "ru": "взять талон с номером.",
+                "uk": "взяти талон із номером."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a number",
+            "definitionByLocale": {
+              "ru": "взять талон с номером.",
+              "uk": "взяти талон із номером."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я беру талон с номером, чтобы встать в очередь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я беру талон с номером, чтобы встать в очередь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I take a number to join the queue.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я беру талон с номером, чтобы встать в очередь».",
+            "uk": "Скажіть: «Я беру талон із номером, щоб стати в чергу»."
+          },
+          "orderedTokens": [
+            "I",
+            "take",
+            "a",
+            "number",
+            "to",
+            "join",
+            "the",
+            "queue"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i02:r1",
+            "text": "I take a number to join the queue."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i02:r2",
+            "text": "We take a number to join the queue."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i02:r3",
+            "text": "They take a number to join the queue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i02:audio",
+            "transcript": "I take a number to join the queue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i02:r1",
+              "targetText": "I take a number to join the queue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i02:r2",
+              "targetText": "We take a number to join the queue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i02:r3",
+              "targetText": "They take a number to join the queue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a number to join the queue.",
+                "uk": "У записі звучить I take a number to join the queue."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a number to join the queue.",
+                "uk": "У записі звучить I take a number to join the queue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i03:r1",
+            "text": "to join"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i03:r2",
+            "text": "to joining"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i03:r3",
+            "text": "for join"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I take a number ___ the queue.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i03:r1",
+              "text": "to join"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i03:r2",
+              "text": "to joining"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i03:r3",
+              "text": "for join"
+            }
+          ],
+          "testedDimension": "Выберите форму после to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:word:wait-your-turn",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wait your turn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:wait-your-turn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wait your turn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:wait-your-turn:audio",
+            "transcript": "wait your turn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:wait-your-turn:r1",
+              "targetText": "wait your turn",
+              "meaningByLocale": {
+                "ru": "дождаться своей очереди.",
+                "uk": "дочекатися своєї черги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wait your turn",
+            "definitionByLocale": {
+              "ru": "дождаться своей очереди.",
+              "uk": "дочекатися своєї черги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу, чтобы ты дождался своей очереди».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу, чтобы ты дождался своей очереди».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want you to wait your turn.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу, чтобы ты дождался своей очереди».",
+            "uk": "Скажіть: «Я хочу, щоб ти дочекався своєї черги»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "you",
+            "to",
+            "wait",
+            "your",
+            "turn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i05:r1",
+            "text": "I want you to wait your turn."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i05:r2",
+            "text": "We want you to wait your turn."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i05:r3",
+            "text": "They want you to wait your turn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i05:audio",
+            "transcript": "I want you to wait your turn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i05:r1",
+              "targetText": "I want you to wait your turn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i05:r2",
+              "targetText": "We want you to wait your turn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i05:r3",
+              "targetText": "They want you to wait your turn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to wait your turn.",
+                "uk": "У записі звучить I want you to wait your turn."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to wait your turn.",
+                "uk": "У записі звучить I want you to wait your turn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i06:r1",
+            "text": "to wait"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i06:r2",
+            "text": "to waiting"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i06:r3",
+            "text": "for wait"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I want you ___ your turn.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i06:r1",
+              "text": "to wait"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i06:r2",
+              "text": "to waiting"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i06:r3",
+              "text": "for wait"
+            }
+          ],
+          "testedDimension": "Выберите форму после to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:word:hold-the-door",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hold the door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:hold-the-door:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hold the door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:hold-the-door:audio",
+            "transcript": "hold the door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:hold-the-door:r1",
+              "targetText": "hold the door",
+              "meaningByLocale": {
+                "ru": "придержать дверь.",
+                "uk": "притримати двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hold the door",
+            "definitionByLocale": {
+              "ru": "придержать дверь.",
+              "uk": "притримати двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я останавливаюсь, чтобы придержать дверь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я останавливаюсь, чтобы придержать дверь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I stop to hold the door.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я останавливаюсь, чтобы придержать дверь».",
+            "uk": "Скажіть: «Я зупиняюся, щоб притримати двері»."
+          },
+          "orderedTokens": [
+            "I",
+            "stop",
+            "to",
+            "hold",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i08:r1",
+            "text": "I stop to hold the door."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i08:r2",
+            "text": "We stop to hold the door."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i08:r3",
+            "text": "They stop to hold the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i08:audio",
+            "transcript": "I stop to hold the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i08:r1",
+              "targetText": "I stop to hold the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i08:r2",
+              "targetText": "We stop to hold the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i08:r3",
+              "targetText": "They stop to hold the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I stop to hold the door.",
+                "uk": "У записі звучить I stop to hold the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I stop to hold the door.",
+                "uk": "У записі звучить I stop to hold the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i09:r1",
+            "text": "to hold"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i09:r2",
+            "text": "to holding"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i09:r3",
+            "text": "for hold"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I stop ___ the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i09:r1",
+              "text": "to hold"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i09:r2",
+              "text": "to holding"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i09:r3",
+              "text": "for hold"
+            }
+          ],
+          "testedDimension": "Выберите форму после to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:word:let-someone-past",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — let someone past",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:let-someone-past:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — let someone past",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:let-someone-past:audio",
+            "transcript": "let someone past"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:let-someone-past:r1",
+              "targetText": "let someone past",
+              "meaningByLocale": {
+                "ru": "пропустить кого-то мимо.",
+                "uk": "пропустити когось повз себе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let someone past",
+            "definitionByLocale": {
+              "ru": "пропустить кого-то мимо.",
+              "uk": "пропустити когось повз себе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я отхожу в сторону, чтобы пропустить кого-то».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я отхожу в сторону, чтобы пропустить кого-то».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I move aside to let someone past.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я отхожу в сторону, чтобы пропустить кого-то».",
+            "uk": "Скажіть: «Я відходжу вбік, щоб пропустити когось»."
+          },
+          "orderedTokens": [
+            "I",
+            "move",
+            "aside",
+            "to",
+            "let",
+            "someone",
+            "past"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i11:r1",
+            "text": "I move aside to let someone past."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i11:r2",
+            "text": "We move aside to let someone past."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i11:r3",
+            "text": "They move aside to let someone past."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i11:audio",
+            "transcript": "I move aside to let someone past."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i11:r1",
+              "targetText": "I move aside to let someone past.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i11:r2",
+              "targetText": "We move aside to let someone past.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i11:r3",
+              "targetText": "They move aside to let someone past.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I move aside to let someone past.",
+                "uk": "У записі звучить I move aside to let someone past."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I move aside to let someone past.",
+                "uk": "У записі звучить I move aside to let someone past."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i12:r1",
+            "text": "to let"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i12:r2",
+            "text": "to letting"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i12:r3",
+            "text": "for let"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I move aside ___ someone past.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i12:r1",
+              "text": "to let"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i12:r2",
+              "text": "to letting"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i12:r3",
+              "text": "for let"
+            }
+          ],
+          "testedDimension": "Выберите форму после to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-42:i13:p1",
+              "target": "take a number",
+              "meaningByLocale": {
+                "ru": "взять талон с номером",
+                "uk": "взяти талон із номером"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-42:i13:p2",
+              "target": "wait your turn",
+              "meaningByLocale": {
+                "ru": "дождаться своей очереди",
+                "uk": "дочекатися своєї черги"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-42:i13:p3",
+              "target": "hold the door",
+              "meaningByLocale": {
+                "ru": "придержать дверь",
+                "uk": "притримати двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-42:i13:p4",
+              "target": "let someone past",
+              "meaningByLocale": {
+                "ru": "пропустить кого-то мимо",
+                "uk": "пропустити когось повз себе"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a number",
+            "wait your turn",
+            "hold the door",
+            "let someone past"
+          ],
+          "rightColumn": [
+            "взять талон с номером",
+            "дождаться своей очереди",
+            "придержать дверь",
+            "пропустить кого-то мимо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: попросить проверить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: попросить проверить",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: общение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: общение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я останавливаюсь, чтобы придержать для тебя дверь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я останавливаюсь, чтобы придержать для тебя дверь»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i16:audio",
+            "transcript": "I stop to hold the door for you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I stop to hold the door for you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Объясните, зачем отходите в сторону",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Объясните, зачем отходите в сторону",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i17:audio",
+            "transcript": "I move aside to let someone past."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I move aside to let someone past.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-21:session-42:word:take-a-number",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — take a number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:take-a-number:audio"
+        ],
+        "accessibilityLabel": "Картка слова — take a number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:take-a-number:audio",
+            "transcript": "take a number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:take-a-number:r1",
+              "targetText": "take a number",
+              "meaningByLocale": {
+                "ru": "взять талон с номером.",
+                "uk": "взяти талон із номером."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "take a number",
+            "definitionByLocale": {
+              "ru": "взять талон с номером.",
+              "uk": "взяти талон із номером."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я беру талон із номером, щоб стати в чергу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я беру талон із номером, щоб стати в чергу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I take a number to join the queue.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я беру талон с номером, чтобы встать в очередь».",
+            "uk": "Скажіть: «Я беру талон із номером, щоб стати в чергу»."
+          },
+          "orderedTokens": [
+            "I",
+            "take",
+            "a",
+            "number",
+            "to",
+            "join",
+            "the",
+            "queue"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i02:r1",
+            "text": "I take a number to join the queue."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i02:r2",
+            "text": "We take a number to join the queue."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i02:r3",
+            "text": "They take a number to join the queue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i02:audio",
+            "transcript": "I take a number to join the queue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i02:r1",
+              "targetText": "I take a number to join the queue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i02:r2",
+              "targetText": "We take a number to join the queue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i02:r3",
+              "targetText": "They take a number to join the queue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a number to join the queue.",
+                "uk": "У записі звучить I take a number to join the queue."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a number to join the queue.",
+                "uk": "У записі звучить I take a number to join the queue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i03:r1",
+            "text": "to join"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i03:r2",
+            "text": "to joining"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i03:r3",
+            "text": "for join"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I take a number ___ the queue.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i03:r1",
+              "text": "to join"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i03:r2",
+              "text": "to joining"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i03:r3",
+              "text": "for join"
+            }
+          ],
+          "testedDimension": "Виберіть форму після to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:word:wait-your-turn",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wait your turn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:wait-your-turn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wait your turn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:wait-your-turn:audio",
+            "transcript": "wait your turn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:wait-your-turn:r1",
+              "targetText": "wait your turn",
+              "meaningByLocale": {
+                "ru": "дождаться своей очереди.",
+                "uk": "дочекатися своєї черги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wait your turn",
+            "definitionByLocale": {
+              "ru": "дождаться своей очереди.",
+              "uk": "дочекатися своєї черги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу, щоб ти дочекався своєї черги».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу, щоб ти дочекався своєї черги».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want you to wait your turn.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу, чтобы ты дождался своей очереди».",
+            "uk": "Скажіть: «Я хочу, щоб ти дочекався своєї черги»."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "you",
+            "to",
+            "wait",
+            "your",
+            "turn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i05:r1",
+            "text": "I want you to wait your turn."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i05:r2",
+            "text": "We want you to wait your turn."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i05:r3",
+            "text": "They want you to wait your turn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i05:audio",
+            "transcript": "I want you to wait your turn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i05:r1",
+              "targetText": "I want you to wait your turn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i05:r2",
+              "targetText": "We want you to wait your turn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i05:r3",
+              "targetText": "They want you to wait your turn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to wait your turn.",
+                "uk": "У записі звучить I want you to wait your turn."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I want you to wait your turn.",
+                "uk": "У записі звучить I want you to wait your turn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i06:r1",
+            "text": "to wait"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i06:r2",
+            "text": "to waiting"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i06:r3",
+            "text": "for wait"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I want you ___ your turn.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i06:r1",
+              "text": "to wait"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i06:r2",
+              "text": "to waiting"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i06:r3",
+              "text": "for wait"
+            }
+          ],
+          "testedDimension": "Виберіть форму після to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:word:hold-the-door",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hold the door",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:hold-the-door:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hold the door",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:hold-the-door:audio",
+            "transcript": "hold the door"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:hold-the-door:r1",
+              "targetText": "hold the door",
+              "meaningByLocale": {
+                "ru": "придержать дверь.",
+                "uk": "притримати двері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hold the door",
+            "definitionByLocale": {
+              "ru": "придержать дверь.",
+              "uk": "притримати двері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я зупиняюся, щоб притримати двері».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я зупиняюся, щоб притримати двері».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I stop to hold the door.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я останавливаюсь, чтобы придержать дверь».",
+            "uk": "Скажіть: «Я зупиняюся, щоб притримати двері»."
+          },
+          "orderedTokens": [
+            "I",
+            "stop",
+            "to",
+            "hold",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i08:r1",
+            "text": "I stop to hold the door."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i08:r2",
+            "text": "We stop to hold the door."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i08:r3",
+            "text": "They stop to hold the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i08:audio",
+            "transcript": "I stop to hold the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i08:r1",
+              "targetText": "I stop to hold the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i08:r2",
+              "targetText": "We stop to hold the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i08:r3",
+              "targetText": "They stop to hold the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I stop to hold the door.",
+                "uk": "У записі звучить I stop to hold the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I stop to hold the door.",
+                "uk": "У записі звучить I stop to hold the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i09:r1",
+            "text": "to hold"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i09:r2",
+            "text": "to holding"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i09:r3",
+            "text": "for hold"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I stop ___ the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i09:r1",
+              "text": "to hold"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i09:r2",
+              "text": "to holding"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i09:r3",
+              "text": "for hold"
+            }
+          ],
+          "testedDimension": "Виберіть форму після to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:word:let-someone-past",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — let someone past",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:word:let-someone-past:audio"
+        ],
+        "accessibilityLabel": "Картка слова — let someone past",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:word:let-someone-past:audio",
+            "transcript": "let someone past"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:word:let-someone-past:r1",
+              "targetText": "let someone past",
+              "meaningByLocale": {
+                "ru": "пропустить кого-то мимо.",
+                "uk": "пропустити когось повз себе."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "let someone past",
+            "definitionByLocale": {
+              "ru": "пропустить кого-то мимо.",
+              "uk": "пропустити когось повз себе."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я відходжу вбік, щоб пропустити когось».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я відходжу вбік, щоб пропустити когось».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I move aside to let someone past.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я отхожу в сторону, чтобы пропустить кого-то».",
+            "uk": "Скажіть: «Я відходжу вбік, щоб пропустити когось»."
+          },
+          "orderedTokens": [
+            "I",
+            "move",
+            "aside",
+            "to",
+            "let",
+            "someone",
+            "past"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i11:r1",
+            "text": "I move aside to let someone past."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i11:r2",
+            "text": "We move aside to let someone past."
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i11:r3",
+            "text": "They move aside to let someone past."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i11:audio",
+            "transcript": "I move aside to let someone past."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-21:session-42:i11:r1",
+              "targetText": "I move aside to let someone past.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i11:r2",
+              "targetText": "We move aside to let someone past.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i11:r3",
+              "targetText": "They move aside to let someone past.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I move aside to let someone past.",
+                "uk": "У записі звучить I move aside to let someone past."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I move aside to let someone past.",
+                "uk": "У записі звучить I move aside to let someone past."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-21:session-42:i12:r1",
+            "text": "to let"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i12:r2",
+            "text": "to letting"
+          },
+          {
+            "responseId": "en:lesson-21:session-42:i12:r3",
+            "text": "for let"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после to.",
+            "uk": "Виберіть форму після to."
+          },
+          "gappedTargetPhrase": "I move aside ___ someone past.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-21:session-42:i12:r1",
+              "text": "to let"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i12:r2",
+              "text": "to letting"
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i12:r3",
+              "text": "for let"
+            }
+          ],
+          "testedDimension": "Виберіть форму після to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-21:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "После to в этой конструкции нужен глагол без -ing.",
+                "uk": "Після to у цій конструкції потрібне дієслово без -ing."
+              }
+            },
+            {
+              "responseId": "en:lesson-21:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після to.",
+              "feedbackByLocale": {
+                "ru": "Здесь перед начальной формой нужно to, а не for.",
+                "uk": "Тут перед початковою формою потрібне to, а не for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-21:session-42:i13:p1",
+              "target": "take a number",
+              "meaningByLocale": {
+                "ru": "взять талон с номером",
+                "uk": "взяти талон із номером"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-42:i13:p2",
+              "target": "wait your turn",
+              "meaningByLocale": {
+                "ru": "дождаться своей очереди",
+                "uk": "дочекатися своєї черги"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-42:i13:p3",
+              "target": "hold the door",
+              "meaningByLocale": {
+                "ru": "придержать дверь",
+                "uk": "притримати двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-21:session-42:i13:p4",
+              "target": "let someone past",
+              "meaningByLocale": {
+                "ru": "пропустить кого-то мимо",
+                "uk": "пропустити когось повз себе"
+              }
+            }
+          ],
+          "leftColumn": [
+            "take a number",
+            "wait your turn",
+            "hold the door",
+            "let someone past"
+          ],
+          "rightColumn": [
+            "взяти талон із номером",
+            "дочекатися своєї черги",
+            "притримати двері",
+            "пропустити когось повз себе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: попросити перевірити",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: попросити перевірити",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i14:audio",
+            "transcript": "I need you to look over the list."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I need you to look over the list.",
+          "orderedTokens": [
+            "I",
+            "need",
+            "you",
+            "to",
+            "look",
+            "over",
+            "the",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: спілкування",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: спілкування",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i15:audio",
+            "transcript": "I enjoy making friends."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I enjoy making friends.",
+          "orderedTokens": [
+            "I",
+            "enjoy",
+            "making",
+            "friends"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я зупиняюся, щоб притримати для тебе двері»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я зупиняюся, щоб притримати для тебе двері»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i16:audio",
+            "transcript": "I stop to hold the door for you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I stop to hold the door for you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-21:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поясніть, навіщо відходите вбік",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-21:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Поясніть, навіщо відходите вбік",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-21:session-42:i17:audio",
+            "transcript": "I move aside to let someone past."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I move aside to let someone past.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-21:session-42:word:take-a-number",
+      "correctText": "take a number",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i01",
+      "correctText": "I take a number to join the queue.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i02",
+      "correctText": "I take a number to join the queue.",
+      "correctResponseId": "en:lesson-21:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i03",
+      "correctText": "to join",
+      "correctResponseId": "en:lesson-21:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:word:wait-your-turn",
+      "correctText": "wait your turn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i04",
+      "correctText": "I want you to wait your turn.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i05",
+      "correctText": "I want you to wait your turn.",
+      "correctResponseId": "en:lesson-21:session-42:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i06",
+      "correctText": "to wait",
+      "correctResponseId": "en:lesson-21:session-42:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:word:hold-the-door",
+      "correctText": "hold the door",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i07",
+      "correctText": "I stop to hold the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i08",
+      "correctText": "I stop to hold the door.",
+      "correctResponseId": "en:lesson-21:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i09",
+      "correctText": "to hold",
+      "correctResponseId": "en:lesson-21:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:word:let-someone-past",
+      "correctText": "let someone past",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i10",
+      "correctText": "I move aside to let someone past.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i11",
+      "correctText": "I move aside to let someone past.",
+      "correctResponseId": "en:lesson-21:session-42:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i12",
+      "correctText": "to let",
+      "correctResponseId": "en:lesson-21:session-42:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i14",
+      "correctText": "I need you to look over the list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i15",
+      "correctText": "I enjoy making friends.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i16",
+      "correctText": "I stop to hold the door for you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-42:i17",
+      "correctText": "I move aside to let someone past.",
+      "correctResponseId": null
+    }
+  ]
+}

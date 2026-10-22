@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-21:session-42:word:take-a-number",
+    "correctText": "take a number",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i01",
+    "correctText": "I take a number to join the queue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i02",
+    "correctText": "I take a number to join the queue.",
+    "correctResponseId": "en:lesson-21:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i03",
+    "correctText": "to join",
+    "correctResponseId": "en:lesson-21:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:word:wait-your-turn",
+    "correctText": "wait your turn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i04",
+    "correctText": "I want you to wait your turn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i05",
+    "correctText": "I want you to wait your turn.",
+    "correctResponseId": "en:lesson-21:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i06",
+    "correctText": "to wait",
+    "correctResponseId": "en:lesson-21:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:word:hold-the-door",
+    "correctText": "hold the door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i07",
+    "correctText": "I stop to hold the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i08",
+    "correctText": "I stop to hold the door.",
+    "correctResponseId": "en:lesson-21:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i09",
+    "correctText": "to hold",
+    "correctResponseId": "en:lesson-21:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:word:let-someone-past",
+    "correctText": "let someone past",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i10",
+    "correctText": "I move aside to let someone past.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i11",
+    "correctText": "I move aside to let someone past.",
+    "correctResponseId": "en:lesson-21:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i12",
+    "correctText": "to let",
+    "correctResponseId": "en:lesson-21:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i13",
+    "correctText": "en:lesson-21:session-42:i13:p1=take a number\nen:lesson-21:session-42:i13:p2=wait your turn\nen:lesson-21:session-42:i13:p3=hold the door\nen:lesson-21:session-42:i13:p4=let someone past",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i14",
+    "correctText": "I need you to look over the list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i15",
+    "correctText": "I enjoy making friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i16",
+    "correctText": "I stop to hold the door for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-21:session-42:i17",
+    "correctText": "I move aside to let someone past.",
+    "correctResponseId": null
+  }
+]

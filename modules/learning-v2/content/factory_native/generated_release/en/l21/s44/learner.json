@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-21:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-21:session-44:word:ask-for-directions",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ask for directions",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:word:ask-for-directions:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ask for directions",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:word:ask-for-directions:audio",
+          "transcript": "ask for directions"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:word:ask-for-directions:r1",
+            "targetText": "ask for directions",
+            "meaningByLocale": {
+              "ru": "спросить дорогу.",
+              "uk": "запитати дорогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ask for directions",
+          "definitionByLocale": {
+            "ru": "спросить дорогу.",
+            "uk": "запитати дорогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я спрашиваю дорогу, чтобы найти вокзал».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я спрашиваю дорогу, чтобы найти вокзал».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I ask for directions to find the station.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я спрашиваю дорогу, чтобы найти вокзал».",
+          "uk": "Скажіть: «Я запитую дорогу, щоб знайти вокзал»."
+        },
+        "orderedTokens": [
+          "I",
+          "ask",
+          "for",
+          "directions",
+          "to",
+          "find",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i02:r1",
+          "text": "I ask for directions to find the station."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i02:r2",
+          "text": "We ask for directions to find the station."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i02:r3",
+          "text": "They ask for directions to find the station."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i02:audio",
+          "transcript": "I ask for directions to find the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:i02:r1",
+            "targetText": "I ask for directions to find the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i02:r2",
+            "targetText": "We ask for directions to find the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i02:r3",
+            "targetText": "They ask for directions to find the station.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I ask for directions to find the station.",
+              "uk": "У записі звучить I ask for directions to find the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I ask for directions to find the station.",
+              "uk": "У записі звучить I ask for directions to find the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i03:r1",
+          "text": "to find"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i03:r2",
+          "text": "to finding"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i03:r3",
+          "text": "for find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I ask for directions ___ the station.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-44:i03:r1",
+            "text": "to find"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i03:r2",
+            "text": "to finding"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i03:r3",
+            "text": "for find"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:word:read-a-map",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — read a map",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:word:read-a-map:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — read a map",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:word:read-a-map:audio",
+          "transcript": "read a map"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:word:read-a-map:r1",
+            "targetText": "read a map",
+            "meaningByLocale": {
+              "ru": "читать карту.",
+              "uk": "читати карту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "read a map",
+          "definitionByLocale": {
+            "ru": "читать карту.",
+            "uk": "читати карту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я читаю карту, чтобы выбрать маршрут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я читаю карту, чтобы выбрать маршрут».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I read a map to choose a route.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я читаю карту, чтобы выбрать маршрут».",
+          "uk": "Скажіть: «Я читаю карту, щоб вибрати маршрут»."
+        },
+        "orderedTokens": [
+          "I",
+          "read",
+          "a",
+          "map",
+          "to",
+          "choose",
+          "a",
+          "route"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i05:r1",
+          "text": "I read a map to choose a route."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i05:r2",
+          "text": "We read a map to choose a route."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i05:r3",
+          "text": "They read a map to choose a route."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i05:audio",
+          "transcript": "I read a map to choose a route."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:i05:r1",
+            "targetText": "I read a map to choose a route.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i05:r2",
+            "targetText": "We read a map to choose a route.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i05:r3",
+            "targetText": "They read a map to choose a route.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I read a map to choose a route.",
+              "uk": "У записі звучить I read a map to choose a route."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I read a map to choose a route.",
+              "uk": "У записі звучить I read a map to choose a route."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i06:r1",
+          "text": "to choose"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i06:r2",
+          "text": "to choosing"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i06:r3",
+          "text": "for choose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I read a map ___ a route.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-44:i06:r1",
+            "text": "to choose"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i06:r2",
+            "text": "to choosing"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i06:r3",
+            "text": "for choose"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:word:follow-the-signs",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — follow the signs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:word:follow-the-signs:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — follow the signs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:word:follow-the-signs:audio",
+          "transcript": "follow the signs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:word:follow-the-signs:r1",
+            "targetText": "follow the signs",
+            "meaningByLocale": {
+              "ru": "идти по указателям.",
+              "uk": "йти за вказівниками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "follow the signs",
+          "definitionByLocale": {
+            "ru": "идти по указателям.",
+            "uk": "йти за вказівниками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я иду по указателям, чтобы дойти до выхода».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я иду по указателям, чтобы дойти до выхода».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I follow the signs to reach the exit.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я иду по указателям, чтобы дойти до выхода».",
+          "uk": "Скажіть: «Я йду за вказівниками, щоб дістатися виходу»."
+        },
+        "orderedTokens": [
+          "I",
+          "follow",
+          "the",
+          "signs",
+          "to",
+          "reach",
+          "the",
+          "exit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i08:r1",
+          "text": "I follow the signs to reach the exit."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i08:r2",
+          "text": "We follow the signs to reach the exit."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i08:r3",
+          "text": "They follow the signs to reach the exit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i08:audio",
+          "transcript": "I follow the signs to reach the exit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:i08:r1",
+            "targetText": "I follow the signs to reach the exit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i08:r2",
+            "targetText": "We follow the signs to reach the exit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i08:r3",
+            "targetText": "They follow the signs to reach the exit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I follow the signs to reach the exit.",
+              "uk": "У записі звучить I follow the signs to reach the exit."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I follow the signs to reach the exit.",
+              "uk": "У записі звучить I follow the signs to reach the exit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i09:r1",
+          "text": "to reach"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i09:r2",
+          "text": "to reaching"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i09:r3",
+          "text": "for reach"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I follow the signs ___ the exit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-44:i09:r1",
+            "text": "to reach"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i09:r2",
+            "text": "to reaching"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i09:r3",
+            "text": "for reach"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:word:find-my-way-back",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — find my way back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:word:find-my-way-back:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — find my way back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:word:find-my-way-back:audio",
+          "transcript": "find my way back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:word:find-my-way-back:r1",
+            "targetText": "find my way back",
+            "meaningByLocale": {
+              "ru": "найти обратную дорогу.",
+              "uk": "знайти зворотний шлях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "find my way back",
+          "definitionByLocale": {
+            "ru": "найти обратную дорогу.",
+            "uk": "знайти зворотний шлях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я использую карту, чтобы найти обратную дорогу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я использую карту, чтобы найти обратную дорогу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use the map to find my way back.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я использую карту, чтобы найти обратную дорогу».",
+          "uk": "Скажіть: «Я використовую карту, щоб знайти зворотний шлях»."
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "the",
+          "map",
+          "to",
+          "find",
+          "my",
+          "way",
+          "back"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i11:r1",
+          "text": "I use the map to find my way back."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i11:r2",
+          "text": "We use the map to find our way back."
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i11:r3",
+          "text": "They use the map to find their way back."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i11:audio",
+          "transcript": "I use the map to find my way back."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-21:session-44:i11:r1",
+            "targetText": "I use the map to find my way back.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i11:r2",
+            "targetText": "We use the map to find our way back.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i11:r3",
+            "targetText": "They use the map to find their way back.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use the map to find my way back.",
+              "uk": "У записі звучить I use the map to find my way back."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use the map to find my way back.",
+              "uk": "У записі звучить I use the map to find my way back."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите цель действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-21:session-44:i12:r1",
+          "text": "to find"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i12:r2",
+          "text": "to finding"
+        },
+        {
+          "responseId": "en:lesson-21:session-44:i12:r3",
+          "text": "for find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите цель действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите цель действия.",
+          "uk": "Виразіть мету дії."
+        },
+        "gappedTargetPhrase": "I use the map ___ my way back.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-21:session-44:i12:r1",
+            "text": "to find"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i12:r2",
+            "text": "to finding"
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i12:r3",
+            "text": "for find"
+          }
+        ],
+        "testedDimension": "Выразите цель действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-21:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "После to для цели нужен глагол без -ing.",
+              "uk": "Після to для мети потрібне дієслово без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-21:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Выразите цель действия.",
+            "feedbackByLocale": {
+              "ru": "Здесь цель выражается через to, не for с начальной формой.",
+              "uk": "Тут мета виражається через to, не for з початковою формою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-21:session-44:i13:p1",
+            "target": "ask for directions",
+            "meaningByLocale": {
+              "ru": "спросить дорогу",
+              "uk": "запитати дорогу"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-44:i13:p2",
+            "target": "read a map",
+            "meaningByLocale": {
+              "ru": "читать карту",
+              "uk": "читати карту"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-44:i13:p3",
+            "target": "follow the signs",
+            "meaningByLocale": {
+              "ru": "идти по указателям",
+              "uk": "йти за вказівниками"
+            }
+          },
+          {
+            "pairId": "en:lesson-21:session-44:i13:p4",
+            "target": "find my way back",
+            "meaningByLocale": {
+              "ru": "найти обратную дорогу",
+              "uk": "знайти зворотний шлях"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ask for directions",
+          "read a map",
+          "follow the signs",
+          "find my way back"
+        ],
+        "rightColumn": [
+          "спросить дорогу",
+          "читать карту",
+          "идти по указателям",
+          "найти обратную дорогу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: попросить проверить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: попросить проверить",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i14:audio",
+          "transcript": "I need you to look over the list."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need you to look over the list.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "you",
+          "to",
+          "look",
+          "over",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: общение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: общение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i15:audio",
+          "transcript": "I enjoy making friends."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I enjoy making friends.",
+        "orderedTokens": [
+          "I",
+          "enjoy",
+          "making",
+          "friends"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я хочу, чтобы ты шёл по указателям»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я хочу, чтобы ты шёл по указателям»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i16:audio",
+          "transcript": "I want you to follow the signs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want you to follow the signs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-21:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мне нужно найти обратную дорогу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-21:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мне нужно найти обратную дорогу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-21:session-44:i17:audio",
+          "transcript": "I need to find my way back."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to find my way back.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "137f7a1b136b8c71319aa30882c635c2ead1b26edb7518ece447437bdc59265e"
+}

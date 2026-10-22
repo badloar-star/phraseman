@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-21:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "want + person + to-infinitive; infinitive of purpose",
+    "uk": "want + person + to-infinitive; infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-21:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Взять талон",
+        "uk": "Взяти талон"
+      },
+      "bodyByLocale": {
+        "ru": "Take a number — взять талон с номером в очереди. Речь о талончике в учреждении: ваш номер затем появится на табло. После want + человек + to ставим начальную форму: I want you to wait — «я хочу, чтобы ты подождал». Цель своего действия тоже можно выразить через to: I stop to help — «я останавливаюсь, чтобы помочь». В обоих случаях здесь нужна начальная форма без -ing.",
+        "uk": "Take a number — взяти талон із номером у черзі. Йдеться про талончик в установі: ваш номер потім з’явиться на табло. Після want + людина + to ставимо початкову форму: I want you to wait — «я хочу, щоб ти зачекав». Мету своєї дії теж можна виразити через to: I stop to help — «я зупиняюся, щоб допомогти». В обох випадках тут потрібна початкова форма без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-42:intro1:r1",
+              "text": "I take a number to join the queue."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro1:r2",
+              "text": "I take a number to joining the queue."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro1:r3",
+              "text": "I take a number for join the queue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-42:intro1:r1",
+              "text": "I take a number to join the queue."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro1:r2",
+              "text": "I take a number to joining the queue."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro1:r3",
+              "text": "I take a number for join the queue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-21:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дождаться очереди",
+        "uk": "Дочекатися черги"
+      },
+      "bodyByLocale": {
+        "ru": "Wait your turn — дождаться своей очереди. Обращаясь к человеку, используйте your; о себе скажите wait my turn. Hold the door — придержать дверь для того, кто идёт следом. После want + человек + to ставим начальную форму: I want you to wait — «я хочу, чтобы ты подождал». Цель своего действия тоже можно выразить через to: I stop to help — «я останавливаюсь, чтобы помочь». В обоих случаях здесь нужна начальная форма без -ing.",
+        "uk": "Wait your turn — дочекатися своєї черги. Звертаючись до людини, використовуйте your; про себе скажіть wait my turn. Hold the door — притримати двері для того, хто йде слідом. Після want + людина + to ставимо початкову форму: I want you to wait — «я хочу, щоб ти зачекав». Мету своєї дії теж можна виразити через to: I stop to help — «я зупиняюся, щоб допомогти». В обох випадках тут потрібна початкова форма без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-42:intro2:r1",
+              "text": "I want you to wait your turn."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro2:r2",
+              "text": "I want you to waiting your turn."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro2:r3",
+              "text": "I want you for wait your turn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-42:intro2:r1",
+              "text": "I want you to wait your turn."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro2:r2",
+              "text": "I want you to waiting your turn."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro2:r3",
+              "text": "I want you for wait your turn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-21:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пропустить человека",
+        "uk": "Пропустити людину"
+      },
+      "bodyByLocale": {
+        "ru": "Let someone past — пропустить кого-то мимо себя, например в узком проходе. Someone можно заменить именем или словом him, her. Past здесь означает движение мимо вас. После want + человек + to ставим начальную форму: I want you to wait — «я хочу, чтобы ты подождал». Цель своего действия тоже можно выразить через to: I stop to help — «я останавливаюсь, чтобы помочь». В обоих случаях здесь нужна начальная форма без -ing.",
+        "uk": "Let someone past — пропустити когось повз себе, наприклад у вузькому проході. Someone можна замінити ім’ям або словом him, her. Past тут означає рух повз вас. Після want + людина + to ставимо початкову форму: I want you to wait — «я хочу, щоб ти зачекав». Мету своєї дії теж можна виразити через to: I stop to help — «я зупиняюся, щоб допомогти». В обох випадках тут потрібна початкова форма без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-21:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-21:session-42:intro3:r1",
+              "text": "I move aside to let someone past."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro3:r2",
+              "text": "I move aside to letting someone past."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro3:r3",
+              "text": "I move aside for let someone past."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-21:session-42:intro3:r1",
+              "text": "I move aside to let someone past."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro3:r2",
+              "text": "I move aside to letting someone past."
+            },
+            {
+              "responseId": "en:lesson-21:session-42:intro3:r3",
+              "text": "I move aside for let someone past."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4213b27e3689f27cfc0b4ef32df76f21a2c417889af489e9a648e0f933582445"
+}

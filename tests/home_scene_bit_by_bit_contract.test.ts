@@ -19,6 +19,12 @@ describe('Главная со «Сценой»: до бита', () => {
     expect(scene).toContain('testID="home-v2-today-see-all"');
     expect(scene).not.toContain('HomeV2SeeAllButton');
   });
+  it('заголовок героя: длинный — кегль 26/32 (не переносится в две строки на 360–390), короткий — 30/36', () => {
+    const stage = readSource('components/home/v2/scene/HomeSceneStage.tsx');
+    expect(stage).toContain('const titleStyle = copy.title.length > TITLE_LONG_CHARS ? s.titleLong : s.title;');
+    expect(stage).toMatch(/titleLong: { color: '#FFFFFF', fontSize: 26, lineHeight: 32/);
+    expect(stage).toMatch(/title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36/);
+  });
   it('«Фраза дня» со сценой — без строки перевода', () => {
     expect(phrase).toContain('{cardLiteral && !sceneLook ? (');
   });

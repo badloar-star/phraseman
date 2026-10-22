@@ -30,6 +30,8 @@ import type { HomeSceneStageTokens } from './home_scene_tokens';
 const LOG = '[HOME-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
 export const HOME_SCENE_SCREEN_SHARE = 392 / 844;
+/** Заголовок героя длиннее этого числа знаков набирается кеглем 26/32, иначе на 360–390 он переносится в две строки. */
+const TITLE_LONG_CHARS = 18;
 /** Высота сцены варианта 2 на экране 844; на крупном шрифте сцена растёт, а не режет текст. */
 export const HOME_SCENE_STAGE_MIN_HEIGHT = 392;
 /** Панель «Сегодня» наезжает на сцену (вариант 2: −22). */
@@ -93,6 +95,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
   const heroBounded = fontScale > HERO_BOUND_FONT_SCALE;
+  // зачем (Сверка home7, [HOME-FIT]): заголовок «Продолжим с эпизода 1» на 390 переносился на 2 строки (+42 dp) и уводил «Фразу дня» под панель; длинный заголовок — кегль 26/32 (как long у обложки Сезона), первый кадр без измерения, без ужатия
+  const titleStyle = copy.title.length > TITLE_LONG_CHARS ? s.titleLong : s.title;
   const pressCta = () => {
     if (pending) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'pending_skeleton', state })); return; } // guard-ok: ранний выход называет причину
     if (busy) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'busy_launching', state })); return; } // guard-ok
@@ -155,8 +159,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
           <>
             {copy.kicker ? <Text testID="home-scene-kicker" style={s.kicker}>{copy.kicker}</Text> : null}
             {liveEnergy === 'title'
-              ? <LiveEnergyText testID="home-scene-title" header build={buildLiveText} style={s.title} />
-              : <Text testID="home-scene-title" accessibilityRole="header" style={s.title}>{copy.title}</Text>}
+              ? <LiveEnergyText testID="home-scene-title" header build={buildLiveText} style={titleStyle} />
+              : <Text testID="home-scene-title" accessibilityRole="header" style={titleStyle}>{copy.title}</Text>}
             {copy.warm ? (
               <View style={s.warmRow}>
                 <Ionicons name="flame" size={16} color="#FFD9D0" />
@@ -228,6 +232,7 @@ const baseStyles = StyleSheet.create({
   // зачем (D145, владелец: шрифты 16/13 главнее макета): подписи сцены — 13/17, крупные строки и кнопка — 16/21
   kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
   title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4 },
+  titleLong: { color: '#FFFFFF', fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5, marginTop: 4 },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   warm: { color: '#FFD9D0', /* аудит контраста 22.10: чуть светлее прежнего #FFD0C4 — 4,45 → ≥ 4,5 в светлых sage/grad_aurora */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },

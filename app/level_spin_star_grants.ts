@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import {
+  captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
@@ -2577,7 +2578,78 @@ export async function acknowledgePracticeRuneGrantLocally(
   publishProjection(token, acknowledgedProjection);
 }
 
+// зачем (тест 22.10, «две части подряд»): каждая постановка в очередь запускала СВОЙ проход. Второй проход брал ту же
+// .base, что ещё летела на сервер, и останавливался; первый работал по снимку очереди из одной операции и заканчивал,
+// оставив .premium до холодного старта. Теперь проход один на владельца: вызов во время прохода ставит ещё один проход
+// после текущего, а проход, который что-то отправил при непустой очереди, запускает следующий. Потолок — 5 подряд.
+const LEVEL_SPIN_SYNC_MAX_PASSES = 5;
+const levelSpinSyncInFlight = new Map<string, { rerun: boolean; promise: Promise<{ synced: number; pending: number }> }>();
+let levelSpinSyncReadyListenerAttached = false;
+
+function attachPhoneStateReadyRetryOnce(): void {
+  if (levelSpinSyncReadyListenerAttached) return;
+  levelSpinSyncReadyListenerAttached = true;
+  // зачем (координатор 22.10): отказ «состояние телефона не поднято» — повтор один раз, когда мост настроят (событие моста).
+  void import('./events')
+    .then(({ onAppEvent }) => {
+      onAppEvent('phone_state_economy_ready', () => {
+        console.warn('[COIN-WALLET] sync:retry_on_phone_state_ready', '{}'); // guard-ok: раз за отказ
+        void syncPendingLevelSpinStarGrants(captureAccountGeneration())
+          .catch(noteSwallowedHandler('level_spin_star_grants:ready_retry'));
+      });
+    })
+    .catch((error: unknown) => {
+      levelSpinSyncReadyListenerAttached = false;
+      console.warn('[COIN-WALLET] sync:ready_listener_failed', String(error instanceof Error ? error.message : error).slice(0, 120));
+    });
+}
+
 export async function syncPendingLevelSpinStarGrants(
+  token: AccountGenerationToken,
+): Promise<{ synced: number; pending: number }> {
+  attachPhoneStateReadyRetryOnce();
+  const ownerStableId = token.stableId?.trim();
+  if (!ownerStableId) return runLevelSpinStarGrantSyncPass(token);
+  const key = `${ownerStableId}#${token.generation}`;
+  const running = levelSpinSyncInFlight.get(key);
+  if (running) {
+    running.rerun = true;
+    console.warn('[COIN-WALLET] sync:join', JSON.stringify({ owner: ownerStableId.slice(0, 8), rerun: true })); // guard-ok: редкая гонка, нужна для диагноза
+    return running.promise;
+  }
+  const entry: { rerun: boolean; promise: Promise<{ synced: number; pending: number }> } = {
+    rerun: false,
+    promise: Promise.resolve({ synced: 0, pending: 0 }),
+  };
+  entry.promise = (async () => {
+    let total = 0;
+    let last = { synced: 0, pending: 0 };
+    try {
+      for (let pass = 1; pass <= LEVEL_SPIN_SYNC_MAX_PASSES; pass += 1) {
+        entry.rerun = false;
+        last = await runLevelSpinStarGrantSyncPass(token);
+        total += last.synced;
+        const requested = entry.rerun;
+        const progressed = last.synced > 0 && last.pending > 0;
+        if (!requested && !progressed) break;
+        if (pass === LEVEL_SPIN_SYNC_MAX_PASSES) {
+          console.warn('[COIN-WALLET] sync:rerun_cap_reached', JSON.stringify({ owner: ownerStableId.slice(0, 8), passes: pass, pending: last.pending })); // guard-ok
+          break;
+        }
+        console.warn('[COIN-WALLET] sync:rerun', JSON.stringify({ // guard-ok: проход повторяется только при деле
+          owner: ownerStableId.slice(0, 8), pass, reason: requested ? 'requested_during_pass' : 'progress_with_pending', pending: last.pending,
+        }));
+      }
+      return { synced: total, pending: last.pending };
+    } finally {
+      levelSpinSyncInFlight.delete(key);
+    }
+  })();
+  levelSpinSyncInFlight.set(key, entry);
+  return entry.promise;
+}
+
+async function runLevelSpinStarGrantSyncPass(
   token: AccountGenerationToken,
 ): Promise<{ synced: number; pending: number }> {
   const ownerStableId = token.stableId?.trim();

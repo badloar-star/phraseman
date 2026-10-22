@@ -59,9 +59,19 @@ type Runtime = Readonly<{
 }>;
 
 let runtime: Runtime | null = null;
+// зачем (координатор 22.10): очередь монет, упёршаяся в «состояние телефона не поднято», раньше ждала следующего начисления
+// или холодного старта. Отказ запоминаем; когда мост настроят — одно событие, очередь повторит отправку один раз.
+let starCreditWaitsForRuntime = false;
 
 export function configurePhoneStateEconomyBridge(next: Runtime | null): void {
   runtime = next;
+  if (next && starCreditWaitsForRuntime) {
+    starCreditWaitsForRuntime = false;
+    console.warn('[COIN-WALLET] phone_state_ready_after_refusal', JSON.stringify({ generation: next.runtimeGeneration })); // guard-ok: раз за отказ
+    void import('./events')
+      .then(({ emitAppEvent }) => emitAppEvent('phone_state_economy_ready'))
+      .catch((error: unknown) => console.warn('[COIN-WALLET] ready_event_failed', String(error instanceof Error ? error.message : error).slice(0, 120)));
+  }
 }
 
 /** Snapshot only; callers must still re-check account generation after awaits. */
@@ -296,6 +306,7 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
 ): Promise<boolean> {
   const active = runtime;
   if (!active) {
+    if (input.kind === 'star_credit' || input.kind === 'star_credit_ack') starCreditWaitsForRuntime = true;
     return input.kind === 'star_credit' || input.kind === 'star_credit_ack'
       ? refuseStarCredit(input.kind === 'star_credit' ? 'runtime_missing' : 'ack_runtime_missing', { op: input.entitlementId }, input.expectedOwnerStableId)
       : false;
@@ -465,6 +476,19 @@ export async function commitPhoneStateNonMonetaryEconomyGrant(
     active.triggerSync();
     return true;
   } catch (error) {
+    // зачем (тест 22.10, корень застревания монет): повторная запись той же операции начисления/квитанции падала на
+    // phone_state_operation_id_reused — хранилище сверяет отпечаток всей записи, а в ней createdAtMs: Date.now(). Каждая
+    // операция, однажды записанная и не дошедшая до сервера, навсегда стопила очередь. Содержимое операции то же (отпечаток
+    // запроса проверен выше), отличается только время записи — значит, она уже записана, идём дальше.
+    if ((input.kind === 'star_credit' || input.kind === 'star_credit_ack')
+      && error instanceof Error && error.message === 'phone_state_operation_id_reused'
+      && runtime === active
+      && active.scope.stableUid === input.expectedOwnerStableId
+      && active.runtimeGeneration === input.expectedAccountGeneration) {
+      console.warn('[COIN-WALLET] phone_state_already_committed', JSON.stringify({ kind: input.kind, op: input.entitlementId })); // guard-ok: редкий повтор, нужен для диагноза
+      active.triggerSync();
+      return true;
+    }
     // зачем (координатор 05.10, «сперва логи»): сбой записи покупки/начисления в очередь PhoneState не оставлял следа —
     // вызывающий видел только false. Поведение прежнее (false); строка несёт причину, вид, сумму и id операции, без uid.
     const exact = (input.exactResult && typeof input.exactResult === 'object' ? input.exactResult : {}) as Record<string, unknown>;

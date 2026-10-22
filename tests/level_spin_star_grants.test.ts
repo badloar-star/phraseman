@@ -820,3 +820,61 @@ test('account switch during await cannot acknowledge, remove, or publish old ope
   expect(transportMock()).not.toHaveBeenCalled();
   expect(snapshot.patchAppSnapshot).not.toHaveBeenCalled();
 });
+
+// зачем (тест 22.10, «две части подряд»): награда кладёт в очередь .base и .premium одну за другой, и каждая постановка
+// запускала свой проход. Второй проход падал на ещё летящей .base, первый заканчивал по снимку из одной операции — .premium
+// ждала холодного старта. Теперь вызов во время прохода ставит ещё один проход, и обе части уходят за один раз.
+test('two parts in a row: a sync requested during a pass runs again and sends the second part', async () => {
+  const token = captureAccountGeneration();
+  jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  await enqueueLevelSpinStarGrant({
+    token, requestId: 'report_reward_twoparts000001', lane: 'base', giftId: 'stars_250', promotionEligibility: 'excluded_compensation',
+  }, { syncNow: false });
+  let releaseFirst: () => void = () => undefined;
+  const firstCallGate = new Promise<void>((resolve) => { releaseFirst = resolve; });
+  let balance = 0;
+  transportMock().mockImplementation(async (operation: { operationId: string; requestFingerprint: string; amount: number }) => {
+    if (operation.operationId.endsWith('.base')) await firstCallGate;
+    balance += operation.amount;
+    return {
+      materialized: true, operationId: operation.operationId, requestFingerprint: operation.requestFingerprint,
+      replayed: false, starsBalance: balance, starsEarnedTotal: balance, starsSeq: balance === 250 ? 1 : 2,
+    };
+  });
+  const first = syncPendingLevelSpinStarGrants(token);
+  for (let index = 0; index < 50 && transportMock().mock.calls.length === 0; index += 1) {
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+  expect(transportMock()).toHaveBeenCalledTimes(1);
+  await enqueueLevelSpinStarGrant({
+    token, requestId: 'report_reward_twoparts000001', lane: 'premium', giftId: 'stars_50', promotionEligibility: 'excluded_compensation',
+  }, { syncNow: false });
+  const second = syncPendingLevelSpinStarGrants(token);
+  releaseFirst();
+  const [firstResult, secondResult] = await Promise.all([first, second]);
+  expect(transportMock().mock.calls.map(([operation]) => (operation as { operationId: string }).operationId)).toEqual([
+    'level_spin:report_reward_twoparts000001.base',
+    'level_spin:report_reward_twoparts000001.premium',
+  ]);
+  expect(firstResult).toEqual({ synced: 2, pending: 0 });
+  expect(secondResult).toEqual(firstResult);
+  expect(JSON.parse(storage[levelSpinStarGrantOutboxKey('account-a')] ?? '[]')).toHaveLength(0);
+});
+
+// зачем (тест 22.10): операция, которую сервер однажды отбил, остаётся в очереди и уходит на следующем проходе —
+// повторная запись в хранилище телефона больше не стопит очередь (мост отвечает «уже записано»).
+test('a part refused by the server once is sent again on the next sync', async () => {
+  const token = captureAccountGeneration();
+  jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+  await enqueueLevelSpinStarGrant({
+    token, requestId: 'report_reward_retry00000001', lane: 'base', giftId: 'stars_250', promotionEligibility: 'excluded_compensation',
+  }, { syncNow: false });
+  transportMock().mockRejectedValueOnce(Object.assign(new Error('level_spin_star_composite_invalid'), { code: 'functions/invalid-argument' }));
+  expect(await syncPendingLevelSpinStarGrants(token)).toEqual({ synced: 0, pending: 1 });
+  transportMock().mockImplementation(async (operation: { operationId: string; requestFingerprint: string }) => ({
+    materialized: true, operationId: operation.operationId, requestFingerprint: operation.requestFingerprint,
+    replayed: false, starsBalance: 250, starsEarnedTotal: 250, starsSeq: 1,
+  }));
+  expect(await syncPendingLevelSpinStarGrants(token)).toEqual({ synced: 1, pending: 0 });
+  expect(transportMock()).toHaveBeenCalledTimes(2);
+});

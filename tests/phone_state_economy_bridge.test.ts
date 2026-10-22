@@ -164,6 +164,57 @@ describe('PhoneState economy bridge', () => {
     }), { idempotencyKey: 'economy:level_spin:request0000000001.base' });
   });
 
+  // зачем (тест 22.10, корень застревания монет): повторная запись того же начисления падала на
+  // phone_state_operation_id_reused (в записи createdAtMs: Date.now()) и навсегда стопила очередь.
+  test('a re-commit of the same star credit (operation id reused) counts as already committed', async () => {
+    const commit = jest.fn(async () => { throw new Error('phone_state_operation_id_reused'); });
+    const triggerSync = jest.fn();
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync,
+    });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId: 'level_spin:request0000000001.base',
+      kind: 'star_credit',
+      entitlementId: 'level_spin:request0000000001.base',
+      expectedOwnerStableId: 'account-a',
+      expectedAccountGeneration: 3,
+      exactResult: {
+        schemaVersion: 'client-level-spin-star-operation.v1',
+        operationId: 'level_spin:request0000000001.base',
+        ownerStableId: 'account-a', requestId: 'request0000000001', lane: 'base',
+        giftId: 'stars_50', amount: 50, reason: 'level_spin_star_reward',
+        createdAtMs: 1_800_000_000_000, requestFingerprint: validStarFingerprint,
+        grant: { kind: 'star_credit', subjectId: 'level_spin:request0000000001.base', payload: {
+          requestId: 'request0000000001', lane: 'base', giftId: 'stars_50', amount: 50,
+        } },
+      },
+    })).resolves.toBe(true);
+    expect(triggerSync).toHaveBeenCalledTimes(1);
+    expect(warn.mock.calls.some(([tag]) => tag === '[COIN-WALLET] phone_state_already_committed')).toBe(true);
+    warn.mockRestore();
+  });
+
+  test('a reused operation id still fails closed for non-coin kinds', async () => {
+    const commit = jest.fn(async () => { throw new Error('phone_state_operation_id_reused'); });
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId: 'premium-freeze:2026-08-21',
+      kind: 'premium_freeze',
+      entitlementId: '2026-08-21',
+      exactResult: { active: true, date: '2026-08-21' },
+    })).resolves.toBe(false);
+    expect(commit).toHaveBeenCalledTimes(1);
+    warn.mockRestore();
+  });
+
   test('commits a closed immutable Spin materialization acknowledgement', async () => {
     const commit = jest.fn(async () => ({ duplicate: false }));
     configurePhoneStateEconomyBridge({

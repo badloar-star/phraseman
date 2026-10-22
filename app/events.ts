@@ -14,6 +14,8 @@ let appHomeScreenReadyFired = false;
 
 export type AppEventMap = {
   level_spin_balance_changed: undefined;
+  /** Мост экономики PhoneState настроен после отказа «runtime_missing» — очередь монет может повторить отправку. */
+  phone_state_economy_ready: undefined;
   /**
    * Повышение уровня ждёт показа НА ГЛАВНОЙ (полоска доливается, аватарка
    * подпрыгивает, цифра меняется). Пришло на смену полноэкранной модалке

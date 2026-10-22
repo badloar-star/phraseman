@@ -407,7 +407,7 @@ const NEED = {
   pick: ['3D: Марина по пояс, с планшетом, деловая полуулыбка'],
   talk: ['3D: Марина крупно (плечи и голова), 3 эмоции: слушает · улыбается · ждёт ответа'],
   done: ['3D: Марина довольна, кивает или большой палец вверх', 'Праздничное сияние за героем — цвет берётся из акцента темы'],
-  consent: ['3D: Мила и Денис вместе, приветливо, для шапки листа'],
+  consent: ['Живой мини-диалог (как DialogueConsentChatReplay) и герой «согласие» в углу, без букв'],
   limit: ['3D: Мила сидит, ждёт (поза «до встречи»), приглушённо'],
   plus: ['3D: Мила, как на входе'],
   off: ['3D: Мила, приглушённо, «на паузе» (взгляд в сторону)'],
@@ -437,7 +437,12 @@ const talk = (s, o = {}) => T(phone(`<div class="sc dl-head"><div class="light">
 const done = (s, o = {}) => T(phone(stage(s, `<div class="sc-kick">Представиться коллеге · с Мариной</div><div class="sc-title">Диалог пройден</div><div class="stats3"><div class="stat gl"><b>5/6</b><span>целей</span></div><div class="stat gl"><b>92%</b><span>точность</span></div><div class="stat gl"><b>1</b><span>ошибка</span></div></div>`, 520, 'marina', 'довольна', heroBox(s), `<span class="qround gl t">${io('close')}</span><span class="sp"></span>`)
   + `<div class="dpanel"><div class="ph-h">Цели<span>5 из 6</span></div>${goalsList(D.work_01.list, [0, 1, 2, 3, 4])}</div><div class="btns"><div class="qbtn solid t">Готово</div><div class="qbtn ctl t">${io('refresh')}Повторить ошибки</div><div class="qbtn ctl t">Ещё раз</div></div>`,
   { time: s.time, inStyle: 'padding:0' }), { ...o, narrow: s.narrow });
-const consentSheet = () => `<div class="qdim"></div><div class="qsheet consent"><div class="sheet-art sc"><div class="light"></div>${h3d('mila', 'left:24px;top:14px;width:160px;height:166px', 'с Денисом')}${h3d('denis', 'right:24px;top:18px;width:150px;height:160px')}</div>`
+/* зачем (владелец 22.10): вместо букв «М»/«Д» — вариант (в) из dialogs-consent-variants.html: живой мини-диалог, как в приложении
+   (DialogueConsentChatReplay), плюс свет темы и маленький герой «согласие» в углу. */
+const consentSheet = () => `<div class="qdim"></div><div class="qsheet consent"><div class="sheet-art sc cv-top"><div class="light"></div>`
+  + `<img class="cv-corner" src="assets/v2art/${AP === 'dark' ? 'dark' : 'light'}/dialogs_scene_consent.webp" alt=""><div class="cv-chat">`
+  + `<div class="msg them">Hi! I'm Mila. How was your weekend?</div><div class="msg me">It was great, thanks! I went hiking.</div>`
+  + `<div class="msg them">Nice! Where did you go?</div></div></div>`
   + `<h3>Включить AI-диалоги?</h3><p>Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</p><div class="dnote">${io('shield-checkmark-outline')}<span>Можно выключить в настройках в любой момент.</span></div>`
   + `<div style="margin-top:18px"><div class="qbtn solid t">Включить</div><div class="qbtn ctl t">Не сейчас</div></div></div>`;
 const consent = (s, o = {}) => T(phone(`${stage(s, hubInner(s), 520, 'mila', 'машет', heroBox(s))}${dialogsPanel(s)}`, { time: s.time, inStyle: 'padding:0', fixed: tabbar(), overlay: consentSheet() }), { ...o, narrow: s.narrow });

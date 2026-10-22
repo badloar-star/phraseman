@@ -20,7 +20,8 @@ export const SEASON_CARD_COPY = {
   allChapters: ['Все главы', 'Усі розділи', 'All chapters', 'Todos los capítulos', 'Todos os capítulos', 'Tất cả chương', 'Semua bab', 'Tüm üniteler', 'Wszystkie rozdziały'],
   allLessons: ['Все уроки', 'Усі уроки', 'All lessons', 'Todas las lecciones', 'Todas as lições', 'Tất cả bài học', 'Semua pelajaran', 'Tüm dersler', 'Wszystkie lekcje'],
   classicCourse: ['Классический курс', 'Класичний курс', 'Classic course', 'Curso clásico', 'Curso clássico', 'Khóa học cổ điển', 'Kursus klasik', 'Klasik kurs', 'Kurs klasyczny'],
-  nextTag: ['Дальше', 'Далі', 'Next', 'Siguiente', 'Próximo', 'Tiếp theo', 'Berikutnya', 'Sıradaki', 'Dalej'],
+  // зачем (Переводчик 22.10): метка на строке эпизода узкая — id «Lanjut» короче «Berikutnya» и совпадает с «Дальше» экзамена.
+  nextTag: ['Дальше', 'Далі', 'Next', 'Siguiente', 'Próximo', 'Tiếp theo', 'Lanjut', 'Sıradaki', 'Dalej'],
 } as const satisfies Record<string, Nine>;
 
 export type SeasonCardCopyKey = keyof typeof SEASON_CARD_COPY;

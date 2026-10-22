@@ -4,8 +4,8 @@
 // длиннее — замораживаем ЧИСЛО нарушителей: оно может только уменьшаться (новые названия Теории его снизят).
 import { LEARNING_V2_SESSION_TITLES_RU_V1 } from '../modules/learning-v2/content/session_titles_v1.generated';
 
-/** Нарушителей на 22.10. Новое название ≤ 2 слов — уменьши число; увеличивать нельзя. */
-const MAX_TITLES_OVER_TWO_WORDS = 149;
+/** Нарушителей нет: 22.10 внесена таблица Теории (168 названий уроков 1–3). Любое новое название — не длиннее 2 слов. */
+const MAX_TITLES_OVER_TWO_WORDS = 0;
 
 const words = (title: string) => title.trim().split(/\s+/u).filter(Boolean).length;
 

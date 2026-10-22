@@ -472,7 +472,7 @@ export default function AccountDetailsScreen() {
                 icon="trash-outline"
                 title={L('Удалить аккаунт', 'Видалити акаунт', 'Delete account', 'Eliminar cuenta', 'Excluir conta', 'Xóa tài khoản', 'Hapus akun', 'Hesabı sil', 'Usuń konto')}
                 sub={L('Требует отдельного подтверждения', 'Потребує окремого підтвердження', 'Needs separate confirmation', 'Requiere confirmación aparte', 'Exige confirmação separada', 'Cần xác nhận riêng', 'Perlu konfirmasi terpisah', 'Ayrı onay gerektirir', 'Wymaga osobnego potwierdzenia')}
-                titleColor={glass.bad /* зачем ([BLEND-AUTH] 18.10): постоянный #F05454 на светлой плашке ~3:1 — bad темы ≥ 4,5 */}
+                titleColor={glass.bad /* зачем ([BLEND-AUTH] 18.10): прежний фиксированный красный на светлой плашке давал ~3:1 — bad темы ≥ 4,5 */}
                 haptic={false}
                 onPress={() => { if (isBlockedByLogout('delete')) return; doHaptic(); setDeleteVisible(true); }}
               />

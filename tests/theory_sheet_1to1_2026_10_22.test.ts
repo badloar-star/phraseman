@@ -62,3 +62,15 @@ describe('один вид теории для основного курса и L
     expect(view).toMatch(/sectionBody: \{\s*paddingLeft: 4,\s*paddingRight: 4,/);
   });
 });
+
+describe('закон цветов (4 · ТЕМЫ 22.10): «верно/неверно» в теории — токены текущей темы', () => {
+  const view = code(read('components/theory/TheoryLessonView.tsx'));
+
+  it('нет токенов старой темы t.correct / t.wrong, есть glass.good / glass.bad', () => {
+    expect(view).not.toMatch(/\bt\.(correct|wrong)\b/);
+    expect(view).toContain('correct: glass.good,');
+    expect(view).toContain('wrong: glass.bad,');
+    expect(view).toContain("{ color: glass.bad, textDecorationLine: 'line-through' }");
+    expect(view).toContain('{ color: glass.good }]}>{fx.right}');
+  });
+});

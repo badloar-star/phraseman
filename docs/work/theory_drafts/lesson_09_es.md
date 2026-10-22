@@ -187,7 +187,7 @@ En español «¿qué haces?» puede ser ahora. En inglés no: I wear a sweatshir
 ## 08 · Algo pasa — y dónde
 
 **body**
-A una frase sobre lo que pasa se le puede añadir dónde: She is in the doorway. I am near the carousel. Es la pieza de siempre con un lugar, sin -ing, porque no hay acción.
+A una frase sobre lo que pasa se le puede añadir dónde: She is in the doorway — «está en la puerta». I am near the carousel — «estoy junto al carrusel». Es la pieza de siempre con un lugar, sin -ing, porque no hay acción.
 
 **examples** 🔊
 | en | es | hi |

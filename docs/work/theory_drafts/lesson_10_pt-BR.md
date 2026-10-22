@@ -58,7 +58,7 @@ Se é hábito, a forma da lição 6: I often travel abroad. Se acontece agora ou
 ## 03 · Dicas dentro da frase
 
 **body**
-Muitas vezes a frase já mostra a forma. often, usually, once a week, twice a week são hábito: sem -ing. today, now são agora: am / is / are + -ing. Atenção: «uma vez por semana» é once a week, não one time.
+Muitas vezes a frase já mostra a forma. often, usually, once a week, twice a week («duas vezes por semana») são hábito: sem -ing. today («hoje»), now («agora») são agora: am / is / are + -ing. Atenção: «uma vez por semana» é once a week, não one time.
 
 **examples** 🔊
 | en | pt-BR | hi |
@@ -109,7 +109,7 @@ Algumas palavras quase nunca vão com -ing nem com am: need — «preciso», kno
 ## 05 · «Estou com dor» — have ou has
 
 **body**
-Em português «estou com dor de garganta». Em inglês diz-se «tenho a garganta inflamada»: I have a sore throat. Sem am e sem «com». Com he e she, has: She has earache, He has backache.
+Em português «estou com dor de garganta». Em inglês diz-se «tenho a garganta inflamada»: I have a sore throat. Sem am e sem «com». Com he e she, has: She has earache («dor de ouvido»), He has backache («dor nas costas»).
 
 **examples** 🔊
 | en | pt-BR | hi |
@@ -171,7 +171,7 @@ probably — «provavelmente», vai depois da peça: He is probably at home. per
 ## 08 · Quando: at lunchtime, before bedtime
 
 **body**
-Com um momento exato do dia vai at: at nine, at lunchtime, at midnight. «Antes de» é before: before bedtime. «De dia» é in the daytime. Onde e quando, como sempre, no fim.
+Com um momento exato do dia vai at: at nine, at lunchtime («na hora do almoço»), at midnight («à meia-noite»). «Antes de» é before: before bedtime. «De dia» é in the daytime. Onde e quando, como sempre, no fim.
 
 **examples** 🔊
 | en | pt-BR | hi |

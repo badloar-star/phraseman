@@ -188,7 +188,7 @@ I wear a sweatshirt — «noszę bluzę» (zwykle). I am sweating — «pocę si
 ## 08 · Coś się dzieje — i gdzie
 
 **body**
-Do zdania o tym, co się dzieje, łatwo dodać, gdzie: She is in the doorway. I am near the carousel. To znane is z miejscem — bez -ing, bo czynności tu nie ma.
+Do zdania o tym, co się dzieje, łatwo dodać, gdzie: She is in the doorway — «ona jest w drzwiach». I am near the carousel — «jestem przy karuzeli». To znane is z miejscem — bez -ing, bo czynności tu nie ma.
 
 **examples** 🔊
 | en | pl | hi |

@@ -59,7 +59,7 @@ In many languages you ask a question just with your voice. In English, a questio
 ## 03 · Does — for he, she and one person
 
 **body**
-When you ask about he, she, it or one person — the barber, the fan — use Does instead of Do. The s from the action (he works) moves to does and disappears from the action: Does he work?
+When you ask about he, she, it or one person — the barber, the fan (sports supporter) — use Does instead of Do. The s from the action (he works) moves to does and disappears from the action: Does he work?
 
 **formula**
 `Does` · `he / she / it / one person` · `action without s` · `?`

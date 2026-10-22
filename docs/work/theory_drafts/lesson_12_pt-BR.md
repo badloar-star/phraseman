@@ -113,7 +113,7 @@ Se você disser «uó-ched» ou «klí-ned», vão entender, mas soa estranho. A
 ## 06 · Palavras especiais: chose, went, saw, had
 
 **body**
-Algumas ações muito comuns mudam inteiras no passado, sem -ed. Aprenda em pares: choose → chose, go → went, see → saw, have → had, rise → rose, hide → hid, find → found.
+Algumas ações muito comuns mudam inteiras no passado, sem -ed. Aprenda em pares: choose → chose, go → went, see → saw, have → had, rise → rose («subir»), hide → hid («esconder»), find → found («encontrar»).
 
 **examples** 🔊
 | en | pt-BR | hi |

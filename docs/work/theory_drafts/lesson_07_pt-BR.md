@@ -59,7 +59,7 @@ Em português a pergunta aparece só na voz: «Você trabalha numa fábrica.» �
 ## 03 · Does — para he, she e uma pessoa
 
 **body**
-Se você pergunta sobre he, she, it ou uma só pessoa — the barber, the fan — no lugar de Do vai Does. E o s que a ação tinha (he works) passa para o does e some da ação: Does he work?
+Se você pergunta sobre he, she, it ou uma só pessoa — the barber (o barbeiro), the fan (o torcedor) — no lugar de Do vai Does. E o s que a ação tinha (he works) passa para o does e some da ação: Does he work?
 
 **formula**
 `Does` · `he / she / it / uma pessoa` · `ação sem s` · `?`

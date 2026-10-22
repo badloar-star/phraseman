@@ -59,7 +59,7 @@ Kalau kebiasaan — bentuk dari pelajaran 6: I often travel abroad. Kalau sedang
 ## 03 · Petunjuk di dalam kalimat
 
 **body**
-Sering kalimatnya sendiri memberi petunjuk. often, usually, once a week, twice a week adalah kebiasaan — tanpa -ing. today, now adalah sekarang — am / is / are + -ing. «Seminggu sekali» adalah once a week.
+Sering kalimatnya sendiri memberi petunjuk. often, usually, once a week, twice a week («dua kali seminggu») adalah kebiasaan — tanpa -ing. today («hari ini»), now («sekarang») adalah sekarang — am / is / are + -ing. «Seminggu sekali» adalah once a week.
 
 **examples** 🔊
 | en | id | hi |
@@ -110,7 +110,7 @@ Beberapa kata hampir tidak pernah memakai -ing dan am: need — «perlu», know 
 ## 05 · «Sakit» — have atau has
 
 **body**
-Kita bilang «tenggorokanku sakit». Bahasa Inggris bilang «aku punya tenggorokan yang sakit»: I have a sore throat. Tanpa am. Dengan he dan she — has: She has earache, He has backache.
+Kita bilang «tenggorokanku sakit». Bahasa Inggris bilang «aku punya tenggorokan yang sakit»: I have a sore throat. Tanpa am. Dengan he dan she — has: She has earache («sakit telinga»), He has backache («sakit punggung»).
 
 **examples** 🔊
 | en | id | hi |
@@ -172,7 +172,7 @@ probably — «mungkin / kemungkinan besar», sesudah is: He is probably at home
 ## 08 · Kapan: at lunchtime, before bedtime
 
 **body**
-Untuk waktu tertentu dalam sehari pakai at: at nine, at lunchtime, at midnight. «Sebelum» adalah before: before bedtime. «Siang hari» adalah in the daytime. Waktu di akhir kalimat.
+Untuk waktu tertentu dalam sehari pakai at: at nine, at lunchtime («saat makan siang»), at midnight («tengah malam»). «Sebelum» adalah before: before bedtime. «Siang hari» adalah in the daytime. Waktu di akhir kalimat.
 
 **examples** 🔊
 | en | id | hi |

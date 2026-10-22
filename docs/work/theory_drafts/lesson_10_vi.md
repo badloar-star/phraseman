@@ -58,7 +58,7 @@ Nếu là thói quen — dạng ở bài 6: I often travel abroad. Nếu đang x
 ## 03 · Gợi ý ngay trong câu
 
 **body**
-Thường câu đã gợi ý dạng nào. often, usually, once a week, twice a week là thói quen — không -ing. today, now là lúc này — am / is / are + -ing. «Mỗi tuần một lần» là once a week.
+Thường câu đã gợi ý dạng nào. often, usually, once a week, twice a week («hai lần mỗi tuần») là thói quen — không -ing. today («hôm nay»), now («bây giờ») là lúc này — am / is / are + -ing. «Mỗi tuần một lần» là once a week.
 
 **examples** 🔊
 | en | vi | hi |
@@ -109,7 +109,7 @@ Một số từ hầu như không đi với -ing và am: need — «cần», kno
 ## 05 · «Bị đau» — have hay has
 
 **body**
-Tiếng Việt nói «tôi bị đau họng». Tiếng Anh nói «tôi có cái họng đau»: I have a sore throat. Không dùng am. Với he và she là has: She has earache, He has backache.
+Tiếng Việt nói «tôi bị đau họng». Tiếng Anh nói «tôi có cái họng đau»: I have a sore throat. Không dùng am. Với he và she là has: She has earache («đau tai»), He has backache («đau lưng»).
 
 **examples** 🔊
 | en | vi | hi |
@@ -171,7 +171,7 @@ probably — «chắc là», đứng sau is: He is probably at home. perhaps —
 ## 08 · Khi nào: at lunchtime, before bedtime
 
 **body**
-Với một thời điểm trong ngày dùng at: at nine, at lunchtime, at midnight. «Trước khi» là before: before bedtime. «Ban ngày» là in the daytime. Thời gian để ở cuối câu.
+Với một thời điểm trong ngày dùng at: at nine, at lunchtime («giờ ăn trưa»), at midnight («lúc nửa đêm»). «Trước khi» là before: before bedtime. «Ban ngày» là in the daytime. Thời gian để ở cuối câu.
 
 **examples** 🔊
 | en | vi | hi |

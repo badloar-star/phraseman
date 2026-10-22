@@ -186,7 +186,7 @@ I wear a sweatshirt — «tôi hay mặc áo nỉ» (thường ngày). I am swea
 ## 08 · Đang xảy ra — và ở đâu
 
 **body**
-Có thể nói thêm ở đâu: She is in the doorway. I am near the carousel. Đây là từ nối quen thuộc với nơi chốn — không có -ing vì không có hành động.
+Có thể nói thêm ở đâu: She is in the doorway — «cô ấy ở ngưỡng cửa». I am near the carousel — «tôi ở gần vòng đu quay». Đây là từ nối quen thuộc với nơi chốn — không có -ing vì không có hành động.
 
 **examples** 🔊
 | en | vi | hi |

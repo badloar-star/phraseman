@@ -187,7 +187,7 @@ I wear a sweatshirt — «sweatshirt giyerim» (genelde). I am sweating — «te
 ## 08 · Bir şey oluyor — ve nerede
 
 **body**
-Olan şeye nerede olduğunu eklemek kolaydır: She is in the doorway. I am near the carousel. Bu, yerle birlikte bilinen bağlayıcıdır — eylem olmadığı için -ing yok.
+Olan şeye nerede olduğunu eklemek kolaydır: She is in the doorway — «kapının eşiğinde». I am near the carousel — «atlıkarıncanın yanındayım». Bu, yerle birlikte bilinen bağlayıcıdır — eylem olmadığı için -ing yok.
 
 **examples** 🔊
 | en | tr | hi |

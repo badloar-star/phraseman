@@ -188,7 +188,7 @@ I wear a sweatshirt é «eu uso moletom» (normalmente). I am sweating é «esto
 ## 08 · Algo acontece — e onde
 
 **body**
-Numa frase sobre o que está acontecendo dá para acrescentar onde: She is in the doorway. I am near the carousel. É a peça de sempre com um lugar, sem -ing, porque não tem ação.
+Numa frase sobre o que está acontecendo dá para acrescentar onde: She is in the doorway — «ela está na porta». I am near the carousel — «estou perto do carrossel». É a peça de sempre com um lugar, sem -ing, porque não tem ação.
 
 **examples** 🔊
 | en | pt-BR | hi |

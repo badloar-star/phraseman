@@ -58,7 +58,7 @@ Alışkanlıksa 6. dersteki biçim: I often travel abroad. Şu an ya da sadece b
 ## 03 · Cümlenin içindeki ipuçları
 
 **body**
-Çoğu zaman cümle hangi biçimi seçeceğini söyler. often, usually, once a week, twice a week alışkanlıktır: -ing yok. today, now şu andır: am / is / are + -ing. «Haftada bir» once a week olur, one in a week değil.
+Çoğu zaman cümle hangi biçimi seçeceğini söyler. often, usually, once a week, twice a week («haftada iki») alışkanlıktır: -ing yok. today («bugün»), now («şimdi») şu andır: am / is / are + -ing. «Haftada bir» once a week olur, one in a week değil.
 
 **examples** 🔊
 | en | tr | hi |
@@ -109,7 +109,7 @@ Bazı kelimeler neredeyse hiç -ing ve am almaz: need — «lazım», know — �
 ## 05 · «Ağrıyor» — have ya da has
 
 **body**
-Türkçede «boğazım ağrıyor». İngilizcede «ağrıyan bir boğazım var» denir: I have a sore throat. am yok. he ve she ile has: She has earache, He has backache. earache, backache, toothache'den önce genelde a gelmez.
+Türkçede «boğazım ağrıyor». İngilizcede «ağrıyan bir boğazım var» denir: I have a sore throat. am yok. he ve she ile has: She has earache, He has backache. earache («kulak»), backache («sırt»), toothache («diş») ağrısından önce genelde a gelmez.
 
 **examples** 🔊
 | en | tr | hi |
@@ -171,7 +171,7 @@ probably — «muhtemelen», bağlayıcıdan sonra gelir: He is probably at home
 ## 08 · Ne zaman: at lunchtime, before bedtime
 
 **body**
-Günün belli bir anı için at: at nine, at lunchtime, at midnight. «-den önce» before: before bedtime. «Gündüz» in the daytime. Nerede ve ne zaman, her zamanki gibi sonda.
+Günün belli bir anı için at: at nine, at lunchtime («öğle yemeğinde»), at midnight («gece yarısı»). «-den önce» before: before bedtime. «Gündüz» in the daytime. Nerede ve ne zaman, her zamanki gibi sonda.
 
 **examples** 🔊
 | en | tr | hi |

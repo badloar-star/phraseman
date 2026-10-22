@@ -114,7 +114,7 @@ Bunyi akhir itulah satu-satunya tanda masa lalu. Kalau hilang, kalimatnya terden
 ## 06 · Kata khusus: chose, went, saw, had
 
 **body**
-Beberapa kegiatan yang sering dipakai berubah total di masa lalu, tanpa -ed. Hafalkan berpasangan: choose → chose, go → went, see → saw, have → had, rise → rose, hide → hid, find → found.
+Beberapa kegiatan yang sering dipakai berubah total di masa lalu, tanpa -ed. Hafalkan berpasangan: choose → chose, go → went, see → saw, have → had, rise → rose («naik»), hide → hid («menyembunyikan»), find → found («menemukan»).
 
 **examples** 🔊
 | en | id | hi |

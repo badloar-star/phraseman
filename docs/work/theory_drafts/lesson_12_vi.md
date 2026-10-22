@@ -113,7 +113,7 @@ Người Việt hay bỏ âm cuối, nên cleaned nghe như clean — người n
 ## 06 · Từ đặc biệt: chose, went, saw, had
 
 **body**
-Một số hành động thường gặp đổi hẳn ở quá khứ, không thêm -ed. Học theo cặp: choose → chose, go → went, see → saw, have → had, rise → rose, hide → hid, find → found.
+Một số hành động thường gặp đổi hẳn ở quá khứ, không thêm -ed. Học theo cặp: choose → chose, go → went, see → saw, have → had, rise → rose («lên»), hide → hid («giấu»), find → found («tìm thấy»).
 
 **examples** 🔊
 | en | vi | hi |

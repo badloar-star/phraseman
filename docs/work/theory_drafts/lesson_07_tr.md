@@ -59,7 +59,7 @@ Türkçede soruyu sondaki «mı» yapar: «Fabrikada mı çalışıyorsun?». İ
 ## 03 · Does — he, she ve tek kişi için
 
 **body**
-he, she, it ya da tek bir kişi hakkında sorarken — the barber, the fan — Do yerine Does gelir. Eylemdeki s (he works) does'a geçer ve eylemden düşer: Does he work?
+he, she, it ya da tek bir kişi hakkında sorarken — the barber (berber), the fan (taraftar) — Do yerine Does gelir. Eylemdeki s (he works) does'a geçer ve eylemden düşer: Does he work?
 
 **formula**
 `Does` · `he / she / it / tek kişi` · `s'siz eylem` · `?`

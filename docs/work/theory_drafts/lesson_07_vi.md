@@ -59,7 +59,7 @@ Tiếng Việt hỏi bằng «có … không?» và giữ nguyên trật tự. T
 ## 03 · Does — cho he, she và một người
 
 **body**
-Khi hỏi về he, she, it hoặc một người — the barber, the fan — thay Do bằng Does. Chữ s của hành động (he works) chuyển sang does và biến mất khỏi hành động: Does he work?
+Khi hỏi về he, she, it hoặc một người — the barber (thợ cắt tóc), the fan (cổ động viên) — thay Do bằng Does. Chữ s của hành động (he works) chuyển sang does và biến mất khỏi hành động: Does he work?
 
 **formula**
 `Does` · `he / she / it / một người` · `hành động không có s` · `?`

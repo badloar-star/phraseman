@@ -59,7 +59,7 @@ Kita bertanya dengan «apakah» atau nada saja. «Apakah» bukan Are: Are you wo
 ## 03 · Does — untuk he, she, dan satu orang
 
 **body**
-Kalau bertanya tentang he, she, it, atau satu orang — the barber, the fan — Do diganti Does. Huruf s dari kegiatan (he works) pindah ke does dan hilang dari kegiatan: Does he work?
+Kalau bertanya tentang he, she, it, atau satu orang — the barber (tukang cukur), the fan (penggemar) — Do diganti Does. Huruf s dari kegiatan (he works) pindah ke does dan hilang dari kegiatan: Does he work?
 
 **formula**
 `Does` · `he / she / it / satu orang` · `kegiatan tanpa s` · `?`

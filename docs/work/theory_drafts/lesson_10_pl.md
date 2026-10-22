@@ -57,7 +57,7 @@ Po polsku «kupuję» to i «zwykle», i «dzisiaj». Po angielsku nie: nawyk �
 ## 03 · Podpowiedzi w samym zdaniu
 
 **body**
-Często zdanie samo podpowiada formę. often, usually, once a week, twice a week — to nawyk, bez -ing. today, now — to teraz, am / is / are + -ing. Uwaga: «raz w tygodniu» to once a week, a nie one time.
+Często zdanie samo podpowiada formę. often, usually, once a week, twice a week («dwa razy w tygodniu») — to nawyk, bez -ing. today («dziś»), now («teraz») — to teraz, am / is / are + -ing. Uwaga: «raz w tygodniu» to once a week, a nie one time.
 
 **examples** 🔊
 | en | pl | hi |
@@ -108,7 +108,7 @@ Niektóre słowa prawie nigdy nie występują z -ing ani z am: need — «potrze
 ## 05 · «Boli» — have albo has
 
 **body**
-Po polsku «boli mnie gardło». Po angielsku mówi się «mam chore gardło»: I have a sore throat. Bez am. Z he i she — has: She has earache, He has backache. Przed earache, backache, toothache zwykle nie stawia się a.
+Po polsku «boli mnie gardło». Po angielsku mówi się «mam chore gardło»: I have a sore throat. Bez am. Z he i she — has: She has earache, He has backache. Przed earache («ból ucha»), backache («pleców»), toothache («zęba») zwykle nie stawia się a.
 
 **examples** 🔊
 | en | pl | hi |
@@ -170,7 +170,7 @@ probably — «pewnie», stoi po is: He is probably at home. perhaps — «może
 ## 08 · Kiedy: at lunchtime, before bedtime
 
 **body**
-Z konkretną porą dnia — at: at nine, at lunchtime, at midnight. «Przed» — before: before bedtime. «W ciągu dnia» — in the daytime. Gdzie i kiedy, jak zawsze, na końcu.
+Z konkretną porą dnia — at: at nine, at lunchtime («w porze obiadu»), at midnight («o północy»). «Przed» — before: before bedtime. «W ciągu dnia» — in the daytime. Gdzie i kiedy, jak zawsze, na końcu.
 
 **examples** 🔊
 | en | pl | hi |

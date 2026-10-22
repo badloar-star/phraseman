@@ -187,7 +187,7 @@ I wear a sweatshirt — «aku biasa pakai sweter» (umumnya). I am sweating — 
 ## 08 · Sesuatu terjadi — dan di mana
 
 **body**
-Mudah menambahkan di mana: She is in the doorway. I am near the carousel. Ini penjepit biasa dengan tempat — tanpa -ing, karena tidak ada kegiatan.
+Mudah menambahkan di mana: She is in the doorway — «dia di ambang pintu». I am near the carousel — «aku dekat komidi putar». Ini penjepit biasa dengan tempat — tanpa -ing, karena tidak ada kegiatan.
 
 **examples** 🔊
 | en | id | hi |

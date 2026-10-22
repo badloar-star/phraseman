@@ -59,7 +59,7 @@ Po polsku wystarczy «czy» albo sam głos: «Pracujesz w fabryce?». Po angiels
 ## 03 · Does — o he, she i jednej osobie
 
 **body**
-Jeśli pytasz o he, she, it albo jedną osobę — the barber, the fan — zamiast Do stawiasz Does. A s, które miała czynność (he works), przechodzi na does i z czynności znika: Does he work?
+Jeśli pytasz o he, she, it albo jedną osobę — the barber (fryzjer), the fan (kibic) — zamiast Do stawiasz Does. A s, które miała czynność (he works), przechodzi na does i z czynności znika: Does he work?
 
 **formula**
 `Does` · `he / she / it / jedna osoba` · `czynność bez s` · `?`

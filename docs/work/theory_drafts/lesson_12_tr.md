@@ -113,7 +113,7 @@ Dikkat: -ed neredeyse hiç ayrı hece değildir. Sert seslerden sonra «t» gibi
 ## 06 · Özel kelimeler: chose, went, saw, had
 
 **body**
-Çok sık kullanılan bazı eylemler geçmişte tamamen değişir, -ed almaz. Çift olarak ezberlenir: choose → chose, go → went, see → saw, have → had, rise → rose, hide → hid, find → found.
+Çok sık kullanılan bazı eylemler geçmişte tamamen değişir, -ed almaz. Çift olarak ezberlenir: choose → chose, go → went, see → saw, have → had, rise → rose («yükselmek»), hide → hid («saklamak»), find → found («bulmak»).
 
 **examples** 🔊
 | en | tr | hi |

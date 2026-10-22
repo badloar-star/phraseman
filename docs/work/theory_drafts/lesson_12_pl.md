@@ -114,7 +114,7 @@ Uwaga: -ed prawie nigdy nie jest osobną sylabą. Po bezdźwięcznych brzmi jak 
 ## 06 · Specjalne słowa: chose, went, saw, had
 
 **body**
-Niektóre częste czynności w przeszłości zmieniają się całkiem, bez -ed. Uczymy się ich parami: choose → chose, go → went, see → saw, have → had, rise → rose, hide → hid, find → found.
+Niektóre częste czynności w przeszłości zmieniają się całkiem, bez -ed. Uczymy się ich parami: choose → chose, go → went, see → saw, have → had, rise → rose («wznosić się»), hide → hid («chować»), find → found («znajdować»).
 
 **examples** 🔊
 | en | pl | hi |

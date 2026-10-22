@@ -113,7 +113,7 @@ Si dices «uos-hed» o «klin-ed», te van a entender, pero suena raro. La síla
 ## 06 · Palabras especiales: chose, went, saw, had
 
 **body**
-Algunas acciones muy comunes cambian por completo en pasado, sin -ed. Se aprenden en parejas: choose → chose, go → went, see → saw, have → had, rise → rose, hide → hid, find → found.
+Algunas acciones muy comunes cambian por completo en pasado, sin -ed. Se aprenden en parejas: choose → chose, go → went, see → saw, have → had, rise → rose («subir»), hide → hid («esconder»), find → found («encontrar»).
 
 **examples** 🔊
 | en | es | hi |

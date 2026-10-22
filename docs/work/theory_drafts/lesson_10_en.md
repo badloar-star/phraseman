@@ -109,7 +109,7 @@ Some words almost never take -ing or am: need, know, agree. Even if it's true ri
 ## 05 · What hurts — have or has
 
 **body**
-To say part of your body hurts, use have with the problem: I have a sore throat. No am. With he and she, use has: She has earache, He has backache. Before earache, backache and toothache we usually don't put a.
+To say part of your body hurts, use have with the problem: I have a sore throat. No am. With he and she, use has: She has earache, He has backache. Before earache (ear pain), backache and toothache we usually don't put a.
 
 **examples** 🔊
 | en | meaning | hi |

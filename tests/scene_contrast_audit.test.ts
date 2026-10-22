@@ -62,8 +62,8 @@ for (const themeId of LIQUID_GLASS_THEME_IDS) {
     push('Диалоги', themeId, appearance, '—', 'вторичный текст на зоне текста', contrastRatio(c.secondary, c.textZone), TEXT);
     push('Диалоги', themeId, appearance, '—', 'акцентный текст на зоне текста', contrastRatio(c.accent, c.textZone), TEXT);
     push('Диалоги', themeId, appearance, '—', 'текст на кнопке', contrastRatio(c.ctaInk, c.cta), TEXT);
-    // справочно: подпись кнопки читается (≥ 4,5), а сама заливка кнопки в части светлых тем близка к цвету сцены (cta темы ≈ основа сцены) — решение за «Дизайном»/владельцем, сторож не валит
-    push('Диалоги', themeId, appearance, '—', 'заливка кнопки на зоне текста (справочно)', contrastRatio(c.cta, c.textZone), LARGE, true);
+    // 22.10: форма кнопки — норма ≥ 3:1 во всех 23 темах (в 10 светлых градиентных заливка берёт тон текста темы, см. dialogsSceneColors)
+    push('Диалоги', themeId, appearance, '—', 'заливка кнопки на зоне текста (форма)', contrastRatio(c.cta, c.textZone), LARGE);
   }
 }
 

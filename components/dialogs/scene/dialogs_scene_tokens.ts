@@ -70,6 +70,8 @@ export function dialogsSceneTokensForTheme(themeId: string, appearance: 'dark' |
 
 /** Минимальный контраст обычного текста (WCAG AA). */
 export const DIALOGS_SCENE_MIN_TEXT_CONTRAST = 4.5;
+/** Минимальный контраст формы главной кнопки к зоне текста (WCAG 1.4.11 для графики). */
+export const CTA_SHAPE_MIN_CONTRAST = 3;
 
 const HEX6 = /^#[0-9a-f]{6}$/i;
 /** Доля акцента, подмешанная к основе в тёмном оформлении (`color-mix(g1 30%, top)` эталона). */
@@ -102,6 +104,9 @@ export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColo
   const top = dark ? mixHex(bgTop, gradFirst, DARK_ACCENT_MIX) : bgTop;
   const bottom = dark ? mixHex(t.bg, gradLast, DARK_ACCENT_MIX) : t.bg;
   const textZone = dark ? bottom : mixHex(bottom, bgBottom, LIGHT_SCRIM_MIX);
+  // зачем (аудит контраста сцен 22.10, scene-contrast-audit / dialogs-cta-shape; координатор: «кнопка сливалась с фоном в 10 светлых градиентах»): в светлых темах, где заливка кнопки
+  // даёт < 3:1 к зоне текста (grad_*: 1,0–1,5), кнопка берёт тон ТЕКСТА темы, подпись — цвет зоны текста; форма читается тоном, без обводки (13,6–15,6:1). Остальные 13 светлых и тёмные темы не меняются. Обратимо.
+  const ctaShapeOk = dark || contrastRatio(t.cta, textZone) >= CTA_SHAPE_MIN_CONTRAST;
   return Object.freeze({
     top,
     bottom,
@@ -113,8 +118,8 @@ export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColo
     text: t.text,
     secondary: legibleOn(t.secondary, t.text, textZone, DIALOGS_SCENE_MIN_TEXT_CONTRAST),
     accent: t.accentText,
-    cta: t.cta,
-    ctaInk: t.ctaInk,
+    cta: ctaShapeOk ? t.cta : t.text,
+    ctaInk: ctaShapeOk ? t.ctaInk : textZone,
     glass: alphaHex(hex6(t.text, '#FFFFFF'), 0.12),
     track: alphaHex(hex6(t.text, '#FFFFFF'), 0.18),
     textZone,

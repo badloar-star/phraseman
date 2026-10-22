@@ -25,7 +25,8 @@ describe('Шпиль: перенос срока недели', () => {
 describe('Шпиль: стиль «Тень» и пилюля энергии', () => {
   const dir = join(root, 'components', 'spire');
   const mustUseShadow = [
-    'SpireAllMembers.tsx', 'SpireClimbDock.tsx', 'SpireExitSheet.tsx', 'SpireFriendsRow.tsx', 'SpirePodium.tsx',
+    // 22.10: SpireAllMembers.tsx снят — его единственная тень была у своей «назад», теперь это общая ScreenBackButton (своя тень «Тень»)
+    'SpireClimbDock.tsx', 'SpireExitSheet.tsx', 'SpireFriendsRow.tsx', 'SpirePodium.tsx',
     'SpireResultPanel.tsx', 'SpireStepScreen.tsx', 'SpireTaskView.tsx', 'SpireTour.tsx', 'SpireWeekResultCard.tsx',
   ];
 

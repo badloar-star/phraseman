@@ -90,11 +90,12 @@ test('Saved card faces retain live gestures while using the approved translucent
   assert.ok(read('app/flashcards/CollectionListView.tsx').includes('cardHeight={activeCat === \'saved\' && !packDeeplink ? 112 : cardHeight}'));
 });
 
-test('Saved one-time delete hint stays a bottom glass toast and bulk confirmation stays real', () => {
+// 22.10: одноразовая подсказка «Зажми карточку, чтобы удалить её» снята в 6ed749216 (18.10) — удаление стало свайпом вправо с корзиной
+test('Saved delete is a swipe with a trash action and bulk confirmation stays real', () => {
   const list = read('app/flashcards/CollectionListView.tsx');
   const route = read('app/flashcards_collection.tsx');
-  assert.ok(list.includes('Зажми карточку, чтобы удалить её'));
-  assert.ok(list.includes('bottom: 14'));
+  assert.ok(list.includes('renderLeftActions={renderSwipeDeleteAction}'));
+  assert.ok(list.includes('<Ionicons name="trash-outline"'));
   assert.ok(list.includes('backgroundColor: g.sheet'));
   assert.ok(route.includes('visible={batchDeleteConfirmOpen}'));
   assert.ok(route.includes('performDeleteSelected()'));
@@ -112,7 +113,7 @@ test('all approved Saved interaction states still resolve to live handlers and c
     [route, 'onUndo={undoDelete}'], [route, 'onDeleteCardById={deleteCardById}'],
     [route, 'hiddenByLimitCount={hiddenByLimitCount}'], [route, 'isPremium = useFeatureAccess'],
     [header, 'fc-saved-actions-menu'], [header, 'fc-saved-view-list'], [header, 'fc-saved-view-deck'],
-    [header, 'fc-saved-selection-count'], [list, 'showDeleteHint'], [list, 'longPressedId'],
+    [header, 'fc-saved-selection-count'], [list, 'longPressedId'],
     [list, '<ReanimatedSwipeable'], [list, 'fc-selection-action-bar'],
     [item, 'onOpenDelete(item.id)'], [item, 'onFlipCard(item.id)'],
     [deck, 'testID="fc-deck-card"'], [deck, 'onFlip={handleFlip}'],

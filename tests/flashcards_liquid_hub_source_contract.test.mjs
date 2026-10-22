@@ -111,7 +111,9 @@ function loadConstantsModule(name, cache = new Map()) {
   const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
   const module = { exports: {} };
   cache.set(name, module.exports);
-  const localRequire = (id) => (/^\.\/liquidGlass/.test(id) ? loadConstantsModule(id.slice(2), cache) : {});
+  // зачем (22.10): тени палитры с c0bfb85b7 спрашивают облегчённый режим — в харнессе он выключен (тени как на обычном телефоне)
+  const localRequire = (id) => (/^\.\/liquidGlass/.test(id) ? loadConstantsModule(id.slice(2), cache)
+    : id === './lite_mode_flag' ? { isLiteModeOn: () => false } : {});
   new Function('require', 'module', 'exports', code)(localRequire, module, module.exports);
   cache.set(name, module.exports);
   return module.exports;

@@ -46,3 +46,7 @@ Governance-ID: TG-61F8F06AA2DD
 (22.10: связка B — старые тесты под переносы 19.10: last_lesson, instant_open_batch, audio_runtime_ownership)
 
 Governance-ID: TG-D3BAE8C492E1
+
+Governance-ID: TG-AA0EB0B604F9
+Governance-ID: TG-84DB4C28C70A
+Governance-ID: TG-103485C83BC7

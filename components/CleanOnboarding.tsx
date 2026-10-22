@@ -2583,6 +2583,8 @@ function CleanOnboarding({
   const [codeFeedback, setCodeFeedback] = useState<{ ok: boolean; text: string } | null>(null);
   const [interfaceLanguageMenuOpen, setInterfaceLanguageMenuOpen] = useState(false);
   const [interfaceLanguageMenuBusy, setInterfaceLanguageMenuBusy] = useState(false);
+  // зачем (22.10, 🟡 Ревизора): галочка встаёт на выбранный язык сразу, до сохранения; при сбое — откат на прежний.
+  const [pendingInterfaceLang, setPendingInterfaceLang] = useState<Lang | null>(null);
   const paywallMenuButtonRef = useRef<View | null>(null);
   const interfaceLanguageMenuButtonRef = useRef<View | null>(null);
   const codeInputRef = useRef<TextInput | null>(null);
@@ -2634,17 +2636,37 @@ function CleanOnboarding({
       console.warn('[ONB-LANG-MENU] skip', JSON.stringify({ candidate, nextLang, hasHandler: !!onLangSelect, busy: interfaceLanguageMenuBusy }));
       return;
     }
+    const previousLang = lang;
     setInterfaceLanguageMenuBusy(true);
+    setPendingInterfaceLang(nextLang);
     try {
       await onLangSelect(nextLang);
+      console.log('[ONB-LANG-MENU] applied', JSON.stringify({ from: previousLang, to: nextLang }));
       setInterfaceLanguageMenuOpen(false);
       restoreLanguageMenuFocus();
     } catch (error) {
+      // зачем (22.10, 🟡 Ревизора): сбой не молчит — откат на прежний язык, короткое сообщение, причина в журнале; меню остаётся
+      // открытым, чтобы можно было выбрать ещё раз.
       reportSwallowed('CleanOnboarding:selectInterfaceLanguage', error);
+      console.warn('[ONB-LANG-MENU] failed', JSON.stringify({ from: previousLang, to: nextLang, reason: error instanceof Error ? error.message : String(error) }));
+      if (previousLang !== nextLang) {
+        try {
+          await onLangSelect(previousLang);
+          console.log('[ONB-LANG-MENU] rolled_back', JSON.stringify({ to: previousLang }));
+        } catch (rollbackError) {
+          console.warn('[ONB-LANG-MENU] rollback_failed', JSON.stringify({ to: previousLang, reason: rollbackError instanceof Error ? rollbackError.message : String(rollbackError) }));
+        }
+      }
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не получилось сменить язык', uk: 'Не вдалося змінити мову', en: "Couldn't change the language",
+        es: 'No se pudo cambiar el idioma', 'pt-BR': 'Não foi possível mudar o idioma', vi: 'Không đổi được ngôn ngữ',
+        id: 'Gagal mengganti bahasa', tr: 'Dil değiştirilemedi', pl: 'Nie udało się zmienić języka',
+      }));
     } finally {
+      setPendingInterfaceLang(null);
       setInterfaceLanguageMenuBusy(false);
     }
-  }, [interfaceLanguageMenuBusy, onLangSelect, restoreLanguageMenuFocus]);
+  }, [interfaceLanguageMenuBusy, lang, onLangSelect, restoreLanguageMenuFocus]);
   const interfaceLanguageMenu = useMemo<OnboardingLanguageMenuContextValue>(() => ({
     open: openInterfaceLanguageMenu,
     enabled: !!onLangSelect,
@@ -3908,7 +3930,7 @@ function CleanOnboarding({
           <View style={styles.interfaceLanguageMenuOptions}>
             {interfaceLanguageOptions.map((option) => {
               const selectableLang = coerceInterfaceLang(option.code);
-              const selected = lang === option.code;
+              const selected = (pendingInterfaceLang ?? lang) === option.code;
               return (
                 <Pressable
                   key={option.code}

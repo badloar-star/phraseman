@@ -277,8 +277,20 @@ export function liquidGlassSourceOfTheme(theme: object): Readonly<{ tokens: Glas
 }
 
 /** Map neutral RN theme roles; success/error/reward and ownership remain untouched. */
+// зачем (закон владельца 22.10: «ЦВЕТА СТРОГО ОТТЕНКИ ТЕКУЩЕЙ ТЕМЫ», в т. ч. «верно/неверно»): поля correct/wrong/correctBg/wrongBg/correctText раньше приходили из базы DARK (#47C870 / #F05454 / #042010)
+// и красили ~216 мест (теория, карточки, диалоги, моменты…) мимо темы. Теперь они берутся из токенов текущей темы good/bad (≥ 4,5 на карточке/плите/фоне, см. liquidGlassPaletteRoles).
+const lin = (v: number): number => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
+const luma = (hex: string): number => 0.2126 * lin(parseInt(hex.slice(1, 3), 16)) + 0.7152 * lin(parseInt(hex.slice(3, 5), 16)) + 0.0722 * lin(parseInt(hex.slice(5, 7), 16));
+const ratioOf = (a: string, b: string): number => { const la = luma(a); const lb = luma(b); return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05); };
+/** Чернила на заливке good/bad: тёмные или белые — те, что контрастнее. */
+function inkOn(fill: string, dark: string, light: string): string { return ratioOf(dark, fill) >= ratioOf(light, fill) ? dark : light; }
+
 export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, variant: LiquidGlassVariant = activeVariant): Theme {
   const t = liquidGlassTokens(id, variant);
+  // «верно/неверно» цветом на собственной подложке correctBg/wrongBg (14–16 % тона поверх карточки/контрола): good/bad ≥ 4,5 на карточке, а на подложке в светлых темах было 3,76–3,90 — углубляем к тексту темы до 4,55
+  const semanticSurfaces = (soft: string): string[] => [t.opaqueCard, t.opaqueControl, flattenOver(soft, t.opaqueCard), flattenOver(soft, t.opaqueControl)];
+  const correctTone = legibleOn(t.good, t.text, semanticSurfaces(t.goodSoft), 4.55);
+  const wrongTone = legibleOn(t.bad, t.text, semanticSurfaces(t.badSoft), 4.55);
   const theme: Theme = {
     ...base,
     bgPrimary: t.bg,
@@ -298,6 +310,11 @@ export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, varian
     // сюда приходит цвет темы — экраны, красящие выбор и ссылки через theme.accent, получают его сами.
     accent: t.accent,
     accentBg: t.accentSoft,
+    correct: correctTone,
+    correctBg: t.goodSoft,
+    wrong: wrongTone,
+    wrongBg: t.badSoft,
+    correctText: inkOn(correctTone, t.ctaInk, '#FFFFFF'),
     // зачем (координатор 11.10): текст/значок цветом акцента на карточке — токен accentText (≥ 4.5:1 в светлой), а не cta/accent (заливка).
     accentText: t.accentText,
     // зачем (координатор 14.10): текст/значок на заливке accent — accentInk; correctText остаётся для зелёной заливки correct.

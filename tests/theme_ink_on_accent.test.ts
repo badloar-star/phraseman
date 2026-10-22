@@ -36,9 +36,13 @@ describe('текст на заливке accent в темах Liquid Glass', () 
     expect(bad).toEqual([]);
   });
 
-  it('correctText остаётся прежним — он нужен для зелёной заливки correct', () => {
+  it('correctText — чернила на заливке correct ТЕКУЩЕЙ темы (закон владельца 22.10), а не #042010 из базы; читаются на ней ≥ 4,5', () => {
     const theme = makeLiquidGlassTheme('graphite' as any, DARK, { level: 'calm', appearance: 'dark', intensity: 0 } as any);
-    expect(theme.correctText).toBe(DARK.correctText);
+    expect(theme.correct).not.toBe(DARK.correct);
+    const lin = (v: number) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
+    const lum = (h: string) => { const [r, g, b] = rgb(h); return 0.2126 * lin(r!) + 0.7152 * lin(g!) + 0.0722 * lin(b!); };
+    const ratio = (a: string, b: string) => (Math.max(lum(a), lum(b)) + 0.05) / (Math.min(lum(a), lum(b)) + 0.05);
+    expect(ratio(theme.correctText, theme.correct)).toBeGreaterThanOrEqual(4.5);
   });
 
   it('экраны первого выпуска красят текст на accent через accentInk', () => {

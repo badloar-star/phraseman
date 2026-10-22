@@ -52,13 +52,16 @@ test('every registered tint is free; only unknown names fall back to graphite', 
   assert.equal(resolveLiquidGlassTheme(null), 'graphite');
 });
 
-// зачем (владелец 01.10): в 2.0 жёлтого нет — «золото» наград = акцент темы; верно/ошибка остаются.
-const GOLD_KEYS = new Set(['gold', 'goldBg', 'textOnGold']);
+// зачем (владелец 01.10): в 2.0 жёлтого нет — «золото» наград = акцент темы. Закон владельца 22.10: «верно/неверно» тоже из токенов текущей темы (good/bad), а не из базы.
+const GOLD_KEYS = new Set(['gold', 'goldBg', 'textOnGold', 'correct', 'correctBg', 'wrong', 'wrongBg', 'correctText']);
 const KEPT_KEYS = Object.keys(base).filter((key) => !GOLD_KEYS.has(key));
-test('app mapping tints neutral roles, keeps success/error, and maps gold to the theme accent', () => {
+test('app mapping tints neutral roles, maps success/error to the theme good/bad, and maps gold to the theme accent', () => {
   for (const id of TINT_IDS) {
     const theme = makeLiquidGlassTheme(id, base);
     for (const key of KEPT_KEYS) assert.equal(theme[key], base[key], `${id}: ${key}`);
+    assert.notEqual(theme.correct, base.correct, `${id}: correct не из базы`);
+    assert.notEqual(theme.wrong, base.wrong, `${id}: wrong не из базы`);
+    assert.equal(theme.correctBg, liquidGlassTokens(id).goodSoft, `${id}: correctBg = goodSoft`);
     assert.equal(theme.gold, liquidGlassTokens(id).accentBright, `${id}: gold = accentBright`);
     assert.equal(theme.textOnGold, liquidGlassTokens(id).accentInk, `${id}: textOnGold = accentInk`);
     assert.equal(theme.bgPrimary, liquidGlassTokens(id).bg);
@@ -150,7 +153,7 @@ test('light: tinted light background, white cards, dark text, readable buttons f
   }
 });
 
-test('every variant keeps success and error, maps gold to the accent, and never mutates the calm cache', () => {
+test('every variant maps success and error to the theme, maps gold to the accent, and never mutates the calm cache', () => {
   for (const variant of ALL_VARIANTS) {
     for (const id of LIQUID_GLASS_THEME_IDS) {
       const theme = makeLiquidGlassTheme(id, base, variant);

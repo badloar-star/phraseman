@@ -1,5 +1,10 @@
 # Аудит: цвета СТАРОЙ темы (constants/cinemaThemes.ts → constants/theme.ts) в экранах вместо токенов текущей (22.10.2026)
 
+> ⚠️ ПОПРАВКА (тот же день, 4 · ТЕМЫ): посылка ниже частично НЕВЕРНА. `Theme` (`t.*`) строится в `ThemeContext` через `makeLiquidGlassTheme(...)` из токенов ТЕКУЩЕЙ темы:
+> `textMuted←secondary`, `textGhost←mutedText`, `accent←accent`, `gold←accentBright`, `borderLight←opaqueControl`, `cardGradient←[opaqueControl, opaqueCard]`, `bgCard/bgSurface/accentBg/accentText/accentGraphic` — все следуют теме.
+> Настоящей дырой были ТОЛЬКО поля `correct`, `correctBg`, `wrong`, `wrongBg`, `correctText`: они приходили из базы DARK (#47C870 / #F05454 / #042010). Закрыто одной правкой в `makeLiquidGlassTheme` (correct←good, wrong←bad, …Bg←…Soft, correctText←лучшие чернила), сторож `tests/theme_semantic_follows_current_theme.test.ts`.
+> Строки таблицы про `textMuted`, `accent`, `gold`, `textGhost`, `borderLight`, `cardGradient`, `onAccent`, `card` НЕ являются нарушениями — переводить файлы по ним не нужно. Список по владельцам оставлен как перечень мест использования `t.correct` / `t.wrong` (теперь они следуют теме автоматически).
+
 Закон владельца: «цвета строго оттенки текущей темы», распространяется и на семантику верно/неверно, если у текущей темы есть токены. Старая тема `Theme` (`t.correct`, `t.wrong`, `t.accent`, `t.textMuted` …) собирается из фиксированной палитры CINEMA/DARK и НЕ следует за выбранной liquid-темой.
 Источник: обход `components/` и `app/` (кроме dev, `_*`, лабораторий, превью), алиасы `t.` и `theme.`; строки-комментарии не считаются. Итого 683 обращения в 127 файлах. Правок в чужих файлах нет.
 

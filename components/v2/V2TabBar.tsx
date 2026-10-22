@@ -396,7 +396,8 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
                   название вкладки остаётся в accessibilityLabel для TalkBack/VoiceOver. */}
               <Animated.View style={[HOME_SCENE_V2_ENABLED ? s.tabStack : null, pressedIdx === i ? { transform: [{ scale: iconPressScale }] } : null]}>
                 <Ionicons name={on ? item.activeIcon : item.icon} size={HOME_SCENE_V2_ENABLED ? 22 : ICON_SIZE} color={color} />
-                {HOME_SCENE_V2_ENABLED ? <Text numberOfLines={1} maxFontSizeMultiplier={1} style={[s.tabLabel, { color }]}>{item.label}</Text> : null}
+                {/* зачем (Ревизор 22.10): крупный шрифт системы разрешён до 1.2 (доступность); numberOfLines=1 + lineHeight 14 ≥ 11×1.2 — подпись не переносится и не режется */}
+                {HOME_SCENE_V2_ENABLED ? <Text numberOfLines={1} maxFontSizeMultiplier={1.2} style={[s.tabLabel, { color }]}>{item.label}</Text> : null}
                 {item.badge ? (
                   <View
                     testID={`tab-${item.key}-badge`}

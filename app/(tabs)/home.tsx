@@ -579,7 +579,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // поэтому урока в наборе может не быть, а видео со «Сценой» убрано из карточки
     const todayKindsKey = todayTasks.tasks.map((task) => `${task.kind}:${task.progress}/${task.target}${task.done ? '✓' : ''}`).join(',');
     useEffect(() => {
-      console.log('[HOME-TODAY]', JSON.stringify({ dayKinds: todayKindsKey, scene: HOME_SCENE_V2_ENABLED, shown: todayTasks.tasks.filter((task) => !HOME_SCENE_V2_ENABLED || task.kind !== 'video').map((task) => task.kind), lessonInDay: todayTasks.tasks.some((task) => task.kind === 'lesson'), rule: 'D49: 3 типа из пула, детерминированно от (владелец, день)' })); // guard-ok: одна строка на смену набора
+      console.log('[HOME-TODAY]', JSON.stringify({ dayKinds: todayKindsKey, scene: HOME_SCENE_V2_ENABLED, shown: todayTasks.tasks.map((task) => task.kind), lessonInDay: todayTasks.tasks.some((task) => task.kind === 'lesson'), rule: 'D49: 3 типа из пула, детерминированно от (владелец, день)' })); // guard-ok: одна строка на смену набора
       // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: строка на смену набора, не на каждый рендер
     }, [todayKindsKey]);
     // зачем (владелец 11.10): плитка «Шпиль» — за тем же замком, что и вкладка (флаг + интерфейс ru/uk).
@@ -2599,8 +2599,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           todayTasks.tasks.map((task) => (task.kind === 'lesson' && lastLesson ? { ...task, subtitle: lastLessonName } : task)),
           studyTarget,
         );
-        // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): со «Сценой» в карточке «Сегодня» три строки без «Посмотреть видео»; анкета — 4-й строкой только при активной кампании из админки (Poll V2 на Главной не показываем)
-        const homeTodayCardTasks = HOME_SCENE_V2_ENABLED ? homeV2Tasks.filter((task) => task.kind !== 'video') : homeV2Tasks;
+        // зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): в карточке «Сегодня» всегда три строки набора дня (видео — задание дня, если выпало; владелец 22.10: «раздел видео никуда не девается»); анкета — 4-й строкой только при активной кампании из админки (Poll V2 на Главной не показываем)
+        const homeTodayCardTasks = homeV2Tasks;
         const homeTodayTitle = triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' });
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);

@@ -23,7 +23,7 @@ describe('Главная со «Сценой»: до бита', () => {
     expect(phrase).toContain('{cardLiteral && !sceneLook ? (');
   });
   it('подписи вкладок 11/600 по CSS — только со «Сценой»', () => {
-    expect(bar).toContain('HOME_SCENE_V2_ENABLED ? <Text numberOfLines={1} maxFontSizeMultiplier={1}');
+    expect(bar).toContain('HOME_SCENE_V2_ENABLED ? <Text numberOfLines={1} maxFontSizeMultiplier={1.2}');
     expect(bar).toMatch(/tabLabel: \{ fontSize: 11, lineHeight: 14, fontWeight: '600' \}/);
     expect(bar).toMatch(/tabStack: \{ alignItems: 'center', gap: 3 \}/);
   });

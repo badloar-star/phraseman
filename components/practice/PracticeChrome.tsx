@@ -6,6 +6,7 @@ import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette'
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
 import { NavIcon } from '../v2/BackGlyph';
+import { SCREEN_BACK_SIZE, ScreenBackSlot } from '../v2/ScreenBackButton';
 
 // зачем (владелец 2026-09-30): тренировки карточек переносятся 1 в 1 по макету practice.html
 // (Liquid Glass). Шапка занятия (круглая «‹» 34 в области нажатия 44, заголовок 20/700,
@@ -120,29 +121,25 @@ export function PracticeHeaderTitle({
  * Шапка занятия одной строкой (practice.html `.hd`): круглая «‹» · заголовок (+подзаголовок) · справа сердца и монеты.
  * зачем (координатор 11.10, «дизайн везде»): swipe-сессия без макета стояла рыхлым стеком (сердца и монеты отдельной строкой
  * над «назад»); теперь та же шапка, что у Блица и «Вспомни», собрана один раз здесь. Действия и testID остаются у вызывающего.
+ * зачем (закон владельца 22.10 «назад/✕ в одном месте»): своей кнопки в шапке больше нет — экран кладёт общую ScreenBackButton /
+ * ScreenCloseButton под безопасный верх, а шапка держит её место (ScreenBackSlot) и начинается от того же верха.
  */
 export function PracticeSessionHeader({
-  glass, color, onBack, backLabel, backTestID, title, subtitle, children, tools, compact = false, backIcon,
+  glass, title, subtitle, children, tools,
 }: {
   glass: PracticeGlass;
-  color: string;
-  onBack?: () => void;
-  backLabel?: string;
-  backTestID?: string;
   title: string;
   subtitle?: string;
   /** Вместо подзаголовка: произвольный слот под заголовком (например, отметка серии). */
   children?: React.ReactNode;
   /** Правая группа: сердца и счётчик монет (через 6). */
   tools?: React.ReactNode;
-  compact?: boolean;
-  /** Значок кнопки слева: «‹» по умолчанию, ✕ в сессиях Карточек 2.0. */
-  backIcon?: 'chevron-back' | 'close';
 }) {
   return (
-    <View style={[styles.sessionHeader, compact ? styles.sessionHeaderCompact : null]}>
-      <View style={{ marginRight: 6 }}>
-        <PracticeBackButton large={!compact} glass={glass} color={color} onPress={onBack} testID={backTestID} accessibilityLabel={backLabel} icon={backIcon} />
+    <View style={styles.sessionHeader}>
+      {/* поле экрана 16 против 20 у кнопки: место 48 + 10 ставит заголовок туда же, где он у Блица (20 + 48 + 6) */}
+      <View style={{ marginRight: 10 }}>
+        <ScreenBackSlot />
       </View>
       <PracticeHeaderTitle glass={glass} title={title} subtitle={subtitle}>{children}</PracticeHeaderTitle>
       {tools ? <View style={styles.sessionTools}>{tools}</View> : null}
@@ -185,8 +182,7 @@ const styles = StyleSheet.create({
   },
   touchLarge: { width: 48, height: 48 },
   roundLarge: { width: 48, height: 48, borderRadius: 24 },
-  sessionHeader: { minHeight: 52, flexDirection: 'row', alignItems: 'center' },
-  sessionHeaderCompact: { minHeight: 38 },
+  sessionHeader: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center' },
   sessionTools: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   title: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   subtitle: { fontSize: 16, lineHeight: 22, marginTop: 2 },

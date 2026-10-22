@@ -47,7 +47,9 @@ assert.match(modes.blitz, /<PracticeAnswerMark kind=\{state\}/);
 assert.match(modes.blitz, /testID="fc-blitz-timer"/);
 assert.match(modes.blitz, /disabled=\{locked\}/);
 // зачем (Карточки 2.0 12.10, cards-v2.html `sessHdr`): шапка «Правда / ложь» — общий PracticeSessionHeader с ✕ и названием, без подзаголовка и пилюли энергии
-assert.match(modes.swipe, /<PracticeSessionHeader[\s\S]{0,160}backIcon="close"[\s\S]{0,400}title=\{title\}/);
+// 22.10 (закон владельца «назад/✕ в одном месте»): ✕ «Правда / ложь» — общий SafeTopCloseButton у корня, в шапке только название
+assert.match(modes.swipe, /<PracticeSessionHeader[\s\S]{0,160}title=\{title\}/);
+assert.match(modes.swipe, /trueFalse\s*\?\s*<SafeTopCloseButton/);
 
 // ── Второй проход (владелец 2026-09-30): служебные состояния, строка прогресса, кнопки, карточки.
 const states = read('components', 'practice', 'PracticeStates.tsx');

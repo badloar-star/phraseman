@@ -3,7 +3,7 @@ import { useAudioPlayer } from 'expo-audio';
 import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
 import { useScaledTextStyles } from '../hooks/useLineScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -97,6 +97,21 @@ export default function MistakeDetailScreen() {
   const params = useLocalSearchParams<{ mistakeId?: string }>();
   const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10, вариант б2): заливка героя едет с прокруткой (нативно) и останавливается под строкой кнопки.
+  // Высота содержимого героя — по замеру; до замера — оценка одной строки фразы, чтобы первый кадр не прыгал сильно.
+  const heroBandHeight = insets.top + SCREEN_BACK_SIZE;
+  const [heroContentHeight, setHeroContentHeight] = useState(HERO_CONTENT_ESTIMATE);
+  const heroScrollY = useRef(new Animated.Value(0)).current;
+  const onHeroScroll = useMemo(() => Animated.event([{ nativeEvent: { contentOffset: { y: heroScrollY } } }], { useNativeDriver: true }), [heroScrollY]);
+  const heroShift = useMemo(() => heroScrollY.interpolate({
+    inputRange: [0, Math.max(1, heroContentHeight)],
+    outputRange: [0, -Math.max(1, heroContentHeight)],
+    extrapolate: 'clamp',
+  }), [heroContentHeight, heroScrollY]);
+  const onHeroContentLayout = useCallback((event: LayoutChangeEvent) => {
+    const next = Math.round(event.nativeEvent.layout.height);
+    setHeroContentHeight((prev) => (prev === next ? prev : next));
+  }, []);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -218,31 +233,41 @@ export default function MistakeDetailScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['left', 'right']}>
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} decelerationRate="fast">
+        {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами», вариант б2): закреплён только верх
+            плашки — строка кнопки и «…»; заливка одним слоем позади едет вместе с фразой и встаёт под строкой кнопки — без шва */}
+        {shown ? (
+          <Animated.View pointerEvents="none" style={[styles.heroFill, { height: heroBandHeight + heroContentHeight, transform: [{ translateY: heroShift }] }]}>
+            <LinearGradient
+              pointerEvents="none"
+              colors={[mixDark(accentA, g.deepBase, 0.55), mixDark(accentB, g.deepBaseAlt, 0.38)]}
+              start={{ x: 0.42, y: 0.01 }}
+              end={{ x: 0.58, y: 0.99 }}
+              style={StyleSheet.absoluteFill}
+            />
+            <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.heroEdge]} />
+          </Animated.View>
+        ) : null}
+        <View style={[shown ? styles.heroBand : styles.plain, { paddingTop: insets.top }]}>
+          {shown ? (
+            <View style={styles.heroBar}>
+              <View style={styles.backSlot} />
+              {loaded && detail.status === 'active' ? (
+                <Pressable testID="mistake-detail-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
+                  <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
+                  <GlassRim radius={21} />
+                </Pressable>
+              ) : <View style={styles.round} />}
+            </View>
+          ) : <View style={styles.topbar} />}
+        </View>
+        <Animated.ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} decelerationRate="fast" scrollEventThrottle={16} onScroll={onHeroScroll}>
           {!shown ? (
-            <View style={[styles.plain, { paddingTop: insets.top }]}>
-              <View style={styles.topbar} />
+            <View style={styles.plain}>
               {/* зачем (координатор 15.10): тупик «Эта ошибка больше не отслеживается» — основная кнопка «К ошибкам» на всю ширину в общем виде тупиковых экранов, а не одна стрелка */}
             </View>
           ) : (
             <>
-              <View style={[styles.hero, { paddingTop: insets.top }]}>
-                <LinearGradient
-                  pointerEvents="none"
-                  colors={[mixDark(accentA, g.deepBase, 0.55), mixDark(accentB, g.deepBaseAlt, 0.38)]}
-                  start={{ x: 0.42, y: 0.01 }}
-                  end={{ x: 0.58, y: 0.99 }}
-                  style={StyleSheet.absoluteFill}
-                />
-                <View style={styles.heroBar}>
-                  <View style={styles.backSlot} />
-                  {loaded && detail.status === 'active' ? (
-                    <Pressable testID="mistake-detail-menu" accessibilityRole="button" accessibilityLabel={copy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
-                      <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
-                      <GlassRim radius={21} />
-                    </Pressable>
-                  ) : <View style={styles.round} />}
-                </View>
+              <View style={styles.heroContent} onLayout={onHeroContentLayout}>
                 <Text style={[styles.phrase, { color: g.text }]}>{shown.phrase}</Text>
                 {shown.meaning ? <Text style={[styles.meaning, { color: `${g.text}CC` }]}>{shown.meaning}</Text> : null}
                 <View style={styles.stats}>
@@ -259,7 +284,6 @@ export default function MistakeDetailScreen() {
                     <Text style={[styles.statLabel, { color: g.secondary }]}>{copy.last}</Text>
                   </View>
                 </View>
-                <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.heroEdge]} />
               </View>
 
               {loaded ? (
@@ -326,7 +350,7 @@ export default function MistakeDetailScreen() {
               ) : null}
             </>
           )}
-        </ScrollView>
+        </Animated.ScrollView>
         {loaded && detail.status === 'active' ? (
           <PanelDock>
             <PanelCta g={g} testID="mistake-detail-practise" label={detail.ready ? copy.practise : copy.notReady} disabled={!detail.ready} onPress={practise} />
@@ -356,6 +380,9 @@ ${detail.meaning}` : ''}`}
   );
 }
 
+/** Оценка высоты содержимого героя до замера: фраза в 1 строку, перевод, счётчики, низ (14 + 46 + 30 + 70 + 28). */
+const HERO_CONTENT_ESTIMATE = 188;
+
 const baseStyles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   content: { paddingBottom: 140 },
@@ -363,7 +390,10 @@ const baseStyles = StyleSheet.create({
   plain: { paddingHorizontal: 20 },
   topbar: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center' },
   missingWrap: { marginTop: 40 },
-  hero: { paddingHorizontal: 24, paddingBottom: 28, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden' },
+  // герой: заливка позади (heroFill), закреплённая строка кнопки (heroBand), прокручиваемое содержимое (heroContent)
+  heroFill: { position: 'absolute', left: 0, right: 0, top: 0, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden' },
+  heroBand: { paddingHorizontal: 24 },
+  heroContent: { paddingHorizontal: 24, paddingBottom: 28 },
   heroEdge: { borderBottomLeftRadius: 36, borderBottomRightRadius: 36 },
   // зачем (закон «назад в одном месте»): строка героя от безопасного верха и высотой с общую кнопку — «⋯» справа по её центру
   heroBar: { minHeight: SCREEN_BACK_SIZE, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

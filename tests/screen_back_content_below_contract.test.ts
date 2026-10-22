@@ -67,7 +67,6 @@ const RESERVED_ELSEWHERE: Readonly<Record<string, string>> = {
 
 // зачем: экраны, которые ещё не приведены, — список только уменьшается. Каждый — с причиной, почему не сейчас.
 const PENDING: Readonly<Record<string, string>> = {
-  'app/mistake_detail.tsx': 'цветная плашка-герой от верха экрана по макету mistakes-v2 прокручивается вместе со строкой кнопки — нужно решение Макетов',
   'components/theory/TheoryLessonView.tsx': 'строка «Урок N · A1» внутри прокрутки; файл правит другая сессия',
 };
 
@@ -101,7 +100,22 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 22.10: контент начинаетс
   });
 
   it('список ждущих только уменьшается', () => {
-    expect(Object.keys(PENDING).length).toBeLessThanOrEqual(2); // потолок — только вниз (22.10: mistake_detail, TheoryLessonView)
+    expect(Object.keys(PENDING).length).toBeLessThanOrEqual(1); // потолок — только вниз (22.10: 2 → 1, «Ошибка подробно» приведена; TheoryLessonView)
+  });
+
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10, вариант б2 координатора для «Ошибки подробно»: закреплён только верх плашки (строка кнопки и «…» на заливке
+  // под часами), фраза и счётчики прокручиваются под ним и обрезаются; заливка — один слой позади, без шва; кегль фразы прежний (макет).
+  it('«Ошибка подробно»: верх плашки закреплён, фраза прокручивается, заливка одним слоем без шва', () => {
+    const src = read('app/mistake_detail.tsx');
+    const scrollAt = src.indexOf('<Animated.ScrollView');
+    expect(scrollAt).toBeGreaterThan(0);
+    expect(src.indexOf('<View style={styles.heroBar}>')).toBeGreaterThan(0);
+    expect(src.indexOf('<View style={styles.heroBar}>')).toBeLessThan(scrollAt);
+    expect(src.indexOf('<Text style={[styles.phrase')).toBeGreaterThan(scrollAt);
+    expect(src).toMatch(/<Animated\.View pointerEvents="none" style=\{\[styles\.heroFill, \{ height: heroBandHeight \+ heroContentHeight, transform: \[\{ translateY: heroShift \}\] \}\]\}>/);
+    expect(src).toMatch(/extrapolate: 'clamp'/);
+    expect(src).toContain('const heroBandHeight = insets.top + SCREEN_BACK_SIZE;');
+    expect(src).toContain("phrase: { marginTop: 14, fontSize: 42, lineHeight: 46, fontWeight: '700', letterSpacing: -1 }");
   });
 
   it('общая кнопка не лежит внутри прокрутки (иначе она уезжает с контентом)', () => {

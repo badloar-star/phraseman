@@ -50,7 +50,8 @@ describe('аудит кнопок: Карточки', () => {
     // зачем (правило «экранов-ошибок нигде», 18.10): «не открылась» теперь скелет загрузки с тем же выходом, пока идут тихие повторы.
     expect(speaking).toMatch(/fc-speak-quota-unavailable' : undefined\}>[\s\S]{0,400}\{header\(false\)\}/);
     expect(read('app/flashcards_blitz_session.tsx')).toMatch(/fc-blitz-quota-unavailable' : undefined\}>[\s\S]{0,500}testID="fc-blitz-back"/);
-    expect(read('app/flashcards_swipe.tsx')).toContain('testID="flashcards-swipe-quickstart-back"');
+    // 22.10 (закон владельца «назад в одном месте»): выход из «Готовим…» — общая кнопка у корня экрана, testID выбирается по состоянию
+    expect(read('app/flashcards_swipe.tsx')).toContain("testID={showQuickStart ? 'flashcards-swipe-quickstart-back'");
   });
 });
 

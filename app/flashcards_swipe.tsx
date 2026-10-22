@@ -54,8 +54,15 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PlateFill, plateBoxShadow, RAISED_LIFT, raisedBoxShadow } from '../components/v2/ShadowSurface';
-import { CardsGlassRoundButton } from './flashcards/CardsGlassKit';
-import { PracticeBackButton, PracticeHeaderTitle, PracticeSessionHeader } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle, PracticeSessionHeader } from '../components/practice/PracticeChrome';
+import { SafeTopBackButton, SafeTopCloseButton, ScreenBackZone } from '../components/v2/ScreenBackButton';
+
+/** Выход из занятия: ✕ в «Правда / ложь» (макет sessHdr), «‹» в обычном свайпе — место одно, системная «назад» = выход. */
+function SwipeSessionExitButton({ trueFalse, onPress, accessibilityLabel }: Readonly<{ trueFalse: boolean; onPress: () => void; accessibilityLabel: string }>) {
+  return trueFalse
+    ? <SafeTopCloseButton screen="flashcards_truefalse" onPress={onPress} accessibilityLabel={accessibilityLabel} />
+    : <SafeTopBackButton screen="flashcards_swipe" onPress={onPress} accessibilityLabel={accessibilityLabel} />;
+}
 import { TrueFalseSwipeCard, type TrueFalseSwipeCardHandle } from './flashcards/TrueFalseSwipeCard';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio, inferExpoSpeechLanguage } from '../hooks/use-audio';
@@ -3633,18 +3640,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       ]}
       showsVerticalScrollIndicator={false}
     >
-      <View style={styles.topBar}>
-        {/* зачем (cards-gaps-states, решение координатора 12.10): стрелка назад — круглая кнопка «Тени», как на других экранах Карточек */}
-        <CardsGlassRoundButton
-          g={swipeGlass}
-          testID="fc-swipe-select-back"
-          label={triLang(lang, {
-            ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-          })}
-          icon="arrow-back"
-          onPress={() => safeRouterBack(router, '/flashcards' as any)}
-        />
-      </View>
 
       <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary }]}>{text.settingsTitle}</Text>
 
@@ -3905,10 +3900,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         <View testID="flashcards-truefalse-header">
           <PracticeSessionHeader
             glass={swipeGlass}
-            color={t.textPrimary}
-            onBack={exitTraining}
-            backIcon="close"
-            backLabel={triLang(lang, { ru: 'Выйти из тренировки', en: 'Exit training', uk: 'Вийти з тренування', es: 'Salir de la práctica', 'pt-BR': 'Sair do treino', vi: 'Thoát luyện tập', id: 'Keluar dari latihan', tr: 'Alıştırmadan çık', pl: 'Wyjdź z treningu' })}
             title={title}
             tools={(
               <>
@@ -4045,20 +4036,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             под счётчик не нужна. */}
         <PracticeSessionHeader
           glass={swipeGlass}
-          color={t.textPrimary}
-          compact={isCompactFlashcardsTask}
-          onBack={exitTraining}
-          backLabel={triLang(lang, {
-              ru: 'Выйти из тренировки',
-              en: 'Exit training',
-              uk: 'Вийти з тренування',
-              es: 'Salir de la práctica',
-              'pt-BR': "Sair do treino",
-              vi: "Thoát luyện tập",
-              id: "Keluar dari latihan",
-              tr: "Alıştırmadan çık",
-              pl: "Wyjdź z treningu",
-            })}
           title={isCompactFlashcardsTask ? `${stats.mastered}/${stats.total}` : text.mastered}
           tools={(
             <>
@@ -4392,16 +4369,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   // плитка 61, заголовок 20/700, текст 15; тексты и действия прежние.
   const renderQuickStart = () => (
     <View testID="flashcards-swipe-quickstart" style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
-      {/* зачем (аудит #22, 15.10): «Готовим…» без выхода — при зависании не уйти; стрелка назад как на пустом состоянии */}
-      <View style={styles.noCardsBack}>
-        <PracticeBackButton
-          glass={swipeGlass}
-          color={t.textPrimary}
-          onPress={() => safeRouterBack(router, '/flashcards' as any)}
-          testID="flashcards-swipe-quickstart-back"
-          accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-        />
-      </View>
+      {/* зачем (аудит #22, 15.10): «Готовим…» без выхода — при зависании не уйти; выход — общая «назад» у корня экрана */}
       <PracticeStatePanel
         glass={swipeGlass}
         icon="sparkles-outline"
@@ -4413,24 +4381,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
 
   const renderNoCards = () => (
     <View style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
-      <View style={styles.noCardsBack}>
-        <PracticeBackButton
-          glass={swipeGlass}
-          color={t.textPrimary}
-          onPress={() => safeRouterBack(router, '/flashcards' as any)}
-          accessibilityLabel={triLang(lang, {
-            ru: 'Назад',
-            en: 'Back',
-            uk: 'Назад',
-            es: 'Atrás',
-            'pt-BR': "Voltar",
-            vi: "Quay lại",
-            id: "Kembali",
-            tr: "Geri",
-            pl: "Wstecz",
-          })}
-        />
-      </View>
       <PracticeStatePanel
         glass={swipeGlass}
         testID="flashcards-swipe-no-cards"
@@ -4524,6 +4474,24 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
       <SafeAreaView style={[styles.safe, { paddingTop: topSafeInset }]} edges={['left', 'right', 'bottom']}>
         <ContentWrap>
+          {/* зачем (закон владельца 22.10 «назад/✕ в одном месте»): одна общая кнопка под безопасным верхом. До занятия (подготовка,
+              нет карточек, выбор наборов) — «назад» в Карточки; в занятии — выход exitTraining (✕ в «Правда / ложь», как в макете sessHdr). */}
+          {showQuickStart || showQuickNoCards || phase === 'select' ? (
+            <SafeTopBackButton
+              screen="flashcards_swipe_setup"
+              testID={showQuickStart ? 'flashcards-swipe-quickstart-back' : showQuickNoCards ? undefined : 'fc-swipe-select-back'}
+              accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              onPress={() => safeRouterBack(router, '/flashcards' as any)}
+            />
+          ) : (
+            <SwipeSessionExitButton
+              trueFalse={isTrueFalseSession}
+              onPress={exitTraining}
+              accessibilityLabel={triLang(lang, { ru: 'Выйти из тренировки', en: 'Exit training', uk: 'Вийти з тренування', es: 'Salir de la práctica', 'pt-BR': 'Sair do treino', vi: 'Thoát luyện tập', id: 'Keluar dari latihan', tr: 'Alıştırmadan çık', pl: 'Wyjdź z treningu' })}
+            />
+          )}
+          {/* выбор наборов прокручивается: полоса кнопки после её якоря и до прокрутки (ЗАМОК ВЛАДЕЛЬЦА 22.10 «не пересекается с другими элементами») */}
+          {phase === 'select' && !showQuickStart && !showQuickNoCards ? <ScreenBackZone /> : null}
           <View style={styles.screen}>
             {renderScreen()}
             {correctTranslationReminder ? (
@@ -4784,11 +4752,9 @@ const styles = StyleSheet.create({
   },
   playWrap: {
     flex: 1,
-    paddingTop: 10,
   },
   trueFalseRoot: {
     flex: 1,
-    paddingTop: 10,
   },
   // зачем (practice.html `.hd`): «назад» 48, шапка 16 от верха (10 у корня + 6).
   trueFalseHeader: {

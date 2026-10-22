@@ -64,8 +64,10 @@ const LEGAL_FILES = [
   // and is otherwise retained only as described in Retention») — верна при любом состоянии TTL; «two days» вернём после релиза и TTL.
   // 18.10 (координатор, «защита от накрутки счёта»): §4 — один абзац про счётчики против злоупотреблений и расходов: смена ника,
   // проверка имени, запросы к платному ИИ (диалоги, разбор, перевод, озвучка); хэш учётки или IP, сам IP не хранится; окно час/сутки.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '7d055c9fb07d174d2a962949585328e7cbffa8bb960a9a06c80255746bae306f'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'c41b7b7a4ae0301a5fe4184342d62219fbb9ff93df0582bdbab83c7556d4989b'],
+  // 22.10 (координатор, замок владельца «история остаётся, имя скрыто»): §20 — абзац о дуэлях друзей при удалении аккаунта: законченные дуэли и итог
+  // остаются у друга под «Deleted player» без uid/ника/аватара, открытые вызовы стираются (functions/src/account_delete_friend_duels.ts).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'c4af7d20776371f132f52631c49cfc0a0460f6599392c67561d8fc7ef7648bbb'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '990ff809b837bd4f9511ff7d804e9dcf41ef6394f33f68a24bae872b96942333'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3'],

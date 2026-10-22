@@ -23,6 +23,8 @@ import { hapticTap } from '../hooks/use-haptics';
 import type { LearningV2UnlockedLessonWordV1 } from './learning_v2_unlocked_lesson_words_v1';
 import { WordList, type Word } from './lesson_words';
 import { safeRouterBack } from './navigation_back';
+// зачем (координатор 22.10): «Ещё N слов откроются в эпизодах урока» — закрытые слова числом из каталога фабрики, без чтений
+import { learningV2ClosedWordsLineV1, learningV2LessonNewWordTotalV1 } from './learning_v2_lesson_words_closed_v1';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 const LOG = '[SEASON-WORDS]';
@@ -64,13 +66,15 @@ export default function LearningV2LessonWordsScreen() {
   const scope = useMemo(() => ({ targetLanguage: String(studyTarget), lessonOrdinal }), [lessonOrdinal, studyTarget]);
   const { words, hydrated } = useLearningV2UnlockedLessonWordsV1(scope, { includeAuthoringPreview: __DEV__ });
   const listWords = useMemo(() => learningV2LessonWordsOrdered(words).map(learningV2LessonWordToListWord), [words]);
+  const lessonWordTotal = useMemo(() => learningV2LessonNewWordTotalV1(lessonOrdinal), [lessonOrdinal]);
+  const closedCount = hydrated ? Math.max(0, lessonWordTotal - listWords.length) : 0;
 
   useEffect(() => {
     console.log(LOG, 'вход', JSON.stringify({ lessonParam: lessonParam ?? null, lessonOrdinal, targetLanguage: scope.targetLanguage, source: 'слова урока Learning V2 с телефона (AsyncStorage), сеть не читается' })); // guard-ok: вход экрана
   }, [lessonOrdinal, lessonParam, scope.targetLanguage]);
   useEffect(() => {
-    console.log(LOG, 'слова', JSON.stringify({ lessonOrdinal, hydrated, count: listWords.length, includeAuthoringPreview: __DEV__ })); // guard-ok: значения решения «список / пусто / ещё читаем»
-  }, [hydrated, lessonOrdinal, listWords.length]);
+    console.log(LOG, 'слова', JSON.stringify({ lessonOrdinal, hydrated, count: listWords.length, lessonWordTotal, closedCount, totalSource: 'каталог фабрики в сборке', includeAuthoringPreview: __DEV__ })); // guard-ok: значения решения «список / пусто / ещё читаем»
+  }, [closedCount, hydrated, lessonOrdinal, lessonWordTotal, listWords.length]);
 
   const goBack = () => {
     hapticTap();
@@ -106,6 +110,11 @@ export default function LearningV2LessonWordsScreen() {
               </View>
             ) : null}
           </View>
+          {closedCount > 0 ? (
+            <View style={[styles.closed, { paddingBottom: 16 + insets.bottom }]} testID="learning-v2-lesson-words-closed">
+              <Text style={[styles.closedText, { color: glass.secondary }]}>{learningV2ClosedWordsLineV1(lang, closedCount)}</Text>
+            </View>
+          ) : null}
         </ContentWrap>
       </View>
     </ScreenGradient>
@@ -119,4 +128,7 @@ const styles = StyleSheet.create({
   body: { flex: 1 },
   empty: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 },
   emptyText: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  // строка закрытых слов под списком: 13/17 вторичный текст, как подписи списка слов основного курса
+  closed: { paddingTop: 12, paddingHorizontal: 20, alignItems: 'center' },
+  closedText: { fontSize: 13, lineHeight: 17, textAlign: 'center' },
 });

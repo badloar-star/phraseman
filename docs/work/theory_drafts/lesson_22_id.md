@@ -58,7 +58,7 @@ Bahasa Indonesia cukup «dia» untuk semua; bahasa Inggris membedakan: laki-laki
 ## 03 · it dan them — untuk barang
 
 **body**
-Satu barang setelah tindakan — it, beberapa — them: Could I unscrew it? Could I untangle them? Bukan its dan bukan they.
+Satu barang setelah tindakan — it, beberapa — them: Could I unscrew it («membuka sekrup»)? Could I untangle them («mengurai»)? Bukan its dan bukan they.
 
 **formula**
 `tindakan` · `it (satu barang) / them (beberapa)`

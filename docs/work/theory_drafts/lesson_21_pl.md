@@ -56,7 +56,7 @@ Po enjoy (lubię), finish (skończyć), avoid (unikać), don't mind (nie mam nic
 ## 03 · want, hope, plan + to
 
 **body**
-Po want (chcę), need (muszę), hope (mam nadzieję), plan, intend (zamierzam), expect, promise, offer druga czynność ma to i formę słownikową: I intend to stay here. Po to — bez -ing i bez -s.
+Po want (chcę), need (muszę), hope (mam nadzieję), plan (planuję), intend (zamierzam), expect (spodziewam się), promise (obiecuję), offer (proponuję) druga czynność ma to i formę słownikową: I intend to stay here. Po to — bez -ing i bez -s.
 
 **formula**
 `want / need / hope / plan / intend / promise` · `to` · `czynność jak w słowniku`

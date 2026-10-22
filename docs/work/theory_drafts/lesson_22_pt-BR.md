@@ -58,7 +58,7 @@ No português falado dá para dizer «ajudar ela»; em inglês, depois da ação
 ## 03 · it e them — para coisas
 
 **body**
-Para uma coisa depois da ação usa-se it; para várias, them: Could I unscrew it? Could I untangle them? Nada de its ou they aqui.
+Para uma coisa depois da ação usa-se it; para várias, them: Could I unscrew it («desparafusar»)? Could I untangle them («desembaraçar»)? Nada de its ou they aqui.
 
 **formula**
 `ação` · `it (uma coisa) / them (várias)`

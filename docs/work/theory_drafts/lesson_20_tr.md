@@ -28,7 +28,7 @@ Bu ders kurallar ve tavsiyelerle ilgili: «kimlik göstermesi gerekiyor», «sö
 ## 02 · must — «-meli, mutlaka» *(baştan açık)*
 
 **body**
-must + sözlükteki hâliyle eylem — «-meli», «mutlaka»: You must take your belongings. Türkçe ek kişiye göre değişir, must değişmez: -s yok, ve sonrasında asla to gelmez.
+must + sözlükteki hâliyle eylem — «-meli», «mutlaka»: You must take your belongings — «eşyalarını almalısın». Türkçe ek kişiye göre değişir, must değişmez: -s yok, ve sonrasında asla to gelmez.
 
 **formula**
 `kim` · `must` · `sözlükteki hâliyle eylem`

@@ -28,7 +28,7 @@ Bài này về quy định và lời khuyên: «cô ấy phải xuất trình gi
 ## 02 · must — «phải, bắt buộc» *(mở sẵn)*
 
 **body**
-must + hành động như trong từ điển — «phải», «bắt buộc»: You must take your belongings. Must giống nhau cho mọi người, không -s, và sau nó không bao giờ có to.
+must + hành động như trong từ điển — «phải», «bắt buộc»: You must take your belongings — «mang theo đồ của bạn». Must giống nhau cho mọi người, không -s, và sau nó không bao giờ có to.
 
 **formula**
 `ai` · `must` · `hành động như trong từ điển`

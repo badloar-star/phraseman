@@ -57,7 +57,7 @@ enjoy (sevmek, keyif almak), finish (bitirmek), avoid (kaçınmak), don't mind (
 ## 03 · want, hope, plan + to
 
 **body**
-want (istemek), need (gerekmek), hope (ummak), plan, intend (niyetinde olmak), expect, promise, offer sonrasında ikinci eylem to ile ve sözlükteki hâliyle gelir: I intend to stay here. to'dan sonra -ing ve -s yok.
+want (istemek), need (gerekmek), hope (ummak), plan (planlamak), intend (niyetinde olmak), expect (beklemek), promise (söz vermek), offer (teklif etmek) sonrasında ikinci eylem to ile ve sözlükteki hâliyle gelir: I intend to stay here. to'dan sonra -ing ve -s yok.
 
 **formula**
 `want / need / hope / plan / intend / promise` · `to` · `sözlükteki hâliyle eylem`

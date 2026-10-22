@@ -58,7 +58,7 @@ En español «lo», «la», «les» van antes del verbo; en inglés la persona v
 ## 03 · it y them — para cosas
 
 **body**
-Para una cosa después de la acción se usa it; para varias, them: Could I unscrew it? Could I untangle them? Van después del verbo, no antes como «lo» o «los».
+Para una cosa después de la acción se usa it; para varias, them: Could I unscrew it («desatornillar»)? Could I untangle them («desenredar»)? Van después del verbo, no antes como «lo» o «los».
 
 **formula**
 `acción` · `it (una cosa) / them (varias)`

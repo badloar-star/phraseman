@@ -28,7 +28,7 @@ Pelajaran ini tentang aturan dan saran: «dia harus menunjukkan identitas», «a
 ## 02 · must — «harus, wajib» *(terbuka sejak awal)*
 
 **body**
-must + kata kerja seperti di kamus — «harus», «wajib»: You must take your belongings. Must sama untuk semua, tanpa -s, dan setelahnya tidak pernah ada to.
+must + kata kerja seperti di kamus — «harus», «wajib»: You must take your belongings — «bawa barang-barangmu». Must sama untuk semua, tanpa -s, dan setelahnya tidak pernah ada to.
 
 **formula**
 `siapa` · `must` · `kata kerja seperti di kamus`

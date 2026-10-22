@@ -28,7 +28,7 @@ Esta lição é sobre regras e conselhos: «ela tem que mostrar um documento», 
 ## 02 · must — «deve, é obrigatório» *(aberta de início)*
 
 **body**
-must + ação como no dicionário: «deve», «é obrigatório». You must take your belongings. Must é igual para todos, sem -s, e depois dele nunca vem to.
+must + ação como no dicionário: «deve», «é obrigatório». You must take your belongings — «leve seus pertences». Must é igual para todos, sem -s, e depois dele nunca vem to.
 
 **formula**
 `quem` · `must` · `ação como no dicionário`

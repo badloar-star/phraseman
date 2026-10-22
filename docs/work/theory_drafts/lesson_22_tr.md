@@ -58,7 +58,7 @@ Türkçede «onu» herkes için aynı; İngilizcede erkek için him, kadın içi
 ## 03 · it ve them — eşyalar için
 
 **body**
-Eylemden sonra tek eşya için it, birkaç eşya için them: Could I unscrew it? Could I untangle them? its ya da they değil.
+Eylemden sonra tek eşya için it, birkaç eşya için them: Could I unscrew it («sökmek»)? Could I untangle them («çözmek»)? its ya da they değil.
 
 **formula**
 `eylem` · `it (tek eşya) / them (birkaç)`

@@ -28,7 +28,7 @@ Ta lekcja jest o zasadach i radach: «musisz okazać dokument», «muszę przecz
 ## 02 · must — «muszę, koniecznie» *(otwarta od razu)*
 
 **body**
-must + czynność jak w słowniku — «muszę», «koniecznie»: You must take your belongings. Must jest jedno dla wszystkich, bez -s, i po nim nigdy nie ma to.
+must + czynność jak w słowniku — «muszę», «koniecznie»: You must take your belongings — «weź swoje rzeczy». Must jest jedno dla wszystkich, bez -s, i po nim nigdy nie ma to.
 
 **formula**
 `kto` · `must` · `czynność jak w słowniku`

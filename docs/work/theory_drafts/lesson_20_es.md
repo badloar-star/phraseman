@@ -28,7 +28,7 @@ Esta lección es sobre reglas y consejos: «tiene que mostrar una identificació
 ## 02 · must — «debes, es obligatorio» *(abierta al inicio)*
 
 **body**
-must + acción como en el diccionario: «debes», «es obligatorio». You must take your belongings. Must es igual para todos, sin -s, y nunca lleva to después, aunque en español digas «deber de».
+must + acción como en el diccionario: «debes», «es obligatorio». You must take your belongings — «llévate tus cosas». Must es igual para todos, sin -s, y nunca lleva to después, aunque en español digas «deber de».
 
 **formula**
 `quién` · `must` · `acción como en el diccionario`

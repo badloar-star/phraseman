@@ -58,7 +58,7 @@ Tiếng Việt «anh ấy» đứng đâu cũng vậy; tiếng Anh, sau hành đ
 ## 03 · it và them — cho đồ vật
 
 **body**
-Một đồ vật sau hành động là it, nhiều đồ vật là them: Could I unscrew it? Could I untangle them? Không dùng its hay they ở đây.
+Một đồ vật sau hành động là it, nhiều đồ vật là them: Could I unscrew it («tháo vít»)? Could I untangle them («gỡ rối»)? Không dùng its hay they ở đây.
 
 **formula**
 `hành động` · `it (một vật) / them (nhiều vật)`

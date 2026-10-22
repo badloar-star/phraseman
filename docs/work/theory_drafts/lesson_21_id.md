@@ -57,7 +57,7 @@ Setelah enjoy (suka), finish (selesai), avoid (menghindari), don't mind (tidak k
 ## 03 · want, hope, plan + to
 
 **body**
-Setelah want (mau), need (perlu), hope (berharap), plan, intend (berniat), expect, promise, offer, tindakan kedua pakai to dan bentuk kamus: I intend to stay here. Setelah to tanpa -ing dan tanpa -s.
+Setelah want (mau), need (perlu), hope (berharap), plan (berencana), intend (berniat), expect (memperkirakan), promise (berjanji), offer (menawarkan diri), tindakan kedua pakai to dan bentuk kamus: I intend to stay here. Setelah to tanpa -ing dan tanpa -s.
 
 **formula**
 `want / need / hope / plan / intend / promise` · `to` · `kata kerja seperti di kamus`

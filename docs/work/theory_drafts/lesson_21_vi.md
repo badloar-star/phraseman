@@ -57,7 +57,7 @@ Sau enjoy (thích), finish (làm xong), avoid (tránh), don't mind (không ngạ
 ## 03 · want, hope, plan + to
 
 **body**
-Sau want (muốn), need (cần), hope (hy vọng), plan, intend (định), expect, promise, offer, hành động thứ hai đi với to và giữ nguyên như trong từ điển: I intend to stay here. Sau to không -ing, không -s.
+Sau want (muốn), need (cần), hope (hy vọng), plan (lên kế hoạch), intend (định), expect (mong đợi), promise (hứa), offer (đề nghị), hành động thứ hai đi với to và giữ nguyên như trong từ điển: I intend to stay here. Sau to không -ing, không -s.
 
 **formula**
 `want / need / hope / plan / intend / promise` · `to` · `hành động như trong từ điển`

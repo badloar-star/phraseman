@@ -57,7 +57,7 @@ Jeśli osoba stoi po czynności — «doradzić mu», «wesprzeć ją» — he, 
 ## 03 · it i them — o rzeczach
 
 **body**
-O rzeczy po czynności mówi się it, o kilku — them: Could I unscrew it? Could I untangle them? Nie its i nie they — to inne słowa.
+O rzeczy po czynności mówi się it, o kilku — them: Could I unscrew it («odkręcić»)? Could I untangle them («rozplątać»)? Nie its i nie they — to inne słowa.
 
 **formula**
 `czynność` · `it (jedna rzecz) / them (kilka)`

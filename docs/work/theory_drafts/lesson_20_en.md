@@ -28,7 +28,7 @@ This lesson is about rules and advice: what is required, what you need to do, wh
 ## 02 · must — it is required *(open from the start)*
 
 **body**
-must + the action as in the dictionary means it is required: You must take your belongings. must is the same for everyone, has no -s, and never has to after it.
+must + the action as in the dictionary means it is required: You must take your belongings (your things). must is the same for everyone, has no -s, and never has to after it.
 
 **formula**
 `who` · `must` · `action as in the dictionary`

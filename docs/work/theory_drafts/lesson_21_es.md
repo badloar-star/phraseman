@@ -57,7 +57,7 @@ Después de enjoy (disfrutar), finish (terminar), avoid (evitar), don't mind (no
 ## 03 · want, hope, plan + to
 
 **body**
-Después de want (quiero), need (necesito), hope (espero), plan, intend (pienso), expect, promise, offer, la segunda acción va con to y como en el diccionario: I intend to stay here. Después de to, sin -ing ni -s.
+Después de want (quiero), need (necesito), hope (espero), plan (planeo), intend (pienso), expect (cuento con), promise (prometo), offer (me ofrezco), la segunda acción va con to y como en el diccionario: I intend to stay here. Después de to, sin -ing ni -s.
 
 **formula**
 `want / need / hope / plan / intend / promise` · `to` · `acción como en el diccionario`

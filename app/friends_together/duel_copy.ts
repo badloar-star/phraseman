@@ -17,26 +17,26 @@ const COPY = {
   challengeBody: L(
     'Собери пять фраз точнее и быстрее. Ты ходишь первым, друг — когда откроет вызов.',
     'Збери п’ять фраз точніше й швидше. Ти ходиш першим, друг — коли відкриє виклик.',
-    'Build five phrases more accurately and faster. You go first; your friend plays when they open the challenge.',
+    'Build five phrases faster and more accurately than your friend. You go first; they play when they open the challenge.',
     'Arma cinco frases con más precisión y rapidez. Empiezas tú; tu amigo juega al abrir el desafío.',
     'Monte cinco frases com mais precisão e rapidez. Você começa; seu amigo joga ao abrir o desafio.',
     'Ghép năm câu chính xác và nhanh hơn. Bạn đi trước, bạn của bạn chơi khi mở lời thách đấu.',
-    'Susun lima frasa lebih tepat dan cepat. Kamu jalan dulu, temanmu main saat membuka tantangan.',
-    'Beş cümleyi daha doğru ve hızlı kur. İlk sen oynarsın, arkadaşın daveti açınca oynar.',
+    'Susun lima frasa lebih tepat dan cepat. Kamu main duluan, temanmu main saat membuka tantangan.',
+    'Beş cümleyi daha doğru ve hızlı kur. İlk sen oynarsın, arkadaşın düello davetini açınca oynar.',
     'Ułóż pięć fraz dokładniej i szybciej. Zaczynasz ty, znajomy gra, gdy otworzy wyzwanie.',
   ),
   start: L('Начать дуэль', 'Почати дуель', 'Start duel', 'Empezar duelo', 'Começar duelo', 'Bắt đầu đấu', 'Mulai duel', 'Düelloya başla', 'Zacznij pojedynek'),
-  freeNote: L('Без энергии · три вызова в день', 'Без енергії · три виклики на день', 'No energy · three challenges a day', 'Sin energía · tres desafíos al día', 'Sem energia · três desafios por dia', 'Không tốn năng lượng · ba lời thách mỗi ngày', 'Tanpa energi · tiga tantangan per hari', 'Enerji yok · günde üç davet', 'Bez energii · trzy wyzwania dziennie'),
+  freeNote: L('Без энергии · три вызова в день', 'Без енергії · три виклики на день', 'Costs no energy · three challenges a day', 'No gasta energía · tres desafíos al día', 'Não gasta energia · três desafios por dia', 'Không tốn năng lượng · ba lời thách mỗi ngày', 'Tidak pakai energi · tiga tantangan per hari', 'Enerji gerekmez · günde üç düello', 'Nie zużywa energii · trzy wyzwania dziennie'),
   later: L('Позже', 'Пізніше', 'Later', 'Más tarde', 'Mais tarde', 'Để sau', 'Nanti', 'Sonra', 'Później'),
   otherLanguage: L('Дуэль — когда учите один язык', 'Дуель — коли вчите одну мову', 'Duels need the same language', 'Los duelos son para el mismo idioma', 'Duelos são para o mesmo idioma', 'Đấu khi hai bạn học cùng một ngôn ngữ', 'Duel untuk yang belajar bahasa yang sama', 'Düello aynı dili öğrenenler için', 'Pojedynek — gdy uczycie się tego samego języka'),
   notEnough: L('Пока мало пройденных фраз', 'Поки мало пройдених фраз', 'Not enough phrases learned yet', 'Aún hay pocas frases aprendidas', 'Ainda há poucas frases aprendidas', 'Chưa đủ câu đã học', 'Frasa yang dipelajari masih sedikit', 'Henüz yeterince cümle öğrenilmedi', 'Na razie za mało przerobionych fraz'),
-  limit: L('Сегодня уже три вызова', 'Сьогодні вже три виклики', 'Three challenges sent today', 'Hoy ya enviaste tres desafíos', 'Hoje você já enviou três desafios', 'Hôm nay đã gửi ba lời thách', 'Hari ini sudah tiga tantangan', 'Bugün üç davet gönderildi', 'Dziś już trzy wyzwania'),
+  limit: L('Сегодня уже три вызова', 'Сьогодні вже три виклики', 'You’ve sent three challenges today', 'Hoy ya enviaste tres desafíos', 'Hoje você já enviou três desafios', 'Hôm nay đã gửi ba lời thách', 'Hari ini sudah tiga tantangan', 'Bugün zaten üç düello başlattın', 'Dziś już trzy wyzwania'),
   openDuel: L('Дуэль с другом уже идёт', 'Дуель з другом уже триває', 'A duel is already on', 'Ya hay un duelo en curso', 'Já há um duelo em andamento', 'Đang có một trận đấu', 'Duel sedang berlangsung', 'Zaten bir düello var', 'Pojedynek już trwa'),
-  inviteToLesson: L('Позвать на занятие', 'Покликати на заняття', 'Invite to a session', 'Invitar a una sesión', 'Convidar para uma sessão', 'Rủ học cùng', 'Ajak ke sesi', 'Derse çağır', 'Zaproś na zajęcia'),
+  inviteToLesson: L('Позвать на занятие', 'Покликати на заняття', 'Invite to a session', 'Invitar a una sesión', 'Convidar para uma sessão', 'Rủ học cùng', 'Ajak ke sesi', 'Oturuma çağır', 'Zaproś na zajęcia'),
   sentTitle: L('Ход отправлен', 'Хід надіслано', 'Move sent', 'Jugada enviada', 'Jogada enviada', 'Đã gửi lượt', 'Giliran terkirim', 'Hamle gönderildi', 'Ruch wysłany'),
-  sentBody: L('У друга сутки. Напишем, когда будет итог.', 'У друга доба. Напишемо, коли буде підсумок.', 'Your friend has 24 hours. We’ll tell you the result.', 'Tu amigo tiene 24 horas. Te avisaremos del resultado.', 'Seu amigo tem 24 horas. Avisaremos o resultado.', 'Bạn của bạn có 24 giờ. Sẽ báo kết quả.', 'Temanmu punya 24 jam. Kami kabari hasilnya.', 'Arkadaşının 24 saati var. Sonucu bildireceğiz.', 'Znajomy ma dobę. Damy znać o wyniku.'),
+  sentBody: L('У друга сутки. Напишем, когда будет итог.', 'У друга доба. Напишемо, коли буде підсумок.', 'Your friend has 24 hours. We’ll tell you the result.', 'Tu amigo tiene 24 horas. Te avisaremos del resultado.', 'Seu amigo tem 24 horas. Avisaremos o resultado.', 'Bạn của bạn có 24 giờ. Mình sẽ báo kết quả cho bạn.', 'Temanmu punya 24 jam. Kami kabari hasilnya.', 'Arkadaşının 24 saati var. Sonucu bildireceğiz.', 'Znajomy ma dobę. Damy znać o wyniku.'),
   offlineTitle: L('Ход готов', 'Хід готовий', 'Move ready', 'Jugada lista', 'Jogada pronta', 'Lượt đã sẵn sàng', 'Giliran siap', 'Hamle hazır', 'Ruch gotowy'),
-  offlineBody: L('Как только телефон выйдет в сеть, друг получит вызов.', 'Щойно телефон вийде в мережу, друг отримає виклик.', 'Your friend gets the challenge as soon as you’re back online.', 'Tu amigo recibirá el desafío en cuanto haya conexión.', 'Seu amigo receberá o desafio assim que houver conexão.', 'Bạn của bạn sẽ nhận lời thách khi có mạng.', 'Temanmu menerima tantangan begitu ada jaringan.', 'Bağlantı gelince arkadaşın daveti alır.', 'Znajomy dostanie wyzwanie, gdy tylko będzie sieć.'),
+  offlineBody: L('Как только телефон выйдет в сеть, друг получит вызов.', 'Щойно телефон вийде в мережу, друг отримає виклик.', 'Your friend gets the challenge as soon as you’re back online.', 'Tu amigo recibirá el desafío en cuanto haya conexión.', 'Seu amigo receberá o desafio assim que houver conexão.', 'Bạn của bạn sẽ nhận lời thách khi có mạng.', 'Temanmu menerima tantangan begitu ada jaringan.', 'Bağlantı gelince arkadaşın düello davetini alır.', 'Znajomy dostanie wyzwanie, gdy tylko będzie sieć.'),
   offlineStrip: L('Ход сохранён на телефоне', 'Хід збережено на телефоні', 'Move saved on this phone', 'Jugada guardada en el teléfono', 'Jogada salva no telefone', 'Lượt đã lưu trên điện thoại', 'Giliran tersimpan di ponsel', 'Hamle telefonda kayıtlı', 'Ruch zapisany w telefonie'),
   toFriends: L('К друзьям', 'До друзів', 'Back to friends', 'Volver a amigos', 'Voltar aos amigos', 'Về bạn bè', 'Ke teman', 'Arkadaşlara dön', 'Do znajomych'),
   incomingBody: L(
@@ -53,7 +53,7 @@ const COPY = {
   accept: L('Принять', 'Прийняти', 'Accept', 'Aceptar', 'Aceitar', 'Nhận', 'Terima', 'Kabul et', 'Przyjmij'),
   decline: L('Отказаться', 'Відмовитися', 'Decline', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć'),
   win: L('Победа', 'Перемога', 'Victory', 'Victoria', 'Vitória', 'Chiến thắng', 'Menang', 'Zafer', 'Zwycięstwo'),
-  loss: L('Победа друга', 'Перемога друга', 'Your friend won', 'Ganó tu amigo', 'Seu amigo venceu', 'Bạn ấy thắng', 'Temanmu menang', 'Arkadaşın kazandı', 'Wygrał znajomy'),
+  loss: L('Победа друга', 'Перемога друга', 'Your friend won', 'Ganó tu amigo', 'Seu amigo venceu', 'Bạn ấy thắng', 'Temanmu menang', 'Arkadaşın kazandı', 'Wygrana znajomego'),
   draw: L('Ничья', 'Нічия', 'Draw', 'Empate', 'Empate', 'Hòa', 'Seri', 'Berabere', 'Remis'),
   rematch: L('Реванш', 'Реванш', 'Rematch', 'Revancha', 'Revanche', 'Đấu lại', 'Tanding ulang', 'Rövanş', 'Rewanż'),
   phrase: L('Фраза', 'Фраза', 'Phrase', 'Frase', 'Frase', 'Câu', 'Frasa', 'Cümle', 'Fraza'),
@@ -98,14 +98,14 @@ export function duelOutcomeLine(lang: Lang, outcome: DuelOutcome, mineCorrect: n
   const t = theirsCorrect;
   if (m !== t) {
     return outcome === 'win'
-      ? pick(lang, L(`Точность решила: ${m} из 5 против ${t}.`, `Точність вирішила: ${m} з 5 проти ${t}.`, `Accuracy decided it: ${m} of 5 vs ${t}.`, `Decidió la precisión: ${m} de 5 contra ${t}.`, `A precisão decidiu: ${m} de 5 contra ${t}.`, `Độ chính xác quyết định: ${m}/5 so với ${t}.`, `Ketepatan menentukan: ${m} dari 5 lawan ${t}.`, `Doğruluk belirledi: 5'te ${m}, karşı ${t}.`, `Zdecydowała dokładność: ${m} z 5 wobec ${t}.`))
+      ? pick(lang, L(`Точность решила: ${m} из 5 против ${t}.`, `Точність вирішила: ${m} з 5 проти ${t}.`, `Accuracy decided it: ${m} of 5 vs ${t}.`, `Decidió la precisión: ${m} de 5 contra ${t}.`, `A precisão decidiu: ${m} de 5 contra ${t}.`, `Độ chính xác quyết định: ${m}/5 so với ${t}.`, `Ketepatan menentukan: ${m} dari 5 lawan ${t}.`, `Doğruluk belirledi: sen ${m}/5, arkadaşın ${t}/5.`, `Zdecydowała dokładność: ${m} z 5 wobec ${t}.`))
       : pick(lang, L(`${m} из 5 — разберём ошибки и возьмём реванш.`, `${m} з 5 — розберемо помилки й візьмемо реванш.`, `${m} of 5 — review the mistakes and take a rematch.`, `${m} de 5: repasa los errores y pide revancha.`, `${m} de 5: revise os erros e peça revanche.`, `${m}/5 — xem lại lỗi rồi đấu lại.`, `${m} dari 5 — tinjau kesalahan lalu tanding ulang.`, `5'te ${m} — hataları gözden geçir, rövanş al.`, `${m} z 5 — przejrzyj błędy i weź rewanż.`));
   }
   return pick(lang, L(
     `Точность равная — решило время: ${clock(mineMs)} против ${clock(theirsMs)}.`, `Точність рівна — вирішив час: ${clock(mineMs)} проти ${clock(theirsMs)}.`,
     `Same accuracy — time decided it: ${clock(mineMs)} vs ${clock(theirsMs)}.`, `Misma precisión: decidió el tiempo, ${clock(mineMs)} contra ${clock(theirsMs)}.`,
     `Mesma precisão: o tempo decidiu, ${clock(mineMs)} contra ${clock(theirsMs)}.`, `Chính xác như nhau — thời gian quyết định: ${clock(mineMs)} so với ${clock(theirsMs)}.`,
-    `Sama tepat — waktu menentukan: ${clock(mineMs)} lawan ${clock(theirsMs)}.`, `Doğruluk eşit — süre belirledi: ${clock(mineMs)}, karşı ${clock(theirsMs)}.`,
+    `Sama tepat — waktu menentukan: ${clock(mineMs)} lawan ${clock(theirsMs)}.`, `Doğruluk eşit — süre belirledi: sen ${clock(mineMs)}, arkadaşın ${clock(theirsMs)}.`,
     `Równa dokładność — zdecydował czas: ${clock(mineMs)} wobec ${clock(theirsMs)}.`,
   ));
 }

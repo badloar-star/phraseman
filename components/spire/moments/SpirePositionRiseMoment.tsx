@@ -23,6 +23,7 @@ import { momentText } from './moments_strings';
 import { positionMomentText } from './position_moment_strings';
 import { stepMomentText } from './step_moment_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
+import { useShadowGlass } from '../../v2/ShadowSurface';
 
 const ROW_GAP = 6;
 const FALLBACK_ROW_H = 48;
@@ -59,6 +60,7 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
   // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
   const fire = useFireOnce('POSITION-RISE');
   const p = useSpirePalette();
+  const flashColor = useShadowGlass().mediaInk; // зачем (закон владельца 22.10): светлая вуаль стоп-кадра — цвет темы, не зашитый белый
   const footPad = useMomentFootPad(); // зачем: нижняя кнопка над системной панелью (moments_layout)
   const reduceMotion = useReducedMotion();
   const [rowH, setRowH] = useState(FALLBACK_ROW_H);
@@ -125,7 +127,7 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
           <View style={s.gap} />
           <V2Button label={stepMomentText(lang, 'toTower')} variant="secondary" onPress={() => fire(onLater, 'later')} testID={`${testID}-later`} />
         </View>
-        <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#FFFFFF' }, flashStyle]} />{/* theme-exempt: стоп-кадр образца — светлая вуаль */}
+        <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: flashColor }, flashStyle]} />
       </View>
     </MomentFullScreen>
   );

@@ -19,6 +19,7 @@ import { stepMomentText } from '../spire/moments/step_moment_strings';
 import StreakConfetti from '../streak/moments/StreakConfetti';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { useSpireShadow } from '../spire/useSpireShadow';
+import { useShadowGlass } from '../v2/ShadowSurface';
 import { V2Button } from '../v2/V2Kit';
 import { spireGameText } from '../spire/spire_game_strings';
 import { perfectMomentText } from './perfect_moment_strings';
@@ -47,6 +48,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
   const p = useSpirePalette();
   const footPad = useMomentFootPad(); // зачем: нижняя кнопка над системной панелью (moments_layout)
   const sh = useSpireShadow();
+  const flashColor = useShadowGlass().mediaInk; // зачем (закон владельца 22.10): светлая вуаль стоп-кадра — цвет темы, не зашитый белый
   const reduceMotion = useReducedMotion();
   const rumble = useMomentRumble();
   const stamp = useSharedValue(reduceMotion ? 1 : 0);
@@ -96,7 +98,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
           <V2Button label={spireGameText(lang, 'onward')} icon="arrow-forward" onPress={() => fire(onNext, 'next')} testID={`${testID}-next`} />
         </Animated.View>
       </Animated.View>
-      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#FFFFFF' }, flashStyle]} />{/* theme-exempt: стоп-кадр образца — светлая вуаль */}
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: flashColor }, flashStyle]} />
     </MomentFullScreen>
   );
 }

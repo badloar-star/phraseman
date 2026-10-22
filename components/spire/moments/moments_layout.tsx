@@ -2,8 +2,8 @@
 // moments_layout.tsx — общая раскладка моментов Пика: полноэкранный «отдельный экран темы» (эталон `.full`) и затемнение (`.dim`).
 //
 // зачем (владелец 14.10 «каша на экране»; эталон engagement-moments-app.css): полноэкранный момент — отдельный экран темы, НЕ прозрачный туман поверх подложки: ни одна буква
-// момента не лежит на буквах экрана. Фон — градиент токенов ТЕКУЩЕЙ темы (bgTop → bg на 60 %), как радиальный `.full` образца; затемнение окна — чёрное 0,62 в любой теме
-// (как GlassAlertDialog и `--dim`). Появление: fade 420 мс (`emFade`); reduceMotion — сразу.
+// момента не лежит на буквах экрана. Фон — градиент токенов ТЕКУЩЕЙ темы (bgTop → bg на 60 %), как радиальный `.full` образца; затемнение окна — скрим текущей
+// темы (токен scrim). Появление: fade 420 мс (`emFade`); reduceMotion — сразу.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, type ReactNode } from 'react';
 import { useMemMomentsTrack } from '../../moments/mem_moments_probe';
@@ -15,8 +15,13 @@ import { useShadowGlass } from '../../v2/ShadowSurface';
 import { MomentGlowSpot } from './moment_glow';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 
-/** Затемнение окна момента: чёрное 0,62 в любой теме (как `.or-dim` и `--dim` образца). */
-export const MOMENT_DIM_COLOR = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение окна — тёмный скрим в любой теме (как GlassAlertDialog)
+/**
+ * Затемнение окна момента — скрим ТЕКУЩЕЙ темы (токен scrim: в тёмной — чёрный 0,60, в светлой — тон темы 0,45).
+ * зачем (закон владельца 22.10: «цвета должны быть строго цветами и оттенками текущей темы»): прежде было зашитое чёрное 0,62.
+ */
+export function useMomentDimColor(): string {
+  return useShadowGlass().scrim;
+}
 
 /** Длительность появления полноэкранного момента, мс (`emFade 420ms`). */
 export const MOMENT_FADE_MS = 420;

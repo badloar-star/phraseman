@@ -76,7 +76,7 @@ export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }
   const p = useSpirePalette();
   const colors = useStreakColors();
   // зачем: пустая клетка — нейтральный белый/чёрный 8 % поверх фона (эталон d30), а не opaqueControl: в светлых темах он совпадал с фоном 1,00:1, см. streak_empty_cell.ts
-  const emptyCell = streakEmptyCellColor(p.bg);
+  const emptyCell = streakEmptyCellColor(p.bg, p.text);
   const reduceMotion = useReducedMotion();
   const probe = STREAK_PROBE && !!probeRefs;
   const [size, setSize] = useState(0);

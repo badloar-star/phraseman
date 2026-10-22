@@ -2,11 +2,14 @@
 // moments_effects.tsx — общие эффекты моментов Пика: фейерверк и дрожь экрана (эталон engagement-moments-v3.js: firework(), emRumble).
 //
 // зачем (координатор 14.10): анимация и тайминги — как в образце, Reanimated на UI-треде, reduceMotion — без движения. Фейерверк: 26 искр по кругу r 90–130 (+30 вниз),
-// ядро-вспышка 500 мс, искры 1,2 с; цвета — иллюстрация образца (золото, мята, синий, белый, оранж), не токены темы. Дрожь «emRumble» — 700 мс, 8 шагов затухающей амплитуды.
+// ядро-вспышка 500 мс, искры 1,2 с; цвета — оттенки текущей темы (золото медали, «хорошо», «инфо», светлые чернила, «внимание») на месте золота, мяты, синего,
+// белого и оранжа образца (закон владельца 22.10). Дрожь «emRumble» — 700 мс, 8 шагов затухающей амплитуды.
 // Случайность образца заменена детерминированной (по индексу): кадры воспроизводимы, тесты не мигают.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
+import type { GlassTokens } from '../../../constants/liquidGlassThemePalette';
+import { useShadowGlass } from '../../v2/ShadowSurface';
 import Animated, {
   Easing,
   type SharedValue,
@@ -18,8 +21,13 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-/** Цвета искр образца (theme-exempt: иллюстрация праздника, одинакова в любой теме). */
-export const MOMENT_FIREWORK_COLORS = ['#FFE08A', '#5FE3C0', '#7C9BFF', '#FFFFFF', '#FF7A45'] as const; // theme-exempt: цвета искр фейерверка из образца
+/**
+ * Цвета искр — оттенки ТЕКУЩЕЙ темы в ролях образца: золото → medalGold, мята → good, синий → info, белый → mediaInk, оранж → warn.
+ * зачем (закон владельца 22.10: «цвета должны быть строго цветами и оттенками текущей темы»): прежде пять зашитых HEX образца.
+ */
+export function momentFireworkColors(g: GlassTokens): readonly string[] {
+  return [g.medalGold, g.good, g.info, g.mediaInk, g.warn];
+}
 
 /** Детерминированное «случайное» 0…1 по индексу и соли (вместо Math.random образца). */
 export function momentJitter(i: number, salt: number): number {
@@ -54,6 +62,8 @@ export type MomentFireworkProps = Readonly<{
 /** Один взрыв фейерверка: искры по кругу + ядро-вспышка. Нет движения при reduceMotion. */
 function MomentFirework({ x, y, r = 90, n = 26, fire, delayMs = 0 }: MomentFireworkProps) {
   const reduceMotion = useReducedMotion();
+  const g = useShadowGlass();
+  const colors = useMemo(() => momentFireworkColors(g), [g]);
   const progress = useSharedValue(0);
   const core = useSharedValue(0);
   React.useEffect(() => {
@@ -64,13 +74,13 @@ function MomentFirework({ x, y, r = 90, n = 26, fire, delayMs = 0 }: MomentFirew
   const sparks = useMemo(() => Array.from({ length: n }, (_, i) => {
     const a = ((Math.PI * 2) / n) * i + momentJitter(i, 1) * 0.2;
     const radius = r + momentJitter(i, 2) * 40;
-    return { key: i, dx: Math.cos(a) * radius, dy: Math.sin(a) * radius + 30, color: MOMENT_FIREWORK_COLORS[i % MOMENT_FIREWORK_COLORS.length], delayK: momentJitter(i, 3) * 0.07 };
-  }), [n, r]);
+    return { key: i, dx: Math.cos(a) * radius, dy: Math.sin(a) * radius + 30, color: colors[i % colors.length], delayK: momentJitter(i, 3) * 0.07 };
+  }), [colors, n, r]);
   const coreStyle = useAnimatedStyle(() => ({ opacity: core.value, transform: [{ scale: 0.4 + core.value * 1.6 }] }));
   if (!fire || reduceMotion) return null;
   return (
     <View pointerEvents="none" style={[s.burst, { left: x, top: y }]} accessible={false}>
-      <Animated.View style={[s.core, coreStyle]} />
+      <Animated.View style={[s.core, { backgroundColor: g.mediaInk }, coreStyle]} />
       {sparks.map((sp) => <Spark key={sp.key} progress={progress} dx={sp.dx} dy={sp.dy} color={sp.color} delayK={sp.delayK} />)}
     </View>
   );
@@ -97,5 +107,5 @@ export function useMomentRumble() {
 const s = StyleSheet.create({
   burst: { position: 'absolute', width: 0, height: 0 },
   spark: { position: 'absolute', left: -3, top: -3, width: 6, height: 6, borderRadius: 3 },
-  core: { position: 'absolute', left: -5, top: -5, width: 10, height: 10, borderRadius: 5, backgroundColor: '#FFFFFF' }, // theme-exempt: вспышка ядра фейерверка — иллюстрация образца
+  core: { position: 'absolute', left: -5, top: -5, width: 10, height: 10, borderRadius: 5 },
 });

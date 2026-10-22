@@ -42,6 +42,8 @@ import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentNumber, momentText } from './moments_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
+import { useShadowGlass } from '../../v2/ShadowSurface';
+import { colorWithAlpha } from '../../v2/plateAlpha';
 
 export type MomentRoomRow = Readonly<{
   uid: string;
@@ -132,6 +134,10 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const p = useSpirePalette();
   const buttonFill = useSpireButtonFill();
   const scene = useSpireScene();
+  // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): вспышка стоп-кадра — mediaInk темы; маркер «Ты здесь» —
+  // главная заливка темы (cta) с монетой на её чернилах (ctaText), ореол — та же cta 12 %. В «Графите» это прежние #F2F1F6 / #0C0C0D.
+  const flashColor = useShadowGlass().mediaInk;
+  const markerTone = useMemo(() => ({ backgroundColor: p.cta, boxShadow: `0 0 0 10px ${colorWithAlpha(p.cta, 0.12)}` }), [p.cta]);
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
@@ -265,8 +271,8 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
           <Animated.View key="act3" entering={reduceMotion ? undefined : FadeIn.duration(420)} style={s.act3}>
             <Animated.View testID={`${testID}-tower`} style={[s.tower, { top: towerTop, width: towerW, left: (winW - towerW) / 2, height: Math.round(SPIRE_TOWER_GEOM.height * k) }, towerStyle]}>
               <SpireTowerSvg lang={lang} myFloor={1} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} illustration />
-              <Animated.View style={[s.marker, { left: Math.round(mk.x * k - 17), top: Math.round(mk.y * k - 17) }, markerStyle]} testID={`${testID}-marker`}>
-                <View style={s.markerInner}><SpireRankCoin rank={myCoinRank} size={26} /></View>
+              <Animated.View style={[s.marker, markerTone, { left: Math.round(mk.x * k - 17), top: Math.round(mk.y * k - 17) }, markerStyle]} testID={`${testID}-marker`}>
+                <View style={[s.markerInner, { backgroundColor: p.ctaText }]}><SpireRankCoin rank={myCoinRank} size={26} /></View>
               </Animated.View>
               <Animated.View style={[s.floorTag, { left: Math.round(mk.x * k + 24), top: Math.round(mk.y * k - 14), backgroundColor: p.control }, tagStyle]} testID={`${testID}-floor`}>
                 <Text style={[s.floorTagText, { color: p.text }]}>{momentText(lang, 'floorTag', { n: 1 })}</Text>
@@ -290,7 +296,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
           </Animated.View>
         ) : null}
 
-        <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#FFFFFF' }, flashStyle]} testID={`${testID}-freeze`} />{/* theme-exempt: вспышка «стоп-кадра» — светлая вуаль (эталон contrast/brightness) */}
+        <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: flashColor }, flashStyle]} testID={`${testID}-freeze`} />{/* вспышка «стоп-кадра» — светлая вуаль (эталон contrast/brightness) */}
         <MomentFirework fire={fire} x={195 * fw} y={130} r={110} />
         <MomentFirework fire={fire} x={120 * fw} y={200} r={70} delayMs={250} />
         <MomentFirework fire={fire} x={270 * fw} y={180} r={80} delayMs={450} />
@@ -338,8 +344,8 @@ const s = StyleSheet.create({
   zoneLbl: { position: 'absolute', right: 8, top: -7.5, paddingHorizontal: 8, borderRadius: 9, overflow: 'hidden', fontSize: 13, lineHeight: 17, letterSpacing: 2, fontWeight: '800' },
   tower: { position: 'absolute' },
   // маркер «Ты здесь» 34: кольцо светлое, внутри чёрный круг 30 с монетой 26, ореол 10
-  marker: { position: 'absolute', width: 34, height: 34, borderRadius: 17, backgroundColor: '#F2F1F6', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 10px rgba(255,255,255,0.12)' }, // theme-exempt: маркер «Ты здесь» как в SpireTower (метка текущего этажа)
-  markerInner: { width: 30, height: 30, borderRadius: 15, backgroundColor: '#0C0C0D', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: маркер «Ты здесь» как в SpireTower
+  marker: { position: 'absolute', width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' }, // цвет — cta темы (стиль markerTone)
+  markerInner: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' }, // цвет — ctaText темы
   floorTag: { position: 'absolute', height: 28, paddingHorizontal: 10, borderRadius: 14, justifyContent: 'center' },
   floorTagText: { fontSize: 13, lineHeight: 28, fontWeight: '700' },
   final: { position: 'absolute', left: 24, right: 24, bottom: 0, alignItems: 'center' },

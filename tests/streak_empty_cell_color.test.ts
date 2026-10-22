@@ -22,9 +22,9 @@ const over = (color: string, base: number[]): number[] => {
 };
 
 describe('streakEmptyCellColor', () => {
-  it('тёмный фон — белый 8 %, светлый — чёрный 14 % (Макеты 18.10: 8 % на светлом почти не видно)', () => {
-    expect(streakEmptyCellColor('#0C0D10')).toBe('rgba(255,255,255,0.08)');
-    expect(streakEmptyCellColor('#F6F6F8')).toBe('rgba(0,0,0,0.14)');
+  it('тон — цвет текста темы: на тёмном фоне 9 %, на светлом 14 % (Макеты 18.10: 8 % на светлом почти не видно; закон владельца 22.10 — только цвета темы)', () => {
+    expect(streakEmptyCellColor('#0C0D10', '#FFFFFF')).toBe('rgba(255,255,255,0.09)');
+    expect(streakEmptyCellColor('#F6F6F8', '#17181E')).toBe('rgba(23,24,30,0.14)');
   });
 
   it('различие с фоном ≥ 1,15 и с заполненной клеткой ≥ 3 — все темы, оба оформления, насыщенность 0 / 0,5 / 1', () => {
@@ -33,7 +33,7 @@ describe('streakEmptyCellColor', () => {
       for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
         for (const intensity of [0, 0.5, 1]) {
           const g = liquidGlassTokens(id as never, { appearance, intensity } as never) as unknown as Record<string, string>;
-          const cell = streakEmptyCellColor(g.bg!);
+          const cell = streakEmptyCellColor(g.bg!, g.text!);
           for (const k of ['bg', 'bgTop']) {
             const base = rgb(g[k]!);
             const r = ratio(over(cell, base), base);
@@ -49,7 +49,7 @@ describe('streakEmptyCellColor', () => {
 
   it('MonthCalendar берёт цвет пустой клетки из streakEmptyCellColor, а не из opaqueControl', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'components/streak/moments/MonthCalendar.tsx'), 'utf8');
-    expect(src).toContain('streakEmptyCellColor(p.bg)');
+    expect(src).toContain('streakEmptyCellColor(p.bg, p.text)');
     expect(src).not.toContain('p.control');
   });
 });

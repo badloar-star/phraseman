@@ -9,16 +9,23 @@ import React, { memo, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, FadeIn, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import { StreakFlameFill } from '../StreakFlameFill';
-import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
+import { liquidGlassTokens, type GlassTokens } from '../../../constants/liquidGlassThemePalette';
+import { colorWithAlpha } from '../../v2/plateAlpha';
 import { useTheme } from '../../ThemeContext';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import type { StreakFlameStage } from './streak_milestones';
 import { streakStageColors } from './streak_stage_colors';
 
-/** Плашка цифры: тёмная в любой теме (theme-exempt — гарантирует контраст поверх огня любого цвета). */
-export const STREAK_PLATE_BG = 'rgba(8,10,14,0.82)'; // theme-exempt: плашка цифры на огне — тёмная в любой теме, иначе цифру не видно
+/** Плотность плашки цифры: 0,82 — цифра читается поверх огня любого цвета (тест streak_moments_v3_contract). */
 export const STREAK_PLATE_ALPHA = 0.82;
-export const STREAK_PLATE_TEXT = '#FFFFFF'; // theme-exempt: белый текст на тёмной плашке
+/**
+ * Плашка цифры — тон «подложки поверх картинок» текущей темы (mediaScrim: в светлой чёрный, в тёмной — затемнённый фон темы) с плотностью 0,82;
+ * цифра — «чернила поверх картинок» темы (mediaInk).
+ * зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): прежде зашитые почти чёрный 82 % и белый.
+ */
+export function streakPlateFill(glass: Pick<GlassTokens, 'mediaScrim'>): string {
+  return colorWithAlpha(glass.mediaScrim, STREAK_PLATE_ALPHA);
+}
 
 const BURST_STEPS = [[1.28, 260], [1.18, 130], [1.24, 130], [1.1, 130], [1, 130]] as const;
 const EASE_BURST = Easing.bezier(0.23, 1, 0.32, 1);
@@ -94,8 +101,8 @@ function StreakMomentFlame({ days, label = '', size = 160, burstKey, morphKey, s
       {stage === 4 ? <FlameStars color={p.text} reduceMotion={reduceMotion} /> : null}
       {text !== '' ? (
         <View pointerEvents="none" style={s.plateWrap}>
-          <View style={[s.plate, { paddingHorizontal: Math.round(fontSize * 0.32) }]}>
-            <Text style={{ color: STREAK_PLATE_TEXT, fontSize, lineHeight: Math.round(fontSize * 1.25), fontWeight: '800', letterSpacing: PLATE_TRACKING }} numberOfLines={1}>{text}</Text>
+          <View style={[s.plate, { backgroundColor: streakPlateFill(glass), paddingHorizontal: Math.round(fontSize * 0.32) }]}>
+            <Text style={{ color: glass.mediaInk, fontSize, lineHeight: Math.round(fontSize * 1.25), fontWeight: '800', letterSpacing: PLATE_TRACKING }} numberOfLines={1}>{text}</Text>
           </View>
         </View>
       ) : null}
@@ -106,7 +113,7 @@ function StreakMomentFlame({ days, label = '', size = 160, burstKey, morphKey, s
 const s = StyleSheet.create({
   veil: { position: 'absolute', left: '-10%', right: '-10%', top: '-10%', bottom: '-10%', borderRadius: 999, opacity: 0 },
   plateWrap: { position: 'absolute', left: 0, right: 0, bottom: '12%', alignItems: 'center' },
-  plate: { borderRadius: 999, backgroundColor: STREAK_PLATE_BG },
+  plate: { borderRadius: 999 },
   stars: { opacity: 0.6 },
   star: { position: 'absolute', width: STAR_HALO, height: STAR_HALO, marginLeft: -STAR_HALO / 2, marginTop: -STAR_HALO / 2, alignItems: 'center', justifyContent: 'center', transform: [{ scale: 0.9 }] },
   starHalo: { position: 'absolute', width: STAR_HALO, height: STAR_HALO, borderRadius: STAR_HALO / 2, opacity: 0.35 },

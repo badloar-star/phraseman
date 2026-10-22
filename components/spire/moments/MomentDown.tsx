@@ -23,6 +23,7 @@ import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentText } from './moments_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
+import { useShadowGlass } from '../../v2/ShadowSurface';
 
 export type MomentDownProps = Readonly<{
   lang: Lang;
@@ -46,6 +47,9 @@ const TAP_RING = 44;
 
 function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = false, testID = 'moment-down' }: MomentDownProps) {
   const p = useSpirePalette();
+  // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): светлая вуаль «проснулась» и кольцо-подсказка тапа —
+  // «чернила поверх картинок» темы (mediaInk / mediaInkSoft), не зашитый белый
+  const g = useShadowGlass();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
   const { height } = useWindowDimensions();
@@ -97,7 +101,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
   return (
     <MomentFullScreen testID={testID}>
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: p.bg }, fogStyle]} />
-      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#FFFFFF' }, veilStyle]} />{/* theme-exempt: светлая вуаль +12 % «проснулась» (эталон brightness 1.12) */}
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: g.mediaInk }, veilStyle]} />{/* светлая вуаль +12 % «проснулась» (эталон brightness 1.12) */}
       <ScrollView style={s.fill} contentContainerStyle={[s.center, { paddingTop: Math.max(insets.top + 40, Math.round(height * TOP_FRACTION)), paddingBottom: dockH + 12 }]} bounces={false} showsVerticalScrollIndicator={false}>
         <View style={s.coinBox}>
           <MomentCoin
@@ -109,7 +113,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
             onPress={awake ? undefined : () => doWake('tap')}
             testID={`${testID}-coin`}
           />
-          {awake ? null : <Animated.View pointerEvents="none" style={[s.tapRing, ringStyle]} accessible={false} />}
+          {awake ? null : <Animated.View pointerEvents="none" style={[s.tapRing, { borderColor: g.mediaInkSoft }, ringStyle]} accessible={false} />}{/* guard-ok: не контейнер, а пульсирующее кольцо-подсказка тапа (эталон .tapme) */}
         </View>
         <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{title}</Text>
         <Text style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{body}</Text>
@@ -133,7 +137,7 @@ const s = StyleSheet.create({
   center: { alignItems: 'center', gap: 14, paddingHorizontal: 30 },
   coinBox: { width: COIN_SIZE, height: COIN_SIZE, alignItems: 'center', justifyContent: 'center' },
   // `.tapme`: кольцо 44 в центре монеты, пульсирует «тапни»
-  tapRing: { position: 'absolute', width: TAP_RING, height: TAP_RING, borderRadius: TAP_RING / 2, borderWidth: 2, borderColor: 'rgba(255,255,255,0.8)' }, // guard-ok: это не контейнер, а пульсирующее кольцо-подсказка (эталон .tapme); shadow-ok: семантическое кольцо «тапни» из эталона v3, не обводка плашки; theme-exempt: кольцо-подсказка «тапни» — иллюстрация образца (.tapme)
+  tapRing: { position: 'absolute', width: TAP_RING, height: TAP_RING, borderRadius: TAP_RING / 2, borderWidth: 2 }, // guard-ok: это не контейнер, а пульсирующее кольцо-подсказка (эталон .tapme); shadow-ok: семантическое кольцо «тапни» из эталона v3, не обводка плашки; theme-exempt: кольцо-подсказка «тапни» — иллюстрация образца (.tapme)
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m03: заголовок 24/30 · 800 · −0,3
   title: { ...V2_TYPE.momentTitleLg, textAlign: 'center' },
   body: { fontSize: 16, lineHeight: 22, textAlign: 'center' },

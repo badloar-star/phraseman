@@ -17,7 +17,7 @@ import { V2Button } from '../../v2/V2Kit';
 import { useSpirePalette } from '../useSpirePalette';
 import { PlateFill, plateBoxShadow, sheetPlateTokens, useShadowGlass } from '../../v2/ShadowSurface';
 import { MomentCoin } from './moments_coin';
-import { MOMENT_DIM_COLOR } from './moments_layout';
+import { useMomentDimColor } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentLeagueIn, momentNumber, momentText } from './moments_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
@@ -47,6 +47,7 @@ function MomentStay({ lang, tier, coinRank, place, weekCoins, gapToTop5, onPlay,
   const p = useSpirePalette();
   // зачем (гейт Макетов, круг 1, m02 п. 3): окно эталона светлее фона — заливка шторки (`.modal`: градиент sheetplate1 → sheetplate2) и тень шторки, а не плита карточки
   const gs = sheetPlateTokens(useShadowGlass());
+  const dimColor = useMomentDimColor();
   const reduceMotion = useReducedMotion();
   const [saying, setSaying] = useState(reduceMotion);
   const pop = useSharedValue(reduceMotion ? 1 : 0);
@@ -70,7 +71,7 @@ function MomentStay({ lang, tier, coinRank, place, weekCoins, gapToTop5, onPlay,
 
   return (
     <View style={s.root} testID={testID} accessibilityViewIsModal>
-      <Animated.View entering={reduceMotion ? undefined : FadeIn.duration(320)} style={[StyleSheet.absoluteFill, { backgroundColor: MOMENT_DIM_COLOR }]} pointerEvents="none" />
+      <Animated.View entering={reduceMotion ? undefined : FadeIn.duration(320)} style={[StyleSheet.absoluteFill, { backgroundColor: dimColor }]} pointerEvents="none" />
       <Animated.View style={[s.card, { boxShadow: plateBoxShadow(gs) }, cardStyle]}>
         <PlateFill g={gs} radius={28} />
         <View style={s.coinWrap}>

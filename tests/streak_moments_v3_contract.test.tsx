@@ -90,7 +90,8 @@ import StreakMilestoneMoment from '../components/streak/moments/StreakMilestoneM
 import StreakMilestoneRibbon, { streakRibbonMilestones, streakRibbonPosition } from '../components/streak/moments/StreakMilestoneRibbon';
 import TodayRings, { TODAY_RING_TARGETS, todayRingFraction, todayRingGeometry } from '../components/streak/moments/TodayRings';
 import { monthArcPath } from '../components/streak/moments/StreakMomentRings';
-import { STREAK_PLATE_ALPHA } from '../components/streak/moments/StreakMomentFlame';
+import { STREAK_PLATE_ALPHA, streakPlateFill } from '../components/streak/moments/StreakMomentFlame';
+import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
   STREAK_MILESTONES, STREAK_MOMENT_DURATION_MS, STREAK_MOMENT_TIMELINE, nextStreakMilestone, streakFlameStage, streakMomentKind, streakAchievementId,
   type StreakMilestone,
@@ -158,12 +159,28 @@ describe('рубежи серии — данные', () => {
     }
   });
 
-  it('цифра на плашке читается: белый на плашке rgba(8,10,14,.82) ≥ 4,5:1 поверх огня любого цвета (худший случай — белый и чёрный огонь)', () => {
-    const plate = [8, 10, 14] as const;
-    for (const under of [[255, 255, 255], [0, 0, 0], [255, 214, 90]] as const) {
-      const mixed = plate.map((c, i) => STREAK_PLATE_ALPHA * c + (1 - STREAK_PLATE_ALPHA) * under[i]) as unknown as [number, number, number];
-      expect(contrast(lum([255, 255, 255]), lum(mixed))).toBeGreaterThanOrEqual(4.5);
+  it('цифра на плашке читается: mediaInk темы на плашке тона mediaScrim темы (0,82) ≥ 4,5:1 поверх огня любого цвета — все темы, оба оформления', () => {
+    // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): плашка и цифра — из темы; худший случай огня — белый, чёрный, золотой
+    const hex3 = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)) as unknown as [number, number, number];
+    const bad: string[] = [];
+    for (const appearance of ['dark', 'light'] as const) {
+      for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
+        const g = liquidGlassTokens(id as never, { appearance, intensity: 0.5 } as never);
+        const fill = streakPlateFill(g);
+        const m = /^rgba\((\d+),(\d+),(\d+),([\d.]+)\)$/u.exec(fill);
+        expect(m).not.toBeNull();
+        const a = parseFloat(m![4]!);
+        expect(a).toBeCloseTo(STREAK_PLATE_ALPHA, 2);
+        const plate = [1, 2, 3].map((i) => parseInt(m![i]!, 10)) as unknown as [number, number, number];
+        const ink = hex3(g.mediaInk.length >= 7 ? g.mediaInk : '#FFFFFF');
+        for (const under of [[255, 255, 255], [0, 0, 0], [255, 214, 90]] as const) {
+          const mixed = plate.map((c, i) => a * c + (1 - a) * under[i]) as unknown as [number, number, number];
+          const r = contrast(lum(ink), lum(mixed));
+          if (r < 4.5) bad.push(`${id} ${appearance}: огонь ${under.join(',')} → ${r.toFixed(2)}`);
+        }
+      }
     }
+    expect(bad).toEqual([]);
   });
 
   it('лента рубежей: до пяти меток, последняя — следующий рубеж, положения внутри дорожки', () => {

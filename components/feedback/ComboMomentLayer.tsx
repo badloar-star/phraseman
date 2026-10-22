@@ -13,13 +13,14 @@ import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
+import { useShadowGlass } from '../v2/ShadowSurface';
 import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, comboCoinStayMs, markComboMomentBusy, publishComboCoin, type ComboBeat, type ComboCoinShow } from './combo_moment_gate';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 // эталон `zap`: путь в кадре 390 × 844, растягивается на экран
 const ZAP_D = 'M60 0 L170 240 L120 250 L250 520 L200 530 L330 844';
 const ZAP_LEN = 1200;
-const FLASH = '#FFFFFF'; // theme-exempt: вспышка эталона `.flash` — белая
+// зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): вспышка эталона `.flash` — «чернила поверх картинок» темы (mediaInk), не зашитый белый.
 
 function playBreakSound(): void {
   try {
@@ -110,6 +111,7 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
   const zapStyle = useAnimatedStyle(() => ({ opacity: zapOpacity.value }));
   const flashStyle = useAnimatedStyle(() => ({ opacity: flash.value }));
   const coldStyle = useAnimatedStyle(() => ({ opacity: cold.value }));
+  const flashColor = useShadowGlass().mediaInk;
 
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill} testID="lesson1-combo-layer">
@@ -125,7 +127,7 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
           <Rect x="0" y="0" width="100" height="100" fill="url(#m08cold)" />
         </Svg>
       </Reanimated.View>
-      <Reanimated.View style={[StyleSheet.absoluteFill, { backgroundColor: FLASH }, flashStyle]} />
+      <Reanimated.View style={[StyleSheet.absoluteFill, { backgroundColor: flashColor }, flashStyle]} />
       <Reanimated.View style={[StyleSheet.absoluteFill, zapStyle]}>
         <Svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 390 844">
           {/* зачем (Макеты 8a2a2bccf: «в эталоне мятная, в приложении золотая»): эталон 2.0 перекрашивает молнию в акцент темы —

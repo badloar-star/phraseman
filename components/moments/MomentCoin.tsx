@@ -32,7 +32,9 @@ import SpireRankCoin from '../spire/SpireRankCoin';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { useSpireShadow } from '../spire/useSpireShadow';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
-import { MOMENT_ART } from '../../constants/momentArtPalette';
+import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
+import { colorWithAlpha } from '../v2/plateAlpha';
+import { useShadowGlass } from '../v2/ShadowSurface';
 
 export type MomentCoinMood =
   | 'idle' | 'sleep' | 'peek' | 'cheer' | 'nod' | 'jump' | 'wow' | 'shiver' | 'spin'
@@ -140,6 +142,8 @@ function MomentCoin(props: MomentCoinProps) {
   useMemMomentsTrack('coin', true, `${size}dp`); // зачем (R129): монета с циклами живёт ровно пока виден момент — [MEM-MOMENTS], только отладка
   const palette = useSpirePalette();
   const plateShadow = useSpireShadow().plate;
+  const glass = useShadowGlass();
+  const colors = useMemo(() => momentCoinColors(glass), [glass]);
   const track = TRACKS[mood];
   const ch = useMemo(() => channels(track.frames), [track]);
   const input = useMemo(() => track.frames.map((_, i) => i), [track]);
@@ -181,28 +185,32 @@ function MomentCoin(props: MomentCoinProps) {
   // зачем (владелец 18.10, iPhone: «белый квадрат вокруг монеты — убери»): на iOS style.filter (dropShadow/saturate/brightness)
   // растеризует слой монеты прямоугольником → белый квадрат на «Ступень прервана» и «Сегодня». На iOS фильтра у монеты нет:
   // тень даёт отдельный слой CoinShadow, сон — полупрозрачность картинки. Android — как было.
-  const faceFilter = Platform.OS === 'ios' ? null : mood === 'sleep' ? s.sleepFilter : s.faceFilter;
+  const faceFilter = useMemo<ViewStyle | null>(() => {
+    if (Platform.OS === 'ios') return null;
+    const drop = { dropShadow: { offsetX: 0, offsetY: 14, standardDeviation: 12, color: colors.faceShadow } };
+    return { filter: (mood === 'sleep' ? [drop, { saturate: 0.6 }, { brightness: 0.8 }] : [drop]) as ViewStyle['filter'] };
+  }, [colors.faceShadow, mood]);
   const iosSleepDim = Platform.OS === 'ios' && mood === 'sleep';
   useEffect(() => {
     console.log('[COIN-IOS-FILTER]', JSON.stringify({ os: Platform.OS, mood, rank, size, filter: faceFilter ? (mood === 'sleep' ? 'sleep' : 'face') : 'none', iosSleepDim })); // guard-ok: трассировка
   }, [faceFilter, iosSleepDim, mood, rank, size]);
   const body = (
     <View style={[s.cc, { width: size }]} testID={testID ? `${testID}-body` : undefined}>
-      {say ? <SayBubble text={say} tone={props.sayTone ?? 'default'} big={props.sayBig === true} pos={props.sayPos ?? 'center'} size={size} reduceMotion={reduceMotion} bg={palette.card} ink={palette.text} plate={plateShadow} /> : null}
-      {crown ? <Crown reduceMotion={reduceMotion} /> : null}
+      {say ? <SayBubble text={say} tone={props.sayTone ?? 'default'} big={props.sayBig === true} pos={props.sayPos ?? 'center'} size={size} reduceMotion={reduceMotion} bg={palette.card} ink={palette.text} plate={plateShadow} gold={colors} /> : null}
+      {crown ? <Crown reduceMotion={reduceMotion} colors={colors} /> : null}
       <Animated.View style={[{ width: size, height: size }, faceFilter, faceStyle]} testID={testID ? `${testID}-face-${mood}` : undefined}>
-        {mood === 'rankUp' && !reduceMotion ? <Animated.View style={[s.glow, { width: size, height: size, borderRadius: size / 2 }, glowStyle]} /> : null}
+        {mood === 'rankUp' && !reduceMotion ? <Animated.View style={[s.glow, { width: size, height: size, borderRadius: size / 2, boxShadow: `0 0 28px 6px ${colors.glow}` }, glowStyle]} /> : null}
         {iosSleepDim ? <View style={s.iosSleepDim}><SpireRankCoin rank={rank} size={size} /></View> : <SpireRankCoin rank={rank} size={size} />}
         {glints && !reduceMotion ? (
           <>
-            <Glint style={{ left: '18%', top: '16%' }} delayMs={0} on={loopsOn} />
-            <Glint style={{ right: '14%', top: '40%' }} delayMs={500} on={loopsOn} />
+            <Glint style={{ left: '18%', top: '16%' }} delayMs={0} on={loopsOn} color={colors.glint} />
+            <Glint style={{ right: '14%', top: '40%' }} delayMs={500} on={loopsOn} color={colors.glint} />
           </>
         ) : null}
         {mood === 'sleep' && zz ? <Zz on={loopsOn} color={palette.textSecondary} /> : null}
       </Animated.View>
-      {shadow ? <CoinShadow size={size} on={loopsOn} /> : null}
-      <EmoteBurst kind={emote ?? null} burstKey={emoteKey ?? 0} count={emoteCount} reduceMotion={reduceMotion} onCueRef={onCueRef} dotsColor={palette.textSecondary} starColor={palette.text} />
+      {shadow ? <CoinShadow size={size} on={loopsOn} color={colors.shadow} /> : null}
+      <EmoteBurst kind={emote ?? null} burstKey={emoteKey ?? 0} count={emoteCount} reduceMotion={reduceMotion} onCueRef={onCueRef} dotsColor={palette.textSecondary} starColor={palette.text} emoteColors={colors.emote} />
     </View>
   );
   if (!onPress) return <View testID={testID} pointerEvents="box-none">{body}</View>;
@@ -214,8 +222,8 @@ function MomentCoin(props: MomentCoinProps) {
 }
 
 // ─── облачко-реплика: emSay 500 мс pop (v2.css .cc .say) ────────────────────
-type SayProps = Readonly<{ text: string; tone: 'default' | 'gold'; big: boolean; pos: 'center' | 'l'; size: number; reduceMotion: boolean; bg: string; ink: string; plate: ViewStyle }>;
-function SayBubble({ text, tone, big, pos, size, reduceMotion, bg, ink, plate }: SayProps) {
+type SayProps = Readonly<{ text: string; tone: 'default' | 'gold'; big: boolean; pos: 'center' | 'l'; size: number; reduceMotion: boolean; bg: string; ink: string; plate: ViewStyle; gold: Pick<CoinColors, 'goldGradient' | 'goldMid' | 'goldInk'> }>;
+function SayBubble({ text, tone, big, pos, size, reduceMotion, bg, ink, plate, gold: goldColors }: SayProps) {
   const p = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {
     if (reduceMotion) { p.value = 1; return; }
@@ -227,7 +235,7 @@ function SayBubble({ text, tone, big, pos, size, reduceMotion, bg, ink, plate }:
     transform: [{ translateY: interpolate(p.value, [0, 1], [8, 0]) }, { scale: interpolate(p.value, [0, 1], [0.8, 1]) }],
   }));
   const gold = tone === 'gold';
-  const inkColor = gold ? GOLD_INK : ink;
+  const inkColor = gold ? goldColors.goldInk : ink;
   const bubbleShape = [s.say, big ? s.sayBig : null, pos === 'l' ? s.sayLeftShape : null];
   const anchor = pos === 'l' ? [s.sayAnchorLeft, { right: size / 2 - 30 }] : s.sayAnchorCenter;
   return (
@@ -236,14 +244,14 @@ function SayBubble({ text, tone, big, pos, size, reduceMotion, bg, ink, plate }:
           Android обрезает выступающего ребёнка по форме такого вида. Теперь хвост — соседний слой ПОД облачком в общей анимации: видна только его нижняя половина. */}
       <Animated.View style={st} accessible accessibilityLabel={text}>
         <View
-          style={[s.sayTail, pos === 'l' ? s.sayTailLeft : null, { backgroundColor: gold ? GOLD_MID : bg }]}
+          style={[s.sayTail, pos === 'l' ? s.sayTailLeft : null, { backgroundColor: gold ? goldColors.goldMid : bg }]}
           onLayout={(e) => {
             const { x, y, width, height } = e.nativeEvent.layout;
             console.log(`[MOMENT-SAY] tail ${JSON.stringify({ text, pos, gold, x: Math.round(x), y: Math.round(y), w: Math.round(width), h: Math.round(height) })}`); // guard-ok: строка на показ облачка
           }}
         />
-        <View style={[plate, bubbleShape, { backgroundColor: gold ? GOLD_MID : bg }]}>
-          {gold ? <LinearGradient colors={GOLD_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, bubbleShape, s.noPad]} /> : null}
+        <View style={[plate, bubbleShape, { backgroundColor: gold ? goldColors.goldMid : bg }]}>
+          {gold ? <LinearGradient colors={goldColors.goldGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, bubbleShape, s.noPad]} /> : null}
           <Text style={[s.sayText, big ? s.sayTextBig : null, { color: inkColor }]}>{text}</Text>
         </View>
       </Animated.View>
@@ -252,7 +260,7 @@ function SayBubble({ text, tone, big, pos, size, reduceMotion, bg, ink, plate }:
 }
 
 // ─── корона: emCrownIn 800 мс pop, задержка 0.8 с ──────────────────────────
-function Crown({ reduceMotion }: Readonly<{ reduceMotion: boolean }>) {
+function Crown({ reduceMotion, colors }: Readonly<{ reduceMotion: boolean; colors: Pick<CoinColors, 'crownFill' | 'crownStroke' | 'crownGem'> }>) {
   const p = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {
     if (reduceMotion) { p.value = 1; return; }
@@ -266,8 +274,8 @@ function Crown({ reduceMotion }: Readonly<{ reduceMotion: boolean }>) {
     <View style={s.crownAnchor} pointerEvents="none">
       <Animated.View style={st}>
         <Svg width={44} height={30} viewBox="0 0 44 30">
-          <Path d="M4 26L2 8l10 8L22 2l10 14 10-8-2 18z" fill={MOMENT_ART.crownFill} stroke={MOMENT_ART.crownStroke} strokeWidth={1.5} strokeLinejoin="round" />
-          <Circle cx={22} cy={12} r={2.5} fill={MOMENT_ART.crownGem} />
+          <Path d="M4 26L2 8l10 8L22 2l10 14 10-8-2 18z" fill={colors.crownFill} stroke={colors.crownStroke} strokeWidth={1.5} strokeLinejoin="round" />
+          <Circle cx={22} cy={12} r={2.5} fill={colors.crownGem} />
         </Svg>
       </Animated.View>
     </View>
@@ -275,7 +283,7 @@ function Crown({ reduceMotion }: Readonly<{ reduceMotion: boolean }>) {
 }
 
 // ─── блик: emGlint 1.4 с ease-in-out, бесконечно ───────────────────────────
-function Glint({ style, delayMs, on }: Readonly<{ style: ViewStyle; delayMs: number; on: boolean }>) {
+function Glint({ style, delayMs, on, color }: Readonly<{ style: ViewStyle; delayMs: number; on: boolean; color: string }>) {
   // До старта (задержка второго блика) CSS показывает элемент без анимации — видимым; повторяем.
   const p = useSharedValue(1);
   useEffect(() => {
@@ -290,7 +298,7 @@ function Glint({ style, delayMs, on }: Readonly<{ style: ViewStyle; delayMs: num
     const k = v <= 1 ? v : 2 - v; // 0 → 1 → 0
     return { opacity: k, transform: [{ scale: 0.3 + 0.7 * k }] };
   });
-  return <Animated.View pointerEvents="none" style={[s.glint, style, st]} />;
+  return <Animated.View pointerEvents="none" style={[s.glint, { backgroundColor: color, boxShadow: `0 0 10px ${color}` }, style, st]} />;
 }
 
 // ─── «z»: emZz 2.2 с ease-in-out — сдвиг одним отрезком, прозрачность двумя (0→40%→100%) ─
@@ -315,7 +323,7 @@ function Zz({ on, color }: Readonly<{ on: boolean; color: string }>) {
 }
 
 // ─── тень под монетой: emShadowIdle 2.8 с, крутится всегда (как в образце) ─
-function CoinShadow({ size, on }: Readonly<{ size: number; on: boolean }>) {
+function CoinShadow({ size, on, color }: Readonly<{ size: number; on: boolean; color: string }>) {
   const p = useSharedValue(0);
   useEffect(() => {
     cancelAnimation(p);
@@ -324,13 +332,13 @@ function CoinShadow({ size, on }: Readonly<{ size: number; on: boolean }>) {
     return () => cancelAnimation(p);
   }, [on, p]);
   const st = useAnimatedStyle(() => ({ opacity: 0.45 - 0.15 * p.value, transform: [{ scaleX: 1 - 0.2 * p.value }] }));
-  return <Animated.View pointerEvents="none" style={[s.shadow, Platform.OS === 'ios' ? null : s.shadowBlur, { width: size * 0.6 }, st]} />;
+  return <Animated.View pointerEvents="none" style={[s.shadow, Platform.OS === 'ios' ? null : s.shadowBlur, { width: size * 0.6, backgroundColor: color }, st]} />;
 }
 
 // ─── эмоции: emo() образца v3.js — значки всплывают со сдвигом 140 мс, живут 1600 + i·140 мс ─
 type Particle = Readonly<{ id: string; kind: MomentCoinEmote; i: number; left: number; top: number; ex: number; ey: number }>;
-type BurstProps = Readonly<{ kind: MomentCoinEmote | null; burstKey: number; count?: number; reduceMotion: boolean; onCueRef: React.MutableRefObject<MomentCoinProps['onCue']>; dotsColor: string; starColor: string }>;
-function EmoteBurst({ kind, burstKey, count, reduceMotion, onCueRef, dotsColor, starColor }: BurstProps) {
+type BurstProps = Readonly<{ kind: MomentCoinEmote | null; burstKey: number; count?: number; reduceMotion: boolean; onCueRef: React.MutableRefObject<MomentCoinProps['onCue']>; dotsColor: string; starColor: string; emoteColors: CoinColors['emote'] }>;
+function EmoteBurst({ kind, burstKey, count, reduceMotion, onCueRef, dotsColor, starColor, emoteColors }: BurstProps) {
   const [particles, setParticles] = useState<readonly Particle[]>([]);
   useEffect(() => {
     if (!kind) return;
@@ -350,12 +358,12 @@ function EmoteBurst({ kind, burstKey, count, reduceMotion, onCueRef, dotsColor, 
   if (particles.length === 0) return null;
   return (
     <>
-      {particles.map((pt) => <EmoteGlyph key={pt.id} p={pt} dotsColor={dotsColor} starColor={starColor} />)}
+      {particles.map((pt) => <EmoteGlyph key={pt.id} p={pt} dotsColor={dotsColor} starColor={starColor} emoteColors={emoteColors} />)}
     </>
   );
 }
 
-function EmoteGlyph({ p: pt, dotsColor, starColor }: Readonly<{ p: Particle; dotsColor: string; starColor: string }>) {
+function EmoteGlyph({ p: pt, dotsColor, starColor, emoteColors }: Readonly<{ p: Particle; dotsColor: string; starColor: string; emoteColors: CoinColors['emote'] }>) {
   const p = useSharedValue(0);
   useEffect(() => {
     // emEmo: 0% → 25% → 100%, кривая --em-ease на каждом отрезке; задержка i·140 мс (до неё виден кадр 0% — прозрачный).
@@ -370,7 +378,7 @@ function EmoteGlyph({ p: pt, dotsColor, starColor }: Readonly<{ p: Particle; dot
       { scale: interpolate(p.value, [0, 1, 2], [0.5, 1.1, 1]) },
     ],
   }));
-  const color = pt.kind === 'dots' ? dotsColor : pt.kind === 'star' ? starColor : EMOTE_COLOR[pt.kind];
+  const color = pt.kind === 'dots' ? dotsColor : pt.kind === 'star' ? starColor : emoteColors[pt.kind];
   return (
     <Animated.Text accessible={false} pointerEvents="none" style={[s.emo, pt.kind === 'bang' ? s.emoBang : null, pt.kind === 'dots' ? s.emoDots : null, { left: `${pt.left}%`, top: `${pt.top}%`, color }, st]}>
       {EMOTE_GLYPH[pt.kind]}
@@ -378,18 +386,47 @@ function EmoteGlyph({ p: pt, dotsColor, starColor }: Readonly<{ p: Particle; dot
   );
 }
 
-// Цвета эмоций, «z», блика, короны и сияния — иллюстрация (эталон .emo.*, .glint, .crown), не токены темы.
-const EMOTE_COLOR: Readonly<Record<'heart' | 'sweat' | 'bang', string>> = { heart: '#FF6B8B', sweat: '#7EC8FF', bang: '#FFD166' }; // theme-exempt: иллюстрация
-const GOLD_GRADIENT = ['#FFE08A', '#F0B33A'] as const; // theme-exempt: `.say.gold` образца
-const GOLD_MID = '#F7C962'; // theme-exempt: середина золотого градиента для хвостика облачка
-const GOLD_INK = '#3A2400'; // theme-exempt: текст золотого облачка образца
+/**
+ * Цвета монеты момента — только из ТЕКУЩЕЙ темы (эталон .emo.*, .glint, .crown, .say.gold в ролях темы).
+ * зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): прежде иллюстрация шла зашитыми HEX.
+ *  - золото облачка и короны — warn темы (в тёмной яркое золото, в светлой глубокий янтарь) к medalGold / medalGoldDeep; текст на нём —
+ *    фон темы в тёмной и карточка в светлой: ≥ 4,5:1 на обоих концах градиента;
+ *  - эмоции: сердце — bad, капля — info, «!» — warn; блик и камень короны — mediaInk; тени — dropShadow темы.
+ */
+type CoinColors = Readonly<{
+  goldGradient: readonly [string, string];
+  goldMid: string;
+  goldInk: string;
+  glow: string;
+  glint: string;
+  shadow: string;
+  faceShadow: string;
+  crownFill: string;
+  crownStroke: string;
+  crownGem: string;
+  emote: Readonly<Record<'heart' | 'sweat' | 'bang', string>>;
+}>;
+export function momentCoinColors(g: GlassTokens): CoinColors {
+  const light = g.isLight;
+  return {
+    goldGradient: [g.warn, light ? g.medalGoldDeep : g.medalGold],
+    goldMid: g.warn,
+    goldInk: light ? g.opaqueCard : g.bg,
+    glow: colorWithAlpha(g.warn, 0.85),
+    glint: g.mediaInk,
+    shadow: colorWithAlpha(g.dropShadow, 0.45),
+    faceShadow: colorWithAlpha(g.dropShadow, 0.5),
+    crownFill: g.warn,
+    crownStroke: light ? g.medalGoldDeep : g.medalGold,
+    crownGem: g.mediaInk,
+    emote: { heart: g.bad, sweat: g.info, bang: g.warn },
+  };
+}
 
 const s = StyleSheet.create({
   cc: { position: 'relative', alignItems: 'center' },
-  // drop-shadow(0 14px 24px rgba(0,0,0,.5)) монеты; во сне ещё saturate(.6) brightness(.8). iOS понимает только brightness.
-  faceFilter: { filter: [{ dropShadow: { offsetX: 0, offsetY: 14, standardDeviation: 12, color: MOMENT_ART.coinDropShadow } }] },
-  sleepFilter: { filter: [{ dropShadow: { offsetX: 0, offsetY: 14, standardDeviation: 12, color: MOMENT_ART.coinDropShadow } }, { saturate: 0.6 }, { brightness: 0.8 }] },
-  glow: { position: 'absolute', left: 0, top: 0, boxShadow: '0 0 28px 6px rgba(255,224,138,0.85)' }, // theme-exempt: сияние металла при повышении ранга
+  // drop-shadow(0 14px 24px) монеты цвета тени темы (faceFilterOf); во сне ещё saturate(.6) brightness(.8). iOS понимает только brightness.
+  glow: { position: 'absolute', left: 0, top: 0 },
   sayAnchorCenter: { position: 'absolute', bottom: '100%', left: -400, right: -400, marginBottom: 10, alignItems: 'center' },
   sayAnchorLeft: { position: 'absolute', bottom: '100%', marginBottom: 10, alignItems: 'flex-end' },
   // `.cc .say`: 10/14, скругление 18 (низ-лево 6), 15/700, в одну строку
@@ -404,9 +441,9 @@ const s = StyleSheet.create({
   sayTail: { position: 'absolute', left: '50%', bottom: -6, width: 12, height: 12, marginLeft: -14, borderRadius: 2, transform: [{ rotate: '45deg' }] },
   sayTailLeft: { left: undefined, right: 14, marginLeft: 0 },
   crownAnchor: { position: 'absolute', top: -22, left: 0, right: 0, alignItems: 'center', zIndex: 2 },
-  glint: { position: 'absolute', width: 10, height: 10, borderRadius: 5, backgroundColor: '#FFFFFF', boxShadow: '0 0 10px #FFFFFF' }, // theme-exempt: блик металла
+  glint: { position: 'absolute', width: 10, height: 10, borderRadius: 5 },
   zz: { position: 'absolute', right: -8, top: -4, fontSize: 20, lineHeight: 25, fontWeight: '800' },
-  shadow: { height: 10, borderRadius: 999, marginTop: 6, backgroundColor: 'rgba(0,0,0,0.45)' }, // theme-exempt: тень под монетой
+  shadow: { height: 10, borderRadius: 999, marginTop: 6 },
   // зачем: blur — только Android; на iOS filter у слоя даёт прямоугольник (см. [COIN-IOS-FILTER]).
   shadowBlur: { filter: [{ blur: 4 }] },
   // зачем: сон на iOS без filter — картинка монеты приглушена прозрачностью (≈ brightness .8 на тёмном фоне).

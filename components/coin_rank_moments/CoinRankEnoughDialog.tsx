@@ -20,7 +20,7 @@ import { hapticMediumImpact, hapticTap } from '../../hooks/use-haptics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { playEvent } from '../../modules/sound_v2/sound_bank';
 import MomentCoin from '../moments/MomentCoin';
-import { MOMENT_DIM_COLOR } from '../spire/moments/moments_layout';
+import { useMomentDimColor } from '../spire/moments/moments_layout';
 import SpireRankCoin from '../spire/SpireRankCoin';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { useSpireShadow } from '../spire/useSpireShadow';
@@ -48,6 +48,7 @@ function CoinRankEnoughDialog({ lang, coinRank, coins, onUpgrade, onLater, testI
   useMemMomentsTrack('host:coin-rank-enough'); // зачем (R129): факт размонтирования после закрытия — [MEM-MOMENTS], только отладка
   const p = useSpirePalette();
   const sh = useSpireShadow();
+  const dimColor = useMomentDimColor();
   const reduceMotion = useReducedMotion();
   const runtimeActive = useRuntimeActive(true);
   const [jump, setJump] = useState(false);
@@ -84,7 +85,7 @@ function CoinRankEnoughDialog({ lang, coinRank, coins, onUpgrade, onLater, testI
 
   return (
     <View style={s.root} testID={testID} accessibilityViewIsModal>
-      <Animated.View entering={reduceMotion ? undefined : FadeIn.duration(320)} style={[StyleSheet.absoluteFill, { backgroundColor: MOMENT_DIM_COLOR }]} pointerEvents="none" />
+      <Animated.View entering={reduceMotion ? undefined : FadeIn.duration(320)} style={[StyleSheet.absoluteFill, { backgroundColor: dimColor }]} pointerEvents="none" />
       <Animated.View style={[s.card, { backgroundColor: p.card }, sh.plate, cardStyle]}>
         <MomentCoin rank={coinRank} size={96} mood={jump ? 'jump' : 'idle'} glints testID={`${testID}-coin`} />
         <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]}>{coinRankText(lang, 'title', { n: nextRank })}</Text>

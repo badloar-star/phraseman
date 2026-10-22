@@ -79,7 +79,7 @@ ___ → **oval** · round · low
 - round — *round — це круглий, а в яйця витягнута форма: oval.*
 - low — *low — це низький, а форма яйця називається oval.*
 
-**7 · Послухайте, що продавець каже про дзеркало**
+**7 · Послухайте й виберіть — продавець розповідає про речі в залі**
 <!-- interaction_id: en:lesson-03:session-52:i05; family: listen_choose -->
 🔊 *That round mirror is old.* → **That round mirror is old.** · That oval mirror is old. · That round mirror is new.
 - That oval mirror is old. — *У записі форма — `round`, а в цьому варіанті — `oval`.*
@@ -117,7 +117,7 @@ ___ → **high** · low · round
 <!-- interaction_id: en:lesson-03:session-52:i10; family: speed_match -->
 high — високий (про полицю, стелю) · low — низький · clock — годинник (настінний) · shelf — полиця
 
-**15 · Послухайте запитання подруги**
+**15 · Послухайте й виберіть — подруга розглядає речі поруч із вами**
 <!-- interaction_id: en:lesson-03:session-52:i11; family: listen_choose -->
 🔊 *Is that oval clock new?* → **Is that oval clock new?** · Is this oval clock new? · Is that round clock new?
 - Is this oval clock new? — *У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч).*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-06:word:tag; family: word_card -->
 > **tag** — бирка, ярлык. It is a tag — «Это бирка». На ней цена или название товара.
 
-**4 · Послушайте, что консультант говорит о товарах**
+**4 · Послушайте и выберите — консультант подходит к вам у полки**
 <!-- interaction_id: en:lesson-03:session-06:i02; family: listen_choose -->
 🔊 *It is a tag.* → **It is a tag.** · It is a bag. · It is a basket.
 - It is a bag. — *В записи последнее слово — `tag`, а в этом варианте — `bag`.*

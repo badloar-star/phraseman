@@ -57,7 +57,7 @@
 Плитки: `parcel` `a` `is` `This` `an` → **This is a parcel.**
 *(плитка `an` зайва: тут потрібно `a` — `This is a parcel.`)*
 
-**2 · Послухайте подругу й виберіть фразу**
+**2 · Послухайте й виберіть — подруга звіряє замовлення зі списком**
 <!-- interaction_id: en:lesson-03:session-48:i02; family: listen_choose -->
 🔊 *The parcel is here.* → **The parcel is here.** · A parcel is here. · The parcel is there.
 - A parcel is here. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
@@ -101,7 +101,7 @@ ___ → **item** · bag · jar
 - bag — *bag — це сумка, а окрема річ у списку замовлення називається item.*
 - jar — *jar — це банка, а окрема річ у списку замовлення називається item.*
 
-**11 · Послухайте подругу й виберіть фразу**
+**11 · Послухайте й виберіть — удома ви з подругою розбираєте замовлення**
 <!-- interaction_id: en:lesson-03:session-48:i09; family: listen_choose -->
 🔊 *The order is complete.* → **The order is complete.** · An order is complete. · The order is late.
 - An order is complete. — *У записі перше слово — `The`, а в цьому варіанті — `An`.*
@@ -139,7 +139,7 @@ ___ → **refund** · coin · ticket
 - coin — *coin — це монета, а гроші, які магазин повертає за товар, називаються refund.*
 - ticket — *ticket — це квиток, а гроші, які магазин повертає за товар, називаються refund.*
 
-**19 · Послухайте подругу й виберіть фразу**
+**19 · Послухайте й виберіть — подруга позначає пункти в списку**
 <!-- interaction_id: en:lesson-03:session-48:i15; family: listen_choose -->
 🔊 *The total is correct.* → **The total is correct.** · A total is correct. · The total is wrong.
 - A total is correct. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*

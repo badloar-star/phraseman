@@ -1220,7 +1220,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що каже сусідка",
+        "prompt": "Послухайте й виберіть — сусідка розбирає з вами пошту в під’їзді",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-29:i02:r1",
@@ -1239,7 +1239,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-29:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що каже сусідка",
+        "accessibilityLabel": "Послухайте й виберіть — сусідка розбирає з вами пошту в під’їзді",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1269,7 +1269,7 @@
             {
               "responseId": "en:lesson-03:session-29:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що каже сусідка",
+              "testedDimension": "Послухайте й виберіть — сусідка розбирає з вами пошту в під’їзді",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
                 "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
@@ -1278,7 +1278,7 @@
             {
               "responseId": "en:lesson-03:session-29:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що каже сусідка",
+              "testedDimension": "Послухайте й виберіть — сусідка розбирає з вами пошту в під’їзді",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `door`, а в этом варианте — `box`.",
                 "uk": "У записі останнє слово — `door`, а в цьому варіанті — `box`."
@@ -1720,7 +1720,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте сусідку",
+        "prompt": "Послухайте й виберіть — біля під’їзду сусідка дивиться на речі",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-29:i09:r1",
@@ -1739,7 +1739,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-29:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте сусідку",
+        "accessibilityLabel": "Послухайте й виберіть — біля під’їзду сусідка дивиться на речі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1769,7 +1769,7 @@
             {
               "responseId": "en:lesson-03:session-29:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте сусідку",
+              "testedDimension": "Послухайте й виберіть — біля під’їзду сусідка дивиться на речі",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
                 "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
@@ -1778,7 +1778,7 @@
             {
               "responseId": "en:lesson-03:session-29:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте сусідку",
+              "testedDimension": "Послухайте й виберіть — біля під’їзду сусідка дивиться на речі",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `parcel`, а в этом варианте — `box`.",
                 "uk": "У записі останнє слово — `parcel`, а в цьому варіанті — `box`."
@@ -2151,7 +2151,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте сусідку про марку",
+        "prompt": "Послухайте й виберіть — ви розбираєте пошту, сусідка говорить поруч",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-29:i15:r1",
@@ -2170,7 +2170,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-29:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте сусідку про марку",
+        "accessibilityLabel": "Послухайте й виберіть — ви розбираєте пошту, сусідка говорить поруч",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2200,7 +2200,7 @@
             {
               "responseId": "en:lesson-03:session-29:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте сусідку про марку",
+              "testedDimension": "Послухайте й виберіть — ви розбираєте пошту, сусідка говорить поруч",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
                 "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
@@ -2209,7 +2209,7 @@
             {
               "responseId": "en:lesson-03:session-29:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте сусідку про марку",
+              "testedDimension": "Послухайте й виберіть — ви розбираєте пошту, сусідка говорить поруч",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `small`, а в этом варианте — `heavy`.",
                 "uk": "У записі останнє слово — `small`, а в цьому варіанті — `heavy`."

@@ -79,7 +79,7 @@ ___ → **checked** · striped · plain
 - striped — *striped — це смугастий, а в шахової дошки квадрати: checked.*
 - plain — *plain — це без малюнка, а тут квадрати: checked.*
 
-**7 · Послухайте, що продавець каже про сорочку**
+**7 · Послухайте й виберіть — продавець показує вам речі з малюнком**
 <!-- interaction_id: en:lesson-03:session-54:i05; family: listen_choose -->
 🔊 *That striped shirt is new.* → **That striped shirt is new.** · That checked shirt is new. · That striped shirt is old.
 - That checked shirt is new. — *У записі малюнок — `striped`, а в цьому варіанті — `checked`.*
@@ -117,7 +117,7 @@ ___ → **floral** · spotted · plain
 <!-- interaction_id: en:lesson-03:session-54:i10; family: speed_match -->
 spotted — у горошок, плямистий · floral — квітковий (з квітами) · scarf — шарф · dress — сукня
 
-**15 · Послухайте запитання подруги**
+**15 · Послухайте й виберіть — подруга обирає з вами речі з малюнком**
 <!-- interaction_id: en:lesson-03:session-54:i11; family: listen_choose -->
 🔊 *Is that striped scarf old?* → **Is that striped scarf old?** · Is that checked scarf old? · Is this striped scarf old?
 - Is that checked scarf old? — *У записі малюнок — `striped`, а в цьому варіанті — `checked`.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-03:word:mirror; family: word_card -->
 > **mirror** — зеркало. Is it a mirror? — «Это зеркало?» Карманное, настенное, в рост — всё это a mirror.
 
-**4 · Послушайте, что подруга говорит о вещи у двери**
+**4 · Послушайте и выберите — подруга показывает на вещь у двери**
 <!-- interaction_id: en:lesson-03:session-03:i02; family: listen_choose -->
 🔊 *It is a mirror.* → **It is a mirror.** · It is a rug. · It is a stool.
 - It is a rug. — *В записи последнее слово — `mirror`, а в этом варианте — `rug`.*

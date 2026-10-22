@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-17:word:coin; family: word_card -->
 > **coin** — монета. Are they coins? — «Це монети?» Про металеві гроші.
 
-**4 · Послухайте, що кур’єр каже про решту**
+**4 · Послухайте й виберіть — кур’єр розмовляє з вами біля дверей**
 <!-- interaction_id: en:lesson-03:session-17:i02; family: listen_choose -->
 🔊 *They are coins.* → **They are coins.** · It is a coin. · They are tickets.
 - It is a coin. — *У записі останнє слово — `coins`, а в цьому варіанті — `coin`.*
@@ -109,7 +109,7 @@ The pens ___ here. → **are** · is · am
 - is — *Ручок кілька: The pens are here.*
 - am — *З The pens потрібно are: The pens are here.*
 
-**13 · Послухайте брата: він говорить про квитки**
+**13 · Послухайте й виберіть — кур’єр перелічує, що лежить у посилці**
 <!-- interaction_id: en:lesson-03:session-17:i09; family: listen_choose -->
 🔊 *The tickets are new.* → **The tickets are new.** · The tickets are old. · The tickets are here.
 - The tickets are old. — *У записі останнє слово — `new`, а в цьому варіанті — `old`.*
@@ -139,7 +139,7 @@ Are they ___? → **tickets** · ticket · are
 - ticket — *У запитанні про кілька квитків теж потрібно tickets з s.*
 - are — *Слово Are вже стоїть на початку. У пропуск потрібна назва квитків: tickets.*
 
-**19 · Послухайте запитання подруги**
+**19 · Послухайте й виберіть — подруга розглядає посилку разом із вами**
 <!-- interaction_id: en:lesson-03:session-17:i15; family: listen_choose -->
 🔊 *Are they coins?* → **Are they coins?** · Are they cards? · Are they pens?
 - Are they cards? — *У записі останнє слово — `coins`, а в цьому варіанті — `cards`.*

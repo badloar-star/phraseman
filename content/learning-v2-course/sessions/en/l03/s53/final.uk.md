@@ -79,7 +79,7 @@ ___ → **leather** · metal · soft
 - metal — *metal — це метал, а пасок зроблений зі шкіри: leather.*
 - soft — *soft — це м’який, а матеріал паска називається leather.*
 
-**7 · Послухайте, що продавець каже про рукавички**
+**7 · Послухайте й виберіть — продавець показує речі з різних матеріалів**
 <!-- interaction_id: en:lesson-03:session-53:i05; family: listen_choose -->
 🔊 *Those leather gloves are old.* → **Those leather gloves are old.** · These leather gloves are old. · Those leather gloves are new.
 - These leather gloves are old. — *У записі перше слово — `Those` (далеко), а в цьому варіанті — `These` (поруч).*
@@ -117,7 +117,7 @@ ___ → **cotton** · rubber · leather
 <!-- interaction_id: en:lesson-03:session-53:i10; family: speed_match -->
 rubber — гумовий · cotton — бавовняний · glove — рукавичка · boot — черевик
 
-**15 · Послухайте запитання подруги**
+**15 · Послухайте й виберіть — подруга ставить запитання, поки ви дивитеся речі**
 <!-- interaction_id: en:lesson-03:session-53:i11; family: listen_choose -->
 🔊 *Are these metal boxes heavy?* → **Are these metal boxes heavy?** · Is this metal box heavy? · Are these metal boxes new?
 - Is this metal box heavy? — *У записі `Are these` і кілька коробок, а в цьому варіанті `Is this` і одна коробка.*

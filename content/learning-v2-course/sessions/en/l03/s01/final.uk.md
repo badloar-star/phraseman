@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-01:word:table; family: word_card -->
 > **table** — стіл. Is it a table? — «Це стіл?» Обідній, письмовий, кухонний — усе це a table.
 
-**4 · Послухайте, що подруга каже про річ у коробці**
+**4 · Послухайте й виберіть — подруга зазирає у ваші коробки**
 <!-- interaction_id: en:lesson-03:session-01:i02; family: listen_choose -->
 🔊 *It is a table.* → **It is a table.** · It is a lamp. · It is a chair.
 - It is a lamp. — *У записі останнє слово — `table`, а в цьому варіанті — `lamp`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 <!-- interaction_id: en:lesson-03:session-01:word:box; family: word_card -->
 > **box** — коробка. It is a box — «Це коробка». У ній носять, зберігають і надсилають речі.
 
-**13 · Послухайте запитання подруги**
+**13 · Послухайте й виберіть — ви розпаковуєте речі, подруга цікавиться**
 <!-- interaction_id: en:lesson-03:session-01:i09; family: listen_choose -->
 🔊 *Is it a box?* → **Is it a box?** · Is it a table? · Is it a lamp?
 - Is it a table? — *У записі останнє слово — `box`, а в цьому варіанті — `table`.*
@@ -139,7 +139,7 @@ ___ it a lamp? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a lamp?`.*
 
-**19 · Послухайте, що подруга каже про коробку**
+**19 · Послухайте й виберіть — серед ваших речей подруга щось помічає**
 <!-- interaction_id: en:lesson-03:session-01:i15; family: listen_choose -->
 🔊 *It is a box.* → **It is a box.** · It is a chair. · It is a table.
 - It is a chair. — *У записі останнє слово — `box`, а в цьому варіанті — `chair`.*

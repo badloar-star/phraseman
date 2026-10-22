@@ -57,7 +57,7 @@
 Плитки: `mirror` `This` `is` `a` `That` → **This is a mirror.**
 *(плитка `That` зайва: тут потрібно `This` — `This is a mirror.`)*
 
-**2 · Послухайте, що каже продавець**
+**2 · Послухайте й виберіть — продавець показує вам теплі речі**
 <!-- interaction_id: en:lesson-03:session-30:i02; family: listen_choose -->
 🔊 *That is a hanger.* → **That is a hanger.** · This is a hanger. · That is a shelf.
 - This is a hanger. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
@@ -101,7 +101,7 @@ ___ → **scarf** · sweater · mirror
 - sweater — *sweater — це светр, одяг з рукавами, а смуга тканини на шию називається scarf.*
 - mirror — *mirror — це дзеркало, а смуга тканини на шию називається scarf.*
 
-**11 · Послухайте подругу**
+**11 · Послухайте й виберіть — подруга обирає речі разом із вами**
 <!-- interaction_id: en:lesson-03:session-30:i09; family: listen_choose -->
 🔊 *This is not a sweater.* → **This is not a sweater.** · That is not a sweater. · This is not a mirror.
 - That is not a sweater. — *У записі перше слово — `This`, а в цьому варіанті — `That`.*
@@ -139,7 +139,7 @@ ___ → **vest** · sweater · scarf
 - sweater — *sweater — це светр з рукавами, а річ без рукавів називається vest.*
 - scarf — *scarf — це шарф на шию, а річ без рукавів називається vest.*
 
-**19 · Послухайте питання подруги**
+**19 · Послухайте й виберіть — у відділі одягу подруга ставить запитання**
 <!-- interaction_id: en:lesson-03:session-30:i15; family: listen_choose -->
 🔊 *Is that a glove?* → **Is that a glove?** · Is this a glove? · Is that a vest?
 - Is this a glove? — *У записі друге слово — `that`, а в цьому варіанті — `this`.*

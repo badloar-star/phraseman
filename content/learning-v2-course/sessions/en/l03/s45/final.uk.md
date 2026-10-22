@@ -57,7 +57,7 @@
 Плитки: `umbrella` `is` `wet` `The` `An` → **The umbrella is wet.**
 *(плитка `An` зайва: тут потрібно `The` — `The umbrella is wet.`)*
 
-**2 · Послухайте продавця й виберіть фразу**
+**2 · Послухайте й виберіть — ви питаєте продавця про товари**
 <!-- interaction_id: en:lesson-03:session-45:i02; family: listen_choose -->
 🔊 *An apple is here.* → **An apple is here.** · The apple is here. · An apple is there.
 - The apple is here. — *У записі перше слово — `An`, а в цьому варіанті — `The`.*
@@ -101,7 +101,7 @@ ___ → **colour** · size · box
 - size — *size — це розмір, а червоний і синій відрізняються кольором: colour.*
 - box — *box — це коробка, а червоний і синій відрізняються кольором: colour.*
 
-**11 · Послухайте продавця й виберіть фразу**
+**11 · Послухайте й виберіть — продавець відповідає на ваше запитання**
 <!-- interaction_id: en:lesson-03:session-45:i09; family: listen_choose -->
 🔊 *The size is small.* → **The size is small.** · A size is small. · The size is big.
 - A size is small. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
@@ -139,7 +139,7 @@ ___ → **brand** · size · box
 - size — *size — це розмір, а назва фірми називається brand.*
 - box — *box — це коробка, а назва фірми називається brand.*
 
-**19 · Послухайте продавця й виберіть фразу**
+**19 · Послухайте й виберіть — біля товару поруч із вами стоїть продавець**
 <!-- interaction_id: en:lesson-03:session-45:i15; family: listen_choose -->
 🔊 *This is a model.* → **This is a model.** · That is a model. · This is the model.
 - That is a model. — *У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко).*

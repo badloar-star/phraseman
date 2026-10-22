@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-06:word:tag; family: word_card -->
 > **tag** — бирка, ярлик. It is a tag — «Це бирка». На ній ціна або назва товару.
 
-**4 · Послухайте, що консультант каже про товари**
+**4 · Послухайте й виберіть — консультант підходить до вас біля полиці**
 <!-- interaction_id: en:lesson-03:session-06:i02; family: listen_choose -->
 🔊 *It is a tag.* → **It is a tag.** · It is a bag. · It is a basket.
 - It is a bag. — *У записі останнє слово — `tag`, а в цьому варіанті — `bag`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте запитання консультанта**
+**13 · Послухайте й виберіть — біля полиці консультант звертається до вас**
 <!-- interaction_id: en:lesson-03:session-06:i09; family: listen_choose -->
 🔊 *Is it a trolley?* → **Is it a trolley?** · Is it a basket? · Is it a bag?
 - Is it a basket? — *У записі останнє слово — `trolley`, а в цьому варіанті — `basket`.*
@@ -139,7 +139,7 @@ ___ it a bag? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a bag?`.*
 
-**19 · Послухайте, що подруга каже про бирку**
+**19 · Послухайте й виберіть — подруга розглядає товари поруч із вами**
 <!-- interaction_id: en:lesson-03:session-06:i15; family: listen_choose -->
 🔊 *It is a tag.* → **It is a tag.** · It is a bag. · It is a trolley.
 - It is a bag. — *У записі останнє слово — `tag`, а в цьому варіанті — `bag`.*

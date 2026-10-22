@@ -57,7 +57,7 @@
 Плитки: `heavy` `are` `Chairs` `The` → **Chairs are heavy.**
 *(плитка `The` зайва: тут потрібно `Chairs` — `Chairs are heavy.`)*
 
-**2 · Послухайте й виберіть фразу**
+**2 · Послухайте й виберіть — ви з подругою розбираєте стос речей**
 <!-- interaction_id: en:lesson-03:session-43:i02; family: listen_choose -->
 🔊 *The bags are new.* → **The bags are new.** · Bags are new. · The bags are old.
 - Bags are new. — *У записі перше слово — `The`, а в цьому варіанті — `Bags`.*
@@ -101,7 +101,7 @@ ___ → **magazine** · letter · postcard
 - letter — *letter — це лист, а яскраве видання з фотографіями називається magazine.*
 - postcard — *postcard — це листівка, а яскраве видання з фотографіями називається magazine.*
 
-**11 · Послухайте, що каже подруга про книжки**
+**11 · Послухайте й виберіть — подруга перебирає стос поруч із вами**
 <!-- interaction_id: en:lesson-03:session-43:i09; family: listen_choose -->
 🔊 *Books are heavy.* → **Books are heavy.** · The books are heavy. · Books are light.
 - The books are heavy. — *У записі перше слово — `Books`, а в цьому варіанті — `The`.*
@@ -139,7 +139,7 @@ ___ → **dictionary** · map · letter
 - map — *map — це мапа, а книжка зі значеннями слів називається dictionary.*
 - letter — *letter — це лист, а книжка зі значеннями слів називається dictionary.*
 
-**19 · Послухайте, що каже брат про газети**
+**19 · Послухайте й виберіть — брат переглядає стос разом із вами**
 <!-- interaction_id: en:lesson-03:session-43:i15; family: listen_choose -->
 🔊 *The newspapers are old.* → **The newspapers are old.** · Newspapers are old. · The newspapers are new.
 - Newspapers are old. — *У записі перше слово — `The`, а в цьому варіанті — `Newspapers`.*

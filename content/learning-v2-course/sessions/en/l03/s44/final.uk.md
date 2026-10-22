@@ -57,7 +57,7 @@
 Плитки: `basket` `here` `is` `A` `The` → **A basket is here.**
 *(плитка `The` зайва: тут потрібно `A` — `A basket is here.`)*
 
-**2 · Послухайте продавця й виберіть фразу**
+**2 · Послухайте й виберіть — ви слухаєте розмову продавців біля каси**
 <!-- interaction_id: en:lesson-03:session-44:i02; family: listen_choose -->
 🔊 *A basket is here.* → **A basket is here.** · The basket is here. · A basket is there.
 - The basket is here. — *У записі перше слово — `A`, а в цьому варіанті — `The`.*
@@ -101,7 +101,7 @@ ___ → **seller** · customer · coin
 - customer — *customer — це покупець, а той, хто продає товари, називається seller.*
 - coin — *coin — це монета, а той, хто продає товари, називається seller.*
 
-**11 · Послухайте, що каже продавець**
+**11 · Послухайте й виберіть — біля каси продавець розмовляє з колегою**
 <!-- interaction_id: en:lesson-03:session-44:i09; family: listen_choose -->
 🔊 *A customer is happy.* → **A customer is happy.** · The customer is happy. · A customer is angry.
 - The customer is happy. — *У записі перше слово — `A`, а в цьому варіанті — `The`.*
@@ -139,7 +139,7 @@ ___ → **queue** · basket · trolley
 - basket — *basket — це кошик, а люди, які стоять один за одним, — це queue.*
 - trolley — *trolley — це візок, а люди, які стоять один за одним, — це queue.*
 
-**19 · Послухайте, що каже продавець**
+**19 · Послухайте й виберіть — продавець щось пояснює колезі поруч із вами**
 <!-- interaction_id: en:lesson-03:session-44:i15; family: listen_choose -->
 🔊 *An assistant is here.* → **An assistant is here.** · The assistant is here. · An assistant is there.
 - The assistant is here. — *У записі перше слово — `An`, а в цьому варіанті — `The`.*

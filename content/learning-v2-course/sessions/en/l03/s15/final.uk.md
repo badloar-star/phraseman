@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-15:word:cushion; family: word_card -->
 > **cushion** — подушка для дивана або крісла. Is it a cushion? — «Це подушка?» Про м’яку декоративну подушку, а не для сну.
 
-**4 · Послухайте, що продавчиня каже про м’яку річ на дивані**
+**4 · Послухайте й виберіть — продавчиня показує речі у відділі затишку**
 <!-- interaction_id: en:lesson-03:session-15:i02; family: listen_choose -->
 🔊 *It is a cushion.* → **It is a cushion.** · It is a candle. · It is an armchair.
 - It is a candle. — *У записі останнє слово — `cushion`, а в цьому варіанті — `candle`.*
@@ -109,7 +109,7 @@ It is ___ oven. → **an** · a · is
 - a — *Слово oven починається з голосного звуку, тому тут an.*
 - is — *Слово is уже стоїть перед пропуском. Перед oven потрібно an.*
 
-**13 · Послухайте запитання сестри**
+**13 · Послухайте й виберіть — ви шукаєте дрібниці для дому, сестра питає**
 <!-- interaction_id: en:lesson-03:session-15:i09; family: listen_choose -->
 🔊 *Is it a plant?* → **Is it a plant?** · Is it a lantern? · Is it an oven?
 - Is it a lantern? — *У записі останнє слово — `plant`, а в цьому варіанті — `lantern`.*
@@ -139,7 +139,7 @@ It is ___ cushion. → **a** · an · is
 - an — *Слово cushion починається з приголосного звуку, тому тут a.*
 - is — *Слово is уже стоїть перед пропуском. Перед cushion потрібно a.*
 
-**19 · Послухайте, що каже сестра**
+**19 · Послухайте й виберіть — сестра розглядає полиці поруч із вами**
 <!-- interaction_id: en:lesson-03:session-15:i15; family: listen_choose -->
 🔊 *It's a lantern.* → **It's a lantern.** · It's a candle. · It's an umbrella.
 - It's a candle. — *У записі останнє слово — `lantern`, а в цьому варіанті — `candle`.*

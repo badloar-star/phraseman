@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-13:word:necklace; family: word_card -->
 > **necklace** — намисто, прикраса на шию. Is it a necklace? — «Це намисто?» Про ланцюжок із каменем або буси.
 
-**4 · Послухайте, що продавчиня каже про річ у вітрині**
+**4 · Послухайте й виберіть — біля прилавка продавчиня дістає речі з вітрини**
 <!-- interaction_id: en:lesson-03:session-13:i02; family: listen_choose -->
 🔊 *It is a necklace.* → **It is a necklace.** · It is an earring. · It is a vase.
 - It is an earring. — *У записі останнє слово — `necklace`, а в цьому варіанті — `earring`.*
@@ -109,7 +109,7 @@ It is ___ pearl. → **a** · an · is
 - an — *Слово pearl починається з приголосного звуку, тому тут a.*
 - is — *Слово is уже стоїть перед пропуском. Перед pearl потрібно a.*
 
-**13 · Послухайте запитання сестри**
+**13 · Послухайте й виберіть — ви обираєте подарунок мамі, сестра питає**
 <!-- interaction_id: en:lesson-03:session-13:i09; family: listen_choose -->
 🔊 *Is it an earring?* → **Is it an earring?** · Is it a pearl? · Is it a bracelet?
 - Is it a pearl? — *У записі останнє слово — `earring`, а в цьому варіанті — `pearl`.*
@@ -139,7 +139,7 @@ It is ___ clock. → **a** · an · is
 - an — *Слово clock починається з приголосного звуку, тому тут a.*
 - is — *Слово is уже стоїть перед пропуском. Перед clock потрібно a.*
 
-**19 · Послухайте, що каже сестра**
+**19 · Послухайте й виберіть — сестра обирає з вами подарунок для мами**
 <!-- interaction_id: en:lesson-03:session-13:i15; family: listen_choose -->
 🔊 *It's an earring.* → **It's an earring.** · It's a necklace. · It's a bracelet.
 - It's a necklace. — *У записі останнє слово — `earring`, а в цьому варіанті — `necklace`.*

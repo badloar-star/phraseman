@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-05:word:floor; family: word_card -->
 > **floor** — пол. It is not a floor — «Это не пол». По нему ходят, на него ставят мебель.
 
-**4 · Послушайте, что мастер говорит о ремонте**
+**4 · Послушайте и выберите — мастер ходит по комнате и показывает вам**
 <!-- interaction_id: en:lesson-03:session-05:i02; family: listen_choose -->
 🔊 *It is a floor.* → **It is a floor.** · It is a wall. · It is a crack.
 - It is a wall. — *В записи последнее слово — `floor`, а в этом варианте — `wall`.*

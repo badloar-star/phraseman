@@ -1220,7 +1220,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання подруги про сумки",
+        "prompt": "Послухайте й виберіть — подруга питає, поки ви розбираєте речі",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-33:i02:r1",
@@ -1239,7 +1239,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-33:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання подруги про сумки",
+        "accessibilityLabel": "Послухайте й виберіть — подруга питає, поки ви розбираєте речі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1269,7 +1269,7 @@
             {
               "responseId": "en:lesson-03:session-33:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги про сумки",
+              "testedDimension": "Послухайте й виберіть — подруга питає, поки ви розбираєте речі",
               "feedbackByLocale": {
                 "ru": "В записи `Are these bags` — сумок несколько, а в этом варианте `Is this bag` — одна.",
                 "uk": "У записі `Are these bags` — сумок кілька, а в цьому варіанті `Is this bag` — одна."
@@ -1278,7 +1278,7 @@
             {
               "responseId": "en:lesson-03:session-33:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги про сумки",
+              "testedDimension": "Послухайте й виберіть — подруга питає, поки ви розбираєте речі",
               "feedbackByLocale": {
                 "ru": "В записи речь о сумках — `bags`, а в этом варианте — `hats`.",
                 "uk": "У записі йдеться про сумки — `bags`, а в цьому варіанті — `hats`."
@@ -1719,7 +1719,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що каже подруга про туфлі",
+        "prompt": "Послухайте й виберіть — за столом ви розбираєте речі, подруга говорить",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-33:i09:r1",
@@ -1738,7 +1738,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-33:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що каже подруга про туфлі",
+        "accessibilityLabel": "Послухайте й виберіть — за столом ви розбираєте речі, подруга говорить",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1768,7 +1768,7 @@
             {
               "responseId": "en:lesson-03:session-33:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що каже подруга про туфлі",
+              "testedDimension": "Послухайте й виберіть — за столом ви розбираєте речі, подруга говорить",
               "feedbackByLocale": {
                 "ru": "В записи `These shoes are` — туфель несколько, а в этом варианте `This shoe is` — одна.",
                 "uk": "У записі `These shoes are` — туфель кілька, а в цьому варіанті `This shoe is` — одна."
@@ -1777,7 +1777,7 @@
             {
               "responseId": "en:lesson-03:session-33:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що каже подруга про туфлі",
+              "testedDimension": "Послухайте й виберіть — за столом ви розбираєте речі, подруга говорить",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
                 "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
@@ -2149,7 +2149,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання сусідки про сорочки",
+        "prompt": "Послухайте й виберіть — подруга підходить до вашого столу на ярмарку",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-33:i15:r1",
@@ -2168,7 +2168,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-33:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання сусідки про сорочки",
+        "accessibilityLabel": "Послухайте й виберіть — подруга підходить до вашого столу на ярмарку",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2198,7 +2198,7 @@
             {
               "responseId": "en:lesson-03:session-33:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання сусідки про сорочки",
+              "testedDimension": "Послухайте й виберіть — подруга підходить до вашого столу на ярмарку",
               "feedbackByLocale": {
                 "ru": "В записи `Are these shirts` — рубашек несколько, а в этом варианте `Is this shirt` — одна.",
                 "uk": "У записі `Are these shirts` — сорочок кілька, а в цьому варіанті `Is this shirt` — одна."
@@ -2207,7 +2207,7 @@
             {
               "responseId": "en:lesson-03:session-33:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання сусідки про сорочки",
+              "testedDimension": "Послухайте й виберіть — подруга підходить до вашого столу на ярмарку",
               "feedbackByLocale": {
                 "ru": "В записи речь о рубашках — `shirts`, а в этом варианте — `shoes`.",
                 "uk": "У записі йдеться про сорочки — `shirts`, а в цьому варіанті — `shoes`."

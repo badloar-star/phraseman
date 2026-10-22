@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-10:word:toaster; family: word_card -->
 > **toaster** — тостер, прилад для підсмажування хліба. Is it a toaster? — «Це тостер?» Про прилад на кухні або в кафе.
 
-**4 · Послухайте, що продавець каже про прилад на столі**
+**4 · Послухайте й виберіть — продавець чекає біля столу з приладами**
 <!-- interaction_id: en:lesson-03:session-10:i02; family: listen_choose -->
 🔊 *It is a toaster.* → **It is a toaster.** · It is a kettle. · It is an oven.
 - It is a kettle. — *У записі останнє слово — `toaster`, а в цьому варіанті — `kettle`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З it потрібно is: Yes, it is.*
 - are — *З it потрібно is: Yes, it is.*
 
-**13 · Послухайте запитання брата**
+**13 · Послухайте й виберіть — сестра питає вас про прилади**
 <!-- interaction_id: en:lesson-03:session-10:i09; family: listen_choose -->
 🔊 *Is it a vacuum?* → **Is it a vacuum?** · Is it a kettle? · Is it a blender?
 - Is it a kettle? — *У записі останнє слово — `vacuum`, а в цьому варіанті — `kettle`.*
@@ -139,7 +139,7 @@ It is ___ armchair. → **an** · a · is
 - a — *Слово armchair починається з голосного звуку, тому тут an: It is an armchair.*
 - is — *Слово is уже стоїть перед пропуском. Перед armchair потрібно an.*
 
-**19 · Послухайте, що продавець каже в кінці ряду**
+**19 · Послухайте й виберіть — у кінці ряду продавець показує річ**
 <!-- interaction_id: en:lesson-03:session-10:i15; family: listen_choose -->
 🔊 *It's a vacuum.* → **It's a vacuum.** · It's a blender. · It's an oven.
 - It's a blender. — *У записі останнє слово — `vacuum`, а в цьому варіанті — `blender`.*

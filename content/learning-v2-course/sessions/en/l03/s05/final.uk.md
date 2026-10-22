@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-05:word:floor; family: word_card -->
 > **floor** — підлога. It is not a floor — «Це не підлога». По ній ходять, на неї ставлять меблі.
 
-**4 · Послухайте, що майстер каже про ремонт**
+**4 · Послухайте й виберіть — майстер ходить кімнатою і показує вам**
 <!-- interaction_id: en:lesson-03:session-05:i02; family: listen_choose -->
 🔊 *It is a floor.* → **It is a floor.** · It is a wall. · It is a crack.
 - It is a wall. — *У записі останнє слово — `floor`, а в цьому варіанті — `wall`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте запитання майстра**
+**13 · Послухайте й виберіть — у кімнаті майстер ставить вам запитання**
 <!-- interaction_id: en:lesson-03:session-05:i09; family: listen_choose -->
 🔊 *Is it a wall?* → **Is it a wall?** · Is it a crack? · Is it a floor?
 - Is it a crack? — *У записі останнє слово — `wall`, а в цьому варіанті — `crack`.*
@@ -139,7 +139,7 @@ ___ it a ceiling? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a ceiling?`.*
 
-**19 · Послухайте, що майстер каже про тріщину**
+**19 · Послухайте й виберіть — ви йдете за майстром кімнатою**
 <!-- interaction_id: en:lesson-03:session-05:i15; family: listen_choose -->
 🔊 *It is a crack.* → **It is a crack.** · It is a wall. · It is a ceiling.
 - It is a wall. — *У записі останнє слово — `crack`, а в цьому варіанті — `wall`.*

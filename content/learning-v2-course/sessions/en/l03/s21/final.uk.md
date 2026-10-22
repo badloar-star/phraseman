@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-21:word:curtain; family: word_card -->
 > **curtain** — фіранка, штора. It is a curtain — «Це фіранка». Про фіранку на вікні або у ванній.
 
-**4 · Послухайте брата: він говорить про другий рядок накладної**
+**4 · Послухайте й виберіть — брат читає другий рядок накладної**
 <!-- interaction_id: en:lesson-03:session-21:i02; family: listen_choose -->
 🔊 *It is a curtain.* → **It is a curtain.** · They are curtains. · It is a towel.
 - They are curtains. — *У записі останнє слово — `curtain`, а в цьому варіанті — `curtains`.*
@@ -109,7 +109,7 @@ They are ___. → **sponges** · a sponges · sponge
 - a sponges — *Перед кількома предметами a не ставимо: They are sponges.*
 - sponge — *Губок кілька, тому потрібно sponges з s.*
 
-**13 · Послухайте подругу: вона читає накладну**
+**13 · Послухайте й виберіть — подруга читає накладну рядок за рядком**
 <!-- interaction_id: en:lesson-03:session-21:i09; family: listen_choose -->
 🔊 *They are towels.* → **They are towels.** · It is a towel. · They are combs.
 - It is a towel. — *У записі останнє слово — `towels`, а в цьому варіанті — `towel`.*
@@ -139,7 +139,7 @@ It is ___ towel. → **a** · an · is
 - an — *Слово towel починається з приголосного звуку, тому тут a.*
 - is — *Слово is вже стоїть перед пропуском. Перед towel потрібне a.*
 
-**19 · Послухайте запитання кур’єра**
+**19 · Послухайте й виберіть — кур’єр уточнює у вас рядки накладної**
 <!-- interaction_id: en:lesson-03:session-21:i15; family: listen_choose -->
 🔊 *Are they sponges?* → **Are they sponges?** · Is it a sponge? · Are they curtains?
 - Is it a sponge? — *У записі останнє слово — `sponges`, а в цьому варіанті — `sponge`.*

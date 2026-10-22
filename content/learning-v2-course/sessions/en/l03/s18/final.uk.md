@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-18:word:dish; family: word_card -->
 > **dish** — страва або глибока таріль. Are they dishes? — «Це глибокі тарілки?» Про посуд, з якого їдять суп.
 
-**4 · Послухайте запитання подруги про посуд**
+**4 · Послухайте й виберіть — біля відкритої коробки подруга ставить вам запитання**
 <!-- interaction_id: en:lesson-03:session-18:i02; family: listen_choose -->
 🔊 *Are they dishes?* → **Are they dishes?** · Is it a dish? · Are they buses?
 - Is it a dish? — *У записі останнє слово — `dishes`, а в цьому варіанті — `dish`.*
@@ -109,7 +109,7 @@ The watches ___ old. → **are** · is · am
 - is — *Годинників кілька: The watches are old.*
 - am — *З The watches потрібно are: The watches are old.*
 
-**13 · Послухайте брата: він говорить про автобуси**
+**13 · Послухайте й виберіть — подруга говорить, поки ви розкриваєте коробки**
 <!-- interaction_id: en:lesson-03:session-18:i09; family: listen_choose -->
 🔊 *The buses are new.* → **The buses are new.** · The buses are old. · The buses are here.
 - The buses are old. — *У записі останнє слово — `new`, а в цьому варіанті — `old`.*
@@ -139,7 +139,7 @@ Are they ___? → **boxes** · box · are
 - box — *У запитанні про кілька коробок теж потрібно boxes з es.*
 - are — *Слово Are вже стоїть на початку. У пропуск потрібна назва коробок: boxes.*
 
-**19 · Послухайте, що брат каже про знахідку**
+**19 · Послухайте й виберіть — подруга щось дістає з коробки**
 <!-- interaction_id: en:lesson-03:session-18:i15; family: listen_choose -->
 🔊 *They are watches.* → **They are watches.** · They are dresses. · They are dishes.
 - They are dresses. — *У записі останнє слово — `watches`, а в цьому варіанті — `dresses`.*

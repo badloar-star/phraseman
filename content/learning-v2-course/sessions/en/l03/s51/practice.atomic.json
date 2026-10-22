@@ -1444,7 +1444,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що продавець каже про шарф",
+        "prompt": "Послухайте й виберіть — продавець розкладає перед вами товари",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-51:i05:r1",
@@ -1463,7 +1463,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-51:i05:audio"
         ],
-        "accessibilityLabel": "Послухайте, що продавець каже про шарф",
+        "accessibilityLabel": "Послухайте й виберіть — продавець розкладає перед вами товари",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1493,7 +1493,7 @@
             {
               "responseId": "en:lesson-03:session-51:i05:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що продавець каже про шарф",
+              "testedDimension": "Послухайте й виберіть — продавець розкладає перед вами товари",
               "feedbackByLocale": {
                 "ru": "В записи цвет — `yellow`, а в этом варианте — `purple`.",
                 "uk": "У записі колір — `yellow`, а в цьому варіанті — `purple`."
@@ -1502,7 +1502,7 @@
             {
               "responseId": "en:lesson-03:session-51:i05:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що продавець каже про шарф",
+              "testedDimension": "Послухайте й виберіть — продавець розкладає перед вами товари",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `scarf`, а в этом варианте — `vase`.",
                 "uk": "У записі останнє слово — `scarf`, а в цьому варіанті — `vase`."
@@ -1876,7 +1876,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання подруги",
+        "prompt": "Послухайте й виберіть — подруга обирає з вами речі за кольором",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-51:i11:r1",
@@ -1895,7 +1895,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-51:i11:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання подруги",
+        "accessibilityLabel": "Послухайте й виберіть — подруга обирає з вами речі за кольором",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1925,7 +1925,7 @@
             {
               "responseId": "en:lesson-03:session-51:i11:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга обирає з вами речі за кольором",
               "feedbackByLocale": {
                 "ru": "В записи `an olive`, а в этом варианте `a navy`: перед olive нужно an, перед navy — a.",
                 "uk": "У записі `an olive`, а в цьому варіанті `a navy`: перед olive потрібно an, перед navy — a."
@@ -1934,7 +1934,7 @@
             {
               "responseId": "en:lesson-03:session-51:i11:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга обирає з вами речі за кольором",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `scarf`, а в этом варианте — `coat`.",
                 "uk": "У записі останнє слово — `scarf`, а в цьому варіанті — `coat`."

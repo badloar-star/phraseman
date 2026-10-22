@@ -57,7 +57,7 @@
 Плитки: `hammer` `a` `is` `This` `an` → **This is a hammer.**
 *(плитка `an` зайва: тут потрібно `a` — `This is a hammer.`)*
 
-**2 · Послухайте брата й виберіть фразу**
+**2 · Послухайте й виберіть — брат обирає речі в магазині інструментів**
 <!-- interaction_id: en:lesson-03:session-47:i02; family: listen_choose -->
 🔊 *A ladder is here.* → **A ladder is here.** · The ladder is here. · A ladder is there.
 - The ladder is here. — *У записі перше слово — `A`, а в цьому варіанті — `The`.*
@@ -101,7 +101,7 @@ ___ → **nail** · key · lock
 - key — *key — це ключ, а стрижень, який забивають молотком, називається nail.*
 - lock — *lock — це замок, а стрижень, який забивають молотком, називається nail.*
 
-**11 · Послухайте продавця й виберіть фразу**
+**11 · Послухайте й виберіть — продавець показує вам інструменти**
 <!-- interaction_id: en:lesson-03:session-47:i09; family: listen_choose -->
 🔊 *This is a screw.* → **This is a screw.** · That is a screw. · This is the screw.
 - That is a screw. — *У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко).*
@@ -139,7 +139,7 @@ ___ → **drill** · hammer · ladder
 - hammer — *hammer — це молоток, а прилад, який робить отвори в стіні, називається drill.*
 - ladder — *ladder — це драбина, а прилад, який робить отвори в стіні, називається drill.*
 
-**19 · Послухайте, що каже брат**
+**19 · Послухайте й виберіть — брат бере товари для ремонту полиці**
 <!-- interaction_id: en:lesson-03:session-47:i15; family: listen_choose -->
 🔊 *Wrenches are expensive.* → **Wrenches are expensive.** · The wrenches are expensive. · Wrenches are cheap.
 - The wrenches are expensive. — *У записі перше слово — `Wrenches`, а в цьому варіанті — `The`.*

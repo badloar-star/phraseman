@@ -57,7 +57,7 @@
 Плитки: `door` `is` `open` `The` `A` → **The door is open.**
 *(плитка `A` зайва: тут потрібно `The` — `The door is open.`)*
 
-**2 · Послухайте й виберіть фразу**
+**2 · Послухайте й виберіть — ви показуєте, що в покупках зламано**
 <!-- interaction_id: en:lesson-03:session-42:i02; family: listen_choose -->
 🔊 *The window is closed.* → **The window is closed.** · A window is closed. · The window is open.
 - A window is closed. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
@@ -101,7 +101,7 @@ ___ → **bell** · key · lock
 - key — *key — це ключ, а те, що дзвенить біля дверей, називається bell.*
 - lock — *lock — це замок, а те, що дзвенить біля дверей, називається bell.*
 
-**11 · Послухайте, що каже сусідка**
+**11 · Послухайте й виберіть — сусідка оглядає покупку разом із вами**
 <!-- interaction_id: en:lesson-03:session-42:i09; family: listen_choose -->
 🔊 *The handle is broken.* → **The handle is broken.** · A handle is broken. · The handle is loose.
 - A handle is broken. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
@@ -139,7 +139,7 @@ ___ → **cord** · socket · lamp
 - socket — *socket — це розетка, а дріт від лампи до розетки називається cord.*
 - lamp — *lamp — це лампа, а дріт від неї до розетки називається cord.*
 
-**19 · Послухайте, що каже продавець**
+**19 · Послухайте й виберіть — продавець оглядає вашу покупку**
 <!-- interaction_id: en:lesson-03:session-42:i15; family: listen_choose -->
 🔊 *The wheel is loose.* → **The wheel is loose.** · A wheel is loose. · The wheel is tight.
 - A wheel is loose. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*

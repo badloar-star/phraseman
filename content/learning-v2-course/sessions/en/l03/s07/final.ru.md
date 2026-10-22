@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-07:word:cupboard; family: word_card -->
 > **cupboard** — шкафчик для посуды. Is it a cupboard? — «Это шкафчик?» Обычно на кухне.
 
-**4 · Послушайте, что подруга говорит о мебели**
+**4 · Послушайте и выберите — подруга держит детали будущей мебели**
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
 🔊 *It is a cupboard.* → **It is a cupboard.** · It is a wardrobe. · It is a drawer.
 - It is a wardrobe. — *В записи последнее слово — `cupboard`, а в этом варианте — `wardrobe`.*

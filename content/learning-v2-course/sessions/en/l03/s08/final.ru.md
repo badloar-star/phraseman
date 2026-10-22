@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-08:word:hammer; family: word_card -->
 > **hammer** — молоток. It's a hammer — «Это молоток». Им вбивают гвозди.
 
-**4 · Послушайте, что подруга говорит о вещах в коридоре**
+**4 · Послушайте и выберите — подруга проверяет вещи в коридоре по списку**
 <!-- interaction_id: en:lesson-03:session-08:i02; family: listen_choose -->
 🔊 *It is a hammer.* → **It is a hammer.** · It is a ladder. · It is a bucket.
 - It is a ladder. — *В записи последнее слово — `hammer`, а в этом варианте — `ladder`.*

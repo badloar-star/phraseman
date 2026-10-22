@@ -79,7 +79,7 @@ ___ → **white** · black · dark
 - black — *black — це чорний, а молоко іншого кольору: white.*
 - dark — *dark — це темний, а колір молока називається white.*
 
-**7 · Послухайте, що продавець каже про стільці**
+**7 · Послухайте й виберіть — продавець показує вам меблі в магазині**
 <!-- interaction_id: en:lesson-03:session-50:i05; family: listen_choose -->
 🔊 *Those are white chairs.* → **Those are white chairs.** · That is a white chair. · Those are black chairs.
 - That is a white chair. — *У записі `Those are` і кілька стільців, а в цьому варіанті `That is a` і один стілець.*
@@ -117,7 +117,7 @@ ___ → **beige** · grey · white
 <!-- interaction_id: en:lesson-03:session-50:i10; family: speed_match -->
 white — білий · beige — бежевий · towel — рушник · bowl — миска
 
-**15 · Послухайте запитання подруги**
+**15 · Послухайте й виберіть — подруга обирає з вами речі для квартири**
 <!-- interaction_id: en:lesson-03:session-50:i11; family: listen_choose -->
 🔊 *Is it a grey towel?* → **Is it a grey towel?** · Are those grey towels? · Is it a white towel?
 - Are those grey towels? — *У записі `Is it a` і один предмет, а в цьому варіанті `Are those` і кілька.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-16:word:discount; family: word_card -->
 > **discount** — знижка, зниження ціни. Is it a discount? — «Це знижка?» Про знижку в магазині, за талоном, для постійних клієнтів.
 
-**4 · Послухайте, що касир каже про рядок на екрані**
+**4 · Послухайте й виберіть — касир звіряє ваш кошик і папери**
 <!-- interaction_id: en:lesson-03:session-16:i02; family: listen_choose -->
 🔊 *It is a discount.* → **It is a discount.** · It is an invoice. · It is a vase.
 - It is an invoice. — *У записі останнє слово — `discount`, а в цьому варіанті — `invoice`.*
@@ -109,7 +109,7 @@ No, it ___ not a warranty. → **is** · am · are
 - am — *З it потрібно is: No, it is not a warranty.*
 - are — *З it потрібно is: No, it is not a warranty.*
 
-**13 · Послухайте запитання сестри**
+**13 · Послухайте й виберіть — біля каси сестра ставить запитання**
 <!-- interaction_id: en:lesson-03:session-16:i09; family: listen_choose -->
 🔊 *Is it a warranty?* → **Is it a warranty?** · Is it an address? · Is it a discount?
 - Is it an address? — *У записі останнє слово — `warranty`, а в цьому варіанті — `address`.*
@@ -139,7 +139,7 @@ It is ___ address. → **an** · a · is
 - a — *Слово address починається з голосного звуку, тому тут an.*
 - is — *Слово is уже стоїть перед пропуском. Перед address потрібно an.*
 
-**19 · Послухайте, що каже касир**
+**19 · Послухайте й виберіть — касир простягає вам папери**
 <!-- interaction_id: en:lesson-03:session-16:i15; family: listen_choose -->
 🔊 *It's an address.* → **It's an address.** · It's a warranty. · It's a discount.
 - It's a warranty. — *У записі останнє слово — `address`, а в цьому варіанті — `warranty`.*

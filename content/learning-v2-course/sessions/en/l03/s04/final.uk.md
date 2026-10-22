@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-04:word:door; family: word_card -->
 > **door** — двері. Is it a door? — «Це двері?» Вхідні, кімнатні, шафові — усе це a door.
 
-**4 · Послухайте, що господар каже в коридорі**
+**4 · Послухайте й виберіть — господар квартири веде вас коридором**
 <!-- interaction_id: en:lesson-03:session-04:i02; family: listen_choose -->
 🔊 *It is a door.* → **It is a door.** · It is a window. · It is a key.
 - It is a window. — *У записі останнє слово — `door`, а в цьому варіанті — `window`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте запитання господаря**
+**13 · Послухайте й виберіть — у кімнаті господар швидко питає вас**
 <!-- interaction_id: en:lesson-03:session-04:i09; family: listen_choose -->
 🔊 *Is it a lock?* → **Is it a lock?** · It is a lock. · Is it a key?
 - It is a lock. — *У записі спочатку звучить `Is`: це запитання. А в цьому варіанті стоїть твердження `It is`.*
@@ -139,7 +139,7 @@ ___ it a door? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a door?`.*
 
-**19 · Послухайте, що господар каже про замок**
+**19 · Послухайте й виберіть — ви йдете за господарем із кімнати в кімнату**
 <!-- interaction_id: en:lesson-03:session-04:i15; family: listen_choose -->
 🔊 *It is a lock.* → **It is a lock.** · It is a key. · It is a door.
 - It is a key. — *У записі останнє слово — `lock`, а в цьому варіанті — `key`.*

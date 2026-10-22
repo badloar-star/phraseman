@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-22:word:bowl; family: word_card -->
 > **bowl** — миска, глибокий посуд для салату й супу. Where are the bowls? — «Де миски?» Про миску на кухні.
 
-**4 · Послухайте запитання подруги**
+**4 · Послухайте й виберіть — подруга звіряє кухонну коробку зі списком**
 <!-- interaction_id: en:lesson-03:session-22:i02; family: listen_choose -->
 🔊 *Where are the bowls?* → **Where are the bowls?** · Where is the bowl? · Where are the plates?
 - Where is the bowl? — *У записі останнє слово — `bowls`, а в цьому варіанті — `bowl`.*
@@ -109,7 +109,7 @@ The jars ___ here. → **are** · is · am
 - is — *Банок кілька: The jars are here.*
 - am — *З The jars потрібно are: The jars are here.*
 
-**13 · Послухайте, що брат каже про знахідку**
+**13 · Послухайте й виберіть — подруга дістає речі з кухонної коробки**
 <!-- interaction_id: en:lesson-03:session-22:i09; family: listen_choose -->
 🔊 *They are bottles.* → **They are bottles.** · It is a bottle. · They are jars.
 - It is a bottle. — *У записі останнє слово — `bottles`, а в цьому варіанті — `bottle`.*
@@ -139,7 +139,7 @@ Are they ___? → **bottles** · bottle · are
 - bottle — *У запитанні про кілька пляшок теж потрібно bottles з s.*
 - are — *Слово Are вже стоїть на початку. У пропуск потрібна назва пляшок: bottles.*
 
-**19 · Послухайте запитання сусідки**
+**19 · Послухайте й виберіть — подруга перепитує, поки ви читаєте список**
 <!-- interaction_id: en:lesson-03:session-22:i15; family: listen_choose -->
 🔊 *Are they plates?* → **Are they plates?** · Is it a plate? · Are they bowls?
 - Is it a plate? — *У записі останнє слово — `plates`, а в цьому варіанті — `plate`.*

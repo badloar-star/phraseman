@@ -1303,7 +1303,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте брата: він говорить про другий рядок накладної",
+        "prompt": "Послухайте й виберіть — брат читає другий рядок накладної",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-21:i02:r1",
@@ -1322,7 +1322,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-21:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте брата: він говорить про другий рядок накладної",
+        "accessibilityLabel": "Послухайте й виберіть — брат читає другий рядок накладної",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1352,7 +1352,7 @@
             {
               "responseId": "en:lesson-03:session-21:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте брата: він говорить про другий рядок накладної",
+              "testedDimension": "Послухайте й виберіть — брат читає другий рядок накладної",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `curtain`, а в этом варианте — `curtains`.",
                 "uk": "У записі останнє слово — `curtain`, а в цьому варіанті — `curtains`."
@@ -1361,7 +1361,7 @@
             {
               "responseId": "en:lesson-03:session-21:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте брата: він говорить про другий рядок накладної",
+              "testedDimension": "Послухайте й виберіть — брат читає другий рядок накладної",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `curtain`, а в этом варианте — `towel`.",
                 "uk": "У записі останнє слово — `curtain`, а в цьому варіанті — `towel`."
@@ -1802,7 +1802,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте подругу: вона читає накладну",
+        "prompt": "Послухайте й виберіть — подруга читає накладну рядок за рядком",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-21:i09:r1",
@@ -1821,7 +1821,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-21:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте подругу: вона читає накладну",
+        "accessibilityLabel": "Послухайте й виберіть — подруга читає накладну рядок за рядком",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1851,7 +1851,7 @@
             {
               "responseId": "en:lesson-03:session-21:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте подругу: вона читає накладну",
+              "testedDimension": "Послухайте й виберіть — подруга читає накладну рядок за рядком",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `towels`, а в этом варианте — `towel`.",
                 "uk": "У записі останнє слово — `towels`, а в цьому варіанті — `towel`."
@@ -1860,7 +1860,7 @@
             {
               "responseId": "en:lesson-03:session-21:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте подругу: вона читає накладну",
+              "testedDimension": "Послухайте й виберіть — подруга читає накладну рядок за рядком",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `towels`, а в этом варианте — `combs`.",
                 "uk": "У записі останнє слово — `towels`, а в цьому варіанті — `combs`."
@@ -2145,7 +2145,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання кур’єра",
+        "prompt": "Послухайте й виберіть — кур’єр уточнює у вас рядки накладної",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-21:i15:r1",
@@ -2164,7 +2164,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-21:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання кур’єра",
+        "accessibilityLabel": "Послухайте й виберіть — кур’єр уточнює у вас рядки накладної",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2194,7 +2194,7 @@
             {
               "responseId": "en:lesson-03:session-21:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання кур’єра",
+              "testedDimension": "Послухайте й виберіть — кур’єр уточнює у вас рядки накладної",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sponges`, а в этом варианте — `sponge`.",
                 "uk": "У записі останнє слово — `sponges`, а в цьому варіанті — `sponge`."
@@ -2203,7 +2203,7 @@
             {
               "responseId": "en:lesson-03:session-21:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання кур’єра",
+              "testedDimension": "Послухайте й виберіть — кур’єр уточнює у вас рядки накладної",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sponges`, а в этом варианте — `curtains`.",
                 "uk": "У записі останнє слово — `sponges`, а в цьому варіанті — `curtains`."

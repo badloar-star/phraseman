@@ -1307,7 +1307,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що продавець каже про техніку в кухонному залі",
+        "prompt": "Послухайте й виберіть — продавець веде вас із сестрою залою",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-09:i02:r1",
@@ -1326,7 +1326,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-09:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що продавець каже про техніку в кухонному залі",
+        "accessibilityLabel": "Послухайте й виберіть — продавець веде вас із сестрою залою",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1356,7 +1356,7 @@
             {
               "responseId": "en:lesson-03:session-09:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що продавець каже про техніку в кухонному залі",
+              "testedDimension": "Послухайте й виберіть — продавець веде вас із сестрою залою",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `oven`, а в этом варианте — `armchair`.",
                 "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `armchair`."
@@ -1365,7 +1365,7 @@
             {
               "responseId": "en:lesson-03:session-09:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що продавець каже про техніку в кухонному залі",
+              "testedDimension": "Послухайте й виберіть — продавець веде вас із сестрою залою",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `oven`, а в этом варианте — `lamp`.",
                 "uk": "У записі останнє слово — `oven`, а в цьому варіанті — `lamp`."
@@ -1806,7 +1806,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що сестра каже про річ біля виходу",
+        "prompt": "Послухайте й виберіть — сестра чекає біля виходу із зали",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-09:i09:r1",
@@ -1825,7 +1825,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-09:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте, що сестра каже про річ біля виходу",
+        "accessibilityLabel": "Послухайте й виберіть — сестра чекає біля виходу із зали",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1855,7 +1855,7 @@
             {
               "responseId": "en:lesson-03:session-09:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що сестра каже про річ біля виходу",
+              "testedDimension": "Послухайте й виберіть — сестра чекає біля виходу із зали",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `armchair`.",
                 "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `armchair`."
@@ -1864,7 +1864,7 @@
             {
               "responseId": "en:lesson-03:session-09:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що сестра каже про річ біля виходу",
+              "testedDimension": "Послухайте й виберіть — сестра чекає біля виходу із зали",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `umbrella`, а в этом варианте — `oven`.",
                 "uk": "У записі останнє слово — `umbrella`, а в цьому варіанті — `oven`."
@@ -2151,7 +2151,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання сестри",
+        "prompt": "Послухайте й виберіть — ви оглядаєте залу, сестра питає",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-09:i15:r1",
@@ -2170,7 +2170,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-09:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання сестри",
+        "accessibilityLabel": "Послухайте й виберіть — ви оглядаєте залу, сестра питає",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2200,7 +2200,7 @@
             {
               "responseId": "en:lesson-03:session-09:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання сестри",
+              "testedDimension": "Послухайте й виберіть — ви оглядаєте залу, сестра питає",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `elevator`, а в этом варианте — `oven`.",
                 "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `oven`."
@@ -2209,7 +2209,7 @@
             {
               "responseId": "en:lesson-03:session-09:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання сестри",
+              "testedDimension": "Послухайте й виберіть — ви оглядаєте залу, сестра питає",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `elevator`, а в этом варианте — `umbrella`.",
                 "uk": "У записі останнє слово — `elevator`, а в цьому варіанті — `umbrella`."

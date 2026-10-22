@@ -1438,7 +1438,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання продавця",
+        "prompt": "Послухайте й виберіть — продавець оглядає покупки разом із вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-55:i05:r1",
@@ -1457,7 +1457,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-55:i05:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання продавця",
+        "accessibilityLabel": "Послухайте й виберіть — продавець оглядає покупки разом із вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1487,7 +1487,7 @@
             {
               "responseId": "en:lesson-03:session-55:i05:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання продавця",
+              "testedDimension": "Послухайте й виберіть — продавець оглядає покупки разом із вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `material`, а в этом варианте — `shape`.",
                 "uk": "У записі останнє слово — `material`, а в цьому варіанті — `shape`."
@@ -1496,7 +1496,7 @@
             {
               "responseId": "en:lesson-03:session-55:i05:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання продавця",
+              "testedDimension": "Послухайте й виберіть — продавець оглядає покупки разом із вами",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `What` (что), а в этом варианте — `Where` (где).",
                 "uk": "У записі перше слово — `What` (що), а в цьому варіанті — `Where` (де)."
@@ -1868,7 +1868,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запитання подруги",
+        "prompt": "Послухайте й виберіть — подруга робить з вами останній огляд",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-55:i11:r1",
@@ -1887,7 +1887,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-55:i11:audio"
         ],
-        "accessibilityLabel": "Послухайте запитання подруги",
+        "accessibilityLabel": "Послухайте й виберіть — подруга робить з вами останній огляд",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1917,7 +1917,7 @@
             {
               "responseId": "en:lesson-03:session-55:i11:r2",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга робить з вами останній огляд",
               "feedbackByLocale": {
                 "ru": "В записи рисунок — `floral`, а в этом варианте — `striped`.",
                 "uk": "У записі малюнок — `floral`, а в цьому варіанті — `striped`."
@@ -1926,7 +1926,7 @@
             {
               "responseId": "en:lesson-03:session-55:i11:r3",
               "correct": false,
-              "testedDimension": "Послухайте запитання подруги",
+              "testedDimension": "Послухайте й виберіть — подруга робить з вами останній огляд",
               "feedbackByLocale": {
                 "ru": "В записи после the слово — `pattern`, а в этом варианте — `style`.",
                 "uk": "У записі після the слово — `pattern`, а в цьому варіанті — `style`."

@@ -57,7 +57,7 @@
 Плитки: `table` `This` `is` `a` `That` → **This is a table.**
 *(плитка `That` зайва: тут потрібно `This` — `This is a table.`)*
 
-**2 · Послухайте, що каже костюмерка**
+**2 · Послухайте й виберіть — костюмерка квапить вас у костюмерній**
 <!-- interaction_id: en:lesson-03:session-31:i02; family: listen_choose -->
 🔊 *That is a chair.* → **That is a chair.** · This is a chair. · That is a door.
 - This is a chair. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
@@ -101,7 +101,7 @@ ___ → **belt** · hat · table
 - hat — *hat — це капелюх, а смуга, якою підперізують одяг, називається belt.*
 - table — *table — це стіл, а смуга, якою підперізують одяг, називається belt.*
 
-**11 · Послухайте подругу**
+**11 · Послухайте й виберіть — подруга розбирає костюми поруч із вами**
 <!-- interaction_id: en:lesson-03:session-31:i09; family: listen_choose -->
 🔊 *That is not a hat.* → **That is not a hat.** · This is not a hat. · That is not a table.
 - This is not a hat. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
@@ -139,7 +139,7 @@ ___ → **cape** · scarf · hat
 - scarf — *scarf — це шарф на шию, а довга накидка на плечі називається cape.*
 - hat — *hat — це капелюх, а довга накидка на плечі називається cape.*
 
-**19 · Послухайте питання подруги**
+**19 · Послухайте й виберіть — у костюмерній подруга ставить запитання**
 <!-- interaction_id: en:lesson-03:session-31:i15; family: listen_choose -->
 🔊 *Is this a boot?* → **Is this a boot?** · Is that a boot? · Is this a belt?
 - Is that a boot? — *У записі друге слово — `this`, а в цьому варіанті — `that`.*

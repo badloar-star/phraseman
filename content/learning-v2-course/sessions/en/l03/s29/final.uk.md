@@ -57,7 +57,7 @@
 Плитки: `heavy` `It` `is` `are` → **It is heavy.**
 *(плитка `are` зайва: тут потрібно `is` — `It is heavy.`)*
 
-**2 · Послухайте, що каже сусідка**
+**2 · Послухайте й виберіть — сусідка розбирає з вами пошту в під’їзді**
 <!-- interaction_id: en:lesson-03:session-29:i02; family: listen_choose -->
 🔊 *That is a door.* → **That is a door.** · This is a door. · That is a box.
 - This is a door. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
@@ -101,7 +101,7 @@ ___ → **letter** · parcel · box
 - parcel — *parcel — це посилка, коробка з речами, а аркуш у конверті називається letter.*
 - box — *box — це коробка, а аркуш у конверті називається letter.*
 
-**11 · Послухайте сусідку**
+**11 · Послухайте й виберіть — біля під’їзду сусідка дивиться на речі**
 <!-- interaction_id: en:lesson-03:session-29:i09; family: listen_choose -->
 🔊 *This is not a parcel.* → **This is not a parcel.** · That is not a parcel. · This is not a box.
 - That is not a parcel. — *У записі перше слово — `This`, а в цьому варіанті — `That`.*
@@ -139,7 +139,7 @@ ___ → **mailbox** · box · parcel
 - box — *box — це звичайна коробка, а скринька для листів називається mailbox.*
 - parcel — *parcel — це посилка, а скринька для листів називається mailbox.*
 
-**19 · Послухайте сусідку про марку**
+**19 · Послухайте й виберіть — ви розбираєте пошту, сусідка говорить поруч**
 <!-- interaction_id: en:lesson-03:session-29:i15; family: listen_choose -->
 🔊 *It is small.* → **It is small.** · It is big. · It is heavy.
 - It is big. — *У записі останнє слово — `small`, а в цьому варіанті — `big`.*

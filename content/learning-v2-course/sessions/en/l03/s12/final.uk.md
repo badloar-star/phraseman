@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-12:word:clock; family: word_card -->
 > **clock** — годинник на стіні або на столі. It is not a clock — «Це не годинник». Про настінний і настільний годинник, не про наручний.
 
-**4 · Послухайте продавчиню: вона називає річ у вітрині**
+**4 · Послухайте й виберіть — продавчиня за склом розставляє речі**
 <!-- interaction_id: en:lesson-03:session-12:i02; family: listen_choose -->
 🔊 *It is a clock.* → **It is a clock.** · It is a vase. · It is an armchair.
 - It is a vase. — *У записі останнє слово — `clock`, а в цьому варіанті — `vase`.*
@@ -109,7 +109,7 @@ No, it ___ not a clock. → **is** · am · are
 - am — *З it потрібно is: No, it is not a clock.*
 - are — *З it потрібно is: No, it is not a clock.*
 
-**13 · Послухайте запитання продавчині**
+**13 · Послухайте й виберіть — ви дивитеся на вітрину, продавчиня питає**
 <!-- interaction_id: en:lesson-03:session-12:i09; family: listen_choose -->
 🔊 *Is it a vase?* → **Is it a vase?** · Is it a radio? · Is it an elevator?
 - Is it a radio? — *У записі останнє слово — `vase`, а в цьому варіанті — `radio`.*
@@ -139,7 +139,7 @@ It is ___ armchair. → **an** · a · is
 - a — *Слово armchair починається з голосного звуку, тому тут an: It is an armchair.*
 - is — *Слово is уже стоїть перед пропуском. Перед armchair потрібно an.*
 
-**19 · Послухайте, що сестра каже про знахідку**
+**19 · Послухайте й виберіть — біля вітрини сестра вказує на знахідку**
 <!-- interaction_id: en:lesson-03:session-12:i15; family: listen_choose -->
 🔊 *It's a radio.* → **It's a radio.** · It's a vase. · It's an oven.
 - It's a vase. — *У записі останнє слово — `radio`, а в цьому варіанті — `vase`.*

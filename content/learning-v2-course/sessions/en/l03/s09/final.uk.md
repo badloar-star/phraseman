@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-09:word:oven; family: word_card -->
 > **oven** — духовка, піч для запікання. Is it an oven? — «Це духовка?» Про кухонну техніку, в якій запікають.
 
-**4 · Послухайте, що продавець каже про техніку в кухонному залі**
+**4 · Послухайте й виберіть — продавець веде вас із сестрою залою**
 <!-- interaction_id: en:lesson-03:session-09:i02; family: listen_choose -->
 🔊 *It is an oven.* → **It is an oven.** · It is an armchair. · It is a lamp.
 - It is an armchair. — *У записі останнє слово — `oven`, а в цьому варіанті — `armchair`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З it потрібно is: Yes, it is.*
 - are — *З it потрібно is: Yes, it is.*
 
-**13 · Послухайте, що сестра каже про річ біля виходу**
+**13 · Послухайте й виберіть — сестра чекає біля виходу із зали**
 <!-- interaction_id: en:lesson-03:session-09:i09; family: listen_choose -->
 🔊 *It's an umbrella.* → **It's an umbrella.** · It's an armchair. · It's an oven.
 - It's an armchair. — *У записі останнє слово — `umbrella`, а в цьому варіанті — `armchair`.*
@@ -139,7 +139,7 @@ It is ___ lamp. → **a** · an · is
 - an — *Слово lamp починається з приголосного звуку, тому тут a: It is a lamp.*
 - is — *Слово is уже стоїть перед пропуском. Перед lamp потрібно a.*
 
-**19 · Послухайте запитання сестри**
+**19 · Послухайте й виберіть — ви оглядаєте залу, сестра питає**
 <!-- interaction_id: en:lesson-03:session-09:i15; family: listen_choose -->
 🔊 *Is it an elevator?* → **Is it an elevator?** · Is it an oven? · Is it an umbrella?
 - Is it an oven? — *У записі останнє слово — `elevator`, а в цьому варіанті — `oven`.*

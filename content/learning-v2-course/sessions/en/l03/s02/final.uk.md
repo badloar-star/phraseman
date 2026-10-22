@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-02:word:bed; family: word_card -->
 > **bed** — ліжко. It's a bed — «Це ліжко». Односпальне, двоспальне, дитяче — усе a bed.
 
-**4 · Послухайте, що вантажник каже про меблі**
+**4 · Послухайте й виберіть — вантажник заносить речі в кімнату**
 <!-- interaction_id: en:lesson-03:session-02:i02; family: listen_choose -->
 🔊 *It is a bed.* → **It is a bed.** · It is a desk. · It is a sofa.
 - It is a desk. — *У записі останнє слово — `bed`, а в цьому варіанті — `desk`.*
@@ -105,7 +105,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**12 · Послухайте запитання вантажника**
+**12 · Послухайте й виберіть — вантажник з’являється у дверях із річчю в руках**
 <!-- interaction_id: en:lesson-03:session-02:i09; family: listen_choose -->
 🔊 *Is it a sofa?* → **Is it a sofa?** · Is it a bed? · Is it a desk?
 - Is it a bed? — *У записі останнє слово — `sofa`, а в цьому варіанті — `bed`.*
@@ -139,7 +139,7 @@ ___ it a bed? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a bed?`.*
 
-**19 · Послухайте, що подруга каже про подушку**
+**19 · Послухайте й виберіть — у кімнаті подруга розбирає речі**
 <!-- interaction_id: en:lesson-03:session-02:i15; family: listen_choose -->
 🔊 *It is a pillow.* → **It is a pillow.** · It is a bed. · It is a sofa.
 - It is a bed. — *У записі останнє слово — `pillow`, а в цьому варіанті — `bed`.*

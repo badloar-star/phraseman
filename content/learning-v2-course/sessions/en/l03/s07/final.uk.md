@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-07:word:cupboard; family: word_card -->
 > **cupboard** — шафка для посуду. Is it a cupboard? — «Це шафка?» Зазвичай на кухні.
 
-**4 · Послухайте, що подруга каже про меблі**
+**4 · Послухайте й виберіть — подруга тримає деталі майбутніх меблів**
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
 🔊 *It is a cupboard.* → **It is a cupboard.** · It is a wardrobe. · It is a drawer.
 - It is a wardrobe. — *У записі останнє слово — `cupboard`, а в цьому варіанті — `wardrobe`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте запитання подруги**
+**13 · Послухайте й виберіть — ви збираєте меблі, подруга питає**
 <!-- interaction_id: en:lesson-03:session-07:i09; family: listen_choose -->
 🔊 *Is it a wardrobe?* → **Is it a wardrobe?** · Is it a cupboard? · Is it a hanger?
 - Is it a cupboard? — *У записі останнє слово — `wardrobe`, а в цьому варіанті — `cupboard`.*
@@ -139,7 +139,7 @@ ___ it a hanger? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a hanger?`.*
 
-**19 · Послухайте, що подруга каже про вішак**
+**19 · Послухайте й виберіть — подруга подає вам чергову деталь**
 <!-- interaction_id: en:lesson-03:session-07:i15; family: listen_choose -->
 🔊 *It is a hanger.* → **It is a hanger.** · It is a drawer. · It is a cupboard.
 - It is a drawer. — *У записі останнє слово — `hanger`, а в цьому варіанті — `drawer`.*

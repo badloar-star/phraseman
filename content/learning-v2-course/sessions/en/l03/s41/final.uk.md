@@ -57,7 +57,7 @@
 Плитки: `here` `is` `box` `A` `The` → **A box is here.**
 *(плитка `The` зайва: тут потрібно `A` — `A box is here.`)*
 
-**2 · Послухайте й виберіть фразу**
+**2 · Послухайте й виберіть — ви перевіряєте чек, касир поруч**
 <!-- interaction_id: en:lesson-03:session-41:i02; family: listen_choose -->
 🔊 *A bag is here.* → **A bag is here.** · The bag is here. · A bag is there.
 - The bag is here. — *У записі перше слово — `A` (предмет названо вперше), а в цьому варіанті — `The`.*
@@ -101,7 +101,7 @@ ___ → **cashier** · coin · ticket
 - coin — *coin — це монета, а людину біля каси звати cashier.*
 - ticket — *ticket — це квиток, а людину біля каси звати cashier.*
 
-**11 · Послухайте, що каже касир**
+**11 · Послухайте й виберіть — касир видає вам чек**
 <!-- interaction_id: en:lesson-03:session-41:i09; family: listen_choose -->
 🔊 *A receipt is here.* → **A receipt is here.** · The receipt is here. · A receipt is there.
 - The receipt is here. — *У записі перше слово — `A` (чек названо вперше), а в цьому варіанті — `The`.*
@@ -139,7 +139,7 @@ ___ → **counter** · floor · wall
 - floor — *floor — це підлога, а стійка для покупок називається counter.*
 - wall — *wall — це стіна, а стійка для покупок називається counter.*
 
-**19 · Послухайте, що каже подруга**
+**19 · Послухайте й виберіть — подруга дивиться на чек разом із вами**
 <!-- interaction_id: en:lesson-03:session-41:i15; family: listen_choose -->
 🔊 *The mistake is here.* → **The mistake is here.** · A mistake is here. · The mistake is there.
 - A mistake is here. — *У записі перше слово — `The` (про помилку вже йшлося), а в цьому варіанті — `A`.*

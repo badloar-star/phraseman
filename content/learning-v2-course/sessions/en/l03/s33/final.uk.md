@@ -57,7 +57,7 @@
 Плитки: `heavy` `boxes` `are` `These` `box` → **These boxes are heavy.**
 *(плитка `box` зайва: тут потрібно `boxes` — `These boxes are heavy.`)*
 
-**2 · Послухайте запитання подруги про сумки**
+**2 · Послухайте й виберіть — подруга питає, поки ви розбираєте речі**
 <!-- interaction_id: en:lesson-03:session-33:i02; family: listen_choose -->
 🔊 *Are these bags new?* → **Are these bags new?** · Is this bag new? · Are these hats new?
 - Is this bag new? — *У записі `Are these bags` — сумок кілька, а в цьому варіанті `Is this bag` — одна.*
@@ -101,7 +101,7 @@ ___ → **sock** · hat · shirt
 - hat — *hat — це капелюх, а річ для ноги називається sock.*
 - shirt — *shirt — це сорочка, а річ для ноги називається sock.*
 
-**11 · Послухайте, що каже подруга про туфлі**
+**11 · Послухайте й виберіть — за столом ви розбираєте речі, подруга говорить**
 <!-- interaction_id: en:lesson-03:session-33:i09; family: listen_choose -->
 🔊 *These shoes are new.* → **These shoes are new.** · This shoe is new. · These shoes are old.
 - This shoe is new. — *У записі `These shoes are` — туфель кілька, а в цьому варіанті `This shoe is` — одна.*
@@ -139,7 +139,7 @@ ___ → **coat** · shirt · sock
 - shirt — *shirt — це сорочка, а теплий верхній одяг називається coat.*
 - sock — *sock — це шкарпетка, а теплий верхній одяг називається coat.*
 
-**19 · Послухайте запитання сусідки про сорочки**
+**19 · Послухайте й виберіть — подруга підходить до вашого столу на ярмарку**
 <!-- interaction_id: en:lesson-03:session-33:i15; family: listen_choose -->
 🔊 *Are these shirts clean?* → **Are these shirts clean?** · Is this shirt clean? · Are these shoes clean?
 - Is this shirt clean? — *У записі `Are these shirts` — сорочок кілька, а в цьому варіанті `Is this shirt` — одна.*

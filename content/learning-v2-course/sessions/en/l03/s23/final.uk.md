@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-23:word:fork; family: word_card -->
 > **fork** — виделка. Are they forks? — «Це виделки?» Про виделку, якою їдять.
 
-**4 · Послухайте запитання подруги про другу шухляду**
+**4 · Послухайте й виберіть — подруга зазирає в сусідню шухляду**
 <!-- interaction_id: en:lesson-03:session-23:i02; family: listen_choose -->
 🔊 *Are they forks?* → **Are they forks?** · Is it a fork? · Are they spoons?
 - Is it a fork? — *У записі останнє слово — `forks`, а в цьому варіанті — `fork`.*
@@ -109,7 +109,7 @@ The pots ___ hot. → **are** · is · am
 - is — *Каструль кілька: The pots are hot.*
 - am — *З The pots потрібно are: The pots are hot.*
 
-**13 · Послухайте, що подруга каже про посуд**
+**13 · Послухайте й виберіть — ви дістаєте речі з коробки, подруга дивиться**
 <!-- interaction_id: en:lesson-03:session-23:i09; family: listen_choose -->
 🔊 *They are cups.* → **They are cups.** · It is a cup. · They are pots.
 - It is a cup. — *У записі останнє слово — `cups`, а в цьому варіанті — `cup`.*
@@ -139,7 +139,7 @@ Are they ___? → **spoons** · spoon · are
 - spoon — *У запитанні про кілька ложок теж потрібно spoons з s.*
 - are — *Слово Are вже стоїть на початку. У пропуск потрібна назва ложок: spoons.*
 
-**19 · Послухайте запитання брата**
+**19 · Послухайте й виберіть — брат спостерігає, як ви розкладаєте речі**
 <!-- interaction_id: en:lesson-03:session-23:i15; family: listen_choose -->
 🔊 *Are they cups?* → **Are they cups?** · Is it a pot? · Are they forks?
 - Is it a pot? — *У записі останнє слово — `cups`, а в цьому варіанті — `pot`.*

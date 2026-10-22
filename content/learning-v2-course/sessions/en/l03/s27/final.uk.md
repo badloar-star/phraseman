@@ -57,7 +57,7 @@
 Плитки: `sofa` `Is` `this` `a` `an` → **Is this a sofa?**
 *(плитка `an` зайва: тут потрібно `a` — `Is this a sofa?`)*
 
-**2 · Послухайте питання сусідки**
+**2 · Послухайте й виберіть — сусідка просить вас допомогти з покупками**
 <!-- interaction_id: en:lesson-03:session-27:i02; family: listen_choose -->
 🔊 *Is that a shelf?* → **Is that a shelf?** · Is this a shelf? · Is that a clock?
 - Is this a shelf? — *У записі друге слово — `that`, а в цьому варіанті — `this`.*
@@ -101,7 +101,7 @@ ___ → **button** · switch · shelf
 - switch — *switch — це вимикач на стіні, а деталь, яку натискають, називається button.*
 - shelf — *shelf — це полиця, а деталь, яку натискають, називається button.*
 
-**11 · Послухайте питання подруги**
+**11 · Послухайте й виберіть — подруга питає, поки ви роззираєтеся**
 <!-- interaction_id: en:lesson-03:session-27:i09; family: listen_choose -->
 🔊 *Is that a remote?* → **Is that a remote?** · Is this a remote? · Is that a lamp?
 - Is this a remote? — *У записі друге слово — `that`, а в цьому варіанті — `this`.*
@@ -139,7 +139,7 @@ ___ → **router** · remote · shelf
 - remote — *remote — це пульт, а коробка, яка роздає інтернет, називається router.*
 - shelf — *shelf — це полиця, а коробка, яка роздає інтернет, називається router.*
 
-**19 · Послухайте питання сусідки**
+**19 · Послухайте й виберіть — сусідка показує речі довкола вас**
 <!-- interaction_id: en:lesson-03:session-27:i15; family: listen_choose -->
 🔊 *Is that a switch?* → **Is that a switch?** · Is this a switch? · Is that a sofa?
 - Is this a switch? — *У записі друге слово — `that`, а в цьому варіанті — `this`.*

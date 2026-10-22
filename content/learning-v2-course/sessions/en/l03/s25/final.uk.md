@@ -57,7 +57,7 @@
 Плитки: `lamp` `This` `is` `a` `an` → **This is a lamp.**
 *(плитка `an` зайва: тут потрібно `a` — `This is a lamp.`)*
 
-**2 · Послухайте, що каже майстер**
+**2 · Послухайте й виберіть — майстер у майстерні оглядає ваші речі**
 <!-- interaction_id: en:lesson-03:session-25:i02; family: listen_choose -->
 🔊 *This is a box.* → **This is a box.** · This is a key. · This is a bag.
 - This is a key. — *У записі останнє слово — `box`, а в цьому варіанті — `key`.*
@@ -101,7 +101,7 @@ ___ → **cable** · socket · lamp
 - socket — *socket — це розетка в стіні, а дріт називається cable.*
 - lamp — *lamp — це лампа, а дріт називається cable.*
 
-**11 · Послухайте, що каже подруга**
+**11 · Послухайте й виберіть — подруга чекає поруч, поки ви здаєте речі**
 <!-- interaction_id: en:lesson-03:session-25:i09; family: listen_choose -->
 🔊 *This is not a charger.* → **This is not a charger.** · This is not a box. · This is not a key.
 - This is not a box. — *У записі останнє слово — `charger`, а в цьому варіанті — `box`.*
@@ -139,7 +139,7 @@ ___ → **socket** · adapter · box
 - adapter — *adapter — це перехідник для вилки, а отвір у стіні називається socket.*
 - box — *box — це коробка, а отвір у стіні називається socket.*
 
-**19 · Послухайте, що каже майстер**
+**19 · Послухайте й виберіть — у вас у руках річ, майстер бере її в ремонт**
 <!-- interaction_id: en:lesson-03:session-25:i15; family: listen_choose -->
 🔊 *This is not an adapter.* → **This is not an adapter.** · This is not a charger. · This is not a cable.
 - This is not a charger. — *У записі останнє слово — `adapter`, а в цьому варіанті — `charger`.*

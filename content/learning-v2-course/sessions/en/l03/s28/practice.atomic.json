@@ -1221,7 +1221,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте, що каже продавець",
+        "prompt": "Послухайте й виберіть — продавець перевіряє ваші покупки",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-28:i02:r1",
@@ -1240,7 +1240,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-28:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте, що каже продавець",
+        "accessibilityLabel": "Послухайте й виберіть — продавець перевіряє ваші покупки",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1270,7 +1270,7 @@
             {
               "responseId": "en:lesson-03:session-28:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте, що каже продавець",
+              "testedDimension": "Послухайте й виберіть — продавець перевіряє ваші покупки",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
                 "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
@@ -1279,7 +1279,7 @@
             {
               "responseId": "en:lesson-03:session-28:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте, що каже продавець",
+              "testedDimension": "Послухайте й виберіть — продавець перевіряє ваші покупки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `trolley`, а в этом варианте — `basket`.",
                 "uk": "У записі останнє слово — `trolley`, а в цьому варіанті — `basket`."
@@ -1720,7 +1720,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте подругу",
+        "prompt": "Послухайте й виберіть — подруга чекає поруч біля виходу з магазину",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-28:i09:r1",
@@ -1739,7 +1739,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-28:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте подругу",
+        "accessibilityLabel": "Послухайте й виберіть — подруга чекає поруч біля виходу з магазину",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1769,7 +1769,7 @@
             {
               "responseId": "en:lesson-03:session-28:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте подругу",
+              "testedDimension": "Послухайте й виберіть — подруга чекає поруч біля виходу з магазину",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
                 "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
@@ -1778,7 +1778,7 @@
             {
               "responseId": "en:lesson-03:session-28:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте подругу",
+              "testedDimension": "Послухайте й виберіть — подруга чекає поруч біля виходу з магазину",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `suitcase`, а в этом варианте — `basket`.",
                 "uk": "У записі останнє слово — `suitcase`, а в цьому варіанті — `basket`."
@@ -2151,7 +2151,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте питання охоронниці",
+        "prompt": "Послухайте й виберіть — біля виходу охоронниця ставить вам запитання",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-28:i15:r1",
@@ -2170,7 +2170,7 @@
         "audioTargetIds": [
           "en:lesson-03:session-28:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте питання охоронниці",
+        "accessibilityLabel": "Послухайте й виберіть — біля виходу охоронниця ставить вам запитання",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2200,7 +2200,7 @@
             {
               "responseId": "en:lesson-03:session-28:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте питання охоронниці",
+              "testedDimension": "Послухайте й виберіть — біля виходу охоронниця ставить вам запитання",
               "feedbackByLocale": {
                 "ru": "В записи второе слово — `this`, а в этом варианте — `that`.",
                 "uk": "У записі друге слово — `this`, а в цьому варіанті — `that`."
@@ -2209,7 +2209,7 @@
             {
               "responseId": "en:lesson-03:session-28:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте питання охоронниці",
+              "testedDimension": "Послухайте й виберіть — біля виходу охоронниця ставить вам запитання",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `handbag`, а в этом варианте — `backpack`.",
                 "uk": "У записі останнє слово — `handbag`, а в цьому варіанті — `backpack`."

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-03:word:mirror; family: word_card -->
 > **mirror** — дзеркало. Is it a mirror? — «Це дзеркало?» Кишенькове, настінне, на зріст — усе це a mirror.
 
-**4 · Послухайте, що подруга каже про річ біля дверей**
+**4 · Послухайте й виберіть — подруга показує на річ біля дверей**
 <!-- interaction_id: en:lesson-03:session-03:i02; family: listen_choose -->
 🔊 *It is a mirror.* → **It is a mirror.** · It is a rug. · It is a stool.
 - It is a rug. — *У записі останнє слово — `mirror`, а в цьому варіанті — `rug`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте запитання подруги**
+**13 · Послухайте й виберіть — подруга питає про річ у коморі**
 <!-- interaction_id: en:lesson-03:session-03:i09; family: listen_choose -->
 🔊 *Is it a picture?* → **Is it a picture?** · Is it a mirror? · Is it a rug?
 - Is it a mirror? — *У записі останнє слово — `picture`, а в цьому варіанті — `mirror`.*
@@ -139,7 +139,7 @@ ___ it a rug? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a rug?`.*
 
-**19 · Послухайте, що подруга каже про картину**
+**19 · Послухайте й виберіть — ви розставляєте речі, подруга тримає одну**
 <!-- interaction_id: en:lesson-03:session-03:i15; family: listen_choose -->
 🔊 *It is a picture.* → **It is a picture.** · It is a rug. · It is a stool.
 - It is a rug. — *У записі останнє слово — `picture`, а в цьому варіанті — `rug`.*

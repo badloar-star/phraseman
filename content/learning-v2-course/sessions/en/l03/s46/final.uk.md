@@ -57,7 +57,7 @@
 Плитки: `ceiling` `is` `dirty` `The` `A` → **The ceiling is dirty.**
 *(плитка `A` зайва: тут потрібно `The` — `The ceiling is dirty.`)*
 
-**2 · Послухайте брата й виберіть фразу**
+**2 · Послухайте й виберіть — брат оглядає з вами куплений будинок**
 <!-- interaction_id: en:lesson-03:session-46:i02; family: listen_choose -->
 🔊 *The door is open.* → **The door is open.** · A door is open. · The door is closed.
 - A door is open. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
@@ -101,7 +101,7 @@ ___ → **lift** · door · window
 - door — *door — це двері, а кабіна, яка возить людей по поверхах, називається lift.*
 - window — *window — це вікно, а кабіна, яка возить людей по поверхах, називається lift.*
 
-**11 · Послухайте, що каже брат**
+**11 · Послухайте й виберіть — будинком попереду вас іде брат**
 <!-- interaction_id: en:lesson-03:session-46:i09; family: listen_choose -->
 🔊 *The roof is old.* → **The roof is old.** · A roof is old. · The roof is new.
 - A roof is old. — *У записі перше слово — `The`, а в цьому варіанті — `A`.*
@@ -139,7 +139,7 @@ ___ → **balcony** · wall · ceiling
 - wall — *wall — це стіна, а майданчик із поручнями біля кімнати називається balcony.*
 - ceiling — *ceiling — це стеля, а майданчик із поручнями біля кімнати називається balcony.*
 
-**19 · Послухайте, що каже сусідка**
+**19 · Послухайте й виберіть — сусідка оглядає будинок разом із вами**
 <!-- interaction_id: en:lesson-03:session-46:i15; family: listen_choose -->
 🔊 *The stairs are narrow.* → **The stairs are narrow.** · The stairs are steep. · The stairs are wide.
 - The stairs are steep. — *У записі останнє слово — `narrow`, а в цьому варіанті — `steep`.*

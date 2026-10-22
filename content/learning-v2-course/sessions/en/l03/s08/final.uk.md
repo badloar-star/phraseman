@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-03:session-08:word:hammer; family: word_card -->
 > **hammer** — молоток. It's a hammer — «Це молоток». Ним забивають цвяхи.
 
-**4 · Послухайте, що подруга каже про речі в коридорі**
+**4 · Послухайте й виберіть — подруга перевіряє речі в коридорі за списком**
 <!-- interaction_id: en:lesson-03:session-08:i02; family: listen_choose -->
 🔊 *It is a hammer.* → **It is a hammer.** · It is a ladder. · It is a bucket.
 - It is a ladder. — *У записі останнє слово — `hammer`, а в цьому варіанті — `ladder`.*
@@ -109,7 +109,7 @@ Yes, it ___. → **is** · am · are
 - am — *З `it` потрібно `is`.*
 - are — *Відповідь — `Yes, it is`.*
 
-**13 · Послухайте запитання подруги**
+**13 · Послухайте й виберіть — подруга питає, поки ви звіряєте список**
 <!-- interaction_id: en:lesson-03:session-08:i09; family: listen_choose -->
 🔊 *Is it a bucket?* → **Is it a bucket?** · Is it a ladder? · Is it a hammer?
 - Is it a ladder? — *У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`.*
@@ -139,7 +139,7 @@ ___ it a ladder? → **Is** · Am · Are
 - Am — *З `it` потрібно `Is`.*
 - Are — *Питання — `Is it a ladder?`.*
 
-**19 · Послухайте, що подруга каже про полицю**
+**19 · Послухайте й виберіть — ви дістаєте з останньої коробки предмет**
 <!-- interaction_id: en:lesson-03:session-08:i15; family: listen_choose -->
 🔊 *It is a shelf.* → **It is a shelf.** · It is a hammer. · It is a bucket.
 - It is a hammer. — *У записі останнє слово — `shelf`, а в цьому варіанті — `hammer`.*

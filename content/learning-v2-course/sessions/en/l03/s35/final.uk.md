@@ -57,7 +57,7 @@
 Плитки: `new` `pictures` `are` `These` `picture` → **These pictures are new.**
 *(плитка `picture` зайва: тут потрібно `pictures` — `These pictures are new.`)*
 
-**2 · Послухайте запитання сусідки про дзеркало**
+**2 · Послухайте й виберіть — сусідка обирає з вами прикраси для стіни**
 <!-- interaction_id: en:lesson-03:session-35:i02; family: listen_choose -->
 🔊 *Is this mirror big?* → **Is this mirror big?** · Are these mirrors big? · Is this mirror old?
 - Are these mirrors big? — *У записі `Is this mirror` — дзеркало одне, а в цьому варіанті `Are these mirrors` — кілька.*
@@ -101,7 +101,7 @@ ___ → **frame** · mirror · shelf
 - mirror — *mirror — це дзеркало, а обрамлення для знімка називається frame.*
 - shelf — *shelf — це полиця, а обрамлення для знімка називається frame.*
 
-**11 · Послухайте, що каже сусідка про знімки**
+**11 · Послухайте й виберіть — ви обираєте прикраси, сусідка говорить**
 <!-- interaction_id: en:lesson-03:session-35:i09; family: listen_choose -->
 🔊 *This photo is old.* → **This photo is old.** · These photos are old. · This photo is new.
 - These photos are old. — *У записі `This photo` — знімок один, а в цьому варіанті `These photos` — кілька.*
@@ -139,7 +139,7 @@ ___ → **map** · clock · mirror
 - clock — *clock — це годинник, а малюнок міста з вулицями називається map.*
 - mirror — *mirror — це дзеркало, а малюнок міста з вулицями називається map.*
 
-**19 · Послухайте запитання брата про альбом**
+**19 · Послухайте й виберіть — брат гортає речі поруч із вами**
 <!-- interaction_id: en:lesson-03:session-35:i15; family: listen_choose -->
 🔊 *Is this album new?* → **Is this album new?** · Are these albums new? · Is this album old?
 - Are these albums new? — *У записі `Is this album` — альбом один, а в цьому варіанті `Are these albums` — кілька.*

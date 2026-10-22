@@ -57,7 +57,7 @@
 Плитки: `basket` `This` `is` `a` `That` → **This is a basket.**
 *(плитка `That` зайва: тут потрібно `This` — `This is a basket.`)*
 
-**2 · Послухайте, що каже продавець**
+**2 · Послухайте й виберіть — продавець перевіряє ваші покупки**
 <!-- interaction_id: en:lesson-03:session-28:i02; family: listen_choose -->
 🔊 *That is a trolley.* → **That is a trolley.** · This is a trolley. · That is a basket.
 - This is a trolley. — *У записі перше слово — `That`, а в цьому варіанті — `This`.*
@@ -101,7 +101,7 @@ ___ → **backpack** · suitcase · basket
 - suitcase — *suitcase — це валіза на колесах, а річ для спини називається backpack.*
 - basket — *basket — це кошик, а річ для спини називається backpack.*
 
-**11 · Послухайте подругу**
+**11 · Послухайте й виберіть — подруга чекає поруч біля виходу з магазину**
 <!-- interaction_id: en:lesson-03:session-28:i09; family: listen_choose -->
 🔊 *This is not a suitcase.* → **This is not a suitcase.** · That is not a suitcase. · This is not a basket.
 - That is not a suitcase. — *У записі перше слово — `This`, а в цьому варіанті — `That`.*
@@ -139,7 +139,7 @@ ___ → **stroller** · trolley · suitcase
 - trolley — *trolley — це візок для покупок, а дитячий називається stroller.*
 - suitcase — *suitcase — це валіза, а дитячий візок називається stroller.*
 
-**19 · Послухайте питання охоронниці**
+**19 · Послухайте й виберіть — біля виходу охоронниця ставить вам запитання**
 <!-- interaction_id: en:lesson-03:session-28:i15; family: listen_choose -->
 🔊 *Is this a handbag?* → **Is this a handbag?** · Is that a handbag? · Is this a backpack?
 - Is that a handbag? — *У записі друге слово — `this`, а в цьому варіанті — `that`.*

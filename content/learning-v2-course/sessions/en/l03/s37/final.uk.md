@@ -57,7 +57,7 @@
 Плитки: `big` `doors` `are` `These` `door` → **These doors are big.**
 *(плитка `door` зайва: тут потрібно `doors` — `These doors are big.`)*
 
-**2 · Послухайте, що каже вчителька про стіну**
+**2 · Послухайте й виберіть — учителька показує вам сусідні будівлі**
 <!-- interaction_id: en:lesson-03:session-37:i02; family: listen_choose -->
 🔊 *That wall is old.* → **That wall is old.** · Those walls are old. · This wall is old.
 - Those walls are old. — *У записі `That wall` — стіна одна, а в цьому варіанті `Those walls` — кілька.*
@@ -101,7 +101,7 @@ ___ → **entrance** · door · window
 - door — *door — це двері, а місце, де заходять у будівлю, називається entrance.*
 - window — *window — це вікно, а місце, де заходять у будівлю, називається entrance.*
 
-**11 · Послухайте, що каже брат про будівлю**
+**11 · Послухайте й виберіть — брат оглядає навчальний центр разом із вами**
 <!-- interaction_id: en:lesson-03:session-37:i09; family: listen_choose -->
 🔊 *This building is big.* → **This building is big.** · These buildings are big. · That building is big.
 - These buildings are big. — *У записі `This building` — будівля одна, а в цьому варіанті `These buildings` — кілька.*
@@ -139,7 +139,7 @@ ___ → **yard** · wall · floor
 - wall — *wall — це стіна, а відкрите місце між будівлями називається yard.*
 - floor — *floor — це підлога, а відкрите місце між будівлями називається yard.*
 
-**19 · Послухайте запитання брата про вихід**
+**19 · Послухайте й виберіть — оглядаючи будівлі, брат ставить запитання**
 <!-- interaction_id: en:lesson-03:session-37:i15; family: listen_choose -->
 🔊 *Is that exit open?* → **Is that exit open?** · Are those exits open? · Is that exit closed?
 - Are those exits open? — *У записі `Is that exit` — вихід один, а в цьому варіанті `Are those exits` — кілька.*

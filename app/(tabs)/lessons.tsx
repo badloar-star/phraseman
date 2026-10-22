@@ -1,6 +1,10 @@
 import { peekLearningV2DevUnlockAll, rememberLearningV2DevUnlockAll } from "../learning_v2_dev_unlock_memory";
 import { LEARNING_V2_OWNER_EN_TITLES_RU } from "../../components/learning-v2/learningV2OwnerLayout";
 import LearningV2ChaptersCourse from "../../components/learning-v2/LearningV2ChaptersCourse";
+import SeasonCourseConnected from "../../components/learning-v2/season/SeasonCourseConnected";
+import { SEASON_SCENE_V2_ENABLED } from "../../components/learning-v2/season/season_flags";
+// зачем (Ф4, владелец 22.10 «ПОЧЕМУ РАЗДЕЛ УРОКИ ЕЩЁ НЕ СДЕЛАН?»): под флагом вместо старой карты глав — «Обучение, способ 2» (Сезон + карусель) на тех же данных и пропсах; выпуск — старая карта
+const LessonsCourseSurface: typeof LearningV2ChaptersCourse = SEASON_SCENE_V2_ENABLED ? (SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse) : LearningV2ChaptersCourse;
 import React, {
   useState,
   useEffect,
@@ -5218,7 +5222,7 @@ export default function LessonsTab({
             // монтировалась ЗАНОВО и вступление играло второй раз. Карта
             // теперь рисуется сразу и живёт, пока раздел открыт; модал лежит
             // поверх неё.
-            <LearningV2ChaptersCourse
+            <LessonsCourseSurface
               // зачем: здесь стоял key={learningV2ProjectionScopeKey}. Ключ
               // собирается из captureAccountGeneration().generation, который
               // читается ВНЕ зависимостей useMemo: при пересчёте мемо ключ

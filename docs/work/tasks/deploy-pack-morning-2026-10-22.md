@@ -186,3 +186,27 @@
 
 **Результат полного прогона functions (чистая копия HEAD 94059b82c, один прогон через слот, 22.10 ночью):** 872 набора — 810 зелёных, **62 красных** (104 из 9878 тестов). Полный вывод: scratchpad Ядра `full_functions_94059b82c.out`.
 Красные, связанные с группами пакета, — **разобрать ДО выкладки**: `app_check_sealed`, `gift_access`, `gift_perk_producers_contract`, `revenuecat_transfer_phase2`, `spire_pack_build_multilingual`, `spire_pack_flags_fail_closed`, `spire_week_simulation`, `spire_zone_warning_push`. Тесты, которые прогонял сам (кольцо Plus, вебхук, крон истечения, оповещения, Пик-isPremium), зелёные. Основная масса красных — `content_factory/*` и `accounts_v2_migration/*` (Learning V2 и миграция аккаунтов), к группам пакета не относятся. Разбор «чьё и почему» Ядро не успело — следующий шаг.
+
+## Красные наборы functions (Ревизор, 22.10 — по выводу Ядра `full_functions_94059b82c.out`, чистая копия HEAD 94059b82c)
+
+Разбор 8 наборов, касающихся групп пакета. Чтение вывода и кода, тесты повторно не гонялись.
+
+| Набор | Что падает | Дефект или тест | Блокирует | Кто чинит |
+|---|---|---|---|---|
+| `app_check_sealed` | `git ls-files functions/src` → «not a git repository»: чистая копия собрана `git archive`, а тест сканирует файлы через git | **окружение прогона**, не код | нет | Ядро: в тесте читать файлы через `fs`, если `.git` нет (или гнать этот набор в рабочем дереве) |
+| `spire_pack_build_multilingual`, `spire_pack_flags_fail_closed`, `spire_week_simulation` | нет `functions/src/generated/spire_multilingual_{es,fr,de,it}.json` → пул 0 заданий | **окружение прогона**: файлы в `.gitignore:353-356`, их пересоздаёт сборка (`functions/package.json` build → `scripts/copy_generated_assets.js` из `content/arena-multilingual/generated/*/tasks.jsonl`). Прогон jest без сборки их не видит | нет. Выкладка идёт через `deploy_from_clean_head.sh`, где сборка обязательна, и `content/arena-multilingual` входит в выгрузку | Ядро: перед jest на чистой копии запускать `node scripts/copy_generated_assets.js` (или `npm run build`) |
+| `gift_access` | ждёт строку `export { introFullAccessClaim } from './gift_access';`, а в `index.ts:1056` экспорт в двойных кавычках `"./gift_access"` | **устаревший тест** (сверка текста, сломана форматированием) | нет. Функция в группы пакета не входит, в проде с 02.09 | Ядро: сверять регуляркой без учёта кавычек |
+| `gift_perk_producers_contract` | `pkg.scripts['deploy:safe' / 'deploy:community-gift']` — undefined (скриптов больше нет); исходник `complete_claim` — пусто (файл или функция уровня-подарка удалены: `levelGiftReserve` снята 21.10 по №45) | **устаревший тест** | нет | Ядро: удалить или переписать под текущий набор функций |
+| `revenuecat_transfer_phase2` | набор **не компилируется**: `__revenueCatWebhookTestHooks.handleShardRefundEvent` убран (осколки сняты с продажи, D103/D136/D139 — их события только логируются `handleRetiredProductEvent`) | **устаревший тест**, но с последствием: из-за ошибки TS не запускается ВЕСЬ набор переноса подписки (transfer), а это денежный вебхук | ⚠️ **группа В (isPlus) — да, до починки**: cbdecef56 меняет `revenuecat_shards.ts`, а его набор переноса сейчас молчит. Группы А, Б, Г — нет | Ядро: убрать или переписать кейс возврата осколков под `handleRetiredProductEvent`, прогнать набор зелёным ДО выкладки вебхука |
+| `spire_zone_warning_push` | `spireZoneEdgeStatuses`: края зоны сдвинуты (u4 не `promotion_edge`, u0 и u8 получают статусы) | **скорее устаревший тест**: код функции с 11.10 не менялся, сдвиг пришёл из `spire_residents.ts` c87cd7010 (18.10, «убрать синтетических игроков») — фикстура считает ботов живыми | нет. `spireZoneWarningCron` в группы пакета не входит. Но это воскресный пуш «ты у края зоны»: если тест прав, текст пуша уйдёт не тем людям | Ядро: сверить фикстуру с правилом без ботов; если расхождение реальное — до воскресенья 20:00 |
+
+**Итог для утреннего «да»:** А, Б, Г, Д — красные наборы не блокируют. В — выкладывать вебхук RevenueCat только после того, как `revenuecat_transfer_phase2` снова скомпилируется и будет зелёным.
+
+## Дополнения Ревизора 22.10 (перенос из журнала, пачки 3.149–3.150)
+
+- **Группа Г — опция (вопрос 19):** bd56321bb — safetyFlag снят с «1.x → сводка» поверх bae288570, 28/28. Ревизор — за. Те же две функции и откат.
+- **Группа В — коммит Ядра cbdecef56 ✅:**
+  - `syncPublicProfilePlusAfterCommit` вызывается ПОСЛЕ транзакции (вебхук RevenueCat, крон истечения), только `update`, без обрывков, никогда не бросает;
+  - `realPlusUntilMs`: `null` — нет Plus, `0` — бессрочно;
+  - читатель кольца: `isPlus === true && (plusUntilMs === 0 || plusUntilMs + 72 ч > сейчас)`.
+- **Не в пакет до исправления:** «Позвать» из f1c6e19c3 — 🔴 очередь зовов без владельца (`friends_nudge_queue_v1`). После смены аккаунта зов может уйти от имени другого.

@@ -10,8 +10,9 @@ describe('lessons full-bleed safe-area contract', () => {
 
     expect(lessons).toContain('const insets = useStableSafeAreaInsets();');
     // R69: своё полотно страницы нужно (под ней плотный слой), но оно поднимается над верхом страницы на inset вкладки и совпадает с полотном оболочки
-    expect(lessons).toContain('<ScreenGradient forceFullBleed bleedTop={isRetainedTab ? insets.top : 0}>');
-    expect(lessons).toContain('const headerTopPad = isRetainedTab ? 12 : insets.top + 12;');
+    // зачем (владелец 22.10, Сезон 46 %): при полноэкранной странице «Уроки» (seasonBleed > 0) оболочка не отступает, поэтому полотно не поднимается
+    expect(lessons).toContain('<ScreenGradient forceFullBleed bleedTop={isRetainedTab && seasonBleed === 0 ? insets.top : 0}>');
+    expect(lessons).toContain('const headerTopPad = isRetainedTab ? 12 + seasonBleed : insets.top + 12;');
     expect(lessons).toContain('paddingTop: headerTopPad');
     // зачем: полоса под строкой состояния красится фоном видимой вкладки («Уроки» — свой фон), чтобы арт Главной
     // не просвечивал над списком уроков; фон по-прежнему во весь экран, отступ — у обёртки.

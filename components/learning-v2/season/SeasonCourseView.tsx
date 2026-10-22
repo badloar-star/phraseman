@@ -65,6 +65,8 @@ export type SeasonCourseViewProps = Readonly<{
   episodeInfo: (card: SeasonEpisodeCard) => SeasonEpisodeInfo;
   chapterInfo: (chapterOrdinal: number) => SeasonChapterInfo;
   topPadding: number;
+  /** Высота зоны часов, если страница полноэкранная (TabTopBleedContext): обложка идёт от самого верха экрана и занимает 392 dp целиком. 0/не задано — как раньше. */
+  topBleed?: number;
   bottomPadding: number;
   avatarSlot?: React.ReactNode;
   reducedMotion: boolean;
@@ -143,7 +145,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }} showsVerticalScrollIndicator={false} testID="season-course">
-      <View style={styles.hero} testID="season-hero">
+      <View style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
         <View style={styles.heroGlyph} pointerEvents="none"><Ionicons name={heroInfo.icon} size={310} color={GLYPH} /></View>
@@ -156,7 +158,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
           <View style={styles.flex} />
           {props.avatarSlot ?? null}
         </View>
-        <View style={styles.heroBody}>
+        <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null]}>
           <Text style={styles.kicker}>{kicker}</Text>
           <Text accessibilityRole="header" style={styles.heroTitle}>{props.lessonTitle}</Text>
           <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} style={styles.primary} testID="season-primary">
@@ -229,6 +231,9 @@ function ActionChip({ icon, label, onPress, testID }: Readonly<{ icon: IonName; 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   hero: { height: 380, borderBottomLeftRadius: 34, borderBottomRightRadius: 34, overflow: 'hidden' },
+  // зачем (владелец 22.10: высота сцен 46 % для всех; scenes-compact.html «Обучение · Сезон», вариант 2): 392 dp вместе с зоной часов, фон от верха экрана
+  heroBodyTall: { bottom: 44 },
+  heroTall: { height: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   heroGlyph: { position: 'absolute', right: -54, top: 64, transform: [{ rotate: '-8deg' }] },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -236,8 +241,8 @@ const styles = StyleSheet.create({
   pillText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: WHITE },
   heroBody: { position: 'absolute', left: 20, right: 20, bottom: 22 },
   kicker: { fontSize: 13, lineHeight: 17, color: WHITE_SOFT },
-  heroTitle: { marginTop: 6, fontSize: 32, lineHeight: 38, fontWeight: '700', letterSpacing: -0.5, color: WHITE },
-  primary: { marginTop: 16, height: 54, borderRadius: 27, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: WHITE },
+  heroTitle: { marginTop: 4, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5, color: WHITE },
+  primary: { marginTop: 16, height: 50, borderRadius: 25, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: WHITE },
   primaryText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: BTN_INK },
   glass: { marginTop: 12, height: 50, borderRadius: 25, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: PILL },
   glassText: { fontSize: 16, lineHeight: 21, fontWeight: '600', color: WHITE },

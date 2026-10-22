@@ -1,6 +1,7 @@
 import { peekLearningV2DevUnlockAll, rememberLearningV2DevUnlockAll } from "../learning_v2_dev_unlock_memory";
 import { LEARNING_V2_OWNER_EN_TITLES_RU } from "../../components/learning-v2/learningV2OwnerLayout";
 import LearningV2ChaptersCourse from "../../components/learning-v2/LearningV2ChaptersCourse";
+import { useTabTopBleedInset } from "../../components/tab_top_bleed";
 import SeasonCourseConnected from "../../components/learning-v2/season/SeasonCourseConnected";
 import { SEASON_SCENE_V2_ENABLED } from "../../components/learning-v2/season/season_flags";
 // зачем (Ф4, владелец 22.10 «ПОЧЕМУ РАЗДЕЛ УРОКИ ЕЩЁ НЕ СДЕЛАН?»): под флагом вместо старой карты глав — «Обучение, способ 2» (Сезон + карусель) на тех же данных и пропсах; выпуск — старая карта
@@ -2485,7 +2486,9 @@ export default function LessonsTab({
   const listBottomPad = isRetainedTab
     ? tabContentBottomPad
     : Math.max(insets.bottom, 12) + 20;
-  const headerTopPad = isRetainedTab ? 12 : insets.top + 12;
+  // зачем (владелец 22.10, схема eab9aa35d): при полноэкранной странице «Уроки» (Сезон) оболочка не отступает на высоту часов — шапка отступает сама на seasonBleed
+  const seasonBleed = useTabTopBleedInset();
+  const headerTopPad = isRetainedTab ? 12 + seasonBleed : insets.top + 12;
   const isGoldTheme = themeMode === "gold";
   const isOliveTheme = themeMode === "olive";
   const isSagePorcelainTheme = isLightThemeMode(themeMode);
@@ -4953,7 +4956,7 @@ export default function LessonsTab({
   return (
     <>
       {/* зачем (R69, Сверка 15.10): под страницей лежит плотный слой, поэтому своё полотно страницы нужно (без него — плоская ступень в Авроре), но оно обязано совпасть с полотном оболочки: bleedTop поднимает его над верхом страницы на inset вкладки — та же геометрия от верха экрана, шва нет. Отдельным маршрутом bleedTop = 0. */}
-      <ScreenGradient forceFullBleed bleedTop={isRetainedTab ? insets.top : 0}>
+      <ScreenGradient forceFullBleed bleedTop={isRetainedTab && seasonBleed === 0 ? insets.top : 0}>
         {/* зачем (владелец 18.10 «верхняя зона ТОЧНО как на Главной, особо — Уроки»): свой слой bgTop → bg → bgBottom поверх полотна убран —
             под Уроками ровно то же полотно (V2Backdrop), что под Главной, один источник фона на все вкладки. */}
         <View

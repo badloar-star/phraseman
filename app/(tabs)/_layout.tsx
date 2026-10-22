@@ -14,6 +14,7 @@ import TopFadeMask from '../../components/TopFadeMask';
 // зачем (Пик v2): полоса под часами цветом сцены Пика — пока сцена Пика не перешла на полноэкранную страницу (как Главная)
 import HomeSceneStatusStrip from '../../components/home/v2/scene/HomeSceneStatusStrip';
 import { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/home_scene_flag';
+import { SEASON_SCENE_V2_ENABLED } from '../../components/learning-v2/season/season_flags';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
@@ -649,7 +650,11 @@ function TabScaffold({
   // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ… НЕ ОТЛИЧАЕТСЯ ПО ЦВЕТУ»): со «Сценой» страница Главной
   // полноэкранная — сцена рисует фон от верха экрана, шапка отступает сама; без сцены отступ под часы прежний, как у всех вкладок.
   const homeFullBleedPages = useMemo<readonly number[]>(
-    () => (HOME_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(0, pageLayout)] : []),
+    () => [
+      ...(HOME_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(0, pageLayout)] : []),
+      // зачем (владелец 22.10: высота сцен 46 % для всех, фон до самого верха): «Сезон» во вкладке «Уроки» — полноэкранная страница; шапка Уроков и обложка отступают сами (TabTopBleedContext)
+      ...(SEASON_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(1, pageLayout)] : []),
+    ],
     [pageLayout],
   );
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();

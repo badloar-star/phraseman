@@ -27,6 +27,7 @@ import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
 import PressableHybrid from '../../PressableHybrid';
 import { useTheme } from '../../ThemeContext';
+import { useTabTopBleedInset } from '../../tab_top_bleed';
 import BackGlyph from '../../v2/BackGlyph';
 import { learningV2ChapterIonIcon } from '../icons/learningV2IonIcons';
 import LearningV2AllLessonsList, { type AllLessonsRow } from '../LearningV2AllLessonsList';
@@ -53,6 +54,8 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   const router = useRouter();
   const g = useLv2Glass();
   const { isDark } = useTheme();
+  // зачем (владелец 22.10: высота сцен 46 % для всех, фон до самого верха; схема eab9aa35d): страница «Уроки» полноэкранная — обложка идёт под часы, шапка отступает на высоту зоны часов
+  const bleed = useTabTopBleedInset();
   const canonical = currentLessonOrdinal(props.currentSessionId);
   const [requestedLesson, setRequestedLesson] = useState(() => {
     const choice = pickInitialLessonOrdinal({ remembered: props.preferredLessonOrdinal ?? null, canonical, visibleOrdinals: null });
@@ -227,7 +230,8 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         resumeLine={resumeLine}
         episodeInfo={episodeInfo}
         chapterInfo={chapterInfo}
-        topPadding={props.topPadding ?? 0}
+        topPadding={bleed > 0 ? bleed : (props.topPadding ?? 0)}
+        topBleed={bleed}
         avatarSlot={props.headerAccessory}
         bottomPadding={props.bottomPadding}
         reducedMotion={props.reducedMotion}

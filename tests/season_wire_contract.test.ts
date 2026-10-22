@@ -52,3 +52,21 @@ describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
     expect(wire).not.toContain('onOpenByExam');
   });
 });
+
+describe('Сезон: обложка 46 % от самого верха (владелец 22.10)', () => {
+  const layout = readSource('app/(tabs)/_layout.tsx');
+  const view = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+  it('страница «Уроки» полноэкранная под флагом сезона, шапка отступает сама', () => {
+    expect(layout).toContain('SEASON_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(1, pageLayout)] : []');
+    expect(lessons).toContain('const seasonBleed = useTabTopBleedInset();');
+    expect(lessons).toContain('isRetainedTab ? 12 + seasonBleed : insets.top + 12');
+    expect(lessons).toContain('bleedTop={isRetainedTab && seasonBleed === 0 ? insets.top : 0}');
+    expect(wire).toContain('topBleed={bleed}');
+  });
+  it('обложка: 392 dp вместе с зоной часов, заголовок 30/36, кнопка 50, низ 44', () => {
+    expect(view).toMatch(/heroTall: \{ height: 392/);
+    expect(view).toMatch(/heroTitle: \{ marginTop: 4, fontSize: 30, lineHeight: 36/);
+    expect(view).toMatch(/primary: \{ marginTop: 16, height: 50/);
+    expect(view).toContain('heroBodyTall: { bottom: 44 }');
+  });
+});

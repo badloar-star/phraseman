@@ -154,6 +154,9 @@ import FriendListRow from '../../components/friends_together/FriendListRow';
 import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
 import FriendPairSheet from '../../components/friends_together/FriendPairSheet';
 import FriendPairMilestoneHost from '../../components/friends_together/FriendPairMilestoneHost';
+import FriendsOfflineStrip from '../../components/friends_together/FriendsOfflineStrip';
+import { useFriendsOffline } from '../../hooks/use_friends_offline';
+import { noteFriendsListServerSnapshot } from '../friends_together/friends_list_sync';
 import type { FriendCallState } from '../../components/friends_together/FriendCallPill';
 import {
   createFriendSheetSession,
@@ -887,6 +890,8 @@ export default function FriendsTabScreen() {
   const devBots = devBotsState.bots;
   // «Вместе» отключён в текущем релизном контуре — один выключатель на вкладку, Главную и финал занятия (together_config).
   const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED;
+  // зачем (идея 1, макет «Нет сети»): полоса «Нет сети · список сохранён в …»; NetInfo слушаем, только пока вкладка на экране
+  const friendsOffline = useFriendsOffline(friendsRuntimeActive && friendsTogetherUiEnabled);
   const friendMarkersByUid = useMemo(() => {
     const grouped = new Map<string, FriendSocialEvent[]>();
     for (const event of friendEvents) grouped.set(event.actorStableUid, [...(grouped.get(event.actorStableUid) ?? []), event]);
@@ -1634,6 +1639,8 @@ export default function FriendsTabScreen() {
         if (cancelled) return;
         setFriendsListError(false);
         const fromCache = meta?.fromCache === true;
+        // зачем (идея 1, полоса «Нет сети · список сохранён в …»): время последнего списка с сервера, своё на аккаунт, только телефон
+        if (FRIENDS_TOGETHER_UI_ENABLED && !fromCache && canonical) noteFriendsListServerSnapshot(canonical);
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
         const mergedFriends = pendingFriendOpsRef.current.mergeFriends(data, Date.now());
         if (mergedFriends.length !== data.length) {
@@ -2507,6 +2514,8 @@ export default function FriendsTabScreen() {
 
   const hasRequests = requests.length > 0;
   const hasFriendRows = sortedFriends.length > 0;
+  // зачем (идея 1, макет «Нет сети»): без сети список остаётся, над ним — спокойная полоса со временем сохранения
+  const offlineStrip = friendsTogetherUiEnabled && friendsOffline === true && hasFriendRows ? <FriendsOfflineStrip /> : null;
   const yourFriendsTitle = L('Твои друзья', 'Твої друзі', 'Your friends', 'Tus amigos', 'Seus amigos', 'Bạn bè của bạn', 'Teman kamu', 'Arkadaşların', 'Twoi znajomi');
 
   // зачем (владелец 2026-09-29): вкладка встроена в «Сообщество» (заголовок + переключатель уже там), поэтому
@@ -2654,7 +2663,7 @@ export default function FriendsTabScreen() {
               </Reanimated.View>
             );
           }}
-          ListHeaderComponent={<>{dailyPollCard}{listHeader}{friendsPreList}</>}
+          ListHeaderComponent={<>{dailyPollCard}{offlineStrip}{listHeader}{friendsPreList}</>}
           ListEmptyComponent={friendsEmptyState}
           ListFooterComponent={listFooter}
         />

@@ -151,6 +151,21 @@ export function subscribeNetworkBack(listener: () => void): () => void {
   });
 }
 
+/**
+ * Сеть есть / нет — тот же признак, что у очереди зовов (isOfflineNow). NetInfo зовёт слушателя и сразу после подписки.
+ * зачем (идея 1, полоса «Нет сети · список сохранён»): полоса и тост «В очереди» не должны спорить, есть ли сеть.
+ */
+export function subscribeOffline(listener: (offline: boolean) => void): () => void {
+  const netInfo = loadNetInfo();
+  if (!netInfo?.addEventListener) {
+    console.warn('[FRIENDS-1] netinfo: подписки нет → полосы «Нет сети» не будет'); // guard-ok: ранний выход называет причину
+    return () => undefined;
+  }
+  return netInfo.addEventListener((state) => {
+    listener(state.isConnected === false || state.isInternetReachable === false);
+  });
+}
+
 /** Только для тестов: сбросить память очереди между сценариями. */
 export function __resetNudgeQueueMemoryForTests(): void {
   memoryQueue = null;

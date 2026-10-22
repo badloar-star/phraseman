@@ -173,6 +173,32 @@ export function pairCardStatLabels(lang: Lang, streak: number, together: number)
   };
 }
 
+function sameLocalDay(aMs: number, bMs: number): boolean {
+  const a = new Date(aMs);
+  const b = new Date(bMs);
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+}
+
+/**
+ * Полоса над списком друзей без сети (макет friends-full.html «Нет сети»: «Нет сети · список сохранён в 18:40»).
+ * Время — когда список последний раз пришёл с сервера; не сегодня или неизвестно — без времени, ничего не выдумываем.
+ * Черновик — на сверку Переводчику.
+ */
+export function pairOfflineStrip(lang: Lang, syncedAtMs: number | null, nowMs: number): string {
+  if (syncedAtMs === null || !sameLocalDay(syncedAtMs, nowMs)) {
+    return pick(lang, L('Нет сети · список сохранён', 'Немає мережі · список збережено', 'Offline · list saved', 'Sin conexión · lista guardada', 'Sem internet · lista salva', 'Mất mạng · danh sách đã lưu', 'Tidak ada jaringan · daftar tersimpan', 'Bağlantı yok · liste kayıtlı', 'Brak sieci · lista zapisana'));
+  }
+  const d = new Date(syncedAtMs);
+  const hour = d.getHours();
+  const t = `${hour}:${String(d.getMinutes()).padStart(2, '0')}`;
+  return pick(lang, L(
+    `Нет сети · список сохранён в ${t}`, `Немає мережі · список збережено о ${t}`, `Offline · list saved at ${t}`,
+    // зачем: «a la una», «à uma» — час дня в испанском и португальском единственного числа
+    `Sin conexión · lista guardada ${hour === 1 ? 'a la' : 'a las'} ${t}`, `Sem internet · lista salva ${hour === 1 ? 'à' : 'às'} ${t}`,
+    `Mất mạng · danh sách lưu lúc ${t}`, `Tidak ada jaringan · daftar disimpan pukul ${t}`, `Bağlantı yok · liste ${t} itibarıyla kayıtlı`, `Brak sieci · lista zapisana o ${t}`,
+  ));
+}
+
 /** Строка окна приглашения: «Серия вдвоём · 7 дней». */
 export function pairInviteLine(lang: Lang, n: number): string {
   return pairDoneTitle(lang, n);

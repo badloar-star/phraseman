@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-38:word:sunburned; family: word_card -->
 > **sunburned** — обгорів на сонці. He's sunburned — «Він обгорів». Шкіра червона й болить.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — пізно ввечері ви повертаєтеся з моря**
 <!-- interaction_id: en:lesson-01:session-38:i02; family: listen_choose -->
 🔊 *He is sunburned.* → **He is sunburned.** · She is sunburned. · He is weak.
 - She is sunburned. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -109,7 +109,7 @@ It is ___ . → **missing** · alive · dead
 - alive — *`alive` — «живий». Про зниклий гаманець потрібно `missing`.*
 - dead — *`dead` — «мертвий». Тут гаманця немає: `missing`.*
 
-**13 · Послухайте фразу про рослину**
+**13 · Послухайте й виберіть — ви заходите в квартиру, де нікого не було**
 <!-- interaction_id: en:lesson-01:session-38:i09; family: listen_choose -->
 🔊 *It is alive.* → **It is alive.** · It is dead. · It is missing.
 - It is dead. — *У записі останнє слово — `alive`, а в цьому варіанті — `dead`.*
@@ -139,7 +139,7 @@ They ___ dusty. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Книжок кілька, тому `They are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — брат говорить з вами, поки ви розбираєте речі**
 <!-- interaction_id: en:lesson-01:session-38:i15; family: listen_choose -->
 🔊 *We're starving.* → **We're starving.** · They're starving. · We're weak.
 - They're starving. — *У записі перше слово — `We're`, а в цьому варіанті — `They're`.*

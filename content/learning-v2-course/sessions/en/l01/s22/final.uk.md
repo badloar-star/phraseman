@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-22:word:poor; family: word_card -->
 > **poor** — бідний: у людини мало грошей на життя. She is poor — «Вона бідна». Тут слово описує матеріальне становище.
 
-**4 · Послухайте й виберіть почуту фразу**
+**4 · Послухайте й виберіть — друг розпитує вас про героїв фільму**
 <!-- interaction_id: en:lesson-01:session-22:i02; family: listen_choose -->
 🔊 *She is poor.* → **She is poor.** · He is poor. · She is rich.
 - He is poor. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
@@ -105,7 +105,7 @@ I ___ famous. → **am** · is · are
 - is — *Про себе співачка каже `I am`.*
 - are — *Після `I` потрібна форма `am`.*
 
-**12 · Послухайте й виберіть точну репліку**
+**12 · Послухайте й виберіть — друг каже вам репліку, поки йде фільм**
 <!-- interaction_id: en:lesson-01:session-22:i09; family: listen_choose -->
 🔊 *You are rich.* → **You are rich.** · We are rich. · You are famous.
 - We are rich. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ She is ___ . → **famous** · rich · poor
 - rich — *`rich` говорить про гроші. Тут відомо лише, що її впізнають: `famous`.*
 - poor — *`poor` — «бідна». Про гроші нічого не сказано; ідеться про популярність: `famous`.*
 
-**19 · Послухайте й виберіть почуте**
+**19 · Послухайте й виберіть — друг дивиться фільм поруч і звертається до вас**
 <!-- interaction_id: en:lesson-01:session-22:i15; family: listen_choose -->
 🔊 *You are generous.* → **You are generous.** · We are generous. · You are famous.
 - We are generous. — *У записі You, а не We.*

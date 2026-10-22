@@ -1208,7 +1208,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — ви репетируєте сценку, подруга ділиться думкою",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-33:i02:r1",
@@ -1227,7 +1227,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-33:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — ви репетируєте сценку, подруга ділиться думкою",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1257,7 +1257,7 @@
             {
               "responseId": "en:lesson-01:session-33:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви репетируєте сценку, подруга ділиться думкою",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She's`, а в этом варианте — `He's`.",
                 "uk": "У записі перше слово — `She's`, а в цьому варіанті — `He's`."
@@ -1266,7 +1266,7 @@
             {
               "responseId": "en:lesson-01:session-33:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви репетируєте сценку, подруга ділиться думкою",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `proud`, а в этом варианте — `ashamed`.",
                 "uk": "У записі останнє слово — `proud`, а в цьому варіанті — `ashamed`."
@@ -1660,7 +1660,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — після репетиції друзі діляться враженнями",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-33:i09:r1",
@@ -1679,7 +1679,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-33:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — після репетиції друзі діляться враженнями",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1709,7 +1709,7 @@
             {
               "responseId": "en:lesson-01:session-33:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — після репетиції друзі діляться враженнями",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
                 "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
@@ -1718,7 +1718,7 @@
             {
               "responseId": "en:lesson-01:session-33:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — після репетиції друзі діляться враженнями",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `surprised`, а в этом варианте — `ashamed`.",
                 "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `ashamed`."
@@ -2086,7 +2086,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Зала аплодує стоячи. Послухайте, що каже подруга, і виберіть почуте",
+        "prompt": "Послухайте й виберіть — подруга після сценки звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-33:i15:r1",
@@ -2105,7 +2105,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-33:i15:audio"
         ],
-        "accessibilityLabel": "Зала аплодує стоячи. Послухайте, що каже подруга, і виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — подруга після сценки звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2135,7 +2135,7 @@
             {
               "responseId": "en:lesson-01:session-33:i15:r2",
               "correct": false,
-              "testedDimension": "Зала аплодує стоячи. Послухайте, що каже подруга, і виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга після сценки звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `amazing`, а в этом варианте — `awful`.",
                 "uk": "У записі останнє слово — `amazing`, а в цьому варіанті — `awful`."
@@ -2144,7 +2144,7 @@
             {
               "responseId": "en:lesson-01:session-33:i15:r3",
               "correct": false,
-              "testedDimension": "Зала аплодує стоячи. Послухайте, що каже подруга, і виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга після сценки звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `It's`, а в этом варианте — `He's`.",
                 "uk": "У записі перше слово — `It's`, а в цьому варіанті — `He's`."

@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-03:i01; family: word_card -->
 > **hungry** — «голодний». Живіт нагадує про себе, а до обіду ще година.
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте й виберіть — після зустрічі начальниця зазирає до вас**
 <!-- interaction_id: en:lesson-01:session-03:i02; family: listen_choose -->
 🔊 *hungry*
 - ✅ hungry
@@ -72,7 +72,7 @@
 <!-- interaction_id: en:lesson-01:session-03:i03; family: word_card -->
 > **cold** — «холодно, змерз». Керівниця ввімкнула кондиціонер надто сильно.
 
-**4 · Послухайте й виберіть слово**
+**4 · Послухайте й виберіть — начальниця ще раз звертається до вас**
 <!-- interaction_id: en:lesson-01:session-03:i05; family: listen_choose -->
 🔊 *sure*
 - ✅ sure
@@ -118,7 +118,7 @@ I ___ not tired. → **am** · is · are
 Плитки: `am` `late` `I` `not` → **I am late.**
 *(плитка `not` зайва: вона змінила б зміст на «я не запізнився». Тут треба визнати, що ви запізнилися.)*
 
-**13 · Послухайте і виберіть точну фразу — ви більше не зайняті**
+**13 · Послухайте й виберіть — ви відповідаєте начальниці після зустрічі**
 <!-- interaction_id: en:lesson-01:session-03:i14; family: listen_choose -->
 🔊 *I am not busy.* → **I am not busy.** · I am busy. · I am not late.
 - I am busy. — *В аудіо після am чути not. Відповідь означає «я не зайнятий», а не «я зайнятий».*
@@ -141,7 +141,7 @@ tired — втомився · busy — зайнятий · late — запізн
 <!-- interaction_id: en:lesson-01:session-03:i17:s01; family: scripted_repeat_compare -->
 🎙 **I am not tired.** — послухайте, повторіть, порівняйте.
 
-**18 · Послухайте і виберіть точну фразу — ви не голодні**
+**18 · Послухайте й виберіть — відповіді чекає начальниця, вона стоїть поруч**
 <!-- interaction_id: en:lesson-01:session-03:i17:s02; family: listen_choose -->
 🔊 *I am not hungry.* → **I am not hungry.** · I am hungry. · I am not cold.
 - I am hungry. — *В аудіо після am чути not. Це «я не голодний», а не «я голодний».*

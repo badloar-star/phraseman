@@ -55,7 +55,7 @@
 <!-- interaction_id: en:lesson-01:session-13:i01; family: word_card -->
 > **proud** — гордий; той, хто відчуває гордість. I am proud — «Я пишаюся»: наприклад, своїм першим самостійно спеченим хлібом.
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть — колега на зустрічі звертається до вас**
 <!-- interaction_id: en:lesson-01:session-13:i02; family: listen_choose -->
 🔊 *proud* → **proud** · polite · tired
 - polite — *У записі звучить proud, а не polite.*
@@ -79,7 +79,7 @@ I ___ old. → **am** · are · is
 <!-- interaction_id: en:lesson-01:session-13:i06; family: word_card -->
 > **strong** — сильний. Людина легко піднімає важкий предмет. You are strong — «Ти сильний / сильна».
 
-**7 · Послухайте і виберіть**
+**7 · Послухайте й виберіть — співрозмовник говорить з вами віч-на-віч**
 <!-- interaction_id: en:lesson-01:session-13:i07; family: listen_choose -->
 🔊 *strong* → **strong** · wrong · smart
 - wrong — *У записі звучить strong, а не wrong.*
@@ -89,7 +89,7 @@ I ___ old. → **am** · are · is
 <!-- interaction_id: en:lesson-01:session-13:i08; family: word_card -->
 > **weak** — слабкий: тут про брак фізичних сил. I am weak — «Я слабкий / слабка». Слово може описувати тимчасовий стан, а не постійну рису.
 
-**9 · Послухайте і виберіть**
+**9 · Послухайте й виберіть — співрозмовник відповідає вам після паузи**
 <!-- interaction_id: en:lesson-01:session-13:i09; family: listen_choose -->
 🔊 *weak* → **weak** · quiet · young
 - quiet — *У записі звучить weak, а не quiet.*
@@ -122,7 +122,7 @@ I am ___ . → **weak** · strong · young
 - strong — *Strong — «сильний». За умовою сил поки мало: weak.*
 - young — *Young описує вік, а тут ідеться про брак сил.*
 
-**15 · Послухайте і виберіть**
+**15 · Послухайте й виберіть — ще одна репліка звучить на зустрічі**
 <!-- interaction_id: en:lesson-01:session-13:i15; family: listen_choose -->
 🔊 *brave* → **brave** · back · busy
 - back — *У записі звучить brave, а не back.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-42:word:chatty; family: word_card -->
 > **chatty** — балакучий, любить поговорити. He's chatty — «Він балакучий». Зазвичай без злості.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — на зборах мешканців господиня говорить про когось**
 <!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
 🔊 *He is chatty.* → **He is chatty.** · She is chatty. · He is polite.
 - She is chatty. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -109,7 +109,7 @@ He is ___ . → **shy** · chatty · nosy
 - chatty — *`chatty` — «балакучий». Брат мовчить: `shy`.*
 - nosy — *`nosy` — «пхає носа в чужі справи». Тут сором’язливість: `shy`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — брат тихо говорить з вами на зборах мешканців**
 <!-- interaction_id: en:lesson-01:session-42:i09; family: listen_choose -->
 🔊 *She's nosy.* → **She's nosy.** · She's polite. · He's nosy.
 - She's polite. — *У записі останнє слово — `nosy`, а в цьому варіанті — `polite`.*
@@ -139,7 +139,7 @@ They ___ chatty. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Сусідів двоє: `They are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — господиня зборів із пирогом говорить про мешканців**
 <!-- interaction_id: en:lesson-01:session-42:i15; family: listen_choose -->
 🔊 *She's elderly.* → **She's elderly.** · He's elderly. · She's friendly.
 - He's elderly. — *У записі перше слово — `She's`, а в цьому варіанті — `He's`.*

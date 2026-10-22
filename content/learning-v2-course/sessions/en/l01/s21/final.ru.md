@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-21:word:empty; family: word_card -->
 > **empty** — пустой. It is empty — «Он пустой»: например, столик без людей и вещей.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — друг заглядывает в зал клуба перед концертом**
 <!-- interaction_id: en:lesson-01:session-21:i02; family: listen_choose -->
 🔊 *It is empty.* → **It is empty.** · It is small. · It is noisy.
 - It is small. — *В записи empty, а не small.*

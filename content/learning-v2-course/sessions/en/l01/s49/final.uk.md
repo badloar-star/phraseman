@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-49:word:rare; family: word_card -->
 > **rare** — рідкісний, таких мало. It's rare — «Це рідкість».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — ви гуляєте з другом ярмарком старих речей**
 <!-- interaction_id: en:lesson-01:session-49:i02; family: listen_choose -->
 🔊 *It is rare.* → **It is rare.** · It is cheap. · It is useful.
 - It is cheap. — *У записі останнє слово — `rare`, а в цьому варіанті — `cheap`.*
@@ -109,7 +109,7 @@ He is ___ . → **honest** · cheap · rare
 - cheap — *`cheap` — про ціну речі. Тут оцінюємо людину: `honest`.*
 - rare — *`rare` — «рідкісний». Тут потрібна чесність: `honest`.*
 
-**13 · Послухайте фразу про продавця**
+**13 · Послухайте й виберіть — друг на ярмарку відходить від прилавка**
 <!-- interaction_id: en:lesson-01:session-49:i09; family: listen_choose -->
 🔊 *He is honest.* → **He is honest.** · He is polite. · She is honest.
 - He is polite. — *У записі останнє слово — `honest`, а в цьому варіанті — `polite`.*
@@ -139,7 +139,7 @@ It ___ rare. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Монета одна — `It is`.*
 
-**19 · Послухайте коротку оцінку й виберіть її**
+**19 · Послухайте й виберіть — друг оцінює річ на ярмарку**
 <!-- interaction_id: en:lesson-01:session-49:i15; family: listen_choose -->
 🔊 *It's secondhand.* → **It's secondhand.** · It's colorful. · It's useless.
 - It's colorful. — *У записі останнє слово — `secondhand`, а в цьому варіанті — `colorful`.*

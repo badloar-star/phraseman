@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-41:word:upset; family: word_card -->
 > **upset** — засмучений. She's upset — «Вона засмучена».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — подруга говорить з вами після того, що сталося**
 <!-- interaction_id: en:lesson-01:session-41:i02; family: listen_choose -->
 🔊 *She is upset.* → **She is upset.** · He is upset. · She is okay.
 - He is upset. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
@@ -109,7 +109,7 @@ She is ___ . → **okay** · upset · furious
 - upset — *Це «засмучена». Тут із нею вже все гаразд: `okay`.*
 - furious — *`furious` — «у люті». Тут усе гаразд: `okay`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — ви в гостях у подруги, розмова триває**
 <!-- interaction_id: en:lesson-01:session-41:i09; family: listen_choose -->
 🔊 *I'm clumsy.* → **I'm clumsy.** · He's clumsy. · I'm sorry.
 - He's clumsy. — *У записі перше слово — `I'm`, а в цьому варіанті — `He's`.*
@@ -139,7 +139,7 @@ We ___ clumsy. → **are** · am · is
 - am — *Після `We` потрібно `are`.*
 - is — *Вас двоє, тому `We are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — господиня квартири звертається до вас**
 <!-- interaction_id: en:lesson-01:session-41:i15; family: listen_choose -->
 🔊 *It's precious.* → **It's precious.** · It's okay. · He's precious.
 - It's okay. — *У записі останнє слово — `precious`, а в цьому варіанті — `okay`.*

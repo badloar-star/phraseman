@@ -1170,7 +1170,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть слово",
+        "prompt": "Послухайте й виберіть — після зустрічі начальниця зазирає до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i02:r1",
@@ -1189,7 +1189,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть слово",
+        "accessibilityLabel": "Послухайте й виберіть — після зустрічі начальниця зазирає до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1219,7 +1219,7 @@
             {
               "responseId": "en:lesson-01:session-03:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть слово",
+              "testedDimension": "Послухайте й виберіть — після зустрічі начальниця зазирає до вас",
               "feedbackByLocale": {
                 "ru": "В записи hungry — «голодный», а tired означает «уставший».",
                 "uk": "У записі hungry — «голодний», а tired означає «стомлений»."
@@ -1228,7 +1228,7 @@
             {
               "responseId": "en:lesson-01:session-03:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть слово",
+              "testedDimension": "Послухайте й виберіть — після зустрічі начальниця зазирає до вас",
               "feedbackByLocale": {
                 "ru": "В записи hungry — «голодный», а happy означает «рад».",
                 "uk": "У записі hungry — «голодний», а happy означає «радий»."
@@ -1289,7 +1289,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть слово",
+        "prompt": "Послухайте й виберіть — начальниця ще раз звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i05:r1",
@@ -1308,7 +1308,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i05:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть слово",
+        "accessibilityLabel": "Послухайте й виберіть — начальниця ще раз звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1338,7 +1338,7 @@
             {
               "responseId": "en:lesson-01:session-03:i05:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть слово",
+              "testedDimension": "Послухайте й виберіть — начальниця ще раз звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи sure — «уверен», а cold означает «холодно».",
                 "uk": "У записі sure — «впевнений», а cold означає «холодно»."
@@ -1347,7 +1347,7 @@
             {
               "responseId": "en:lesson-01:session-03:i05:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть слово",
+              "testedDimension": "Послухайте й виберіть — начальниця ще раз звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи sure — «уверен», а hungry означает «голодный».",
                 "uk": "У записі sure — «впевнений», а hungry означає «голодний»."
@@ -1788,7 +1788,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+        "prompt": "Послухайте й виберіть — ви відповідаєте начальниці після зустрічі",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i14:r1",
@@ -1807,7 +1807,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+        "accessibilityLabel": "Послухайте й виберіть — ви відповідаєте начальниці після зустрічі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1837,7 +1837,7 @@
             {
               "responseId": "en:lesson-01:session-03:i14:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+              "testedDimension": "Послухайте й виберіть — ви відповідаєте начальниці після зустрічі",
               "feedbackByLocale": {
                 "ru": "В аудио после am слышно not. Ответ означает «я не занят», а не «я занят».",
                 "uk": "В аудіо після am чути not. Відповідь означає «я не зайнятий», а не «я зайнятий»."
@@ -1846,7 +1846,7 @@
             {
               "responseId": "en:lesson-01:session-03:i14:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть точну фразу — ви більше не зайняті",
+              "testedDimension": "Послухайте й виберіть — ви відповідаєте начальниці після зустрічі",
               "feedbackByLocale": {
                 "ru": "В аудио последнее слово busy, не late: речь о занятости, не об опоздании.",
                 "uk": "В аудіо останнє слово busy, не late: йдеться про зайнятість, а не про запізнення."
@@ -2047,7 +2047,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть точну фразу — ви не голодні",
+        "prompt": "Послухайте й виберіть — відповіді чекає начальниця, вона стоїть поруч",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i17:s02:r1",
@@ -2066,7 +2066,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i17:s02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть точну фразу — ви не голодні",
+        "accessibilityLabel": "Послухайте й виберіть — відповіді чекає начальниця, вона стоїть поруч",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2096,7 +2096,7 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s02:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть точну фразу — ви не голодні",
+              "testedDimension": "Послухайте й виберіть — відповіді чекає начальниця, вона стоїть поруч",
               "feedbackByLocale": {
                 "ru": "В аудио после am слышно not. Это «я не голоден», не «я голоден».",
                 "uk": "В аудіо після am чути not. Це «я не голодний», а не «я голодний»."
@@ -2105,7 +2105,7 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s02:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть точну фразу — ви не голодні",
+              "testedDimension": "Послухайте й виберіть — відповіді чекає начальниця, вона стоїть поруч",
               "feedbackByLocale": {
                 "ru": "Последнее слово hungry, не cold: речь о еде, а не о температуре.",
                 "uk": "Останнє слово hungry, не cold: йдеться про їжу, а не про температуру."

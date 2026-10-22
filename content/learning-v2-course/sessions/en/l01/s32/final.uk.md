@@ -57,7 +57,7 @@
 Плитки: `proud` `are` `We` `is` → **We are proud.**
 *(плитка `is` зайва: тут потрібно `are` — `We are proud.`)*
 
-**2 · Послухайте й виберіть почуте**
+**2 · Послухайте й виберіть — ви розвішуєте знімки, друг говорить з вами**
 <!-- interaction_id: en:lesson-01:session-32:i02; family: listen_choose -->
 🔊 *He is worried.* → **He is worried.** · She is worried. · He is surprised.
 - She is worried. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -105,7 +105,7 @@ They ___ equal. → **are** · am · is
 <!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
 > **tiny** — крихітний, зовсім маленький. It is tiny — «Він крихітний». Сильніше, ніж знайоме small.
 
-**12 · Підпис під знімком надруковано таким дрібним шрифтом, що його майже не видно. Послухайте й виберіть почуте**
+**12 · Послухайте й виберіть — перед відкриттям ви перевіряєте підписи під знімками**
 <!-- interaction_id: en:lesson-01:session-32:i09; family: listen_choose -->
 🔊 *It is tiny.* → **It is tiny.** · It is huge. · It is blurry.
 - It is huge. — *У записі останнє слово — `tiny`, а в цьому варіанті — `huge`.*
@@ -135,7 +135,7 @@ She is ___ . → **worried** · bored · proud
 - bored — *`bored` — «нудьгує». Тут вона тривожиться: `worried`.*
 - proud — *`proud` — «пишається». Тут треба назвати тривогу: `worried`.*
 
-**18 · Послухайте й виберіть фразу про фотографії**
+**18 · Послухайте й виберіть — друг оцінює розвішані фотографії**
 <!-- interaction_id: en:lesson-01:session-32:i15; family: listen_choose -->
 🔊 *They are similar.* → **They are similar.** · They are equal. · They are separate.
 - They are equal. — *У записі останнє слово — `similar`, а в цьому варіанті — `equal`.*

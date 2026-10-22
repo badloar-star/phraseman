@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-44:word:weird; family: word_card -->
 > **weird** — странный, необычный. It's weird — «Это странно».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — подруга тихо говорит с вами в музее**
 <!-- interaction_id: en:lesson-01:session-44:i02; family: listen_choose -->
 🔊 *It is weird.* → **It is weird.** · It is ancient. · He is weird.
 - It is ancient. — *В записи последнее слово — `weird`, а в этом варианте — `ancient`.*

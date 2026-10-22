@@ -56,7 +56,7 @@
 <!-- interaction_id: en:lesson-01:session-11:i01; family: word_card -->
 > **rude** — грубий, неввічливий. You are not rude — «Ти не грубиш».
 
-**2 · Послухайте й виберіть**
+**2 · Послухайте й виберіть — співрозмовник на зустрічі відповідає вам**
 <!-- interaction_id: en:lesson-01:session-11:i02; family: listen_choose -->
 🔊 *rude* → **rude** · kind · quiet
 - kind — *У записі звучить rude, а не kind.*
@@ -66,7 +66,7 @@
 <!-- interaction_id: en:lesson-01:session-11:i03; family: word_card -->
 > **lazy** — лінивий. You are not lazy — «Ти не лінивий / не лінива». Відпочинок і втома самі собою не означають лінощів.
 
-**4 · Послухайте й виберіть**
+**4 · Послухайте й виберіть — колега говорить з вами про справи**
 <!-- interaction_id: en:lesson-01:session-11:i04; family: listen_choose -->
 🔊 *lazy* → **lazy** · rude · busy
 - rude — *У записі звучить lazy, а не rude.*
@@ -80,7 +80,7 @@
 <!-- interaction_id: en:lesson-01:session-11:i06; family: word_card -->
 > **slow** — повільний. You are not slow — «Ти не повільний / не повільна».
 
-**7 · Послухайте й виберіть**
+**7 · Послухайте й виберіть — інший співрозмовник висловлюється про роботу**
 <!-- interaction_id: en:lesson-01:session-11:i07; family: listen_choose -->
 🔊 *slow* → **slow** · fast · wrong
 - fast — *У записі звучить slow, а не fast.*
@@ -96,7 +96,7 @@ You are not ___ . → **wrong** · busy · tired
 <!-- interaction_id: en:lesson-01:session-11:i09; family: word_card -->
 > **careful** — обережний, уважний: людина намагається не допустити помилки чи пошкодження. You are careful — «Ти обережний / обережна». Приклад: дбайливо переносите крихку вазу.
 
-**10 · Послухайте й виберіть**
+**10 · Послухайте й виберіть — ще один співрозмовник говорить про ваші справи**
 <!-- interaction_id: en:lesson-01:session-11:i10; family: listen_choose -->
 🔊 *careful* → **careful** · patient · calm
 - patient — *У записі звучить careful, а не patient.*

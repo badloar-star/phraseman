@@ -1065,7 +1065,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — колега на зустрічі звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i02:r1",
@@ -1084,7 +1084,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-13:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — колега на зустрічі звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1114,7 +1114,7 @@
             {
               "responseId": "en:lesson-01:session-13:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — колега на зустрічі звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи звучит proud, а не polite.",
                 "uk": "У записі звучить proud, а не polite."
@@ -1123,7 +1123,7 @@
             {
               "responseId": "en:lesson-01:session-13:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — колега на зустрічі звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи звучит proud, а не tired.",
                 "uk": "У записі звучить proud, а не tired."
@@ -1328,7 +1328,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — співрозмовник говорить з вами віч-на-віч",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i07:r1",
@@ -1347,7 +1347,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-13:i07:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — співрозмовник говорить з вами віч-на-віч",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1377,7 +1377,7 @@
             {
               "responseId": "en:lesson-01:session-13:i07:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — співрозмовник говорить з вами віч-на-віч",
               "feedbackByLocale": {
                 "ru": "В записи звучит strong, а не wrong.",
                 "uk": "У записі звучить strong, а не wrong."
@@ -1386,7 +1386,7 @@
             {
               "responseId": "en:lesson-01:session-13:i07:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — співрозмовник говорить з вами віч-на-віч",
               "feedbackByLocale": {
                 "ru": "В записи звучит strong, а не smart.",
                 "uk": "У записі звучить strong, а не smart."
@@ -1447,7 +1447,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — співрозмовник відповідає вам після паузи",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i09:r1",
@@ -1466,7 +1466,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-13:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — співрозмовник відповідає вам після паузи",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1496,7 +1496,7 @@
             {
               "responseId": "en:lesson-01:session-13:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — співрозмовник відповідає вам після паузи",
               "feedbackByLocale": {
                 "ru": "В записи звучит weak, а не quiet.",
                 "uk": "У записі звучить weak, а не quiet."
@@ -1505,7 +1505,7 @@
             {
               "responseId": "en:lesson-01:session-13:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — співрозмовник відповідає вам після паузи",
               "feedbackByLocale": {
                 "ru": "В записи звучит weak, а не young.",
                 "uk": "У записі звучить weak, а не young."
@@ -1847,7 +1847,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — ще одна репліка звучить на зустрічі",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-13:i15:r1",
@@ -1866,7 +1866,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-13:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — ще одна репліка звучить на зустрічі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1896,7 +1896,7 @@
             {
               "responseId": "en:lesson-01:session-13:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — ще одна репліка звучить на зустрічі",
               "feedbackByLocale": {
                 "ru": "В записи звучит brave, а не back.",
                 "uk": "У записі звучить brave, а не back."
@@ -1905,7 +1905,7 @@
             {
               "responseId": "en:lesson-01:session-13:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — ще одна репліка звучить на зустрічі",
               "feedbackByLocale": {
                 "ru": "В записи звучит brave, а не busy.",
                 "uk": "У записі звучить brave, а не busy."

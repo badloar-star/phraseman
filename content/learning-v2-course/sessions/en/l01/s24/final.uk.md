@@ -57,7 +57,7 @@
 Плитки: `welcome` `are` `You` `am` → **You are welcome.**
 *(плитка `am` зайва: тут потрібно `are` — `You are welcome.`)*
 
-**2 · Послухайте й виберіть почуте**
+**2 · Послухайте й виберіть — гість на дні відчинених дверей говорить з вами**
 <!-- interaction_id: en:lesson-01:session-24:i02; family: listen_choose -->
 🔊 *We are prepared.* → **We are prepared.** · They are prepared. · We are lucky.
 - They are prepared. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
@@ -109,7 +109,7 @@ We ___ safe. → **are** · is · am
 - is — *За вашу групу кажемо `We are`.*
 - am — *`am` поєднується з `I`, а тут `We are`.*
 
-**13 · Послухайте й виберіть фразу про героїв вистави**
+**13 · Послухайте й виберіть — ви в театрі, поруч гості обговорюють виставу**
 <!-- interaction_id: en:lesson-01:session-24:i09; family: listen_choose -->
 🔊 *They are married.* → **They are married.** · We are married. · They are different.
 - We are married. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ They are ___ . → **outside** · inside · upstairs
 - inside — *`inside` — «всередині», а друзі на вулиці: `outside`.*
 - upstairs — *`upstairs` — «на верхньому поверсі». Тут друзі зовні: `outside`.*
 
-**19 · Послухайте порівняння двох персонажів**
+**19 · Послухайте й виберіть — антракт, гостя у фоє звертається до вас**
 <!-- interaction_id: en:lesson-01:session-24:i15; family: listen_choose -->
 🔊 *They are different.* → **They are different.** · We are different. · They are famous.
 - We are different. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*

@@ -1298,7 +1298,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — продавець показує вам рюкзак",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-52:i02:r1",
@@ -1317,7 +1317,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-52:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — продавець показує вам рюкзак",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1347,7 +1347,7 @@
             {
               "responseId": "en:lesson-01:session-52:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — продавець показує вам рюкзак",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `waterproof`, а в этом варианте — `light`.",
                 "uk": "У записі останнє слово — `waterproof`, а в цьому варіанті — `light`."
@@ -1356,7 +1356,7 @@
             {
               "responseId": "en:lesson-01:session-52:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — продавець показує вам рюкзак",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `waterproof`, а в этом варианте — `cheap`.",
                 "uk": "У записі останнє слово — `waterproof`, а в цьому варіанті — `cheap`."
@@ -1794,7 +1794,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — подруга приміряє рюкзак і говорить",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-52:i09:r1",
@@ -1813,7 +1813,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-52:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — подруга приміряє рюкзак і говорить",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1843,7 +1843,7 @@
             {
               "responseId": "en:lesson-01:session-52:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга приміряє рюкзак і говорить",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `trendy`, а в этом варианте — `light`.",
                 "uk": "У записі останнє слово — `trendy`, а в цьому варіанті — `light`."
@@ -1852,7 +1852,7 @@
             {
               "responseId": "en:lesson-01:session-52:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга приміряє рюкзак і говорить",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `It's`, а в этом варианте — `She's`.",
                 "uk": "У записі перше слово — `It's`, а в цьому варіанті — `She's`."
@@ -2135,7 +2135,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте коротку оцінку й виберіть її",
+        "prompt": "Послухайте й виберіть — продавець розповідає вам про модель рюкзака",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-52:i15:r1",
@@ -2154,7 +2154,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-52:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте коротку оцінку й виберіть її",
+        "accessibilityLabel": "Послухайте й виберіть — продавець розповідає вам про модель рюкзака",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2184,7 +2184,7 @@
             {
               "responseId": "en:lesson-01:session-52:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте коротку оцінку й виберіть її",
+              "testedDimension": "Послухайте й виберіть — продавець розповідає вам про модель рюкзака",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `adjustable`, а в этом варианте — `waterproof`.",
                 "uk": "У записі останнє слово — `adjustable`, а в цьому варіанті — `waterproof`."
@@ -2193,7 +2193,7 @@
             {
               "responseId": "en:lesson-01:session-52:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте коротку оцінку й виберіть її",
+              "testedDimension": "Послухайте й виберіть — продавець розповідає вам про модель рюкзака",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `adjustable`, а в этом варианте — `expensive`.",
                 "uk": "У записі останнє слово — `adjustable`, а в цьому варіанті — `expensive`."

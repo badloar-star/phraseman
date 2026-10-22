@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-34:word:pale; family: word_card -->
 > **pale** — блідий. She's pale — «Вона бліда»: обличчя побіліло від страху, утоми чи хвороби.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг у парку розваг звертається до вас**
 <!-- interaction_id: en:lesson-01:session-34:i02; family: listen_choose -->
 🔊 *She is pale.* → **She is pale.** · He is pale. · She is afraid.
 - He is pale. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
@@ -109,7 +109,7 @@ She is ___ . → **bored** · afraid · pale
 - afraid — *`afraid` — «боїться». Тут потрібно «нудьгує»: `bored`.*
 - pale — *`pale` — «бліда». Нудьгу передає `bored`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — подруга веде вас парком і говорить**
 <!-- interaction_id: en:lesson-01:session-34:i09; family: listen_choose -->
 🔊 *It's creepy.* → **It's creepy.** · It's okay. · I'm creepy.
 - It's okay. — *У записі останнє слово — `creepy`, а в цьому варіанті — `okay`.*
@@ -139,7 +139,7 @@ You ___ afraid. → **are** · am · is
 - am — *Після `You` потрібно `are`, навіть якщо співрозмовник один.*
 - is — *З `You` потрібна форма `are`.*
 
-**19 · Послухайте коротку фразу й виберіть її**
+**19 · Послухайте й виберіть — друзі в парку виходять з атракціону**
 <!-- interaction_id: en:lesson-01:session-34:i15; family: listen_choose -->
 🔊 *We're terrified.* → **We're terrified.** · They're terrified. · We're afraid.
 - They're terrified. — *У записі перше слово — `We're`, а в цьому варіанті — `They're`.*

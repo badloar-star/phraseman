@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-27:word:asleep; family: word_card -->
 > **asleep** — спить. They are asleep — «Вони сплять». Це стан сну, а не просто бажання спати.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — уранці в гостьовому будинку ви збираєте друзів**
 <!-- interaction_id: en:lesson-01:session-27:i02; family: listen_choose -->
 🔊 *She is asleep.* → **She is asleep.** · He is asleep. · She is awake.
 - He is asleep. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
@@ -105,7 +105,7 @@ She is ___ . → **awake** · asleep · worried
 - asleep — *`asleep` — «спить». Подруга вже не спить: `awake`.*
 - worried — *`worried` — «хвилюється». Про тривогу нічого не сказано; тут `awake`.*
 
-**12 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть — друг у гостьовому будинку говорить з вами**
 <!-- interaction_id: en:lesson-01:session-27:i09; family: listen_choose -->
 🔊 *You are available.* → **You are available.** · We are available. · You are confused.
 - We are available. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ I ___ awake. → **am** · is · are
 - is — *Після `I` потрібно `am`.*
 - are — *Про себе починаємо з `I am`.*
 
-**19 · Послухайте й виберіть почуте**
+**19 · Послухайте й виберіть — перед прогулянкою друзі збираються біля дверей**
 <!-- interaction_id: en:lesson-01:session-27:i15; family: listen_choose -->
 🔊 *We are dressed.* → **We are dressed.** · They are dressed. · We are available.
 - They are dressed. — *У записі We, а не They.*

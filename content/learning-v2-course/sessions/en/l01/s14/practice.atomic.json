@@ -1076,7 +1076,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — турист поруч із вами шукає вокзал",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-14:i02:r1",
@@ -1095,7 +1095,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-14:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — турист поруч із вами шукає вокзал",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1125,7 +1125,7 @@
             {
               "responseId": "en:lesson-01:session-14:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — турист поруч із вами шукає вокзал",
               "feedbackByLocale": {
                 "ru": "В записи звучит safe, а не sad.",
                 "uk": "У записі звучить safe, а не sad."
@@ -1134,7 +1134,7 @@
             {
               "responseId": "en:lesson-01:session-14:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — турист поруч із вами шукає вокзал",
               "feedbackByLocale": {
                 "ru": "В записи звучит safe, а не sure.",
                 "uk": "У записі звучить safe, а не sure."
@@ -1195,7 +1195,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — ви йдете вулицею разом із туристом",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-14:i04:r1",
@@ -1214,7 +1214,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-14:i04:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — ви йдете вулицею разом із туристом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1244,7 +1244,7 @@
             {
               "responseId": "en:lesson-01:session-14:i04:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — ви йдете вулицею разом із туристом",
               "feedbackByLocale": {
                 "ru": "В записи звучит warm, а не wrong.",
                 "uk": "У записі звучить warm, а не wrong."
@@ -1253,7 +1253,7 @@
             {
               "responseId": "en:lesson-01:session-14:i04:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — ви йдете вулицею разом із туристом",
               "feedbackByLocale": {
                 "ru": "В записи звучит warm, а не weak.",
                 "uk": "У записі звучить warm, а не weak."
@@ -1427,7 +1427,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — турист продовжує розмову на ходу",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-14:i08:r1",
@@ -1446,7 +1446,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-14:i08:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — турист продовжує розмову на ходу",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1476,7 +1476,7 @@
             {
               "responseId": "en:lesson-01:session-14:i08:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — турист продовжує розмову на ходу",
               "feedbackByLocale": {
                 "ru": "В записи звучит dry, а не proud.",
                 "uk": "У записі звучить dry, а не proud."
@@ -1485,7 +1485,7 @@
             {
               "responseId": "en:lesson-01:session-14:i08:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — турист продовжує розмову на ходу",
               "feedbackByLocale": {
                 "ru": "В записи звучит dry, а не old.",
                 "uk": "У записі звучить dry, а не old."
@@ -1546,7 +1546,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — турист озирається, ви досі поруч",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-14:i10:r1",
@@ -1565,7 +1565,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-14:i10:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — турист озирається, ви досі поруч",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1595,7 +1595,7 @@
             {
               "responseId": "en:lesson-01:session-14:i10:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — турист озирається, ви досі поруч",
               "feedbackByLocale": {
                 "ru": "В записи звучит wet, а не dry.",
                 "uk": "У записі звучить wet, а не dry."
@@ -1604,7 +1604,7 @@
             {
               "responseId": "en:lesson-01:session-14:i10:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — турист озирається, ви досі поруч",
               "feedbackByLocale": {
                 "ru": "В записи звучит wet, а не warm.",
                 "uk": "У записі звучить wet, а не warm."
@@ -1855,7 +1855,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — на вулиці турист знову звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-14:i15:r1",
@@ -1874,7 +1874,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-14:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — на вулиці турист знову звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1904,7 +1904,7 @@
             {
               "responseId": "en:lesson-01:session-14:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — на вулиці турист знову звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи звучит cold, а не old.",
                 "uk": "У записі звучить cold, а не old."
@@ -1913,7 +1913,7 @@
             {
               "responseId": "en:lesson-01:session-14:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — на вулиці турист знову звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи звучит cold, а не calm.",
                 "uk": "У записі звучить cold, а не calm."

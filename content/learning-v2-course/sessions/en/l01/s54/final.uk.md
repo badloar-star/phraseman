@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-54:word:faded; family: word_card -->
 > **faded** — вицвілий. It's faded — «Він вицвів». Про фото, футболку, фіранку, які втратили колір.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — ви з сестрою розбираєте коробку фотографій**
 <!-- interaction_id: en:lesson-01:session-54:i02; family: listen_choose -->
 🔊 *It is faded.* → **It is faded.** · They are faded. · It is familiar.
 - They are faded. — *У записі перші слова — `It is`, а в цьому варіанті — `They are`.*
@@ -109,7 +109,7 @@ It is ___ . → **unknown** · familiar · faded
 - familiar — *`familiar` — «знайоме». А ім’я не знає ніхто: `unknown`.*
 - faded — *`faded` — «вицвіле», це про колір. Про ім’я, якого ніхто не знає, каже `unknown`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — сестра дістає нову фотографію з коробки**
 <!-- interaction_id: en:lesson-01:session-54:i09; family: listen_choose -->
 🔊 *They are faded.* → **They are faded.** · We are faded. · They are familiar.
 - We are faded. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ It ___ faded. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Листівка одна, тому `It is`.*
 
-**19 · Послухайте коротку фразу й виберіть її**
+**19 · Послухайте й виберіть — сестра дивиться на черговий знімок**
 <!-- interaction_id: en:lesson-01:session-54:i15; family: listen_choose -->
 🔊 *It's unknown.* → **It's unknown.** · It's familiar. · It's unfamiliar.
 - It's familiar. — *У записі останнє слово — `unknown`, а в цьому варіанті — `familiar`.*

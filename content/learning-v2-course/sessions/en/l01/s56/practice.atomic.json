@@ -1255,7 +1255,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте фразу про квитки на потяг і виберіть почуте",
+        "prompt": "Послухайте й виберіть — таксі біля під’їзду, ви перевіряєте квитки",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-56:i02:r1",
@@ -1274,7 +1274,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-56:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте фразу про квитки на потяг і виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — таксі біля під’їзду, ви перевіряєте квитки",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1304,7 +1304,7 @@
             {
               "responseId": "en:lesson-01:session-56:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте фразу про квитки на потяг і виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — таксі біля під’їзду, ви перевіряєте квитки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `expensive`, а в этом варианте — `cheap`.",
                 "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`."
@@ -1313,7 +1313,7 @@
             {
               "responseId": "en:lesson-01:session-56:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте фразу про квитки на потяг і виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — таксі біля під’їзду, ви перевіряєте квитки",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `expensive`, а в этом варианте — `heavy`.",
                 "uk": "У записі останнє слово — `expensive`, а в цьому варіанті — `heavy`."
@@ -1751,7 +1751,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте фразу про тітку",
+        "prompt": "Послухайте й виберіть — уранці перед від’їздом ви говорите про тітку",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-56:i09:r1",
@@ -1770,7 +1770,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-56:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте фразу про тітку",
+        "accessibilityLabel": "Послухайте й виберіть — уранці перед від’їздом ви говорите про тітку",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1800,7 +1800,7 @@
             {
               "responseId": "en:lesson-01:session-56:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте фразу про тітку",
+              "testedDimension": "Послухайте й виберіть — уранці перед від’їздом ви говорите про тітку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `responsible`, а в этом варианте — `independent`.",
                 "uk": "У записі останнє слово — `responsible`, а в цьому варіанті — `independent`."
@@ -1809,7 +1809,7 @@
             {
               "responseId": "en:lesson-01:session-56:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте фразу про тітку",
+              "testedDimension": "Послухайте й виберіть — уранці перед від’їздом ви говорите про тітку",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `responsible`, а в этом варианте — `dependent`.",
                 "uk": "У записі останнє слово — `responsible`, а в цьому варіанті — `dependent`."
@@ -2135,7 +2135,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте коротку фразу й виберіть її",
+        "prompt": "Послухайте й виберіть — ви перевіряєте речі перед виходом із дому",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-56:i15:r1",
@@ -2154,7 +2154,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-56:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте коротку фразу й виберіть її",
+        "accessibilityLabel": "Послухайте й виберіть — ви перевіряєте речі перед виходом із дому",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2184,7 +2184,7 @@
             {
               "responseId": "en:lesson-01:session-56:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте коротку фразу й виберіть її",
+              "testedDimension": "Послухайте й виберіть — ви перевіряєте речі перед виходом із дому",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `They're`, а в этом варианте — `It's`.",
                 "uk": "У записі перше слово — `They're`, а в цьому варіанті — `It's`."
@@ -2193,7 +2193,7 @@
             {
               "responseId": "en:lesson-01:session-56:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте коротку фразу й виберіть її",
+              "testedDimension": "Послухайте й виберіть — ви перевіряєте речі перед виходом із дому",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `tight`, а в этом варианте — `light`.",
                 "uk": "У записі останнє слово — `tight`, а в цьому варіанті — `light`."

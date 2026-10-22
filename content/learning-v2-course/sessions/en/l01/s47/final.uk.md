@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-47:word:slippery; family: word_card -->
 > **slippery** — слизький. They're slippery — «Вони слизькі». Про сходи, лід, мокру плитку.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — ви гуляєте з подругою біля моря**
 <!-- interaction_id: en:lesson-01:session-47:i02; family: listen_choose -->
 🔊 *They are slippery.* → **They are slippery.** · We are slippery. · They are rusty.
 - We are slippery. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
@@ -109,7 +109,7 @@ He is ___ . → **brave** · dangerous · deep
 - dangerous — *Так ви скажете, що хлопчик небезпечний. Хвалимо сміливість: `brave`.*
 - deep — *`deep` — «глибокий», це про воду. Сміливість — `brave`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — подруга показує вам місце біля моря**
 <!-- interaction_id: en:lesson-01:session-47:i09; family: listen_choose -->
 🔊 *It is deep.* → **It is deep.** · He is deep. · It is steep.
 - He is deep. — *У записі перше слово — `It`, а в цьому варіанті — `He`.*
@@ -139,7 +139,7 @@ It ___ slippery. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Дошка одна, тому `It is`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — подруга біля огорожі говорить з вами**
 <!-- interaction_id: en:lesson-01:session-47:i15; family: listen_choose -->
 🔊 *It's dangerous.* → **It's dangerous.** · They're dangerous. · It's deep.
 - They're dangerous. — *У записі перше слово — `It's`, а в цьому варіанті — `They're`.*

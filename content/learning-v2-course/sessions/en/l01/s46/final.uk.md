@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-46:word:tangled; family: word_card -->
 > **tangled** — заплутаний, переплутався. They're tangled — «Вони заплуталися». Про дроти, нитки, волосся.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — ви з другом збираєте сумки перед поїздкою**
 <!-- interaction_id: en:lesson-01:session-46:i02; family: listen_choose -->
 🔊 *They are tangled.* → **They are tangled.** · We are tangled. · They are useless.
 - We are tangled. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
@@ -109,7 +109,7 @@ It is ___ . → **weak** · useless · charged
 - useless — *Повідомлення пішло, отже, сигнал допоміг. Тут потрібна слабкість: `weak`.*
 - charged — *`charged` — «заряджений», це про батарею. Слабкий сигнал — `weak`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — друг поруч із вами перед від’їздом до моря**
 <!-- interaction_id: en:lesson-01:session-46:i09; family: listen_choose -->
 🔊 *It is charged.* → **It is charged.** · He is charged. · It is loose.
 - He is charged. — *У записі перше слово — `It`, а в цьому варіанті — `He`.*
@@ -139,7 +139,7 @@ It ___ loose. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Ніжка одна, тому `It is`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — увечері перед поїздкою друг ділиться думкою**
 <!-- interaction_id: en:lesson-01:session-46:i15; family: listen_choose -->
 🔊 *It's useless.* → **It's useless.** · They're useless. · It's useful.
 - They're useless. — *У записі перше слово — `It's`, а в цьому варіанті — `They're`.*

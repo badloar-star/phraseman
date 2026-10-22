@@ -1300,7 +1300,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — друг дивиться з вами детектив і питає",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-30:i02:r1",
@@ -1319,7 +1319,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-30:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — друг дивиться з вами детектив і питає",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1349,7 +1349,7 @@
             {
               "responseId": "en:lesson-01:session-30:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — друг дивиться з вами детектив і питає",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
                 "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -1358,7 +1358,7 @@
             {
               "responseId": "en:lesson-01:session-30:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — друг дивиться з вами детектив і питає",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `missing`, а в этом варианте — `alive`.",
                 "uk": "У записі останнє слово — `missing`, а в цьому варіанті — `alive`."
@@ -1754,7 +1754,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть фразу",
+        "prompt": "Послухайте й виберіть — ви пояснюєте другові сюжет детективу",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-30:i09:r1",
@@ -1773,7 +1773,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-30:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "accessibilityLabel": "Послухайте й виберіть — ви пояснюєте другові сюжет детективу",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1803,7 +1803,7 @@
             {
               "responseId": "en:lesson-01:session-30:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — ви пояснюєте другові сюжет детективу",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
                 "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -1812,7 +1812,7 @@
             {
               "responseId": "en:lesson-01:session-30:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — ви пояснюєте другові сюжет детективу",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `dead`, а в этом варианте — `missing`.",
                 "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `missing`."
@@ -2139,7 +2139,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — друг посеред детективу звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-30:i15:r1",
@@ -2158,7 +2158,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-30:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — друг посеред детективу звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2188,7 +2188,7 @@
             {
               "responseId": "en:lesson-01:session-30:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — друг посеред детективу звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
                 "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -2197,7 +2197,7 @@
             {
               "responseId": "en:lesson-01:session-30:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — друг посеред детективу звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `alive`, а в этом варианте — `famous`.",
                 "uk": "У записі останнє слово — `alive`, а в цьому варіанті — `famous`."

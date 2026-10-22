@@ -1340,7 +1340,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — після вистави родина обговорює виступ",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-25:i02:r1",
@@ -1359,7 +1359,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-25:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — після вистави родина обговорює виступ",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1389,7 +1389,7 @@
             {
               "responseId": "en:lesson-01:session-25:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — після вистави родина обговорює виступ",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
                 "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -1398,7 +1398,7 @@
             {
               "responseId": "en:lesson-01:session-25:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — після вистави родина обговорює виступ",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `surprised`, а в этом варианте — `proud`.",
                 "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `proud`."
@@ -1804,7 +1804,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть фразу",
+        "prompt": "Послухайте й виберіть — рідні діляться враженнями від вистави",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-25:i09:r1",
@@ -1823,7 +1823,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-25:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "accessibilityLabel": "Послухайте й виберіть — рідні діляться враженнями від вистави",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1853,7 +1853,7 @@
             {
               "responseId": "en:lesson-01:session-25:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — рідні діляться враженнями від вистави",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
                 "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
@@ -1862,7 +1862,7 @@
             {
               "responseId": "en:lesson-01:session-25:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — рідні діляться враженнями від вистави",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `surprised`, а в этом варианте — `proud`.",
                 "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `proud`."
@@ -2199,7 +2199,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — родина після вистави обговорює, що сталося",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-25:i15:r1",
@@ -2218,7 +2218,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-25:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — родина після вистави обговорює, що сталося",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2248,7 +2248,7 @@
             {
               "responseId": "en:lesson-01:session-25:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — родина після вистави обговорює, що сталося",
               "feedbackByLocale": {
                 "ru": "В записи We, а не They.",
                 "uk": "У записі We, а не They."
@@ -2257,7 +2257,7 @@
             {
               "responseId": "en:lesson-01:session-25:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — родина після вистави обговорює, що сталося",
               "feedbackByLocale": {
                 "ru": "В записи disappointed, а не surprised.",
                 "uk": "У записі disappointed, а не surprised."

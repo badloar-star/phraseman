@@ -1300,7 +1300,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть фразу",
+        "prompt": "Послухайте й виберіть — сестра показує вам сімейні фотографії",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-23:i02:r1",
@@ -1319,7 +1319,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-23:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "accessibilityLabel": "Послухайте й виберіть — сестра показує вам сімейні фотографії",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1349,7 +1349,7 @@
             {
               "responseId": "en:lesson-01:session-23:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — сестра показує вам сімейні фотографії",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
                 "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -1358,7 +1358,7 @@
             {
               "responseId": "en:lesson-01:session-23:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — сестра показує вам сімейні фотографії",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `single`, а в этом варианте — `married`.",
                 "uk": "У записі останнє слово — `single`, а в цьому варіанті — `married`."
@@ -1754,7 +1754,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — сестра, готуючи свято, ділиться новиною",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-23:i09:r1",
@@ -1773,7 +1773,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-23:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — сестра, готуючи свято, ділиться новиною",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1803,7 +1803,7 @@
             {
               "responseId": "en:lesson-01:session-23:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — сестра, готуючи свято, ділиться новиною",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
                 "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
@@ -1812,7 +1812,7 @@
             {
               "responseId": "en:lesson-01:session-23:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — сестра, готуючи свято, ділиться новиною",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `married`, а в этом варианте — `different`.",
                 "uk": "У записі останнє слово — `married`, а в цьому варіанті — `different`."
@@ -2139,7 +2139,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте новину пари й виберіть почуте",
+        "prompt": "Послухайте й виберіть — родичі діляться з вами новиною",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-23:i15:r1",
@@ -2158,7 +2158,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-23:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте новину пари й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — родичі діляться з вами новиною",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2188,7 +2188,7 @@
             {
               "responseId": "en:lesson-01:session-23:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте новину пари й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — родичі діляться з вами новиною",
               "feedbackByLocale": {
                 "ru": "В записи We, а не They.",
                 "uk": "У записі We, а не They."
@@ -2197,7 +2197,7 @@
             {
               "responseId": "en:lesson-01:session-23:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте новину пари й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — родичі діляться з вами новиною",
               "feedbackByLocale": {
                 "ru": "В записи engaged — о помолвке, а не married — о браке.",
                 "uk": "У записі engaged — про заручини, а не married — про шлюб."

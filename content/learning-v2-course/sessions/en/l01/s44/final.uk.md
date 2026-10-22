@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-44:word:weird; family: word_card -->
 > **weird** — дивний, незвичний. It's weird — «Це дивно».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — подруга тихо говорить з вами в музеї**
 <!-- interaction_id: en:lesson-01:session-44:i02; family: listen_choose -->
 🔊 *It is weird.* → **It is weird.** · It is ancient. · He is weird.
 - It is ancient. — *У записі останнє слово — `weird`, а в цьому варіанті — `ancient`.*
@@ -109,7 +109,7 @@ He is ___ . → **sleepy** · curious · weird
 - curious — *`curious` — «допитливий». Тут потрібно `sleepy`: хочеться спати.*
 - weird — *`weird` — «дивний». Бажання спати — `sleepy`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — подруга в музеї звертається до вас**
 <!-- interaction_id: en:lesson-01:session-44:i09; family: listen_choose -->
 🔊 *It's weird.* → **It's weird.** · It's complicated. · I'm weird.
 - It's complicated. — *У записі останнє слово — `weird`, а в цьому варіанті — `complicated`.*
@@ -139,7 +139,7 @@ They ___ weird. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Приладів два: `They are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — друзі в музеї діляться думками одне з одним**
 <!-- interaction_id: en:lesson-01:session-44:i15; family: listen_choose -->
 🔊 *They're sleepy.* → **They're sleepy.** · We're sleepy. · They're curious.
 - We're sleepy. — *У записі перше слово — `They're`, а в цьому варіанті — `We're`.*

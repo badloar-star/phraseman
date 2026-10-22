@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-52:word:waterproof; family: word_card -->
 > **waterproof** — непромокальний, не пропускає воду. It's waterproof — «Він непромокальний».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — продавець показує вам рюкзак**
 <!-- interaction_id: en:lesson-01:session-52:i02; family: listen_choose -->
 🔊 *It is waterproof.* → **It is waterproof.** · It is light. · It is cheap.
 - It is light. — *У записі останнє слово — `waterproof`, а в цьому варіанті — `light`.*
@@ -109,7 +109,7 @@ She is ___ . → **curious** · light · trendy
 - light — *Тут не про вагу. Допитливість — `curious`.*
 - trendy — *`trendy` — «модна». Тут потрібно `curious`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — подруга приміряє рюкзак і говорить**
 <!-- interaction_id: en:lesson-01:session-52:i09; family: listen_choose -->
 🔊 *It's trendy.* → **It's trendy.** · It's light. · She's trendy.
 - It's light. — *У записі останнє слово — `trendy`, а в цьому варіанті — `light`.*
@@ -139,7 +139,7 @@ It ___ trendy. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Модель одна — `It is`.*
 
-**19 · Послухайте коротку оцінку й виберіть її**
+**19 · Послухайте й виберіть — продавець розповідає вам про модель рюкзака**
 <!-- interaction_id: en:lesson-01:session-52:i15; family: listen_choose -->
 🔊 *It's adjustable.* → **It's adjustable.** · It's waterproof. · It's expensive.
 - It's waterproof. — *У записі останнє слово — `adjustable`, а в цьому варіанті — `waterproof`.*

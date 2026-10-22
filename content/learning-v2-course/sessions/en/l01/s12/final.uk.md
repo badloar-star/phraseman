@@ -56,7 +56,7 @@
 <!-- interaction_id: en:lesson-01:session-12:i01; family: word_card -->
 > **polite** — ввічливий. Людина шанобливо спілкується з іншими. You are polite — «Ти ввічливий / ввічлива».
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть — колега за спільним столом звертається до вас**
 <!-- interaction_id: en:lesson-01:session-12:i02; family: listen_choose -->
 🔊 *polite* → **polite** · patient · quiet
 - patient — *У записі звучить polite, а не patient.*
@@ -66,7 +66,7 @@
 <!-- interaction_id: en:lesson-01:session-12:i03; family: word_card -->
 > **brave** — сміливий. Людина наважується діяти, навіть коли страшно. You are brave — «Ти сміливий / смілива».
 
-**4 · Послухайте і виберіть**
+**4 · Послухайте й виберіть — на робочій зустрічі слово бере колега**
 <!-- interaction_id: en:lesson-01:session-12:i04; family: listen_choose -->
 🔊 *brave* → **brave** · busy · back
 - busy — *У записі звучить brave, а не busy.*
@@ -97,7 +97,7 @@ You ___ honest. → **are** · am · is
 <!-- interaction_id: en:lesson-01:session-12:i08; family: word_card -->
 > **smart** — розумний, кмітливий. Наприклад, людина придумує вдале розв’язання складної задачі. You are smart — «Ти розумний / розумна».
 
-**10 · Послухайте і виберіть**
+**10 · Послухайте й виберіть — співрозмовник ділиться думкою про вас**
 <!-- interaction_id: en:lesson-01:session-12:i10; family: listen_choose -->
 🔊 *smart* → **smart** · slow · short
 - slow — *У записі звучить smart, а не slow.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-37:word:homesick; family: word_card -->
 > **homesick** — сумує за домом. I'm homesick — «Я сумую за домом». Це туга за рідними місцями й своїми людьми.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — першого вечора в новому місті вам телефонує друг**
 <!-- interaction_id: en:lesson-01:session-37:i02; family: listen_choose -->
 🔊 *She is homesick.* → **She is homesick.** · He is homesick. · She is lonely.
 - He is homesick. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
@@ -109,7 +109,7 @@ It is ___ . → **local** · lonely · foreign
 - lonely — *`lonely` описує самотність. Тут потрібно «місцевий»: `local`.*
 - foreign — *`foreign` — «іноземний». Тут клуб місцевий: `local`.*
 
-**13 · Послухайте опис зустрічі**
+**13 · Послухайте й виберіть — ви розмовляєте з другом увечері**
 <!-- interaction_id: en:lesson-01:session-37:i09; family: listen_choose -->
 🔊 *It is online.* → **It is online.** · It is local. · It is foreign.
 - It is local. — *У записі останнє слово — `online`, а в цьому варіанті — `local`.*
@@ -139,7 +139,7 @@ You ___ lonely. → **are** · am · is
 - am — *Після `You` потрібно `are`.*
 - is — *До одного друга теж звертаємося `You are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — ви показуєте другові нову квартиру по відео**
 <!-- interaction_id: en:lesson-01:session-37:i15; family: listen_choose -->
 🔊 *It's cozy.* → **It's cozy.** · It's messy. · It's local.
 - It's messy. — *У записі останнє слово — `cozy`, а в цьому варіанті — `messy`.*

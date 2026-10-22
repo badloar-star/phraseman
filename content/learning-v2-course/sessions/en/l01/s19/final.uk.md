@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-19:word:outside; family: word_card -->
 > **outside** — зовні, надворі. I am outside — «Я надворі»: наприклад, чекаєте перед входом до кафе.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг телефонує вам, поки ви йдете до кафе**
 <!-- interaction_id: en:lesson-01:session-19:i02; family: listen_choose -->
 🔊 *I am outside.* → **I am outside.** · I am inside. · I am alone.
 - I am inside. — *У записі outside — «надворі», а не inside — «всередині».*
@@ -109,7 +109,7 @@ They ___ nearby. → **are** · is · am
 - is — *Про двох друзів: `They are`. Із `They` форма `is` не підходить.*
 - am — *`am` потрібне після `I`. Тут початок `They`, тому `are`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — ви розмовляєте з другом телефоном**
 <!-- interaction_id: en:lesson-01:session-19:i09; family: listen_choose -->
 🔊 *You are alone.* → **You are alone.** · We are alone. · You are wrong.
 - We are alone. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ I ___ alone. → **am** · is · are
 - is — *Про себе кажемо `I am`.*
 - are — *Із `I` потрібна форма `am`, а не `are`.*
 
-**19 · Послухайте, що подруга каже про друзів**
+**19 · Послухайте й виберіть — подруга телефонує й ділиться новиною**
 <!-- interaction_id: en:lesson-01:session-19:i15; family: listen_choose -->
 🔊 *They are lucky.* → **They are lucky.** · We are lucky. · They are early.
 - We are lucky. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*

@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-48:word:sharp; family: word_card -->
 > **sharp** — гострий. It's sharp — «Він гострий». Про ніж, ножиці, краї скла.
 
-**3 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть — друг розкладає речі на столі в майстерні**
 <!-- interaction_id: en:lesson-01:session-48:i02; family: listen_choose -->
 🔊 *They are sharp.* → **They are sharp.** · We are sharp. · They are sticky.
 - We are sharp. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
@@ -109,7 +109,7 @@ It is ___ . → **dangerous** · lovely · handmade
 <!-- interaction_id: en:lesson-01:session-48:word:sticky; family: word_card -->
 > **sticky** — липкий. They're sticky — «Вони липкі». Про свіжий лак, клей, руки після варення.
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — подруга в майстерні звертається до вас**
 <!-- interaction_id: en:lesson-01:session-48:i09; family: listen_choose -->
 🔊 *It is lovely.* → **It is lovely.** · She is lovely. · It is sticky.
 - She is lovely. — *У записі перше слово — `It`, а в цьому варіанті — `She`.*
@@ -139,7 +139,7 @@ They ___ useless. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Маркерів два, тому `They are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — друг розглядає роботи в майстерні**
 <!-- interaction_id: en:lesson-01:session-48:i15; family: listen_choose -->
 🔊 *It's sharp.* → **It's sharp.** · They're sharp. · It's sticky.
 - They're sharp. — *У записі перше слово — `It's`, а в цьому варіанті — `They're`.*

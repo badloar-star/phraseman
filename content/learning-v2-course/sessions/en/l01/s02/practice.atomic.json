@@ -1300,7 +1300,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запис брата й виберіть почуту фразу",
+        "prompt": "Послухайте й виберіть — брат надиктував запис, поки ви готуєте ігри",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-02:i02:r1",
@@ -1319,7 +1319,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-02:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте запис брата й виберіть почуту фразу",
+        "accessibilityLabel": "Послухайте й виберіть — брат надиктував запис, поки ви готуєте ігри",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1349,7 +1349,7 @@
             {
               "responseId": "en:lesson-01:session-02:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте запис брата й виберіть почуту фразу",
+              "testedDimension": "Послухайте й виберіть — брат надиктував запис, поки ви готуєте ігри",
               "feedbackByLocale": {
                 "ru": "В записи говорится о грусти, а не об усталости.",
                 "uk": "У записі йдеться про сум, а не про втому."
@@ -1358,7 +1358,7 @@
             {
               "responseId": "en:lesson-01:session-02:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте запис брата й виберіть почуту фразу",
+              "testedDimension": "Послухайте й виберіть — брат надиктував запис, поки ви готуєте ігри",
               "feedbackByLocale": {
                 "ru": "В записи говорится о грусти, а не о радости.",
                 "uk": "У записі йдеться про сум, а не про радість."
@@ -1754,7 +1754,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте наступний запис брата й виберіть вимовлену фразу",
+        "prompt": "Послухайте й виберіть — слідом приходить другий запис від брата",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-02:i09:r1",
@@ -1773,7 +1773,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-02:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте наступний запис брата й виберіть вимовлену фразу",
+        "accessibilityLabel": "Послухайте й виберіть — слідом приходить другий запис від брата",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1803,7 +1803,7 @@
             {
               "responseId": "en:lesson-01:session-02:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте наступний запис брата й виберіть вимовлену фразу",
+              "testedDimension": "Послухайте й виберіть — слідом приходить другий запис від брата",
               "feedbackByLocale": {
                 "ru": "В записи говорится о радости, а не о грусти.",
                 "uk": "У записі йдеться про радість, а не про сум."
@@ -1812,7 +1812,7 @@
             {
               "responseId": "en:lesson-01:session-02:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте наступний запис брата й виберіть вимовлену фразу",
+              "testedDimension": "Послухайте й виберіть — слідом приходить другий запис від брата",
               "feedbackByLocale": {
                 "ru": "В записи говорится о радости, а не об усталости.",
                 "uk": "У записі йдеться про радість, а не про втому."
@@ -2096,7 +2096,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "У новому записі брата виберіть саме ту фразу, яку він вимовляє",
+        "prompt": "Послухайте й виберіть — останній запис брата надходить перед вечором",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-02:i15:r1",
@@ -2115,7 +2115,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-02:i15:audio"
         ],
-        "accessibilityLabel": "У новому записі брата виберіть саме ту фразу, яку він вимовляє",
+        "accessibilityLabel": "Послухайте й виберіть — останній запис брата надходить перед вечором",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2145,7 +2145,7 @@
             {
               "responseId": "en:lesson-01:session-02:i15:r2",
               "correct": false,
-              "testedDimension": "У новому записі брата виберіть саме ту фразу, яку він вимовляє",
+              "testedDimension": "Послухайте й виберіть — останній запис брата надходить перед вечором",
               "feedbackByLocale": {
                 "ru": "В записи говорится об усталости, а не о хорошем самочувствии.",
                 "uk": "У записі йдеться про втому, а не про добре самопочуття."
@@ -2154,7 +2154,7 @@
             {
               "responseId": "en:lesson-01:session-02:i15:r3",
               "correct": false,
-              "testedDimension": "У новому записі брата виберіть саме ту фразу, яку він вимовляє",
+              "testedDimension": "Послухайте й виберіть — останній запис брата надходить перед вечором",
               "feedbackByLocale": {
                 "ru": "В записи говорится об усталости, а не о грусти.",
                 "uk": "У записі йдеться про втому, а не про сум."

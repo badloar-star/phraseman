@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-36:word:grumpy; family: word_card -->
 > **grumpy** — буркотливий, не в гуморі. He's grumpy — «Він бурчить, він не в гуморі». Часто так буває від утоми.
 
-**3 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть — друг за настільною грою звертається до вас**
 <!-- interaction_id: en:lesson-01:session-36:i02; family: listen_choose -->
 🔊 *He is grumpy.* → **He is grumpy.** · She is grumpy. · He is sleepy.
 - She is grumpy. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -109,7 +109,7 @@ It is ___ . → **correct** · hopeless · ahead
 - hopeless — *`hopeless` — «безнадійний». Сума тут без помилки: `correct`.*
 - ahead — *`ahead` — «попереду». Правильність передає `correct`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — подруга за настільною грою висловлює думку**
 <!-- interaction_id: en:lesson-01:session-36:i09; family: listen_choose -->
 🔊 *It's hopeless.* → **It's hopeless.** · It's correct. · He's hopeless.
 - It's correct. — *У записі останнє слово — `hopeless`, а в цьому варіанті — `correct`.*
@@ -139,7 +139,7 @@ You ___ competitive. → **are** · am · is
 - am — *З `You` використовуємо `are`.*
 - is — *Навіть до однієї людини звертаємося `You are`.*
 
-**19 · Послухайте коротку фразу**
+**19 · Послухайте й виберіть — далеко за північ друзі ще за столом**
 <!-- interaction_id: en:lesson-01:session-36:i15; family: listen_choose -->
 🔊 *We're sleepy.* → **We're sleepy.** · They're sleepy. · We're ahead.
 - They're sleepy. — *У записі перше слово — `We're`, а в цьому варіанті — `They're`.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-28:word:certain; family: word_card -->
 > **certain** — упевнений, без сумнівів. I am certain — «Я впевнений / впевнена». Це про відчуття людини, а не про те, чи правильна відповідь.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — ви з сестрою звіряєте квитки напередодні**
 <!-- interaction_id: en:lesson-01:session-28:i02; family: listen_choose -->
 🔊 *I am certain.* → **I am certain.** · I am serious. · I am prepared.
 - I am serious. — *У записі останнє слово — `certain`, а в цьому варіанті — `serious`.*
@@ -109,7 +109,7 @@ They ___ strict. → **are** · is · am
 - is — *Після `They` потрібно `are`.*
 - am — *`am` пасує до `I`, а тут `They are`.*
 
-**13 · Послухайте й виберіть фразу**
+**13 · Послухайте й виберіть — сестра напередодні поїздки говорить з вами**
 <!-- interaction_id: en:lesson-01:session-28:i09; family: listen_choose -->
 🔊 *You are correct.* → **You are correct.** · We are correct. · You are certain.
 - We are correct. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ I ___ serious. → **am** · is · are
 - is — *Про себе кажемо `I am`.*
 - are — *Після `I` потрібно `am`.*
 
-**19 · Послухайте й виберіть почуте**
+**19 · Послухайте й виберіть — на пероні ви чекаєте посадки у вагон**
 <!-- interaction_id: en:lesson-01:session-28:i15; family: listen_choose -->
 🔊 *He is strict.* → **He is strict.** · She is strict. · He is serious.
 - She is strict. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*

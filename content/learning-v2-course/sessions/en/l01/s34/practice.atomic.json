@@ -1298,7 +1298,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — друг у парку розваг звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-34:i02:r1",
@@ -1317,7 +1317,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-34:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — друг у парку розваг звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1347,7 +1347,7 @@
             {
               "responseId": "en:lesson-01:session-34:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — друг у парку розваг звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
                 "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -1356,7 +1356,7 @@
             {
               "responseId": "en:lesson-01:session-34:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — друг у парку розваг звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `pale`, а в этом варианте — `afraid`.",
                 "uk": "У записі останнє слово — `pale`, а в цьому варіанті — `afraid`."
@@ -1794,7 +1794,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — подруга веде вас парком і говорить",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-34:i09:r1",
@@ -1813,7 +1813,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-34:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — подруга веде вас парком і говорить",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1843,7 +1843,7 @@
             {
               "responseId": "en:lesson-01:session-34:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга веде вас парком і говорить",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `creepy`, а в этом варианте — `okay`.",
                 "uk": "У записі останнє слово — `creepy`, а в цьому варіанті — `okay`."
@@ -1852,7 +1852,7 @@
             {
               "responseId": "en:lesson-01:session-34:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга веде вас парком і говорить",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `It's`, а в этом варианте — `I'm`.",
                 "uk": "У записі перше слово — `It's`, а в цьому варіанті — `I'm`."
@@ -2135,7 +2135,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте коротку фразу й виберіть її",
+        "prompt": "Послухайте й виберіть — друзі в парку виходять з атракціону",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-34:i15:r1",
@@ -2154,7 +2154,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-34:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте коротку фразу й виберіть її",
+        "accessibilityLabel": "Послухайте й виберіть — друзі в парку виходять з атракціону",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2184,7 +2184,7 @@
             {
               "responseId": "en:lesson-01:session-34:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте коротку фразу й виберіть її",
+              "testedDimension": "Послухайте й виберіть — друзі в парку виходять з атракціону",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `We're`, а в этом варианте — `They're`.",
                 "uk": "У записі перше слово — `We're`, а в цьому варіанті — `They're`."
@@ -2193,7 +2193,7 @@
             {
               "responseId": "en:lesson-01:session-34:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте коротку фразу й виберіть її",
+              "testedDimension": "Послухайте й виберіть — друзі в парку виходять з атракціону",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `terrified`, а в этом варианте — `afraid`.",
                 "uk": "У записі останнє слово — `terrified`, а в цьому варіанті — `afraid`."

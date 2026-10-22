@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-23:word:single; family: word_card -->
 > **single** — без пари; в анкеті про сімейний стан — не перебуває у шлюбі. He is single — «Він без пари». Не означає, що навколо нього немає людей.
 
-**4 · Послухайте й виберіть фразу**
+**4 · Послухайте й виберіть — сестра показує вам сімейні фотографії**
 <!-- interaction_id: en:lesson-01:session-23:i02; family: listen_choose -->
 🔊 *He is single.* → **He is single.** · She is single. · He is married.
 - She is single. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -105,7 +105,7 @@ He ___ married. → **is** · am · are
 - am — *Із `He` потрібно `is`; `am` ставимо з `I`.*
 - are — *Тут початок `He`, тому `is`.*
 
-**12 · Послухайте й виберіть почуте**
+**12 · Послухайте й виберіть — сестра, готуючи свято, ділиться новиною**
 <!-- interaction_id: en:lesson-01:session-23:i09; family: listen_choose -->
 🔊 *We are married.* → **We are married.** · They are married. · We are different.
 - They are married. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
@@ -139,7 +139,7 @@ She is ___ . → **single** · alone · married
 - alone — *alone — сама, без інших людей. Тут ідеться про відсутність партнера: single.*
 - married — *married означає, що вона перебуває у шлюбі. Умова говорить про протилежне.*
 
-**19 · Послухайте новину пари й виберіть почуте**
+**19 · Послухайте й виберіть — родичі діляться з вами новиною**
 <!-- interaction_id: en:lesson-01:session-23:i15; family: listen_choose -->
 🔊 *We are engaged.* → **We are engaged.** · They are engaged. · We are married.
 - They are engaged. — *У записі We, а не They.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-29:word:foreign; family: word_card -->
 > **foreign** — іноземний, з іншої країни. It is foreign — «Він іноземний». Слово говорить про походження, а не про якість.
 
-**4 · Послухайте й виберіть опис фільму**
+**4 · Послухайте й виберіть — подруга обирає з вами фільм на фестивалі**
 <!-- interaction_id: en:lesson-01:session-29:i02; family: listen_choose -->
 🔊 *It is foreign.* → **It is foreign.** · It is local. · It is popular.
 - It is local. — *У записі останнє слово — `foreign`, а в цьому варіанті — `local`.*
@@ -109,7 +109,7 @@ They ___ popular. → **are** · is · am
 - is — *Про два фільми кажемо `They are`.*
 - am — *Після `They` потрібно `are`; `am` ставимо з `I`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — ви обираєте з подругою показ на фестивалі**
 <!-- interaction_id: en:lesson-01:session-29:i09; family: listen_choose -->
 🔊 *You are online.* → **You are online.** · We are online. · You are local.
 - We are online. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ It ___ foreign. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Ідеться про один фільм: `It is`.*
 
-**19 · Послухайте й виберіть почуте**
+**19 · Послухайте й виберіть — на міському фестивалі подруга ділиться думкою**
 <!-- interaction_id: en:lesson-01:session-29:i15; family: listen_choose -->
 🔊 *She is popular.* → **She is popular.** · She is local. · He is popular.
 - She is local. — *У записі останнє слово — `popular`, а в цьому варіанті — `local`.*

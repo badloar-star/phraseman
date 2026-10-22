@@ -58,7 +58,7 @@ Full тут означає «ситий / сита»: ви вже наїлися
 <!-- interaction_id: en:lesson-01:session-07:i01; family: word_card -->
 > **glad** — «радий / рада»: ви задоволені знайденою перепусткою чи іншою доброю новиною.
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте й виберіть — колега проводжає вас до виходу після роботи**
 <!-- interaction_id: en:lesson-01:session-07:i02; family: listen_choose -->
 🔊 *glad*
 - ✅ glad
@@ -78,7 +78,7 @@ Full тут означає «ситий / сита»: ви вже наїлися
 <!-- interaction_id: en:lesson-01:session-07:i05; family: word_card -->
 > **scared** — «наляканий / налякана». I am scared означає «Мені страшно».
 
-**6 · Послухайте й виберіть слово**
+**6 · Послухайте й виберіть — біля виходу колега ставить вам запитання**
 <!-- interaction_id: en:lesson-01:session-07:i06; family: listen_choose -->
 🔊 *scared*
 - ✅ scared

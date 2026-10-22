@@ -1171,7 +1171,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте слово",
+        "prompt": "Послухайте й виберіть — друг телефонує вам увечері",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i02:r1",
@@ -1190,7 +1190,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-06:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте слово",
+        "accessibilityLabel": "Послухайте й виберіть — друг телефонує вам увечері",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1220,7 +1220,7 @@
             {
               "responseId": "en:lesson-01:session-06:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте слово",
+              "testedDimension": "Послухайте й виберіть — друг телефонує вам увечері",
               "feedbackByLocale": {
                 "ru": "В записи home, а не hot.",
                 "uk": "У записі home, а не hot."
@@ -1229,7 +1229,7 @@
             {
               "responseId": "en:lesson-01:session-06:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте слово",
+              "testedDimension": "Послухайте й виберіть — друг телефонує вам увечері",
               "feedbackByLocale": {
                 "ru": "В записи home, а не here.",
                 "uk": "У записі home, а не here."
@@ -1290,7 +1290,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте слово",
+        "prompt": "Послухайте й виберіть — увечері друг знову набирає ваш номер",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i04:r1",
@@ -1309,7 +1309,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-06:i04:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте слово",
+        "accessibilityLabel": "Послухайте й виберіть — увечері друг знову набирає ваш номер",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1339,7 +1339,7 @@
             {
               "responseId": "en:lesson-01:session-06:i04:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте слово",
+              "testedDimension": "Послухайте й виберіть — увечері друг знову набирає ваш номер",
               "feedbackByLocale": {
                 "ru": "В записи back, а не home.",
                 "uk": "У записі back, а не home."
@@ -1348,7 +1348,7 @@
             {
               "responseId": "en:lesson-01:session-06:i04:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте слово",
+              "testedDimension": "Послухайте й виберіть — увечері друг знову набирає ваш номер",
               "feedbackByLocale": {
                 "ru": "В записи back, а не new.",
                 "uk": "У записі back, а не new."
@@ -1550,7 +1550,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте слово",
+        "prompt": "Послухайте й виберіть — друг на зв’язку й чекає вашої відповіді",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i08:r1",
@@ -1569,7 +1569,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-06:i08:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте слово",
+        "accessibilityLabel": "Послухайте й виберіть — друг на зв’язку й чекає вашої відповіді",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1599,7 +1599,7 @@
             {
               "responseId": "en:lesson-01:session-06:i08:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте слово",
+              "testedDimension": "Послухайте й виберіть — друг на зв’язку й чекає вашої відповіді",
               "feedbackByLocale": {
                 "ru": "В записи done, а не sorry.",
                 "uk": "У записі done, а не sorry."
@@ -1608,7 +1608,7 @@
             {
               "responseId": "en:lesson-01:session-06:i08:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте слово",
+              "testedDimension": "Послухайте й виберіть — друг на зв’язку й чекає вашої відповіді",
               "feedbackByLocale": {
                 "ru": "В записи done, а не free.",
                 "uk": "У записі done, а не free."

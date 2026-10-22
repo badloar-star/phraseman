@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-21:word:empty; family: word_card -->
 > **empty** — порожній. It is empty — «Він порожній»: наприклад, столик без людей і речей.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг зазирає до зали клубу перед концертом**
 <!-- interaction_id: en:lesson-01:session-21:i02; family: listen_choose -->
 🔊 *It is empty.* → **It is empty.** · It is small. · It is noisy.
 - It is small. — *У записі empty, а не small.*
@@ -109,7 +109,7 @@ You ___ upstairs. → **are** · is · am
 - is — *Звертаючись до друга, кажемо `You are`.*
 - am — *`am` потрібне з `I`. Після `You` ставимо `are`.*
 
-**13 · Послухайте повідомлення про подругу**
+**13 · Послухайте й виберіть — друг надсилає вам коротке повідомлення**
 <!-- interaction_id: en:lesson-01:session-21:i09; family: listen_choose -->
 🔊 *She is inside.* → **She is inside.** · He is inside. · She is outside.
 - He is inside. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*
@@ -139,7 +139,7 @@ He is ___ . → **outside** · inside · upstairs
 - inside — *`inside` — «всередині». Друг іще на вулиці: `outside`.*
 - upstairs — *`upstairs` — «на верхньому поверсі». Друг перед входом: `outside`.*
 
-**19 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть — друг у клубі звертається до вас перед концертом**
 <!-- interaction_id: en:lesson-01:session-21:i15; family: listen_choose -->
 🔊 *You are prepared.* → **You are prepared.** · We are prepared. · You are careful.
 - We are prepared. — *У записі перше слово — `You`, а в цьому варіанті — `We`.*

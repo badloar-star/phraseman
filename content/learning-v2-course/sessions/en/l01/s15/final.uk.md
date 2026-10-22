@@ -55,7 +55,7 @@
 <!-- interaction_id: en:lesson-01:session-15:i01; family: word_card -->
 > **friendly** — дружелюбний: привітно спілкується з людьми. You are friendly — «Ти дружелюбний / дружелюбна».
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть — подруга за кавою розповідає про свій день**
 <!-- interaction_id: en:lesson-01:session-15:i02; family: listen_choose -->
 🔊 *friendly* → **friendly** · free · ready
 - free — *У записі звучить friendly, а не free.*
@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-15:i03; family: word_card -->
 > **serious** — серйозний. У I am serious — «Я серйозно»: людина говорить не жартома.
 
-**4 · Послухайте і виберіть**
+**4 · Послухайте й виберіть — ви з подругою допиваєте каву після роботи**
 <!-- interaction_id: en:lesson-01:session-15:i04; family: listen_choose -->
 🔊 *serious* → **serious** · sure · strong
 - sure — *У записі звучить serious, а не sure.*
@@ -86,7 +86,7 @@ You are ___ . → **polite** · serious · tired
 <!-- interaction_id: en:lesson-01:session-15:i07; family: word_card -->
 > **lucky** — везучий: людині пощастило. You are lucky — «Ти везучий / везуча», «Тобі пощастило».
 
-**8 · Послухайте і виберіть**
+**8 · Послухайте й виберіть — подруга за кавою оцінює ваш день**
 <!-- interaction_id: en:lesson-01:session-15:i08; family: listen_choose -->
 🔊 *lucky* → **lucky** · lazy · lost
 - lazy — *У записі звучить lucky, а не lazy.*
@@ -96,7 +96,7 @@ You are ___ . → **polite** · serious · tired
 <!-- interaction_id: en:lesson-01:session-15:i09; family: word_card -->
 > **helpful** — готовий допомогти. You are helpful — «Ти дуже допомагаєш». Наприклад, колега допомагає розібратися з незрозумілою формою.
 
-**10 · Послухайте і виберіть**
+**10 · Послухайте й виберіть — подруга ставить чашку й продовжує розповідь**
 <!-- interaction_id: en:lesson-01:session-15:i10; family: listen_choose -->
 🔊 *helpful* → **helpful** · happy · honest
 - happy — *У записі звучить helpful, а не happy.*
@@ -123,7 +123,7 @@ You are ___ . → **helpful** · lucky · tired
 - lucky — *Потрібно відзначити допомогу, а не випадкову удачу.*
 - tired — *Tired — «втомлена». Тут ви відзначаєте допомогу: helpful.*
 
-**15 · Послухайте і виберіть**
+**15 · Послухайте й виберіть — вечірня розмова за кавою триває**
 <!-- interaction_id: en:lesson-01:session-15:i15; family: listen_choose -->
 🔊 *calm* → **calm** · cold · kind
 - cold — *У записі звучить calm, а не cold.*

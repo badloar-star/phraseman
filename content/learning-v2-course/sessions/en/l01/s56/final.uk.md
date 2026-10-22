@@ -61,7 +61,7 @@
 Плитки: `locked` `is` `It` `are` → **It is locked.**
 *(плитка `are` зайва: тут потрібно `is` — `It is locked.`)*
 
-**3 · Послухайте фразу про квитки на потяг і виберіть почуте**
+**3 · Послухайте й виберіть — таксі біля під’їзду, ви перевіряєте квитки**
 <!-- interaction_id: en:lesson-01:session-56:i02; family: listen_choose -->
 🔊 *They are expensive.* → **They are expensive.** · They are cheap. · They are heavy.
 - They are cheap. — *У записі останнє слово — `expensive`, а в цьому варіанті — `cheap`.*
@@ -105,7 +105,7 @@ It is ___ . → **expired** · familiar · tight
 - familiar — *`familiar` — «знайомий». А в квитка минув термін: `expired`.*
 - tight — *`tight` — «тісний», це про взуття й одяг. Про квиток, у якого минув термін, каже `expired`.*
 
-**12 · Послухайте фразу про тітку**
+**12 · Послухайте й виберіть — уранці перед від’їздом ви говорите про тітку**
 <!-- interaction_id: en:lesson-01:session-56:i09; family: listen_choose -->
 🔊 *She is responsible.* → **She is responsible.** · She is independent. · She is dependent.
 - She is independent. — *У записі останнє слово — `responsible`, а в цьому варіанті — `independent`.*
@@ -139,7 +139,7 @@ It ___ tight. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Куртка одна, тому `It is`.*
 
-**19 · Послухайте коротку фразу й виберіть її**
+**19 · Послухайте й виберіть — ви перевіряєте речі перед виходом із дому**
 <!-- interaction_id: en:lesson-01:session-56:i15; family: listen_choose -->
 🔊 *They're tight.* → **They're tight.** · It's tight. · They're light.
 - It's tight. — *У записі перше слово — `They're`, а в цьому варіанті — `It's`.*

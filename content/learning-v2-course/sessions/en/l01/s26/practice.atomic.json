@@ -1300,7 +1300,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — ви з другом чекаєте посадки, друг говорить",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-26:i02:r1",
@@ -1319,7 +1319,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-26:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — ви з другом чекаєте посадки, друг говорить",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1349,7 +1349,7 @@
             {
               "responseId": "en:lesson-01:session-26:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви з другом чекаєте посадки, друг говорить",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
                 "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
@@ -1358,7 +1358,7 @@
             {
               "responseId": "en:lesson-01:session-26:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви з другом чекаєте посадки, друг говорить",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `worried`, а в этом варианте — `confused`.",
                 "uk": "У записі останнє слово — `worried`, а в цьому варіанті — `confused`."
@@ -1797,7 +1797,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть фразу",
+        "prompt": "Послухайте й виберіть — друг, чекаючи посадки, звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-26:i09:r1",
@@ -1816,7 +1816,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-26:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "accessibilityLabel": "Послухайте й виберіть — друг, чекаючи посадки, звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1846,7 +1846,7 @@
             {
               "responseId": "en:lesson-01:session-26:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — друг, чекаючи посадки, звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
                 "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
@@ -1855,7 +1855,7 @@
             {
               "responseId": "en:lesson-01:session-26:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу",
+              "testedDimension": "Послухайте й виберіть — друг, чекаючи посадки, звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `confused`, а в этом варианте — `surprised`.",
                 "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `surprised`."
@@ -2139,7 +2139,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — ви чекаєте посадки й слухаєте друга",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-26:i15:r1",
@@ -2158,7 +2158,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-26:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — ви чекаєте посадки й слухаєте друга",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2188,7 +2188,7 @@
             {
               "responseId": "en:lesson-01:session-26:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви чекаєте посадки й слухаєте друга",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
                 "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -2197,7 +2197,7 @@
             {
               "responseId": "en:lesson-01:session-26:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви чекаєте посадки й слухаєте друга",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `surprised`, а в этом варианте — `worried`.",
                 "uk": "У записі останнє слово — `surprised`, а в цьому варіанті — `worried`."

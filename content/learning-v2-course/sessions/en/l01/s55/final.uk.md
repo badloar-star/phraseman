@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-55:word:forgetful; family: word_card -->
 > **forgetful** — забудькуватий. He's forgetful — «Він забудькуватий». Про людину, яка вічно забуває ключі, парасольку, зарядку.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — родина збирається до родичів потягом**
 <!-- interaction_id: en:lesson-01:session-55:i02; family: listen_choose -->
 🔊 *He is forgetful.* → **He is forgetful.** · She is forgetful. · He is responsible.
 - She is forgetful. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -109,7 +109,7 @@ He is ___ . → **dependent** · independent · forgetful
 - independent — *`independent` — «самостійний». А малюк без дорослих не дає собі ради: `dependent`.*
 - forgetful — *`forgetful` — «забудькуватий». Малюкові потрібна допомога в усьому: `dependent`.*
 
-**13 · Послухайте фразу про круті сходи на перон**
+**13 · Послухайте й виберіть — напередодні поїздки ви обговорюєте дорогу до перону**
 <!-- interaction_id: en:lesson-01:session-55:i09; family: listen_choose -->
 🔊 *It is dangerous.* → **It is dangerous.** · It is familiar. · It is unfamiliar.
 - It is familiar. — *У записі останнє слово — `dangerous`, а в цьому варіанті — `familiar`.*
@@ -139,7 +139,7 @@ I ___ forgetful. → **am** · is · are
 - is — *Після `I` потрібно `am`.*
 - are — *Ви кажете про себе: `I am`.*
 
-**19 · Послухайте коротку фразу про тітку й виберіть її**
+**19 · Послухайте й виберіть — родина обговорює тітку перед поїздкою**
 <!-- interaction_id: en:lesson-01:session-55:i15; family: listen_choose -->
 🔊 *She's independent.* → **She's independent.** · She's dependent. · She's responsible.
 - She's dependent. — *У записі останнє слово — `independent`, а в цьому варіанті — `dependent`.*

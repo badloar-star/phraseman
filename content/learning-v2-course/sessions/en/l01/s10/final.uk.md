@@ -56,7 +56,7 @@
 <!-- interaction_id: en:lesson-01:session-10:i01; family: word_card -->
 > **kind** — добрий, чуйний. You are kind — «Ти добрий / добра».
 
-**2 · Послухайте і виберіть — kind**
+**2 · Послухайте й виберіть — на зустрічі колега звертається до вас**
 <!-- interaction_id: en:lesson-01:session-10:i02; family: listen_choose -->
 🔊 *kind* → **kind** · cold · tired
 - cold — *У записі звучить kind, а не cold.*
@@ -66,7 +66,7 @@
 <!-- interaction_id: en:lesson-01:session-10:i03; family: word_card -->
 > **fast** — швидкий. You are fast — «Ти швидкий / швидка».
 
-**4 · Послухайте і виберіть — fast**
+**4 · Послухайте й виберіть — один із колег бере слово на зустрічі**
 <!-- interaction_id: en:lesson-01:session-10:i04; family: listen_choose -->
 🔊 *fast* → **fast** · sad · late
 - sad — *У записі звучить fast, а не sad.*
@@ -87,7 +87,7 @@ You are ___ . → **fast** · early · sorry
 <!-- interaction_id: en:lesson-01:session-10:i07; family: word_card -->
 > **quiet** — тихий, мовчазний. You are quiet — «Ти сьогодні мовчазний / мовчазна».
 
-**8 · Послухайте і виберіть — quiet**
+**8 · Послухайте й виберіть — зустріч із колегами йде своїм ходом**
 <!-- interaction_id: en:lesson-01:session-10:i08; family: listen_choose -->
 🔊 *quiet* → **quiet** · kind · busy
 - kind — *У записі звучить quiet, а не kind.*

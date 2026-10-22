@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-45:word:packed; family: word_card -->
 > **packed** — спакований, складений у коробки. They're packed — «Вони спаковані». Про себе: I'm packed — «Я зібрався».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — ви допомагаєте другові зібрати речі перед машиною**
 <!-- interaction_id: en:lesson-01:session-45:i02; family: listen_choose -->
 🔊 *They are packed.* → **They are packed.** · We are packed. · They are empty.
 - We are packed. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
@@ -109,7 +109,7 @@ He is ___ . → **lonely** · spacious · packed
 - spacious — *`spacious` — «просторий», це про кімнату. Про сум без друзів — `lonely`.*
 - packed — *`packed` — «зібрався, спакований». Почуття самотності — `lonely`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — друг говорить з вами, поки ви носите коробки**
 <!-- interaction_id: en:lesson-01:session-45:i09; family: listen_choose -->
 🔊 *It is sturdy.* → **It is sturdy.** · He is sturdy. · It is heavy.
 - He is sturdy. — *У записі перше слово — `It`, а в цьому варіанті — `He`.*
@@ -139,7 +139,7 @@ They ___ sturdy. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Табуреток дві, тому `They are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — друг оглядає кімнату перед від’їздом**
 <!-- interaction_id: en:lesson-01:session-45:i15; family: listen_choose -->
 🔊 *We're packed.* → **We're packed.** · They're packed. · We're ready.
 - They're packed. — *У записі перше слово — `We're`, а в цьому варіанті — `They're`.*

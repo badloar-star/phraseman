@@ -55,7 +55,7 @@
 <!-- interaction_id: en:lesson-01:session-14:i01; family: word_card -->
 > **safe** — у безпеці: людина захищена від небезпеки. You are safe — «Ти в безпеці».
 
-**2 · Послухайте і виберіть**
+**2 · Послухайте й виберіть — турист поруч із вами шукає вокзал**
 <!-- interaction_id: en:lesson-01:session-14:i02; family: listen_choose -->
 🔊 *safe* → **safe** · sad · sure
 - sad — *У записі звучить safe, а не sad.*
@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-14:i03; family: word_card -->
 > **warm** — теплий; у You are warm — «Тобі тепло». Наприклад, людина зігрілася в приміщенні.
 
-**4 · Послухайте і виберіть**
+**4 · Послухайте й виберіть — ви йдете вулицею разом із туристом**
 <!-- interaction_id: en:lesson-01:session-14:i04; family: listen_choose -->
 🔊 *warm* → **warm** · wrong · weak
 - wrong — *У записі звучить warm, а не wrong.*
@@ -86,7 +86,7 @@ You are ___ . → **lost** · safe · ready
 <!-- interaction_id: en:lesson-01:session-14:i07; family: word_card -->
 > **dry** — сухий, не мокрий. You are dry — «Ти сухий / суха»: наприклад, одяг не промок під дощем.
 
-**8 · Послухайте і виберіть**
+**8 · Послухайте й виберіть — турист продовжує розмову на ходу**
 <!-- interaction_id: en:lesson-01:session-14:i08; family: listen_choose -->
 🔊 *dry* → **dry** · proud · old
 - proud — *У записі звучить dry, а не proud.*
@@ -96,7 +96,7 @@ You are ___ . → **lost** · safe · ready
 <!-- interaction_id: en:lesson-01:session-14:i09; family: word_card -->
 > **wet** — мокрий. You are wet — «Ти мокрий / мокра»: наприклад, одяг промок під дощем.
 
-**10 · Послухайте і виберіть**
+**10 · Послухайте й виберіть — турист озирається, ви досі поруч**
 <!-- interaction_id: en:lesson-01:session-14:i10; family: listen_choose -->
 🔊 *wet* → **wet** · dry · warm
 - dry — *У записі звучить wet, а не dry.*
@@ -122,7 +122,7 @@ You ___ safe. → **are** · am · is
 <!-- interaction_id: en:lesson-01:session-14:i14; family: speed_match -->
 safe — у безпеці · warm — теплий · dry — сухий · wet — мокрий
 
-**15 · Послухайте і виберіть**
+**15 · Послухайте й виберіть — на вулиці турист знову звертається до вас**
 <!-- interaction_id: en:lesson-01:session-14:i15; family: listen_choose -->
 🔊 *cold* → **cold** · old · calm
 - old — *У записі звучить cold, а не old.*

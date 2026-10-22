@@ -1300,7 +1300,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й оберіть значення — фотографка підписує портрет сестри",
+        "prompt": "Послухайте й виберіть — фотограф готує підпис до нового портрета",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i02:r1",
@@ -1319,7 +1319,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-09:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й оберіть значення — фотографка підписує портрет сестри",
+        "accessibilityLabel": "Послухайте й виберіть — фотограф готує підпис до нового портрета",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1349,7 +1349,7 @@
             {
               "responseId": "en:lesson-01:session-09:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й оберіть значення — фотографка підписує портрет сестри",
+              "testedDimension": "Послухайте й виберіть — фотограф готує підпис до нового портрета",
               "feedbackByLocale": {
                 "ru": "Это описание мужчины; в записи говорится о сестре.",
                 "uk": "Це опис чоловіка; у записі йдеться про сестру."
@@ -1358,7 +1358,7 @@
             {
               "responseId": "en:lesson-01:session-09:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й оберіть значення — фотографка підписує портрет сестри",
+              "testedDimension": "Послухайте й виберіть — фотограф готує підпис до нового портрета",
               "feedbackByLocale": {
                 "ru": "Это о возрасте, а запись описывает рост сестры.",
                 "uk": "Це про вік, а запис описує зріст сестри."
@@ -1797,7 +1797,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запис про сусіда й оберіть значення почутої фрази",
+        "prompt": "Послухайте й виберіть — фотограф розповідає вам про сусіда на знімку",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i09:r1",
@@ -1816,7 +1816,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-09:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте запис про сусіда й оберіть значення почутої фрази",
+        "accessibilityLabel": "Послухайте й виберіть — фотограф розповідає вам про сусіда на знімку",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1846,7 +1846,7 @@
             {
               "responseId": "en:lesson-01:session-09:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте запис про сусіда й оберіть значення почутої фрази",
+              "testedDimension": "Послухайте й виберіть — фотограф розповідає вам про сусіда на знімку",
               "feedbackByLocale": {
                 "ru": "В записи описано раздражение, а не спокойствие.",
                 "uk": "У записі описано роздратування, а не спокій."
@@ -1855,7 +1855,7 @@
             {
               "responseId": "en:lesson-01:session-09:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте запис про сусіда й оберіть значення почутої фрази",
+              "testedDimension": "Послухайте й виберіть — фотограф розповідає вам про сусіда на знімку",
               "feedbackByLocale": {
                 "ru": "В записи описана злость, а не страх.",
                 "uk": "У записі описано злість, а не страх."
@@ -2139,7 +2139,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте запис про дядька й виберіть значення фрази",
+        "prompt": "Послухайте й виберіть — фотограф показує вам знімок дядька",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i15:r1",
@@ -2158,7 +2158,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-09:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте запис про дядька й виберіть значення фрази",
+        "accessibilityLabel": "Послухайте й виберіть — фотограф показує вам знімок дядька",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2188,7 +2188,7 @@
             {
               "responseId": "en:lesson-01:session-09:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте запис про дядька й виберіть значення фрази",
+              "testedDimension": "Послухайте й виберіть — фотограф показує вам знімок дядька",
               "feedbackByLocale": {
                 "ru": "В записи scared — «испуган», а не angry — «сердится».",
                 "uk": "У записі scared — «наляканий», а не angry — «сердиться»."
@@ -2197,7 +2197,7 @@
             {
               "responseId": "en:lesson-01:session-09:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте запис про дядька й виберіть значення фрази",
+              "testedDimension": "Послухайте й виберіть — фотограф показує вам знімок дядька",
               "feedbackByLocale": {
                 "ru": "В записи говорится о страхе, а не о спокойствии.",
                 "uk": "У записі йдеться про страх, а не про спокій."

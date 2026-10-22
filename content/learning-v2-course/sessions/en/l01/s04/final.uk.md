@@ -62,7 +62,7 @@ I am right — «Я маю рацію», а I am wrong — «Я помиляюс
 <!-- interaction_id: en:lesson-01:session-04:i01; family: word_card -->
 > **early** — «рано». Ви прийшли до призначеного часу.
 
-**2 · Послухайте й виберіть почуте слово**
+**2 · Послухайте й виберіть — на ранковій зустрічі слово бере начальниця**
 <!-- interaction_id: en:lesson-01:session-04:i02; family: listen_choose -->
 🔊 *early*
 - ✅ early
@@ -73,7 +73,7 @@ I am right — «Я маю рацію», а I am wrong — «Я помиляюс
 <!-- interaction_id: en:lesson-01:session-04:i03; family: word_card -->
 > **right** — «маю рацію» у I am right. Вашу відповідь підтвердила перевірка.
 
-**4 · Послухайте й виберіть почуте слово**
+**4 · Послухайте й виберіть — начальниця просить вас коротко відповісти**
 <!-- interaction_id: en:lesson-01:session-04:i04; family: listen_choose -->
 🔊 *right*
 - ✅ right
@@ -84,7 +84,7 @@ I am right — «Я маю рацію», а I am wrong — «Я помиляюс
 <!-- interaction_id: en:lesson-01:session-04:i05; family: word_card -->
 > **wrong** — «помиляюся» у I am wrong. На початку слова літера `w` не вимовляється.
 
-**6 · Послухайте й виберіть почуте слово**
+**6 · Послухайте й виберіть — ви на ранковій зустрічі, начальниця слухає**
 <!-- interaction_id: en:lesson-01:session-04:i06; family: listen_choose -->
 🔊 *wrong*
 - ✅ wrong
@@ -101,7 +101,7 @@ I am right — «Я маю рацію», а I am wrong — «Я помиляюс
 <!-- interaction_id: en:lesson-01:session-04:i07; family: word_card -->
 > **free** — «вільний/вільна, не зайнятий/не зайнята». Ви можете взятися за нову справу.
 
-**9 · Послухайте й виберіть почуте слово**
+**9 · Послухайте й виберіть — черга доходить до вас на ранковій зустрічі**
 <!-- interaction_id: en:lesson-01:session-04:i09; family: listen_choose -->
 🔊 *free*
 - ✅ free
@@ -138,7 +138,7 @@ I ___ wrong. → **am** · not · is
 хочете сказати, що не запізнилися.**
 Плитки: `I` `am` `not` `late.` `early` → **I am not late.**
 
-**15 · Послухайте і виберіть — що ви щойно почули**
+**15 · Послухайте й виберіть — начальниця підбиває підсумок ранкової зустрічі**
 <!-- interaction_id: en:lesson-01:session-04:i15; family: listen_choose -->
 🔊 *I am not sure.* → **I am not sure.** · I am sure. · I am not free. · I am not tired.
 - I am sure. — *У записі звучить not між am і sure.*

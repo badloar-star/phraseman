@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-51:word:overweight; family: word_card -->
 > **overweight** — важить більше за норму. It's overweight — «У неї перевага ваги»: про багаж в аеропорту.
 
-**3 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть — друг проводжає вас в аеропорту**
 <!-- interaction_id: en:lesson-01:session-51:i02; family: listen_choose -->
 🔊 *It is overweight.* → **It is overweight.** · It is heavy. · It is bulky.
 - It is heavy. — *У записі останнє слово — `overweight`, а в цьому варіанті — `heavy`.*
@@ -109,7 +109,7 @@ He is ___ . → **patient** · heavy · bulky
 - heavy — *Це про вагу. Тут потрібне терпіння: `patient`.*
 - bulky — *`bulky` — «громіздкий», про речі. Тут потрібно `patient`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — друг в аеропорту звертається до вас**
 <!-- interaction_id: en:lesson-01:session-51:i09; family: listen_choose -->
 🔊 *It's bulky.* → **It's bulky.** · It's heavy. · It's stuffed.
 - It's heavy. — *У записі останнє слово — `bulky`, а в цьому варіанті — `heavy`.*
@@ -139,7 +139,7 @@ It ___ bulky. → **is** · am · are
 - am — *Після `It` потрібно `is`.*
 - are — *Чохол один — `It is`.*
 
-**19 · Послухайте коротку оцінку й виберіть її**
+**19 · Послухайте й виберіть — ви біля валізи, друг говорить з вами**
 <!-- interaction_id: en:lesson-01:session-51:i15; family: listen_choose -->
 🔊 *It's stuffed.* → **It's stuffed.** · It's zipped. · It's expensive.
 - It's zipped. — *У записі останнє слово — `stuffed`, а в цьому варіанті — `zipped`.*

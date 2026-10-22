@@ -1172,7 +1172,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — на зустрічі колега звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i02:r1",
@@ -1191,7 +1191,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-10:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — на зустрічі колега звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1291,7 +1291,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — один із колег бере слово на зустрічі",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i04:r1",
@@ -1310,7 +1310,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-10:i04:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — один із колег бере слово на зустрічі",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1523,7 +1523,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — зустріч із колегами йде своїм ходом",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i08:r1",
@@ -1542,7 +1542,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-10:i08:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — зустріч із колегами йде своїм ходом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {

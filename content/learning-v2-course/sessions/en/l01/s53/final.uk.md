@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-53:word:soggy; family: word_card -->
 > **soggy** — розмоклий. It's soggy — «Він розмок». Про хліб, печиво, пластівці, які розкисли від вологи.
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — ви збираєте кошик на дачі друга**
 <!-- interaction_id: en:lesson-01:session-53:i02; family: listen_choose -->
 🔊 *It is soggy.* → **It is soggy.** · They are soggy. · It is full.
 - They are soggy. — *У записі перші слова — `It is`, а в цьому варіанті — `They are`.*
@@ -109,7 +109,7 @@ It is ___ . → **heavy** · ripe · delicious
 - ripe — *`ripe` — «стиглий», це про їжу. Кошик ледве підняти: `heavy`.*
 - delicious — *`delicious` — «дуже смачний». Про вагу каже `heavy`.*
 
-**13 · Послухайте й виберіть почуте**
+**13 · Послухайте й виберіть — друг на дачі звертається до вас**
 <!-- interaction_id: en:lesson-01:session-53:i09; family: listen_choose -->
 🔊 *They are juicy.* → **They are juicy.** · We are juicy. · They are ripe.
 - We are juicy. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
@@ -139,7 +139,7 @@ They ___ soggy. → **are** · am · is
 - am — *Після `They` потрібно `are`.*
 - is — *Печив два, тому `They are`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — суботнього ранку на дачі друг ділиться думкою**
 <!-- interaction_id: en:lesson-01:session-53:i15; family: listen_choose -->
 🔊 *It's delicious.* → **It's delicious.** · They're delicious. · It's juicy.
 - They're delicious. — *У записі перше слово — `It's`, а в цьому варіанті — `They're`.*

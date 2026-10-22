@@ -58,7 +58,7 @@
 <!-- interaction_id: en:lesson-01:session-06:i01; family: word_card -->
 > **home** — «вдома» у I am home: ви перебуваєте у себе вдома.
 
-**2 · Послухайте й виберіть почуте слово**
+**2 · Послухайте й виберіть — друг телефонує вам увечері**
 <!-- interaction_id: en:lesson-01:session-06:i02; family: listen_choose -->
 🔊 *home*
 - ✅ home
@@ -69,7 +69,7 @@
 <!-- interaction_id: en:lesson-01:session-06:i03; family: word_card -->
 > **back** — «знову тут». Вас тут не було — і ось ви знову тут.
 
-**4 · Послухайте й виберіть почуте слово**
+**4 · Послухайте й виберіть — увечері друг знову набирає ваш номер**
 <!-- interaction_id: en:lesson-01:session-06:i04; family: listen_choose -->
 🔊 *back*
 - ✅ back
@@ -95,7 +95,7 @@
 <!-- interaction_id: en:lesson-01:session-06:i06; family: word_card -->
 > **done** — «закінчив / закінчила» у I am done. Ви завершили справу, про яку йдеться.
 
-**9 · Послухайте й виберіть почуте слово**
+**9 · Послухайте й виберіть — друг на зв’язку й чекає вашої відповіді**
 <!-- interaction_id: en:lesson-01:session-06:i08; family: listen_choose -->
 🔊 *done*
 - ✅ done

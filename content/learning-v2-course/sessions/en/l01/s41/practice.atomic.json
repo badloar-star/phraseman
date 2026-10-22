@@ -1298,7 +1298,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — подруга говорить з вами після того, що сталося",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-41:i02:r1",
@@ -1317,7 +1317,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-41:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — подруга говорить з вами після того, що сталося",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1347,7 +1347,7 @@
             {
               "responseId": "en:lesson-01:session-41:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга говорить з вами після того, що сталося",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
                 "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -1356,7 +1356,7 @@
             {
               "responseId": "en:lesson-01:session-41:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — подруга говорить з вами після того, що сталося",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `upset`, а в этом варианте — `okay`.",
                 "uk": "У записі останнє слово — `upset`, а в цьому варіанті — `okay`."
@@ -1794,7 +1794,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть почуте",
+        "prompt": "Послухайте й виберіть — ви в гостях у подруги, розмова триває",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-41:i09:r1",
@@ -1813,7 +1813,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-41:i09:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть почуте",
+        "accessibilityLabel": "Послухайте й виберіть — ви в гостях у подруги, розмова триває",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1843,7 +1843,7 @@
             {
               "responseId": "en:lesson-01:session-41:i09:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви в гостях у подруги, розмова триває",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `I'm`, а в этом варианте — `He's`.",
                 "uk": "У записі перше слово — `I'm`, а в цьому варіанті — `He's`."
@@ -1852,7 +1852,7 @@
             {
               "responseId": "en:lesson-01:session-41:i09:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть почуте",
+              "testedDimension": "Послухайте й виберіть — ви в гостях у подруги, розмова триває",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `clumsy`, а в этом варианте — `sorry`.",
                 "uk": "У записі останнє слово — `clumsy`, а в цьому варіанті — `sorry`."
@@ -2135,7 +2135,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть коротку фразу",
+        "prompt": "Послухайте й виберіть — господиня квартири звертається до вас",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-41:i15:r1",
@@ -2154,7 +2154,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-41:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+        "accessibilityLabel": "Послухайте й виберіть — господиня квартири звертається до вас",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2184,7 +2184,7 @@
             {
               "responseId": "en:lesson-01:session-41:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "testedDimension": "Послухайте й виберіть — господиня квартири звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `precious`, а в этом варианте — `okay`.",
                 "uk": "У записі останнє слово — `precious`, а в цьому варіанті — `okay`."
@@ -2193,7 +2193,7 @@
             {
               "responseId": "en:lesson-01:session-41:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть коротку фразу",
+              "testedDimension": "Послухайте й виберіть — господиня квартири звертається до вас",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `It's`, а в этом варианте — `He's`.",
                 "uk": "У записі перше слово — `It's`, а в цьому варіанті — `He's`."

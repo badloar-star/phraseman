@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-18:word:sleepy; family: word_card -->
 > **sleepy** — сонний, той, хто хоче спати. We are sleepy — «Ми сонні».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг говорить з вами на вокзалі**
 <!-- interaction_id: en:lesson-01:session-18:i02; family: listen_choose -->
 🔊 *We are sleepy.* → **We are sleepy.** · You are sleepy. · We are early.
 - You are sleepy. — *У записі We, а не You.*
@@ -105,7 +105,7 @@ You ___ right. → **are** · is · am
 - is — *Звертаючись до друга, кажемо `You are`.*
 - am — *`am` ставимо з `I`, а тут початок `You`.*
 
-**12 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть — на вокзалі мова заходить про когось зі знайомих**
 <!-- interaction_id: en:lesson-01:session-18:i09; family: listen_choose -->
 🔊 *He is lucky.* → **He is lucky.** · She is lucky. · He is wrong.
 - She is lucky. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -139,7 +139,7 @@ We are ___ . → **safe** · wrong · early
 <!-- interaction_id: en:lesson-01:session-18:word:funny; family: word_card -->
 > **funny** — смішний, кумедний: викликає сміх. She is funny — «Вона кумедна»: наприклад, попутниця весело розповідає історії.
 
-**19 · Послухайте фразу про попутницю й виберіть почуте**
+**19 · Послухайте й виберіть — чекаючи на потяг, ви говорите про попутників**
 <!-- interaction_id: en:lesson-01:session-18:i15; family: listen_choose -->
 🔊 *She is funny.* → **She is funny.** · He is funny. · She is kind.
 - He is funny. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*

@@ -1259,7 +1259,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — подруга за кавою розповідає про свій день",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i02:r1",
@@ -1278,7 +1278,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-15:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — подруга за кавою розповідає про свій день",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1308,7 +1308,7 @@
             {
               "responseId": "en:lesson-01:session-15:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — подруга за кавою розповідає про свій день",
               "feedbackByLocale": {
                 "ru": "В записи звучит friendly, а не free.",
                 "uk": "У записі звучить friendly, а не free."
@@ -1317,7 +1317,7 @@
             {
               "responseId": "en:lesson-01:session-15:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — подруга за кавою розповідає про свій день",
               "feedbackByLocale": {
                 "ru": "В записи звучит friendly, а не ready.",
                 "uk": "У записі звучить friendly, а не ready."
@@ -1378,7 +1378,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — ви з подругою допиваєте каву після роботи",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i04:r1",
@@ -1397,7 +1397,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-15:i04:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — ви з подругою допиваєте каву після роботи",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1427,7 +1427,7 @@
             {
               "responseId": "en:lesson-01:session-15:i04:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — ви з подругою допиваєте каву після роботи",
               "feedbackByLocale": {
                 "ru": "В записи звучит serious, а не sure.",
                 "uk": "У записі звучить serious, а не sure."
@@ -1436,7 +1436,7 @@
             {
               "responseId": "en:lesson-01:session-15:i04:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — ви з подругою допиваєте каву після роботи",
               "feedbackByLocale": {
                 "ru": "В записи звучит serious, а не strong.",
                 "uk": "У записі звучить serious, а не strong."
@@ -1610,7 +1610,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — подруга за кавою оцінює ваш день",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i08:r1",
@@ -1629,7 +1629,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-15:i08:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — подруга за кавою оцінює ваш день",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1659,7 +1659,7 @@
             {
               "responseId": "en:lesson-01:session-15:i08:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — подруга за кавою оцінює ваш день",
               "feedbackByLocale": {
                 "ru": "В записи звучит lucky, а не lazy.",
                 "uk": "У записі звучить lucky, а не lazy."
@@ -1668,7 +1668,7 @@
             {
               "responseId": "en:lesson-01:session-15:i08:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — подруга за кавою оцінює ваш день",
               "feedbackByLocale": {
                 "ru": "В записи звучит lucky, а не lost.",
                 "uk": "У записі звучить lucky, а не lost."
@@ -1729,7 +1729,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — подруга ставить чашку й продовжує розповідь",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i10:r1",
@@ -1748,7 +1748,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-15:i10:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — подруга ставить чашку й продовжує розповідь",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1778,7 +1778,7 @@
             {
               "responseId": "en:lesson-01:session-15:i10:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — подруга ставить чашку й продовжує розповідь",
               "feedbackByLocale": {
                 "ru": "В записи звучит helpful, а не happy.",
                 "uk": "У записі звучить helpful, а не happy."
@@ -1787,7 +1787,7 @@
             {
               "responseId": "en:lesson-01:session-15:i10:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — подруга ставить чашку й продовжує розповідь",
               "feedbackByLocale": {
                 "ru": "В записи звучит helpful, а не honest.",
                 "uk": "У записі звучить helpful, а не honest."
@@ -2064,7 +2064,7 @@
         "purpose": "retrieval_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Послухайте й виберіть — вечірня розмова за кавою триває",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-15:i15:r1",
@@ -2083,7 +2083,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-15:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "accessibilityLabel": "Послухайте й виберіть — вечірня розмова за кавою триває",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -2113,7 +2113,7 @@
             {
               "responseId": "en:lesson-01:session-15:i15:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — вечірня розмова за кавою триває",
               "feedbackByLocale": {
                 "ru": "В записи звучит calm, а не cold.",
                 "uk": "У записі звучить calm, а не cold."
@@ -2122,7 +2122,7 @@
             {
               "responseId": "en:lesson-01:session-15:i15:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть",
+              "testedDimension": "Послухайте й виберіть — вечірня розмова за кавою триває",
               "feedbackByLocale": {
                 "ru": "В записи звучит calm, а не kind.",
                 "uk": "У записі звучить calm, а не kind."

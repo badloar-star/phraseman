@@ -61,7 +61,7 @@
 Плитки: `prepared` `are` `We` `is` → **We are prepared.**
 *(плитка `is` зайва: тут потрібно `are` — `We are prepared.`)*
 
-**3 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть — ви йдете лісовим маршрутом із друзями**
 <!-- interaction_id: en:lesson-01:session-20:i02; family: listen_choose -->
 🔊 *He is lost.* → **He is lost.** · She is lost. · He is prepared.
 - She is lost. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -105,7 +105,7 @@ You ___ careful. → **are** · am · is
 - am — *Після `You` потрібно `are`; `am` ставимо з `I`.*
 - is — *Ви звертаєтеся до друга: `You are`.*
 
-**12 · Послухайте фразу туриста й виберіть почуте**
+**12 · Послухайте й виберіть — на маршруті ви чуєте репліку туриста**
 <!-- interaction_id: en:lesson-01:session-20:i09; family: listen_choose -->
 🔊 *I am lost.* → **I am lost.** · I am alone. · I am prepared.
 - I am alone. — *У записі останнє слово — `lost`, а в цьому варіанті — `alone`.*
@@ -139,7 +139,7 @@ We are ___ . → **together** · lost · careful
 <!-- interaction_id: en:lesson-01:session-20:word:loud; family: word_card -->
 > **loud** — гучний. He is loud — «Він гучний»: турист розмовляє так гучно, що його чує вся група.
 
-**19 · Послухайте фразу про гучного туриста**
+**19 · Послухайте й виберіть — один турист на лісовій стежці говорить з вами**
 <!-- interaction_id: en:lesson-01:session-20:i15; family: listen_choose -->
 🔊 *He is loud.* → **He is loud.** · She is loud. · He is careful.
 - She is loud. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*

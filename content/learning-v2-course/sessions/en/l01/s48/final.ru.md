@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-48:word:sharp; family: word_card -->
 > **sharp** — острый. It's sharp — «Он острый». О ноже, ножницах, краях стекла.
 
-**3 · Послушайте и выберите услышанное**
+**3 · Послушайте и выберите — друг раскладывает вещи на столе в мастерской**
 <!-- interaction_id: en:lesson-01:session-48:i02; family: listen_choose -->
 🔊 *They are sharp.* → **They are sharp.** · We are sharp. · They are sticky.
 - We are sharp. — *В записи первое слово — `They`, а в этом варианте — `We`.*

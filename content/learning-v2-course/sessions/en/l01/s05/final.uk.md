@@ -56,7 +56,7 @@
 <!-- interaction_id: en:lesson-01:session-05:i01; family: word_card -->
 > **hot** — «спекотно, мені жарко». Ви сидите поруч із гарячою батареєю.
 
-**2 · Послухайте й виберіть слово**
+**2 · Послухайте й виберіть — наставниця на офісній кухні говорить з вами**
 <!-- interaction_id: en:lesson-01:session-05:i02; family: listen_choose -->
 🔊 *hot*
 - ✅ hot
@@ -71,7 +71,7 @@
 <!-- interaction_id: en:lesson-01:session-05:i05; family: word_card -->
 > **lost** — «заблукав / заблукала»: ви не можете знайти дорогу.
 
-**5 · Послухайте й виберіть слово**
+**5 · Послухайте й виберіть — другого дня наставниця знайомить вас із колегами**
 <!-- interaction_id: en:lesson-01:session-05:i06; family: listen_choose -->
 🔊 *lost*
 - ✅ lost
@@ -82,7 +82,7 @@
 <!-- interaction_id: en:lesson-01:session-05:i03; family: word_card -->
 > **sick** — «хворію». Так можна написати колезі, якщо сьогодні залишаєтеся вдома через хворобу.
 
-**7 · Послухайте й виберіть слово**
+**7 · Послухайте й виберіть — колеги довкола, наставниця чекає вашої відповіді**
 <!-- interaction_id: en:lesson-01:session-05:i08; family: listen_choose -->
 🔊 *sick*
 - ✅ sick

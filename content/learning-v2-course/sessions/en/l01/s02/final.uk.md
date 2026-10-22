@@ -62,7 +62,7 @@
 <!-- interaction_id: en:lesson-01:session-02:word:sad; family: word_card -->
 > **sad** — «сумний»: так ви почуваєтеся, коли засмучені.
 
-**4 · Послухайте запис брата й виберіть почуту фразу**
+**4 · Послухайте й виберіть — брат надиктував запис, поки ви готуєте ігри**
 <!-- interaction_id: en:lesson-01:session-02:i02; family: listen_choose; purpose: supported_practice -->
 🔊 *I am sad.*
 - ✅ I am sad.
@@ -110,7 +110,7 @@
 - ❌ ready — *Ready означає «готовий»; брат підтверджує, що він тут.*
 - ❌ happy — *Happy означає «радий»; сестра запитує, хто тут.*
 
-**12 · Послухайте наступний запис брата й виберіть вимовлену фразу**
+**12 · Послухайте й виберіть — слідом приходить другий запис від брата**
 <!-- interaction_id: en:lesson-01:session-02:i09; family: listen_choose; purpose: retrieval_practice -->
 🔊 *I am happy.*
 - ✅ I am happy.
@@ -146,7 +146,7 @@
 - ❌ tired — *Tired означає «стомлений»; брат засмучений через скасування зустрічі.*
 - ❌ fine — *Fine означає «усе добре»; брат засмучений через скасування зустрічі.*
 
-**18 · У новому записі брата виберіть саме ту фразу, яку він вимовляє**
+**18 · Послухайте й виберіть — останній запис брата надходить перед вечором**
 <!-- interaction_id: en:lesson-01:session-02:i15; family: listen_choose; purpose: retrieval_practice -->
 🔊 *I am tired.*
 - ✅ I am tired.

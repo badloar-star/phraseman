@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-39:word:hilarious; family: word_card -->
 > **hilarious** — дуже смішний, кумедний до сліз. He's hilarious — «Він страшенно смішний». Сильніше, ніж funny.
 
-**3 · Послухайте й виберіть почуте**
+**3 · Послухайте й виберіть — друг виходить на сцену місцевого кафе**
 <!-- interaction_id: en:lesson-01:session-39:i02; family: listen_choose -->
 🔊 *He is hilarious.* → **He is hilarious.** · She is hilarious. · He is brave.
 - She is hilarious. — *У записі перше слово — `He`, а в цьому варіанті — `She`.*
@@ -109,7 +109,7 @@ They are ___ . → **separate** · equal · similar
 - equal — *`equal` — «рівні». Тут важливо, що виступи окремі: `separate`.*
 - similar — *`similar` — «схожі». Окремість передає `separate`.*
 
-**13 · Послухайте фразу про відрізки часу**
+**13 · Послухайте й виберіть — ви чуєте репліку на вечорі коротких номерів**
 <!-- interaction_id: en:lesson-01:session-39:i09; family: listen_choose -->
 🔊 *They are equal.* → **They are equal.** · They are similar. · They are separate.
 - They are similar. — *У записі останнє слово — `equal`, а в цьому варіанті — `similar`.*
@@ -139,7 +139,7 @@ We ___ brave. → **are** · am · is
 - am — *Після `We` потрібно `are`.*
 - is — *Тут `We are brave`.*
 
-**19 · Послухайте й виберіть коротку фразу**
+**19 · Послухайте й виберіть — подруга співає, друзі обговорюють вечір**
 <!-- interaction_id: en:lesson-01:session-39:i15; family: listen_choose -->
 🔊 *They're hilarious.* → **They're hilarious.** · We're hilarious. · They're brave.
 - We're hilarious. — *У записі перше слово — `They're`, а в цьому варіанті — `We're`.*

@@ -65,7 +65,7 @@ separate — «окремий». У вас два окремі рахунки: T
 <!-- interaction_id: en:lesson-01:session-31:word:similar; family: word_card -->
 > **similar** — схожий, але не в усьому однаковий. They are similar — «Вони схожі».
 
-**4 · Послухайте й виберіть почуте**
+**4 · Послухайте й виберіть — друг у кафе обговорює з вами замовлення**
 <!-- interaction_id: en:lesson-01:session-31:i02; family: listen_choose -->
 🔊 *They are similar.* → **They are similar.** · They are separate. · They are equal.
 - They are separate. — *У записі останнє слово — `similar`, а в цьому варіанті — `separate`.*
@@ -109,7 +109,7 @@ They are ___ . → **separate** · equal · similar
 <!-- interaction_id: en:lesson-01:session-31:word:shared; family: word_card -->
 > **shared** — спільний, на всіх. It is shared — «Це спільне»: одна страва, яку їдять усі за столом.
 
-**13 · Друг питає, чия піца в центрі столу. Послухайте відповідь і виберіть почуте**
+**13 · Послухайте й виберіть — за обідом друг ставить вам запитання про страву**
 <!-- interaction_id: en:lesson-01:session-31:i09; family: listen_choose -->
 🔊 *It is shared.* → **It is shared.** · It is separate. · It is similar.
 - It is separate. — *У записі останнє слово — `shared`, а в цьому варіанті — `separate`.*
@@ -139,7 +139,7 @@ They ___ similar. → **are** · is · am
 - is — *Після `They` потрібно `are`.*
 - am — *`am` потрібне з `I`, а тут `They are`.*
 
-**19 · Послухайте й виберіть фразу про героїню фільму, який обговорюють друзі**
+**19 · Послухайте й виберіть — друзі в кафе обговорюють фільм**
 <!-- interaction_id: en:lesson-01:session-31:i15; family: listen_choose -->
 🔊 *She is single.* → **She is single.** · He is single. · She is married.
 - He is single. — *У записі перше слово — `She`, а в цьому варіанті — `He`.*

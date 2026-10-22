@@ -80,7 +80,8 @@ describe('stable safe-area initial metrics contract', () => {
 
     expect(source).toContain("import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';");
     expect(source).toContain('const insets = useStableSafeAreaInsets();');
-    expect(source).toContain('paddingTop: insets.top');
+    // зачем (владелец 22.10): отступ под часы задают страницы TabSlider из того же устойчивого inset
+    expect(source).toContain('pageTopInset={insets.top}');
     expect(source).not.toContain("import { useSafeAreaInsets } from 'react-native-safe-area-context';");
   });
 });

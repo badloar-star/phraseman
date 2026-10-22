@@ -28,15 +28,17 @@ import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from
 import { homeSceneTokensForTheme, type HomeSceneStageTokens } from './home_scene_tokens';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
+import { useTabTopBleedInset } from '../../../tab_top_bleed';
 
 const LOG = '[HOME-SCENE]';
-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
+/** Верх шапки внутри сцены — под зоной часов (s.top paddingTop). */
+const HEADER_TOP = 12;
 
 /**
  * зачем (координатор 22.10): «Сцена» на Главной — в dev-сборке да, в релизе нет, пока владелец не посмотрит её на эмуляторе.
  * В релиз — заменить на true; совсем выключить — false (Главная рисует прежние шапку и карточку «Продолжить»).
  */
-export const HOME_SCENE_V2_ENABLED: boolean = IS_DEV;
+export { HOME_SCENE_V2_ENABLED } from './home_scene_flag';
 /** зачем (координатор 22.10): чип «Слова» прячем, пока словарь не подключён к «Урокам»; включается этой строкой. */
 export const HOME_SCENE_WORDS_CHIP_ENABLED = false;
 
@@ -100,6 +102,8 @@ type Props = Readonly<{
 }>;
 
 export default function HomeScene(p: Props) {
+  // зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): страница Главной полноэкранная — сцена от верха экрана
+  const topInset = useTabTopBleedInset();
   const offline = useHomeSceneOffline(p.active);
   const personal = usePersonalProgressSnapshot();
   const now = new Date();
@@ -140,6 +144,7 @@ export default function HomeScene(p: Props) {
       busy={p.busy}
       active={p.active}
       statusTint
+      topInset={topInset}
       onContinue={p.onContinue}
       onChip={p.onChip}
     />
@@ -167,6 +172,11 @@ export type HomeSceneViewProps = Readonly<{
   active: boolean;
   /** Красить полосу под часами над Главной: только настоящая Главная; dev-вход полосу Главной не трогает. */
   statusTint: boolean;
+  /**
+   * Высота зоны часов, если сцена рисуется от самого верха экрана (полноэкранная страница Главной, TabTopBleedContext); 0 — сцена
+   * начинается под отступом. Фон сцены заходит под часы, шапка и содержимое отступают на это значение.
+   */
+  topInset?: number;
   onContinue: () => void;
   onChip: (kind: HomeSceneChipKind) => void;
 }>;
@@ -194,6 +204,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [evening, p.active, fixedClock]);
   const toMidnight = p.minutesToMidnight ?? minutesUntilMidnight(new Date());
   const tokens = useHomeSceneStageTokens(evening);
+  const topInset = p.topInset ?? 0;
   // зачем (координатор 22.10): верхний цвет сцены — полосе под часами над Главной (HomeSceneStatusStrip в оболочке вкладок); сцены нет — полосы нет
   useEffect(() => {
     if (!p.statusTint) return undefined;
@@ -226,9 +237,9 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   const rootRef = useRef<View>(null);
   const handleRootLayout = useCallback(() => {
     rootRef.current?.measureInWindow((x, y, width, height) => {
-      console.log('[SAFE-TOP]', JSON.stringify({ at: 'home_scene', state: decision.state, windowY: Math.round(y), windowX: Math.round(x), width: Math.round(width), height: Math.round(height), sceneTop: tokens.sceneTop, statusTint: p.statusTint })); // guard-ok: одна строка на раскладку сцены
+      console.log('[SAFE-TOP]', JSON.stringify({ at: 'home_scene', state: decision.state, windowY: Math.round(y), windowX: Math.round(x), width: Math.round(width), height: Math.round(height), sceneTop: tokens.sceneTop, statusTint: p.statusTint, topInset })); // guard-ok: одна строка на раскладку сцены
     });
-  }, [decision.state, tokens.sceneTop, p.statusTint]);
+  }, [decision.state, tokens.sceneTop, p.statusTint, topInset]);
   return (
     <View ref={rootRef} onLayout={handleRootLayout} testID={`home-scene-${decision.state}`} style={s.root}>
       <HomeSceneStage
@@ -247,8 +258,10 @@ export function HomeSceneView(p: HomeSceneViewProps) {
         busy={p.busy}
         onCta={p.onContinue}
         onChip={p.onChip}
+        topInset={topInset}
       />
-      <View style={s.top} pointerEvents="box-none">
+      {/* зачем (владелец 22.10): фон сцены заходит под часы, шапка — ниже зоны часов на прежние 12 */}
+      <View style={[s.top, topInset > 0 ? { paddingTop: HEADER_TOP + topInset } : null]} pointerEvents="box-none">
         {p.header(tokens.sceneTop)}
         {offlineLine ? (
           <View testID="home-scene-offline" style={s.offline} accessibilityLiveRegion="polite">

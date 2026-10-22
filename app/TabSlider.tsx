@@ -12,6 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useScreen } from '../hooks/use-screen';
+import { TabTopBleedContext } from '../components/tab_top_bleed';
 import { tabSwipeLocked } from './tabSwipeLock';
 
 const TAB_SWIPE_ACTIVE_OFFSET_X = 22;
@@ -24,6 +25,10 @@ interface Props {
   onSwipeComplete?: (idx: number) => void;
   children: React.ReactNode[];
   swipeEnabled?: boolean;
+  /** Отступ сверху у каждой страницы — высота зоны часов (insets.top). */
+  pageTopInset?: number;
+  /** Физические номера полноэкранных страниц: без отступа, фон экрана идёт под часы; высота зоны — через TabTopBleedContext. */
+  fullBleedPages?: readonly number[];
 }
 
 export default function TabSlider({
@@ -33,6 +38,8 @@ export default function TabSlider({
   onSwipeComplete,
   children,
   swipeEnabled = true,
+  pageTopInset = 0,
+  fullBleedPages,
 }: Props) {
   const { width: screenW } = useScreen();
   const reducedMotion = useReducedMotion();
@@ -166,17 +173,22 @@ export default function TabSlider({
     <GestureDetector gesture={pan}>
       <View style={s.outer} onLayout={handleLayout}>
         <Animated.View style={[s.row, { width: W * tabs.length }, animStyle]}>
-          {tabs.map((child, i) => (
-            <View
-              key={i}
-              style={[s.tab, { width: W }]}
-              pointerEvents={i === activeIndex ? 'auto' : 'none'}
-              accessibilityElementsHidden={i !== activeIndex}
-              importantForAccessibility={i === activeIndex ? 'auto' : 'no-hide-descendants'}
-            >
-              {child}
-            </View>
-          ))}
+          {tabs.map((child, i) => {
+            // зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): отступ под часы — у страницы, а не у всей
+            // оболочки; полноэкранная страница рисует фон от самого верха и сама отодвигает шапку и содержимое (TabTopBleedContext).
+            const fullBleed = fullBleedPages?.includes(i) === true;
+            return (
+              <View
+                key={i}
+                style={[s.tab, { width: W }, { paddingTop: fullBleed ? 0 : pageTopInset }]}
+                pointerEvents={i === activeIndex ? 'auto' : 'none'}
+                accessibilityElementsHidden={i !== activeIndex}
+                importantForAccessibility={i === activeIndex ? 'auto' : 'no-hide-descendants'}
+              >
+                <TabTopBleedContext.Provider value={fullBleed ? pageTopInset : 0}>{child}</TabTopBleedContext.Provider>
+              </View>
+            );
+          })}
         </Animated.View>
       </View>
     </GestureDetector>

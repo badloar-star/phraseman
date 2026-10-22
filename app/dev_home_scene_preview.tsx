@@ -24,7 +24,7 @@ import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { coinRankDisplaySource } from '../components/coins/coin_rank_display';
 import HomeV2Header from '../components/home/v2/HomeV2Header';
-import { HomeSceneView, useHomeSceneStageTokens } from '../components/home/v2/scene/HomeScene';
+import { HomeSceneView } from '../components/home/v2/scene/HomeScene';
 import { HomeSceneEnergyView } from '../components/home/v2/scene/HomeSceneEnergy';
 import {
   homeScenePreviewHeaderWords,
@@ -82,8 +82,6 @@ function Inner() {
   const place = useMemo(() => homeScenePreviewPlace(lang, setup, homeContinueV2Title), [lang, setup]);
   const words = useMemo(() => homeScenePreviewHeaderWords(lang, setup.streakDays), [lang, setup.streakDays]);
   const artTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
-  // зачем: на Главной под часами — полоса верхнего цвета сцены (HomeSceneStatusStrip); превью рисует такую же у себя, а не на Главной
-  const sceneTop = useHomeSceneStageTokens(decision.state === 'streak_risk').sceneTop;
 
   useEffect(() => {
     if (params.state !== undefined && !isHomeScenePreviewState(params.state)) console.warn(`[DEV-STATE] home_scene_preview state=${params.state} неизвестно → continue`); // guard-ok: dev-маршрут, причина подмены параметра
@@ -126,7 +124,7 @@ function Inner() {
     <View style={s.root} testID="dev-home-scene-preview">
       <ScreenGradient>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
-          <View style={[s.strip, { height: insets.top, backgroundColor: sceneTop }]} />
+          {/* зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): как на Главной — сцена сама рисует фон под часами (topInset), без полосы */}
           {/* key: смена героя, Plus или темы пересоздаёт сцену — как новый показ Главной */}
           <HomeSceneView
             key={`${requested}|${plus ? 'plus' : 'free'}|${themeId ?? 'app'}|${wantedAppearance ?? 'app'}`}
@@ -144,6 +142,7 @@ function Inner() {
             busy={false}
             active
             statusTint={false}
+            topInset={insets.top}
             onContinue={noop}
             onChip={noop}
           />
@@ -163,8 +162,6 @@ const s = StyleSheet.create({
   root: { flex: 1 },
   // зачем: тот же боковой отступ, что у ленты Главной — сцена гасит его сама (marginHorizontal: -V2.homePad)
   content: { flexGrow: 1, paddingHorizontal: V2.homePad },
-  // полоса под часами во всю ширину, как HomeSceneStatusStrip над Главной
-  strip: { marginHorizontal: -V2.homePad },
   bell: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center' },
   avatar: { width: STORY_RING_SLOT, height: STORY_RING_SLOT },
   coin: { width: 20, height: 20 },

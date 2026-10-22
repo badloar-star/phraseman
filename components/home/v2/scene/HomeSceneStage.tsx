@@ -65,6 +65,8 @@ type Props = {
   busy: boolean;
   onCta: () => void;
   onChip: (kind: HomeSceneChipKind) => void;
+  /** Высота зоны часов, если сцена рисуется от верха экрана: фон заходит под часы, раскладка отступает (0 — как раньше). */
+  topInset?: number;
 };
 
 export default function HomeSceneStage(props: Props) {
@@ -76,7 +78,7 @@ export default function HomeSceneStage(props: Props) {
   return <HomeSceneStageView {...props} onCta={cta} onChip={chip} buildLiveText={live} />;
 }
 
-const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip }: Props) {
+const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0 }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
@@ -89,7 +91,9 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
     onCta();
   };
   return (
-    <View testID="home-scene-stage" style={s.stage}>
+    // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ»): градиент и свет сцены — от верха экрана, под часами;
+    // высота сцены считается от верха экрана, как в эталоне (.a-stage 540 вместе со строкой статуса), раскладка отступает на зону часов
+    <View testID="home-scene-stage" style={[s.stage, topInset > 0 ? { paddingTop: topInset } : null]}>
       <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>
@@ -110,7 +114,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
           ) : null}
         </Defs>
         <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" />
-        <Rect x="58%" y={HERO_TOP + 4} width={220} height={220} fill="url(#sceneHalo)" />
+        <Rect x="58%" y={topInset + HERO_TOP + 4} width={220} height={220} fill="url(#sceneHalo)" />
         {evening ? <Rect x={-40} y={HOME_SCENE_STAGE_MIN_HEIGHT - 200} width={260} height={260} fill="url(#sceneEmber)" /> : null}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}

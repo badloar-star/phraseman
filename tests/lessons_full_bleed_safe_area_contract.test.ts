@@ -17,7 +17,9 @@ describe('lessons full-bleed safe-area contract', () => {
     // не просвечивал над списком уроков; фон по-прежнему во весь экран, отступ — у обёртки.
     expect(tabsLayout).toContain("const scaffoldArtBackdrop = visualIdx === 1 ? 'lessons' : 'home';");
     expect(tabsLayout).toMatch(/<ScreenGradient\s+artBackdrop=\{scaffoldArtBackdrop\}\s+style=\{\{ flex: 1 \}\}/);
-    expect(tabsLayout).toContain('style={{ flex: 1, paddingTop: insets.top }}');
+    // зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): отступ под часы — у каждой страницы TabSlider, а не у всей оболочки
+    expect(tabsLayout).not.toContain('style={{ flex: 1, paddingTop: insets.top }}');
+    expect(tabsLayout).toContain('pageTopInset={insets.top} fullBleedPages={homeFullBleedPages}');
 
     const tabScaffoldSource = tabsLayout.slice(tabsLayout.indexOf('function TabScaffold'));
     expect(tabScaffoldSource).toContain('const insets = useStableSafeAreaInsets();');

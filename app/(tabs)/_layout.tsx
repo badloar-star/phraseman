@@ -11,8 +11,9 @@ import { triLang, type PlannedTriLangCopy } from '../../constants/i18n';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
-// зачем (координатор 22.10, Главная «Сцена»): полоса под часами цветом сцены — только над Главной
+// зачем (Пик v2): полоса под часами цветом сцены Пика — пока сцена Пика не перешла на полноэкранную страницу (как Главная)
 import HomeSceneStatusStrip from '../../components/home/v2/scene/HomeSceneStatusStrip';
+import { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/home_scene_flag';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
@@ -627,7 +628,8 @@ type TabScaffoldProps = {
 };
 
 /**
- * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
+ * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром; отступ по insets — у каждой страницы TabSlider,
+ * кроме полноэкранных (Главная со «Сценой»: фон от верха экрана, шапка отступает сама — TabTopBleedContext)
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
 function TabScaffold({
@@ -644,6 +646,12 @@ function TabScaffold({
   const { lang } = useLang();
   const { bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
+  // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ… НЕ ОТЛИЧАЕТСЯ ПО ЦВЕТУ»): со «Сценой» страница Главной
+  // полноэкранная — сцена рисует фон от верха экрана, шапка отступает сама; без сцены отступ под часы прежний, как у всех вкладок.
+  const homeFullBleedPages = useMemo<readonly number[]>(
+    () => (HOME_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(0, pageLayout)] : []),
+    [pageLayout],
+  );
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const [devOverlayVisible, setDevOverlayVisible] = useState(false);
   const topFadeScroll = useTopFadeScroll();
@@ -797,14 +805,14 @@ function TabScaffold({
     >
       {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
-      {/* зачем (координатор 22.10: тон полосы статуса только на вкладке Главной): «Сцена» уходит под часы, как в эталоне; другие вкладки не меняются */}
-      <HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === 0} />
+      {/* зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): над Главной полосы нет — сцена сама рисует фон
+          от верха экрана (страница Главной полноэкранная, см. homeFullBleedPages); сплошной цвет не совпадал с градиентом сцены */}
       {/* зачем (Пик v2, эталон peak-scene-v2.html): «Сцена» Пика уходит под часы — полоса цветом верха сцены, только на «Сообществе» */}
       <HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === communityLogicalIdx} source="spire" />
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
       <View
         onLayout={notifyFirstContentReady}
-        style={{ flex: 1, paddingTop: insets.top }}
+        style={{ flex: 1 }}
         pointerEvents={devOverlayVisible ? 'none' : 'auto'}
         accessibilityElementsHidden={devOverlayVisible}
         importantForAccessibility={devOverlayVisible ? 'no-hide-descendants' : 'auto'}
@@ -812,7 +820,7 @@ function TabScaffold({
         <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
           <View style={s.tabContent}>
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTab} onSwipeStart={handleSwipeStartChrome} onSwipeComplete={onSwipeComplete} swipeEnabled={true}>
+              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTab} onSwipeStart={handleSwipeStartChrome} onSwipeComplete={onSwipeComplete} swipeEnabled={true} pageTopInset={insets.top} fullBleedPages={homeFullBleedPages}>
                 {tabScreens}
               </TabSlider>
             </GestureHandlerRootView>

@@ -28,6 +28,9 @@ const WHITE = '#FFFFFF'; // theme-exempt: текст на градиентной
 const WHITE_SOFT = 'rgba(255,255,255,0.86)'; // theme-exempt: подпись на обложке, эталон `.c1kick`
 const GLYPH = 'rgba(255,255,255,0.12)'; // theme-exempt: крупный значок главы на обложке, эталон `.c1hero .gl`
 const PILL = 'rgba(255,255,255,0.16)'; // theme-exempt: «стеклянная» пилюля на обложке, эталон `.c1pill`
+// зачем (аудит контраста светлой темы 22.10, координатор): белый «Урок N» на светлой подложке-пилюле (белый 16 % поверх from) давал 3,69–4,26:1 при норме 4,5 на всех 224 оттенках глав;
+// в светлой теме пилюля — тёмное стекло (чёрный 18 %), белый текст на ней ≥ 4,92:1; в тёмной оформление прежнее (5,73:1)
+const PILL_ON_LIGHT = 'rgba(0,0,0,0.18)'; // theme-exempt: тёмное стекло пилюли «Урок N» на светлой обложке
 const SCRIM = ['rgba(0,0,0,0)', 'rgba(0,0,0,0.36)'] as const; // theme-exempt: затемнение низа обложки, эталон `.c1hero .scrim`
 const BTN_INK = '#121318'; // theme-exempt: текст белой кнопки на обложке, эталон `.qbtn.white`
 const BAR = 'rgba(255,255,255,0.28)'; // theme-exempt: дорожка прогресса на обложке, эталон `.c1res .bar`
@@ -154,7 +157,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <View style={styles.heroGlyph} pointerEvents="none"><Ionicons name={heroInfo.icon} size={310} color={GLYPH} /></View>
         <LinearGradient colors={SCRIM} style={styles.scrim} pointerEvents="none" />
         <View style={[styles.heroTop, { top: props.topPadding + 8 }]}>
-          <Pressable hitSlop={8} accessibilityRole="button" onPress={props.onLessonPicker} style={styles.pill} testID="season-lesson-pill">
+          <Pressable hitSlop={8} accessibilityRole="button" onPress={props.onLessonPicker} style={[styles.pill, dark ? null : { backgroundColor: PILL_ON_LIGHT }]} testID="season-lesson-pill">
             <Text style={styles.pillText}>{seasonText(lang, 'lesson', { n: lessonOrdinal })}</Text>
             <Ionicons name="chevron-down" size={13} color={WHITE} />
           </Pressable>

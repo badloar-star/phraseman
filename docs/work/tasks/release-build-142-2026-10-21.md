@@ -12,6 +12,12 @@ Governance-ID: TG-A297F43F3F45
 - Код — ровно 108b37562 (код сборки 142), ночные правки не попадают. В снимке меняется только app.json: expo.version 2.0.1, ios.buildNumber 143. runtimeVersion 2.0.0 и android (versionCode 142) не трогаются.
 - EAS: только iOS, production, EAS_NO_VCS=1, --auto-submit.
 - В общей ветке тот же номер отдельным коммитом.
+- Коммит в общей ветке: 794e623c0 (2.0.1, iOS 143, versionCode 142).
+- EAS fa2eadee-a116-4757-8bd5-1373b1ed0789 — ОШИБКА в 06:17 на шаге post-install. Причина — `[release-keys-gate] Android versionCode (142) must equal iOS buildNumber (143)` (`scripts/release_keys_gate.mjs:54`). В Apple ничего не ушло.
+- Сторож требует versionCode == buildNumber, а условие «android не трогай» с этим несовместимо. Варианты переданы координатору:
+  - (а) versionCode 143, рекомендован;
+  - (в) iOS 142 под 2.0.1.
+  Перезапуск только после его ответа.
 
 ## Ход 21.10 (вечер)
 

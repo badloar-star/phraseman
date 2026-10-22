@@ -237,3 +237,8 @@ id «Kursus lama», tr «Eski kurs», pl «Stary kurs». Везде два сл�
 Строку `away` в `components/home/v2/scene/home_scene_copy.ts` проверил под новый смысл: дни без захода в приложение.
 ru, uk, en, es, pt-BR, vi («vắng»), tr («yoktun»), pl — про отсутствие. id «Kamu absen» означало неявку на занятия,
 заменено на «Sudah N hari kamu tidak mampir» («N дней не заглядывал»). Паспорт: home-away-days-copy-check-2026-10-22.md.
+
+**Приветствие без рода** (`welcome` в `home_scene_copy.ts`, по слову координатора): es «Bienvenido de nuevo» → «Hola de nuevo»,
+pt-BR «Bem-vindo de volta» → «Olá de novo». Обе строки короче прежних, на 360 dp запас только больше. Остальные 7 языков уже без рода.
+id-правка ушла раньше отдельным коммитом (916556300), так что «одним заходом» не вышло — тут отдельный коммит.
+Паспорт: home-welcome-genderless-2026-10-22.md.

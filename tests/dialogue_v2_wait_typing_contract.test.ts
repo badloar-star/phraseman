@@ -52,11 +52,18 @@ describe('Диалоги 2.0: ожидание ответа ИИ', () => {
     const send = route.slice(sendStart, route.indexOf('const retry = () => {'));
     // повторная отправка, пока ход в полёте, — ранний выход
     expect(send).toMatch(/\|\| sending \|\| turnStartingRef\.current/);
-    // черновик очищается ТОЛЬКО при создании нового хода — до сети, вместе с пузырём ученика
+    // черновик очищается ТОЛЬКО там, где рождается пузырь ученика — до сети, вместе с ним. Таких мест ровно два:
+    // (1) ветка «реплика не на изучаемом языке» (владелец 18.10, коммит 4b9f71abc: локальный ответ «не понимаю», на сервер не уходит) — очистка сразу перед пузырём ученика и ответом собеседника;
+    // (2) создание нового хода. Ни повтор зависшего хода, ни ответ, ни ошибка черновик не трогают (проверено выше и ниже).
     const clears = send.split('setDraft(').length - 1;
-    expect(clears).toBe(1);
-    expect(send.indexOf("setDraft('');")).toBeGreaterThan(send.indexOf('if (!pending) {'));
-    expect(send.indexOf("setDraft('');")).toBeLessThan(send.indexOf('await runPendingTurn(pending);'));
+    expect(clears).toBe(2);
+    const offLang = send.slice(send.indexOf('if (verdict.offLanguage) {'), send.indexOf('turnStartingRef.current = true;'));
+    expect(offLang.split("setDraft('');").length - 1).toBe(1);
+    expect(offLang.indexOf("setDraft('');")).toBeLessThan(offLang.indexOf('setMessages('));
+    const newTurn = send.slice(send.indexOf('turnStartingRef.current = true;'));
+    expect(newTurn.split("setDraft('');").length - 1).toBe(1);
+    expect(newTurn.indexOf("setDraft('');")).toBeGreaterThan(newTurn.indexOf('if (!pending) {'));
+    expect(newTurn.indexOf("setDraft('');")).toBeLessThan(newTurn.indexOf('await runPendingTurn(pending);'));
   });
 
   // Макеты 6dcbedb9f, dialogs-014/022/029: аватар собеседника — значок сценки (как строка каталога), неизвестная сценка — значок мира.

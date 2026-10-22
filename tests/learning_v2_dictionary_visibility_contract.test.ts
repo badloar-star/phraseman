@@ -19,17 +19,9 @@ const unlockedHook = readFileSync(
   "utf8",
 );
 
-assert.match(lessons, /testID="learning-v2-map-dictionary-open"/);
-assert.match(
-  lessons,
-  /learning-v2-map-dictionary-open[\s\S]{0,1800}width:\s*44[\s\S]{0,300}height:\s*44/,
-  "dictionary control must be a compact 44×44 header target",
-);
-assert.match(
-  lessons,
-  /learningV2ResourceHud[\s\S]{0,2200}learning-v2-map-dictionary-open/,
-  "dictionary control must live in the resource header",
-);
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «убери эту иконку» — в шапке хаба урока нет книжки со счётчиком слов (слова — плитка «Слова» рядом с «Продолжить»). Прежнее слово 21.09 («верни кнопку словаря в хедере») отменено этим.
+assert.doesNotMatch(lessons, /learning-v2-map-dictionary-open/, "в шапке хаба урока нет кнопки словаря с бейджем");
+assert.doesNotMatch(lessons, /useLearningV2CourseUnlockedWordsV1/, "слова курса не считаются ради удалённой иконки");
 assert.doesNotMatch(course, /dictionaryControl/);
 assert.doesNotMatch(course, /styles\.dictionary/);
 

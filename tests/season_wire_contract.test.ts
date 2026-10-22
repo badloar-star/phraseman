@@ -82,7 +82,9 @@ describe('Сезон: обложка 46 % от самого верха (влад
   it('обложка: не менее 392 dp вместе с зоной часов (растёт, а не наезжает на HUD), заголовок 30/36, кнопка 50, низ 44', () => {
     expect(view).toMatch(/heroTall: \{ minHeight: 392/);
     expect(view).toContain('paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12');
-    expect(view).toMatch(/heroTitle: \{ marginTop: 4, fontSize: 30, lineHeight: 36/);
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «меньше шрифт и более компактно!» — было 30/36; кегль теперь из season_hero_title_metrics (сторож размеров: season_hero_title_fit_contract)
+    expect(view).toMatch(/heroTitle: \{ fontWeight: '700', letterSpacing: -0\.3, color: WHITE \}/);
+    expect(view).toContain('seasonHeroTitleSize(props.lessonTitle)');
     expect(view).toMatch(/primaryRow: \{ marginTop: 16,/);
     expect(view).toMatch(/primary: \{ height: 50,/);
     expect(view).toContain('heroBodyTall: { paddingBottom: 44 }');
@@ -141,7 +143,9 @@ describe('Сезон: хаб урока — три плитки и полноэ�
     expect(course).toContain('<SeasonChapterEpisodesScreen');
     expect(wire).toContain('onAllLessons={onAllLessonsButton}');
     expect(wire).toContain('onClassic={onClassic}');
-    expect(wire).toContain('classicLabel={props.legacyLessonsLabel}');
+    // зачем (владелец 22.10: «старый курс назвать»): плитка берёт свой ключ classicCourse («Старый курс»), а не название вкладки legacyLessonsLabel
+    expect(wire).not.toContain('classicLabel=');
+    expect(view3).toContain("seasonCardText(lang, 'classicCourse')");
     expect(wire).toContain('onLegacyLessons();');
     for (const key of ['нажатие → «Все главы»', 'нажатие → «Классический курс»', 'нажатие → эпизоды главы', 'нажатие → карта из списка']) expect(wire + course).toContain(key);
   });
@@ -182,7 +186,8 @@ describe('Сезон: прогресс классики на плитке и з�
     expect(view4).toContain('seasonStarTones(themeHue)');
     expect(view4).toContain("stars={card.state === 'done' ? ep.stars ?? null : null} starTones={starTones}");
     expect(face).toContain('testID="season-card-stars"');
-    expect(face).toContain("name={i <= stars ? 'star' : 'star-outline'}");
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «звёздочки даже если не пройдено — просто пустые» — ряд из трёх звёзд на каждой карточке, заполнены только у пройденных
+    expect(face).toContain("name={i <= starsFilled ? 'star' : 'star-outline'}");
     expect(face).toContain('starTones.filled');
     expect(face).toContain('starTones.empty');
     expect(picks2).toContain('-stars');

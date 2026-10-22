@@ -12,6 +12,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import V2Pressable from '../../v2/V2Pressable';
 import { useLv2Glass } from '../LearningV2Glass';
+import { SEASON_NAV_GAP, SEASON_NAV_LABEL_SIZE, SEASON_NAV_ROW_PAD_H, SEASON_NAV_TILE_PAD_H } from './season_nav_tiles_metrics';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -54,20 +55,21 @@ function Tile({ icon, label, value, disabled, onPress, testID }: Readonly<{ icon
         <Ionicons name={icon} size={20} color={g.accentGraphic} />
         {value ? <Text testID={`${testID}-value`} style={[styles.value, { color: g.text }]} numberOfLines={1}>{value}</Text> : null}
       </View>
-      <Text style={[styles.label, { color: g.text }]} numberOfLines={2}>{label}</Text>
+      {/* зачем: перенос только между словами — без переноса по слогам на Android и без «красивого» балансировщика, который режет слово */}
+      <Text style={[styles.label, { color: g.text }]} numberOfLines={2} textBreakStrategy="simple" android_hyphenationFrequency="none">{label}</Text>
     </V2Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', gap: 8, paddingHorizontal: 16, paddingTop: 12 },
+  row: { flexDirection: 'row', gap: SEASON_NAV_GAP, paddingHorizontal: SEASON_NAV_ROW_PAD_H, paddingTop: 12 },
   outer: { flex: 1 },
   // зачем: высота плитки строго 58 (макет): значок 20 + 4 + две строки подписи по 15 = 54; значение — в той же строке, что значок, рост плитки исключён
-  tile: { height: 58, borderRadius: 20, paddingHorizontal: 6, paddingVertical: 2, alignItems: 'center', justifyContent: 'center', gap: 4 },
+  tile: { height: 58, borderRadius: 20, paddingHorizontal: SEASON_NAV_TILE_PAD_H, paddingVertical: 2, alignItems: 'center', justifyContent: 'center', gap: 4 },
   tileOff: { opacity: 0.45 },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, height: 20 },
   value: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  label: { fontSize: 13, lineHeight: 15, fontWeight: '700', textAlign: 'center' },
+  label: { fontSize: SEASON_NAV_LABEL_SIZE, lineHeight: 15, fontWeight: '700', textAlign: 'center' },
 });
 
 export default memo(SeasonNavTiles);

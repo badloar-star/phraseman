@@ -120,6 +120,13 @@ export const PAYWALL_SOURCE_VALUES = [
   // зачем (владелец 21.10, №35): кнопка полноэкранной заставки Plus при запуске (PlusLaunchSplashHost) — свой source, чтобы воронка отличала её от остальных входов;
   // без записи в списке rejectUnknown в стор-сборке молча закрыл бы пейвол
   'plus_launch_splash',
+  // зачем (координатор 22.10, красный paywall_entry_callsite_registry; причина по логу сторожа — три живых вызова с неучтёнными source):
+  // — 'dialogue_v2_hub_scene': кнопка «Plus снимает лимит» и алмаз сцены хаба Диалогов (DialogsSceneHub); без записи rejectUnknown в стор-сборке молча закрывал бы окно вместо продажи,
+  //   а сцену включаем всем (решение владельца 22.10) — это был бы живой баг;
+  // — 'dev_dialogs_scene_preview' и 'learning_v2_dictionary': dev-экраны (превью сцены Диалогов и словарь Learning V2), в стор-сборке недоступны.
+  'dialogue_v2_hub_scene',
+  'dev_dialogs_scene_preview',
+  'learning_v2_dictionary',
 ] as const;
 
 export type PaywallSource = (typeof PAYWALL_SOURCE_VALUES)[number];

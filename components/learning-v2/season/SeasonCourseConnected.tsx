@@ -23,7 +23,7 @@ import { markLearningV2NotFromStartUsedV1, readLearningV2NotFromStartUsedV1, sub
 import { isLearningV2SessionStarResultsHydrated, subscribeLearningV2SessionStarResults } from '../../../app/learning_v2_session_star_results_store';
 import { getStableId, peekStableId } from '../../../app/stable_id';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../../../modules/learning-v2/content/course_topology_v1';
-import { learningV2ChapterSceneV1, learningV2LessonArcV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
+import { learningV2ChapterSceneV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
 import { learningV2SessionTitleForLocaleV1 } from '../../../modules/learning-v2/titles/session_titles_i18n_v1';
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
@@ -299,7 +299,6 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         theme={isDark ? 'dark' : 'light'}
         lessonOrdinal={lesson}
         lessonTitle={titles[lesson - 1] ?? ''}
-        arcTitle={ruAuthored ? learningV2LessonArcV1(lesson) : null}
         chapterCount={chapterCount}
         deck={deck}
         newcomer={newcomer}
@@ -316,7 +315,6 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         onLessonPicker={onLessonPicker}
         onAllLessons={onAllLessonsButton}
         onClassic={onClassic}
-        classicLabel={props.legacyLessonsLabel}
         classicValue={props.legacyProgress ? seasonText(lang, 'doneOf', { k: props.legacyProgress.done, n: props.legacyProgress.total }) : null}
         onWords={onWords}
         onTheory={onTheory}

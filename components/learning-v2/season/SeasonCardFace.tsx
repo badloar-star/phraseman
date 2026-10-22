@@ -7,7 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../../SafeLinearGradient';
@@ -43,14 +43,27 @@ export type SeasonCardFaceProps = Readonly<{
   /** 'pending' — звёзды занятий ещё не подняты в память: звёзд нет (не «1»), после готовности они проявляются мягко. */
   stars?: number | 'pending' | null;
   starTones?: SeasonStarTones;
+  /** Растёт на каждый тап по закрытой карте: плашка с замком коротко трясётся (UI-тред). 0 — не трясти. */
+  shakeSeq?: number;
 }>;
 
-function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, stars = null, starTones }: SeasonCardFaceProps) {
+function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, stars = null, starTones, shakeSeq = 0 }: SeasonCardFaceProps) {
   // зачем (координатор 22.10): звёзды — мягкий fade 180 мс, когда подняты в память (без «прыжка» 1 → 3)
-  const starsShown = typeof stars === 'number' && starTones !== undefined;
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «звёздочки даже если не пройдено — просто пустые» — три звезды на КАЖДОЙ карточке; у закрытых и текущей пустые (контур, seasonStarTones.empty), у пройденных заполнены по результату;
+  // 'pending' (звёзды занятий ещё не подняты в память) — ряд скрыт и проявляется мягко, чтобы не было «прыжка» пустые → заполненные
+  const starsShown = stars !== 'pending' && starTones !== undefined;
+  const starsFilled = typeof stars === 'number' ? stars : 0;
   const starsOpacity = useSharedValue(starsShown ? 1 : 0);
   useEffect(() => { starsOpacity.value = withTiming(starsShown ? 1 : 0, { duration: STARS_FADE_MS }); }, [starsOpacity, starsShown]);
   const starsFade = useAnimatedStyle(() => ({ opacity: starsOpacity.value }));
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «просто пусть вибрирует и замочек трясется!» — тап по закрытому эпизоду: вибрация (в SeasonCourse) + короткая тряска плашки с замком здесь, на UI-треде; модала нет
+  const reducedMotion = useReducedMotion();
+  const lockX = useSharedValue(0);
+  useEffect(() => {
+    if (shakeSeq <= 0 || reducedMotion) return;
+    lockX.value = withSequence(withTiming(-5, { duration: 50 }), withTiming(5, { duration: 80 }), withTiming(-4, { duration: 80 }), withTiming(3, { duration: 70 }), withTiming(0, { duration: 60 }));
+  }, [lockX, reducedMotion, shakeSeq]);
+  const lockShake = useAnimatedStyle(() => ({ transform: [{ translateX: lockX.value }] }));
   if (kind === 'exam') {
     const colors = [art.from, art.to] as const; // зачем (закон владельца 22.10): печать экзамена — тёмный оттенок текущей темы, не фиксированный фиолетовый/бирюзовый
     return (
@@ -67,16 +80,16 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, sta
     <View style={styles.card}>
       <LinearGradient colors={[art.from, art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
       <LinearGradient colors={[art.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
-      <View style={styles.mark}>
+      <Animated.View style={[styles.mark, lockShake]} testID="season-card-mark">
         <Ionicons name={markIcon} size={12} color={WHITE} />
         <Text style={styles.markText}>{ordinal}</Text>
-      </View>
+      </Animated.View>
       {/* зачем (владелец 22.10, выбор варианта 3): по центру карточки крупный номер, под ним звёзды результата (у пройденных, в том числе у боковых; у текущей — полоска прогресса внизу, у закрытых звёзд нет);
           название эпизода и «Эпизод N» — под каруселью. Строка звёзд занимает место на всех карточках, чтобы номера стояли на одной высоте и не прыгали, когда звёзды проявляются */}
       <View style={styles.centerWrap} pointerEvents="none">
         <Text style={styles.bigNumber}>{ordinal}</Text>
         <Animated.View style={[styles.stars, starsFade]} testID="season-card-stars" accessibilityElementsHidden importantForAccessibility="no">
-          {typeof stars === 'number' && starTones ? [1, 2, 3].map((i) => <Ionicons key={i} name={i <= stars ? 'star' : 'star-outline'} size={18} color={i <= stars ? starTones.filled : starTones.empty} />) : null}
+          {starTones ? [1, 2, 3].map((i) => <Ionicons key={i} name={i <= starsFilled ? 'star' : 'star-outline'} size={18} color={i <= starsFilled ? starTones.filled : starTones.empty} />) : null}
         </Animated.View>
       </View>
       {state === 'current' && progress !== null ? (
@@ -100,7 +113,8 @@ const styles = StyleSheet.create({
     boxShadow: SHADOW,
   },
   examCard: { padding: 14 },
-  mark: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 5, height: 26, paddingHorizontal: 9, borderRadius: 13, backgroundColor: CHIP },
+  // зачем (владелец 22.10 по скриншоту карусели: «замочки справа, а не слева»): плашка «🔒 / ✓ / ▶ + номер» — в правом верхнем углу, одно место для всех карточек (центральной и боковых, закрытых, пройденных и текущей)
+  mark: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end', gap: 5, height: 26, paddingHorizontal: 9, borderRadius: 13, backgroundColor: CHIP },
   markText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: WHITE },
   centerWrap: { ...StyleSheet.absoluteFillObject, paddingHorizontal: 16, paddingBottom: 8, alignItems: 'center', justifyContent: 'center' },
   bigNumber: { fontSize: 56, lineHeight: 60, fontWeight: '800', letterSpacing: -1, color: WHITE },

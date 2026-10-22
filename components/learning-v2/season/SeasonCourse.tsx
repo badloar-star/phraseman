@@ -20,14 +20,15 @@ import { useLv2Glass } from '../LearningV2Glass';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
-import { seasonUnlockAfter, type SeasonEpisodeCard } from './season_course_model';
+import type { SeasonEpisodeCard } from './season_course_model';
+import { hapticWarning } from '../../../hooks/use-haptics';
 
 const LOG = '[SEASON-WIRE]';
 
 /** Какой полноэкранный список открыт поверх хаба (null — хаб). */
 export type SeasonListScreen = null | Readonly<{ kind: 'chapters' }> | Readonly<{ kind: 'episodes'; chapter: number }>;
 
-export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onAllChapters' | 'focus' | 'onSelectedChange'> & Readonly<{
+export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onAllChapters' | 'focus' | 'onSelectedChange' | 'lockShake'> & Readonly<{
   /** Действия экзамена главы: вызываются только при включённом флаге. */
   onStartExam?: (chapterOrdinal: number) => void;
   onOpenByExam?: (chapterOrdinal: number) => void;
@@ -71,42 +72,47 @@ function SeasonCourse(props: SeasonCourseProps) {
     const card = deck.cards[expanded];
     if (!card) return null;
     const chapter = props.chapterInfo(card.chapterOrdinal);
-    const locked = card.state === 'locked';
     const close = () => setExpanded(null);
-    const common = { dark, glyph: chapter.icon, closeLabel: seasonCardText(lang, 'closeCard'), onClose: close, reducedMotion: props.reducedMotion, state: card.state, art: artFor(card.chapterOrdinal, card.sessionOrdinal, card.kind === 'exam') } as const;
+    const common = { dark, glyph: chapter.icon, closeLabel: seasonCardText(lang, 'closeCard'), onClose: close, reducedMotion: props.reducedMotion, art: artFor(card.chapterOrdinal, card.sessionOrdinal, card.kind === 'exam') } as const;
     const examActions = SEASON_CHAPTER_EXAM_ENABLED;
     if (card.kind === 'exam') {
-      const after = seasonUnlockAfter(deck, expanded);
       const examInfo = props.examInfo ? props.examInfo(card.chapterOrdinal) : null;
-      const primary: SeasonExpandedAction | null = examActions && !locked && props.onStartExam
+      const primary: SeasonExpandedAction | null = examActions && props.onStartExam
         ? { label: seasonCardText(lang, 'startExam'), icon: 'trophy', onPress: () => { close(); props.onStartExam?.(card.chapterOrdinal); } }
         : null;
-      return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: examInfo ? examInfo.description : null, exam: examInfo ? examInfo.panel : null, title: null, words: [] as readonly string[], lockLine: locked && after !== null ? seasonText(lang, 'locked', { n: after }) : null, primary, secondary: null };
+      return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: examInfo ? examInfo.description : null, exam: examInfo ? examInfo.panel : null, title: null, words: [] as readonly string[], primary, secondary: null };
     }
     const info = props.episodeInfo(card);
-    const after = seasonUnlockAfter(deck, expanded);
-    const current = deck.cards[deck.currentIndex];
-    let primary: SeasonExpandedAction | null;
-    if (locked) {
-      primary = current ? { label: seasonCardText(lang, 'toEpisode', { n: current.sessionOrdinal }), icon: 'play', onPress: () => { close(); refocus(deck.currentIndex); } } : null;
-    } else if (card.state === 'current') {
+    let primary: SeasonExpandedAction;
+    if (card.state === 'current') {
       primary = { label: props.newcomer ? seasonText(lang, 'startEpisode', { n: card.sessionOrdinal }) : seasonText(lang, 'continueEpisode', { n: card.sessionOrdinal }), icon: 'play', onPress: () => { close(); props.onPrimary(card); } };
     } else {
       primary = { label: seasonCardText(lang, 'repeatEpisode', { n: card.sessionOrdinal }), icon: 'play', onPress: () => { close(); props.onPrimary(card); } };
     }
     let secondary: SeasonExpandedAction | null = null;
-    if (locked && examActions && props.onOpenByExam) {
-      secondary = { label: seasonCardText(lang, 'openByExam'), icon: 'trophy', onPress: () => { close(); props.onOpenByExam?.(card.chapterOrdinal); } };
-    } else if (!locked && props.newcomer && card.state === 'current' && props.onNotFromStart) {
+    if (props.newcomer && card.state === 'current' && props.onNotFromStart) {
       secondary = { label: seasonText(lang, 'notFromStart'), icon: 'school-outline', onPress: () => { close(); props.onNotFromStart?.(); } };
     }
     return {
       ...common, kind: 'episode' as const, chipLabel: seasonEpisodeLabel(lang, card.sessionOrdinal),
-      rightLabel: locked ? seasonCardText(lang, 'preview') : seasonTasksLabel(lang, info.tasksCount ?? 0),
+      rightLabel: seasonTasksLabel(lang, info.tasksCount ?? 0),
       phrase: info.phrase, translation: info.translation, title: info.title, words: info.words,
-      lockLine: locked && after !== null ? seasonText(lang, 'locked', { n: after }) : null, primary, secondary,
+      primary, secondary,
     };
-  }, [artFor, dark, deck, expanded, lang, props, refocus]);
+  }, [artFor, dark, deck, expanded, lang, props]);
+
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «просто пусть вибрирует и замочек трясется! не надо открыть вот этот модал его не должно быть!» — тап по закрытому эпизоду НЕ раскрывает карту: вибрация + тряска плашки с замком
+  const [lockShake, setLockShake] = useState<Readonly<{ index: number; seq: number }> | null>(null);
+  const shakeLocked = useCallback((index: number, from: string) => {
+    console.log(`${LOG} нажатие → закрытая карта: вибрация и тряска замка, модала нет`, JSON.stringify({ index, from, state: deck.cards[index]?.state ?? null })); // guard-ok: ветка и значение, которое её решило
+    void hapticWarning();
+    setLockShake((cur) => ({ index, seq: (cur ? cur.seq : 0) + 1 }));
+  }, [deck.cards]);
+  const openCard = useCallback((index: number) => {
+    const card = deck.cards[index];
+    if (card && card.state === 'locked') { shakeLocked(index, 'carousel'); return; }
+    setExpanded(index);
+  }, [deck.cards, shakeLocked]);
 
   // ── полноэкранные списки: «Все главы» и «Эпизоды главы» ──
   const currentCard = deck.cards[deck.currentIndex];
@@ -133,8 +139,9 @@ function SeasonCourse(props: SeasonCourseProps) {
     console.log(`${LOG} нажатие → карта из списка`, JSON.stringify({ index, kind: card ? card.kind : null, session: card ? card.sessionOrdinal : null, state: card ? card.state : null })); // guard-ok: куда ведёт нажатие
     setScreen(null);
     refocus(index);
+    if (card && card.state === 'locked') { shakeLocked(index, 'list'); return; }
     setExpanded(index);
-  }, [deck.cards, refocus]);
+  }, [deck.cards, refocus, shakeLocked]);
 
   // зачем (проверка 22.10): аппаратная «назад» на полноэкранных списках ведёт на шаг назад (эпизоды → главы → хаб), а не уводит с вкладки — как кнопка ScreenBackButton
   useEffect(() => {
@@ -188,7 +195,8 @@ function SeasonCourse(props: SeasonCourseProps) {
         {...props}
         focus={focus}
         onSelectedChange={setSelected}
-        onCardOpen={setExpanded}
+        onCardOpen={openCard}
+        lockShake={lockShake}
         onAllChapters={openChapters}
       />
       {expandedProps ? <SeasonExpandedCard {...expandedProps} /> : null}

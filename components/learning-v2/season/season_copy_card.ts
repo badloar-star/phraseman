@@ -19,7 +19,8 @@ export const SEASON_CARD_COPY = {
   // зачем (владелец 22.10, макет lesson-hub-final.html): три явные кнопки под обложкой и подписи списков; русский — слова макета, остальные языки — предложение, ⚠ ЖДУТ РЕВЬЮ «Переводчика» (10)
   allChapters: ['Все главы', 'Усі розділи', 'All chapters', 'Todos los capítulos', 'Todos os capítulos', 'Tất cả chương', 'Semua bab', 'Tüm üniteler', 'Wszystkie rozdziały'],
   allLessons: ['Все уроки', 'Усі уроки', 'All lessons', 'Todas las lecciones', 'Todas as lições', 'Tất cả bài học', 'Semua pelajaran', 'Tüm dersler', 'Wszystkie lekcje'],
-  classicCourse: ['Классический курс', 'Класичний курс', 'Classic course', 'Curso clásico', 'Curso clássico', 'Khóa học cổ điển', 'Kursus klasik', 'Klasik kurs', 'Kurs klasyczny'],
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «старый курс назвать» — подпись третьей плитки хаба урока; строки Переводчика (d16d294c5). Ключ остался classicCourse, чтобы не плодить второй.
+  classicCourse: ['Старый курс', 'Старий курс', 'Old course', 'Curso anterior', 'Curso antigo', 'Khóa học cũ', 'Kursus lama', 'Eski kurs', 'Stary kurs'],
   // зачем (Переводчик 22.10): метка на строке эпизода узкая — id «Lanjut» короче «Berikutnya» и совпадает с «Дальше» экзамена.
   nextTag: ['Дальше', 'Далі', 'Next', 'Siguiente', 'Próximo', 'Tiếp theo', 'Lanjut', 'Sıradaki', 'Dalej'],
 } as const satisfies Record<string, Nine>;

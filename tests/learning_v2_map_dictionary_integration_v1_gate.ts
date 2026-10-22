@@ -13,26 +13,8 @@ assert.doesNotMatch(
   /import\s*\{[^}]*\bPressable\b[^}]*\}\s*from\s*"react-native"/s,
   "the Learning V2 controls must not regress to a bare React Native Pressable",
 );
-assert.match(
-  source,
-  /LearningV2LessonDictionaryOverlayV1/,
-  "the Learning V2 map must render the real lesson dictionary overlay",
-);
-assert.match(
-  source,
-  /useLearningV2CourseUnlockedWordsV1/,
-  "the map dictionary must read the durable unlock registry for the whole course",
-);
-assert.match(
-  source,
-  /<PressableHybrid[\s\S]*?testID="learning-v2-map-dictionary-open"/,
-  "the map needs an owner-visible dictionary control in the header",
-);
-assert.match(
-  source,
-  /words=\{learningV2DictionaryWords\}/,
-  "the overlay must receive the unlocked words it was given",
-);
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «убери эту иконку» — в шапке хаба урока нет книжки со счётчиком слов (слова — плитка «Слова» рядом с «Продолжить»). Прежнее слово 21.09 («верни кнопку словаря в хедере») отменено этим.
+assert.doesNotMatch(source, /LearningV2LessonDictionaryOverlayV1|useLearningV2CourseUnlockedWordsV1|learning-v2-map-dictionary-open/, "хаб урока не монтирует словарь курса и не считает слова ради иконки");
 
 // ── Правило владельца 2026-09-21: словарь НЕ привязан к раскрытому уроку ──
 //
@@ -56,16 +38,6 @@ assert.doesNotMatch(
   source,
   /expandedLearningV2Lesson[\s\S]{0,200}?testID="learning-v2-map-dictionary-open"/,
   "the dictionary button must not be gated on an expanded lesson",
-);
-assert.match(
-  source,
-  /lessonOrdinal=\{null\}/,
-  "the course dictionary passes no single lesson: each list section names its own",
-);
-assert.match(
-  source,
-  /LEARNING_V2_COURSE_LESSON_ORDINALS/,
-  "the dictionary scope must cover every course lesson, not one",
 );
 
 // Батч вместо N чтений: 32 урока — это 32 ключа AsyncStorage.

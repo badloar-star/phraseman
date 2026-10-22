@@ -29,6 +29,12 @@ const KNOWN_GUARDS = [
   'tests/v2_screens_color_literals_ratchet.test.mjs',
   'tests/theme_semantic_follows_current_theme.test.ts',
   'tests/theme_switch_clears_dev_override.test.tsx',
+  // 2 · ДИЗАЙН 22.10: хаб урока (Сезон) — «Старый курс», замки справа, пустые звёзды, без кикера, закрытый эпизод без модала, компактный заголовок, без книжки словаря
+  'tests/season_nav_tiles_fit_contract.test.ts',
+  'tests/season_hero_title_fit_contract.test.ts',
+  'tests/season_owner_locks_2026_10_22.test.ts',
+  'tests/learning_v2_dictionary_visibility_contract.test.ts',
+  'tests/learning_v2_map_dictionary_integration_v1_gate.ts',
 ];
 
 // Любой способ выключить тест по тексту файла: jest (skip/x*/todo/only) и node:test ({ skip }, { todo }, t.skip()).

@@ -38,7 +38,8 @@ describe("Learning V2 dictionary V2 wiring", () => {
   test("dev route exists for Sverka and is cut from store builds; old overlay stays", () => {
     expect(read("app/dev_learning_v2_dictionary_v2.tsx")).toContain("!ENABLE_DEV_TOOLS || IS_STORE_RELEASE");
     expect(read("router.ctx.js")).toMatch(/\|dev_learning_v2_dictionary_v2[|)]/u);
-    expect(read("app/(tabs)/lessons.tsx")).toContain("<LearningV2LessonDictionaryOverlayV1");
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «убери эту иконку» — в шапке хаба урока нет книжки со счётчиком слов (слова — плитка «Слова» рядом с «Продолжить»). Прежнее слово 21.09 («верни кнопку словаря в хедере») отменено этим.
+    expect(read("app/(tabs)/lessons.tsx")).not.toContain("<LearningV2LessonDictionaryOverlayV1");
   });
 
   test("copy: Russian matches the mockup, plurals are right", () => {

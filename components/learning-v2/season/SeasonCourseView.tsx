@@ -25,6 +25,7 @@ import { hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
 import { seasonStarTones } from './season_star_tones';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText } from './season_copy_card';
+import { seasonHeroTitleSize } from './season_hero_title_metrics';
 import {
   seasonChapterProgress, type SeasonDeck, type SeasonEpisodeCard,
 } from './season_course_model';
@@ -69,7 +70,6 @@ export type SeasonCourseViewProps = Readonly<{
   theme: SeasonTheme;
   lessonOrdinal: number;
   lessonTitle: string;
-  arcTitle: string | null;
   chapterCount: number;
   deck: SeasonDeck;
   newcomer: boolean;
@@ -95,10 +95,10 @@ export type SeasonCourseViewProps = Readonly<{
   onAllChapters: () => void;
   onAllLessons: () => void;
   onClassic: () => void;
-  /** Подпись кнопки классического курса (приходит от вкладки «Уроки»); нет — слово из словаря Сезона. */
-  classicLabel?: string;
   /** Прогресс классики одной строкой («12 из 50») для плитки; null — классику не начинали (владелец 22.10: «Показать в плитке»). */
   classicValue?: string | null;
+  /** Тап по закрытому эпизоду: какую карту встряхнуть (замок трясётся, модала нет); seq растёт на каждый тап. */
+  lockShake?: Readonly<{ index: number; seq: number }> | null;
   onWords: () => void;
   onTheory: () => void;
 }>;
@@ -160,7 +160,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
       );
     }
     const ep = props.episodeInfo(card);
-    return <SeasonCardFace kind="episode" state={card.state} ordinal={card.sessionOrdinal} art={art} dark={dark} glyph={info.icon} phrase={ep.phrase} progress={ep.progress} stars={card.state === 'done' ? ep.stars ?? null : null} starTones={starTones} />;
+    return <SeasonCardFace kind="episode" state={card.state} ordinal={card.sessionOrdinal} art={art} dark={dark} glyph={info.icon} phrase={ep.phrase} progress={ep.progress} stars={card.state === 'done' ? ep.stars ?? null : null} starTones={starTones} shakeSeq={props.lockShake && props.lockShake.index === index ? props.lockShake.seq : 0} />;
   }, [dark, deck.cards, lang, starTones, themeHue, props, theme]);
 
   const labelFor = useCallback((index: number) => {
@@ -178,11 +178,9 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
   // зачем (владелец 22.10: последний выбранный эталон — scenes-compact.html «Обучение · Сезон», вариант 2; координатор): на полноэкранной обложке чипы «Слова» и «Теория» стоят ВНУТРИ обложки под кнопкой, внизу остаётся только «Вся глава»
   const tall = props.topBleed !== undefined && props.topBleed > 0;
-  const longTitle = props.lessonTitle.length > 20;
   const primaryLabel = props.newcomer
     ? seasonText(lang, 'startEpisode', { n: currentEpisode?.sessionOrdinal ?? 1 })
     : seasonText(lang, 'continueEpisode', { n: currentEpisode?.sessionOrdinal ?? 1 });
-  const kicker = [seasonText(lang, 'lesson', { n: lessonOrdinal }), props.arcTitle].filter(Boolean).join(' · ');
 
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }} showsVerticalScrollIndicator={false} testID="season-course">
@@ -201,8 +199,9 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
           {props.avatarSlot ? (!dark && tall ? <View testID="season-hud-plate" style={[styles.hudPlate, { backgroundColor: g.opaqueCard }]}>{props.avatarSlot}</View> : props.avatarSlot) : null}
         </View>
         <View style={[styles.heroBody, props.topBleed && props.topBleed > 0 ? styles.heroBodyTall : null, { paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12 }]}>
-          <Text style={styles.kicker}>{kicker}</Text>
-          <Text accessibilityRole="header" style={[styles.heroTitle, tall && longTitle ? styles.heroTitleLong : null]}>{props.lessonTitle}</Text>
+          {/* ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот это убираем!» — строки-кикера «Урок N · …» над заголовком на обложке нет (ни в режиме с зоной часов, ни без неё); номер урока — в плашке слева сверху */}
+          {/* ЗАМОК ВЛАДЕЛЬЦА 22.10: «меньше шрифт и более компактно!» — кегль заголовка из season_hero_title_metrics, перенос только по словам */}
+          <Text accessibilityRole="header" style={[styles.heroTitle, seasonHeroTitleSize(props.lessonTitle)]}>{props.lessonTitle}</Text>
           {/* зачем (владелец 22.10, выбор варианта 2 макета lesson-hub-words-theory.html): «Слова» и «Теория» — плитки в строке с «Продолжить» (стекло в тоне обложки, 70 × 50), без чипов и без голого текста под каруселью; во всех режимах обложки (с зоной часов и без неё) */}
           <View style={styles.primaryRow}>
             <V2Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={primaryLabel} onPress={() => currentEpisode && props.onPrimary(currentEpisode)} outerStyle={styles.primaryOuter} style={styles.primary} testID="season-primary">
@@ -230,7 +229,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         allChaptersLabel={seasonCardText(lang, 'allChapters')}
         allChaptersDisabled={deck.chapters.length === 0}
         allLessonsLabel={seasonCardText(lang, 'allLessons')}
-        classicLabel={props.classicLabel ?? seasonCardText(lang, 'classicCourse')}
+        classicLabel={seasonCardText(lang, 'classicCourse')}
         classicValue={props.classicValue ?? null}
         onAllChapters={props.onAllChapters}
         onAllLessons={props.onAllLessons}
@@ -286,15 +285,13 @@ const styles = StyleSheet.create({
   // зачем (владелец 22.10: высота сцен 46 % для всех; scenes-compact.html «Обучение · Сезон», вариант 2): 392 dp вместе с зоной часов, фон от верха экрана
   heroBodyTall: { paddingBottom: 44 },
   hudPlate: { borderRadius: 22, paddingHorizontal: 6, paddingVertical: 2, flexDirection: 'row', alignItems: 'center' },
-  heroTitleLong: { fontSize: 26, lineHeight: 32 },
   heroTall: { minHeight: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
   pill: { height: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },
   pillText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: WHITE },
   heroBody: { flexGrow: 1, justifyContent: 'flex-end', paddingHorizontal: 20, paddingBottom: 22 },
-  kicker: { fontSize: 13, lineHeight: 17, color: WHITE_SOFT },
-  heroTitle: { marginTop: 4, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.5, color: WHITE },
+  heroTitle: { fontWeight: '700', letterSpacing: -0.3, color: WHITE },
   primaryRow: { marginTop: 16, flexDirection: 'row', gap: 8 },
   primaryOuter: { flex: 1 },
   primary: { height: 50, borderRadius: 25, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, backgroundColor: WHITE },

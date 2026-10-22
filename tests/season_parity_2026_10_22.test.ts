@@ -56,4 +56,11 @@ describe('вид «Сезона»', () => {
     expect(preview).toContain('avatarSlot={avatar}');
     expect(preview).not.toMatch(/fetch\(|httpsCallable|getDoc|firestore|AsyncStorage/i);
   });
+
+  // зачем (владелец 22.10: «замочки справа, а не слева»): плашка статуса карточки эпизода стоит в правом верхнем углу у всех состояний
+  it('плашка замка / ✓ / ▶ с номером — справа сверху, одно место для всех карточек', () => {
+    const face = read('components/learning-v2/season/SeasonCardFace.tsx');
+    expect(face).toMatch(/mark: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end',/);
+    expect(face).not.toMatch(/mark: {[^}]*alignSelf: 'flex-start'/);
+  });
 });

@@ -145,8 +145,6 @@ import { pickLessonsExamStatus } from "../lessons_exam_status";
 import LearningV2SessionOutcomeSheet, {
   LEARNING_V2_SESSION_MODAL_EXIT_MS,
 } from "../../components/LearningV2SessionOutcomeSheet";
-import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
-import { useLearningV2CourseUnlockedWordsV1 } from "../../hooks/use_learning_v2_course_unlocked_words_v1";
 import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intro";
 import FeatureIntroModal from "../../components/FeatureIntroModal";
 import PressableHybrid from "../../components/PressableHybrid";
@@ -302,18 +300,6 @@ function writeLessonsUiSessionCache(
  */
 export const useSketchLessonVisual = true;
 const USE_ELITE_LESSONS_MAP = true;
-/**
- * Номера уроков курса Learning V2 для словаря всего курса.
- *
- * зачем: владелец 21.09 — словарь в шапке карты показывает слова всего курса.
- * Слова лежат по ключу НА УРОК, значит нужен явный список уроков. Константа
- * модульная, а не собранная в рендере: новая ссылка на каждый рендер сорвала
- * бы мемоизацию скоупа и перезапускала чтение хранилища.
- * 32 — столько же уроков открывает карта (isPulseLessonMapAvailable).
- */
-const LEARNING_V2_COURSE_LESSON_ORDINALS: readonly number[] = Object.freeze(
-  Array.from({ length: 32 }, (_, index) => index + 1),
-);
 // ── Список уроков: один стиль «Туман / Графит» (мягкие заливки + чернила) во всех темах приложения ──
 const PALETTE_SKETCH: Record<string, string> = {
   A1: "#D4CCBC", // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
@@ -2674,29 +2660,7 @@ export default function LessonsTab({
   const [expandedLearningV2Lesson, setExpandedLearningV2Lesson] = useState<
     number | null
   >(null);
-  const [learningV2DictionaryOpen, setLearningV2DictionaryOpen] =
-    useState(false);
-  // зачем (владелец 2026-09-21): словарь показывает слова ВСЕГО курса, а не
-  // одного урока. Прежний скоуп висел на `expandedLearningV2Lesson`, который
-  // после перехода 20.09 на сплошную карту при обычном входе НЕ заполняется
-  // вовсе — и словарь молча умирал вместе с кнопкой (класс бага «механизм
-  // есть, а данных не дали»). Уроков 32, все ключи локальные: ни одного
-  // чтения Firestore здесь нет и не появляется.
   perfR1BodyMark('lessons', 'j_v2_scope', perfBodyStart);
-  const learningV2DictionaryScope = useMemo(
-    () =>
-      page === "v2"
-        ? {
-            targetLanguage: studyTarget,
-            lessonOrdinals: LEARNING_V2_COURSE_LESSON_ORDINALS,
-          }
-        : null,
-    [page, studyTarget],
-  );
-  const { words: learningV2DictionaryWords } =
-    useLearningV2CourseUnlockedWordsV1(learningV2DictionaryScope, {
-      includeAuthoringPreview: __DEV__,
-    });
   const [selectedLearningV2Session, setSelectedLearningV2Session] = useState<{
     lessonOrdinal: number;
     sessionOrdinal: number;
@@ -2969,7 +2933,6 @@ export default function LessonsTab({
   }, [learningV2Progress.currentSessionId, page, prepareLearningV2Lesson]);
   const toggleLearningV2Lesson = useCallback(
     (lessonOrdinal: number) => {
-      setLearningV2DictionaryOpen(false);
       // Новые строки обязаны быть видимы уже на первом кадре. Поэтому анимируем
       // только сдвиг существующих карточек, без create-opacity для вставки.
       // Пока системная настройка движения не прочитана, ведём себя консервативно.
@@ -4119,7 +4082,6 @@ export default function LessonsTab({
     scrollLearningV2ToCurrent(false);
   }, [focusTick, lessonsTabVisible, page, scrollLearningV2ToCurrent]);
   const openLegacyLessons = useCallback(() => {
-    setLearningV2DictionaryOpen(false);
     setExpandedLearningV2Lesson(null);
     // зачем: здесь выставлялся уровень текущего урока, чтобы список открылся
     // на нужном разделе. Список теперь сплошной (владелец 21.09), уровень
@@ -4134,8 +4096,7 @@ export default function LessonsTab({
     "legacy_lessons_first_visit",
     lessonsRuntimeActive &&
       page === "v2" &&
-      selectedLearningV2Session === null &&
-      !learningV2DictionaryOpen,
+      selectedLearningV2Session === null,
     openLegacyLessons,
   );
   const requestLegacyLessonsIntro = legacyLessonsIntro.request;
@@ -4774,73 +4735,6 @@ export default function LessonsTab({
   const learningV2CoinTargetRef = learningV2CoinTargetRefHolder;
   const learningV2ResourceHud = <View testID="learning-v2-resource-hud" style={{ flexDirection: "row", alignItems: "center", gap: 7, flexShrink: 0 }}>
               {learningV2DevUnlockControl}
-              {/* зачем (владелец 2026-09-21): «верни кнопку словаря в хедере».
-                  Кнопка никуда не удалялась — она висела на условии
-                  `expandedLearningV2Lesson !== null`, а раскрытых уроков после
-                  перехода 20.09 на сплошную карту не существует, и условие не
-                  выполнялось НИКОГДА. Теперь словарь про весь курс, поэтому
-                  привязка к уроку снята целиком. */}
-              {page === "v2" ? (
-                <PressableHybrid
-                  testID="learning-v2-map-dictionary-open"
-                  accessibilityLabel={triLang(lang, {
-                    ru: "Открыть словарь урока",
-                    en: "Open lesson dictionary",
-                    uk: "Відкрити словник уроку",
-                    es: "Abrir el diccionario de la lección",
-                    "pt-BR": "Abrir o dicionário da lição",
-                    vi: "Mở từ điển bài học",
-                    id: "Buka kamus pelajaran",
-                    tr: "Ders sözlüğünü aç",
-                    pl: "Otwórz słownik lekcji",
-                  })}
-                  onPress={() => setLearningV2DictionaryOpen(true)}
-                  hitSlop={8}
-                  variant="icon"
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: 15,
-                    backgroundColor: t.bgCard,
-                  }}
-                  contentStyle={{
-                    flex: 1,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Ionicons name="book-outline" size={21} color={t.accentText} />
-                  {learningV2DictionaryWords.length > 0 ? (
-                    <View
-                      pointerEvents="none"
-                      style={{
-                        position: "absolute",
-                        top: 3,
-                        right: 3,
-                        minWidth: 16,
-                        height: 16,
-                        borderRadius: 8,
-                        paddingHorizontal: 3,
-                        alignItems: "center",
-                        justifyContent: "center",
-                        // зачем (Сверка §21, координатор 22.10): бейдж числа слов у книги был ярко-фиолетовым во всех темах (t.accent) — теперь токены текущей темы: заливка accent и надпись accentInk
-                        backgroundColor: learnGlass.accent,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          color: learnGlass.accentInk,
-                          fontSize: 13,
-                          lineHeight: 17,
-                          fontWeight: "700",
-                        }}
-                      >
-                        {Math.min(99, learningV2DictionaryWords.length)}
-                      </Text>
-                    </View>
-                  ) : null}
-                </PressableHybrid>
-              ) : null}
               <View
                 ref={learningV2CoinTargetRef}
                 collapsable={false}
@@ -6092,15 +5986,6 @@ export default function LessonsTab({
         chapterLabel={triLang(lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })}
         onClose={() => setLearningV2LockedSession(null)}
       />
-      {/* lessonOrdinal={null} — словарь всего курса: урок называет каждая
-          секция списка, а не шапка шторки (владелец 2026-09-21). */}
-      {learningV2DictionaryOpen ? (
-        <LearningV2LessonDictionaryOverlayV1
-          lessonOrdinal={null}
-          words={learningV2DictionaryWords}
-          onClose={() => setLearningV2DictionaryOpen(false)}
-        />
-      ) : null}
       {/* зачем (Сверка learn-011/012/013, learn.html dlg): ворота списка — окно по центру с плиткой-замком/шапочкой
           и белой «Закрыть», а не общая шторка выбора. */}
       <LessonsGateDialog

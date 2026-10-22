@@ -11,6 +11,7 @@ import {
   aggregateRevenueCatPeriod,
   aggregateShardPeriod,
   assessPurchaseSignalReconciliation,
+  ANALYTICS_USER_FIELDS,
   type AnalyticsUserRow,
   type FunnelEventRow,
   type RevenueCatEventRow,
@@ -178,7 +179,7 @@ export const adminGetAnalyticsSnapshot = onCall(
     const db = admin.firestore();
 
     const [users, activity, premium, shards, funnel] = await Promise.all([
-      readRowsPaged('users', db.collection('users').orderBy(admin.firestore.FieldPath.documentId()), USER_CAP, ['updatedAt', 'last_active_at']),
+      readRowsPaged('users', db.collection('users').orderBy(admin.firestore.FieldPath.documentId()).select(...ANALYTICS_USER_FIELDS), USER_CAP, ['updatedAt', 'last_active_at']),
       readRows('app_activity', db.collection('app_activity').where('createdAtMs', '>=', fromMs).where('createdAtMs', '<=', toMs).orderBy('createdAtMs'), EVENT_CAP, ['createdAtMs']),
       readRows('revenuecat_premium_events', db.collection('revenuecat_premium_events').where('eventTimestampMs', '>=', fromMs).where('eventTimestampMs', '<=', toMs).orderBy('eventTimestampMs'), EVENT_CAP, ['eventTimestampMs', 'createdAt']),
       readRows('revenuecat_shard_transactions', db.collection('revenuecat_shard_transactions').where('eventTimestampMs', '>=', fromMs).where('eventTimestampMs', '<=', toMs).orderBy('eventTimestampMs'), EVENT_CAP, ['eventTimestampMs', 'createdAt']),

@@ -10,6 +10,21 @@ export type AccessKind =
   | 'vip'
   | 'manual_or_unknown';
 
+/**
+ * Поля профиля, которые реально нужны снимку аналитики (classifyActiveAccess + aggregateAnalyticsConsent).
+ * зачем (владелец 22.10: «раздел выручки ничего не работает»): снимок читал до 10 000 ПОЛНЫХ профилей с прогрессом
+ * и падал по памяти (512 MiB exceeded, 15:54Z). Firestore select отдаёт только эти поля — память и трафик в разы меньше.
+ * Добавил новое поле в классификацию доступа — добавь его сюда (тест сверяет).
+ */
+export const ANALYTICS_USER_FIELDS: readonly string[] = Object.freeze([
+  'identityHidden', 'analyticsConsent', 'updatedAt', 'last_active_at',
+  'progress.premium_plan', 'progress.premium_expiry', 'progress.premium_rc_expiry_ms', 'progress.premium_rc_period_type',
+  'progress.premium_rc_product_id', 'progress.premium_rc_store', 'progress.premium_rc_updated_at', 'progress.premium_rc_purchased_at_ms',
+  'progress.intro_access_until_ms', 'progress.loyalty_gift_until_ms', 'progress.admin_premium_override',
+  'progress.vip_plan', 'progress.vip_active', 'progress.vip_admin_override', 'progress.vip_from', 'progress.vip_until',
+  'progress.vip_expiry', 'progress.vip_admin_grant_at', 'progress.vip_grant_at',
+]);
+
 export interface AnalyticsUserRow {
   readonly id: string;
   readonly identityHidden?: boolean;

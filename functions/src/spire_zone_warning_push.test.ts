@@ -35,19 +35,21 @@ describe('spireZoneEdgeStatuses', () => {
     expect(out.size).toBe(0);
   });
 
+  // зачем (Ядро 22.10): после удаления ботов (c87cd7010) зона = round(15 % ЖИВЫХ), минимум 1 — ожидания ниже
+  // пересчитаны под неё (прежние ждали зону 5 «с ботами»). Каждое сверено таблицей «пуш ↔ computeSpireRoomResults».
   it('ранги у границы зоны повышения — promotion_edge, у самого низа игравших — demotion_edge', () => {
-    // 10 живых с уникальными ступенями (u0 лучший … u9 худший). zoneSize при
-    // 10 живых = 5 (roomTotal считает и ботов), margin=1 → ранги 4,5,6
-    // (индексы u3,u4,u5) у границы повышения, ранг 6 от низа (u6) — у границы
-    // понижения. Проверено пробным прогоном, не угадано на глаз.
+    // 10 живых (u0 лучший … u9 худший), zoneSize = 2, margin = 1.
     const members = distinctRoom(10);
     const out = spireZoneEdgeStatuses(members);
-    expect(out.get('u4')).toBe('promotion_edge'); // ровно на границе (ранг = zoneSize)
-    expect(out.get('u6')).toBe('demotion_edge'); // сразу за зоной снизу
+    expect(out.get('u1')).toBe('promotion_edge'); // ровно на границе (ранг = zoneSize)
+    expect(out.get('u2')).toBe('promotion_edge'); // сразу за зоной сверху
+    expect(out.get('u7')).toBe('demotion_edge'); // сразу за зоной снизу
+    expect(out.get('u8')).toBe('demotion_edge'); // ровно на нижней границе
   });
 
   it('топ комнаты (ранг 1) далеко от границы — не у края', () => {
-    const members = distinctRoom(10);
+    // 30 живых, zoneSize = 5: ранг 1 в 4 местах от границы.
+    const members = distinctRoom(30);
     const out = spireZoneEdgeStatuses(members);
     expect(out.get('u0')).toBeUndefined();
   });
@@ -55,25 +57,26 @@ describe('spireZoneEdgeStatuses', () => {
   it('середина списка, вдали от границы — не у края', () => {
     const members = distinctRoom(10);
     const out = spireZoneEdgeStatuses(members);
-    expect(out.get('u8')).toBeUndefined();
-    expect(out.get('u9')).toBeUndefined();
+    expect(out.get('u4')).toBeUndefined();
+    expect(out.get('u5')).toBeUndefined();
   });
 
-  it('маленькая комната (live < zoneSize) — граница вне живых, статусов нет', () => {
-    // zoneSize=5 даже при 2 живых (roomTotal считает ботов) — оба места
-    // внутри зоны повышения целиком, края нет ни у кого.
+  it('комната из двух: последний в зоне понижения получает demotion_edge, а не «почти повышение»', () => {
+    // zoneSize = 1: u0 повышается, u1 понижается итогом недели. Раньше u1 получал
+    // «Ещё немного — и получится» (|ранг 2 − зона 1| ≤ margin) — обещание, которое итог нарушал.
     const members = distinctRoom(2);
     const out = spireZoneEdgeStatuses(members);
-    expect(out.size).toBe(0);
+    expect(out.get('u0')).toBe('promotion_edge');
+    expect(out.get('u1')).toBe('demotion_edge');
   });
 
-  it('повышение приоритетнее понижения, когда margin пересекается (T25 приоритет)', () => {
-    // 6 живых, zoneSize=5: последнее место (ранг 6=liveCount) одновременно
-    // близко и к верхней, и к нижней границе margin=1 — правило "!nearPromotion
-    // первым делом" обязано отдать его повышению, а не понижению.
-    const members = distinctRoom(6);
+  it('повышение приоритетнее понижения, когда margin пересекается вне зоны понижения (T25 приоритет)', () => {
+    // 3 живых, zoneSize = 1: u1 (ранг 2) рядом с обеими границами, но ни в одной зоне —
+    // правило «!nearPromotion первым делом» отдаёт его повышению.
+    const members = distinctRoom(3);
     const out = spireZoneEdgeStatuses(members);
-    expect(out.get('u5')).toBe('promotion_edge');
+    expect(out.get('u1')).toBe('promotion_edge');
+    expect(out.get('u2')).toBe('demotion_edge');
   });
 
   it('никто не набрал ступеней (hasAnyScorer=false) — понижения нет ни у кого', () => {

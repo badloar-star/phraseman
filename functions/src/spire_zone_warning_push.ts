@@ -72,14 +72,19 @@ export function spireZoneEdgeStatuses(
     const liveRank = 1 + live.filter((o) => compareSpireStanding(o, me) < 0).length;
     const bottomRank = 1 + live.filter((o) => compareSpireStanding(o, me) > 0).length;
     const scored = me.steps > 0;
+    const inPromotionZone = scored && liveRank <= zoneSize;
+    // зачем (Ядро 22.10, координатор): после удаления ботов (c87cd7010) зона = 15 % ЖИВЫХ, при 2–8 живых это 1 место —
+    // зоны повышения и понижения стоят вплотную. Прежний приоритет «повышение важнее» слал последнему из двух
+    // «Ещё немного — и получится», а итог недели его понижал. Кто УЖЕ в зоне понижения — предупреждаем о понижении.
+    const inDemotionZone = hasAnyScorer && !inPromotionZone && bottomRank <= zoneSize;
 
     // Край зоны повышения: играл и стоит в пределах margin рангов ОТ границы
     // (внутри зоны у самой границы, или сразу за ней снаружи).
-    const nearPromotion = scored && Math.abs(liveRank - zoneSize) <= SPIRE_ZONE_EDGE_MARGIN_RANKS;
+    const nearPromotion = !inDemotionZone && scored && Math.abs(liveRank - zoneSize) <= SPIRE_ZONE_EDGE_MARGIN_RANKS;
     // Край зоны понижения: считается только если в комнате вообще кто-то
     // играл (иначе никого не понижают — правило spire_finalize_core.ts),
-    // и только для тех, кто НЕ на грани повышения одновременно (повышение важнее,
-    // T25: бот не может отнять повышение — здесь тот же приоритет для текста пуша).
+    // и только для тех, кто НЕ на грани повышения одновременно (вне зоны понижения
+    // повышение важнее — T25: бот не может отнять повышение — тот же приоритет для текста пуша).
     const nearDemotion = hasAnyScorer
       && !nearPromotion
       && Math.abs(bottomRank - zoneSize) <= SPIRE_ZONE_EDGE_MARGIN_RANKS;

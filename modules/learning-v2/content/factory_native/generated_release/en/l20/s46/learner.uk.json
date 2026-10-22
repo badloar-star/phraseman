@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-46:word:on-arrival",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — on arrival",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:word:on-arrival:audio"
+      ],
+      "accessibilityLabel": "Картка слова — on arrival",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:word:on-arrival:audio",
+          "transcript": "on arrival"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:word:on-arrival:r1",
+            "targetText": "on arrival",
+            "meaningByLocale": {
+              "ru": "по прибытии.",
+              "uk": "після прибуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on arrival",
+          "definitionByLocale": {
+            "ru": "по прибытии.",
+            "uk": "після прибуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені заплатити після прибуття?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені заплатити після прибуття?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I pay on arrival?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне заплатить по прибытии?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені заплатити після прибуття?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "pay",
+          "on",
+          "arrival"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i02:r1",
+          "text": "Could I pay on arrival?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i02:r2",
+          "text": "Can I pay on arrival?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i02:r3",
+          "text": "Could we pay on arrival?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i02:audio",
+          "transcript": "Could I pay on arrival?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:i02:r1",
+            "targetText": "Could I pay on arrival?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i02:r2",
+            "targetText": "Can I pay on arrival?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i02:r3",
+            "targetText": "Could we pay on arrival?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pay on arrival?",
+              "uk": "У записі звучить Could I pay on arrival?"
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pay on arrival?",
+              "uk": "У записі звучить Could I pay on arrival?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i03:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i03:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i03:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ pay on arrival?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-46:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:word:on-departure",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — on departure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:word:on-departure:audio"
+      ],
+      "accessibilityLabel": "Картка слова — on departure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:word:on-departure:audio",
+          "transcript": "on departure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:word:on-departure:r1",
+            "targetText": "on departure",
+            "meaningByLocale": {
+              "ru": "при отъезде.",
+              "uk": "під час відʼїзду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on departure",
+          "definitionByLocale": {
+            "ru": "при отъезде.",
+            "uk": "під час відʼїзду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені повернути ключ під час відʼїзду?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені повернути ключ під час відʼїзду?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I return the key on departure?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне вернуть ключ при отъезде?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені повернути ключ під час відʼїзду?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "return",
+          "the",
+          "key",
+          "on",
+          "departure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i05:r1",
+          "text": "Could I return the key on departure?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i05:r2",
+          "text": "Can I return the key on departure?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i05:r3",
+          "text": "Could we return the key on departure?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i05:audio",
+          "transcript": "Could I return the key on departure?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:i05:r1",
+            "targetText": "Could I return the key on departure?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i05:r2",
+            "targetText": "Can I return the key on departure?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i05:r3",
+            "targetText": "Could we return the key on departure?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I return the key on departure?",
+              "uk": "У записі звучить Could I return the key on departure?"
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I return the key on departure?",
+              "uk": "У записі звучить Could I return the key on departure?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i06:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i06:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i06:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ return the key on departure?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-46:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:word:in-instalments",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — in instalments",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:word:in-instalments:audio"
+      ],
+      "accessibilityLabel": "Картка слова — in instalments",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:word:in-instalments:audio",
+          "transcript": "in instalments"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:word:in-instalments:r1",
+            "targetText": "in instalments",
+            "meaningByLocale": {
+              "ru": "частями, в рассрочку.",
+              "uk": "частинами, на виплат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "in instalments",
+          "definitionByLocale": {
+            "ru": "частями, в рассрочку.",
+            "uk": "частинами, на виплат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені заплатити частинами?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені заплатити частинами?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I pay in instalments?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне заплатить частями?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені заплатити частинами?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "pay",
+          "in",
+          "instalments"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i08:r1",
+          "text": "Could I pay in instalments?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i08:r2",
+          "text": "Can I pay in instalments?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i08:r3",
+          "text": "Could we pay in instalments?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i08:audio",
+          "transcript": "Could I pay in instalments?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:i08:r1",
+            "targetText": "Could I pay in instalments?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i08:r2",
+            "targetText": "Can I pay in instalments?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i08:r3",
+            "targetText": "Could we pay in instalments?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pay in instalments?",
+              "uk": "У записі звучить Could I pay in instalments?"
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pay in instalments?",
+              "uk": "У записі звучить Could I pay in instalments?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i09:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i09:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i09:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ pay in instalments?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-46:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:word:on-the-spot",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — on the spot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:word:on-the-spot:audio"
+      ],
+      "accessibilityLabel": "Картка слова — on the spot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:word:on-the-spot:audio",
+          "transcript": "on the spot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:word:on-the-spot:r1",
+            "targetText": "on the spot",
+            "meaningByLocale": {
+              "ru": "на месте, сразу при обращении.",
+              "uk": "на місці, одразу під час звернення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "on the spot",
+          "definitionByLocale": {
+            "ru": "на месте, сразу при обращении.",
+            "uk": "на місці, одразу під час звернення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з Could I: «Можна мені забронювати на місці?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені забронювати на місці?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I book on the spot?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с Could I: «Можно мне забронировать на месте?»",
+          "uk": "Ввічливо запитайте з Could I: «Можна мені забронювати на місці?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "book",
+          "on",
+          "the",
+          "spot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i11:r1",
+          "text": "Could I book on the spot?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i11:r2",
+          "text": "Can I book on the spot?"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i11:r3",
+          "text": "Could we book on the spot?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i11:audio",
+          "transcript": "Could I book on the spot?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-46:i11:r1",
+            "targetText": "Could I book on the spot?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i11:r2",
+            "targetText": "Can I book on the spot?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i11:r3",
+            "targetText": "Could we book on the spot?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I book on the spot?",
+              "uk": "У записі звучить Could I book on the spot?"
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I book on the spot?",
+              "uk": "У записі звучить Could I book on the spot?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-46:i12:r1",
+          "text": "Could I"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i12:r2",
+          "text": "I could"
+        },
+        {
+          "responseId": "en:lesson-20:session-46:i12:r3",
+          "text": "Could I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ book on the spot?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-46:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе Could стоит перед I.",
+              "uk": "У питанні Could стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После Could I не нужно to.",
+              "uk": "Після Could I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-46:i13:p1",
+            "target": "on arrival",
+            "meaningByLocale": {
+              "ru": "по прибытии",
+              "uk": "після прибуття"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-46:i13:p2",
+            "target": "on departure",
+            "meaningByLocale": {
+              "ru": "при отъезде",
+              "uk": "під час відʼїзду"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-46:i13:p3",
+            "target": "in instalments",
+            "meaningByLocale": {
+              "ru": "частями, в рассрочку",
+              "uk": "частинами, на виплат"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-46:i13:p4",
+            "target": "on the spot",
+            "meaningByLocale": {
+              "ru": "на месте, сразу при обращении",
+              "uk": "на місці, одразу під час звернення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "on arrival",
+          "on departure",
+          "in instalments",
+          "on the spot"
+        ],
+        "rightColumn": [
+          "після прибуття",
+          "під час відʼїзду",
+          "частинами, на виплат",
+          "на місці, одразу під час звернення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почута майбутня можливість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почута майбутня можливість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i14:audio",
+          "transcript": "I will be able to explain this."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will be able to explain this.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "be",
+          "able",
+          "to",
+          "explain",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий дозвіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий дозвіл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i15:audio",
+          "transcript": "May I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "May I ask a question?",
+        "orderedTokens": [
+          "May",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна заплатити після прибуття",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна заплатити після прибуття",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i16:audio",
+          "transcript": "Could I pay on arrival?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I pay on arrival?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна повернути ключ під час відʼїзду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна повернути ключ під час відʼїзду",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-46:i17:audio",
+          "transcript": "Could I return the key on departure?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I return the key on departure?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "be6dc3b919a55c32e3f1893509a076b768106f11257bea59fe1a8a819f0d5d2c"
+}

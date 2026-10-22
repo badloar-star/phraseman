@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Работать в своём темпе",
+        "uk": "Працювати у власному темпі"
+      },
+      "bodyByLocale": {
+        "ru": "At my own pace — в своём темпе. На занятии вы хотите выполнять задание без необходимости успевать за всей группой. My относится к говорящему; при обращении к другу будет at your own pace. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "At my own pace — у власному темпі. На занятті ви хочете виконувати завдання без потреби встигати за всією групою. My стосується мовця; звертаючись до друга, скажемо at your own pace. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-48:intro1:r1",
+              "text": "Could I work at my own pace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro1:r2",
+              "text": "Could I to work at my own pace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro1:r3",
+              "text": "I could work at my own pace?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-48:intro1:r1",
+              "text": "Could I work at my own pace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro1:r2",
+              "text": "Could I to work at my own pace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro1:r3",
+              "text": "I could work at my own pace?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найти тихое место",
+        "uk": "Знайти тихе місце"
+      },
+      "bodyByLocale": {
+        "ru": "In peace — спокойно, без помех. Вы ищете тихое место и уточняете, можно ли здесь почитать без шума. В другой ситуации такая просьба может передавать раздражение, но здесь вы просто спрашиваете о месте. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In peace — спокійно, без перешкод. Ви шукаєте тихе місце й уточнюєте, чи можна тут почитати без шуму. В іншій ситуації таке прохання може передавати роздратування, але тут ви просто питаєте про місце. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-48:intro2:r1",
+              "text": "Could I read here in peace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro2:r2",
+              "text": "Could I to read here in peace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro2:r3",
+              "text": "I could read here in peace?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-48:intro2:r1",
+              "text": "Could I read here in peace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro2:r2",
+              "text": "Could I to read here in peace?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro2:r3",
+              "text": "I could read here in peace?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться о просмотре",
+        "uk": "Домовитися про перегляд"
+      },
+      "bodyByLocale": {
+        "ru": "At short notice — незадолго, когда на подготовку остаётся мало времени. Вы спрашиваете о бронировании экскурсии на ближайший день. By appointment — по предварительной договорённости: хозяин квартиры показывает её в согласованное время. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "At short notice — незадовго, коли на підготовку залишається мало часу. Ви питаєте про бронювання екскурсії на найближчий день. By appointment — за попередньою домовленістю: господар квартири показує її в узгоджений час. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-48:intro3:r1",
+              "text": "Could I view the flat by appointment?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro3:r2",
+              "text": "Could I to view the flat by appointment?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro3:r3",
+              "text": "I could view the flat by appointment?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-48:intro3:r1",
+              "text": "Could I view the flat by appointment?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro3:r2",
+              "text": "Could I to view the flat by appointment?"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:intro3:r3",
+              "text": "I could view the flat by appointment?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "09b86f3fc8099e088b25239f03782f2b5ac6339e14538b87dbeef53266ae0812"
+}

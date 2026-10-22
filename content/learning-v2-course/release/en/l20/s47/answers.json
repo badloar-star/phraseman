@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-47:word:under-pressure",
+    "correctText": "under pressure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i01",
+    "correctText": "I don't have to work under pressure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i02",
+    "correctText": "I don't have to work under pressure.",
+    "correctResponseId": "en:lesson-20:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i03",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:word:in-a-rush",
+    "correctText": "in a rush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i04",
+    "correctText": "She doesn't have to eat in a rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i05",
+    "correctText": "She doesn't have to eat in a rush.",
+    "correctResponseId": "en:lesson-20:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i06",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:word:without-help",
+    "correctText": "without help",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i07",
+    "correctText": "We don't have to do this without help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i08",
+    "correctText": "We don't have to do this without help.",
+    "correctResponseId": "en:lesson-20:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i09",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:word:all-at-once",
+    "correctText": "all at once",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i10",
+    "correctText": "He doesn't have to do it all at once.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i11",
+    "correctText": "He doesn't have to do it all at once.",
+    "correctResponseId": "en:lesson-20:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i12",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i13",
+    "correctText": "en:lesson-20:session-47:i13:p1=under pressure\nen:lesson-20:session-47:i13:p2=in a rush\nen:lesson-20:session-47:i13:p3=without help\nen:lesson-20:session-47:i13:p4=all at once",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i16",
+    "correctText": "I don't have to work under pressure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-47:i17",
+    "correctText": "He doesn't have to do it all at once.",
+    "correctResponseId": null
+  }
+]

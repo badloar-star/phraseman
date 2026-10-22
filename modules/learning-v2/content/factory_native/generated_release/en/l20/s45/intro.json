@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "don't / doesn't have to + base verb",
+    "uk": "don't / doesn't have to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сейчас поездок меньше",
+        "uk": "Зараз поїздок менше"
+      },
+      "bodyByLocale": {
+        "ru": "These days — в последнее время, сейчас в жизни человека. Раньше вы часто ездили на встречи, а теперь они проходят рядом с домом. Речь о текущем периоде, а не обязательно о сегодняшнем дне. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "These days — останнім часом, зараз у житті людини. Раніше ви часто їздили на зустрічі, а тепер вони проходять біля дому. Йдеться про поточний період, а не обовʼязково про сьогоднішній день. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-45:intro1:r1",
+              "text": "I don't have to travel these days."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro1:r2",
+              "text": "I doesn't have to travel these days."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro1:r3",
+              "text": "I don't has to travel these days."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-45:intro1:r1",
+              "text": "I don't have to travel these days."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro1:r2",
+              "text": "I doesn't have to travel these days."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro1:r3",
+              "text": "I don't has to travel these days."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ждать больше не нужно",
+        "uk": "Чекати більше не потрібно"
+      },
+      "bodyByLocale": {
+        "ru": "Anymore — больше не, в конце отрицания. Подошла очередь знакомой, и ждать ей уже не нужно. В британском английском часто пишут any more двумя словами. At all усиливает отрицание: вход бесплатный, и платить не нужно вообще. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Anymore — більше не, у кінці заперечення. Підійшла черга знайомої, і чекати їй уже не потрібно. У британській англійській часто пишуть any more двома словами. At all підсилює заперечення: вхід безкоштовний, і платити не потрібно взагалі. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-45:intro2:r1",
+              "text": "She doesn't have to wait anymore."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro2:r2",
+              "text": "She don't have to wait anymore."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro2:r3",
+              "text": "She doesn't has to wait anymore."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-45:intro2:r1",
+              "text": "She doesn't have to wait anymore."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro2:r2",
+              "text": "She don't have to wait anymore."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro2:r3",
+              "text": "She doesn't has to wait anymore."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подходит любой вариант",
+        "uk": "Підходить будь-який варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Anyway — в любом случае. Друзья выбирают между утром и вечером субботы. Знакомому подходят оба варианта: в этот день ему всё равно не нужно работать. Anyway добавляет причину, по которой обсуждаемая разница для него не важна. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Anyway — у будь-якому разі. Друзі вибирають між ранком і вечором суботи. Знайомому підходять обидва варіанти: цього дня йому однаково не потрібно працювати. Anyway додає причину, через яку обговорювана різниця для нього не важлива. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-45:intro3:r1",
+              "text": "He doesn't have to work anyway."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro3:r2",
+              "text": "He don't have to work anyway."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro3:r3",
+              "text": "He doesn't has to work anyway."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-45:intro3:r1",
+              "text": "He doesn't have to work anyway."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro3:r2",
+              "text": "He don't have to work anyway."
+            },
+            {
+              "responseId": "en:lesson-20:session-45:intro3:r3",
+              "text": "He doesn't has to work anyway."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0b38e2aaa4fd080e23df7a8d16fa321f378cf4926d3a8c2b99d4790f638e9cfa"
+}

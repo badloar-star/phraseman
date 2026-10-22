@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-43:word:recite",
+    "correctText": "recite",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i01",
+    "correctText": "I don't have to recite the poem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i02",
+    "correctText": "I don't have to recite the poem.",
+    "correctResponseId": "en:lesson-20:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i03",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:word:underline",
+    "correctText": "underline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i04",
+    "correctText": "She doesn't have to underline every word.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i05",
+    "correctText": "She doesn't have to underline every word.",
+    "correctResponseId": "en:lesson-20:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i06",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:word:quote",
+    "correctText": "quote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i07",
+    "correctText": "We don't have to quote the whole text.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i08",
+    "correctText": "We don't have to quote the whole text.",
+    "correctResponseId": "en:lesson-20:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i09",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:word:analyse",
+    "correctText": "analyse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i10",
+    "correctText": "He doesn't have to analyse every detail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i11",
+    "correctText": "He doesn't have to analyse every detail.",
+    "correctResponseId": "en:lesson-20:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i12",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i13",
+    "correctText": "en:lesson-20:session-43:i13:p1=recite\nen:lesson-20:session-43:i13:p2=underline\nen:lesson-20:session-43:i13:p3=quote\nen:lesson-20:session-43:i13:p4=analyse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i16",
+    "correctText": "I don't have to recite the poem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-43:i17",
+    "correctText": "He doesn't have to analyse every detail.",
+    "correctResponseId": null
+  }
+]

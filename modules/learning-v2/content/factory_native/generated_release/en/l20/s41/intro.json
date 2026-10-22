@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "don't / doesn't have to + base verb",
+    "uk": "don't / doesn't have to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Материалы уже есть",
+        "uk": "Матеріали вже є"
+      },
+      "bodyByLocale": {
+        "ru": "Supplies — необходимые материалы или принадлежности. На занятии по рисованию бумагу и краски выдаёт организатор. Вы сообщаете другу, что покупать их не нужно. В этом значении supplies употребляется во множественном числе. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Supplies — необхідні матеріали або приладдя. На занятті з малювання папір і фарби видає організатор. Ви повідомляєте другові, що купувати їх не потрібно. У цьому значенні supplies вживається у множині. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-41:intro1:r1",
+              "text": "I don't have to buy supplies."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro1:r2",
+              "text": "I doesn't have to buy supplies."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro1:r3",
+              "text": "I don't has to buy supplies."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-41:intro1:r1",
+              "text": "I don't have to buy supplies."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro1:r2",
+              "text": "I doesn't have to buy supplies."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro1:r3",
+              "text": "I don't has to buy supplies."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Копию сделают на месте",
+        "uk": "Копію зроблять на місці"
+      },
+      "bodyByLocale": {
+        "ru": "Photocopy — ксерокопия документа. Сотрудник сказал, что сделает копию на месте, поэтому знакомой не нужно приносить свою. Enclose — вложить что-то в конверт вместе с письмом: в вашей заявке на кружок фотография не требуется. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Photocopy — ксерокопія документа. Працівник сказав, що зробить копію на місці, тому знайомій не потрібно приносити свою. Enclose — вкласти щось у конверт разом із листом: у вашій заявці на гурток фотографія не потрібна. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-41:intro2:r1",
+              "text": "She doesn't have to bring a photocopy."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro2:r2",
+              "text": "She don't have to bring a photocopy."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro2:r3",
+              "text": "She doesn't has to bring a photocopy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-41:intro2:r1",
+              "text": "She doesn't have to bring a photocopy."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro2:r2",
+              "text": "She don't have to bring a photocopy."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro2:r3",
+              "text": "She doesn't has to bring a photocopy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Можно пойти одному",
+        "uk": "Можна піти самому"
+      },
+      "bodyByLocale": {
+        "ru": "Accompany — сопровождать, идти вместе с человеком. Вы хорошо знаете дорогу до места встречи и говорите, что другу необязательно идти с вами. Accompany me — сопровождать меня, без предлога with перед me. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Accompany — супроводжувати, іти разом із людиною. Ви добре знаєте дорогу до місця зустрічі й кажете, що другові необовʼязково йти з вами. Accompany me — супроводжувати мене, без прийменника with перед me. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-41:intro3:r1",
+              "text": "He doesn't have to accompany me."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro3:r2",
+              "text": "He don't have to accompany me."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro3:r3",
+              "text": "He doesn't has to accompany me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-41:intro3:r1",
+              "text": "He doesn't have to accompany me."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro3:r2",
+              "text": "He don't have to accompany me."
+            },
+            {
+              "responseId": "en:lesson-20:session-41:intro3:r3",
+              "text": "He doesn't has to accompany me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fe0198c2ab941179cc62bfdcc3768f5aa05a7762c78ceb88ef4a4f08220ec647"
+}

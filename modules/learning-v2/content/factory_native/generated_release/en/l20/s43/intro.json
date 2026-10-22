@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "don't / doesn't have to + base verb",
+    "uk": "don't / doesn't have to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно читать с листа",
+        "uk": "Можна читати з аркуша"
+      },
+      "bodyByLocale": {
+        "ru": "Recite — рассказывать наизусть или декламировать, например стихотворение. На встрече читателей можно просто прочитать текст с листа. Вы говорите, что учить его для выступления наизусть не требуется. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Recite — розповідати напамʼять або декламувати, наприклад вірш. На зустрічі читачів можна просто прочитати текст з аркуша. Ви кажете, що вчити його для виступу напамʼять не потрібно. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-43:intro1:r1",
+              "text": "I don't have to recite the poem."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro1:r2",
+              "text": "I doesn't have to recite the poem."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro1:r3",
+              "text": "I don't has to recite the poem."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-43:intro1:r1",
+              "text": "I don't have to recite the poem."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro1:r2",
+              "text": "I doesn't have to recite the poem."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro1:r3",
+              "text": "I don't has to recite the poem."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Отметить только главное",
+        "uk": "Позначити лише головне"
+      },
+      "bodyByLocale": {
+        "ru": "Underline — подчеркнуть слово линией. Учитель просит отметить только главное, поэтому подчёркивать каждое слово не нужно. Quote — цитировать, повторять чужие слова точно. В обсуждении достаточно короткого отрывка, а не всего текста. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Underline — підкреслити слово лінією. Учитель просить позначити лише головне, тому підкреслювати кожне слово не потрібно. Quote — цитувати, повторювати чужі слова точно. В обговоренні достатньо короткого уривка, а не всього тексту. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-43:intro2:r1",
+              "text": "She doesn't have to underline every word."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro2:r2",
+              "text": "She don't have to underline every word."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro2:r3",
+              "text": "She doesn't has to underline every word."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-43:intro2:r1",
+              "text": "She doesn't have to underline every word."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro2:r2",
+              "text": "She don't have to underline every word."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro2:r3",
+              "text": "She doesn't has to underline every word."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Достаточно общего впечатления",
+        "uk": "Досить загального враження"
+      },
+      "bodyByLocale": {
+        "ru": "Analyse — подробно разбирать, анализировать. Знакомый рассказывает о прочитанной истории; для короткого обсуждения ему не нужно разбирать каждую деталь. В американском написании встречается analyze. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Analyse — докладно розбирати, аналізувати. Знайомий розповідає про прочитану історію; для короткого обговорення йому не потрібно розбирати кожну деталь. В американському написанні трапляється analyze. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-43:intro3:r1",
+              "text": "He doesn't have to analyse every detail."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro3:r2",
+              "text": "He don't have to analyse every detail."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro3:r3",
+              "text": "He doesn't has to analyse every detail."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-43:intro3:r1",
+              "text": "He doesn't have to analyse every detail."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro3:r2",
+              "text": "He don't have to analyse every detail."
+            },
+            {
+              "responseId": "en:lesson-20:session-43:intro3:r3",
+              "text": "He doesn't has to analyse every detail."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "607c4fc72b23d0e110fe62f296d7e2bdf3b0217ea5c1dd92dcd8fb606544c2d0"
+}

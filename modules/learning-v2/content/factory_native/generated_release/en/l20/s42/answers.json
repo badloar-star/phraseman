@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-42:word:bring-along",
+    "correctText": "bring along",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i01",
+    "correctText": "I don't have to bring along any food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i02",
+    "correctText": "I don't have to bring along any food.",
+    "correctResponseId": "en:lesson-20:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i03",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:word:stay-behind",
+    "correctText": "stay behind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i04",
+    "correctText": "She doesn't have to stay behind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i05",
+    "correctText": "She doesn't have to stay behind.",
+    "correctResponseId": "en:lesson-20:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i06",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:word:stop-by",
+    "correctText": "stop by",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i07",
+    "correctText": "We don't have to stop by.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i08",
+    "correctText": "We don't have to stop by.",
+    "correctResponseId": "en:lesson-20:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i09",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:word:head-back",
+    "correctText": "head back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i10",
+    "correctText": "He doesn't have to head back yet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i11",
+    "correctText": "He doesn't have to head back yet.",
+    "correctResponseId": "en:lesson-20:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i12",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i13",
+    "correctText": "en:lesson-20:session-42:i13:p1=bring along\nen:lesson-20:session-42:i13:p2=stay behind\nen:lesson-20:session-42:i13:p3=stop by\nen:lesson-20:session-42:i13:p4=head back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i16",
+    "correctText": "I don't have to bring along any food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-42:i17",
+    "correctText": "He doesn't have to head back yet.",
+    "correctResponseId": null
+  }
+]

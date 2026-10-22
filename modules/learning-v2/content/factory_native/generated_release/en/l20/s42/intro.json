@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "don't / doesn't have to + base verb",
+    "uk": "don't / doesn't have to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Угощение готово",
+        "uk": "Частування готове"
+      },
+      "bodyByLocale": {
+        "ru": "Bring along — принести с собой. Хозяева уже приготовили угощение для всех гостей и сказали, что еду можно не приносить. Any food здесь — какая-либо еда. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Bring along — принести із собою. Господарі вже приготували частування для всіх гостей і сказали, що їжу можна не приносити. Any food тут — будь-яка їжа. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-42:intro1:r1",
+              "text": "I don't have to bring along any food."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro1:r2",
+              "text": "I doesn't have to bring along any food."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro1:r3",
+              "text": "I don't has to bring along any food."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-42:intro1:r1",
+              "text": "I don't have to bring along any food."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro1:r2",
+              "text": "I doesn't have to bring along any food."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro1:r3",
+              "text": "I don't has to bring along any food."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно уйти вместе со всеми",
+        "uk": "Можна піти разом з усіма"
+      },
+      "bodyByLocale": {
+        "ru": "Stay behind — задержаться, когда остальные уходят. После встречи уборку берёт на себя организатор, и знакомой не нужно оставаться помогать. Stop by — ненадолго зайти: сосед предлагает нам забрать книгу, но уже нашёл способ передать её через друга. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Stay behind — залишитися, коли решта йде. Після зустрічі прибирання бере на себе організатор, і знайомій не потрібно залишатися допомагати. Stop by — ненадовго зайти: сусід пропонує нам забрати книжку, але вже знайшов спосіб передати її через друга. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-42:intro2:r1",
+              "text": "She doesn't have to stay behind."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro2:r2",
+              "text": "She don't have to stay behind."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro2:r3",
+              "text": "She doesn't has to stay behind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-42:intro2:r1",
+              "text": "She doesn't have to stay behind."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro2:r2",
+              "text": "She don't have to stay behind."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro2:r3",
+              "text": "She doesn't has to stay behind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Возвращаться пока рано",
+        "uk": "Повертатися поки рано"
+      },
+      "bodyByLocale": {
+        "ru": "Head back — отправиться обратно. Друг думает, что пора возвращаться, но до его автобуса ещё много времени. Yet в конце отрицания здесь означает «пока»: отправляться обратно ещё не нужно. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Head back — вирушити назад. Друг думає, що час повертатися, але до його автобуса ще багато часу. Yet у кінці заперечення тут означає «поки»: вирушати назад ще не потрібно. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-42:intro3:r1",
+              "text": "He doesn't have to head back yet."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro3:r2",
+              "text": "He don't have to head back yet."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro3:r3",
+              "text": "He doesn't has to head back yet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-42:intro3:r1",
+              "text": "He doesn't have to head back yet."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro3:r2",
+              "text": "He don't have to head back yet."
+            },
+            {
+              "responseId": "en:lesson-20:session-42:intro3:r3",
+              "text": "He doesn't has to head back yet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "55705a1d2f224b9f6361e3f59b6ce8e7a1c9782f4610ca0d8a691791350a9d9f"
+}

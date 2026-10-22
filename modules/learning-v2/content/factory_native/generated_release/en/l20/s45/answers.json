@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-45:word:these-days",
+    "correctText": "these days",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i01",
+    "correctText": "I don't have to travel these days.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i02",
+    "correctText": "I don't have to travel these days.",
+    "correctResponseId": "en:lesson-20:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i03",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:word:anymore",
+    "correctText": "anymore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i04",
+    "correctText": "She doesn't have to wait anymore.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i05",
+    "correctText": "She doesn't have to wait anymore.",
+    "correctResponseId": "en:lesson-20:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i06",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:word:at-all",
+    "correctText": "at all",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i07",
+    "correctText": "We don't have to pay at all.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i08",
+    "correctText": "We don't have to pay at all.",
+    "correctResponseId": "en:lesson-20:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i09",
+    "correctText": "don't have to",
+    "correctResponseId": "en:lesson-20:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:word:anyway",
+    "correctText": "anyway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i10",
+    "correctText": "He doesn't have to work anyway.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i11",
+    "correctText": "He doesn't have to work anyway.",
+    "correctResponseId": "en:lesson-20:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i12",
+    "correctText": "doesn't have to",
+    "correctResponseId": "en:lesson-20:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i13",
+    "correctText": "en:lesson-20:session-45:i13:p1=these days\nen:lesson-20:session-45:i13:p2=anymore\nen:lesson-20:session-45:i13:p3=at all\nen:lesson-20:session-45:i13:p4=anyway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i15",
+    "correctText": "You should check the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i16",
+    "correctText": "I don't have to travel these days.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-45:i17",
+    "correctText": "He doesn't have to work anyway.",
+    "correctResponseId": null
+  }
+]

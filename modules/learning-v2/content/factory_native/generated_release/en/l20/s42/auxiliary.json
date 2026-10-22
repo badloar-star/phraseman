@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-42:intro1:r2": {
+          "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+          "uk": "Узгодьте don’t або doesn’t з підметом."
+        },
+        "en:lesson-20:session-42:intro1:r3": {
+          "ru": "После don’t и doesn’t нужна форма have, не has.",
+          "uk": "Після don’t і doesn’t потрібна форма have, не has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-42:intro2:r2": {
+          "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+          "uk": "Узгодьте don’t або doesn’t з підметом."
+        },
+        "en:lesson-20:session-42:intro2:r3": {
+          "ru": "После don’t и doesn’t нужна форма have, не has.",
+          "uk": "Після don’t і doesn’t потрібна форма have, не has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-42:intro3:r2": {
+          "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+          "uk": "Узгодьте don’t або doesn’t з підметом."
+        },
+        "en:lesson-20:session-42:intro3:r3": {
+          "ru": "После don’t и doesn’t нужна форма have, не has.",
+          "uk": "Після don’t і doesn’t потрібна форма have, не has."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d99075cff9346745db20f5209316a19c3f8315ee1e50d2273fbff668e4f20677"
+}

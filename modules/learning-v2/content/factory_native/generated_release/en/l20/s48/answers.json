@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-48:word:at-my-own-pace",
+    "correctText": "at my own pace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i01",
+    "correctText": "Could I work at my own pace?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i02",
+    "correctText": "Could I work at my own pace?",
+    "correctResponseId": "en:lesson-20:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:word:in-peace",
+    "correctText": "in peace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i04",
+    "correctText": "Could I read here in peace?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i05",
+    "correctText": "Could I read here in peace?",
+    "correctResponseId": "en:lesson-20:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:word:at-short-notice",
+    "correctText": "at short notice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i07",
+    "correctText": "Could I book at short notice?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i08",
+    "correctText": "Could I book at short notice?",
+    "correctResponseId": "en:lesson-20:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:word:by-appointment",
+    "correctText": "by appointment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i10",
+    "correctText": "Could I view the flat by appointment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i11",
+    "correctText": "Could I view the flat by appointment?",
+    "correctResponseId": "en:lesson-20:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i13",
+    "correctText": "en:lesson-20:session-48:i13:p1=at my own pace\nen:lesson-20:session-48:i13:p2=in peace\nen:lesson-20:session-48:i13:p3=at short notice\nen:lesson-20:session-48:i13:p4=by appointment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i16",
+    "correctText": "Could I work at my own pace?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-48:i17",
+    "correctText": "Could I read here in peace?",
+    "correctResponseId": null
+  }
+]

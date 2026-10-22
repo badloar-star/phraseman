@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "don't / doesn't have to + base verb",
+    "uk": "don't / doesn't have to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Без давления срока",
+        "uk": "Без тиску строку"
+      },
+      "bodyByLocale": {
+        "ru": "Under pressure — под давлением обстоятельств или ожиданий других. Организатор разрешил вам спокойно закончить общее задание завтра, поэтому сегодня нет необходимости работать под давлением срока. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Under pressure — під тиском обставин або очікувань інших. Організатор дозволив вам спокійно закінчити спільне завдання завтра, тому сьогодні немає потреби працювати під тиском строку. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-47:intro1:r1",
+              "text": "I don't have to work under pressure."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro1:r2",
+              "text": "I doesn't have to work under pressure."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro1:r3",
+              "text": "I don't has to work under pressure."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-47:intro1:r1",
+              "text": "I don't have to work under pressure."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro1:r2",
+              "text": "I doesn't have to work under pressure."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro1:r3",
+              "text": "I don't has to work under pressure."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно спокойно поесть",
+        "uk": "Можна спокійно поїсти"
+      },
+      "bodyByLocale": {
+        "ru": "In a rush — в спешке. До встречи ещё час, и знакомая может спокойно поесть. Without help — без помощи: друзья уже предложили помочь вам перенести вещи. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "In a rush — поспіхом. До зустрічі ще година, і знайома може спокійно поїсти. Without help — без допомоги: друзі вже запропонували допомогти вам перенести речі. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-47:intro2:r1",
+              "text": "She doesn't have to eat in a rush."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro2:r2",
+              "text": "She don't have to eat in a rush."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro2:r3",
+              "text": "She doesn't has to eat in a rush."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-47:intro2:r1",
+              "text": "She doesn't have to eat in a rush."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro2:r2",
+              "text": "She don't have to eat in a rush."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro2:r3",
+              "text": "She doesn't has to eat in a rush."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Часть оставить на завтра",
+        "uk": "Частину залишити на завтра"
+      },
+      "bodyByLocale": {
+        "ru": "All at once — всё сразу. Друг хочет разобрать все коробки за один вечер, но часть можно оставить на завтра. It обозначает всю работу по разбору вещей. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "All at once — усе одразу. Друг хоче розібрати всі коробки за один вечір, але частину можна залишити на завтра. It позначає всю роботу з розбирання речей. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-47:intro3:r1",
+              "text": "He doesn't have to do it all at once."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro3:r2",
+              "text": "He don't have to do it all at once."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro3:r3",
+              "text": "He doesn't has to do it all at once."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-47:intro3:r1",
+              "text": "He doesn't have to do it all at once."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro3:r2",
+              "text": "He don't have to do it all at once."
+            },
+            {
+              "responseId": "en:lesson-20:session-47:intro3:r3",
+              "text": "He doesn't has to do it all at once."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a346b4c2c08b99941bdc45a7c5aa575a6bb4d8ff06544d75c49f695ef3b1e367"
+}

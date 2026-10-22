@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-48",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-48:word:at-my-own-pace",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — at my own pace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:at-my-own-pace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — at my own pace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:at-my-own-pace:audio",
+            "transcript": "at my own pace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:at-my-own-pace:r1",
+              "targetText": "at my own pace",
+              "meaningByLocale": {
+                "ru": "в своём темпе.",
+                "uk": "у власному темпі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "at my own pace",
+            "definitionByLocale": {
+              "ru": "в своём темпе.",
+              "uk": "у власному темпі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне работать в своём темпе?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне работать в своём темпе?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I work at my own pace?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне работать в своём темпе?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені працювати у власному темпі?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "work",
+            "at",
+            "my",
+            "own",
+            "pace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i02:r1",
+            "text": "Could I work at my own pace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i02:r2",
+            "text": "Can I work at my own pace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i02:r3",
+            "text": "Could we work at our own pace?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i02:audio",
+            "transcript": "Could I work at my own pace?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i02:r1",
+              "targetText": "Could I work at my own pace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i02:r2",
+              "targetText": "Can I work at my own pace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i02:r3",
+              "targetText": "Could we work at our own pace?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work at my own pace?",
+                "uk": "У записі звучить Could I work at my own pace?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work at my own pace?",
+                "uk": "У записі звучить Could I work at my own pace?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ work at my own pace?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i03:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i03:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i03:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:word:in-peace",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — in peace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:in-peace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — in peace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:in-peace:audio",
+            "transcript": "in peace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:in-peace:r1",
+              "targetText": "in peace",
+              "meaningByLocale": {
+                "ru": "в покое, спокойно.",
+                "uk": "у спокої, спокійно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in peace",
+            "definitionByLocale": {
+              "ru": "в покое, спокойно.",
+              "uk": "у спокої, спокійно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне здесь спокойно почитать?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне здесь спокойно почитать?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I read here in peace?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне здесь спокойно почитать?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені тут спокійно почитати?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "read",
+            "here",
+            "in",
+            "peace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i05:r1",
+            "text": "Could I read here in peace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i05:r2",
+            "text": "Can I read here in peace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i05:r3",
+            "text": "Could we read here in peace?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i05:audio",
+            "transcript": "Could I read here in peace?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i05:r1",
+              "targetText": "Could I read here in peace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i05:r2",
+              "targetText": "Can I read here in peace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i05:r3",
+              "targetText": "Could we read here in peace?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I read here in peace?",
+                "uk": "У записі звучить Could I read here in peace?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I read here in peace?",
+                "uk": "У записі звучить Could I read here in peace?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ read here in peace?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i06:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i06:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i06:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:word:at-short-notice",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — at short notice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:at-short-notice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — at short notice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:at-short-notice:audio",
+            "transcript": "at short notice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:at-short-notice:r1",
+              "targetText": "at short notice",
+              "meaningByLocale": {
+                "ru": "с небольшим запасом времени, незадолго.",
+                "uk": "незадовго, з малим запасом часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "at short notice",
+            "definitionByLocale": {
+              "ru": "с небольшим запасом времени, незадолго.",
+              "uk": "незадовго, з малим запасом часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне забронировать незадолго до события?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне забронировать незадолго до события?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I book at short notice?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне забронировать незадолго до события?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені забронювати незадовго до події?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "book",
+            "at",
+            "short",
+            "notice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i08:r1",
+            "text": "Could I book at short notice?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i08:r2",
+            "text": "Can I book at short notice?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i08:r3",
+            "text": "Could we book at short notice?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i08:audio",
+            "transcript": "Could I book at short notice?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i08:r1",
+              "targetText": "Could I book at short notice?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i08:r2",
+              "targetText": "Can I book at short notice?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i08:r3",
+              "targetText": "Could we book at short notice?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I book at short notice?",
+                "uk": "У записі звучить Could I book at short notice?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I book at short notice?",
+                "uk": "У записі звучить Could I book at short notice?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ book at short notice?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i09:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i09:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i09:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:word:by-appointment",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — by appointment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:by-appointment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — by appointment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:by-appointment:audio",
+            "transcript": "by appointment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:by-appointment:r1",
+              "targetText": "by appointment",
+              "meaningByLocale": {
+                "ru": "по предварительной договорённости.",
+                "uk": "за попередньою домовленістю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by appointment",
+            "definitionByLocale": {
+              "ru": "по предварительной договорённости.",
+              "uk": "за попередньою домовленістю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с Could I: «Можно мне посмотреть квартиру по предварительной договорённости?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с Could I: «Можно мне посмотреть квартиру по предварительной договорённости?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I view the flat by appointment?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне посмотреть квартиру по предварительной договорённости?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені подивитися квартиру за попередньою домовленістю?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "view",
+            "the",
+            "flat",
+            "by",
+            "appointment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i11:r1",
+            "text": "Could I view the flat by appointment?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i11:r2",
+            "text": "Can I view the flat by appointment?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i11:r3",
+            "text": "Could we view the flat by appointment?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i11:audio",
+            "transcript": "Could I view the flat by appointment?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i11:r1",
+              "targetText": "Could I view the flat by appointment?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i11:r2",
+              "targetText": "Can I view the flat by appointment?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i11:r3",
+              "targetText": "Could we view the flat by appointment?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I view the flat by appointment?",
+                "uk": "У записі звучить Could I view the flat by appointment?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I view the flat by appointment?",
+                "uk": "У записі звучить Could I view the flat by appointment?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ view the flat by appointment?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i12:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i12:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i12:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-48:i13:p1",
+              "target": "at my own pace",
+              "meaningByLocale": {
+                "ru": "в своём темпе",
+                "uk": "у власному темпі"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-48:i13:p2",
+              "target": "in peace",
+              "meaningByLocale": {
+                "ru": "в покое, спокойно",
+                "uk": "у спокої, спокійно"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-48:i13:p3",
+              "target": "at short notice",
+              "meaningByLocale": {
+                "ru": "с небольшим запасом времени, незадолго",
+                "uk": "незадовго, з малим запасом часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-48:i13:p4",
+              "target": "by appointment",
+              "meaningByLocale": {
+                "ru": "по предварительной договорённости",
+                "uk": "за попередньою домовленістю"
+              }
+            }
+          ],
+          "leftColumn": [
+            "at my own pace",
+            "in peace",
+            "at short notice",
+            "by appointment"
+          ],
+          "rightColumn": [
+            "в своём темпе",
+            "в покое, спокойно",
+            "с небольшим запасом времени, незадолго",
+            "по предварительной договорённости"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанная будущая возможность",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанная будущая возможность",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i14:audio",
+            "transcript": "I will be able to explain this."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will be able to explain this.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "be",
+            "able",
+            "to",
+            "explain",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное разрешение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное разрешение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите работать в своём темпе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Попросите работать в своём темпе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i16:audio",
+            "transcript": "Could I work at my own pace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I work at my own pace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, можно ли здесь спокойно почитать",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, можно ли здесь спокойно почитать",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i17:audio",
+            "transcript": "Could I read here in peace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I read here in peace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-48:word:at-my-own-pace",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — at my own pace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:at-my-own-pace:audio"
+        ],
+        "accessibilityLabel": "Картка слова — at my own pace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:at-my-own-pace:audio",
+            "transcript": "at my own pace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:at-my-own-pace:r1",
+              "targetText": "at my own pace",
+              "meaningByLocale": {
+                "ru": "в своём темпе.",
+                "uk": "у власному темпі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "at my own pace",
+            "definitionByLocale": {
+              "ru": "в своём темпе.",
+              "uk": "у власному темпі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені працювати у власному темпі?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені працювати у власному темпі?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I work at my own pace?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне работать в своём темпе?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені працювати у власному темпі?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "work",
+            "at",
+            "my",
+            "own",
+            "pace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i02:r1",
+            "text": "Could I work at my own pace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i02:r2",
+            "text": "Can I work at my own pace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i02:r3",
+            "text": "Could we work at our own pace?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i02:audio",
+            "transcript": "Could I work at my own pace?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i02:r1",
+              "targetText": "Could I work at my own pace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i02:r2",
+              "targetText": "Can I work at my own pace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i02:r3",
+              "targetText": "Could we work at our own pace?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work at my own pace?",
+                "uk": "У записі звучить Could I work at my own pace?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I work at my own pace?",
+                "uk": "У записі звучить Could I work at my own pace?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i03:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i03:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i03:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ work at my own pace?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i03:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i03:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i03:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:word:in-peace",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — in peace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:in-peace:audio"
+        ],
+        "accessibilityLabel": "Картка слова — in peace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:in-peace:audio",
+            "transcript": "in peace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:in-peace:r1",
+              "targetText": "in peace",
+              "meaningByLocale": {
+                "ru": "в покое, спокойно.",
+                "uk": "у спокої, спокійно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in peace",
+            "definitionByLocale": {
+              "ru": "в покое, спокойно.",
+              "uk": "у спокої, спокійно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені тут спокійно почитати?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені тут спокійно почитати?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I read here in peace?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне здесь спокойно почитать?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені тут спокійно почитати?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "read",
+            "here",
+            "in",
+            "peace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i05:r1",
+            "text": "Could I read here in peace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i05:r2",
+            "text": "Can I read here in peace?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i05:r3",
+            "text": "Could we read here in peace?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i05:audio",
+            "transcript": "Could I read here in peace?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i05:r1",
+              "targetText": "Could I read here in peace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i05:r2",
+              "targetText": "Can I read here in peace?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i05:r3",
+              "targetText": "Could we read here in peace?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I read here in peace?",
+                "uk": "У записі звучить Could I read here in peace?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I read here in peace?",
+                "uk": "У записі звучить Could I read here in peace?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i06:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i06:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i06:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ read here in peace?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i06:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i06:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i06:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:word:at-short-notice",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — at short notice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:at-short-notice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — at short notice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:at-short-notice:audio",
+            "transcript": "at short notice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:at-short-notice:r1",
+              "targetText": "at short notice",
+              "meaningByLocale": {
+                "ru": "с небольшим запасом времени, незадолго.",
+                "uk": "незадовго, з малим запасом часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "at short notice",
+            "definitionByLocale": {
+              "ru": "с небольшим запасом времени, незадолго.",
+              "uk": "незадовго, з малим запасом часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені забронювати незадовго до події?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені забронювати незадовго до події?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I book at short notice?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне забронировать незадолго до события?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені забронювати незадовго до події?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "book",
+            "at",
+            "short",
+            "notice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i08:r1",
+            "text": "Could I book at short notice?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i08:r2",
+            "text": "Can I book at short notice?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i08:r3",
+            "text": "Could we book at short notice?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i08:audio",
+            "transcript": "Could I book at short notice?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i08:r1",
+              "targetText": "Could I book at short notice?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i08:r2",
+              "targetText": "Can I book at short notice?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i08:r3",
+              "targetText": "Could we book at short notice?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I book at short notice?",
+                "uk": "У записі звучить Could I book at short notice?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I book at short notice?",
+                "uk": "У записі звучить Could I book at short notice?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i09:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i09:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i09:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ book at short notice?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i09:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i09:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i09:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:word:by-appointment",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — by appointment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:word:by-appointment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — by appointment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:word:by-appointment:audio",
+            "transcript": "by appointment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:word:by-appointment:r1",
+              "targetText": "by appointment",
+              "meaningByLocale": {
+                "ru": "по предварительной договорённости.",
+                "uk": "за попередньою домовленістю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "by appointment",
+            "definitionByLocale": {
+              "ru": "по предварительной договорённости.",
+              "uk": "за попередньою домовленістю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з Could I: «Можна мені подивитися квартиру за попередньою домовленістю?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з Could I: «Можна мені подивитися квартиру за попередньою домовленістю?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I view the flat by appointment?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с Could I: «Можно мне посмотреть квартиру по предварительной договорённости?»",
+            "uk": "Ввічливо запитайте з Could I: «Можна мені подивитися квартиру за попередньою домовленістю?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "view",
+            "the",
+            "flat",
+            "by",
+            "appointment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i11:r1",
+            "text": "Could I view the flat by appointment?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i11:r2",
+            "text": "Can I view the flat by appointment?"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i11:r3",
+            "text": "Could we view the flat by appointment?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i11:audio",
+            "transcript": "Could I view the flat by appointment?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-48:i11:r1",
+              "targetText": "Could I view the flat by appointment?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i11:r2",
+              "targetText": "Can I view the flat by appointment?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i11:r3",
+              "targetText": "Could we view the flat by appointment?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I view the flat by appointment?",
+                "uk": "У записі звучить Could I view the flat by appointment?"
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I view the flat by appointment?",
+                "uk": "У записі звучить Could I view the flat by appointment?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-48:i12:r1",
+            "text": "Could I"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i12:r2",
+            "text": "I could"
+          },
+          {
+            "responseId": "en:lesson-20:session-48:i12:r3",
+            "text": "Could I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ view the flat by appointment?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-48:i12:r1",
+              "text": "Could I"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i12:r2",
+              "text": "I could"
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i12:r3",
+              "text": "Could I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе Could стоит перед I.",
+                "uk": "У питанні Could стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После Could I не нужно to.",
+                "uk": "Після Could I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-48:i13:p1",
+              "target": "at my own pace",
+              "meaningByLocale": {
+                "ru": "в своём темпе",
+                "uk": "у власному темпі"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-48:i13:p2",
+              "target": "in peace",
+              "meaningByLocale": {
+                "ru": "в покое, спокойно",
+                "uk": "у спокої, спокійно"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-48:i13:p3",
+              "target": "at short notice",
+              "meaningByLocale": {
+                "ru": "с небольшим запасом времени, незадолго",
+                "uk": "незадовго, з малим запасом часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-48:i13:p4",
+              "target": "by appointment",
+              "meaningByLocale": {
+                "ru": "по предварительной договорённости",
+                "uk": "за попередньою домовленістю"
+              }
+            }
+          ],
+          "leftColumn": [
+            "at my own pace",
+            "in peace",
+            "at short notice",
+            "by appointment"
+          ],
+          "rightColumn": [
+            "у власному темпі",
+            "у спокої, спокійно",
+            "незадовго, з малим запасом часу",
+            "за попередньою домовленістю"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почута майбутня можливість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почута майбутня можливість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i14:audio",
+            "transcript": "I will be able to explain this."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will be able to explain this.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "be",
+            "able",
+            "to",
+            "explain",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий дозвіл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий дозвіл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i15:audio",
+            "transcript": "May I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "May I ask a question?",
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть працювати у власному темпі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Попросіть працювати у власному темпі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i16:audio",
+            "transcript": "Could I work at my own pace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I work at my own pace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи можна тут спокійно почитати",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи можна тут спокійно почитати",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-48:i17:audio",
+            "transcript": "Could I read here in peace?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I read here in peace?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-48:word:at-my-own-pace",
+      "correctText": "at my own pace",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i01",
+      "correctText": "Could I work at my own pace?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i02",
+      "correctText": "Could I work at my own pace?",
+      "correctResponseId": "en:lesson-20:session-48:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i03",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-48:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:word:in-peace",
+      "correctText": "in peace",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i04",
+      "correctText": "Could I read here in peace?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i05",
+      "correctText": "Could I read here in peace?",
+      "correctResponseId": "en:lesson-20:session-48:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i06",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-48:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:word:at-short-notice",
+      "correctText": "at short notice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i07",
+      "correctText": "Could I book at short notice?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i08",
+      "correctText": "Could I book at short notice?",
+      "correctResponseId": "en:lesson-20:session-48:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i09",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-48:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:word:by-appointment",
+      "correctText": "by appointment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i10",
+      "correctText": "Could I view the flat by appointment?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i11",
+      "correctText": "Could I view the flat by appointment?",
+      "correctResponseId": "en:lesson-20:session-48:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i12",
+      "correctText": "Could I",
+      "correctResponseId": "en:lesson-20:session-48:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i14",
+      "correctText": "I will be able to explain this.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i15",
+      "correctText": "May I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i16",
+      "correctText": "Could I work at my own pace?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-48:i17",
+      "correctText": "Could I read here in peace?",
+      "correctResponseId": null
+    }
+  ]
+}

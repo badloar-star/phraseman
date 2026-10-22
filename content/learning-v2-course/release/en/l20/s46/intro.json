@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Оплата после приезда",
+        "uk": "Оплата після приїзду"
+      },
+      "bodyByLocale": {
+        "ru": "On arrival — по прибытии. Вы бронируете комнату и уточняете, можно ли заплатить, когда приедете. Это вопрос об условиях конкретного места, а не утверждение, что так можно везде. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "On arrival — після прибуття. Ви бронюєте кімнату й уточнюєте, чи можна заплатити, коли приїдете. Це запитання про умови конкретного місця, а не твердження, що так можна всюди. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-46:intro1:r1",
+              "text": "Could I pay on arrival?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro1:r2",
+              "text": "Could I to pay on arrival?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro1:r3",
+              "text": "I could pay on arrival?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-46:intro1:r1",
+              "text": "Could I pay on arrival?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro1:r2",
+              "text": "Could I to pay on arrival?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro1:r3",
+              "text": "I could pay on arrival?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ключ при отъезде",
+        "uk": "Ключ під час відʼїзду"
+      },
+      "bodyByLocale": {
+        "ru": "On departure — при отъезде. В день выезда вы хотите оставить ключ у себя до самого отъезда и спрашиваете разрешения. Arrival — прибытие, departure — отъезд; здесь учим целые выражения с on. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "On departure — під час відʼїзду. У день виїзду ви хочете залишити ключ у себе до самого відʼїзду й питаєте дозволу. Arrival — прибуття, departure — відʼїзд; тут вивчаємо цілі вирази з on. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-46:intro2:r1",
+              "text": "Could I return the key on departure?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro2:r2",
+              "text": "Could I to return the key on departure?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro2:r3",
+              "text": "I could return the key on departure?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-46:intro2:r1",
+              "text": "Could I return the key on departure?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro2:r2",
+              "text": "Could I to return the key on departure?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro2:r3",
+              "text": "I could return the key on departure?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оформить на месте",
+        "uk": "Оформити на місці"
+      },
+      "bodyByLocale": {
+        "ru": "In instalments — частями, несколькими платежами. Вы спрашиваете в магазине о таком способе оплаты; выражение само по себе не говорит, есть ли проценты. Американское написание — installments. On the spot — на месте, сразу: вы подошли к стойке экскурсий и хотите оформить бронирование там. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
+        "uk": "In instalments — частинами, кількома платежами. Ви питаєте в магазині про такий спосіб оплати; сам вираз не говорить, чи є відсотки. Американське написання — installments. On the spot — на місці, одразу: ви підійшли до стійки екскурсій і хочете оформити бронювання там. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-46:intro3:r1",
+              "text": "Could I book on the spot?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro3:r2",
+              "text": "Could I to book on the spot?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro3:r3",
+              "text": "I could book on the spot?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-46:intro3:r1",
+              "text": "Could I book on the spot?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro3:r2",
+              "text": "Could I to book on the spot?"
+            },
+            {
+              "responseId": "en:lesson-20:session-46:intro3:r3",
+              "text": "I could book on the spot?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9b5e9ba86adec14174c5efdbb7075afbd7fbc66b6071baf1bd71f65e3fc8331e"
+}

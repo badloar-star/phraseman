@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-47",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-47:word:under-pressure",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — under pressure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:under-pressure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — under pressure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:under-pressure:audio",
+            "transcript": "under pressure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:under-pressure:r1",
+              "targetText": "under pressure",
+              "meaningByLocale": {
+                "ru": "под давлением.",
+                "uk": "під тиском."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "under pressure",
+            "definitionByLocale": {
+              "ru": "под давлением.",
+              "uk": "під тиском."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Мне необязательно работать под давлением».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Мне необязательно работать под давлением».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't have to work under pressure.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Мне необязательно работать под давлением».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково працювати під тиском»."
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "have",
+            "to",
+            "work",
+            "under",
+            "pressure"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i02:r1",
+            "text": "I don't have to work under pressure."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i02:r2",
+            "text": "I have to work under pressure."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i02:r3",
+            "text": "I should work under pressure."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i02:audio",
+            "transcript": "I don't have to work under pressure."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i02:r1",
+              "targetText": "I don't have to work under pressure.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i02:r2",
+              "targetText": "I have to work under pressure.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i02:r3",
+              "targetText": "I should work under pressure.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to work under pressure.",
+                "uk": "У записі звучить I don't have to work under pressure."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to work under pressure.",
+                "uk": "У записі звучить I don't have to work under pressure."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i03:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i03:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i03:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "I ___ work under pressure.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i03:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i03:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i03:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:word:in-a-rush",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — in a rush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:in-a-rush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — in a rush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:in-a-rush:audio",
+            "transcript": "in a rush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:in-a-rush:r1",
+              "targetText": "in a rush",
+              "meaningByLocale": {
+                "ru": "в спешке.",
+                "uk": "поспіхом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in a rush",
+            "definitionByLocale": {
+              "ru": "в спешке.",
+              "uk": "поспіхом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Ей необязательно есть в спешке».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Ей необязательно есть в спешке».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She doesn't have to eat in a rush.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ей необязательно есть в спешке».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково їсти поспіхом»."
+          },
+          "orderedTokens": [
+            "She",
+            "doesn't",
+            "have",
+            "to",
+            "eat",
+            "in",
+            "a",
+            "rush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i05:r1",
+            "text": "She doesn't have to eat in a rush."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i05:r2",
+            "text": "She has to eat in a rush."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i05:r3",
+            "text": "She should eat in a rush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i05:audio",
+            "transcript": "She doesn't have to eat in a rush."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i05:r1",
+              "targetText": "She doesn't have to eat in a rush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i05:r2",
+              "targetText": "She has to eat in a rush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i05:r3",
+              "targetText": "She should eat in a rush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to eat in a rush.",
+                "uk": "У записі звучить She doesn't have to eat in a rush."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to eat in a rush.",
+                "uk": "У записі звучить She doesn't have to eat in a rush."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i06:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i06:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i06:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "She ___ eat in a rush.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i06:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i06:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i06:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:word:without-help",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — without help",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:without-help:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — without help",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:without-help:audio",
+            "transcript": "without help"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:without-help:r1",
+              "targetText": "without help",
+              "meaningByLocale": {
+                "ru": "без помощи.",
+                "uk": "без допомоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "without help",
+            "definitionByLocale": {
+              "ru": "без помощи.",
+              "uk": "без допомоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Нам необязательно справляться самим».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Нам необязательно справляться самим».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have to do this without help.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Нам необязательно справляться самим».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково давати раду самим»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "to",
+            "do",
+            "this",
+            "without",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i08:r1",
+            "text": "We don't have to do this without help."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i08:r2",
+            "text": "We have to do this without help."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i08:r3",
+            "text": "We should do this without help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i08:audio",
+            "transcript": "We don't have to do this without help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i08:r1",
+              "targetText": "We don't have to do this without help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i08:r2",
+              "targetText": "We have to do this without help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i08:r3",
+              "targetText": "We should do this without help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to do this without help.",
+                "uk": "У записі звучить We don't have to do this without help."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to do this without help.",
+                "uk": "У записі звучить We don't have to do this without help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i09:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i09:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i09:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "We ___ do this without help.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i09:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i09:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i09:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:word:all-at-once",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — all at once",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:all-at-once:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — all at once",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:all-at-once:audio",
+            "transcript": "all at once"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:all-at-once:r1",
+              "targetText": "all at once",
+              "meaningByLocale": {
+                "ru": "всё сразу.",
+                "uk": "усе одразу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "all at once",
+            "definitionByLocale": {
+              "ru": "всё сразу.",
+              "uk": "усе одразу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Ему необязательно делать всё сразу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Ему необязательно делать всё сразу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He doesn't have to do it all at once.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ему необязательно делать всё сразу».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково робити все одразу»."
+          },
+          "orderedTokens": [
+            "He",
+            "doesn't",
+            "have",
+            "to",
+            "do",
+            "it",
+            "all",
+            "at",
+            "once"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i11:r1",
+            "text": "He doesn't have to do it all at once."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i11:r2",
+            "text": "He has to do it all at once."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i11:r3",
+            "text": "He should do it all at once."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i11:audio",
+            "transcript": "He doesn't have to do it all at once."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i11:r1",
+              "targetText": "He doesn't have to do it all at once.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i11:r2",
+              "targetText": "He has to do it all at once.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i11:r3",
+              "targetText": "He should do it all at once.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to do it all at once.",
+                "uk": "У записі звучить He doesn't have to do it all at once."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to do it all at once.",
+                "uk": "У записі звучить He doesn't have to do it all at once."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i12:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i12:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i12:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "He ___ do it all at once.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i12:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i12:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i12:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-47:i13:p1",
+              "target": "under pressure",
+              "meaningByLocale": {
+                "ru": "под давлением",
+                "uk": "під тиском"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-47:i13:p2",
+              "target": "in a rush",
+              "meaningByLocale": {
+                "ru": "в спешке",
+                "uk": "поспіхом"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-47:i13:p3",
+              "target": "without help",
+              "meaningByLocale": {
+                "ru": "без помощи",
+                "uk": "без допомоги"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-47:i13:p4",
+              "target": "all at once",
+              "meaningByLocale": {
+                "ru": "всё сразу",
+                "uk": "усе одразу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "under pressure",
+            "in a rush",
+            "without help",
+            "all at once"
+          ],
+          "rightColumn": [
+            "под давлением",
+            "в спешке",
+            "без помощи",
+            "всё сразу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: вежливый вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: вежливый вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: совет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: совет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i15:audio",
+            "transcript": "You should check the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You should check the address.",
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам необязательно работать под давлением",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам необязательно работать под давлением",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i16:audio",
+            "transcript": "I don't have to work under pressure."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't have to work under pressure.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что ему необязательно делать всё сразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что ему необязательно делать всё сразу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i17:audio",
+            "transcript": "He doesn't have to do it all at once."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't have to do it all at once.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-47:word:under-pressure",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — under pressure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:under-pressure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — under pressure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:under-pressure:audio",
+            "transcript": "under pressure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:under-pressure:r1",
+              "targetText": "under pressure",
+              "meaningByLocale": {
+                "ru": "под давлением.",
+                "uk": "під тиском."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "under pressure",
+            "definitionByLocale": {
+              "ru": "под давлением.",
+              "uk": "під тиском."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково працювати під тиском».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково працювати під тиском».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't have to work under pressure.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Мне необязательно работать под давлением».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково працювати під тиском»."
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "have",
+            "to",
+            "work",
+            "under",
+            "pressure"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i02:r1",
+            "text": "I don't have to work under pressure."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i02:r2",
+            "text": "I have to work under pressure."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i02:r3",
+            "text": "I should work under pressure."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i02:audio",
+            "transcript": "I don't have to work under pressure."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i02:r1",
+              "targetText": "I don't have to work under pressure.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i02:r2",
+              "targetText": "I have to work under pressure.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i02:r3",
+              "targetText": "I should work under pressure.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to work under pressure.",
+                "uk": "У записі звучить I don't have to work under pressure."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to work under pressure.",
+                "uk": "У записі звучить I don't have to work under pressure."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i03:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i03:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i03:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "I ___ work under pressure.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i03:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i03:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i03:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:word:in-a-rush",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — in a rush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:in-a-rush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — in a rush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:in-a-rush:audio",
+            "transcript": "in a rush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:in-a-rush:r1",
+              "targetText": "in a rush",
+              "meaningByLocale": {
+                "ru": "в спешке.",
+                "uk": "поспіхом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "in a rush",
+            "definitionByLocale": {
+              "ru": "в спешке.",
+              "uk": "поспіхом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково їсти поспіхом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково їсти поспіхом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She doesn't have to eat in a rush.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ей необязательно есть в спешке».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково їсти поспіхом»."
+          },
+          "orderedTokens": [
+            "She",
+            "doesn't",
+            "have",
+            "to",
+            "eat",
+            "in",
+            "a",
+            "rush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i05:r1",
+            "text": "She doesn't have to eat in a rush."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i05:r2",
+            "text": "She has to eat in a rush."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i05:r3",
+            "text": "She should eat in a rush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i05:audio",
+            "transcript": "She doesn't have to eat in a rush."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i05:r1",
+              "targetText": "She doesn't have to eat in a rush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i05:r2",
+              "targetText": "She has to eat in a rush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i05:r3",
+              "targetText": "She should eat in a rush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to eat in a rush.",
+                "uk": "У записі звучить She doesn't have to eat in a rush."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to eat in a rush.",
+                "uk": "У записі звучить She doesn't have to eat in a rush."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i06:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i06:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i06:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "She ___ eat in a rush.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i06:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i06:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i06:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:word:without-help",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — without help",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:without-help:audio"
+        ],
+        "accessibilityLabel": "Картка слова — without help",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:without-help:audio",
+            "transcript": "without help"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:without-help:r1",
+              "targetText": "without help",
+              "meaningByLocale": {
+                "ru": "без помощи.",
+                "uk": "без допомоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "without help",
+            "definitionByLocale": {
+              "ru": "без помощи.",
+              "uk": "без допомоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково давати раду самим».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково давати раду самим».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have to do this without help.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Нам необязательно справляться самим».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково давати раду самим»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "to",
+            "do",
+            "this",
+            "without",
+            "help"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i08:r1",
+            "text": "We don't have to do this without help."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i08:r2",
+            "text": "We have to do this without help."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i08:r3",
+            "text": "We should do this without help."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i08:audio",
+            "transcript": "We don't have to do this without help."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i08:r1",
+              "targetText": "We don't have to do this without help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i08:r2",
+              "targetText": "We have to do this without help.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i08:r3",
+              "targetText": "We should do this without help.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to do this without help.",
+                "uk": "У записі звучить We don't have to do this without help."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to do this without help.",
+                "uk": "У записі звучить We don't have to do this without help."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i09:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i09:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i09:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "We ___ do this without help.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i09:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i09:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i09:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:word:all-at-once",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — all at once",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:word:all-at-once:audio"
+        ],
+        "accessibilityLabel": "Картка слова — all at once",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:word:all-at-once:audio",
+            "transcript": "all at once"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:word:all-at-once:r1",
+              "targetText": "all at once",
+              "meaningByLocale": {
+                "ru": "всё сразу.",
+                "uk": "усе одразу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "all at once",
+            "definitionByLocale": {
+              "ru": "всё сразу.",
+              "uk": "усе одразу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково робити все одразу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково робити все одразу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He doesn't have to do it all at once.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ему необязательно делать всё сразу».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково робити все одразу»."
+          },
+          "orderedTokens": [
+            "He",
+            "doesn't",
+            "have",
+            "to",
+            "do",
+            "it",
+            "all",
+            "at",
+            "once"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i11:r1",
+            "text": "He doesn't have to do it all at once."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i11:r2",
+            "text": "He has to do it all at once."
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i11:r3",
+            "text": "He should do it all at once."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i11:audio",
+            "transcript": "He doesn't have to do it all at once."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-47:i11:r1",
+              "targetText": "He doesn't have to do it all at once.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i11:r2",
+              "targetText": "He has to do it all at once.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i11:r3",
+              "targetText": "He should do it all at once.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to do it all at once.",
+                "uk": "У записі звучить He doesn't have to do it all at once."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to do it all at once.",
+                "uk": "У записі звучить He doesn't have to do it all at once."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-47:i12:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i12:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-47:i12:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "He ___ do it all at once.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-47:i12:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i12:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i12:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-47:i13:p1",
+              "target": "under pressure",
+              "meaningByLocale": {
+                "ru": "под давлением",
+                "uk": "під тиском"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-47:i13:p2",
+              "target": "in a rush",
+              "meaningByLocale": {
+                "ru": "в спешке",
+                "uk": "поспіхом"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-47:i13:p3",
+              "target": "without help",
+              "meaningByLocale": {
+                "ru": "без помощи",
+                "uk": "без допомоги"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-47:i13:p4",
+              "target": "all at once",
+              "meaningByLocale": {
+                "ru": "всё сразу",
+                "uk": "усе одразу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "under pressure",
+            "in a rush",
+            "without help",
+            "all at once"
+          ],
+          "rightColumn": [
+            "під тиском",
+            "поспіхом",
+            "без допомоги",
+            "усе одразу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: ввічливе питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: ввічливе питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: порада",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: порада",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i15:audio",
+            "transcript": "You should check the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You should check the address.",
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам необовʼязково працювати під тиском",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам необовʼязково працювати під тиском",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i16:audio",
+            "transcript": "I don't have to work under pressure."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't have to work under pressure.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що йому необовʼязково робити все одразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що йому необовʼязково робити все одразу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-47:i17:audio",
+            "transcript": "He doesn't have to do it all at once."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't have to do it all at once.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-47:word:under-pressure",
+      "correctText": "under pressure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i01",
+      "correctText": "I don't have to work under pressure.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i02",
+      "correctText": "I don't have to work under pressure.",
+      "correctResponseId": "en:lesson-20:session-47:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i03",
+      "correctText": "don't have to",
+      "correctResponseId": "en:lesson-20:session-47:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:word:in-a-rush",
+      "correctText": "in a rush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i04",
+      "correctText": "She doesn't have to eat in a rush.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i05",
+      "correctText": "She doesn't have to eat in a rush.",
+      "correctResponseId": "en:lesson-20:session-47:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i06",
+      "correctText": "doesn't have to",
+      "correctResponseId": "en:lesson-20:session-47:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:word:without-help",
+      "correctText": "without help",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i07",
+      "correctText": "We don't have to do this without help.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i08",
+      "correctText": "We don't have to do this without help.",
+      "correctResponseId": "en:lesson-20:session-47:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i09",
+      "correctText": "don't have to",
+      "correctResponseId": "en:lesson-20:session-47:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:word:all-at-once",
+      "correctText": "all at once",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i10",
+      "correctText": "He doesn't have to do it all at once.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i11",
+      "correctText": "He doesn't have to do it all at once.",
+      "correctResponseId": "en:lesson-20:session-47:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i12",
+      "correctText": "doesn't have to",
+      "correctResponseId": "en:lesson-20:session-47:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i15",
+      "correctText": "You should check the address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i16",
+      "correctText": "I don't have to work under pressure.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-47:i17",
+      "correctText": "He doesn't have to do it all at once.",
+      "correctResponseId": null
+    }
+  ]
+}

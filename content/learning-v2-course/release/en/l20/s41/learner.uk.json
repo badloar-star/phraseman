@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-41:word:supplies",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — supplies",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:word:supplies:audio"
+      ],
+      "accessibilityLabel": "Картка слова — supplies",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:word:supplies:audio",
+          "transcript": "supplies"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:word:supplies:r1",
+            "targetText": "supplies",
+            "meaningByLocale": {
+              "ru": "необходимые материалы, принадлежности.",
+              "uk": "необхідні матеріали, приладдя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "supplies",
+          "definitionByLocale": {
+            "ru": "необходимые материалы, принадлежности.",
+            "uk": "необхідні матеріали, приладдя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково купувати матеріали».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково купувати матеріали».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I don't have to buy supplies.",
+        "localizedMeaning": {
+          "ru": "Скажите с don’t / doesn’t have to: «Мне необязательно покупать материалы».",
+          "uk": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково купувати матеріали»."
+        },
+        "orderedTokens": [
+          "I",
+          "don't",
+          "have",
+          "to",
+          "buy",
+          "supplies"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i02:r1",
+          "text": "I don't have to buy supplies."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i02:r2",
+          "text": "I have to buy supplies."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i02:r3",
+          "text": "I should buy supplies."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i02:audio",
+          "transcript": "I don't have to buy supplies."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:i02:r1",
+            "targetText": "I don't have to buy supplies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i02:r2",
+            "targetText": "I have to buy supplies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i02:r3",
+            "targetText": "I should buy supplies.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I don't have to buy supplies.",
+              "uk": "У записі звучить I don't have to buy supplies."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I don't have to buy supplies.",
+              "uk": "У записі звучить I don't have to buy supplies."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i03:r1",
+          "text": "don't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i03:r2",
+          "text": "doesn't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i03:r3",
+          "text": "don't has to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "I ___ buy supplies.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-41:i03:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i03:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i03:r3",
+            "text": "don't has to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "uk": "Узгодьте don’t або doesn’t з підметом."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После don’t и doesn’t нужна форма have, не has.",
+              "uk": "Після don’t і doesn’t потрібна форма have, не has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:word:photocopy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — photocopy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:word:photocopy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — photocopy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:word:photocopy:audio",
+          "transcript": "photocopy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:word:photocopy:r1",
+            "targetText": "photocopy",
+            "meaningByLocale": {
+              "ru": "ксерокопия.",
+              "uk": "ксерокопія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "photocopy",
+          "definitionByLocale": {
+            "ru": "ксерокопия.",
+            "uk": "ксерокопія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково приносити ксерокопію».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково приносити ксерокопію».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She doesn't have to bring a photocopy.",
+        "localizedMeaning": {
+          "ru": "Скажите с don’t / doesn’t have to: «Ей необязательно приносить ксерокопию».",
+          "uk": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково приносити ксерокопію»."
+        },
+        "orderedTokens": [
+          "She",
+          "doesn't",
+          "have",
+          "to",
+          "bring",
+          "a",
+          "photocopy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i05:r1",
+          "text": "She doesn't have to bring a photocopy."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i05:r2",
+          "text": "She has to bring a photocopy."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i05:r3",
+          "text": "She should bring a photocopy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i05:audio",
+          "transcript": "She doesn't have to bring a photocopy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:i05:r1",
+            "targetText": "She doesn't have to bring a photocopy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i05:r2",
+            "targetText": "She has to bring a photocopy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i05:r3",
+            "targetText": "She should bring a photocopy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She doesn't have to bring a photocopy.",
+              "uk": "У записі звучить She doesn't have to bring a photocopy."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She doesn't have to bring a photocopy.",
+              "uk": "У записі звучить She doesn't have to bring a photocopy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i06:r1",
+          "text": "doesn't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i06:r2",
+          "text": "don't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i06:r3",
+          "text": "doesn't has to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "She ___ bring a photocopy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-41:i06:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i06:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i06:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "uk": "Узгодьте don’t або doesn’t з підметом."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После don’t и doesn’t нужна форма have, не has.",
+              "uk": "Після don’t і doesn’t потрібна форма have, не has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:word:enclose",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — enclose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:word:enclose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — enclose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:word:enclose:audio",
+          "transcript": "enclose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:word:enclose:r1",
+            "targetText": "enclose",
+            "meaningByLocale": {
+              "ru": "вкладывать в конверт вместе с письмом.",
+              "uk": "вкладати в конверт разом із листом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "enclose",
+          "definitionByLocale": {
+            "ru": "вкладывать в конверт вместе с письмом.",
+            "uk": "вкладати в конверт разом із листом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково вкладати фотографію».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково вкладати фотографію».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We don't have to enclose a photo.",
+        "localizedMeaning": {
+          "ru": "Скажите с don’t / doesn’t have to: «Нам необязательно вкладывать фотографию».",
+          "uk": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково вкладати фотографію»."
+        },
+        "orderedTokens": [
+          "We",
+          "don't",
+          "have",
+          "to",
+          "enclose",
+          "a",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i08:r1",
+          "text": "We don't have to enclose a photo."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i08:r2",
+          "text": "We have to enclose a photo."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i08:r3",
+          "text": "We should enclose a photo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i08:audio",
+          "transcript": "We don't have to enclose a photo."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:i08:r1",
+            "targetText": "We don't have to enclose a photo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i08:r2",
+            "targetText": "We have to enclose a photo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i08:r3",
+            "targetText": "We should enclose a photo.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have to enclose a photo.",
+              "uk": "У записі звучить We don't have to enclose a photo."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We don't have to enclose a photo.",
+              "uk": "У записі звучить We don't have to enclose a photo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i09:r1",
+          "text": "don't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i09:r2",
+          "text": "doesn't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i09:r3",
+          "text": "don't has to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "We ___ enclose a photo.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-41:i09:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i09:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i09:r3",
+            "text": "don't has to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "uk": "Узгодьте don’t або doesn’t з підметом."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После don’t и doesn’t нужна форма have, не has.",
+              "uk": "Після don’t і doesn’t потрібна форма have, не has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:word:accompany",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — accompany",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:word:accompany:audio"
+      ],
+      "accessibilityLabel": "Картка слова — accompany",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:word:accompany:audio",
+          "transcript": "accompany"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:word:accompany:r1",
+            "targetText": "accompany",
+            "meaningByLocale": {
+              "ru": "сопровождать, идти вместе с.",
+              "uk": "супроводжувати, іти разом із."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "accompany",
+          "definitionByLocale": {
+            "ru": "сопровождать, идти вместе с.",
+            "uk": "супроводжувати, іти разом із."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково мене супроводжувати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково мене супроводжувати».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He doesn't have to accompany me.",
+        "localizedMeaning": {
+          "ru": "Скажите с don’t / doesn’t have to: «Ему необязательно меня сопровождать».",
+          "uk": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково мене супроводжувати»."
+        },
+        "orderedTokens": [
+          "He",
+          "doesn't",
+          "have",
+          "to",
+          "accompany",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i11:r1",
+          "text": "He doesn't have to accompany me."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i11:r2",
+          "text": "He has to accompany me."
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i11:r3",
+          "text": "He should accompany me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i11:audio",
+          "transcript": "He doesn't have to accompany me."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-41:i11:r1",
+            "targetText": "He doesn't have to accompany me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i11:r2",
+            "targetText": "He has to accompany me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i11:r3",
+            "targetText": "He should accompany me.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He doesn't have to accompany me.",
+              "uk": "У записі звучить He doesn't have to accompany me."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He doesn't have to accompany me.",
+              "uk": "У записі звучить He doesn't have to accompany me."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що це необовʼязково.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-41:i12:r1",
+          "text": "doesn't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i12:r2",
+          "text": "don't have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-41:i12:r3",
+          "text": "doesn't has to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що це необовʼязково.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что это необязательно.",
+          "uk": "Скажіть, що це необовʼязково."
+        },
+        "gappedTargetPhrase": "He ___ accompany me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-41:i12:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i12:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i12:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "testedDimension": "Скажіть, що це необовʼязково.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "uk": "Узгодьте don’t або doesn’t з підметом."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що це необовʼязково.",
+            "feedbackByLocale": {
+              "ru": "После don’t и doesn’t нужна форма have, не has.",
+              "uk": "Після don’t і doesn’t потрібна форма have, не has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-41:i13:p1",
+            "target": "supplies",
+            "meaningByLocale": {
+              "ru": "необходимые материалы, принадлежности",
+              "uk": "необхідні матеріали, приладдя"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-41:i13:p2",
+            "target": "photocopy",
+            "meaningByLocale": {
+              "ru": "ксерокопия",
+              "uk": "ксерокопія"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-41:i13:p3",
+            "target": "enclose",
+            "meaningByLocale": {
+              "ru": "вкладывать в конверт вместе с письмом",
+              "uk": "вкладати в конверт разом із листом"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-41:i13:p4",
+            "target": "accompany",
+            "meaningByLocale": {
+              "ru": "сопровождать, идти вместе с",
+              "uk": "супроводжувати, іти разом із"
+            }
+          }
+        ],
+        "leftColumn": [
+          "supplies",
+          "photocopy",
+          "enclose",
+          "accompany"
+        ],
+        "rightColumn": [
+          "необхідні матеріали, приладдя",
+          "ксерокопія",
+          "вкладати в конверт разом із листом",
+          "супроводжувати, іти разом із"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: ввічливе питання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: ввічливе питання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: порада",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: порада",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i15:audio",
+          "transcript": "You should check the address."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You should check the address.",
+        "orderedTokens": [
+          "You",
+          "should",
+          "check",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам необовʼязково купувати матеріали",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам необовʼязково купувати матеріали",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i16:audio",
+          "transcript": "I don't have to buy supplies."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I don't have to buy supplies.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що йому необовʼязково йти з вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що йому необовʼязково йти з вами",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-41:i17:audio",
+          "transcript": "He doesn't have to accompany me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He doesn't have to accompany me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ee0f0bad208be619c2d79cce88d7d0402fbe91fad1d925696aabb0551bab36e2"
+}

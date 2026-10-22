@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-43:word:recite",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:recite:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:recite:audio",
+            "transcript": "recite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:recite:r1",
+              "targetText": "recite",
+              "meaningByLocale": {
+                "ru": "декламировать, рассказывать наизусть.",
+                "uk": "декламувати, розповідати напамʼять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recite",
+            "definitionByLocale": {
+              "ru": "декламировать, рассказывать наизусть.",
+              "uk": "декламувати, розповідати напамʼять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Мне необязательно рассказывать стихотворение наизусть».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Мне необязательно рассказывать стихотворение наизусть».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't have to recite the poem.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Мне необязательно рассказывать стихотворение наизусть».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково розповідати вірш напамʼять»."
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "have",
+            "to",
+            "recite",
+            "the",
+            "poem"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i02:r1",
+            "text": "I don't have to recite the poem."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i02:r2",
+            "text": "I have to recite the poem."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i02:r3",
+            "text": "I should recite the poem."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i02:audio",
+            "transcript": "I don't have to recite the poem."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i02:r1",
+              "targetText": "I don't have to recite the poem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i02:r2",
+              "targetText": "I have to recite the poem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i02:r3",
+              "targetText": "I should recite the poem.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to recite the poem.",
+                "uk": "У записі звучить I don't have to recite the poem."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to recite the poem.",
+                "uk": "У записі звучить I don't have to recite the poem."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i03:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i03:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i03:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "I ___ recite the poem.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i03:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i03:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i03:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:word:underline",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — underline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:underline:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — underline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:underline:audio",
+            "transcript": "underline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:underline:r1",
+              "targetText": "underline",
+              "meaningByLocale": {
+                "ru": "подчёркивать.",
+                "uk": "підкреслювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underline",
+            "definitionByLocale": {
+              "ru": "подчёркивать.",
+              "uk": "підкреслювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Ей необязательно подчёркивать каждое слово».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Ей необязательно подчёркивать каждое слово».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She doesn't have to underline every word.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ей необязательно подчёркивать каждое слово».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково підкреслювати кожне слово»."
+          },
+          "orderedTokens": [
+            "She",
+            "doesn't",
+            "have",
+            "to",
+            "underline",
+            "every",
+            "word"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i05:r1",
+            "text": "She doesn't have to underline every word."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i05:r2",
+            "text": "She has to underline every word."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i05:r3",
+            "text": "She should underline every word."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i05:audio",
+            "transcript": "She doesn't have to underline every word."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i05:r1",
+              "targetText": "She doesn't have to underline every word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i05:r2",
+              "targetText": "She has to underline every word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i05:r3",
+              "targetText": "She should underline every word.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to underline every word.",
+                "uk": "У записі звучить She doesn't have to underline every word."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to underline every word.",
+                "uk": "У записі звучить She doesn't have to underline every word."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i06:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i06:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i06:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "She ___ underline every word.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i06:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i06:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i06:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:word:quote",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — quote",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:quote:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — quote",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:quote:audio",
+            "transcript": "quote"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:quote:r1",
+              "targetText": "quote",
+              "meaningByLocale": {
+                "ru": "цитировать.",
+                "uk": "цитувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quote",
+            "definitionByLocale": {
+              "ru": "цитировать.",
+              "uk": "цитувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Нам необязательно цитировать весь текст».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Нам необязательно цитировать весь текст».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have to quote the whole text.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Нам необязательно цитировать весь текст».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково цитувати весь текст»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "to",
+            "quote",
+            "the",
+            "whole",
+            "text"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i08:r1",
+            "text": "We don't have to quote the whole text."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i08:r2",
+            "text": "We have to quote the whole text."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i08:r3",
+            "text": "We should quote the whole text."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i08:audio",
+            "transcript": "We don't have to quote the whole text."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i08:r1",
+              "targetText": "We don't have to quote the whole text.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i08:r2",
+              "targetText": "We have to quote the whole text.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i08:r3",
+              "targetText": "We should quote the whole text.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to quote the whole text.",
+                "uk": "У записі звучить We don't have to quote the whole text."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to quote the whole text.",
+                "uk": "У записі звучить We don't have to quote the whole text."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i09:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i09:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i09:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "We ___ quote the whole text.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i09:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i09:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i09:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:word:analyse",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — analyse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:analyse:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — analyse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:analyse:audio",
+            "transcript": "analyse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:analyse:r1",
+              "targetText": "analyse",
+              "meaningByLocale": {
+                "ru": "анализировать, подробно разбирать.",
+                "uk": "аналізувати, докладно розбирати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "analyse",
+            "definitionByLocale": {
+              "ru": "анализировать, подробно разбирать.",
+              "uk": "аналізувати, докладно розбирати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с don’t / doesn’t have to: «Ему необязательно подробно разбирать каждую деталь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с don’t / doesn’t have to: «Ему необязательно подробно разбирать каждую деталь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He doesn't have to analyse every detail.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ему необязательно подробно разбирать каждую деталь».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково докладно розбирати кожну деталь»."
+          },
+          "orderedTokens": [
+            "He",
+            "doesn't",
+            "have",
+            "to",
+            "analyse",
+            "every",
+            "detail"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i11:r1",
+            "text": "He doesn't have to analyse every detail."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i11:r2",
+            "text": "He has to analyse every detail."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i11:r3",
+            "text": "He should analyse every detail."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i11:audio",
+            "transcript": "He doesn't have to analyse every detail."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i11:r1",
+              "targetText": "He doesn't have to analyse every detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i11:r2",
+              "targetText": "He has to analyse every detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i11:r3",
+              "targetText": "He should analyse every detail.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to analyse every detail.",
+                "uk": "У записі звучить He doesn't have to analyse every detail."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to analyse every detail.",
+                "uk": "У записі звучить He doesn't have to analyse every detail."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что это необязательно.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i12:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i12:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i12:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что это необязательно.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "He ___ analyse every detail.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i12:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i12:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i12:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажите, что это необязательно.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что это необязательно.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-43:i13:p1",
+              "target": "recite",
+              "meaningByLocale": {
+                "ru": "декламировать, рассказывать наизусть",
+                "uk": "декламувати, розповідати напамʼять"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-43:i13:p2",
+              "target": "underline",
+              "meaningByLocale": {
+                "ru": "подчёркивать",
+                "uk": "підкреслювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-43:i13:p3",
+              "target": "quote",
+              "meaningByLocale": {
+                "ru": "цитировать",
+                "uk": "цитувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-43:i13:p4",
+              "target": "analyse",
+              "meaningByLocale": {
+                "ru": "анализировать, подробно разбирать",
+                "uk": "аналізувати, докладно розбирати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recite",
+            "underline",
+            "quote",
+            "analyse"
+          ],
+          "rightColumn": [
+            "декламировать, рассказывать наизусть",
+            "подчёркивать",
+            "цитировать",
+            "анализировать, подробно разбирать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: вежливый вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: вежливый вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: совет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: совет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i15:audio",
+            "transcript": "You should check the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You should check the address.",
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам необязательно рассказывать стихотворение наизусть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам необязательно рассказывать стихотворение наизусть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i16:audio",
+            "transcript": "I don't have to recite the poem."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't have to recite the poem.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что ему необязательно разбирать каждую деталь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что ему необязательно разбирать каждую деталь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i17:audio",
+            "transcript": "He doesn't have to analyse every detail."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't have to analyse every detail.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-43:word:recite",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:recite:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:recite:audio",
+            "transcript": "recite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:recite:r1",
+              "targetText": "recite",
+              "meaningByLocale": {
+                "ru": "декламировать, рассказывать наизусть.",
+                "uk": "декламувати, розповідати напамʼять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recite",
+            "definitionByLocale": {
+              "ru": "декламировать, рассказывать наизусть.",
+              "uk": "декламувати, розповідати напамʼять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково розповідати вірш напамʼять».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково розповідати вірш напамʼять».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't have to recite the poem.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Мне необязательно рассказывать стихотворение наизусть».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Мені необовʼязково розповідати вірш напамʼять»."
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "have",
+            "to",
+            "recite",
+            "the",
+            "poem"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i02:r1",
+            "text": "I don't have to recite the poem."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i02:r2",
+            "text": "I have to recite the poem."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i02:r3",
+            "text": "I should recite the poem."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i02:audio",
+            "transcript": "I don't have to recite the poem."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i02:r1",
+              "targetText": "I don't have to recite the poem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i02:r2",
+              "targetText": "I have to recite the poem.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i02:r3",
+              "targetText": "I should recite the poem.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to recite the poem.",
+                "uk": "У записі звучить I don't have to recite the poem."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I don't have to recite the poem.",
+                "uk": "У записі звучить I don't have to recite the poem."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i03:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i03:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i03:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "I ___ recite the poem.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i03:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i03:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i03:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:word:underline",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — underline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:underline:audio"
+        ],
+        "accessibilityLabel": "Картка слова — underline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:underline:audio",
+            "transcript": "underline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:underline:r1",
+              "targetText": "underline",
+              "meaningByLocale": {
+                "ru": "подчёркивать.",
+                "uk": "підкреслювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underline",
+            "definitionByLocale": {
+              "ru": "подчёркивать.",
+              "uk": "підкреслювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково підкреслювати кожне слово».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково підкреслювати кожне слово».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She doesn't have to underline every word.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ей необязательно подчёркивать каждое слово».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Їй необовʼязково підкреслювати кожне слово»."
+          },
+          "orderedTokens": [
+            "She",
+            "doesn't",
+            "have",
+            "to",
+            "underline",
+            "every",
+            "word"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i05:r1",
+            "text": "She doesn't have to underline every word."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i05:r2",
+            "text": "She has to underline every word."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i05:r3",
+            "text": "She should underline every word."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i05:audio",
+            "transcript": "She doesn't have to underline every word."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i05:r1",
+              "targetText": "She doesn't have to underline every word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i05:r2",
+              "targetText": "She has to underline every word.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i05:r3",
+              "targetText": "She should underline every word.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to underline every word.",
+                "uk": "У записі звучить She doesn't have to underline every word."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She doesn't have to underline every word.",
+                "uk": "У записі звучить She doesn't have to underline every word."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i06:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i06:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i06:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "She ___ underline every word.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i06:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i06:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i06:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:word:quote",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — quote",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:quote:audio"
+        ],
+        "accessibilityLabel": "Картка слова — quote",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:quote:audio",
+            "transcript": "quote"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:quote:r1",
+              "targetText": "quote",
+              "meaningByLocale": {
+                "ru": "цитировать.",
+                "uk": "цитувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quote",
+            "definitionByLocale": {
+              "ru": "цитировать.",
+              "uk": "цитувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково цитувати весь текст».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково цитувати весь текст».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have to quote the whole text.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Нам необязательно цитировать весь текст».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Нам необовʼязково цитувати весь текст»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "to",
+            "quote",
+            "the",
+            "whole",
+            "text"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i08:r1",
+            "text": "We don't have to quote the whole text."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i08:r2",
+            "text": "We have to quote the whole text."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i08:r3",
+            "text": "We should quote the whole text."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i08:audio",
+            "transcript": "We don't have to quote the whole text."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i08:r1",
+              "targetText": "We don't have to quote the whole text.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i08:r2",
+              "targetText": "We have to quote the whole text.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i08:r3",
+              "targetText": "We should quote the whole text.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to quote the whole text.",
+                "uk": "У записі звучить We don't have to quote the whole text."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have to quote the whole text.",
+                "uk": "У записі звучить We don't have to quote the whole text."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i09:r1",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i09:r2",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i09:r3",
+            "text": "don't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "We ___ quote the whole text.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i09:r1",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i09:r2",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i09:r3",
+              "text": "don't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:word:analyse",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — analyse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:word:analyse:audio"
+        ],
+        "accessibilityLabel": "Картка слова — analyse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:word:analyse:audio",
+            "transcript": "analyse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:word:analyse:r1",
+              "targetText": "analyse",
+              "meaningByLocale": {
+                "ru": "анализировать, подробно разбирать.",
+                "uk": "аналізувати, докладно розбирати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "analyse",
+            "definitionByLocale": {
+              "ru": "анализировать, подробно разбирать.",
+              "uk": "аналізувати, докладно розбирати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково докладно розбирати кожну деталь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково докладно розбирати кожну деталь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He doesn't have to analyse every detail.",
+          "localizedMeaning": {
+            "ru": "Скажите с don’t / doesn’t have to: «Ему необязательно подробно разбирать каждую деталь».",
+            "uk": "Скажіть із don’t / doesn’t have to: «Йому необовʼязково докладно розбирати кожну деталь»."
+          },
+          "orderedTokens": [
+            "He",
+            "doesn't",
+            "have",
+            "to",
+            "analyse",
+            "every",
+            "detail"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i11:r1",
+            "text": "He doesn't have to analyse every detail."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i11:r2",
+            "text": "He has to analyse every detail."
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i11:r3",
+            "text": "He should analyse every detail."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i11:audio",
+            "transcript": "He doesn't have to analyse every detail."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-43:i11:r1",
+              "targetText": "He doesn't have to analyse every detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i11:r2",
+              "targetText": "He has to analyse every detail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i11:r3",
+              "targetText": "He should analyse every detail.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to analyse every detail.",
+                "uk": "У записі звучить He doesn't have to analyse every detail."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He doesn't have to analyse every detail.",
+                "uk": "У записі звучить He doesn't have to analyse every detail."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що це необовʼязково.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-43:i12:r1",
+            "text": "doesn't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i12:r2",
+            "text": "don't have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-43:i12:r3",
+            "text": "doesn't has to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що це необовʼязково.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что это необязательно.",
+            "uk": "Скажіть, що це необовʼязково."
+          },
+          "gappedTargetPhrase": "He ___ analyse every detail.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-43:i12:r1",
+              "text": "doesn't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i12:r2",
+              "text": "don't have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i12:r3",
+              "text": "doesn't has to"
+            }
+          ],
+          "testedDimension": "Скажіть, що це необовʼязково.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+                "uk": "Узгодьте don’t або doesn’t з підметом."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що це необовʼязково.",
+              "feedbackByLocale": {
+                "ru": "После don’t и doesn’t нужна форма have, не has.",
+                "uk": "Після don’t і doesn’t потрібна форма have, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-43:i13:p1",
+              "target": "recite",
+              "meaningByLocale": {
+                "ru": "декламировать, рассказывать наизусть",
+                "uk": "декламувати, розповідати напамʼять"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-43:i13:p2",
+              "target": "underline",
+              "meaningByLocale": {
+                "ru": "подчёркивать",
+                "uk": "підкреслювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-43:i13:p3",
+              "target": "quote",
+              "meaningByLocale": {
+                "ru": "цитировать",
+                "uk": "цитувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-43:i13:p4",
+              "target": "analyse",
+              "meaningByLocale": {
+                "ru": "анализировать, подробно разбирать",
+                "uk": "аналізувати, докладно розбирати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recite",
+            "underline",
+            "quote",
+            "analyse"
+          ],
+          "rightColumn": [
+            "декламувати, розповідати напамʼять",
+            "підкреслювати",
+            "цитувати",
+            "аналізувати, докладно розбирати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: ввічливе питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: ввічливе питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: порада",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: порада",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i15:audio",
+            "transcript": "You should check the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You should check the address.",
+          "orderedTokens": [
+            "You",
+            "should",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам необовʼязково розповідати вірш напамʼять",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам необовʼязково розповідати вірш напамʼять",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i16:audio",
+            "transcript": "I don't have to recite the poem."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I don't have to recite the poem.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що йому необовʼязково розбирати кожну деталь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що йому необовʼязково розбирати кожну деталь",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-43:i17:audio",
+            "transcript": "He doesn't have to analyse every detail."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't have to analyse every detail.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-43:word:recite",
+      "correctText": "recite",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i01",
+      "correctText": "I don't have to recite the poem.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i02",
+      "correctText": "I don't have to recite the poem.",
+      "correctResponseId": "en:lesson-20:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i03",
+      "correctText": "don't have to",
+      "correctResponseId": "en:lesson-20:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:word:underline",
+      "correctText": "underline",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i04",
+      "correctText": "She doesn't have to underline every word.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i05",
+      "correctText": "She doesn't have to underline every word.",
+      "correctResponseId": "en:lesson-20:session-43:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i06",
+      "correctText": "doesn't have to",
+      "correctResponseId": "en:lesson-20:session-43:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:word:quote",
+      "correctText": "quote",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i07",
+      "correctText": "We don't have to quote the whole text.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i08",
+      "correctText": "We don't have to quote the whole text.",
+      "correctResponseId": "en:lesson-20:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i09",
+      "correctText": "don't have to",
+      "correctResponseId": "en:lesson-20:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:word:analyse",
+      "correctText": "analyse",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i10",
+      "correctText": "He doesn't have to analyse every detail.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i11",
+      "correctText": "He doesn't have to analyse every detail.",
+      "correctResponseId": "en:lesson-20:session-43:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i12",
+      "correctText": "doesn't have to",
+      "correctResponseId": "en:lesson-20:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i15",
+      "correctText": "You should check the address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i16",
+      "correctText": "I don't have to recite the poem.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-43:i17",
+      "correctText": "He doesn't have to analyse every detail.",
+      "correctResponseId": null
+    }
+  ]
+}

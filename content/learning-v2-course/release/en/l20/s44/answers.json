@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-44:word:for-now",
+    "correctText": "for now",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i01",
+    "correctText": "Could I leave it here for now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i02",
+    "correctText": "Could I leave it here for now?",
+    "correctResponseId": "en:lesson-20:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i03",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:word:once-more",
+    "correctText": "once more",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i04",
+    "correctText": "Could I try once more?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i05",
+    "correctText": "Could I try once more?",
+    "correctResponseId": "en:lesson-20:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i06",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:word:from-time-to-time",
+    "correctText": "from time to time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i07",
+    "correctText": "Could I work from home from time to time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i08",
+    "correctText": "Could I work from home from time to time?",
+    "correctResponseId": "en:lesson-20:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i09",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:word:for-good",
+    "correctText": "for good",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i10",
+    "correctText": "Could I keep this for good?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i11",
+    "correctText": "Could I keep this for good?",
+    "correctResponseId": "en:lesson-20:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i12",
+    "correctText": "Could I",
+    "correctResponseId": "en:lesson-20:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i13",
+    "correctText": "en:lesson-20:session-44:i13:p1=for now\nen:lesson-20:session-44:i13:p2=once more\nen:lesson-20:session-44:i13:p3=from time to time\nen:lesson-20:session-44:i13:p4=for good",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i14",
+    "correctText": "I will be able to explain this.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i15",
+    "correctText": "May I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i16",
+    "correctText": "Could I leave it here for now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-44:i17",
+    "correctText": "Could I try once more?",
+    "correctResponseId": null
+  }
+]

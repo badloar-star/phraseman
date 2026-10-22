@@ -1663,6 +1663,77 @@ async function readAppMessagesFeedRemoteRev(): Promise<number> {
   }
 }
 
+// ── Версия личных сообщений (вопрос 27; сервер f3e4462fe поднимает users/{uid}.inboxRev) ───────────────────────────
+// зачем: личные сообщения и их состояния (2 запроса до 80 документов) перечитывались каждый старт. inboxRev берём из
+// документа users/{uid}, который восстановление и так читает (app/inbox_rev_peek.ts); та же версия, что у копии на
+// телефоне, — 0 чтений. Нет версии (0, сервер ещё не выложен) → прежний путь. Состояния, записанные этим телефоном,
+// и так живут в локальных очередях; с другого устройства придут при росте версии или раз в 7 дней.
+const APP_MESSAGES_PERSONAL_COPY_KEY_PREFIX = 'app_messages_personal_copy_v1';
+/** Ждём, пока отложенное восстановление старта прочитает документ (оно идёт после кадра Главной, ≤ 8 с). */
+const INBOX_REV_RESTORE_WAIT_MS = 9_000;
+
+type StoredPersonalInbox = Readonly<{ rev: number; fetchedAtMs: number; userMessages: AppMessage[]; states: AppMessageState[] }>;
+
+export type AppMessagesPersonalDecision = Readonly<{
+  reuse: boolean;
+  reason: 'no_inbox_rev' | 'no_local_copy' | 'rev_changed' | 'max_age' | 'same_rev';
+  remoteRev: number | null;
+  localRev: number | null;
+  ageMs: number | null;
+}>;
+
+export function decideAppMessagesPersonalReuse(input: Readonly<{
+  remoteRev: number | null;
+  stored: StoredPersonalInbox | null;
+  nowMs: number;
+}>): AppMessagesPersonalDecision {
+  const localRev = input.stored ? input.stored.rev : null;
+  const ageMs = input.stored ? input.nowMs - input.stored.fetchedAtMs : null;
+  const base = { remoteRev: input.remoteRev, localRev, ageMs };
+  if (input.remoteRev === null || input.remoteRev <= 0) return { reuse: false, reason: 'no_inbox_rev', ...base };
+  if (!input.stored) return { reuse: false, reason: 'no_local_copy', ...base };
+  if (input.stored.rev !== input.remoteRev) return { reuse: false, reason: 'rev_changed', ...base };
+  if (ageMs === null || ageMs < 0 || ageMs >= APP_MESSAGES_GLOBAL_FEED_MAX_AGE_MS) return { reuse: false, reason: 'max_age', ...base };
+  return { reuse: true, reason: 'same_rev', ...base };
+}
+
+async function readStoredPersonalInbox(ownerUid: string): Promise<StoredPersonalInbox | null> {
+  try {
+    const raw = await AsyncStorage.getItem(appMessagesOwnerStorageKey(APP_MESSAGES_PERSONAL_COPY_KEY_PREFIX, ownerUid));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<StoredPersonalInbox>;
+    const rev = Math.floor(Number(parsed.rev));
+    const fetchedAtMs = Math.floor(Number(parsed.fetchedAtMs));
+    if (!Number.isFinite(rev) || rev <= 0 || !Number.isFinite(fetchedAtMs)
+      || !Array.isArray(parsed.userMessages) || !Array.isArray(parsed.states)) return null;
+    return { rev, fetchedAtMs, userMessages: parsed.userMessages, states: parsed.states };
+  } catch (error) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_personal', event: 'local_copy_unreadable', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return null;
+  }
+}
+
+async function writeStoredPersonalInbox(ownerUid: string, copy: StoredPersonalInbox): Promise<void> {
+  await AsyncStorage.setItem(appMessagesOwnerStorageKey(APP_MESSAGES_PERSONAL_COPY_KEY_PREFIX, ownerUid), JSON.stringify(copy))
+    .catch((error: unknown) => console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_personal', event: 'local_copy_write_failed', message: String(error).slice(0, 80) }))); // guard-ok: catch называет причину
+}
+
+/** inboxRev этого владельца: свежий из восстановления, либо ждём, пока идущее восстановление старта прочитает документ. */
+async function resolveInboxRevForOwner(ownerUid: string): Promise<Readonly<{ rev: number | null; source: string }>> {
+  try {
+    const { peekInboxRev } = await import('./inbox_rev_peek');
+    const ready = peekInboxRev(ownerUid);
+    if (ready !== null) return { rev: ready, source: 'restore_doc' };
+    const { whenDeferredBootRestoreDocRead } = await import('./boot_restore_dirty_keys');
+    const waited = await whenDeferredBootRestoreDocRead(INBOX_REV_RESTORE_WAIT_MS);
+    const after = peekInboxRev(ownerUid);
+    return { rev: after, source: after !== null ? `restore_doc_after_${waited}` : `none_${waited}` };
+  } catch (error) {
+    console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_personal', event: 'inbox_rev_unavailable', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+    return { rev: null, source: 'error' };
+  }
+}
+
 export async function refreshAppMessagesSnapshotOnce(options: {
   force?: boolean;
   minIntervalMs?: number;
@@ -1723,18 +1794,35 @@ export async function refreshAppMessagesSnapshotOnce(options: {
       localRev: feedDecision.localRev,
       ageMs: feedDecision.ageMs,
     }));
+    const [inboxRev, storedPersonal] = await Promise.all([resolveInboxRevForOwner(uid), readStoredPersonalInbox(uid)]);
+    const personalDecision = decideAppMessagesPersonalReuse({ remoteRev: inboxRev.rev, stored: storedPersonal, nowMs });
+    console.log('[READ-TTL]', JSON.stringify({ // guard-ok: решение «личные из кэша или из сети», без uid
+      area: 'app_messages_personal',
+      source: personalDecision.reuse ? 'cache' : 'network',
+      reason: personalDecision.reason,
+      revSource: inboxRev.source,
+      remoteRev: personalDecision.remoteRev,
+      localRev: personalDecision.localRev,
+      ageMs: personalDecision.ageMs,
+    }));
+    // Сбой чтения личных → копию НЕ сохраняем: пустой список с текущей версией спрятал бы сообщения до смены версии.
+    let userMessagesReadFailed = false;
     const [messagesSnap, userMessagesSnap, statesSnap, localMessages, localStates] = await Promise.all([
       feedDecision.reuse ? Promise.resolve(null) : latest([APP_MESSAGES_COLLECTION], 'createdAtMs'),
-      latest(['users', uid, USER_MESSAGES_COLLECTION], 'createdAtMs')
+      personalDecision.reuse ? Promise.resolve(null) : latest(['users', uid, USER_MESSAGES_COLLECTION], 'createdAtMs')
         // Подколлекции может не быть / rules ещё не задеплоены — глобальная лента важнее.
-        .catch(() => ({ docs: [] })),
+        .catch((error: unknown) => {
+          userMessagesReadFailed = true;
+          console.warn('[READ-TTL]', JSON.stringify({ area: 'app_messages_personal', event: 'user_messages_read_failed', message: String(error).slice(0, 80) })); // guard-ok: catch называет причину
+          return { docs: [] };
+        }),
       // зачем (PM-210, экономия чтений): коллекция состояний растёт монотонно
       // (документ на каждое прочитанное/скрытое сообщение) и не чистится — без
       // limit давний аккаунт читал её ЦЕЛИКОМ. Берём свежие 80, как прежний живой
       // поток: состояния нужны только для сообщений из двух
       // лент выше (тоже по 80), а любая запись состояния ставит updatedAtMs, так
       // что только что тронутое сообщение всегда попадает в выборку.
-      latest(['users', uid, APP_MESSAGE_STATES_COLLECTION], 'updatedAtMs'),
+      personalDecision.reuse ? Promise.resolve(null) : latest(['users', uid, APP_MESSAGE_STATES_COLLECTION], 'updatedAtMs'),
       readLocalPreviewMessages(uid),
       readLocalPreviewStates(uid),
     ]);
@@ -1745,13 +1833,20 @@ export async function refreshAppMessagesSnapshotOnce(options: {
       // Копию с версией храним только когда сервер версию пишет — иначе сравнивать не с чем.
       await writeStoredGlobalFeed({ rev: feedDecision.remoteRev, fetchedAtMs: nowMs, messages });
     }
-    const userMessages = (userMessagesSnap.docs || []).map((docSnap: any) =>
-      normalizeOwnedUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, uid, nowMs),
-    ).filter((message: AppMessage | null): message is AppMessage => !!message);
+    const userMessages: AppMessage[] = userMessagesSnap
+      ? (userMessagesSnap.docs || []).map((docSnap: any) =>
+        normalizeOwnedUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, uid, nowMs),
+      ).filter((message: AppMessage | null): message is AppMessage => !!message)
+      : (storedPersonal?.userMessages ?? []);
     const pendingClaims = await migrateLegacyReportReplyClaimsForOwnedMessages(uid, userMessages);
-    const states = (statesSnap.docs || []).map((docSnap: any) =>
-      normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
-    );
+    const states: AppMessageState[] = statesSnap
+      ? (statesSnap.docs || []).map((docSnap: any) => normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}))
+      : (storedPersonal?.states ?? []);
+    if (userMessagesSnap && statesSnap && !userMessagesReadFailed
+      && personalDecision.remoteRev !== null && personalDecision.remoteRev > 0) {
+      // Копию личных храним только при известной версии сервера — иначе сравнивать не с чем.
+      await writeStoredPersonalInbox(uid, { rev: personalDecision.remoteRev, fetchedAtMs: nowMs, userMessages, states });
+    }
     const pendingVisibility = await acknowledgePendingAppMessageVisibility(uid, states);
     const pendingPersonalModalAcknowledgements = await acknowledgePendingPersonalModalAcknowledgements(uid, states);
     const pendingAppMessageModalAcknowledgements = await acknowledgePendingAppMessageModalAcknowledgements(uid, states);

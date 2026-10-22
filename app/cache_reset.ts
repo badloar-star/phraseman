@@ -82,6 +82,8 @@ const STATIC_CACHE_KEYS = [
 const APP_MESSAGES_CACHE_PREFIXES = [
   'app_messages_cache_v2:',
   'app_messages_last_background_refresh_ms_v2:',
+  // Копия личных сообщений с версией inboxRev (вопрос 27) — сброс вернёт одно чтение личных.
+  'app_messages_personal_copy_v1:',
 ] as const;
 
 /** Аккаунт-scoped ключи, которые безопасно сбросить (пересоздаются с сервера). */

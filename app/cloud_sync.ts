@@ -323,6 +323,7 @@ import {
   whenDeferredBootRestoreDocRead,
 } from './boot_restore_dirty_keys';
 import { noteRestoreUserDocBanned } from './boot_user_doc_ban_peek';
+import { noteRestoreUserDocInboxRev } from './inbox_rev_peek';
 import { BOOT_RESTORE_OWNER_KEY } from './boot_restore_defer';
 import {
   customCardDeletionsForTarget,
@@ -4957,6 +4958,8 @@ async function restoreAndMigrateFromCloudResultTraced(
     // зачем (п.70 №2): проверка бана берёт `banned` из этого же документа, а не читает users/{uid} второй раз.
     // Та же трактовка, что у проверки бана в корне: любое истинное значение поля = бан.
     noteRestoreUserDocBanned(uid, doc.exists ? !!(doc.data() as { banned?: unknown } | undefined)?.banned : false);
+    // зачем (вопрос 27): входящие сравнивают inboxRev этого же документа со своей копией — без второго чтения.
+    noteRestoreUserDocInboxRev(uid, doc.exists ? (doc.data() as { inboxRev?: unknown } | undefined)?.inboxRev : 0);
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
     mark(doc.exists ? 'migration_flag' : 'migration_flag:no_doc');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');

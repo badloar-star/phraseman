@@ -39,6 +39,7 @@
 | We are staying at the seaside. | Ми зараз живемо біля моря. | are staying |
 | I usually buy tinned tomatoes. | Я зазвичай купую консервовані помідори. | buy |
 | I am buying a ready-made meal today. | Сьогодні я купую готову їжу. | am buying |
+| I am waiting on the porch. | Я чекаю на ґанку. | am waiting |
 
 **fix**
 - ~~I am buy a ready-made meal today.~~ → I am buying a ready-made meal today.
@@ -200,6 +201,7 @@ probably — «мабуть», ставлять після скріпки: He is
 | It is one degree. | Один градус тепла. | It is |
 | It is minus two. | Мінус два. | It is |
 | It is quite cold. | Досить холодно. | It is |
+| I am checking the forecast. | Я дивлюся прогноз погоди. | am checking |
 
 **fix**
 - ~~Is minus two.~~ → It is minus two.

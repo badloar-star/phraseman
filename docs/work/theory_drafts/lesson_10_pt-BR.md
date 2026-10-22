@@ -40,6 +40,7 @@ Se é hábito, a forma da lição 6: I often travel abroad. Se acontece agora ou
 | We are staying at the seaside. | Estamos ficando na praia. | are staying |
 | I usually buy tinned tomatoes. | Normalmente compro tomate em lata. | buy |
 | I am buying a ready-made meal today. | Hoje estou comprando comida pronta. | am buying |
+| I am waiting on the porch. | Estou esperando na varanda. | am waiting |
 
 **fix**
 - ~~I am buy a ready-made meal today.~~ → I am buying a ready-made meal today.
@@ -197,6 +198,7 @@ Em português dizemos «está frio», «está um grau». Em inglês o It no come
 | It is one degree. | Está fazendo um grau. | It is |
 | It is minus two. | Está dois graus negativos. | It is |
 | It is quite cold. | Está bem frio. | It is |
+| I am checking the forecast. | Estou vendo a previsão do tempo. | am checking |
 
 **fix**
 - ~~Is cold.~~ → It is cold.

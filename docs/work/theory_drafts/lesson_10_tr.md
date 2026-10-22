@@ -40,6 +40,7 @@ Alışkanlıksa 6. dersteki biçim: I often travel abroad. Şu an ya da sadece b
 | We are staying at the seaside. | Şu an deniz kenarında kalıyoruz. | are staying |
 | I usually buy tinned tomatoes. | Genelde konserve domates alırım. | buy |
 | I am buying a ready-made meal today. | Bugün hazır yemek alıyorum. | am buying |
+| I am waiting on the porch. | Verandada bekliyorum. | am waiting |
 
 **fix**
 - ~~I am usually buying tinned tomatoes.~~ → I usually buy tinned tomatoes.
@@ -197,6 +198,7 @@ Türkçede «eksi iki» demek yeter. İngilizcede hava ve sıcaklık It is ile s
 | It is one degree. | Hava bir derece. | It is |
 | It is minus two. | Eksi iki. | It is |
 | It is quite cold. | Hava epey soğuk. | It is |
+| I am checking the forecast. | Hava durumuna bakıyorum. | am checking |
 
 **fix**
 - ~~Is minus two.~~ → It is minus two.

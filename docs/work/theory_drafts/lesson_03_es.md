@@ -354,6 +354,6 @@ Una cosa: a o an según el primer sonido. Varias: s y sin a. Cerca: this / these
 |---|---|---|
 | It is an hour. | Es una hora. | an |
 | They are batteries. | Son pilas. | batteries |
-| Books are heavy. | Los libros pesan. | Books |
+| Those flowers are fresh. | Esas flores están frescas. | Those |
 | The mistake is here. | El error está aquí. | The |
 | It is a red cup. | Es una taza roja. | red |

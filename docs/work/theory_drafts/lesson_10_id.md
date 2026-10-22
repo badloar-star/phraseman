@@ -41,6 +41,7 @@ Kalau kebiasaan — bentuk dari pelajaran 6: I often travel abroad. Kalau sedang
 | We are staying at the seaside. | Kami sedang menginap di pantai. | are staying |
 | I usually buy tinned tomatoes. | Aku biasanya beli tomat kaleng. | buy |
 | I am buying a ready-made meal today. | Hari ini aku beli makanan jadi. | am buying |
+| I am waiting on the porch. | Aku sedang menunggu di teras. | am waiting |
 
 **fix**
 - ~~I buy a ready-made meal today.~~ → I am buying a ready-made meal today.
@@ -198,6 +199,7 @@ Kita cukup bilang «minus dua» atau «dingin». Bahasa Inggris selalu mulai den
 | It is one degree. | Satu derajat. | It is |
 | It is minus two. | Minus dua derajat. | It is |
 | It is quite cold. | Cukup dingin. | It is |
+| I am checking the forecast. | Aku sedang cek ramalan cuaca. | am checking |
 
 **fix**
 - ~~Is minus two.~~ → It is minus two.

@@ -40,6 +40,7 @@ Nếu là thói quen — dạng ở bài 6: I often travel abroad. Nếu đang x
 | We are staying at the seaside. | Chúng tôi đang ở biển. | are staying |
 | I usually buy tinned tomatoes. | Tôi thường mua cà chua hộp. | buy |
 | I am buying a ready-made meal today. | Hôm nay tôi mua đồ ăn làm sẵn. | am buying |
+| I am waiting on the porch. | Tôi đang đợi ở hiên nhà. | am waiting |
 
 **fix**
 - ~~I buy a ready-made meal today.~~ → I am buying a ready-made meal today.
@@ -197,6 +198,7 @@ Tiếng Việt nói «âm hai độ», «trời lạnh». Tiếng Anh luôn mở
 | It is one degree. | Một độ. | It is |
 | It is minus two. | Âm hai độ. | It is |
 | It is quite cold. | Trời khá lạnh. | It is |
+| I am checking the forecast. | Tôi đang xem dự báo thời tiết. | am checking |
 
 **fix**
 - ~~Is minus two.~~ → It is minus two.

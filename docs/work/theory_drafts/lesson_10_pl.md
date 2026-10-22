@@ -39,6 +39,7 @@ Po polsku «kupuję» to i «zwykle», i «dzisiaj». Po angielsku nie: nawyk �
 | We are staying at the seaside. | Mieszkamy teraz nad morzem. | are staying |
 | I usually buy tinned tomatoes. | Zwykle kupuję pomidory z puszki. | buy |
 | I am buying a ready-made meal today. | Dzisiaj kupuję gotowe danie. | am buying |
+| I am waiting on the porch. | Czekam na ganku. | am waiting |
 
 **fix**
 - ~~I buy a ready-made meal today.~~ → I am buying a ready-made meal today.
@@ -196,6 +197,7 @@ O pogodzie i temperaturze mówi się przez It is, jak w lekcji 1: It is quite co
 | It is one degree. | Jest jeden stopień. | It is |
 | It is minus two. | Jest minus dwa. | It is |
 | It is quite cold. | Jest dość zimno. | It is |
+| I am checking the forecast. | Sprawdzam prognozę pogody. | am checking |
 
 **fix**
 - ~~Is minus two.~~ → It is minus two.

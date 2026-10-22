@@ -40,6 +40,7 @@ If it's a habit, use the form from lesson 6: I often travel abroad. If it's happ
 | We are staying at the seaside. | We're living by the sea for now. | are staying |
 | I usually buy tinned tomatoes. | That's my habit. | buy |
 | I am buying a ready-made meal today. | Just today, not usually. | am buying |
+| I am waiting on the porch. | Right now, for a while. | am waiting |
 
 **fix**
 - ~~I buy a ready-made meal today.~~ → I am buying a ready-made meal today.
@@ -197,6 +198,7 @@ For weather and temperature, use It is, as in lesson 1: It is quite cold, It is 
 | It is one degree. | The temperature is 1°. | It is |
 | It is minus two. | The temperature is −2°. | It is |
 | It is quite cold. | It's rather cold. | It is |
+| I am checking the forecast. | I'm looking at the weather news now. | am checking |
 
 **fix**
 - ~~Is minus two.~~ → It is minus two.

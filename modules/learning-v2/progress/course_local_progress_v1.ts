@@ -7,6 +7,10 @@ import {
   hashCanonicalBody,
 } from "../policies/decision_registry";
 import { peekLearningV2DevProgressOverrideV1 } from "./dev_progress_override_v1";
+import {
+  LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
+  parseCourseProgressSyncCountV1,
+} from "./progress_sync_v1";
 
 export const LEARNING_V2_COURSE_LOCAL_PROGRESS_SCHEMA_V1 =
   "learning-v2-course-local-progress.v1" as const;
@@ -156,20 +160,41 @@ export function createLearningV2CourseLocalProgressStoreV1(
           return build(accountScopeHash, orderedSessionIds().slice(0, Math.min(devCompleted, LEARNING_V2_COURSE_SESSION_COUNT_V1)));
         }
         const raw = await storage.getItem(key(accountScopeHash));
-        if (raw === null)
-          return initialLearningV2CourseLocalProgressV1(accountScopeHash);
-        let value: unknown;
-        try {
-          value = JSON.parse(raw);
-        } catch {
-          fail();
+        let parsed: LearningV2CourseLocalProgressV1;
+        if (raw === null) {
+          parsed = initialLearningV2CourseLocalProgressV1(accountScopeHash);
+        } else {
+          let value: unknown;
+          try {
+            value = JSON.parse(raw);
+          } catch {
+            fail();
+          }
+          parsed = parseLearningV2CourseLocalProgressV1(value);
+          if (
+            parsed.accountScopeHash !== accountScopeHash ||
+            canonicalJsonV1(parsed) !== raw
+          )
+            fail();
         }
-        const parsed = parseLearningV2CourseLocalProgressV1(value);
-        if (
-          parsed.accountScopeHash !== accountScopeHash ||
-          canonicalJsonV1(parsed) !== raw
-        )
-          fail();
+        // зачем (координатор 22.10, вариант А): после переустановки или на новом телефоне облачная копия
+        // (learning_v2_course_progress_sync_v1, восстанавливается вместе с документом пользователя) знает больше —
+        // дотягиваем цепочку до неё. Меньше или столько же — ничего не трогаем: пройденное никогда не теряется.
+        const synced = Math.min(
+          parseCourseProgressSyncCountV1(await storage.getItem(LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1)),
+          LEARNING_V2_COURSE_SESSION_COUNT_V1,
+        );
+        if (synced > parsed.completedSessionIds.length) {
+          const hydrated = build(accountScopeHash, orderedSessionIds().slice(0, synced));
+          await storage.setItem(key(accountScopeHash), canonicalJsonV1(hydrated));
+          console.log("[V2-PROGRESS-SYNC] load:hydrated_from_cloud", JSON.stringify({ local: parsed.completedSessionIds.length, cloud: synced, source: "sync_key" })); // guard-ok: откуда пришло
+          return hydrated;
+        }
+        // зачем: прогресс, пройденный до синхронизации (или пока облако не знало), сразу поднимает облачную копию
+        if (parsed.completedSessionIds.length > synced) {
+          await storage.setItem(LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1, String(parsed.completedSessionIds.length));
+          console.log("[V2-PROGRESS-SYNC] load:mirrored_local", JSON.stringify({ local: parsed.completedSessionIds.length, cloud: synced })); // guard-ok: что ушло в облачную копию
+        }
         return parsed;
       });
     },
@@ -196,6 +221,16 @@ export function createLearningV2CourseLocalProgressStoreV1(
           courseSessionId,
         ]);
         await storage.setItem(key(accountScopeHash), canonicalJsonV1(next));
+        // зачем (координатор 22.10, вариант А): облачная копия — одно число; уменьшать её нельзя (другое устройство могло уйти дальше).
+        try {
+          const synced = parseCourseProgressSyncCountV1(await storage.getItem(LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1));
+          if (next.completedSessionIds.length > synced) {
+            await storage.setItem(LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1, String(next.completedSessionIds.length));
+            console.log("[V2-PROGRESS-SYNC] complete:mirrored", JSON.stringify({ from: synced, to: next.completedSessionIds.length })); // guard-ok: что ушло в облачную копию
+          }
+        } catch (error) {
+          console.warn("[V2-PROGRESS-SYNC] complete:mirror_failed", JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+        }
         return next;
       });
     },

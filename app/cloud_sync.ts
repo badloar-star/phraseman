@@ -315,6 +315,12 @@ import { markMistakeFullRestoreDone, resolveMistakeRestoreTargets } from './mist
 import { diffAchievementUnlocks, mergeAchievementStatesRaw } from './achievement_restore_diff';
 import { mergeNumericMaxRestoreValue } from './restore_numeric_max_merge';
 import {
+  LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
+  LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
+  mergeChapterExamSyncRestoreValueV1,
+  mergeCourseProgressSyncRestoreValueV1,
+} from '../modules/learning-v2/progress/progress_sync_v1';
+import {
   isDeferredBootRestoreWaiting,
   onDeferredBootRestoreSettled,
   peekBootRestoreDirtyKeys,
@@ -503,6 +509,10 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   phraseman_foreground_usage_ms_v1: mergeNumericMaxRestoreValue,
   phraseman_foreground_daily_ms_v1: mergeNumericMaxRestoreValue,
   ...Object.fromEntries(SYNC_STUDY_TARGETS.map((target) => [userStatsKey(target), mergeNumericMaxRestoreValue])),
+  // зачем (координатор 22.10, вариант А): прогресс курса — максимум пройденных подряд; экзамен — «сдан» побеждает, лучший счёт
+  // сохраняется. Пустой телефон облако не уменьшает: пустая сторона ничего не стирает. Журнал [V2-PROGRESS-SYNC].
+  [LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1]: mergeCourseProgressSyncRestoreValueV1,
+  [LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1]: mergeChapterExamSyncRestoreValueV1,
 };
 
 export const SYNC_KEYS = [
@@ -674,6 +684,11 @@ export const SYNC_KEYS = [
   //    низкий. Полную защиту (CF-выдача + blocked-ключи) делать отдельно.
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
+  // ── Learning V2 (координатор 22.10, вариант А): пройденные эпизоды и экзамены глав жили только на телефоне и пропадали
+  //    при переустановке. Облачная копия компактная: число пройденных подряд занятий (строка из цифр) и записи экзаменов
+  //    без текстов (≤ ~13 КБ на весь курс из 224 глав). Слияние — FC_RESTORE_MERGE_STRATEGIES ниже: пройденное не теряется.
+  LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
+  LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
 ] as const;
 
 export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string[] {
@@ -749,6 +764,10 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'learning_v2_episode_resume_v1:',
   'learning_v2_dictionary_training_decks_v1',
   'learning_v2_cant_speak_until_v1',
+  // зачем (координатор 22.10, вариант А): локальный прогресс курса и результаты экзаменов — по отпечатку аккаунта; переносятся и
+  // стираются вместе с аккаунтом (облачная копия — ключи learning_v2_*_sync_v1 в SYNC_KEYS, стираются при смене как все ключи синка).
+  'learning-v2:course-local-progress:v1:',
+  'v2:chapter-exam:v1:',
   // Client-authoritative pearl journal and its crash/sync bookkeeping.
   'client_shard_operation_v1:',
   'client_shard_ledger_state_v1:',

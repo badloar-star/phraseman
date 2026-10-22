@@ -840,10 +840,10 @@ describe('AA: A → выход → Б → выход → A на том же те
       expect({ key: item.key, leakedToB: item.atB === item.seeded }).toEqual({ key: item.key, leakedToB: false });
     }
     expect(row(result, 'user_name').atB).toBe(B.name);
-    // Карта Learning V2: ключ A лежит на диске под отпечатком A (его не стирают),
-    // но Б читает только свой отпечаток — своего прогресса у Б нет.
+    // Карта Learning V2 (координатор 22.10, вариант А): ключ A переносится и стирается вместе с аккаунтом — на телефоне у Б
+    // его больше нет вовсе (раньше лежал под отпечатком A), своего прогресса у Б тоже нет.
     expect(result.bOwnLv2Key).toBeNull();
-    expect(result.aNamedKeysAtB).toEqual([row(result, LV2_PREFIX).key]);
+    expect(result.aNamedKeysAtB).toEqual([]);
   });
 
   test('3. возврат A: уроки, серия, карточки, имя, Plus — из облака', () => {
@@ -854,12 +854,14 @@ describe('AA: A → выход → Б → выход → A на том же те
     }
   });
 
-  test('4. возврат A: карта Learning V2 — локальный ключ по отпечатку (стирание его не трогает)', () => {
+  // зачем (координатор 22.10, вариант А): ключ карты стирается с аккаунтом и возвращается из аварийной копии A (плюс облачная
+  // копия learning_v2_course_progress_sync_v1 в документе A) — потерь нет.
+  test('4. возврат A: карта Learning V2 — стирается с аккаунтом и возвращается из аварийной копии', () => {
     const item = row(result, LV2_PREFIX);
-    expect(item.survivedAWipe).toBe(true);
-    expect(item.inAFirstBackup).toBe(false);
+    expect(item.survivedAWipe).toBe(false);
+    expect(item.inAFirstBackup).toBe(true);
     expect(item.atAReturn).toBe(item.seeded);
-    expect(item.source).toBe('локальный ключ по отпечатку');
+    expect(item.source).toBe('аварийная копия');
   });
 
   // Было (находка ca9e27c79, §AUTH-0330): слот копии на телефоне один, штатный выход Б
@@ -924,6 +926,7 @@ describe('AA: A → выход → Б → выход → A на том же те
     expect(fromBackup.map((item) => item.key.split(':')[0]).sort()).toEqual([
       'coin_rank_v1',
       'dialogue_v2_voice_attempts_v1',
+      'learning-v2',
       'level_spin_star_grant_outbox_v1',
       'level_spin_star_operation_v1',
       'level_spin_star_prepared_v1',

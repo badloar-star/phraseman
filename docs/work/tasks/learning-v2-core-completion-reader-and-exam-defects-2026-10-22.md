@@ -48,3 +48,17 @@ Governance-ID: TG-4D68764B05C8
 ## Rollback
 
 git revert коммитов задачи.
+
+Governance-ID: TG-D35C2B2094B5
+
+Governance-ID: TG-9431470DC4BD
+
+## Дополнение 22.10: «Не хочу с начала» — один раз на аккаунт (слово владельца)
+
+- `app/learning_v2_not_from_start_once_v1.ts`: флаг `learning_v2_not_from_start_used_v1` ставит телефон в момент нажатия
+  (память + AsyncStorage), облако хранит: ключ в `SYNC_KEYS`, слияние ИЛИ (`mergeTruthyFlagRestoreValue`) — переживает
+  переустановку. Кэш процесса привязан к владельцу аккаунта. Журнал `[PLACEMENT-ONCE]` (read / mark / button / сбои).
+- `SeasonCourseConnected.tsx`: обработчик передаётся только пока флаг не стоит; до чтения флага кнопки нет (показать второй
+  раз хуже, чем на миг позже). Вид и место кнопки не менялись (`SeasonCourseView.tsx` правит другая сессия).
+- Теста-распределения по макету в коде ещё нет: кнопка открывает список уроков; «прошёл» = нажал.
+- Сторож: `tests/learning_v2_not_from_start_once_v1.test.ts`.

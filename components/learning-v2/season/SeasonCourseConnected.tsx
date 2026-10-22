@@ -19,6 +19,7 @@ import { BackHandler, StyleSheet, View } from 'react-native';
 import { learningV2ChapterExamHrefV1, learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
 import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
 import { pickInitialLessonOrdinal } from '../../../app/learning_v2_last_lesson';
+import { markLearningV2NotFromStartUsedV1, readLearningV2NotFromStartUsedV1, subscribeLearningV2NotFromStartUsedV1 } from '../../../app/learning_v2_not_from_start_once_v1';
 import { isLearningV2SessionStarResultsHydrated, subscribeLearningV2SessionStarResults } from '../../../app/learning_v2_session_star_results_store';
 import { getStableId, peekStableId } from '../../../app/stable_id';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../../../modules/learning-v2/content/course_topology_v1';
@@ -239,7 +240,23 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     console.log(`${LOG} нажатие → «Классический курс»`, JSON.stringify({ done: props.legacyProgress?.done ?? null, total: props.legacyProgress?.total ?? null, to: 'onLegacyLessons(классический курс)' })); // guard-ok: куда ведёт нажатие
     onLegacyLessons();
   }, [onLegacyLessons, props.legacyProgress]);
-  const onNotFromStart = useCallback(() => openLessonsList('not_from_start'), [openLessonsList]);
+  // зачем (владелец 22.10): «Не хочу с начала» — один раз на аккаунт; флаг ставит телефон при нажатии, облако хранит.
+  // Пока не прочитали флаг — кнопку не показываем: показать второй раз хуже, чем показать на миг позже.
+  const [notFromStartUsed, setNotFromStartUsed] = useState<boolean | null>(null);
+  useEffect(() => {
+    let alive = true;
+    void readLearningV2NotFromStartUsedV1().then((used) => { if (alive) setNotFromStartUsed(used); });
+    const off = subscribeLearningV2NotFromStartUsedV1((used) => setNotFromStartUsed(used));
+    return () => { alive = false; off(); };
+  }, []);
+  const onNotFromStart = useCallback(() => {
+    void markLearningV2NotFromStartUsedV1('season_cover');
+    openLessonsList('not_from_start');
+  }, [openLessonsList]);
+  const notFromStartAvailable = notFromStartUsed === false;
+  useEffect(() => {
+    if (newcomer) console.log('[PLACEMENT-ONCE] button', JSON.stringify({ newcomer, used: notFromStartUsed, shown: notFromStartAvailable })); // guard-ok: почему кнопка видна или нет
+  }, [newcomer, notFromStartAvailable, notFromStartUsed]);
   const onLessonPicker = useCallback(() => openLessonsList('lesson_pill'), [openLessonsList]);
   const onAllLessonsButton = useCallback(() => openLessonsList('tile_all_lessons'), [openLessonsList]);
 
@@ -295,7 +312,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         bottomPadding={props.bottomPadding}
         reducedMotion={props.reducedMotion}
         onPrimary={onPrimary}
-        onNotFromStart={onNotFromStart}
+        onNotFromStart={notFromStartAvailable ? onNotFromStart : undefined}
         onLessonPicker={onLessonPicker}
         onAllLessons={onAllLessonsButton}
         onClassic={onClassic}

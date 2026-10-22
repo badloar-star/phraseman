@@ -516,6 +516,7 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   [LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1]: mergeCourseProgressSyncRestoreValueV1,
   [LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1]: mergeChapterExamSyncRestoreValueV1,
   [LEARNING_V2_SESSION_STARS_SYNC_KEY_V1]: mergeSessionStarsSyncRestoreValueV1,
+  learning_v2_not_from_start_used_v1: mergeTruthyFlagRestoreValue,
 };
 
 export const SYNC_KEYS = [
@@ -694,6 +695,9 @@ export const SYNC_KEYS = [
   LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
   // звёзды эпизодов: строка цифр 0–3 по порядку курса (≤ 1792 байт), слияние — лучшая звезда по каждому занятию
   LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
+  // зачем (владелец 22.10): «Не хочу с начала» — один раз на аккаунт; флаг ставит телефон, облако хранит, чтобы он пережил
+  // переустановку (app/learning_v2_not_from_start_once_v1.ts). Слияние ИЛИ — снять флаг нельзя.
+  'learning_v2_not_from_start_used_v1',
 ] as const;
 
 export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string[] {

@@ -32,8 +32,10 @@ describe("Learning V2 new-word encounter player wiring", () => {
     );
   });
 
-  test("uses the word interaction audio and the shared cards store", () => {
-    expect(player).toContain("resolveLearningV2CourseSessionFullPhraseAudioV1");
+  test("speaks the word with the phone voice and uses the shared cards store", () => {
+    // зачем (слово владельца 22.10, 72f72a94e): карточка слова звучит голосом телефона, записи mp3 не играются
+    expect(player).toContain("`new-word:${encounterId}`");
+    expect(player).not.toContain("resolveLearningV2CourseSessionFullPhraseAudioV1");
     expect(player).toContain("isLearningV2NewWordEncounterSavedV1");
     expect(player).toContain("saveLearningV2NewWordEncounterToCardsV1");
     expect(player).toContain("removeLearningV2NewWordEncounterFromCardsV1");

@@ -253,10 +253,11 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
     "resolveLearningV2CourseSessionSelectableDeviceSpeechTextV1(",
   );
   expect(runtime).toContain("systemTtsOnly: true");
-  // зачем (21.10, D47 отменено словом владельца 18.10 — звук «бандл + Storage»): плеер снова играет записанные клипы
-  // (сначала запись, голос телефона — запасной путь). Прежний запрет этих вызовов сторожил отменённое решение.
-  expect(runtime).toContain("resolveLearningV2CourseSessionSelectableAudioV1(");
-  expect(runtime).toContain("resolveLearningV2CourseSessionFullPhraseAudioV1(");
+  // зачем (слово владельца 22.10, 72f72a94e): занятия говорят ТОЛЬКО голосом телефона — записи mp3 не играются и не готовятся.
+  // Прежняя проверка «сначала запись» (21.10) сторожила отменённое решение; теперь сторожим обратное.
+  expect(runtime).not.toContain("resolveLearningV2CourseSessionSelectableAudioV1(");
+  expect(runtime).not.toContain("resolveLearningV2CourseSessionFullPhraseAudioV1(");
+  expect(runtime).toContain("speakPreviewText(");
   // №22 (владелец 21.10): короткая отлучка в фон эпизод не сбрасывает, дольше — прежний перезапуск попытки.
   expect(runtime).toContain("LEARNING_V2_BACKGROUND_KEEP_MS = 5 * 60 * 1000");
   // №22б: дольше 5 минут — предложить «Продолжить с задания N из M», а без пройденных заданий — начать заново.

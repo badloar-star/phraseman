@@ -7,6 +7,7 @@ import { Image, PixelRatio, ScrollView, StyleSheet, Text, View } from 'react-nat
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import V2Pressable from '../v2/V2Pressable';
+import BackGlyph from '../v2/BackGlyph';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useLv2Glass, lv2Alpha } from './LearningV2Glass';
 import { lv2TaskTokens } from './learning_v2_task_theme_tokens';
@@ -151,7 +152,7 @@ export function LearningV2ChapterExamReviewView(p: ReviewProps) {
   return (
     <ScrollView style={styles.flex} contentContainerStyle={[styles.review, { paddingTop: p.topInset + 8, paddingBottom: 34 + p.bottomInset }]}>
       <V2Pressable testID="chapter-exam-review-back" accessibilityLabel={learningV2ChapterExamResultCopy(p.lang, 'review')} onPress={p.onBack} style={[styles.round, plate]}>
-        <Ionicons name="chevron-back" size={20} color={g.text} />
+        <BackGlyph size={20} color={g.text} />
       </V2Pressable>
       <Text style={[styles.reviewTitle, { color: g.text }]}>{learningV2ChapterExamResultCopy(p.lang, 'review')}</Text>
       <Text style={[styles.reviewSub, { color: g.secondary }]}>{learningV2ChapterExamReviewSubtitle(p.lang, p.chapterOrdinal, wrong.length)}</Text>

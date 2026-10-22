@@ -23,7 +23,6 @@ const requiredPlayerContracts = [
   "if (isAuthoringPreview) {",
   "preview_only_no_learner_writes",
   "!isAuthoringPreview &&",
-  "isAuthoringPreview ? null : audioPreload",
   "speakPreviewAudio",
   // Ревизор 15.10: язык предпросмотра — язык курса (тот же, что у распознавания); у английского курса это по-прежнему en-US
   'language: previewSpeechLocaleRef.current',
@@ -35,6 +34,8 @@ const requiredPlayerContracts = [
 // Главная гарантия режима — ни одной записи в прогресс ученика — в силе:
 assert.ok(player.includes("autoHydrate: !isAuthoringPreview,"));
 assert.ok(player.includes("persistenceEnabled: !isAuthoringPreview,"));
+// зачем (слово владельца 22.10, 72f72a94e): подготовки записей больше нет ни у ученика, ни в просмотре — только голос телефона
+assert.ok(!player.includes("audioPreload"), "the player must not preload recorded audio (phone voice only)");
 for (const contract of requiredPlayerContracts) {
   assert.ok(player.includes(contract), `missing player preview contract: ${contract}`);
 }

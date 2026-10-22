@@ -27,7 +27,7 @@ import {
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
 import { createThemePersister, type ThemePersister } from '../app/theme_persist';
-import { getDevAppearance, getDevThemeChoice, subscribeDevAppearance, subscribeDevThemeChoice } from '../app/dev_appearance_override';
+import { getDevAppearance, getDevThemeChoice, setDevAppearance, setDevThemeChoice, subscribeDevAppearance, subscribeDevThemeChoice } from '../app/dev_appearance_override';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { FOLLOW_SYSTEM_MARKER_KEY, decideFirstRunTheme, pickSystemDefaultTheme } from '../app/theme_first_run_default';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -442,18 +442,40 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       logThemeWriteError(THEME_STORAGE_KEY)(e);
     });
   }, []);
+  // зачем ([THEME-SWITCH]): если показанная тема/оформление не равны выбранным — в журнале СРАЗУ видно, кто держит (превью, dev-оверрайд или следование системе).
+  useEffect(() => {
+    const shownIsChosen = liquidGlassThemeId === appliedLiquidGlassThemeId && (followSystem || liquidGlassAppearance === savedLiquidGlassAppearance);
+    if (shownIsChosen) return;
+    const holder = previewLiquidGlassThemeId ? 'preview' : devThemeChoice || devAppearance ? 'dev_override' : followSystem ? 'follow_system' : 'unknown';
+    console.warn(`[THEME-SWITCH] показано ≠ выбрано ${JSON.stringify({ holder, shownTheme: liquidGlassThemeId, chosenTheme: appliedLiquidGlassThemeId, shownAppearance: liquidGlassAppearance, chosenAppearance: savedLiquidGlassAppearance, preview: previewLiquidGlassThemeId, devTheme: devThemeChoice?.themeId ?? null, devAppearance, followSystem })}`); // guard-ok: диагностика «темы не переключаются»
+  }, [liquidGlassThemeId, appliedLiquidGlassThemeId, liquidGlassAppearance, savedLiquidGlassAppearance, previewLiquidGlassThemeId, devThemeChoice, devAppearance, followSystem]);
   useEffect(() => {
     if (!followSystem) return;
     console.log(`[DEFAULT-THEME] системный режим=${String(systemScheme)} → тема=${systemDefault.themeId} оформление=${systemDefault.appearance} насыщенность=${systemDefault.intensity} источник=по умолчанию`); // guard-ok: смена пары вслед за системой
   }, [followSystem, systemScheme, systemDefault.themeId, systemDefault.appearance, systemDefault.intensity]);
 
+  // зачем (🔴 владелец 22.10 «темы не переключаются», координатор; префикс [THEME-SWITCH]): dev-оверрайды темы/оформления (dev_state?theme=&appearance=,
+  // dev-превью сцен) стоят в liquidGlassThemeId/liquidGlassAppearance ВЫШЕ сохранённого выбора и живут в памяти процесса до перезапуска. На эмуляторе после
+  // съёмки Сверки оверрайд marine/dark оставался висеть: выбор человека писался на диск (write_ok), а на экране тема не менялась. Выбор человека — главнее
+  // любого dev-оверрайда: любой из трёх commit-ов сперва снимает его. Каждое снятие пишется в журнал с прежними значениями.
+  const releaseDevOverrides = useCallback((trigger: string) => {
+    const devTheme = getDevThemeChoice();
+    const devApp = getDevAppearance();
+    if (!devTheme && !devApp) return;
+    console.warn(`[THEME-SWITCH] выбор человека (${trigger}) снимает dev-оверрайд ${JSON.stringify({ devTheme, devAppearance: devApp })}`); // guard-ok: причина «тема не менялась» всегда видна в журнале
+    if (devTheme) setDevThemeChoice(null);
+    if (devApp) setDevAppearance(null);
+  }, []);
+
   const commitLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
+    releaseDevOverrides('theme');
     freezeFollowSystem('theme');
     const previous = currentChoiceRef.current.theme;
     touchedRef.current.theme = true;
     peekLiquidGlassThemeId = id;
     setAppliedLiquidGlassThemeId(id);
     persisterRef.current?.commit('theme', id, previous);
+    console.log(`[THEME-SWITCH] тап темы ${JSON.stringify({ from: previous, to: id })}`); // guard-ok: вход цепочки смены темы
   }, []);
 
   // зачем (темы 2.0): уровень и оформление меняются мгновенно (локальный state), запись
@@ -461,6 +483,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // зачем (владелец 2026-10-04, ползунок): на диск — ТОЛЬКО при отпускании, одной записью,
   // а не на каждый кадр перетаскивания. State меняется сразу (optimistic), диск догоняет.
   const setLiquidGlassIntensity = useCallback((intensity: number) => {
+    releaseDevOverrides('intensity');
     freezeFollowSystem('intensity');
     const next = quantizeLiquidGlassIntensity(intensity);
     const level = liquidGlassLevelForIntensity(next);
@@ -481,6 +504,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [setLiquidGlassIntensity]);
 
   const setLiquidGlassAppearance = useCallback((appearance: LiquidGlassAppearance) => {
+    releaseDevOverrides('appearance');
     freezeFollowSystem('appearance');
     const resolved = resolveLiquidGlassAppearance(appearance);
     const previous = currentChoiceRef.current.appearance;

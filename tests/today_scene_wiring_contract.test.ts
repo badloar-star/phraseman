@@ -56,4 +56,10 @@ describe('«Сегодня» в стиле «Сцена»: подключени�
       expect(src).not.toContain('HomePollV2Card');
     }
   });
+
+  it('кнопка «назад» на сцене берёт цвет верха сцены — круг и значок по её яркости (4 · ТЕМЫ, back_on_scene)', () => {
+    const view = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
+    expect(view).toContain('<BackButton testID="today-scene-back" screen="today_tasks" onPress={onBack} accessibilityLabel={backLabel} sceneTop={tokens.sceneTop} />');
+    expect(view).toContain('<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');
+  });
 });

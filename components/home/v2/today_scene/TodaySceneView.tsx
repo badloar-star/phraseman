@@ -128,7 +128,8 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
         {/* зачем (эталон): у тёмной сцены затемнения низа нет — иначе стык с панелью сливается */}
         {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
         <View style={[s.top, { paddingTop: insets.top + 8 }]}>
-          <BackButton testID="today-scene-back" screen="today_tasks" onPress={onBack} accessibilityLabel={backLabel} />
+          {/* зачем (координатор 22.10, 4 · ТЕМЫ 7d5dceb94: «назад на сценах не сливается»): круг и значок — по яркости верха сцены */}
+          <BackButton testID="today-scene-back" screen="today_tasks" onPress={onBack} accessibilityLabel={backLabel} sceneTop={tokens.sceneTop} />
           {/* зачем (эталон td-top / .td-tt): крупный белый заголовок «Сегодня» 28/34 справа от «назад» */}
           <Text testID="today-scene-heading" accessibilityRole="header" numberOfLines={1} style={s.heading}>{title}</Text>
         </View>

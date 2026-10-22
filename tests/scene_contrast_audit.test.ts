@@ -7,6 +7,7 @@ import { readSource } from './helpers/read_source';
 
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
+import { homeSceneWarmTone } from '../components/home/v2/scene/home_scene_warm_tone';
 import { contrastRatio, dialogsSceneColors, dialogsSceneTokensForTheme } from '../components/dialogs/scene/dialogs_scene_tokens';
 
 const TEXT = 4.5;
@@ -47,6 +48,10 @@ for (const themeId of LIQUID_GLASS_THEME_IDS) {
         push('Главная/Сегодня/Пик', themeId, appearance, state, `подпись над заголовком (белый 86 %) на ${zone}`, contrastRatio(over(WHITE, 0.86, bg), bg), TEXT);
         push('Главная/Сегодня/Пик', themeId, appearance, state, `строка под заголовком (белый 88 %) на ${zone}`, contrastRatio(over(WHITE, 0.88, bg), bg), TEXT);
         push('Главная/Сегодня/Пик', themeId, appearance, state, `тёплая строка вечера на ${zone}`, contrastRatio(WARM, bg), TEXT);
+        // владелец кнопкой 22.10: огонёк серии и ноль энергии на Главной — оттенок текущей темы
+        const warmTone = homeSceneWarmTone(liquidGlassTokens(themeId, { level: 'max', appearance } as never).accent);
+        push('Главная', themeId, appearance, state, `огонёк серии (оттенок темы) на ${zone}`, contrastRatio(warmTone.flame, bg), TEXT);
+        push('Главная', themeId, appearance, state, `ноль энергии (оттенок темы) на ${zone}`, contrastRatio(warmTone.low, bg), TEXT);
         const strip = over(WHITE, GLASS_ALPHA, bg);
         push('Главная', themeId, appearance, state, `«Нет сети»: белый текст на полосе на ${zone}`, contrastRatio(WHITE, strip), TEXT);
         push('Главная', themeId, appearance, state, `значок «Нет сети» на полосе на ${zone}`, contrastRatio(WHITE, strip), LARGE);
@@ -92,7 +97,8 @@ describe('аудит контраста сцен: все темы, уровен�
     const today = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
     expect(home).toContain("backgroundColor: 'rgba(255,255,255,0.14)'");
     expect(stage).toContain("backgroundColor: 'rgba(255,255,255,0.14)'");
-    expect(stage).toContain("warm: { color: '#FFD9D0'");
+    expect(stage).toContain('homeSceneWarmTone(');
+    expect(stage).not.toContain('#FFD9D0');
     expect(today).toContain("warm: { color: '#FFD9D0'");
   });
 

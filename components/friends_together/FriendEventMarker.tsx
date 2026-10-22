@@ -11,16 +11,15 @@ import { LUM } from '../../constants/motionHybrid';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { noAndroidOutline } from '../../constants/androidGlow';
+import { useShadowGlass } from '../v2/ShadowSurface';
 
-const PORCELAIN = '#EEE7DB'; // theme-exempt: бренд-палитра маркера события друзей
-const GRAPHITE = '#2D3842'; // theme-exempt: бренд-палитра маркера события друзей
-const TEAL = '#5E8C90'; // theme-exempt: бренд-палитра маркера события друзей
-const AMBER = '#DF824B'; // theme-exempt: бренд-палитра маркера события друзей
 
 type Props = { event: FriendSocialEvent; onPress: () => void; nowMs?: number };
 
 function FriendEventMarker({ event, onPress, nowMs }: Props) {
   const reduceMotion = useReduceMotion();
+  // зачем (закон владельца 22.10, «метки событий друзей — В ТЕМУ, исключений нет»): цвета маркера — токены выбранной темы, а не бренд-палитра фарфор/графит/бирюза/янтарь
+  const g = useShadowGlass();
   // зачем (аудит скорости 2026-08-22): секундный тикер дуэли жил и на
   // замороженном/фоновом экране (Performance Bible: freeze гасит рендеры, но
   // не таймеры). Гейтим фокусом+AppState; при возврате первый setLiveNowMs
@@ -72,14 +71,14 @@ function FriendEventMarker({ event, onPress, nowMs }: Props) {
   return (
     <Reanimated.View style={animated}>
       <Pressable testID={`friend-event-marker-${event.kind}`} onPress={onPress} accessibilityRole="button" accessibilityLabel={accessibilityLabel} style={styles.marker}>
-        <View style={styles.badge} accessible={false} importantForAccessibility="no-hide-descendants">
-          <Ionicons name={iconName} size={27} color={GRAPHITE} />
+        <View style={[styles.badge, { backgroundColor: g.opaqueCard, borderColor: g.accentGraphic, shadowColor: g.dropShadow }]} accessible={false} importantForAccessibility="no-hide-descendants">
+          <Ionicons name={iconName} size={27} color={g.text} />
           {flashBadge
-            ? <View style={styles.flash}><Ionicons name="flash" size={11} color={PORCELAIN} /></View>
-            : <View style={styles.accentDot} />}
+            ? <View style={[styles.flash, { backgroundColor: g.accentGraphic, borderColor: g.opaqueCard }]}><Ionicons name="flash" size={11} color={g.ctaFillInk} /></View>
+            : <View style={[styles.accentDot, { backgroundColor: g.accentGraphic }]} />}
         </View>
-        {event.kind === 'duel_invite' && <Text style={styles.countdown}>{Math.ceil(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</Text>}
-        {challengeLeft !== null && <Text style={styles.countdown}>{challengeLeft}</Text>}
+        {event.kind === 'duel_invite' && <Text style={[styles.countdown, { backgroundColor: g.opaqueCard, color: g.text }]}>{Math.ceil(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</Text>}
+        {challengeLeft !== null && <Text style={[styles.countdown, { backgroundColor: g.opaqueCard, color: g.text }]}>{challengeLeft}</Text>}
       </Pressable>
     </Reanimated.View>
   );
@@ -89,8 +88,8 @@ export default memo(FriendEventMarker);
 
 const styles = StyleSheet.create({
   marker: { width: 58, minHeight: 58, alignItems: 'center', justifyContent: 'center' },
-  badge: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: PORCELAIN, borderWidth: 1.5, borderColor: TEAL /* shadow-ok: кольцо значка-маркера на карте — индикатор события, не контейнер. typo-exempt: кольцо-индикатор */, shadowColor: GRAPHITE, shadowOpacity: 0.2, shadowRadius: 4, shadowOffset: { width: 0, height: 2 }, ...noAndroidOutline}, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
-  accentDot: { position: 'absolute', right: 5, bottom: 5, width: 7, height: 7, borderRadius: 4, backgroundColor: AMBER },
-  flash: { position: 'absolute', right: 2, bottom: 2, width: 18, height: 18, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: AMBER, borderWidth: 1.5, borderColor: PORCELAIN }, // typo-exempt: кольцо-отбивка. shadow-ok: кольцо-отбивка молнии на значке маркера — индикатор, не контейнер
-  countdown: { marginTop: -4, paddingHorizontal: 5, paddingVertical: 1, borderRadius: 7, overflow: 'hidden', backgroundColor: PORCELAIN, color: GRAPHITE, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  badge: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', borderWidth: 1.5 /* shadow-ok: кольцо значка-маркера на карте — индикатор события, не контейнер. typo-exempt: кольцо-индикатор */, shadowOpacity: 0.2, shadowRadius: 4, shadowOffset: { width: 0, height: 2 }, ...noAndroidOutline}, // зачем: без непрозрачного фона Android рисует квадрат вокруг скругления (сторож android_no_square_outline)
+  accentDot: { position: 'absolute', right: 5, bottom: 5, width: 7, height: 7, borderRadius: 4 },
+  flash: { position: 'absolute', right: 2, bottom: 2, width: 18, height: 18, borderRadius: 9, alignItems: 'center', justifyContent: 'center', borderWidth: 1.5 }, // typo-exempt: кольцо-отбивка. shadow-ok: кольцо-отбивка молнии на значке маркера — индикатор, не контейнер
+  countdown: { marginTop: -4, paddingHorizontal: 5, paddingVertical: 1, borderRadius: 7, overflow: 'hidden', fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

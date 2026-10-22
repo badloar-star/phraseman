@@ -7,11 +7,9 @@ const markerPath = path.join(ROOT, 'components/friends_together/FriendEventMarke
 describe('friend event universal icon contract', () => {
   const marker = fs.readFileSync(markerPath, 'utf8');
 
-  it('uses the approved fixed palette and no raster lookup', () => {
-    expect(marker).toContain("PORCELAIN = '#EEE7DB'");
-    expect(marker).toContain("GRAPHITE = '#2D3842'");
-    expect(marker).toContain("TEAL = '#5E8C90'");
-    expect(marker).toContain("AMBER = '#DF824B'");
+  it('paints with the tokens of the CURRENT theme (owner law 22.10: no fixed brand palette) and has no raster lookup', () => {
+    expect(marker).toContain('useShadowGlass()');
+    expect(marker).not.toMatch(/PORCELAIN|GRAPHITE|TEAL|AMBER|#[0-9A-Fa-f]{6}/);
     expect(marker).not.toMatch(/require\s*\(/);
     expect(marker).not.toContain('Image');
   });

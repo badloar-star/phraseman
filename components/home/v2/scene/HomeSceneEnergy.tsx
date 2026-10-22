@@ -11,6 +11,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { peekEnergy } from '../../../../app/energy_peek_cache';
 import { useEnergy } from '../../../EnergyContext';
+import { useShadowGlass } from '../../../v2/ShadowSurface';
+import { homeSceneWarmTone } from './home_scene_warm_tone';
 
 export default function HomeSceneEnergy() {
   const { energy, isUnlimited, energyReady } = useEnergy();
@@ -35,7 +37,9 @@ export default function HomeSceneEnergy() {
 // зачем (координатор 22.10): dev-вход /dev_home_scene_preview рисует ту же энергию числом из моков, без подписки на настоящую
 export const HomeSceneEnergyView = memo(function HomeSceneEnergyView({ value, zero }: Readonly<{ value: string; zero: boolean }>) {
   // зачем (эталон .glass .hm-emb): ноль энергии — тёплый тон, чтобы было видно без слов
-  const color = zero ? '#FFB4A3' : '#FFFFFF';
+  // зачем (владелец кнопкой 22.10): ноль энергии — светлый оттенок текущей темы, не персиковый #FFB4A3
+  const lowTone = homeSceneWarmTone(useShadowGlass().accent).low;
+  const color = zero ? lowTone : '#FFFFFF';
   return (
     <View style={s.row} accessible accessibilityLabel={`⚡ ${value}`}>
       <Ionicons name="flash" size={16} color={color} />

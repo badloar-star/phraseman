@@ -24,6 +24,8 @@ import V2Pressable from '../../../v2/V2Pressable';
 import { useTabPillTop } from '../../../../hooks/use-tab-content-bottom-pad';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
 import { homeSceneStageHeight } from './home_scene_fit';
+import { homeSceneWarmTone } from './home_scene_warm_tone';
+import { useShadowGlass } from '../../../v2/ShadowSurface';
 import type { HomeSceneState } from './home_scene_state';
 import type { HomeSceneStageTokens } from './home_scene_tokens';
 
@@ -91,6 +93,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
   const pillTop = useTabPillTop();
+  // зачем (владелец кнопкой 22.10): огонёк серии — в оттенок текущей темы, не персиковый
+  const warmTone = homeSceneWarmTone(useShadowGlass().accent).flame;
   // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана вместе со строкой статуса
   // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
@@ -163,8 +167,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
               : <Text testID="home-scene-title" accessibilityRole="header" style={titleStyle}>{copy.title}</Text>}
             {copy.warm ? (
               <View style={s.warmRow}>
-                <Ionicons name="flame" size={16} color="#FFD9D0" />
-                {liveEnergy === 'warm' ? <LiveEnergyText testID="home-scene-warm" build={buildLiveText} style={s.warm} /> : <Text style={s.warm}>{copy.warm}</Text>}
+                <Ionicons name="flame" size={16} color={warmTone} />
+                {liveEnergy === 'warm' ? <LiveEnergyText testID="home-scene-warm" build={buildLiveText} style={[s.warm, { color: warmTone }]} /> : <Text style={[s.warm, { color: warmTone }]}>{copy.warm}</Text>}
               </View>
             ) : null}
             {copy.line ? (
@@ -234,7 +238,7 @@ const baseStyles = StyleSheet.create({
   title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4 },
   titleLong: { color: '#FFFFFF', fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5, marginTop: 4 },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
-  warm: { color: '#FFD9D0', /* аудит контраста 22.10: чуть светлее прежнего #FFD0C4 — 4,45 → ≥ 4,5 в светлых sage/grad_aurora */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.28)', overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: '#FFFFFF' },

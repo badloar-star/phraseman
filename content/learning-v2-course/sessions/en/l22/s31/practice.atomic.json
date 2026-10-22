@@ -1,0 +1,2349 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-31",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-31:word:make-progress",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — make progress",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:make-progress:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — make progress",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:make-progress:audio",
+            "transcript": "make progress"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:make-progress:r1",
+              "targetText": "make progress",
+              "meaningByLocale": {
+                "ru": "делать успехи.",
+                "uk": "робити успіхи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make progress",
+            "definitionByLocale": {
+              "ru": "делать успехи.",
+              "uk": "робити успіхи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы объясняете свою привычку. Скажите: «Я практикуюсь каждый день, чтобы делать успехи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы объясняете свою привычку. Скажите: «Я практикуюсь каждый день, чтобы делать успехи»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I practise every day to make progress.",
+          "localizedMeaning": {
+            "ru": "Вы объясняете свою привычку. Скажите: «Я практикуюсь каждый день, чтобы делать успехи»",
+            "uk": "Ви пояснюєте свою звичку. Скажіть: «Я практикуюся щодня, щоб робити успіхи»"
+          },
+          "orderedTokens": [
+            "I",
+            "practise",
+            "every",
+            "day",
+            "to",
+            "make",
+            "progress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i02:r1",
+            "text": "I practise every day to make progress."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i02:r2",
+            "text": "We practise every day to make progress."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i02:r3",
+            "text": "You practise every day to make progress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i02:audio",
+            "transcript": "I practise every day to make progress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i02:r1",
+              "targetText": "I practise every day to make progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i02:r2",
+              "targetText": "We practise every day to make progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i02:r3",
+              "targetText": "You practise every day to make progress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I practise every day to make progress.",
+                "uk": "У записі звучить I practise every day to make progress."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I practise every day to make progress.",
+                "uk": "У записі звучить I practise every day to make progress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i03:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I practise every day ___ make progress.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i03:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i03:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i03:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:word:stay-focused",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stay focused",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:stay-focused:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stay focused",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:stay-focused:audio",
+            "transcript": "stay focused"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:stay-focused:r1",
+              "targetText": "stay focused",
+              "meaningByLocale": {
+                "ru": "сохранять сосредоточенность.",
+                "uk": "залишатися зосередженим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stay focused",
+            "definitionByLocale": {
+              "ru": "сохранять сосредоточенность.",
+              "uk": "залишатися зосередженим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы убираете отвлекающие звонки. Скажите: «Я выключаю телефон, чтобы оставаться сосредоточенным»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы убираете отвлекающие звонки. Скажите: «Я выключаю телефон, чтобы оставаться сосредоточенным»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I turn off my phone to stay focused.",
+          "localizedMeaning": {
+            "ru": "Вы убираете отвлекающие звонки. Скажите: «Я выключаю телефон, чтобы оставаться сосредоточенным»",
+            "uk": "Ви усуваєте дзвінки, що відволікають. Скажіть: «Я вимикаю телефон, щоб залишатися зосередженим»"
+          },
+          "orderedTokens": [
+            "I",
+            "turn",
+            "off",
+            "my",
+            "phone",
+            "to",
+            "stay",
+            "focused"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i05:r1",
+            "text": "I turn off my phone to stay focused."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i05:r2",
+            "text": "We turn off our phone to stay focused."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i05:r3",
+            "text": "You turn off your phone to stay focused."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i05:audio",
+            "transcript": "I turn off my phone to stay focused."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i05:r1",
+              "targetText": "I turn off my phone to stay focused.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i05:r2",
+              "targetText": "We turn off our phone to stay focused.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i05:r3",
+              "targetText": "You turn off your phone to stay focused.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I turn off my phone to stay focused.",
+                "uk": "У записі звучить I turn off my phone to stay focused."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I turn off my phone to stay focused.",
+                "uk": "У записі звучить I turn off my phone to stay focused."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i06:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I turn off my phone ___ stay focused.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i06:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i06:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i06:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:word:learn-a-poem-by-heart",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — learn a poem by heart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:learn-a-poem-by-heart:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — learn a poem by heart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:learn-a-poem-by-heart:audio",
+            "transcript": "learn a poem by heart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:learn-a-poem-by-heart:r1",
+              "targetText": "learn a poem by heart",
+              "meaningByLocale": {
+                "ru": "выучить стихотворение наизусть.",
+                "uk": "вивчити вірш напам’ять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "learn a poem by heart",
+            "definitionByLocale": {
+              "ru": "выучить стихотворение наизусть.",
+              "uk": "вивчити вірш напам’ять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы повторяете текст. Скажите: «Я повторяю слова, чтобы выучить стихотворение наизусть»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы повторяете текст. Скажите: «Я повторяю слова, чтобы выучить стихотворение наизусть»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I repeat the words to learn a poem by heart.",
+          "localizedMeaning": {
+            "ru": "Вы повторяете текст. Скажите: «Я повторяю слова, чтобы выучить стихотворение наизусть»",
+            "uk": "Ви повторюєте текст. Скажіть: «Я повторюю слова, щоб вивчити вірш напам’ять»"
+          },
+          "orderedTokens": [
+            "I",
+            "repeat",
+            "the",
+            "words",
+            "to",
+            "learn",
+            "a",
+            "poem",
+            "by",
+            "heart"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i08:r1",
+            "text": "I repeat the words to learn a poem by heart."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i08:r2",
+            "text": "We repeat the words to learn a poem by heart."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i08:r3",
+            "text": "You repeat the words to learn a poem by heart."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i08:audio",
+            "transcript": "I repeat the words to learn a poem by heart."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i08:r1",
+              "targetText": "I repeat the words to learn a poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i08:r2",
+              "targetText": "We repeat the words to learn a poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i08:r3",
+              "targetText": "You repeat the words to learn a poem by heart.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I repeat the words to learn a poem by heart.",
+                "uk": "У записі звучить I repeat the words to learn a poem by heart."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I repeat the words to learn a poem by heart.",
+                "uk": "У записі звучить I repeat the words to learn a poem by heart."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i09:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I repeat the words ___ learn a poem by heart.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i09:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i09:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i09:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:word:check-my-work",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check my work",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:check-my-work:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check my work",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:check-my-work:audio",
+            "transcript": "check my work"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:check-my-work:r1",
+              "targetText": "check my work",
+              "meaningByLocale": {
+                "ru": "проверить свою работу.",
+                "uk": "перевірити свою роботу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check my work",
+            "definitionByLocale": {
+              "ru": "проверить свою работу.",
+              "uk": "перевірити свою роботу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы перечитываете написанное. Скажите: «Я читаю это снова, чтобы проверить свою работу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы перечитываете написанное. Скажите: «Я читаю это снова, чтобы проверить свою работу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I read it again to check my work.",
+          "localizedMeaning": {
+            "ru": "Вы перечитываете написанное. Скажите: «Я читаю это снова, чтобы проверить свою работу»",
+            "uk": "Ви перечитуєте написане. Скажіть: «Я читаю це знову, щоб перевірити свою роботу»"
+          },
+          "orderedTokens": [
+            "I",
+            "read",
+            "it",
+            "again",
+            "to",
+            "check",
+            "my",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i11:r1",
+            "text": "I read it again to check my work."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i11:r2",
+            "text": "We read it again to check our work."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i11:r3",
+            "text": "You read it again to check your work."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i11:audio",
+            "transcript": "I read it again to check my work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i11:r1",
+              "targetText": "I read it again to check my work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i11:r2",
+              "targetText": "We read it again to check our work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i11:r3",
+              "targetText": "You read it again to check your work.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read it again to check my work.",
+                "uk": "У записі звучить I read it again to check my work."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read it again to check my work.",
+                "uk": "У записі звучить I read it again to check my work."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i12:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I read it again ___ check my work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i12:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i12:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i12:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-31:i13:p1",
+              "target": "make progress",
+              "meaningByLocale": {
+                "ru": "делать успехи",
+                "uk": "робити успіхи"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-31:i13:p2",
+              "target": "stay focused",
+              "meaningByLocale": {
+                "ru": "сохранять сосредоточенность",
+                "uk": "залишатися зосередженим"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-31:i13:p3",
+              "target": "learn a poem by heart",
+              "meaningByLocale": {
+                "ru": "выучить стихотворение наизусть",
+                "uk": "вивчити вірш напам’ять"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-31:i13:p4",
+              "target": "check my work",
+              "meaningByLocale": {
+                "ru": "проверить свою работу",
+                "uk": "перевірити свою роботу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make progress",
+            "stay focused",
+            "learn a poem by heart",
+            "check my work"
+          ],
+          "rightColumn": [
+            "делать успехи",
+            "сохранять сосредоточенность",
+            "выучить стихотворение наизусть",
+            "проверить свою работу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: место у окна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: место у окна",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i14:audio",
+            "transcript": "Could I sit by the window?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I sit by the window?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "sit",
+            "by",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: прогулка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: прогулка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i15:audio",
+            "transcript": "Could I go for a walk?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I go for a walk?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "go",
+            "for",
+            "a",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мне нужно проверить свою работу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мне нужно проверить свою работу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i16:audio",
+            "transcript": "I need to check my work."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to check my work.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я хочу делать успехи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я хочу делать успехи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i17:audio",
+            "transcript": "I want to make progress."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to make progress.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-31:word:make-progress",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — make progress",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:make-progress:audio"
+        ],
+        "accessibilityLabel": "Картка слова — make progress",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:make-progress:audio",
+            "transcript": "make progress"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:make-progress:r1",
+              "targetText": "make progress",
+              "meaningByLocale": {
+                "ru": "делать успехи.",
+                "uk": "робити успіхи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "make progress",
+            "definitionByLocale": {
+              "ru": "делать успехи.",
+              "uk": "робити успіхи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви пояснюєте свою звичку. Скажіть: «Я практикуюся щодня, щоб робити успіхи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви пояснюєте свою звичку. Скажіть: «Я практикуюся щодня, щоб робити успіхи»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I practise every day to make progress.",
+          "localizedMeaning": {
+            "ru": "Вы объясняете свою привычку. Скажите: «Я практикуюсь каждый день, чтобы делать успехи»",
+            "uk": "Ви пояснюєте свою звичку. Скажіть: «Я практикуюся щодня, щоб робити успіхи»"
+          },
+          "orderedTokens": [
+            "I",
+            "practise",
+            "every",
+            "day",
+            "to",
+            "make",
+            "progress"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i02:r1",
+            "text": "I practise every day to make progress."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i02:r2",
+            "text": "We practise every day to make progress."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i02:r3",
+            "text": "You practise every day to make progress."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i02:audio",
+            "transcript": "I practise every day to make progress."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i02:r1",
+              "targetText": "I practise every day to make progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i02:r2",
+              "targetText": "We practise every day to make progress.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i02:r3",
+              "targetText": "You practise every day to make progress.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I practise every day to make progress.",
+                "uk": "У записі звучить I practise every day to make progress."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I practise every day to make progress.",
+                "uk": "У записі звучить I practise every day to make progress."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i03:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I practise every day ___ make progress.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i03:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i03:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i03:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:word:stay-focused",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stay focused",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:stay-focused:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stay focused",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:stay-focused:audio",
+            "transcript": "stay focused"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:stay-focused:r1",
+              "targetText": "stay focused",
+              "meaningByLocale": {
+                "ru": "сохранять сосредоточенность.",
+                "uk": "залишатися зосередженим."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stay focused",
+            "definitionByLocale": {
+              "ru": "сохранять сосредоточенность.",
+              "uk": "залишатися зосередженим."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви усуваєте дзвінки, що відволікають. Скажіть: «Я вимикаю телефон, щоб залишатися зосередженим»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви усуваєте дзвінки, що відволікають. Скажіть: «Я вимикаю телефон, щоб залишатися зосередженим»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I turn off my phone to stay focused.",
+          "localizedMeaning": {
+            "ru": "Вы убираете отвлекающие звонки. Скажите: «Я выключаю телефон, чтобы оставаться сосредоточенным»",
+            "uk": "Ви усуваєте дзвінки, що відволікають. Скажіть: «Я вимикаю телефон, щоб залишатися зосередженим»"
+          },
+          "orderedTokens": [
+            "I",
+            "turn",
+            "off",
+            "my",
+            "phone",
+            "to",
+            "stay",
+            "focused"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i05:r1",
+            "text": "I turn off my phone to stay focused."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i05:r2",
+            "text": "We turn off our phone to stay focused."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i05:r3",
+            "text": "You turn off your phone to stay focused."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i05:audio",
+            "transcript": "I turn off my phone to stay focused."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i05:r1",
+              "targetText": "I turn off my phone to stay focused.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i05:r2",
+              "targetText": "We turn off our phone to stay focused.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i05:r3",
+              "targetText": "You turn off your phone to stay focused.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I turn off my phone to stay focused.",
+                "uk": "У записі звучить I turn off my phone to stay focused."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I turn off my phone to stay focused.",
+                "uk": "У записі звучить I turn off my phone to stay focused."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i06:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I turn off my phone ___ stay focused.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i06:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i06:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i06:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:word:learn-a-poem-by-heart",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — learn a poem by heart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:learn-a-poem-by-heart:audio"
+        ],
+        "accessibilityLabel": "Картка слова — learn a poem by heart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:learn-a-poem-by-heart:audio",
+            "transcript": "learn a poem by heart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:learn-a-poem-by-heart:r1",
+              "targetText": "learn a poem by heart",
+              "meaningByLocale": {
+                "ru": "выучить стихотворение наизусть.",
+                "uk": "вивчити вірш напам’ять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "learn a poem by heart",
+            "definitionByLocale": {
+              "ru": "выучить стихотворение наизусть.",
+              "uk": "вивчити вірш напам’ять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви повторюєте текст. Скажіть: «Я повторюю слова, щоб вивчити вірш напам’ять»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви повторюєте текст. Скажіть: «Я повторюю слова, щоб вивчити вірш напам’ять»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I repeat the words to learn a poem by heart.",
+          "localizedMeaning": {
+            "ru": "Вы повторяете текст. Скажите: «Я повторяю слова, чтобы выучить стихотворение наизусть»",
+            "uk": "Ви повторюєте текст. Скажіть: «Я повторюю слова, щоб вивчити вірш напам’ять»"
+          },
+          "orderedTokens": [
+            "I",
+            "repeat",
+            "the",
+            "words",
+            "to",
+            "learn",
+            "a",
+            "poem",
+            "by",
+            "heart"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i08:r1",
+            "text": "I repeat the words to learn a poem by heart."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i08:r2",
+            "text": "We repeat the words to learn a poem by heart."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i08:r3",
+            "text": "You repeat the words to learn a poem by heart."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i08:audio",
+            "transcript": "I repeat the words to learn a poem by heart."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i08:r1",
+              "targetText": "I repeat the words to learn a poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i08:r2",
+              "targetText": "We repeat the words to learn a poem by heart.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i08:r3",
+              "targetText": "You repeat the words to learn a poem by heart.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I repeat the words to learn a poem by heart.",
+                "uk": "У записі звучить I repeat the words to learn a poem by heart."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I repeat the words to learn a poem by heart.",
+                "uk": "У записі звучить I repeat the words to learn a poem by heart."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i09:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I repeat the words ___ learn a poem by heart.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i09:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i09:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i09:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:word:check-my-work",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check my work",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:word:check-my-work:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check my work",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:word:check-my-work:audio",
+            "transcript": "check my work"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:word:check-my-work:r1",
+              "targetText": "check my work",
+              "meaningByLocale": {
+                "ru": "проверить свою работу.",
+                "uk": "перевірити свою роботу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check my work",
+            "definitionByLocale": {
+              "ru": "проверить свою работу.",
+              "uk": "перевірити свою роботу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви перечитуєте написане. Скажіть: «Я читаю це знову, щоб перевірити свою роботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви перечитуєте написане. Скажіть: «Я читаю це знову, щоб перевірити свою роботу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I read it again to check my work.",
+          "localizedMeaning": {
+            "ru": "Вы перечитываете написанное. Скажите: «Я читаю это снова, чтобы проверить свою работу»",
+            "uk": "Ви перечитуєте написане. Скажіть: «Я читаю це знову, щоб перевірити свою роботу»"
+          },
+          "orderedTokens": [
+            "I",
+            "read",
+            "it",
+            "again",
+            "to",
+            "check",
+            "my",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i11:r1",
+            "text": "I read it again to check my work."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i11:r2",
+            "text": "We read it again to check our work."
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i11:r3",
+            "text": "You read it again to check your work."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i11:audio",
+            "transcript": "I read it again to check my work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-31:i11:r1",
+              "targetText": "I read it again to check my work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i11:r2",
+              "targetText": "We read it again to check our work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i11:r3",
+              "targetText": "You read it again to check your work.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read it again to check my work.",
+                "uk": "У записі звучить I read it again to check my work."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I read it again to check my work.",
+                "uk": "У записі звучить I read it again to check my work."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-31:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-31:i12:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I read it again ___ check my work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-31:i12:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i12:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i12:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-31:i13:p1",
+              "target": "make progress",
+              "meaningByLocale": {
+                "ru": "делать успехи",
+                "uk": "робити успіхи"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-31:i13:p2",
+              "target": "stay focused",
+              "meaningByLocale": {
+                "ru": "сохранять сосредоточенность",
+                "uk": "залишатися зосередженим"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-31:i13:p3",
+              "target": "learn a poem by heart",
+              "meaningByLocale": {
+                "ru": "выучить стихотворение наизусть",
+                "uk": "вивчити вірш напам’ять"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-31:i13:p4",
+              "target": "check my work",
+              "meaningByLocale": {
+                "ru": "проверить свою работу",
+                "uk": "перевірити свою роботу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "make progress",
+            "stay focused",
+            "learn a poem by heart",
+            "check my work"
+          ],
+          "rightColumn": [
+            "робити успіхи",
+            "залишатися зосередженим",
+            "вивчити вірш напам’ять",
+            "перевірити свою роботу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: місце біля вікна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: місце біля вікна",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i14:audio",
+            "transcript": "Could I sit by the window?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I sit by the window?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "sit",
+            "by",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: прогулянка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: прогулянка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i15:audio",
+            "transcript": "Could I go for a walk?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I go for a walk?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "go",
+            "for",
+            "a",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Мені потрібно перевірити свою роботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Мені потрібно перевірити свою роботу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i16:audio",
+            "transcript": "I need to check my work."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to check my work.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я хочу робити успіхи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я хочу робити успіхи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-31:i17:audio",
+            "transcript": "I want to make progress."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to make progress.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-31:word:make-progress",
+      "correctText": "make progress",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i01",
+      "correctText": "I practise every day to make progress.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i02",
+      "correctText": "I practise every day to make progress.",
+      "correctResponseId": "en:lesson-22:session-31:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i03",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-31:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:word:stay-focused",
+      "correctText": "stay focused",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i04",
+      "correctText": "I turn off my phone to stay focused.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i05",
+      "correctText": "I turn off my phone to stay focused.",
+      "correctResponseId": "en:lesson-22:session-31:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i06",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-31:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:word:learn-a-poem-by-heart",
+      "correctText": "learn a poem by heart",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i07",
+      "correctText": "I repeat the words to learn a poem by heart.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i08",
+      "correctText": "I repeat the words to learn a poem by heart.",
+      "correctResponseId": "en:lesson-22:session-31:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i09",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-31:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:word:check-my-work",
+      "correctText": "check my work",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i10",
+      "correctText": "I read it again to check my work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i11",
+      "correctText": "I read it again to check my work.",
+      "correctResponseId": "en:lesson-22:session-31:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i12",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-31:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i14",
+      "correctText": "Could I sit by the window?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i15",
+      "correctText": "Could I go for a walk?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i16",
+      "correctText": "I need to check my work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-31:i17",
+      "correctText": "I want to make progress.",
+      "correctResponseId": null
+    }
+  ]
+}

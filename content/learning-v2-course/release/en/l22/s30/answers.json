@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-30:word:stay-dry",
+    "correctText": "stay dry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i01",
+    "correctText": "I use an umbrella to stay dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i02",
+    "correctText": "I use an umbrella to stay dry.",
+    "correctResponseId": "en:lesson-22:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:word:keep-fit",
+    "correctText": "keep fit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i04",
+    "correctText": "I go swimming to keep fit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i05",
+    "correctText": "I go swimming to keep fit.",
+    "correctResponseId": "en:lesson-22:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:word:eat-well",
+    "correctText": "eat well",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i07",
+    "correctText": "I cook at home to eat well.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i08",
+    "correctText": "I cook at home to eat well.",
+    "correctResponseId": "en:lesson-22:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:word:get-enough-rest",
+    "correctText": "get enough rest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i10",
+    "correctText": "I go to bed early to get enough rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i11",
+    "correctText": "I go to bed early to get enough rest.",
+    "correctResponseId": "en:lesson-22:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i13",
+    "correctText": "en:lesson-22:session-30:i13:p1=stay dry\nen:lesson-22:session-30:i13:p2=keep fit\nen:lesson-22:session-30:i13:p3=eat well\nen:lesson-22:session-30:i13:p4=get enough rest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i16",
+    "correctText": "I need to get enough rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-30:i17",
+    "correctText": "I want to keep fit.",
+    "correctResponseId": null
+  }
+]

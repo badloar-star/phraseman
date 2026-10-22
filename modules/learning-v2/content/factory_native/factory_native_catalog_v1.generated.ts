@@ -8435,4 +8435,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"determiner|adjective + one|ones","uk":"determiner|adjective + one|ones"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 29,
+    sourceFingerprint: "0e015e81e3e8ad0a6a48601ae142c9a50173986e45755143cdc1c10159c23ca9",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"determiner|adjective + one|ones","uk":"determiner|adjective + one|ones"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 30,
+    sourceFingerprint: "7cc35812ce928a5e529578df773e0749d9508f2410c041aaf44b7e9eb121a631",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 31,
+    sourceFingerprint: "ff78780d84b5a4832f584f27c2c65e0a85efb1169482c5ce9e5678e7006d6e63",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 32,
+    sourceFingerprint: "43a44e7427d99130066977eb43c7c2e7e77a817a7be030c4eaee5f514962291c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

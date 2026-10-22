@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-29:word:lace-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lace-up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:word:lace-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lace-up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:word:lace-up:audio",
+          "transcript": "lace-up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:word:lace-up:r1",
+            "targetText": "lace-up",
+            "meaningByLocale": {
+              "ru": "на шнурках.",
+              "uk": "на шнурках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lace-up",
+          "definitionByLocale": {
+            "ru": "на шнурках.",
+            "uk": "на шнурках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы выбираете ботинки на шнурках. Скажите: «Я предпочитаю те, которые на шнурках»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете ботинки на шнурках. Скажите: «Я предпочитаю те, которые на шнурках»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I prefer the lace-up ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете ботинки на шнурках. Скажите: «Я предпочитаю те, которые на шнурках»",
+          "uk": "Ви обираєте черевики на шнурках. Скажіть: «Я віддаю перевагу тим, що на шнурках»"
+        },
+        "orderedTokens": [
+          "I",
+          "prefer",
+          "the",
+          "lace-up",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i02:r1",
+          "text": "I prefer the lace-up ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i02:r2",
+          "text": "We prefer the lace-up ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i02:r3",
+          "text": "You prefer the lace-up ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i02:audio",
+          "transcript": "I prefer the lace-up ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:i02:r1",
+            "targetText": "I prefer the lace-up ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i02:r2",
+            "targetText": "We prefer the lace-up ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i02:r3",
+            "targetText": "You prefer the lace-up ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the lace-up ones.",
+              "uk": "У записі звучить I prefer the lace-up ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the lace-up ones.",
+              "uk": "У записі звучить I prefer the lace-up ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы выбираете ботинки на шнурках.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i03:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i03:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i03:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете ботинки на шнурках.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете ботинки на шнурках.",
+          "uk": "Ви обираєте черевики на шнурках."
+        },
+        "gappedTargetPhrase": "I prefer the lace-up ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-29:i03:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i03:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i03:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Вы выбираете ботинки на шнурках.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы выбираете ботинки на шнурках.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы выбираете ботинки на шнурках.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:word:slip-on",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — slip-on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:word:slip-on:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — slip-on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:word:slip-on:audio",
+          "transcript": "slip-on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:word:slip-on:r1",
+            "targetText": "slip-on",
+            "meaningByLocale": {
+              "ru": "без застёжек.",
+              "uk": "без застібок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slip-on",
+          "definitionByLocale": {
+            "ru": "без застёжек.",
+            "uk": "без застібок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы выбираете туфли без застёжек. Скажите: «Я хочу те, которые без застёжек»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете туфли без застёжек. Скажите: «Я хочу те, которые без застёжек»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the slip-on ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете туфли без застёжек. Скажите: «Я хочу те, которые без застёжек»",
+          "uk": "Ви обираєте туфлі без застібок. Скажіть: «Я хочу ті, що без застібок»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "slip-on",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i05:r1",
+          "text": "I want the slip-on ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i05:r2",
+          "text": "We want the slip-on ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i05:r3",
+          "text": "You want the slip-on ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i05:audio",
+          "transcript": "I want the slip-on ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:i05:r1",
+            "targetText": "I want the slip-on ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i05:r2",
+            "targetText": "We want the slip-on ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i05:r3",
+            "targetText": "You want the slip-on ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the slip-on ones.",
+              "uk": "У записі звучить I want the slip-on ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the slip-on ones.",
+              "uk": "У записі звучить I want the slip-on ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы выбираете туфли без застёжек.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i06:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i06:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i06:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете туфли без застёжек.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете туфли без застёжек.",
+          "uk": "Ви обираєте туфлі без застібок."
+        },
+        "gappedTargetPhrase": "I want the slip-on ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-29:i06:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i06:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i06:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Вы выбираете туфли без застёжек.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы выбираете туфли без застёжек.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы выбираете туфли без застёжек.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:word:pull-on",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pull-on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:word:pull-on:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pull-on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:word:pull-on:audio",
+          "transcript": "pull-on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:word:pull-on:r1",
+            "targetText": "pull-on",
+            "meaningByLocale": {
+              "ru": "надеваемый без расстёгивания.",
+              "uk": "такий, що надягають без розстібання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pull-on",
+          "definitionByLocale": {
+            "ru": "надеваемый без расстёгивания.",
+            "uk": "такий, що надягають без розстібання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы выбираете брюки, которые надевают без расстёгивания. Скажите: «Мне нравятся те, которые надеваются без расстёгивания»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете брюки, которые надевают без расстёгивания. Скажите: «Мне нравятся те, которые надеваются без расстёгивания»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the pull-on ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете брюки, которые надевают без расстёгивания. Скажите: «Мне нравятся те, которые надеваются без расстёгивания»",
+          "uk": "Ви обираєте штани, які надягають без розстібання. Скажіть: «Мені подобаються ті, які надягають без розстібання»"
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "pull-on",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i08:r1",
+          "text": "I like the pull-on ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i08:r2",
+          "text": "We like the pull-on ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i08:r3",
+          "text": "You like the pull-on ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i08:audio",
+          "transcript": "I like the pull-on ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:i08:r1",
+            "targetText": "I like the pull-on ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i08:r2",
+            "targetText": "We like the pull-on ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i08:r3",
+            "targetText": "You like the pull-on ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the pull-on ones.",
+              "uk": "У записі звучить I like the pull-on ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the pull-on ones.",
+              "uk": "У записі звучить I like the pull-on ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы выбираете брюки, которые надевают без расстёгивания.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i09:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i09:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i09:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете брюки, которые надевают без расстёгивания.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете брюки, которые надевают без расстёгивания.",
+          "uk": "Ви обираєте штани, які надягають без розстібання."
+        },
+        "gappedTargetPhrase": "I like the pull-on ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-29:i09:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i09:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i09:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Вы выбираете брюки, которые надевают без расстёгивания.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы выбираете брюки, которые надевают без расстёгивания.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы выбираете брюки, которые надевают без расстёгивания.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:word:fleece-lined",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fleece-lined",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:word:fleece-lined:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fleece-lined",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:word:fleece-lined:audio",
+          "transcript": "fleece-lined"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:word:fleece-lined:r1",
+            "targetText": "fleece-lined",
+            "meaningByLocale": {
+              "ru": "на флисовой подкладке.",
+              "uk": "на флісовій підкладці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fleece-lined",
+          "definitionByLocale": {
+            "ru": "на флисовой подкладке.",
+            "uk": "на флісовій підкладці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы выбираете одну куртку на флисовой подкладке. Скажите: «Я хочу ту, которая на флисовой подкладке»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете одну куртку на флисовой подкладке. Скажите: «Я хочу ту, которая на флисовой подкладке»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the fleece-lined one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете одну куртку на флисовой подкладке. Скажите: «Я хочу ту, которая на флисовой подкладке»",
+          "uk": "Ви обираєте одну куртку на флісовій підкладці. Скажіть: «Я хочу ту, що на флісовій підкладці»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "fleece-lined",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i11:r1",
+          "text": "I want the fleece-lined one."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i11:r2",
+          "text": "We want the fleece-lined one."
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i11:r3",
+          "text": "You want the fleece-lined one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i11:audio",
+          "transcript": "I want the fleece-lined one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-29:i11:r1",
+            "targetText": "I want the fleece-lined one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i11:r2",
+            "targetText": "We want the fleece-lined one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i11:r3",
+            "targetText": "You want the fleece-lined one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the fleece-lined one.",
+              "uk": "У записі звучить I want the fleece-lined one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the fleece-lined one.",
+              "uk": "У записі звучить I want the fleece-lined one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы выбираете одну куртку на флисовой подкладке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-29:i12:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i12:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-29:i12:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбираете одну куртку на флисовой подкладке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете одну куртку на флисовой подкладке.",
+          "uk": "Ви обираєте одну куртку на флісовій підкладці."
+        },
+        "gappedTargetPhrase": "I want the fleece-lined ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-29:i12:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i12:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i12:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Вы выбираете одну куртку на флисовой подкладке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы выбираете одну куртку на флисовой подкладке.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы выбираете одну куртку на флисовой подкладке.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-29:i13:p1",
+            "target": "lace-up",
+            "meaningByLocale": {
+              "ru": "на шнурках",
+              "uk": "на шнурках"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-29:i13:p2",
+            "target": "slip-on",
+            "meaningByLocale": {
+              "ru": "без застёжек",
+              "uk": "без застібок"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-29:i13:p3",
+            "target": "pull-on",
+            "meaningByLocale": {
+              "ru": "надеваемый без расстёгивания",
+              "uk": "такий, що надягають без розстібання"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-29:i13:p4",
+            "target": "fleece-lined",
+            "meaningByLocale": {
+              "ru": "на флисовой подкладке",
+              "uk": "на флісовій підкладці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lace-up",
+          "slip-on",
+          "pull-on",
+          "fleece-lined"
+        ],
+        "rightColumn": [
+          "на шнурках",
+          "без застёжек",
+          "надеваемый без расстёгивания",
+          "на флисовой подкладке"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: разговор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: разговор",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: праздник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: праздник",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы выбираете туфли без застёжек. Скажите: «Я предпочитаю те, которые без застёжек»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Вы выбираете туфли без застёжек. Скажите: «Я предпочитаю те, которые без застёжек»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i16:audio",
+          "transcript": "I prefer the slip-on ones."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I prefer the slip-on ones.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы выбираете одну шапку на флисовой подкладке. Скажите: «Я хочу ту, которая на флисовой подкладке»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Вы выбираете одну шапку на флисовой подкладке. Скажите: «Я хочу ту, которая на флисовой подкладке»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-29:i17:audio",
+          "transcript": "I want the fleece-lined one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want the fleece-lined one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9640faac023ff14c020969577444ec133ad6f9ac0034ed6f5bdca51beba8a447"
+}

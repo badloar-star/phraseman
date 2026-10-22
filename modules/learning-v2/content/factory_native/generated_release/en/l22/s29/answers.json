@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-29:word:lace-up",
+    "correctText": "lace-up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i01",
+    "correctText": "I prefer the lace-up ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i02",
+    "correctText": "I prefer the lace-up ones.",
+    "correctResponseId": "en:lesson-22:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i03",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:word:slip-on",
+    "correctText": "slip-on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i04",
+    "correctText": "I want the slip-on ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i05",
+    "correctText": "I want the slip-on ones.",
+    "correctResponseId": "en:lesson-22:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i06",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:word:pull-on",
+    "correctText": "pull-on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i07",
+    "correctText": "I like the pull-on ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i08",
+    "correctText": "I like the pull-on ones.",
+    "correctResponseId": "en:lesson-22:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i09",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:word:fleece-lined",
+    "correctText": "fleece-lined",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i10",
+    "correctText": "I want the fleece-lined one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i11",
+    "correctText": "I want the fleece-lined one.",
+    "correctResponseId": "en:lesson-22:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i12",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i13",
+    "correctText": "en:lesson-22:session-29:i13:p1=lace-up\nen:lesson-22:session-29:i13:p2=slip-on\nen:lesson-22:session-29:i13:p3=pull-on\nen:lesson-22:session-29:i13:p4=fleece-lined",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i16",
+    "correctText": "I prefer the slip-on ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-29:i17",
+    "correctText": "I want the fleece-lined one.",
+    "correctResponseId": null
+  }
+]

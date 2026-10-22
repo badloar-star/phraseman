@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "determiner|adjective + one|ones",
+    "uk": "determiner|adjective + one|ones"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обувь на шнурках",
+        "uk": "Взуття на шнурках"
+      },
+      "bodyByLocale": {
+        "ru": "Lace-up описывает обувь на шнурках: lace-up boots. Выбираем ботинки, поэтому вместо boots говорим ones. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Lace-up описує взуття на шнурках: lace-up boots. Обираємо черевики, тому замість boots кажемо ones. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-29:intro1:r1",
+              "text": "I prefer the lace-up ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro1:r2",
+              "text": "I prefer the lace-up one."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro1:r3",
+              "text": "I prefer the lace-up them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-29:intro1:r1",
+              "text": "I prefer the lace-up ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro1:r2",
+              "text": "I prefer the lace-up one."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro1:r3",
+              "text": "I prefer the lace-up them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Надеть без застёжек",
+        "uk": "Надягти без застібок"
+      },
+      "bodyByLocale": {
+        "ru": "Slip-on — обувь без шнурков и застёжек, которую легко надеть, вставив ногу. Pull-on описывает одежду, которую натягивают без расстёгивания: например брюки на резинке. Здесь выбираем туфли: shoes → ones. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Slip-on — взуття без шнурків і застібок, яке легко взути, вставивши ногу. Pull-on описує одяг, який натягують без розстібання: наприклад штани на резинці. Тут обираємо туфлі: shoes → ones. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-29:intro2:r1",
+              "text": "I want the slip-on ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro2:r2",
+              "text": "I want the slip-on one."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro2:r3",
+              "text": "I want the slip-on them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-29:intro2:r1",
+              "text": "I want the slip-on ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro2:r2",
+              "text": "I want the slip-on one."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro2:r3",
+              "text": "I want the slip-on them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Флисовая подкладка",
+        "uk": "Флісова підкладка"
+      },
+      "bodyByLocale": {
+        "ru": "Fleece вам уже знакомо: флис. Fleece-lined означает, что внутри есть флисовая подкладка. Это не значит, что вся вещь сделана из флиса. Здесь выбираем одну куртку: jacket → one. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Fleece вам уже знайоме: фліс. Fleece-lined означає, що всередині є флісова підкладка. Це не означає, що вся річ зроблена з флісу. Тут обираємо одну куртку: jacket → one. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-29:intro3:r1",
+              "text": "I want the fleece-lined one."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro3:r2",
+              "text": "I want the fleece-lined ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro3:r3",
+              "text": "I want the fleece-lined it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-29:intro3:r1",
+              "text": "I want the fleece-lined one."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro3:r2",
+              "text": "I want the fleece-lined ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-29:intro3:r3",
+              "text": "I want the fleece-lined it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e6d28cfb1cba4bd5fb9c0b75c72db41a97cbba55131a1f35c66e452c5576fa1b"
+}

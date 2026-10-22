@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-31:word:make-progress",
+    "correctText": "make progress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i01",
+    "correctText": "I practise every day to make progress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i02",
+    "correctText": "I practise every day to make progress.",
+    "correctResponseId": "en:lesson-22:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:word:stay-focused",
+    "correctText": "stay focused",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i04",
+    "correctText": "I turn off my phone to stay focused.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i05",
+    "correctText": "I turn off my phone to stay focused.",
+    "correctResponseId": "en:lesson-22:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:word:learn-a-poem-by-heart",
+    "correctText": "learn a poem by heart",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i07",
+    "correctText": "I repeat the words to learn a poem by heart.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i08",
+    "correctText": "I repeat the words to learn a poem by heart.",
+    "correctResponseId": "en:lesson-22:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:word:check-my-work",
+    "correctText": "check my work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i10",
+    "correctText": "I read it again to check my work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i11",
+    "correctText": "I read it again to check my work.",
+    "correctResponseId": "en:lesson-22:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i13",
+    "correctText": "en:lesson-22:session-31:i13:p1=make progress\nen:lesson-22:session-31:i13:p2=stay focused\nen:lesson-22:session-31:i13:p3=learn a poem by heart\nen:lesson-22:session-31:i13:p4=check my work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i16",
+    "correctText": "I need to check my work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-31:i17",
+    "correctText": "I want to make progress.",
+    "correctResponseId": null
+  }
+]

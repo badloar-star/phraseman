@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-32:word:pick-a-time",
+    "correctText": "pick a time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i01",
+    "correctText": "I check my diary to pick a time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i02",
+    "correctText": "I check my diary to pick a time.",
+    "correctResponseId": "en:lesson-22:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:word:agree-on-a-date",
+    "correctText": "agree on a date",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i04",
+    "correctText": "I call Anna to agree on a date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i05",
+    "correctText": "I call Anna to agree on a date.",
+    "correctResponseId": "en:lesson-22:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:word:confirm-a-booking",
+    "correctText": "confirm a booking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i07",
+    "correctText": "I phone the hotel to confirm a booking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i08",
+    "correctText": "I phone the hotel to confirm a booking.",
+    "correctResponseId": "en:lesson-22:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:word:send-an-invitation",
+    "correctText": "send an invitation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i10",
+    "correctText": "I use my phone to send an invitation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i11",
+    "correctText": "I use my phone to send an invitation.",
+    "correctResponseId": "en:lesson-22:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i13",
+    "correctText": "en:lesson-22:session-32:i13:p1=pick a time\nen:lesson-22:session-32:i13:p2=agree on a date\nen:lesson-22:session-32:i13:p3=confirm a booking\nen:lesson-22:session-32:i13:p4=send an invitation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i16",
+    "correctText": "I need to confirm a booking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-32:i17",
+    "correctText": "I want to send an invitation.",
+    "correctResponseId": null
+  }
+]

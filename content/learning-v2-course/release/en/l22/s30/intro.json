@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не промокнуть",
+        "uk": "Не намокнути"
+      },
+      "bodyByLocale": {
+        "ru": "Stay dry — оставаться сухим, не промокать. Dry здесь описывает ваше состояние, а не действие «сушить». Зонт нужен вам для этой цели. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Stay dry — залишатися сухим, не намокати. Dry тут описує ваш стан, а не дію «сушити». Парасолька потрібна вам для цієї мети. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-30:intro1:r1",
+              "text": "I use an umbrella to stay dry."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro1:r2",
+              "text": "I use an umbrella for stay dry."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro1:r3",
+              "text": "I use an umbrella of stay dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-30:intro1:r1",
+              "text": "I use an umbrella to stay dry."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro1:r2",
+              "text": "I use an umbrella for stay dry."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro1:r3",
+              "text": "I use an umbrella of stay dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Движение и питание",
+        "uk": "Рух і харчування"
+      },
+      "bodyByLocale": {
+        "ru": "Keep fit — поддерживать физическую форму. Eat well — полноценно питаться; в таком разговоре это о питании, а не об умении пользоваться вилкой. Вы объясняете свои привычки, например зачем ходите плавать. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Keep fit — підтримувати фізичну форму. Eat well — повноцінно харчуватися; у такій розмові це про харчування, а не про вміння користуватися виделкою. Ви пояснюєте свої звички, наприклад навіщо ходите плавати. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-30:intro2:r1",
+              "text": "I go swimming to keep fit."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro2:r2",
+              "text": "I go swimming for keep fit."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro2:r3",
+              "text": "I go swimming of keep fit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-30:intro2:r1",
+              "text": "I go swimming to keep fit."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro2:r2",
+              "text": "I go swimming for keep fit."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro2:r3",
+              "text": "I go swimming of keep fit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Достаточно отдыха",
+        "uk": "Достатньо відпочинку"
+      },
+      "bodyByLocale": {
+        "ru": "Get enough rest — достаточно отдыхать. Rest шире, чем sleep: отдых не всегда означает сон. Get some sleep уже знакомо, а новое выражение подчёркивает достаточный отдых. В примере человек выбирает ранний отход ко сну. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Get enough rest — достатньо відпочивати. Rest ширше, ніж sleep: відпочинок не завжди означає сон. Get some sleep уже знайоме, а новий вислів підкреслює достатній відпочинок. У прикладі людина обирає ранній відхід до сну. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-30:intro3:r1",
+              "text": "I go to bed early to get enough rest."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro3:r2",
+              "text": "I go to bed early for get enough rest."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro3:r3",
+              "text": "I go to bed early of get enough rest."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-30:intro3:r1",
+              "text": "I go to bed early to get enough rest."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro3:r2",
+              "text": "I go to bed early for get enough rest."
+            },
+            {
+              "responseId": "en:lesson-22:session-30:intro3:r3",
+              "text": "I go to bed early of get enough rest."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1fb09ec415fe685bcb4d0e8e4a97930150b5ba4cb1c58d9224e0613cb4f3eb25"
+}

@@ -162,3 +162,9 @@ Governance-ID: TG-F9A463DCBAE5
   - Откат: `gcloud run services update-traffic levelspinstargrant --to-revisions=levelspinstargrant-00008-zev=100 --region us-central1`.
   - Повод: с 20.10 старая версия отбивала 400 начисления 2.0 (поле promotionEligibility). Пакет — coin-grant-server-not-deployed-2026-10-22.md.
   - Смягчение дневного лимита не включалось: в коде его нет, хвост ниже лимита (≤450 за «Дневной путь», 1 200 за жалобы).
+
+- **Удаление 39 функций** («Да, удалить» владельца через координатора) — 13:33–13:34Z, одним пакетом `firebase functions:delete … --force`.
+  - 39 из 39 «Successful delete», ошибок 0. Функций в проде было 449, стало 410. Ни одна из 39 не осталась. Расписания лиг больше нет.
+  - Охраняемые на месте: levelSpinStarGrant, claimReportReward, vipRevokeMine, adminUpdateGiftCertificateRecipient, adminSupportSendReply, adminRelinkProvider, adminRepairAuthLink, adminSearchUsers, adminReplyToReport, mistakePracticeSyncEvents, revenueCatShardsWebhook.
+  - Возврат: исходники 39 функций — `C:\Temp\claude\functions_archive\functions_archive_2026-10-22\<имя>.zip` (39 целых, 1,4 ГБ), плюс git до 8b0689a9c.
+  - Журнал ошибок приложений (app_errors) за час ДО удаления: 1 запись, 0 «не найдено». Проверки после — 13:50Z и 14:35Z.

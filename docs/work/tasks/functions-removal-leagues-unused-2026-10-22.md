@@ -103,3 +103,19 @@ Governance-ID: TG-7F965201361B
 - `tests/admin_control_plane_deploy_contract.test.ts` — из ожидаемого списка убраны adminListReferrals, adminSpinStats, adminSpinLogs.
 - `tests/admin_callable_export_parity_contract.test.ts` — убрано ожидание профиля `deploy:admin-audit-security`.
 - `functions/src/admin_director_digest.test.ts`, `functions/src/admin_plans/callables_contract.test.ts` — модули остаются, ожидание экспорта из index.ts заменено на «экспорта нет».
+
+## Удаление в проде (22.10, «Да, удалить» владельца через координатора)
+
+Governance-ID: TG-08C495F57BFE
+
+Проверки перед удалением (13:25–13:35Z, только чтение):
+- Список: 39 имён из таблицы выше. adminUpdateGiftCertificateRecipient (ОСТАВИТЬ) в список не входит.
+- Экспорт в HEAD: ни одно из 39 не экспортируется. Охраняемые (levelSpinStarGrant, claimReportReward, vipRevokeMine, adminUpdateGiftCertificateRecipient, поддержка, adminSearchUsers) — на месте.
+- Клиент HEAD (app, components, hooks, modules, admin/v2, web, knowly-www, src): 0 ссылок.
+- Выпуск 2.0.0 (831d223cb): 1 ссылка — adminEnglishTestAnalytics в admin/v2/legacy.html; админка без кнопки уже выложена (5 · ВХОД). Мобильный клиент 2.0.0 — 0 ссылок.
+- Вызовы за 30 дней: 36 функций — 0. Лиги: leagueJoinOrUpdateGroup 2 335, leagueUpdateMyMember 4, leagueFinalizeCron 4.
+- Лиги за 48 ч: 11 вызовов, только app.phraseman/1.6.19 и okhttp (1.x под ForceUpdateGate, вызовы в try/catch). Удаление лиг 1.x — решение владельца.
+- В проде все 39 есть, все GEN_2, us-central1.
+- Архив исходников: 39 zip из gs://gcf-v2-sources-1047658658799-us-central1 скопированы (`gcloud storage cp`; gsutil на машине сломан — нет python3.14), все 39 целые (есть конец архива), 1,4 ГБ. Лежат в `C:\Temp\claude\functions_archive\functions_archive_2026-10-22\<имя>.zip`.
+
+Удаление: одним пакетом `firebase functions:delete <39 имён> --region us-central1 --project phraseman-ea0b3 --force`. После — 15 минут и 1 час журнала: not-found/404 от клиентов по удалённым именам.

@@ -158,6 +158,13 @@ async function notifyViaResend(subject: string, text: string): Promise<boolean> 
  * зачем: участник не ищет, куда писать, — кнопка на /contact/?topic=video-promo. Сервер сам определяет соцсеть по ссылке
  * и пускает только открытые публикации пяти сетей из условий акции. Почта для ответа — по желанию.
  */
+/**
+ * Последний день акции (включительно) — для сервера (Ядро: чистка непривязанных заявок через 90 дней после конца).
+ * зачем: сайт берёт дату из knowly-www/assets/site-config.js (videoPromoUntil), сервер её не видит.
+ * Тест website_contact.test.ts сверяет обе даты — разойтись они не могут.
+ */
+export const VIDEO_PROMO_UNTIL = '2026-12-31';
+
 export type VideoPromoNetwork = 'instagram' | 'tiktok' | 'facebook' | 'youtube' | 'threads';
 const VIDEO_PROMO_HOSTS: ReadonlyArray<readonly [VideoPromoNetwork, readonly string[]]> = [
   ['instagram', ['instagram.com']],

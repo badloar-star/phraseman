@@ -257,6 +257,50 @@ describe('admin access controls', () => {
     });
   });
 
+  // ── 22.10 «Акция с видео»: пометка заявки в той же транзакции выдачи (вариант «г», Ядро) ──
+  describe('video promo entry mark', () => {
+    const NOW = 1_700_000_000_000;
+    it('accepts a contact inbox id only for vip grants', () => {
+      expect(normalizeAdminAccessInput({ ...base, kind: 'vip', contactInboxId: 'auto_Abc-123' }, NOW).contactInboxId).toBe('auto_Abc-123');
+      expect(normalizeAdminAccessInput({ ...base, kind: 'vip' }, NOW).contactInboxId).toBeNull();
+      for (const extra of [
+        { kind: 'premium', contactInboxId: 'abc' },
+        { kind: 'vip', active: false, contactInboxId: 'abc' },
+        { kind: 'vip', contactInboxId: '../users/x' },
+        { kind: 'vip', contactInboxId: 42 },
+        { kind: 'vip', contactInboxId: '' },
+      ]) expect(() => normalizeAdminAccessInput({ ...base, ...extra }, NOW)).toThrow(HttpsError);
+    });
+
+    it('fails the whole grant for a missing, foreign or already granted entry', () => {
+      const check = (accessControls as any).assertPromoEntryGrantable;
+      expect(() => check(false, undefined)).toThrow('promo_entry_not_found');
+      expect(() => check(true, { topic: 'support' })).toThrow('promo_entry_wrong_topic');
+      expect(() => check(true, { topic: 'video_promo' })).toThrow('promo_entry_wrong_topic');
+      expect(() => check(true, { topic: 'video_promo', promo: { username: 'mila', resolvedAtMs: 1 } })).toThrow('promo_already_granted');
+      expect(() => check(true, { topic: 'video_promo', promo: { username: 'mila' } })).not.toThrow();
+    });
+
+    it('separates fingerprints of grants with and without an entry', () => {
+      const plain = normalizeAdminAccessInput({ ...base, kind: 'vip' }, NOW);
+      const withEntry = normalizeAdminAccessInput({ ...base, kind: 'vip', contactInboxId: 'abc' }, NOW);
+      expect(adminAccessFingerprint(withEntry)).not.toBe(adminAccessFingerprint(plain));
+    });
+
+    it('reads the entry before any write and marks it with the canonical uid in the same transaction', () => {
+      const lf = source.replace(/\r\n/g, '\n');
+      const start = lf.indexOf('export const adminGrantAccess = onCall(');
+      const body = lf.slice(start, lf.indexOf('\nexport ', start + 1));
+      const read = body.indexOf('const inbox = await tx.get(inboxRef)');
+      const firstWrite = Math.min(...['tx.update(target.ref', 'tx.create(auditRef', 'writeAccessProjectionFromPatch('].map((s) => body.indexOf(s)));
+      expect(read).toBeGreaterThan(-1);
+      expect(read).toBeLessThan(firstWrite);
+      expect(body).toContain("'promo.resolvedUid': target.uid");
+      expect(body).toContain("'promo.resolvedAtMs': now");
+      expect(body.indexOf("'promo.resolvedUid'")).toBeLessThan(body.indexOf('return result;\n  });'));
+    });
+  });
+
   it('uses the canonical target for the transactional write, audit entity, and callable result', () => {
     expect(source).toContain('resolveCanonicalAdminAccessTarget(tx, db, input.uid)');
     expect(source).toContain('tx.update(target.ref, { ...patch.updates, updatedAt: now })');

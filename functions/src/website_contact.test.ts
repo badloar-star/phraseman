@@ -221,3 +221,14 @@ describe('video promo («Два года Plus за видео», владеле�
     expect(mockInboxDocs).toHaveLength(3);
   });
 });
+
+describe('video promo end date (одна дата на сайте и сервере)', () => {
+  test('VIDEO_PROMO_UNTIL equals videoPromoUntil in knowly-www/assets/site-config.js', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const site = fs.readFileSync(path.join(__dirname, '..', '..', 'knowly-www', 'assets', 'site-config.js'), 'utf8');
+    const match = site.match(/videoPromoUntil:\s*'(\d{4}-\d{2}-\d{2})'/);
+    const { VIDEO_PROMO_UNTIL } = require('./website_contact');
+    expect(match && match[1]).toBe(VIDEO_PROMO_UNTIL);
+  });
+});

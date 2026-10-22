@@ -22,7 +22,21 @@ function text(value: unknown, max: number): string { return typeof value === 'st
 function number(value: unknown): number { const n = typeof value === 'number' ? value : Number(value); return Number.isFinite(n) ? n : 0; }
 
 export type AdminAccessKind = 'premium' | 'vip';
-export interface AdminAccessInput { readonly uid: string; readonly kind: AdminAccessKind; readonly durationDays: number; readonly active: boolean; readonly reason: string; readonly requestId: string; readonly idempotencyKey: string; readonly untilMs: number | null; }
+export interface AdminAccessInput { readonly uid: string; readonly kind: AdminAccessKind; readonly durationDays: number; readonly active: boolean; readonly reason: string; readonly requestId: string; readonly idempotencyKey: string; readonly untilMs: number | null; readonly contactInboxId: string | null; }
+
+const INBOX_ID_RE = /^[A-Za-z0-9_-]{1,160}$/;
+/**
+ * Заявка «Акция с видео» (website_contact_inbox), по которой выдаётся Plus.
+ * зачем (владелец 22.10, вариант «г»; Ядро): после выдачи в ТОЙ ЖЕ транзакции пометить заявку uid получателя —
+ * по нему account_delete стирает заявку при удалении аккаунта (по имени нельзя: имена не уникальны).
+ */
+function normalizeContactInboxId(data: Row, kind: AdminAccessKind, active: unknown): string | null {
+  if (data.contactInboxId === undefined || data.contactInboxId === null) return null;
+  const id = typeof data.contactInboxId === 'string' ? data.contactInboxId : '';
+  if (kind !== 'vip' || active !== true) throw new HttpsError('invalid-argument', 'contactInboxId is only for vip grants');
+  if (!INBOX_ID_RE.test(id)) throw new HttpsError('invalid-argument', 'contactInboxId is invalid');
+  return id;
+}
 
 /**
  * Точная дата конца VIP-Plus от админки (null — не задана, тогда срок из durationDays).
@@ -49,12 +63,20 @@ export function normalizeAdminAccessInput(data: unknown, nowMs: number = Date.no
   if (durationDays < 0 || durationDays > MAX_DAYS) throw new HttpsError('invalid-argument', 'durationDays is out of range');
   if (!reason || !TOKEN_RE.test(requestId) || !TOKEN_RE.test(idempotencyKey)) throw new HttpsError('invalid-argument', 'reason and request ids are required');
   const untilMs = normalizeUntilMs(data, kind, active, nowMs);
-  return Object.freeze({ uid, kind, durationDays, active, reason, requestId, idempotencyKey, untilMs });
+  const contactInboxId = normalizeContactInboxId(data, kind, active);
+  return Object.freeze({ uid, kind, durationDays, active, reason, requestId, idempotencyKey, untilMs, contactInboxId });
 }
 
 export function adminAccessFingerprint(input: AdminAccessInput): string {
-  // untilMs пишем только когда задан — отпечатки старых команд (массовая выдача) не меняются.
-  return JSON.stringify({ action: 'grant_access', uid: input.uid, kind: input.kind, durationDays: input.durationDays, active: input.active, reason: input.reason, ...(input.untilMs !== null ? { untilMs: input.untilMs } : {}) });
+  // untilMs/contactInboxId пишем только когда заданы — отпечатки старых команд (массовая выдача) не меняются.
+  return JSON.stringify({ action: 'grant_access', uid: input.uid, kind: input.kind, durationDays: input.durationDays, active: input.active, reason: input.reason, ...(input.untilMs !== null ? { untilMs: input.untilMs } : {}), ...(input.contactInboxId !== null ? { contactInboxId: input.contactInboxId } : {}) });
+}
+
+/** Проверка заявки до записи: только «Акция с видео» и ещё не закрытая выдачей. Иначе — отказ всей выдачи. */
+export function assertPromoEntryGrantable(exists: boolean, data: Readonly<Row> | undefined): void {
+  if (!exists || !data) throw new HttpsError('not-found', 'promo_entry_not_found');
+  if (data.topic !== 'video_promo' || !record(data.promo)) throw new HttpsError('failed-precondition', 'promo_entry_wrong_topic');
+  if (data.promo.resolvedAtMs !== undefined && data.promo.resolvedAtMs !== null) throw new HttpsError('already-exists', 'promo_already_granted');
 }
 
 export interface AccessPatch { readonly updates: Readonly<Row>; readonly before: Readonly<Row>; readonly after: Readonly<Row>; readonly expiresAtMs: number; }
@@ -190,7 +212,14 @@ export const adminGrantAccess = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (req
   const result = await db.runTransaction(async (tx) => {
     ringProgress = null; // транзакцию могут перезапустить — берём progress только последней попытки
     const op = await tx.get(opRef); if (op.exists) { const d = op.data() ?? {}; if (d.requestFingerprint !== fingerprint || d.actorUid !== a.actorUid) { console.warn(LOG, JSON.stringify({ step: 'replay_mismatch' })); throw new HttpsError('already-exists', 'idempotency key replay mismatch'); } return { ...(record(d.result) ? d.result : {}), replayed: true }; }
-    const target = await resolveCanonicalAdminAccessTarget(tx, db, input.uid); const patch = buildAdminAccessPatch(target.snapshot.data() ?? {}, input, now);
+    const target = await resolveCanonicalAdminAccessTarget(tx, db, input.uid);
+    // Заявка акции читается ДО любых записей транзакции; неподходящая — отказ всей выдачи (не тихий пропуск).
+    const inboxRef = input.contactInboxId ? db.collection('website_contact_inbox').doc(input.contactInboxId) : null;
+    if (inboxRef) {
+      const inbox = await tx.get(inboxRef);
+      try { assertPromoEntryGrantable(inbox.exists, inbox.data()); } catch (error) { console.warn(LOG, JSON.stringify({ step: 'promo_entry_rejected', reason: (error as Error).message })); throw error; }
+    }
+    const patch = buildAdminAccessPatch(target.snapshot.data() ?? {}, input, now);
     ringProgress = { ...(record(target.snapshot.data()?.progress) ? target.snapshot.data()!.progress as Row : {}), ...patch.after };
     const audit = createAuditRecord({ action: `${input.active ? 'grant' : 'revoke'}_${input.kind}`, actorUid: a.actorUid, role: a.role, entity: { collection: 'users', id: target.uid }, reason: input.reason, before: patch.before, after: patch.after, requestId: input.requestId, timestamp: new Date(now).toISOString() });
     tx.update(target.ref, { ...patch.updates, updatedAt: now });
@@ -201,7 +230,10 @@ export const adminGrantAccess = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (req
       patch.updates,
       now,
     );
-    tx.create(auditRef, { ...audit, operationId: opRef.id }); const result = { ok: true, kind: input.kind, active: input.active, uid: target.uid, requestedUid: input.uid, expiresAtMs: patch.expiresAtMs, auditId: auditRef.id };
+    tx.create(auditRef, { ...audit, operationId: opRef.id });
+    // Пометка заявки — по ней account_delete сотрёт её вместе с аккаунтом получателя.
+    if (inboxRef) tx.update(inboxRef, { 'promo.resolvedUid': target.uid, 'promo.resolvedAtMs': now, 'promo.grantAuditId': auditRef.id, status: 'read', readAt: new Date(now).toISOString() });
+    const result = { ok: true, kind: input.kind, active: input.active, uid: target.uid, requestedUid: input.uid, expiresAtMs: patch.expiresAtMs, auditId: auditRef.id, ...(inboxRef ? { promoMarked: true } : {}) };
     tx.create(opRef, { action: 'grant_access', requestFingerprint: fingerprint, actorUid: a.actorUid, auditId: auditRef.id, result, createdAt: admin.firestore.FieldValue.serverTimestamp() }); return result;
   });
   // зачем (владелец 22.10; Ядро): кольцо Plus у аватара должно загореться/погаснуть сразу, а не при следующем запуске

@@ -20679,7 +20679,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (!_fnAdminSearchUsers) _fnAdminSearchUsers = httpsCallable(functionsUs, 'adminSearchUsers');
     return _fnAdminSearchUsers;
   }
-  const apg = { items: [], selected: null, term: null, busy: false, seq: 0, searchSeq: 0, preset: null };
+  const apg = { items: [], selected: null, term: null, busy: false, seq: 0, searchSeq: 0, preset: null, inboxId: null };
   const apgEl = (id) => document.getElementById(id);
 
   function apgFmtDate(ms) {
@@ -20799,6 +20799,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     console.log(APG_LOG, JSON.stringify({ step: 'open_for', hasQuery: !!query, years: opts && opts.years || null }));
     if (typeof switchTab === 'function') switchTab('vip');
     apg.preset = opts && opts.years ? { term: 'yn' } : null;
+    apg.inboxId = opts && opts.inboxId ? String(opts.inboxId) : null; // заявка акции — пометится в той же транзакции выдачи
     if (opts && opts.years && apgEl('apg-years')) apgEl('apg-years').value = String(opts.years);
     if (opts && opts.reason && apgEl('apg-reason')) apgEl('apg-reason').value = opts.reason;
     apg.selected = null; apg.term = null; apgRenderCard();
@@ -20832,6 +20833,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     apg.busy = true; apgReplaceItem(optimistic); apgRenderCard('сохраняю…');
     const payload = { uid: it.uid, kind: 'vip', active, reason, requestId: createAdminCommandId('admin_plus_card_request'), idempotencyKey: createAdminCommandId('admin_plus_card_operation') };
     payload.durationDays = 0; // «навсегда» и снятие; для срока сервер берёт точную дату untilMs
+    const inboxId = active ? apg.inboxId : null;
+    if (inboxId) payload.contactInboxId = inboxId;
     if (active && !t.forever) {
       payload.untilMs = t.untilMs;
       // зачем: сервер без поддержки untilMs (до выкладки 8c2a5ce21) молча взял бы durationDays 0 = НАВСЕГДА. Запасной срок
@@ -20858,20 +20861,26 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           : { vip_active: 'false', vip_admin_override: 'false', vip_until: String(serverUntil), vip_revoked_at: String(serverUntil) });
       }
       apg.busy = false; apgReplaceItem(confirmed);
+      if (inboxId && d.promoMarked === true) {
+        apg.inboxId = null;
+        if (typeof window.markWebsitePromoGranted === 'function') window.markWebsitePromoGranted(inboxId, d.uid, Date.now());
+      }
       showToast(active ? (serverUntil === 0 ? '💚 Plus навсегда выдан' : '💚 Plus до ' + apgFmtDate(serverUntil)) : '💚 Plus снят');
       if (typeof window.renderVipList === 'function' && Array.isArray(window._users) && window._users.length) window.renderVipList();
     } catch (e) {
       console.warn(APG_LOG, JSON.stringify({ step: 'server_failed', active, code: e?.code || null, message: e?.message || String(e), ms: Date.now() - t0 }));
       if (mySeq !== apg.seq) return;
       apg.busy = false; apgReplaceItem(before); // откат
-      const msg = (active ? 'Plus не выдан: ' : 'Plus не снят: ') + (e?.message || 'ошибка сети');
+      const reasonText = /promo_already_granted/.test(String(e?.message)) ? 'по этой заявке Plus уже выдан'
+        : /promo_entry_(not_found|wrong_topic)/.test(String(e?.message)) ? 'заявка акции не найдена' : (e?.message || 'ошибка сети');
+      const msg = (active ? 'Plus не выдан: ' : 'Plus не снят: ') + reasonText;
       apgNote(msg, true); showToast(msg, 'err');
     }
   }
 
   (function apgBind() {
     const form = apgEl('apg-search-form'); if (!form) { console.warn(APG_LOG, 'panel_missing'); return; }
-    form.addEventListener('submit', (e) => { apg.preset = null; apgSearch(e); }); // ручной поиск — без срока из заявки
+    form.addEventListener('submit', (e) => { apg.preset = null; apg.inboxId = null; apgSearch(e); }); // ручной поиск — без срока из заявки
     apgEl('apg-results').addEventListener('click', (e) => { const b = e.target.closest('[data-apg-pick]'); if (b) apgPick(Number(b.dataset.apgPick)); });
     apgEl('apg-terms').addEventListener('click', (e) => { const b = e.target.closest('[data-apg-term]'); if (!b || apg.busy) return; apg.term = b.dataset.apgTerm; apgNote(''); apgRenderCard(); });
     apgEl('apg-years').addEventListener('input', () => { apg.term = 'yn'; apgRenderCard(); });
@@ -37635,6 +37644,15 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return rows;
   }
 
+  // Сервер уже пометил заявку в транзакции выдачи — отражаем без перезагрузки списка.
+  window.markWebsitePromoGranted = function markWebsitePromoGranted(id, uid, atMs) {
+    const row = _allWebsiteInbox.find((r) => r.id === id);
+    if (!row) { console.log('[ADMIN-PLUS-UI]', JSON.stringify({ step: 'inbox_row_not_loaded' })); return; }
+    row.promo = { ...(row.promo || {}), resolvedUid: uid, resolvedAtMs: atMs };
+    row.status = 'read';
+    if (document.getElementById('wi-list')) window.filterWebsiteInbox();
+  };
+
   window.filterWebsiteInbox = function filterWebsiteInbox() {
     applyCleanWebsiteInboxChrome();
     renderWebsiteInbox(getFilteredWebsiteInbox());
@@ -37694,9 +37712,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
             <span>🎁 ${escapeWiText(promo.network || '?')} · username: <b>${escapeWiText(promo.username || '-')}</b> · обозначил участие: ${promo.disclosed === true ? 'да' : 'нет'}</span>
             ${promoUrl ? `<a href="${escapeWiText(promoUrl)}" target="_blank" rel="noopener noreferrer">${escapeWiText(promoUrl)} ↗</a>` : ''}
           </div>` : '';
-      const promoButton = promo && promo.username
-        ? `<button type="button" data-wi-plus="${escapeWiText(promo.username)}" style="margin-left:8px">🎁 Выдать 2 года Plus</button>`
-        : '';
+      const promoGranted = promo && Number(promo.resolvedAtMs) > 0;
+      const promoButton = promoGranted
+        ? `<span style="margin-left:8px">${websiteInboxPill('✓ Plus выдан ' + new Date(Number(promo.resolvedAtMs)).toLocaleDateString('ru-RU'))}</span>`
+        : promo && promo.username
+          ? `<button type="button" data-wi-plus="${escapeWiText(promo.username)}" data-wi-plus-id="${escapeHtml(row.id)}" style="margin-left:8px">🎁 Выдать 2 года Plus</button>`
+          : '';
       return `<div class="report-card">
         <div class="rc-left" style="min-width:0">
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
@@ -37717,7 +37738,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     list.querySelectorAll('button[data-wi-plus]').forEach((button) => {
       button.addEventListener('click', () => {
         if (typeof window.openPlusGrantFor !== 'function') { showToast('Панель выдачи Plus недоступна', 'err'); return; }
-        window.openPlusGrantFor({ query: button.dataset.wiPlus, years: 2, reason: 'акция видео' });
+        window.openPlusGrantFor({ query: button.dataset.wiPlus, years: 2, reason: 'акция видео', inboxId: button.dataset.wiPlusId });
       });
     });
     list.querySelectorAll('button[data-wiact]').forEach((button) => {

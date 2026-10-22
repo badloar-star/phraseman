@@ -180,8 +180,11 @@ async function main(): Promise<void> {
   assert.ok(scene.includes("const visibleH = spireSceneVisibleH(windowH, insets.top, p.dockClear ?? DEFAULT_DOCK_CLEAR);"), "видимая высота — экран минус шапка и зона «Играть»");
   assert.ok(scene.includes("hideFloorWords={frame.wordsHidden}"), "слова мельче 4 dp на сцене не рисуются — решает расчёт сетки");
   assert.ok(scene.includes("windowHeight={frame.windowH}") && scene.includes("sceneRowsClearBottom={frame.rowsClearBottom}"), "башня знает высоту окна и где начинаются монеты пьедестала");
-  assert.ok(scene.includes("style={[s.panel, { backgroundColor: pal.card, marginTop: -SPIRE_SCENE_PANEL_OVERLAP }, off ? s.dim : null]}") && scene.includes('testID="spire-scene-all"'), "«Комната недели» — карточка под сценой, вся нажимается (аудит F3)");
-  assert.ok(scene.includes("onPressMember={onPressPodium}") && scene.includes('testID="spire-scene-my-coin" onPress={onPressMyPlace}'), "призёры и своя монета открывают карточку игрока");
+  const pedestal = read("components/spire/scene/SpireScenePedestal.tsx");
+  // зачем (владелец 22.10, вариант 3 «Список топ-3» макета peak-pedestal-left.html): «Комната недели» — слева от башни, всё на одном экране
+  assert.ok(scene.includes("<SpireScenePedestal") && !scene.includes("s.panel") && !scene.includes("SpireScenePodium") && !existsSync("components/spire/scene/SpireScenePodium.tsx"), "«Комната недели» — список топ-3 слева от башни, без карточки под сценой и без прокрутки");
+  assert.ok(pedestal.includes('testID="spire-scene-pedestal-all" onPress={onOpenAll}') && pedestal.includes('testID="spire-scene-pedestal-head" onPress={onOpenAll}'), "«Все участники» — ссылкой под списком, в сжатом виде — заголовком");
+  assert.ok(scene.includes("onPressMember={onPressPodium}") && scene.includes("onPressMe={onPressMyPlace}") && pedestal.includes('testID="spire-scene-my-coin" onPress={onPressMe}') && pedestal.includes("onPress={() => onPressMember(m)}"), "люди топ-3 и своя строка открывают визитку");
   assert.ok(scene.includes("onPressRival={onPressRival}") && scene.includes("onPressMe={onPressMe}") && scene.includes("<SpirePlayerCard player={player}"), "аватарки на башне и своя метка — карточка игрока");
   assert.ok(scene.includes('testID="spire-scene-offline" pointerEvents="none"'), "плашка «нет сети» не глотает касания (аудит F6)");
   assert.ok(tower.includes("sceneMode ? Math.max(0, contentH - wh)"), "на «Сцене» окно — вся башня от короны до низа, на любом этаже");
@@ -197,7 +200,7 @@ async function main(): Promise<void> {
   assert.ok(!scene.includes("p.copy.rewards.map(") && scene.includes("плашек «+10 за ступень / этаж» на сцене нет"), "на сцене Пика нет плашек «+10 за ступень / этаж»");
   assert.ok(!scene.includes("spireSceneHalo") && !scene.includes("HALO."), "за башней нет отдельного ореола — фон сцены единый");
   assert.ok(scene.includes("{SCENE_STARS.map(([x, y, r, o], i) => <Circle") && scene.includes("cx={x * width} cy={y * frame.sceneH}"), "звёзды — по всей сцене до краёв");
-  assert.ok(scene.includes("const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.55), [tokens.sceneGlow]);"), "звёзды — светлый оттенок свечения темы");
+  assert.ok(scene.includes("const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.25), [tokens.sceneGlow]);"), "звёзды — оттенок свечения темы, не белые (Сверка 22.10)");
   // зачем (владелец 22.10: «башню перекрашиваем в оттенки темы»; «цвета строго оттенками текущей темы»)
   assert.ok(scene.includes("themeColors={themeColors}") && scene.includes("const themeColors = useMemo(() => ({ accent: sceneAccent, sceneTop: tokens.sceneTop, sceneBottom: tokens.sceneBottom })"), "сцена передаёт башне цвета темы: акцент «Максимума» и цвета сцены");
   assert.ok(tower.includes("sceneMode && themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)"), "на «Сцене» наряд башни — в оттенках темы, вне её — прежний наряд лиги");
@@ -214,8 +217,8 @@ async function main(): Promise<void> {
   assert.ok(tower.includes("pointerEvents={onPressRival ? 'box-none' : 'none'}"), "без обработчиков (прежнее окно) ряды по-прежнему не ловят касания");
   assert.ok(tower.includes("sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0}"), "ряды соперников на «Сцене» — по расчёту сетки");
   assert.ok(rivals.includes("if (fl.f <= hiddenBelow) continue;"), "ряды под монетами пьедестала не рисуются");
-  const podium = read("components/spire/scene/SpireScenePodium.tsx");
-  assert.ok(podium.includes("const BLOCK_H = SPIRE_SCENE_PODIUM.blockH;") && podium.includes("const COIN = SPIRE_SCENE_PODIUM.coin;"), "размеры пьедестала — из того же расчёта, что окно башни");
+  assert.ok(pedestal.includes("plus={false}") && !pedestal.includes("plus={m.isPremium"), "монеты «Комнаты недели» без колец (владелец 22.10: «вот так не надо»)");
+  assert.ok(scene.includes("const pedestalCompact = spireScenePedestalCompact({ visibleH, fontScale, copyTop: off ? COPY_TOP_OFFLINE : COPY_TOP, shape });") && scene.includes("compact={pedestalCompact}"), "колонка не влезает над «Играть» — сжатый пьедестал");
   assert.ok(!route.includes("headerTint"), "dev-вход не красит настоящую шапку");
 }
 

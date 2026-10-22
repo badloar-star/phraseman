@@ -6,7 +6,7 @@ import { SPIRE_TOWER_GEOM, SPIRE_TW } from '../components/spire/spire_tower_mode
 import { spireText } from '../components/spire/spire_strings';
 import type { Lang } from '../constants/i18n';
 import {
-  SPIRE_SCENE_COPY_LEFT, SPIRE_SCENE_MIN_VISIBLE, SPIRE_SCENE_PODIUM, SPIRE_SCENE_WORD_MIN_DP, spireSceneFrame, spireSceneLabelLeft,
+  SPIRE_SCENE_COPY_LEFT, SPIRE_SCENE_MIN_VISIBLE, SPIRE_SCENE_WORD_MIN_DP, spireSceneFrame, spireSceneLabelLeft, spireScenePedestalCompact, spireScenePedestalNeed,
   spireSceneRivalRowW, spireSceneRivalsFit, spireSceneVisibleH, spireSceneWordsHidden,
 } from '../components/spire/scene/spire_scene_layout';
 
@@ -97,7 +97,7 @@ describe('высокая «Сцена» Пика: башня целиком на
     }
   });
 
-  it('шрифт 1,3: крупные числа не растут, мелкие подписи растут вместе с межстрочным, лица блоков пьедестала вмещают строки', () => {
+  it('шрифт 1,3: крупные числа не растут, мелкие подписи растут вместе с межстрочным, имена «Комнаты недели» — в строку с многоточием', () => {
     const read = (rel: string): string => require('node:fs').readFileSync(rel, 'utf8').replace(/\r\n/g, '\n');
     const scene = read('components/spire/scene/SpireScene.tsx');
     expect(scene).toContain('const ts = useScaledTextStyles(s, TEXT_MAX_SCALE);');
@@ -105,14 +105,24 @@ describe('высокая «Сцена» Пика: башня целиком на
     expect(scene).toContain('const DISPLAY_MAX_SCALE = 1;');
     expect(scene.match(/testID="spire-scene-title" maxFontSizeMultiplier=\{DISPLAY_MAX_SCALE\}/g)).toHaveLength(2);
     expect(scene).not.toMatch(/adjustsFontSizeToFit/);
-    const podium = read('components/spire/scene/SpireScenePodium.tsx');
-    expect(podium).toContain('<Text style={[ts.name, { color: pal.text }]} numberOfLines={1} maxFontSizeMultiplier={FACE_MAX_SCALE}>{m.name}</Text>');
-    expect(podium).not.toMatch(/adjustsFontSizeToFit/);
-    // лицо блока: заход монеты + 4, место 24 (не растёт), зазор 2, ник и монеты по 17 × 1,1
-    for (const i of [0, 1, 2] as const) {
-      const overlap = Math.round(SPIRE_SCENE_PODIUM.coin[i] * SPIRE_SCENE_PODIUM.coinOverlap);
-      expect(overlap + 4 + 24 + 2 + 2 * 17 * 1.1).toBeLessThanOrEqual(SPIRE_SCENE_PODIUM.blockH[i]);
+    const pedestal = read('components/spire/scene/SpireScenePedestal.tsx');
+    expect(pedestal).toContain('const ts = useScaledTextStyles(s, TEXT_MAX_SCALE);');
+    expect(pedestal).toContain('<Text style={[ts.name, s.grow]} numberOfLines={1} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{m.name}</Text>');
+    expect(pedestal).not.toMatch(/adjustsFontSizeToFit/);
+  });
+
+  it('«Комната недели» слева от башни (владелец 22.10, вариант 3): полный вид, где влезает над «Играть»; иначе сжатый — и он влезает', () => {
+    const DAY = { kicker2: false, warm: false, line: true, promo: true } as const;
+    const EVE = { kicker2: true, warm: true, line: true, promo: false } as const;
+    for (const visibleH of VISIBLE) for (const fontScale of FONTS) for (const shape of [DAY, EVE]) {
+      const room = Math.max(SPIRE_SCENE_MIN_VISIBLE, visibleH);
+      const compact = spireScenePedestalCompact({ visibleH, fontScale, copyTop: 12, shape });
+      expect(compact).toBe(spireScenePedestalNeed({ fontScale, copyTop: 12, compact: false, shape }) > room);
+      expect(spireScenePedestalNeed({ fontScale, copyTop: 12, compact: true, shape })).toBeLessThanOrEqual(room);
     }
+    // 390 × 844 (видимая 591): полный вид, как в макете, и при шрифте 1,3
+    expect(spireScenePedestalCompact({ visibleH: 591, fontScale: 1, copyTop: 12, shape: DAY })).toBe(false);
+    expect(spireScenePedestalCompact({ visibleH: 591, fontScale: 1.3, copyTop: 12, shape: DAY })).toBe(false);
   });
 
   it('колонка текста кончается левее подписей этажей и не уже 140', () => {

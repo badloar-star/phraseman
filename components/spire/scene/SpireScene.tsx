@@ -1,10 +1,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// SpireScene.tsx — «Сцена» Пика: свет темы, башня целиком — герой справа, этаж и награды слева; ниже сцены — «Комната недели»:
-// своё место и пьедестал 2-1-3, вся карточка ведёт во «Все участники».
+// SpireScene.tsx — «Сцена» Пика: свет темы, башня целиком — герой справа; слева этаж и «Комната недели» — список топ-3, своё место,
+// «до повышения» и «Все участники»; всё на одном экране без прокрутки.
 //
 // зачем (владелец 22.10: «интегрировать пик в общий дизайн… башня — герой сцены, комната недели — всё ещё как пьедестал»; эталон V2
 // peak-scene-v2.html; владелец 22.10 кнопкой: «Сцена выше, башня крупнее» — Пик исключение из правила 46 %): сцена почти на весь экран,
-// башня видна ЦЕЛИКОМ в масштабе эталона V2 и стоит над закреплённой «Играть»; «Комната недели» и пьедестал — ниже, прокруткой.
+// башня видна ЦЕЛИКОМ в масштабе эталона V2 и стоит над закреплённой «Играть»; «Комната недели» — список топ-3 слева от башни (вариант 3 peak-pedestal-left.html).
 // Владелец 22.10: «НАДО, ЧТОБЫ АВАТАРКИ НАЖИМАЛИСЬ» — соперник на башне, призёр, своё место и своя метка открывают карточку игрока
 // (та же, что в «Друзьях»); данные — из кэша комнаты, без новых чтений. Цвета сцены — homeSceneTokensForTheme (уровень «Максимум»),
 // башня — SpireTower в режиме «сцена», тексты — spire_scene_model. Кегли — шкала 16/13 (D145), заголовки 40/26 — как в эталоне V2.
@@ -25,22 +25,19 @@ import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { useTheme } from '../../ThemeContext';
 import { homeSceneTokensForTheme } from '../../home/v2/scene/home_scene_tokens';
 import { homeSceneWarmTone } from '../../home/v2/scene/home_scene_warm_tone';
-import V2Pressable from '../../v2/V2Pressable';
-import SpireRankCoin from '../SpireRankCoin';
 import SpireTower from '../SpireTower';
 import { spireGameText } from '../spire_game_strings';
 import type { SpireMemberRow, SpireRankByView } from '../spire_room_types';
 import { spireText } from '../spire_strings';
 import { spireTowerHeadroom } from '../spire_tower_bounds';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, type SpireRival } from '../spire_tower_model';
-import { useSpirePalette } from '../useSpirePalette';
 import SpirePlayerCard from './SpirePlayerCard';
-import SpireScenePodium from './SpireScenePodium';
+import SpireScenePedestal, { SPIRE_SCENE_PEDESTAL_INSET } from './SpireScenePedestal';
 import type { SpireSceneCopy, SpireSceneDecision, SpireSceneRoom } from './spire_scene_model';
 import { setSpireSceneHeaderTint } from './spire_scene_header_tint';
-import { SPIRE_SCENE_PANEL_OVERLAP, spireSceneFrame, spireSceneVisibleH } from './spire_scene_layout';
+import { spireSceneFrame, spireScenePedestalCompact, spireSceneVisibleH } from './spire_scene_layout';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
-import { spireScenePromoText, spireSceneText } from './spire_scene_strings';
+import { spireScenePromoText } from './spire_scene_strings';
 
 /**
  * Звёзды сцены — по всей плоскости до краёв, одни и те же в каждом кадре (владелец 22.10: «звёздочки рассыпь по всей плоскости, а не только
@@ -107,7 +104,6 @@ function LiveEnergyTitle({ override }: Readonly<{ override?: string }>) {
 function SpireScene(p: Props) {
   const { width, height: windowH, fontScale } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
-  const pal = useSpirePalette();
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const evening = p.decision.state === 'eve';
   // зачем: владелец 22.10 — сцена всегда как утверждённый эталон (токены уровня «Максимум» при любом положении ползунка)
@@ -128,7 +124,8 @@ function SpireScene(p: Props) {
     return cut > 0 ? { bold: full.slice(0, cut + 1), rest: full.slice(cut + 1) } : { bold: full, rest: '' };
   }, [p.lang]);
   const glow = evening ? tokens.eveningGlow : tokens.sceneGlow;
-  const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.55), [tokens.sceneGlow]);
+  // зачем (Сверка 22.10 по 7961dde6a: «звёзды белые в обеих темах»): звёзды — оттенок свечения темы с четвертью белого, а не почти белые
+  const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.25), [tokens.sceneGlow]);
   // зачем (владелец 22.10: «цвета строго оттенками текущей темы»; сцена всегда на «Максимуме»): акцент темы — для тёплой строки и наряда башни
   const sceneAccent = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }).accent, [liquidGlassThemeId, liquidGlassAppearance]);
   // строка «N мест до повышения» — тёплый тон сцены, как на Главной (был свой #FFD0C4; ≥ 4,5 во всех темах — аудит scene_contrast_audit)
@@ -171,7 +168,13 @@ function SpireScene(p: Props) {
   const onPressMyPlace = useCallback(() => openMember(me, 'my_place'), [me, openMember]);
   const closePlayer = useCallback(() => setPlayer(null), []);
   const promo = p.room.placesToPromo !== null && p.room.placesToPromo > 0 ? spireScenePromoText(p.lang, p.room.placesToPromo, false) : null;
-  const roomEmpty = searching || p.room.count === 0;
+  // зачем (владелец 22.10, вариант 3 «Список топ-3»: всё на одном экране без прокрутки): «до повышения» у пьедестала — если этого не
+  // сказала тёплая строка сцены; колонка не влезает над «Играть» — сжатый пьедестал
+  const shape = useMemo(() => ({ kicker2: p.copy.kicker2 !== null, warm: p.copy.warm !== null, line: p.copy.line !== null, promo: promo !== null && p.copy.warm === null }), [p.copy.kicker2, p.copy.warm, p.copy.line, promo]);
+  const pedestalCompact = spireScenePedestalCompact({ visibleH, fontScale, copyTop: off ? COPY_TOP_OFFLINE : COPY_TOP, shape });
+  useEffect(() => {
+    console.log('[SPIRE-LAYOUT] pedestal', JSON.stringify({ compact: pedestalCompact, visibleH: Math.round(visibleH), fontScale, offline: off, ...shape })); // guard-ok: вид пьедестала (вариант 3)
+  }, [pedestalCompact, visibleH, fontScale, off, shape]);
   return (
     <View>
       <View testID={`spire-scene-${p.decision.state}`} style={[s.stage, { height: frame.sceneH }]}>
@@ -235,6 +238,24 @@ function SpireScene(p: Props) {
             </View>
           ) : null}
           {/* зачем (владелец 22.10: «ВОТ ЭТОТ ТЕКСТ УБИРАЙ»): плашек «+10 за ступень / этаж» на сцене нет; строки наград в модели остаются */}
+          {/* зачем (владелец 22.10 по макету peak-pedestal-left.html, вариант 3): «Комната недели» — список топ-3 под текстом, слева от башни */}
+          <SpireScenePedestal
+            lang={p.lang}
+            width={frame.copyW + SPIRE_SCENE_PEDESTAL_INSET}
+            top={p.room.top}
+            rankBy={p.rankBy}
+            count={p.room.count}
+            myPlace={p.room.myPlace}
+            me={me}
+            myCoinRank={p.myCoinRank}
+            promo={shape.promo ? promo : null}
+            compact={pedestalCompact}
+            loading={searching}
+            dim={off}
+            onPressMember={onPressPodium}
+            onPressMe={onPressMyPlace}
+            onOpenAll={p.onOpenAll}
+          />
         </View>
         {off ? (
           // зачем (аудит кнопок Ревизора 22.10, F6): плашка «нет сети» лежит поверх верха башни — касания проходят сквозь неё к этажам
@@ -244,47 +265,6 @@ function SpireScene(p: Props) {
           </View>
         ) : null}
       </View>
-      {/* зачем (владелец 22.10 кнопкой: «Комната недели» и пьедестал — ниже, прокруткой; аудит Ревизора F3: вся карточка нажимается):
-          карточка темы наезжает на низ сцены на 22; тап по ней — «Все участники», по призёру и своей монете — карточка игрока */}
-      <V2Pressable
-        testID="spire-scene-all"
-        onPress={p.onOpenAll}
-        disabled={roomEmpty}
-        accessibilityRole="button"
-        accessibilityLabel={p.room.count > 0 ? `${spireText(p.lang, 'allMembers')}, ${p.room.count}` : spireText(p.lang, 'allMembers')}
-        scaleTo={0.99}
-        style={[s.panel, { backgroundColor: pal.card, marginTop: -SPIRE_SCENE_PANEL_OVERLAP }, off ? s.dim : null]}
-      >
-        <View style={s.panelHead}>
-          <Text style={[ts.panelTitle, { color: pal.text }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{`${spireText(p.lang, 'roomWeek')} · ${p.tierName}`}</Text>
-          <Text style={[ts.panelCount, { color: pal.textSecondary }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{searching ? '…' : String(p.room.count)}</Text>
-          <Ionicons name="chevron-forward" size={18} color={pal.textSecondary} />
-        </View>
-        <View testID="spire-scene-me" style={s.meRow}>
-          {searching ? (
-            <View style={s.meText}>
-              <Text style={[ts.meValue, { color: pal.text }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireSceneText(p.lang, 'searching')}</Text>
-              <Text style={[ts.meSub, { color: pal.textSecondary }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireSceneText(p.lang, 'yourLevelRoom')}</Text>
-            </View>
-          ) : (
-            <>
-              <V2Pressable testID="spire-scene-my-coin" onPress={onPressMyPlace} accessibilityRole="button" accessibilityLabel={spireSceneText(p.lang, 'place', { n: p.room.myPlace ?? 0 })} hitSlop={7} scaleTo={0.92}>
-                <SpireRankCoin rank={p.myCoinRank} size={30} plus={p.myPlus} />
-              </V2Pressable>
-              <View style={s.meText}>
-                <Text style={[ts.meValue, { color: pal.text }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.room.myPlace !== null ? spireSceneText(p.lang, 'place', { n: p.room.myPlace }) : '—'}</Text>
-                {promo ? (
-                  <View style={s.meSubRow}>
-                    <Ionicons name="arrow-up" size={13} color={pal.textSecondary} />
-                    <Text style={[ts.meSub, { color: pal.textSecondary }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{promo}</Text>
-                  </View>
-                ) : null}
-              </View>
-            </>
-          )}
-        </View>
-        <SpireScenePodium lang={p.lang} top={p.room.top} rankBy={p.rankBy} loading={searching} dim={off} onPressMember={onPressPodium} />
-      </V2Pressable>
       <SpirePlayerCard player={player} myName={me?.name ?? ''} onClose={closePlayer} />
     </View>
   );
@@ -307,18 +287,7 @@ const s = StyleSheet.create({
   bar: { width: 48, height: 4, borderRadius: 2, backgroundColor: SPIRE_SCENE_INK.barTrack, overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: SPIRE_SCENE_INK.text },
   line: { color: SPIRE_SCENE_INK.line, fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] }, // guard-ok: «ступень 7 из 8» — строка прогресса этажа (эталон V2), не подпись-расшифровка
-  // зачем (scenes-compact .pn): «Комната недели» — карточка темы без рамки, скругление 24, поверх низа сцены
-  panel: { marginHorizontal: 16, borderRadius: 24, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 12 },
-  panelHead: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44 },
-  panelTitle: { flex: 1, fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  panelCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
-  meRow: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52 },
-  meText: { flex: 1, minWidth: 0 },
-  meValue: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  meSubRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 },
-  meSub: { fontSize: 13, lineHeight: 17, flexShrink: 1 }, // guard-ok: «2 места до повышения» — данные места (эталон V2), не подпись-расшифровка
   offline: { position: 'absolute', top: 8, left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: SPIRE_SCENE_INK.glass },
   offlineText: { flex: 1, color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17 },
   offlineBold: { fontWeight: '700' },
-  dim: { opacity: 0.55 },
 });

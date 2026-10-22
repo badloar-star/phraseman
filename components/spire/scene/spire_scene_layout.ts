@@ -3,7 +3,7 @@
 //
 // зачем (владелец 22.10 кнопкой: «Сцена выше, башня крупнее»; координатор: Пик — исключение из правила 46 %): сцена почти на весь экран,
 // башня видна ЦЕЛИКОМ и крупно — все 15 этажей, корона и ореол; масштаб как у эталона V2 (колонка 240 из 430), не меньше; меньше — только
-// если иначе башня от короны до низа 1-го этажа не встаёт над закреплённой «Играть». «Комната недели» и пьедестал — ниже сцены, прокруткой.
+// если иначе башня от короны до низа 1-го этажа не встаёт над закреплённой «Играть». «Комната недели» — список топ-3 слева от башни под текстом (вариант 3).
 // - ряд соперников стоит между подписью этажа и телом башни; не влезает — монет меньше (2 → 1 → только «+N»), подпись не закрывается;
 // - слова под номерами мельче 4 dp («страж», вершина, «над облаками») не рисуются — ряд меряется от номера, число людей не теряется;
 // - колонка текста кончается левее подписей этажей.
@@ -16,14 +16,6 @@ export const SPIRE_SCENE_BASE_W = 430;
 /** Шапка «Сообщества» без зоны часов (community.tsx: поле 12, вкладка 6 + 22 + 8 + 3, поле 4) и её наименьшая высота, dp. */
 export const SPIRE_SCENE_HEADER_CONTENT = 55;
 export const SPIRE_SCENE_HEADER_MIN = 58;
-/** Панель «Комната недели» под сценой наезжает на её низ на 22 (как карточки под сценами Главной и «Сегодня»). */
-export const SPIRE_SCENE_PANEL_OVERLAP = 22;
-/** Пьедестал в панели «Комната недели»: блоки 96 / 86 / 84, монеты 40 / 32 / 32 заходят на блок на 47 %. */
-export const SPIRE_SCENE_PODIUM = Object.freeze({
-  blockH: Object.freeze([96, 86, 84] as const),
-  coin: Object.freeze([40, 32, 32] as const),
-  coinOverlap: 0.47,
-});
 /** Колонка башни эталона V2: 240 из 430, правый край на 6 за краем экрана; рисунок башни целиком стоит по её оси. */
 const TOWER = Object.freeze({ w: 240, overRight: 6 });
 /** Колонка текста слева: отступ эталона. */
@@ -113,6 +105,30 @@ export function spireSceneRivalsFit(i: Readonly<{ floor: number; count: number; 
 /** Видимая под шапкой «Сообщества» высота экрана до верха закреплённой «Играть» (dockClear — от низа экрана до верха кнопки), dp. */
 export function spireSceneVisibleH(windowH: number, topInset: number, dockClear: number): number {
   return windowH - Math.max(SPIRE_SCENE_HEADER_MIN, SPIRE_SCENE_HEADER_CONTENT + Math.max(0, topInset)) - Math.max(0, dockClear);
+}
+
+/** Из чего состоит левая колонка (spire_scene_model): вторая подпись, тёплая строка, строка прогресса; «до повышения» у пьедестала. */
+export type SpireScenePedestalShape = Readonly<{ kicker2: boolean; warm: boolean; line: boolean; promo: boolean }>;
+
+/**
+ * Высота левой колонки «Сцены» (владелец 22.10, вариант 3 «Список топ-3»): от верха сцены через текст и «Комнату недели» до зазора
+ * над «Играть», dp. Высоты макета при шрифте 1,0; мелкий текст растёт до 1,3, заголовок 40/44 — нет. Текст: подпись 17, заголовок
+ * 4 + 44, тёплая строка 8 + 21, прогресс 10 + 17. Пьедестал: отступ 18, заголовок 21 + 10, список 12 + 3 × 56 (сжатый 44), своя
+ * строка 10 + 20 + место 21 и имя 17 (сжатый — без имени, не ниже монеты 32), «до повышения» 8 + две строки по 17, «Все участники»
+ * 10 + 17 (в сжатом нет — их открывает заголовок).
+ */
+export function spireScenePedestalNeed(i: Readonly<{ fontScale: number; copyTop: number; compact: boolean; shape: SpireScenePedestalShape }>): number {
+  const k = fontOf(i.fontScale);
+  const sh = i.shape;
+  const copy = 17 * k + (sh.kicker2 ? 17 * k : 0) + 48 + (sh.warm ? 8 + 21 * k : 0) + (sh.line ? 10 + 17 * k : 0);
+  const me = 10 + 20 + Math.max(32, 21 * k + (i.compact ? 0 : 17 * k));
+  const tail = i.compact ? 0 : (sh.promo ? 8 + 34 * k : 0) + 10 + 17 * k;
+  return i.copyTop + copy + 18 + 21 * k + 10 + 12 + 3 * (i.compact ? 44 : 56) + me + tail + DOCK_GAP;
+}
+
+/** Полный пьедестал не влезает над «Играть» (низкий экран, крупный шрифт, строка «нет сети» сверху) — сжатый вид. */
+export function spireScenePedestalCompact(i: Readonly<{ visibleH: number; fontScale: number; copyTop: number; shape: SpireScenePedestalShape }>): boolean {
+  return spireScenePedestalNeed({ ...i, compact: false }) > Math.max(SPIRE_SCENE_MIN_VISIBLE, i.visibleH);
 }
 
 export type SpireSceneFrame = Readonly<{

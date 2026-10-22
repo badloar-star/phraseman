@@ -44,10 +44,10 @@ function ofLine(lang: Lang, n: number, m: number): string {
 const NOUN: Readonly<Record<TodayTaskKind, Words>> = {
   lesson: { ru: 'урок', uk: 'урок', en: 'lesson', es: 'lección', 'pt-BR': 'lição', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcja' },
   dialog: { ru: 'диалог', uk: 'діалог', en: 'dialogue', es: 'diálogo', 'pt-BR': 'diálogo', vi: 'hội thoại', id: 'dialog', tr: 'diyalog', pl: 'dialog' },
-  cards: { ru: 'карточки', uk: 'картки', en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kartlar', pl: 'fiszki' },
+  cards: { ru: 'карточки', uk: 'картки', en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kartlar', pl: 'karty' },
   video: { ru: 'видео', uk: 'відео', en: 'video', es: 'vídeo', 'pt-BR': 'vídeo', vi: 'video', id: 'video', tr: 'video', pl: 'wideo' },
   mistakes: { ru: 'ошибки', uk: 'помилки', en: 'mistakes', es: 'errores', 'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hatalar', pl: 'błędy' },
-  spire_steps: { ru: 'ступени Пика', uk: 'сходинки Піку', en: 'Spire steps', es: 'escalones del Pico', 'pt-BR': 'degraus do Pico', vi: 'bậc Đỉnh', id: 'anak tangga Puncak', tr: 'Zirve basamakları', pl: 'stopnie Szczytu' },
+  spire_steps: { ru: 'ступени Пика', uk: 'сходинки Піку', en: 'Peak steps', es: 'escalones del Pico', 'pt-BR': 'degraus do Pico', vi: 'bậc Đỉnh', id: 'anak tangga Puncak', tr: 'Zirve basamakları', pl: 'stopnie Szczytu' },
 };
 
 const AND: Words = { ru: 'и', uk: 'і', en: 'and', es: 'y', 'pt-BR': 'e', vi: 'và', id: 'dan', tr: 've', pl: 'i' };
@@ -77,7 +77,7 @@ function streakKicker(lang: Lang, days: number): string {
     es: `Racha de ${n} ${one ? 'día' : 'días'}`,
     'pt-BR': `Sequência de ${n} ${one ? 'dia' : 'dias'}`,
     vi: `Chuỗi ${n} ngày`,
-    id: `Streak ${n} hari`,
+    id: `Runtunan ${n} hari`,
     tr: `${n} günlük seri`,
   });
 }
@@ -95,7 +95,7 @@ function midnightTitle(lang: Lang, minutes: number): string {
     'pt-BR': `Faltam ${hm('h', 'min')} para meia-noite`,
     vi: `Còn ${hm('giờ', 'phút')} đến nửa đêm`,
     id: `${hm('jam', 'mnt')} lagi sampai tengah malam`,
-    tr: `Gece yarısına ${hm('sa', 'dk')}`,
+    tr: `Gece yarısına ${hm('sa', 'dk')} kaldı`,
     pl: `Do północy ${hm('godz.', 'min')}`,
   });
 }
@@ -117,7 +117,7 @@ export function buildTodaySceneCopy(i: TodaySceneCopyInput): TodaySceneCopy {
   if (d.state === 'evening') {
     return {
       ...base, kicker: streakKicker(lang, i.streakDays), title: midnightTitle(lang, i.minutesToMidnight), line: null,
-      warm: tri(lang, { ru: 'Одно занятие сохранит серию', uk: 'Одне заняття збереже серію', en: 'One lesson keeps your streak', es: 'Una sesión mantiene tu racha', 'pt-BR': 'Uma sessão mantém sua sequência', vi: 'Một buổi học sẽ giữ chuỗi của bạn', id: 'Satu sesi menjaga streak-mu', tr: 'Bir ders serini korur', pl: 'Jedna lekcja ocali serię' }),
+      warm: tri(lang, { ru: 'Одно занятие сохранит серию', uk: 'Одне заняття збереже серію', en: 'One lesson keeps your streak', es: 'Una lección mantiene tu racha', 'pt-BR': 'Uma lição mantém sua sequência', vi: 'Một bài học sẽ giữ chuỗi của bạn', id: 'Satu pelajaran menjaga runtunanmu', tr: 'Bir ders serini korur', pl: 'Jedna lekcja ocali serię' }),
     };
   }
   if (d.state === 'morning') {

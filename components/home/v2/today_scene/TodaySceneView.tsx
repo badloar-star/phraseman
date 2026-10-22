@@ -132,7 +132,7 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
               {done ? (
                 <View style={[s.ck, { backgroundColor: color }]}><Ionicons name="checkmark" size={16} color="#FFFFFF" /></View>
               ) : (
-                <View style={[s.ck, s.ckRing, { borderColor: color }]} /> // shadow-ok: guard-ok: кружок-индикатор невыполненного задания, не контейнер
+                <View style={[s.ck, { boxShadow: [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadRadius: 2, color, inset: true }] }]} /> // shadow-ok: guard-ok: кружок-индикатор невыполненного задания (внутреннее кольцо 2, не рамка контейнера)
               )}
               <View style={[s.ic, { backgroundColor: p.control }]}><Ionicons name={ROW_ICON[task.kind]} size={18} color={p.text} /></View>
               <View style={s.tx}>
@@ -158,23 +158,23 @@ const s = StyleSheet.create({
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 58 },
-  kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 14, lineHeight: 19 },
+  // зачем (D145, владелец: шрифты 16/13 главнее макета; как у Главной в bd1ba46cd): подписи сцены 13/17, крупные строки и кнопка 16/21, заголовок 34 без изменений
+  kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
   title: { color: '#FFFFFF', fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, fontVariant: ['tabular-nums'] },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
-  warm: { color: '#FFD0C4', fontSize: 15, lineHeight: 20, fontWeight: '700', flexShrink: 1 },
-  line: { color: 'rgba(255,255,255,0.88)', fontSize: 14, lineHeight: 19, marginTop: 10 },
+  warm: { color: '#FFD0C4', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, marginTop: 10 },
   cta: { marginTop: 16, height: 54, borderRadius: 27, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
-  ctaText: { color: '#121318', fontSize: 17, lineHeight: 22, fontWeight: '700', flexShrink: 1 },
+  ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   panel: { marginTop: -PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
   panelHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 2 },
   panelTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
-  panelCount: { fontSize: 15, lineHeight: 20, fontVariant: ['tabular-nums'] },
+  panelCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 },
   ck: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  ckRing: { borderWidth: 2 }, // shadow-ok: guard-ok: кружок-индикатор невыполненного задания, не контейнер
   ic: { width: 36, height: 36, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   tx: { flex: 1, minWidth: 0 },
   rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  rowSub: { fontSize: 14, lineHeight: 19, marginTop: 1 },
-  rowN: { fontSize: 15, lineHeight: 20, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  rowSub: { fontSize: 13, lineHeight: 17, marginTop: 1 },
+  rowN: { fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

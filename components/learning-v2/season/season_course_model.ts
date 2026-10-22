@@ -60,7 +60,14 @@ export function seasonCardState(source: LearningV2AccordionSessionStateV1): Seas
 /** Колода карт урока: строки-занятия по порядку, после последнего занятия каждой главы — карта экзамена; другие строки (урок, глава) пропускаются. */
 // зачем (Сверка 22.10, ss_side_9; координатор): пока экзамена главы нет в курсе (SEASON_CHAPTER_EXAM_ENABLED = false), карту «Экзамен главы» показывать нельзя — она вела в пустоту и
 // дублировала подпись. Вызывающий передаёт includeExam: SEASON_CHAPTER_EXAM_ENABLED; без параметра экзамен кладётся (чистая модель, тесты эталона).
-export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[], options: Readonly<{ includeExam?: boolean }> = {}): SeasonDeck {
+// зачем (решение владельца 21.10, №10; экзамен главы — Learning V2 22.10): сдать экзамен можно ДО прохождения всех эпизодов — достаточно дойти
+// до главы (examAvailableWhenReached); сданный экзамен — карта «пройдена» (examPassedChapters). Без опций — прежнее правило эталона Сезона
+// (экзамен доступен, когда пройдены все занятия главы), чтобы сцены эталона не менялись до решения Сверки.
+export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[], options: Readonly<{
+  includeExam?: boolean;
+  examAvailableWhenReached?: boolean;
+  examPassedChapters?: ReadonlySet<number>;
+}> = {}): SeasonDeck {
   const includeExam = options.includeExam !== false;
   const sessions = rows
     .filter((row): row is SessionRow => row.kind === 'session')
@@ -73,6 +80,9 @@ export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[],
     if (!includeExam || chapterRows.length === 0) return;
     const last = chapterRows[chapterRows.length - 1];
     const allDone = chapterRows.every((row) => row.state === 'completed');
+    const reached = chapterRows.some((row) => row.state === 'completed' || row.state === 'current');
+    const passed = options.examPassedChapters?.has(last.chapterOrdinal) === true;
+    const examState: SeasonCardState = passed ? 'done' : (options.examAvailableWhenReached ? reached : allDone) ? 'current' : 'locked';
     cards.push({
       kind: 'exam',
       id: `exam:lesson-${String(last.lessonOrdinal).padStart(2, '0')}:chapter-${last.chapterOrdinal}`,
@@ -80,8 +90,8 @@ export function buildSeasonDeck(rows: readonly LearningV2CourseAccordionRowV1[],
       sessionOrdinal: last.sessionOrdinal,
       chapterOrdinal: last.chapterOrdinal,
       positionInChapter: chapterRows.length + 1,
-      state: allDone ? 'current' : 'locked',
-      sourceState: allDone ? 'current' : 'locked',
+      state: examState,
+      sourceState: examState === 'done' ? 'completed' : examState === 'current' ? 'current' : 'locked',
     });
   };
 

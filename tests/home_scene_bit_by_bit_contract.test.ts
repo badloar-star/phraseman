@@ -33,10 +33,10 @@ describe('Главная со «Сценой»: до бита', () => {
   it('«Фраза дня» со сценой — без строки перевода', () => {
     expect(phrase).toContain('{cardLiteral && !sceneLook ? (');
   });
-  it('подписи вкладок 13/600 (шкала D145) — только со «Сценой»', () => {
-    expect(bar).toContain('HOME_SCENE_V2_ENABLED ? <Text numberOfLines={1} maxFontSizeMultiplier={1.2}');
-    expect(bar).toMatch(/tabLabel: \{ fontSize: 13, lineHeight: 17, fontWeight: '600' \}/);
-    expect(bar).toMatch(/tabStack: \{ alignItems: 'center', gap: 3 \}/);
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот тут вот без слов!!!» — подписей вкладок нет и со «Сценой» (главный сторож — v2_tab_bar_liquid_glass_theme)
+  it('таб-бар со «Сценой» — только значки, без подписей', () => {
+    expect(bar).not.toMatch(/<Text[\s>]/);
+    expect(bar).toContain('size={ICON_SIZE} color={color} />');
   });
   it('набор дня пишется в журнал [HOME-TODAY] (почему строки урока нет)', () => {
     expect(home).toContain("console.log('[HOME-TODAY]'");

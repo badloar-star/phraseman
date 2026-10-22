@@ -153,6 +153,53 @@ async function notifyViaResend(subject: string, text: string): Promise<boolean> 
   }
 }
 
+/**
+ * Акция «Два года Plus за видео» (владелец 22.10): заявка идёт в тот же website_contact_inbox, тема video_promo.
+ * зачем: участник не ищет, куда писать, — кнопка на /contact/?topic=video-promo. Сервер сам определяет соцсеть по ссылке
+ * и пускает только открытые публикации пяти сетей из условий акции. Почта для ответа — по желанию.
+ */
+export type VideoPromoNetwork = 'instagram' | 'tiktok' | 'facebook' | 'youtube' | 'threads';
+const VIDEO_PROMO_HOSTS: ReadonlyArray<readonly [VideoPromoNetwork, readonly string[]]> = [
+  ['instagram', ['instagram.com']],
+  ['tiktok', ['tiktok.com']],
+  ['facebook', ['facebook.com', 'fb.watch']],
+  ['youtube', ['youtube.com', 'youtu.be']],
+  ['threads', ['threads.net', 'threads.com']],
+];
+const VIDEO_PROMO_USERNAME_RE = /^[\p{L}\p{N}_.\- ]{2,40}$/u;
+
+/** Соцсеть по ссылке на публикацию; null — не https или не одна из пяти сетей акции. */
+export function videoPromoNetwork(rawUrl: string): VideoPromoNetwork | null {
+  let url: URL;
+  try { url = new URL(rawUrl); } catch { return null; }
+  if (url.protocol !== 'https:' || url.username || url.password) return null;
+  const host = url.hostname.toLowerCase().replace(/\.$/, '');
+  for (const [network, roots] of VIDEO_PROMO_HOSTS) {
+    if (roots.some((root) => host === root || host.endsWith(`.${root}`))) {
+      // Ссылка именно на публикацию, а не на главную страницу сети.
+      return url.pathname.replace(/\/+$/, '').length > 1 ? network : null;
+    }
+  }
+  return null;
+}
+
+export type VideoPromoEntry = Readonly<{ postUrl: string; network: VideoPromoNetwork; username: string; disclosed: true }>;
+export type VideoPromoParse = Readonly<{ ok: true; entry: VideoPromoEntry } | { ok: false; error: string }>;
+
+export function parseVideoPromo(body: Record<string, unknown>): VideoPromoParse {
+  const postUrl = String(body.postUrl ?? '').trim().slice(0, 600);
+  const network = videoPromoNetwork(postUrl);
+  if (!network) return { ok: false, error: 'invalid_post_url' };
+  const username = String(body.username ?? '').trim().replace(/^@+/, '').replace(/\s+/g, ' ').slice(0, 41);
+  if (!VIDEO_PROMO_USERNAME_RE.test(username)) return { ok: false, error: 'invalid_username' };
+  if (body.disclosed !== true) return { ok: false, error: 'disclosure_required' };
+  return { ok: true, entry: { postUrl, network, username, disclosed: true } };
+}
+
+export function videoPromoMessage(entry: VideoPromoEntry): string {
+  return `Акция с видео\nПубликация: ${entry.postUrl}\nСоцсеть: ${entry.network}\nUsername в Phraseman: ${entry.username}\nОбозначил(а) участие: да`;
+}
+
 export const submitWebsiteContact = onRequest(
   {
     region: 'us-central1',
@@ -206,7 +253,7 @@ export const submitWebsiteContact = onRequest(
     const email = String(body.email ?? '')
       .trim()
       .slice(0, 320);
-    const message = String(body.message ?? '')
+    let message = String(body.message ?? '')
       .trim()
       .slice(0, 5000);
     const name = String(body.name ?? '')
@@ -215,23 +262,41 @@ export const submitWebsiteContact = onRequest(
     const topicRaw = String(body.topic ?? 'support')
       .trim()
       .toLowerCase();
-    const topic = ['support', 'feedback', 'legal', 'other'].includes(topicRaw) ? topicRaw : 'support';
+    const topic = ['support', 'feedback', 'legal', 'other', 'video_promo'].includes(topicRaw) ? topicRaw : 'support';
     const pageUrl = String(body.pageUrl ?? '').slice(0, 2000);
 
-    if (!EMAIL_RE.test(email)) {
-      res.status(400).json({ ok: false, error: 'invalid_email' });
-      return;
-    }
-    if (message.length < 10) {
-      res.status(400).json({ ok: false, error: 'message_too_short' });
-      return;
+    let promo: VideoPromoEntry | null = null;
+    if (topic === 'video_promo') {
+      const parsed = parseVideoPromo(body);
+      if (!parsed.ok) {
+        logger.warn('[VIDEO-PROMO] rejected', { reason: parsed.error });
+        res.status(400).json({ ok: false, error: parsed.error });
+        return;
+      }
+      promo = parsed.entry;
+      message = videoPromoMessage(promo);
+      // Почта в акции — по желанию; если указана, должна быть настоящей.
+      if (email && !EMAIL_RE.test(email)) {
+        res.status(400).json({ ok: false, error: 'invalid_email' });
+        return;
+      }
+    } else {
+      if (!EMAIL_RE.test(email)) {
+        res.status(400).json({ ok: false, error: 'invalid_email' });
+        return;
+      }
+      if (message.length < 10) {
+        res.status(400).json({ ok: false, error: 'message_too_short' });
+        return;
+      }
     }
 
     const db = getFirestore();
     const ua = typeof req.headers['user-agent'] === 'string' ? req.headers['user-agent'].slice(0, 420) : '';
     const forwarded = typeof req.headers['x-forwarded-for'] === 'string' ? req.headers['x-forwarded-for'].slice(0, 200) : '';
     const ipKey = hashForDocId('ip', clientIp(req).toLowerCase());
-    const emailKey = hashForDocId('email', email.toLowerCase());
+    // Без почты (акция с видео) второй ключ — username: тот же потолок заявок в сутки.
+    const emailKey = email ? hashForDocId('email', email.toLowerCase()) : hashForDocId('promo_user', String(promo?.username ?? '').toLowerCase());
     const retryAfter = await reserveContactRateLimit(db, [
       { docId: ipKey, windowMs: IP_RATE_WINDOW_MS, max: IP_RATE_MAX, blockMs: IP_RATE_BLOCK_MS },
       { docId: emailKey, windowMs: EMAIL_RATE_WINDOW_MS, max: EMAIL_RATE_MAX, blockMs: EMAIL_RATE_BLOCK_MS },
@@ -244,7 +309,7 @@ export const submitWebsiteContact = onRequest(
     }
 
     const docRef = await db.collection('website_contact_inbox').add({
-      email,
+      email: email || null,
       message,
       name: name || null,
       topic,
@@ -252,10 +317,11 @@ export const submitWebsiteContact = onRequest(
       status: 'new',
       createdAt: FieldValue.serverTimestamp(),
       meta: { ua, forwarded },
+      ...(promo ? { promo } : {}),
     });
 
-    const subject = `[PhraseMan web · ${topic}] ${email}`;
-    const text = `From: ${name || '—'} <${email}>\nTopic: ${topic}\nPage: ${pageUrl || '—'}\n\n${message}\n\n— id: ${docRef.id}`;
+    const subject = `[PhraseMan web · ${topic}] ${email || promo?.username || '—'}`;
+    const text = `From: ${name || '—'} <${email || '—'}>\nTopic: ${topic}\nPage: ${pageUrl || '—'}\n\n${message}\n\n— id: ${docRef.id}`;
     const emailed = await notifyViaResend(subject, text);
     if (emailed) {
       await docRef.update({ emailNotifiedAt: FieldValue.serverTimestamp() }).catch(swallowed('website_contact:( emailNotifiedAt FieldValue.serverTimestamp() )', undefined));

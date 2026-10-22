@@ -77,6 +77,40 @@ svg.i.s16 { width: 16px; height: 16px; } svg.i.s18 { width: 18px; height: 18px; 
 #contact-form .toast.ok { color: var(--text); }
 #contact-form .toast.err { color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, var(--card-solid)); }
 
+/* ---------- акция «Два года Plus за видео» (/contact/?topic=video-promo, владелец 22.10) ----------
+   зачем: участник сразу видит условия и одну короткую форму, не ищет, куда писать. Тот же язык, что у формы поддержки. */
+#video-promo { scroll-margin-top: 100px; padding-top: clamp(8px, 2vw, 24px); }
+#video-promo .vp-card { max-width: 720px; margin-inline: auto; position: relative; isolation: isolate; overflow: hidden; display: grid; gap: 20px;
+  padding: clamp(22px, 4vw, 36px); border-radius: 28px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); }
+#video-promo .vp-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(60% 80% at 100% 0%, color-mix(in srgb, var(--fill) 22%, transparent), transparent 70%); }
+#video-promo h2 { margin: 0; font-size: clamp(30px, 4.4vw, 44px); line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
+#video-promo .vp-lead { margin: -8px 0 0; font-size: 17px; line-height: 1.5; color: var(--sec); text-wrap: pretty; }
+#video-promo .vp-until { display: inline-flex; align-items: center; gap: 8px; justify-self: start; padding: 8px 14px; border-radius: 999px; background: var(--control); font-size: 14px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+#video-promo ol { margin: 0; padding: 0; list-style: none; counter-reset: vp; display: grid; gap: 14px; }
+#video-promo ol li { counter-increment: vp; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; font-size: 16px; line-height: 1.5; color: var(--text); }
+#video-promo ol li::before { content: counter(vp); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--control); font-weight: 800; font-size: 15px; color: var(--text); }
+#video-promo .vp-example { display: inline-flex; align-items: center; gap: 8px; justify-self: start; font-weight: 700; color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+#video-promo .vp-fine { margin: 0; font-size: 14px; line-height: 1.5; color: var(--sec); }
+#video-promo form { display: grid; gap: 16px; padding-top: 4px; }
+#video-promo .field { display: grid; gap: 8px; margin: 0; }
+#video-promo .field > label { margin: 0; font-size: 13px; font-weight: 600; color: var(--sec); display: flex; justify-content: space-between; gap: 8px; }
+#video-promo .vp-net { color: var(--text); font-weight: 700; }
+#video-promo .vp-net.bad { color: var(--bad); }
+#video-promo input[type="url"], #video-promo input[type="text"], #video-promo input[type="email"] { width: 100%; min-height: 52px; padding: 0 16px; background: var(--control); color: var(--text); border: 1px solid transparent; border-radius: 14px; font: inherit; }
+#video-promo input:focus { outline: none; border-color: color-mix(in srgb, var(--fill) 60%, transparent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--fill) 16%, transparent); }
+#video-promo .vp-check { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; font-size: 15px; line-height: 1.45; color: var(--text); cursor: pointer; }
+#video-promo .vp-check input { width: 22px; height: 22px; margin: 1px 0 0; accent-color: var(--fill); }
+#video-promo button[type="submit"] { width: 100%; }
+#video-promo .toast { position: static; transform: none; opacity: 1; margin: 0; font-size: 15px; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; }
+#video-promo .toast:empty { display: none; }
+#video-promo .toast.err { padding: 14px 16px; border-radius: 16px; color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, var(--card-solid)); }
+#video-promo .vp-done { display: grid; gap: 10px; padding: 22px; border-radius: 20px; background: var(--control); animation: v2-fadeDown 360ms var(--ease); }
+#video-promo .vp-done b { font-size: 22px; letter-spacing: -.02em; }
+#video-promo .vp-done p { margin: 0; color: var(--sec); line-height: 1.5; }
+.support-card > a.vp-entry[hidden], #video-promo[hidden] { display: none; }
+.support-card > a.vp-entry .tile { background: color-mix(in srgb, var(--fill) 22%, var(--control)); }
+@media (prefers-reduced-motion: reduce) { #video-promo .vp-done { animation: none; } }
+
 /* ---------- журнал (guides) ---------- */
 .guide-index { display: grid; gap: 26px; padding-block: 0 8px; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }

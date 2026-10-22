@@ -141,3 +141,83 @@ describe('submitWebsiteContact rate limit', () => {
     expect(mockInboxDocs).toHaveLength(3);
   });
 });
+
+describe('video promo («Два года Plus за видео», владелец 22.10)', () => {
+  const promoBody = {
+    topic: 'video_promo',
+    postUrl: 'https://www.instagram.com/reel/DeUagkhgoIp/',
+    username: '@mila_k',
+    disclosed: true,
+    email: '',
+    pageUrl: 'https://knowlyapps.com/contact/?topic=video-promo',
+  };
+
+  async function postPromo(body: Record<string, unknown>) {
+    const mod = require('./website_contact');
+    const { req, res } = makeReqRes(body as never);
+    await mod.submitWebsiteContact(req, res);
+    return res;
+  }
+
+  test.each([
+    ['https://www.instagram.com/reel/abc/', 'instagram'],
+    ['https://vm.tiktok.com/ZM123/', 'tiktok'],
+    ['https://www.tiktok.com/@mila/video/123', 'tiktok'],
+    ['https://m.facebook.com/reel/123', 'facebook'],
+    ['https://fb.watch/abc/', 'facebook'],
+    ['https://youtu.be/abc', 'youtube'],
+    ['https://www.youtube.com/shorts/abc', 'youtube'],
+    ['https://www.threads.net/@mila/post/abc', 'threads'],
+    ['https://www.threads.com/@mila/post/abc', 'threads'],
+  ])('detects the network of %s', (url, network) => {
+    const { videoPromoNetwork } = require('./website_contact');
+    expect(videoPromoNetwork(url)).toBe(network);
+  });
+
+  test.each([
+    'http://www.instagram.com/reel/abc/',
+    'https://instagram.com/',
+    'https://evilinstagram.com/reel/abc',
+    'https://instagram.com.evil.io/reel/abc',
+    'https://vk.com/video123',
+    'https://user:pass@www.youtube.com/watch?v=abc',
+    'not a url',
+  ])('rejects %s', (url) => {
+    const { videoPromoNetwork } = require('./website_contact');
+    expect(videoPromoNetwork(url)).toBeNull();
+  });
+
+  test('stores the entry in the support inbox without an email, network detected by the server', async () => {
+    const res = await postPromo(promoBody);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(mockInboxDocs).toHaveLength(1);
+    expect(mockInboxDocs[0]).toMatchObject({
+      topic: 'video_promo',
+      email: null,
+      promo: { postUrl: promoBody.postUrl, network: 'instagram', username: 'mila_k', disclosed: true },
+    });
+    expect(String(mockInboxDocs[0].message)).toContain('mila_k');
+  });
+
+  test.each([
+    ['a non-network link', { postUrl: 'https://example.com/v/1' }, 'invalid_post_url'],
+    ['no username', { username: ' ' }, 'invalid_username'],
+    ['no disclosure', { disclosed: false }, 'disclosure_required'],
+    ['a bad optional email', { email: 'not-an-email' }, 'invalid_email'],
+  ])('rejects %s before writing', async (_label, patch, error) => {
+    const res = await postPromo({ ...promoBody, ...patch });
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ ok: false, error }));
+    expect(mockInboxDocs).toHaveLength(0);
+  });
+
+  test('keeps the honeypot and the same rate limit as regular support', async () => {
+    const trapped = await postPromo({ ...promoBody, company: 'bot' });
+    expect(trapped.status).toHaveBeenCalledWith(200);
+    expect(mockInboxDocs).toHaveLength(0);
+    await postPromo(promoBody); await postPromo(promoBody); await postPromo(promoBody);
+    const blocked = await postPromo(promoBody);
+    expect(blocked.status).toHaveBeenCalledWith(429);
+    expect(mockInboxDocs).toHaveLength(3);
+  });
+});

@@ -13491,6 +13491,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <option value="read" data-i18n-es="Leídos">Прочитанные</option>
       <option value="" data-i18n-es="Todos">Все</option>
     </select>
+    <!-- зачем (владелец 22.10): заявки акции «Два года Plus за видео» — отдельным фильтром -->
+    <select id="wi-filter-topic" onchange="filterWebsiteInbox()" aria-label="Тема">
+      <option value="">Все темы</option>
+      <option value="video_promo">🎁 Акция с видео</option>
+      <option value="support">Поддержка</option>
+    </select>
     <button type="button" id="wi-mark-all" onclick="markAllWebsiteRead()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80" title="Все видимые (по фильтру) непрочитанные обращения → «прочитано»" data-i18n-es="✔ Marcar todo leído">✔ Пометить все прочитанными</button>
     <span class="reports-count" id="wi-count"></span>
   </div>
@@ -20673,7 +20679,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (!_fnAdminSearchUsers) _fnAdminSearchUsers = httpsCallable(functionsUs, 'adminSearchUsers');
     return _fnAdminSearchUsers;
   }
-  const apg = { items: [], selected: null, term: null, busy: false, seq: 0, searchSeq: 0 };
+  const apg = { items: [], selected: null, term: null, busy: false, seq: 0, searchSeq: 0, preset: null };
   const apgEl = (id) => document.getElementById(id);
 
   function apgFmtDate(ms) {
@@ -20781,9 +20787,25 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   }
   function apgPick(i) {
     const it = apg.items[i]; if (!it || apg.busy) return;
-    apg.selected = it; apg.term = null;
+    apg.selected = it; apg.term = apg.preset ? apg.preset.term : null;
     apgRenderResults(); apgRenderCard();
   }
+
+  // зачем (владелец 22.10, акция «Два года Plus за видео»): из заявки в «Сайт: обращения» одной кнопкой — панель выдачи
+  // с найденным по username профилем, сроком +2 года от max(сейчас, текущий конец) и причиной «акция видео».
+  // Выдаёт только админ кнопкой «Выдать Plus» после проверки — ничего не уходит автоматически.
+  window.openPlusGrantFor = function openPlusGrantFor(opts) {
+    const query = String(opts && opts.query || '').trim();
+    console.log(APG_LOG, JSON.stringify({ step: 'open_for', hasQuery: !!query, years: opts && opts.years || null }));
+    if (typeof switchTab === 'function') switchTab('vip');
+    apg.preset = opts && opts.years ? { term: 'yn' } : null;
+    if (opts && opts.years && apgEl('apg-years')) apgEl('apg-years').value = String(opts.years);
+    if (opts && opts.reason && apgEl('apg-reason')) apgEl('apg-reason').value = opts.reason;
+    apg.selected = null; apg.term = null; apgRenderCard();
+    if (apgEl('apg-q')) apgEl('apg-q').value = query;
+    apgEl('apg')?.scrollIntoView({ block: 'start' });
+    if (query) apgSearch(); else apgEl('apg-q')?.focus();
+  };
 
   async function apgSend(active) {
     const it = apg.selected; if (!it || apg.busy) return; // защита от двойного нажатия
@@ -20849,7 +20871,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   (function apgBind() {
     const form = apgEl('apg-search-form'); if (!form) { console.warn(APG_LOG, 'panel_missing'); return; }
-    form.addEventListener('submit', apgSearch);
+    form.addEventListener('submit', (e) => { apg.preset = null; apgSearch(e); }); // ручной поиск — без срока из заявки
     apgEl('apg-results').addEventListener('click', (e) => { const b = e.target.closest('[data-apg-pick]'); if (b) apgPick(Number(b.dataset.apgPick)); });
     apgEl('apg-terms').addEventListener('click', (e) => { const b = e.target.closest('[data-apg-term]'); if (!b || apg.busy) return; apg.term = b.dataset.apgTerm; apgNote(''); apgRenderCard(); });
     apgEl('apg-years').addEventListener('input', () => { apg.term = 'yn'; apgRenderCard(); });
@@ -37608,6 +37630,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const status = selector ? selector.value : '';
     let rows = _allWebsiteInbox;
     if (status) rows = rows.filter((row) => (row.status || 'new') === status);
+    const topic = document.getElementById('wi-filter-topic')?.value || '';
+    if (topic) rows = rows.filter((row) => (row.topic || 'support') === topic);
     return rows;
   }
 
@@ -37663,6 +37687,16 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const readButton = status === 'new'
         ? `<button type="button" data-wiid="${escapeHtml(row.id)}" data-wiact="read">Mark read</button>`
         : websiteInboxPill(`status: ${status}`);
+      // Акция «Два года Plus за видео»: ссылка на пост (только https), соцсеть, username и кнопка выдачи 2 лет.
+      const promo = row.topic === 'video_promo' && row.promo && typeof row.promo === 'object' ? row.promo : null;
+      const promoUrl = promo && /^https:\/\//i.test(String(promo.postUrl || '')) ? String(promo.postUrl) : '';
+      const promoBlock = promo ? `<div class="wi-meta" style="margin:0 0 10px;display:grid;gap:4px">
+            <span>🎁 ${escapeWiText(promo.network || '?')} · username: <b>${escapeWiText(promo.username || '-')}</b> · обозначил участие: ${promo.disclosed === true ? 'да' : 'нет'}</span>
+            ${promoUrl ? `<a href="${escapeWiText(promoUrl)}" target="_blank" rel="noopener noreferrer">${escapeWiText(promoUrl)} ↗</a>` : ''}
+          </div>` : '';
+      const promoButton = promo && promo.username
+        ? `<button type="button" data-wi-plus="${escapeWiText(promo.username)}" style="margin-left:8px">🎁 Выдать 2 года Plus</button>`
+        : '';
       return `<div class="report-card">
         <div class="rc-left" style="min-width:0">
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
@@ -37673,12 +37707,19 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           <div class="wi-meta" style="margin-bottom:10px">
             ${name} · <a href="mailto:${email}">${email || '-'}</a>${pageUrl ? ` · <span>${pageUrl}</span>` : ''}
           </div>
+          ${promoBlock}
           <div class="wi-message">${body || '-'}</div>
-          <div style="margin-top:10px">${readButton}</div>
+          <div style="margin-top:10px">${readButton}${promoButton}</div>
         </div>
       </div>`;
     }).join('');
     pmPhase1FinishListLoad(list, true);
+    list.querySelectorAll('button[data-wi-plus]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (typeof window.openPlusGrantFor !== 'function') { showToast('Панель выдачи Plus недоступна', 'err'); return; }
+        window.openPlusGrantFor({ query: button.dataset.wiPlus, years: 2, reason: 'акция видео' });
+      });
+    });
     list.querySelectorAll('button[data-wiact]').forEach((button) => {
       button.addEventListener('click', async () => {
         const id = button.dataset.wiid;

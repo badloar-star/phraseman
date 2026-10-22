@@ -83,17 +83,18 @@ function centerCopy(lang: Lang) {
     // пустое — «Сообщений нет» и пояснение (было «Уведомления» и «Здесь пока тихо» без пояснения).
     title: triLang(lang, { ru: 'Сообщения', en: 'Messages', uk: 'Повідомлення', es: 'Mensajes', 'pt-BR': 'Mensagens', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesajlar', pl: 'Wiadomości' }),
     allRead: triLang(lang, { ru: 'Все прочитаны', en: 'All read', uk: 'Усі прочитані', es: 'Todo leído', 'pt-BR': 'Tudo lido', vi: 'Đã đọc hết', id: 'Semua sudah dibaca', tr: 'Hepsi okundu', pl: 'Wszystko przeczytane' }),
-    empty: triLang(lang, { ru: 'Сообщений нет', en: 'No messages', uk: 'Повідомлень немає', es: 'No hay mensajes', 'pt-BR': 'Nenhuma mensagem', vi: 'Chưa có tin nhắn', id: 'Belum ada pesan', tr: 'Mesaj yok', pl: 'Brak wiadomości' }),
+    // зачем: владелец 22.10 — пустой раздел с юмором («Новостей нет — значит, всё работает»); шутка адаптирована под каждый язык.
+    empty: triLang(lang, { ru: 'Новостей нет — значит, всё работает', en: 'No news is good news', uk: 'Новин немає — отже, усе працює', es: 'Sin noticias, buenas noticias', 'pt-BR': 'Sem novidades: tudo funcionando', vi: 'Không có tin gì — nghĩa là mọi thứ đều ổn', id: 'Tidak ada kabar — berarti semua lancar', tr: 'Haber yok — demek ki her şey yolunda', pl: 'Brak wiadomości — dobra wiadomość' }),
     emptyHint: triLang(lang, {
-      ru: 'Здесь появятся новости от команды.',
-      en: 'News from the team will appear here.',
-      uk: 'Тут з’являться новини від команди.',
-      es: 'Aquí aparecerán las novedades del equipo.',
-      'pt-BR': 'As novidades da equipe aparecerão aqui.',
-      vi: 'Tin tức từ đội ngũ sẽ xuất hiện ở đây.',
-      id: 'Kabar dari tim akan muncul di sini.',
-      tr: 'Ekipten haberler burada görünecek.',
-      pl: 'Tu pojawią się wiadomości od zespołu.',
+      ru: 'Подозрительно хорошо. Мы тоже следим.',
+      en: 'Suspiciously good. We’re keeping an eye on it too.',
+      uk: 'Підозріло добре. Ми теж стежимо.',
+      es: 'Sospechosamente bien. Nosotros también estamos atentos.',
+      'pt-BR': 'Bom até demais. A gente também está de olho.',
+      vi: 'Ổn đến mức đáng ngờ. Chúng mình cũng đang để mắt.',
+      id: 'Lancar sekali, agak mencurigakan. Kami juga terus memantau.',
+      tr: 'Şüpheli derecede iyi. Biz de göz kulak oluyoruz.',
+      pl: 'Podejrzanie dobrze. My też mamy na to oko.',
     }),
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
     // зачем (I18N_GAPS_AUTH_R1, 13.10): плашка отмены удаления была только по-русски на всех 9 языках интерфейса.

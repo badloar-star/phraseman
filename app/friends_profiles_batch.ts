@@ -78,6 +78,8 @@ export interface FriendProfileBatchRecord {
    * скрыл. Тот же users/{uid}, 0 доп. чтений. Недоверенное поле: разбирает parseFriendWeekRecord (friends_together/friend_week).
    */
   friendWeek?: unknown;
+  /** «Фраза дня вдвоём» (идея 8): последний ответ друга из progress.friends_phrase_v1; недоверенное — parseFriendPhraseAnswer. */
+  friendPhrase?: unknown;
 }
 
 type ProfilesResponse = {

@@ -233,7 +233,7 @@ const PROGRESS_RULES: readonly InventoryRule[] = [
   }, 'info', 'no_v2_domain', [], 'Заголовки наборов, курсор, подсказки.'),
   rule('p.profile_settings', 'progress', {
     exact: ['user_name', 'user_avatar', 'user_frame', 'onboarding_done', 'lang', 'app_lang', 'user_settings',
-      'study_languages_started_v1', 'device_platform', 'app_version', 'friends_push_v1', 'friends_week_v1', 'energy_state'],
+      'study_languages_started_v1', 'device_platform', 'app_version', 'friends_push_v1', 'friends_week_v1', 'friends_phrase_v1', 'energy_state'],
     pattern: /^(language_profile_v1::|irregular_verbs|personal_practice|resolved_personal_trainings|pos_mastery)/,
   }, 'info', 'no_v2_domain', [], 'Профиль, настройки, энергия, практика.'),
   rule('p.spire', 'progress', { exact: ['spire_week_v1'] }, 'info', 'no_v2_domain', [], 'Недельный прогресс Шпиля — серверный.'),

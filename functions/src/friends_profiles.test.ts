@@ -116,6 +116,18 @@ describe('friendsGetProfiles reads', () => {
     expect(reads).toHaveLength(4 * 5);
   });
 
+  it('passes the friend phrase-of-the-day answer (idea 8) from the already-read user doc; broken records give null, no new reads', async () => {
+    // зачем (закон владельца «телефон решает»): верность ответа решил телефон друга, сервер только отдаёт запись
+    const rows: Record<string, Row> = { ...friendRows('caller-d6', 'answered'), ...friendRows('caller-d6', 'broken') };
+    rows['users/answered'] = { progress: { friends_phrase_v1: JSON.stringify({ v: 1, day: '2026-10-22', phraseId: 'en-042', optionId: 'correct', correct: true }) } };
+    rows['users/broken'] = { progress: { friends_phrase_v1: JSON.stringify({ v: 1, day: '22.10', phraseId: 'x y', optionId: 'o', correct: 'yes' }) } };
+    const { db, reads } = makeDb(rows);
+    const result = await runFriendsGetProfiles(db, 'caller-d6', ['answered', 'broken']);
+    expect(result.profiles.answered?.friendPhrase).toEqual({ v: 1, day: '2026-10-22', phraseId: 'en-042', optionId: 'correct', correct: true });
+    expect(result.profiles.broken?.friendPhrase).toBeNull();
+    expect(reads).toHaveLength(2 * 5);
+  });
+
   it('the caller own profile still reads its user doc and deletion marker itself', async () => {
     const { db, reads } = makeDb({ 'users/caller-d3': { progress: {} }, 'public_profiles/caller-d3': { name: 'Я' } });
     const result = await runFriendsGetProfiles(db, 'caller-d3', ['caller-d3']);

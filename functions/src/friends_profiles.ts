@@ -62,6 +62,18 @@ export interface FriendWeekWire {
   prev: FriendWeekSummaryWire | null;
 }
 
+/**
+ * «Фраза дня вдвоём» (идея 8): ответ друга на фразу дня — его телефон решил верность и записал progress.friends_phrase_v1.
+ * зачем (закон владельца «сервер только хранит записи»): сервер строго разбирает и отдаёт тем же чтением users/{uid}.
+ */
+export interface FriendPhraseWire {
+  v: 1;
+  day: string;
+  phraseId: string;
+  optionId: string;
+  correct: boolean;
+}
+
 export interface FriendPublicProfile {
   uid: string;
   displayName: string;
@@ -96,6 +108,8 @@ export interface FriendPublicProfile {
   spireLang: string | null;
   /** «Итог недели друга» (идея 6): две недели из friends_week_v1; null — нет записи или друг её скрыл. */
   friendWeek: FriendWeekWire | null;
+  /** «Фраза дня вдвоём» (идея 8): последний ответ друга из friends_phrase_v1; null — нет записи. */
+  friendPhrase: FriendPhraseWire | null;
 }
 
 type ProfilesResponse = { ok: true; profiles: Record<string, FriendPublicProfile | null> };
@@ -268,6 +282,16 @@ export function friendWeekFromProgress(progress: Record<string, unknown>): Frien
   return cur || prev ? { v: 1, cur, prev } : null;
 }
 
+export function friendPhraseFromProgress(progress: Record<string, unknown>): FriendPhraseWire | null {
+  const r = parseJsonObject(progress['friends_phrase_v1']);
+  const token = (value: unknown): string => (typeof value === 'string' && /^[A-Za-z0-9_.:-]{1,80}$/.test(value) ? value : '');
+  const day = typeof r.day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.day) ? r.day : '';
+  const phraseId = token(r.phraseId);
+  const optionId = token(r.optionId);
+  if (r.v !== 1 || typeof r.correct !== 'boolean' || !day || !phraseId || !optionId) return null;
+  return { v: 1, day, phraseId, optionId, correct: r.correct };
+}
+
 /** Читает active_days_v1/friends_push_v1/last_active_date из users/{uid}.progress. */
 export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: number = Date.now()): {
   lastActiveDate: string | null;
@@ -276,6 +300,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
   spireFloor: number | null;
   spireLang: string | null;
   friendWeek: FriendWeekWire | null;
+  friendPhrase: FriendPhraseWire | null;
 } {
   const progress = getProgress(userData);
   const lastActiveDate = typeof progress['last_active_date'] === 'string' && progress['last_active_date']
@@ -301,6 +326,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
     spireFloor: spire.spireFloor,
     spireLang: spire.spireLang,
     friendWeek: friendWeekFromProgress(progress),
+    friendPhrase: friendPhraseFromProgress(progress),
   };
 }
 
@@ -346,6 +372,7 @@ export function buildFriendProfile(
     spireFloor: together.spireFloor,
     spireLang: together.spireLang,
     friendWeek: together.friendWeek,
+    friendPhrase: together.friendPhrase,
   };
   if (!profile.displayName && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;

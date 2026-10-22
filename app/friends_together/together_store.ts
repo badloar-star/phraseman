@@ -24,6 +24,7 @@ import { computePairStreak, type PairStreakView } from './pair_streak';
 import { pairViewForToday } from './pair_today';
 import { parseStudyLanguagesStarted } from './duel_eligibility';
 import { parseFriendWeekRecord, type FriendWeekRecord } from './friend_week';
+import { parseFriendPhraseAnswer, type FriendPhraseAnswer } from './friend_phrase';
 import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -71,6 +72,8 @@ export type FriendTogetherPairState = Readonly<{
    * Тот же ответ профиля, разобранный строго на границе (parseFriendWeekRecord) — в снапшот попадает уже чистая запись.
    */
   week?: FriendWeekRecord | null;
+  /** «Фраза дня вдвоём» (идея 8): последний ответ друга на фразу дня (тот же профиль, 0 новых чтений); null — нет записи. */
+  phrase?: FriendPhraseAnswer | null;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -296,6 +299,8 @@ export async function refreshFriendsTogether(
       studyLanguages: parseStudyLanguagesStarted(profile.studyLanguagesStarted),
       // зачем (идея 6): неделя друга едет тем же профилем — 0 новых чтений; кэш снапшота даёт ленту «Итоги недели» с первого кадра
       week: parseFriendWeekRecord(profile.friendWeek),
+      // зачем (идея 8): ответ друга на фразу дня — тем же профилем; карточка «Фраза дня вдвоём» сверяет день и фразу сама
+      phrase: parseFriendPhraseAnswer(profile.friendPhrase),
     };
   }
 

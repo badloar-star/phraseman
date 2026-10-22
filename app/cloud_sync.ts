@@ -545,6 +545,9 @@ export const SYNC_KEYS = [
   // «Итог недели друга» (идея 6, app/friends_together/friend_week.ts): своя неделя, посчитанная телефоном; друзья забирают её
   // тем же friendsGetProfiles (чтение users/{uid} уже есть). Обычный LWW — запись целиком пересчитывается из дневных данных.
   'friends_week_v1',
+  // «Фраза дня вдвоём» (идея 8, app/friends_together/friend_phrase.ts): мой ответ на фразу дня — друзья видят его тем же
+  // friendsGetProfiles. Обычный LWW: запись целиком заменяется новым ответом.
+  'friends_phrase_v1',
   // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
   // (гейт «1 язык фри»; см. app/study_languages.ts)
   'study_languages_started_v1',

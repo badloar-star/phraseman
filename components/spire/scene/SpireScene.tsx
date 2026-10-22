@@ -67,6 +67,8 @@ type Props = Readonly<{
   onOpenAll: () => void;
   /** Только dev-вход: «6:40» из моков вместо живого отсчёта энергии. */
   energyTime?: string;
+  /** Справа сверху — энергия Пика (пока строка вкладок «Сообщества» не стоит на сцене, шаг 3b-2). */
+  topRight?: React.ReactNode;
 }>;
 
 /** Живой отсчёт до энергии в заголовке: тикает только этот текст, сцена не перерисовывается. */
@@ -202,11 +204,12 @@ function SpireScene(p: Props) {
         </V2Pressable>
       </View>
       {off ? (
-        <View testID="spire-scene-offline" style={s.offline} accessibilityLiveRegion="polite">
+        <View testID="spire-scene-offline" style={[s.offline, p.topRight ? s.offlineBesideTop : null]} accessibilityLiveRegion="polite">
           <Ionicons name="cloud-offline-outline" size={18} color={SPIRE_SCENE_INK.text} />
           <Text style={s.offlineText}><Text style={s.offlineBold}>{offText.bold}</Text>{offText.rest}</Text>
         </View>
       ) : null}
+      {p.topRight ? <View style={s.topRight}>{p.topRight}</View> : null}
     </View>
   );
 }
@@ -246,5 +249,8 @@ const s = StyleSheet.create({
   offline: { position: 'absolute', top: 8, left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: SPIRE_SCENE_INK.glass },
   offlineText: { flex: 1, color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17 },
   offlineBold: { fontWeight: '700' },
+  // «Нет сети» не заходит под энергию справа сверху
+  offlineBesideTop: { right: 84 },
+  topRight: { position: 'absolute', top: 14, right: 20 },
   dim: { opacity: 0.55 },
 });

@@ -65,6 +65,10 @@ export function mistakesHubPeekKey(target: string, lang: string): string {
 export function peekMistakesHubSnapshot(target: string, lang: string): MistakePracticeHubSnapshot | null {
   return hubSnapshotPeek?.key === mistakesHubPeekKey(target, lang) ? hubSnapshotPeek.snapshot : null;
 }
+// зачем (владелец 22.10, «Очистить все ошибки»): после очистки (и отката) прежний снимок с числами «ждут / готовы» нельзя показывать первым кадром хаба — сбрасываем.
+export function dropMistakesHubPeek(): void {
+  hubSnapshotPeek = null;
+}
 
 const SECONDS_PER_MISTAKE = 20;
 

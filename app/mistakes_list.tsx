@@ -2,7 +2,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { rememberMistakeDetailDraft } from './mistake_detail_draft';
-import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
+import { clearAllMistakesWithUndo, subscribeMistakeClearAllChanged } from './mistake_clear_all_flow';
+import { mistakeClearAllConfirmTitle, mistakeClearAllCopy } from './mistake_clear_all_copy';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
 import { useScaledTextStyles } from '../hooks/useLineScale';
@@ -12,14 +14,16 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
+import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, SheetRow, glassButtonFill, type PanelChip } from '../components/mistakes-panel/PanelKit';
+import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { MISTAKE_PRACTICE_MAX_SESSION } from '../modules/mistake-practice/session';
-import { peekMistakesHubSnapshot } from './mistakes_hub';
+import { dropMistakesHubPeek, peekMistakesHubSnapshot } from './mistakes_hub';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { safeRouterBack } from './navigation_back';
@@ -125,6 +129,72 @@ export default function MistakesListScreen() {
   const correctedInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, (items ?? []).filter((item) => item.status === 'corrected' && (group === 'all' || mistakeGroupOf(item.facet) === group)).length), [group, items]);
   const readyInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, (items ?? []).filter((item) => item.ready && (group === 'all' || mistakeGroupOf(item.facet) === group)).length), [group, items]);
 
+  // зачем (владелец 22.10: «удалить все накопившиеся ошибки, так чтобы они не возвращались»): меню → подтверждение «Удалить N ошибок из разбора?» →
+  // список пустеет в тот же кадр (локальная пометка), журнал пишется одной записью, тост «Ошибки удалены» с «Вернуть» ~5 с (откат событиями 'restored').
+  const clearCopy = useMemo(() => mistakeClearAllCopy(lang), [lang]);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const clearingRef = useRef(false);
+  const mountedRef = useRef(true);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
+  // Журнал изменился (очистка записана / откачена / не удалась): перечитываем снимок — экран и кэш согласуются без «прыжка».
+  useEffect(() => subscribeMistakeClearAllChanged(() => {
+    dropMistakesHubPeek();
+    void loadMistakePracticeHubSnapshot(target)
+      .then((snapshot) => {
+        // guard-ok: трассировка очистки (правило «сперва логи»)
+        console.log('[MISTAKE-CLEAR-ALL] list:reload', JSON.stringify({ items: snapshot.items.length, mounted: mountedRef.current }));
+        if (mountedRef.current) setItems(withoutLocallyHiddenMistakes(snapshot.items));
+      })
+      .catch((error: unknown) => {
+        // guard-ok: лог в catch обязателен
+        console.warn('[MISTAKE-CLEAR-ALL] list:reload:catch', error instanceof Error ? error.message : String(error));
+      });
+  }), [target]);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const askClear = useCallback(() => {
+    setMenuOpen(false);
+    // guard-ok: трассировка очистки (правило «сперва логи»)
+    console.log('[MISTAKE-CLEAR-ALL] menu:tap', JSON.stringify({ waiting: waitingCount }));
+    if (waitingCount < 1) return;
+    setConfirmOpen(true);
+  }, [waitingCount]);
+  const doClear = useCallback(() => {
+    setConfirmOpen(false);
+    if (clearingRef.current) {
+      // guard-ok: ранний выход объясняет причину навсегда.
+      console.warn('[MISTAKE-CLEAR-ALL] confirm:ignored', JSON.stringify({ reason: 'already_running' }));
+      return;
+    }
+    const before = itemsRef.current;
+    const ids = (before ?? []).filter((item) => item.status === 'active').map((item) => item.mistakeId);
+    if (ids.length === 0) {
+      // guard-ok: ранний выход объясняет причину навсегда.
+      console.warn('[MISTAKE-CLEAR-ALL] confirm:ignored', JSON.stringify({ reason: 'nothing_visible' }));
+      return;
+    }
+    clearingRef.current = true;
+    hapticTap();
+    void clearAllMistakesWithUndo({
+      studyTarget: target,
+      lang,
+      visibleMistakeIds: ids,
+      onOptimistic: () => {
+        dropMistakesHubPeek();
+        if (mountedRef.current) setItems((prev) => (prev ? withoutLocallyHiddenMistakes(prev) : prev));
+      },
+      onRevertOptimistic: () => {
+        dropMistakesHubPeek();
+        if (mountedRef.current && before) setItems(before);
+      },
+    }).finally(() => { clearingRef.current = false; });
+  }, [lang, target]);
+
   // зачем (макет Б): строка ведёт в КАРТОЧКУ ошибки — там хроника и разбор, а отработка одной ошибки запускается оттуда осознанной кнопкой.
   const openOne = useCallback((item: MistakePracticeListItem) => {
     if (openingRef.current) return;
@@ -215,10 +285,19 @@ export default function MistakesListScreen() {
           ) : (
             <View style={styles.topbar}>
               <BackButton g={g} label={copy.back} onPress={goBack} />
-              <Pressable testID="mistakes-list-search-open" accessibilityRole="button" accessibilityLabel={copy.search} hitSlop={8} onPress={() => { hapticTap(); setSearching(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.buttonFill }, pressed && styles.pressed]}>
-                <Ionicons name="search" size={20} color={g.text} />
-                <GlassRim radius={21} />
-              </Pressable>
+              <View style={styles.topActions}>
+                <Pressable testID="mistakes-list-search-open" accessibilityRole="button" accessibilityLabel={copy.search} hitSlop={8} onPress={() => { hapticTap(); setSearching(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.buttonFill }, pressed && styles.pressed]}>
+                  <Ionicons name="search" size={20} color={g.text} />
+                  <GlassRim radius={21} />
+                </Pressable>
+                {/* зачем (владелец 22.10): «Очистить все ошибки» — пункт меню, не крупная кнопка; меню есть, пока есть что очищать. */}
+                {tab === 'waiting' && waitingCount > 0 ? (
+                  <Pressable testID="mistakes-list-menu" accessibilityRole="button" accessibilityLabel={clearCopy.menu} hitSlop={8} onPress={() => { hapticTap(); setMenuOpen(true); }} style={({ pressed }) => [styles.round, { backgroundColor: glassButtonFill(g) }, pressed && styles.pressed]}>
+                    <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
+                    <GlassRim radius={21} />
+                  </Pressable>
+                ) : null}
+              </View>
             </View>
           )}
           <ScreenTitle g={g} text={copy.title} />
@@ -261,6 +340,19 @@ export default function MistakesListScreen() {
           <PanelDock><PanelCta g={g} testID="mistakes-list-start" label={`${copy.practice} ${readyInGroup}`} onPress={startPractice} /></PanelDock>
         ) : null}
       </SafeAreaView>
+      <PanelSheet visible={menuOpen} onClose={closeMenu} testID="mistakes-list-sheet">
+        <SheetRow g={g} testID="mistakes-list-clear-all" icon="trash-outline" title={clearCopy.menu} danger onPress={askClear} />
+      </PanelSheet>
+      <ThemedConfirmModal
+        visible={confirmOpen}
+        title={mistakeClearAllConfirmTitle(lang, waitingCount)}
+        cancelLabel={clearCopy.cancel}
+        confirmLabel={clearCopy.confirm}
+        destructive
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={doClear}
+        testIDPrefix="mistakes-list-clear-all-confirm"
+      />
       {/* зачем (аудит R48): платная сессия при нехватке энергии — шторка вместо молчаливого закрытия тренировки; попытка дня цела */}
       <NoEnergyModal variant="learn" visible={gate.noEnergy} activity="mistake_practice" onBeforeOpenPremium={gate.dismissNoEnergy} onClose={gate.dismissNoEnergy} />
     </ScreenGradient>
@@ -273,6 +365,7 @@ const baseStyles = StyleSheet.create({
   topbar: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   pressed: { opacity: 0.82 },
   round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
+  topActions: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   // зачем: поле поиска — как в утверждённом макете «Наборы» (packs-simple, кадр поиска): высота 46, капсула, фон 8 %.
   field: { flex: 1, minHeight: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 },
   fieldInput: { flex: 1, fontSize: 16, paddingVertical: 0 },

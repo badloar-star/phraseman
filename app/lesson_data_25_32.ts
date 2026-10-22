@@ -6485,6 +6485,8 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_32',
     english: 'She knows a woman whose bag is here',
+    // зачем: обращение №28 — в русском нет артикля, «знает женщину» без контекста равно допускает и the.
+    alternatives: ['She knows the woman whose bag is here'],
     russian: 'Она знает женщину, чья сумка здесь',
     ukrainian: 'Вона знає жінку, чия сумка тут',
     spanish: 'Ella conoce a una mujer cuya bolsa está aquí',
@@ -7391,7 +7393,8 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'experienced', correct: 'experienced', distractors: ['experience', 'expensive', 'expert', 'expect', 'expand'] },
       { text: 'archaeologist', correct: 'archaeologist', distractors: ['archaeology', 'architect', 'architecture', 'archive', 'army'] },
-      { text: 'find', correct: 'find', distractors: ['found', 'finding', 'fine', 'fire', 'file'] },
+      // зачем: обращение №24 — «нашёл» в переводе толкает к found, а «saw … finding» тоже правильный английский; ловушки — только неверные формы.
+      { text: 'find', correct: 'find', distractors: ['finds', 'fined', 'fine', 'fire', 'file'] },
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'rare', correct: 'rare', distractors: ['rate', 'race', 'rice', 'rise', 'rain'] },
       { text: 'gold', correct: 'gold', distractors: ['golden', 'goal', 'good', 'golds', 'cold'] },

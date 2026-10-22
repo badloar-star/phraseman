@@ -410,4 +410,21 @@ describe('reported content regressions', () => {
     }
   });
 
+  it('accepts the article "the" for lesson 30 phrase 32 woman whose bag is here (report #28)', () => {
+    const phrase = LESSON_DATA[30].phrases.find((row) => row.id === 'lesson30_phrase_32');
+
+    expect(phrase).toBeTruthy();
+    expect(isCorrectAnswer('She knows the woman whose bag is here', phraseCanonicalAnswer(phrase!, 'en'), phraseAnswerAlternatives(phrase!, 'en'))).toBe(true);
+    expect(isCorrectAnswer('She knows a woman whose bag is here', phraseCanonicalAnswer(phrase!, 'en'), phraseAnswerAlternatives(phrase!, 'en'))).toBe(true);
+  });
+
+  it('does not trap "found" or the grammatical "finding" after saw in lesson 31 phrase 23 (report #24)', () => {
+    const phrase = LESSON_DATA[31].phrases.find((row) => row.id === 'lesson31_phrase_23');
+    const findSlot = phrase?.words?.find((row) => row.correct === 'find');
+
+    expect(findSlot).toBeTruthy();
+    expect(findSlot!.distractors).not.toContain('found');
+    expect(findSlot!.distractors).not.toContain('finding');
+  });
+
 });

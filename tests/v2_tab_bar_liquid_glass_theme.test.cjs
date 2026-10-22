@@ -20,9 +20,17 @@ test('live tab bar takes surface, rim, cap and labels from the selected glass th
   assert.doesNotMatch(source, /const\s+(?:COLOR|GLASS_FILL)\s*=/);
 });
 
-// зачем (владелец 29.09): таббар без подписей, крупные иконки по центру; название вкладки — только для скринридера.
-test('tab bar is icon-only, enlarged, and keeps the screen-reader label', () => {
-  assert.doesNotMatch(source, /<Text[\s>]/);
+// зачем (владелец 29.09 → 22.10): без «Сцены» таббар без подписей — крупные значки, название вкладки только для экранного чтеца; со
+// «Сценой» подписи вкладок вернулись решением 9f6f56bce / c74ed3740 (макет scenes-compact): одна строка, рост шрифта не выше 1,2, цвет —
+// токены темы (у активной в светлой — accentText, иначе accentBright / mutedText).
+test('tab bar: enlarged icons and screen-reader label; scene tab labels are one line, scale ≤ 1.2, theme-token colours', () => {
+  const texts = source.match(/<Text[\s>][^\n]*/g) ?? [];
+  assert.equal(texts.length, 1, 'единственная подпись — подпись вкладки сцены');
+  assert.match(texts[0], /^<Text numberOfLines=\{1\} maxFontSizeMultiplier=\{([\d.]+)\} style=\{\[s\.tabLabel, \{ color: on && palette\.isLight \? palette\.accentText : color \}\]\}>\{item\.label\}<\/Text>/);
+  const scale = Number(/maxFontSizeMultiplier=\{([\d.]+)\}/.exec(texts[0])?.[1]);
+  assert.ok(scale > 0 && scale <= 1.2, `maxFontSizeMultiplier ${scale}`);
+  assert.match(source, /\{HOME_SCENE_V2_ENABLED \? <Text numberOfLines=\{1\}/);
+  assert.match(source, /const color = on \? palette\.accentBright/);
   assert.doesNotMatch(source, /\bs\.label\b/);
   const size = Number(/const ICON_SIZE = (\d+);/.exec(source)?.[1]);
   assert.ok(size >= 28, `ICON_SIZE ${size}`);

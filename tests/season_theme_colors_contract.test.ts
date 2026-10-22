@@ -6,13 +6,18 @@ import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens'
 import { hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
 
 const WHITE = '#FFFFFF';
+// оттенок надёжно определяется у заметно цветных и не слишком тёмных цветов: в почти чёрном 8-битное округление сдвигает его на десятки градусов
+const chromaOf = (hex: string): number => {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255) as [number, number, number];
+  return Math.max(r, g, b) < 0.25 ? 0 : Math.max(r, g, b) - Math.min(r, g, b);
+};
 const hueGap = (a: number, b: number): number => {
   const d = Math.abs(a - b) % 360;
   return d > 180 ? 360 - d : d;
 };
 
 describe('Сезон: цвета карточек — оттенки текущей темы', () => {
-  it('ни в одной теме и главе оттенок карточки не уходит дальше 45° от оттенка акцента темы; белый текст ≥ 4,5', () => {
+  it('ни в одной теме и главе оттенок карточки равен оттенку акцента темы (допуск 8° на перевод в sRGB); белый текст ≥ 4,5', () => {
     const outOfTheme: string[] = [];
     const lowContrast: string[] = [];
     for (const appearance of ['light', 'dark'] as const) {
@@ -26,7 +31,9 @@ describe('Сезон: цвета карточек — оттенки текущ�
                 const art = seasonThemedArt(themeHue, chapter, episode, appearance, exam);
                 const tag = `${appearance}/${id}/${level} гл.${chapter} эп.${episode}${exam ? ' экзамен' : ''}`;
                 // у почти серых цветов оттенок не определён — сравнение оттенков имеет смысл только для заметно цветных
-                if (hueGap(hexHue(art.from), themeHue) > 45) outOfTheme.push(`${tag}: ${Math.round(hexHue(art.from))}° против ${Math.round(themeHue)}°`);
+                for (const stop of [art.from, art.to, art.glow]) {
+                  if (chromaOf(stop) > 0.03 && hueGap(hexHue(stop), themeHue) > 8) outOfTheme.push(`${tag}: ${stop} ${Math.round(hexHue(stop))}° против ${Math.round(themeHue)}°`);
+                }
                 for (const stop of [art.from, art.to]) {
                   if (contrastRatio(WHITE, stop) < 4.5) lowContrast.push(`${tag}: ${stop} ${contrastRatio(WHITE, stop).toFixed(2)}`);
                 }

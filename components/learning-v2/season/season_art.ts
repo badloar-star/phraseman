@@ -78,18 +78,18 @@ const norm = (h: number): number => ((h % 360) + 360) % 360;
  *   ink:    glow oklch(.70 .13 h+28), градиент oklch(.53 .15 h+k) → oklch(.33 .13 h+18+k)
  *   marine: glow oklch(.56 .12 h+28), градиент oklch(.40 .11 h+k) → oklch(.20 .07 h+18+k)
  */
-export function seasonArt(hue: number, shift: number, theme: SeasonTheme, darker = 0): SeasonArt {
+export function seasonArt(hue: number, shift: number, theme: SeasonTheme, darker = 0, chromaMul = 1, spread = 1): SeasonArt {
   if (theme === 'light') {
     return {
-      glow: oklchToHex(0.7, 0.13, norm(hue + 28)),
-      from: oklchToHex(0.53 - darker, 0.15, norm(hue + shift)),
-      to: oklchToHex(0.33 - darker, 0.13, norm(hue + 18 + shift)),
+      glow: oklchToHex(0.7, 0.13, norm(hue + 28 * spread)),
+      from: oklchToHex(0.53 - darker, 0.15 * chromaMul, norm(hue + shift)),
+      to: oklchToHex(0.33 - darker, 0.13 * chromaMul, norm(hue + 18 * spread + shift)),
     };
   }
   return {
-    glow: oklchToHex(0.56, 0.12, norm(hue + 28)),
-    from: oklchToHex(0.4 - darker, 0.11, norm(hue + shift)),
-    to: oklchToHex(0.2 - darker / 2, 0.07, norm(hue + 18 + shift)),
+    glow: oklchToHex(0.56, 0.12, norm(hue + 28 * spread)),
+    from: oklchToHex(0.4 - darker, 0.11 * chromaMul, norm(hue + shift)),
+    to: oklchToHex(0.2 - darker / 2, 0.07 * chromaMul, norm(hue + 18 * spread + shift)),
   };
 }
 
@@ -125,18 +125,18 @@ export function seasonArtCached(hue: number, shift: number, theme: SeasonTheme):
   return next;
 }
 
-// зачем (закон владельца 22.10: «ЦВЕТА СТРОГО ОТТЕНКИ ТЕКУЩЕЙ ТЕМЫ»; красная тема показывала синие/фиолетовые/бирюзовые карточки глав): база — оттенок акцента выбранной темы,
-// главы различаются сдвигом оттенка в пределах ±24° и светлотой (только темнее, белый текст держит контраст), эпизоды — ещё до 10°. Карта экзамена — самый тёмный оттенок темы.
-const CHAPTER_DRIFT_DEG: readonly number[] = [0, 8, -8, 16, -16, 24, -24];
+// зачем (закон владельца 22.10: «ЦВЕТА СТРОГО ОТТЕНКИ ТЕКУЩЕЙ ТЕМЫ»; координатор: «сдвиг тона НЕ делай, hue = hue темы»): оттенок ВСЕГДА равен оттенку акцента выбранной темы.
+// Главы и эпизоды различаются только светлотой (темнее — белый текст держит контраст) и насыщенностью внутри палитры этой темы. Карта экзамена — самый тёмный оттенок темы.
+// Общая функция для всех экранов урока (в том числе нового экрана по новым макетам): seasonThemedArt(hexHue(g.accent), глава, эпизод, тема).
+const CHAPTER_CHROMA_MUL: readonly number[] = [1, 0.88, 0.76, 1, 0.88, 0.76, 1];
 const themedCache = new Map<string, SeasonArt>();
 export function seasonThemedArt(themeHue: number, chapterOrdinal: number, sessionOrdinal: number, theme: SeasonTheme, exam = false): SeasonArt {
   const chapter = Math.max(1, chapterOrdinal) - 1;
   const key = `${Math.round(themeHue)}:${chapter}:${exam ? 'x' : sessionOrdinal % 8}:${theme}`;
   const hit = themedCache.get(key);
   if (hit) return hit;
-  const hue = norm(themeHue + CHAPTER_DRIFT_DEG[chapter % CHAPTER_DRIFT_DEG.length]!);
-  const darker = exam ? 0.12 : 0.015 * (chapter % 4);
-  const next = seasonArt(hue, exam ? 0 : (sessionOrdinal % 8) * 1.25, theme, darker);
+  const darker = exam ? 0.12 : 0.015 * (chapter % 4) + 0.004 * (sessionOrdinal % 8);
+  const next = seasonArt(norm(themeHue), 0, theme, darker, exam ? 0.8 : CHAPTER_CHROMA_MUL[chapter % CHAPTER_CHROMA_MUL.length]!, 0); // spread 0: и конец градиента, и свет — тот же оттенок темы
   themedCache.set(key, next);
   return next;
 }

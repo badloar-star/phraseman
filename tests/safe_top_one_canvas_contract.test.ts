@@ -40,6 +40,22 @@ describe('верх экрана: зона часов — часть общего
     expect(stale).toEqual([]);
   });
 
+  // зачем (обход модалок 22.10): ни одна модалка не задаёт statusBarTranslucent, и это верно только потому, что в режиме
+  // «от края до края» RN 0.81 рисует окно модалки под часами принудительно (ReactModalHostView: field || isEdgeToEdgeFeatureFlagOn).
+  // Выключат режим — затемнение всех модалок кончится под строкой статуса, и над ним встанет незатемнённая полоса.
+  it('режим «от края до края» включён, строку статуса никто не красит', () => {
+    expect(read('app.json')).toMatch(/"edgeToEdgeEnabled":\s*true/);
+    // android/ генерируется prebuild из app.json и в git не хранится — сверяем, только если папка есть
+    if (fs.existsSync(path.join(ROOT, 'android', 'gradle.properties'))) {
+      expect(read('android/gradle.properties')).toMatch(/^edgeToEdgeEnabled=true$/m);
+    }
+    const painted = [...walk('app'), ...walk('components')].filter((rel) => {
+      const source = read(rel);
+      return /<StatusBar\b[^>]*backgroundColor=(?!"transparent")/.test(source) || /<StatusBar\b[^>]*translucent=\{false\}/.test(source);
+    });
+    expect(painted).toEqual([]);
+  });
+
   it('оболочка вкладок не сдвигает всё разом: отступ под часы — у каждой страницы, полноэкранные страницы без него', () => {
     const layout = read('app/(tabs)/_layout.tsx');
     expect(layout).not.toContain('style={{ flex: 1, paddingTop: insets.top }}');

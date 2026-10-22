@@ -13143,24 +13143,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <div id="pab-ob-color"><div style="font-size:12.5px;color:#6b7280">Выбери период выше и нажми «Показать».</div></div>
   </div>
 
-  <!-- ТЕСТ УРОВНЯ НА САЙТЕ → СКАЧИВАНИЯ -->
-  <div style="max-width:980px;background:#11131c;border-radius:14px;padding:18px;margin-top:16px">
-    <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:4px">📥 Тест уровня на сайте — сколько пошли скачивать</div>
-    <p style="font-size:12.5px;color:#9ca3af;line-height:1.55;margin:0 0 14px">
-      Бесплатный тест английского на сайте — вход в приложение. Здесь видно, сколько человек прошли тест,
-      сколько сделали именной сертификат и сколько после этого нажали «Скачать Phraseman».
-      Отдельно — <b style="color:#e2e8f0">после теста</b> и <b style="color:#e2e8f0">после сертификата</b>: так понятно,
-      что лучше приводит людей в приложение. Считаем по людям, а не по нажатиям — двойной тап не раздувает цифры.
-      Нажатие «Скачать» — это переход в магазин; сама установка считается уже в App Store / Google Play.
-    </p>
-    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-      <button type="button" onclick="loadEnglishTestFunnel(7)" class="pab-range" data-elt-range="7">Неделя</button>
-      <button type="button" onclick="loadEnglishTestFunnel(28)" class="pab-range" data-elt-range="28">Месяц</button>
-      <button type="button" onclick="loadEnglishTestFunnel(90)" class="pab-range" data-elt-range="90">3 месяца</button>
-      <span id="elt-funnel-status" style="font-size:12px;color:#9ca3af"></span>
-    </div>
-    <div id="elt-funnel"><div style="font-size:12.5px;color:#6b7280">Выбери период — покажу воронку теста.</div></div>
-  </div>
 </div>
 
 <style>
@@ -36085,80 +36067,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return _fnGetPaywallVariantStats || (_fnGetPaywallVariantStats = httpsCallable(functionsUs, 'adminGetPaywallVariantStats'));
   }
 
-  // ── Тест уровня на сайте → скачивания ────────────────────────────────────────
-  // зачем: владелец хочет видеть, сколько людей после теста и после сертификата
-  // нажали «Скачать». Считает сервер (adminEnglishTestAnalytics, кэш 3 мин) —
-  // браузер не читает коллекцию попыток и ничего не суммирует сам.
-  let _fnEnglishTestAnalytics = null;
-  window.loadEnglishTestFunnel = async function(days) {
-    const box = document.getElementById('elt-funnel');
-    const status = document.getElementById('elt-funnel-status');
-    if (!box) return;
-    const period = [7, 28, 90].includes(Number(days)) ? Number(days) : 28;
-    document.querySelectorAll('[data-elt-range]').forEach((b) => {
-      b.classList.toggle('pab-active', Number(b.getAttribute('data-elt-range')) === period);
-    });
-    if (status) status.textContent = 'Считаю на сервере…';
-    try {
-      if (!_fnEnglishTestAnalytics) _fnEnglishTestAnalytics = httpsCallable(functionsUs, 'adminEnglishTestAnalytics');
-      const res = await _fnEnglishTestAnalytics({ period });
-      const report = res.data || {};
-      const f = report.funnel || {};
-      const num = (v) => Number(v) || 0;
-      const completed = num(f.complete);
-      const cert = num(f.certificate);
-      const afterTest = num(f.downloadAfterTest);
-      const afterCert = num(f.downloadAfterCertificate);
-      const total = num(f.downloadClick);
-      // Доля считается от базы шага, а не от общего числа — иначе проценты врут.
-      const pct = (part, base) => base > 0 ? ((part / base) * 100).toFixed(1) + '%' : '—';
-      const fmt = (v) => v.toLocaleString('ru-RU');
-      const row = (label, value, hint, color) => `
-        <tr style="border-bottom:1px solid #1e2230">
-          <td style="padding:9px 10px;color:#cbd5e1">${label}<div style="font-size:11px;color:#6b7280;margin-top:2px">${hint}</div></td>
-          <td style="padding:9px 10px;text-align:right;font-weight:800;font-size:15px;color:${color}">${value}</td>
-        </tr>`;
-      box.innerHTML = `
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:14px">
-          <div style="background:#0d0f17;border-radius:11px;padding:14px">
-            <div style="font-size:11px;font-weight:800;color:#6b7280;letter-spacing:.6px">ПОСЛЕ ТЕСТА</div>
-            <div style="font-size:26px;font-weight:800;color:#4ade80;margin-top:4px">${fmt(afterTest)}</div>
-            <div style="font-size:11.5px;color:#8b919c;margin-top:2px">${pct(afterTest, completed)} из прошедших тест</div>
-          </div>
-          <div style="background:#0d0f17;border-radius:11px;padding:14px">
-            <div style="font-size:11px;font-weight:800;color:#6b7280;letter-spacing:.6px">ПОСЛЕ СЕРТИФИКАТА</div>
-            <div style="font-size:26px;font-weight:800;color:#fbbf24;margin-top:4px">${fmt(afterCert)}</div>
-            <div style="font-size:11.5px;color:#8b919c;margin-top:2px">${pct(afterCert, cert)} из сделавших сертификат</div>
-          </div>
-          <div style="background:#0d0f17;border-radius:11px;padding:14px">
-            <div style="font-size:11px;font-weight:800;color:#6b7280;letter-spacing:.6px">ВСЕГО ПОШЛИ В МАГАЗИН</div>
-            <div style="font-size:26px;font-weight:800;color:#a78bfa;margin-top:4px">${fmt(total)}</div>
-            <div style="font-size:11.5px;color:#8b919c;margin-top:2px">${pct(total, completed)} из прошедших тест</div>
-          </div>
-        </div>
-        <table style="width:100%;border-collapse:collapse;font-size:13px">
-          <tbody>
-            ${row('Открыли тест', fmt(num(f.landing)), 'зашли на страницу теста', '#e5e7eb')}
-            ${row('Начали проходить', fmt(num(f.start)), 'ответили хотя бы на один вопрос', '#e5e7eb')}
-            ${row('Прошли до конца', fmt(completed), 'узнали свой уровень', '#4ade80')}
-            ${row('Сделали сертификат', fmt(cert), 'ввели имя и получили именной сертификат', '#fbbf24')}
-            ${row('Поделились результатом', fmt(num(f.share)), 'отправили ссылку или скопировали её', '#38bdf8')}
-            ${row('Увидели предложение скачать', fmt(num(f.ctaView)), 'дошли до экрана с кнопкой', '#cbd5e1')}
-            ${row('Нажали «Скачать»', fmt(total), 'перешли в App Store или Google Play', '#a78bfa')}
-          </tbody>
-        </table>
-        <div style="font-size:11.5px;color:#6b7280;margin-top:12px;line-height:1.5">
-          Период: ${period} дн. Всего прохождений в выборке: ${fmt(num(report.totalAttempts))}.
-          ${report.truncated ? '<b style="color:#fbbf24">Данных больше, чем вошло в выборку — цифры занижены.</b>' : ''}
-          Считаем по людям: если человек нажал «Скачать» дважды, он учтён один раз.
-        </div>`;
-      if (status) status.textContent = '';
-    } catch (e) {
-      // Показываем причину, а не пустой экран — иначе неясно, ноль это или сбой.
-      box.innerHTML = `<div style="font-size:12.5px;color:#f87171">Не удалось посчитать: ${escapeHtml(String(e && e.message || e))}</div>`;
-      if (status) status.textContent = '';
-    }
-  };
 
   window.loadPaywallAb = async function() {
     window._paywallAbLoaded = false;

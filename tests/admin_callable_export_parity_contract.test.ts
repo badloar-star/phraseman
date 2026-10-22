@@ -32,7 +32,6 @@ describe('live admin callable deployment parity', () => {
 
     expect(inventory).toContain('adminActivateTelegramPremiumOrder');
     expect(inventory).toContain('adminInspectTelegramPromoCode');
-    expect(inventory).toContain('adminEnglishTestAnalytics');
     expect(inventory).toContain('adminUserBriefs');
     expect(inventory).toContain('adminListShardRefunds');
     expect(inventory.length).toBeGreaterThan(60);

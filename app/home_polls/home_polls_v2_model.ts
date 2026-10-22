@@ -65,12 +65,21 @@ export function parseHomePollV2Set(raw: unknown): HomePollV2Set | null {
 }
 
 /**
+ * Наборы, снятые с показа.
+ * зачем (координатор 22.10): p2-053 («Do you use the card size slider?» + «Which card layout do you like?») спрашивал про ползунок и размеры карточек, которых в «Карточках» больше нет (решение владельца 22.10).
+ * Из home_polls_v2.json вопрос не удалён: сторож держит ровно 100 наборов и 230 вопросов с зеркалом app ↔ content/polls, модель требует 2–3 вопроса на набор, а сидер сверяет форму наборов с серверной.
+ * Снятие — здесь, обратимо одной строкой; собранные ответы (если они были) не трогаются.
+ */
+export const HOME_POLL_V2_RETIRED_SET_IDS: ReadonlySet<string> = new Set(['p2-053']);
+
+/**
  * Весь список из исходника в порядке id (p2-001…). Порядок важен: расписание берёт набор по индексу.
  * Битый набор не выкидывается из списка (иначе съедут индексы), а заменяется null — в его день карточки просто нет.
  */
 export function parseHomePollV2Catalog(raw: unknown): readonly (HomePollV2Set | null)[] {
   const rows = isRecord(raw) && Array.isArray(raw.sets) ? raw.sets : [];
-  const parsed = rows.map(parseHomePollV2Set);
+  // зачем (координатор 22.10): снятый набор показывать нельзя, но индексы расписания сдвигать тоже нельзя — он становится null, как «битый» (в его день карточки опроса нет)
+  const parsed = rows.map(parseHomePollV2Set).map((set) => (set !== null && HOME_POLL_V2_RETIRED_SET_IDS.has(set.id) ? null : set));
   return parsed;
 }
 

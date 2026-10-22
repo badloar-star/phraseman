@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
-import { parseHomePollV2Catalog } from '../app/home_polls/home_polls_v2_model';
+import { HOME_POLL_V2_RETIRED_SET_IDS, parseHomePollV2Catalog } from '../app/home_polls/home_polls_v2_model';
 import { homePollV2WindowForDate } from '../shared/home_polls_v2_schedule';
 
 const root = process.cwd();
@@ -17,14 +17,21 @@ describe('home polls v2 bundled content and application wiring', () => {
     expect(homePollV2WindowForDate('2027-10-04', 100)).toBeNull();
   });
 
-  it('contains exactly 100 valid sets and 230 questions', () => {
+  it('keeps exactly 100 sets and 230 questions in the files; the shown catalog drops only the retired p2-053', () => {
     const authoring = JSON.parse(read('content/polls/home_polls_v2.json'));
     const runtime = JSON.parse(read('app/home_polls/home_polls_v2.json'));
     expect(runtime).toEqual(authoring);
+    // форма наборов в файлах (она же — на сервере) не меняется: 100 наборов и 230 вопросов
+    expect(runtime.sets).toHaveLength(100);
+    expect(runtime.sets.reduce((sum: number, set: { questions: unknown[] }) => sum + set.questions.length, 0)).toBe(230);
+    // в показе снят ровно p2-053 (опрос про ползунок размера карточек, которого больше нет); индексы остальных наборов не сдвинулись
+    expect([...HOME_POLL_V2_RETIRED_SET_IDS]).toEqual(['p2-053']);
     const catalog = parseHomePollV2Catalog(runtime);
     expect(catalog).toHaveLength(100);
-    expect(catalog.every(Boolean)).toBe(true);
-    expect(catalog.reduce((sum, set) => sum + (set?.questions.length ?? 0), 0)).toBe(230);
+    const hidden = catalog.map((set, index) => (set ? null : runtime.sets[index].id)).filter(Boolean);
+    expect(hidden).toEqual(['p2-053']);
+    expect(catalog[53]?.id).toBe('p2-054');
+    expect(catalog.reduce((sum, set) => sum + (set?.questions.length ?? 0), 0)).toBe(228);
   });
 
   it('mounts the v2 card on Home and never fetches poll text for display', () => {

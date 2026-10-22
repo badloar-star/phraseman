@@ -21,6 +21,7 @@ import {
   type ActiveDays,
 } from './together_days';
 import { computePairStreak, type PairStreakView } from './pair_streak';
+import { pairViewForToday } from './pair_today';
 import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -234,14 +235,14 @@ export async function readMyActiveDays(): Promise<ActiveDays | null> {
 /**
  * Огонь пары заново — по свежим СВОИМ дням и сохранённым дням друга из снапшота (без сети).
  * зачем: после занятия Главная и финал показывают «Серия вдвоём · 13», хотя профиль друга обновлялся раньше.
+ * Правило живёт в pair_today (pairViewForToday) — одно на Главную, финал занятия и веху на вкладке.
  */
 export function recomputePairWithMyDays(
   pair: FriendTogetherPairState,
   myActiveDays: ActiveDays | null,
   todayKey: string = getLocalDayKey(),
 ): PairStreakView | null {
-  if (pair.friendActiveDays === undefined) return pair.pair ?? null;
-  return computePairStreak(myActiveDays, pair.friendActiveDays, todayKey);
+  return pairViewForToday(pair, myActiveDays, todayKey);
 }
 
 /**

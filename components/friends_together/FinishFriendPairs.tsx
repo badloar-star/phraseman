@@ -16,8 +16,8 @@ import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { getLocalDayKey } from '../../app/local_date';
 import { maskUid } from '../../app/diagnostic_mask';
 import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from '../../app/friends_together/together_config';
-import { primeFriendsTogetherSnapshot, readMyActiveDays, recomputePairWithMyDays } from '../../app/friends_together/together_store';
-import { pickFinishPairs } from '../../app/friends_together/pair_today';
+import { primeFriendsTogetherSnapshot, readMyActiveDays } from '../../app/friends_together/together_store';
+import { pairCandidatesFromSnapshot, pickFinishPairs } from '../../app/friends_together/pair_today';
 import { isNudgedToday, nudgeFriend, primeNudgedTodayCache } from '../../app/friends_together/nudge_client';
 
 type Picked = Readonly<{ together: FinishPairRow | null; pending: FinishPairRow | null }>;
@@ -37,13 +37,7 @@ async function pickFromSnapshot(): Promise<Readonly<{ picked: Picked; myName: st
     log('finish:pairs none reason=no_snapshot');
     return null;
   }
-  const today = getLocalDayKey();
-  const candidates: FinishPairRow[] = Object.values(snapshot.pairs).flatMap((pair) => {
-    const view = recomputePairWithMyDays(pair, myDays, today);
-    return view && pair.name
-      ? [{ friendUid: pair.friendUid, name: pair.name, coinRank: pair.coinRank ?? null, isPlus: pair.isPlus === true, view }]
-      : [];
-  });
+  const candidates: FinishPairRow[] = pairCandidatesFromSnapshot(snapshot, myDays, getLocalDayKey());
   const picked = pickFinishPairs(candidates);
   log(`finish:pairs friends=${Object.keys(snapshot.pairs).length} together=${picked.together ? `${maskUid(picked.together.friendUid)}:${picked.together.view.streak}` : 'none'} pending=${picked.pending ? `${maskUid(picked.pending.friendUid)}:${picked.pending.view.streak}` : 'none'}`);
   return { picked, myName: myName ?? '' };

@@ -13,8 +13,8 @@ import type { TodayTask } from '../components/home/v2/home_v2_types';
 import { getLocalDayKey } from '../app/local_date';
 import { maskUid } from '../app/diagnostic_mask';
 import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from '../app/friends_together/together_config';
-import { primeFriendsTogetherSnapshot, readMyActiveDays, recomputePairWithMyDays } from '../app/friends_together/together_store';
-import { pickHomePair, type PairCandidate } from '../app/friends_together/pair_today';
+import { primeFriendsTogetherSnapshot, readMyActiveDays } from '../app/friends_together/together_store';
+import { pairCandidatesFromSnapshot, pickHomePair } from '../app/friends_together/pair_today';
 import { pairHomeSub, pairHomeTitle } from '../app/friends_together/pair_copy';
 
 export type HomeFriendPairRow = Readonly<{ friendUid: string; title: string; subtitle: string; done: boolean; onPress: () => void }>;
@@ -30,11 +30,7 @@ async function pickFromSnapshot(): Promise<Picked | null> {
     return null;
   }
   const myDays = await readMyActiveDays();
-  const today = getLocalDayKey();
-  const candidates: PairCandidate[] = Object.values(snapshot.pairs).flatMap((pair) => {
-    const view = recomputePairWithMyDays(pair, myDays, today);
-    return view && pair.name ? [{ friendUid: pair.friendUid, name: pair.name, view }] : [];
-  });
+  const candidates = pairCandidatesFromSnapshot(snapshot, myDays, getLocalDayKey());
   const best = pickHomePair(candidates);
   log(`home:pair_row friends=${Object.keys(snapshot.pairs).length} named=${candidates.length} picked=${best ? `${maskUid(best.friendUid)}:${best.view.streak}` : 'none'} snapshotAgeMin=${Math.round((Date.now() - snapshot.updatedAtMs) / 60000)} myDays=${myDays ? 'yes' : 'no'}`);
   return best ? { friendUid: best.friendUid, name: best.name, streak: best.view.streak } : null;

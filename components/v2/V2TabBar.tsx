@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import {
   Text,
   Animated,
+  Image,
   PanResponder,
   PixelRatio,
   Platform,
@@ -18,6 +19,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import { HOME_SCENE_V2_ENABLED } from '../home/v2/scene/home_scene_flag';
+import { homeTabbarCapMasks } from '../home/v2/scene/home_scene_baked_assets.generated';
 import { hapticTap } from '../../hooks/use-haptics';
 import { alphaHex } from '../../constants/v2Style';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -75,7 +77,28 @@ type Props = {
 // вкладки. Капсулу отделяют тон заливки (стекло темы + плашка активной вкладки) и внешняя тень бара.
 const RIM_SHEEN = '#FFFFFF'; // theme-exempt: белый блик кромки и заливки плашки таб-бара — как на утверждённом варианте «В · Тёплая кромка»
 
+/** Цвет плашки, для которого есть запечённые маски: #RRGGBB или #RRGGBBAA (класс альфы — последний байт). */
+const CAP_HEX = /^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$/;
+/** Запасной SVG — один раз в журнал на цвет (почему маски не подошли). */
+const capFallbackLogged = new Set<string>();
+
 const CapFill = memo(function CapFill({ width, color }: { width: number; color: string }) {
+  // зачем (владелец кнопкой: ускорение первого кадра Главной; ассеты 4 · ТЕМЫ 8d4454aaa): плашка — две запечённые маски вместо
+  // SVG-радиала (шейдер на первом кадре): цветная — тинт RGB accentCap (альфа класса уже в маске), поверх — белый блик. Маски обрезает
+  // свой слой со скруглением плашки (у самой плашки обрезки нет — иначе пропала бы её тень). Нет масок для цвета — прежний SVG.
+  const masks = CAP_HEX.test(color) ? homeTabbarCapMasks(color) : null;
+  if (masks) {
+    return (
+      <View pointerEvents="none" style={s.capClip}>
+        <Image accessible={false} source={masks.color} resizeMode="stretch" fadeDuration={0} style={[s.capMask, { tintColor: color.slice(0, 7) }]} />
+        <Image accessible={false} source={masks.white} resizeMode="stretch" fadeDuration={0} style={s.capMask} />
+      </View>
+    );
+  }
+  if (!capFallbackLogged.has(color)) {
+    capFallbackLogged.add(color);
+    console.log('[TABBAR-CAP] svg_fallback', JSON.stringify({ color, reason: CAP_HEX.test(color) ? 'no_alpha_class' : 'not_hex' })); // guard-ok: причина запасного пути, один раз на цвет
+  }
   return (
     <Svg width={width} height={CAP_H} style={StyleSheet.absoluteFill}>
       <Defs>
@@ -441,6 +464,9 @@ const s = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 11,
   },
+  // маски плашки обрезает этот слой (у самой плашки обрезки нет — её тень)
+  capClip: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, overflow: 'hidden' },
+  capMask: { ...StyleSheet.absoluteFillObject },
   capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' }, // theme-exempt: яркая вспышка плашки при нажатии — белая в любой теме
   row: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', paddingHorizontal: PAD },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },

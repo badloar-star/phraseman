@@ -82,6 +82,8 @@ jest.mock("react-native", () => ({
     addEventListener: jest.fn(() => ({ remove: jest.fn() })),
   },
   Platform: { OS: "ios" },
+  // зачем (22.10): выход из эпизода с подтверждением (69aeaff8d) слушает системную кнопку «назад».
+  BackHandler: { addEventListener: jest.fn(() => ({ remove: jest.fn() })) },
   Pressable: "Pressable",
   ScrollView: "ScrollView",
   StyleSheet: {
@@ -101,12 +103,18 @@ jest.mock("expo-router", () => ({
     skipIntro: "1",
   }),
   useRouter: () => ({ replace: jest.fn(), push: jest.fn(), back: jest.fn() }),
+  // зачем (22.10): выход из эпизода с подтверждением (69aeaff8d) слушает beforeRemove через useNavigation.
+  useNavigation: () => ({ addListener: () => () => undefined, dispatch: jest.fn() }),
 }));
 jest.mock("@expo/vector-icons/Ionicons", () => "Ionicons");
 // зачем (координатор 17.10): шторка голосового лимита (1c2823b95) — отдельный UI на старте занятия со своим тестом
 // (learning_v2_voice_headsup_v1.test.ts); её анимации (Animated/Easing/PanResponder/Modal) этому моку react-native не нужны.
 // Здесь проверяется жизненный цикл плеера повтора, поэтому шторка — пустая заглушка, а не расширение мока под чужой UI.
 jest.mock("../components/learning-v2/LearningV2VoiceHeadsupSheet", () => ({ __esModule: true, default: () => null }));
+// зачем (22.10): плеер подключил шторку выхода (69aeaff8d) и шторку теории (c4559f4fd). Шторка выхода через MomentCoin →
+// use_runtime_active тянет @react-navigation (тестовая среда его не разбирает) — обе шторки в этом тесте не участвуют.
+jest.mock("../components/lesson_exit/LessonExitSheet", () => ({ __esModule: true, default: () => null }));
+jest.mock("../components/learning-v2/LearningV2TheorySheet", () => ({ __esModule: true, default: () => null }));
 jest.mock("expo-crypto", () => ({ randomUUID: () => "run-test" }));
 jest.mock("expo-image", () => ({ Image: "Image" }));
 jest.mock("expo-audio", () => ({
@@ -337,6 +345,9 @@ jest.mock("../modules/learning-v2/content/course_topology_v1", () => ({
 jest.mock("../app/learning_v2_interleaved_new_word_flow_v1", () => ({
   createLearningV2InterleavedNewWordFlowV1: () => ({ kind: "idle" }),
   reduceLearningV2InterleavedNewWordFlowV1: (state: unknown) => ({ state, effects: [] }),
+  // зачем (22.10): плеер решает автозапуск звука задания этим помощником — та же логика, что в модуле.
+  shouldAutoplayLearningV2PracticeAudioV1: (input: { requestedToken: number; consumedToken: number; practiceActivated: boolean; referenceAvailable: boolean }) =>
+    input.requestedToken > input.consumedToken && input.practiceActivated && input.referenceAvailable,
 }));
 jest.mock("../app/learning_v2_preview_speech_watchdog_v1", () => ({
   createLearningV2PreviewSpeechGenerationGuardV1: () => ({
@@ -409,6 +420,9 @@ jest.mock("../components/v2/KitLiquidGlass", () => ({ KitGlassLayer: () => null 
 jest.mock("../components/v2/ShadowSurface", () => ({
   actionBoxShadow: () => ({}),
   nestedBoxShadow: () => ({}),
+  // зачем (22.10): плита задания в плеере (7e15fdc7e, шапка/подвал по макету) берёт plateBoxShadow.
+  plateBoxShadow: () => ({}),
+  raisedBoxShadow: () => ({}),
 }));
 
 function targetVisible(screen: Awaited<ReturnType<typeof render>>): boolean {

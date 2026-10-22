@@ -5,6 +5,8 @@ import { readSource } from './helpers/read_source';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
 import { seasonArt, seasonChapterHue } from '../components/learning-v2/season/season_art';
+import { paywallPlateBg, paywallSheetBg } from '../components/paywall/paywall_surfaces';
+import { buildOnboardingPalette } from '../components/onboarding_palette';
 
 const TEXT = 4.5;
 const GRAPHIC = 3;
@@ -145,5 +147,113 @@ describe('Диалоги: панель, чипы тем и карточки (с�
   it('ни одна пара не ниже нормы', () => {
     const misses = rows.filter((r) => r.ratio < r.need).map((r) => `${r.tag} · ${r.pair}: ${r.ratio.toFixed(2)} < ${r.need}`);
     expect(misses).toEqual([]);
+  });
+});
+
+describe('Дуэль друзей: экран, шторка вызова и итог (светлая и тёмная, 23 темы × 3 уровня; аудит 22.10)', () => {
+  const rows: { pair: string; ratio: number; need: number; tag: string }[] = [];
+  const overA = (fg8: string, bg: string): string => over(fg8.slice(0, 7), fg8.length >= 9 ? parseInt(fg8.slice(7, 9), 16) / 255 : 1, bg);
+  for (const appearance of ['light', 'dark'] as const) {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of ['calm', 'accent', 'max'] as const) {
+        const g = liquidGlassTokens(id, { level, appearance } as never);
+        const tag = `${appearance}/${id}/${level}`;
+        const push = (pair: string, ratio: number, need: number): void => { rows.push({ pair, ratio, need, tag }); };
+        const sheet = g.opaqueSheet;
+        const card = g.opaqueCard;
+        const ctl = g.opaqueControl;
+        push('шторка: заголовок', contrastRatio(g.text, sheet), TEXT);
+        push('шторка: текст', contrastRatio(g.secondary, sheet), TEXT);
+        push('таблица итога: шапка', contrastRatio(g.secondary, card), TEXT);
+        push('кнопка primary: opaqueCard на text', contrastRatio(card, g.text), TEXT);
+        push('кнопка danger: dangerInk на dangerFill', contrastRatio(g.dangerInk, g.dangerFill), TEXT);
+        push('кнопка bare: bad на шторке', contrastRatio(g.bad, sheet), TEXT);
+        push('кнопка off: secondary на ctl', contrastRatio(g.secondary, ctl), TEXT);
+        push('кнопка secondary: text на ctl', contrastRatio(g.text, ctl), TEXT);
+        push('полоса «нет сети»: текст на warnSoft', contrastRatio(g.text, overA(g.warnSoft, sheet)), TEXT);
+        push('полоса «нет сети»: значок warn', contrastRatio(g.warn, overA(g.warnSoft, sheet)), GRAPHIC);
+        push('итог: значок good на goodSoft', contrastRatio(g.good, overA(g.goodSoft, card)), GRAPHIC);
+        push('итог: значок warn на warnSoft', contrastRatio(g.warn, overA(g.warnSoft, card)), GRAPHIC);
+        push('итог: значок secondary на ctl', contrastRatio(g.secondary, ctl), GRAPHIC);
+        push('плейсхолдер ответа: mutedText на фоне', contrastRatio(g.mutedText, g.bg), TEXT);
+        push('вердикт: тело secondary на goodSoft', contrastRatio(g.secondary, over(six(g.good), 0.12, card)), TEXT);
+      }
+    }
+  }
+  it('ни одна пара не ниже нормы', () => {
+    const misses = rows.filter((r) => r.ratio < r.need).map((r) => `${r.tag} · ${r.pair}: ${r.ratio.toFixed(2)} < ${r.need}`);
+    expect(misses).toEqual([]);
+  });
+});
+
+describe('Пейвол Plus: лист, плашки, кнопка (светлая и тёмная, 23 темы × 3 уровня; аудит 22.10)', () => {
+  const rows: { pair: string; ratio: number; need: number; tag: string }[] = [];
+  for (const appearance of ['light', 'dark'] as const) {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of ['calm', 'accent', 'max'] as const) {
+        const g = liquidGlassTokens(id, { level, appearance } as never);
+        const tag = `${appearance}/${id}/${level}`;
+        const push = (pair: string, ratio: number, need: number): void => { rows.push({ pair, ratio, need, tag }); };
+        const sheet = paywallSheetBg(g);
+        const plate = paywallPlateBg(g);
+        for (const [name, bg] of [['лист', sheet], ['плашка', plate]] as const) {
+          push(`пейвол ${name}: заголовок и текст`, contrastRatio(g.text, bg), TEXT);
+          push(`пейвол ${name}: secondary`, contrastRatio(g.secondary, bg), TEXT);
+          push(`пейвол ${name}: mutedText (мелкий, цены, ссылки)`, contrastRatio(g.mutedText, bg), TEXT);
+        }
+        push('пейвол: CTA ctaFillInk на ctaFill', contrastRatio(g.ctaFillInk, g.ctaFill), TEXT);
+        push('пейвол: CTA (форма) ctaFill к листу', contrastRatio(g.ctaFill, sheet), GRAPHIC);
+        push('пейвол: галочка accentInk на accent', contrastRatio(g.accentInk, g.accent), GRAPHIC);
+        push('пейвол: кромка выбранного тарифа accentGraphic к листу', contrastRatio(g.accentGraphic, sheet), GRAPHIC);
+      }
+    }
+  }
+  it('бейдж скидки: чернила на золоте ≥ 4,5', () => {
+    expect(contrastRatio('#3A2700', '#FFD27A')).toBeGreaterThanOrEqual(TEXT);
+  });
+  it('ни одна пара не ниже нормы', () => {
+    const misses = rows.filter((r) => r.ratio < r.need).map((r) => `${r.tag} · ${r.pair}: ${r.ratio.toFixed(2)} < ${r.need}`);
+    expect(misses).toEqual([]);
+  });
+});
+
+describe('Онбординг и приветствие: палитра из токенов темы и экран выбора языка (аудит 22.10)', () => {
+  const rows: { pair: string; ratio: number; need: number; tag: string }[] = [];
+  for (const appearance of ['light', 'dark'] as const) {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of ['calm', 'accent', 'max'] as const) {
+        const g = liquidGlassTokens(id, { level, appearance } as never);
+        const p = buildOnboardingPalette(g, `${appearance}/${id}/${level}`);
+        const tag = p.key;
+        const push = (pair: string, ratio: number, need: number): void => { rows.push({ pair, ratio, need, tag }); };
+        for (const [name, bg] of [['фон', p.bg], ['фон сверху', p.bgTop], ['фон снизу', p.bgBottom], ['карточка', p.card], ['плитка', p.soft]] as const) {
+          push(`онбординг ${name}: text`, contrastRatio(p.text, bg), TEXT);
+          push(`онбординг ${name}: secondary`, contrastRatio(p.secondary, bg), TEXT);
+          push(`онбординг ${name}: muted`, contrastRatio(p.muted, bg), TEXT);
+        }
+        push('онбординг: ctaInk на ctaFill', contrastRatio(p.ctaInk, p.ctaFill), TEXT);
+        push('онбординг: ctaFill к фону (форма)', contrastRatio(p.ctaFill, p.bg), GRAPHIC);
+        push('онбординг: goodText на карточке', contrastRatio(p.goodText, p.card), TEXT);
+        push('онбординг: тело знака markBody к фону', Math.min(contrastRatio(p.markBody, p.bg), contrastRatio(p.markBody, p.bgTop), contrastRatio(p.markBody, p.bgBottom)), GRAPHIC);
+      }
+    }
+  }
+  it('палитра онбординга: ни одна пара не ниже нормы', () => {
+    const misses = rows.filter((r) => r.ratio < r.need).map((r) => `${r.tag} · ${r.pair}: ${r.ratio.toFixed(2)} < ${r.need}`);
+    expect(misses).toEqual([]);
+  });
+
+  // экран выбора языка — самостоятельная фиксированная тёмная палитра до выбора темы (app/language_welcome.tsx, theme-exempt)
+  it('экран выбора языка: тексты и кнопка на фоне #07111F', () => {
+    const bg = '#07111F';
+    const card = over('#FFFFFF', 0.06, bg);
+    const selected = over('#7B8CFF', 0.16, bg);
+    expect(contrastRatio('#F7FAFF', bg)).toBeGreaterThanOrEqual(TEXT);
+    expect(contrastRatio('#C6D3FF', bg)).toBeGreaterThanOrEqual(TEXT);
+    expect(contrastRatio('#EAF0FF', card)).toBeGreaterThanOrEqual(TEXT);
+    expect(contrastRatio('#EAF0FF', selected)).toBeGreaterThanOrEqual(TEXT);
+    expect(contrastRatio('#8AB9FF', bg)).toBeGreaterThanOrEqual(TEXT);
+    for (const stop of ['#E3ECFF', '#7B8CFF', '#C95CFF']) expect(contrastRatio('#07111F', stop)).toBeGreaterThanOrEqual(TEXT);
+    for (const stop of ['#7B8CFF', '#C95CFF']) expect(contrastRatio(stop, bg)).toBeGreaterThanOrEqual(GRAPHIC);
   });
 });

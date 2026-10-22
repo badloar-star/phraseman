@@ -78,7 +78,7 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(own.filter((rel) => !allowed.has(rel))).toEqual([]);
     // Переведённый файл обязан уйти из базы (иначе база не уменьшается и долг не виден).
     expect(baseline.files.filter((rel) => !own.includes(rel))).toEqual([]);
-    expect(baseline.files.length).toBeLessThanOrEqual(46); // потолок — только вниз (22.10: 80 → 46, слова урока, Практика ×9 + общая шапка тренировки, Настройки ×6, Итоги ×3, Диалоги ×4; — «Сегодня», теория, слова урока, Пик ×2, «Ошибки» ×3, хаб Сезона, настройка тренировки)
+    expect(baseline.files.length).toBeLessThanOrEqual(44); // потолок — только вниз (22.10: 80 → 44, шапка экзамена ×2, слова урока, Практика ×9 + общая шапка тренировки, Настройки ×6, Итоги ×3, Диалоги ×4; — «Сегодня», теория, слова урока, Пик ×2, «Ошибки» ×3, хаб Сезона, настройка тренировки)
   });
 
   it('корень вкладки, открытый НЕ из нижнего меню, показывает общую «назад» (координатор 22.10: Пик с Главной)', () => {
@@ -143,6 +143,17 @@ describe('кнопка «назад»: одна и в одном месте', ()
       ['app/friends_duel.tsx', 'friends_duel_play'],
       ['components/legal/LegalDocumentSheet.tsx', 'legal_document'],
     ] as const) expect([rel, read(rel).includes(`<ScreenCloseButton screen="${screen}"`)]).toEqual([rel, true]);
+  });
+
+  // зачем (координатор 22.10): экзамен — «назад» экрана только общая кнопка через ExamHeader; «Предыдущий вопрос» в подвале — PrevQuestionButton
+  it('экзамен: «назад» экрана — общая кнопка через ExamHeader, «Предыдущий вопрос» — отдельное имя', () => {
+    const parts = read('components/level-exam/ExamGlassParts.tsx');
+    expect(parts).toContain('{sharedBack ? <SafeTopBackButton screen={screen} onPress={onBack} accessibilityLabel={backLabel} /> : null}');
+    expect(parts).not.toMatch(/<PracticeBackButton\b/);
+    const exam = read('app/exam.tsx');
+    expect(exam).toMatch(/<ExamHeader glass=\{glass\} title="" onBack=\{onBack\} \/>/);
+    expect(exam).toContain('<PrevQuestionButton');
+    expect(exam).not.toMatch(/<PracticeBackButton\b/);
   });
 
   it('экраны, взявшие ScreenBackButton, не держат рядом свою кнопку «назад»', () => {

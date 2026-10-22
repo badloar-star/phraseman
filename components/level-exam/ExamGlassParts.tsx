@@ -3,7 +3,8 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 
-import { PracticeAnswerMark, PracticeBackButton, type PracticeGlass } from '../practice/PracticeChrome';
+import { PracticeAnswerMark, type PracticeGlass } from '../practice/PracticeChrome';
+import { SCREEN_BACK_SIZE, ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 
 // зачем (владелец 2026-09-30): диагностика, зачёт уровня и финальный экзамен переносятся
@@ -17,9 +18,13 @@ type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
 const CARD_RADIUS = 20;
 
-/** Шапка `.dhead`: круглая «‹», заголовок 20/700 с подзаголовком 15, справа слот. */
+/**
+ * Шапка `.dhead`: «‹», заголовок 20/700 с подзаголовком 15, справа слот.
+ * зачем (закон владельца 22.10 «назад в одном месте»): «‹» — общая кнопка экрана (SafeTopBackButton), а не своя; шапка всегда стоит
+ * первым ребёнком под безопасным верхом (SafeAreaView / ContentWrap) — кнопка встаёт в общую точку, в строке остаётся её место.
+ */
 export function ExamHeader({
-  glass, title, subtitle, onBack, backLabel, right, leading, testID,
+  glass, title, subtitle, onBack, backLabel, right, leading, testID, screen = 'exam',
 }: {
   glass: PracticeGlass;
   title: string;
@@ -30,18 +35,22 @@ export function ExamHeader({
   /** Вместо круглой «‹» (например, текст «Отмена» при входе из онбординга). */
   leading?: React.ReactNode;
   testID?: string;
+  /** Ключ экрана для журнала [BACK-BTN]. */
+  screen?: string;
 }) {
+  const sharedBack = !leading && onBack;
   return (
-    <View testID={testID} style={styles.header}>
-      {leading ?? (onBack ? (
-        <PracticeBackButton glass={glass} color={glass.text} onPress={onBack} accessibilityLabel={backLabel} />
-      ) : null)}
+    <>
+    {sharedBack ? <SafeTopBackButton screen={screen} onPress={onBack} accessibilityLabel={backLabel} /> : null}
+    <View testID={testID} style={[styles.header, sharedBack ? styles.headerWithBack : null]}>
+      {leading ?? (sharedBack ? <ScreenBackSlot /> : null)}
       <View style={styles.headerText}>
         <Text style={[styles.headerTitle, { color: glass.text }]}>{title}</Text>
         {subtitle ? <Text style={[styles.headerSub, { color: glass.secondary }]}>{subtitle}</Text> : null}
       </View>
       {right ?? null}
     </View>
+    </>
   );
 }
 
@@ -268,6 +277,8 @@ export function examCardStyle(glass: PracticeGlass): ViewStyle {
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 52, paddingHorizontal: 12, paddingTop: 4 },
+  // строка с местом общей кнопки: от безопасного верха, поле слева 20 как у кнопки, высота круга 48
+  headerWithBack: { minHeight: SCREEN_BACK_SIZE, paddingTop: 0, paddingLeft: 20 },
   headerText: { flex: 1, minWidth: 0 },
   headerTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   headerSub: { fontSize: 16, lineHeight: 21, marginTop: 2, fontVariant: ['tabular-nums'] },

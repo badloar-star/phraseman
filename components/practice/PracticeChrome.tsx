@@ -57,6 +57,13 @@ export function PracticeBackButton({
   );
 }
 
+/**
+ * «Предыдущий вопрос» в подвале экзамена — та же круглая «‹», но это шаг по вопросам, а не «назад» экрана.
+ * зачем (координатор 22.10, закон владельца «назад в одном месте»): своё имя, чтобы сторож и читатель не путали её с кнопкой экрана;
+ * «назад» экрана экзамена — общая кнопка через ExamHeader.
+ */
+export const PrevQuestionButton = PracticeBackButton;
+
 /** Круглая кнопка-иконка справа в шапке (выбор наборов и т. п.). */
 export function PracticeRoundIconButton({
   glass, color, icon, onPress, testID, accessibilityLabel, disabled,

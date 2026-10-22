@@ -42,7 +42,7 @@ import { checkAchievements } from './achievements';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeCta, PracticeStatePanel } from '../components/practice/PracticeStates';
-import { PracticeBackButton, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
+import { PrevQuestionButton, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
 import {
   ExamFooter, ExamHeader, ExamHero, ExamKvCard, ExamOption, ExamPill, ExamQuietButton, ExamStatRow,
   ExamTile, ExamTrack, examCardStyle,
@@ -1534,7 +1534,7 @@ export default function ExamScreen() {
         <ExamFooter bottomInset={0}>
           <View style={{flexDirection:'row',alignItems:'center',gap:12}}>
             <View style={{opacity: idx===0 ? 0.35 : 1}}>
-              <PracticeBackButton glass={glass} color={glass.text} onPress={idx===0 ? undefined : goPrev} accessibilityLabel={t3('Предыдущий вопрос', 'Попереднє питання', 'Previous question', 'Pregunta anterior', 'Pergunta anterior', 'Câu trước', 'Soal sebelumnya', 'Önceki soru', 'Poprzednie pytanie')} />
+              <PrevQuestionButton glass={glass} color={glass.text} onPress={idx===0 ? undefined : goPrev} accessibilityLabel={t3('Предыдущий вопрос', 'Попереднє питання', 'Previous question', 'Pregunta anterior', 'Pergunta anterior', 'Câu trước', 'Soal sebelumnya', 'Önceki soru', 'Poprzednie pytanie')} />
             </View>
             {chosen === null ? (
               <View style={{flex:1}}>

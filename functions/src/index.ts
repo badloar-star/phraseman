@@ -139,6 +139,8 @@ const {
   onAppMessageStateWritten,
 } = require("./app_messages");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { cleanupUnlinkedVideoPromoEntries } = require("./video_promo_retention");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitVipSurvey, recordVipSurveyReviewClick } = require("./vip_survey");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitClientReport } = require("./client_reports");
@@ -446,6 +448,11 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
   { schedule: "0 4 * * *", timeZone: "UTC" },
   withCronHeartbeat('cleanupExpiredAppMessagesCron', async () => {
     await cleanupExpiredAppMessages();
+    // зачем (координатор 22.10): заявки «Акция с видео» без почты и без resolvedUid уходят через 90 дней после конца
+    // акции. До даты отсечки — 0 чтений. Отдельного планировщика не заводим.
+    await cleanupUnlinkedVideoPromoEntries().catch((error) => {
+      console.error('[VIDEO-PROMO-RETENTION] failed', error instanceof Error ? error.message : String(error));
+    });
   }));
 
 // ─── Re-engagement push cron ─────────────────────────────────────────────────

@@ -17,6 +17,18 @@ export function homeSceneDaysSince(lastDay: string | null, now: Date): number | 
   return Math.max(0, Math.round((today - last) / 86_400_000));
 }
 
+/**
+ * «Тебя не было N дней» — полных дней между прошлым ЗАХОДОМ в приложение (до сегодняшнего) и сегодня; неизвестно — null (героя
+ * «С возвращением» нет). Снимок не сегодняшний — приложение на экране со вчера, человек никуда не уходил: тоже null.
+ * ЗАМОК ВЛАДЕЛЬЦА 22.10: «по заходам» — открывал, но не учился, надписи нет; сторож tests/home_away_by_visits_owner_lock.test.ts.
+ */
+export function homeSceneDaysAwayByVisits(gap: Readonly<{ day: string; previousVisitDay: string | null }> | null, now: Date): number | null {
+  if (!gap) return null;
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  if (gap.day !== today) return null;
+  return homeSceneDaysSince(gap.previousVisitDay, now);
+}
+
 /** Последний засчитанный день из списка дат прогресса (самая поздняя). */
 export function homeSceneLastActivityDay(activityDates: readonly string[]): string | null {
   let best: string | null = null;

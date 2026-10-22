@@ -71,3 +71,62 @@ export function subscribeWelcomeBackReturnGap(listener: (gap: WelcomeBackReturnG
   listeners.add(listener);
   return () => { listeners.delete(listener); };
 }
+
+// ── Прошлый заход для героя Главной ─────────────────────────────────────────────────────────────────────────────────────────
+// зачем (владелец 22.10, кнопка «По заходам»; «СХУЯЛИ У МЕНЯ ТАКОЕ НАПИСАНО» — «Тебя не было 4 дня», хотя он заходит каждый день):
+// сцена Главной считала дни с последнего засчитанного урока. Теперь — с последнего ЗАХОДА: recordLastActive перед перезаписью отдаёт
+// сюда прошлую отметку. Держим разрыв ПЕРВОГО захода дня: повторный выход на передний план в тот же день его не обнуляет. Только
+// память, как снимок окна выше: после перезапуска процесса в тот же день прошлый заход — сегодня, надписи нет (её уже показали).
+// ЗАМОК ВЛАДЕЛЬЦА 22.10: «по заходам» — сторож tests/home_away_by_visits_owner_lock.test.ts, реестр docs/work/OWNER_LOCKS.md.
+
+export type AppVisitGap = Readonly<{
+  /** Местный день текущего захода, YYYY-MM-DD. */
+  day: string;
+  /** Местный день прошлого захода до сегодняшнего; null — отметки не было или она неверна. */
+  previousVisitDay: string | null;
+  source: 'record_last_active' | 'dev';
+}>;
+
+let visitGap: AppVisitGap | null = null;
+const visitListeners = new Set<(gap: AppVisitGap | null) => void>();
+
+function localDayKey(ms: number): string {
+  const d = new Date(ms);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/** Звать ПЕРЕД перезаписью отметки прошлого захода (recordLastActive): previousLastActiveMs — то, что лежало в хранилище. */
+export function noteAppVisit(previousLastActiveMs: number | null, nowMs: number, source: AppVisitGap['source'] = 'record_last_active'): void {
+  const today = localDayKey(nowMs);
+  const prevOk = previousLastActiveMs !== null && Number.isFinite(previousLastActiveMs) && previousLastActiveMs > 0 && previousLastActiveMs <= nowMs;
+  const prevDay = prevOk ? localDayKey(previousLastActiveMs as number) : null;
+  const prevText = prevOk ? new Date(previousLastActiveMs as number).toISOString() : String(previousLastActiveMs);
+  if (visitGap && visitGap.day === today && prevDay === today) {
+    console.log(`[HOME-AWAY] заход: повтор в тот же день — держим разрыв первого захода prevVisitDay=${visitGap.previousVisitDay ?? 'нет'} prev=${prevText} (${source}) today=${today}`); // guard-ok: ранний выход называет причину
+    return;
+  }
+  const branch = !prevOk ? 'no_previous_mark' : prevDay === today ? 'same_day_no_snapshot' : 'first_visit_today';
+  visitGap = { day: today, previousVisitDay: prevDay, source };
+  console.log(`[HOME-AWAY] заход: prev=${prevText} (${source}) now=${new Date(nowMs).toISOString()} prevVisitDay=${prevDay ?? 'нет'} today=${today} ветка=${branch}`); // guard-ok: одна строка на выход на передний план
+  visitListeners.forEach((listener) => {
+    try {
+      listener(visitGap);
+    } catch (error) {
+      console.warn('[HOME-AWAY] подписчик захода упал', String(error)); // guard-ok: catch пишет причину
+    }
+  });
+}
+
+export function peekAppVisitGap(): AppVisitGap | null {
+  return visitGap;
+}
+
+export function subscribeAppVisitGap(listener: (gap: AppVisitGap | null) => void): () => void {
+  visitListeners.add(listener);
+  return () => { visitListeners.delete(listener); };
+}
+
+/** Только тесты: «новый процесс» — снимка захода нет. */
+export function __resetAppVisitGapForTests(): void {
+  visitGap = null;
+}

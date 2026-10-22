@@ -29,6 +29,10 @@ const KNOWN_GUARDS = [
   'tests/learning_v2_not_from_start_once_v1.test.ts',
   'tests/v2_screens_color_literals_ratchet.test.mjs',
   'tests/theme_semantic_follows_current_theme.test.ts',
+  // 8 · МОМЕНТЫ 22.10: искры без сдвига тона, палитры визиток, металл рангов, «по заходам»
+  'tests/moment_firework_theme_shades.test.ts',
+  'tests/owner_locks_profile_card_metal.test.mjs',
+  'tests/home_away_by_visits_owner_lock.test.ts',
   'tests/theme_switch_clears_dev_override.test.tsx',
   // 2 · ДИЗАЙН 22.10: хаб урока (Сезон) — «Старый курс», замки справа, пустые звёзды, без кикера, закрытый эпизод без модала, компактный заголовок, без книжки словаря
   'tests/season_nav_tiles_fit_contract.test.ts',

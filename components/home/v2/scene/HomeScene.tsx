@@ -23,7 +23,8 @@ import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
 import HomeSceneStage, { HOME_SCENE_PANEL_OVERLAP, type HomeSceneChip } from './HomeSceneStage';
 import { resolveHomeSceneArt } from './home_scene_art';
 import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput } from './home_scene_copy';
-import { homeSceneAllReleasedDone, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
+import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
+import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
 import { homeSceneTokensForTheme, type HomeSceneStageTokens } from './home_scene_tokens';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
@@ -111,8 +112,21 @@ export default function HomeScene(p: Props) {
   const todayKey = dayKeyOf(now);
   const dayCounted = p.streakToday === 'unknown' ? null : p.streakToday === 'counted';
   const lastDay = homeSceneLastActivityDay(personal.activityDates);
-  const daysAway = homeSceneDaysSince(lastDay, now);
-  const lostCandidate = homeSceneStreakLost({ daysAway, streakCount: personal.streakCount, plus: p.plus });
+  // «серия прервалась» — по урокам, как было (пропуск засчитанных дней)
+  const daysSinceLesson = homeSceneDaysSince(lastDay, now);
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «по заходам» — «Тебя не было N дней» только если человек правда не открывал приложение N дней; открывал,
+  // но не учился — надписи нет. Разрыв первого захода дня отдаёт recordLastActive ДО перезаписи отметки (welcome_back_signal).
+  const visitGap = useAppVisitGap();
+  const daysAway = homeSceneDaysAwayByVisits(visitGap, now);
+  const lostCandidate = homeSceneStreakLost({ daysAway: daysSinceLesson, streakCount: personal.streakCount, plus: p.plus });
+  const awayLogRef = useRef('');
+  useEffect(() => {
+    const branch = !visitGap ? 'no_visit_snapshot' : visitGap.day !== todayKey ? 'snapshot_not_today' : visitGap.previousVisitDay === null ? 'no_previous_visit' : 'by_previous_visit';
+    const key = `${branch}|${String(daysAway)}|${String(daysSinceLesson)}|${visitGap?.previousVisitDay ?? ''}`;
+    if (awayLogRef.current === key) return;
+    awayLogRef.current = key;
+    console.log('[HOME-AWAY] сцена', JSON.stringify({ branch, daysAway, daysSinceLesson, lastLessonDay: lastDay, visitDay: visitGap?.day ?? null, prevVisitDay: visitGap?.previousVisitDay ?? null, source: visitGap?.source ?? null, todayKey })); // guard-ok: одна строка на смену разрыва
+  }, [daysAway, daysSinceLesson, lastDay, todayKey, visitGap]);
   // зачем (таблица: «серия прервалась» — только в первый вход за день): снимок «первый ли вход сегодня» берётся при монтировании,
   // отметка ставится после показа — повторный монтаж в тот же день покажет «Продолжить»
   const firstEntryToday = useRef(streakLostShownDay !== todayKey);
@@ -128,8 +142,8 @@ export default function HomeScene(p: Props) {
     const key = `${decision.state}|${decision.reason}|${String(decision.offlineLine)}|${String(decision.zeroEnergyNote)}`;
     if (logKeyRef.current === key) return;
     logKeyRef.current = key;
-    console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, offlineLine: decision.offlineLine, zeroEnergyNote: decision.zeroEnergyNote, offline, streakToday: p.streakToday, energy: p.energy, plus: p.plus, lastDay, daysAway, streakCount: personal.streakCount, streakLostToday, allReleasedDone, course: p.courseProgress, examReady: 'off:no_exam_yet' })); // guard-ok: одна строка на смену решения
-  }, [decision, offline, p.energy, p.plus, p.streakToday, lastDay, daysAway, personal.streakCount, streakLostToday, allReleasedDone, p.courseProgress]);
+    console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, offlineLine: decision.offlineLine, zeroEnergyNote: decision.zeroEnergyNote, offline, streakToday: p.streakToday, energy: p.energy, plus: p.plus, lastDay, daysAway, daysSinceLesson, prevVisitDay: visitGap?.previousVisitDay ?? null, streakCount: personal.streakCount, streakLostToday, allReleasedDone, course: p.courseProgress, examReady: 'off:no_exam_yet' })); // guard-ok: одна строка на смену решения
+  }, [decision, offline, p.energy, p.plus, p.streakToday, lastDay, daysAway, daysSinceLesson, visitGap, personal.streakCount, streakLostToday, allReleasedDone, p.courseProgress]);
   return (
     <HomeSceneView
       lang={p.lang}

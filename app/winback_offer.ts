@@ -14,7 +14,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { IS_STORE_RELEASE } from './config';
-import { noteWelcomeBackReturnGap } from '../modules/welcome_back/welcome_back_signal';
+import { noteAppVisit, noteWelcomeBackReturnGap } from '../modules/welcome_back/welcome_back_signal';
 
 const LAST_ACTIVE_KEY = 'winback_last_active_at_v1';
 const WINBACK_SHOWN_AT_KEY = 'winback_shown_at_v1';
@@ -56,9 +56,13 @@ export async function recordLastActive(nowMs: number): Promise<void> {
     const devAway = devWinbackAvailable() ? devAwayDaysOverride : null;
     const prevRaw = devAway !== null ? null : await AsyncStorage.getItem(LAST_ACTIVE_KEY);
     const prev = devAway !== null ? nowMs - devAway * 86_400_000 : (parseInt(prevRaw ?? '', 10) || null);
+    // зачем (владелец 22.10, кнопка «По заходам»): та же прошлая отметка — герою Главной «Тебя не было N дней» (по заходам, не по урокам)
+    noteAppVisit(prev, nowMs, devAway !== null ? 'dev' : 'record_last_active');
     noteWelcomeBackReturnGap(prev, nowMs);
   } catch (error) {
     console.warn('[WELCOME-BACK] прошлая активность не прочиталась — снимка возвращения не будет', String(error)); // guard-ok: catch пишет причину
+    console.warn('[HOME-AWAY] прошлый заход не прочитался — «Тебя не было N дней» сегодня не покажем', String(error)); // guard-ok: catch пишет причину
+    noteAppVisit(null, nowMs);
   }
   try {
     await AsyncStorage.setItem(LAST_ACTIVE_KEY, String(nowMs));

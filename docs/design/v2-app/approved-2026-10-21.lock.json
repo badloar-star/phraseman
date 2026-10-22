@@ -1,11 +1,12 @@
 {
-  "about": "УТВЕРЖДЕНО владельцем 21.10: «Найди пары» — вариант 2 (узкая колонка слов 36% + широкая переводов); Пик «Собери перевод» — вариант A (ячейки-плашки + «Проверить»); Plus — эталон кольца как есть; «Обучение» — способ 2 «Сезон и карусель карт» (course-hybrid-1-4.html, раздел «Способ 2»); Главная — A «Сцена» (home-new-concepts.html, раздел A); экзамен главы и тест-распределение на способе 2 (chapter-exam-season.html), плитки ответов — эталон заданий V2.",
+  "about": "УТВЕРЖДЕНО владельцем 21.10: «Найди пары» — вариант 2 (узкая колонка слов 36% + широкая переводов); Пик «Собери перевод» — вариант A (ячейки-плашки + «Проверить»); Plus — эталон кольца как есть; «Обучение» — способ 2 «Сезон и карусель карт» (course-hybrid-1-4.html, раздел «Способ 2»); Главная — A «Сцена» (home-new-concepts.html, раздел A); экзамен главы и тест-распределение на способе 2 (chapter-exam-season.html), плитки ответов — эталон заданий V2; «Сегодня» — вариант A «Сцена» (today-scene-concepts.html, раздел A).",
   "files": {
     "speed-match-long-pairs.html": "5d606805cbbed3825dc9931bec2c0cca288639e6889795a3cf409324f69889fb",
     "peak-phrase-builder.html": "88911b2640998aa53120fcfba38941f6c2cd6795f80e40b18c914b1098f2ff36",
     "plus-ring-etalon.html": "817cd32c521028b80f4443f1d57a8bee0f753e99ad238aaf90cd4e68c937e516",
     "course-hybrid-1-4.html": "8afb5fed8190229efeb4408f10bbfa364dbe6f8f896576b40d95b23bf9d10fae",
     "home-new-concepts.html": "191da424273c77df70b788e7271fbd430bf1a1e97e7b1a28a79657689ba8ac8a",
-    "chapter-exam-season.html": "45adf558372149523f52471c93b736b1283e721d5dc4887f1429c97f2311ce85"
+    "chapter-exam-season.html": "45adf558372149523f52471c93b736b1283e721d5dc4887f1429c97f2311ce85",
+    "today-scene-concepts.html": "a144c598ed5cb9f2e4002edaa7144f9b87a25ba20536e22c731c484f5af5a3ed"
   }
 }

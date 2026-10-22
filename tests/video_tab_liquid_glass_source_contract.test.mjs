@@ -30,13 +30,16 @@ test('video.html: header pill has avatar/initials, tabs are 16/600', () => {
 
 test('video.html: video card has the round play badge and localized short view counts', () => {
   assert.ok(card.includes('<VideoPlayBadge small={compactLayout} />'), 'play badge on the thumbnail');
-  // зачем (Тень 12.10): значок «play» без белого кольца 0.25 — только тёмная заливка `.thumb .pl` и малая тень
-  assert.ok(kit.includes('rgba(0,0,0,0.5)') && !kit.includes('rgba(255,255,255,0.25)') && kit.includes('nestedBoxShadow(g)'), 'badge fill from `.thumb .pl`, no ring');
+  // зачем (Тень 12.10): значок «play» без белого кольца 0.25 — только тёмная заливка `.thumb .pl` и малая тень.
+  // Закон владельца 22.10: заливка — скрим «поверх картинок» ТЕКУЩЕЙ темы с той же плотностью 50 % (video_media_tones), а не постоянный чёрный.
+  const tones = read('components/video/video_media_tones.ts');
+  assert.ok(kit.includes('backgroundColor: media.playBadge') && tones.includes('playBadge: scrim(0.5)'), 'badge fill from `.thumb .pl` — theme scrim 50 %');
+  assert.ok(!kit.includes('rgba(255,255,255,0.25)') && !kit.includes('rgba(0,0,0,0.5)') && kit.includes('nestedBoxShadow(g)'), 'no ring, no fixed black');
   assert.ok(views.includes("ru: { thousand: ' тыс.'"), 'ru abbreviation');
   assert.ok(card.includes('formatViewCount(video.viewCount, lang)'), 'card uses the localized formatter');
   // зачем (05.10, 84418b35d): длительность теперь приходит из каталога (durationSec) — показываем только её, без вымысла.
   assert.ok(card.includes('formatVideoDuration(video.durationSec)'), 'duration only from the catalog durationSec');
-  assert.ok(card.includes('{duration ? <View style={styles.duration}'), 'no badge when the catalog has no duration');
+  assert.ok(card.includes('{duration ? <View style={[styles.duration,'), 'no badge when the catalog has no duration');
   assert.ok(!/duration\s*[:=]\s*['"`]\d/.test(card), 'no hard-coded duration text');
 });
 

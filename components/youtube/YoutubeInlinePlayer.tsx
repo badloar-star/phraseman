@@ -21,12 +21,12 @@ import { claimVideoAudio, type SpokenAudioClaim } from '../../modules/audio/audi
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useVideoMediaTones } from '../video/video_media_tones';
 import { plateBoxShadow } from '../v2/ShadowSurface';
 import { trainNavMark } from '../../app/train_nav_trace';
 import { videoOpenMark } from '../../app/video_open_trace';
 import { FlowText } from '../text-integrity';
 
-const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
   'https://www.youtube.com',
@@ -88,6 +88,8 @@ export default function YoutubeInlinePlayer({
   const { theme: t, isDark, themeMode, liquidGlassThemeId } = useTheme();
   // зачем (Сверка video-011): вокруг плеера была толстая светлая рамка старой палитры; в стиле «Тень» (12.10) кромки нет вовсе — плашка с тенью.
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10): сцена под плеером, кнопка и значок поверх кадра — роли темы (video_media_tones)
+  const media = useVideoMediaTones();
   const [playerError, setPlayerError] = useState(false);
   // зачем ([NAV-PAINT-TRACE], 15.10): размонтирование плеера/WebView — отдельная отметка цепочки перехода с ролика
   useEffect(() => () => trainNavMark('player WebView unmount'), []);
@@ -190,10 +192,10 @@ export default function YoutubeInlinePlayer({
     return () => clearTimeout(timer);
   }, [playerError, active, videoId, playerKey]);
   const renderLoading = useCallback(() => (
-    <View style={styles.playerLoading}>
+    <View style={[styles.playerLoading, { backgroundColor: media.stage }]}>
       <ActivityIndicator color={t.accentGraphic ?? chrome.accent} />
     </View>
-  ), [chrome.accent, t.accentGraphic]); // зачем (светлый акцент): спиннер — графика, deps включают токен
+  ), [chrome.accent, t.accentGraphic, media.stage]); // зачем (светлый акцент): спиннер — графика, deps включают токен
   const handleLoadStart = useCallback(() => setPlayerError(false), []);
   const handlePlayerError = useCallback(() => {
     console.warn('[VIDEO-PLAYER] player error', JSON.stringify({ videoId }));
@@ -280,7 +282,7 @@ export default function YoutubeInlinePlayer({
   if (!active) return null;
 
   const playerSurface = (
-    <View style={[styles.playerWrap, presentation === 'preview' ? styles.previewPlayerWrap : styles.cardPlayerWrap]}>
+    <View style={[styles.playerWrap, { backgroundColor: media.stage }, presentation === 'preview' ? styles.previewPlayerWrap : styles.cardPlayerWrap]}>
       {!playerError ? (
         <WebView
           ref={webViewRef}
@@ -301,7 +303,7 @@ export default function YoutubeInlinePlayer({
           onError={handlePlayerError}
           onHttpError={handlePlayerError}
           onShouldStartLoadWithRequest={(request) => shouldKeepLingmanPlayerNavigationInApp(request.url)}
-          style={styles.webview}
+          style={[styles.webview, { backgroundColor: media.stage }]}
         />
       ) : (
         <View testID="lingman-player-poster" style={styles.error}>
@@ -321,9 +323,9 @@ export default function YoutubeInlinePlayer({
               accessibilityRole="button"
               accessibilityLabel={copy.close}
               onPress={onClose}
-              style={styles.previewButton}
+              style={[styles.previewButton, { backgroundColor: media.control }]}
             >
-              <Ionicons name="close" size={22} color={MEDIA_INK} />
+              <Ionicons name="close" size={22} color={media.ink} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -332,7 +334,7 @@ export default function YoutubeInlinePlayer({
   );
 
   if (presentation === 'preview') {
-    return <View testID="lingman-inline-player" style={styles.previewShell}>{playerSurface}</View>;
+    return <View testID="lingman-inline-player" style={[styles.previewShell, { backgroundColor: media.stage }]}>{playerSurface}</View>;
   }
 
   return (
@@ -358,16 +360,16 @@ export default function YoutubeInlinePlayer({
 
 const styles = StyleSheet.create({
   shell: { borderRadius: 20, overflow: 'hidden', marginBottom: 12 }, // overflow нужен: углы плеера; boxShadow рисуется вне контейнера клипа (Fabric)
-  previewShell: { flex: 1, width: '100%', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  previewShell: { flex: 1, width: '100%' },
   header: { minHeight: 56, paddingHorizontal: 12, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', gap: 8 },
   title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' },
   roundButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  playerWrap: { width: '100%', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  playerWrap: { width: '100%' },
   cardPlayerWrap: { aspectRatio: 16 / 9 },
   previewPlayerWrap: { flex: 1 },
-  webview: { flex: 1, backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
-  playerLoading: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  webview: { flex: 1 },
+  playerLoading: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
   error: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
   previewActions: { position: 'absolute', top: 8, right: 8, zIndex: 2, flexDirection: 'row', gap: 8 },
-  previewButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(5,8,18,0.82)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  previewButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
 });

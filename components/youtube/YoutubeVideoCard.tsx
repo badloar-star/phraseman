@@ -12,6 +12,7 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { cleanYoutubeTitle } from '../../app/youtube_title_display';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useVideoMediaTones } from '../video/video_media_tones';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { plateBoxShadow, raisedBoxShadow } from '../v2/ShadowSurface';
 import { formatViewCount } from '../video/formatViewCount';
@@ -44,6 +45,8 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10): сцена под превью, вуаль и время поверх кадра — роли темы (video_media_tones)
+  const media = useVideoMediaTones();
   const compactLayout = compact && !inlinePlayer;
   const watch = triLang(lang, { ru: 'Смотреть', uk: 'Дивитися', en: 'Watch', es: 'Ver', 'pt-BR': 'Assistir', vi: 'Xem', id: 'Tonton', tr: 'İzle', pl: 'Oglądaj' });
   const stateLabel = video.state === 'live'
@@ -67,17 +70,17 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
   const metaParts = [formatRelativeVideoDate(video.publishedAt, lang), views, savedLine].filter(Boolean);
   const content = (
     <>
-      <View style={[styles.thumbWrap, compactLayout && styles.thumbCompact, inlinePlayer ? styles.thumbInPlayingCard : { boxShadow: highlighted ? raisedBoxShadow(g) : plateBoxShadow(g) }]}>
+      <View style={[styles.thumbWrap, { backgroundColor: media.stage }, compactLayout && styles.thumbCompact, inlinePlayer ? styles.thumbInPlayingCard : { boxShadow: highlighted ? raisedBoxShadow(g) : plateBoxShadow(g) }]}>
         {/* зачем (координатор Q39): мягкое раскрытие ролика — см. components/video/videoMotion.ts. */}
         {inlinePlayer ? <Animated.View entering={VIDEO_PLAYER_REVEAL} style={styles.thumb}>{inlinePlayer}</Animated.View> : (
           <>
             {/* Лента: только диск — декодированные обложки ушедших карточек не держим в памяти. */}
             <Image source={{ uri: feedThumbUrl(video.thumbnailUrl, compactLayout) }} style={styles.thumb} contentFit="cover" transition={120} cachePolicy="disk" recyclingKey={video.id} />
-            <View style={styles.scrim} />
+            <View style={[styles.scrim, { backgroundColor: media.veil }]} />
             {/* зачем: `.thumb .pl` макета — круглая «play» слева-снизу кадра; кадр целиком и есть кнопка «Смотреть». */}
             <VideoPlayBadge small={compactLayout} />
             {/* зачем (video-009): `.du` макета — длительность справа внизу; без данных (старый сервер, премьера) бейджа нет. */}
-            {duration ? <View style={styles.duration} pointerEvents="none"><Text style={styles.durationText}>{duration}</Text></View> : null}
+            {duration ? <View style={[styles.duration, { backgroundColor: media.badge }]} pointerEvents="none"><Text style={[styles.durationText, { color: media.ink }]}>{duration}</Text></View> : null}
           </>
         )}
       </View>
@@ -137,11 +140,11 @@ const styles = StyleSheet.create({
   gridCard: { borderRadius: 16, marginBottom: 20 },
   compactCard: { borderRadius: 12, flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 16 },
   playingCard: { borderRadius: 20 },
-  thumbWrap: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#050505', borderRadius: 16, overflow: 'hidden' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  thumbWrap: { width: '100%', aspectRatio: 16 / 9, borderRadius: 16, overflow: 'hidden' },
   thumbInPlayingCard: { borderTopLeftRadius: 20, borderTopRightRadius: 20, borderBottomLeftRadius: 0, borderBottomRightRadius: 0 },
   thumbCompact: { width: 150, aspectRatio: 16 / 9, borderRadius: 12 },
   thumb: { ...StyleSheet.absoluteFillObject },
-  scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.10)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  scrim: { ...StyleSheet.absoluteFillObject },
   state: { alignSelf: 'flex-start', minHeight: 27, borderRadius: 14, paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 9 },
   stateText: { fontSize: 13, fontWeight: '700', letterSpacing: 0.3 },
   body: { paddingTop: 10, paddingBottom: 2 },
@@ -149,8 +152,8 @@ const styles = StyleSheet.create({
   bodyPlaying: { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 14 },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   // `.du`: 22 высота, поля 7, радиус 7, чёрный 72%, 12/700 → 13 по D145.
-  duration: { position: 'absolute', right: 10, bottom: 10, height: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
-  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 17, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  duration: { position: 'absolute', right: 10, bottom: 10, height: 22, paddingHorizontal: 7, borderRadius: 7, alignItems: 'center', justifyContent: 'center' },
+  durationText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   // владелец 11.10: в списке роликов плейлиста название компактнее — 13/17 вес 600, мета 11/14 приглушённым акцентным тоном.
   titleCompact: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   meta: { marginTop: 4, fontSize: 13, fontWeight: '700' },

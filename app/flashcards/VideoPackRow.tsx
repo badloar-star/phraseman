@@ -22,6 +22,7 @@ import { pluralWord } from '../../constants/plural';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useVideoMediaTones } from '../../components/video/video_media_tones';
 import type { Theme } from '../../constants/theme';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -34,7 +35,6 @@ import { DebugLogger } from '../debug-logger';
 import { isDevCardsFail } from '../dev_cards_state';
 import VideoThumb from './VideoThumb';
 
-const MEDIA_INK = '#FFFFFF'; // theme-exempt: белый значок/текст поверх видео — в любой теме
 
 /** Превью 16:9 — те же числа, что в макете. */
 const THUMB_W = 112;
@@ -131,6 +131,8 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
   const styles = useScaledTextStyles(baseStyles);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10): плашки и значок поверх кадра — роли темы (video_media_tones)
+  const media = useVideoMediaTones();
   const title = packTitleForInterface(pack, lang) || pack.codeName || pack.id;
   const duration = formatDuration(pack.videoDurationSec);
   const thumbUrl = useMemo(() => youtubeThumbnailUrl(pack.videoId), [pack.videoId]);
@@ -185,7 +187,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               {/* зачем (координатор 12.10, cards-028): превью и запасной вид при ошибке — в VideoThumb */}
               <VideoThumb surface="video_pack_card" id={pack.id} videoId={pack.videoId} thumbUrl={thumbUrl} title={title} g={g} showTitle />
               {duration ? (
-                <View style={styles.largeDuration} pointerEvents="none">
+                <View style={[styles.largeDuration, { backgroundColor: media.badge }]} pointerEvents="none">
                   <Text style={[styles.durationText, { color: g.mediaInk }]}>{duration}</Text>
                 </View>
               ) : null}
@@ -236,13 +238,13 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
             <VideoThumb surface={plain ? 'video_pack_plain' : 'video_pack_card'} id={pack.id} videoId={pack.videoId} thumbUrl={thumbUrl} title={title} g={g} showTitle={false} />
             {/* зачем (Сверка 11.10, макет video-redesign #c1, экран 4): на обложке строки вкладки «Наборы» нет ни ▶, ни длительности. */}
             {plain ? null : (
-              <View style={styles.playCircle} pointerEvents="none">
-                <Ionicons name="play" size={16} color={MEDIA_INK} />
+              <View style={[styles.playCircle, { backgroundColor: media.playCircle }]} pointerEvents="none">
+                <Ionicons name="play" size={16} color={media.ink} />
               </View>
             )}
             {duration && !plain ? (
-              <View style={styles.duration} pointerEvents="none">
-                <Text style={styles.durationText}>{duration}</Text>
+              <View style={[styles.duration, { backgroundColor: media.badge }]} pointerEvents="none">
+                <Text style={[styles.durationText, { color: media.ink }]}>{duration}</Text>
               </View>
             ) : null}
             {opening ? (
@@ -325,7 +327,7 @@ const baseStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  playCircle: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.45)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  playCircle: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   duration: {
     position: 'absolute',
     right: 5,
@@ -333,14 +335,13 @@ const baseStyles = StyleSheet.create({
     borderRadius: 6,
     paddingHorizontal: 5,
     paddingVertical: 1,
-    backgroundColor: 'rgba(0,0,0,0.72)', // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
   },
-  durationText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: '#FFFFFF' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  durationText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
   // cards-v2 videoAll(): кадр 16:9 r18; тень на внешнем слое, клип по скруглению — на внутреннем.
   largeShadow: { borderRadius: 18 },
   largeThumb: { aspectRatio: 16 / 9, borderRadius: 18, overflow: 'hidden' },
-  largeDuration: { position: 'absolute', right: 8, bottom: 10, paddingHorizontal: 7, minHeight: 22, borderRadius: 6, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.72)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  largeDuration: { position: 'absolute', right: 8, bottom: 10, paddingHorizontal: 7, minHeight: 22, borderRadius: 6, justifyContent: 'center' },
   largeProgress: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 3 },
   largeMeta: { marginTop: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
   largeText: { flex: 1, minWidth: 0 },

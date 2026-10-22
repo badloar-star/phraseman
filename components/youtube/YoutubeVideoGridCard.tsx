@@ -12,6 +12,7 @@ import { triLang } from '../../constants/i18n';
 import { cleanYoutubeTitle } from '../../app/youtube_title_display';
 import { pluralWord } from '../../constants/plural';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useVideoMediaTones } from '../video/video_media_tones';
 import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
@@ -37,6 +38,8 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10): плашка и время поверх кадра — роли темы (video_media_tones)
+  const media = useVideoMediaTones();
   // зачем: межстрочный растёт с системным размером шрифта (названия не обрезаются и не слипаются).
   const styles = useScaledTextStyles(baseStyles);
   const watch = triLang(lang, { ru: 'Смотреть', uk: 'Дивитися', en: 'Watch', es: 'Ver', 'pt-BR': 'Assistir', vi: 'Xem', id: 'Tonton', tr: 'İzle', pl: 'Oglądaj' });
@@ -71,7 +74,7 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
         <View style={[styles.thumb, { backgroundColor: g.opaqueControl }, highlighted ? { boxShadow: raisedBoxShadow(g), transform: [{ translateY: RAISED_LIFT }] } : { boxShadow: plateBoxShadow(g) }]}>
           {/* Лента: только диск — декодированные обложки ушедших карточек не держим в памяти. */}
           <Image accessible={false} source={{ uri: feedThumbUrl(video.thumbnailUrl, true) }} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} cachePolicy="disk" recyclingKey={video.id} />
-          {duration ? <View style={styles.duration} pointerEvents="none"><Text style={styles.durationText}>{duration}</Text></View> : null}
+          {duration ? <View style={[styles.duration, { backgroundColor: media.badge }]} pointerEvents="none"><Text style={[styles.durationText, { color: media.ink }]}>{duration}</Text></View> : null}
         </View>
         {/* зачем (владелец 11.10: «названия слишком крупные — в половину меньше, компактно и красиво»): 13/17 вес 600, максимум 2 строки;
             место под две строки резервируется всегда — карточки в ряду одной высоты. Мета — 11 приглушённым акцентным тоном темы. */}
@@ -116,8 +119,8 @@ const baseStyles = StyleSheet.create({
   // `.th` макета: 16:9, радиус 14; кромки нет (стиль «Тень»).
   thumb: { width: '100%', aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden' },
   // `.du`: высота 22, поля 7, радиус 7, чёрный 70 %, справа-снизу 7; 12 → 13 по шкале D145.
-  duration: { position: 'absolute', right: 7, bottom: 7, minHeight: 22, paddingHorizontal: 7, borderRadius: 7, backgroundColor: 'rgba(0,0,0,0.7)', alignItems: 'center', justifyContent: 'center' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
-  durationText: { color: '#FFFFFF', fontSize: 13, lineHeight: 17, fontWeight: '700' }, // theme-exempt: белый значок/текст поверх видео — в любой теме
+  duration: { position: 'absolute', right: 7, bottom: 7, minHeight: 22, paddingHorizontal: 7, borderRadius: 7, alignItems: 'center', justifyContent: 'center' },
+  durationText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   // `.gmr .bm` (video-redesign.html): круг 28 в правом краю строки меты; строка минимум 28 — карточки одной высоты.
   metaRow: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 28 },
   metaTap: { flex: 1, minWidth: 0 },

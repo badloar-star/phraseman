@@ -6,6 +6,8 @@ import type { YoutubeCatalogManifest } from '../../shared/youtube_catalog_contra
 import type { YoutubeChannelPreference } from '../../app/youtube_channel_preference';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { colorWithAlpha } from '../v2/plateAlpha';
 import { triLang } from '../../constants/i18n';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import PressableHybrid from '../PressableHybrid';
@@ -38,7 +40,9 @@ function ChannelRowContent({ channel, checked, t }: { channel: YoutubeManifestCh
 
 export default function YoutubeChannelPickerSheet({ visible, manifest, preference, onSelect, onClose, motionVariant = 'hybrid' }: Props) {
   const { lang } = useLang();
-  const { theme: t } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  // зачем (закон владельца 22.10): затемнение — скрим темы, ручка — приглушённый текст темы 45 % (как ручки шторок визитки)
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const title = triLang(lang, { ru: 'Наши каналы', uk: 'Наші канали', en: 'Our channels', es: 'Nuestros canales', 'pt-BR': 'Nossos canais', vi: 'Kênh của chúng tôi', id: 'Kanal kami', tr: 'Kanallarımız', pl: 'Nasze kanały' });
   const closeLabel = triLang(lang, { ru: 'Закрыть выбор канала', uk: 'Закрити вибір каналу', en: 'Close channel picker', es: 'Cerrar selector de canal', 'pt-BR': 'Fechar seletor de canal', vi: 'Đóng bộ chọn kênh', id: 'Tutup pemilih kanal', tr: 'Kanal seçiciyi kapat', pl: 'Zamknij wybór kanału' });
@@ -73,7 +77,7 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <SheetSwipeRoot>
-      <Pressable style={styles.scrim} onPress={onClose} accessibilityRole="button" accessibilityLabel={closeLabel} />
+      <Pressable style={[styles.scrim, { backgroundColor: glass.scrim }]} onPress={onClose} accessibilityRole="button" accessibilityLabel={closeLabel} />
       {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает выбор канала тем же onClose, что тап по фону. Лист position:absolute — пока без следования за пальцем (PM-302) */}
       <SheetSwipeClose name="youtube-channel-picker" onClose={onClose} follow={false}>
       <View style={[styles.sheet, {
@@ -81,7 +85,7 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
         paddingBottom: Math.max(32, insets.bottom + 12),
         marginTop: insets.top + 12,
       }]}>
-        <View style={styles.handle} />
+        <View style={[styles.handle, { backgroundColor: colorWithAlpha(glass.mutedText, 0.45) }]} />
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
         <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
           {channels.map((channel) => {
@@ -101,9 +105,9 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
 }
 
 const styles = StyleSheet.create({
-  scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.56)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  scrim: { ...StyleSheet.absoluteFillObject },
   sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: '78%', borderTopLeftRadius: 28, borderTopRightRadius: 28, padding: 18, paddingBottom: 32 },
-  handle: { alignSelf: 'center', width: 42, height: 4, borderRadius: 2, backgroundColor: 'rgba(128,128,128,0.45)', marginBottom: 16 }, // theme-exempt: нейтрально-серая ручка шторки видимая на любой теме
+  handle: { alignSelf: 'center', width: 42, height: 4, borderRadius: 2, marginBottom: 16 },
   title: { fontSize: 22, fontWeight: '900', marginBottom: 14 },
   list: { gap: 9 },
   row: { minHeight: 60, borderRadius: 18, padding: 10, flexDirection: 'row', alignItems: 'center', gap: 11 },

@@ -21,6 +21,8 @@ const ZONE = [
   // зона «Сообщения / инбокс» (координатор → 8 · МОМЕНТЫ, волна 2): центр уведомлений, входящие, личное сообщение, окна разрешения
   'components/NotificationCenterButton.tsx', 'components/AppMessagesInbox.tsx', 'components/AppMessageAnnouncementModal.tsx',
   'components/PersonalAdminMessageModal.tsx', 'components/NotificationPermissionModal', 'components/notification_center_tones.ts',
+  // зона «Видео» (волна 3): вкладка, плеер, карточки и премьера YouTube, строка и набор видео в Карточках
+  'app/(tabs)/video.tsx', 'components/video', 'components/youtube', 'app/flashcards/VideoPackRow.tsx', 'app/flashcards/VideoSetView.tsx',
 ];
 const SKIP = /\.test\.|preview|fixtures|\.generated\.|v2_kit|KitLiquidGlass|plateTone/i;
 const reHex = /#(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{3,4})(?![0-9A-Za-z])/g;

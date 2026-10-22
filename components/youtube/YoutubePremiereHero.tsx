@@ -20,6 +20,7 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { cleanYoutubeTitle, premiereCountdownSpoken, premiereCountdownText } from '../../app/youtube_title_display';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useVideoMediaTones } from '../video/video_media_tones';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 
@@ -58,6 +59,8 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10): сцена под обложкой и блик-развёртка — роли темы (video_media_tones)
+  const media = useVideoMediaTones();
   const runtimeActive = useRuntimeActive(true);
   const reducedMotion = useReducedMotion();
   const [nowMs, setNowMs] = useState(Date.now());
@@ -142,10 +145,10 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
         accessibilityLabel={live ? copy.join : cleanYoutubeTitle(video.title)}
         onPress={onWatch}
         activeOpacity={0.86}
-        style={styles.thumbnail}
+        style={[styles.thumbnail, { backgroundColor: media.stage }]}
       >
         <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" cachePolicy="memory-disk" recyclingKey={video.id} />
-        {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
+        {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, { backgroundColor: media.sheen }, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
         {/* зачем (владелец 18.10, «Да, убрать плашки с обложки»): на кадре только ▶ — состояние премьеры ушло одной строкой под обложку (video.html `.hero .st`). */}
         <VideoPlayBadge />
       </TouchableOpacity>
@@ -186,9 +189,9 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
 const styles = StyleSheet.create({
   // зачем: `.hero` макета — плашка радиус 22, поля 12, кадр внутри радиусом 14.
   hero: { borderRadius: 22, padding: 12, marginTop: 18, marginBottom: 10 }, // зачем (Тень 12.10): без кромки и overflow (клип тени); отступ снизу 10 — тень должна «дышать»
-  thumbnail: { aspectRatio: 16 / 9, position: 'relative', borderRadius: 14, overflow: 'hidden', backgroundColor: '#050505' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
+  thumbnail: { aspectRatio: 16 / 9, position: 'relative', borderRadius: 14, overflow: 'hidden' },
   image: { ...StyleSheet.absoluteFillObject },
-  sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' }, // theme-exempt: скрим/плашка поверх видео — тёмная в любой теме
+  sweep: { position: 'absolute', top: -100, bottom: -100, width: 100 },
   details: { paddingTop: 12 },
   // `.hero .st` макета: строка под названием, 13/17 вес 600 (шкала D145), значок 16 и текст через 7 px.
   stateRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 4 },

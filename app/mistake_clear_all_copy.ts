@@ -36,8 +36,8 @@ export const MISTAKE_CLEAR_ALL_COPY: Readonly<Record<Lang, MistakeClearAllCopy>>
     failed: "Couldn't remove the mistakes. Try again", undoFailed: "Couldn't restore the mistakes", mistakes: { one: 'mistake', few: 'mistakes', many: 'mistakes' },
   },
   es: {
-    menu: 'Borrar todos los errores', confirmTitle: '¿Quitar {N} del repaso?', confirm: 'Quitar', cancel: 'Cancelar', done: 'Errores eliminados', undo: 'Deshacer',
-    failed: 'No se pudieron eliminar los errores. Inténtalo de nuevo', undoFailed: 'No se pudieron recuperar los errores', mistakes: { one: 'error', few: 'errores', many: 'errores' },
+    menu: 'Borrar todos los errores', confirmTitle: '¿Borrar {N} del repaso?', confirm: 'Borrar', cancel: 'Cancelar', done: 'Errores borrados', undo: 'Deshacer',
+    failed: 'No se pudieron borrar los errores. Inténtalo de nuevo', undoFailed: 'No se pudieron recuperar los errores', mistakes: { one: 'error', few: 'errores', many: 'errores' },
   },
   'pt-BR': {
     menu: 'Limpar todos os erros', confirmTitle: 'Remover {N} da revisão?', confirm: 'Remover', cancel: 'Cancelar', done: 'Erros removidos', undo: 'Desfazer',
@@ -52,7 +52,7 @@ export const MISTAKE_CLEAR_ALL_COPY: Readonly<Record<Lang, MistakeClearAllCopy>>
     failed: 'Gagal menghapus kesalahan. Coba lagi', undoFailed: 'Gagal memulihkan kesalahan', mistakes: { one: 'kesalahan', few: 'kesalahan', many: 'kesalahan' },
   },
   tr: {
-    menu: 'Tüm hataları temizle', confirmTitle: '{N} tekrardan kaldırılsın mı?', confirm: 'Kaldır', cancel: 'İptal', done: 'Hatalar kaldırıldı', undo: 'Geri al',
+    menu: 'Tüm hataları temizle', confirmTitle: '{N} listeden kaldırılsın mı?', confirm: 'Kaldır', cancel: 'İptal', done: 'Hatalar kaldırıldı', undo: 'Geri al',
     failed: 'Hatalar kaldırılamadı. Tekrar dene', undoFailed: 'Hatalar geri getirilemedi', mistakes: { one: 'hata', few: 'hata', many: 'hata' },
   },
   pl: {

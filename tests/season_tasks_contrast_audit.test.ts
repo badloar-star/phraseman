@@ -286,3 +286,27 @@ describe('Главная, вариант 2: плашки на подложке 5
     expect(misses).toEqual([]);
   });
 });
+
+// зачем (координатор 22.10: «Главную в тёмной теме всех уровней — fit, «Фраза дня», плитки — по коду на контраст текста ≥ 4,5»): сцена-Главная красит карточку «Сегодня», плитки (подпись внутри) и «Фразу дня» плитой g.opaqueCard,
+// подписи вкладок (11/600) лежат на капсуле таб-бара; обе темы × все темы оформления × все уровни.
+describe('Главная со «Сценой»: карточка «Сегодня», плитки, «Фраза дня», подписи вкладок (аудит 22.10)', () => {
+  const rows: { pair: string; ratio: number; need: number; tag: string }[] = [];
+  for (const appearance of ['light', 'dark'] as const) {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const level of ['calm', 'accent', 'max'] as const) {
+        const g = liquidGlassTokens(id, { level, appearance } as never);
+        const tag = `${appearance}/${id}/${level}`;
+        const push = (pair: string, ratio: number): void => { rows.push({ pair, ratio, need: TEXT, tag }); };
+        push('«Сегодня»/плитка/«Фраза дня»: заголовок на плите', contrastRatio(g.text, g.opaqueCard));
+        push('«Сегодня»/«Фраза дня»: secondary на плите', contrastRatio(g.secondary, g.opaqueCard));
+        push('счётчик строки «Сегодня» (secondary) на плите', contrastRatio(g.secondary, g.opaqueCard));
+        push('подпись вкладки: неактивная (mutedText) на капсуле', contrastRatio(g.mutedText, g.bgBottom));
+        push('подпись вкладки: активная на капсуле (светлая — accentText, тёмная — accentBright)', contrastRatio(appearance === 'light' ? g.accentText : g.accentBright, g.bgBottom));
+      }
+    }
+  }
+  it('ни одна пара не ниже нормы', () => {
+    const misses = rows.filter((r) => r.ratio < r.need).map((r) => `${r.tag} · ${r.pair}: ${r.ratio.toFixed(2)} < ${r.need}`);
+    expect(misses).toEqual([]);
+  });
+});

@@ -10,8 +10,8 @@ export interface LearningV2FactoryNativeManifestRowV1 {
   readonly practiceTitlesByAuthoredLocale: Readonly<Record<"ru" | "uk", readonly Readonly<{ ordinal: number; title: string }>[]>>;
   readonly loadIntro: () => unknown; readonly loadLearner: (locale: "ru" | "uk") => unknown; readonly loadAnswers: () => unknown; readonly loadAuxiliary?: () => unknown;
 }
-export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifestRowV1[] = Object.freeze([
-  Object.freeze({
+export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifestRowV1[] = Object.freeze<LearningV2FactoryNativeManifestRowV1[]>([
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 1,
     sourceFingerprint: "8c81479f63006c2aa0bdf69051b881478e6e51c75e251657fa586cb85ff206f8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -25,7 +25,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 2,
     sourceFingerprint: "9780100d7fa784a076a151f7833da9d4fe7b9b6587a38c96ca5783de4d402a0e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -39,7 +39,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 3,
     sourceFingerprint: "2eb52eac458dd9713ed07393511b7571c41757c70cf2f1c173b341b84a1ec0a0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -53,7 +53,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 4,
     sourceFingerprint: "62dba5a0f02bf4eb7c38546fb8a60b1dc809c25cdc8839580066ceef13e810c8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -67,7 +67,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 5,
     sourceFingerprint: "5cc18e558d212b0eefbcb95535c81df5236d46ee644386816d019ae3acc570c8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -81,7 +81,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 6,
     sourceFingerprint: "c7bdfe881edd2cf741b4c01cb2aec7ffa480e7e1c05b969440d3fc3e0c90984a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -95,7 +95,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 7,
     sourceFingerprint: "3ab170b76b5750c27eb8d5ad974fea46efec051d27d76f838a86d46a48031598",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -109,7 +109,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 8,
     sourceFingerprint: "7be5af114c71623a6ae4534ee1f67ff8313de318041b0b005271a9da7fa76aa4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -123,7 +123,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 9,
     sourceFingerprint: "3fb781f0c4fddb8025067ff66f8a26e006b580d693dcd231cc62c6b21be2aed0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -137,7 +137,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 10,
     sourceFingerprint: "1944e1bb4f2eaafc2d487d957340f76fa7d1a744d8b3d87fd660b56ca6f69245",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -151,7 +151,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 11,
     sourceFingerprint: "d8faf162b28c207f80d09aaeb8180e870d039e30cfce8dc263c3eb74447cb7d4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -165,7 +165,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 12,
     sourceFingerprint: "a7b785c7d704d6b0faefe456232eece3288455c7050ffbf3e8d29193b42220bd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -179,7 +179,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 13,
     sourceFingerprint: "58f34a8559b90d376ab7612da0a38338f90912f032b019e1ca1cfb839b84d5b5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -193,7 +193,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 14,
     sourceFingerprint: "41846fc4d28d90e0545a512e5331b015e90388150f2733f484babb68db594a9e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -207,7 +207,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 15,
     sourceFingerprint: "aff131c5a2afa6355256176a31b4cde0c9999db6a069e4601a4aed42ea7aaa1f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -221,7 +221,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 16,
     sourceFingerprint: "a65b9f9b6fc402b3e0ae78b4b7ea1de6512b0adbb2244bb164cd7776a0c2bd04",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -235,7 +235,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 17,
     sourceFingerprint: "32425b50802b8800797df86d77a0dcae55ce72605f110a807bef4d35787ea436",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -249,7 +249,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 18,
     sourceFingerprint: "a81054154a5d76f395d5d2da8f2d44e440451b7e6da4bf4cbe2d65b53c54b2c4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -263,7 +263,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 19,
     sourceFingerprint: "d4b29e67be6c72fb07e4a0bede3da1a5e7c1ec7a30ecdcbdef8a59a1e472715b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -277,7 +277,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 20,
     sourceFingerprint: "c856037d8290cbab6f4a655477d13f4119c3950f3566e3cc884d70ee44bcf459",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -291,7 +291,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 21,
     sourceFingerprint: "845bad1bbde09cda7f3847fbc8240169537abdaba7ed3091b4480990272c777d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -305,7 +305,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 22,
     sourceFingerprint: "1b73f27c185ee291688f68b42b5e28dd0f355977fd7852c4c985cb82a43447a0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -319,7 +319,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 23,
     sourceFingerprint: "a3dab845252f20ddf41c1b5c7c1469a4bb9cfe65ca082a3a382d19f0db7bce60",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -333,7 +333,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 24,
     sourceFingerprint: "df5845754e0cad0d86748e98990437586d1757a312ca351f4d5fa9fa34fc097e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -347,7 +347,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 25,
     sourceFingerprint: "d4f6050d3773e7eade0275fd058ad0c0a1e7dc653fc3b48fb86a0f195a67efe1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -361,7 +361,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 26,
     sourceFingerprint: "f9cb5b826c012bdd5b3e12dc4fe76ee9df2464d74ede1342ef225a4bff91f3f4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -375,7 +375,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 27,
     sourceFingerprint: "dd0ce0a7952db7510240c4f503558c4207a9e3db002d3dea4ac0b317d1c0268a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -389,7 +389,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 28,
     sourceFingerprint: "e0c1903ff7289b3ee8dee8e93f8516516f61e0174a624710e0f79c73a6843823",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -403,7 +403,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 29,
     sourceFingerprint: "376f21be595d185d20a6ae785c8087077ca49d34f89520c8f652fd02f125aa5e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -417,7 +417,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 30,
     sourceFingerprint: "fe854a17e0dbdc22bd85559bff80fd19af459614d412cda8a4019ca8dda6834e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -431,7 +431,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 31,
     sourceFingerprint: "f19cd3ad479bb69109ddd18da041921dd884b3d7895a4b96dc3ecb6ae10e8250",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -445,7 +445,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 32,
     sourceFingerprint: "bc2d7369481cafbf08cf1a14abf0b8e27ebaf6a4430b535a195259df5b8775e0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -459,7 +459,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 33,
     sourceFingerprint: "90807baa70ffda258993eeb37feab7bb4ea7b7a5439821f7fc8b9edd65907d55",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -473,7 +473,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 34,
     sourceFingerprint: "522e3a21086f30cad86b98876a90922d3ff236268ca5ff44467a512dc0ab2471",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -487,7 +487,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 35,
     sourceFingerprint: "3324e5339eafa058fc737430328c227e4b186cecd0c6f896abd0b6f748a08606",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -501,7 +501,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 36,
     sourceFingerprint: "04eb3f7a599dd172e124fcb6ef204ea5723fe1a639d9959c0af92cd743692421",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -515,7 +515,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 37,
     sourceFingerprint: "d78cb76b2b49ca96c2311a1d21aceb5072861ec5f692c56cff0965078b669fae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -529,7 +529,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 38,
     sourceFingerprint: "ec01d7388819b7449c622cd44e45b0ff599010a5f47dbe92408a22b2623334a1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -543,7 +543,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 39,
     sourceFingerprint: "20646c7f31647d3634e3f3384c48570e6b3532951176d295c60fa83609d99b57",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -557,7 +557,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 40,
     sourceFingerprint: "8c898333c26f5cc1c3114c194436bd001310715cf8c07473ff3e526e7bb9d4c2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -571,7 +571,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 41,
     sourceFingerprint: "843c9e98ed8ff37fba844c6d2bdd50ee7c1b44db0c05422553719cd1d7848196",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -585,7 +585,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 42,
     sourceFingerprint: "708e965d63212ebeabd1693c655753bd3b29957913dc50d7449f367b72bdcc77",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -599,7 +599,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 43,
     sourceFingerprint: "d85451c3bed6692e72252ada81628022097179aa7db35e9266e05fdf7f45e908",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -613,7 +613,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 44,
     sourceFingerprint: "b6f99469fec4d95d6045832cd503c504d50ac90f163bdd4230a8b2a1dbd73e76",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -627,7 +627,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 45,
     sourceFingerprint: "28a51d147d1bc32307ea67957f3325bd10a6b8a1f7cb66d83aa28a0ad8a68c32",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -641,7 +641,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 46,
     sourceFingerprint: "7f39413a24322603e404742929e3ce04fc159f83630cf6d5b2e1258169b673e8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -655,7 +655,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 47,
     sourceFingerprint: "9d8a696faa65a05d83a2e53ccfd391b75e8eadf0a5321a8a7156c7a40b8bca65",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -669,7 +669,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 48,
     sourceFingerprint: "6ea732618a2100fa2e27209a0a13715e71407d7fa9e2268d6ad1052c5eb3c093",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -683,7 +683,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 49,
     sourceFingerprint: "b714f7b47357a10242fe759f6e769ee91fb67c1fb2af4b65cfff5e7931ba5099",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -697,7 +697,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 50,
     sourceFingerprint: "b021d2c54ea7a281990765ed3ee70cb47ac4b27c17f0f1edbf5d89af3fe0527f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -711,7 +711,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 51,
     sourceFingerprint: "f927d12dbf8c64da0a5c7c60c9250ce4e2a31895af7e1db4a7f885956969396f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -725,7 +725,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 52,
     sourceFingerprint: "d15a52951e530e4f69c6979bd93260f61980fb2bd53677384dd1367f4690d44f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -739,7 +739,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 53,
     sourceFingerprint: "334f403241b2f3966e0e83b761c96a66d118e3fcb4ece9de6b33469f7a26d7d5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -753,7 +753,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 54,
     sourceFingerprint: "9cbf9b45e5e9dcfe3a784745e827edfa5fc87ed692986e1a7e4e350bc9479287",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -767,7 +767,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 55,
     sourceFingerprint: "95f08a0fa9aed442053584def56756cb4489c139ae30aa3507442a59df7e9956",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -781,7 +781,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 1, sessionOrdinal: 56,
     sourceFingerprint: "239196549a9b28091a39963a6c7385a631e40f2ecf340ce4ddba3a26d0221dad",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -795,7 +795,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l01/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l01/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 1,
     sourceFingerprint: "7d451217b5ab3bbb4db6ee2f31b5ac60a162e5065814332d9759373977b91143",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -809,7 +809,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 2,
     sourceFingerprint: "0cfb3987cfe62dc2c619e58020655a1174229f6c009c583769799d3f636f2524",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -823,7 +823,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 3,
     sourceFingerprint: "f967194ba64767cf7eea224bc19629143c0e92b7436f41c635e1478f972338ee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -837,7 +837,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 4,
     sourceFingerprint: "d78bf4373c57f5338e12834cacfd78741d1d4ce146ed19258f232c23eaa44548",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -851,7 +851,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 5,
     sourceFingerprint: "bb17a3a637a47992effc532f2d50d8adb980d19695f3de4aaa5e26a701dbe9ff",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -865,7 +865,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 6,
     sourceFingerprint: "34ada46aba7cd156f309fdb388833c43da1b86d42abaa40a4147cacee5178010",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -879,7 +879,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 7,
     sourceFingerprint: "8539fd0a001dbf4c2e55e5f12d919b3e5fc3a200658f30cd0dcb6b582b917332",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -893,7 +893,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 8,
     sourceFingerprint: "b9fb31b4613bd2d8b132610d3ebad13639804f92dfb7bd924bec6b48e27c60f6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -907,7 +907,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 9,
     sourceFingerprint: "3ca92ff157f4ad6caa0cfc700f589e0775cc54c664519c2a90a28cd77dfbc0c5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -921,7 +921,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 10,
     sourceFingerprint: "f295ea437f0d65d60bbe6ef4a785ca56fb84fab60c4125f3a224f7bf1dc840ff",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -935,7 +935,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 11,
     sourceFingerprint: "679290896f72a6b23e24cc2b3d4eec6a4500f72c3e1485e6a531c036aab02642",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -949,7 +949,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 12,
     sourceFingerprint: "c66a83758c9c3cc26d5766cea077b2c49887060fc2450a5afa73a06da8302a29",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -963,7 +963,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 13,
     sourceFingerprint: "0538e67826fc01852f45ebab019ad1958e19eef6512a21f9856d1078fb4b7fde",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -977,7 +977,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 14,
     sourceFingerprint: "35920dba70fafb07d45c2010ea7a3c5f18f8a3bae9cae7ccdad0a144cc335cf9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -991,7 +991,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 15,
     sourceFingerprint: "32f574fb7296c9d4f1ec5eb3f656da373db02731b30cd11a620b90650ce50c8d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1005,7 +1005,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 16,
     sourceFingerprint: "6625220cef71f167de15bb3cb3ac80f8e8409d4cc27cc59e288581d7f22d938b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1019,7 +1019,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 17,
     sourceFingerprint: "c2fd6164a83b4891f55e496243775433e660eaaf3770fe8566d5db659a94b09d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1033,7 +1033,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 18,
     sourceFingerprint: "af7f3345e9e0a69c9605987bdd4b4e2ffb777812495cfc75524b9c28a17fcdb7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1047,7 +1047,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 19,
     sourceFingerprint: "8a20e0999f8336356afd400dd0b774393b68e482b9330fbae7eb9e65ee3c14da",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1061,7 +1061,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 20,
     sourceFingerprint: "6f5f5d5062c5e5aab285c8967197fcd0527096ce72373c250957e4e0906c8fd9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1075,7 +1075,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 21,
     sourceFingerprint: "9bbcb5c67d2381375419873c66cdbc48aa1907f7de4f682c4c81c4e1094242d9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1089,7 +1089,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 22,
     sourceFingerprint: "9abe2aa236bfd865765de302ef464e1893f6d3591fe36a341ba761960c26a4b4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1103,7 +1103,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 23,
     sourceFingerprint: "61dce745c0d2687480677429dea3907d3304dc091601db7ff0d7bbd0246fe321",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1117,7 +1117,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 24,
     sourceFingerprint: "620f5d8945752bfbc38f5516cccba376266906a7cb4f55a065bf5c3e3f19193e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1131,7 +1131,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 25,
     sourceFingerprint: "8fe989d064d679551b4e7fece5ebefe1d9baf3f7b6d9d594ffbc7e3d98159d79",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1145,7 +1145,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 26,
     sourceFingerprint: "1ae5f7c083ab6e2282047566026f5cca7392845480a9a2da5b5cbd62d3839fc3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1159,7 +1159,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 27,
     sourceFingerprint: "a9843e0bc035c1b68bae3efaada3fbc6cfa30bdfeaeb28105576ab467eae8d36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1173,7 +1173,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 28,
     sourceFingerprint: "79ba714e86dfb1a9113bc1b5d122566bfb6d811742aa017c2df922f649e4bafb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1187,7 +1187,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 29,
     sourceFingerprint: "ad0f4f9b3d17679ae9b53ddc5008fc5727e1f36adbc33a6bff6e0f96a3f3b3ed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1201,7 +1201,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 30,
     sourceFingerprint: "ccd26f20703117e55c2efdd84523b1da0769d93ae2c589f16ab3939b121448cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1215,7 +1215,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 31,
     sourceFingerprint: "88213704f465b505a4ff9dafbd7134d3cc91628d7e727de5815b8db1ce7bf4e5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1229,7 +1229,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 32,
     sourceFingerprint: "07444922c6d0bfb2660cee483c48a7ad0edf6e20bff6449c5dac84e6e06b1b76",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1243,7 +1243,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 33,
     sourceFingerprint: "a26951aa6132fb9957b8a1453f3bdaa3027ef30cbc63f917ed806a22da1bb2b2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1257,7 +1257,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 34,
     sourceFingerprint: "1c24764bec6d9b4e2117399073f3e2360866a0bcb4192a0478f5f25114be5272",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1271,7 +1271,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 35,
     sourceFingerprint: "3d959147ba485836806fdee4c48d791e4d48894d643d59dc07a73c18b7bfc7e0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1285,7 +1285,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 36,
     sourceFingerprint: "2e404ba83d3e22c4950a1e812cf35bb3df1139ce0a7490b55f4d30e4633f8005",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1299,7 +1299,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 37,
     sourceFingerprint: "aabf30e0c79858d19a93de9882b9c2072873957f658404b71647db77bb05354c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1313,7 +1313,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 38,
     sourceFingerprint: "47bc38c4fb17117ae0aee8f363d4f83841bb0c7aa32874e69bb8d1b3bd84288a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1327,7 +1327,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 39,
     sourceFingerprint: "c95f7560eb311d6c86633b364e9855dad69c0b535874ad4de78464ef549aae36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1341,7 +1341,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 40,
     sourceFingerprint: "6e43a765206fe6f9efebe489b5ada06212344eb2771c08ceac0470a67c817e86",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1355,7 +1355,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 41,
     sourceFingerprint: "940b0a481d417d7b6a8487f56960abc0735ea2e655e4f566ee978bdb0e5fab11",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1369,7 +1369,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 42,
     sourceFingerprint: "032d86a6e3de07f7c6d0fb5e0affa05df4ca8cde65ce297ffcfcd945b3e0931f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1383,7 +1383,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 43,
     sourceFingerprint: "2471529964288cf6c2627605564e9de595d23480c685020c8054be4879d75a9a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1397,7 +1397,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 44,
     sourceFingerprint: "1b3c2f53cae653f50d019d38f9195bb413afdb34acc37ebf0c5d3957d59026f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1411,7 +1411,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 45,
     sourceFingerprint: "b05ea028e444008527cf9e1237df0c708e4b834a3ab9ad89d33aaa2d721eafb4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1425,7 +1425,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 46,
     sourceFingerprint: "d36090cad936e0ec260c98e8eb0fa11faad1645d86fcb17fe00b0de5e16e9c72",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1439,7 +1439,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 47,
     sourceFingerprint: "87404f64b38e2e88ba75c55acaeb34804e7ca3fce2c5bea41843df4262c8ce58",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1453,7 +1453,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 48,
     sourceFingerprint: "edb3792919877753df3787815676876cce4085aec634f5a20e0f1d9ba255c974",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1467,7 +1467,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 49,
     sourceFingerprint: "87b4000c220efa652f1bb88a302864cc113f170ef66642de804a7b823748e59a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1481,7 +1481,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 50,
     sourceFingerprint: "aa5be84a9f9f458f6b8840b7a50c1f962cef6637fcf591770ab9f07a6a62a067",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1495,7 +1495,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 51,
     sourceFingerprint: "f36e7f061d27c98a4ef629286fba7311839217b15bd471659acb98d5de327620",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1509,7 +1509,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 52,
     sourceFingerprint: "e2b279109b523f4992fa78a9685b1c8f44ebea4548b8e7e14ccebf76f1326800",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1523,7 +1523,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 53,
     sourceFingerprint: "87348eae6c813e3709ddad63edcb8f278187d690ac49de72b5e1895818c9d209",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1537,7 +1537,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 54,
     sourceFingerprint: "988d88362654ae6812baa9aad78a5b3deb94abfce29021e511d76a85d195c2eb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1551,7 +1551,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 55,
     sourceFingerprint: "c2d129742a87816f392becd15bce0b79b7fa26ebd6f12831d301f6adb1a8d937",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1565,7 +1565,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 2, sessionOrdinal: 56,
     sourceFingerprint: "334a3d564c147d696942dd86313ba27b1c3709b19092f3824cdccbf70cba698e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1579,7 +1579,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l02/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l02/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 1,
     sourceFingerprint: "343710bfb1819750c1ef1ec0e9cf914b0f5aa3f2053f953bbafba0191ff5cc23",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1593,7 +1593,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 2,
     sourceFingerprint: "b09fd7143f7257c7e7b6792ebea7ce51e5ce2ecabc2b72a297dbe88c902bcbec",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1607,7 +1607,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 3,
     sourceFingerprint: "83d88ee7aee89259bee324f9b68beca9bde7b9a172e2a884c1217e1b13c5e902",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1621,7 +1621,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 4,
     sourceFingerprint: "8caa31695b2b743ae89bdf3643c31924c51fb454b5b2c697d71f1d71a8b74970",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1635,7 +1635,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 5,
     sourceFingerprint: "fdd660b786bf31665abc53575ac1c52d8da6b938a75b92568005de0246a11c8b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1649,7 +1649,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 6,
     sourceFingerprint: "87860a7f8cb08ab5c398837d896b6ef05900d8740a9a14c0ab8f1964ab26f434",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1663,7 +1663,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 7,
     sourceFingerprint: "3502fac9344b84c8e872c016617876aeafd350d431d5e0ed6b4e1aa6d83203bf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1677,7 +1677,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 8,
     sourceFingerprint: "5aa203d33e9f363f66ef3a3bc96cae0bb21e5ddb68c03bbec3e2dfa7dd3bfc5a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1691,7 +1691,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 9,
     sourceFingerprint: "0f0d44d7fa3a3c576462fc75687595fa61a5aef11e638d37176ab67e3b2b3a76",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1705,7 +1705,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 10,
     sourceFingerprint: "0ebf0c02303ff3c38eeac1dcf0ee61335a1464fac616f79f25d85f29ef3b854c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1719,7 +1719,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 11,
     sourceFingerprint: "e2106ea4d569e30d6f2e77adda38eb4b3b51ebb900449d57e09a069474e28563",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1733,7 +1733,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 12,
     sourceFingerprint: "2aba8fe339c72cb2488d5a925305607b0b23ac6a373e6d37bc7d250423f32f88",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1747,7 +1747,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 13,
     sourceFingerprint: "c19cfd907b62cd9e474a46b7089c1f037d92c4ec8f20e79d61851a4cbe488420",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1761,7 +1761,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 14,
     sourceFingerprint: "7c047cd55e6c2ca2ed9ed1dec3954ea8384182c438e4347aadd0e4e01ab7b2e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1775,7 +1775,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 15,
     sourceFingerprint: "f722f5a60b9facc8b2dd1618199ddbfeab14220a0688b144eb0fca83ad13483f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1789,7 +1789,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 16,
     sourceFingerprint: "5ab758f20ca3d8347270ec9195bcd84cbbb26faf90030cdf962f297bc5f97aaf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1803,7 +1803,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 17,
     sourceFingerprint: "604ef68681a844e897e180ea5df2165aa2b57621676a2db5e316b8829b8ddd2d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1817,7 +1817,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 18,
     sourceFingerprint: "b5d10e778903589e76478affbeb251647d8a0d2dcd58324024a6a7dd502be624",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1831,7 +1831,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 19,
     sourceFingerprint: "cb2cfdecc223a3f13454f86766d37f6427d586a489334e867317eb40beab1b89",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1845,7 +1845,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 20,
     sourceFingerprint: "7cc0ef6e63b2a2a84579b109ffdadc4b426d7a8097be068b1e6798664087237d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1859,7 +1859,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 21,
     sourceFingerprint: "8f95b09d90584b8536ca66a0f8047891e563c5111cd335042aaaf8fd4b011d2f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1873,7 +1873,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 22,
     sourceFingerprint: "dd44fad1dbc6630365cb72dd93ebf144d19340d360c75e75333c10c724f024ba",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1887,7 +1887,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 23,
     sourceFingerprint: "ce2efd4a6d5d0d8fc98e67fc8de13eeac0ae19b38af5b5338548bc75341d00b5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1901,7 +1901,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 24,
     sourceFingerprint: "1230fd662ed65bffc965488a403af2ad01bdbb2d7ce67db76152718ee7e893d8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1915,7 +1915,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 25,
     sourceFingerprint: "b2f4d4a52548773338cfcc89bf2e5c1418fd20a0bea5e70fb023a74efed05ccc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1929,7 +1929,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 26,
     sourceFingerprint: "06ee584e7023208b31144eb172ccefe17c7dfb724536787ec1f9e1b3a6cc3f12",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1943,7 +1943,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 27,
     sourceFingerprint: "9ee32f328989b0c112dc1f9b0ff2b31b78f256cf745310b97cacbcf5d0958100",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1957,7 +1957,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 28,
     sourceFingerprint: "13411016149525f68a7ea5d12931ac3690a3f668323bc38d6c676ebba3b47797",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1971,7 +1971,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 29,
     sourceFingerprint: "5700cd9c1b7ce67db13deddf8ed6f1b0ee6f35eec6f3e013b7739bd410bf83a1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1985,7 +1985,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 30,
     sourceFingerprint: "c40b4f2c34f87240207b889409d14ed3100ef584b18b35d146965b0545759799",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -1999,7 +1999,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 31,
     sourceFingerprint: "044a27b81cab4c2e23393c68be7c6f208ca6c75b3cfc475082c02c85da762cd6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2013,7 +2013,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 32,
     sourceFingerprint: "376850e8d7146a4e4cf2c2471e4a8f5cc8959c494becbec0b3545aac527b93b2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2027,7 +2027,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 33,
     sourceFingerprint: "74c2f902bf785282ea7bda320b7fca5f831a860bc9f06f619dcbf4bb2dd603e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2041,7 +2041,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 34,
     sourceFingerprint: "1c458ee65259c0fe0d308c37cfb195ddc89585d4be7844f866285ffcadb82252",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2055,7 +2055,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 35,
     sourceFingerprint: "7f9b46faba4dab045bd4d1e52b9258193a263cd913c54048b4ad8934393b3991",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2069,7 +2069,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 36,
     sourceFingerprint: "01af2a306167c8be2c48360db89a514013a672eb8419331d3803d8221cb26429",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2083,7 +2083,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 37,
     sourceFingerprint: "1e67fc1b6b66fe63d2f50ffe71dedcdc180d768f52ffb7477978c49cf4f19c0c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2097,7 +2097,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 38,
     sourceFingerprint: "997d417b953aa21878064eff60d9cefc97c7e5f5ca6949b34161b27902ce7c1c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2111,7 +2111,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 39,
     sourceFingerprint: "ae09f548b11ac1306d8530834155c97090e191d017541a62d2ecfb2202c6c402",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2125,7 +2125,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 40,
     sourceFingerprint: "87c83f619e659d551f8e57857e04e4389c03b672f72d201ccdda6f9fe0c14740",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2139,7 +2139,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 41,
     sourceFingerprint: "3d4b7b76343a3e6fc65f23eefaae8147f7d11989d8b5af94521a0abcd547a35d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2153,7 +2153,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 42,
     sourceFingerprint: "37a6f8fd36757a64565784b641d041a62f1cb09c1f3dde211346d777ac1b52a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2167,7 +2167,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 43,
     sourceFingerprint: "440c54cc084f90493845148c961d21089ea573ff713bb62bbe9b28178f94ca39",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2181,7 +2181,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 44,
     sourceFingerprint: "e58fd66724b21b0fd925329905d9b15dd32b4ac7059fa0b1fddbb86f4886ba60",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2195,7 +2195,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 45,
     sourceFingerprint: "1cde343f0be98d9ee070f190e1d8f0cad650f0458ecaa646a9582dfc8613913f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2209,7 +2209,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 46,
     sourceFingerprint: "ae1b32c5e64d56d50248b38276e874655245e29125a867cbe8067deeb00430cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2223,7 +2223,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 47,
     sourceFingerprint: "4cc85f9fb9bb2d07e1780dc7f6148340fbb46e2e3c847f4ebfc2bcf38cc75f46",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2237,7 +2237,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 48,
     sourceFingerprint: "70a45a9d722890504de134d69ecba17eb3725064479bdd3c4fc2c2fb8d83f12b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2251,7 +2251,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 49,
     sourceFingerprint: "7a4a44744fab4b14e9a7bb4e8ce7cdc55cb5d8b2c6ea1244b9b46c47fe4b9b22",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2265,7 +2265,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 50,
     sourceFingerprint: "ca7d15e944e2e401da4e7f04504dcd4a11516fd49dc5c561cd1c85c35edf2689",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2279,7 +2279,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 51,
     sourceFingerprint: "df1343b60bdf0bf9eb10026813aa5a7b1b35e46e680d3e9bd3bb7c664a0f5c54",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2293,7 +2293,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 52,
     sourceFingerprint: "3187c1504c9b99210324a21e7c56fbde59e0fc022e0621a314633a5c41f51f22",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2307,7 +2307,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 53,
     sourceFingerprint: "2b798411290d3f9105a2b6a38e5b49dc6eece5725a304876c05dc2b3fb8858f0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2321,7 +2321,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 54,
     sourceFingerprint: "885807343149e7d39c8efded4ec27e2c8249ca60db4b4217f2eb1747b15607b4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2335,7 +2335,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 55,
     sourceFingerprint: "84a46f17c9d1863eeaea2503ea540bf0979e88c0108cebf20b0acd33f6647d6f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2349,7 +2349,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 3, sessionOrdinal: 56,
     sourceFingerprint: "58f40ab2750958f1e69fa2162d2e9677938dd3bbf53f9d95c2e78daf9adf1e17",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2363,7 +2363,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l03/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l03/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 1,
     sourceFingerprint: "0f92981161dc9ba27f960fc911d1ef6e2515344967007b09bb2540df9ed024a7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2377,7 +2377,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 2,
     sourceFingerprint: "7f73fc653a01ca6355732216e0ac624e9103401ff7ad7859df568570d79ce48e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2391,7 +2391,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 3,
     sourceFingerprint: "97851c2fd5b2e5f564ede73463f0d8375e611c4d730ca7b6515639fe8f270887",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2405,7 +2405,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 4,
     sourceFingerprint: "f7a97e17076cc1686f102631ad349dfc8863de92e3798117c60b996afaa45f53",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2419,7 +2419,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 5,
     sourceFingerprint: "e2bcf97b7217ea3bf115c42a2e7e06451d62cddf7fd9b2ff582e99480828d558",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2433,7 +2433,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 6,
     sourceFingerprint: "a9248de74cc93d11b989607d47174dfc97658ef9e5527f1cefa0992f0fa4c64e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2447,7 +2447,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 7,
     sourceFingerprint: "31b9ae5298a5f21edad39f8ec0045e6ff980442b7672d7c3924b0742af50733e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2461,7 +2461,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 8,
     sourceFingerprint: "4fd4ba4c48e2cb447bcf38fbc7bcba40b638f4cdb7dbe40b3e8c09614871d582",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2475,7 +2475,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 9,
     sourceFingerprint: "0d6aa821ff7c4f2a8c4bd7948e7148e2616e14c7a89970f71fb9fbb27d811bbf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2489,7 +2489,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 10,
     sourceFingerprint: "f72730eb2e8ff3694c705d2ee4b94cfa5cd5eb183470f48b0e8940c2a028c7f1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2503,7 +2503,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 11,
     sourceFingerprint: "d204b48add7d3374be074c75539ae5ace2d7e9c150b0660989066c461faff29a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2517,7 +2517,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 12,
     sourceFingerprint: "ebb072aea830d9ae4d35170fc985af27a2d5697c8b9b513b3384bc7852eb8059",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2531,7 +2531,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 13,
     sourceFingerprint: "b2a6b68694aa5cdb01df67d6f91007b122aeaa7f0561578653c5e57af9f2cf85",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2545,7 +2545,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 14,
     sourceFingerprint: "efcb5a9a45c8ce59330623eb70da2574ab4e9106acfab05b0a5076e1460fd3c7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2559,7 +2559,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 15,
     sourceFingerprint: "516470bf7db2fe3ceffc117fc088a02f5cedb758ca2564036c8d3cd1eb5ff35d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2573,7 +2573,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 16,
     sourceFingerprint: "583dd6e4189da589b326613f8ae03cf7f76a65e7c76d34d4428275c8a3de70ad",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2587,7 +2587,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 17,
     sourceFingerprint: "4a5fe3d666c99fc8e19531d92d2b297e8407d5a5a378a5edc8f44da105bcf13a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2601,7 +2601,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 18,
     sourceFingerprint: "579445013661cbbfb2f0ed1928e90abf676412f2a261733975c410a41c6e4135",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2615,7 +2615,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 19,
     sourceFingerprint: "6aa3cafa99ee29f97d95238ff36cc30e430e8b4346e5ffa9bf8b77a71565dcf6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2629,7 +2629,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 20,
     sourceFingerprint: "ae59d6f0f631bc83c2088c51347c6a5ca0b755d21faf23c7743bd8db9963bbd8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2643,7 +2643,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 21,
     sourceFingerprint: "097ed040d9bf82daee2e76b902223bb1035d5e291182968c912c079fea6535e4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2657,7 +2657,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 22,
     sourceFingerprint: "4f238deee78c31384160289371ba02a18aa60196375208c69a7a75a8af573ad3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2671,7 +2671,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 23,
     sourceFingerprint: "b48d2690aef5fc4f109cf13ba1e9782f131ebbbc89fd23b46d3a61451f460e9a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2685,7 +2685,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 24,
     sourceFingerprint: "ddc015e322bf97aacde23845c5d2f09152d05e984f2839eb538ece15d4ab19ed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2699,7 +2699,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 25,
     sourceFingerprint: "e06772956a0e34a96a08485ed10f14d7239cb548db997c548421280bba000bc9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2713,7 +2713,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 26,
     sourceFingerprint: "3558a446d4203ad0205faea17fe53608ff6a20c6037f3c2348c0340ae8d0427b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2727,7 +2727,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 27,
     sourceFingerprint: "138a7c0817c4801e0fd285d5ccde6e02c9806a0bce26a6ef5814176e8a464552",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2741,7 +2741,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 28,
     sourceFingerprint: "957d1b9f29ec2a002fcb919b1583404a9084129b15c128989ebffc80411aa98a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2755,7 +2755,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 29,
     sourceFingerprint: "7cced0ba06d5a26defa2adaff8cbd345a8f7ef1528654139a6c954925e5bc51a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2769,7 +2769,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 30,
     sourceFingerprint: "5556bfdfae2a19e6f5f7bdf6619ca805a4a649b3273f468d57475fdf46437be1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2783,7 +2783,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 31,
     sourceFingerprint: "08e69c50a0f0ad10c304bd4deb6b5dae651f7aa27a413086374514d6ff1da3e6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2797,7 +2797,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 32,
     sourceFingerprint: "cfba35218067eeb39ce3dce8e8094cc7e138ecad34857c00b9e062d4b6335c9f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2811,7 +2811,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 33,
     sourceFingerprint: "dbbe733d80466c25404cd380e8907d7f8828fee437feed9f8c10cf67aedd3702",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2825,7 +2825,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 34,
     sourceFingerprint: "fe15ad27f991a9be4e71474ae25fc5cb44aa8536ec3e2fe638bdc38460420686",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2839,7 +2839,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 35,
     sourceFingerprint: "e29b740212587a9535db563bdeda41870e506757896ac30ee8ca1c173e5387e6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2853,7 +2853,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 36,
     sourceFingerprint: "4a4758ee7699acaffc249dcab9a2c4f4e1ae5ba03b38e03f3ccb32a2cf2f617d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2867,7 +2867,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 37,
     sourceFingerprint: "bb0194498ac053eab1e7734f2d87199d9e1012ccdbd45d6d0bfbc2e73c8aeaa0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2881,7 +2881,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 38,
     sourceFingerprint: "bb1766469fa7576af142ee2ea4e93c675ac155126659bfc42b16532a56bcbbbe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2895,7 +2895,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 39,
     sourceFingerprint: "907fd6ffa8e12d25d89b068bc13c77023f0045fea16d9e7b204439011baaacc4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2909,7 +2909,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 40,
     sourceFingerprint: "bb7b618618186c933b90f7338d25becc53cbc7781e50a9ed36c7f9c5b23472a3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2923,7 +2923,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 41,
     sourceFingerprint: "a56110b4c6c3a08ac9c2b3120ec9ee1b150a50acb2a687d8be9b0b72fea349f6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2937,7 +2937,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 42,
     sourceFingerprint: "3880263d8db26c1012ab7a9b67d434ff92a4303e6e75dd9f96c7cb066c19469a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2951,7 +2951,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 43,
     sourceFingerprint: "af002dd8365052e3ad4280c728840b64dde4373e70528a1a93de442c4a524c18",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2965,7 +2965,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 44,
     sourceFingerprint: "40ab2d2ca3fd2487b7fb623aa46b57cbd84e8d8a68813245fd0059c5a9c77c5c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2979,7 +2979,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 45,
     sourceFingerprint: "45dca9ad42ac749e42dc74074faa76935477f2ff28cab1d907952a2be075c34f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -2993,7 +2993,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 46,
     sourceFingerprint: "e2c25dceefb2492c9a10ecfdc15e1c77df8ff6324ebdc0dd7aa8c6ab537d213d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3007,7 +3007,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 47,
     sourceFingerprint: "abe57f3546c1b30af6dc20bf0b74b69c07e6ff5cef09fcdb397f90c26d44267c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3021,7 +3021,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 48,
     sourceFingerprint: "4696331772ed1e1ecb48f300ddbe69564a07216b252eb52418336ec6d1445367",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3035,7 +3035,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 49,
     sourceFingerprint: "ae4a2a72e5281e06eb4bc71bb362f8e2fa062e98c09f2b0c64c197420ac694f7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3049,7 +3049,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 50,
     sourceFingerprint: "4e9b5f7e2f73cc8523d541c291cbdaa2550a178846803d34a179130799a88687",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3063,7 +3063,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 51,
     sourceFingerprint: "fb8b1948a3dfc59fd72f0407c71e78ba51c879a7855cd32c97527a8bca831353",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3077,7 +3077,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 52,
     sourceFingerprint: "d0dbd790495a7706c06d54876b0307a45349634b430be0d4399ce06a18989a91",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3091,7 +3091,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 53,
     sourceFingerprint: "6f3e521bdfde785627d1ffc3209b819dc92e8a586040ca576b22f562dfb508a4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3105,7 +3105,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 54,
     sourceFingerprint: "54ddaa9c10342f5367035fbbff344f4c19b5c20d4a6ce2a5c036c88f05fbc0c5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3119,7 +3119,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 55,
     sourceFingerprint: "b2def5dac7f9865e6e34a4a77ddbbbbedd643013a8be94e0ca29f2de2560dc7a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3133,7 +3133,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 4, sessionOrdinal: 56,
     sourceFingerprint: "e9fa0cfd3b166cc0f6ffd585c9f385d4a73c0c4c53f1a14453cc8fe2bf3e5509",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3147,7 +3147,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l04/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l04/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 1,
     sourceFingerprint: "4687d765401143a126e339b9cb7ea1e07afc8b65aaff54b21d38d358fdf5e3a8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3161,7 +3161,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 2,
     sourceFingerprint: "4287aaa75c04b91f930754a838c53110897c57f8399247b33767c505ba6de4fe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3175,7 +3175,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 3,
     sourceFingerprint: "003680193bb2ae75e52516bd66e413a63b2ef3033fbd9fcb42ee5936eb81ef52",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3189,7 +3189,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 4,
     sourceFingerprint: "188d1b972390243e3f5e69927f681ce54f7622cc4cb725b5dcab7f61d97caae1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3203,7 +3203,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 5,
     sourceFingerprint: "624f30c3336ae1ec4e69ac01359e99f75a251ec4d869e91d596dbe846570ad52",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3217,7 +3217,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 6,
     sourceFingerprint: "12971d6a8cfa5c071048821a7b357b6b16b0177d5693f04a27f1c43b30efe621",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3231,7 +3231,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 7,
     sourceFingerprint: "71ef3a8ab20c991828c2b1ef98f537a5237005be4c4acf77e2fb2cc32858e9be",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3245,7 +3245,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 8,
     sourceFingerprint: "53c21400087f0a683d56f5e108d10d334cf5866ca601fcef8a02684f9d68d3b2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3259,7 +3259,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 9,
     sourceFingerprint: "32a506ae3b45317c756c8fd80f33ad5a6c3a6f3788b1bdcc6e5d86aedd422987",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3273,7 +3273,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 10,
     sourceFingerprint: "a601d760d461a655d62e55d70d167d73f4351b0d0b9dabd229a02a46b2db77e3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3287,7 +3287,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 11,
     sourceFingerprint: "b4f5f823bc8dcc7f2db247ff6877a384627a97151a07ebd1ba1d54414c0e4021",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3301,7 +3301,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 12,
     sourceFingerprint: "d997f11775475ad749e6f766886f041ddc1156a2372799e8fabde02bc65292f7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3315,7 +3315,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 13,
     sourceFingerprint: "d0b3c513edef9800804370df63e23b067bc95a0ae8643187d5e652bb23b61557",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3329,7 +3329,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 14,
     sourceFingerprint: "8f45c27a250c53fa5edbe823e4b78f05a5df3690375c8fc429beff603a62eb32",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3343,7 +3343,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 15,
     sourceFingerprint: "d954168b5e3dce58aa041a0efde4de2a1b8d75b6b1c2925d4a72bbc43fc9a8af",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3357,7 +3357,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 16,
     sourceFingerprint: "e5477eda1235b9e67d93ab5e0ed1a302b86362156fb65de11c94d8b77540c571",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3371,7 +3371,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 17,
     sourceFingerprint: "db7f853496788d94dcb5e68e01ab3d62be03d662a3ad10a2e76f29357963ddaf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3385,7 +3385,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 18,
     sourceFingerprint: "1c060eb8592c4908d9299cffa8aaa75638c8149d701f7bcc65a7b05f772efa93",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3399,7 +3399,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 19,
     sourceFingerprint: "8e640eed0f4608227c930adeb321ad1269c71338923dbd0c6470b8f184d55caf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3413,7 +3413,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 20,
     sourceFingerprint: "98187a2105f5b9e185d32c539860b1916742173e94160aca64a6924ba31c62a4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3427,7 +3427,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 21,
     sourceFingerprint: "9a2fd2dcfc18746bf09c4479ccb7b6590845fe984beca82ba057ee9a65af409c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3441,7 +3441,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 22,
     sourceFingerprint: "3e2ceed68787ff4d8b91bc2503b410e6ed88c5d403f7012fc1760ab40007c24e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3455,7 +3455,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 23,
     sourceFingerprint: "caad9d151f16443887a790ab5596ee118c6286b67ed73c961eabf63c25f25f9b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3469,7 +3469,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 24,
     sourceFingerprint: "2397ef128588b05877f0d2ec3a3fcb5fbbba2da020a1058c8c77091111f6eb6a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3483,7 +3483,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 25,
     sourceFingerprint: "4931de79b814e49b8c4c2c0732a51fc0968a7750e682d16a2773c4013ad87075",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3497,7 +3497,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 26,
     sourceFingerprint: "114b492ed6fd0bf25960bda08ba8d2524c58d3fea0d7cdf09272f3a25f690d12",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3511,7 +3511,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 27,
     sourceFingerprint: "1d677637ee57701b7ac505d4bf1d04d791d6e0a111e47c339946d6f40e4830f2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3525,7 +3525,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 28,
     sourceFingerprint: "641125914238d81868ca650599765408f52d9d7a81535ab90ffe89649102d85c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3539,7 +3539,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 29,
     sourceFingerprint: "504dba771872a0d3cc1cdc0d0dad35617ef8af17e1a646163d846c1cbf90bbc9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3553,7 +3553,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 30,
     sourceFingerprint: "47323f623e3393f6d0e335985c2f051046f52899a1e563b5dba8f7386957d8fb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3567,7 +3567,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 31,
     sourceFingerprint: "6205aa37f794f930ef8beea5f1f98ac1ad440cfeb3358d895631c41d3147786e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3581,7 +3581,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 32,
     sourceFingerprint: "1aa943749fb240134eaa6ab099cc59296acb778eb516b6f17c7973a528f73e56",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3595,7 +3595,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 33,
     sourceFingerprint: "79613fb4b153728000762fe5d3779cc64fed2ef9b3ebb9219bfc81a4ecda4eb7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3609,7 +3609,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 34,
     sourceFingerprint: "644b43ce27be423fe735096e7ed112ef5e1b2e03fa5a81785f6ce825f90b3776",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3623,7 +3623,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 35,
     sourceFingerprint: "a4ed77d45f116f3b707cb17a46c46e190be14370af8dd4f8facaf63553eadd1e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3637,7 +3637,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 36,
     sourceFingerprint: "2e057153b6c3b1aa68c245c28b8c3853c420a3380a086c12d11d92b411957efd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3651,7 +3651,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 37,
     sourceFingerprint: "d5b787050ec7b2eb24907c9db864807fbd4fc497c3fe1a7372af69ca40916bfb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3665,7 +3665,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 38,
     sourceFingerprint: "0bc2760ae825e432abaf28bae0216b7d5666aff872c704c2e41633442e209e76",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3679,7 +3679,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 39,
     sourceFingerprint: "c0a8533868cfd596778f9441a4852852df5fcdd0df4423d193d61f53f81573e7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3693,7 +3693,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 40,
     sourceFingerprint: "1f6d5290d14dd97918e78404d9fe5153bdb0bd4d32fe426006ab71dd30521c64",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3707,7 +3707,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 41,
     sourceFingerprint: "68984464e064e9c2a1afdc4d1232114ba58b7533fd46755d1c78b60597673ddd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3721,7 +3721,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 42,
     sourceFingerprint: "f2d279a6ffcd855332317057d5f5dc8badf108cd3b830e853f6cf579c2da8c16",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3735,7 +3735,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 43,
     sourceFingerprint: "57be6267cd0b2bcc0d8f2a661f441b5524ddf18218e31f7b3d555d0f231ccf24",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3749,7 +3749,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 44,
     sourceFingerprint: "196d002b0598b9fbf7af64f5865cd97be85452555cf06d17867c5222f4af374a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3763,7 +3763,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 45,
     sourceFingerprint: "023516543967bcdd56c342fe8d121637ce408e68d6d0af28b09b0ba44759f983",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3777,7 +3777,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 46,
     sourceFingerprint: "49d1105e745910f6add9ba10db9ca0fddd6a0288ece28b79bd5194557a474441",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3791,7 +3791,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 47,
     sourceFingerprint: "14d62109e11e39116d1e5e0b73e5455c49070a8db9ab56c013fcfc75c21ab108",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3805,7 +3805,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 48,
     sourceFingerprint: "9cc1345b439277c118199d309b5dcca541e6eb5c28d7de3fa0935d088cec9b9b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3819,7 +3819,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 49,
     sourceFingerprint: "9a946e2af15e00792f4e893087091dd2586942ffa07e09215c41127f917d38c2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3833,7 +3833,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 50,
     sourceFingerprint: "f1c91a4634bf60b96b48c51a661c20bf94f760a828e53f1fb05312c3392fe15b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3847,7 +3847,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 51,
     sourceFingerprint: "3524c83adde25b817e8fedefce82fa5b6a754ca4f1cf8e3d43feba9083840c1b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3861,7 +3861,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 52,
     sourceFingerprint: "0f7a1ddba7f5e1355b5e0900505f56b32743c52af4072b9cbd897d55b7cf2972",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3875,7 +3875,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 53,
     sourceFingerprint: "7c37f2a5fdea926d73df5e99e33bfe3deb4c1c0728ad0aed58957252a05bb8b4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3889,7 +3889,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 54,
     sourceFingerprint: "65fdbe4f771b39199b9aad8df9b1a972b85f1373a304c95d1ea46778b7a7b775",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3903,7 +3903,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 55,
     sourceFingerprint: "9bffc12f5d896a1c5494cb402f6f52e71a27c045a3b0ecba7acd3da29250d12c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3917,7 +3917,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 56,
     sourceFingerprint: "66518a682a26e0c54868bf9e3f3250d1188b177131a07c109f2ad7240f8b13f9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3931,7 +3931,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l05/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l05/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 1,
     sourceFingerprint: "05ef872bc983aa820d3cdf28d521e3e9be57a857e3e07ff31836bf46a834dd0a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3945,7 +3945,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 2,
     sourceFingerprint: "5628c2a487f1cd3ead5bc201b1690566a27cebf250e88723e98abe743a28adaa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3959,7 +3959,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 3,
     sourceFingerprint: "bd5a146e36682152666aa55b67b0eacd97a65b1b493103fc44edb14505cdf9ce",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3973,7 +3973,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 4,
     sourceFingerprint: "307d848592e017926ee5ecf4ab5d6c5563cafb24265cbf5b01fb5bb36555c8ab",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -3987,7 +3987,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 5,
     sourceFingerprint: "5fc211649287dba14888b6c36567b565a976081334f2c9b180c47e416f753b45",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4001,7 +4001,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 6,
     sourceFingerprint: "2b3f17d480571a34ff58df3ad3d79797f13c819987877bb60f4268d7d844d55a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4015,7 +4015,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 7,
     sourceFingerprint: "d3417cb2231b0277fee20846e301980f2f08dd1c46e8feb61c3665931a109ec9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4029,7 +4029,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 8,
     sourceFingerprint: "d7dbff7b4a905ef91acd10bb7401a36fb91cf95aca6fd81b15a7b3557d132c25",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4043,7 +4043,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 9,
     sourceFingerprint: "215ed03af63a09bc22e8f12ddf9582e7a4a603158376be5932692bf7c07b46b6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4057,7 +4057,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 10,
     sourceFingerprint: "663d73d065dfb6e16785ba95c85b06bcd80b85418fc423e3f169ece9d2633227",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4071,7 +4071,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 11,
     sourceFingerprint: "27e2dd46b9b9e59703bdfc66475197b41969de1f52208fc7dc2f520aac1d7fac",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4085,7 +4085,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 12,
     sourceFingerprint: "372d4c2204d30cb6fad24a4af997ec5fafbd8d58511e179f0a6e1a824ff6b6db",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4099,7 +4099,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 13,
     sourceFingerprint: "156f84a0c32a9e5a0b58c9c46b41007346c2e22a381e2cd54176a40a889f1baa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4113,7 +4113,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 14,
     sourceFingerprint: "6ff3adce7883a3a3fdd4656c96e87c3341d532e9e5d4eb0fe92203822b67b13b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4127,7 +4127,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 15,
     sourceFingerprint: "fc37c229889ee7c9c81c1c1cb907ec5e5410eff1ad4d9f5a16452e23811810c0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4141,7 +4141,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 16,
     sourceFingerprint: "73502718012342e13b6a0bdb1fe77e8f33b47186da1807c3d48607faa7cfb3ca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4155,7 +4155,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 17,
     sourceFingerprint: "da1114d8553c6fcb14db981205fecc8a49ea274d8de4332f169746e118d8f87f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4169,7 +4169,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 18,
     sourceFingerprint: "848fc10676052091ae62da878d9dd2a79e974415d4cd0237a9e44f8a4d4c1e09",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4183,7 +4183,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 19,
     sourceFingerprint: "09dd6c468f32b95fcd115a75326ce6c44ea1ebd00af144983daf0586a74030fd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4197,7 +4197,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 20,
     sourceFingerprint: "4d3b168ddd87df37a4f96a9ab4f20c4c53d3527d2502e63163beb600586eeebf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4211,7 +4211,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 21,
     sourceFingerprint: "6c5b3a3988fb3a8a536a0e476ca1676f10e2c54e03eb51dbe4c0a81e0e2719ab",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4225,7 +4225,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 22,
     sourceFingerprint: "ee9574424b5e1f6519d87a926bab085570b1ae7fd1ab1f7f5cbadd10980b9a78",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4239,7 +4239,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 23,
     sourceFingerprint: "861a0808fdae905de88932798d6b44259178f5c865684ad40b3fe5d46d22ce22",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4253,7 +4253,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 24,
     sourceFingerprint: "fdee9ac421bd748cb3fb07d30b02370b30d69b1f0504dffc1c8853c0cc84d433",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4267,7 +4267,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 25,
     sourceFingerprint: "1affba5b428e8359a10fa507163b87d550a7fb94afe3c2c630fcc361930ccbb3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4281,7 +4281,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 26,
     sourceFingerprint: "d3b8237c40571aeb826e9a14ad8b0c376213b5ab5ebe9d2196ac90198dce98ea",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4295,7 +4295,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 27,
     sourceFingerprint: "8fee7fc44c6c9179c0a3712517fafa06c3a620a32ff3b6f103f03ff6372388d0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4309,7 +4309,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 28,
     sourceFingerprint: "c8e25b1a7fe5d3460ef2bd21593a8f4a3fec731edd51d75e41415259af98e570",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4323,7 +4323,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 29,
     sourceFingerprint: "0106a9cbb58d8681ed67f0bfe3a252bcff7571055673d1b005dbd85c8ebc3ca2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4337,7 +4337,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 30,
     sourceFingerprint: "135ccd7093d56e2d1f38e1e00f7c5625ece61989ea2fc7f59257ecb57180643e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4351,7 +4351,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 31,
     sourceFingerprint: "db03a23d7cc96c309b157be6dfaa3d3ffe439b5711183bc18b7dc27c2afcf00f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4365,7 +4365,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 32,
     sourceFingerprint: "f5abf258455ca1ae7bd58286eeb6de0637fbae5e37f124b13cf9975caf183223",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4379,7 +4379,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 33,
     sourceFingerprint: "5ccd17e37e712acec722ea7686144b7d94ceba285549ba18b903ab262df53ecb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4393,7 +4393,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 34,
     sourceFingerprint: "78257db33579df6be9a8ee6f73e82c4662a34f6a15ff73069352bf5fe099c112",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4407,7 +4407,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 35,
     sourceFingerprint: "b117c686d6c96b09e619a3d89e42beaf7f434780ab9f43ebb1469fec132ff3d9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4421,7 +4421,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 36,
     sourceFingerprint: "6a62fd844d4e0b09c192fcb64b6454bfa6f3ea5a86e566771d4fc0a4fb78e26f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4435,7 +4435,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 37,
     sourceFingerprint: "ca8b1f2b81a38d9937746364850f45458c6da758b51ba5f3f4900c3d8955c34c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4449,7 +4449,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 38,
     sourceFingerprint: "2c4d82e83b4236305f1b4f9089f5f51c16ea061981cdf4291daa3a3d285a9581",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4463,7 +4463,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 39,
     sourceFingerprint: "963d03fc0c4471bd79a4ef68cbf67241a5d8fd876a82dfc9b7ee8323c21cc60e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4477,7 +4477,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 40,
     sourceFingerprint: "0c57e3637803918a502f3b22a11cd7d44c5672c72c597dfe93fe62bb6d6cc0bf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4491,7 +4491,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 41,
     sourceFingerprint: "fa0d51f585b6ce4304ea2efedc8fc40e937025f7bcb3164353122ecfc5403f09",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4505,7 +4505,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 42,
     sourceFingerprint: "65779aed70f70fd3e47b01a66c7b08d59375ff62ab5bd9aececf839c7a8c1ddc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4519,7 +4519,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 43,
     sourceFingerprint: "9a5073cdbd3480a2c58afea551565ce2f00642552d3a32954a639cde52588eba",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4533,7 +4533,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 44,
     sourceFingerprint: "e9564046819bf72b0837cad525aee284ee1ac0778c71c4ed922ba327a022017a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4547,7 +4547,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 45,
     sourceFingerprint: "f31a3d99881f1d87d583c678decf9532c4f32c26311479e9b984df1ae943969e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4561,7 +4561,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 46,
     sourceFingerprint: "8b1f5de72bfa9337b276998a57ea74ead92a09e745e8bc0b2c874f9ce96a83f7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4575,7 +4575,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 47,
     sourceFingerprint: "1f8955f6ff0420dae984c461d835083ef316dc8b89cc1bbd858babf267e6fcc5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4589,7 +4589,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 48,
     sourceFingerprint: "e236dfc360e655a1be1a70e413d2cc9b1e23832b37f788659950c59d50a60183",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4603,7 +4603,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 49,
     sourceFingerprint: "111d38c9d8774f6baeb086c9f6a68c54b5dc155db7d8f88b777746e80c632900",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4617,7 +4617,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 50,
     sourceFingerprint: "742a0b70cff896cf24a64b36a88e573ea6208f0bb5b0b63d96971c1350c87409",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4631,7 +4631,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 51,
     sourceFingerprint: "f872e1e720a76b81c6cd13d1746cc818e8dbd26b70fd67e1b04d24e390ebcd95",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4645,7 +4645,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 52,
     sourceFingerprint: "59858a974e2b1faf1257f105e5531bea86a934dd19017ba7ebc6be07e73ce47b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4659,7 +4659,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 53,
     sourceFingerprint: "0b5e9b5b3c4334a22cfdd96b46fc7de0fd9af121eb66767ba88e05af65cb2b9a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4673,7 +4673,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 54,
     sourceFingerprint: "39975a7115a1d433d886ef41016dca6457f22eb5f3e59576b45c618f81a6b741",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4687,7 +4687,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 55,
     sourceFingerprint: "8c447a2d14e70cd7d9ec9eb51975fcda1099f0384a71f6ad6ee893cb847fb1cc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4701,7 +4701,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 56,
     sourceFingerprint: "5a61fc25387785a5200c3f2af0db568799ca57efa22858765c17497fef6815ea",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4715,7 +4715,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l06/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l06/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 1,
     sourceFingerprint: "05d696f9c689aa7fbd8aa8dc24d26b7bccd995908255e3c7801fbffa8eaf09c0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4729,7 +4729,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 2,
     sourceFingerprint: "b9aa4ea2769de9c1bc508f9cd733ebd15b40b25e5ffcec2110b2c362da9d26cf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4743,7 +4743,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 3,
     sourceFingerprint: "8df6b6f5559078753f6c587cf19caa2552d3cdef45ede442174d9947642c8326",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4757,7 +4757,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 4,
     sourceFingerprint: "00f5dfcfbf901f18a2e8867c14ff5fa3578ab28db5b58c7a7108807f37da1e36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4771,7 +4771,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 5,
     sourceFingerprint: "523ca8f462908c91c17549df25083a992cb08be13081fa10dc2c13ff63547053",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4785,7 +4785,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 6,
     sourceFingerprint: "e7e263db11b0383407e6da55b6837500c7e61c9fb637f1a6f5f51e9b5df93a16",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4799,7 +4799,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 7,
     sourceFingerprint: "d36383fa35261acc4676198c4ef68c4d7a52bc6ce7db11d4bbc975bf09faf812",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4813,7 +4813,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 8,
     sourceFingerprint: "3627e6f858db16926ce43d8c4165be05602e273c6837223dae644a88e5d14f0c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4827,7 +4827,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 9,
     sourceFingerprint: "ea878f4f3ebcd96b4155786eb0719dedaeb7e4e482a88fa00c3a140a2b3750a0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4841,7 +4841,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 10,
     sourceFingerprint: "e2e686f5fd6d66bbcb2a427ed8c4de54081347c26c6115dad88d5c8060bcda12",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4855,7 +4855,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 11,
     sourceFingerprint: "2876578bb1e27f32ea2ada6285fed479eeaabeac6b791c5b2676d30c7de52cd3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4869,7 +4869,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 12,
     sourceFingerprint: "6268056ad027c9b2451d7a1ed69c05a7b04656839f969887a594c78d5f971231",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4883,7 +4883,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 13,
     sourceFingerprint: "59916e8a85076ad1f77f8efab8f9b79e5e1c6530ced2c976efb0ae691c84f254",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4897,7 +4897,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 14,
     sourceFingerprint: "eff325f70fc5b6aa4bebe26f40b2220e8cf429a3b3a54ad311fb3e1f05b0305b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4911,7 +4911,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 15,
     sourceFingerprint: "4f3da35f6f47e6f69810d1882b1eb5e18774939259322d19fdd19de4d65790ed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4925,7 +4925,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 16,
     sourceFingerprint: "c66d87beeacbf8cdaa9280461bdae39899ac81a2ed8c20d3f2cc6b8a0e86415c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4939,7 +4939,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 17,
     sourceFingerprint: "f158310b38530ee2b7b1efa8d82d64ae9655a1d552e265af2dfcad6cb07a9e0d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4953,7 +4953,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 18,
     sourceFingerprint: "8e74b11629154e6b651d8bb0db26e2654e5c03e70951edc1de2feaaa028e5d17",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4967,7 +4967,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 19,
     sourceFingerprint: "75f1bc5e93912537713273b68f2923d3cd1e5e6d9e569eef7026c0ad7eb21526",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4981,7 +4981,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 20,
     sourceFingerprint: "37666cdaa058bc22c6e73e1384a9357add95a570ac7f7714dd7b067b97ac9f35",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -4995,7 +4995,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 21,
     sourceFingerprint: "6f099840fb9976f7b9adb54342689f71f3f5613863751e5cfa6fe0b2f32a6c84",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5009,7 +5009,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 22,
     sourceFingerprint: "5adbff31cfb8a9b4e8c4451f06966a3642cbcec8f26776bca4ff8e2456c9d2ad",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5023,7 +5023,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 23,
     sourceFingerprint: "288fabfc3db1f6d93a1c042b2898123fd79e3a7cd9d678247e6624245508d787",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5037,7 +5037,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 24,
     sourceFingerprint: "38c781da306c1ba662905db04b7242ef21751c6e012ef8daa5bb560a30b203e3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5051,7 +5051,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 25,
     sourceFingerprint: "bd10ec104c3fbf580ecd13a5fd74b9c73f0f5954d5e050ba153c5d50cd061e0e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5065,7 +5065,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 26,
     sourceFingerprint: "ec414c67a727c9d0d6b433a4fc6a2c15869aead21b80a78dad27583059e45a74",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5079,7 +5079,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 27,
     sourceFingerprint: "c4fa5c7e19f6bf262bec54c6cbf4193f2762fde363302f690f9046bd851ca5ae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5093,7 +5093,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 28,
     sourceFingerprint: "e80f3076e4f2c4a5e10e93932b0eacd33faac4a626151c56733750f177f2b53a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5107,7 +5107,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 29,
     sourceFingerprint: "1320a38ccc5cff677ceb7de816a7518385dacd1a624d12e63fb49374b623d43b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5121,7 +5121,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 30,
     sourceFingerprint: "a00d98139c5ed64836850efa88da2fb38f2d0627010b4476ff652db297dbe8d4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5135,7 +5135,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 31,
     sourceFingerprint: "9fcb437cab93766d0339ac8e944afbb10891b45fff4cf5c7244d662ce18c0cf6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5149,7 +5149,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 32,
     sourceFingerprint: "cf4d809555b3247fd4e5cccb25f395c3a9c74a2979ce1ffef95b54ec5cdce8a1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5163,7 +5163,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 33,
     sourceFingerprint: "2da66fec081ebac9b79dd90a1fc9376ee5824ed2d4ea42c4288f283cb57b3130",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5177,7 +5177,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 34,
     sourceFingerprint: "6649145d4d1f56c9646e1d2a0bb9be7cc47d1cee80ff49a82981594fdb4fa246",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5191,7 +5191,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 35,
     sourceFingerprint: "550c4c65c4051ced2bece3d21a2d43934ec5fbd2881e9ff257418c8fb87a1af4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5205,7 +5205,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 36,
     sourceFingerprint: "d928f4d347f68eb44df3da35edb6c29b9c3d785de0d922ef735f5d0cb9a207c2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5219,7 +5219,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 37,
     sourceFingerprint: "694e2c28886cdfceb8e6057dd949f7d420e594aa40032d55d99e49a5802934f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5233,7 +5233,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 38,
     sourceFingerprint: "dfbf4c1ecab948c48300654dceb6aa6040dc8b5810adb25dcd145e1ed32b6907",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5247,7 +5247,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 39,
     sourceFingerprint: "36a243894fb82f6679e6dfa44eda05f7fff6182ad80a20bcd502ac38a5ca0258",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5261,7 +5261,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 40,
     sourceFingerprint: "6afb8edf2fb00622f4a22317eb8eb4e4d09a7f5e13335f44012824e4a7ae0f0c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5275,7 +5275,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 41,
     sourceFingerprint: "826f6144b5e4f2a6e6904f18ab81482b41b9538597718db56d1b0e67b2fc9485",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5289,7 +5289,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 42,
     sourceFingerprint: "894487988030eaf84d576472e5d5cc507c6e70d7d4154e21e61ac56ee72b0725",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5303,7 +5303,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 43,
     sourceFingerprint: "925e23a7330ac01c045807171cd94950d0cff33b2256813903118663a9005f7c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5317,7 +5317,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 44,
     sourceFingerprint: "98a3451af0c8efc6fe6fe6f5b56394b5a7d9ccb25307445f7f770debdfba9d84",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5331,7 +5331,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 45,
     sourceFingerprint: "7c3f2e24b1f79fa3dff4191d0db442d0f4d3da77915c9922c70bd40f42b6e90a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5345,7 +5345,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 46,
     sourceFingerprint: "39cfe01d4a2f112a9797aebb0b8acc0477d067e5243c50814edef1e28c680e1d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5359,7 +5359,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 47,
     sourceFingerprint: "a35b1c2bf8eeb4d453609d6943f3853dfe68d786c8b60bf2f37551f644295a9c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5373,7 +5373,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 48,
     sourceFingerprint: "86a33a7d4218a856cf2a05e013f7a85a35ee2ce3ae5fd2b6beb7c29927cbde50",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5387,7 +5387,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 49,
     sourceFingerprint: "540a84a3c5b17b85dee66bd5d973aaa4fdf32aefda2099437e55f6bea2c10ea0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5401,7 +5401,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 50,
     sourceFingerprint: "ce31c0d0bd479b2336093cfc2af1099af45b4a46ff9f8a8cfb617fb1cc371911",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5415,7 +5415,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 51,
     sourceFingerprint: "0c8519004e3612636cf499a858de813c2729c287821a5973ddbccedd1906d94e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5429,7 +5429,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 52,
     sourceFingerprint: "e2af15ad8da7430ee025624f35e120a336cfbb1075485540439f8a99e422b403",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5443,7 +5443,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 53,
     sourceFingerprint: "2963d0ec0c433e27b746e2bd0e6cc6b01ca8f5ec31b3271e513dcb71c2aefb59",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5457,7 +5457,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 54,
     sourceFingerprint: "965a4944bad3ec03482a96a975cd2d05fd4a35c049c864a295041b03728c56c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5471,7 +5471,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 55,
     sourceFingerprint: "efa0939c6ea85ede72d558a7e11d7950d20739820989b3238b307d3442ab2558",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5485,7 +5485,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 56,
     sourceFingerprint: "ad8d6b7defda6a3913caf70a9d97ec05b2832fb2dae5371e0212d0fecd683a54",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5499,7 +5499,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l07/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l07/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 1,
     sourceFingerprint: "b48cc1cf0708f5927948af35a26af595d86cd77ffd3de16bf0262f15f175cf31",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5513,7 +5513,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 2,
     sourceFingerprint: "5a1b2e657ac161a9a2ff756e4efca6667c85687efcc191fb4e3689abd5416fba",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5527,7 +5527,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 3,
     sourceFingerprint: "82f9db9a36cb969f85a3549f752fb7bd584340bb0d32725ffc0f247346ecf502",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5541,7 +5541,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 4,
     sourceFingerprint: "910b6048bc5f69b10cc6bbf0a9707a6c0390f96fc3dbf09acfdbf3390d9f7a68",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5555,7 +5555,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 5,
     sourceFingerprint: "b7589160926a272a92b0c07117939c4a6219ef7fd506ea80e040f70dfe3a8099",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5569,7 +5569,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 6,
     sourceFingerprint: "46fc1d336c700379c4b7012a21944e2d1d84806bf49954bb32b92b603ad8288a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5583,7 +5583,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 7,
     sourceFingerprint: "7a9a825089a449515787413e73d25d6e09ebf7d9782501f08791b76bb8c74ed4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5597,7 +5597,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 8,
     sourceFingerprint: "6631df4f92023ff97afe149fc1a401fb33ac8eca2184d61c49f293795dcd7480",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5611,7 +5611,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 9,
     sourceFingerprint: "1a120a536444bb08efe81fc0b04990195484f6ab65212526cd8374efc159f6eb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5625,7 +5625,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 10,
     sourceFingerprint: "c726023bf46fe1ac6fbb7c96e5ff83c341d71e3d263c1c096ee4c2b141d0d942",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5639,7 +5639,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 11,
     sourceFingerprint: "a543bfd96a720777a96ce5622a573d1d202ec0fac426619ab0d5224f7c34e197",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5653,7 +5653,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 12,
     sourceFingerprint: "8e76316f7dddd2f740605e40541e6dad1e48acb54d20f285b0115948df4778a2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5667,7 +5667,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 13,
     sourceFingerprint: "409b414cdd8031d7c833df5029163417c0a2da0778f801851ae1488a55b8ffaa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5681,7 +5681,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 14,
     sourceFingerprint: "38775b48cb5e2950cb8542bdc7852e464ffb5cd0c67debbf22fe113f901aaada",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5695,7 +5695,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 15,
     sourceFingerprint: "68ee10707029854e73b09d1fc777fc93955d094818a3997d3fa8cd22c4aef27c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5709,7 +5709,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 16,
     sourceFingerprint: "e69dce90d117473366e25ac87f184f1d5e8d0932f8689d5bb97815207c331ffe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5723,7 +5723,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 17,
     sourceFingerprint: "add8bf56499d96d0703f32ce7432f08850344ac0512f7ba416b606dd916acbcb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5737,7 +5737,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 18,
     sourceFingerprint: "71c2a926afd3c842f8e4f2de14a170adb400588a26b48bd888fc27b9aef23822",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5751,7 +5751,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 19,
     sourceFingerprint: "0f8f9cecf9395f0b0505ff55b63fa7b45391cfdffe271eab2a0dbe6a645d6ba4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5765,7 +5765,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 20,
     sourceFingerprint: "949b1aae5eb0433d3d65312c3a7af681689517c8e20e0d633a2557a43bedaca5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5779,7 +5779,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 21,
     sourceFingerprint: "8f8d9d42804d3e727313be56818e2789463eb1f69de4921f146864da9b7c35ea",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5793,7 +5793,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 22,
     sourceFingerprint: "a6fb2c6f05d1bd255ddd394e3d21f80b19b69f317895c964242ac2a4445a1842",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5807,7 +5807,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 23,
     sourceFingerprint: "f3ba7a9aca22730cc13cae8f4ce3655dacef68c9d288c6fd8a4e8d587e81535e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5821,7 +5821,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 24,
     sourceFingerprint: "4b47297741ccc07880982cb99276a2fe021ceb01ed9cbc5f7f94e67176038f61",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5835,7 +5835,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 25,
     sourceFingerprint: "c2e47c05e20320c5e80a99f58b924a0eba517360ebbc2df5d3b0a446d3055edd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5849,7 +5849,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 26,
     sourceFingerprint: "2df6731804611fa161c93f5d1255f705f0e718b09d5f9a2599f44c2be8dab20a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5863,7 +5863,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 27,
     sourceFingerprint: "c5983226fd7d90e28e8e04dd4dbd557738e467b404487fb30f6bd63afd808d59",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5877,7 +5877,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 28,
     sourceFingerprint: "c97582dfabccde17ef62d1f468f41e6cd6c18b51ba75735be9d6cfb5270df65a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5891,7 +5891,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 29,
     sourceFingerprint: "3be9b322d752f3305fcfdc37a57f7e321e154b70bedcd7d6f3ceec4b45e2e5e4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5905,7 +5905,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 30,
     sourceFingerprint: "ccc1ac9e143e5b7c249fcc5726e8f1ad25cfafc297c61995b2bb7a445e3ca77c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5919,7 +5919,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 31,
     sourceFingerprint: "d6cd12ecde3795ffe37bf538276aa46342b6dc199b00880f8bb4ea57f2c948a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5933,7 +5933,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 32,
     sourceFingerprint: "3175c96001c91fe99942f58f8d7ed433d0b2593b24f4c0212d0c329e5c3962f6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5947,7 +5947,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 33,
     sourceFingerprint: "e66ed30dfe247ac542b3b41d14c63da10275f72b9f3e3f0e180ff983874fca4a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5961,7 +5961,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 34,
     sourceFingerprint: "03285f9d4cf7caf9df781426514246f4805acf8762b7c8d79a086a8b6768b9be",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5975,7 +5975,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 35,
     sourceFingerprint: "ca3a1f5bc201376fc0ce637ef89d9ef41bb4ede972697d499c6935bad1a46cd8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -5989,7 +5989,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 36,
     sourceFingerprint: "834108b56f3f1eb23a77429ebce647e4278a4378e3b749571e7b0344286ba790",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6003,7 +6003,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 37,
     sourceFingerprint: "1d8dff825e9c666d9d392d4d65c42fcbefc1d502438b0765298bbdfc706fe18b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6017,7 +6017,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 38,
     sourceFingerprint: "8e1a79b19888f18d8d46d93bcb3d42dca2f67910d2b9a078631d1650f52ca9c5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6031,7 +6031,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 39,
     sourceFingerprint: "c2def65d541a3b258a0769e654cff3fea979793fbf6b24ad4de5806ec4e6659c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6045,7 +6045,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 40,
     sourceFingerprint: "3a77443092d8db64c54b94508ed955da061e6ea1721f0af33f33c88af0de5420",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6059,7 +6059,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 41,
     sourceFingerprint: "706ff2788004243dc56881d738a6268a5a24dc268a7e4fced960f0e5ce78661f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6073,7 +6073,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 42,
     sourceFingerprint: "f61bd7475a0065b2b8b0fca6a4bd4483fb416f328fc2293eb58add16dbf9da62",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6087,7 +6087,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 43,
     sourceFingerprint: "462501c43dea637f709bbf3827915ac94bc19e73c9e94fdbe548ddb7d858adad",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6101,7 +6101,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 44,
     sourceFingerprint: "68ca748705a922a58ddb1465dd3082c9aee34c78392ddb00e6a602285ab16bc4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6115,7 +6115,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 45,
     sourceFingerprint: "64bb53da5b0e7ff6cf6eb840d3e11112727ceb32d83fe485de6ee23a0b4d1419",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6129,7 +6129,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 46,
     sourceFingerprint: "cc4a37bfd7213ac3e145a0ec656ad2418a19a1fea39ddb797d4d8388433e8051",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6143,7 +6143,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 47,
     sourceFingerprint: "ba04edb51fffa864d1132c8ed31bb2e32309ddf6d1614153d77e774adb180633",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6157,7 +6157,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 48,
     sourceFingerprint: "4add3fe48cdd0546b0c974adab0ca818cc996a2552acf178359d1325a888c895",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6171,7 +6171,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 49,
     sourceFingerprint: "da3ab924f77314fd479210d7ff07af047266c5de86c487a3ca3d2a9a45135c70",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6185,7 +6185,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 50,
     sourceFingerprint: "ae903a67da3bc63c05bc7b8e11bfdf9aa85fc0ed20f18e700d9e6adb5a9a4c64",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6199,7 +6199,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 51,
     sourceFingerprint: "6132a8e9a741e87ca53a9179c88715e0c87bbe784c3be0f6dc48d67bd0da8899",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6213,7 +6213,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 52,
     sourceFingerprint: "70e55e95aa11229f27e71d23a8454f6b09b40036fb33760418c34778a626a807",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6227,7 +6227,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 53,
     sourceFingerprint: "0090081bdf37938fb5d2a0a3ba98b0a909c33cecc609c8703d4c6e7a611e23c0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6241,7 +6241,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 54,
     sourceFingerprint: "84c75e244d1bd3a052146a42128334ea96de2c8ac02a2d75b0ff7b16a303a0d0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6255,7 +6255,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 55,
     sourceFingerprint: "28ae3d05d0a1b0e4c50dbef6c697bea12dae5135df530bf0e42c8dbc41b704ca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6269,7 +6269,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 56,
     sourceFingerprint: "4cf40bce02e9cf56721843a2ebb4ed5a16c4ca1a50f9d261e973b93a63615531",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6283,7 +6283,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l08/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l08/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 1,
     sourceFingerprint: "8e6cc2e906a35a14c84fc5946d523be93d19d121de96accd2bd180f6f1ad1f34",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6297,7 +6297,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 2,
     sourceFingerprint: "4a9dba0cb0f1ca50ba7372d429135b42be6720bcaa9a9c2755537335d120af06",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6311,7 +6311,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 3,
     sourceFingerprint: "be805b9cc57e1bf66a6d7940b85635c4c8ab17b03c53546051fe9c37badeeaa0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6325,7 +6325,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 4,
     sourceFingerprint: "150bc3454a9017289b987576a20570f0abac144a81099db7976ef1033eed5f36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6339,7 +6339,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 5,
     sourceFingerprint: "91f843fda9401ffd1024f097dc2eded53fe07631f413f109269013eea660f94e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6353,7 +6353,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 6,
     sourceFingerprint: "6aae80baecdeedf4fdd811a6f64ebdeba297de7047232a90bb54797287185807",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6367,7 +6367,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 7,
     sourceFingerprint: "2ed486043eb4dec1e51fe61d59886c07aaf50f58b3da0ba4619c7e984b73c6ec",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6381,7 +6381,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 8,
     sourceFingerprint: "9825ed47ecd527368f5a84af02a9093b87bad7f37026abd3bfaebb2aaabdc4ce",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6395,7 +6395,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 9,
     sourceFingerprint: "dfa7b346b6edac6c6f1227163db38304914865aef850d3da9498f686f94dc85b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6409,7 +6409,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 10,
     sourceFingerprint: "901f4116b8459b7beb5b9ab73e6b28fa42011d046946086cc3da9b16016462fb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6423,7 +6423,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 11,
     sourceFingerprint: "2067d40f337321e013672f321679b6979649fbcb20f773705d641289001d45aa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6437,7 +6437,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 12,
     sourceFingerprint: "6810975c5f649f670de3996b3e7ed32d22f567c272a085da98ecb6a83d11b65f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6451,7 +6451,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 13,
     sourceFingerprint: "4e818ba9d2d0efeecc97a68b78834f88d0b438027a1e0f0a3734ecd5ff3bfeea",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6465,7 +6465,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 14,
     sourceFingerprint: "c00e9bcf880671e7735d829caaedbf236b38954c8aefbe75072f7abf8d2814be",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6479,7 +6479,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 15,
     sourceFingerprint: "fdd2a26bb3f2916f616c209526a281dc694410fcfa9fe3b09a4a8431cb585e8d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6493,7 +6493,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 16,
     sourceFingerprint: "e28a417c532c00957aae9c5e267532ff86208366adb6f6ae447ecbdbc71be0d6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6507,7 +6507,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 17,
     sourceFingerprint: "fa244103f2e8433e4efc82dc71443863326ff95c71dc33d4a6ce6aa3f3fd1638",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6521,7 +6521,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 18,
     sourceFingerprint: "c1112f088341d76cd97b9ee466554b5a5557d7e9a3168dc992b8e6d21305a3dc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6535,7 +6535,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 19,
     sourceFingerprint: "ca73643dc03d127afad2bcc60eef5f12c65c40a60b64c9906ccef0419d094b0d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6549,7 +6549,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 20,
     sourceFingerprint: "25f4c76905359494e53c48ba6d2cba7a96dfdb79f1d087aed4c95f652e252885",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6563,7 +6563,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 21,
     sourceFingerprint: "c0b110a19cd35f1b7a7dc7369890744da3639a1ec6cdb0b7412be33a1b3309bc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6577,7 +6577,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 22,
     sourceFingerprint: "b2e407b2990584b65b7e3b848d5e56cf4915406e19b51bafd5e4a08ccfbef619",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6591,7 +6591,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 23,
     sourceFingerprint: "9256a4c83dbddc829e754f77219b4e946e6906440281512f5078dbda038feef3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6605,7 +6605,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 24,
     sourceFingerprint: "fa819f57dd3515348096d56a58bff7bc19def0db9b95f52138c8e05f22c34db8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6619,7 +6619,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 25,
     sourceFingerprint: "80f49ccc1e23629a1540fbe0c3fc966de26465d303a8df02cc320458f7af0721",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6633,7 +6633,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 26,
     sourceFingerprint: "b5224145d30c49bdc1ac9b3aab04a914e1c74406fa9b5e691b6f27b4ba621b2d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6647,7 +6647,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 27,
     sourceFingerprint: "3409bdfac81cbc24558c03b10b38152909f9923ae1f8b0bd53e2e38111694810",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6661,7 +6661,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 28,
     sourceFingerprint: "0286105d00abdd26198ee85a4683e465033f2983c6bc4f773c52bf1f96795a3a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6675,7 +6675,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 29,
     sourceFingerprint: "c65b03a3d249e6cd815320ed85172baf4971cfa72c11931bd223b63e5cfbcd62",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6689,7 +6689,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 30,
     sourceFingerprint: "ae9702b15424113a9bf01ac29acc745c5217f025ef07fe83053760693c1ea52b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6703,7 +6703,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 31,
     sourceFingerprint: "d1e5e367bf7203d490a1d72a02e8d18527445655c8ebfc1b5e28dfb333582573",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6717,7 +6717,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 32,
     sourceFingerprint: "0a85a85a616ee105993ef9e35cb5cdc38614516edb9b19f4b49e0f811d33a319",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6731,7 +6731,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 33,
     sourceFingerprint: "28bab6b27c497e17cd81e3877d7da5159edd539ce78e63c5ac53591e7fae12f4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6745,7 +6745,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 34,
     sourceFingerprint: "8330c5d6a968ac233976bcd124e8589bdabbab8d468fdce60703152caed2e77e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6759,7 +6759,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 35,
     sourceFingerprint: "18f80ac6e4b9c020141749f0c793022706f7767818947dfd4a259ee3bdd11054",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6773,7 +6773,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 36,
     sourceFingerprint: "10ffaa1cdb254bafe5358ae3cf092623a88833a2e8d8c05a22b6a7edc40ebd4f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6787,7 +6787,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 37,
     sourceFingerprint: "9a219adf96908b58ff08db7d141f52feb607eb357684300a3474f6815932d259",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6801,7 +6801,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 38,
     sourceFingerprint: "a79ddf89633426ba6e492ae1c9a2a11b1ef44a1d629eb95cb8143d5af034afdc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6815,7 +6815,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 39,
     sourceFingerprint: "ec64be070667d0ec53f5d77c5822e47a5a41b620606e33681f9a6e7904007cab",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6829,7 +6829,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 40,
     sourceFingerprint: "8cfe8d3662c5bf03e4b1634b454734b126606f23128d77001b9ce9792c841599",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6843,7 +6843,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 41,
     sourceFingerprint: "26fa42401e0f8ca017af5cf336e6b11abcedb3d3bb6714409c037f7a480b03cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6857,7 +6857,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 42,
     sourceFingerprint: "572f5ea6d8514fb48dbda1023ab3578107c1e161dd04056f7d4b6086b727544b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6871,7 +6871,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 43,
     sourceFingerprint: "99992d3914125592dd6b6e1f7ce56b92d9b66c1a9f8d9f5a7965352bc3dffd70",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6885,7 +6885,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 44,
     sourceFingerprint: "36ad83506bab696a31a993ec407bbfccaf8b3d65259fbccab3ac2e35415133f3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6899,7 +6899,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 45,
     sourceFingerprint: "9b309211c68e40a11394f9ed3fd072ca39a4cac2c486107ccb10c5513b63e927",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6913,7 +6913,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 46,
     sourceFingerprint: "a100be9bf8fe066737325b3e71dca4c4adcc7f0253023f3cf9c8187ed3e1dbea",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6927,7 +6927,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 47,
     sourceFingerprint: "43ca53f3f4aa70ce3043b81a42b36180524f7b1fcf32d79b9bf4f328d36e2681",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6941,7 +6941,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 48,
     sourceFingerprint: "69b5be7ca5f3cd2e29bd8ad3c43fa67f4916676bab9366152a128401cbacd027",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6955,7 +6955,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 49,
     sourceFingerprint: "d8f10db91630d49d6ce455e13d0124140e5a679738c22342bcc03040e3bfffb5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6969,7 +6969,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 50,
     sourceFingerprint: "438a336ebfb5ff8ec9e7081c3d4540886168e3e5cc1417a4580008132bb79665",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6983,7 +6983,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 51,
     sourceFingerprint: "c9b1065c861a405df0676f43e6826aa69473752c622de76217b663434b1bdcaf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -6997,7 +6997,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 52,
     sourceFingerprint: "9f187493c016074ab1b593c779288774c8d5056b388b7e98a855bc24b98077ca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7011,7 +7011,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 53,
     sourceFingerprint: "7780338799d86a1539dafa5d60289f7c9a37931beece0bdaad73b9038a7a5066",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7025,7 +7025,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 54,
     sourceFingerprint: "a68f577fa0f2e4dbfb841fa00c1f4428d05ac41b92302433c786304fe0cff938",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7039,7 +7039,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 55,
     sourceFingerprint: "04d43f1c1cb036eebb7d8bc6fdae8fe51fce02c5bc4adec47b842c85c7a5bc81",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7053,7 +7053,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 56,
     sourceFingerprint: "5b117eb8d9245569556c12801f937a59f390541749e331134faf5895cc5c23f6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7067,7 +7067,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l09/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l09/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 1,
     sourceFingerprint: "761fcbceebb04d3b59f5a4225f4680c1fc6428de94ff698eb5aa433b5e6525d5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7081,7 +7081,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 2,
     sourceFingerprint: "eb1c7eca8f40b6d3b74ebe0d70ced2b31213ca92d0967494ce725d08c04f79f8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7095,7 +7095,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 3,
     sourceFingerprint: "a44f12351e07edd6385b1c7b790790e6658ee87611c7662cfefcbb3b59750602",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7109,7 +7109,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 4,
     sourceFingerprint: "9de77c37416ece9a058fbc0cc935026a3d1c87af75ee723f5262de4dbccbbe64",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7123,7 +7123,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 5,
     sourceFingerprint: "72e993e44fd49d3cc3740cc428bac8d71bb2ca5135ccaeb8e4dda67e1446676e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7137,7 +7137,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 6,
     sourceFingerprint: "e3169e52fef2d3d6c123c59fbf6aff0c3e03eb50c9c38f12ccae43cc643996c8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7151,7 +7151,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 7,
     sourceFingerprint: "6464568f826c819a71d423cb5d9b984c7656c05f9e997956fc03e9dea1dfc9fb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7165,7 +7165,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 8,
     sourceFingerprint: "655dc73e3f5ff5163190ee75559793ff18e2e307cd372d81507115fe0b995371",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7179,7 +7179,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 9,
     sourceFingerprint: "fb8cede0f69486e13a70eaf1e742542de6bc1953e0d571eda40f00659e9d38ef",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7193,7 +7193,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 10,
     sourceFingerprint: "fb125a77b7c920e1514849a5689ad879939963f004e96b44013b17d8f93bc75e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7207,7 +7207,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 11,
     sourceFingerprint: "2ca0531537e1d288e3350ce58d23fb58d349ec8a8b9a9b7f618f13213074bd19",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7221,7 +7221,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 12,
     sourceFingerprint: "06e50bf153c6f3b76f86301609142abca2ab70415f847f9b0031b1bc0b32ea96",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7235,7 +7235,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 13,
     sourceFingerprint: "ccef55fbc872b16a0e55648ee8e0f1a91fe8f6ee8629db4851cd5d372292b81c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7249,7 +7249,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 14,
     sourceFingerprint: "18a008790a35d8b643008aedffd9359d1d8e3f2ab5e37c80e6830647fba7309a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7263,7 +7263,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 15,
     sourceFingerprint: "9cedd49c33401957e906d05342b32d198e6462d7694daf8f1f847744f0eae64e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7277,7 +7277,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 16,
     sourceFingerprint: "005ec5c23d4f61afc449ce5df935c22a965d6b0dca29ccb39f9ae239e41b71a4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7291,7 +7291,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 17,
     sourceFingerprint: "0b1a6f3fff094a46c6f391f459d5e6ab1e31ad4efcca84b983f72c8ca2fb0ca6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7305,7 +7305,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 18,
     sourceFingerprint: "f8fd031cda0ff455acbf91dae1091117dcd7d7ecb41ef06c28c66f3bedd0ddb8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7319,7 +7319,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 19,
     sourceFingerprint: "1d4a9c4e6f7cf497564b3c550f8debbda3f472449e11779350cab0f2d5ef3cee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7333,7 +7333,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 20,
     sourceFingerprint: "b0dcdb9161b1144ca09ddb4bbbf3ef0724b978da96d28de1fad2c607d92fa040",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7347,7 +7347,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 21,
     sourceFingerprint: "ac23f50f898f2d6deaedf760a99db66ffbeb0d943720e830690dbae346509f29",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7361,7 +7361,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 22,
     sourceFingerprint: "7b7a46aefa7192ad6e40ece48b01611a3ab04dfa4b23dd0fc3f16a52e86de482",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7375,7 +7375,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 23,
     sourceFingerprint: "89b254d269da492f9182181679b3798524d637a27c6ef981e0c134cde97ef367",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7389,7 +7389,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 24,
     sourceFingerprint: "4cebccdea70378b4a442011edd72e4c6f54b7845ce98de7746bef15c918092b7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7403,7 +7403,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 25,
     sourceFingerprint: "a955be0562f81859ddf9108958e78b8fd676332e13ffcb048797a9262de18f21",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7417,7 +7417,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 26,
     sourceFingerprint: "5690be984e98b57366f12eda7a979961148c4bee5ac884f3f4dd8da8e0764175",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7431,7 +7431,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 27,
     sourceFingerprint: "3ba735e9eb08fb756bb149254604158e9c50138e47c2ee8a1e63df6bcb0134eb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7445,7 +7445,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 28,
     sourceFingerprint: "4fd10226f7eb28ad9018c38e8e98120960e5f111a3c92e2406887dff612f497a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7459,7 +7459,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 29,
     sourceFingerprint: "a9d4b8285378ff8b3d3f3f0c293e93cd6248eb640b0c655bb44b3d842b0fd479",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7473,7 +7473,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 30,
     sourceFingerprint: "cdb84627888dc596b8127f62b2e45c7b8e81600dccc4398b6be78924e1c62e69",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7487,7 +7487,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 31,
     sourceFingerprint: "65be6f57d8c6f9e3537af1668be5d6b910304202395e41493256dafbcafcfe28",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7501,7 +7501,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 32,
     sourceFingerprint: "717c1d73df201c5cb75e27d27a0af5b769f1badedaa3f753255c1673788e8d36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7515,7 +7515,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 33,
     sourceFingerprint: "adf7a0de3b44f6b0e208095496331371325a80309b107e81d93737afb5f943ef",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7529,7 +7529,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 34,
     sourceFingerprint: "33cf782e0c42ac65081fefe0514db62284c11848b4d70138a20cc60126d449c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7543,7 +7543,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 35,
     sourceFingerprint: "ff8f06b87852923c7f6ad4ed257856b0ba36c6c35bf8de987abea59723d20c83",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7557,7 +7557,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 36,
     sourceFingerprint: "be50e3f2dc84299a4452e00acd5a57c6b7b02b177bcf026aa22593556af1889f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7571,7 +7571,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 37,
     sourceFingerprint: "27c8c58d0c694495179ec54b9728e8f741dc05486cd8d1d176cfa043a594b08e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7585,7 +7585,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 38,
     sourceFingerprint: "e4d2d5551aec17517a0150fbf9cacf8e9722cdde843060d8c9c10e71ae5b769f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7599,7 +7599,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 39,
     sourceFingerprint: "bc063a05ae65d3fd520951c3f46554573a11245207f43984a8127584048953a8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7613,7 +7613,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 40,
     sourceFingerprint: "57729b868bfc415f38e1b9f882065f54afc19c63141f25a97a0ae0586740fbd8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7627,7 +7627,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 41,
     sourceFingerprint: "5eca7d9b76001070e55c2f2e658d6f6ff114a4e7ff43eb6a675987863dc2db48",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7641,7 +7641,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 42,
     sourceFingerprint: "d1ff835db8095a4872f2db51ad5e0ae5f3b698d08a687df2e9c129e929d7aa8a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7655,7 +7655,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 43,
     sourceFingerprint: "3608e660db3b7e14fd030e5496cb534b6a69f4a4c9e5e7f269f79cd95786df33",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7669,7 +7669,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 44,
     sourceFingerprint: "e42b2a7c2b1ac2b353259a7dcf35b81a123a05371a3e67207d578bd880df7d47",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7683,7 +7683,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 45,
     sourceFingerprint: "bc9c8980cc834e6b8ccc48408cd9e84008c3ea44498ae46297788c3664fc2f0e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7697,7 +7697,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 46,
     sourceFingerprint: "0313f4d4fcd549dc7832764f49285722735e11981e189377f0f67a72567c9d4c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7711,7 +7711,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 47,
     sourceFingerprint: "e520d87884f6852cfe1336b6538b58411a02d8b2655979640f1d0aab0a002595",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7725,7 +7725,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 48,
     sourceFingerprint: "54b4d02be14136797e8dd25ee1f2457043fb019999e394f0176a70e6494d567a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7739,7 +7739,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 49,
     sourceFingerprint: "f72e9d4b795ee925e4d0bd62da3a1869a89462de9aa7b69af1575e4c00b25cb4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7753,7 +7753,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 50,
     sourceFingerprint: "1c13a8280a5b2c777634db9ba96055ac754657ac8f6823b136bb8e36bc7cc5e8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7767,7 +7767,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 51,
     sourceFingerprint: "a85fe07ff00027a25e68eeb0c51b604965ff252b61262d3280d8d51dba6a935e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7781,7 +7781,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 52,
     sourceFingerprint: "c970b1853889e705d70561684a6cdf48a0d77ca9dce4abea051af8c12462b9ba",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7795,7 +7795,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 53,
     sourceFingerprint: "ec2b27d02b75fe3c6fc5acd8bbbf389246dccd254ff017999e857ffecd15078d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7809,7 +7809,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 54,
     sourceFingerprint: "0eda4824e8700697675dc2f5266149d88da67cc05c9d7e808d195ac6b604d16d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7823,7 +7823,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 55,
     sourceFingerprint: "92311871471cdcfc4b925c964567275bc387da14fda6877c4f5bfceaed7a1f18",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7837,7 +7837,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 56,
     sourceFingerprint: "a76c201ad3131cbc7360204fb8e7c8e47c5dd8e298e106e235e305cc855d3c5c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7851,7 +7851,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l10/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l10/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 1,
     sourceFingerprint: "355ec2e8294b4b85226e2446cd8ab0badaf2c9331f12c1b1e35f254a2c8c39ff",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7865,7 +7865,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 2,
     sourceFingerprint: "92d62f586101ce2c3819eac7f92b894b2a22cbdf5f25786e8ab9a055022cabe6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7879,7 +7879,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 3,
     sourceFingerprint: "d09d90bc691c765b5cbb39ed119f43226efdf9901bc6aec455c83b97bfc4b52e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7893,7 +7893,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 4,
     sourceFingerprint: "f3670066b82c56c706c9d19605854f7cdec5b087ef75999f80477a123d522f98",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7907,7 +7907,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 5,
     sourceFingerprint: "6c5e18adc9e4c8089a14e96005da930e22658551883571aba07b4356c875ffc3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7921,7 +7921,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 6,
     sourceFingerprint: "3f68e21dbecb3048065dac58b6b80787038cfaff2b724d76fdb3653c5494bbc4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7935,7 +7935,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 7,
     sourceFingerprint: "4557d83a9924513dbaa1ba91132b21387dd22233803b81afb27894268541732c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7949,7 +7949,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 8,
     sourceFingerprint: "3696d7da47e5944736926f7191200b111aebaa9ea1d62d68adede241b3643296",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7963,7 +7963,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 9,
     sourceFingerprint: "4d24599b75dc92a886d1c94582451efb63d05f300039a46339e78a30f647403c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7977,7 +7977,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 10,
     sourceFingerprint: "26fe9c70f245b2a888775d1aa19f8fec24a8c7a8e756ac1072ff254d9b18b8dd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -7991,7 +7991,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 11,
     sourceFingerprint: "303cbe39dac8173e66b6d31dc9c51be9f4a0dc4a850820467deb1f341c0ebf59",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8005,7 +8005,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 12,
     sourceFingerprint: "81701a07d302b7d1d0c85d868454f332d258d032f375af752276a024b974c8ac",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8019,7 +8019,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 13,
     sourceFingerprint: "9e37f1895ef233494f67ed5b8496231f569a6388736c33054e4ff8ffe090d63c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8033,7 +8033,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 14,
     sourceFingerprint: "de51fec4200645ef81ce7aa88ce8e1b63041b05af8d87cb5d0ac101a4b809632",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8047,7 +8047,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 15,
     sourceFingerprint: "f66d695c3fa23b4c8e501e5e73db12bc0a09dfcf3660e57db80ca4b5c50005de",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8061,7 +8061,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 16,
     sourceFingerprint: "400b44031bfc0fa13a137005eb430eb0eb4f3f9afd534563f3ecd8acdca69338",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8075,7 +8075,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 17,
     sourceFingerprint: "2ad2e7aa1043833669260f22947125023fe881c94c0ed7444d2d239ae11aa66d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8089,7 +8089,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 18,
     sourceFingerprint: "d800de5f0c70648e26a07d248d51b0732437fb791345cb43d87dc7a71c974fc4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8103,7 +8103,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 19,
     sourceFingerprint: "e90a6cf94dcc9eee09debbad41df9b0b4bea680b03c3c6918b54628ebf277643",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8117,7 +8117,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 20,
     sourceFingerprint: "b8c6cb46979cb036b478ed0fb240121ead27d7d7b76c8e7cf7b55c91e40e0fcc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8131,7 +8131,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 21,
     sourceFingerprint: "a27066b3c33d2b86376b42cc170a6ee256a1fb8c2388325ef206c8eada851cb8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8145,7 +8145,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 22,
     sourceFingerprint: "0fa65d06c45e85fc88c9c7f66bf24bd8bf3b92269bfffad6f7154fda2cdd9db2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8159,7 +8159,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 23,
     sourceFingerprint: "26729373c3a484113a814ac3b73d65ac7db9421d35d58708d2b8a4557314c053",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8173,7 +8173,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 24,
     sourceFingerprint: "17556cfe739d9b43aecbd6a1bf54eb437a2601f4ced5b8acaa3f33f08eed7293",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8187,7 +8187,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 25,
     sourceFingerprint: "119d5be4870b640123010e621e8f90e72eb710cc71238191b5013319545e907d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8201,7 +8201,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 26,
     sourceFingerprint: "8782829c30677f7269e25e18e172890129298eda064545e6cfdaeab08d88697f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8215,7 +8215,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 27,
     sourceFingerprint: "619878b5db98bd91b2430cb53c2d6dba4acfe5225c725b601dc2625a475e05c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8229,7 +8229,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 28,
     sourceFingerprint: "e1eec3e0fd3eea40027efc48a766b9aabe0bc4c3713fa714617909cbe8087781",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8243,7 +8243,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 29,
     sourceFingerprint: "225802eff7705a9cf4bb7cbcdb44c0f6f27af11c4e357ab26c95e7033e2debd2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8257,7 +8257,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 30,
     sourceFingerprint: "bfadd039481eada22fe7aabc9d88dd5c6f55df86e1c1710b06e41777966247a9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8271,7 +8271,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 31,
     sourceFingerprint: "e427d9d2efb7cbd52ca50cc32cb9a4a5066dff0361b0610c78ae5a84c28c8cce",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8285,7 +8285,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 32,
     sourceFingerprint: "df1864bed6831e7db70e1d5b67dd5d46d17a9a20a8b0aef31d6369211d4e16e2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8299,7 +8299,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 33,
     sourceFingerprint: "3ef735589b8865d1514f6f92d7f4ac4dfc24f66d5c3ce886c21c943bc818bca6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8313,7 +8313,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 34,
     sourceFingerprint: "7ff7869bbe68ef04f75df8b6dec47eaa6ddf45c450cdd67e3850e5fa82ea2aa2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8327,7 +8327,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 35,
     sourceFingerprint: "bb910d17af07c76dd8c3969c807886cf506390477c1b86f0abd7f6510cfd0eee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8341,7 +8341,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 36,
     sourceFingerprint: "aa5ff910bced5f108d2f90d275c6d3b0a319343c27f25b67410fd85f622141dc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8355,7 +8355,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 37,
     sourceFingerprint: "696135a94cc663db66c4296b0cf4b92668ddf0733fac16a310c17ca4a535c68c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8369,7 +8369,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 38,
     sourceFingerprint: "587a99bd29f2e7b1643d105abf43d1c14b3b5cc516d8dd4958aaf89466ab9d87",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8383,7 +8383,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 39,
     sourceFingerprint: "a17df8e366f75c5567681d0e6f67d90c83c7b556992a73802d3110bd018ec441",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8397,7 +8397,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 40,
     sourceFingerprint: "4747f1d1a33e69b3b5dfda09260e564f9c41228d95cd963572eb4a2ddf7a177c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8411,7 +8411,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 41,
     sourceFingerprint: "a1dd937a43221254c2583d0af3507f830d60c1d6d0c6ecd4427d2ba0751f1e4a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8425,7 +8425,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 42,
     sourceFingerprint: "091cec801a8daaa4fd473295c0feb5410022052c95645f086f8b56d01f15a124",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8439,7 +8439,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 43,
     sourceFingerprint: "d72970139d51c7b535ee7c5606e969d5b5b600f3cc4ffd9652f527d44ab1066a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8453,7 +8453,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 44,
     sourceFingerprint: "ab380ab98d4a833a1b9d1acd79ab92b406f13a28f0772ed661935d8fddc3955e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8467,7 +8467,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 45,
     sourceFingerprint: "db717d878e84968a138fab56a69eec5fabf141db01435ef322da394b7e09dc26",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8481,7 +8481,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 46,
     sourceFingerprint: "d5c15964c8a3d69a0124961d2a789e1037e534086e4e594cfb43a98b3573d1b5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8495,7 +8495,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 47,
     sourceFingerprint: "3cf35d3b08fa0a75eaf24c0b214baefd3267325ab32d5e6805721eb8126e6fe0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8509,7 +8509,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 48,
     sourceFingerprint: "b1b731cb5edbf08f1468ed99b06d775e5e7aebd321382b05fa270e6f41db0330",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8523,7 +8523,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 49,
     sourceFingerprint: "16173ef2d47c60c9fccea533d2586239331c02307dbff377edfa101388af1958",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8537,7 +8537,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 50,
     sourceFingerprint: "06079fc12f2e938939c64a64033be7d5c9e9fd272b32c833bcbbe547a7c0f056",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8551,7 +8551,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 51,
     sourceFingerprint: "644fa42618ab82f448f8bd9217d7e3c296ff4d58d1cc3bbd5188e1d237d72f8f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8565,7 +8565,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 52,
     sourceFingerprint: "0bb411a592d61726610889d2e96ddf839a598776598fe6a8f30446f0ed4ce7bc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8579,7 +8579,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 53,
     sourceFingerprint: "96361a3191f54032e8659f0055502a6d683f726778f558a821901ba1828b5204",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8593,7 +8593,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 54,
     sourceFingerprint: "2f72280ab1e8e714245717078497651937ea2adafc7834a4c0d611a9caabac37",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8607,7 +8607,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 55,
     sourceFingerprint: "ffd0cd38850efe36d6b4ea123deaeb64ad3f9a5ef2eaee30ba464a13d0a14049",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8621,7 +8621,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 56,
     sourceFingerprint: "953eb267fcf071963f56c7b030536650ceea6a418da0cdc05fa0eb82998536ca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8635,7 +8635,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l11/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l11/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 1,
     sourceFingerprint: "1e587010262267af10bbc8409a79976abaffb65e478aa4df681de265c94277c9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8649,7 +8649,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 2,
     sourceFingerprint: "3482b822a9516cd60e91badc3f6e1b07c9bf7c3a2a217476f1f6c8d42d866a70",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8663,7 +8663,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 3,
     sourceFingerprint: "0bb874ff6a525ab6032acdb0d50cf58cfea8f79a4457a29f39447a223942fc48",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8677,7 +8677,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 4,
     sourceFingerprint: "17385c6366723916baf221afc5ed35d241baef9979ca205a8f263e27bcb7cf91",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8691,7 +8691,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 5,
     sourceFingerprint: "06193231bf021dcdae983ba0aad34abedd03b71fb8f256f47e969be703405af5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8705,7 +8705,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 6,
     sourceFingerprint: "ea65273e0690f439c5ef417baea15f221fdf0786c9af5bd22ec062ddbe480795",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8719,7 +8719,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 7,
     sourceFingerprint: "8e46ecbe6e2ac0870fb40a7cdea4f127eca17d2513071d08846cbb778f43c00f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8733,7 +8733,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 8,
     sourceFingerprint: "1122b226ae31d9903c45242ff6e28a13a61a864aab781b85c1967d59185b48f3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8747,7 +8747,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 9,
     sourceFingerprint: "47295ce7aa9f6f4cc393186ee1d8291adabef2b4117c174b6993ee8de51c4de6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8761,7 +8761,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 10,
     sourceFingerprint: "af8d8c10ee7c323f598f3c8921744917f27a365bb9a1c7e693bb9258b8a2e5d1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8775,7 +8775,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 11,
     sourceFingerprint: "8396fa4e649bf5a9e84bdc1bcbd21cf0419893f30820408c66d726d4a9870fe8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8789,7 +8789,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 12,
     sourceFingerprint: "886d5f2640311209e7569265ecaf37728a2d10b7362758e745c30bae21e6acb0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8803,7 +8803,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 13,
     sourceFingerprint: "bc5e0d1f00e57bd54cc11516d20d564d28395156bab8db70c3a97c6a1c605eb3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8817,7 +8817,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 14,
     sourceFingerprint: "314523f681ac46e4c922d6071aa5a6bf279393f5d00600686c7f9dac58917f77",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8831,7 +8831,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 15,
     sourceFingerprint: "1d5e6292d8af549e82b79295e347cbcac5bd3ab705c07afa7f520c367f10f272",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8845,7 +8845,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 16,
     sourceFingerprint: "3af89c51aae1f675eb8586d3e6d60c0c54f7daa04bcceabfdd372ad8eed4dc16",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8859,7 +8859,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 17,
     sourceFingerprint: "5ed5027736eabd541722ab2bcb591109df89330390e64281956ecafd88d8e7d5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8873,7 +8873,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 18,
     sourceFingerprint: "661415de7018017bffa0d3f5d45acdd0661cb3f22d7ab39b6e885690a75d42eb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8887,7 +8887,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 19,
     sourceFingerprint: "eb999be1e19371401891a9edf5fb468c210895d344aecf5b258f2d1a74283c48",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8901,7 +8901,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 20,
     sourceFingerprint: "d6563bf4fb56b32961f29a0d811d71f4ac45b4ff34954d091630f2a4cf2f6abb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8915,7 +8915,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 21,
     sourceFingerprint: "6d137c93e78a60ebed4bb712130dd6b9b9ee0b041a750180a56f53d8aa1122c9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8929,7 +8929,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 22,
     sourceFingerprint: "cd40cae873794a6d006e9793e0b39d9877f6094289e0ac43b411adfc3b2cccaf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8943,7 +8943,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 23,
     sourceFingerprint: "d941731f73b452f0ad05f72c25224eaaf54bd3069bc561189fd705192891f3de",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8957,7 +8957,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 24,
     sourceFingerprint: "333736ab19ba638470d2677ce0d7b975ac1bce59008dd4e7432609fa33956926",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8971,7 +8971,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 25,
     sourceFingerprint: "350b256ba1782b813f33b6b7374bf071ddb806b4d3397192050dacfb4c4731b6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8985,7 +8985,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 26,
     sourceFingerprint: "3ec3a2d54c74f5a60bd47aedd24b6e67f12583debd8d35b1c26271735f12076a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -8999,7 +8999,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 27,
     sourceFingerprint: "0163afb0d450e2f47464aeb7f86b1663c264540009e7815a35fd6ed9268f6600",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9013,7 +9013,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 28,
     sourceFingerprint: "b2ab458b60266d710fdcfd3aefdf68dcc9c2dc2c1e88ffb928ad86f7303ee6ff",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9027,7 +9027,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 29,
     sourceFingerprint: "f4c9e20b0dc2e7a9b86f27977d3e0268355698bddefbc669ed2c885b7ecf441e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9041,7 +9041,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 30,
     sourceFingerprint: "e3f1583e9621f27fe18ba332e5ccba68df4030d00838761610090f2497d76655",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9055,7 +9055,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 31,
     sourceFingerprint: "156981c211cd954e26d39b4d6f641a09cf581b7785b12c21eb87be150f79439a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9069,7 +9069,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 32,
     sourceFingerprint: "b478f882949afd5fb3f17a174e6128e4064d9238b6ee016e9872daede5ba4193",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9083,7 +9083,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 33,
     sourceFingerprint: "b62f58d1f45cec4e729df5bf9070df36764d249a4dff3b6a963765eb8378673a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9097,7 +9097,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 34,
     sourceFingerprint: "bf9e199d27b68083831833a334511c2ee0f2d8f8351e778803e1478cc8524a59",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9111,7 +9111,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 35,
     sourceFingerprint: "fa290da00eada3e5d7add71e77a2d279a550790992d668f112dfa0dba0ee085d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9125,7 +9125,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 36,
     sourceFingerprint: "0a0604b54677998e3edd39e8dd67100760b6046077cb652f88f23c97e65ca667",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9139,7 +9139,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 37,
     sourceFingerprint: "7df7384836f7471e80e27f7b860c3dbe4b2624ef60c4428eea5d6a72868d2014",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9153,7 +9153,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 38,
     sourceFingerprint: "12dac0ecfc075610261a0461a48b4412687e5f4866a401353ee2d40b561d708c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9167,7 +9167,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 39,
     sourceFingerprint: "b21719ff5a43439d85c1da845c9c30cd0ae32244465b59b3334115d69450c38d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9181,7 +9181,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 40,
     sourceFingerprint: "f6c9e96dc01062164eac0333a1c4e8ae93a04c00b9a0d21aa132fcf0b0b98bf2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9195,7 +9195,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 41,
     sourceFingerprint: "9ef8894e1dd8d1529b6e9f18fca078869ee22daa75fe38168fe9427dc46e6b52",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9209,7 +9209,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 42,
     sourceFingerprint: "2cbf27a4fa89b059c3ce614d6e460bbb6b1b3015073a895b1056dd032b3aa6a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9223,7 +9223,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 43,
     sourceFingerprint: "d7361a27ac8ee311288425889b0cf714373e1d2ca4b1c2e301c0a15ae2d2dd71",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9237,7 +9237,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 44,
     sourceFingerprint: "5f319e6a6543e5b5c140342b82d191f5970a6a3df06fef5890c84db0cc20a3ad",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9251,7 +9251,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 45,
     sourceFingerprint: "48460f75e2639bc05ce603acc1b8ed1830b695d2d21493dda690add6a03cdb4f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9265,7 +9265,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 46,
     sourceFingerprint: "42f9362d5cda9e742927e0cc7d174ac5010c25ed5fe10ce267570cca50a9a058",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9279,7 +9279,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 47,
     sourceFingerprint: "e36e6ffcd9e31a66b03bc7ac0c85c7eb1695ea772564c20a6e6f0899510ce50b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9293,7 +9293,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 48,
     sourceFingerprint: "c7f69d07f2b9e8dcd431a5e86b588b629efa5912b278ffd42e19211c633d5d0c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9307,7 +9307,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 49,
     sourceFingerprint: "841c66c4fd675d7eb9a25691119f14e0bc9e961c3da66aacb55bec3e500a6719",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9321,7 +9321,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 50,
     sourceFingerprint: "bb0582457bc7179029d182103eece778d2790e92b336b51fc7baacbf69348ec3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9335,7 +9335,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 51,
     sourceFingerprint: "d957dda4b1b9b9319299fcee2eeab51da6e015c157b34a70151abbc8d2f3502c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9349,7 +9349,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 52,
     sourceFingerprint: "9187238c1811cb8cf20a3336957e719af9335551206d9a412a59ed535f75337b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9363,7 +9363,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 53,
     sourceFingerprint: "17cce87adbdaa6df7e30ccedcdc61dde77c0ca5619ac3d95dca14e6aca9f8754",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9377,7 +9377,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 54,
     sourceFingerprint: "db653d9352b432f8eb4c1a6f6ebfe6f9ccf427e05484158fdbb0a21595edc5d4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9391,7 +9391,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 55,
     sourceFingerprint: "91919d2fbdf586da67abc90f6492dfe5f527330d06c8c7146a2b3c7f72622327",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9405,7 +9405,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 12, sessionOrdinal: 56,
     sourceFingerprint: "0efdfb3ca191c03e4a4dc84eb3a07eedf36a7de9fd28c23e5747237385899243",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9419,7 +9419,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l12/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l12/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 1,
     sourceFingerprint: "91bd54eac1fb1b33632d02114408a4974a78f0bb4122eb8dba289d1823903a57",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9433,7 +9433,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 2,
     sourceFingerprint: "b35536ae0799a5cb51f38953ad2a5bec199e2b01330cddad74be2c37e153fc41",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9447,7 +9447,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 3,
     sourceFingerprint: "601449db68d47da316a73137c545258e6ea3c9bf111c8bd652d3478a96149e98",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9461,7 +9461,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 4,
     sourceFingerprint: "ac249e439004826fea90aeb871f5ed9e3f025de43a5134c60ac81324207e26c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9475,7 +9475,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 5,
     sourceFingerprint: "086b8081317aacbbb0874110cacc8389ad77de98f0857adb986048e960b7f716",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9489,7 +9489,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 6,
     sourceFingerprint: "2de6112f76c44935bb55b522a9007af630f0eaed9f6b96ad216e7dcfec058573",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9503,7 +9503,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 7,
     sourceFingerprint: "7e7d8fba4fba6b5111dd3d9c1bcb55799177eab08a4d9ba8634d34c29623a8d0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9517,7 +9517,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 8,
     sourceFingerprint: "4700244905ba6cf8bb74e05e1f3b07437c3f3ddef4090443f7cf990256b52100",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9531,7 +9531,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 9,
     sourceFingerprint: "31a061f79091b848dba240c689aee0a9bc56fea137bc9089bf13df7d564290c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9545,7 +9545,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 10,
     sourceFingerprint: "ddc034c2ee3915134c1b39dad07fd05ccd8d35a05bdeb85cd027c816b953152b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9559,7 +9559,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 11,
     sourceFingerprint: "13aec463c8fcceacedc11625509bafe04816f5dd51dee14f564732b464fbf436",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9573,7 +9573,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 12,
     sourceFingerprint: "54728e4b94a6ec44cdbffc186cbf6f882eba3e99262c8192138af3936469b581",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9587,7 +9587,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 13,
     sourceFingerprint: "d91c011b45a92d00bb80611b1f06b4f8f777bba251594f5425de9689cb22dee9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9601,7 +9601,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 14,
     sourceFingerprint: "68135e8532ded4312a22337ffbf99da030d00a97c02088e40dd3ad6cf59bd57c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9615,7 +9615,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 15,
     sourceFingerprint: "85d6188e0ef9a411103c6d354d2111d14d592fac096005359c8f5266e6b9ac13",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9629,7 +9629,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 16,
     sourceFingerprint: "5cf12006f774fdfdf696c9af85829cedd47d3c891a6e3207b23ecf884c548c69",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9643,7 +9643,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 17,
     sourceFingerprint: "ded8ef8fe11dcee5b3191607b2fc7ae974ab5aabd865e7bd58b24456c3568c8b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9657,7 +9657,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 18,
     sourceFingerprint: "b33c0aadad7a20bf83ceacb0811d33adbd636f926e86164781df4acb5240a3a0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9671,7 +9671,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 19,
     sourceFingerprint: "b5261ed814fb699fa056e5c544cfd0f01b1056e7919e944ac8f945f9247e27b4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9685,7 +9685,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 20,
     sourceFingerprint: "aff2f0ce2eddae8826087333ab5c469ba3775edf63dec8966cd10b2bbb656688",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9699,7 +9699,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 21,
     sourceFingerprint: "b997990236b804c7dac40f34b5fee01437f547ca3a152309554fc7c38249d0a5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9713,7 +9713,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 22,
     sourceFingerprint: "1628466cb9bf335332460072b05d28c9b6e5a5e3cfdae495b09b3d4e136b0a3c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9727,7 +9727,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 23,
     sourceFingerprint: "6d175344cebeb9896ec84d7e87d5a6e83e858f393da19a9dc6227d3841c4c74c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9741,7 +9741,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 24,
     sourceFingerprint: "0edaa8548a3227367425032097853e28a6591680701817e580143418dcf4b492",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9755,7 +9755,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 25,
     sourceFingerprint: "dda91771b57e3db75edaaef5fc9b664fa8eda5c1be06c43eed52cd6c774074bf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9769,7 +9769,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 26,
     sourceFingerprint: "7b70ebc44f486f62ebd3e822e707ce5d65cbd341de714db2c8309d3ec7ca71a4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9783,7 +9783,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 27,
     sourceFingerprint: "d604d897914776abfc69f4109cc0940ae44de526ff3d10041030fee6fb0ac9a1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9797,7 +9797,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 28,
     sourceFingerprint: "a090ad690ef50ec2d1d61995ba746dd3caef0937b9df453ebba768c0994173e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9811,7 +9811,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 29,
     sourceFingerprint: "985253d7f4668ff2f7618b8f214d3690258c8be5945818caf164145afb90b7d8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9825,7 +9825,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 30,
     sourceFingerprint: "5a4e9e08467922c606dce210c7bbccece4105daf91b75f1c2307afd6f73b11d3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9839,7 +9839,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 31,
     sourceFingerprint: "41b9ad474c2b7034960559a3133548a16559f35df0fec7e7b1ad6afbcdc106a8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9853,7 +9853,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 32,
     sourceFingerprint: "50ca5771006c44892ee8924933d8fc15ae0c8a3fb2a140bdef4cd0a4cc9998a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9867,7 +9867,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 33,
     sourceFingerprint: "3399f261144e06726b9e43093694785e58d7070bfdc5d6f133fe7678b4e71c33",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9881,7 +9881,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 34,
     sourceFingerprint: "5c0647101cdbdf5be1bdd3a982c9e3ed47837094035135692411f4cf50ab2dbb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9895,7 +9895,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 35,
     sourceFingerprint: "94d5fb53c1deb0c055f69caf34c0d09ef601474dfb27e75828007c4c74de72c4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9909,7 +9909,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 36,
     sourceFingerprint: "c6e4b73e523c1cf424f9b730cec3a8bcf3c5840167b757dddd1884a9b33c1b15",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9923,7 +9923,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 37,
     sourceFingerprint: "0f7dcdb2faea19c061cb0fccfb613d38035082d16720466aa2b4362c4495da1c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9937,7 +9937,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 38,
     sourceFingerprint: "9b78f0c4577cac66ccf447f357de1fb1afae28cb2e045f3dea117bf28af43a91",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9951,7 +9951,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 39,
     sourceFingerprint: "7173537f802e18480059ed48cb45e861e816330bd908dbc8845d7825936bf1a3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9965,7 +9965,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 40,
     sourceFingerprint: "12ba6c67fa96c5e856838eb9957f776e6f675e048625ff1b73651c2ac5fc1d9b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9979,7 +9979,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 41,
     sourceFingerprint: "267a1d49fd9ba013f81e77db408c95d33529d6278f34f741dc76715653a9471c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -9993,7 +9993,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 42,
     sourceFingerprint: "8933099c01f9a7004b10f103734b3bc3ed849c799a5ec5878014b733cf0f95bb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10007,7 +10007,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 43,
     sourceFingerprint: "90efeeb76cdddcde5eda72ae8a9375b02f62ccb3a98e85f86974a14143d928e3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10021,7 +10021,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 44,
     sourceFingerprint: "71012dd4340626af1c80e353a50ef3560ff5f7d8abf0991cf0908fb0ccbe7e24",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10035,7 +10035,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 45,
     sourceFingerprint: "13e5e6c492b94f1fba44fc353bdb1c5feef398d8716091ea71213b7617743465",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10049,7 +10049,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 46,
     sourceFingerprint: "79c651ccf7e67d625bcf2fa68d7a5f116ccbdddbdaf2a3ee1fe5898aea35af61",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10063,7 +10063,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 47,
     sourceFingerprint: "6ccca7df7862bf1bd73699a41ee7b5698868792fb880436731d4797e7b86493f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10077,7 +10077,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 48,
     sourceFingerprint: "60536505958a067845c15327c3abb842d24cee2b9be225e30fb1a8aab0445c4d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10091,7 +10091,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 49,
     sourceFingerprint: "cbd91a84a9c6461ec8568537f89c33e5363e7bda77e80c87a2bac1261e2115c9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10105,7 +10105,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 50,
     sourceFingerprint: "445aa4a831dc78ac0ae833eaa04c7cffaa331f686554cdbd7addbb0b4511e6f9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10119,7 +10119,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 51,
     sourceFingerprint: "ec78f86ad45beff68031e98ffdf8121dee897d44beb17a4bf0a2108f0f87fed3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10133,7 +10133,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 52,
     sourceFingerprint: "8e19351b254234c5beb0b29ae78b1207c0441e79ae23e94ac83dc849b5964ad0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10147,7 +10147,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 53,
     sourceFingerprint: "381f3a21e7062af83558985a5fb1febf6f9111bb6a43f5dc2ad73ac95adb4e6e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10161,7 +10161,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 54,
     sourceFingerprint: "2814ba8bccd26cff25ddc3f93e0ae2df9948883f5af0a134f9374be83586b180",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10175,7 +10175,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 55,
     sourceFingerprint: "9610fa89474f397fe960dd8dad78de875ea1933ffe721c1c4ef90bab6ca9404b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10189,7 +10189,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 56,
     sourceFingerprint: "7f33095c8f6fa19928c972f9bb8cb29d68306149de0e6d8197c75faea5993308",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10203,7 +10203,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l13/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l13/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 1,
     sourceFingerprint: "422fe4e3a23d9d87e385d6279a71d90e4999936092aac2493e1f102d473497eb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10217,7 +10217,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 2,
     sourceFingerprint: "02a34410af23645e72ee5e9969b299bf789924ee4f852d11f4a603694cf85afb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10231,7 +10231,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 3,
     sourceFingerprint: "ec5e03928c703ae69b7d7f38ebc3be0f82b478696a938027507d70ce8976d860",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10245,7 +10245,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 4,
     sourceFingerprint: "7518e98d38c09e23023b5867cd9b0174b17b9280c729f28052a8a4a078619f7d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10259,7 +10259,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 5,
     sourceFingerprint: "1d08bfb29c1ab317eb158d2452001aae483c065ca95504d58bf5894ae1d0e877",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10273,7 +10273,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 6,
     sourceFingerprint: "48b8d28281b0f82073e9be09eb0ca45bf7d76b78d58ea7634c241d057abad503",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10287,7 +10287,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 7,
     sourceFingerprint: "34209ac9579ac41b8be71cdebd96bc8834d92f6a85b40ebef0e1a9f1f641b941",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10301,7 +10301,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 8,
     sourceFingerprint: "7b5cc1892bb778ae5ec3070ec82fb9464ea67636b5bb89d6776c54745aafa4c7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10315,7 +10315,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 9,
     sourceFingerprint: "fbc7e743b6f8aaf073589036d47bc2ee9f3f699cd20ae980985f077293fe6e0a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10329,7 +10329,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 10,
     sourceFingerprint: "84abb8119b4e8634eafbdea3c455f45c2d51e680f7071954877a4d9c74a843bf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10343,7 +10343,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 11,
     sourceFingerprint: "fa0cd3f63a16bf0fd24d3b179702b18fe3937ddba5af2c21bbce7548208adf8a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10357,7 +10357,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 12,
     sourceFingerprint: "46dc70bdf105eb92b15896d11a38af9c97ddd4fa7223d1fb9378dc69539feeb7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10371,7 +10371,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 13,
     sourceFingerprint: "f91e08fde33a4cd82f247e423553c30249ada66322c271030c8f088a0bc2c4d0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10385,7 +10385,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 14,
     sourceFingerprint: "422979cc947b139a0b0c6fe8bb313578e0a71adacd10b2cf857dda07a6d25383",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10399,7 +10399,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 15,
     sourceFingerprint: "b25dbd59bcefe1769c452f6be37643b9fcca008ab8699fc63ad476f6f5752126",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10413,7 +10413,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 16,
     sourceFingerprint: "9e171b892ee51d35f104f586a76a8d4372d1760cf1e1420fffbae66b0efc06a9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10427,7 +10427,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 17,
     sourceFingerprint: "10181c99288a2829ca8b834c182243dca75fd9ff4c4acfaebfb4a7d1bc44484c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10441,7 +10441,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 18,
     sourceFingerprint: "06642e499efc917238d295149590769425d9174cb9e99e12bb1c794459014f41",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10455,7 +10455,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 19,
     sourceFingerprint: "9b8caed6a16ffd1fd13ce80165167b1ae7df1245d3d442211f02bbc9f8698a18",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10469,7 +10469,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 20,
     sourceFingerprint: "8b233a901c542f8a139f25c86723592d375e8740afd57e73222635d291eaf3f7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10483,7 +10483,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 21,
     sourceFingerprint: "1f68a7135eec036ee10cc3aea6de24dbc814818adfad7626be9fa42b10dbd735",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10497,7 +10497,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 22,
     sourceFingerprint: "52b778a138234e4516ba96f970c8fe3c27d56d1ae376acdc6417524e54d2d186",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10511,7 +10511,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 23,
     sourceFingerprint: "1de50d855b57683891a3b11bbecc685d69a1f30a91fb14849d353bdc7d4b514d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10525,7 +10525,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 24,
     sourceFingerprint: "58e085bf96239ab6dc4c512d8af9962d3904ae7614d871f211f3389d330df596",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10539,7 +10539,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 25,
     sourceFingerprint: "bc6327352782d6d9201fe6fcfb7dfbf7749195056ff4bf7154d61a990d908026",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10553,7 +10553,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 26,
     sourceFingerprint: "4258d7b0ed085b376f433c9755a6a414abb92e5f7bce1e10e0ff1017858aa3f2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10567,7 +10567,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 27,
     sourceFingerprint: "663608ead4023fab7ecc9203e0b9e5ca95e4e9d0b9f7784b566bb52fe19dcd58",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10581,7 +10581,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 28,
     sourceFingerprint: "d4060caf19dd1b34a73e44c767ba89c8bedef2e2678972ca30f13377c5c4677f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10595,7 +10595,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 29,
     sourceFingerprint: "9201ad3201c570285e938d11b0e8ddfc9e5b2eb6d1a4ecb99a8020b962b02961",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10609,7 +10609,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 30,
     sourceFingerprint: "bf51729ce44d3d2c9d0e6d60448625c8bd1a80f57b857d2fcf1cf5778d3d8908",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10623,7 +10623,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 31,
     sourceFingerprint: "f063f8a05e5472e75e80e8a68335dfd817c414b3f19058629376b4ae399cfc4b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10637,7 +10637,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 32,
     sourceFingerprint: "cb56d095207ffc5cd935bbcf7fce0404bcef51f104464ab2cc04995260c4ba75",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10651,7 +10651,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 33,
     sourceFingerprint: "872a2034856adc1c69b3c2486fba60d63da61648b3d116593f19f1ac6a07cdd7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10665,7 +10665,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 34,
     sourceFingerprint: "323dbee1bf947ff3dbcf390e733b7a4c5cca336a28029df1070fef1af7d76182",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10679,7 +10679,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 35,
     sourceFingerprint: "7ed741c3100ec98b5e7624a18529705ee15a5e707d857b5d113acda92675e831",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10693,7 +10693,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 36,
     sourceFingerprint: "da746fb645700d6a69671f032944fa1e091dedc02bbbf1bed92d1b8d0067a8da",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10707,7 +10707,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 37,
     sourceFingerprint: "a08000f2ccec9d31fa3a0822201f3e343511481cc233b676342435c588660e09",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10721,7 +10721,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 38,
     sourceFingerprint: "523ad7afc9d8c8e8e9797e053e2f7a66bd2dc671a467052ec318d2cee15ee557",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10735,7 +10735,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 39,
     sourceFingerprint: "ddc491134c0f6839913d0bf6c9186a068f082f10829db32e7075ebd8d1c888fe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10749,7 +10749,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 40,
     sourceFingerprint: "a3eb6255b63ab2b7bd13541552cc52d77c099c34da0bebe0fd7cd43b6fe11bdf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10763,7 +10763,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 41,
     sourceFingerprint: "631dca839aff5bf4e4e802f36f3177c40f7953d72898935c98bb0afca44e8752",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10777,7 +10777,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 42,
     sourceFingerprint: "bd85419b5d00c72cc92206908a0e9e055fe4b5c36192ed693df50141331be967",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10791,7 +10791,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 43,
     sourceFingerprint: "1ecd0fadd5820614da3334a965c126ea071fda34fba36d6e7a09ec4fd0585290",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10805,7 +10805,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 44,
     sourceFingerprint: "d27f9a6ebcb57eb01f3ccdd10e7959eb9c766e22c5ca6064c493f189591a0926",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10819,7 +10819,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 45,
     sourceFingerprint: "5d0b41901471470aa48fc3bb049c09a23e0c8901fa0696b4223b4d585bf89a32",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10833,7 +10833,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 46,
     sourceFingerprint: "87560bf492657a1b2a34d37da2615faaed96bf891e976997225787c92f3a8e5b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10847,7 +10847,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 47,
     sourceFingerprint: "23b5a5fe45b236d8bf32492cf0cfa47f09beec30f23bba91613fbf7443a260a8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10861,7 +10861,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 48,
     sourceFingerprint: "58a1375b0f2b09fcf67a0873de723965dddb752e104e505e25ace2d4db488283",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10875,7 +10875,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 49,
     sourceFingerprint: "e96116cb9d5cbedcaa6d1cfba4aacb23f33b8ade73e194ba990f8633a9d96795",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10889,7 +10889,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 50,
     sourceFingerprint: "087bca4e87b0aa69a5ad61a8d4ad03c51cfca9f8a390f5349a77f34477745045",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10903,7 +10903,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 51,
     sourceFingerprint: "5beaea62af49e8982f38949e7002356019a9b77b24e15a516ed94df3ab1aa8fb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10917,7 +10917,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 52,
     sourceFingerprint: "4ac306818f9233143512dcd96c3ea347fff8f431f78c5d9badff37dda0149cc1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10931,7 +10931,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 53,
     sourceFingerprint: "0124d5ab1e8e68812aa56f413b5f279b389f5d7ed5c13af2b33f899ae3a8ef4f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10945,7 +10945,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 54,
     sourceFingerprint: "48c2102cd8ec0ddb777bb550c3f9dcb7431088d6f6162d6790cf63b049aee521",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10959,7 +10959,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 55,
     sourceFingerprint: "299a1ca71626d57e1e5ec7f2a23eb50549cf238b5e836b54642d26b9de22db9a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10973,7 +10973,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 56,
     sourceFingerprint: "2fcc90a2c51148321d6c6920a1d1f3273eb1b586c5f863c67326f5f26de9a8e7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -10987,7 +10987,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l14/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l14/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 1,
     sourceFingerprint: "bede86cb607ad762d2dd775a8df897c95467a0031e8181a0b0cc614e127505b7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11001,7 +11001,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 2,
     sourceFingerprint: "920023ef62645eaf75df44a9a6ed71adea67a85bd070fd017e20bf3f9ad4369c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11015,7 +11015,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 3,
     sourceFingerprint: "ca0d72e36762878c214c372265ffeab4fb0e0de43a2715a33aa9d174b2678ddc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11029,7 +11029,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 4,
     sourceFingerprint: "781ab8341589d6ac4c86ffe601942016f1203e0609ffe480f0b9e5567792da77",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11043,7 +11043,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 5,
     sourceFingerprint: "3b4e6a9325e928343dfc926ecb4c2d21dbdf6061e78dc1fdb08d0b8501dd91ea",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11057,7 +11057,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 6,
     sourceFingerprint: "0f52357033e5ca0b850f78d741e2abc06f1c9d464bbded3bd55edbc156b164f2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11071,7 +11071,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 7,
     sourceFingerprint: "939d46e14830ca69d806bcea0eb5af4e9988d2ef7a3425c1e99c35d401261233",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11085,7 +11085,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 8,
     sourceFingerprint: "a09f13395dab1d8f562f071881dbdc0b2e0e6240048c7fdc97f9c018613bd321",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11099,7 +11099,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 9,
     sourceFingerprint: "1a2f968ba10124e12236386e8355513a07177a9619d47cd2d03deed1f2ad4bfa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11113,7 +11113,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 10,
     sourceFingerprint: "68bd8d8d2f1c2dd4afd02bde8121b59db05fbbdd6fa17526f98ede421de07c1c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11127,7 +11127,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 11,
     sourceFingerprint: "b1732fc6de31a7ac708c091fbc8766319a54d3661c877c4c7c2e16ae33bd3cfe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11141,7 +11141,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 12,
     sourceFingerprint: "084280c1348eb0bb2313b26c2ea3820cfdb0e38859d71cff1c5fddc5588c9945",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11155,7 +11155,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 13,
     sourceFingerprint: "dd1e108d59bda9096dc3c335f53adfe2dae81c46a42ddc0ab9a84eb94a4bc348",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11169,7 +11169,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 14,
     sourceFingerprint: "226c4a7492913d90e1d3aeb3c49fc93c4a28dbf739c8413ac5a1d33f295fa562",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11183,7 +11183,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 15,
     sourceFingerprint: "d1a2b9f7549029aaefdeea1ce093466297d32ec1f7e6c25b03a797e086831c19",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11197,7 +11197,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 16,
     sourceFingerprint: "8d46db40e64f9b319f06b1d9eb4c9bbf706b8bdf2008cbdf1965fd2ed363c169",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11211,7 +11211,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 17,
     sourceFingerprint: "e63815b5b26c35af60066cbf9f04359bc099dff6ae9fe6fbfabd7b42b029248d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11225,7 +11225,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 18,
     sourceFingerprint: "68545fb2641538d8910696091cebeda6e06a55d6816fe7388823427d4fa2fe06",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11239,7 +11239,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 19,
     sourceFingerprint: "b528f8159d4ba8d4971c6a7ed80662d384ca20b66ed0713a3772807a0c2cbbe6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11253,7 +11253,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 20,
     sourceFingerprint: "8462316ab24305cf69a4a98e7b2f2dffcdd6f2a53e6bd666d496543babc537b1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11267,7 +11267,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 21,
     sourceFingerprint: "42f5b2552f5b25b2a16e71496f1918b8d483c02452c2ab07d5304eac7b46eb21",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11281,7 +11281,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 22,
     sourceFingerprint: "e43a9b64ae317675fc94215ef90f0edbe0a0ccc8c5c3c4604d28d9987c7081e0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11295,7 +11295,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 23,
     sourceFingerprint: "8fe693a8de541a5e897209b63bed82c2bc67bf11da41a46a0b4e7187c778cbaf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11309,7 +11309,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 24,
     sourceFingerprint: "2cc83919744d46b6c19bd7423f3d20f1f9759ba8ad2fb85b79839c9ae2d805fc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11323,7 +11323,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 25,
     sourceFingerprint: "348adec9965037c85ca286efffc0b93afedf2a018c268e314dd75e23b2b39d9d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11337,7 +11337,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 26,
     sourceFingerprint: "7d15e1fec22a01fd6c3cc71fb2ce283b5360218609925923d7bc4e04b7309629",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11351,7 +11351,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 27,
     sourceFingerprint: "60c403646b491fb230a6cb8a4dfa42a42955dd206d70e502b4f2f39b0fcf72d1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11365,7 +11365,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 28,
     sourceFingerprint: "466c0f80b1fdc61ddee57abe2941f95a2ba8876d443385587e023c52895f3578",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11379,7 +11379,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 29,
     sourceFingerprint: "f95fae4b4868f1ad542894fb29f4a3c81923d4bf90f99172aa58ac6edc577943",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11393,7 +11393,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 30,
     sourceFingerprint: "37456ebb8ed6cc5c0ecaebf269bf7d17f8a6003bf7c63850bcfa0a9978d33217",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11407,7 +11407,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 31,
     sourceFingerprint: "87d2f8fd556fbd8f8cc4bb9d7a157af6d6992395260ebd419de05759ca0e0801",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11421,7 +11421,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 32,
     sourceFingerprint: "f8a45cfedc47fccbd38dc119dad8e289ad4e3e579a585bab8bdec86352676a17",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11435,7 +11435,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 33,
     sourceFingerprint: "dbf4fea07f3f370ef2de3f872e6972e7c5809efbd9e32c0886a8454cf84dc1f4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11449,7 +11449,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 34,
     sourceFingerprint: "8c9d6e0ce2d48e65d0bc9a521dbc4c35a8449473e89fc1bdf43772356af16a1d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11463,7 +11463,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 35,
     sourceFingerprint: "0942336274043fb8f40e5b4c08b674d3c24cf24476b947fa81d81902accde7db",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11477,7 +11477,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 36,
     sourceFingerprint: "ed3e10d740e3bc3384fc31503c44269a69adb27ce1c4f69f9b6cfd773e3c8b62",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11491,7 +11491,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 37,
     sourceFingerprint: "1e13fc644b7ba4c8abf796472abd88a24b9788097d5e2fa99ca738b02510a3fb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11505,7 +11505,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 38,
     sourceFingerprint: "555c035c5c00854d348184a795b06d9c092430bee183ff887d772f301875a957",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11519,7 +11519,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 39,
     sourceFingerprint: "152f3428124f9fda6792f4b0bd83508acc948fde376ba3e5f877aaa74aae3535",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11533,7 +11533,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 40,
     sourceFingerprint: "70db2aa20bd285582946fc7f9a4ac913d4902deb7b630b0ec82ccedacb39f669",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11547,7 +11547,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 41,
     sourceFingerprint: "b428519ae66e7215edf544b1e38e0cd2a0236704363eed3794984b8f16410c2c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11561,7 +11561,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 42,
     sourceFingerprint: "5d60fbda3ee2c6f7805fc95c57059b6a3ddea41d4ab6ec9c54fd66842b6619b2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11575,7 +11575,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 43,
     sourceFingerprint: "06b28b67b30cc6c55d8791c34b640acc068bab1ea27c2578c6a3f425eb373ab3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11589,7 +11589,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 44,
     sourceFingerprint: "0c836396430250ae91164e4c98373277912caf5edc9492bfa0cf2a7b04e99130",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11603,7 +11603,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 45,
     sourceFingerprint: "89e8b6b23e7bfd422298e4406e2eff222a835099535036b878e5a6ae0eb8049f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11617,7 +11617,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 46,
     sourceFingerprint: "30707af6645ec7ce8042748a6b8be020854bb952069c289b715fe3baf3a122c8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11631,7 +11631,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 47,
     sourceFingerprint: "a054488b32fb434c493c3cabcc9ba857ece6abaf58cbb6aa603ff5073d5c2513",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11645,7 +11645,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 48,
     sourceFingerprint: "3f82ff6d12e707bff44f4fcaa9d994b76e8e6b36c006810784c0dea91b4e403a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11659,7 +11659,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 49,
     sourceFingerprint: "16e7e4f757a9aba9e61e8525015bad8ec20f09852d8a70b0c6d58d67e10df841",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11673,7 +11673,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 50,
     sourceFingerprint: "bf7258c61bd1cffb6db3bc0feb5744b8e23d20216194f9296f97cd645983c3a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11687,7 +11687,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 51,
     sourceFingerprint: "db766d071c4c88ed126d5f181d0230e38bcf4c7ada371d3e51f9eb746d8a0435",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11701,7 +11701,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 52,
     sourceFingerprint: "ec070fbd902f517431842ef32db0f223cd66e2e77d253a67d60d81bc3c235624",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11715,7 +11715,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 53,
     sourceFingerprint: "cd46aa254f2c1eeb558b664066410f6c3d5d8681f1fc2ddb9ecd3e6ac75caf84",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11729,7 +11729,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 54,
     sourceFingerprint: "5556837e5dee09a11345f81e993864df4d8d10103272f1d3e541ee56a71daf45",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11743,7 +11743,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 55,
     sourceFingerprint: "8f5ca4152931621fe409914d44071dba9b07d6084c8ff6ef46c6568171b5a467",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11757,7 +11757,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 56,
     sourceFingerprint: "1d0a9db8d838288adb7f1a7862858a94bd5b0673b5483542ea35be58b9b71525",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11771,7 +11771,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l15/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l15/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 1,
     sourceFingerprint: "c17e1114e45efb0c41192c4f11a5544d7a2090eea2dbe0bc9bcba66598a88d7d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11785,7 +11785,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 2,
     sourceFingerprint: "a483ff06ee506a7fc6301dc5b37826012a724d5004275c1fd3ccc083c03cdc5f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11799,7 +11799,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 3,
     sourceFingerprint: "0de0644435a8de35b345f998e74654e32696e569695ffa02df0b68cd3861f614",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11813,7 +11813,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 4,
     sourceFingerprint: "72216096314bf4ab3340aebaf147b6d925eb0d4d83c419a26a3431ff76d5d52b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11827,7 +11827,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 5,
     sourceFingerprint: "cd2f1572de3c857b814a5edfbcde956f512253d68c30a28854618e386110a793",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11841,7 +11841,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 6,
     sourceFingerprint: "31a011c6077339a2cfe5ee1ae44f6bfe560f9bacd6e7cb95db8127352d7664e6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11855,7 +11855,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 7,
     sourceFingerprint: "41ee0052ce6ff682d1b6c64ce17378650363b7ddfe078239cb508302291a2e23",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11869,7 +11869,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 8,
     sourceFingerprint: "c6cc863fc70e902791a6dcc5d3e1fd103c89f759d6d5d042654e4b5d77266dac",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11883,7 +11883,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 9,
     sourceFingerprint: "480e3476de99a96999876aebdb5106477930ff5c11d4b225e179491edb6feda9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11897,7 +11897,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 10,
     sourceFingerprint: "a2a348a70e2d7c9a6be46f5a897b08a6ca471bc611b3e0a96d6caf2f8307e99f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11911,7 +11911,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 11,
     sourceFingerprint: "ce540a622ab7c6e591d6db394a34b57c1f1520e9076f2ecaa25f622cd963f088",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11925,7 +11925,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 12,
     sourceFingerprint: "71fd337bad3c74004ceaf2b56e1eab5c618d1bceb069ea7cd36ea6d8b3615e57",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11939,7 +11939,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 13,
     sourceFingerprint: "3e263db49d35cd2e523b96cf9d73905a5f218a9e44da843ac3e91c73cc41a899",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11953,7 +11953,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 14,
     sourceFingerprint: "5b9bfe277393e8c5c77c25f08347c3212c97f898768ea7899956d30c09e96c2b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11967,7 +11967,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 15,
     sourceFingerprint: "cb62f67abc91516f7a80167ec7916f800093aa56367be6cf41185e32982c4eca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11981,7 +11981,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 16,
     sourceFingerprint: "55bac7f6910dccc955f5f884ae79404f38211dc12bb50f0d94410db3df105cb4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -11995,7 +11995,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 17,
     sourceFingerprint: "1761de8e9b2ee1543093cdfed19790adb27142cb99fa3ca7a69e64f5ab684481",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12009,7 +12009,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 18,
     sourceFingerprint: "9945a00cd9eac7aff0f8034cc696b11aa60e4000bae07813364d7d24e2a2a7d7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12023,7 +12023,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 19,
     sourceFingerprint: "a5f1068697509ff29e039c7221f8293d117518f566bc8fb37ba3e1f260910b6e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12037,7 +12037,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 20,
     sourceFingerprint: "f0a72e4a002e9bf615393ba5876fecf1d2bbd9e4019a504f711baf8760b1527b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12051,7 +12051,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 21,
     sourceFingerprint: "e5547d76b2d8daf577ef96a4b7176d4986479d84e9c43c0bf12a8da1739a88ed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12065,7 +12065,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 22,
     sourceFingerprint: "877029197528e844b6b098b66f301bcd264a86d722bdda7ae296312c31e88a36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12079,7 +12079,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 23,
     sourceFingerprint: "f03bd1b2895adcdda8b659dab29492ece7b237f207ba4079d84b516fa4720ad1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12093,7 +12093,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 24,
     sourceFingerprint: "1e9c49661141c5c44b8cd0673dca06be4a6bdbcbc9c503f6b9d1f3fefc6a5c4d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12107,7 +12107,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 25,
     sourceFingerprint: "99463802190437d82dd7a4b41b0fd88c637301075f5c52fd04d10f446bdbc78b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12121,7 +12121,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 26,
     sourceFingerprint: "c4045bfa6e9484fae3f0652b019a9bc7423a55b5c5c47b485d47ccb2eac42a0b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12135,7 +12135,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 27,
     sourceFingerprint: "4776ed6757e9fe52cd8614c8a22184ce206ad00fdfb4700636dcdc358c9e9c17",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12149,7 +12149,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 28,
     sourceFingerprint: "8ec5395192d5316d00fd2bcf3e0afba2aa34e59061776655b5e8fa6d730746d2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12163,7 +12163,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 29,
     sourceFingerprint: "15b77d1c37ea982d09cf3648afcb8c79c0b949edb63bb274ec0be8313e431b63",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12177,7 +12177,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 30,
     sourceFingerprint: "dd8c8a478556fa8d0a591ab854dddeb10a1c3e3a4747fd6c8f81cb2fe9bb7807",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12191,7 +12191,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 31,
     sourceFingerprint: "770aa235418d513a618e03a7d29dae7c0e8717355ced4b37df5385d473f20367",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12205,7 +12205,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 32,
     sourceFingerprint: "02742da08361c38ee6d7e5a2a7bc0a8cc0189ce3f8d6c9c21fdaea0b0a6d1c3c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12219,7 +12219,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 33,
     sourceFingerprint: "7237f1479beacb74327bcf9429e9f4c263dbb60d0e8b5ec3d2578ccd0ed0053c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12233,7 +12233,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 34,
     sourceFingerprint: "7dd8177560b16f0b8d8661f6b5214f00bbf706975a26065f3d2ba814252bedd6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12247,7 +12247,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 35,
     sourceFingerprint: "9a781abb88d6a9a5c04c2d56ca58bed2a671957f05ac1fc562e9e368048d59a5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12261,7 +12261,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 36,
     sourceFingerprint: "00cf98f89ffc921230789afc3918e211d6c78c1853c2a17c681e2f7408a8b940",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12275,7 +12275,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 37,
     sourceFingerprint: "0d7fc4e42f2685ae7b53e70d19d64b6f96e4391f0d87c189f45632325c4264de",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12289,7 +12289,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 38,
     sourceFingerprint: "3d876369cde6cffdc6f556a16d78ccbac771fa2b16b72001280470ec793a7cdb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12303,7 +12303,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 39,
     sourceFingerprint: "e298752df9a627a2ee4341d07870880f1e769e5e052207ba436de2bc5593efc2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12317,7 +12317,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 40,
     sourceFingerprint: "8c66c77b4c8592c28adc0ab8e23422050fc0301b97ca41f7732c23987bb1a9ae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12331,7 +12331,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 41,
     sourceFingerprint: "c1184ad61e66f0a6048b0412e76c4a46c02c6513a019b91f596d54794bfad858",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12345,7 +12345,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 42,
     sourceFingerprint: "8f7bdff97f8a32ee21cc43d3f762eda52521d35a3e358422f18eb396798b07f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12359,7 +12359,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 43,
     sourceFingerprint: "92b45bec02856f2e0a0cd0f52936ca1c3e4d8926a01147dde89b63ec8ceaf654",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12373,7 +12373,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 44,
     sourceFingerprint: "3f921bb7f3b18207a0fdc9316554a1bdb3289a905f3085d1bc547d29f215f45b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12387,7 +12387,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 45,
     sourceFingerprint: "f5264c044d46235377ee3e623c6feadd992fa456ef5f9b67db98b21847e4a376",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12401,7 +12401,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 46,
     sourceFingerprint: "ea98f9e9f81e836e281d9e2c409c78bacdeb66f1cb089484d75bcd3dc19c0034",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12415,7 +12415,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 47,
     sourceFingerprint: "48187ee3b8229b90cb32bec276225d4c0e029f4dd01ec592aa937dddadb65f64",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12429,7 +12429,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 48,
     sourceFingerprint: "aee558078e78a0dfdc8317e33c6fa5becefdd5fd3828ad1fbedc95fe6d2427d9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12443,7 +12443,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 49,
     sourceFingerprint: "5478788db790ed9641dcabff1eab61bfd5efd91d4ff13476f396c7f6a9b5995d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12457,7 +12457,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 50,
     sourceFingerprint: "52e6eb73dd5985d1170d838559375d0c06fbe148a91305467263bd8d588a1aaa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12471,7 +12471,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 51,
     sourceFingerprint: "8a20335288ef5b313c1712a246fb0420fd26b985ac2788fe944ad07e507dedfe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12485,7 +12485,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 52,
     sourceFingerprint: "fb479cb753b6b9ef1af4b8243d5c0375ad346fa7c8cbf53b7e1d19455e9eccb2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12499,7 +12499,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 53,
     sourceFingerprint: "6c6dbec852312b64ba26ac840f3a6f893d6f5118b1fc2b672ba0624c7e42185a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12513,7 +12513,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 54,
     sourceFingerprint: "38d0b2782ee0bcdaae14f75fa28f1bcc59bf6ca167b1c8d4ea1b12a251ef86d4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12527,7 +12527,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 55,
     sourceFingerprint: "eb7c78f5aaf4137a53312e337dcde4f3f0a9f7c5261f4020d28aabe51ec8dc42",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12541,7 +12541,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 56,
     sourceFingerprint: "5f281183a1febd72dc4698dfea3b076372b716b597e5ae14d1f4b0abedebc320",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12555,7 +12555,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l16/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l16/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 1,
     sourceFingerprint: "42f68e5bee184f9d372ac5c1515eaa6a7da3f545eb777227459d8d272f612046",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12569,7 +12569,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 2,
     sourceFingerprint: "16ed339384d5399dd7ff2bc13261f815a7883250505e1d5259f23d65a22f8b23",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12583,7 +12583,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 3,
     sourceFingerprint: "abf45a7ff06c72604f51cb4fa253cab8a691501048f3b6f6fe577e6bd8dc6d88",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12597,7 +12597,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 4,
     sourceFingerprint: "4b98ab00cb7f6d696f74b3f2640c2cbc6b2efd73b64861c937e9cbbbb2c6cee8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12611,7 +12611,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 5,
     sourceFingerprint: "e10fb692a2440c4106c164ef9a3e0d94b68075f07579167e146f8b569830cf88",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12625,7 +12625,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 6,
     sourceFingerprint: "10e286714b61176946c63d6e1339e65173905b0fd5400d3ce26283cd9c7582a9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12639,7 +12639,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 7,
     sourceFingerprint: "5ecd9c3a5fce09e0531fb334f7ffdff7a12bb205edcfd7af3f5ade8714fd26cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12653,7 +12653,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 8,
     sourceFingerprint: "1c474eeb8dd2a3e74fa1971792aca822addb3fc164a9a1cc5aebbfb0089c5119",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12667,7 +12667,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 9,
     sourceFingerprint: "b3ec55f7919712a04f0366502d0b3a39c3c5b1906c84d211016166340da3425b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12681,7 +12681,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 10,
     sourceFingerprint: "7338f0a799d4e9e9fde0817b0159b82f6f1f2dd6200e6b4d5ed3a2bd23df4b04",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12695,7 +12695,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 11,
     sourceFingerprint: "87f0f44fd2e379394168d4eb8b89b8cd5b543e420f11e4a81f9f72c1421c936b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12709,7 +12709,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 12,
     sourceFingerprint: "cbaeeafca4fbb885bf90a3e3321546ae334406899160f8e2f6b3b4869e4a129e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12723,7 +12723,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 13,
     sourceFingerprint: "198fa6215ef1643f2139a6cdca42ae41a61090119977e0486f752438c24e94cd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12737,7 +12737,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 14,
     sourceFingerprint: "fba60e57aba6d3d5e59b811b0d2353f9e7af37ea3e1b7eee1708eabf35fc9992",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12751,7 +12751,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 15,
     sourceFingerprint: "6762cf4741d83622eae7dd49d1039833fb36d60d46cb27aed9602db39f7f6959",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12765,7 +12765,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 16,
     sourceFingerprint: "17b3fa73821753c4a6c805d8c6dc5046e41f0858640a4afb3d9e66384f392187",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12779,7 +12779,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 17,
     sourceFingerprint: "1a85aa232e7df5b59dd7aabb04d896f0f2fa9258973d459c4df1694f74ba885e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12793,7 +12793,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 18,
     sourceFingerprint: "be068418779175f37b2db9cb405bd9d0231d09773aa7bc31929393d86c96b6f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12807,7 +12807,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 19,
     sourceFingerprint: "6c4d6935ddef55f25fa2dec576f2454336adfd77bfd73e0a4c1960228ba75841",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12821,7 +12821,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 20,
     sourceFingerprint: "538525aaf1b6f297d3a178fd14856af3020fe5441462542c25c3b602d6c2dfe5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12835,7 +12835,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 21,
     sourceFingerprint: "f69ded545386b3da7d8fa9eea3bcbc521d60688b05ebded4cb004be3e5d84340",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12849,7 +12849,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 22,
     sourceFingerprint: "b324ae64b0928d63cc2ffe21a6b6cab0c1e17874d6ec6d0658ba29fbf43dcf28",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12863,7 +12863,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 23,
     sourceFingerprint: "038a4b892f4ccd9b5ec25f415e0dd2e56045d400b0cc40141d60a1654749b417",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12877,7 +12877,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 24,
     sourceFingerprint: "db7a613f9ccbd56548601713b8e80df488735a6fcb2fd4a3f4b5d5e4b24bc07e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12891,7 +12891,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 25,
     sourceFingerprint: "dcc4097737134cab8c9e8ffc8b5fe17edb980049553bcbb2ad9bea780c45f65b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12905,7 +12905,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 26,
     sourceFingerprint: "bb623f068ad48b1ea1dca2712b4554aca6a7d766f9cacb53b0fd7f837983bb3b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12919,7 +12919,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 27,
     sourceFingerprint: "63ab0821fdd85d8e4708089139911a506b1ee3614f63d18dba3ce9395e71d0d4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12933,7 +12933,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 28,
     sourceFingerprint: "36e8cb60498b5b450a3b48764b01615b1f94f09a19ccd0fa579c80b904708e5b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12947,7 +12947,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 29,
     sourceFingerprint: "1fb7f2b9b68e9b02558508d197030dbe49f77ec5ef3ee01747089c2799f98c05",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12961,7 +12961,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 30,
     sourceFingerprint: "4c92b4ad7a4fff8699e8cd7a20a2fa33f7f71490e8cc3a565531b9a4583e6243",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12975,7 +12975,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 31,
     sourceFingerprint: "bf31403b731abeb751d5e14c68be3fb1d768a04c3c834ca9e06ea3c2a9b033b4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -12989,7 +12989,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 32,
     sourceFingerprint: "fb934b7da4611b8deafebdb3310ecf63f5a55155ee6fa165f7b05030928d69fd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13003,7 +13003,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 33,
     sourceFingerprint: "e97a0822dae652c6438f4130ef1e0a777d43a951e97c5d27fb1287a1bb0916b7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13017,7 +13017,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 34,
     sourceFingerprint: "5ead76c8439f7643b51f5f0bbc9c04cf44ea1859d08832904cd0ac1d86e97bed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13031,7 +13031,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 35,
     sourceFingerprint: "cc102fce84512455dc57d8f22a47bceb70186ebef0b435b6a992e2745e26eaae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13045,7 +13045,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 36,
     sourceFingerprint: "38dbc9758a548fe193606afa94ca316fc813bbd22aa6e256df12a7666c3a9c34",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13059,7 +13059,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 37,
     sourceFingerprint: "7892e928cdb38d984b623daabfed8206ef5a9adbf7e6a52a732f77c3b8a7cef5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13073,7 +13073,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 38,
     sourceFingerprint: "5b1525f2956f4efd5442d01627315eeb0995da3d9affa940cc073d72b0dbcc1e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13087,7 +13087,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 39,
     sourceFingerprint: "605f3285e45a8c01b780ee68909305465a26ff1bb0fbd936443ac0d659cb8885",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13101,7 +13101,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 40,
     sourceFingerprint: "9ea7c190db9835778c62a7e9021b9b1eeeb38c2edac75794d3296da67375ece5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13115,7 +13115,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 41,
     sourceFingerprint: "7e8cbc9bbe97e618ed9141ae66336839f198812e2b9fab082e9160d43ae94a1e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13129,7 +13129,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 42,
     sourceFingerprint: "0643ead655b7254bb2893df2cde7080ae59980a8b940d1dc8eef7cfdd8e92b14",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13143,7 +13143,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 43,
     sourceFingerprint: "9d962d2b3d8ea4cc72812725b6c26f39f8b424c4590f6ef93a76152f9f7a2066",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13157,7 +13157,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 44,
     sourceFingerprint: "1ba2f621f192ee291e9c7ed00e593691e1301fd2c617a52e089acd9665ef862f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13171,7 +13171,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 45,
     sourceFingerprint: "1fac3986c9d46931a5f716f09fe1a36ea438a0ce35ae84baf6a0ea7da20a81c0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13185,7 +13185,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 46,
     sourceFingerprint: "9d73abe260f08b3aa5d3fb9c092370bd1a17116b0074ef32922be864448400b8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13199,7 +13199,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 47,
     sourceFingerprint: "a1a3ce0488c2aeee3a2702ce7bdc6543d9468b486572fe779aaf139e956ba7ba",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13213,7 +13213,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 48,
     sourceFingerprint: "cdb3d1f21caaae0a81dff3df4c213d9905791b846afcb3544cd5a27e63405a95",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13227,7 +13227,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 49,
     sourceFingerprint: "e044f4b376752e83dafa9a0c7adcaed6012bf818b0b544439f16222540113080",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13241,7 +13241,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 50,
     sourceFingerprint: "c6e4c33a46ef84c1797e2cbfd10e609a2478e3a5111d7d46510a285406742350",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13255,7 +13255,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 51,
     sourceFingerprint: "7b410b2097f23323e00a5f07921da42c20c45ff69988cce2cc1b9360650ea6bb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13269,7 +13269,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 52,
     sourceFingerprint: "977f3010abfd54e3c272495d2218719c410cf390ac56f378e591d1af5e6efb3a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13283,7 +13283,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 53,
     sourceFingerprint: "34356b3c956c7cf7f0412ea88f2568bfdb0ac8d365b356b6f33d3837045b2805",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13297,7 +13297,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 54,
     sourceFingerprint: "678a19002dd15cd4e02857e5d008c26ad319b076653e38e7dc8080bbff558975",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13311,7 +13311,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 55,
     sourceFingerprint: "e92ce921631790caf70bb17438902438d4a6547469b716c92a45eef69474a491",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13325,7 +13325,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 56,
     sourceFingerprint: "2fd2845a0c21a7db26ce73cae2a13c5e5cddfe1c4af96c41d66bc16a080e0d6f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13339,7 +13339,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l17/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l17/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 1,
     sourceFingerprint: "09de2abb7a6e58114926093d52b8f9443919f446e0e22d3ceffd3970a58d0c93",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13353,7 +13353,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 2,
     sourceFingerprint: "6653e46da2baf5d3efb0f1beacd9cfbec4c38db7c42b2a564999b91da1585b7e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13367,7 +13367,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 3,
     sourceFingerprint: "f7c12a847d417c61d7856eb422fbc46134b6dc2533494a34e4bae9ba6b3ebcae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13381,7 +13381,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 4,
     sourceFingerprint: "af1fc7eefbfd18f0fb07bf50b5b6d484339fd7c9fa08ceaf4f71db2feb3b630c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13395,7 +13395,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 5,
     sourceFingerprint: "0e7dba8dff07444a31853d1152b2fd91f7a94d3a06df2e31c35669c116fc6e7f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13409,7 +13409,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 6,
     sourceFingerprint: "1e8b6fde1b8fe0ce472fb42623cf14d30b0a8af2aac0813c918b52ddbf19f0c0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13423,7 +13423,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 7,
     sourceFingerprint: "c5e7cb226834d544c3e58a701d72317268cf821c50094890ddaa2dd41f643835",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13437,7 +13437,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 8,
     sourceFingerprint: "c8871c11c85cdcb8f398dcbfd78dc380f6fe2eaff566c996f93cbad22a1bbf5d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13451,7 +13451,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 9,
     sourceFingerprint: "b3257d57818a549a7e27157673cdaf060d58f64e9bff0d59e338f0c99b611f29",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13465,7 +13465,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 10,
     sourceFingerprint: "8e2d825cd4781671121e5d37f5ce78dbbac19b747f127acb6e973ae343f07af8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13479,7 +13479,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 11,
     sourceFingerprint: "9e16fb7a8edb8f8cd341974f370cad8989d09f11186ec8b028751a18282ae61f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13493,7 +13493,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 12,
     sourceFingerprint: "4a08d79f58d491d48d7e8bfeac6f5ffcb67930f485e73435ca0da5a897bc245d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13507,7 +13507,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 13,
     sourceFingerprint: "f7e27fde1d54a308192dbc70e6868e9598bcd59f1501246aabd36ca0d1d30998",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13521,7 +13521,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 14,
     sourceFingerprint: "825cf334ffbdf6f09c478f1b5da80575d3d62e47a144f7bdd3165196d7c3dc82",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13535,7 +13535,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 15,
     sourceFingerprint: "0fcd90753f36cc088f8627fa93b4f98be7690d301f7daf76d3c49b3da4a0d19f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13549,7 +13549,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 16,
     sourceFingerprint: "7118a1f1a989dc64084e69afe3a5f9705a0a20f77b2b0dfd49ee677a5cff8754",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13563,7 +13563,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 17,
     sourceFingerprint: "452f386bbdef4d545e6fff1b635691ca61a0ef5dbfe8e1b3e7d77ed90f7445e2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13577,7 +13577,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 18,
     sourceFingerprint: "4ae76c44a5f015705e99f2440c0602afbccbe38ed82fea015aaccf1bcf6965be",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13591,7 +13591,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 19,
     sourceFingerprint: "4c13e58f3f2bd06254b2fafe17839302cccf054856bc226fe6d2cb8cab12726c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13605,7 +13605,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 20,
     sourceFingerprint: "911577afa57c478054a8b38994af5e1b59d63a31aba2332c3289727d965c9e5c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13619,7 +13619,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 21,
     sourceFingerprint: "91d2b9626bd3d8637354511d03200107dfc02169bf4464bff745601bf8e988bd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13633,7 +13633,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 22,
     sourceFingerprint: "f1a74f73e20a9c6dee1724e44653ee32e58d4693f8425e9cc900e5f14c5f75f4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13647,7 +13647,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 23,
     sourceFingerprint: "670d5ddad867cd4e568d9651da2c6dbf7e8e796d23c659f446d148a20cf06959",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13661,7 +13661,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 24,
     sourceFingerprint: "52fda5d5977f87cbca1ccbf6a5b4caa4c0c5e599d0bfd8f57dbe9bef23f51c4b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13675,7 +13675,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 25,
     sourceFingerprint: "55abfe9548e69f9502d7a806dd24d533a6d65e051d635946db828c407d686845",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13689,7 +13689,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 26,
     sourceFingerprint: "77bc1f54a980a4c39e875ad95f60edd5a0971894cba448c0a9fa56775d8eca66",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13703,7 +13703,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 27,
     sourceFingerprint: "954412607f740fcdb470cfb5aa9ef2b59e0afed0f03ede0a9e51ae8391001614",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13717,7 +13717,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 28,
     sourceFingerprint: "5aeb19331ed70787786acc17617c734e668690f3d4547d47fb13562b843bd637",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13731,7 +13731,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 29,
     sourceFingerprint: "00071fd8398c09ea29bbbbd669dc14fc426ad3547ec5738264c9702ab737c79a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13745,7 +13745,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 30,
     sourceFingerprint: "47dd5334aa20d1b7ff8843077a394e7bf5e1c6abe129a5a6f562484d7cde92f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13759,7 +13759,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 31,
     sourceFingerprint: "ea2d4a090618fcc3046bc477fdae27fa4a9c63ca8d30f7694a94b9b847611fd9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13773,7 +13773,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 32,
     sourceFingerprint: "0073a1ed9a5e0b76e827ecf5b7c04bb7d9b9f15c89cbb1fc7bc7f8e3fe20375c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13787,7 +13787,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 33,
     sourceFingerprint: "0f0a68e20ae0b9446a42c37e0792c9a059b48d751df5406190c7b3004de02e3f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13801,7 +13801,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 34,
     sourceFingerprint: "907a14141982936d35ca89aeca236335b4d6224448ba20f811815560b15c1556",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13815,7 +13815,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 35,
     sourceFingerprint: "7a01e454839b91b8ffeb9ec974ba077100a0276fb25913d9d6d28cf0da4c3ebe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13829,7 +13829,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 36,
     sourceFingerprint: "225b73457073c56ba83c475e72d6c95a55eac8c0fb5275891d4f1cfc62b78efd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13843,7 +13843,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 37,
     sourceFingerprint: "11e15fa6a3ea1bc694c40235ff1eeaebe3ad0b53812ec00229ef233b465160de",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13857,7 +13857,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 38,
     sourceFingerprint: "f52279fcca9f8848e24bb2016e7205d6cfc3cbde4393e2d475780a20f6ce85a5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13871,7 +13871,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 39,
     sourceFingerprint: "1b151f0ded768ad8eb2f329a2812821475af31b93ccfb55160ba3a3bf83200a7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13885,7 +13885,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 40,
     sourceFingerprint: "32c4067da549367dfcd0ba129d176cf0d4bee9ec3431c9a8bac11387ad192807",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13899,7 +13899,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 41,
     sourceFingerprint: "0cf3e06d7e68abcdb6ab6581cc7fdd91ead12cfd945b352173e5a65833c75108",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13913,7 +13913,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 42,
     sourceFingerprint: "eb00d098a9943b2a55ca4c971ae39898a5a1baf716924ccc88b22d05529589e2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13927,7 +13927,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 43,
     sourceFingerprint: "956a0df6bcfc6444f3dfe367430a4e013b5f22860b94649915191181ec11266a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13941,7 +13941,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 44,
     sourceFingerprint: "099dcd0a4b7348fc0ddf7eb9adbbf1746834f23592ab1e8ffd18ccf4f7472a41",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13955,7 +13955,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 45,
     sourceFingerprint: "bc77e08f3a6716624a1b849e8bf21e55b1183111afcf710ee9febfdd3a04a9e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13969,7 +13969,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 46,
     sourceFingerprint: "cd77d93645ba533809e6fd35c0a33d6ef9d5e41e320a9f217e6a1b1d62ad0acf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13983,7 +13983,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 47,
     sourceFingerprint: "7b6d9afb33c11bb26f75bfdb4ca0a98f7f2c06ca25353d71bef6a17e9b0a59ae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -13997,7 +13997,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 48,
     sourceFingerprint: "b26306a456e0c0b21c3bb2ef6bc2566b245f04ddc4876d48ba099bc50dd344f8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14011,7 +14011,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 49,
     sourceFingerprint: "f9090021f2c845356701c2f29b290027af11b23202a764c62109b53c0523fb00",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14025,7 +14025,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 50,
     sourceFingerprint: "f4894ac19a2c8f66556cf9f1b00aafccf1086e6eb2e720aac8959948115b0a57",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14039,7 +14039,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 51,
     sourceFingerprint: "b0d543570458ac2d8c845f93f7c153f252e9d9800637d8a03bdf6eec82be456f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14053,7 +14053,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 52,
     sourceFingerprint: "fef5c058eef06550d3570392f9c1551868b56cab2ff32a82d5643a67820596f1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14067,7 +14067,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 53,
     sourceFingerprint: "3d53c4afb3a79abab85e102708f35c176d743583cc926a46bbc692b0a9816294",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14081,7 +14081,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 54,
     sourceFingerprint: "534e583cf7d2cf80241600fbc1fcdba7d722c899b957db9e549acf0634fee750",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14095,7 +14095,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 55,
     sourceFingerprint: "c0700e4897356260ba2d9d3369cdb74039b22409c74c19df9c8099ba6ae853c3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14109,7 +14109,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 56,
     sourceFingerprint: "d1bd2bf75db6c7e7bc19da726038989142eae17fa72d45683c687870499dd60b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14123,7 +14123,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l18/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l18/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 1,
     sourceFingerprint: "9d379ace9727cb1800b3fc47937cbaeb2c535eb8db8ce652237f3239746fa57e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14137,7 +14137,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 2,
     sourceFingerprint: "52ede86e444226dab9b202eaccc1cad08164ba3105b50e1243d448a5fea19a0d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14151,7 +14151,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 3,
     sourceFingerprint: "dcfd34c88713915ec2b1caf3c037c0278cb31694243467b38cb94fe38320de1b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14165,7 +14165,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 4,
     sourceFingerprint: "ca8b0cd060d2ca4b33108b108cb6ea00fdf6cf052f1b20e7dec144cb3dbc473a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14179,7 +14179,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 5,
     sourceFingerprint: "f7a0a536cc4ace6272d2c625519cbcd39ea58336193c48bab935eab9f5802858",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14193,7 +14193,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 6,
     sourceFingerprint: "69c742459be4883b2bb9e6a95a931d014723b1fb6f966b93d447d0edc284d311",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14207,7 +14207,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 7,
     sourceFingerprint: "910a5c6e07a2f0789afe2477ad81fedc6c5cc75d47e322b9d443986a4d267802",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14221,7 +14221,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 8,
     sourceFingerprint: "a903e5ba2739377aded1583737b6afe6d8daf35be8765286424d13f1abeb6415",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14235,7 +14235,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 9,
     sourceFingerprint: "2bf32fe2a2dec916d6559205c314ab47443e0ca3cc3b8db8667c8f99849828e4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14249,7 +14249,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 10,
     sourceFingerprint: "fad5c55b3966163d5666cd136cd85a883a3b292783125876247d9b40727d4cdc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14263,7 +14263,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 11,
     sourceFingerprint: "aa60ce1edc799bd5ab23fd16f4fa67bad1378bab92eedb5dd74e3093e660c023",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14277,7 +14277,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 12,
     sourceFingerprint: "b64806727e1948cecb8e0c3499f3e0727f8df6ed347624115cdeaaef94f3fbdc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14291,7 +14291,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 13,
     sourceFingerprint: "02607ead496cf7a9d23a8b2499bea59b57bca1eef15bd2d5eb02c0cb7f6dab81",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14305,7 +14305,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 14,
     sourceFingerprint: "3f0e6133579b2ca721ef7d3e04c4802ca312554c759ac9e004b4fda77346aa61",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14319,7 +14319,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 15,
     sourceFingerprint: "b9c83540a9ddae68d378079e805e19d967503ad71152ee8bfa2d1cb103c81c81",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14333,7 +14333,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 16,
     sourceFingerprint: "2b431782c05f9bebb5148902aa886fb5da887feb6b1195618c510b97d241c992",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14347,7 +14347,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 17,
     sourceFingerprint: "e2baddb1950ecd3186f555096e4ba7179df144cabae1a0a8affeafbefe9ac534",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14361,7 +14361,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 18,
     sourceFingerprint: "64b6340ecdac8af89b757c00392503b7b77002d30dce6c9ad534526d2b218916",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14375,7 +14375,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 19,
     sourceFingerprint: "33185f186a3e0db68702499c8c4f29a76f4e6439cac44d833f210d1eb73a9895",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14389,7 +14389,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 20,
     sourceFingerprint: "44540630d174e924e2ae3cc9f5e5bfcee4c9093e40134dedbb1c1cf0fff284bb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14403,7 +14403,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 21,
     sourceFingerprint: "142c8ab1d22f4df5ffceedc86a748ed8161e1371a86ca98058c230c8cd969a92",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14417,7 +14417,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 22,
     sourceFingerprint: "a8a9f9fb1c2ceae201e2685debed603095d58ba2f8ba150628f3b6b0c5ae02a7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14431,7 +14431,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 23,
     sourceFingerprint: "657f6c6508d2f5e57e9cd395857e42c1746efa9ce6b4928e83488d579fd4fbbe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14445,7 +14445,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 24,
     sourceFingerprint: "ec40e206cc5ac4e4a9e42b2edaf7c8b5eed1dd499936b9077e40954b1f0fbc29",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14459,7 +14459,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 25,
     sourceFingerprint: "294db39870e95a2c8eb9de080c42c44b321660660ba6bc662f65cf5be6bf049d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14473,7 +14473,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 26,
     sourceFingerprint: "f2c3f14f740b21696cd42f2f5c3ccd37a761cb58ca165b8d8518f8f329e75c93",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14487,7 +14487,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 27,
     sourceFingerprint: "70f3bc0f1354d9bf59496e6503e1036751004d2f7c3c2b5a8559ba3cfaa89ae7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14501,7 +14501,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 28,
     sourceFingerprint: "87af6c3fe2d348caa54ebc1a589eed15b3b925676ce3fffe6710fd7d4d96916e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14515,7 +14515,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 29,
     sourceFingerprint: "2623b989fe0f524548b6418cf3158e2f237938fe3c7ebcb248a3bc5c95a3fc5d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14529,7 +14529,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 30,
     sourceFingerprint: "01ea490560881d8d571af1aac1cfce1c460d3b90f511b205d197791f3ded1476",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14543,7 +14543,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 31,
     sourceFingerprint: "eb7a696c40031a8ac052d060f1668d7322ea7cc241e6947a1f890eaf7faf0df8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14557,7 +14557,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 32,
     sourceFingerprint: "739b534b477577cb54e408b686bbc03d58977cc732dff0511dc23e9f3dc8a3a3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14571,7 +14571,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 33,
     sourceFingerprint: "7c87a95b786599f7593d9e38335c41d174ea84b457f157b5dae9e0127415072c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14585,7 +14585,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 34,
     sourceFingerprint: "e4eb2d4e2778caf7f29a02776c4301d95d8c6b068bf0212e9a1c88a0673955ee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14599,7 +14599,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 35,
     sourceFingerprint: "90976b1fb208fd3f1ee5c4e4e741ecbab9b2e3859e3eacd4d3b2b8aa26632dad",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14613,7 +14613,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 36,
     sourceFingerprint: "c415e269d3b9b73df1b01c9299d018103a8322f92320996ba9acde268afbae4c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14627,7 +14627,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 37,
     sourceFingerprint: "3432971e2ad234e3d2efe6b17ce642b380f9673987e9e803e983650401661d19",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14641,7 +14641,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 38,
     sourceFingerprint: "0d1345b7157c2c8ff84a9feabac30f79709e016701542b1dff7b5a64899484f6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14655,7 +14655,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 39,
     sourceFingerprint: "390836918552b5479ac500ac74959d468038c5f4c96e0321b2999243a9ead44e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14669,7 +14669,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 40,
     sourceFingerprint: "fde64abe9231548177f25f54f7d244c9de8905ef354ebac9704fa974868956ca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14683,7 +14683,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 41,
     sourceFingerprint: "cb8ab80d0154cf58b3e30ee49c5390380c4818a656f0a5fc49ab71754f4e2c2f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14697,7 +14697,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 42,
     sourceFingerprint: "023d03627351a7ddf7fcd7240242ee38e394c54129884f927045512603f68809",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14711,7 +14711,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 43,
     sourceFingerprint: "5765739213d9d61fc7a7baf6df0f960b81461e983f21d81ed7fbd8a0637e0573",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14725,7 +14725,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 44,
     sourceFingerprint: "9bf3926be4f35dc3c83e53759f840925866cd371ce0265d68e1b23fd44d59504",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14739,7 +14739,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 45,
     sourceFingerprint: "46b6bf20c603b1b3c1f49bf6053be4aee4c8e902bc467630330817dab7431670",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14753,7 +14753,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 46,
     sourceFingerprint: "32d92f2326d02e91257aa57b1ac2d2c20c3cf6d312e5a9add92792cecaa0da04",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14767,7 +14767,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 47,
     sourceFingerprint: "505678ad25c70bd6fb9f2d23b22e534147029a0ff580ecb5385bfbba126310f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14781,7 +14781,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 48,
     sourceFingerprint: "c835f112791d507643e9375584a9533a983f930a64257592eb447c4cc83ffac3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14795,7 +14795,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 49,
     sourceFingerprint: "4b1784b697c246ca07680186bbca88e671f8f461ea6746d83b8d584b29d7a1d5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14809,7 +14809,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 50,
     sourceFingerprint: "c3530ff2fc786be62680f2269ced90583a7beb438fe8dfaed9da17d1a7bda4ce",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14823,7 +14823,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 51,
     sourceFingerprint: "b86bf29fdfaf0a02bcfba9e53ed65ca679338a204f3036f27ffc2a390c555bcb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14837,7 +14837,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 52,
     sourceFingerprint: "6a69b40120136abc2648e26dbde62c97de15ac44493db42ca3e910fdcd6933a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14851,7 +14851,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 53,
     sourceFingerprint: "1395b0d4854a5f42272db3bda2f8a936a8c894a2a5ec5e30a285cab43dc805e7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14865,7 +14865,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 54,
     sourceFingerprint: "a3eb0d059b88f0ce4c9237b773f6b792439888c7ed7b0f3a035e20830c027332",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14879,7 +14879,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 55,
     sourceFingerprint: "e2033db193734cc0b448aafd59e13956c09c1702af4319985ea72329ab4ee9fc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14893,7 +14893,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 56,
     sourceFingerprint: "db52775eca44a6dcdb1d5b7e88ede323ea4a7414c028b6cbbba6fddec10625a9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14907,7 +14907,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l19/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l19/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 1,
     sourceFingerprint: "e053b46355a84165d967dcafc6d64948849dc1cce81c181526c7f9c00dcf581c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14921,7 +14921,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 2,
     sourceFingerprint: "bf4f0ff5fb79a636631b0b76ec5a34984c648d1906031499d10778df8d929d10",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14935,7 +14935,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 3,
     sourceFingerprint: "814c440cd8f04412037461b80ac35140ea20a0d5a5c4d21b6690e66090177e33",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14949,7 +14949,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 4,
     sourceFingerprint: "ed8f2e64a97ff8189937105d084208cadc1c5a990801fa44d23bf373c88d7490",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14963,7 +14963,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 5,
     sourceFingerprint: "1d10b76a98ad3ab571e5abc4404c454aec034beb8f10bbb58e23f3025ef8bfdb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14977,7 +14977,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 6,
     sourceFingerprint: "42bfafb97b9edbc810160b3bf47d312255048e61fdbd944ac0d001d9f965a86f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -14991,7 +14991,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 7,
     sourceFingerprint: "57bfa2dfd29391dcb125f859fc5b16cb30544bbe89bff9088a9acc14b9a4c528",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15005,7 +15005,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 8,
     sourceFingerprint: "b7836747390d7190f4b850ac18264731a46e4ae0ba11e180bd624c63b0519069",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15019,7 +15019,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 9,
     sourceFingerprint: "e2f6382fd82b90246f9d4fd8d56767e12cd41b6c22063bbee1fb7fdea828a832",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15033,7 +15033,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 10,
     sourceFingerprint: "1dcc31733b7518d27ba49b39bfca5efc55baaf641b818d97eb3e306fe05826cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15047,7 +15047,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 11,
     sourceFingerprint: "612b02e283a1591deb6221f34f922542a607a18142082a413000bb5dce4248dc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15061,7 +15061,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 12,
     sourceFingerprint: "863a4d6b382d3cbbe8cf55c4289731f27c00201c9242ac8cb2356acea1d48eeb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15075,7 +15075,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 13,
     sourceFingerprint: "71ed377ebb64c1a2c108145b65161aec1eead0dfd7955fe16239e03801a044d8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15089,7 +15089,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 14,
     sourceFingerprint: "3ddeb96ea5619ec814c33b6ee823fbfafe4df292415194de58e154e8e5c7f8ae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15103,7 +15103,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 15,
     sourceFingerprint: "14091df23060ca3a27a02997b5de1ab38877d6f6c75e40449fbff601a9473eaa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15117,7 +15117,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 16,
     sourceFingerprint: "cbfa1c2f9670ed0176a6692714573f71253fbf8927f6f0d794988348eedd672a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15131,7 +15131,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 17,
     sourceFingerprint: "d747ae99a402d0cd0352a8142d9af47f8849ccaddc4ba014264c28625285dfc9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15145,7 +15145,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 18,
     sourceFingerprint: "0c75c7172e5f31c6546f0d9120a51905d5b3467d47cf23c58b5154319c3fb5ed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15159,7 +15159,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 19,
     sourceFingerprint: "94a69bc9fa76a818c93ddf68921b93ba153684b2f06433edb048039b75e835b6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15173,7 +15173,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 20,
     sourceFingerprint: "51e415b54cf61b447341c8e41a97ebc7a9201f4437d61785fdb439a839b53cc1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15187,7 +15187,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 21,
     sourceFingerprint: "02baef40cb4162decb5c21f5136d46911cd1978b1b9d8d394c8a1c9b30b9da3a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15201,7 +15201,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 22,
     sourceFingerprint: "efc5a566749f39d0ab40d9764f84a41fd89eb4bc7fbb25aa3050d23c3ec041ed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15215,7 +15215,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 23,
     sourceFingerprint: "e8c56f4d33e8ec5962f23ba627d85f4aa09e30a7b30d0b56e09758624a8fba5b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15229,7 +15229,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 24,
     sourceFingerprint: "5e137bab409dfac971d23c03c64f49a923b015895ed9592307cd20ed3d21e2d0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15243,7 +15243,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 25,
     sourceFingerprint: "0c497855edf90cf60d8d3bae2b1bcbb46a801ddbd5309e68bce021a4276965cf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15257,7 +15257,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 26,
     sourceFingerprint: "15dc2053b3a084ec579297412dc08ee15ecd2aa4ac2454b008f518147236222b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15271,7 +15271,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 27,
     sourceFingerprint: "c351c9343ed12ec01622ebc0879828e686364a311949e24326b9cf5ab815797a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15285,7 +15285,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 28,
     sourceFingerprint: "8976b79d927cb9ec43100de80ae0b1c170443a4e6364210a67ac4a3b799582c2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15299,7 +15299,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 29,
     sourceFingerprint: "0782903160d215621297e5265b2d2e3dd383dda46e1173948a9570ae77cd9ad7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15313,7 +15313,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 30,
     sourceFingerprint: "37d226520dd0723e2f1cd865c343d411b1e572b478f498d1b0688ab736b1e3a4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15327,7 +15327,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 31,
     sourceFingerprint: "06ec7b70425a47f457bf63efeac99639e2932d601ed07b91a0a7169d3ac686a2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15341,7 +15341,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 32,
     sourceFingerprint: "39745752d60dcbc862a23ab68f08bd58d5842620b3be5eefe24c45a755d40010",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15355,7 +15355,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 33,
     sourceFingerprint: "c5ba2acbe08cb7523f466a15823db2f924393cfc18d57839e49a0127eccc67c6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15369,7 +15369,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 34,
     sourceFingerprint: "175dd3d6a7b2e13176b5912cd22ed4430b1bd58be1e69bd3b2a2513f98377345",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15383,7 +15383,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 35,
     sourceFingerprint: "50058bab9106cb215c1fe178ae6220efb340ab0d48970c55bb5d5f87e1296892",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15397,7 +15397,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 36,
     sourceFingerprint: "6d8ca9b28bb11c32e03aa4602335c751eeeeb06acd1801d840d4cfb9b3fe4cac",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15411,7 +15411,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 37,
     sourceFingerprint: "8fe23de5b1c9a818925907c1ac22636586ac0b4f658a2ecd6229f11f6d9fe69b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15425,7 +15425,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 38,
     sourceFingerprint: "6cf07ac51bdfeeb9e3223e79555cb584522c2d2a22b328755759d4e9521cd0b0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15439,7 +15439,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 39,
     sourceFingerprint: "2b140ea31170f891c92d0e2c3479f10f787dd99443a86c0d6ad1b0f1cf699d1a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15453,7 +15453,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 40,
     sourceFingerprint: "ef9b7c8e9711c4fbe63ada680a80ff4bf2a1ced314aa275446109ca12f45ee31",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15467,7 +15467,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 41,
     sourceFingerprint: "c8c894aab31068ad6dccef66c7cfafd2f239b800e64b8cb82c6db8b8593fc089",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15481,7 +15481,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 42,
     sourceFingerprint: "4870bb718cfb545e79e8304ee02f40a6e927b9a1157a26812b000179fe966a2c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15495,7 +15495,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 43,
     sourceFingerprint: "03187b4c4d0066c88ec6685d4aefff5284a7d65521d64afd79283f29c44ed651",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15509,7 +15509,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 44,
     sourceFingerprint: "3babcc6befd255047bf6c39df36a129bfc93056150f2f96cccdf68607623752d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15523,7 +15523,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 45,
     sourceFingerprint: "fd16e7d39de83dd56bb9ae16c9090e69d83a4356602bbd0295a99f3b21b80bfa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15537,7 +15537,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 46,
     sourceFingerprint: "4c3b0db1f773dc4ac10bb70920ec8cc14fbd4b3d8a4eab538f4a8b748e5b3757",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15551,7 +15551,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 47,
     sourceFingerprint: "ccb9391ced0cf78900e10a9a9a627cccea23ff4988fa01fd9264d0b0bbdc76af",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15565,7 +15565,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 48,
     sourceFingerprint: "22e65a7fd5ef99bc8ef57d90452884eb2a01016572e1538f2f665e14cc4e0822",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15579,7 +15579,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 49,
     sourceFingerprint: "ed9a5f96af9aaf464b66aabd621534021708681d25e8e682b92973ce702b8f44",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15593,7 +15593,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 50,
     sourceFingerprint: "95645c8de6a1f572d1e9f89229c3d3e4b4beb42eabf3897afdc63cde6c6123a0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15607,7 +15607,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 51,
     sourceFingerprint: "6204f57cdb93b220dfbf30350bb46ab07d9950f7798eac7474ea31fd037e38c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15621,7 +15621,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 52,
     sourceFingerprint: "285f3ee39157606b22941a1a4e064ea39b3cd5641d1855c519391ddf78577081",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15635,7 +15635,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 53,
     sourceFingerprint: "0db324c3409feb1c2738e537d2387823b2b58675efff613bc3bf60a4811326a2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15649,7 +15649,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 54,
     sourceFingerprint: "7e4ebda7878de2ed47fc4c3d6eb7a71b5bd168b5348983e37d63054f38cdae5c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15663,7 +15663,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 55,
     sourceFingerprint: "3e1ef8202217357451e01d6bbbb0ea13cfad8346d9fdbc7debad7a1365b7c543",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15677,7 +15677,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 56,
     sourceFingerprint: "01723c3c6bbe5817a7e857a23f7647c76e29c140b97ccf65864229d913fae224",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15691,7 +15691,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l20/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l20/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 1,
     sourceFingerprint: "d6cc6c7f7e8004fe6369905ac053b9c632dc8ed82a119cd19890ac20e6add5e5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15705,7 +15705,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 2,
     sourceFingerprint: "2435eeb9695438962d16322a6dae5f0f77a5500ec8fa3eac50f05848b71d6c82",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15719,7 +15719,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 3,
     sourceFingerprint: "e06a3f0813aa1be0120f90c232f714244e904a1941d0ee7450f80d4ff0b91423",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15733,7 +15733,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 4,
     sourceFingerprint: "07fba023484a3e44eaed4b5031e72bfe15f839739bd00ef925e90e7c1232f0a7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15747,7 +15747,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 5,
     sourceFingerprint: "3bf6e801c6a756e8e1d5b1577ca3146727e730a06a087f398c975d984199ffc4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15761,7 +15761,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 6,
     sourceFingerprint: "e284c28b5d911a17161674d2fc46d98edfebdbe2101caa8f7dd7ccec15898b6f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15775,7 +15775,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 7,
     sourceFingerprint: "4a023bf8da15c8447845843cf12ae44226f5f4bf01da5e2e398339a3bf46a1cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15789,7 +15789,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 8,
     sourceFingerprint: "c33e3153025a9810e6053bddfb0141727369c76cb06ab9791e9ada77582f90c7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15803,7 +15803,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 9,
     sourceFingerprint: "1d2c4d89f9c806ccbda5ba1ad11f4e621fe2c4841a4810fcf29c3cbdbac23b22",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15817,7 +15817,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 10,
     sourceFingerprint: "943236937e3c79b054e8381dc2354663e0fe4ab435f210c70ce4a04a7412d93c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15831,7 +15831,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 11,
     sourceFingerprint: "a8c917e18bbcbd85d3f9b4ac0161358fd072fc0d657433db111f2b5ec903d487",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15845,7 +15845,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 12,
     sourceFingerprint: "0020534889feab72bd58086a575ab74a08479bedbb4bef76a42b2909f905264f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15859,7 +15859,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 13,
     sourceFingerprint: "883000bbd169e89f9668d184af03e5293b712a3b51fff4e01e6c3a8527fdd234",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15873,7 +15873,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 14,
     sourceFingerprint: "b05adaa99e2b81cf286422c01055e7b93bcfd50d7c4a809111394ddb6085ccc4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15887,7 +15887,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 15,
     sourceFingerprint: "cb7592ddbfec9b32c3c68ff0bbf296fbae6e803b9609b225572e655581f7b964",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15901,7 +15901,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 16,
     sourceFingerprint: "6beddb0045cd4cb508ffda4d2ec28e575538c7c04ec9dbc926092f0be3f1d0de",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15915,7 +15915,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 17,
     sourceFingerprint: "82dacaa7cabeb7d420ee54be298c887efa20728641480443a17a9086e03f6365",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15929,7 +15929,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 18,
     sourceFingerprint: "87ab91fa9ca9557cb855785ed3b21d6fb0216e131f6026469690491212f7bcba",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15943,7 +15943,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 19,
     sourceFingerprint: "3cab798652601c399498252e3bf439ad29aac5d9034edf45d94519ea0837512c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15957,7 +15957,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 20,
     sourceFingerprint: "f2b8040f2441ad9a8c07bae5aa7530c09eb3acd38b8d697fd9951e17bd055688",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15971,7 +15971,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 21,
     sourceFingerprint: "2b69433f408463b7d47e26e98a31f6c3a88d020a4dd9de378c22c2ab0c273e10",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15985,7 +15985,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 22,
     sourceFingerprint: "7587fe4161185ed46c574488c9a451bcfb593467ea8528e6c75667939531d7ae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -15999,7 +15999,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 23,
     sourceFingerprint: "978b8445cd973525f068068a31fa856a5bf90921d47d92dea2a1af5388b8d0de",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16013,7 +16013,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 24,
     sourceFingerprint: "9f0ecee88c5c3cf89063712e06aca37fc4b5704da7faa45c3f534e4b8f919b1e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16027,7 +16027,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 25,
     sourceFingerprint: "e81ebdf0abf7174b1493eedbc286012c758ed6bdffd97bc745198dae6fe43ede",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16041,7 +16041,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 26,
     sourceFingerprint: "3bada3826ca4d56ccf452964fc49058bd262ddb0607d8ecff0a2ac6fe0c3e067",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16055,7 +16055,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 27,
     sourceFingerprint: "e34f133535ff1b8bfcf4f72258ce4c55c9d7eb3fcc6ff9298f02c0bd5e53062f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16069,7 +16069,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 28,
     sourceFingerprint: "acdaa638e3785f219b09ae8f5a4f0e8d6d830858cf166d83d83f6605085983a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16083,7 +16083,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 29,
     sourceFingerprint: "5b9578ffa6a5171fc46db849d82291ea4f77b971542d55e3c5157fe0fb967aa4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16097,7 +16097,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 30,
     sourceFingerprint: "ba26fd1b3cb78ff06a09cb3f3eea00fc7e840423bec5f3ae6454eee2784e72a3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16111,7 +16111,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 31,
     sourceFingerprint: "c9c43811f6ca17389f87f8f4ad8f75e236657a556cfcb746ccd0ba473e6d9260",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16125,7 +16125,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 32,
     sourceFingerprint: "5c237a3d2e1fc4d4a021be2be586771372013407225787b57dc5f79c39cce68b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16139,7 +16139,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 33,
     sourceFingerprint: "4bda4e285e0ee6b88b75cea229a68d139da0a3b1364331d405e29cd2402237e7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16153,7 +16153,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 34,
     sourceFingerprint: "cf7b0297322e2e766d9813faad07c06bd9ea7d9bc39e81646440ae3597e5c7af",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16167,7 +16167,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 35,
     sourceFingerprint: "6aa9c02efb7e179e6a0efffcd4d33350c982a54244f303730e30d3bbdae99894",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16181,7 +16181,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 36,
     sourceFingerprint: "140789b7f43e203bc63c929a27b99a0bd5fb06f69e8ff305e0d44b84c5d21fcc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16195,7 +16195,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 37,
     sourceFingerprint: "594f119576a7d6d8a4ce9dab583b9fed6842deeef69012c9c99dd37bbe29675e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16209,7 +16209,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 38,
     sourceFingerprint: "946942dc3d61a4845387812b5a1ab1ba3f0ab9dbb943b8fc648fa37c049d3f9d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16223,7 +16223,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 39,
     sourceFingerprint: "c564f2c7fed25a32fa3a10de061e4a6415d2f17d016a623a9e3a936259ed68e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16237,7 +16237,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 40,
     sourceFingerprint: "7a5827588dab28517c3e7a3eea5d5ffe473bc765159f2dbb45af1a952b07cfcd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16251,7 +16251,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 41,
     sourceFingerprint: "25a05e1b69c1905b9fdd5d47fbb5a39f820dd1fa44d4c6e1ecbbc155d64cc516",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16265,7 +16265,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 42,
     sourceFingerprint: "3d3f9842dc6825970ee1aae81cc255bb912ebdaee6b031bf5499d7a73520f46a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16279,7 +16279,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 43,
     sourceFingerprint: "62afa4d9a292ffa40cea299d84ac3aac98a568f02eb7611b32c0b6c0d7f79965",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16293,7 +16293,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 44,
     sourceFingerprint: "2105597e73ceca292e23df177e2ba3e4290889eeb9c7bd57725a558baa5283ac",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16307,7 +16307,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 45,
     sourceFingerprint: "10434bf51d5d65d73770eddad15a0868493457f32f3c84175da6413ab16be3df",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16321,7 +16321,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 46,
     sourceFingerprint: "f04d0f9f10985f1b7a1e2b27608b6821510b47e2548e4c102e7d32f67c2affcf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16335,7 +16335,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 47,
     sourceFingerprint: "d9b5642ed8a4ce06927f6c2d7bd85b9cba382cc8d0f439ab3bd288d1cf0b7319",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16349,7 +16349,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 48,
     sourceFingerprint: "07709b7e7c2fe9ae851b117677a98b24c6a2d0f8022d9f03fb9e6699b538bf5a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16363,7 +16363,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 49,
     sourceFingerprint: "24151576eb492600b3e4174ce9a57d97e17a9f9cda5f27fdeb56d99bd348053e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16377,7 +16377,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 50,
     sourceFingerprint: "06388f4924eb4fa9428940d18c2d263b9efc8ba1e0b68c441160010cb95e8349",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16391,7 +16391,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 51,
     sourceFingerprint: "21d4b12dc6613a6b4bc64750733ef98c0e69570dd3e9b236d0174095a7a383aa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16405,7 +16405,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 52,
     sourceFingerprint: "4277400e71bcf1eb834c9343bc0aa31b3ef41201095f41442cc1c0b85e6dd71d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16419,7 +16419,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s52/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 53,
     sourceFingerprint: "0c471fd3f429dfa79165a1f7dcf1457194002ca358b7707ed9acfa89f59f0ec4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16433,7 +16433,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s53/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s53/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 54,
     sourceFingerprint: "0602821f9260ef08a4c32d329bffda13d0bb932464415b3cd76ed11e9f7dd672",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16447,7 +16447,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s54/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s54/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 55,
     sourceFingerprint: "e3ff5155e13afe18866ef1247168f2f5bf0259b9e94e1d5e276202be7a283f63",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16461,7 +16461,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s55/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s55/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 56,
     sourceFingerprint: "49cfb91988b100785a52828652eab4950bc31617ef5b2fd08b4aa771b6b9edf8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16475,7 +16475,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l21/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l21/s56/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 1,
     sourceFingerprint: "5522af7690d1a3b374bb2ca1092f383eddfbc9e4321d0f6c736e317956082a13",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16489,7 +16489,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s01/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s01/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 2,
     sourceFingerprint: "b2b6c586c6132d158034f286f15b6b58bbeaf77260a67e8a22c3e89fe542e86c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16503,7 +16503,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s02/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s02/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 3,
     sourceFingerprint: "a8c70e17fb37f6781bb6ee2e9a50a45dd91e898c4390f760a01f1632a8fd8c0c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16517,7 +16517,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s03/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 4,
     sourceFingerprint: "691df017992007566a5441516b33d2f0c4b668d654a191b6d96e6e8e740d1e7a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16531,7 +16531,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s04/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s04/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 5,
     sourceFingerprint: "dd66ad5ae4e133da085d33359619a01d6875efb746f9f494d0647bdd20ba5a5b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16545,7 +16545,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s05/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s05/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 6,
     sourceFingerprint: "42b2ef4770980497e7c86fa9d3f4c04d4c1fbcdfc7d7e84047dcad0ee0c5ad62",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16559,7 +16559,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s06/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s06/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 7,
     sourceFingerprint: "14ea6a551044e1fda8f058656eccbe2856b3e03bf4cf269f42d0cf4ce2384b38",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16573,7 +16573,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s07/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s07/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 8,
     sourceFingerprint: "873609a383da89ed8a14007ea1fb3db699313115163df593071a983bd6acdfb6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16587,7 +16587,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s08/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s08/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 9,
     sourceFingerprint: "6eaf1cc4f79e39149ac8e05f9ca7a5a2e681762d14a58d259327fe8188070efb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16601,7 +16601,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s09/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s09/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 10,
     sourceFingerprint: "6a0770ab56ce48352e3b2d5cfe21da9e97d4600629e79967015c312aa7b01b7d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16615,7 +16615,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s10/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s10/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 11,
     sourceFingerprint: "381bf80fc96f001ca57d909189c3b6976660aecf643f7061bfbd42afd7d5f23b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16629,7 +16629,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s11/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s11/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 12,
     sourceFingerprint: "68075a738ec72c66398b9e779965da9d1934c30839b95c574fb1da6dd092ff8e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16643,7 +16643,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s12/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s12/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 13,
     sourceFingerprint: "df16934c5a401d22c3375d9c0340e6cbab07bf942c7c242774168ecd57c7fabd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16657,7 +16657,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s13/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s13/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 14,
     sourceFingerprint: "0f452687137a5ae326452d8402afd7fbd7d915ee5dd6a9eda2985afa862df70a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16671,7 +16671,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s14/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s14/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 15,
     sourceFingerprint: "71e16ec7233466274b375086295e32141c431def943711f6776bc2d61dea0411",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16685,7 +16685,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s15/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s15/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 16,
     sourceFingerprint: "db4986eefb29eeab5ae46bbfd572a36d6bc480b55369fcbd320892588aabee51",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16699,7 +16699,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s16/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s16/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 17,
     sourceFingerprint: "987bffd7600b9c8f1a980d0c374c714db77ff5a0c02ee6c8a2a0f86db048b603",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16713,7 +16713,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s17/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s17/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 18,
     sourceFingerprint: "96a71390ed25545a7e109fa83107a65c09584db183dbeefa8f975ef8b0bff7f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16727,7 +16727,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s18/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s18/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 19,
     sourceFingerprint: "319f44bf44a1c3e095fa14166b07f4048ff1d7f59cfe549d2362c55b79d1d57e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16741,7 +16741,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s19/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s19/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 20,
     sourceFingerprint: "662257a5935f6745ede0929789da1abe35e210604d3420a93900d0a12c6b32b0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16755,7 +16755,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s20/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s20/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 21,
     sourceFingerprint: "bc9f868c4bc18dbf71e1c2cdf22a818e352e316cca3542bb819fd2f1a096f1e4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16769,7 +16769,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s21/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s21/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 22,
     sourceFingerprint: "252ec869b3113f84de004120b2f55fee0cf1eee0e5bb5c5aa705c44245e4e96f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16783,7 +16783,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s22/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s22/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 23,
     sourceFingerprint: "54f00c3b56463e470253d3952280003259bc5da5b594e43d3c518f1fb7057bc6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16797,7 +16797,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s23/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s23/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 24,
     sourceFingerprint: "8302f9a6f5f9c99340eab0f8e42960d5cda9bbdf13f79205be236bf9bb689341",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16811,7 +16811,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s24/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s24/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 25,
     sourceFingerprint: "9fc3cec201f0697bfd493fbfe9a95707376df38b74d48c31ba02a2d8f04fce33",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16825,7 +16825,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s25/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s25/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 26,
     sourceFingerprint: "39917bed4f7f1079fce2bb822181ec3cb9bd9e0e306810b034807cabc3295f9f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16839,7 +16839,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s26/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s26/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 27,
     sourceFingerprint: "bf1b1496df514c3a8ba067e745bcb29172d0d2f94df6bb980b60ce98ce961456",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16853,7 +16853,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s27/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s27/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 28,
     sourceFingerprint: "86f468adc6e8a4f7f82b35ce83bd2d5d2b80f0c48ac4e89eaf8d99293607173e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16867,7 +16867,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s28/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s28/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 29,
     sourceFingerprint: "0e015e81e3e8ad0a6a48601ae142c9a50173986e45755143cdc1c10159c23ca9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16881,7 +16881,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s29/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s29/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 30,
     sourceFingerprint: "7cc35812ce928a5e529578df773e0749d9508f2410c041aaf44b7e9eb121a631",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16895,7 +16895,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s30/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s30/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 31,
     sourceFingerprint: "ff78780d84b5a4832f584f27c2c65e0a85efb1169482c5ce9e5678e7006d6e63",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16909,7 +16909,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s31/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s31/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 32,
     sourceFingerprint: "43a44e7427d99130066977eb43c7c2e7e77a817a7be030c4eaee5f514962291c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16923,7 +16923,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s32/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s32/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 33,
     sourceFingerprint: "229239681cce19c465a88b0943b7fc2a2954067c36955d312bbb2bfcd829c5f6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16937,7 +16937,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s33/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s33/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 34,
     sourceFingerprint: "46aedf03c2d04d199a6032d7a4469b57d773f80b17ff89c31231a0d9185ce1be",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16951,7 +16951,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s34/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s34/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 35,
     sourceFingerprint: "3d905f6fff1cabb26ecfbf69184129889e2c8e7e794307755132c4ab68d7a3ac",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16965,7 +16965,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s35/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s35/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 36,
     sourceFingerprint: "b1382fa9a9ebb56ba1e80d773663bf2553eb3cdfa4fefdb382a80ef6e27ac839",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16979,7 +16979,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s36/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s36/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 37,
     sourceFingerprint: "9e6b2f62ae2329a5cf20a05b63ac8ae89f7a619430e5baebc0d02c9a3ce5ad8b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -16993,7 +16993,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s37/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s37/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 38,
     sourceFingerprint: "26bce93be1d85f425178df8daa3e084ace71b731ee89d517f9f51af9a3bab977",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17007,7 +17007,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s38/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 39,
     sourceFingerprint: "c398811aaa0915a30bd4f431025dd45ae61844b35f0de86a90b8644c35066abc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17021,7 +17021,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s39/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s39/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 40,
     sourceFingerprint: "1d7c817e0a8e02b267e5586f249a94a72cd2cf61151325443f9ad75f079245f8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17035,7 +17035,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s40/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 41,
     sourceFingerprint: "111581a082e967746c99c46e1437cb69e8742abe3e836ec3b141c89125b3233b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17049,7 +17049,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s41/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s41/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 42,
     sourceFingerprint: "ca66d6b97da3d1db5227b2785878da1788f4f867190212c29cfbfdb4bc54bd28",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17063,7 +17063,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s42/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s42/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 43,
     sourceFingerprint: "f07dee5cfd16c01ebbcb8218444fc181608b3718f66e0d74dc1327cff6074fdd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17077,7 +17077,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s43/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s43/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 44,
     sourceFingerprint: "3f085160a65cb01d649a0454638ecc9a81607bd40d931100d72c7c6b942b1fd8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17091,7 +17091,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s44/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 45,
     sourceFingerprint: "935ef4e08e6f47947dc2f47cabe0f138e42f5a9d85acf326d7ab9ed7452f108a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17105,7 +17105,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s45/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 46,
     sourceFingerprint: "1749683d483ba598a95ead34bfb998318a18307be5b358b902996f5837c4787f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17119,7 +17119,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s46/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 47,
     sourceFingerprint: "50daec601a98c280b3534a4abf886efa5c8b1cb62e2f094b049a52581ad6277b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17133,7 +17133,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s47/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s47/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 48,
     sourceFingerprint: "ec681e42935c2cbf85221c4fffbde869e2a1c23bd88f6836822b57573db7e73c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17147,7 +17147,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s48/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s48/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 49,
     sourceFingerprint: "388f9dc4eaaa99494e1c7fde8dc049d7aee7bc246232babd88cdc079e172c6e6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17161,7 +17161,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s49/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s49/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 50,
     sourceFingerprint: "cc16a1de9fccb62beb55600687bcb5901551ee7c867270f3b647182c469bcd35",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17175,7 +17175,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s50/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s50/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 51,
     sourceFingerprint: "54e59ad353a25a26cd5a8af94a33a2e71191091d8b9bd96642c9bde2a82dcf05",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
@@ -17189,7 +17189,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadAnswers: () => require("./generated_release/en/l22/s51/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l22/s51/auxiliary.json") as unknown,
   }),
-  Object.freeze({
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 52,
     sourceFingerprint: "c9e14143cfe88696838147f287aa76683449b764704359c2f8022e099d2a19a7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),

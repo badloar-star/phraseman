@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диалоги — пять стилей выбора</title>
+<style>
+/* ───────── PhraseMan 2.0 · «Диалоги»: пять кардинально разных стилей выбора диалога (владелец 22.10 через координатора) ─────────
+   Владелец о dialogs-scene-choose-v2: «ЛЕНТА НЕ ПОДХОДИТ! ДАВАЙ 5 КАРДИНАЛЬНО НОВЫХ СТИЛЕЙ». Закон владельца 22.10: «ЦВЕТА ДОЛЖНЫ БЫТЬ
+   СТРОГО ЦВЕТАМИ И ОТТЕНКАМИ ТЕКУЩЕЙ ТЕМЫ» — здесь ни одного своего цвета: всё из токенов тем приложения (liquidGlassTokens уровня
+   «Максимум» + dialogsSceneColors), переключатель трёх тем (marine тёмная, ink и terracotta светлые). Общие законы: экран целиком без
+   прокрутки 390 × 844, сразу понятно что выбрать и как начать, кнопки одного стиля V2 (главная — cta темы, вторичная — плашка темы),
+   «назад» в одном месте (слева сверху, 44), без текстур. Данные — из приложения: 76 диалогов (4 темы × 19 рангов), собеседники, цели,
+   брифинги; пример — ранг 7, бесплатный тариф, 18 из 30 ответов, энергия 5. Каждый стиль — первый взгляд → выбираю → начал.
+   Классы с префиксом d3- (kit.css не подключён; классы темы телефона — t-…). Governance-ID: TG-110070F4C93E */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.d3-page { max-width: 1320px; margin: 0 auto; padding: 32px 24px 80px; }
+.d3-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.d3-lead { color: #A9A9AE; font-size: 15px; line-height: 22px; max-width: 960px; margin: 0 0 10px; }
+.d3-lead b { color: #ECECEE; }
+.d3-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 0; background: #101113; }
+.d3-seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.d3-seg button, .d3-pick { font: 600 14px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.d3-seg button.on { background: #ECECEE; color: #111214; }
+.d3-sum { color: #A9A9AE; font-size: 14px; }
+.d3-sum b { color: #ECECEE; }
+.d3-block { margin-top: 40px; }
+.d3-block h2 { font-size: 22px; line-height: 28px; margin: 0 0 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.d3-block p { margin: 0 0 16px; color: #A9A9AE; font-size: 14px; line-height: 20px; max-width: 980px; }
+.d3-row { display: flex; flex-wrap: wrap; gap: 28px; }
+.d3-col { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.d3-cap { font-size: 15px; font-weight: 700; color: #ECECEE; }
+.d3-pick { background: #1C1D21; font-size: 15px; padding: 10px 18px; }
+.d3-pick.on { background: #ECECEE; color: #111214; }
+
+/* ── телефон и три темы: значения — токены приложения (вычислены скриптом из liquidGlassTokens / dialogsSceneColors) ── */
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; }
+.ph.t-marine { /* marine · тёмное — токены приложения */
+  --bg: #000F16; --card: #002027; --ctl: #123037; --raised: #002027;
+  --tx: #F6FBFD; --sec: #B8CFD6; --acc: #5CCFEB; --acct: #64D1EC;
+  --g1: #5CCFEB; --g2: #58D1C5; --cta: #D0EAED; --cta-ink: #010708; --good: #73CB87;
+  --glass: rgba(246,251,253,0.12); --track: rgba(246,251,253,0.18);
+  --s-top: #1c5b6c; --s-bot: #1a494b; --s-glr: #008AA4C7; --s-gll: #008F84B3;
+  --s-tx: #F6FBFD; --s-sec: #B8CFD6;
+  /* тени — из цветов самой темы: в тёмной — фон темы, в светлой — её текст с малой непрозрачностью */
+  --shc: color-mix(in srgb, var(--bg) 88%, transparent); --sh: 0 12px 28px -14px var(--shc); }
+.ph.t-ink { /* ink · светлое — токены приложения */
+  --bg: #EAEBFE; --card: #FCFCFF; --ctl: #DBDDEC; --raised: #FCFCFF;
+  --tx: #17181E; --sec: #595A63; --acc: #5F5CB1; --acct: #514EA1;
+  --g1: #6765BB; --g2: #4C489B; --cta: #1D1D2F; --cta-ink: #FFFFFF; --good: #006F30;
+  --glass: rgba(23,24,30,0.12); --track: rgba(23,24,30,0.18);
+  --s-top: #F3F4FD; --s-bot: #EAEBFE; --s-glr: #C9CCFDB3; --s-gll: #E0CEF899;
+  --s-tx: #17181E; --s-sec: #595A63;
+  /* тени — из цветов самой темы: в тёмной — фон темы, в светлой — её текст с малой непрозрачностью */
+  --shc: color-mix(in srgb, var(--tx) 22%, transparent); --sh: 0 12px 28px -14px var(--shc); }
+.ph.t-terracotta { /* terracotta · светлое — токены приложения */
+  --bg: #FFE5DE; --card: #FFFAF8; --ctl: #F4D6D0; --raised: #FFFAF8;
+  --tx: #211513; --sec: #685652; --acc: #B53621; --acct: #A4240E;
+  --g1: #B53621; --g2: #A15200; --cta: #331610; --cta-ink: #FFFFFF; --good: #006F30;
+  --glass: rgba(33,21,19,0.12); --track: rgba(33,21,19,0.18);
+  --s-top: #FFF1ED; --s-bot: #FFE5DE; --s-glr: #FFB6A3B3; --s-gll: #FFCD8F99;
+  --s-tx: #211513; --s-sec: #685652;
+  /* тени — из цветов самой темы: в тёмной — фон темы, в светлой — её текст с малой непрозрачностью */
+  --shc: color-mix(in srgb, var(--tx) 22%, transparent); --sh: 0 12px 28px -14px var(--shc); }
+.d3-scr { position: absolute; inset: 0; overflow: hidden; }
+.d3-sb { position: absolute; z-index: 60; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 26px 0 34px; font-size: 15px; font-weight: 600; color: var(--tx); pointer-events: none; }
+.d3-sb .sys { display: inline-flex; gap: 6px; align-items: center; }
+.d3-sb .sys i { display: block; background: currentColor; border-radius: 2px; }
+.d3-home { position: absolute; z-index: 61; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+
+/* подложка экрана: тон темы сверху вниз и мягкий свет — как основа сцен приложения, без текстур */
+.d3-bgd { position: absolute; inset: 0; background: radial-gradient(70% 34% at 84% 0%, var(--s-glr), transparent), radial-gradient(60% 30% at 8% 0%, var(--s-gll), transparent),
+  linear-gradient(180deg, var(--s-top) 0%, var(--bg) 46%); }
+
+/* общая шапка: «назад» слева в одном месте, остаток ответов, энергия */
+.d3-top { position: absolute; z-index: 20; top: 52px; left: 20px; right: 20px; display: flex; align-items: center; gap: 8px; }
+.d3-top .sp { flex: 1; }
+.d3-back { width: 44px; height: 44px; border-radius: 22px; display: inline-flex; align-items: center; justify-content: center; flex: none; font-size: 20px;
+  background: var(--raised); color: var(--tx); box-shadow: 0 4px 12px -6px var(--shc); }
+.d3-q { min-height: 36px; border-radius: 18px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; background: var(--glass);
+  font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.d3-q .io { font-size: 16px; }
+.d3-en { display: inline-flex; align-items: center; gap: 4px; font-size: 16px; font-weight: 700; padding: 0 4px; }
+.d3-en .io { font-size: 19px; color: var(--acct); }
+.d3-h1 { position: absolute; left: 20px; right: 20px; top: 112px; font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; }
+
+/* кнопки V2: главная — cta темы, вторичная — плашка темы */
+.d3-btn { min-height: 50px; border-radius: 25px; padding: 0 24px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap;
+  background: var(--cta); color: var(--cta-ink); font-size: 16px; line-height: 21px; font-weight: 700; flex: none; }
+.d3-btn .io { font-size: 17px; }
+.d3-btn.alt { background: var(--ctl); color: var(--tx); }
+.d3-btn.wide { width: 100%; }
+.d3-btn.sm { min-height: 40px; border-radius: 20px; padding: 0 16px; font-size: 16px; }
+
+/* темы-фильтр: одна строка, выбранная — cta */
+.d3-chips { position: absolute; left: 0; right: 0; display: flex; gap: 6px; padding: 0 20px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent); }
+.d3-chips span { flex: none; min-height: 36px; padding: 0 14px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700;
+  background: var(--ctl); color: var(--tx); white-space: nowrap; }
+.d3-chips span .io { font-size: 15px; }
+.d3-chips span.on { background: var(--cta); color: var(--cta-ink); }
+
+/* аватар собеседника: буква на тоне акцента */
+.d3-av { flex: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;
+  background: color-mix(in srgb, var(--acc) 22%, var(--card)); color: var(--tx); }
+.d3-av.big { background: linear-gradient(150deg, var(--g1), var(--g2)); color: var(--cta-ink); }
+.d3-ok { width: 26px; height: 26px; border-radius: 13px; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; flex: none;
+  background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+.d3-lk { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; color: var(--sec); white-space: nowrap; }
+.d3-lk .io { font-size: 13px; }
+.d3-dot { width: 10px; height: 10px; border-radius: 5px; background: var(--acct); flex: none; }
+.d3-tag { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 0 10px; border-radius: 14px; font-size: 13px; font-weight: 700;
+  background: color-mix(in srgb, var(--acc) 18%, transparent); color: var(--acct); white-space: nowrap; }
+.d3-tag .io { font-size: 13px; }
+
+/* ═══ 1 · Входящие ═══ */
+.d3-in { position: absolute; left: 16px; right: 16px; top: 222px; display: flex; flex-direction: column; gap: 10px; }
+.d3-pin { border-radius: 24px; background: var(--card); box-shadow: var(--sh); padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.d3-pin .r { display: flex; align-items: center; gap: 12px; }
+.d3-pin .tx { flex: 1; min-width: 0; }
+.d3-pin .tx b { display: block; font-size: 16px; line-height: 21px; }
+.d3-pin .tx span { display: block; font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 2px; }
+.d3-pin .tx small { display: block; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 2px; }
+.d3-list { border-radius: 24px; background: var(--card); box-shadow: var(--sh); padding: 4px 14px; }
+.d3-li { display: flex; align-items: center; gap: 12px; min-height: 64px; }
+.d3-li + .d3-li { border-top: 1px solid color-mix(in srgb, var(--tx) 7%, transparent); }
+.d3-li .tx { flex: 1; min-width: 0; }
+.d3-li .tx b { display: block; font-size: 16px; line-height: 21px; }
+.d3-li .tx span { display: block; font-size: 13px; line-height: 17px; color: var(--sec); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.d3-li.lock { opacity: .55; }
+.d3-li.sel { background: color-mix(in srgb, var(--acc) 10%, transparent); margin: 0 -14px; padding: 0 14px; }
+/* шторка выбора */
+.d3-dim { position: absolute; inset: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 62%, transparent); }
+.d3-sheet { position: absolute; z-index: 41; left: 0; right: 0; bottom: 0; border-radius: 28px 28px 0 0; background: var(--card); padding: 10px 20px 34px;
+  box-shadow: 0 -20px 50px -20px var(--shc); }
+.d3-sheet .grab { width: 38px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--tx) 22%, transparent); margin: 0 auto 16px; }
+.d3-sheet .who { display: flex; align-items: center; gap: 12px; }
+.d3-sheet .who div b { display: block; font-size: 16px; line-height: 21px; }
+.d3-sheet .who div span { display: block; font-size: 13px; line-height: 17px; color: var(--sec); }
+.d3-sheet .big { font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; margin-top: 14px; text-wrap: balance; }
+.d3-sheet .br { font-size: 16px; line-height: 22px; margin-top: 8px; color: var(--tx); text-wrap: pretty; }
+.d3-sheet .facts { display: flex; gap: 8px; margin: 14px 0 18px; flex-wrap: wrap; }
+
+/* ═══ 2 · Колода ═══ */
+.d3-deck { position: absolute; left: 0; right: 0; top: 214px; height: 430px; }
+.d3-card { position: absolute; left: 30px; right: 30px; top: 0; height: 410px; border-radius: 30px; background: var(--card); box-shadow: 0 24px 48px -24px var(--shc);
+  padding: 20px; display: flex; flex-direction: column; transform-origin: 50% 100%; }
+.d3-card.back1 { transform: translateY(14px) scale(.94); opacity: .8; }
+.d3-card.back2 { transform: translateY(28px) scale(.88); opacity: .55; }
+.d3-card .hd { display: flex; align-items: center; justify-content: space-between; }
+.d3-card .face { flex: 1; display: flex; align-items: center; justify-content: center; }
+.d3-card .t { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.5px; text-wrap: balance; }
+.d3-card .m { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 6px; }
+.d3-card.swipe { transform: translateX(-262px) rotate(-14deg); opacity: .42; z-index: 3; }
+.d3-dk-act { position: absolute; left: 30px; right: 30px; top: 664px; display: flex; gap: 10px; }
+.d3-dk-act .d3-btn { flex: 1; }
+.d3-dk-n { position: absolute; left: 0; right: 0; top: 730px; text-align: center; font-size: 13px; color: var(--sec); font-variant-numeric: tabular-nums; }
+
+/* ═══ 3 · Маршрут ═══ */
+.d3-route { position: absolute; left: 0; right: 0; top: 214px; height: 560px; }
+.d3-route svg { position: absolute; inset: 0; }
+.d3-node { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 22px; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; background: var(--ctl); color: var(--tx); }
+.d3-node.done { background: color-mix(in srgb, var(--good) 22%, var(--card)); color: var(--good); }
+.d3-node.lock { width: 34px; height: 34px; margin: -17px 0 0 -17px; background: color-mix(in srgb, var(--ctl) 70%, transparent); color: var(--sec); font-size: 13px; }
+.d3-node.cur { width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 32px; background: linear-gradient(150deg, var(--g1), var(--g2)); color: var(--cta-ink);
+  font-size: 26px; box-shadow: 0 0 0 8px color-mix(in srgb, var(--acc) 18%, transparent), 0 14px 26px -12px var(--shc); }
+.d3-node.open { box-shadow: inset 0 0 0 2px var(--acct); color: var(--acct); background: var(--card); }
+.d3-bub { position: absolute; width: 174px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; }
+.d3-bub b { display: block; font-size: 16px; line-height: 21px; }
+.d3-bub .s { display: block; font-size: 13px; line-height: 17px; color: var(--sec); margin: 4px 0 12px; }
+.d3-foot { position: absolute; left: 20px; right: 20px; bottom: 34px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--sec); }
+.d3-foot b { color: var(--tx); font-size: 16px; }
+
+/* ═══ 4 · Афиша ═══ */
+.d3-bill { position: absolute; left: 16px; right: 16px; top: 214px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.d3-tile { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; height: 140px; display: flex; flex-direction: column; position: relative; }
+.d3-tile .hd { display: flex; align-items: center; justify-content: space-between; min-height: 26px; }
+.d3-tile .t { margin-top: auto; font-size: 16px; line-height: 21px; font-weight: 700; text-wrap: balance; }
+.d3-tile .w { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 4px; white-space: nowrap; }
+.d3-tile.feat { grid-column: 1 / 3; height: 214px; padding: 18px;
+  background: radial-gradient(80% 90% at 100% 0%, color-mix(in srgb, var(--acc) 26%, transparent), transparent 70%), var(--card); }
+.d3-tile.feat .t { font-size: 28px; line-height: 34px; letter-spacing: -.5px; margin-top: auto; }
+.d3-tile.feat .row { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; gap: 10px; }
+.d3-tile.feat .w { margin: 0; }
+.d3-tile.lock { opacity: .55; }
+.d3-tile.sel { background: color-mix(in srgb, var(--acc) 16%, var(--card)); transform: translateY(-3px); box-shadow: 0 18px 34px -16px var(--shc); }
+.d3-bar2 { position: absolute; z-index: 30; left: 16px; right: 16px; bottom: 30px; border-radius: 26px; background: var(--card); box-shadow: 0 18px 40px -16px var(--shc);
+  padding: 12px 12px 12px 18px; display: flex; align-items: center; gap: 12px; }
+.d3-bar2 .tx { flex: 1; min-width: 0; }
+.d3-bar2 .tx b { display: block; font-size: 16px; line-height: 21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.d3-bar2 .tx span { display: block; font-size: 13px; line-height: 17px; color: var(--sec); }
+
+/* ═══ 5 · Город ═══ */
+.d3-city { position: absolute; left: 16px; right: 16px; top: 168px; height: 446px; border-radius: 30px; background: var(--card); box-shadow: var(--sh); overflow: hidden; }
+.d3-dist { position: absolute; border-radius: 22px; padding: 12px; }
+.d3-dist .nm { display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; }
+.d3-dist .nm .io { font-size: 15px; }
+.d3-dist .pr { font-size: 13px; color: var(--sec); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.d3-dist .pts { position: absolute; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; justify-items: center; }
+.d3-dist .pts i { width: 12px; height: 12px; border-radius: 6px; background: color-mix(in srgb, var(--tx) 16%, transparent); }
+.d3-dist .pts i.d { background: var(--good); }
+.d3-dist .pts i.o { background: transparent; box-shadow: inset 0 0 0 2px var(--acct); }
+.d3-dist .pts i.n { background: var(--acct); box-shadow: 0 0 0 5px color-mix(in srgb, var(--acc) 26%, transparent); }
+.d3-dist .pts i.l { width: 8px; height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--tx) 10%, transparent); align-self: center; }
+.d3-dist.sel { box-shadow: 0 16px 30px -16px var(--shc), 0 0 0 2px color-mix(in srgb, var(--acc) 30%, transparent); }
+.d3-place { position: absolute; z-index: 30; left: 16px; right: 16px; top: 628px; border-radius: 26px; background: var(--card); box-shadow: 0 18px 40px -16px var(--shc);
+  padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.d3-place .r { display: flex; align-items: center; gap: 12px; }
+.d3-place .tx { flex: 1; min-width: 0; }
+.d3-place .tx b { display: block; font-size: 16px; line-height: 21px; }
+.d3-place .tx span { display: block; font-size: 13px; line-height: 17px; color: var(--sec); }
+
+/* ═══ «начал»: экран разговора ═══ */
+.d3-talk { position: absolute; inset: 0; }
+.d3-thead { position: absolute; left: 0; right: 0; top: 0; height: 196px; background: radial-gradient(70% 60% at 84% 0%, var(--s-glr), transparent), linear-gradient(180deg, var(--s-top), var(--s-bot)); }
+.d3-thead .who { position: absolute; left: 20px; right: 20px; top: 110px; display: flex; align-items: center; gap: 12px; color: var(--s-tx); }
+.d3-thead .who div b { display: block; font-size: 20px; line-height: 26px; }
+.d3-thead .who div span { display: block; font-size: 13px; line-height: 17px; color: var(--s-sec); }
+.d3-chat { position: absolute; left: 0; right: 0; top: 170px; bottom: 0; border-radius: 28px 28px 0 0; background: var(--card); padding: 18px 16px 0; }
+.d3-task { border-radius: 18px; background: var(--ctl); padding: 12px 14px; margin-bottom: 12px; }
+.d3-task .h { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--sec); }
+.d3-task .b { font-size: 16px; line-height: 22px; margin-top: 4px; }
+.d3-now { display: flex; justify-content: center; margin: 4px 0 12px; }
+.d3-typ { display: flex; align-items: center; gap: 10px; color: var(--sec); font-size: 13px; }
+.d3-typ .bub { display: inline-flex; gap: 4px; padding: 14px 16px; border-radius: 20px; border-bottom-left-radius: 6px; background: var(--ctl); }
+.d3-typ .bub i { width: 7px; height: 7px; border-radius: 4px; background: var(--sec); opacity: .7; }
+.d3-comp { position: absolute; left: 0; right: 0; bottom: 0; z-index: 35; padding: 12px 16px 34px; background: var(--card); }
+.d3-comp .row { display: flex; align-items: center; gap: 10px; }
+.d3-comp .fld { flex: 1; min-width: 0; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; padding: 0 18px; font-size: 16px; color: var(--sec); white-space: nowrap; }
+.d3-comp .mic { width: 60px; height: 60px; border-radius: 30px; flex: none; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.d3-comp .hint { text-align: center; font-size: 13px; color: var(--sec); margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="d3-page">
+  <h1>Диалоги — пять стилей выбора</h1>
+  <p class="d3-lead">Владелец: «Лента не подходит — давай пять кардинально новых стилей». Здесь пять разных идей целиком, а не варианты карусели: <b>Входящие</b> (собеседники пишут тебе), <b>Колода</b> (одна карта за раз), <b>Маршрут</b> (путь по рангам темы), <b>Афиша</b> (сцены как плакаты), <b>Город</b> (темы — районы, диалоги — места). У каждого — первый взгляд → выбираю → начал.</p>
+  <p class="d3-lead">Законы для всех: <b>только цвета и оттенки текущей темы</b> (переключатель — три темы приложения, цвета из их токенов), экран целиком без прокрутки на 390 × 844, «назад» слева сверху в одном месте, кнопки одного стиля V2, без текстур. Данные — из приложения: 76 диалогов (4 темы по 19), собеседники, цели, брифинги; пример — ранг 7, бесплатный тариф, 18 из 30 ответов.</p>
+  <div class="d3-bar">
+    <div class="d3-seg" role="group" aria-label="Тема"><button type="button" data-th="marine" class="on">marine · тёмная</button><button type="button" data-th="ink">ink · светлая</button><button type="button" data-th="terracotta">terracotta · светлая</button></div>
+    <div class="d3-sum" id="d3-sum"></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script>
+window.__ICODE = {"chevron-back":"f229","chatbubbles-outline":"f218","flash":"f316","people-outline":"f4a3","briefcase-outline":"f1b2","airplane-outline":"f10a","cafe-outline":"f1ca","play":"f4c6","mic":"f454","checkmark":"f21d","lock-closed":"f3c7","close":"f24a","flag-outline":"f311","radio-button-on":"f503","sparkles":"f58c","shuffle":"f583"};
+window.__DLG = {"worlds":[{"id":"social","t":"Общение"},{"id":"work","t":"Дела"},{"id":"travel","t":"Поездки"},{"id":"everyday","t":"Повседневное"}],"persona":{"mila":{"name":"Мила","note":"Тепло подхватывает разговор и задаёт живые уточняющие вопросы."},"zoe":{"name":"Зоя","note":"Общается легко, иногда с мягкой шуткой помогает сказать естественнее."},"denis":{"name":"Денис","note":"Не торопится, внимательно читает детали и отвечает без лишнего шума."},"marina":{"name":"Марина","note":"Ценит сроки, конкретику и сразу просит назвать следующий шаг."},"oleg":{"name":"Олег","note":"Держит деловой тон, проверяет договорённости и фиксирует решения."},"sam":{"name":"Сэм","note":"Снимает напряжение, но не даёт разговору уйти от главной задачи."},"lea":{"name":"Лея","note":"Помогает сориентироваться и доброжелательно уточняет недостающие детали."},"niko":{"name":"Нико","note":"Быстро собирает факты, предлагает варианты и просит выбрать один."},"clara":{"name":"Клара","note":"Следует правилам сервиса и вежливо объясняет, что можно сделать дальше."},"ira":{"name":"Ира","note":"Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы."},"nikita":{"name":"Никита","note":"Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию."},"vera":{"name":"Вера","note":"Помогает договориться и сохраняет дружелюбный тон даже при разногласии."}},"rows":[["social_01","social",1,"A1","Поздороваться после знакомства",["mila"],6],["social_02","social",2,"A1","Перенести встречу",["zoe"],6],["social_03","social",3,"A1","Спросить, как добраться",["denis"],6],["social_04","social",4,"A1","Поблагодарить за помощь",["mila"],6],["social_05","social",5,"A1","Поздравить и задать простой вопрос",["zoe"],6],["social_06","social",6,"A2","Познакомиться в чате по интересу",["denis","mila"],7],["social_07","social",7,"A2","Договориться о времени и месте",["mila"],7],["social_08","social",8,"A2","Позвать на событие",["zoe"],7],["social_09","social",9,"A2","Вежливо отменить планы",["denis","mila"],7],["social_10","social",10,"A2","Написать после встречи",["mila"],7],["social_11","social",11,"B1","Собрать планы в группе",["zoe","denis"],8],["social_12","social",12,"B1","Поддержать друга",["denis"],7],["social_13","social",13,"B1","Снять лёгкое недопонимание",["mila","zoe"],7],["social_14","social",14,"B2","Мягко отказать",["zoe"],7],["social_15","social",15,"B2","Обсудить ожидания в группе",["denis"],8],["social_16","social",16,"B2","Дать деликатную обратную связь",["mila"],7],["social_17","social",17,"C1","Обозначить личную границу",["zoe","denis"],7],["social_18","social",18,"C1","Восстановить доверие",["denis"],8],["social_19","social",19,"C2","Урегулировать тонкий конфликт в группе",["mila","zoe"],8],["work_01","work",1,"A1","Представиться коллеге",["marina"],6],["work_02","work",2,"A1","Спросить файл",["oleg"],6],["work_03","work",3,"A1","Подтвердить время созвона",["sam"],6],["work_04","work",4,"A1","Написать, что опаздываешь",["marina"],6],["work_05","work",5,"A1","Поблагодарить за инструкцию",["oleg"],6],["work_06","work",6,"A2","Уточнить простую задачу",["sam","marina"],7],["work_07","work",7,"A2","Попросить перенести дедлайн",["marina"],7],["work_08","work",8,"A2","Сообщить короткий статус",["oleg"],7],["work_09","work",9,"A2","Запросить доступ",["sam","marina"],7],["work_10","work",10,"A2","Написать после первого рабочего дня",["marina"],6],["work_11","work",11,"B1","Согласовать следующий шаг в команде",["oleg","sam"],7],["work_12","work",12,"B1","Объяснить проблему и предложить решение",["sam"],7],["work_13","work",13,"B1","Собрать доступность для встречи",["marina","oleg"],7],["work_14","work",14,"B2","Защитить реалистичный срок",["oleg"],7],["work_15","work",15,"B2","Дать конструктивный отзыв",["sam"],7],["work_16","work",16,"B2","Согласовать приоритеты",["marina"],8],["work_17","work",17,"C1","Дипломатично возразить решению",["oleg","sam"],7],["work_18","work",18,"C1","Снять риск между командами",["sam"],7],["work_19","work",19,"C2","Провести сложные переговоры в треде",["marina","oleg"],8],["travel_01","travel",1,"A1","Написать хозяину жилья: я приехал",["lea"],6],["travel_02","travel",2,"A1","Спросить код от двери",["niko"],6],["travel_03","travel",3,"A1","Уточнить время заселения",["clara"],6],["travel_04","travel",4,"A1","Заказать трансфер",["lea"],6],["travel_05","travel",5,"A1","Поблагодарить за подсказку",["niko"],6],["travel_06","travel",6,"A2","Уточнить маршрут в чате",["clara","lea"],7],["travel_07","travel",7,"A2","Подтвердить бронь",["lea"],7],["travel_08","travel",8,"A2","Написать о задержке",["niko"],7],["travel_09","travel",9,"A2","Спросить, где оставить багаж",["clara","lea"],7],["travel_10","travel",10,"A2","Договориться о времени встречи",["lea"],7],["travel_11","travel",11,"B1","Решить проблему с жильём",["niko","clara"],7],["travel_12","travel",12,"B1","Скоординировать группу в поездке",["clara"],8],["travel_13","travel",13,"B1","Запросить изменение бронирования",["lea","niko"],7],["travel_14","travel",14,"B2","Объяснить претензию сервису",["niko"],7],["travel_15","travel",15,"B2","Согласовать альтернативный маршрут",["clara"],7],["travel_16","travel",16,"B2","Отстоять решение по бронированию",["lea"],7],["travel_17","travel",17,"C1","Договориться о компенсации",["niko","clara"],7],["travel_18","travel",18,"C1","Разрешить ситуацию гость—хозяин—сервис",["clara"],7],["travel_19","travel",19,"C2","Вести многосторонний тред при сбое поездки",["lea","niko"],8],["everyday_01","everyday",1,"A1","Спросить совет",["ira"],6],["everyday_02","everyday",2,"A1","Напомнить о вещи",["nikita"],6],["everyday_03","everyday",3,"A1","Поздравить с событием",["vera"],6],["everyday_04","everyday",4,"A1","Спросить, свободен ли человек",["ira"],6],["everyday_05","everyday",5,"A1","Написать короткое извинение",["nikita"],6],["everyday_06","everyday",6,"A2","Попросить небольшую помощь",["vera","ira"],7],["everyday_07","everyday",7,"A2","Договориться присмотреть за питомцем",["ira"],7],["everyday_08","everyday",8,"A2","Выбрать подарок в групповом чате",["nikita"],7],["everyday_09","everyday",9,"A2","Уточнить детали доставки",["vera","ira"],7],["everyday_10","everyday",10,"A2","Поблагодарить после помощи",["ira"],7],["everyday_11","everyday",11,"B1","Организовать общий план на выходные",["nikita","vera"],8],["everyday_12","everyday",12,"B1","Сравнить варианты и принять решение",["vera"],7],["everyday_13","everyday",13,"B1","Объяснить проблему соседу или сервису",["ira","nikita"],7],["everyday_14","everyday",14,"B2","Обсудить общие правила",["nikita"],7],["everyday_15","everyday",15,"B2","Урегулировать неудобство без обвинений",["vera"],7],["everyday_16","everyday",16,"B2","Убедить группу выбрать разумный вариант",["ira"],7],["everyday_17","everyday",17,"C1","Провести чувствительный разговор о границах",["nikita","vera"],7],["everyday_18","everyday",18,"C1","Разобрать противоречивую информацию",["vera"],7],["everyday_19","everyday",19,"C2","Посредничать в личном групповом конфликте",["ira","nikita"],8]],"detail":{"social_01":{"brief":"Напиши Миле после знакомства — поздоровайся, напомни, где вы встретились, и задай вопрос. Мила любит поболтать, так что одним «привет» тут не отделаешься.","goals":["начать с приветствия","назвать себя","сказать, где вы познакомились","задать один простой вопрос","ответить на встречный вопрос","дружелюбно завершить чат"]},"social_06":{"brief":"В чате по общему увлечению — Денис и Мила. Представься, расскажи о своём опыте и расспроси их — разговор держится, пока интересно обеим сторонам.","goals":["представиться","сослаться на общий интерес","рассказать о своём опыте","спросить опыт собеседника","отреагировать на ответ","предложить продолжить разговор","закрыть тему естественно"]},"social_07":{"brief":"Договорись с Милой о встрече — предложи два времени, выберите место и решите, как вы узнаете друг друга. Мила за любой план, если он понятный.","goals":["предложить встречу","назвать два времени","спросить о доступности","согласовать место","уточнить, как узнать друг друга","подтвердить план","попрощаться"]},"work_01":{"brief":"Ты в команде первый день — представься Марине, скажи, чем занимаешься, и задай рабочий вопрос. Марина ценит конкретику, так что лучше сразу к делу.","goals":["поздороваться","назвать себя","назвать команду или роль","сказать, чем занимаешься сегодня","задать простой рабочий вопрос","поблагодарить и завершить"]},"work_02":{"brief":"Попроси у Олега нужный файл — скажи, зачем он тебе и к какому сроку. Олег любит порядок, и чем точнее просьба, тем быстрее ответ.","goals":["обратиться по имени","назвать нужный файл","объяснить простую цель","спросить, где он находится","уточнить срок","поблагодарить"]},"travel_02":{"brief":"Без кода дверь не откроется. Спроси его у Нико, назови адрес или бронь и попроси повторить цифры — одна ошибка, и стоять тебе у входа.","goals":["обратиться вежливо","назвать адрес или бронь","спросить код","уточнить, когда он будет доступен","попросить повторить цифры","подтвердить получение"]},"travel_03":{"brief":"Узнай у Клары, когда можно заселиться, и скажи, во сколько будешь. Если нужно раньше или позже, спроси — Клара строго по правилам, но вежливо подскажет, что можно.","goals":["назвать дату","спросить время","сказать своё время приезда","спросить о раннем/позднем варианте","ответить на условие","подтвердить план"]},"everyday_01":{"brief":"Спроси у Иры совет — назови тему, попроси один вариант и ответь, подходит ли он. Ира советует охотно, но ей важно услышать, что ты выбираешь.","goals":["поздороваться","назвать тему","задать простой вопрос","попросить один вариант","ответить на совет","поблагодарить"]},"everyday_04":{"brief":"Хочешь увидеться с Ирой. Спроси, есть ли у неё время, объясни зачем и предложи что-то короткое — а если «нет», договоритесь списаться позже.","goals":["поздороваться","спросить о времени","назвать причину","предложить короткий формат","принять «нет»","договориться написать позже"]}}};
+
+(() => {
+  const CODE = window.__ICODE;
+  const DATA = window.__DLG;
+  const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[DIALOGS-STYLES-V3] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+  let TH = 'marine';
+  let picked = null;
+
+  /* ── данные приложения ── */
+  const WORLD = { social: { t: 'Общение', ic: 'people-outline' }, work: { t: 'Дела', ic: 'briefcase-outline' }, travel: { t: 'Поездки', ic: 'airplane-outline' }, everyday: { t: 'Повседневное', ic: 'cafe-outline' } };
+  for (const w of DATA.worlds) if (WORLD[w.id] && WORLD[w.id].t !== w.t) throw new Error('[DIALOGS-STYLES-V3] мир ' + w.id + ' в данных: ' + w.t);
+  const D = {};
+  for (const [id, world, rank, cefr, title, personas, goals] of DATA.rows) D[id] = { id, world, rank, cefr, title, personas, goals };
+  if (Object.keys(D).length !== 76) throw new Error('[DIALOGS-STYLES-V3] ждал 76 диалогов, в данных ' + Object.keys(D).length);
+  const P = DATA.persona;
+  const INSTR = { mila: 'Милой', zoe: 'Зоей', denis: 'Денисом', marina: 'Мариной', oleg: 'Олегом', sam: 'Сэмом', lea: 'Леей', niko: 'Нико', clara: 'Кларой', ira: 'Ирой', nikita: 'Никитой', vera: 'Верой' };
+  const who1 = (d) => d.personas[0];
+  const name = (d) => P[who1(d)].name;
+  const names = (d) => d.personas.map((x) => P[x].name).join(' и ');
+  const goalsWord = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'цель' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'цели' : 'целей');
+  const goalsN = (n) => `${n} ${goalsWord(n)}`;
+  const idOf = (w, r) => `${w}_${String(r).padStart(2, '0')}`;
+  const topic = (w) => Array.from({ length: 19 }, (_, i) => D[idOf(w, i + 1)]);
+  const RANK = 7;
+  const DONE = { social: [1, 2, 3, 4, 5], work: [], travel: [1], everyday: [1, 2, 3] };
+  const status = (d) => (d.rank > RANK ? 'lock' : DONE[d.world].includes(d.rank) ? 'done' : 'open');
+  const nextOf = (w) => topic(w).find((d) => status(d) === 'open');
+  const av = (d, size, big = false) => `<span class="d3-av${big ? ' big' : ''}" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.42)}px">${name(d)[0]}</span>`;
+  const mark = (d) => (status(d) === 'done' ? `<span class="d3-ok">${io('checkmark')}</span>` : status(d) === 'lock' ? `<span class="d3-lk">${io('lock-closed')}Ранг ${d.rank}</span>` : '');
+
+  /* ── общие куски ── */
+  const sb = (t) => `<div class="d3-sb"><span>${t}</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:3px"></i></span></div>`;
+  const phone = (inner, o = {}) => `<div class="ph t-${TH}">${sb(o.time || '18:10')}<div class="d3-scr"><div class="d3-bgd"></div>${inner}</div>${o.fixed || ''}<div class="d3-home"></div></div>`;
+  const top = () => `<div class="d3-top"><span class="d3-back">${io('chevron-back')}</span><span class="d3-q">${io('chatbubbles-outline')}18 из 30</span><span class="sp"></span><span class="d3-en">${io('flash')}5</span></div>`;
+  const chips = (w, y) => `<div class="d3-chips" style="top:${y}px">${Object.keys(WORLD).map((x) => `<span class="${x === w ? 'on' : ''}">${io(WORLD[x].ic)}${WORLD[x].t}</span>`).join('')}</div>`;
+  const h1 = (t) => `<div class="d3-h1">${t}</div>`;
+
+  /* ═══════ 1 · Входящие: собеседники «пишут» тебе — ждущий разговор сверху ═══════ */
+  const inboxRows = (sel) => {
+    const rows = [D.social_07, D.work_01, D.travel_02, D.social_05, D.everyday_03, D.social_08];
+    return `<div class="d3-list">${rows.map((d) => `<div class="d3-li${status(d) === 'lock' ? ' lock' : ''}${d.id === sel ? ' sel' : ''}">${av(d, 44)}<div class="tx"><b>${names(d)}</b><span>${d.title}</span></div>${status(d) === 'open' ? '<span class="d3-dot"></span>' : mark(d)}</div>`).join('')}</div>`;
+  };
+  const allChips = (y) => `<div class="d3-chips" style="top:${y}px"><span class="on">Все</span>${Object.keys(WORLD).map((x) => `<span>${io(WORLD[x].ic)}${WORLD[x].t}</span>`).join('')}</div>`;
+  const inboxScreen = (sel) => `${top()}${h1('Диалоги')}${allChips(166)}<div class="d3-in"><div class="d3-pin"><div class="r">${av(D.social_06, 52, true)}<div class="tx"><b>${names(D.social_06)}</b><span>${D.social_06.title}</span><small>${WORLD.social.t} · ${goalsN(D.social_06.goals)}</small></div></div><span class="d3-btn wide">${io('play')}Начать</span></div>${inboxRows(sel)}</div>`;
+  const sheet = (d) => {
+    const det = DATA.detail[d.id];
+    return `<div class="d3-dim"></div><div class="d3-sheet"><div class="grab"></div><div class="who">${av(d, 48, true)}<div><b>${names(d)}</b><span>${WORLD[d.world].t} · ${d.cefr}</span></div></div>`
+      + `<div class="big">${d.title}</div><div class="br">${det.brief}</div>`
+      + `<div class="facts"><span class="d3-tag">${io('flag-outline')}${goalsN(d.goals)}</span><span class="d3-tag">${io('mic')}текстом или голосом</span></div>`
+      + `<span class="d3-btn wide">${io('play')}Начать</span></div>`;
+  };
+
+  /* ═══════ 2 · Колода: одна карта за раз, «Другой» листает ═══════ */
+  const card = (d, cls = '') => `<div class="d3-card ${cls}"><div class="hd"><span class="d3-tag">${io(WORLD[d.world].ic)}${WORLD[d.world].t}</span>${status(d) === 'open' ? `<span class="d3-lk" style="color:var(--acct)">${io('sparkles')}Новый</span>` : mark(d)}</div>`
+    + `<div class="face">${av(d, 112, true)}</div><div class="t">${d.title}</div><div class="m">с ${INSTR[who1(d)]} · ${goalsN(d.goals)}</div></div>`;
+  const deck = (w, list, swiped) => {
+    const [a, b, c] = list;
+    return `${top()}${h1('Диалоги')}${chips(w, 166)}<div class="d3-deck">${c ? card(c, 'back2') : ''}${b ? card(b, 'back1') : ''}${card(a, swiped ? 'swipe' : '')}</div>`
+      + `<div class="d3-dk-act"><span class="d3-btn alt">${io('shuffle')}Другой</span><span class="d3-btn">${io('play')}Начать</span></div>`
+      + `<div class="d3-dk-n">${doneCount(w)} из 19 пройдено · ${WORLD[w].t}</div>`;
+  };
+  const doneCount = (w) => DONE[w].length;
+  const deckSwiped = (w) => {
+    const list = [D.social_06, D.social_07, D.social_08];
+    return `${top()}${h1('Диалоги')}${chips(w, 166)}<div class="d3-deck">${card(list[2], 'back1')}${card(list[1], '')}${card(list[0], 'swipe')}</div>`
+      + `<div class="d3-dk-act"><span class="d3-btn alt">${io('shuffle')}Другой</span><span class="d3-btn">${io('play')}Начать</span></div>`
+      + `<div class="d3-dk-n">${doneCount(w)} из 19 пройдено · ${WORLD[w].t}</div>`;
+  };
+
+  /* ═══════ 3 · Маршрут: путь по рангам темы ═══════ */
+  // путь — по левой трети (x 64–158), чтобы подсказка справа (x ≥ 200) не закрывала соседние круги
+  const ROUTE = [[96, 520], [150, 462], [100, 404], [64, 344], [112, 284], [158, 222], [110, 160], [64, 98], [110, 36]];
+  const route = (w, sel) => {
+    const list = topic(w).slice(1, 10); // ранги 2–10 вокруг текущего
+    const path = ROUTE.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x} ${y}`).join(' ');
+    const nodes = list.map((d, i) => {
+      const [x, y] = ROUTE[i];
+      const s = status(d);
+      const cls = d.id === sel ? 'cur' : s === 'done' ? 'done' : s === 'lock' ? 'lock' : 'open';
+      const inner = cls === 'cur' ? name(d)[0] : s === 'done' ? io('checkmark') : s === 'lock' ? io('lock-closed') : d.rank;
+      return `<span class="d3-node ${cls}" style="left:${x}px;top:${y}px">${inner}</span>`;
+    }).join('');
+    const si = list.findIndex((d) => d.id === sel);
+    const [sx, sy] = ROUTE[si];
+    const d = list[si];
+    void sx;
+    const bub = `<div class="d3-bub" style="left:200px;top:${Math.max(0, Math.min(440, sy - 46))}px"><b>${d.title}</b><span class="s">с ${INSTR[who1(d)]} · ${goalsN(d.goals)}</span><span class="d3-btn sm">${io('play')}Начать</span></div>`;
+    return `${top()}${h1('Диалоги')}${chips(w, 166)}<div class="d3-route"><svg width="390" height="560" viewBox="0 0 390 560"><path d="${path}" fill="none" stroke="var(--track)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>${nodes}${bub}</div>`
+      + `<div class="d3-foot"><span><b>${doneCount(w)} из 19</b> пройдено</span><span>ранг ${RANK} · дальше откроется на ${RANK + 1}</span></div>`;
+  };
+
+  /* ═══════ 4 · Афиша: сцены темы плакатами ═══════ */
+  const tile = (d, cls = '') => `<div class="d3-tile${status(d) === 'lock' ? ' lock' : ''} ${cls}"><div class="hd">${av(d, 28)}${mark(d)}</div><div class="t">${d.title}</div><div class="w">с ${INSTR[who1(d)]}</div></div>`;
+  const bill = (w, sel) => {
+    const f = nextOf(w);
+    const feat = `<div class="d3-tile feat"><div class="hd"><span class="d3-tag">${io('sparkles')}Следующий</span>${av(f, 36, true)}</div><div class="t">${f.title}</div>`
+      + `<div class="row"><span class="w">с ${INSTR[who1(f)]} · ${goalsN(f.goals)}</span>${sel ? '' : `<span class="d3-btn sm">${io('play')}Начать</span>`}</div></div>`;
+    const rest = [D.social_07, D.social_05, D.social_04, D.social_08].map((d) => tile(d, d.id === sel ? 'sel' : '')).join('');
+    const bar = sel ? `<div class="d3-bar2">${av(D[sel], 40, true)}<div class="tx"><b>${D[sel].title}</b><span>с ${INSTR[who1(D[sel])]} · ${goalsN(D[sel].goals)}</span></div><span class="d3-btn sm">${io('play')}Начать</span></div>` : '';
+    return `${top()}${h1('Диалоги')}${chips(w, 166)}<div class="d3-bill">${feat}${rest}</div>${bar}`;
+  };
+
+  /* ═══════ 5 · Город: темы — районы, диалоги — места ═══════ */
+  const DIST = { social: [12, 12, 168, 206], work: [190, 12, 140, 206], travel: [12, 228, 140, 206], everyday: [162, 228, 168, 206] };
+  const TONE = { social: 22, work: 15, travel: 11, everyday: 18 };
+  const city = (selW) => {
+    const dists = Object.keys(WORLD).map((w) => {
+      const [x, y, wd, h] = DIST[w];
+      const nx = nextOf(w);
+      const pts = topic(w).map((d) => `<i class="${d.id === nx.id ? 'n' : status(d) === 'done' ? 'd' : status(d) === 'lock' ? 'l' : 'o'}"></i>`).join('');
+      return `<div class="d3-dist${w === selW ? ' sel' : ''}" style="left:${x}px;top:${y}px;width:${wd}px;height:${h}px;background:color-mix(in srgb, var(--acc) ${TONE[w]}%, var(--card))"><div class="nm">${io(WORLD[w].ic)}${WORLD[w].t}</div><div class="pr">${doneCount(w)} из 19</div><div class="pts">${pts}</div></div>`;
+    }).join('');
+    const d = nextOf(selW);
+    return `${top()}${h1('Диалоги')}<div class="d3-city">${dists}</div><div class="d3-place"><div class="r">${av(d, 44, true)}<div class="tx"><b>${d.title}</b><span>${WORLD[d.world].t} · с ${INSTR[who1(d)]} · ${goalsN(d.goals)}</span></div></div><span class="d3-btn wide">${io('play')}Начать</span></div>`;
+  };
+
+  /* ═══════ «начал»: разговор ═══════ */
+  const talk = (d) => {
+    const det = DATA.detail[d.id];
+    return `<div class="d3-talk"><div class="d3-thead"><div class="who">${av(d, 48, true)}<div><b>${names(d)}</b><span>${d.title}</span></div></div></div>`
+      + `<div class="d3-top"><span class="d3-back">${io('close')}</span><span class="sp"></span><span class="d3-q">${io('flag-outline')}Цели 0 из ${d.goals}</span></div>`
+      + `<div class="d3-chat"><div class="d3-task"><div class="h">${io('flag-outline')}Задача</div><div class="b">${det.brief}</div></div>`
+      + `<div class="d3-now"><span class="d3-tag">${io('radio-button-on')}Сейчас: ${det.goals[0]}</span></div>`
+      + `<div class="d3-typ"><span class="bub"><i></i><i></i><i></i></span>${name(d)} пишет</div></div></div>`;
+  };
+  const talkPhone = (d) => phone(talk(d), { fixed: `<div class="d3-comp"><div class="row"><div class="fld">Напиши или говори</div><span class="mic">${io('mic')}</span></div><div class="hint">Или зажми и говори · осталось 18 ответов</div></div>` });
+
+  /* ── страница ── */
+  const VARS = [
+    { n: 1, t: 'Входящие', lead: 'Как мессенджер: собеседники «пишут» тебе. Сверху — ждущий разговор с кнопкой «Начать», ниже — остальные: точка — новый, ✓ — пройден, 🔒 — откроется на ранге. Тап по строке — шторка: кто, о чём, сколько целей и «Начать».',
+      steps: ['Первый взгляд', 'Выбираю · тап по «Мила»', 'Начал'], f: [() => phone(inboxScreen(null)), () => phone(inboxScreen('social_07') + sheet(D.social_07)), () => talkPhone(D.social_07)] },
+    { n: 2, t: 'Колода', lead: 'Одна большая карта за раз — без выбора из списка. «Начать» запускает её, «Другой» листает к следующей (или свайп в сторону). Под картой видна стопка — понятно, что их несколько. Тема — строка сверху.',
+      steps: ['Первый взгляд', 'Выбираю · листаю «Другой»', 'Начал'], f: [() => phone(deck('social', [D.social_06, D.social_07, D.social_08], false)), () => phone(deckSwiped('social')), () => talkPhone(D.social_07)] },
+    { n: 3, t: 'Маршрут', lead: 'Путь по рангам темы, как дорога: пройденные ✓ внизу, твоё место — крупный круг с собеседником и подсказкой «Начать», выше — следующие и закрытые 🔒. Тап по кругу двигает подсказку.',
+      steps: ['Первый взгляд', 'Выбираю · тап по кругу 7', 'Начал'], f: [() => phone(route('social', 'social_06')), () => phone(route('social', 'social_07')), () => talkPhone(D.social_07)] },
+    { n: 4, t: 'Афиша', lead: 'Сцены темы как плакаты: следующий диалог — большой плакат с «Начать», ниже — плакаты поменьше. Тап по плакату выделяет его, снизу появляется полоса «Начать».',
+      steps: ['Первый взгляд', 'Выбираю · тап по плакату', 'Начал'], f: [() => phone(bill('social', null)), () => phone(bill('social', 'social_07')), () => talkPhone(D.social_07)] },
+    { n: 5, t: 'Город', lead: 'Темы — районы города, диалоги — места в них: зелёные пройдены, яркое — следующее, кружки — открытые, мелкие — закрытые. Внизу — выбранное место и «Начать». Тап по району переносит выбор туда.',
+      steps: ['Первый взгляд', 'Выбираю · район «Поездки»', 'Начал'], f: [() => phone(city('social')), () => phone(city('travel')), () => talkPhone(D.travel_02)] },
+  ];
+  const sum = () => { document.getElementById('d3-sum').innerHTML = `Выбор: <b>${picked ? `стиль ${picked}` : '—'}</b> · тема ${TH}`; };
+  const render = () => {
+    document.getElementById('root').innerHTML = VARS.map((v) => `<section class="d3-block" id="s${v.n}"><h2>${v.n} · ${v.t}<button type="button" class="d3-pick${picked === v.n ? ' on' : ''}" data-n="${v.n}">Выбрать ${v.n}</button></h2><p>${v.lead}</p>`
+      + `<div class="d3-row">${v.f.map((f, i) => `<div class="d3-col"><div class="d3-cap">${v.n}.${i + 1} · ${v.steps[i]}</div>${f()}</div>`).join('')}</div></section>`).join('');
+    sum();
+  };
+  document.addEventListener('click', (e) => {
+    const th = e.target.closest('[data-th]');
+    if (th) { TH = th.dataset.th; document.querySelectorAll('[data-th]').forEach((b) => b.classList.toggle('on', b === th)); render(); return; }
+    const pk = e.target.closest('.d3-pick');
+    if (pk) { picked = Number(pk.dataset.n); render(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

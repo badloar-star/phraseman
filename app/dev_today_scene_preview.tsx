@@ -11,6 +11,7 @@ import { Redirect, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useMemo } from 'react';
 import { View } from 'react-native';
 
+import { triLang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { buildTodaySceneCopy } from '../components/home/v2/today_scene/today_scene_copy';
@@ -22,6 +23,7 @@ import {
   todayScenePreviewTasks,
   type TodayScenePreviewState,
 } from '../components/home/v2/today_scene/today_scene_preview_fixtures';
+import TodayActivityHistory from '../components/home/v2/TodayActivityHistory';
 import TodaySceneView from '../components/home/v2/today_scene/TodaySceneView';
 import { todaySceneDateLabel } from '../components/home/v2/today_scene/TodayScene';
 import { todayRingColors, useStreakColors } from '../components/streak/moments/use_streak_colors';
@@ -65,6 +67,7 @@ function Inner() {
     <View style={{ flex: 1 }} testID="dev-today-scene-preview">
       <TodaySceneView
         key={`${state}|${wanted ?? 'app'}`}
+        title={triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' })}
         decision={decision}
         copy={copy}
         tasks={tasks}
@@ -73,6 +76,7 @@ function Inner() {
         onBack={noop}
         backLabel="Back"
         onOpenTask={noop}
+        history={<TodayActivityHistory dayKey="2026-10-21" tasks={tasks} />}
       />
     </View>
   );

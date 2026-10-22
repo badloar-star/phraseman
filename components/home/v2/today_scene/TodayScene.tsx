@@ -12,6 +12,7 @@ import type { Lang } from '../../../../constants/i18n';
 import { todayRingColors, useStreakColors } from '../../../streak/moments/use_streak_colors';
 import type { TodayTask } from '../home_v2_types';
 import { minutesUntilMidnight } from '../scene/home_scene_state';
+import TodayActivityHistory from '../TodayActivityHistory';
 import TodaySceneView from './TodaySceneView';
 import { buildTodaySceneCopy } from './today_scene_copy';
 import { pickTodaySceneState } from './today_scene_state';
@@ -37,6 +38,10 @@ export function todaySceneDateLabel(lang: Lang, now: Date): string | null {
 
 type Props = Readonly<{
   lang: Lang;
+  /** Заголовок экрана «Сегодня» справа от «назад» (28/34) — на языке интерфейса. */
+  title: string;
+  /** Ключ дня для ленты истории. */
+  dayKey: string;
   tasks: readonly TodayTask[];
   fromProgress?: readonly [number, number, number];
   onBack: () => void;
@@ -44,7 +49,7 @@ type Props = Readonly<{
   onOpenTask: (task: TodayTask) => void;
 }>;
 
-export default function TodayScene({ lang, tasks, fromProgress, onBack, backLabel, onOpenTask }: Props) {
+export default function TodayScene({ lang, title, dayKey, tasks, fromProgress, onBack, backLabel, onOpenTask }: Props) {
   const personal = usePersonalProgressSnapshot();
   const streakToday = useSyncExternalStore(subscribeStreakDayState, streakTodaySnapshot);
   const streakColors = useStreakColors(true);
@@ -73,5 +78,11 @@ export default function TodayScene({ lang, tasks, fromProgress, onBack, backLabe
     () => (streakColors ? todayRingColors(streakColors) : ['#7EF0C8', '#A08CFF', '#F0C551']), // theme-exempt: запасные цвета колец, пока токены темы не готовы (эталон RC)
     [streakColors],
   );
-  return <TodaySceneView decision={decision} copy={copy} tasks={tasks} ringColors={ringColors} fromProgress={fromProgress} onBack={onBack} backLabel={backLabel} onOpenTask={onOpenTask} />;
+  return (
+    <TodaySceneView
+      title={title} decision={decision} copy={copy} tasks={tasks} ringColors={ringColors} fromProgress={fromProgress}
+      onBack={onBack} backLabel={backLabel} onOpenTask={onOpenTask}
+      history={<TodayActivityHistory dayKey={dayKey} tasks={tasks} />}
+    />
+  );
 }

@@ -1,6 +1,6 @@
 // зачем (22.10 владелец — восстановить работу 19.10; координатор): лента истории дней «Сегодня» — даты и подписи на 9 языках, цвета только из токенов темы.
 import type { Lang } from '../constants/i18n';
-import { todayHistoryCount, todayHistoryDateLabel, todayHistoryDayA11y, todayHistoryRailA11y } from '../components/home/v2/today_activity_history_copy';
+import { todayHistoryCount, todayHistoryDateLabel, todayHistoryDayA11y, todayHistoryFullDays, todayHistoryRailA11y, todayHistoryTitle } from '../components/home/v2/today_activity_history_copy';
 import { readSource } from './helpers/read_source';
 
 const LANGS: readonly Lang[] = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
@@ -31,12 +31,29 @@ describe('лента истории «Сегодня»: тексты', () => {
   });
 });
 
+describe('лента истории «Сегодня»: заголовок карточки', () => {
+  it('«История» и «N полных дней» со склонением', () => {
+    expect(todayHistoryTitle('ru')).toBe('История');
+    expect(todayHistoryFullDays('ru', 1)).toBe('1 полный день');
+    expect(todayHistoryFullDays('ru', 3)).toBe('3 полных дня');
+    expect(todayHistoryFullDays('ru', 5)).toBe('5 полных дней');
+    expect(todayHistoryFullDays('ru', 0)).toBe('0 полных дней');
+    expect(todayHistoryFullDays('en', 1)).toBe('1 full day');
+    expect(todayHistoryFullDays('en', 2)).toBe('2 full days');
+    expect(todayHistoryFullDays('pl', 2)).toBe('2 pełne dni');
+  });
+  it.each(LANGS)('%s: заголовок непустой, счётчик содержит число', (lang) => {
+    expect(todayHistoryTitle(lang).length).toBeGreaterThan(2);
+    expect(todayHistoryFullDays(lang, 4)).toMatch(/4\s+\S+/);
+  });
+});
+
 describe('лента истории «Сегодня»: цвета', () => {
   it('в компоненте нет жёстких цветов, кроме помеченного запасного набора колец', () => {
     const src = readSource('components/home/v2/TodayActivityHistory.tsx');
     const hex = src.split('\n').filter((l) => /#[0-9A-Fa-f]{6}\b/.test(l) && !l.includes('theme-exempt'));
     expect(hex).toEqual([]);
     expect(src).toContain('todayRingColors(streakColors)');
-    expect(src).toContain('useV2Palette()');
+    expect(src).toContain("liquidGlassTokens(liquidGlassThemeId, { level: 'max'"); // карточка цвета темы уровня «Максимум», как панель сцены
   });
 });

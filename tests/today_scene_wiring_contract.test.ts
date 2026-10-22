@@ -44,12 +44,11 @@ describe('«Сегодня» в стиле «Сцена»: подключени�
     expect(rings).toContain('200: Object.freeze({ size: 200, stroke: 14.4, gap: 6.3, coin: 77 })');
   });
 
-  it('чужие файлы не тронуты: карточка «Сегодня», лента истории и опрос не импортируются сценой', () => {
+  it('чужие файлы не тронуты: карточка «Сегодня» и опрос не импортируются сценой (лента истории — своя, подключена через history)', () => {
     for (const file of ['TodayScene.tsx', 'TodaySceneView.tsx']) {
       // зачем: в шапке файла эти имена названы в комментариях (почему не используются) — проверяем только код
       const src = readSource(`components/home/v2/today_scene/${file}`).split('\n').filter((l) => !l.trim().startsWith('//')).join('\n');
       expect(src).not.toContain('HomeV2TodayCard');
-      expect(src).not.toContain('TodayActivityHistory');
       expect(src).not.toContain('HomePollV2Card');
     }
   });

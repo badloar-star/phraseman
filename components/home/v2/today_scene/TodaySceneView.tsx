@@ -21,6 +21,7 @@ import { plateBoxShadow, useShadowGlass } from '../../../v2/ShadowSurface';
 import V2Pressable from '../../../v2/V2Pressable';
 import { useV2Palette } from '../../../v2/useV2Palette';
 import type { TodayTask, TodayTaskKind } from '../home_v2_types';
+import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../../ThemeContext';
 import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
 import type { TodaySceneCopy } from './today_scene_copy';
@@ -34,6 +35,10 @@ const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionic
 };
 
 export type TodaySceneViewProps = Readonly<{
+  /** Заголовок экрана справа от «назад» (28/34, белый) — на языке интерфейса. */
+  title: string;
+  /** Блок под панелью (лента истории дней); не передан — не рисуется. */
+  history?: React.ReactNode;
   decision: TodaySceneDecision;
   copy: TodaySceneCopy;
   tasks: readonly TodayTask[];
@@ -46,7 +51,7 @@ export type TodaySceneViewProps = Readonly<{
   onOpenTask: (task: TodayTask) => void;
 }>;
 
-const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, ringColors, fromProgress, onBack, backLabel, onOpenTask }: TodaySceneViewProps) {
+const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, ringColors, fromProgress, onBack, backLabel, onOpenTask }: TodaySceneViewProps) {
   const p = useV2Palette();
   const glass = useShadowGlass();
   const insets = useStableSafeAreaInsets();
@@ -55,6 +60,9 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
   // при любом положении ползунка насыщенности (homeSceneTokensForTheme; прежняя homeSceneTokens(accent) считала от акцента и расходилась с эталоном)
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const tokens = useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
+  // зачем (Сверка 22.10, склейки td_side: плитка «Задания дня» в эталоне = карточка темы --card, т.е. opaqueCard токенов уровня «Максимум», а не палитра экрана): панель красится
+  // теми же токенами, что и сцена, — «всегда как в макете» при любом положении ползунка
+  const card = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }), [liquidGlassThemeId, liquidGlassAppearance]);
   const nextTask = decision.nextIndex === null ? null : tasks[decision.nextIndex] ?? null;
   const ringTasks: readonly TodayRingsTask[] = tasks.map((task) => ({ progress: task.progress, target: task.target }));
   return (
@@ -90,6 +98,8 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
         {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
         <View style={[s.top, { paddingTop: insets.top + 8 }]}>
           <BackButton testID="today-scene-back" screen="today_tasks" onPress={onBack} accessibilityLabel={backLabel} />
+          {/* зачем (эталон td-top / .td-tt): крупный белый заголовок «Сегодня» 28/34 справа от «назад» */}
+          <Text testID="today-scene-heading" accessibilityRole="header" numberOfLines={1} style={s.heading}>{title}</Text>
         </View>
         <View style={s.body}>
           {copy.kicker ? <Text testID="today-scene-kicker" style={s.kicker}>{copy.kicker}</Text> : null}
@@ -109,10 +119,10 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
           ) : null}
         </View>
       </View>
-      <View testID="today-scene-panel" style={[s.panel, { backgroundColor: p.card, boxShadow: plateBoxShadow(glass) }]}>
+      <View testID="today-scene-panel" style={[s.panel, { backgroundColor: card.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
         <View style={s.panelHead}>
-          <Text accessibilityRole="header" style={[s.panelTitle, { color: p.text }]}>{copy.panelTitle}</Text>
-          <Text style={[s.panelCount, { color: p.textSecondary }]}>{copy.panelCount}</Text>
+          <Text accessibilityRole="header" style={[s.panelTitle, { color: card.text }]}>{copy.panelTitle}</Text>
+          <Text style={[s.panelCount, { color: card.secondary }]}>{copy.panelCount}</Text>
         </View>
         {tasks.map((task, index) => {
           const color = ringColors[Math.min(index, 2)];
@@ -127,23 +137,24 @@ const TodaySceneView = memo(function TodaySceneView({ decision, copy, tasks, rin
               accessibilityState={{ selected: done }}
               onPress={() => onOpenTask(task)}
               scaleTo={0.97}
-              style={[s.row, index < tasks.length - 1 ? { borderBottomColor: `${p.text.slice(0, 7)}12`, borderBottomWidth: StyleSheet.hairlineWidth } : null]} // shadow-ok: разделитель строк (нижняя линия, не обводка контейнера)
+              style={[s.row, index < tasks.length - 1 ? { borderBottomColor: `${card.text.slice(0, 7)}12`, borderBottomWidth: StyleSheet.hairlineWidth } : null]} // shadow-ok: разделитель строк (нижняя линия, не обводка контейнера)
             >
               {done ? (
                 <View style={[s.ck, { backgroundColor: color }]}><Ionicons name="checkmark" size={16} color="#FFFFFF" /></View>
               ) : (
                 <View style={[s.ck, s.ckRing, { borderColor: color }]} /> // shadow-ok: guard-ok: кружок-индикатор невыполненного задания, не контейнер
               )}
-              <View style={[s.ic, { backgroundColor: p.control }]}><Ionicons name={ROW_ICON[task.kind]} size={18} color={p.text} /></View>
+              <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name={ROW_ICON[task.kind]} size={18} color={card.text} /></View>
               <View style={s.tx}>
-                <Text style={[s.rowTitle, { color: done ? p.textSecondary : p.text }]} numberOfLines={2}>{task.title}</Text>
-                {task.subtitle ? <Text style={[s.rowSub, { color: p.textSecondary }]} numberOfLines={1}>{task.subtitle}</Text> : null}
+                <Text style={[s.rowTitle, { color: done ? card.secondary : card.text }]} numberOfLines={2}>{task.title}</Text>
+                {task.subtitle ? <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={1}>{task.subtitle}</Text> : null}
               </View>
-              <Text style={[s.rowN, { color: urgent ? '#E8654A' : p.textSecondary }]}>{`${task.progress}/${task.target}`}</Text>
+              <Text style={[s.rowN, { color: urgent ? card.bad : card.secondary }]}>{`${task.progress}/${task.target}`}</Text>
             </V2Pressable>
           );
         })}
       </View>
+      {history ? <View testID="today-scene-history" style={s.history}>{history}</View> : null}
     </ScrollView>
   );
 });
@@ -156,7 +167,9 @@ const s = StyleSheet.create({
   stage: { borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden', justifyContent: 'space-between' },
   hero: { position: 'absolute', right: 22, top: 104, width: 200, height: 200, alignItems: 'center', justifyContent: 'center' },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
-  top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
+  top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  heading: { flex: 1, color: '#FFFFFF', fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
+  history: { marginTop: 14 },
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 58 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета; как у Главной в bd1ba46cd): подписи сцены 13/17, крупные строки и кнопка 16/21, заголовок 34 без изменений
   kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },

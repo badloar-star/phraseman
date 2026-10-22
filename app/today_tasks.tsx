@@ -138,6 +138,8 @@ export default function TodayTasksScreen() {
       <View testID="today-tasks-screen" style={[s.root, { backgroundColor: p.bg }]}>
         <TodayScene
           lang={lang}
+          title={title}
+          dayKey={todayTasks.dayKey}
           tasks={tasks}
           fromProgress={ringReady ? ringFrom.from : undefined}
           onBack={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }}

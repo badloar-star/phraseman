@@ -5,6 +5,7 @@
 // формат даты и подписи для озвучки. Переводы кроме RU — предложение, носителем не проверены (передать 10 · ПЕРЕВОДЧИК).
 // ═══════════════════════════════════════════════════════════════════════════
 import { triLang, type Lang } from '../../../constants/i18n';
+import { pluralWord, type PluralForms } from '../../../constants/plural';
 
 type Nine = Readonly<Record<'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl', string>>;
 const tri = (lang: Lang, w: Nine): string => triLang(lang, w);
@@ -51,4 +52,32 @@ export function todayHistoryDayA11y(lang: Lang, dayKey: string, done: number, to
 /** Озвучка всей ленты. */
 export function todayHistoryRailA11y(lang: Lang): string {
   return tri(lang, { ru: 'История активности за дни', uk: 'Історія активності за дні', en: 'Activity history by day', es: 'Historial de actividad por día', 'pt-BR': 'Histórico de atividade por dia', vi: 'Lịch sử hoạt động theo ngày', id: 'Riwayat aktivitas per hari', tr: 'Günlere göre etkinlik geçmişi', pl: 'Historia aktywności według dni' });
+}
+
+/** Заголовок карточки ленты («История» эталона today-scene-concepts.html). */
+export function todayHistoryTitle(lang: Lang): string {
+  return tri(lang, { ru: 'История', uk: 'Історія', en: 'History', es: 'Historial', 'pt-BR': 'Histórico', vi: 'Lịch sử', id: 'Riwayat', tr: 'Geçmiş', pl: 'Historia' });
+}
+
+const FULL_DAYS: Readonly<Record<'ru' | 'uk' | 'pl' | 'other', PluralForms>> = {
+  ru: { one: 'полный день', few: 'полных дня', many: 'полных дней' },
+  uk: { one: 'повний день', few: 'повні дні', many: 'повних днів' },
+  pl: { one: 'pełny dzień', few: 'pełne dni', many: 'pełnych dni' },
+  other: { one: '', few: '', many: '' },
+};
+
+/** Счётчик справа в заголовке: «1 полный день», «3 полных дня», «0 полных дней»; на остальных языках без склонения по трём формам. */
+export function todayHistoryFullDays(lang: Lang, n: number): string {
+  const count = Math.max(0, Math.trunc(n));
+  if (lang === 'ru' || lang === 'uk' || lang === 'pl') return `${count} ${pluralWord(lang, count, FULL_DAYS[lang])}`;
+  const one = count === 1;
+  return tri(lang, {
+    ru: '', uk: '', pl: '',
+    en: `${count} full ${one ? 'day' : 'days'}`,
+    es: `${count} ${one ? 'día completo' : 'días completos'}`,
+    'pt-BR': `${count} ${one ? 'dia completo' : 'dias completos'}`,
+    vi: `${count} ngày đầy đủ`,
+    id: `${count} hari penuh`,
+    tr: `${count} tam gün`,
+  });
 }

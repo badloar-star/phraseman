@@ -17,7 +17,7 @@ import { LinearGradient } from '../../SafeLinearGradient';
 import { useLv2Glass } from '../LearningV2Glass';
 import SeasonCarousel from './SeasonCarousel';
 import SeasonCardFace from './SeasonCardFace';
-import { seasonArtCached, seasonCardShift, seasonChapterHue, type SeasonTheme } from './season_art';
+import { hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import {
   seasonChapterOfIndex, seasonChapterProgress, type SeasonDeck, type SeasonEpisodeCard,
@@ -107,7 +107,9 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   const currentCard = deck.cards[deck.currentIndex];
   const currentEpisode = currentCard && currentCard.kind === 'episode' ? currentCard : (deck.cards.find((c): c is SeasonEpisodeCard => c.kind === 'episode') ?? null);
   const heroChapter = currentCard ? currentCard.chapterOrdinal : 1;
-  const heroArt = seasonArtCached(seasonChapterHue(lessonOrdinal, heroChapter), 0, theme);
+  // зачем (закон владельца 22.10): обложка и карты — оттенки текущей темы
+  const themeHue = hexHue(g.accent);
+  const heroArt = seasonThemedArt(themeHue, heroChapter, 0, theme);
 
   const selectedCard = deck.cards[selected] ?? currentCard;
   const selectedChapter = selectedCard ? seasonChapterOfIndex(deck, selected) : null;
@@ -118,7 +120,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
     const card = deck.cards[index];
     if (!card) return null;
     const info = props.chapterInfo(card.chapterOrdinal);
-    const art = seasonArtCached(seasonChapterHue(lessonOrdinal, card.chapterOrdinal), seasonCardShift(card.sessionOrdinal), theme);
+    const art = seasonThemedArt(themeHue, card.chapterOrdinal, card.sessionOrdinal, theme, card.kind === 'exam');
     if (card.kind === 'exam') {
       return (
         <SeasonCardFace kind="exam" state={card.state} ordinal={card.chapterOrdinal} art={art} dark={dark} glyph={info.icon}
@@ -127,7 +129,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
     }
     const ep = props.episodeInfo(card);
     return <SeasonCardFace kind="episode" state={card.state} ordinal={card.sessionOrdinal} art={art} dark={dark} glyph={info.icon} phrase={ep.phrase} progress={ep.progress} />;
-  }, [dark, deck.cards, lang, lessonOrdinal, props, theme]);
+  }, [dark, deck.cards, lang, themeHue, props, theme]);
 
   const labelFor = useCallback((index: number) => {
     const card = deck.cards[index];

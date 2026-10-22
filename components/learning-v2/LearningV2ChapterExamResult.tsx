@@ -12,7 +12,7 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { useLv2Glass, lv2Alpha } from './LearningV2Glass';
 import { lv2TaskTokens } from './learning_v2_task_theme_tokens';
 import { learningV2ChapterIonIcon } from './icons/learningV2IonIcons';
-import { seasonArtCached, seasonChapterHue } from './season/season_art';
+import { hexHue, seasonThemedArt } from './season/season_art';
 import {
   learningV2ChapterExamFailedBody,
   learningV2ChapterExamResultCopy,
@@ -64,7 +64,7 @@ export function LearningV2ChapterExamResultView(p: ResultProps) {
   const t = lv2TaskTokens(g);
   const mistakes = p.answers.filter((a) => !a.correct).length;
   const next = p.chapterOrdinal < 7 ? p.chapterOrdinal + 1 : null;
-  const art = next ? seasonArtCached(seasonChapterHue(p.lessonOrdinal, next), 0, g.isLight ? 'light' : 'dark') : null;
+  const art = next ? seasonThemedArt(hexHue(g.accent), next, 0, g.isLight ? 'light' : 'dark') : null;
   const scene = next && p.lang === 'ru' ? learningV2ChapterSceneV1(p.lessonOrdinal, next) : null;
   const opened = p.openedRange ? learningV2ChapterExamResultCopy(p.lang, 'openedAlso', { a: p.openedRange.first, b: p.openedRange.last, n: p.chapterOrdinal }) : null;
   const toChapter = p.passed && next ? next : p.chapterOrdinal;

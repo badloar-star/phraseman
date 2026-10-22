@@ -12,7 +12,8 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import SeasonChapterFan, { type SeasonFanCard, type SeasonFanChapterPill } from './SeasonChapterFan';
 import SeasonCourseView, { type SeasonCourseViewProps } from './SeasonCourseView';
 import SeasonExpandedCard, { type SeasonExamPanel, type SeasonExpandedAction } from './SeasonExpandedCard';
-import { seasonArtCached, seasonCardShift, seasonChapterHue } from './season_art';
+import { hexHue, seasonThemedArt } from './season_art';
+import { useLv2Glass } from '../LearningV2Glass';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
@@ -43,7 +44,9 @@ function SeasonCourse(props: SeasonCourseProps) {
     setSelected(index);
   }, []);
 
-  const artFor = useCallback((chapter: number, ordinal: number) => seasonArtCached(seasonChapterHue(lessonOrdinal, chapter), seasonCardShift(ordinal), theme), [lessonOrdinal, theme]);
+  // зачем (закон владельца 22.10): цвет карточек — оттенок текущей темы, а не свой оттенок главы
+  const themeHue = hexHue(useLv2Glass().accent);
+  const artFor = useCallback((chapter: number, ordinal: number) => seasonThemedArt(themeHue, chapter, ordinal, theme), [themeHue, theme]);
 
   // ── раскрытая карта ──
   const expandedProps = useMemo(() => {

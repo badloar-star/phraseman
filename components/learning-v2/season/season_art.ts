@@ -43,6 +43,23 @@ export function oklchToHex(l: number, c: number, hDeg: number): string {
   return `#${hex2(rgb[0])}${hex2(rgb[1])}${hex2(rgb[2])}`.toUpperCase();
 }
 
+/** Оттенок цвета '#RRGGBB' в OKLCH, градусы 0…360 (обратный перевод к oklchToHex). */
+export function hexHue(hex: string): number {
+  const lin = (i: number): number => {
+    const v = parseInt(hex.slice(1 + i * 2, 3 + i * 2), 16) / 255;
+    return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+  };
+  const r = lin(0);
+  const g = lin(1);
+  const b = lin(2);
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s;
+  const bb = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s;
+  return ((Math.atan2(bb, a) * 180) / Math.PI + 360) % 360;
+}
+
 export type SeasonTheme = 'light' | 'dark';
 
 export type SeasonArt = Readonly<{
@@ -61,18 +78,18 @@ const norm = (h: number): number => ((h % 360) + 360) % 360;
  *   ink:    glow oklch(.70 .13 h+28), градиент oklch(.53 .15 h+k) → oklch(.33 .13 h+18+k)
  *   marine: glow oklch(.56 .12 h+28), градиент oklch(.40 .11 h+k) → oklch(.20 .07 h+18+k)
  */
-export function seasonArt(hue: number, shift: number, theme: SeasonTheme): SeasonArt {
+export function seasonArt(hue: number, shift: number, theme: SeasonTheme, darker = 0): SeasonArt {
   if (theme === 'light') {
     return {
       glow: oklchToHex(0.7, 0.13, norm(hue + 28)),
-      from: oklchToHex(0.53, 0.15, norm(hue + shift)),
-      to: oklchToHex(0.33, 0.13, norm(hue + 18 + shift)),
+      from: oklchToHex(0.53 - darker, 0.15, norm(hue + shift)),
+      to: oklchToHex(0.33 - darker, 0.13, norm(hue + 18 + shift)),
     };
   }
   return {
     glow: oklchToHex(0.56, 0.12, norm(hue + 28)),
-    from: oklchToHex(0.4, 0.11, norm(hue + shift)),
-    to: oklchToHex(0.2, 0.07, norm(hue + 18 + shift)),
+    from: oklchToHex(0.4 - darker, 0.11, norm(hue + shift)),
+    to: oklchToHex(0.2 - darker / 2, 0.07, norm(hue + 18 + shift)),
   };
 }
 
@@ -105,5 +122,21 @@ export function seasonArtCached(hue: number, shift: number, theme: SeasonTheme):
   if (hit) return hit;
   const next = seasonArt(hue, shift, theme);
   cache.set(key, next);
+  return next;
+}
+
+// зачем (закон владельца 22.10: «ЦВЕТА СТРОГО ОТТЕНКИ ТЕКУЩЕЙ ТЕМЫ»; красная тема показывала синие/фиолетовые/бирюзовые карточки глав): база — оттенок акцента выбранной темы,
+// главы различаются сдвигом оттенка в пределах ±24° и светлотой (только темнее, белый текст держит контраст), эпизоды — ещё до 10°. Карта экзамена — самый тёмный оттенок темы.
+const CHAPTER_DRIFT_DEG: readonly number[] = [0, 8, -8, 16, -16, 24, -24];
+const themedCache = new Map<string, SeasonArt>();
+export function seasonThemedArt(themeHue: number, chapterOrdinal: number, sessionOrdinal: number, theme: SeasonTheme, exam = false): SeasonArt {
+  const chapter = Math.max(1, chapterOrdinal) - 1;
+  const key = `${Math.round(themeHue)}:${chapter}:${exam ? 'x' : sessionOrdinal % 8}:${theme}`;
+  const hit = themedCache.get(key);
+  if (hit) return hit;
+  const hue = norm(themeHue + CHAPTER_DRIFT_DEG[chapter % CHAPTER_DRIFT_DEG.length]!);
+  const darker = exam ? 0.12 : 0.015 * (chapter % 4);
+  const next = seasonArt(hue, exam ? 0 : (sessionOrdinal % 8) * 1.25, theme, darker);
+  themedCache.set(key, next);
   return next;
 }

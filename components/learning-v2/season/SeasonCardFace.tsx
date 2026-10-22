@@ -21,8 +21,6 @@ const CHIP = 'rgba(0,0,0,0.24)'; // theme-exempt: метка с номером, 
 const TRACK = 'rgba(255,255,255,0.26)'; // theme-exempt: дорожка прогресса на карте, эталон `.h2c .prog`
 const MUTE = 'rgba(8,10,18,0.36)'; // theme-exempt: затемнение закрытой карты, эталон `.h2c.mute::after`
 const SEAL = 'rgba(255,255,255,0.16)'; // theme-exempt: печать экзамена, эталон `.h2c.cx .seal`
-const EXAM_FROM_LIGHT = ['#262447', '#12142A'] as const; // theme-exempt: фон карты экзамена, эталон `.c4exam` (Сумерки)
-const EXAM_FROM_DARK = ['#0B3442', '#04141C'] as const; // theme-exempt: фон карты экзамена, эталон `.th-marine .c4exam` (Океан)
 const SHADOW = '0 22px 40px -20px rgba(0,0,0,0.65)'; // theme-exempt: тень карты, эталон `.h2c { box-shadow }`
 
 export type SeasonCardFaceProps = Readonly<{
@@ -42,7 +40,7 @@ export type SeasonCardFaceProps = Readonly<{
 
 function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress }: SeasonCardFaceProps) {
   if (kind === 'exam') {
-    const colors = dark ? EXAM_FROM_DARK : EXAM_FROM_LIGHT;
+    const colors = [art.from, art.to] as const; // зачем (закон владельца 22.10): печать экзамена — тёмный оттенок текущей темы, не фиксированный фиолетовый/бирюзовый
     return (
       <View style={[styles.card, styles.examCard]}>
         <LinearGradient colors={colors} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />

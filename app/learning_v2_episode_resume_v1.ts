@@ -6,6 +6,7 @@
 // (отпечаток набора детей), и срок годности. Сеть не трогаем — Firebase-нагрузки ноль.
 // Журнал [V2-RESUME] на каждом решении и в каждом catch (правило «сперва логи»).
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { onAccountOwnerChanged } from "./account_owner_change";
 import type { LearningV2CourseSessionInteractionCompletionV1 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
 
 const LOG = "[V2-RESUME]";
@@ -38,6 +39,21 @@ export function learningV2EpisodeResumeKeyV1(owner: string, courseSessionId: str
   return `${KEY_PREFIX}:${owner}:${courseSessionId}`;
 }
 
+/**
+ * Снимки в памяти процесса — раньше диска.
+ * зачем (Learning V2 22.10, выход из эпизода без окна): снимок перед выходом ложится в память сразу, выход не ждёт AsyncStorage,
+ * а быстрый повторный вход читает свежий снимок, даже если запись на диск ещё идёт или не удалась (тогда — до перезапуска).
+ */
+const memoryRecords = new Map<string, LearningV2EpisodeResumeRecordV1>();
+// зачем (Learning V2 22.10): ключ по owner защищает чтение, но после выхода из аккаунта снимок прежнего человека не должен жить
+// в памяти до перезапуска; диск стирает общий список префиксов аккаунта (learning_v2_episode_resume_v1: уже в нём)
+onAccountOwnerChanged("learning_v2_episode_resume", () => { memoryRecords.clear(); });
+
+/** Только для тестов: забыть снимки в памяти. */
+export function __resetLearningV2EpisodeResumeMemoryForTests(): void {
+  memoryRecords.clear();
+}
+
 function isRecord(value: unknown): value is LearningV2EpisodeResumeRecordV1 {
   const record = value as Partial<LearningV2EpisodeResumeRecordV1> | null;
   return Boolean(
@@ -67,24 +83,27 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
   nowMs?: number;
 }>): Promise<LearningV2EpisodeResumeRecordV1 | null> {
   const key = learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId);
-  let raw: string | null = null;
-  try {
-    raw = await AsyncStorage.getItem(key);
-  } catch (error) {
-    console.warn(`${LOG} load_failed`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
-    return null;
-  }
-  if (!raw) {
-    console.log(`${LOG} load_none`, JSON.stringify({ courseSessionId: input.courseSessionId })); // guard-ok: ранний выход
-    return null;
-  }
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(raw);
-  } catch (error) {
-    console.warn(`${LOG} load_corrupt`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
-    await clearLearningV2EpisodeResumeV1({ owner: input.owner, courseSessionId: input.courseSessionId, reason: "corrupt" });
-    return null;
+  const fromMemory = memoryRecords.get(key);
+  let parsed: unknown = fromMemory;
+  if (fromMemory === undefined) {
+    let raw: string | null = null;
+    try {
+      raw = await AsyncStorage.getItem(key);
+    } catch (error) {
+      console.warn(`${LOG} load_failed`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
+      return null;
+    }
+    if (!raw) {
+      console.log(`${LOG} load_none`, JSON.stringify({ courseSessionId: input.courseSessionId })); // guard-ok: ранний выход
+      return null;
+    }
+    try {
+      parsed = JSON.parse(raw);
+    } catch (error) {
+      console.warn(`${LOG} load_corrupt`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
+      await clearLearningV2EpisodeResumeV1({ owner: input.owner, courseSessionId: input.courseSessionId, reason: "corrupt" });
+      return null;
+    }
   }
   const nowMs = input.nowMs ?? Date.now();
   const reject = async (reason: string, extra: Record<string, unknown> = {}) => {
@@ -98,6 +117,7 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
   if (nowMs - parsed.savedAtMs > LEARNING_V2_EPISODE_RESUME_TTL_MS) return reject("expired", { ageMs: nowMs - parsed.savedAtMs });
   if (!learningV2EpisodeHasProgressV1(parsed)) return reject("no_progress");
   console.log(`${LOG} load_ok`, JSON.stringify({
+    source: fromMemory === undefined ? "disk" : "memory",
     courseSessionId: parsed.courseSessionId,
     practiceIndex: parsed.practiceIndex,
     practiceTotal: parsed.practiceTotal,
@@ -108,15 +128,19 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
 }
 
 export async function saveLearningV2EpisodeResumeV1(owner: string, record: LearningV2EpisodeResumeRecordV1): Promise<void> {
+  const key = learningV2EpisodeResumeKeyV1(owner, record.courseSessionId);
+  // зачем: память — синхронно, до первого await (выход по крестику не ждёт диска); диск — следом, сбой — в журнал
+  memoryRecords.set(key, record);
   try {
-    await AsyncStorage.setItem(learningV2EpisodeResumeKeyV1(owner, record.courseSessionId), JSON.stringify(record));
+    await AsyncStorage.setItem(key, JSON.stringify(record));
   } catch (error) {
-    // Немая потеря недопустима: человек вернётся и начнёт сначала — пусть это будет видно в журнале.
-    console.warn(`${LOG} save_failed`, JSON.stringify({ courseSessionId: record.courseSessionId, practiceIndex: record.practiceIndex, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
+    // Немая потеря недопустима: в памяти снимок жив до перезапуска, после — человек начнёт сначала; пусть это будет видно в журнале.
+    console.warn(`${LOG} save_failed`, JSON.stringify({ courseSessionId: record.courseSessionId, practiceIndex: record.practiceIndex, keptInMemory: true, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
   }
 }
 
 export async function clearLearningV2EpisodeResumeV1(input: Readonly<{ owner: string; courseSessionId: string; reason: string }>): Promise<void> {
+  memoryRecords.delete(learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId));
   try {
     await AsyncStorage.removeItem(learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId));
     console.log(`${LOG} cleared`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: input.reason })); // guard-ok: одна строка на очистку

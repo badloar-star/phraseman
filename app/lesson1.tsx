@@ -4,7 +4,7 @@ import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   BackHandler,
@@ -170,7 +170,6 @@ import { DebugLogger } from './debug-logger';
 import { traceLessonExit } from './lesson_exit_trace';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 // зачем (m15, владелец 14.10, за флагом moments_v3): шторка «Выйти из урока?» грузится лениво и только когда флаг включён и человек нажал «назад»
-const LessonExitSheet = lazy(() => import('../components/lesson_exit/LessonExitSheet'));
 const GRAMMAR_HINTS = [
   {
     key: 'grammar_hint_articles',
@@ -2691,7 +2690,9 @@ function LessonScreen() {
       traceLessonExit('headerBack:ignored', { lessonId, cellIndex, beginLessonExit: false });
       return;
     }
-    traceLessonExit('headerBack:exit', { lessonId, cellIndex, effectiveTotal });
+    // зачем (владелец 22.10, окно выхода снято): в записи — место и что сохранено. Каждый ответ и место уже на телефоне
+    // (LESSON_KEY + CELL_KEY после каждого ответа), повторный вход продолжает с этого места; не сохраняется только недособранный ответ.
+    traceLessonExit('headerBack:exit', { lessonId, cellIndex, effectiveTotal, place: `${cellIndex + 1}/${effectiveTotal}`, saved: 'answers+position' });
     const attempt = lessonAnalyticsAttemptRef.current!;
     if (markLessonAttemptTerminal(attempt, 'abandon')) {
       logLessonAbandoned(lessonId, cellIndex, effectiveTotal, attempt.id, lessonAttemptElapsedMs(attempt));
@@ -2700,33 +2701,16 @@ function LessonScreen() {
     navigateUpFromLessonScreen();
   }, [beginLessonExit, finishPendingCompletionNow, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
 
-  // зачем (m15, координатор 14.10): за флагом moments_v3 «назад» посреди урока сначала спрашивает; «Выйти» зовёт прежний handleLessonHeaderBack (abandon + навигация, двойной тап защищён lessonExitInFlightRef),
-  // «Продолжить»/фон/«назад» закрывают шторку. Флаг выкл, интро-экраны (попытки ещё нет) или выход уже идёт — прежнее поведение без шторки.
   const momentsV3 = useMomentsV3Enabled();
   // зачем (владелец 15.10, m08 «Молния»: монета «НЕ УБИРАЕМ А ОСТАВЛЯЕМ»): молния, вспышка, холодная виньетка и монета поверх урока — только при флаге, модуль require'ом
   const ComboMomentLayer = momentsV3 ? (require('../components/feedback/ComboMomentLayer') as typeof import('../components/feedback/ComboMomentLayer')).default : null;
-  const [exitSheetOpen, setExitSheetOpen] = useState(false);
-  const [exitSheetMounted, setExitSheetMounted] = useState(false);
+  // зачем (владелец 22.10 через координатора: «УБРАТЬ ОКНО СОВСЕМ», шторка m15 снята): «Выйти из урока? Попытка не сохранится.» пугало зря —
+  // каждый ответ и место уже на телефоне, урок продолжается с того же места. «Назад» (кнопка и системный) — сразу выход; в паузе
+  // завершения — сразу итог (R58 #10). Энергия при повторном входе позже окна (D67/D159) не менялась — она живёт в гейте энергии.
   const requestLessonExit = useCallback(() => {
-    if (finishPendingCompletionNow('exitRequest')) return; // R58 #10: урок уже пройден — без шторки «Выйти?», сразу итог
-    if (!momentsV3 || showIntroScreens || lessonExitInFlightRef.current) {
-      traceLessonExit('exitSheet:skip', { lessonId, cellIndex, momentsV3, intro: showIntroScreens, exitInFlight: lessonExitInFlightRef.current });
-      handleLessonHeaderBack();
-      return;
-    }
-    traceLessonExit('exitSheet:open', { lessonId, cellIndex, effectiveTotal });
-    setExitSheetMounted(true);
-    setExitSheetOpen(true);
-  }, [finishPendingCompletionNow, momentsV3, showIntroScreens, handleLessonHeaderBack, lessonId, cellIndex, effectiveTotal]);
-  const closeExitSheet = useCallback(() => {
-    traceLessonExit('exitSheet:continue', { lessonId, cellIndex });
-    setExitSheetOpen(false);
-  }, [lessonId, cellIndex]);
-  const confirmLessonExit = useCallback(() => {
-    traceLessonExit('exitSheet:leave', { lessonId, cellIndex });
-    setExitSheetOpen(false);
+    if (finishPendingCompletionNow('exitRequest')) return; // R58 #10: урок уже пройден — сразу итог
     handleLessonHeaderBack();
-  }, [handleLessonHeaderBack, lessonId, cellIndex]);
+  }, [finishPendingCompletionNow, handleLessonHeaderBack]);
 
   const handleIntroDone = useCallback(async () => {
     if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
@@ -4232,11 +4216,6 @@ function LessonScreen() {
         {ComboMomentLayer ? <ComboMomentLayer comboCount={comboCount} /> : null}
       </ScreenGradient>
     </TouchableWithoutFeedback>
-    {momentsV3 && exitSheetMounted ? (
-      <Suspense fallback={null}>
-        <LessonExitSheet lang={lang} visible={exitSheetOpen} energyNote={!testerEnergyDisabled} onContinue={closeExitSheet} onLeave={confirmLessonExit} />
-      </Suspense>
-    ) : null}
     <NoEnergyModal variant="learn"
       visible={showNoEnergyModal}
       activity="classic_lesson"

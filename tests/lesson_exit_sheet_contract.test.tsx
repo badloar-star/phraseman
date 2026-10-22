@@ -1,99 +1,74 @@
-// зачем (m15, владелец 14.10; координатор: «выдуманных фактов нет», флаг выкл → поведение как сейчас, байт в байт): шторка «Выйти из урока?» — тексты только правда кода (энергия — только когда она тратится),
-// «Продолжить» закрывает, «Выйти» зовёт прежний выход; в lesson1 «назад» идёт через requestLessonExit, а при выключенном флаге/интро/идущем выходе — прямо в прежний handleLessonHeaderBack.
-(globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
-
+// зачем (владелец 22.10 через координатора: «УБРАТЬ ОКНО СОВСЕМ»): шторка «Выйти из урока? Попытка не сохранится.» (момент m15) снята —
+// она пугала зря: каждый ответ и место уже на телефоне, урок и эпизод Learning V2 продолжаются с того же места. Сторож: окна нет нигде
+// и оно не вернётся тихо; «назад» (кнопка, системный, жест, интро) — сразу выход, в паузе завершения урока — сразу итог (R58 #10);
+// выход пишет в журнал [LESSON-EXIT] место и что сохранено; а главное условие снятия окна — сохранение ответов и места после КАЖДОГО
+// ответа в lesson1 и снимок эпизода перед выходом в Learning V2 — закреплено, чтобы окно не убрали поверх потери прогресса.
 import fs from 'node:fs';
 import path from 'node:path';
-import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react-native';
 
-jest.mock('react-native', () => ({
-  View: 'View',
-  Text: 'Text',
-  Pressable: 'Pressable',
-  StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {} },
-  Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
-  NativeModules: {},
-}));
-jest.mock('react-native-reanimated', () => ({ __esModule: true, useReducedMotion: () => true }));
-jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticMediumImpact: jest.fn() }));
-jest.mock('../hooks/use_my_coin_rank', () => ({ useMyCoinRank: () => 5 }));
-const mockPlayEvent = jest.fn();
-jest.mock('../modules/sound_v2/sound_bank', () => ({ playEvent: (...args: unknown[]) => mockPlayEvent(...args) }));
-jest.mock('../app/energy_contract', () => ({ ENERGY_FREE_REENTRY_WINDOW_MS: 600000, ENERGY_SESSION_COST: 1 }));
-jest.mock('../components/moments/MomentCoin', () => ({ __esModule: true, default: 'MomentCoin' }));
-jest.mock('../components/spire/useSpirePalette', () => ({ useSpirePalette: () => ({ text: '#FFFFFF', textSecondary: '#B8C0C4' }) }));
-jest.mock('../components/v2/KitSheetModal', () => {
-  const R = jest.requireActual('react');
-  return {
-    KitSheetModal: (props: { visible: boolean; header: React.ReactNode; children: React.ReactNode; onRequestClose: () => void; testID?: string }) => (props.visible
-      ? R.createElement('View', { testID: props.testID }, props.header, props.children, R.createElement('Pressable', { testID: `${props.testID}-backdrop`, onPress: props.onRequestClose }))
-      : null),
-  };
-});
-jest.mock('../components/v2/V2Kit', () => {
-  const R = jest.requireActual('react');
-  return { V2Button: (props: { label: string; onPress: () => void; testID?: string }) => R.createElement('Pressable', { testID: props.testID, onPress: props.onPress }, R.createElement('Text', null, props.label)) };
-});
-
-import LessonExitSheet from '../components/lesson_exit/LessonExitSheet';
 import { LESSON_EXIT_LANGS, LESSON_EXIT_STRING_KEYS, lessonExitText } from '../components/lesson_exit/lesson_exit_strings';
 import { normalizeEol } from './helpers/read_source';
 
-const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(__dirname, '..', rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
+const ROOT = path.join(__dirname, '..');
+const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
-describe('шторка «Выйти из урока?» (m15)', () => {
-  beforeEach(() => { mockPlayEvent.mockClear(); });
-
-  it('у кого энергия тратится: «Попытка не сохранится.» + фраза про энергию с числами контракта (10 мин, 1)', async () => {
-    const onContinue = jest.fn();
-    const onLeave = jest.fn();
-    await render(<LessonExitSheet lang="ru" visible energyNote onContinue={onContinue} onLeave={onLeave} />);
-    await act(async () => { await new Promise((r) => setTimeout(r, 5)); });
-    expect(screen.getByText('Выйти из урока?')).toBeTruthy();
-    expect(screen.getByTestId('lesson-exit-sheet-body').props.children).toBe('Попытка не сохранится. Вернёшься позже, чем через 10 мин — спишется 1 энергия.');
-    expect(mockPlayEvent).toHaveBeenCalledWith('sheet_open');
-    await fireEvent.press(screen.getByTestId('lesson-exit-sheet-continue'));
-    expect(onContinue).toHaveBeenCalledTimes(1);
-    expect(onLeave).not.toHaveBeenCalled();
-    await fireEvent.press(screen.getByTestId('lesson-exit-sheet-leave'));
-    expect(onLeave).toHaveBeenCalledTimes(1);
+describe('окно выхода из урока снято (владелец 22.10)', () => {
+  it('компонента окна нет, и ни урок, ни эпизод его не подключают', () => {
+    expect(fs.existsSync(path.join(ROOT, 'components/lesson_exit/LessonExitSheet.tsx'))).toBe(false);
+    for (const rel of ['app/lesson1.tsx', 'app/learning_v2_direct_session_player_v1.tsx']) {
+      const src = read(rel);
+      expect([rel, src.includes('LessonExitSheet')]).toEqual([rel, false]);
+      expect([rel, /exitSheetOpen|setExitSheetOpen|confirmLessonExit|confirmEpisodeExit|lesson-exit-sheet|learning-v2-exit-sheet/.test(src)]).toEqual([rel, false]);
+    }
   });
 
-  it('у Plus/тестера (энергия не тратится): только «Попытка не сохранится.» — ни слова про энергию', async () => {
-    await render(<LessonExitSheet lang="ru" visible energyNote={false} onContinue={jest.fn()} onLeave={jest.fn()} />);
-    expect(screen.getByTestId('lesson-exit-sheet-body').props.children).toBe('Попытка не сохранится.');
-  });
-
-  it('фон/«назад» шторки = «Продолжить»; закрытая шторка ничего не рисует', async () => {
-    const onContinue = jest.fn();
-    const view = await render(<LessonExitSheet lang="ru" visible energyNote onContinue={onContinue} onLeave={jest.fn()} />);
-    await fireEvent.press(screen.getByTestId('lesson-exit-sheet-backdrop'));
-    expect(onContinue).toHaveBeenCalledTimes(1);
-    await view.rerender(<LessonExitSheet lang="ru" visible={false} energyNote onContinue={onContinue} onLeave={jest.fn()} />);
-    expect(screen.queryByTestId('lesson-exit-sheet')).toBeNull();
-  });
-});
-
-describe('тексты и исходники', () => {
-  it('каждая строка есть на 9 языках; подстановки работают', () => {
-    for (const key of LESSON_EXIT_STRING_KEYS) for (const lang of LESSON_EXIT_LANGS) expect([key, lang, lessonExitText(lang, key, { min: 10, cost: 1 }).length > 0]).toEqual([key, lang, true]);
-    expect(lessonExitText('en', 'energy', { min: 10, cost: 1 })).toBe('Come back after more than 10 min and it costs 1 energy.');
-  });
-
-  it('шторка ничего не списывает и не пишет; бесконечных анимаций и обводок нет', () => {
-    const src = read('components/lesson_exit/LessonExitSheet.tsx').split('\n').filter((l) => !l.trim().startsWith('//')).join('\n');
-    expect(/AsyncStorage|confirmActivityStart|refundActivityStart|firestore|withRepeat|borderWidth|borderColor/.test(src)).toBe(false);
-  });
-
-  it('lesson1: «назад» идёт через requestLessonExit; флаг выкл / интро / идущий выход → прежний handleLessonHeaderBack; интро-экраны не тронуты', () => {
+  it('lesson1: «назад» (кнопка и системный) — сразу выход; в паузе завершения — сразу итог; интро — тот же прямой выход', () => {
     const src = read('app/lesson1.tsx');
     expect(src).toContain('onHeaderBack={requestLessonExit}');
-    expect(src).toContain('onBack={handleLessonHeaderBack}'); // интро-экраны (попытки ещё нет) — без шторки
-    expect(src).toContain('if (!momentsV3 || showIntroScreens || lessonExitInFlightRef.current) {');
-    expect(src).toContain('handleLessonHeaderBack();\n      return;');
-    expect(src).toContain('energyNote={!testerEnergyDisabled}');
-    // «Выйти» = тот же прежний выход (abandon + навигация), защита от двойного тапа остаётся в нём
-    expect(src).toMatch(/const confirmLessonExit = useCallback\(\(\) => \{[\s\S]{0,260}handleLessonHeaderBack\(\);/);
+    expect(src).toMatch(/const requestLessonExit = useCallback\(\(\) => \{\n    if \(finishPendingCompletionNow\('exitRequest'\)\) return;[^\n]*\n    handleLessonHeaderBack\(\);\n  \}/);
+    const backAt = src.indexOf("BackHandler.addEventListener('hardwareBackPress'");
+    expect(backAt).toBeGreaterThan(-1);
+    expect(src.slice(backAt, backAt + 300)).toContain('requestLessonExit();');
+    expect(src).toContain('onBack={handleLessonHeaderBack}');
+  });
+
+  it('lesson1: выход пишет [LESSON-EXIT] с местом и «сохранено»; «урок брошен» и защита от двойного выхода на месте', () => {
+    const src = read('app/lesson1.tsx');
+    expect(src).toContain("traceLessonExit('headerBack:exit', { lessonId, cellIndex, effectiveTotal, place: `${cellIndex + 1}/${effectiveTotal}`, saved: 'answers+position' });");
+    const backStart = src.indexOf('const handleLessonHeaderBack = useCallback(() => {');
+    expect(backStart).toBeGreaterThan(-1);
+    const back = src.slice(backStart, src.indexOf('}, [beginLessonExit,', backStart));
+    expect(back).toContain("if (finishPendingCompletionNow('headerBack')) return;");
+    expect(back).toContain('if (!beginLessonExit()) {');
+    expect(back).toContain("markLessonAttemptTerminal(attempt, 'abandon')");
+    expect(back).toContain('navigateUpFromLessonScreen();');
+  });
+
+  it('lesson1 сохраняет ответы и место после каждого ответа и восстанавливает место при входе (условие снятия окна)', () => {
+    const src = read('app/lesson1.tsx');
+    expect(src).toContain('void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np))');
+    expect(src).toContain('void AsyncStorage.setItem(CELL_KEY, String(nextCell))');
+    expect(src).toContain('AsyncStorage.getItem(CELL_KEY)');
+    expect(src).toContain('// Восстанавливаем позицию строго из CELL_KEY');
+  });
+
+  it('эпизод Learning V2: выход сразу, но сначала свежий снимок эпизода; журнал [LESSON-EXIT] с местом и «сохранено»', () => {
+    const src = read('app/learning_v2_direct_session_player_v1.tsx');
+    const at = src.indexOf('const requestEpisodeExit = useCallback((source: string) => {');
+    expect(at).toBeGreaterThan(-1);
+    const body = src.slice(at, src.indexOf('}, [exitLearningV2Session,', at));
+    expect(body).toContain('saveLearningV2EpisodeResumeV1(resumeOwner, snapshot)');
+    expect(body).toContain('"[LESSON-EXIT] v2_episode"');
+    expect(body).toContain('saved,');
+    expect(body).toContain('place:');
+    expect(body.indexOf('saveLearningV2EpisodeResumeV1')).toBeGreaterThan(-1);
+    expect(body.indexOf('saveLearningV2EpisodeResumeV1')).toBeLessThan(body.indexOf('exitLearningV2Session();'));
+    expect(body).not.toContain('setExitSheetOpen');
+  });
+
+  it('карточка продолжения эпизода: строка есть на 9 языках, подстановки работают', () => {
+    for (const key of LESSON_EXIT_STRING_KEYS) for (const lang of LESSON_EXIT_LANGS) expect([key, lang, lessonExitText(lang, key, { n: 3, m: 12 }).length > 0]).toEqual([key, lang, true]);
+    expect(lessonExitText('ru', 'resumeFrom', { n: 3, m: 12 })).toBe('Продолжить с задания 3 из 12');
+    expect(lessonExitText('en', 'resumeFrom', { n: 3, m: 12 })).toBe('Continue from task 3 of 12');
   });
 });

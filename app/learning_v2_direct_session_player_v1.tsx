@@ -91,7 +91,6 @@ import {
   LEARNING_V2_EPISODE_RESUME_SCHEMA_V1,
   type LearningV2EpisodeResumeRecordV1,
 } from "./learning_v2_episode_resume_v1";
-import LessonExitSheet from "../components/lesson_exit/LessonExitSheet";
 import LearningV2TheorySheet from "../components/learning-v2/LearningV2TheorySheet";
 import {
   LEARNING_V2_THEORY_BUTTON_ENABLED,
@@ -2364,7 +2363,6 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [resumeOffer, setResumeOffer] = useState<
     (LearningV2EpisodeResumeRecordV1 & { inMemory?: boolean }) | null
   >(null);
-  const [exitSheetOpen, setExitSheetOpen] = useState(false);
   // зачем (№42, координатор 22.10): «Теория» — шторка поверх эпизода, место в задании не теряется; за флагом до сверки.
   // Данные теории разбираются только по тапу (не на старте эпизода).
   const [theoryState, setTheoryState] = useState<{ theory: LearningV2TheoryV1 | null; section: string } | null>(null);
@@ -2482,41 +2480,29 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (inMemory) restartInterruptedRun();
   }, [restartInterruptedRun, resumeOffer]);
 
-  // Выход: есть прогресс — шторка «Выйти из эпизода? Прогресс сохранится»; нет — сразу.
+  // Выход — сразу, без окна: эпизод и так на телефоне (снимок после каждого шага), при выходе пишем свежий снимок.
+  // зачем (владелец 22.10 через координатора: «УБРАТЬ ОКНО СОВСЕМ», шторка m15 снята): окно спрашивало о том, что и так безопасно —
+  // повторный вход предлагает «Продолжить с задания N из M» без траты энергии. Не сохраняется только недособранный ответ на экране.
   const requestEpisodeExit = useCallback((source: string) => {
     const hasProgress = completionsRef.current.size > 0;
-    console.log("[V2-EXIT] request", JSON.stringify({
+    const snapshot = hasProgress ? snapshotResume() : null;
+    const saved = Boolean(snapshot) && !isAuthoringPreview;
+    if (snapshot && !isAuthoringPreview) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot);
+    console.log("[LESSON-EXIT] v2_episode", JSON.stringify({ // guard-ok: одна строка на выход из эпизода
       source,
       lesson: lessonOrdinal,
       session: sessionOrdinal,
       hasProgress,
-      completions: completionsRef.current.size,
-      introDone,
-      practiceIndex,
-      heartsRemaining: sessionAttempts.state.remainingAttempts,
-      decision: hasProgress ? "confirm_sheet" : "exit_now",
-    })); // guard-ok: каждый запрос выхода
-    if (!hasProgress) {
-      exitLearningV2Session();
-      return;
-    }
-    setExitSheetOpen(true);
-  }, [exitLearningV2Session, introDone, lessonOrdinal, practiceIndex, sessionAttempts.state.remainingAttempts, sessionOrdinal]);
-  const confirmEpisodeExit = useCallback(() => {
-    const snapshot = snapshotResume();
-    if (snapshot && !isAuthoringPreview) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot);
-    console.log("[V2-EXIT] leave", JSON.stringify({
-      saved: Boolean(snapshot) && !isAuthoringPreview,
-      fromTask: practiceIndex + 1,
-      total: runSummary?.practiceInteractionCount ?? null,
+      saved,
+      place: introDone ? `${practiceIndex + 1}/${runSummary?.practiceInteractionCount ?? "?"}` : "intro",
       completions: completionsRef.current.size,
       heartsRemaining: sessionAttempts.state.remainingAttempts,
-    })); // guard-ok: итог выхода
-    setExitSheetOpen(false);
+      decision: "exit_now",
+    })); // guard-ok: каждый выход из эпизода — место и сохранено ли
     exitLearningV2Session();
-  }, [exitLearningV2Session, isAuthoringPreview, practiceIndex, resumeOwner, runSummary, sessionAttempts.state.remainingAttempts, snapshotResume]);
+  }, [exitLearningV2Session, introDone, isAuthoringPreview, lessonOrdinal, practiceIndex, resumeOwner, runSummary, sessionAttempts.state.remainingAttempts, sessionOrdinal, snapshotResume]);
 
-  // Системное «назад» (Android) и жест/стрелка назад — тоже через подтверждение.
+  // Системное «назад» (Android) и жест/стрелка назад — тот же выход: свежий снимок места и сразу наружу, без окна.
   const navigation = useNavigation();
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -2983,7 +2969,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       </View>
     </Animated.View>
   );
-  // зачем (№22б): «Продолжить с задания N из M» поверх вступления/задания и шторка выхода «Прогресс сохранится».
+  // зачем (№22б): «Продолжить с задания N из M» поверх вступления/задания (шторка выхода снята владельцем 22.10 — выход сразу, место сохранено).
   const resumeCopy = {
     // зачем: текст карточки сверил Переводчик (21.10) — общий ключ шторки выхода на 9 языках.
     title: (n: number, m: number) => lessonExitText(lang, "resumeFrom", { n, m }),
@@ -3016,18 +3002,6 @@ export default function LearningV2DirectSessionPlayerV1() {
           </View>
         </View>
       ) : null}
-      <LessonExitSheet
-        lang={lang}
-        visible={exitSheetOpen}
-        energyNote={false}
-        variant="episode"
-        onContinue={() => {
-          console.log("[V2-EXIT] stay", JSON.stringify({ fromTask: practiceIndex + 1 })); // guard-ok: итог шторки
-          setExitSheetOpen(false);
-        }}
-        onLeave={confirmEpisodeExit}
-        testID="learning-v2-exit-sheet"
-      />
     </>
   );
   const runeFlightOverlay = runeFlight ? (

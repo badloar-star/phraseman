@@ -12,11 +12,12 @@ const MAP = {
   m01: [SP + 'MomentPromotion.tsx', SP + 'moments_layout.tsx'], m02: [SP + 'MomentStay.tsx', SP + 'moments_layout.tsx'], m03: [SP + 'MomentDown.tsx', SP + 'moments_layout.tsx'],
   m05: [SP + 'SpirePositionRiseMoment.tsx', SP + 'SpireOvertakeToast.tsx', SP + 'SpireLastChanceSheet.tsx'], m06: [SP + 'SpireStepResultMoment.tsx', SP + 'moments_layout.tsx'], m07: [SP + 'SpireFloorMoment.tsx', SP + 'moments_layout.tsx'],
   m09: ['components/lesson_moments/LessonPerfectMoment.tsx'], m11: [ST + 'StreakMomentRings.tsx', ST + 'TodayRings.tsx', 'components/home/v2/HomeV2TodayCard.tsx'],
-  m14: ['components/coin_rank_moments/CoinRankEnoughDialog.tsx'], m15: ['components/lesson_exit/LessonExitSheet.tsx'], m17: ['components/dialog_moments/FirstDialogMoment.tsx'],
+  // зачем (владелец 22.10): m15 «Выйти из урока?» снят целиком — сравнивать не с чем
+  m14: ['components/coin_rank_moments/CoinRankEnoughDialog.tsx'], m17: ['components/dialog_moments/FirstDialogMoment.tsx'],
   m21: ['components/moments/WelcomeBackMoment.tsx'],
 };
 for (const d of [1, 3, 7, 14, 30, 50, 100, 150, 200, 250, 300, 365, 400, 500, 600, 730, 800, 900, 1000]) MAP['d' + d] = [ST + 'StreakMilestoneScreen.tsx', ST + 'StreakMilestoneToast.tsx', ST + 'StreakMilestoneMoment.tsx', ST + 'StreakMilestoneRibbon.tsx', ST + 'StreakMomentFlame.tsx'];
-const IDS = (process.argv[2] || 'm01,m02,m03,m06,m07,m11,m14,m15,d3,d7,d30,d100,d365,d730,d1000').split(',').filter(Boolean);
+const IDS = (process.argv[2] || 'm01,m02,m03,m06,m07,m11,m14,d3,d7,d30,d100,d365,d730,d1000').split(',').filter(Boolean);
 
 // V2_TYPE из constants/v2Style.ts — для `...V2_TYPE.overline`
 const V2 = {}; { const src = fs.readFileSync(path.join(ROOT, 'constants', 'v2Style.ts'), 'utf8'); const re = /^\s{2}(\w+):\s*\{([^{}]*fontSize[^{}]*)\}/gm; let m; while ((m = re.exec(src))) V2[m[1]] = m[2]; }

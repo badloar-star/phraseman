@@ -111,9 +111,7 @@ jest.mock("@expo/vector-icons/Ionicons", () => "Ionicons");
 // (learning_v2_voice_headsup_v1.test.ts); её анимации (Animated/Easing/PanResponder/Modal) этому моку react-native не нужны.
 // Здесь проверяется жизненный цикл плеера повтора, поэтому шторка — пустая заглушка, а не расширение мока под чужой UI.
 jest.mock("../components/learning-v2/LearningV2VoiceHeadsupSheet", () => ({ __esModule: true, default: () => null }));
-// зачем (22.10): плеер подключил шторку выхода (69aeaff8d) и шторку теории (c4559f4fd). Шторка выхода через MomentCoin →
-// use_runtime_active тянет @react-navigation (тестовая среда его не разбирает) — обе шторки в этом тесте не участвуют.
-jest.mock("../components/lesson_exit/LessonExitSheet", () => ({ __esModule: true, default: () => null }));
+// зачем (22.10): шторка теории (c4559f4fd) в этом тесте не участвует. Шторку выхода (69aeaff8d) владелец снял 22.10 — заглушка не нужна.
 jest.mock("../components/learning-v2/LearningV2TheorySheet", () => ({ __esModule: true, default: () => null }));
 jest.mock("expo-crypto", () => ({ randomUUID: () => "run-test" }));
 jest.mock("expo-image", () => ({ Image: "Image" }));

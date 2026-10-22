@@ -10,10 +10,18 @@ jest.mock("@react-native-async-storage/async-storage", () => ({
   },
 }));
 
+// Смена владельца аккаунта: ловим колбэк сброса, чтобы проверить, что память снимков стирается.
+const mockOwnerResets: Array<() => void> = [];
+jest.mock("../app/account_owner_change", () => ({
+  onAccountOwnerChanged: (_name: string, reset: () => void) => { mockOwnerResets.push(reset); },
+}));
+
 /* eslint-disable import/first -- AsyncStorage mocked first */
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   LEARNING_V2_EPISODE_RESUME_SCHEMA_V1,
   LEARNING_V2_EPISODE_RESUME_TTL_MS,
+  __resetLearningV2EpisodeResumeMemoryForTests,
   clearLearningV2EpisodeResumeV1,
   learningV2EpisodeResumeKeyV1,
   loadLearningV2EpisodeResumeV1,
@@ -39,6 +47,7 @@ const record = (over: Partial<LearningV2EpisodeResumeRecordV1> = {}): LearningV2
 
 beforeEach(() => {
   store.clear();
+  __resetLearningV2EpisodeResumeMemoryForTests();
   jest.spyOn(console, "log").mockImplementation(() => undefined);
   jest.spyOn(console, "warn").mockImplementation(() => undefined);
 });
@@ -84,5 +93,34 @@ describe("Learning V2 episode resume store (№22)", () => {
     await saveLearningV2EpisodeResumeV1("stable-1", record());
     await clearLearningV2EpisodeResumeV1({ owner: "stable-1", courseSessionId: "lesson-01:session:05", reason: "finished" });
     await expect(load()).resolves.toBeNull();
+  });
+
+  // зачем (Learning V2 22.10, выход без окна): снимок перед выходом — сначала в память, выход не ждёт диска
+  test("a fresh snapshot is readable at once, while the disk write is still running", async () => {
+    let finishWrite: () => void = () => undefined;
+    (AsyncStorage.setItem as jest.Mock).mockImplementationOnce((key: string, value: string) => new Promise<void>((resolve) => {
+      finishWrite = () => { store.set(key, value); resolve(); };
+    }));
+    const pending = saveLearningV2EpisodeResumeV1("stable-1", record({ practiceIndex: 9 }));
+    await expect(load()).resolves.toMatchObject({ practiceIndex: 9 });
+    finishWrite();
+    await pending;
+    expect(store.has(learningV2EpisodeResumeKeyV1("stable-1", "lesson-01:session:05"))).toBe(true);
+  });
+
+  test("switching the account owner forgets snapshots kept in memory", async () => {
+    (AsyncStorage.setItem as jest.Mock).mockImplementationOnce(async () => { throw new Error("disk full"); });
+    await saveLearningV2EpisodeResumeV1("stable-1", record());
+    await expect(load()).resolves.not.toBeNull();
+    expect(mockOwnerResets).toHaveLength(1);
+    mockOwnerResets[0]!();
+    await expect(load()).resolves.toBeNull();
+  });
+
+  test("a failed disk write keeps the snapshot in memory and says so in the log", async () => {
+    (AsyncStorage.setItem as jest.Mock).mockImplementationOnce(async () => { throw new Error("disk full"); });
+    await saveLearningV2EpisodeResumeV1("stable-1", record({ practiceIndex: 4 }));
+    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining("save_failed"), expect.stringContaining("keptInMemory"));
+    await expect(load()).resolves.toMatchObject({ practiceIndex: 4 });
   });
 });

@@ -133,30 +133,30 @@ export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
   const progressLine = i.progress && i.progress.total > 0 ? T.of(lang, Math.min(i.progress.done, i.progress.total), i.progress.total) : null;
   const bar = i.progress && i.progress.total > 0 ? Math.max(0, Math.min(1, i.progress.done / i.progress.total)) : null;
   // зачем (эталон: «Слова · Теория»; координатор 22.10: «Слова» — только когда словарь подключён к «Урокам»)
-  const lessonChips: readonly HomeSceneChipKind[] = [...(i.wordsAvailable ? ['words' as const] : []), ...(i.theoryAvailable ? ['theory' as const] : [])];
+  // зачем (владелец 22.10, скрин героя): у героя Главной нет вторичных чипов («Повторить карточки», «Теория», «Слова») — в макете scenes-compact в.2 только главная кнопка; карточки — строка в «Сегодня»
   const base = { warm: null, note: null, chips: [] as readonly HomeSceneChipKind[] };
   switch (i.state) {
     case 'newbie':
       return { ...base, kicker: place, title: i.title, line: null, bar: null, cta: T.start(lang) };
     case 'continue':
     case 'offline':
-      return { ...base, kicker: place, title: i.title, line: progressLine, bar, cta: T.cont(lang), chips: lessonChips };
+      return { ...base, kicker: place, title: i.title, line: progressLine, bar, cta: T.cont(lang) };
     case 'streak_risk':
       return { ...base, kicker: T.streak(lang, i.streakDays), title: T.untilMidnight(lang, i.minutesToMidnight), line: null, bar: null,
         warm: i.zeroEnergyNote && i.energyMinutes !== null ? T.energyBeforeMidnight(lang, i.energyMinutes) : T.keeps(lang),
         cta: i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang) };
     case 'day_done':
-      return { ...base, kicker: T.streak(lang, i.streakDays), title: T.dayCounted(lang), line: i.title ? T.next(lang, i.title) : null, bar: null, cta: T.moreEp(lang), chips: lessonChips };
+      return { ...base, kicker: T.streak(lang, i.streakDays), title: T.dayCounted(lang), line: i.title ? T.next(lang, i.title) : null, bar: null, cta: T.moreEp(lang) };
     case 'no_energy':
-      return { ...base, kicker: place, title: T.energyIn(lang, i.energyMinutes), line: T.noEnergyLine(lang), bar: null, cta: null, note: T.plusNoEnergy(lang), chips: ['cards', 'phrase', 'video'] };
+      return { ...base, kicker: place, title: T.energyIn(lang, i.energyMinutes), line: T.noEnergyLine(lang), bar: null, cta: null, note: T.plusNoEnergy(lang) };
     case 'welcome_back':
-      return { ...base, kicker: T.welcome(lang), title: i.episode !== null ? T.resumeAt(lang, i.episode) : i.title, line: i.daysAway !== null ? T.away(lang, i.daysAway) : null, bar: null, cta: T.cont(lang), chips: ['review', ...lessonChips] };
+      return { ...base, kicker: T.welcome(lang), title: i.episode !== null ? T.resumeAt(lang, i.episode) : i.title, line: i.daysAway !== null ? T.away(lang, i.daysAway) : null, bar: null, cta: T.cont(lang) };
     case 'streak_lost':
       return { ...base, kicker: T.lost(lang), title: T.newStreak(lang), line: i.lostStreakDays !== null && i.lostStreakDays >= 2 ? `${T.wasDays(lang, i.lostStreakDays)} ${T.flameBack(lang)}` : T.flameBack(lang), bar: null, cta: i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang) };
     case 'exam_ready':
-      return { ...base, kicker: place, title: T.exam(lang), line: T.examLine(lang), bar: null, cta: T.examCta(lang), chips: lessonChips };
+      return { ...base, kicker: place, title: T.exam(lang), line: T.examLine(lang), bar: null, cta: T.examCta(lang) };
     case 'all_done':
-      return { ...base, kicker: place, title: T.soon(lang), line: T.reviewLine(lang), bar: null, cta: null, chips: ['cards', 'phrase', 'video'] };
+      return { ...base, kicker: place, title: T.soon(lang), line: T.reviewLine(lang), bar: null, cta: null };
     default: {
       const never: never = i.state;
       return { ...base, kicker: '', title: String(never), line: null, bar: null, cta: null };

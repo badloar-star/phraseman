@@ -68,7 +68,7 @@ describe('Сцена Главной: тексты состояний', () => {
   };
   it('продолжить: урок и эпизод, прогресс урока, «Теория»', () => {
     const c = buildHomeSceneCopy(copyBase);
-    expect(c).toMatchObject({ kicker: 'Урок 1 · Эпизод 12', title: 'Комплименты вслух', line: '11 из 56', cta: 'Продолжить', chips: ['theory'] });
+    expect(c).toMatchObject({ kicker: 'Урок 1 · Эпизод 12', title: 'Комплименты вслух', line: '11 из 56', cta: 'Продолжить', chips: [] });
   });
   it('вечер: серия, время до полуночи, тёплая строка, эпизод в кнопке', () => {
     const c = buildHomeSceneCopy({ ...copyBase, state: 'streak_risk' });
@@ -80,7 +80,7 @@ describe('Сцена Главной: тексты состояний', () => {
   });
   it('нет энергии: без главной кнопки, занятия без энергии и Plus', () => {
     const c = buildHomeSceneCopy({ ...copyBase, state: 'no_energy', energyMinutes: 42 });
-    expect(c).toMatchObject({ title: 'Энергия вернётся через 42 мин', cta: null, chips: ['cards', 'phrase', 'video'], note: 'С Plus без энергии' });
+    expect(c).toMatchObject({ title: 'Энергия вернётся через 42 мин', cta: null, chips: [], note: 'С Plus без энергии' });
   });
   it.each(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const)('%s: у каждого состояния непустой заголовок', (lang) => {
     for (const state of HOME_SCENE_STATES) {
@@ -114,10 +114,11 @@ describe('Сцена Главной: входы из данных на теле�
     expect(homeSceneAllReleasedDone({ lessonOrdinal: 2, done: 55, total: 56 }, released)).toBe(false);
     expect(homeSceneAllReleasedDone(null, released)).toBe(false);
   });
-  it('чип «Слова» — только когда словарь подключён', () => {
-    const base = { lang: 'ru' as const, state: 'continue' as const, zeroEnergyNote: false, badge: 'Урок 1', episode: 12, title: 'Т', progress: null, streakDays: 5, minutesToMidnight: 140, daysAway: null, energyMinutes: null, theoryAvailable: true, lostStreakDays: null };
-    expect(buildHomeSceneCopy({ ...base, wordsAvailable: false }).chips).toEqual(['theory']);
-    expect(buildHomeSceneCopy({ ...base, wordsAvailable: true }).chips).toEqual(['words', 'theory']);
+  it('у героя Главной нет вторичных чипов ни в одном состоянии (владелец 22.10)', () => {
+    const base = { lang: 'ru' as const, zeroEnergyNote: false, badge: 'Урок 1', episode: 12, title: 'Т', progress: null, streakDays: 5, minutesToMidnight: 140, daysAway: 3, energyMinutes: 40, theoryAvailable: true, wordsAvailable: true, lostStreakDays: null };
+    for (const state of ['newbie', 'continue', 'offline', 'streak_risk', 'day_done', 'no_energy', 'welcome_back', 'streak_lost', 'exam_ready', 'all_done'] as const) {
+      expect(buildHomeSceneCopy({ ...base, state } as never).chips).toEqual([]);
+    }
   });
   it('серия прервалась: сколько было дней', () => {
     const c = buildHomeSceneCopy({ lang: 'ru', state: 'streak_lost', zeroEnergyNote: false, badge: null, episode: 12, title: 'Т', progress: null, streakDays: 0, minutesToMidnight: 0, daysAway: 2, energyMinutes: null, theoryAvailable: false, wordsAvailable: false, lostStreakDays: 5 });

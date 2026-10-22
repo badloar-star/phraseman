@@ -41,3 +41,10 @@ No architecture change.
 ## Rollback
 
 Удалить файл.
+
+## Дополнение: обращения №24 и №28
+
+**47a4ebea8** — №28: `lesson30_phrase_32` принимает «the woman» (alternatives); №24: `lesson31_phrase_23` без ловушек
+«found»/«finding» после saw (их заменили на finds/fined). Точечный тест регрессий: 42 из 42. Подробно —
+`classic-l30-l31-reports-24-28-2026-10-22.md`. Вопрос: та же схема ловушек в уроке 31 (fell, shook, fixed) — править
+ли весь урок?

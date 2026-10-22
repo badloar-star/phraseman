@@ -21,7 +21,6 @@ const mockAudioPlayer = {
   play: mockAudioPlay,
   pause: mockAudioPause,
 };
-const mockAudioSource = jest.fn<number | null, []>(() => 1);
 const mockAudioStatus = {
   playing: false,
   didJustFinish: false,
@@ -87,17 +86,6 @@ jest.mock("expo-file-system", () => ({
 jest.mock("expo-audio", () => ({
   useAudioPlayer: jest.fn(() => mockAudioPlayer),
   useAudioPlayerStatus: jest.fn(() => mockAudioStatus),
-}));
-jest.mock("../app/learning_v2_lesson1_audio_assets", () => ({
-  learningV2Lesson1AudioSource: mockAudioSource,
-  learningV2Lesson1FamilyUsesAudio: jest.fn((family: string) =>
-    [
-      "listen_choose",
-      "sound_contrast",
-      "listen_build_dictation",
-      "scripted_repeat_compare",
-    ].includes(family),
-  ),
 }));
 jest.mock("../app/learning_v2_session_intro", () => {
   const ReactRuntime = require("react") as typeof import("react");
@@ -242,8 +230,6 @@ describe("Learning V2 real session skip interaction", () => {
     mockAudioSeekTo.mockClear();
     mockAudioPlay.mockClear();
     mockAudioPause.mockClear();
-    mockAudioSource.mockReset();
-    mockAudioSource.mockReturnValue(1);
     mockAudioStatus.playing = false;
     mockAudioStatus.didJustFinish = false;
     mockAudioStatus.isLoaded = true;
@@ -534,7 +520,6 @@ describe("Learning V2 real session skip interaction", () => {
   });
 
   it("exposes an explicit text action when the bundled source cannot be resolved", async () => {
-    mockAudioSource.mockReturnValue(null);
     const view = await renderPracticeSession();
     const textAction = view.getByLabelText("Показать фразу текстом");
     expect(textAction.props.accessibilityHint).toContain(

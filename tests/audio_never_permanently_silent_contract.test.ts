@@ -292,8 +292,6 @@ describe('источники отказа звука объясняют прич
       // Фон и сцены празднования: собственная ambient-претензия и самоочистка.
       'modules/audio/celebrationBackgroundPlayer.ts',
       'modules/audio/celebrationScenePlayer.ts',
-      // Оснастка замеров на физическом устройстве, не пользовательский путь.
-      'modules/learning-v2/runtime/voice_physical_device_runner_v1.ts',
       // Прогрев плееров на старте: ничего не воспроизводит.
       'app/_layout.tsx',
     ]);

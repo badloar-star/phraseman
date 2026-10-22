@@ -973,10 +973,6 @@ describe("pure canonical V2 generation plan", () => {
       repositoryRoot,
       "modules/learning-v2/runtime/voice_pcm_signal_observer_v1.ts",
     );
-    const voiceAudioOfflineCacheV1 = path.join(
-      repositoryRoot,
-      "modules/learning-v2/runtime/voice_audio_offline_cache_v1.ts",
-    );
     const activityAudioRuntimeProjectionV1 = path.join(
       repositoryRoot,
       "modules/learning-v2/runtime/activity_audio_runtime_projection_v1.ts",
@@ -1117,10 +1113,6 @@ describe("pure canonical V2 generation plan", () => {
       repositoryRoot,
       "app/learning_v2_activity_audio_preload_v1.ts",
     );
-    const courseSessionAudioPreloadV1 = path.join(
-      repositoryRoot,
-      "app/learning_v2_course_session_audio_preload_v1.ts",
-    );
     const courseReleasedSessionClientV3 = path.join(
       repositoryRoot,
       "app/learning_v2_course_released_session_client_v3.ts",
@@ -1194,45 +1186,21 @@ describe("pure canonical V2 generation plan", () => {
       repositoryRoot,
       "modules/learning-v2/content/release_rollout_v1.ts",
     );
-    const voicePhysicalDeviceRunnerV1 = path.join(
-      repositoryRoot,
-      "modules/learning-v2/runtime/voice_physical_device_runner_v1.ts",
-    );
-    const voiceAudioManifestPageRunnerV1 = path.join(
-      repositoryRoot,
-      "modules/learning-v2/runtime/voice_audio_manifest_page_runner_v1.ts",
-    );
     const voiceAudioDevicePageV1 = path.join(
       repositoryRoot,
       "modules/learning-v2/runtime/voice_audio_device_page_v1.ts",
-    );
-    const voiceAudioDevicePageJournalV1 = path.join(
-      repositoryRoot,
-      "modules/learning-v2/runtime/voice_audio_device_page_journal_v1.ts",
     );
     const voiceAudioDevicePageEvidenceV1 = path.join(
       repositoryRoot,
       "modules/learning-v2/runtime/voice_audio_device_page_evidence_v1.ts",
     );
-    const voiceAudioDevicePageEvidenceMaterializerV1 = path.join(
-      repositoryRoot,
-      "modules/learning-v2/runtime/voice_audio_device_page_evidence_materializer_v1.ts",
-    );
     const voiceAudioDevicePageUploadAckV1 = path.join(
       repositoryRoot,
       "modules/learning-v2/runtime/voice_audio_device_page_upload_ack_v1.ts",
     );
-    const voiceAudioDeviceHarnessV1 = path.join(
-      repositoryRoot,
-      "modules/learning-v2/runtime/voice_audio_device_harness_v1.ts",
-    );
     const voiceAudioDeviceEpisodeUploadAckV1 = path.join(
       repositoryRoot,
       "modules/learning-v2/runtime/voice_audio_device_episode_upload_ack_v1.ts",
-    );
-    const voiceAudioDeviceEpisodeHarnessV1 = path.join(
-      repositoryRoot,
-      "modules/learning-v2/runtime/voice_audio_device_episode_harness_v1.ts",
     );
     const nativePcmDecoderV1 = path.join(
       repositoryRoot,
@@ -1283,56 +1251,12 @@ describe("pure canonical V2 generation plan", () => {
         .sort(),
     ).toEqual(["../policies/decision_registry"]);
     expect(
-      sourceModuleReferences(voicePhysicalDeviceRunnerV1)
-        .filter((value): value is string => value !== null)
-        .sort(),
-    ).toEqual([
-      "../../learning-v2-pcm-decoder",
-      "../policies/decision_registry",
-      "./voice_audio_offline_cache_v1",
-      "./voice_native_decoder_observer_v1",
-      "./voice_pcm_signal_observer_v1",
-      "expo-audio",
-    ]);
-    expect(
-      sourceModuleReferences(voiceAudioOfflineCacheV1)
-        .filter((value): value is string => value !== null)
-        .sort(),
-    ).toEqual([
-      "../policies/decision_registry",
-      "./voice_native_decoder_observer_v1",
-      "./voice_pcm_signal_observer_v1",
-      "expo-crypto",
-      "expo-file-system",
-    ]);
-    expect(
-      sourceModuleReferences(voiceAudioManifestPageRunnerV1)
-        .filter((value): value is string => value !== null)
-        .sort(),
-    ).toEqual([
-      "../policies/decision_registry",
-      "./voice_audio_offline_cache_v1",
-      "./voice_native_decoder_observer_v1",
-      "./voice_physical_device_runner_v1",
-    ]);
-    expect(
       sourceModuleReferences(voiceAudioDevicePageV1)
         .filter((value): value is string => value !== null)
         .sort(),
     ).toEqual([
       "../policies/decision_registry",
       "./voice_native_decoder_observer_v1",
-    ]);
-    expect(
-      sourceModuleReferences(voiceAudioDevicePageJournalV1)
-        .filter((value): value is string => value !== null)
-        .sort(),
-    ).toEqual([
-      "../policies/decision_registry",
-      "./voice_audio_device_page_upload_ack_v1",
-      "./voice_audio_device_page_v1",
-      "./voice_audio_manifest_page_runner_v1",
-      "@react-native-async-storage/async-storage",
     ]);
     expect(
       sourceModuleReferences(voiceAudioDevicePageEvidenceV1)
@@ -1344,50 +1268,15 @@ describe("pure canonical V2 generation plan", () => {
       "./voice_pcm_signal_observer_v1",
     ]);
     expect(
-      sourceModuleReferences(voiceAudioDevicePageEvidenceMaterializerV1)
-        .filter((value): value is string => value !== null)
-        .sort(),
-    ).toEqual([
-      "../policies/decision_registry",
-      "./voice_audio_device_page_evidence_v1",
-      "./voice_audio_device_page_v1",
-      "./voice_audio_manifest_page_runner_v1",
-    ]);
-    expect(
       sourceModuleReferences(voiceAudioDevicePageUploadAckV1)
         .filter((value): value is string => value !== null)
         .sort(),
     ).toEqual(["../policies/decision_registry"]);
     expect(
-      sourceModuleReferences(voiceAudioDeviceHarnessV1)
-        .filter((value): value is string => value !== null)
-        .sort(),
-    ).toEqual([
-      "../policies/decision_registry",
-      "./voice_audio_device_page_evidence_materializer_v1",
-      "./voice_audio_device_page_journal_v1",
-      "./voice_audio_device_page_upload_ack_v1",
-      "./voice_audio_device_page_v1",
-      "./voice_audio_manifest_page_runner_v1",
-      "@react-native-async-storage/async-storage",
-    ]);
-    expect(
       sourceModuleReferences(voiceAudioDeviceEpisodeUploadAckV1)
         .filter((value): value is string => value !== null)
         .sort(),
     ).toEqual(["../policies/decision_registry"]);
-    expect(
-      sourceModuleReferences(voiceAudioDeviceEpisodeHarnessV1)
-        .filter((value): value is string => value !== null)
-        .sort(),
-    ).toEqual([
-      "../policies/decision_registry",
-      "./voice_audio_device_episode_upload_ack_v1",
-      "./voice_audio_device_harness_v1",
-      "./voice_audio_device_page_journal_v1",
-      "./voice_audio_device_page_upload_ack_v1",
-      "./voice_audio_device_page_v1",
-    ]);
     expect(
       sourceModuleReferences(nativePcmDecoderV1)
         .filter((value): value is string => value !== null)
@@ -2201,7 +2090,6 @@ describe("pure canonical V2 generation plan", () => {
             ),
           ),
           canonicalRealPath(voicePcmSignalObserverV1),
-          canonicalRealPath(voiceAudioOfflineCacheV1),
           canonicalRealPath(activityAudioRuntimeProjectionV1),
           canonicalRealPath(activityErrorExplanationCatalogV1),
           canonicalRealPath(activityAttemptControllerV1),
@@ -2264,7 +2152,6 @@ describe("pure canonical V2 generation plan", () => {
           canonicalRealPath(activitySessionAudioPlanV1),
           canonicalRealPath(activityAudioTransportV1),
           canonicalRealPath(activityAudioPreloadV1),
-          canonicalRealPath(courseSessionAudioPreloadV1),
           canonicalRealPath(courseReleasedSessionClientV3),
           canonicalRealPath(activityAudioSessionHookV1),
           canonicalRealPath(activityLocalAudioPlaybackHookV1),
@@ -2275,15 +2162,9 @@ describe("pure canonical V2 generation plan", () => {
           canonicalRealPath(releaseRolloutV1),
           canonicalRealPath(activityAuxiliaryReleaseIndexV1),
           canonicalRealPath(voiceAudioDeviceEpisodeUploadAckV1),
-          canonicalRealPath(voiceAudioDeviceEpisodeHarnessV1),
-          canonicalRealPath(voicePhysicalDeviceRunnerV1),
-          canonicalRealPath(voiceAudioManifestPageRunnerV1),
           canonicalRealPath(voiceAudioDevicePageV1),
-          canonicalRealPath(voiceAudioDevicePageJournalV1),
           canonicalRealPath(voiceAudioDevicePageEvidenceV1),
-          canonicalRealPath(voiceAudioDevicePageEvidenceMaterializerV1),
           canonicalRealPath(voiceAudioDevicePageUploadAckV1),
-          canonicalRealPath(voiceAudioDeviceHarnessV1),
           canonicalRealPath(nativePcmDecoderV1),
           canonicalRealPath(nativePcmDecoderTypesV1),
           canonicalRealPath(path.resolve(root, "../admin_v2_generation.ts")),
@@ -2294,7 +2175,6 @@ describe("pure canonical V2 generation plan", () => {
       "modules/learning-v2/runtime/course_session_audio_child_v1.ts",
       "modules/learning-v2/runtime/course_session_device_run_v1.ts",
       "modules/learning-v2/runtime/course_session_voice_response_v1.ts",
-      "app/learning_v2_course_session_audio_preload_v1.ts",
       "app/learning_v2_course_released_session_client_v3.ts",
       "app/learning_v2_direct_session_player_v1.tsx",
     ]) {
@@ -2407,7 +2287,6 @@ describe("pure canonical V2 generation plan", () => {
     canonicalTargets.add(canonicalRealPath(activitySessionPackageV2));
     canonicalTargets.add(canonicalRealPath(localEvaluatorCapsuleV1));
     canonicalTargets.add(canonicalRealPath(voicePcmSignalObserverV1));
-    canonicalTargets.add(canonicalRealPath(voiceAudioOfflineCacheV1));
     canonicalTargets.add(canonicalRealPath(activityAudioRuntimeProjectionV1));
     canonicalTargets.add(canonicalRealPath(activityLearnerActionResourceV1));
     canonicalTargets.add(canonicalRealPath(activityPostTerminalCardCatalogV1));
@@ -2474,7 +2353,6 @@ describe("pure canonical V2 generation plan", () => {
     canonicalTargets.add(canonicalRealPath(activitySessionAudioPlanV1));
     canonicalTargets.add(canonicalRealPath(activityAudioTransportV1));
     canonicalTargets.add(canonicalRealPath(activityAudioPreloadV1));
-    canonicalTargets.add(canonicalRealPath(courseSessionAudioPreloadV1));
     canonicalTargets.add(canonicalRealPath(courseReleasedSessionClientV3));
     canonicalTargets.add(canonicalRealPath(activityAudioSessionHookV1));
     canonicalTargets.add(canonicalRealPath(activityLocalAudioPlaybackHookV1));
@@ -2484,17 +2362,9 @@ describe("pure canonical V2 generation plan", () => {
     canonicalTargets.add(canonicalRealPath(releaseRolloutV1));
     canonicalTargets.add(canonicalRealPath(activityAuxiliaryReleaseIndexV1));
     canonicalTargets.add(canonicalRealPath(voiceAudioDeviceEpisodeUploadAckV1));
-    canonicalTargets.add(canonicalRealPath(voiceAudioDeviceEpisodeHarnessV1));
-    canonicalTargets.add(canonicalRealPath(voicePhysicalDeviceRunnerV1));
-    canonicalTargets.add(canonicalRealPath(voiceAudioManifestPageRunnerV1));
     canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageV1));
-    canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageJournalV1));
     canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageEvidenceV1));
-    canonicalTargets.add(
-      canonicalRealPath(voiceAudioDevicePageEvidenceMaterializerV1),
-    );
     canonicalTargets.add(canonicalRealPath(voiceAudioDevicePageUploadAckV1));
-    canonicalTargets.add(canonicalRealPath(voiceAudioDeviceHarnessV1));
     canonicalTargets.add(canonicalRealPath(nativePcmDecoderV1));
     canonicalTargets.add(canonicalRealPath(nativePcmDecoderTypesV1));
     canonicalTargets.add(canonicalRealPath(activityInstancesPackageV2));

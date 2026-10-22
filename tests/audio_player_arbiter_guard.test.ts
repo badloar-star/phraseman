@@ -24,8 +24,6 @@ const ALLOWLIST: Readonly<Record<string, string>> = {
     'SFX V2: короткие эффекты интерфейса; гейт речи/записи/выключателя — в самом рантайме (проверяет audio_never_permanently_silent_contract)',
   'modules/audio/celebrationScenePlayer.ts':
     'празднование: сцена-звук, управляется sound_arbiter; не претендует на «голосовой» канал',
-  'modules/learning-v2/runtime/voice_physical_device_runner_v1.ts':
-    'TODO PM-203: физический прогон голоса на устройстве (служебный раннер, не пользовательский экран); вести через арбитр при следующей правке раннера',
 };
 
 function walk(dir: string, out: string[]): void {

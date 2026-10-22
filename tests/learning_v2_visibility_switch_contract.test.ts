@@ -56,7 +56,9 @@ describe('рубильник «Learning V2 скрыт»', () => {
     expect(lessons).toContain('if (initial === "v2" && !learningV2CanOpen) {');
     expect(lessons).toContain('initial === "lessons" && presentation === "tab" && learningV2CanOpen ? "v2" : initial');
     // прогрев каталога V2 при скрытом V2 не взводится
-    expect(lessons).toContain('if (!learningV2CanOpen || learningV2WarmupArmed || page !== "lessons") return undefined;');
+    // зачем (работа 19.10, закоммичена 22.10 в 72f72a94e): прогрев ждёт паузы в касаниях и на списке, и на карте V2 —
+    // исключена только страница диалогов; главное правило сторожа (скрытый V2 → без прогрева) прежнее.
+    expect(lessons).toContain('if (!learningV2CanOpen || learningV2WarmupArmed || page === "dialogs") return undefined;');
   });
 
   it('маршруты курса и занятия при «скрыт» уводят на Главную с [V2-HIDDEN]', () => {

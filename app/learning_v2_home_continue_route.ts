@@ -80,6 +80,52 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
   }
 }
 
+/**
+ * зачем (координатор 22.10, просьба 8 · МОМЕНТЫ): кнопка «Начать занятие» у друга знает только номера урока и занятия.
+ * Открываем занятие ТЕМ ЖЕ путём, что «Продолжить» (подготовка → передача → маршрут, общая защита от двойного тапа).
+ * Невыпущенное или неверное занятие — карта курса с причиной в журнале; V2 скрыт — ничего не открываем.
+ */
+export async function launchLearningV2SessionByOrdinalsV1(
+  input: Readonly<{ lessonOrdinal: number; sessionOrdinal: number; from: string; repeat?: boolean }>,
+  ctx: HomeContinueV2LaunchContext,
+): Promise<void> {
+  const { lessonOrdinal, sessionOrdinal, from } = input;
+  if (LEARNING_V2_HIDDEN) {
+    console.warn(`${LOG} by_ordinals from=${from} урок=${lessonOrdinal} занятие=${sessionOrdinal}: V2 скрыт — не открываем`);
+    return;
+  }
+  let sessionId: string;
+  let released: boolean;
+  try {
+    // зачем: модули курса грузятся лениво — экран друга не платит за каталог до нажатия
+    /* eslint-disable @typescript-eslint/no-require-imports */
+    const { learningV2CourseSessionIdV1 } = require('../modules/learning-v2/content/course_topology_v1') as typeof import('../modules/learning-v2/content/course_topology_v1');
+    const { isLearningV2SessionReleasedV1 } = require('./learning_v2_session_availability_v1') as typeof import('./learning_v2_session_availability_v1');
+    /* eslint-enable @typescript-eslint/no-require-imports */
+    sessionId = learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal);
+    released = isLearningV2SessionReleasedV1(lessonOrdinal, sessionOrdinal);
+  } catch (error) {
+    console.warn(`${LOG} by_ordinals from=${from} урок=${lessonOrdinal} занятие=${sessionOrdinal}: неверные номера — открываем карту курса (${error instanceof Error ? error.message : String(error)})`);
+    ctx.push('/learning-v2/course');
+    return;
+  }
+  if (!released) {
+    console.warn(`${LOG} by_ordinals from=${from} session=${sessionId}: занятие ещё не выпущено — открываем карту курса`);
+    ctx.push('/learning-v2/course');
+    return;
+  }
+  console.log(`${LOG} by_ordinals from=${from} session=${sessionId} — запускаем общим путём`);
+  await launchHomeContinueV2({
+    id: sessionId,
+    lessonOrdinal: String(lessonOrdinal),
+    sessionOrdinal: String(sessionOrdinal),
+    releaseEnvironment: 'production',
+    releaseSeasonId: 'learning-v2',
+    // зачем: уже пройденное занятие открывается повтором (как с карты курса) — вызывающий знает это по своему прогрессу
+    runKind: input.repeat ? 'repeat' : 'initial',
+  }, ctx);
+}
+
 export function resetHomeContinueV2LaunchForTests(): void {
   setLaunchInFlight(false);
 }

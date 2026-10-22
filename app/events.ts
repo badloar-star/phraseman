@@ -240,6 +240,13 @@ export type AppEventMap = {
    * игрока — оба места держат сердце в согласии через это событие, без лишних чтений.
    */
   profile_like_changed: { targetUid: string; liked: boolean };
+  /**
+   * зачем (координатор 22.10, для ЯДРА и «Урока вместе»): сервер ПРИНЯЛ засчитывание обязательного занятия Learning V2 и
+   * квитанция легла на диск. mutationId — серверный (тот же, из которого строится id документа inbox), повтор того же
+   * mutationId возможен при перезапуске синхронизации — слушатели дедуплицируют по нему. awardedAtMs — время, когда
+   * клиент получил принятие (серверное время награды в ответ не приходит).
+   */
+  learning_v2_session_credited: { sessionId: string; mutationId: string; awardedAtMs: number };
 };
 
 /** Canonical locale payload for `action_toast` without duplicating field mapping. */

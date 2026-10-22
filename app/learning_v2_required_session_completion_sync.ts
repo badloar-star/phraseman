@@ -15,6 +15,7 @@ import {
 } from './interactive_network_quiet';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId } from './stable_id';
+import { emitAppEvent } from './events';
 import {
   canonicalJsonV1,
   hashCanonicalBody,
@@ -63,6 +64,22 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
 const RECEIPT_KEY = (scope: ProgressAccountScope, mutationId: string): string =>
   `v2:required-session-completion-receipt:v1:${scope.accountScopeHash}:g${scope.generation}:${encodeURIComponent(mutationId)}`;
+
+/**
+ * зачем (координатор 22.10, просьба ЯДРА): id документа users/{stableUid}/v2_required_session_completion_inbox/{id}.
+ * Формула обязана совпадать с inboxDocumentId в functions/src/learning_v2/required_session_completion_callable.ts —
+ * обе стороны считают одной общей hashCanonicalBody; совпадение держит тест learning_v2_session_credited_event.
+ */
+export function requiredSessionCompletionInboxDocumentIdV1(input: Readonly<{
+  progressAccountScopeHash: string;
+  mutationId: string;
+}>): string {
+  return `rsciv1_${hashCanonicalBody({
+    schemaVersion: 'learning-v2-required-session-completion-inbox-key.v1',
+    progressAccountScopeHash: input.progressAccountScopeHash,
+    mutationId: input.mutationId,
+  })}`;
+}
 
 interface CompletionTransportBridgeV1 {
   readonly schemaVersion: 'learning-v2-required-session-completion-transport-bridge.v1' |
@@ -584,6 +601,8 @@ Promise<RequiredSessionCompletionSyncAttempt> => {
       const rejections = new Map<string, Omit<CompletionProtocolRejectionV1,
         'rejectionFingerprint'>>();
       const pendingServerCoordinates = new Map<string, ProgressOutboxIdentity>();
+      // зачем (координатор 22.10): событие learning_v2_session_credited уходит только после того, как принятие легло на диск.
+      const creditedSessions = new Map<string, Readonly<{ sessionId: string; mutationId: string; awardedAtMs: number }>>();
       const flusher = createProgressOutboxFlusher({
         scope,
         repository,
@@ -635,6 +654,11 @@ Promise<RequiredSessionCompletionSyncAttempt> => {
           const walletRewardRequest = server.walletRewardRequest === null
             ? null
             : parseServerWalletRewardRequest(server.walletRewardRequest);
+          creditedSessions.set(item.mutationId, Object.freeze({
+            sessionId: payload.canonicalSessionId,
+            mutationId,
+            awardedAtMs: Date.now(),
+          }));
           bridges.set(item.mutationId, Object.freeze({
             schemaVersion: 'learning-v2-required-session-completion-transport-bridge.v2',
             localMutationId: item.mutationId,
@@ -707,7 +731,17 @@ Promise<RequiredSessionCompletionSyncAttempt> => {
         scope,
         identity,
         bridge,
-      ));
+      )).then((persisted) => {
+        const credited = creditedSessions.get(identity.mutationId);
+        creditedSessions.delete(identity.mutationId);
+        if (!credited) {
+          console.warn('[V2-SESSION-CREDITED] skip', JSON.stringify({ localMutationId: identity.mutationId, reason: 'no_accepted_submit_in_this_flush' })); // guard-ok: ранний выход пишет причину
+          return persisted;
+        }
+        console.log('[V2-SESSION-CREDITED] emit', JSON.stringify(credited)); // guard-ok: одна строка на засчитанное занятие
+        emitAppEvent('learning_v2_session_credited', credited);
+        return persisted;
+      });
     },
     maxItems: 8,
     // The surrounding lease must not detach a still-live native callable on a

@@ -15,7 +15,8 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
-import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import ScreenBackButton, { SCREEN_BACK_RESERVED, SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang } from '../constants/i18n';
 import { useLearningV2UnlockedLessonWordsV1 } from '../hooks/use_learning_v2_unlocked_lesson_words_v1';
@@ -98,7 +99,6 @@ export default function LearningV2LessonWordsScreen() {
       <View style={[styles.screen, { paddingTop: insets.top }]} testID="learning-v2-lesson-words">
         <ContentWrap>
           <View style={styles.header}>
-            <PracticeBackButton glass={glass} color={glass.text} testID="learning-v2-lesson-words-back" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={goBack} />
             <PracticeHeaderTitle glass={glass} title={s.words.title(lessonOrdinal)} />
           </View>
           <View style={styles.body}>
@@ -117,6 +117,8 @@ export default function LearningV2LessonWordsScreen() {
           ) : null}
         </ContentWrap>
       </View>
+      {/* зачем (закон владельца 22.10: «назад везде в одном месте»): общая кнопка слоем от верха экрана, вне отступа и ContentWrap */}
+      <ScreenBackButton screen="learning_v2_lesson_words" testID="learning-v2-lesson-words-back" accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={goBack} />
     </ScreenGradient>
   );
 }
@@ -124,7 +126,8 @@ export default function LearningV2LessonWordsScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   // шапка основного курса «Слова урока»: «‹» и заголовок 20/700, поля 12, сверху 12
-  header: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 12, paddingTop: 12 },
+  // зачем (закон «назад в одном месте»): строка высотой с общую кнопку, заголовок справа от неё и по её центру (как .topbar макета)
+  header: { flexDirection: 'row', alignItems: 'center', height: SCREEN_BACK_SIZE, paddingLeft: SCREEN_BACK_RESERVED, paddingRight: 12 },
   body: { flex: 1 },
   empty: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 },
   emptyText: { fontSize: 16, lineHeight: 22, textAlign: 'center' },

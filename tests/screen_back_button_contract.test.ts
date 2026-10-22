@@ -74,7 +74,7 @@ describe('кнопка «назад»: одна и в одном месте', ()
     expect(own.filter((rel) => !allowed.has(rel))).toEqual([]);
     // Переведённый файл обязан уйти из базы (иначе база не уменьшается и долг не виден).
     expect(baseline.files.filter((rel) => !own.includes(rel))).toEqual([]);
-    expect(baseline.files.length).toBeLessThanOrEqual(78); // потолок — только вниз (22.10: 80 → 78 — «Сегодня», теория)
+    expect(baseline.files.length).toBeLessThanOrEqual(77); // потолок — только вниз (22.10: 80 → 77 — «Сегодня», теория, слова урока)
   });
 
   it('экраны, взявшие ScreenBackButton, не держат рядом свою кнопку «назад»', () => {

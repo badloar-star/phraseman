@@ -23,7 +23,8 @@ describe('«Слова» Сезона → слова этого урока', () 
     expect(screen).toContain("import { WordList, type Word } from './lesson_words';");
     expect(screen).toContain('<WordList words={listWords as Word[]} learnedCounts={NO_COUNTS} lang={lang} lessonId={lessonOrdinal} flat />');
     expect(screen).toContain('s.words.title(lessonOrdinal)');
-    expect(screen).toContain('<PracticeBackButton');
+    // 22.10 (закон владельца «назад везде в одном месте»): «‹» — общая ScreenBackButton
+    expect(screen).toContain('<ScreenBackButton');
     expect(screen).toContain('useLearningV2UnlockedLessonWordsV1(scope, { includeAuthoringPreview: __DEV__ })');
     expect(list).toContain('export function WordList(');
     expect(list).toContain("const sections = flat ? [{ title: '', data: words }] : groupByPOS(words, lang);");

@@ -27,7 +27,6 @@
     "app/flashcards_voice_picker.tsx",
     "app/hint.tsx",
     "app/language_welcome.tsx",
-    "app/learning_v2_lesson_words.tsx",
     "app/lesson1.tsx",
     "app/lesson_complete.tsx",
     "app/lesson_help.tsx",

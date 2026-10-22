@@ -5,14 +5,16 @@
 // ключевая фраза эпизода внизу; текущий эпизод — полоска прогресса по нижнему краю; закрытый — приглушён затемнением. Карта экзамена — фиолетовая
 // «печать» с трофеем и названием. Размеры — из SEASON_CAROUSEL; цвета градиента приходят готовыми (season_art), текст на карте белый в обеих темах.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../../SafeLinearGradient';
 import type { SeasonArt } from './season_art';
 import { SEASON_CAROUSEL } from './season_carousel_layout';
 import type { SeasonCardState } from './season_course_model';
+import type { SeasonStarTones } from './season_star_tones';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -21,6 +23,7 @@ const CHIP = 'rgba(0,0,0,0.24)'; // theme-exempt: метка с номером, 
 const TRACK = 'rgba(255,255,255,0.26)'; // theme-exempt: дорожка прогресса на карте, эталон `.h2c .prog`
 const MUTE = 'rgba(8,10,18,0.36)'; // theme-exempt: затемнение закрытой карты, эталон `.h2c.mute::after`
 const SEAL = 'rgba(255,255,255,0.16)'; // theme-exempt: печать экзамена, эталон `.h2c.cx .seal`
+const STARS_FADE_MS = 180; // мягкое появление звёзд после готовности (координатор 22.10: 150–200 мс)
 const SHADOW = '0 22px 40px -20px rgba(0,0,0,0.65)'; // theme-exempt: тень карты, эталон `.h2c { box-shadow }`
 
 export type SeasonCardFaceProps = Readonly<{
@@ -36,9 +39,18 @@ export type SeasonCardFaceProps = Readonly<{
   phrase: string;
   /** Доля пройденного текущего эпизода 0…1 — полоска внизу; null — полоски нет. */
   progress: number | null;
+  /** Звёзды результата 0–3 пройденного эпизода: ряд по центру карточки сразу под крупным номером (владелец 22.10); null — звёзд нет (текущий, закрытый). */
+  /** 'pending' — звёзды занятий ещё не подняты в память: звёзд нет (не «1»), после готовности они проявляются мягко. */
+  stars?: number | 'pending' | null;
+  starTones?: SeasonStarTones;
 }>;
 
-function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress }: SeasonCardFaceProps) {
+function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, stars = null, starTones }: SeasonCardFaceProps) {
+  // зачем (координатор 22.10): звёзды — мягкий fade 180 мс, когда подняты в память (без «прыжка» 1 → 3)
+  const starsShown = typeof stars === 'number' && starTones !== undefined;
+  const starsOpacity = useSharedValue(starsShown ? 1 : 0);
+  useEffect(() => { starsOpacity.value = withTiming(starsShown ? 1 : 0, { duration: STARS_FADE_MS }); }, [starsOpacity, starsShown]);
+  const starsFade = useAnimatedStyle(() => ({ opacity: starsOpacity.value }));
   if (kind === 'exam') {
     const colors = [art.from, art.to] as const; // зачем (закон владельца 22.10): печать экзамена — тёмный оттенок текущей темы, не фиксированный фиолетовый/бирюзовый
     return (
@@ -59,7 +71,14 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress }: S
         <Ionicons name={markIcon} size={12} color={WHITE} />
         <Text style={styles.markText}>{ordinal}</Text>
       </View>
-      <Text style={styles.phrase} numberOfLines={3}>{phrase}</Text>
+      {/* зачем (владелец 22.10, выбор варианта 3): по центру карточки крупный номер, под ним звёзды результата (у пройденных, в том числе у боковых; у текущей — полоска прогресса внизу, у закрытых звёзд нет);
+          название эпизода и «Эпизод N» — под каруселью. Строка звёзд занимает место на всех карточках, чтобы номера стояли на одной высоте и не прыгали, когда звёзды проявляются */}
+      <View style={styles.centerWrap} pointerEvents="none">
+        <Text style={styles.bigNumber}>{ordinal}</Text>
+        <Animated.View style={[styles.stars, starsFade]} testID="season-card-stars" accessibilityElementsHidden importantForAccessibility="no">
+          {typeof stars === 'number' && starTones ? [1, 2, 3].map((i) => <Ionicons key={i} name={i <= stars ? 'star' : 'star-outline'} size={18} color={i <= stars ? starTones.filled : starTones.empty} />) : null}
+        </Animated.View>
+      </View>
       {state === 'current' && progress !== null ? (
         <View style={styles.progTrack}><View style={[styles.progFill, { width: `${Math.round(Math.max(0, Math.min(1, progress)) * 100)}%` }]} /></View>
       ) : null}
@@ -83,6 +102,9 @@ const styles = StyleSheet.create({
   examCard: { padding: 14 },
   mark: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 5, height: 26, paddingHorizontal: 9, borderRadius: 13, backgroundColor: CHIP },
   markText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: WHITE },
+  centerWrap: { ...StyleSheet.absoluteFillObject, paddingHorizontal: 16, paddingBottom: 8, alignItems: 'center', justifyContent: 'center' },
+  bigNumber: { fontSize: 56, lineHeight: 60, fontWeight: '800', letterSpacing: -1, color: WHITE },
+  stars: { marginTop: 6, height: 18, flexDirection: 'row', justifyContent: 'center', gap: 4 },
   phrase: { fontSize: 22, lineHeight: 26, fontWeight: '700', letterSpacing: -0.3, color: WHITE },
   seal: { width: 46, height: 46, borderRadius: 14, backgroundColor: SEAL, alignItems: 'center', justifyContent: 'center' },
   progTrack: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 4, backgroundColor: TRACK },

@@ -13,15 +13,17 @@
 // Журнал [SEASON-WIRE]: вход, урок, глава, источник данных, куда ведёт каждое нажатие.
 // ════════════════════════════════════════════════════════════════════════════
 import { useRouter } from 'expo-router';
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { BackHandler, StyleSheet, View } from 'react-native';
 
 import { learningV2ChapterExamHrefV1, learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
 import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
 import { pickInitialLessonOrdinal } from '../../../app/learning_v2_last_lesson';
+import { isLearningV2SessionStarResultsHydrated, subscribeLearningV2SessionStarResults } from '../../../app/learning_v2_session_star_results_store';
 import { getStableId, peekStableId } from '../../../app/stable_id';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../../../modules/learning-v2/content/course_topology_v1';
-import { learningV2ChapterSceneV1, learningV2LessonArcV1, learningV2SessionTitleV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
+import { learningV2ChapterSceneV1, learningV2LessonArcV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
+import { learningV2SessionTitleForLocaleV1 } from '../../../modules/learning-v2/titles/session_titles_i18n_v1';
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
@@ -39,6 +41,7 @@ import LearningV2TheorySheet from '../LearningV2TheorySheet';
 import type { SeasonExamPanel } from './SeasonExpandedCard';
 import SeasonCourse from './SeasonCourse';
 import { SeasonListHeader } from './SeasonPickScreens';
+import { seasonTapTooSoon } from './season_tap_guard';
 import type { SeasonChapterInfo, SeasonEpisodeInfo } from './SeasonCourseView';
 import { seasonEpisodeLabel, seasonText } from './season_copy';
 import { seasonCardText } from './season_copy_card';
@@ -135,12 +138,18 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   }, [chapterCount, deck, lesson, newcomer, rows.length]);
 
   const ruAuthored = lang === 'ru';
+  // звёзды занятий подняты в память вкладкой «Уроки»? (подписка на хранилище, без чтений диска и сети)
+  const starsReady = useSyncExternalStore(subscribeLearningV2SessionStarResults, isLearningV2SessionStarResultsHydrated, isLearningV2SessionStarResultsHydrated);
   const episodeInfo = useCallback((card: SeasonEpisodeCard): SeasonEpisodeInfo => {
-    const authored = ruAuthored ? learningV2SessionTitleV1(card.lessonOrdinal, card.sessionOrdinal) : null;
+    // зачем (координатор 22.10): названия эпизодов на 8 языках — learningV2SessionTitleForLocaleV1 (10 · ПЕРЕВОДЧИК), нет перевода — null → «Эпизод N»
+    const authored = learningV2SessionTitleForLocaleV1(card.lessonOrdinal, card.sessionOrdinal, lang);
     const label = seasonEpisodeLabel(lang, card.sessionOrdinal);
     // фразы с переводом, слов и числа заданий в лёгком индексе нет — не выдумываем: карта показывает название занятия (или «Эпизод N»)
-    return { title: authored ?? label, phrase: authored ?? label, progress: null, taskLine: null, translation: null, words: [], tasksCount: null };
-  }, [lang, ruAuthored]);
+    // зачем (владелец 22.10): звёзды пройденного эпизода — из уже поднятых вкладкой «Уроки» звёзд занятий (память, без чтений); правило карты курса: у пройденного не меньше одной звезды, если результата нет
+    // зачем (владелец/координатор 22.10): пока вкладка не подняла звёзды в память — 'pending' (звёзд нет, не «1»), потом число; без прыжка 1 → 3
+    const stars = card.state === 'done' ? (starsReady ? Math.max(1, props.stars[card.id] ?? 1) : 'pending' as const) : null;
+    return { title: authored ?? label, phrase: authored ?? label, progress: null, taskLine: null, translation: null, words: [], tasksCount: null, stars };
+  }, [lang, props.stars, starsReady]);
   const chapterInfo = useCallback((chapterOrdinal: number): SeasonChapterInfo => ({
     scene: (ruAuthored ? learningV2ChapterSceneV1(lesson, chapterOrdinal) : null) ?? seasonText(lang, 'chapterOf', { n: chapterOrdinal, m: chapterCount }),
     icon: learningV2ChapterIonIcon(lesson, chapterOrdinal),
@@ -148,8 +157,8 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   const resumeLine = useMemo(() => {
     if (newcomer) return null;
     const card = deck.cards[deck.currentIndex];
-    return card && card.kind === 'episode' && ruAuthored ? learningV2SessionTitleV1(card.lessonOrdinal, card.sessionOrdinal) : null;
-  }, [deck, newcomer, ruAuthored]);
+    return card && card.kind === 'episode' ? learningV2SessionTitleForLocaleV1(card.lessonOrdinal, card.sessionOrdinal, lang) : null;
+  }, [deck, lang, newcomer]);
 
   const [allLessonsOpen, setAllLessonsOpen] = useState(false);
   const [theoryOpen, setTheoryOpen] = useState(false);
@@ -171,7 +180,11 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     onExpandedLesson(ordinal);
     setAllLessonsOpen(false);
   }, [lesson, onExpandedLesson]);
+  // зачем (проверка Optimistic UI 22.10): двойной тап по «Продолжить» (хаб, список, раскрытая карта — все идут сюда) не открывает окно запуска дважды
+  const primaryTapRef = useRef(0);
+  const classicTapRef = useRef(0);
   const onPrimary = useCallback((card: SeasonEpisodeCard) => {
+    if (seasonTapTooSoon(primaryTapRef, 'primary')) return;
     console.log(`${LOG} нажатие → занятие`, JSON.stringify({ lesson: card.lessonOrdinal, session: card.sessionOrdinal, chapter: card.chapterOrdinal, state: card.sourceState, to: 'onSessionPress(окно запуска/замок/Plus решает вкладка)' })); // guard-ok: куда ведёт нажатие
     onSessionPress(card.lessonOrdinal, card.sessionOrdinal, card.sourceState);
   }, [onSessionPress]);
@@ -222,12 +235,24 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   const { onLegacyLessons } = props;
   // зачем (владелец 22.10): «Классический курс» — отдельная плитка под обложкой, а не карточка «Ваши прошлые уроки»; ведёт туда же (onLegacyLessons)
   const onClassic = useCallback(() => {
+    if (seasonTapTooSoon(classicTapRef, 'classic')) return;
     console.log(`${LOG} нажатие → «Классический курс»`, JSON.stringify({ done: props.legacyProgress?.done ?? null, total: props.legacyProgress?.total ?? null, to: 'onLegacyLessons(классический курс)' })); // guard-ok: куда ведёт нажатие
     onLegacyLessons();
   }, [onLegacyLessons, props.legacyProgress]);
   const onNotFromStart = useCallback(() => openLessonsList('not_from_start'), [openLessonsList]);
   const onLessonPicker = useCallback(() => openLessonsList('lesson_pill'), [openLessonsList]);
   const onAllLessonsButton = useCallback(() => openLessonsList('tile_all_lessons'), [openLessonsList]);
+
+  // зачем: аппаратная «назад» на списке уроков закрывает список (как кнопка), а не уводит с вкладки
+  useEffect(() => {
+    if (!allLessonsOpen) return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log(`${LOG} аппаратная «назад» из «Все уроки»`, JSON.stringify({ to: 'хаб' })); // guard-ok: куда ведёт нажатие
+      setAllLessonsOpen(false);
+      return true;
+    });
+    return () => sub.remove();
+  }, [allLessonsOpen]);
 
   if (allLessonsOpen) {
     return (
@@ -275,6 +300,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         onAllLessons={onAllLessonsButton}
         onClassic={onClassic}
         classicLabel={props.legacyLessonsLabel}
+        classicValue={props.legacyProgress ? seasonText(lang, 'doneOf', { k: props.legacyProgress.done, n: props.legacyProgress.total }) : null}
         onWords={onWords}
         onTheory={onTheory}
         examInfo={SEASON_CHAPTER_EXAM_ENABLED ? examInfo : undefined}

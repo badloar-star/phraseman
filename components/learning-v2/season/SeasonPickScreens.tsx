@@ -74,7 +74,7 @@ function Shell(props: Readonly<{ screen: string; kicker: string; title: string; 
   );
 }
 
-function Row(props: Readonly<{ state: SeasonRowState; badge: IonName | number; title: string; sub?: string | null; tag?: string | null; onPress: () => void; testID: string; tall?: boolean }>) {
+function Row(props: Readonly<{ state: SeasonRowState; badge: IonName | number; title: string; sub?: string | null; tag?: string | null; stars?: number | null; hideTrailing?: boolean; onPress: () => void; testID: string; tall?: boolean }>) {
   const g = useLv2Glass();
   const { state } = props;
   const cur = state === 'cur';
@@ -94,7 +94,14 @@ function Row(props: Readonly<{ state: SeasonRowState; badge: IonName | number; t
         <Text style={[styles.rowTitle, { color: g.text, opacity: lock ? 0.55 : 1 }]} numberOfLines={2}>{props.title}</Text>
         {props.sub ? <Text style={[styles.rowSub, { color: g.secondary }]} numberOfLines={1}>{props.sub}</Text> : null}
       </View>
-      {props.tag ? <Text style={[styles.tag, { color: g.accentTextSafe }]}>{props.tag}</Text>
+      {props.stars != null ? (
+        // зачем (владелец 22.10): у пройденных справа звёзды результата вместо галочки — цвет акцента темы, пустые мягче
+        <View style={styles.stars} testID={`${props.testID}-stars`} accessibilityElementsHidden importantForAccessibility="no">
+          {[1, 2, 3].map((i) => <Ionicons key={i} name={i <= (props.stars ?? 0) ? 'star' : 'star-outline'} size={18} color={i <= (props.stars ?? 0) ? g.accentGraphic : lv2Mix(g.opaqueCard, g.accentGraphic, 0.4)} />)}
+        </View>
+      )
+        : props.tag ? <Text style={[styles.tag, { color: g.accentTextSafe }]}>{props.tag}</Text>
+        : props.hideTrailing ? null
         : lock ? <Ionicons name="lock-closed" size={18} color={g.secondary} />
         : props.badge === 'checkmark' && !props.sub ? null
         : <Ionicons name="chevron-forward" size={18} color={cur ? g.accentTextSafe : g.secondary} />}
@@ -157,10 +164,17 @@ export const SeasonChapterEpisodesScreen = memo(function SeasonChapterEpisodesSc
       {items.map(({ card, index }) => {
         const state: SeasonRowState = card.state === 'done' ? 'done' : card.state === 'current' ? 'cur' : 'lock';
         const exam = card.kind === 'exam';
+        const info = exam ? null : props.episodeInfo(card);
+        // 'pending' — звёзды ещё не подняты: слева номер, справа пусто (без галочки и без «1»); число — звёзды
+        const pending = info !== null && info.stars === 'pending';
+        const stars = info && typeof info.stars === 'number' ? info.stars : null;
         return (
           <Row key={card.id} testID={`season-episode-row-${card.sessionOrdinal}${exam ? '-exam' : ''}`} state={state}
-            badge={exam ? 'trophy' : state === 'done' ? 'checkmark' : state === 'cur' ? 'play' : card.sessionOrdinal}
-            title={exam ? seasonText(lang, 'exam') : props.episodeInfo(card).title}
+            // у пройденного со звёздами слева номер эпизода, справа звёзды; без звёзд (экзамен, нет данных) — прежняя галочка
+            badge={exam ? 'trophy' : state === 'done' ? (stars !== null || pending ? card.sessionOrdinal : 'checkmark') : state === 'cur' ? 'play' : card.sessionOrdinal}
+            hideTrailing={pending}
+            stars={stars}
+            title={exam ? seasonText(lang, 'exam') : (info ? info.title : '')}
             tag={state === 'cur' ? seasonCardText(lang, 'nextTag') : null}
             onPress={() => props.onPickCard(index)} />
         );
@@ -188,5 +202,6 @@ const styles = StyleSheet.create({
   rowText: { flex: 1, paddingVertical: 8 },
   rowTitle: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   rowSub: { marginTop: 1, fontSize: 13, lineHeight: 17 },
+  stars: { flexDirection: 'row', gap: 2 },
   tag: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
 });

@@ -6,8 +6,8 @@
 // Экзамен главы: карта и раскрытая карта рисуются, а действия «Сдать экзамен» и «Открыть экзаменом главы» — только при SEASON_CHAPTER_EXAM_ENABLED (по умолчанию выключен,
 // логики экзамена в коде ещё нет, её сделает Learning V2).
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { BackHandler, StyleSheet, View } from 'react-native';
 
 import { SeasonChapterEpisodesScreen, SeasonChaptersScreen } from './SeasonPickScreens';
 import SeasonCourseView, { type SeasonCourseViewProps } from './SeasonCourseView';
@@ -123,6 +123,18 @@ function SeasonCourse(props: SeasonCourseProps) {
     refocus(index);
     setExpanded(index);
   }, [deck.cards, refocus]);
+
+  // зачем (проверка 22.10): аппаратная «назад» на полноэкранных списках ведёт на шаг назад (эпизоды → главы → хаб), а не уводит с вкладки — как кнопка ScreenBackButton
+  useEffect(() => {
+    if (!screen) return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log(`${LOG} аппаратная «назад» из списка`, JSON.stringify({ from: screen.kind, to: screen.kind === 'episodes' ? 'главы' : 'хаб' })); // guard-ok: куда ведёт нажатие
+      if (screen.kind === 'episodes') setScreen({ kind: 'chapters' });
+      else { setScreen(null); refocus(selected); }
+      return true;
+    });
+    return () => sub.remove();
+  }, [refocus, screen, selected]);
 
   if (screen && screen.kind === 'chapters') {
     return (

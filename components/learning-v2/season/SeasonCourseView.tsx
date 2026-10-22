@@ -20,6 +20,7 @@ import SeasonCarousel from './SeasonCarousel';
 import SeasonNavTiles from './SeasonNavTiles';
 import SeasonCardFace from './SeasonCardFace';
 import { hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
+import { seasonStarTones } from './season_star_tones';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText } from './season_copy_card';
 import {
@@ -54,6 +55,9 @@ export type SeasonEpisodeInfo = Readonly<{
   words: readonly string[];
   /** Число заданий (раскрытая карта: «20 заданий»); null — неизвестно. */
   tasksCount: number | null;
+  /** Звёзды результата 0–3 пройденного эпизода (владелец 22.10: «оценка пройденного урока — звёздочки»); null / нет — у эпизода звёзд нет (текущий, закрытый). */
+  /** 'pending' — звёзды занятий ещё не подняты в память (нет звёзд, не «1»). */
+  stars?: number | 'pending' | null;
 }>;
 
 export type SeasonChapterInfo = Readonly<{ scene: string; icon: IonName }>;
@@ -91,6 +95,8 @@ export type SeasonCourseViewProps = Readonly<{
   onClassic: () => void;
   /** Подпись кнопки классического курса (приходит от вкладки «Уроки»); нет — слово из словаря Сезона. */
   classicLabel?: string;
+  /** Прогресс классики одной строкой («12 из 50») для плитки; null — классику не начинали (владелец 22.10: «Показать в плитке»). */
+  classicValue?: string | null;
   onWords: () => void;
   onTheory: () => void;
 }>;
@@ -116,6 +122,8 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   // зачем (закон владельца 22.10): обложка и карты — оттенки текущей темы
   const themeHue = hexHue(g.accent);
   const heroArt = seasonThemedArt(themeHue, heroChapter, 0, theme);
+  // зачем (владелец 22.10, 4 · ТЕМЫ 17a7af053): звёзды результата на карточках — оттенки текущей темы, цвета только из seasonStarTones
+  const starTones = useMemo(() => seasonStarTones(themeHue), [themeHue]);
 
   const selectedCard = deck.cards[selected] ?? currentCard;
   const sectionInfo = props.chapterInfo(selectedCard ? selectedCard.chapterOrdinal : heroChapter);
@@ -133,8 +141,8 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
       );
     }
     const ep = props.episodeInfo(card);
-    return <SeasonCardFace kind="episode" state={card.state} ordinal={card.sessionOrdinal} art={art} dark={dark} glyph={info.icon} phrase={ep.phrase} progress={ep.progress} />;
-  }, [dark, deck.cards, lang, themeHue, props, theme]);
+    return <SeasonCardFace kind="episode" state={card.state} ordinal={card.sessionOrdinal} art={art} dark={dark} glyph={info.icon} phrase={ep.phrase} progress={ep.progress} stars={card.state === 'done' ? ep.stars ?? null : null} starTones={starTones} />;
+  }, [dark, deck.cards, lang, starTones, themeHue, props, theme]);
 
   const labelFor = useCallback((index: number) => {
     const card = deck.cards[index];
@@ -202,8 +210,10 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
       <SeasonNavTiles
         allChaptersLabel={seasonCardText(lang, 'allChapters')}
+        allChaptersDisabled={deck.chapters.length === 0}
         allLessonsLabel={seasonCardText(lang, 'allLessons')}
         classicLabel={props.classicLabel ?? seasonCardText(lang, 'classicCourse')}
+        classicValue={props.classicValue ?? null}
         onAllChapters={props.onAllChapters}
         onAllLessons={props.onAllLessons}
         onClassic={props.onClassic}
@@ -233,6 +243,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
       <View style={styles.caption} testID="season-caption">
         <Text style={[styles.captionKicker, { color: g.secondary }]}>{caption.kicker}</Text>
+        {/* зачем (владелец 22.10, выбор варианта 3): на карточке только номер и звёзды — «Эпизод N» и название эпизода здесь, под каруселью */}
         <Text style={[styles.captionTitle, { color: g.text }]} numberOfLines={3}>{caption.title}</Text>
       </View>
 

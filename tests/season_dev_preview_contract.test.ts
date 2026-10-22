@@ -86,6 +86,8 @@ async function main(): Promise<void> {
   assert.ok(!/fetch\(|httpsCallable|getDoc|firestore|AsyncStorage/i.test(route), "у превью нет сети и хранилища");
   assert.ok(!/\(tabs\)\/lessons/.test(route), "боевая вкладка «Уроки» не подменяется");
   assert.match(route, /setDevAppearance\(wanted\)/, "тема ссылкой — только в памяти");
+  // зачем (владелец 22.10 выбрал вариант 3): параметра &titleLayout у превью больше нет
+  assert.ok(!/titleLayout/.test(route), "параметра titleLayout в превью нет");
   const fixtures = read("components/learning-v2/season/season_preview_fixtures.ts");
   assert.ok(!/fetch\(|httpsCallable|getDoc|firestore|AsyncStorage/i.test(fixtures), "моки не ходят в сеть");
 

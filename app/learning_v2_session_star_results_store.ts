@@ -157,6 +157,14 @@ export function getLessonBestStars(
   return validStars(stars) ? stars : undefined;
 }
 
+/**
+ * Подняты ли звёзды в память (hydrate или запись уже отработали для какого-то аккаунта).
+ * зачем (координатор 22.10, Сезон): карточки и список эпизодов рисуют звёзды ТОЛЬКО после этого — до подъёма у пройденных вместо звёзд ничего, без «прыжка» 1 → 3.
+ */
+export function isLearningV2SessionStarResultsHydrated(): boolean {
+  return memoryScopeHash !== null;
+}
+
 export function subscribeLearningV2SessionStarResults(
   listener: () => void,
 ): () => void {

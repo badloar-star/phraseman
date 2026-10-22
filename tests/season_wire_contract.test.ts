@@ -20,7 +20,7 @@ describe('Сезон во вкладке «Уроки»', () => {
   it('данные курса реальные: строки прогресса, колода, названия из плана; моков нет', () => {
     expect(wire).toContain('buildLearningV2CourseAccordionMapFromPreparedProgressV1');
     expect(wire).toContain('buildSeasonDeck');
-    expect(wire).toContain('learningV2SessionTitleV1');
+    expect(wire).toContain('learningV2SessionTitleForLocaleV1');
     expect(wire).not.toContain('season_preview_fixtures');
   });
   it('нажатия: эпизод → onSessionPress, «Все уроки» с классическим курсом, «Слова», «Теория»', () => {
@@ -149,5 +149,101 @@ describe('Сезон: хаб урока — три плитки и полноэ�
     expect(wire).not.toContain('SeasonLegacyCard');
     expect(wire).not.toContain('legacyCard=');
     expect(wire).toContain('onLegacy={props.onLegacyLessons}');
+  });
+});
+
+describe('Сезон: прогресс классики на плитке и звёзды результата (владелец 22.10)', () => {
+  const tiles2 = readSource('components/learning-v2/season/SeasonNavTiles.tsx');
+  const face = readSource('components/learning-v2/season/SeasonCardFace.tsx');
+  const picks2 = readSource('components/learning-v2/season/SeasonPickScreens.tsx');
+  const view4 = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+  it('«Классический курс»: прогресс «12 из 50» одной строкой на плитке из уже загруженного прогресса; высота 58, шрифт не ужимается', () => {
+    expect(wire).toContain("classicValue={props.legacyProgress ? seasonText(lang, 'doneOf', { k: props.legacyProgress.done, n: props.legacyProgress.total }) : null}");
+    expect(view4).toContain('classicValue={props.classicValue ?? null}');
+    expect(tiles2).toContain('testID={`${testID}-value`}');
+    expect(tiles2).toMatch(/tile: \{ height: 58,/);
+    expect(tiles2).not.toContain('adjustsFontSizeToFit');
+    expect(tiles2).not.toMatch(/borderWidth|borderColor/);
+    expect(wire).not.toMatch(/getDoc|firestore|fetch\(/i);
+  });
+  it('звёзды: у пройденных — из звёзд занятий в памяти (не меньше одной), цвета seasonStarTones; в списке эпизодов справа вместо галочки', () => {
+    expect(wire).toContain("const stars = card.state === 'done' ? (starsReady ? Math.max(1, props.stars[card.id] ?? 1) : 'pending' as const) : null;");
+    expect(wire).toContain('useSyncExternalStore(subscribeLearningV2SessionStarResults, isLearningV2SessionStarResultsHydrated');
+    expect(view4).toContain('seasonStarTones(themeHue)');
+    expect(view4).toContain("stars={card.state === 'done' ? ep.stars ?? null : null} starTones={starTones}");
+    expect(face).toContain('testID="season-card-stars"');
+    expect(face).toContain("name={i <= stars ? 'star' : 'star-outline'}");
+    expect(face).toContain('starTones.filled');
+    expect(face).toContain('starTones.empty');
+    expect(picks2).toContain('-stars');
+    expect(picks2).toContain("(stars !== null || pending ? card.sessionOrdinal : 'checkmark')");
+    expect(picks2).toContain("info.stars === 'pending'");
+  });
+});
+
+describe('Сезон: карточка — крупный номер и звёзды по центру, название под каруселью (выбор владельца 22.10, вариант 3)', () => {
+  const flags2 = readSource('components/learning-v2/season/season_flags.ts');
+  const face2 = readSource('components/learning-v2/season/SeasonCardFace.tsx');
+  const view5 = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+  it('одна константа SEASON_CARD_TITLE_LAYOUT = 3; вариантов 1 и 2 и параметра превью в коде нет', () => {
+    expect(flags2).toContain('export const SEASON_CARD_TITLE_LAYOUT = 3 as const;');
+    expect(flags2).not.toContain('SeasonCardTitleLayout');
+    for (const src of [face2, view5, readSource('app/dev_season_preview.tsx'), wire]) expect(src).not.toContain('titleLayout');
+    expect(fs.existsSync(path.join(__dirname, '..', 'components/learning-v2/season/season_card_position.ts'))).toBe(false);
+  });
+  it('лицо карточки: по центру крупный номер, под ним звёзды (место под них на всех карточках — номера не прыгают); названия на карточке нет', () => {
+    expect(face2).toMatch(/centerWrap: \{[^}]*alignItems: 'center', justifyContent: 'center'/);
+    expect(face2).toContain('<Text style={styles.bigNumber}>{ordinal}</Text>');
+    expect(face2).toContain('testID="season-card-stars"');
+    expect(face2).toMatch(/stars: \{ marginTop: 6, height: 18,/);
+    expect(face2).not.toContain('season-card-title');
+    expect(face2).not.toContain('adjustsFontSizeToFit');
+  });
+  it('вид: под каруселью всегда «Эпизод N» и название выбранной карты (в том числе у экзамена)', () => {
+    expect(view5).toContain('<Text style={[styles.captionTitle, { color: g.text }]} numberOfLines={3}>{caption.title}</Text>');
+    expect(view5).not.toContain('selectedCard?.kind === \'exam\' ?');
+  });
+});
+
+describe('Сезон: Optimistic UI и крайние случаи хаба и списков (проверка 22.10)', () => {
+  const guard = readSource('components/learning-v2/season/season_tap_guard.ts');
+  const course2 = readSource('components/learning-v2/season/SeasonCourse.tsx');
+  const tiles3 = readSource('components/learning-v2/season/SeasonNavTiles.tsx');
+  const view6 = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+  it('двойной тап по «Продолжить» и «Классический курс» не открывает экран дважды; отказ пишет причину', () => {
+    expect(guard).toContain('SEASON_TAP_GUARD_MS = 700');
+    expect(guard).toContain('двойной тап проигнорирован');
+    expect(wire).toContain("seasonTapTooSoon(primaryTapRef, 'primary')");
+    expect(wire).toContain("seasonTapTooSoon(classicTapRef, 'classic')");
+  });
+  it('аппаратная «назад» закрывает полноэкранные списки на шаг назад, а не уводит с вкладки', () => {
+    expect(course2).toContain("BackHandler.addEventListener('hardwareBackPress'");
+    expect(wire).toContain("BackHandler.addEventListener('hardwareBackPress'");
+  });
+  it('нет ни одной главы — плитка «Все главы» приглушена; нет прогресса классики — значения на плитке нет; шрифт не ужимается', () => {
+    expect(view6).toContain('allChaptersDisabled={deck.chapters.length === 0}');
+    expect(tiles3).toContain('disabled={disabled}');
+    expect(tiles3).toContain('{value ? <Text');
+    expect(tiles3).toMatch(/label: \{[^}]*lineHeight: 15/);
+    expect(tiles3).toContain('numberOfLines={2}');
+  });
+  it('без сети: только локальные данные (колода, звёзды в памяти), спиннеров и чтений нет', () => {
+    const all = [course2, tiles3, view6, readSource('components/learning-v2/season/SeasonPickScreens.tsx')].join('\n');
+    expect(all).not.toMatch(/ActivityIndicator|fetch\(|httpsCallable|getDoc|firestore|AsyncStorage/i);
+  });
+});
+
+describe('Сезон: звёзды без прыжка, названия на 8 языках, название проявляется по свайпу (координатор 22.10)', () => {
+  const face3 = readSource('components/learning-v2/season/SeasonCardFace.tsx');
+  const store = readSource('app/learning_v2_session_star_results_store.ts');
+  it('звёзды рисуются только после подъёма в память (флаг хранилища), мягкий fade 180 мс; до этого — без звёзд', () => {
+    expect(store).toContain('export function isLearningV2SessionStarResultsHydrated(): boolean');
+    expect(face3).toContain('const STARS_FADE_MS = 180;');
+    expect(face3).toContain("typeof stars === 'number'");
+    expect(face3).toContain('withTiming(starsShown ? 1 : 0, { duration: STARS_FADE_MS })');
+  });
+  it('названия эпизодов — на языке интерфейса (10 · ПЕРЕВОДЧИК) с откатом к «Эпизод N»; в строке под «Продолжить» тоже', () => {
+    expect(wire).toContain('learningV2SessionTitleForLocaleV1(card.lessonOrdinal, card.sessionOrdinal, lang)');
+    expect(wire).not.toContain('learningV2SessionTitleV1(');
   });
 });

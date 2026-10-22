@@ -153,6 +153,7 @@ export type SeasonPreviewEpisodeInfo = Readonly<{
   translation: string | null;
   words: readonly string[];
   tasksCount: number | null;
+  stars: number | null;
 }>;
 
 /** Подписи эпизода: у текущего — «задание 6 из 20» и 30 % полоски (как в эталоне), у остальных — «20 заданий». */
@@ -168,6 +169,8 @@ export function seasonPreviewEpisodeInfo(lang: Lang, card: SeasonEpisodeCard, ne
     translation: ep.translation ?? null,
     words: ep.words ?? [],
     tasksCount: ep.tasks,
+    // образцы для Сверки: у пройденных 3 / 2 / 3 / 1 звезды по кругу (в бою — звёзды занятий из памяти)
+    stars: card.state === 'done' ? [3, 2, 3, 1][card.sessionOrdinal % 4]! : null,
   };
 }
 

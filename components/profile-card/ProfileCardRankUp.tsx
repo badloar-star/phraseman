@@ -26,6 +26,8 @@ import Svg, { Circle, Defs, Path, RadialGradient, Rect, Stop } from 'react-nativ
 import { DebugLogger } from '../../app/debug-logger';
 import { CoinImage } from './ProfileCardCoin';
 import { noAndroidOutline } from '../../constants/androidGlow';
+import { useShadowGlass } from '../v2/ShadowSurface';
+import { colorWithAlpha } from '../v2/plateAlpha';
 
 export const RANK_UP_DURATION_MS = 6500;
 const CLAMP = Extrapolation.CLAMP;
@@ -131,6 +133,10 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
   const halo = Math.round(coin * 1.9);
   const wave = coin + 6;
   const rays = 560;
+  // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): белые части удара — ударная волна и вспышка обычной
+  // визитки — «чернила поверх картинок» темы (mediaInk). Тёплое золото света монеты (лучи, ореол, искры, кант) — металл ранга, ждёт решения координатора.
+  const { mediaInk } = useShadowGlass();
+  const waveInk = useMemo(() => colorWithAlpha(mediaInk, 0.85), [mediaInk]);
   const sparksIn = useMemo(() => (pro ? sparks(12, 150, 20) : []), [pro]);
   const sparksOut = useMemo(() => (pro ? sparks(18, 120, 36) : []), [pro]);
 
@@ -217,7 +223,7 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
       <Animated.View
         style={[{
           position: 'absolute', left: cx - wave / 2, top: cy - wave / 2, width: wave, height: wave, borderRadius: wave / 2,
-          borderWidth: 3, borderColor: 'rgba(255,255,255,0.85)', // shadow-ok: ударная волна повышения ранга (анимация-эффект), не контейнер; guard-ok: ударная волна из макета (.up-wave), не контейнер // theme-exempt: иллюстрация повышения ранга на карточке профиля
+          borderWidth: 3, borderColor: waveInk, // shadow-ok: ударная волна повышения ранга (анимация-эффект), не контейнер; guard-ok: ударная волна из макета (.up-wave), не контейнер
           shadowColor: '#FFE6AA', shadowOpacity: 0.6, shadowRadius: 12, shadowOffset: { width: 0, height: 0 }, // theme-exempt: иллюстрация повышения ранга на карточке профиля
         }, wave1]}
       />
@@ -252,8 +258,8 @@ function RankUpStageFxBase({ t, width, height, cx, cy, coin, pro, fromRank, toRa
               </RadialGradient>
             ) : (
               <RadialGradient id="rankFlash" cx={cx} cy={cy} r={flashR} gradientUnits="userSpaceOnUse">
-                <Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.45} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
-                <Stop offset="0.45" stopColor="#FFFFFF" stopOpacity={0} />{/* theme-exempt: иллюстрация повышения ранга на карточке профиля */}
+                <Stop offset="0" stopColor={mediaInk} stopOpacity={0.45} />
+                <Stop offset="0.45" stopColor={mediaInk} stopOpacity={0} />
               </RadialGradient>
             )}
           </Defs>

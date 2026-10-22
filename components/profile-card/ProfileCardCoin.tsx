@@ -7,7 +7,7 @@
 // и её не обрезает.
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 
@@ -17,6 +17,8 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { PlusRingOverlay } from '../plus/PlusAvatarRing';
 import { gradientPoints } from './profile_card_looks';
 import { useLoop } from './useLoop';
+import { useShadowGlass } from '../v2/ShadowSurface';
+import { colorWithAlpha } from '../v2/plateAlpha';
 
 type Props = Readonly<{
   look: ProfileCardLook;
@@ -37,7 +39,7 @@ const SHEEN = gradientPoints(125);
 export function CoinImage({ rank, size }: { rank: number | null; size: number }) {
   if (rank === null) {
     // Ранг ещё неизвестен — нейтральный диск, а не выдуманная медная монета.
-    return <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: 'rgba(255,255,255,0.08)' }} />; // theme-exempt: иллюстрация монеты на карточке профиля
+    return <NullCoinDisc size={size} />;
   }
   const row = coinRankRowForDisplay(rank);
   return (
@@ -50,8 +52,29 @@ export function CoinImage({ rank, size }: { rank: number | null; size: number })
   );
 }
 
+/**
+ * Диск неизвестного ранга — «чернила поверх картинок» темы 8 %.
+ * зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): прежде — постоянный rgba белого с пометкой theme-exempt.
+ */
+function NullCoinDisc({ size }: { size: number }) {
+  const { mediaInk } = useShadowGlass();
+  return <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: colorWithAlpha(mediaInk, 0.08) }} />;
+}
+
+/** Тень монеты и кольца — тон тени темы (shadowTint) полной плотности; силу задаёт shadowOpacity, как прежде у чёрного. */
+function useCoinShade(): string {
+  const { shadowTint } = useShadowGlass();
+  return useMemo(() => colorWithAlpha(shadowTint, 1), [shadowTint]);
+}
+
 function Sheen({ rank, size, animate }: { rank: number; size: number; animate: boolean }) {
   const t = useLoop(3600, animate, { restAt: 0 });
+  // зачем (закон владельца 22.10): блик по силуэту — mediaInk темы 0 → 34 % → 0, а не постоянный белый
+  const { mediaInk } = useShadowGlass();
+  const sheen = useMemo(() => {
+    const clear = colorWithAlpha(mediaInk, 0);
+    return [clear, clear, colorWithAlpha(mediaInk, 0.34), clear, clear] as const;
+  }, [mediaInk]);
   const style = useAnimatedStyle(() => ({ opacity: interpolate(t.value, [0, 0.45, 1], [0, 1, 0]) }));
   return (
     <MaskedView
@@ -61,7 +84,7 @@ function Sheen({ rank, size, animate }: { rank: number; size: number; animate: b
     >
       <Animated.View style={[StyleSheet.absoluteFill, style]}>
         <LinearGradient
-          colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0.34)', 'rgba(255,255,255,0)', 'rgba(255,255,255,0)']} // theme-exempt: иллюстрация монеты на карточке профиля
+          colors={sheen}
           locations={[0, 0.32, 0.48, 0.62, 1]}
           start={SHEEN.start}
           end={SHEEN.end}
@@ -75,12 +98,13 @@ function Sheen({ rank, size, animate }: { rank: number; size: number; animate: b
 export function GoldRing({ size }: { size: number }) {
   const outer = size + 14;
   const gold = gradientPoints(145);
+  const shade = useCoinShade();
   return (
     <View
       pointerEvents="none"
       style={{
         position: 'absolute', left: -7, top: -7, width: outer, height: outer, borderRadius: outer / 2,
-        shadowColor: '#000', shadowOpacity: 0.7, shadowRadius: 24, shadowOffset: { width: 0, height: 24 }, // theme-exempt: иллюстрация монеты на карточке профиля
+        shadowColor: shade, shadowOpacity: 0.7, shadowRadius: 24, shadowOffset: { width: 0, height: 24 },
         elevation: 12,
       }}
     >
@@ -99,10 +123,11 @@ export function GoldRing({ size }: { size: number }) {
 function ProfileCardCoin({ look, rank, size, animate, testID, plus, plusSurface }: Props) {
   const float = useLoop(5500, animate && FLOAT_LOOKS.has(look), { yoyo: true, restAt: 0 });
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -7 * float.value }] }));
+  const shade = useCoinShade();
   const shadow = look === 'obs'
     ? null
     : Platform.select({
-        ios: { shadowColor: '#000', shadowOpacity: 0.6, shadowRadius: 17, shadowOffset: { width: 0, height: 18 } }, // theme-exempt: иллюстрация монеты на карточке профиля
+        ios: { shadowColor: shade, shadowOpacity: 0.6, shadowRadius: 17, shadowOffset: { width: 0, height: 18 } },
         default: null,
       });
   return (
@@ -114,7 +139,7 @@ function ProfileCardCoin({ look, rank, size, animate, testID, plus, plusSurface 
           pointerEvents="none"
           style={{
             position: 'absolute', left: size * 0.14, right: size * 0.14, top: size * 0.62, height: size * 0.34,
-            borderRadius: size, backgroundColor: 'rgba(0,0,0,0.35)', transform: [{ scaleY: 0.6 }], // theme-exempt: иллюстрация монеты на карточке профиля
+            borderRadius: size, backgroundColor: colorWithAlpha(shade, 0.35), transform: [{ scaleY: 0.6 }],
           }}
         />
       ) : null}

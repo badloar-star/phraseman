@@ -4,7 +4,7 @@
 // текст — в Про визитке», ведущий к покупке. Во время повышения ранга старая плашка
 // уезжает вверх, новая въезжает снизу (таймлайн ProfileCardRankUp).
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import ReanimatedView from 'react-native-reanimated';
 
@@ -17,6 +17,7 @@ import { PlusTag } from '../plus/PlusAvatarRing';
 import type { useRankChipStyles } from './ProfileCardRankUp';
 import type { ProfileCardLookTokens } from './profile_card_looks';
 import { PC, t4 } from './profile_card_copy';
+import { useProfileCardArtInk } from './profile_card_art_ink';
 
 type Props = Readonly<{
   lang: Lang;
@@ -46,6 +47,15 @@ function ProfileCardBodyBase({
   lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy, plus,
 }: Props) {
   const editable = canEditBio && !ceremony;
+  // зачем (закон владельца 22.10): белое поверх арта — mediaInk темы с прежними плотностями (profile_card_art_ink), не свои литералы
+  const art = useProfileCardArtInk();
+  const tone = useMemo(() => ({
+    glass: { backgroundColor: art.glass },
+    bio: { color: art.bio },
+    pen: { backgroundColor: art.pen },
+    lock: { backgroundColor: art.lock },
+    lockText: { color: art.soft },
+  }), [art]);
   const content = (
     <>
       <View style={styles.nameRow}>
@@ -77,7 +87,7 @@ function ProfileCardBodyBase({
       </View>
       {bioText ? (
         <View style={styles.bioRow}>
-          <Text testID="profile-card-bio" style={styles.bio}>{`«${bioText}»`}</Text>
+          <Text testID="profile-card-bio" style={[styles.bio, tone.bio]}>{`«${bioText}»`}</Text>
           {editable ? (
             <Pressable
               testID="profile-card-bio-edit"
@@ -87,7 +97,7 @@ function ProfileCardBodyBase({
               onPress={() => { hapticTap(); onEditBio(); }}
               style={styles.pen}
             >
-              <View style={styles.penInner}><Ionicons name="pencil" size={15} color="#FFFFFF" /></View>{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}
+              <View style={[styles.penInner, tone.pen]}><Ionicons name="pencil" size={15} color={art.ink} /></View>
             </Pressable>
           ) : null}
         </View>
@@ -98,10 +108,10 @@ function ProfileCardBodyBase({
           accessibilityLabel={t4(lang, PC.addBio)}
           onPress={() => { hapticTap(); onEditBio(); }}
           hitSlop={{ top: 2, bottom: 2 }} // зачем (аудит кнопок 22.10): пилюля 40 — зона нажатия до 44
-          style={styles.lock}
+          style={[styles.lock, tone.lock]}
         >
-          <Ionicons name="pencil" size={15} color="rgba(255,255,255,0.72)" />{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}
-          <Text style={styles.lockText}>{t4(lang, PC.addBio)}</Text>
+          <Ionicons name="pencil" size={15} color={art.soft} />
+          <Text style={[styles.lockText, tone.lockText]}>{t4(lang, PC.addBio)}</Text>
         </Pressable>
       ) : showLock && !ceremony ? (
         <Pressable
@@ -110,17 +120,17 @@ function ProfileCardBodyBase({
           accessibilityLabel={t4(lang, PC.lock)}
           onPress={() => { hapticTap(); onOpenBuy(); }}
           hitSlop={{ top: 2, bottom: 2 }} // зачем (аудит кнопок 22.10): пилюля 40 — зона нажатия до 44
-          style={styles.lock}
+          style={[styles.lock, tone.lock]}
         >
-          <Ionicons name="lock-closed-outline" size={15} color="rgba(255,255,255,0.72)" />{/* theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация) */}
-          <Text style={styles.lockText}>{t4(lang, PC.lock)}</Text>
+          <Ionicons name="lock-closed-outline" size={15} color={art.soft} />
+          <Text style={[styles.lockText, tone.lockText]}>{t4(lang, PC.lock)}</Text>
         </Pressable>
       ) : null}
     </>
   );
   return (
     <View style={styles.body} pointerEvents="box-none">
-      {tokens.glassBody ? <View style={styles.glass}>{content}</View> : content}
+      {tokens.glassBody ? <View style={[styles.glass, tone.glass]}>{content}</View> : content}
     </View>
   );
 }
@@ -132,8 +142,7 @@ const styles = StyleSheet.create({
   glass: {
     alignSelf: 'stretch', alignItems: 'center',
     paddingTop: 16, paddingHorizontal: 14, paddingBottom: 18, borderRadius: 28,
-    backgroundColor: 'rgba(255,255,255,0.14)', // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
-    // зачем (владелец 12.10, стиль «Тень»): стеклянная плашка «Ауры» без кромки — отделяет полупрозрачный белый тон на арте
+    // зачем (владелец 12.10, стиль «Тень»): стеклянная плашка «Ауры» без кромки — отделяет полупрозрачный белый тон на арте (tone.glass)
   },
   center: { alignItems: 'center' },
   nameRow: { alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
@@ -143,13 +152,13 @@ const styles = StyleSheet.create({
   },
   rankWrap: { marginTop: 10, alignItems: 'center', justifyContent: 'center', minHeight: 36 },
   bioRow: { marginTop: 12, maxWidth: 320, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  bio: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '500', color: 'rgba(255,255,255,0.86)', textAlign: 'center' }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+  bio: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '500', textAlign: 'center' },
   pen: { width: 44, height: 44, marginVertical: -10, marginRight: -10, alignItems: 'center', justifyContent: 'center' },
-  penInner: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.18)' }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+  penInner: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   lock: {
     marginTop: 12, minHeight: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 8,
-    backgroundColor: 'rgba(255,255,255,0.12)', // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация); зачем (владелец 12.10, стиль «Тень»): замок без hairline — тон 0.12 вместо 0.05 + кромка
-    // guard-ok: (.vz-lock hairline макета снят по приказу 12.10) // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+    // зачем (владелец 12.10, стиль «Тень»): замок без hairline — тон 12 % (tone.lock) вместо 5 % + кромка
+    // guard-ok: (.vz-lock hairline макета снят по приказу 12.10)
   },
-  lockText: { color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: '700', flexShrink: 1 }, // theme-exempt: текст и значки на арте визитки — белые поверх арта (иллюстрация)
+  lockText: { fontSize: 13, fontWeight: '700', flexShrink: 1 },
 });

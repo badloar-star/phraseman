@@ -60,15 +60,15 @@ import { usePlayerProfileSocial } from './profile-card/usePlayerProfileSocial';
 import { useSelfProfileCard } from './profile-card/useSelfProfileCard';
 import ReanimatedView from 'react-native-reanimated';
 import { noAndroidOutline } from '../constants/androidGlow';
+import type { GlassTokens } from '../constants/liquidGlassThemePalette';
+import { useShadowGlass } from './v2/ShadowSurface';
+import { colorWithAlpha } from './v2/plateAlpha';
 import { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 import { NATIVE_MODAL_DISMISS_GAP_MS } from '../app/safe_modal_navigation';
 import FriendCardStats from './friends_together/FriendCardStats';
 // зачем (координатор 22.10, tsc на HEAD): тип — прямо из модуля, где он объявлен, без переэкспорта через компонент
 import type { FriendCardStatsData } from '../app/friends_together/pair_card_stats';
 
-const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
-const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
-const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.14)'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
 
 const LOG = '[PROFILE-CARD]';
 
@@ -141,6 +141,27 @@ type BodyProps = {
   backInterceptRef?: React.MutableRefObject<(() => boolean) | null>;
 };
 
+/**
+ * Слои поверх визитки игрока — роли ТЕКУЩЕЙ темы: белое поверх обложки — mediaInk; круглые кнопки — mediaScrim 34 % с кантом mediaInk 14 %;
+ * баннер ранга — mediaInk 95 % с тёмным текстом пары темы; затемнения — scrim и mediaScrim 50 %; тени — shadowTint.
+ * зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»; координатор → МОМЕНТЫ, зона «Друзья/Сообщество»): прежде —
+ * постоянные белый и чёрный с пометкой theme-exempt. Вид тот же: mediaInk белый во всех темах, плотности прежние.
+ */
+function useCardOverlayTones(g: GlassTokens) {
+  return useMemo(() => {
+    const shadow = colorWithAlpha(g.shadowTint, 1);
+    return {
+      ink: g.mediaInk,
+      backdrop: g.scrim,
+      dim: colorWithAlpha(g.mediaScrim, 0.5),
+      shadow,
+      icon: { backgroundColor: colorWithAlpha(g.mediaScrim, 0.34), borderColor: colorWithAlpha(g.mediaInk, 0.14) },
+      banner: { backgroundColor: colorWithAlpha(g.mediaInk, 0.95), shadowColor: shadow },
+      bannerInk: g.isLight ? g.text : g.bg,
+    } as const;
+  }, [g]);
+}
+
 function PlayerProfileModalBody({
   player,
   myInfo,
@@ -152,6 +173,7 @@ function PlayerProfileModalBody({
   backInterceptRef,
 }: BodyProps) {
   const { lang } = useLang();
+  const overlay = useCardOverlayTones(useShadowGlass());
   const L = lang as Lang;
   const insets = useStableSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
@@ -303,15 +325,15 @@ function PlayerProfileModalBody({
       accessibilityLabel={label}
       hitSlop={4}
       onPress={onPress}
-      style={({ pressed }) => [styles.topIcon, { opacity: pressed ? 0.7 : 1 }]}
+      style={({ pressed }) => [styles.topIcon, overlay.icon, { opacity: pressed ? 0.7 : 1 }]}
     >
-      <Ionicons name={icon} size={20} color={EXEMPT_COLOR_1} />
+      <Ionicons name={icon} size={20} color={overlay.ink} />
     </Pressable>
   );
 
   return (
     <>
-      <Animated.View style={[styles.backdrop, { opacity: fadeAnim }]}>
+      <Animated.View style={[styles.backdrop, { backgroundColor: overlay.backdrop, opacity: fadeAnim }]}>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={closeLabel}
@@ -322,7 +344,7 @@ function PlayerProfileModalBody({
           testID="player-profile-modal-sheet"
           accessibilityViewIsModal
           accessibilityLabel={`${relationshipText}: ${player.name}`}
-          style={[styles.card, { height: cardHeight, bottom: cardBottom, backgroundColor: tokens.bg }, cardEnter]}
+          style={[styles.card, { height: cardHeight, bottom: cardBottom, backgroundColor: tokens.bg, shadowColor: overlay.shadow }, cardEnter]}
         >
           <View style={styles.stage} onLayout={onStageLayout}>
             {stage.width > 0 ? (
@@ -377,18 +399,18 @@ function PlayerProfileModalBody({
                   accessibilityLabel={closeLabel}
                   hitSlop={4}
                   onPress={onClose}
-                  style={({ pressed }) => [styles.topIcon, { opacity: pressed ? 0.7 : 1 }]}
+                  style={({ pressed }) => [styles.topIcon, overlay.icon, { opacity: pressed ? 0.7 : 1 }]}
                 >
-                  <Ionicons name="close" size={20} color={EXEMPT_COLOR_2} />
+                  <Ionicons name="close" size={20} color={overlay.ink} />
                 </Pressable>
               </View>
             </View>
 
             {visibleCeremony ? (
               <ReanimatedView.View testID="profile-card-rankup-banner" pointerEvents="none" style={[styles.bannerWrap, chipStyles.banner]}>
-                <View style={styles.banner}>
+                <View style={[styles.banner, overlay.banner]}>
                   <CoinImage rank={visibleCeremony.toRank} size={24} />
-                  <Text style={styles.bannerText}>
+                  <Text style={[styles.bannerText, { color: overlay.bannerInk }]}>
                     {`${t4(L, PC.newRank)}: ${coinRankTitle(visibleCeremony.toRank, L)}`}
                   </Text>
                 </View>
@@ -453,7 +475,7 @@ function PlayerProfileModalBody({
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={t4(L, PC.cancel)}
-            style={styles.dim2}
+            style={[styles.dim2, { backgroundColor: overlay.dim }]}
             onPress={() => setSheet('none')}
           />
         ) : null}
@@ -671,14 +693,13 @@ function PlayerProfileModal({ player, myInfo, onClose, onDismissed }: Props) {
 
 const styles = StyleSheet.create({
   modalFill: { flex: 1 },
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.58)' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+  backdrop: { flex: 1 },
   card: {
     position: 'absolute',
     left: 10,
     right: 10,
     borderRadius: CARD_RADIUS,
     overflow: 'hidden',
-    shadowColor: '#000', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
     shadowOpacity: 0.6,
     shadowRadius: 40, // guard-ok: одна тень визитки (.vz-card box-shadow 0 30 80)
     shadowOffset: { width: 0, height: 30 },
@@ -693,17 +714,15 @@ const styles = StyleSheet.create({
   topGroup: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44 },
   topIcon: {
     width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.34)', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
-    borderWidth: 1, borderColor: EXEMPT_COLOR_3, // guard-ok: .vz-ic hairline из макета shadow-ok: кромка круглой кнопки поверх обложки профиля из макета, не контейнер
+    borderWidth: 1, // guard-ok: .vz-ic hairline из макета shadow-ok: кромка круглой кнопки поверх обложки профиля из макета, не контейнер
   },
   bannerWrap: { position: 'absolute', top: 66, left: 0, right: 0, alignItems: 'center', zIndex: 13 },
   banner: {
     height: 38, borderRadius: 19, paddingLeft: 8, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 8,
-    backgroundColor: 'rgba(255,255,255,0.95)', // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
-    shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 15, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+    shadowOpacity: 0.35, shadowRadius: 15, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,
   },
-  bannerText: { color: '#111111', fontSize: 16, fontWeight: '700' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
-  dim2: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.5)' }, // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
+  bannerText: { fontSize: 16, fontWeight: '700' },
+  dim2: { ...StyleSheet.absoluteFillObject },
 });
 
 export default memo(PlayerProfileModal);

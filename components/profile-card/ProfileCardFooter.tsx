@@ -10,6 +10,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { coinRankTitle, COIN_RANK_MAX, type CoinRankRow } from '../../app/coin_rank_table_v1';
 import type { Lang } from '../../constants/i18n';
 import { buttonInk, ProfileCardButton, TwoLine } from './ProfileCardParts';
+import { useProfileCardArtInk } from './profile_card_art_ink';
 import type { ProfileCardLookTokens } from './profile_card_looks';
 import { formatCoins, PC, t4 } from './profile_card_copy';
 
@@ -35,18 +36,19 @@ function ProfileCardSelfFooterBase({
   lang, tokens, rank, next, isMaxRank, balance, eligible, busy, upgradingNow, proOwned, proPrice,
   onUpgrade, onOpenBuy, onOpenStyle,
 }: SelfProps) {
+  const art = useProfileCardArtInk();
   if (upgradingNow) {
     return (
       <View style={styles.foot}>
-        <ProfileCardButton testID="profile-card-upgrading" tone="off" label={t4(lang, PC.upgrading)} busy outerStyle={styles.flex1}>
-          <Text style={[styles.buttonText, { color: buttonInk('off', null) }]}>{t4(lang, PC.upgrading)}</Text>
+        <ProfileCardButton testID="profile-card-upgrading" tone="off" label={t4(lang, PC.upgrading)} busy outerStyle={styles.flex1} paint={art.button}>
+          <Text style={[styles.buttonText, { color: buttonInk('off', null, false, art.button) }]}>{t4(lang, PC.upgrading)}</Text>
         </ProfileCardButton>
       </View>
     );
   }
   const missing = balance !== null && next ? Math.max(0, next.priceToReach - balance) : null;
   const upTone = isMaxRank || !eligible ? 'off' : 'primary';
-  const upInk = buttonInk(upTone, tokens.primary);
+  const upInk = buttonInk(upTone, tokens.primary, false, art.button);
   const upSub = isMaxRank
     ? coinRankTitle(COIN_RANK_MAX, lang)
     : busy
@@ -54,11 +56,12 @@ function ProfileCardSelfFooterBase({
       : missing !== null && missing > 0
         ? `${t4(lang, PC.more2)} ${formatCoins(missing)}`
         : next ? formatCoins(next.priceToReach) : '—';
-  const altInk = buttonInk('alt', null);
+  const altInk = buttonInk('alt', null, false, art.button);
   return (
     <View style={styles.foot}>
       <ProfileCardButton
         testID="profile-card-upgrade-rank"
+        paint={art.button}
         tone={upTone}
         label={isMaxRank ? t4(lang, PC.maxRank) : `${t4(lang, PC.upgrade)} ${upSub}`}
         onPress={onUpgrade}
@@ -80,6 +83,7 @@ function ProfileCardSelfFooterBase({
       ) : proOwned ? (
         <ProfileCardButton
           testID="profile-card-style-open"
+          paint={art.button}
           tone="alt"
           label={`${t4(lang, PC.style)}, ${t4(lang, PC.free)}`}
           onPress={onOpenStyle}
@@ -91,6 +95,7 @@ function ProfileCardSelfFooterBase({
       ) : (
         <ProfileCardButton
           testID="profile-card-pro-open"
+          paint={art.button}
           tone="alt"
           label={`${t4(lang, PC.proCard)} ${formatCoins(proPrice)}`}
           onPress={onOpenBuy}
@@ -126,14 +131,16 @@ function ProfileCardOtherFooterBase({
   lang, tokens, showAddFriend, isFriend, requestSent, friendBusy, friendLabel, onFriendPress,
   canLike, liked, likeBusy, likeTotal, onLikePress,
 }: OtherProps) {
+  const art = useProfileCardArtInk();
   const friendTone = isFriend || requestSent ? 'alt' : 'primary';
   const friendOff = friendBusy || requestSent;
-  const friendInk = buttonInk(friendTone, tokens.primary, friendOff);
+  const friendInk = buttonInk(friendTone, tokens.primary, friendOff, art.button);
   return (
     <View style={styles.foot}>
       {showAddFriend ? (
         <ProfileCardButton
           testID="player-profile-add-friend"
+          paint={art.button}
           tone={friendTone}
           label={friendLabel}
           onPress={onFriendPress}
@@ -150,6 +157,7 @@ function ProfileCardOtherFooterBase({
       ) : null}
       <ProfileCardButton
         testID="player-profile-activity-like"
+        paint={art.button}
         tone="alt"
         label={t4(lang, PC.like)}
         selected={liked}
@@ -157,8 +165,8 @@ function ProfileCardOtherFooterBase({
         disabled={!canLike}
         outerStyle={showAddFriend ? styles.iconButton : styles.flex1}
       >
-        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={20} color={liked ? '#FF5C7A' : '#FFFFFF'} />{/* theme-exempt: подписи и сердце на арте визитки — белые поверх арта (иллюстрация) */}
-        <Text style={[styles.buttonText, { color: '#FFFFFF' }]}>{likeTotal.toLocaleString()}</Text>{/* theme-exempt: подписи и сердце на арте визитки — белые поверх арта (иллюстрация) */}
+        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={20} color={liked ? art.liked : art.ink} />
+        <Text style={[styles.buttonText, { color: art.ink }]}>{likeTotal.toLocaleString()}</Text>
       </ProfileCardButton>
     </View>
   );

@@ -13,7 +13,6 @@ import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-nativ
 import { CARDS_GLASS_DANGER, CardsGlassSurface, type CardsGlassTokens } from '../flashcards/CardsGlassKit';
 import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 
-const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.45)'; // theme-exempt: затемнение — тёмный скрим в любой теме
 
 /** Переключатель 50×30 из макета: заливка cta + тёмная «пуговка». */
 export function PackSwitch({ g, on, disabled = false }: { g: CardsGlassTokens; on: boolean; disabled?: boolean }) {
@@ -117,7 +116,7 @@ export function PackPopoverMenu({
         accessibilityRole="button"
         accessibilityLabel={closeLabel}
         onPress={onClose}
-        style={[StyleSheet.absoluteFill, { backgroundColor: EXEMPT_COLOR_1 }]}
+        style={[StyleSheet.absoluteFill, { backgroundColor: g.scrim }]} // затемнение — скрим текущей темы (закон владельца 22.10)
       />
       <View
         style={{

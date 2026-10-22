@@ -1,5 +1,5 @@
 {
-  "total": 248,
+  "total": 423,
   "files": {
     "components/home/HomeMistakesLockedSheet.tsx": 1,
     "components/home/v2/HomeV2Header.tsx": 3,
@@ -27,6 +27,11 @@
     "components/learning-v2/season/SeasonCourseView.tsx": 8,
     "components/learning-v2/season/SeasonExpandedCard.tsx": 9,
     "components/learning-v2/LearningV2ChapterExamResult.tsx": 2,
-    "components/learning-v2/learning_v2_task_theme_tokens.ts": 10
+    "components/learning-v2/learning_v2_task_theme_tokens.ts": 10,
+    "app/community_packs/ugcCardThemePresets.ts": 12,
+    "components/profile-card/ProfileCardBackdrop.tsx": 76,
+    "components/profile-card/ProfileCardCoin.tsx": 6,
+    "components/profile-card/ProfileCardRankUp.tsx": 15,
+    "components/profile-card/profile_card_looks.ts": 66
   }
 }

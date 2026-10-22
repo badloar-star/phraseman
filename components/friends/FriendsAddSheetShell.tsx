@@ -156,7 +156,7 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
       <SheetSwipeRoot>
       <View style={styles.root} onLayout={onRootLayout}>
         <Pressable style={StyleSheet.absoluteFill} onPress={dismiss} accessibilityLabel={closeLabel}>
-          <Animated.View style={[styles.backdrop, backdropStyle]} />
+          <Animated.View style={[styles.backdrop, { backgroundColor: glass.scrim }, backdropStyle]} />
         </Pressable>
         {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает шторку тем же dismiss, что фон и крестик; лист едет за пальцем */}
         <SheetSwipeClose name="friends-add" onClose={dismiss}>
@@ -213,7 +213,7 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
 
 const styles = StyleSheet.create({
   root: { flex: 1, justifyContent: 'flex-end' },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+  backdrop: { ...StyleSheet.absoluteFillObject }, // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): затемнение — скрим текущей темы (токен scrim), не зашитый чёрный
   sheet: {
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,

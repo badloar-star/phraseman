@@ -21,6 +21,7 @@ import { buttonInk, ProBadge, ProfileCardButton } from './ProfileCardParts';
 import { PROFILE_CARD_LOOKS } from './profile_card_looks';
 import { formatCoins, PC, t4 } from './profile_card_copy';
 import { useProfileSheetPaint } from './profile_card_sheet_paint';
+import { useProfileCardArtInk } from './profile_card_art_ink';
 import SheetSwipeClose from '../modal_fx/SheetSwipeClose';
 
 export type ProSheetMode = 'buy' | 'change';
@@ -70,6 +71,8 @@ function ProfileCardProSheetBase({
 }: Props) {
   const { width: windowWidth } = useWindowDimensions();
   const p = useProfileSheetPaint();
+  // зачем (закон владельца 22.10): имя на превью стиля — белое темы поверх арта (mediaInk), не свой литерал
+  const art = useProfileCardArtInk();
   const [selected, setSelected] = useState<ProfileCardProStyle>(currentStyle ?? PROFILE_CARD_DEFAULT_PRO_STYLE);
   useEffect(() => {
     setSelected(currentStyle ?? PROFILE_CARD_DEFAULT_PRO_STYLE);
@@ -110,7 +113,7 @@ function ProfileCardProSheetBase({
         <View pointerEvents="none" style={[styles.heroCoin, { left: heroWidth / 2 - 59, top: HERO_HEIGHT * 0.44 - 59 }]}>
           <ProfileCardCoin look={selected} rank={rank} size={118} animate={animate} />
         </View>
-        <Text style={styles.heroName}>{name}</Text>
+        <Text style={[styles.heroName, { color: art.ink }]}>{name}</Text>
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.heroEdge, { borderColor: tokens.edge, borderWidth: tokens.edgeWidth }]} />
       </View>
       <View style={styles.swatches}>
@@ -190,7 +193,7 @@ const styles = StyleSheet.create({
   hero: { height: HERO_HEIGHT, marginTop: 14, borderRadius: 28, overflow: 'hidden' },
   heroBadge: { position: 'absolute', left: 14, top: 14, zIndex: 12 },
   heroCoin: { position: 'absolute', width: 118, height: 118 },
-  heroName: { position: 'absolute', left: 0, right: 0, bottom: 14, textAlign: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: '700' }, // theme-exempt: имя на превью стиля — белое поверх арта (иллюстрация)
+  heroName: { position: 'absolute', left: 0, right: 0, bottom: 14, textAlign: 'center', fontSize: 16, fontWeight: '700' },
   heroEdge: { borderRadius: 28 }, // guard-ok: кант превью = кант визитки (1–1,5pt, полупрозрачный)
   swatches: { flexDirection: 'row', gap: 10, marginTop: 14, justifyContent: 'space-between' },
   swatchOuter: { flex: 1, maxWidth: 60, aspectRatio: 1 },

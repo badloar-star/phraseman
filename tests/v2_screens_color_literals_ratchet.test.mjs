@@ -15,6 +15,9 @@ const ZONE = [
   'modules/spire', 'components/spire', 'components/dialogs', 'components/learning-v2/season',
   'components/learning-v2/LearningV2ChaptersCourse.tsx', 'components/learning-v2/LearningV2ChapterExam',
   'components/learning-v2/learning_v2_task_theme_tokens.ts', 'components/streak', 'components/moments', 'components/friends_together',
+  // зона «Друзья / лента / Сообщество» (координатор → 8 · МОМЕНТЫ, аудит 4 · ТЕМЫ 22.10): вкладки, визитка игрока, наборы сообщества
+  'app/(tabs)/friends.tsx', 'app/(tabs)/community.tsx', 'components/friends', 'app/community_packs', 'app/community_pack_create.tsx',
+  'components/PlayerProfileModal.tsx', 'components/profile-card',
 ];
 const SKIP = /\.test\.|preview|fixtures|\.generated\.|v2_kit|KitLiquidGlass|plateTone/i;
 const reHex = /#(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{3,4})(?![0-9A-Za-z])/g;

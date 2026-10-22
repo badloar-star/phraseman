@@ -14,8 +14,8 @@ import type { SheetButtonPaint } from './profile_card_sheet_paint';
 export type ButtonTone = 'primary' | 'alt' | 'off';
 
 type ButtonProps = Readonly<{
-  /** Краски темы для кнопок в шторках; без них — белая кнопка на арте визитки. */
-  paint?: SheetButtonPaint;
+  /** Краски кнопки из темы: в шторках — краски шторки, на арте визитки — profileCardArtInk(…).button. */
+  paint: SheetButtonPaint;
   testID: string;
   tone: ButtonTone;
   label: string;
@@ -35,10 +35,9 @@ function ProfileCardButtonBase({
 }: ButtonProps) {
   const off = tone === 'off' || disabled;
   const gradient = tone === 'primary' && !off && fill ? fill : null;
-  // зачем (замечание владельца 10.10): в шторках кнопки — краски темы (paint); на арте визитки белое — иллюстрация.
-  const bg = paint
-    ? (off ? paint.offBg : tone === 'alt' ? paint.altBg : paint.primaryBg)
-    : off ? 'rgba(255,255,255,0.09)' : tone === 'alt' ? 'rgba(255,255,255,0.13)' : '#FFFFFF'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
+  // зачем (замечание владельца 10.10; закон 22.10 «цвета — строго цвета и оттенки текущей темы»): краски кнопки всегда из темы —
+  // в шторках краски шторки, на арте визитки белое темы (mediaInk); своей белой «иллюстрационной» ветки больше нет.
+  const bg = off ? paint.offBg : tone === 'alt' ? paint.altBg : paint.primaryBg;
   return (
     <V2Pressable
       testID={testID}
@@ -67,11 +66,13 @@ function ProfileCardButtonBase({
 
 export const ProfileCardButton = memo(ProfileCardButtonBase);
 
-export function buttonInk(tone: ButtonTone, fill: Readonly<{ text: string }> | null | undefined, disabled?: boolean, paint?: SheetButtonPaint): string {
-  if (paint) return tone === 'off' || disabled ? paint.offInk : tone === 'alt' ? paint.altInk : paint.primaryInk;
-  if (tone === 'off' || disabled) return 'rgba(255,255,255,0.55)'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
-  if (tone === 'alt') return '#FFFFFF'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
-  return fill?.text ?? '#111111'; // theme-exempt: кнопка на арте визитки без красок темы — белая поверх арта (иллюстрация)
+export function buttonInk(
+  tone: ButtonTone, fill: Readonly<{ text: string }> | null | undefined, disabled: boolean | undefined, paint: SheetButtonPaint,
+): string {
+  if (tone === 'off' || disabled) return paint.offInk;
+  if (tone === 'alt') return paint.altInk;
+  // градиентная главная кнопка вида визитки несёт подпись своего вида; без градиента (шторки, fill = null) — краска кнопки
+  return fill?.text ?? paint.primaryInk;
 }
 
 /** Двухстрочная подпись кнопки (.vz-2l): жирное название + мелкая цена. */

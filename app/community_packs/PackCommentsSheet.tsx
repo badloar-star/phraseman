@@ -67,7 +67,6 @@ import { registerCommunityPackAddRemote } from './packSocialFirestore';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { peekStableId } from '../stable_id';
 
-const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.58)'; // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
 
 type Props = {
   visible: boolean;
@@ -1026,7 +1025,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
 
           {/* Меню «···»: закрепить/скрыть — автору набора; удалить — своему; пожаловаться — всем. */}
           <Modal visible={!!menuFor} transparent animationType="fade" statusBarTranslucent onRequestClose={() => setMenuFor(null)}>
-            <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: EXEMPT_COLOR_1 }}>
+            <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: glass.scrim }}>{/* затемнение — скрим текущей темы (закон владельца 22.10) */}
               <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} onPress={() => setMenuFor(null)} style={{ flex: 1 }} />
               <View
                 testID="pack-comment-menu"

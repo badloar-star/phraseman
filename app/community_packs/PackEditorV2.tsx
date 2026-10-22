@@ -304,7 +304,7 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
   const neutralFill = shadowSheetGradient(g.isLight);
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="box-none" testID="ugc-pack-card-sheet">
-      <Animated.View entering={FadeIn.duration(260)} exiting={FadeOut.duration(200)} style={styles.dimLayer}>
+      <Animated.View entering={FadeIn.duration(260)} exiting={FadeOut.duration(200)} style={[styles.dimLayer, { backgroundColor: g.scrim }]}>
         <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} style={StyleSheet.absoluteFill} onPress={onClose} />
       </Animated.View>
       {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает лист карточки тем же onClose, что крестик и фон. Лист position:absolute — пока без следования за пальцем (PM-302) */}
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
   cardRowText: { flex: 1, minWidth: 0 },
   cardRowTitle: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   cardRowSub: { fontSize: 16, lineHeight: 21 },
-  dimLayer: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.6)' }, // theme-exempt: затемнение под шторкой — тёмный скрим в любой теме
+  dimLayer: { ...StyleSheet.absoluteFillObject }, // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): затемнение — скрим текущей темы (токен scrim), не зашитый чёрный
   sheet: { position: 'absolute', left: 0, right: 0, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingTop: 12, paddingHorizontal: 18 },
   sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
   grab: { width: 44, height: 5, borderRadius: 3, alignSelf: 'center', marginBottom: 20 },

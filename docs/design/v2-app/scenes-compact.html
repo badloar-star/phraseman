@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сцены — компактная высота</title>
+<style>
+/* ───────── PhraseMan 2.0 · все «Сцены» компактной высоты (владелец 22.10 через координатора) ─────────
+   «СЦЕНЫ НЕ ДОЛЖНЫ БЫТЬ ТАКИМИ ОГРОМНЫМИ С КУЧЕЙ ПУСТОТЫ. ПОКАЖИ МАКЕТЫ ВСЕХ СЦЕН НОВЫЕ, С УМЕНЬШЕННОЙ ВЫСОТОЙ».
+   Основа — утверждённые эталоны: Главная home-new-concepts.html (A «Сцена»), «Сегодня» today-scene-concepts.html (A),
+   Диалоги dialogs-scene-concepts.html, Пик peak-scene-v2.html (V2), Обучение course-hybrid-1-4.html (способ 2, «Сезон»).
+   Телефон 390 × 844 (Pixel 8 в dp). У каждой сцены три высоты: 1 ≈ 38 %, 2 ≈ 46 %, 3 ≈ 54 % экрана (320 / 392 / 456 dp, сетка 8).
+   Сцена идёт под строку статуса до самого верха (новый запрет владельца: полоса другого цвета под часами); лента четырёх
+   кнопок Главной — без тёмной подсветки по краям: плитки разделены тоном и скруглением. Классы с префиксом sc-, телефон — .ph. */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.sc-page { max-width: 1320px; margin: 0 auto; padding: 32px 24px 80px; }
+.sc-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.sc-lead { color: #A9A9AE; font-size: 15px; line-height: 22px; max-width: 900px; margin: 0 0 16px; }
+.sc-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 0; background: #101113; }
+.sc-seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.sc-seg button, .sc-pick { font: 600 14px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.sc-seg button.on { background: #ECECEE; color: #111214; }
+.sc-sum { color: #A9A9AE; font-size: 14px; }
+.sc-sum b { color: #ECECEE; }
+.sc-block { margin-top: 36px; }
+.sc-block h2 { font-size: 22px; line-height: 28px; margin: 0 0 4px; }
+.sc-block p { margin: 0 0 16px; color: #A9A9AE; font-size: 14px; line-height: 20px; }
+.sc-row { display: flex; flex-wrap: wrap; gap: 28px; }
+.sc-col { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.sc-pick { background: #1C1D21; font-size: 15px; padding: 10px 18px; }
+.sc-pick b { font-weight: 800; font-size: 17px; margin-right: 6px; }
+.sc-pick.on { background: #ECECEE; color: #111214; }
+
+/* ── телефон ── */
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; }
+.ph.dk { --bg: #0E171C; --card: #172329; --card2: #1D2B32; --tx: #FFFFFF; --sec: #9BB0B9; --sh: 0 12px 28px rgba(0, 0, 0, .38);
+  --st-top: oklch(.36 .08 214); --st-bot: oklch(.15 .05 222); --st-glow: oklch(.55 .10 200 / .85); --tab: rgba(23, 35, 41, .94); }
+.ph.lt { --bg: #F2F1F6; --card: #FFFFFF; --card2: #F6F5FA; --tx: #16141D; --sec: #6A6777; --sh: 0 10px 26px rgba(40, 30, 80, .12);
+  --st-top: oklch(.47 .14 282); --st-bot: oklch(.28 .10 276); --st-glow: oklch(.66 .13 300 / .9); --tab: rgba(255, 255, 255, .94); }
+.sc-scr { position: absolute; inset: 0; overflow: hidden; }
+.sc-sb { position: absolute; z-index: 6; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 26px 0 34px; font-size: 15px; font-weight: 600; color: #fff; }
+.sc-sb .sys { display: inline-flex; gap: 6px; align-items: center; }
+.sc-sb .sys i { display: block; background: #fff; border-radius: 2px; }
+
+/* ── сцена: от самого верха (под часами), скругление снизу ── */
+.sc { position: relative; height: var(--h); border-radius: 0 0 32px 32px; overflow: hidden; color: #fff;
+  background: radial-gradient(70% 60% at 18% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%); }
+.sc .glow { position: absolute; right: 0; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 70%); }
+.sc .art { position: absolute; right: -14px; filter: drop-shadow(0 24px 32px rgba(0, 0, 0, .45)); object-fit: contain; }
+.sc .sc-tw { position: absolute; right: -6px; overflow: hidden; }
+.sc .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .34)); }
+.sc-top { position: absolute; z-index: 3; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 8px; }
+.sc-top .sp { flex: 1; }
+.pill { height: 36px; border-radius: 18px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700;
+  background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); }
+.pill .vv { display: flex; flex-direction: column; line-height: 1.05; }
+.pill .vv small { font-size: 11px; font-weight: 600; opacity: .8; }
+.pill img { width: 20px; height: 20px; border-radius: 50%; }
+.pill .dv { width: 1px; height: 16px; background: rgba(255, 255, 255, .35); }
+.round { width: 36px; height: 36px; border-radius: 18px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); font-size: 18px; }
+.ava { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #F6C9A8, #C98E6B); box-shadow: 0 0 0 2px rgba(255, 255, 255, .7); }
+.tabs3 { display: flex; gap: 22px; align-items: flex-end; font-size: 16px; font-weight: 600; }
+.tabs3 span { padding-bottom: 7px; border-bottom: 3px solid transparent; color: rgba(255, 255, 255, .78); }
+.tabs3 span.on { color: #fff; border-bottom-color: #fff; }
+.sc-body { position: absolute; z-index: 2; left: 20px; }
+.kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.ttl { font-weight: 700; letter-spacing: -.5px; margin-top: 2px; text-wrap: balance; }
+.prog { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .88); }
+.prog .bar { flex: 0 0 56px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.prog .bar i { display: block; height: 100%; background: #fff; }
+.cta { display: flex; gap: 10px; margin-top: 16px; }
+.btn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 24px; border-radius: 28px; background: #fff; color: #121318;
+  font-size: 16px; font-weight: 700; }
+.btn .io { font-size: 17px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chip { height: 34px; border-radius: 17px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600;
+  background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); }
+.rew { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.rew span { height: 30px; border-radius: 15px; padding: 0 11px 0 6px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700;
+  background: rgba(255, 255, 255, .16); }
+.rew img { width: 20px; height: 20px; border-radius: 50%; }
+
+/* ── то, что идёт ниже сцены ── */
+.after { position: relative; z-index: 4; margin-top: -22px; padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+.pn { background: var(--card); border-radius: 24px; box-shadow: var(--sh); padding: 14px 16px 6px; }
+.pn-h { display: flex; justify-content: space-between; align-items: baseline; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.pn-h span { font-size: 14px; font-weight: 600; color: var(--sec); }
+.rw { display: flex; align-items: center; gap: 12px; min-height: 52px; }
+.rw + .rw { border-top: 1px solid color-mix(in oklab, var(--tx) 7%, transparent); }
+.rw .ic { width: 34px; height: 34px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--card2); font-size: 18px; color: var(--tx); }
+.rw .tx { flex: 1; min-width: 0; font-size: 15px; font-weight: 600; }
+.rw .tx small { display: block; font-size: 13px; font-weight: 500; color: var(--sec); }
+.rw .n { font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.rw .ok { color: #3DD6A3; }
+/* лента четырёх кнопок Главной: тон и скругление, без затемнения краёв */
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.tile { background: var(--card); border-radius: 20px; box-shadow: var(--sh); padding: 6px 4px 10px; text-align: center; font-size: 13px; font-weight: 700; }
+.tile img { display: block; width: 100%; height: 58px; object-fit: contain; }
+.pod { display: flex; align-items: center; gap: 12px; }
+.pod img.art { width: 52px; height: 52px; object-fit: contain; }
+.pod .tx { flex: 1; }
+.pod .k { font-size: 13px; color: var(--sec); }
+.pod .p { font-size: 17px; font-weight: 700; }
+.cards { display: flex; gap: 10px; overflow: hidden; }
+.card { flex: 0 0 172px; background: var(--card2); border-radius: 18px; padding: 12px; font-size: 14px; font-weight: 700; }
+.card small { display: block; font-size: 12px; font-weight: 600; color: var(--sec); margin-bottom: 4px; }
+.card .st { display: flex; gap: 4px; align-items: center; margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--sec); }
+.wchips { display: flex; gap: 8px; margin: 6px 0 10px; overflow: hidden; }
+.wchips span { flex: none; height: 32px; border-radius: 16px; padding: 0 12px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; background: var(--card2); color: var(--tx); }
+.wchips span.on { background: var(--tx); color: var(--bg); }
+.podium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; align-items: end; padding: 8px 0 12px; }
+.podium .c { text-align: center; }
+.podium .c img { width: 30px; height: 30px; border-radius: 50%; margin-bottom: -10px; position: relative; }
+.podium .b { border-radius: 14px 14px 6px 6px; background: var(--card2); padding: 12px 4px 8px; font-size: 13px; font-weight: 700; }
+.podium .b b { display: block; font-size: 18px; }
+.podium .b small { display: block; font-size: 12px; font-weight: 600; color: var(--sec); }
+.days { display: flex; justify-content: space-between; padding: 6px 0 10px; }
+.days div { text-align: center; font-size: 12px; color: var(--sec); }
+.dock { position: absolute; z-index: 7; left: 16px; right: 16px; bottom: 92px; }
+.dock .btn { width: 100%; height: 54px; background: var(--tx); color: var(--bg); }
+.tb { position: absolute; z-index: 8; left: 12px; right: 12px; bottom: 14px; height: 64px; border-radius: 32px; background: var(--tab); box-shadow: var(--sh);
+  display: flex; justify-content: space-around; align-items: center; }
+.tb div { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; color: var(--sec); }
+.tb div .io { font-size: 22px; }
+.tb div.on { color: var(--tx); }
+.home-ind { position: absolute; z-index: 9; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+</style>
+</head>
+<body>
+<div class="sc-page">
+  <h1>Сцены — компактная высота</h1>
+  <p class="sc-lead">Владелец 22.10: «Сцены не должны быть такими огромными с кучей пустоты — покажи макеты всех сцен новые, с уменьшенной высотой». У каждой сцены три высоты: <b>1 ≈ 38 %</b>, <b>2 ≈ 46 %</b>, <b>3 ≈ 54 %</b> экрана 390 × 844. Шапка, предмет справа, заголовок и кнопка — плотно, по сетке 8; под сценой то, что реально идёт ниже. Сцена уходит под часы до самого верха; лента четырёх кнопок — без тёмной подсветки краёв. Нажми номер, чтобы выбрать вариант.</p>
+  <div class="sc-bar">
+    <div class="sc-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div>
+    <div class="sc-sum" id="sc-sum"></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script src="spire-tower-render.js"></script>
+<script>
+window.__ICODE = {"albums-outline":"f110","book":"f1a5","book-outline":"f1a6","business-outline":"f1c7","cafe-outline":"f1ca","call-outline":"f1d9","chatbubble-ellipses-outline":"f213","chatbubbles-outline":"f218","checkmark":"f21d","chevron-back":"f229","chevron-down":"f232","chevron-forward":"f23b","cloud-offline-outline":"f25b","copy-outline":"f290","diamond":"f2a1","flame":"f313","flame-outline":"f314","flash":"f316","happy":"f361","home":"f382","home-outline":"f383","lock-closed":"f3c7","notifications-outline":"f47f","people-outline":"f4a3","play":"f4c6","play-circle-outline":"f4ce","restaurant-outline":"f536","school-outline":"f55d","settings-outline":"f56c","star":"f595","sunny-outline":"f5ae","today":"f5e3","trending-up-outline":"f5fc","trophy":"f601","volume-high":"f613","mic":"f454","language-outline":"f3aa","flag-outline":"f311","checkmark-circle":"f21e","close":"f24a","briefcase-outline":"f1b2","airplane-outline":"f10a","sparkles":"f58c","refresh":"f514","shield-checkmark-outline":"f579","time-outline":"f5de","infinite":"f394","reload":"f51a","hourglass-outline":"f386","happy-outline":"f362","arrow-up":"f145","people":"f49f","search":"f55f","trending-up":"f5fb"};
+(() => {
+  const CODE = window.__ICODE;
+  const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[SCENES-COMPACT] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+  let AP = 'dk';
+  const art = (name) => `assets/v2art/${AP === 'lt' ? 'light' : 'dark'}/${name}.webp`;
+  const coin = (r = 5) => `assets/coin_rank_${String(r).padStart(2, '0')}.webp`;
+  /* три высоты сцены (вместе со строкой статуса): размер предмета, заголовка и кнопки растут с высотой */
+  const V = [
+    { n: 1, pct: 38, h: 320, art: 120, artTop: 92, t: [24, 30], btn: 48, bot: 40, chips: false, rew: false, textR: 124, tw: 168 },
+    { n: 2, pct: 46, h: 392, art: 160, artTop: 96, t: [30, 36], btn: 50, bot: 44, chips: true, rew: true, textR: 150, tw: 188 },
+    { n: 3, pct: 54, h: 456, art: 184, artTop: 100, t: [34, 40], btn: 54, bot: 48, chips: true, rew: true, textR: 150, tw: 208 },
+  ];
+  const sb = (time) => `<div class="sc-sb"><span>${time}</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>`;
+  const pills = (o) => `<span class="pill">${io(o.pend ? 'flame-outline' : 'flame')}<span class="vv"><b>${o.streak}</b><small>Серия</small></span></span><span class="pill"><img src="${coin(5)}" alt="">${o.coins}<i class="dv"></i>${io('flash')}${o.en}</span><span class="sp"></span><span class="round">${io('notifications-outline')}</span><span class="ava"></span>`;
+  const tabbar = (on) => `<div class="tb">${[['home', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people', 'Сообщество'], ['settings-outline', 'Настройки']].map(([i, t]) => `<div class="${t === on ? 'on' : ''}">${io(i)}${t}</div>`).join('')}</div><div class="home-ind"></div>`;
+  const RC = ['#FF6B5B', '#3DD6A3', '#55A8FF'];
+  function ringsSvg(vals, size) {
+    const c = size / 2; const w = Math.max(9, Math.round(size * 0.075)); const gap = w + 4;
+    return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${vals.map((v, i) => { const r = c - w / 2 - i * gap; const len = 2 * Math.PI * r;
+      return `<circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${RC[i]}" stroke-opacity=".22" stroke-width="${w}"/><circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${RC[i]}" stroke-width="${w}" stroke-linecap="round" stroke-dasharray="${(len * v).toFixed(1)} ${len.toFixed(1)}" transform="rotate(-90 ${c} ${c})"/>`; }).join('')}`
+      + `<image href="${coin(5)}" x="${c - size * 0.17}" y="${c - size * 0.17}" width="${size * 0.34}" height="${size * 0.34}"/></svg>`;
+  }
+  function ringsMini(v) {
+    const S = 34; const r0 = 15;
+    return `<svg viewBox="0 0 ${S} ${S}" width="${S}" height="${S}">${v.map((x, i) => { const r = r0 - i * 5; const len = 2 * Math.PI * r;
+      return `<circle cx="17" cy="17" r="${r}" fill="none" stroke="${RC[i]}" stroke-opacity=".2" stroke-width="3.5"/>${x > 0 ? `<circle cx="17" cy="17" r="${r}" fill="none" stroke="${RC[i]}" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="${(len * x).toFixed(1)} ${len.toFixed(1)}" transform="rotate(-90 17 17)"/>` : ''}`; }).join('')}</svg>`;
+  }
+  const scene = (v, o) => {
+    const glow = Math.round(v.art * 1.05);
+    // зачем: длинный заголовок («Поздороваться после знакомства») на 4 кегля меньше — не заезжает на предмет справа
+    const long = o.title.length > 20 ? 4 : 0;
+    const body = `<div class="kick">${o.kick}</div><div class="ttl" style="font-size:${v.t[0] - long}px;line-height:${v.t[1] - long}px">${o.title}</div>`
+      + (o.prog ? `<div class="prog">${o.bar !== undefined ? `<span class="bar"><i style="width:${o.bar}%"></i></span>` : ''}${o.prog}</div>` : '')
+      + (o.rew && v.rew ? `<div class="rew">${o.rew.map((r) => `<span><img src="${coin(0)}" alt="">${r}</span>`).join('')}</div>` : '')
+      + (o.cta ? `<div class="cta"><span class="btn" style="height:${v.btn}px">${io('play')}${o.cta}</span></div>` : '')
+      + (o.chips && v.chips ? `<div class="chips">${o.chips.map(([i, t]) => `<span class="chip">${io(i)}${t}</span>`).join('')}</div>` : '');
+    // зачем: у Пика герой — башня из общего рисовальщика эталонов (spire-tower-render.js), как в peak-scene-v2.html; окно прижато к низу башни
+    if (o.tower) return towerScene(v, o, body, glow);
+    const hero = o.rings ? `<div class="art" style="right:8px;top:${v.artTop}px;width:${v.art}px;height:${v.art}px">${ringsSvg(o.rings, v.art)}</div>`
+      : `<img class="art" src="${art(o.art)}" alt="" style="top:${v.artTop}px;width:${v.art}px;height:${v.art}px">`;
+    return `<div class="sc" style="--h:${v.h}px"><div class="glow" style="top:${v.artTop}px;width:${glow}px;height:${glow}px"></div>${hero}<div class="scrim"></div>`
+      + `<div class="sc-top">${o.top}</div><div class="sc-body" style="right:${v.textR}px;bottom:${v.bot}px">${body}</div></div>`;
+  };
+  const towerScene = (v, o, body, glow) => {
+    const h = v.h - v.artTop + 12;
+    const tower = window.SpireTowerRender ? window.SpireTowerRender.windowHtml({ coin: (r) => coin(r), tier: 0, myFloor: 4, selected: 4, theme: AP === 'lt' ? 'light' : 'dark', width: v.tw, height: h, scene: { plate: 'transparent', plateShadow: 'none' }, rivals: { 1: [9, 11, 4, 5], 2: [7, 9, 3, 6], 3: [9, 6, 4, 2], 4: [8, 11, 5], 5: [6, 9, 4], 6: [6], 7: [11] }, scrollTop: 99999 }) : '';
+    return `<div class="sc" style="--h:${v.h}px"><div class="glow" style="top:${v.artTop}px;width:${glow}px;height:${glow}px"></div><div class="sc-tw" style="top:${v.artTop - 12}px;width:${v.tw}px;height:${h}px">${tower}</div><div class="scrim"></div>`
+      + `<div class="sc-top">${o.top}</div><div class="sc-body" style="right:${v.tw - 2}px;bottom:${v.bot}px">${body}</div></div>`;
+  };
+  const phone = (v, o) => `<div class="ph ${AP}">${sb(o.time)}<div class="sc-scr">${scene(v, o)}<div class="after">${o.after()}</div></div>${o.dock || ''}${tabbar(o.tab)}</div>`;
+  const row = (ic, t, sub, n, ok) => `<div class="rw"><span class="ic">${io(ic)}</span><div class="tx">${t}${sub ? `<small>${sub}</small>` : ''}</div><span class="n${ok ? ' ok' : ''}">${ok ? io('checkmark') : n}</span></div>`;
+  const HOME_TOP = { streak: '5 дней', coins: '2 340', en: '4' };
+  const SCENES = [
+    { id: 'home', name: 'Главная', src: 'home-new-concepts.html, A «Сцена»', time: '9:41', tab: 'Главная', top: () => pills(HOME_TOP), art: 'continue',
+      kick: 'Урок 1 · Эпизод 1', title: 'Вошли в офис', prog: '20 заданий', cta: 'Начать', chips: [['school-outline', 'Не хочу с начала']],
+      after: () => `<div class="pn"><div class="pn-h">Сегодня<span>0 из 3</span></div>${row('book-outline', 'Пройти урок', '', '0/1')}${row('chatbubbles-outline', 'Потренировать диалог', '', '0/1')}${row('copy-outline', 'Повторить карточки', 'Не менее 10 слов', '0/10')}</div>`
+        + `<div class="tiles">${[['lessons', 'Уроки'], ['cards', 'Карточки'], ['dialogs', 'Диалоги'], ['spire_tile', 'Пик']].map(([a, t]) => `<div class="tile"><img src="${art(a)}" alt="">${t}</div>`).join('')}</div>`
+        + `<div class="pn" style="padding:12px 16px"><div class="pod"><img class="art" src="${art('phrase_of_day')}" alt=""><div class="tx"><div class="k">Фраза дня</div><div class="p">We are together.</div></div>${io('chevron-forward', 'font-size:18px;color:var(--sec)')}</div></div>` },
+    { id: 'today', name: 'Сегодня', src: 'today-scene-concepts.html, A', time: '14:30', tab: 'Главная', top: () => pills(HOME_TOP), rings: [1, 0, 0.6],
+      kick: 'Вторник, 21 октября', title: '1 из 3', prog: 'Осталось: диалог и карточки', cta: 'Начать',
+      after: () => `<div class="pn"><div class="pn-h">Задания дня<span>1 из 3</span></div>${row('book-outline', 'Пройти урок', '', '1/1', true)}${row('chatbubbles-outline', 'Потренировать диалог', '', '0/1')}${row('copy-outline', 'Повторить карточки', 'Не менее 10 слов', '6/10')}</div>`
+        + `<div class="pn"><div class="pn-h">Неделя<span>5 из 6 дней</span></div><div class="days">${[['15', [1, 1, 1]], ['16', [1, 1, 0.6]], ['17', [1, 0, 0]], ['18', [1, 1, 1]], ['19', [0, 0, 0]], ['20', [1, 1, 0.8]]].map(([d, vv]) => `<div>${ringsMini(vv)}<br>${d} окт.</div>`).join('')}</div></div>` },
+    { id: 'dialogs', name: 'Диалоги', src: 'dialogs-scene-concepts.html', time: '18:10', tab: 'Обучение', top: () => `<span class="pill">${io('chatbubbles-outline')}18 из 30</span><span class="sp"></span><span class="ava"></span>`, art: 'dialogs_scene_next',
+      kick: 'Общение · с Милой', title: 'Поздороваться после знакомства', bar: 33, prog: '2 из 6 целей', cta: 'Продолжить',
+      after: () => `<div class="pn"><div class="pn-h">Диалоги<span>76</span></div><div class="wchips"><span class="on">Все</span><span>Дела</span><span>Общение</span><span>Путешествия</span><span>Быт</span></div>`
+        + `<div class="cards"><div class="card"><small>Дела · с Мариной</small>Представиться коллеге<div class="st">${io('chatbubbles-outline')}6 целей</div></div><div class="card"><small>Быт</small>Спросить код от двери<div class="st">${io('chatbubbles-outline')}5 целей</div></div></div><div style="height:12px"></div></div>` },
+    { id: 'peak', name: 'Пик', src: 'peak-scene-v2.html, V2', time: '18:10', tab: 'Сообщество', top: () => `<div class="tabs3"><span class="on">Пик</span><span>Друзья</span><span>Наборы</span></div><span class="sp"></span><span style="font-weight:700;font-size:16px">${io('flash')} 3</span>`, art: 'spire_tile',
+      kick: 'Гранит · до конца недели 2&nbsp;д&nbsp;14&nbsp;ч', tower: true, title: 'Этаж 4', bar: 87, prog: 'ступень 7&nbsp;из&nbsp;8', rew: ['+10 за ступень', '+40 за этаж'],
+      dock: () => `<div class="dock"><span class="btn">${io('play')}Играть</span></div>`,
+      after: () => `<div class="pn"><div class="pn-h">Комната недели · Гранит<span>30</span></div><div class="rw"><span class="ic"><img src="${coin(6)}" alt="" style="width:28px;height:28px;border-radius:50%"></span><div class="tx">7 место<small>${io('arrow-up', 'font-size:12px;color:#3DD6A3')} 2 места до повышения</small></div><span class="n">${io('chevron-forward')}</span></div>`
+        + `<div class="podium">${[['Марк', '538', 2, 46, coin(7)], ['Аня', '612', 1, 62, coin(11)], ['Тимур', '470', 3, 38, coin(9)]].map(([n, sc, p, hh, c]) => `<div class="c"><img src="${c}" alt=""><div class="b" style="padding-top:${hh - 22}px"><b>${p}</b>${n}<small>${sc}</small></div></div>`).join('')}</div></div>` },
+    { id: 'season', name: 'Обучение · Сезон', src: 'course-hybrid-1-4.html, способ 2', time: '9:41', tab: 'Обучение', top: () => pills(HOME_TOP), art: 'lessons',
+      kick: 'Сезон 1 · Глава 2 из 7', title: 'Кофе с коллегой', bar: 38, prog: '3 из 8 эпизодов', cta: 'Продолжить', chips: [['albums-outline', 'Слова'], ['book-outline', 'Теория']],
+      after: () => `<div class="pn"><div class="pn-h">Главы сезона<span>7</span></div><div class="cards">`
+        + `<div class="card"><small>Глава 1 · I am (+ not)</small>Первый рабочий день<div class="st">${io('checkmark', 'color:#3DD6A3')}пройдена</div></div>`
+        + `<div class="card" style="background:color-mix(in oklab, var(--tx) 14%, var(--card2))"><small>Глава 2 · You are (+ not)</small>Кофе с коллегой<div class="st">3 из 8</div></div>`
+        + `<div class="card"><small>Глава 3 · He / she is (+ not)</small>Знакомство с командой<div class="st">${io('lock-closed')}после главы 2</div></div></div><div style="height:12px"></div></div>`
+        + `<div class="pn"><div class="pn-h">Эпизоды главы 2<span>3 из 8</span></div>${row('cafe-outline', 'Эпизод 4 · Заказ на двоих', '', '0/21')}${row('cafe-outline', 'Эпизод 5 · Ты сегодня рано', '', '0/20')}</div>` },
+  ];
+  const picked = {};
+  const sum = () => { document.getElementById('sc-sum').innerHTML = 'Выбор: ' + SCENES.map((s) => `${s.name} — <b>${picked[s.id] || '—'}</b>`).join(' · '); };
+  const render = () => {
+    document.getElementById('root').innerHTML = SCENES.map((s) => {
+      const o = { ...s, top: s.top(), dock: s.dock ? s.dock() : '' };
+      return `<section class="sc-block" id="${s.id}"><h2>${s.name}</h2><p>Эталон: ${s.src}. Варианты 1 / 2 / 3 — высота сцены 38 / 46 / 54 % экрана.</p><div class="sc-row">`
+        + V.map((v) => `<div class="sc-col"><button type="button" class="sc-pick${picked[s.id] === v.n ? ' on' : ''}" data-scene="${s.id}" data-n="${v.n}"><b>${v.n}</b>${v.pct} % · ${v.h} dp</button>${phone(v, o)}</div>`).join('')
+        + '</div></section>';
+    }).join('');
+    sum();
+  };
+  document.addEventListener('click', (e) => {
+    const ap = e.target.closest('[data-ap]');
+    if (ap) { AP = ap.dataset.ap; document.querySelectorAll('[data-ap]').forEach((b) => b.classList.toggle('on', b === ap)); render(); return; }
+    const p = e.target.closest('.sc-pick');
+    if (p) { picked[p.dataset.scene] = Number(p.dataset.n); render(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

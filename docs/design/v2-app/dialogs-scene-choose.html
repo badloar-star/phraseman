@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диалоги — выбор внутри сцены</title>
+<style>
+/* ───────── PhraseMan 2.0 · «Диалоги»: выбор диалога внутри сцены (владелец 22.10 через координатора) ─────────
+   «Не-не-не, Диалоги остаются именно СЦЕНОЙ, но надо переделать эту сцену. Чтобы сцена оставалась сценой, но при этом было понятно,
+   как выбирать — как выбирать уроки». Язык — «Сцены» (Главная, Сегодня, Пик, Сезон) и карусель карт «Сезона» (course-hybrid-1-4, способ 2).
+   Телефон 390 × 844, сцена ≤ 46 % (392 dp вместе со строкой статуса), верх без полосы. Четыре варианта, у каждого три кадра:
+   выбираю → что увижу (собеседник, цели, голос) → начал. Данные — из приложения: content/dialogues-v2/authoring (76 диалогов, 4 темы × 19
+   рангов, собеседники и их характер, цели), shared/generated/dialogue_v2_ui_copy.ru (брифинги), dialogs_scene_copy (тексты сцены).
+   Звёзд и длительности в данных нет — не рисуются. Состояние примера: ранг 7, бесплатный тариф, 18 из 30 ответов месяца.
+   Классы с префиксом dc- (kit.css не подключён: .ph — своя рамка телефона, как в scenes-compact). Governance-ID: TG-D9066484C74E */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.dc-page { max-width: 1320px; margin: 0 auto; padding: 32px 24px 80px; }
+.dc-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.dc-lead { color: #A9A9AE; font-size: 15px; line-height: 22px; max-width: 920px; margin: 0 0 16px; }
+.dc-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 0; background: #101113; }
+.dc-seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.dc-seg button, .dc-pick { font: 600 14px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.dc-seg button.on { background: #ECECEE; color: #111214; }
+.dc-sum { color: #A9A9AE; font-size: 14px; }
+.dc-sum b { color: #ECECEE; }
+.dc-block { margin-top: 40px; }
+.dc-block h2 { font-size: 22px; line-height: 28px; margin: 0 0 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.dc-block p { margin: 0 0 16px; color: #A9A9AE; font-size: 14px; line-height: 20px; max-width: 980px; }
+.dc-row { display: flex; flex-wrap: wrap; gap: 28px; }
+.dc-col { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.dc-cap { font-size: 15px; font-weight: 700; color: #ECECEE; }
+.dc-cap span { font-weight: 400; color: #A9A9AE; }
+.dc-pick { background: #1C1D21; font-size: 15px; padding: 10px 18px; }
+.dc-pick.on { background: #ECECEE; color: #111214; }
+
+/* ── телефон ── */
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; }
+.ph.dk { --bg: #0E171C; --card: #172329; --card2: #1D2B32; --tx: #FFFFFF; --sec: #9BB0B9; --sh: 0 12px 28px rgba(0, 0, 0, .38); --shc: rgba(0, 0, 0, .6);
+  --st-top: oklch(.36 .08 214); --st-bot: oklch(.15 .05 222); --st-glow: oklch(.55 .10 200 / .85); --tab: rgba(23, 35, 41, .94);
+  --ctl: #22323A; --cta: #FFFFFF; --cta-ink: #121318; --good: #3DD6A3; --acc: #7FD6F0; --card-o: #172329; --dimc: rgba(4, 8, 10, .64); --halo: rgba(255, 255, 255, .22); }
+.ph.lt { --bg: #F2F1F6; --card: #FFFFFF; --card2: #F6F5FA; --tx: #16141D; --sec: #6A6777; --sh: 0 10px 26px rgba(40, 30, 80, .12); --shc: rgba(40, 30, 80, .28);
+  --st-top: oklch(.47 .14 282); --st-bot: oklch(.28 .10 276); --st-glow: oklch(.66 .13 300 / .9); --tab: rgba(255, 255, 255, .94);
+  --ctl: #ECEAF2; --cta: #16141D; --cta-ink: #FFFFFF; --good: #12A877; --acc: #5B4BD8; --card-o: #FFFFFF; --dimc: rgba(20, 16, 40, .46); --halo: rgba(255, 255, 255, .26); }
+.dc-scr { position: absolute; inset: 0; overflow: hidden; }
+.dc-sb { position: absolute; z-index: 60; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 26px 0 34px; font-size: 15px; font-weight: 600; color: #fff; pointer-events: none; }
+.dc-sb.ink { color: var(--tx); }
+.dc-sb .sys { display: inline-flex; gap: 6px; align-items: center; }
+.dc-sb .sys i { display: block; background: currentColor; border-radius: 2px; }
+
+/* ── сцена: от самого верха (под часами), скругление снизу 32 ── */
+.sc { position: relative; height: var(--h); border-radius: 0 0 32px 32px; overflow: hidden; color: #fff;
+  background: radial-gradient(70% 60% at 18% 0%, var(--st-glow), transparent 70%), linear-gradient(165deg, var(--st-top) 0%, var(--st-bot) 100%); }
+.sc .glow { position: absolute; right: 0; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .22), transparent 70%); }
+.sc .art { position: absolute; right: -14px; filter: drop-shadow(0 24px 32px rgba(0, 0, 0, .45)); object-fit: contain; }
+.sc .scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .30)); pointer-events: none; }
+.sc-top { position: absolute; z-index: 5; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 8px; }
+.sc-top .sp { flex: 1; }
+.pill { height: 36px; border-radius: 18px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #fff;
+  background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); white-space: nowrap; }
+.pill .io { font-size: 16px; }
+.round { width: 36px; height: 36px; border-radius: 18px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); font-size: 18px; color: #fff; flex: none; }
+.ava { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #F6C9A8, #C98E6B); box-shadow: 0 0 0 2px rgba(255, 255, 255, .7); flex: none; }
+.sc-body { position: absolute; z-index: 3; left: 20px; right: 20px; }
+.kick { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); display: flex; align-items: center; gap: 6px; }
+.kick .io { font-size: 14px; }
+.ttl { font-weight: 700; letter-spacing: -.5px; text-wrap: balance; }
+.prog { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .88); }
+.prog .bar { flex: 0 0 56px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.prog .bar i { display: block; height: 100%; background: #fff; }
+.btn { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 24px; border-radius: 25px; height: 50px; background: #fff; color: #121318;
+  font-size: 16px; font-weight: 700; white-space: nowrap; }
+.btn .io { font-size: 17px; }
+.btn.wide { width: 100%; }
+.btn.ink { background: var(--cta); color: var(--cta-ink); }
+.btn.ghost { background: var(--ctl); color: var(--tx); }
+.btn.glass { background: rgba(255, 255, 255, .16); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); }
+.chip { height: 30px; border-radius: 15px; padding: 0 11px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; white-space: nowrap;
+  background: rgba(255, 255, 255, .16); color: #fff; }
+.chip .io { font-size: 14px; }
+.chip.ink { background: var(--ctl); color: var(--tx); }
+.row-gap { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ── то, что ниже сцены (наезд 22, как у Главной) ── */
+.after { position: relative; z-index: 4; margin-top: -22px; padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+.pn { background: var(--card); border-radius: 24px; box-shadow: var(--sh); padding: 14px 16px 12px; }
+.pn-h { display: flex; justify-content: space-between; align-items: baseline; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.pn-h span { font-size: 14px; font-weight: 600; color: var(--sec); }
+.pn-h a { font-size: 14px; font-weight: 700; color: var(--tx); text-decoration: none; display: inline-flex; align-items: center; gap: 2px; }
+
+/* ── аватар собеседника: буква, мягкий свет (картинок собеседников пока нет — как плейсхолдер эталона) ── */
+.who { flex: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: #fff;
+  background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, .45), rgba(255, 255, 255, .12) 60%), rgba(255, 255, 255, .14); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); }
+.who.ink { color: var(--tx); background: color-mix(in srgb, var(--tx) 10%, transparent); box-shadow: none; }
+
+/* ── мир (тема) — тон карты, как у глав «Сезона» ── */
+.w-social { background: radial-gradient(90% 70% at 85% 0%, oklch(.70 .12 340 / .55), transparent 60%), linear-gradient(160deg, oklch(.48 .13 330), oklch(.28 .09 305)); }
+.w-work { background: radial-gradient(90% 70% at 85% 0%, oklch(.72 .10 220 / .5), transparent 60%), linear-gradient(160deg, oklch(.48 .11 235), oklch(.27 .07 250)); }
+.w-travel { background: radial-gradient(90% 70% at 85% 0%, oklch(.80 .12 75 / .5), transparent 60%), linear-gradient(160deg, oklch(.56 .13 55), oklch(.32 .09 35)); }
+.w-everyday { background: radial-gradient(90% 70% at 85% 0%, oklch(.78 .10 165 / .5), transparent 60%), linear-gradient(160deg, oklch(.50 .10 165), oklch(.28 .06 185)); }
+
+/* ── статус диалога: новый / начат / пройден / закрыт по рангу ── */
+.st { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px; border-radius: 12px; font-size: 12px; font-weight: 700; white-space: nowrap;
+  background: rgba(0, 0, 0, .26); color: #fff; }
+.st .io { font-size: 12px; }
+.st.new { background: #fff; color: #121318; }
+.st.done { background: rgba(61, 214, 163, .26); color: #E6FFF5; }
+.st.lock { background: rgba(0, 0, 0, .34); color: rgba(255, 255, 255, .86); }
+.st.ink { background: var(--ctl); color: var(--tx); }
+.st.ink.new { background: var(--cta); color: var(--cta-ink); }
+.st.ink.done { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+
+/* ── 1 · карусель карт в сцене (язык «Сезона») ── */
+.flow { position: absolute; left: 0; right: 0; perspective: 900px; }
+.dcard { position: absolute; top: 0; left: 50%; width: 132px; height: 152px; margin-left: -66px; border-radius: 22px; overflow: hidden; color: #fff; padding: 10px 10px 11px;
+  display: flex; flex-direction: column; box-shadow: 0 20px 34px -18px rgba(0, 0, 0, .7); }
+.dcard .gl { position: absolute; right: -22px; bottom: -18px; font-size: 104px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.dcard > * { position: relative; }
+.dcard .hd { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.dcard .t { margin-top: auto; font-size: 14px; line-height: 18px; font-weight: 700; letter-spacing: -.2px; text-wrap: balance; }
+.dcard .m { margin-top: 4px; font-size: 12px; line-height: 16px; color: rgba(255, 255, 255, .82); white-space: nowrap; }
+.dcard.mute::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .40); }
+.dcard.mute > * { z-index: 1; }
+.dcard.sel { box-shadow: 0 0 0 1px rgba(255, 255, 255, .34), 0 28px 44px -14px rgba(0, 0, 0, .85); }
+.wsel { display: flex; align-items: flex-end; gap: 6px; }
+.wsel b { font-size: 20px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; display: inline-flex; align-items: center; gap: 6px; }
+.wsel b .io { font-size: 15px; opacity: .8; }
+.wsel span { margin-left: auto; font-size: 14px; color: rgba(255, 255, 255, .86); padding-bottom: 2px; white-space: nowrap; }
+.wgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wt { border-radius: 16px; background: var(--card2); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.wt.on { background: color-mix(in srgb, var(--tx) 12%, var(--card2)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tx) 22%, transparent), 0 8px 18px -10px var(--shc); }
+.wt .h { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; }
+.wt .h .io { font-size: 17px; }
+.wt .p { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--sec); }
+.wt .p .bar { flex: 1; height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--tx) 12%, transparent); overflow: hidden; }
+.wt .p .bar i { display: block; height: 100%; background: var(--tx); }
+
+/* ── раскрытая карта (как закрытый эпизод «Сезона», крупно поверх экрана) ── */
+.dim { position: absolute; inset: 0; z-index: 40; background: var(--dimc); }
+.zoom { position: absolute; z-index: 41; left: 20px; right: 20px; top: 104px; border-radius: 30px; overflow: hidden; color: #fff; padding: 18px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .7); }
+.zoom .gl { position: absolute; right: -40px; top: 60px; font-size: 220px; color: rgba(255, 255, 255, .10); transform: rotate(-8deg); }
+.zoom > * { position: relative; }
+.zoom .hd { display: flex; align-items: center; gap: 8px; }
+.zoom .hd .sp { flex: 1; }
+.zoom .pers { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+.zoom .pers b { display: block; font-size: 20px; line-height: 25px; }
+.zoom .pers div > span { display: block; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); }
+.zoom .big { font-size: 28px; line-height: 33px; font-weight: 700; letter-spacing: -.5px; margin-top: 16px; text-wrap: balance; }
+.zoom .br { font-size: 15px; line-height: 21px; color: rgba(255, 255, 255, .88); margin-top: 8px; text-wrap: pretty; }
+.zoom .facts { margin-top: 14px; }
+.zoom .gls { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; }
+.zoom .gls div { display: flex; align-items: center; gap: 10px; font-size: 15px; line-height: 20px; }
+.zoom .gls i.o { width: 18px; height: 18px; border-radius: 9px; flex: none; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5); }
+.zoom .gls .more { color: rgba(255, 255, 255, .78); font-size: 14px; padding-left: 28px; }
+.zoom .btn { margin-top: 18px; }
+.zoom .note { text-align: center; font-size: 13px; color: rgba(255, 255, 255, .82); margin-top: 10px; }
+
+/* ── 2 · сцена-тема: вкладки тем и диалоги темы стеклом внутри сцены ── */
+.wtabs { display: flex; gap: 16px; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.wtabs span { padding-bottom: 6px; border-bottom: 2.5px solid transparent; color: rgba(255, 255, 255, .72); }
+.wtabs span.on { color: #fff; border-bottom-color: #fff; }
+.gl-row { display: flex; align-items: center; gap: 12px; min-height: 54px; padding: 8px 10px 8px 8px; border-radius: 18px; background: rgba(255, 255, 255, .12); }
+.gl-row + .gl-row { margin-top: 6px; }
+.gl-row.hi { background: rgba(255, 255, 255, .22); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25); }
+.gl-row .tx { flex: 1; min-width: 0; }
+.gl-row .tx b { display: block; font-size: 15px; line-height: 19px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gl-row .tx span { display: block; font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .82); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gl-row .go { width: 36px; height: 36px; border-radius: 18px; background: #fff; color: #121318; display: flex; align-items: center; justify-content: center; font-size: 15px; flex: none; }
+.gl-row.mute { opacity: .62; }
+.dots { display: flex; justify-content: center; gap: 6px; }
+.dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .42); }
+.dots i.on { width: 18px; background: #fff; }
+.lrow { display: flex; align-items: center; gap: 12px; min-height: 52px; }
+.lrow + .lrow { border-top: 1px solid color-mix(in oklab, var(--tx) 7%, transparent); }
+.lrow .tx { flex: 1; min-width: 0; font-size: 15px; font-weight: 600; }
+.lrow .tx small { display: block; font-size: 13px; font-weight: 500; color: var(--sec); }
+.lrow .ch { color: var(--sec); font-size: 16px; }
+.lrow .ok { color: var(--good); font-size: 18px; }
+
+/* ── сцена выбранного диалога + панель «что внутри» ── */
+.h3d { position: absolute; z-index: 1; pointer-events: none; }
+.h3d .halo { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(closest-side, var(--halo), rgba(255, 255, 255, .05) 62%, transparent); }
+.h3d .ini { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 96px; font-weight: 700; letter-spacing: -2px; color: rgba(255, 255, 255, .26); }
+.dpanel { position: relative; z-index: 4; margin: -22px 16px 0; border-radius: 26px; background: var(--card); box-shadow: var(--sh); padding: 16px; }
+.ph-h { display: flex; align-items: baseline; gap: 8px; font-size: 17px; line-height: 22px; font-weight: 700; }
+.ph-h span { margin-left: auto; font-size: 14px; font-weight: 600; color: var(--sec); white-space: nowrap; }
+.pers2 { display: flex; align-items: center; gap: 12px; }
+.pers2 b { display: block; font-size: 17px; line-height: 22px; }
+.pers2 div > span { display: block; font-size: 14px; line-height: 19px; color: var(--sec); }
+.brief { font-size: 15px; line-height: 21px; color: var(--tx); margin-top: 10px; text-wrap: pretty; }
+.goal { display: flex; align-items: center; gap: 12px; padding: 7px 0; font-size: 15px; line-height: 20px; }
+.goal .ck { width: 22px; height: 22px; border-radius: 11px; flex: none; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--tx) 22%, transparent); }
+.how { display: flex; align-items: center; gap: 10px; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 10px; }
+.how .io { font-size: 18px; color: var(--tx); }
+.sep { height: 1px; background: color-mix(in oklab, var(--tx) 8%, transparent); margin: 12px 0; }
+
+/* ── 3 · лента карт-сцен под «Продолжить» ── */
+.ribbon { display: flex; gap: 10px; overflow: hidden; margin: 0 -16px; padding: 0 16px; }
+.scard { flex: 0 0 168px; height: 196px; border-radius: 22px; overflow: hidden; color: #fff; padding: 12px; display: flex; flex-direction: column; position: relative; }
+.scard .gl { position: absolute; right: -20px; top: -10px; font-size: 120px; color: rgba(255, 255, 255, .12); transform: rotate(-8deg); }
+.scard > * { position: relative; }
+.scard .hd { display: flex; align-items: center; gap: 6px; }
+.scard .k { margin-top: auto; font-size: 12px; line-height: 16px; color: rgba(255, 255, 255, .84); }
+.scard .t { font-size: 16px; line-height: 20px; font-weight: 700; letter-spacing: -.2px; margin-top: 2px; text-wrap: balance; }
+.scard .m { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; color: rgba(255, 255, 255, .84); white-space: nowrap; }
+.scard.mute::after { content: ''; position: absolute; inset: 0; background: rgba(8, 10, 18, .42); }
+.scard.mute > * { z-index: 1; }
+.rec { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 11px; background: #fff; color: #121318; font-size: 11px; font-weight: 800; letter-spacing: .2px; }
+.wchips { display: flex; gap: 8px; overflow: hidden; }
+.wchips span { flex: none; height: 32px; border-radius: 16px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; background: var(--card2); color: var(--tx); }
+.wchips span.on { background: var(--tx); color: var(--bg); }
+
+/* ── шторка «что увижу» ── */
+.sheet { position: absolute; z-index: 41; left: 0; right: 0; bottom: 0; border-radius: 28px 28px 0 0; background: var(--card); padding: 10px 18px 34px; box-shadow: 0 -20px 50px -20px var(--shc); }
+.sheet .grab { width: 38px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--tx) 22%, transparent); margin: 0 auto 14px; }
+.sheet .hd { display: flex; align-items: center; gap: 8px; }
+.sheet .big { font-size: 26px; line-height: 31px; font-weight: 700; letter-spacing: -.4px; margin-top: 12px; text-wrap: balance; }
+.sheet .note { text-align: center; font-size: 13px; color: var(--sec); margin-top: 10px; }
+
+/* ── 4 · лестница рангов темы ── */
+.ladder { position: relative; }
+.ladder .nodes { display: flex; justify-content: space-between; align-items: center; height: 26px; position: relative; }
+.ladder .nodes::before { content: ''; position: absolute; left: 6px; right: 6px; top: 12px; height: 2px; background: rgba(255, 255, 255, .22); }
+.ladder .nodes i { position: relative; z-index: 1; width: 13px; height: 13px; border-radius: 7px; background: rgba(255, 255, 255, .14); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55); }
+.ladder .nodes i.d { background: #3DD6A3; box-shadow: none; }
+.ladder .nodes i.s { width: 24px; height: 24px; border-radius: 12px; background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, .22); }
+.ladder .nodes i.l { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .26); width: 9px; height: 9px; }
+.ladder .nodes .cut { position: absolute; top: -8px; bottom: -8px; width: 2px; background: rgba(255, 255, 255, .7); border-radius: 1px; z-index: 2; }
+.ladder .lab { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255, 255, 255, .78); margin-top: 6px; }
+.ladder .lab b { color: #fff; }
+
+/* ── «начал»: шапка-сцена разговора и чат (как утверждённый эталон talk) ── */
+.dl-head { position: relative; height: 250px; }
+.dl-bar { position: absolute; left: 16px; right: 16px; top: 54px; z-index: 3; display: flex; align-items: center; gap: 8px; }
+.dl-bar .sp { flex: 1; }
+.dl-who { position: absolute; left: 20px; right: 150px; bottom: 44px; z-index: 2; }
+.dl-who b { display: block; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; }
+.dl-who span { display: block; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .86); text-wrap: balance; }
+.chat { position: relative; z-index: 3; margin: -26px 0 0; border-radius: 28px 28px 0 0; background: var(--card); box-shadow: 0 -10px 40px -24px var(--shc); padding: 18px 16px 0; min-height: 720px; }
+.task { border-radius: 18px; background: var(--card2); padding: 12px 14px; margin-bottom: 12px; }
+.task .h { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--sec); }
+.task .b { font-size: 15px; line-height: 21px; margin-top: 4px; }
+.goal-toast { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 15px; font-size: 13.5px; font-weight: 700;
+  background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); margin: 4px auto 10px; }
+.goal-now { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 15px; font-size: 13.5px; font-weight: 700; background: var(--ctl); color: var(--tx); margin: 0 auto 12px; }
+.msg { max-width: 84%; margin: 0 0 10px; padding: 11px 14px; border-radius: 20px; font-size: 16.5px; line-height: 23px; overflow-wrap: anywhere; }
+.msg.them { background: var(--ctl); color: var(--tx); border-bottom-left-radius: 6px; }
+.msg.me { margin-left: auto; background: var(--cta); color: var(--cta-ink); border-bottom-right-radius: 6px; }
+.msg .tr { display: block; margin-top: 8px; padding-top: 8px; font-size: 14.5px; line-height: 20px; color: var(--sec); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--tx) 12%, transparent); }
+.msg .tap { display: flex; align-items: center; gap: 5px; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--acc); }
+.typing-row { display: flex; align-items: center; gap: 10px; color: var(--sec); font-size: 13px; }
+.typing { display: inline-flex; gap: 4px; padding: 14px 16px; border-radius: 20px; border-bottom-left-radius: 6px; background: var(--ctl); }
+.typing i { width: 7px; height: 7px; border-radius: 4px; background: var(--sec); opacity: .7; }
+.composer { position: absolute; left: 0; right: 0; bottom: 0; z-index: 35; padding: 12px 16px 34px; background: linear-gradient(to bottom, color-mix(in srgb, var(--card-o) 0%, transparent), var(--card-o) 28%); }
+.composer .row { display: flex; align-items: center; gap: 10px; }
+.composer .dfield { flex: 1; min-width: 0; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; padding: 0 18px; font-size: 16px; color: var(--sec); white-space: nowrap; }
+.composer .mic { width: 64px; height: 64px; border-radius: 32px; flex: none; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 14px 28px -12px var(--shc); }
+.composer .hint { text-align: center; font-size: 13px; color: var(--sec); margin-top: 8px; }
+.goals-chip { height: 36px; padding: 0 12px; border-radius: 18px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; white-space: nowrap;
+  background: rgba(255, 255, 255, .16); color: #fff; }
+
+/* ── нижнее меню ── */
+.tb { position: absolute; z-index: 30; left: 12px; right: 12px; bottom: 14px; height: 64px; border-radius: 32px; background: var(--tab); box-shadow: var(--sh);
+  display: flex; justify-content: space-around; align-items: center; }
+.tb div { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; color: var(--sec); }
+.tb div .io { font-size: 22px; }
+.tb div.on { color: var(--tx); }
+.home-ind { position: absolute; z-index: 61; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+</style>
+</head>
+<body>
+<div class="dc-page">
+  <h1>Диалоги — выбор внутри сцены</h1>
+  <p class="dc-lead">Владелец 22.10: «Диалоги остаются именно сценой, но надо переделать эту сцену — чтобы было понятно, как выбирать, как выбирать уроки».
+    Четыре варианта, у каждого три кадра: <b>выбираю → что увижу → начал</b>. Сцена ≤ 46 % экрана (392 dp вместе со строкой статуса), верх без полосы.
+    Пример: ранг 7, бесплатно, 18 из 30 ответов месяца. Названия, собеседники, цели, брифинги и замки по рангу — из приложения; звёзд и длительности в данных нет.</p>
+  <div class="dc-bar">
+    <div class="dc-seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div>
+    <div class="dc-sum" id="dc-sum"></div>
+  </div>
+  <div id="root"></div>
+</div>
+<script>
+window.__ICODE = {"chatbubbles-outline":"f218","chatbubble-ellipses-outline":"f213","people-outline":"f4a3","briefcase-outline":"f1b2","airplane-outline":"f10a","cafe-outline":"f1ca","play":"f4c6","lock-closed":"f3c7","checkmark":"f21d","checkmark-circle":"f21e","chevron-down":"f232","chevron-forward":"f23b","chevron-back":"f229","close":"f24a","mic":"f454","mic-outline":"f45e","create-outline":"f293","flag-outline":"f311","infinite":"f394","diamond":"f2a1","language-outline":"f3aa","person-outline":"f4ac","trending-up":"f5fb","arrow-up":"f145","swap-horizontal":"f5b0","school-outline":"f55d","ellipse":"f2cb","radio-button-on":"f503","keypad-outline":"f3a7","text-outline":"f5cc","sparkles":"f58c","refresh":"f514","time-outline":"f5de","book-outline":"f1a6","copy-outline":"f290","albums-outline":"f110","home":"f382","book":"f1a5","play-circle-outline":"f4ce","settings-outline":"f56c","people":"f49f","grid-outline":"f356","list-outline":"f3bf"};
+window.__DLG = {"worlds":[{"id":"social","t":"Общение"},{"id":"work","t":"Дела"},{"id":"travel","t":"Поездки"},{"id":"everyday","t":"Повседневное"}],"persona":{"mila":{"name":"Мила","note":"Тепло подхватывает разговор и задаёт живые уточняющие вопросы."},"zoe":{"name":"Зоя","note":"Общается легко, иногда с мягкой шуткой помогает сказать естественнее."},"denis":{"name":"Денис","note":"Не торопится, внимательно читает детали и отвечает без лишнего шума."},"marina":{"name":"Марина","note":"Ценит сроки, конкретику и сразу просит назвать следующий шаг."},"oleg":{"name":"Олег","note":"Держит деловой тон, проверяет договорённости и фиксирует решения."},"sam":{"name":"Сэм","note":"Снимает напряжение, но не даёт разговору уйти от главной задачи."},"lea":{"name":"Лея","note":"Помогает сориентироваться и доброжелательно уточняет недостающие детали."},"niko":{"name":"Нико","note":"Быстро собирает факты, предлагает варианты и просит выбрать один."},"clara":{"name":"Клара","note":"Следует правилам сервиса и вежливо объясняет, что можно сделать дальше."},"ira":{"name":"Ира","note":"Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы."},"nikita":{"name":"Никита","note":"Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию."},"vera":{"name":"Вера","note":"Помогает договориться и сохраняет дружелюбный тон даже при разногласии."}},"rows":[["social_01","social",1,"A1","Поздороваться после знакомства",["mila"],6],["social_02","social",2,"A1","Перенести встречу",["zoe"],6],["social_03","social",3,"A1","Спросить, как добраться",["denis"],6],["social_04","social",4,"A1","Поблагодарить за помощь",["mila"],6],["social_05","social",5,"A1","Поздравить и задать простой вопрос",["zoe"],6],["social_06","social",6,"A2","Познакомиться в чате по интересу",["denis","mila"],7],["social_07","social",7,"A2","Договориться о времени и месте",["mila"],7],["social_08","social",8,"A2","Позвать на событие",["zoe"],7],["social_09","social",9,"A2","Вежливо отменить планы",["denis","mila"],7],["social_10","social",10,"A2","Написать после встречи",["mila"],7],["social_11","social",11,"B1","Собрать планы в группе",["zoe","denis"],8],["social_12","social",12,"B1","Поддержать друга",["denis"],7],["social_13","social",13,"B1","Снять лёгкое недопонимание",["mila","zoe"],7],["social_14","social",14,"B2","Мягко отказать",["zoe"],7],["social_15","social",15,"B2","Обсудить ожидания в группе",["denis"],8],["social_16","social",16,"B2","Дать деликатную обратную связь",["mila"],7],["social_17","social",17,"C1","Обозначить личную границу",["zoe","denis"],7],["social_18","social",18,"C1","Восстановить доверие",["denis"],8],["social_19","social",19,"C2","Урегулировать тонкий конфликт в группе",["mila","zoe"],8],["work_01","work",1,"A1","Представиться коллеге",["marina"],6],["work_02","work",2,"A1","Спросить файл",["oleg"],6],["work_03","work",3,"A1","Подтвердить время созвона",["sam"],6],["work_04","work",4,"A1","Написать, что опаздываешь",["marina"],6],["work_05","work",5,"A1","Поблагодарить за инструкцию",["oleg"],6],["work_06","work",6,"A2","Уточнить простую задачу",["sam","marina"],7],["work_07","work",7,"A2","Попросить перенести дедлайн",["marina"],7],["work_08","work",8,"A2","Сообщить короткий статус",["oleg"],7],["work_09","work",9,"A2","Запросить доступ",["sam","marina"],7],["work_10","work",10,"A2","Написать после первого рабочего дня",["marina"],6],["work_11","work",11,"B1","Согласовать следующий шаг в команде",["oleg","sam"],7],["work_12","work",12,"B1","Объяснить проблему и предложить решение",["sam"],7],["work_13","work",13,"B1","Собрать доступность для встречи",["marina","oleg"],7],["work_14","work",14,"B2","Защитить реалистичный срок",["oleg"],7],["work_15","work",15,"B2","Дать конструктивный отзыв",["sam"],7],["work_16","work",16,"B2","Согласовать приоритеты",["marina"],8],["work_17","work",17,"C1","Дипломатично возразить решению",["oleg","sam"],7],["work_18","work",18,"C1","Снять риск между командами",["sam"],7],["work_19","work",19,"C2","Провести сложные переговоры в треде",["marina","oleg"],8],["travel_01","travel",1,"A1","Написать хозяину жилья: я приехал",["lea"],6],["travel_02","travel",2,"A1","Спросить код от двери",["niko"],6],["travel_03","travel",3,"A1","Уточнить время заселения",["clara"],6],["travel_04","travel",4,"A1","Заказать трансфер",["lea"],6],["travel_05","travel",5,"A1","Поблагодарить за подсказку",["niko"],6],["travel_06","travel",6,"A2","Уточнить маршрут в чате",["clara","lea"],7],["travel_07","travel",7,"A2","Подтвердить бронь",["lea"],7],["travel_08","travel",8,"A2","Написать о задержке",["niko"],7],["travel_09","travel",9,"A2","Спросить, где оставить багаж",["clara","lea"],7],["travel_10","travel",10,"A2","Договориться о времени встречи",["lea"],7],["travel_11","travel",11,"B1","Решить проблему с жильём",["niko","clara"],7],["travel_12","travel",12,"B1","Скоординировать группу в поездке",["clara"],8],["travel_13","travel",13,"B1","Запросить изменение бронирования",["lea","niko"],7],["travel_14","travel",14,"B2","Объяснить претензию сервису",["niko"],7],["travel_15","travel",15,"B2","Согласовать альтернативный маршрут",["clara"],7],["travel_16","travel",16,"B2","Отстоять решение по бронированию",["lea"],7],["travel_17","travel",17,"C1","Договориться о компенсации",["niko","clara"],7],["travel_18","travel",18,"C1","Разрешить ситуацию гость—хозяин—сервис",["clara"],7],["travel_19","travel",19,"C2","Вести многосторонний тред при сбое поездки",["lea","niko"],8],["everyday_01","everyday",1,"A1","Спросить совет",["ira"],6],["everyday_02","everyday",2,"A1","Напомнить о вещи",["nikita"],6],["everyday_03","everyday",3,"A1","Поздравить с событием",["vera"],6],["everyday_04","everyday",4,"A1","Спросить, свободен ли человек",["ira"],6],["everyday_05","everyday",5,"A1","Написать короткое извинение",["nikita"],6],["everyday_06","everyday",6,"A2","Попросить небольшую помощь",["vera","ira"],7],["everyday_07","everyday",7,"A2","Договориться присмотреть за питомцем",["ira"],7],["everyday_08","everyday",8,"A2","Выбрать подарок в групповом чате",["nikita"],7],["everyday_09","everyday",9,"A2","Уточнить детали доставки",["vera","ira"],7],["everyday_10","everyday",10,"A2","Поблагодарить после помощи",["ira"],7],["everyday_11","everyday",11,"B1","Организовать общий план на выходные",["nikita","vera"],8],["everyday_12","everyday",12,"B1","Сравнить варианты и принять решение",["vera"],7],["everyday_13","everyday",13,"B1","Объяснить проблему соседу или сервису",["ira","nikita"],7],["everyday_14","everyday",14,"B2","Обсудить общие правила",["nikita"],7],["everyday_15","everyday",15,"B2","Урегулировать неудобство без обвинений",["vera"],7],["everyday_16","everyday",16,"B2","Убедить группу выбрать разумный вариант",["ira"],7],["everyday_17","everyday",17,"C1","Провести чувствительный разговор о границах",["nikita","vera"],7],["everyday_18","everyday",18,"C1","Разобрать противоречивую информацию",["vera"],7],["everyday_19","everyday",19,"C2","Посредничать в личном групповом конфликте",["ira","nikita"],8]],"detail":{"social_01":{"brief":"Напиши Миле после знакомства — поздоровайся, напомни, где вы встретились, и задай вопрос. Мила любит поболтать, так что одним «привет» тут не отделаешься.","goals":["начать с приветствия","назвать себя","сказать, где вы познакомились","задать один простой вопрос","ответить на встречный вопрос","дружелюбно завершить чат"]},"social_06":{"brief":"В чате по общему увлечению — Денис и Мила. Представься, расскажи о своём опыте и расспроси их — разговор держится, пока интересно обеим сторонам.","goals":["представиться","сослаться на общий интерес","рассказать о своём опыте","спросить опыт собеседника","отреагировать на ответ","предложить продолжить разговор","закрыть тему естественно"]},"social_07":{"brief":"Договорись с Милой о встрече — предложи два времени, выберите место и решите, как вы узнаете друг друга. Мила за любой план, если он понятный.","goals":["предложить встречу","назвать два времени","спросить о доступности","согласовать место","уточнить, как узнать друг друга","подтвердить план","попрощаться"]},"work_01":{"brief":"Ты в команде первый день — представься Марине, скажи, чем занимаешься, и задай рабочий вопрос. Марина ценит конкретику, так что лучше сразу к делу.","goals":["поздороваться","назвать себя","назвать команду или роль","сказать, чем занимаешься сегодня","задать простой рабочий вопрос","поблагодарить и завершить"]},"work_02":{"brief":"Попроси у Олега нужный файл — скажи, зачем он тебе и к какому сроку. Олег любит порядок, и чем точнее просьба, тем быстрее ответ.","goals":["обратиться по имени","назвать нужный файл","объяснить простую цель","спросить, где он находится","уточнить срок","поблагодарить"]},"travel_02":{"brief":"Без кода дверь не откроется. Спроси его у Нико, назови адрес или бронь и попроси повторить цифры — одна ошибка, и стоять тебе у входа.","goals":["обратиться вежливо","назвать адрес или бронь","спросить код","уточнить, когда он будет доступен","попросить повторить цифры","подтвердить получение"]},"travel_03":{"brief":"Узнай у Клары, когда можно заселиться, и скажи, во сколько будешь. Если нужно раньше или позже, спроси — Клара строго по правилам, но вежливо подскажет, что можно.","goals":["назвать дату","спросить время","сказать своё время приезда","спросить о раннем/позднем варианте","ответить на условие","подтвердить план"]},"everyday_01":{"brief":"Спроси у Иры совет — назови тему, попроси один вариант и ответь, подходит ли он. Ира советует охотно, но ей важно услышать, что ты выбираешь.","goals":["поздороваться","назвать тему","задать простой вопрос","попросить один вариант","ответить на совет","поблагодарить"]},"everyday_04":{"brief":"Хочешь увидеться с Ирой. Спроси, есть ли у неё время, объясни зачем и предложи что-то короткое — а если «нет», договоритесь списаться позже.","goals":["поздороваться","спросить о времени","назвать причину","предложить короткий формат","принять «нет»","договориться написать позже"]}}};
+
+(() => {
+  const CODE = window.__ICODE;
+  const DATA = window.__DLG;
+  const io = (n, st = '') => { const c = CODE[n]; if (!c) throw new Error('[DIALOGS-CHOOSE] нет значка ' + n); return `<i class="io" aria-hidden="true"${st ? ` style="${st}"` : ''}>&#x${c};</i>`; };
+  let AP = 'dk';
+  let picked = null;
+  const art = (name) => `assets/v2art/${AP === 'lt' ? 'light' : 'dark'}/${name}.webp`;
+
+  /* ── данные приложения ── */
+  const WORLD = { social: { t: 'Общение', ic: 'people-outline' }, work: { t: 'Дела', ic: 'briefcase-outline' }, travel: { t: 'Поездки', ic: 'airplane-outline' }, everyday: { t: 'Повседневное', ic: 'cafe-outline' } };
+  for (const w of DATA.worlds) if (WORLD[w.id] && WORLD[w.id].t !== w.t) throw new Error('[DIALOGS-CHOOSE] мир ' + w.id + ' в данных: ' + w.t);
+  const D = {};
+  for (const [id, world, rank, cefr, title, personas, goals] of DATA.rows) D[id] = { id, world, rank, cefr, title, personas, goals };
+  if (Object.keys(D).length !== 76) throw new Error('[DIALOGS-CHOOSE] ждал 76 диалогов, в данных ' + Object.keys(D).length);
+  const P = DATA.persona;
+  const INSTR = { mila: 'Милой', zoe: 'Зоей', denis: 'Денисом', marina: 'Мариной', oleg: 'Олегом', sam: 'Сэмом', lea: 'Леей', niko: 'Нико', clara: 'Кларой', ira: 'Ирой', nikita: 'Никитой', vera: 'Верой' };
+  const withWho = (d) => 'с ' + d.personas.map((p) => INSTR[p]).join(' и ');
+  const goalsWord = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'цель' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'цели' : 'целей');
+  const goalsN = (n) => `${n} ${goalsWord(n)}`;
+  const idOf = (world, rank) => `${world}_${String(rank).padStart(2, '0')}`;
+
+  /* ── состояние примера: ранг 7; пройдено / начат / следующий — по темам ── */
+  const RANK = 7;
+  const DONE = { social: [1, 2, 3, 4, 5], work: [], travel: [1], everyday: [1, 2, 3] };
+  const STARTED = { social_06: 3 };
+  const NEXT = { social: 'social_07', work: 'work_01', travel: 'travel_02', everyday: 'everyday_04' };
+  const status = (d) => (d.rank > RANK ? 'lock' : DONE[d.world].includes(d.rank) ? 'done' : STARTED[d.id] !== undefined ? 'started' : 'new');
+  const doneCount = (w) => DONE[w].length;
+  const stChip = (d, ink = false) => {
+    const s = status(d);
+    const c = ink ? ' ink' : '';
+    if (s === 'lock') return `<span class="st lock${c}">${io('lock-closed')}Ранг ${d.rank}</span>`;
+    if (s === 'done') return `<span class="st done${c}">${io('checkmark')}Пройден</span>`;
+    if (s === 'started') return `<span class="st${c}">${io('play')}${STARTED[d.id]} из ${d.goals}</span>`;
+    return `<span class="st new${c}">Новый</span>`;
+  };
+  const who = (d, size, ink = false) => `<span class="who${ink ? ' ink' : ''}" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.44)}px">${d.personas.map((p) => P[p].name[0]).join('')}</span>`;
+
+  /* ── общие куски телефона ── */
+  const sb = (t, ink = false) => `<div class="dc-sb${ink ? ' ink' : ''}"><span>${t}</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:3px"></i></span></div>`;
+  const TABS = [['home', 'Главная'], ['book', 'Обучение'], ['play-circle-outline', 'Видео'], ['people', 'Сообщество'], ['settings-outline', 'Настройки']];
+  const tabbar = () => `<div class="tb">${TABS.map(([i, l], k) => `<div class="${k === 1 ? 'on' : ''}">${io(i)}${l}</div>`).join('')}</div>`;
+  const phone = (inner, o = {}) => `<div class="ph ${AP}">${sb(o.time || '18:10', o.ink)}<div class="dc-scr">${inner}</div>${o.fixed || ''}${o.noTabs ? '' : tabbar()}<div class="home-ind"></div></div>`;
+  const quotaTop = () => `<span class="pill">${io('chatbubbles-outline')}18 из 30</span><span class="sp"></span><span class="ava"></span>`;
+  const H = 392;
+
+  /* ═══════ 1 · Карусель карт в сцене ═══════ */
+  const flowCard = (d, k, sel) => {
+    // зачем: соседние карты уходят в глубину дальше и бледнее, чтобы их подписи не слипались с центральной (как карусель «Сезона»)
+    const tr = `translateX(${k * 122}px) translateZ(${-Math.abs(k) * 110}px) rotateY(${-k * 32}deg)`;
+    const s = status(d);
+    return `<div class="dcard w-${d.world}${s === 'lock' ? ' mute' : ''}${sel ? ' sel' : ''}" style="transform:${tr};z-index:${10 - Math.abs(k)};opacity:${Math.abs(k) >= 2 ? 0.35 : Math.abs(k) === 1 ? 0.88 : 1}">`
+      + `<span class="gl">${io(WORLD[d.world].ic)}</span><div class="hd">${stChip(d)}${who(d, 24)}</div>`
+      + `<div class="t">${d.title}</div><div class="m">${withWho(d)} · ${d.cefr}</div></div>`;
+  };
+  const v1Scene = () => {
+    const w = 'social';
+    const center = D[NEXT[w]];
+    const list = [5, 6, 7, 8, 9].map((r) => D[idOf(w, r)]);
+    return `<div class="sc" style="--h:${H}px"><div class="scrim"></div><div class="sc-top">${quotaTop()}</div>`
+      + `<div class="sc-body" style="top:100px"><div class="wsel"><b>${io(WORLD[w].ic, 'font-size:17px')}${WORLD[w].t}${io('chevron-down')}</b><span>${doneCount(w)} из 19 пройдено</span></div></div>`
+      + `<div class="flow" style="top:136px;height:152px">${list.map((d, i) => flowCard(d, i - 2, d.id === center.id)).join('')}</div>`
+      + `<div class="sc-body" style="top:300px;display:flex;gap:10px;align-items:center"><span class="btn">${io('play')}Начать</span><span class="kick" style="flex:1;min-width:0">${goalsN(center.goals)} · текстом или голосом</span></div></div>`;
+  };
+  const worldsPanel = (active) => `<div class="pn"><div class="pn-h">Темы<span>76 диалогов</span></div><div class="wgrid">${Object.keys(WORLD).map((w) => {
+    const n = doneCount(w);
+    return `<div class="wt${w === active ? ' on' : ''}"><div class="h">${io(WORLD[w].ic)}${WORLD[w].t}</div><div class="p"><span class="bar"><i style="width:${Math.round((n / 19) * 100)}%"></i></span>${n} из 19</div></div>`;
+  }).join('')}</div></div>`;
+  const v1Choose = () => phone(`${v1Scene()}<div class="after">${worldsPanel('social')}</div>`);
+  const zoomCard = (d, opts = {}) => {
+    const det = DATA.detail[d.id];
+    const p = P[d.personas[0]];
+    const shown = det.goals.slice(0, 3);
+    return `<div class="dim"></div><div class="zoom w-${d.world}"><span class="gl">${io(WORLD[d.world].ic)}</span>`
+      + `<div class="hd"><span class="chip">${io(WORLD[d.world].ic)}${WORLD[d.world].t} · диалог ${d.rank}</span><span class="sp"></span><span class="round">${io('close')}</span></div>`
+      + `<div class="pers">${who(d, 52)}<div><b>${d.personas.map((x) => P[x].name).join(' и ')}</b><span>${p.note}</span></div></div>`
+      + `<div class="big">${d.title}</div><div class="br">${det.brief}</div>`
+      + `<div class="row-gap facts"><span class="chip">${d.cefr}</span><span class="chip">${io('flag-outline')}${goalsN(d.goals)}</span><span class="chip">${io('mic')}текст или голос</span></div>`
+      + `<div class="gls">${shown.map((g) => `<div><i class="o"></i>${g}</div>`).join('')}${det.goals.length > shown.length ? `<div class="more">и ещё ${det.goals.length - shown.length}</div>` : ''}</div>`
+      + `<span class="btn wide">${io('play')}Начать диалог</span><div class="note">${opts.note || 'Осталось 18 ответов в этом месяце'}</div></div>`;
+  };
+  const v1See = () => phone(`${v1Scene()}<div class="after">${worldsPanel('social')}</div>${zoomCard(D[NEXT.social])}`);
+
+  /* ═══════ 2 · Сцена-тема: вкладки тем, диалоги темы внутри ═══════ */
+  const glRow = (d, hi) => {
+    const s = status(d);
+    const right = s === 'lock' ? `<span class="st lock">${io('lock-closed')}Ранг ${d.rank}</span>` : hi ? `<span class="go">${io('play')}</span>` : stChip(d);
+    return `<div class="gl-row${hi ? ' hi' : ''}${s === 'lock' ? ' mute' : ''}">${who(d, 38)}<div class="tx"><b>${d.title}</b><span>${withWho(d)} · ${d.cefr} · ${goalsN(d.goals)}</span></div>${right}</div>`;
+  };
+  const v2Choose = () => {
+    const w = 'travel';
+    const rows = [D[NEXT[w]], D.travel_03, D.travel_08];
+    return phone(`<div class="sc" style="--h:${H}px"><div class="scrim"></div><div class="sc-top">${quotaTop()}</div>`
+      + `<div class="sc-body" style="top:98px"><div class="wtabs">${Object.keys(WORLD).map((x) => `<span class="${x === w ? 'on' : ''}">${WORLD[x].t}</span>`).join('')}</div></div>`
+      + `<div class="sc-body" style="top:140px"><div class="prog" style="margin-top:0"><span class="bar"><i style="width:${Math.round((doneCount(w) / 19) * 100)}%"></i></span>${doneCount(w)} из 19 пройдено · дальше по рангу</div></div>`
+      + `<div class="sc-body" style="top:170px;left:16px;right:16px">${rows.map((d, i) => glRow(d, i === 0)).join('')}</div>`
+      + `<div class="sc-body" style="top:352px"><div class="dots">${Object.keys(WORLD).map((x) => `<i class="${x === w ? 'on' : ''}"></i>`).join('')}</div></div></div>`
+      + `<div class="after"><div class="pn"><div class="pn-h">Ещё в теме «${WORLD[w].t}»<a>Все 19${io('chevron-forward')}</a></div>`
+      + `${[D.travel_01, D.travel_04].map((d) => `<div class="lrow">${who(d, 32, true)}<div class="tx">${d.title}<small>${withWho(d)} · ${d.cefr}</small></div>${status(d) === 'done' ? `<span class="ok">${io('checkmark-circle')}</span>` : `<span class="ch">${io('chevron-forward')}</span>`}</div>`).join('')}</div></div>`);
+  };
+  const pickScene = (d, opts = {}) => {
+    const det = DATA.detail[d.id];
+    return `<div class="sc" style="--h:${H}px"><div class="h3d" style="right:6px;top:92px;width:190px;height:190px"><div class="halo"></div><div class="ini">${P[d.personas[0]].name[0]}</div></div><div class="scrim"></div>`
+      + `<div class="sc-top"><span class="round">${io('chevron-back')}</span><b style="font-size:17px;color:#fff">${opts.top || 'Диалог'}</b><span class="sp"></span><span class="pill">${io('chatbubbles-outline')}18 из 30</span></div>`
+      + `<div class="sc-body" style="bottom:44px;right:150px"><div class="kick">${io(WORLD[d.world].ic)}${WORLD[d.world].t} · ${withWho(d)}</div>`
+      + `<div class="ttl" style="font-size:28px;line-height:34px;margin-top:4px">${d.title}</div></div>`
+      + `<div class="sc-body" style="bottom:44px;left:auto;right:20px"></div></div>`
+      + `<div class="dpanel"><div class="pers2">${who(d, 44, true)}<div><b>${d.personas.map((x) => P[x].name).join(' и ')}</b><span>${P[d.personas[0]].note}</span></div></div>`
+      + `<div class="brief">${det.brief}</div><div class="row-gap" style="margin-top:12px"><span class="chip ink">${d.cefr}</span><span class="chip ink">${io('flag-outline')}${goalsN(d.goals)}</span><span class="chip ink">${io('mic')}текст или голос</span></div>`
+      + `<div class="sep"></div><div class="ph-h">Цели<span>${det.goals.length}</span></div>${det.goals.map((g) => `<div class="goal"><span class="ck"></span>${g}</div>`).join('')}`
+      + `<div class="how">${io('chatbubbles-outline')}Осталось 18 ответов в этом месяце · голосом 3 раза в день</div></div>`;
+  };
+  const v2See = () => phone(pickScene(D[NEXT.travel], { top: 'Поездки' }), { noTabs: true, fixed: `<div class="composer" style="padding-bottom:30px"><span class="btn ink wide" style="height:54px;border-radius:27px">${io('play')}Начать диалог</span></div>` });
+
+  /* ═══════ 3 · «Продолжить» и лента карт-сцен ═══════ */
+  const sCard = (d, rec) => {
+    const s = status(d);
+    return `<div class="scard w-${d.world}${s === 'lock' ? ' mute' : ''}"><span class="gl">${io(WORLD[d.world].ic)}</span><div class="hd">${rec ? `<span class="rec">${io('sparkles', 'font-size:11px')}Рекомендуем</span>` : stChip(d)}</div>`
+      + `<div class="k">${WORLD[d.world].t} · ${d.cefr}</div><div class="t">${d.title}</div><div class="m">${who(d, 20)}${withWho(d)}</div>`
+      + `${s === 'lock' ? `<div class="m" style="margin-top:4px">${io('lock-closed')}Откроется на ранге ${d.rank}</div>` : `<div class="m" style="margin-top:4px">${io('flag-outline')}${goalsN(d.goals)}</div>`}</div>`;
+  };
+  const v3Hub = () => {
+    const d = D.social_06;
+    return `<div class="sc" style="--h:${H}px"><div class="glow" style="top:96px;width:168px;height:168px"></div><img class="art" src="${art('dialogs_scene_next')}" alt="" style="top:96px;width:160px;height:160px"><div class="scrim"></div>`
+      + `<div class="sc-top">${quotaTop()}</div>`
+      + `<div class="sc-body" style="bottom:44px;right:150px"><div class="kick">Продолжить · ${WORLD[d.world].t}</div><div class="ttl" style="font-size:30px;line-height:36px;margin-top:2px">${d.title}</div>`
+      + `<div class="prog"><span class="bar"><i style="width:${Math.round((STARTED[d.id] / d.goals) * 100)}%"></i></span>${STARTED[d.id]} из ${goalsN(d.goals)}</div>`
+      + `<div style="display:flex;gap:10px;margin-top:14px"><span class="btn">${io('play')}Продолжить</span><span class="round" style="width:50px;height:50px;border-radius:25px;font-size:20px">${io('mic')}</span></div></div></div>`;
+  };
+  const v3Choose = () => phone(`${v3Hub()}`
+    + `<div class="after"><div class="pn" style="padding-bottom:14px"><div class="pn-h">Дальше<a>Все 76${io('chevron-forward')}</a></div>`
+    + `<div class="ribbon">${sCard(D.work_01, true)}${sCard(D.social_07)}${sCard(D.social_08)}</div>`
+    + `<div class="wchips" style="margin-top:12px"><span class="on">Все</span>${Object.keys(WORLD).map((w) => `<span>${io(WORLD[w].ic)}${WORLD[w].t}</span>`).join('')}</div></div></div>`);
+  const sheet = (d) => {
+    const det = DATA.detail[d.id];
+    return `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="hd"><span class="chip ink">${io(WORLD[d.world].ic)}${WORLD[d.world].t}</span><span class="chip ink">${d.cefr}</span><span class="chip ink">${io('flag-outline')}${goalsN(d.goals)}</span></div>`
+      + `<div class="big">${d.title}</div><div class="pers2" style="margin-top:12px">${who(d, 44, true)}<div><b>${d.personas.map((x) => P[x].name).join(' и ')}</b><span>${P[d.personas[0]].note}</span></div></div>`
+      + `<div class="brief">${det.brief}</div><div class="sep"></div><div class="ph-h">Цели<span>${det.goals.length}</span></div>${det.goals.map((g) => `<div class="goal"><span class="ck"></span>${g}</div>`).join('')}`
+      + `<div class="how">${io('mic')}Отвечаешь текстом или голосом — голосом 3 раза в день</div><span class="btn ink wide" style="margin-top:16px;height:54px;border-radius:27px">${io('play')}Начать диалог</span>`
+      + `<div class="note">Осталось 18 ответов в этом месяце</div></div>`;
+  };
+  const v3See = () => phone(`${v3Hub()}<div class="after"><div class="pn"><div class="pn-h">Дальше<a>Все 76${io('chevron-forward')}</a></div><div class="ribbon">${sCard(D.work_01, true)}${sCard(D.social_07)}</div></div></div>${sheet(D.work_01)}`, { noTabs: false });
+
+  /* ═══════ 4 · Лестница рангов темы (свой вариант) ═══════ */
+  const ladder = (w, sel) => {
+    const nodes = Array.from({ length: 19 }, (_, i) => {
+      const d = D[idOf(w, i + 1)];
+      const s = status(d);
+      return `<i class="${d.id === sel ? 's' : s === 'done' ? 'd' : s === 'lock' ? 'l' : ''}"></i>`;
+    }).join('');
+    const cutX = ((RANK + 0.5 - 1) / 18) * 100;
+    return `<div class="ladder"><div class="nodes">${nodes}<span class="cut" style="left:calc(6px + (100% - 12px) * ${cutX / 100})"></span></div>`
+      + `<div class="lab"><span>1</span><span><b>ты на ранге ${RANK}</b> · дальше закрыто до ранга ${RANK + 1}</span><span>19</span></div></div>`;
+  };
+  const v4Scene = (sel) => {
+    const w = 'everyday';
+    const d = D[sel];
+    // зачем (крайний случай: длинное название в 3 строки толкало строку «с Ирой» под кнопку): тема → лестница → диалог в 2 строки → кнопка
+    return `<div class="sc" style="--h:${H}px"><div class="h3d" style="right:4px;top:186px;width:150px;height:150px"><div class="halo"></div><div class="ini" style="font-size:80px">${P[d.personas[0]].name[0]}</div></div><div class="scrim"></div><div class="sc-top">${quotaTop()}</div>`
+      + `<div class="sc-body" style="top:100px"><div class="kick">${io(WORLD[w].ic)}${WORLD[w].t}${io('chevron-down', 'font-size:12px')}<span style="margin-left:auto">${doneCount(w)} из 19 пройдено</span></div></div>`
+      + `<div class="sc-body" style="top:128px">${ladder(w, sel)}</div>`
+      + `<div class="sc-body" style="top:188px;right:130px"><div class="ttl" style="font-size:24px;line-height:30px">${d.title}</div><div class="kick" style="margin-top:4px">${withWho(d)} · ${d.cefr} · ${goalsN(d.goals)}</div></div>`
+      + `<div class="sc-body" style="top:288px"><span class="btn">${io('play')}Начать</span></div></div>`;
+  };
+  const v4Choose = () => {
+    const d = D[NEXT.everyday];
+    const det = DATA.detail[d.id];
+    return phone(`${v4Scene(d.id)}<div class="after"><div class="pn"><div class="pers2">${who(d, 40, true)}<div><b>${P[d.personas[0]].name}</b><span>${P[d.personas[0]].note}</span></div></div>`
+      + `<div class="sep"></div><div class="ph-h">Цели<span>${det.goals.length}</span></div><div class="row-gap" style="margin-top:6px">${det.goals.slice(0, 4).map((g) => `<span class="chip ink">${g}</span>`).join('')}<span class="chip ink">и ещё ${det.goals.length - 4}</span></div></div></div>`);
+  };
+  const v4See = () => phone(`${v4Scene(NEXT.everyday)}<div class="after"><div class="pn"><div class="pn-h">Цели<span>6</span></div></div></div>${sheet(D[NEXT.everyday])}`);
+
+  /* ═══════ «начал»: шапка-сцена и чат ═══════ */
+  const talk = (d, real) => {
+    const det = DATA.detail[d.id];
+    const p = P[d.personas[0]];
+    const body = real
+      ? `<div class="msg them">Hi! You must be new here. I'm Marina, I run the design team.</div><div class="msg me">Hi Marina, I'm Alex. I'm the new QA engineer.</div>`
+        + `<div style="text-align:center"><span class="goal-toast">${io('checkmark-circle')}назвать себя</span></div>`
+        + `<div class="msg them">Nice to meet you, Alex! What are you working on today?<span class="tr">Приятно познакомиться, Алекс! Над чем ты сегодня работаешь?</span></div>`
+        + `<div class="typing-row"><div class="typing"><i></i><i></i><i></i></div>${p.name} пишет…</div>`
+      : `<div class="task"><div class="h">${io('flag-outline')}Задача</div><div class="b">${det.brief}</div></div>`
+        + `<div style="text-align:center"><span class="goal-now">${io('radio-button-on')}Сейчас: ${det.goals[0]}</span></div>`
+        + `<div class="typing-row"><div class="typing"><i></i><i></i><i></i></div>${p.name} пишет…</div>`;
+    const done = real ? 2 : 0;
+    return phone(`<div class="sc dl-head" style="--h:250px"><div class="h3d" style="right:12px;top:94px;width:150px;height:150px"><div class="halo"></div><div class="ini" style="font-size:80px">${p.name[0]}</div></div><div class="scrim"></div>`
+      + `<div class="dl-bar"><span class="round">${io('close')}</span><span class="sp"></span><span class="goals-chip">${io('flag-outline')}Цели ${done} из ${d.goals}</span></div>`
+      + `<div class="dl-who"><b>${d.personas.map((x) => P[x].name).join(' и ')}</b><span>${d.title}</span></div></div><div class="chat">${body}</div>`,
+    { noTabs: true, fixed: `<div class="composer"><div class="row"><div class="dfield">Напиши или говори</div><span class="mic">${io('mic')}</span></div><div class="hint">Или зажми и говори · осталось ${real ? 17 : 18} ответов</div></div>` });
+  };
+
+  /* ── страница ── */
+  const VARS = [
+    { n: 1, t: 'Карусель карт в сцене', lead: 'Как выбор эпизода в «Уроках»: тема сверху сцены («Общение ⌄» — переключить тему), под ней карусель карт этой темы по рангу — пройденные ✓ слева, следующий в центре, закрытые 🔒 справа с номером ранга. Тап по карте раскрывает её крупно: собеседник и его характер, задача, цели, «текст или голос», остаток ответов.',
+      f: [v1Choose, v1See, () => talk(D[NEXT.social], false)] },
+    { n: 2, t: 'Сцена-тема', lead: 'Сцена и есть тема: вкладки «Общение · Дела · Поездки · Повседневное» листаются свайпом, внутри сцены — три диалога темы: следующий выделен с ▶, новый, закрытый по рангу. Тап — сцена превращается в сцену выбранного диалога, ниже всё, что будет: собеседник, задача, цели, ответы.',
+      f: [v2Choose, v2See, () => talk(D[NEXT.travel], false)] },
+    { n: 3, t: '«Продолжить» и лента карт-сцен', lead: 'Сцена — начатый диалог и «Продолжить». Ниже лента карт-сцен «Дальше»: первая — «Рекомендуем», у каждой тема, уровень, собеседник, число целей или честный замок «Откроется на ранге N». Тап — шторка «что увижу» с целями и кнопкой «Начать диалог».',
+      f: [v3Choose, v3See, () => talk(D[NEXT.work], true)] },
+    { n: 4, t: 'Лестница рангов темы', lead: 'Свой вариант: в сцене — выбранный диалог и лестница темы из 19 ступеней. Зелёные — пройдены, белая — выбранная, пустые — открыты, мелкие — закрыты; черта — твой ранг. Сразу видно, что дальше и почему остальное закрыто. Под сценой — собеседник и цели; тап «Начать» — шторка с целями.',
+      f: [v4Choose, v4See, () => talk(D[NEXT.everyday], false)] },
+  ];
+  const STEP = ['Выбираю', 'Что увижу', 'Начал'];
+  const sum = () => { document.getElementById('dc-sum').innerHTML = `Выбор: <b>${picked ? `вариант ${picked}` : '—'}</b> · ${AP === 'dk' ? 'тёмное' : 'светлое'}`; };
+  const render = () => {
+    document.getElementById('root').innerHTML = VARS.map((v) => `<section class="dc-block" id="v${v.n}"><h2>${v.n} · ${v.t}<button type="button" class="dc-pick${picked === v.n ? ' on' : ''}" data-n="${v.n}">Выбрать ${v.n}</button></h2><p>${v.lead}</p>`
+      + `<div class="dc-row">${v.f.map((f, i) => `<div class="dc-col"><div class="dc-cap">${v.n}.${i + 1} · ${STEP[i]}</div>${f()}</div>`).join('')}</div></section>`).join('');
+    sum();
+  };
+  document.addEventListener('click', (e) => {
+    const ap = e.target.closest('[data-ap]');
+    if (ap) { AP = ap.dataset.ap; document.querySelectorAll('[data-ap]').forEach((b) => b.classList.toggle('on', b === ap)); render(); return; }
+    const pk = e.target.closest('.dc-pick');
+    if (pk) { picked = Number(pk.dataset.n); render(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>

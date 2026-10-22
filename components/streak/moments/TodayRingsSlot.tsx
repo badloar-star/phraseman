@@ -5,13 +5,13 @@ import React, { memo, useEffect } from 'react';
 import { useLang } from '../../LangContext';
 import { useMyCoinRank } from '../../../hooks/use_my_coin_rank';
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
-import TodayRings, { type TodayRingSize } from './TodayRings';
+import TodayRings, { type TodayRingSize, type TodayRingsLook } from './TodayRings';
 import { useMomentsV3Enabled } from './use_moments_v3_flag';
 
 export type TodayRingsTask = Readonly<{ progress: number; target: number }>;
-type SlotProps = Readonly<{ tasks: readonly TodayRingsTask[]; fromProgress?: readonly [number, number, number]; size?: TodayRingSize; showDayDone?: boolean }>;
+type SlotProps = Readonly<{ tasks: readonly TodayRingsTask[]; fromProgress?: readonly [number, number, number]; size?: TodayRingSize; showDayDone?: boolean; look?: TodayRingsLook }>;
 
-const Inner = memo(function Inner({ tasks, fromProgress, size, showDayDone }: SlotProps) {
+const Inner = memo(function Inner({ tasks, fromProgress, size, showDayDone, look }: SlotProps) {
   const { lang } = useLang();
   const rank = useMyCoinRank();
   // зачем (координатор 15.10, сценарий Сверки моментов v3): что нарисовали кольца m11 — одна строка на смену чисел
@@ -28,15 +28,16 @@ const Inner = memo(function Inner({ tasks, fromProgress, size, showDayDone }: Sl
       fromProgress={fromProgress}
       size={size}
       showDayDone={showDayDone}
+      look={look}
       targets={[Math.max(1, t[0].target), Math.max(1, t[1].target), Math.max(1, t[2].target)]}
       coinRank={isValidCoinRank(rank) ? rank : null}
     />
   );
 });
 
-function TodayRingsSlot({ tasks, fromProgress, size, showDayDone }: SlotProps) {
+function TodayRingsSlot({ tasks, fromProgress, size, showDayDone, look }: SlotProps) {
   const on = useMomentsV3Enabled();
-  return on ? <Inner tasks={tasks} fromProgress={fromProgress} size={size} showDayDone={showDayDone} /> : null;
+  return on ? <Inner tasks={tasks} fromProgress={fromProgress} size={size} showDayDone={showDayDone} look={look} /> : null;
 }
 
 export default memo(TodayRingsSlot);

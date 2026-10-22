@@ -9,7 +9,6 @@ import React, { useEffect, useMemo, useSyncExternalStore } from 'react';
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
 import { peekStreakDayState, subscribeStreakDayState } from '../../../../app/streak_day_signal';
 import type { Lang } from '../../../../constants/i18n';
-import { todayRingColors, useStreakColors } from '../../../streak/moments/use_streak_colors';
 import type { TodayTask } from '../home_v2_types';
 import { minutesUntilMidnight } from '../scene/home_scene_state';
 import TodayActivityHistory from '../TodayActivityHistory';
@@ -54,7 +53,6 @@ type Props = Readonly<{
 export default function TodayScene({ lang, title, dayKey, tasks, fromProgress, onBack, backLabel, onOpenTask, pollRow = null }: Props) {
   const personal = usePersonalProgressSnapshot();
   const streakToday = useSyncExternalStore(subscribeStreakDayState, streakTodaySnapshot);
-  const streakColors = useStreakColors(true);
   const now = new Date();
   const hour = now.getHours();
   const streakDays = personal.streakCount;
@@ -76,13 +74,9 @@ export default function TodayScene({ lang, title, dayKey, tasks, fromProgress, o
   useEffect(() => {
     console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, next: decision.nextIndex, video: decision.hasVideoTask, title: copy.title, streakToday })); // guard-ok: одна строка на смену состояния
   }, [decision, copy.title, streakToday]);
-  const ringColors = useMemo<readonly [string, string, string]>(
-    () => (streakColors ? todayRingColors(streakColors) : ['#7EF0C8', '#A08CFF', '#F0C551']), // theme-exempt: запасные цвета колец, пока токены темы не готовы (эталон RC)
-    [streakColors],
-  );
   return (
     <TodaySceneView
-      title={title} decision={decision} copy={copy} tasks={tasks} ringColors={ringColors} fromProgress={fromProgress}
+      title={title} decision={decision} copy={copy} tasks={tasks} fromProgress={fromProgress}
       onBack={onBack} backLabel={backLabel} onOpenTask={onOpenTask} pollRow={pollRow}
       history={<TodayActivityHistory dayKey={dayKey} tasks={tasks} />}
     />

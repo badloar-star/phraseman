@@ -6,6 +6,8 @@
 // варианту A не нужно), крупное «N из 3», белая кнопка следующего задания; ниже панель «Задания дня» наезжает на сцену на 38.
 // Кольца — существующий TodayRingsSlot («до → после» уже умеет), строки — свои (HomeV2TodayCard держит чужие правки, не трогаю).
 // Лента истории дней в сцену придёт после коммита TodayActivityHistory её автором. Вечер — тёплый свет, статично, без пульсации.
+// 22.10 (владелец выбрал вариант 2 scenes-compact.html; Сверка 366de369b): кольца — RC эталона в любой теме, кнопка «Начать» по содержимому
+// слева, строки — значок, название и справа ✓ или счётчик (левого кружка в эталоне нет).
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -17,6 +19,7 @@ import { useStableSafeAreaInsets } from '../../../../app/stable_safe_area_metric
 import { useScaledTextStyles } from '../../../../hooks/useLineScale';
 import TodayRingsSlot from '../../../streak/moments/TodayRingsSlot';
 import type { TodayRingsTask } from '../../../streak/moments/TodayRingsSlot';
+import type { TodayRingsLook } from '../../../streak/moments/TodayRings';
 import BackButton from '../../../v2/BackButton';
 import { plateBoxShadow, useShadowGlass } from '../../../v2/ShadowSurface';
 import V2Pressable from '../../../v2/V2Pressable';
@@ -36,6 +39,13 @@ const HERO_SIZE = 160;
 export const TODAY_HERO_BOUND_FONT_SCALE = 1.15;
 /** Панель «Задания дня» наезжает на сцену (вариант 2: −22). */
 const PANEL_OVERLAP = 22;
+/**
+ * Кольца как рисует эталон scenes-compact.html v2 в любой теме: RC макета (урок, диалог, карточки), дорожка 22 %, точка начала у пустого.
+ * зачем (координатор 22.10, Сверка 366de369b: «кольца — цветные красное/синее/зелёное, а сейчас приглушённые лиловые»)
+ */
+const TODAY_SCENE_RING_LOOK: TodayRingsLook = Object.freeze({ colors: Object.freeze(['#FF6B5B', '#3DD6A3', '#55A8FF'] as const), trackOpacity: 0.22, zeroDot: true }); // theme-exempt: цвета колец эталона scenes-compact v2 (RC), одни в светлой и тёмной
+/** Отметка выполненного задания справа в строке (эталон `.rw .ok`). */
+const DONE_TICK = '#3DD6A3'; // theme-exempt: цвет отметки эталона scenes-compact v2 (.rw .ok), как зелёное кольцо
 const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']>> = {
   lesson: 'book-outline', dialog: 'chatbubbles-outline', cards: 'copy-outline', video: 'play-circle-outline', mistakes: 'alert-circle-outline', spire_steps: 'trending-up-outline',
 };
@@ -51,8 +61,6 @@ export type TodaySceneViewProps = Readonly<{
   decision: TodaySceneDecision;
   copy: TodaySceneCopy;
   tasks: readonly TodayTask[];
-  /** Цвета колец и отметок строк (todayRingColors), три по порядку заданий. */
-  ringColors: readonly [string, string, string];
   /** «До» для докрутки колец; undefined — первое за день, от нуля. */
   fromProgress?: readonly [number, number, number];
   onBack: () => void;
@@ -62,7 +70,7 @@ export type TodaySceneViewProps = Readonly<{
   pollRow?: TodayScenePollRow | null;
 }>;
 
-const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, ringColors, fromProgress, onBack, backLabel, onOpenTask, pollRow = null }: TodaySceneViewProps) {
+const TodaySceneView = memo(function TodaySceneView({ title, history, decision, copy, tasks, fromProgress, onBack, backLabel, onOpenTask, pollRow = null }: TodaySceneViewProps) {
   // зачем (FONTSCALE2, 2 · ДИЗАЙН 22.10): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const s = useScaledTextStyles(baseStyles);
   const { fontScale, height: windowH } = useWindowDimensions();
@@ -85,6 +93,8 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   const card = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }), [liquidGlassThemeId, liquidGlassAppearance]);
   const nextTask = decision.nextIndex === null ? null : tasks[decision.nextIndex] ?? null;
   const ringTasks: readonly TodayRingsTask[] = tasks.map((task) => ({ progress: task.progress, target: task.target }));
+  // разделитель строк: цвет текста 7 % (эталон `.rw + .rw`: color-mix(var(--tx) 7%))
+  const separator = `${card.text.slice(0, 7)}12`;
   return (
     <ScrollView testID="today-scene" style={[s.root, { backgroundColor: p.bg }]} contentContainerStyle={s.content} showsVerticalScrollIndicator={false} bounces={false}>
       <View testID="today-scene-stage" style={[s.stage, { minHeight: stageH }]}>
@@ -113,7 +123,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
         {/* герой — сами кольца дня; место занято с первого кадра (160 × 160), кольца докручиваются внутри */}
         {heroBounded ? null : (
           <View pointerEvents="none" testID="today-scene-rings" style={s.hero}>
-            <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} />
+            <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} look={TODAY_SCENE_RING_LOOK} />
           </View>
         )}
         {/* зачем (эталон): у тёмной сцены затемнения низа нет — иначе стык с панелью сливается */}
@@ -126,7 +136,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
         {heroBounded ? (
           <View pointerEvents="none" style={s.heroSlot} onLayout={(e) => setSlotH(Math.round(e.nativeEvent.layout.height))}>
             <View testID="today-scene-rings" style={[s.heroBoundedBox, { transform: [{ scale: heroScale }] }]}>
-              <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} />
+              <TodayRingsSlot tasks={ringTasks} fromProgress={fromProgress} size={HERO_SIZE} showDayDone={false} look={TODAY_SCENE_RING_LOOK} />
             </View>
           </View>
         ) : null}
@@ -140,10 +150,11 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
             </View>
           ) : null}
           {copy.line ? <Text testID="today-scene-line" style={s.line}>{copy.line}</Text> : null}
+          {/* зачем (эталон scenes-compact v2 `.cta .btn`; координатор 22.10): короткая «Начать» по содержимому, слева под текстом; что откроет — в подписи для чтения с экрана */}
           {nextTask ? (
-            <V2Pressable testID="today-scene-cta" accessibilityRole="button" accessibilityLabel={nextTask.title} onPress={() => onOpenTask(nextTask)} scaleTo={0.97} style={s.cta}>
-              <Ionicons name="play" size={18} color="#121318" />
-              <Text style={s.ctaText}>{nextTask.title}</Text>
+            <V2Pressable testID="today-scene-cta" accessibilityRole="button" accessibilityLabel={`${copy.cta}: ${nextTask.title}`} onPress={() => onOpenTask(nextTask)} scaleTo={0.97} outerStyle={s.ctaOuter} style={s.cta}>
+              <Ionicons name="play" size={17} color="#121318" />
+              <Text style={s.ctaText}>{copy.cta}</Text>
             </V2Pressable>
           ) : null}
         </View>
@@ -154,7 +165,6 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           <Text style={[s.panelCount, { color: card.secondary }]}>{copy.panelCount}</Text>
         </View>
         {tasks.map((task, index) => {
-          const color = ringColors[Math.min(index, 2)];
           const done = task.done || (task.target > 0 && task.progress >= task.target);
           const urgent = evening && index === decision.nextIndex;
           return (
@@ -166,19 +176,19 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
               accessibilityState={{ selected: done }}
               onPress={() => onOpenTask(task)}
               scaleTo={0.97}
-              style={[s.row, index < tasks.length - 1 ? { borderBottomColor: `${card.text.slice(0, 7)}12`, borderBottomWidth: StyleSheet.hairlineWidth } : null]} // shadow-ok: разделитель строк (нижняя линия, не обводка контейнера)
+              style={[s.row, index > 0 ? { borderTopColor: separator, borderTopWidth: 1 } : null]} // shadow-ok: разделитель строк (верхняя линия 1, как `.rw + .rw` эталона; не обводка контейнера)
             >
-              {done ? (
-                <View style={[s.ck, { backgroundColor: color }]}><Ionicons name="checkmark" size={16} color="#FFFFFF" /></View>
-              ) : (
-                <View style={[s.ck, s.ckRing, { borderColor: color }]} /> // shadow-ok: guard-ok: кружок-индикатор невыполненного задания, не контейнер
-              )}
               <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name={ROW_ICON[task.kind]} size={18} color={card.text} /></View>
               <View style={s.tx}>
-                <Text style={[s.rowTitle, { color: done ? card.secondary : card.text }]} numberOfLines={2}>{task.title}</Text>
+                <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={2}>{task.title}</Text>
                 {task.subtitle ? <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={2}>{task.subtitle}</Text> : null}
               </View>
-              <Text style={[s.rowN, { color: urgent ? card.bad : card.secondary }]}>{`${task.progress}/${task.target}`}</Text>
+              {/* зачем (эталон `.rw .n` / `.rw .ok`): справа — зелёная ✓, когда сделано, иначе счётчик; левого кружка в эталоне нет */}
+              {done ? (
+                <Ionicons name="checkmark" size={16} color={DONE_TICK} />
+              ) : (
+                <Text style={[s.rowN, { color: urgent ? card.bad : card.secondary }]}>{`${task.progress}/${task.target}`}</Text>
+              )}
             </V2Pressable>
           );
         })}
@@ -190,9 +200,8 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
             accessibilityLabel={`${pollRow.title}. ${pollRow.subtitle}`}
             onPress={pollRow.onPress}
             scaleTo={0.97}
-            style={[s.row, { borderTopColor: `${card.text.slice(0, 7)}12`, borderTopWidth: StyleSheet.hairlineWidth }]} // shadow-ok: разделитель строк (верхняя линия, не обводка контейнера)
+            style={[s.row, { borderTopColor: separator, borderTopWidth: 1 }]} // shadow-ok: разделитель строк (верхняя линия 1, как у строк заданий; не обводка контейнера)
           >
-            <View style={s.ck} />
             <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={card.text} /></View>
             <View style={s.tx}>
               <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={1}>{pollRow.title}</Text>
@@ -219,7 +228,7 @@ const baseStyles = StyleSheet.create({
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 12 },
   heading: { flex: 1, color: '#FFFFFF', fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
-  history: { marginTop: 14 },
+  history: { marginTop: 12 },
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета; как у Главной в bd1ba46cd): подписи сцены 13/17, крупные строки и кнопка 16/21, заголовок 34 без изменений
   kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
@@ -227,16 +236,17 @@ const baseStyles = StyleSheet.create({
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   warm: { color: '#FFD9D0', /* аудит контраста 22.10: как на Главной, чуть светлее прежнего #FFD0C4 */ fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, marginTop: 10 },
-  cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
+  // эталон `.cta .btn`: по содержимому слева (flex-start), высота 50, радиус 28, поля 24, значок 17 и зазор 10; длинная подпись переносится, не шире строки
+  ctaOuter: { alignSelf: 'flex-start', maxWidth: '100%', marginTop: 16 },
+  cta: { minHeight: 50, paddingVertical: 8, borderRadius: 28, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 },
   ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
-  panel: { marginTop: -PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
+  panel: { marginTop: -PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 24, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
   panelHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 2 },
   panelTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
   panelCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 },
-  ckRing: { borderWidth: 2 }, // shadow-ok: guard-ok: typo-exempt: кружок-индикатор невыполненного задания, не контейнер
-  ck: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  ic: { width: 36, height: 36, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
+  // эталон `.rw`: строка от 52, плитка значка 34 со скруглением 12
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52, paddingVertical: 8 },
+  ic: { width: 34, height: 34, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   tx: { flex: 1, minWidth: 0 },
   rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   rowSub: { fontSize: 13, lineHeight: 17, marginTop: 1 },

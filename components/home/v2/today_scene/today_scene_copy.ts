@@ -2,7 +2,7 @@
 // today_scene_copy.ts — тексты «Сегодня» в стиле «Сцена» (вариант A) на 9 языках интерфейса.
 //
 // зачем (эталон today-scene-concepts.html, таблица «Что когда на экране»; координатор 22.10): заголовок и строки сцены зависят от состояния.
-// Название кнопки — это название следующего задания (его уже локализует useTodayTasks), поэтому здесь его нет. Переводы кроме RU — предложение,
+// Кнопка — «Начать» (эталон scenes-compact v2, владелец 22.10), что именно она откроет — в подписи для чтения с экрана. Переводы кроме RU — предложение,
 // носителем не проверены (передать 10 · ПЕРЕВОДЧИК). Числа склоняются через constants/plural.
 // ═══════════════════════════════════════════════════════════════════════════
 import { triLang, type Lang } from '../../../../constants/i18n';
@@ -30,6 +30,8 @@ export type TodaySceneCopy = Readonly<{
   warm: string | null;
   panelTitle: string;
   panelCount: string;
+  /** Подпись главной кнопки: «Начать» (эталон scenes-compact v2) — те же слова, что у кнопки сцены Главной. */
+  cta: string;
 }>;
 
 type Words = Readonly<Record<'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl', string>>;
@@ -108,7 +110,8 @@ export function buildTodaySceneCopy(i: TodaySceneCopyInput): TodaySceneCopy {
   const { lang, decision: d } = i;
   const panelTitle = tri(lang, { ru: 'Задания дня', uk: 'Завдання дня', en: "Today's tasks", es: 'Tareas del día', 'pt-BR': 'Tarefas do dia', vi: 'Nhiệm vụ hôm nay', id: 'Tugas hari ini', tr: 'Günün görevleri', pl: 'Zadania dnia' });
   const panelCount = ofLine(lang, d.doneCount, d.total);
-  const base = { panelTitle, panelCount };
+  const cta = tri(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' });
+  const base = { panelTitle, panelCount, cta };
   const dateKicker = i.dateLabel ?? '';
   if (d.state === 'done') {
     return {

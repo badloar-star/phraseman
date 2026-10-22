@@ -164,6 +164,7 @@ export const LEARNING_V2_THEORY_AVAILABLE: Readonly<Record<string, true>> = {
   "lesson_18.tr": true,
   "lesson_18.uk": true,
   "lesson_18.vi": true,
+  "lesson_19.ru": true,
 };
 
 export function requireLearningV2TheoryJson(key: string): unknown {
@@ -330,6 +331,7 @@ export function requireLearningV2TheoryJson(key: string): unknown {
     case "lesson_18.tr": return require("./lesson_18.tr.json");
     case "lesson_18.uk": return require("./lesson_18.uk.json");
     case "lesson_18.vi": return require("./lesson_18.vi.json");
+    case "lesson_19.ru": return require("./lesson_19.ru.json");
     default: return null;
   }
 }

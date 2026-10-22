@@ -249,6 +249,9 @@ describe("native Horizons integration", () => {
     expect(base.onSessionPress).toHaveBeenLastCalledWith(1, 4, "current");
     await ui.unmount();
   });
+  // зачем (22.10): экран итога переделан на стекло (413fd2538) — монеты показывает плашка «horizons-rune-award»
+  // (подпись для чтения с экрана «+N …»), счёт идёт анимацией; проверяем ту же суть, что и раньше.
+  const award = (ui: Awaited<ReturnType<typeof render>>) => String(ui.getByTestId("horizons-rune-award").props.accessibilityLabel);
   test("shows the supplied earned runes and never auto-dismisses the receipt", async () => {
     jest.useFakeTimers();
     const onContinue = jest.fn();
@@ -260,27 +263,25 @@ describe("native Horizons integration", () => {
         facts={{ runes: 54, total: 20, firstTry: 17, elapsedMs: 272000, credit: "credited" }}
         lang="ru"
         reducedMotion
+        rewardsSettled
         onContinue={onContinue}
       />,
     );
-    expect(ui.getByTestId("horizons-rune-count").props.children).toBe(54);
+    expect(award(ui)).toMatch(/^\+54\b/u);
     expect(ui.getByText("85%")).toBeTruthy();
-    expect(ui.getByText("4:32")).toBeTruthy();
-    expect(ui.getByText("+")).toBeTruthy();
     jest.advanceTimersByTime(5000);
     expect(onContinue).not.toHaveBeenCalled();
-    expect(ui.queryByLabelText("Повторить анимацию")).toBeNull();
-    expect(ui.getByTestId("horizons-rune-count").props.children).toBe(54);
+    expect(award(ui)).toMatch(/^\+54\b/u);
     await fireEvent.press(ui.getByTestId("horizons-result-continue"));
     expect(onContinue).toHaveBeenCalledTimes(1);
     await ui.unmount();
     jest.useRealTimers();
   });
   test.each([
-    ["session", "СЕССИЯ ЗАВЕРШЕНА · 1"],
-    ["chapter", "ГЛАВА ЗАВЕРШЕНА · 1"],
-    ["lesson", "УРОК ЗАВЕРШЁН · 1"],
-    ["final", "КУРС ЗАВЕРШЁН"],
+    ["session", "Эпизод пройден"],
+    ["chapter", "Глава закрыта"],
+    ["lesson", "Урок завершён"],
+    ["final", "Курс завершён"],
   ] as const)("labels a %s completion truthfully", async (kind, label) => {
     const ui = await render(
       <HorizonSessionResult
@@ -291,6 +292,7 @@ describe("native Horizons integration", () => {
         facts={{ runes: 0, total: 20, firstTry: 17, elapsedMs: 1000, credit: "practice" }}
         lang="ru"
         reducedMotion
+        rewardsSettled
         onContinue={jest.fn()}
       />,
     );
@@ -306,20 +308,32 @@ describe("native Horizons integration", () => {
         facts={{ runes: 0, total: 20, firstTry: 0, elapsedMs: 0 }}
         lang="ru"
         reducedMotion
+        rewardsSettled
+        skills={[{ id: "build", label: "Сборка фразы", confirmed: false }]}
         onContinue={jest.fn()}
       />,
     );
-    expect(ui.getByTestId("horizons-rune-count").props.children).toBe(0);
+    expect(award(ui)).toMatch(/^\+0\b/u);
     expect(ui.queryByText("Закрепилось")).toBeNull();
     expect(ui.getByText("Стоит повторить")).toBeTruthy();
     await ui.unmount();
   });
-  test.each(["existing", "practice"] as const)("%s runes never imply a new wallet credit", async credit => {
-    const ui = await render(<HorizonSessionResult lesson={1} kind="session" stars={2} facts={{runes:51,total:20,firstTry:17,elapsedMs:1000,credit}} lang="ru" reducedMotion onContinue={jest.fn()}/>);
-    expect(ui.getByTestId("horizons-rune-count").props.children).toBe(51);
-    expect(ui.queryByText("+")).toBeNull();
-    expect(ui.queryByText("ЗАРАБОТАНО ЗА СЕССИЮ")).toBeNull();
-    expect(ui.getByText(credit === "existing" ? "Повторного начисления нет" : "Учебный результат · без начисления")).toBeTruthy();
+  test("a repeat (existing) never implies a new wallet credit and says the result is saved", async () => {
+    const ui = await render(<HorizonSessionResult lesson={1} kind="session" stars={2} facts={{ runes: 51, total: 20, firstTry: 17, elapsedMs: 1000, credit: "existing" }} lang="ru" reducedMotion rewardsSettled onContinue={jest.fn()} />);
+    expect(award(ui)).toMatch(/^\+0\b/u);
+    expect(ui.getByText(/Результат сохранён/u)).toBeTruthy();
+    await ui.unmount();
+  });
+  test("a preview never implies a wallet credit even with earned runes", async () => {
+    const ui = await render(<HorizonSessionResult lesson={1} kind="session" stars={2} preview facts={{ runes: 51, total: 20, firstTry: 17, elapsedMs: 1000, credit: "credited" }} lang="ru" reducedMotion rewardsSettled={false} onContinue={jest.fn()} />);
+    expect(award(ui)).toMatch(/^\+0\b/u);
+    expect(ui.getByText(/Предпросмотр · без начисления/u)).toBeTruthy();
+    await ui.unmount();
+  });
+  // зачем (владелец 19.10 «на экране завершения 10 с был 0»): «practice» — награда проводится фоном, экран сразу показывает заработанное.
+  test("practice credit shows the earned runes right away (optimistic)", async () => {
+    const ui = await render(<HorizonSessionResult lesson={1} kind="session" stars={2} facts={{ runes: 51, total: 20, firstTry: 17, elapsedMs: 1000, credit: "practice" }} lang="ru" reducedMotion rewardsSettled={false} onContinue={jest.fn()} />);
+    expect(award(ui)).toMatch(/^\+51\b/u);
     await ui.unmount();
   });
 });
@@ -335,11 +349,12 @@ describe("Horizons entry dismissal lifecycle", () => {
     onPrimaryPress: jest.fn(),
     onSecondaryPress: jest.fn(),
   };
-  test("reduced-motion swipe closes immediately without awaiting an animation", async () => {
+  // зачем (22.10): шторка исхода больше не закрывается свайпом (жеста в ней нет) — та же суть через кнопку закрытия.
+  test("reduced-motion close icon dismisses immediately without awaiting an animation", async () => {
     mockReducedMotion = true;
     const close = jest.fn();
     const ui = await render(<OutcomeSheet {...props} onClose={close} />);
-    mockGestureEnd.current?.({ velocityY: 1000 });
+    await fireEvent.press(ui.getAllByLabelText("Dismiss")[1]);
     expect(close).toHaveBeenCalledTimes(1);
     await ui.unmount();
   });
@@ -358,7 +373,8 @@ describe("Horizons entry dismissal lifecycle", () => {
     const close = jest.fn();
     const ui = await render(<OutcomeSheet {...props} onClose={close} />);
     expect(ui.getAllByLabelText("Dismiss")).toHaveLength(2);
-    expect(ui.getAllByLabelText("Close")).toHaveLength(1);
+    // зачем (22.10): вторичная кнопка читается своим текстом «Close», метки закрытия у неё нет.
+    expect(ui.getAllByText("Close")).toHaveLength(1);
     await fireEvent.press(ui.getAllByLabelText("Dismiss")[1]);
     expect(close).toHaveBeenCalledTimes(1);
     expect(props.onSecondaryPress).not.toHaveBeenCalled();

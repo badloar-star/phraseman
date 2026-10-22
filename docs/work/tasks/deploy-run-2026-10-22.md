@@ -116,3 +116,14 @@ Governance-ID: TG-610BF65F5794
 - после 30 минут логов вебхука → `adminGrantAccess` + `adminSearchUsers` отдельной группой (8c2a5ce21, 0f5a2ca89, 1efb79375; Ревизор 3.166 ✅);
 - 10 минут логов [ADMIN-PLUS] → сигнал 9 · САЙТ (hosting:admin, knowlywww);
 - потом удаления.
+
+Governance-ID: TG-F75A58F43798
+
+- **adminGrantAccess + adminSearchUsers** — 08:48Z, HEAD e55e65a7e, exit 0.
+  - adminGrantAccess: -00023-caw → **-00024-feh**.
+  - adminSearchUsers: -00021-xid → **-00023-nuz**.
+  - contactInboxId в эту выкладку НЕ вошёл (9 · САЙТ ещё пишет).
+  - Логи 08:47–08:58Z: grant — 5 записей, search — 6. error 0, warn 0. ✅
+- **Решение координатора (разделение)**:
+  1. После коммита 9 · САЙТ — `adminGrantAccess` (contactInboxId) + `submitWebsiteContact` (в проде с 22.09; накопление: f5447d10c логи, effa48638 акция). Потом сигнал САЙТУ.
+  2. Удаление аккаунта — ТОЛЬКО после вердикта Ревизора по накоплению 13.10→HEAD на пути worker+mine. D189 выкладывается ЦЕЛИКОМ одним пакетом: `accountDeleteWorker` (-00036-jay), `accountDeleteMine` (-00064-qeh), `accountDeleteEnqueue` (-00030-zim, с 01.10), `accountDeleteCredentialStatus` (-00005-nob, с 01.10). Несёт d4fb962fc (promo.resolvedUid).

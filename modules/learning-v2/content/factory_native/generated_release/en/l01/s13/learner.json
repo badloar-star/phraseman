@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — коллега на встрече обращается к вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-13:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-13:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — коллега на встрече обращается к вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-01:session-13:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — коллега на встрече обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи звучит proud, а не polite.",
               "uk": "У записі звучить proud, а не polite."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-01:session-13:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — коллега на встрече обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи звучит proud, а не tired.",
               "uk": "У записі звучить proud, а не tired."
@@ -315,7 +315,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — собеседник говорит с вами лицом к лицу",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-13:i07:r1",
@@ -334,7 +334,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — собеседник говорит с вами лицом к лицу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -364,7 +364,7 @@
           {
             "responseId": "en:lesson-01:session-13:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — собеседник говорит с вами лицом к лицу",
             "feedbackByLocale": {
               "ru": "В записи звучит strong, а не wrong.",
               "uk": "У записі звучить strong, а не wrong."
@@ -373,7 +373,7 @@
           {
             "responseId": "en:lesson-01:session-13:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — собеседник говорит с вами лицом к лицу",
             "feedbackByLocale": {
               "ru": "В записи звучит strong, а не smart.",
               "uk": "У записі звучить strong, а не smart."
@@ -434,7 +434,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — собеседник отвечает вам после паузы",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-13:i09:r1",
@@ -453,7 +453,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-13:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — собеседник отвечает вам после паузы",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -483,7 +483,7 @@
           {
             "responseId": "en:lesson-01:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — собеседник отвечает вам после паузы",
             "feedbackByLocale": {
               "ru": "В записи звучит weak, а не quiet.",
               "uk": "У записі звучить weak, а не quiet."
@@ -492,7 +492,7 @@
           {
             "responseId": "en:lesson-01:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — собеседник отвечает вам после паузы",
             "feedbackByLocale": {
               "ru": "В записи звучит weak, а не young.",
               "uk": "У записі звучить weak, а не young."
@@ -834,7 +834,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — ещё одна реплика звучит на встрече",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-13:i15:r1",
@@ -853,7 +853,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-13:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — ещё одна реплика звучит на встрече",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -883,7 +883,7 @@
           {
             "responseId": "en:lesson-01:session-13:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — ещё одна реплика звучит на встрече",
             "feedbackByLocale": {
               "ru": "В записи звучит brave, а не back.",
               "uk": "У записі звучить brave, а не back."
@@ -892,7 +892,7 @@
           {
             "responseId": "en:lesson-01:session-13:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — ещё одна реплика звучит на встрече",
             "feedbackByLocale": {
               "ru": "В записи звучит brave, а не busy.",
               "uk": "У записі звучить brave, а не busy."
@@ -1021,5 +1021,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4ffdbebcf99785e73f9262ae3dc7eb36320bbc13c68cb9821c4559e918ab552b"
+  "learnerFingerprint": "bf177a3e03cca78161ae617161c42b68eecb0a70713211ee37b60102e67b8fbf"
 }

@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — коллега за общим столом обращается к вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-12:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-12:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — коллега за общим столом обращается к вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-01:session-12:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — коллега за общим столом обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи звучит polite, а не patient.",
               "uk": "У записі звучить polite, а не patient."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-01:session-12:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — коллега за общим столом обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи звучит polite, а не quiet.",
               "uk": "У записі звучить polite, а не quiet."
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — на рабочей встрече слово берёт коллега",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-12:i04:r1",
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-12:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — на рабочей встрече слово берёт коллега",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-01:session-12:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — на рабочей встрече слово берёт коллега",
             "feedbackByLocale": {
               "ru": "В записи звучит brave, а не busy.",
               "uk": "У записі звучить brave, а не busy."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-01:session-12:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — на рабочей встрече слово берёт коллега",
             "feedbackByLocale": {
               "ru": "В записи звучит brave, а не back.",
               "uk": "У записі звучить brave, а не back."
@@ -503,7 +503,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — собеседник делится мнением о вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-12:i10:r1",
@@ -522,7 +522,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-12:i10:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Послушайте и выберите — собеседник делится мнением о вас",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -552,7 +552,7 @@
           {
             "responseId": "en:lesson-01:session-12:i10:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — собеседник делится мнением о вас",
             "feedbackByLocale": {
               "ru": "В записи звучит smart, а не slow.",
               "uk": "У записі звучить smart, а не slow."
@@ -561,7 +561,7 @@
           {
             "responseId": "en:lesson-01:session-12:i10:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите",
+            "testedDimension": "Послушайте и выберите — собеседник делится мнением о вас",
             "feedbackByLocale": {
               "ru": "В записи звучит smart, а не short.",
               "uk": "У записі звучить smart, а не short."
@@ -1064,5 +1064,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d975d90fbd5f98d3e7418ecfa11e7ffe2a8330a35952d38d4d2bbd50d1bb3dc2"
+  "learnerFingerprint": "aa78517334c09cf008c4d910d15c5f0289e7d59032e2ce2244fa79aaf5b672de"
 }

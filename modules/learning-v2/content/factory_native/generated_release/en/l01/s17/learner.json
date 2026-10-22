@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу хозяина",
+      "prompt": "Послушайте и выберите — хозяин гостевого дома говорит с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-17:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-17:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу хозяина",
+      "accessibilityLabel": "Послушайте и выберите — хозяин гостевого дома говорит с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-01:session-17:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу хозяина",
+            "testedDimension": "Послушайте и выберите — хозяин гостевого дома говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-01:session-17:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу хозяина",
+            "testedDimension": "Послушайте и выберите — хозяин гостевого дома говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `safe`, а в этом варианте — `right`.",
               "uk": "У записі останнє слово — `safe`, а в цьому варіанті — `right`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — друг заходит в гостевой дом после дождя",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-17:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-17:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — друг заходит в гостевой дом после дождя",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-01:session-17:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг заходит в гостевой дом после дождя",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They`, а в этом варианте — `You`.",
               "uk": "У записі перше слово — `They`, а в цьому варіанті — `You`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-01:session-17:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг заходит в гостевой дом после дождя",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `welcome`, а в этом варианте — `ready`.",
               "uk": "У записі останнє слово — `welcome`, а в цьому варіанті — `ready`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу гостей, которым удобно в новых креслах",
+      "prompt": "Послушайте и выберите — гости заходят в гостевой дом, звучит реплика",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-17:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу гостей, которым удобно в новых креслах",
+      "accessibilityLabel": "Послушайте и выберите — гости заходят в гостевой дом, звучит реплика",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-17:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу гостей, которым удобно в новых креслах",
+            "testedDimension": "Послушайте и выберите — гости заходят в гостевой дом, звучит реплика",
             "feedbackByLocale": {
               "ru": "В записи We, а не They.",
               "uk": "У записі We, а не They."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-17:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу гостей, которым удобно в новых креслах",
+            "testedDimension": "Послушайте и выберите — гости заходят в гостевой дом, звучит реплика",
             "feedbackByLocale": {
               "ru": "В записи comfortable, а не grateful.",
               "uk": "У записі comfortable, а не grateful."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2d8709c9921eac9f39dd3b402f7185c688b886c84ec95366799245b7e459e959"
+  "learnerFingerprint": "ee65e047ca0fedc8451af99fd655256036739a9bd38a4a46865556aa648de8d1"
 }

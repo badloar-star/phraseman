@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанную фразу",
+      "prompt": "Послушайте и выберите — друг расспрашивает вас о героях фильма",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-22:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-22:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанную фразу",
+      "accessibilityLabel": "Послушайте и выберите — друг расспрашивает вас о героях фильма",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-22:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанную фразу",
+            "testedDimension": "Послушайте и выберите — друг расспрашивает вас о героях фильма",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-22:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанную фразу",
+            "testedDimension": "Послушайте и выберите — друг расспрашивает вас о героях фильма",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `poor`, а в этом варианте — `rich`.",
               "uk": "У записі останнє слово — `poor`, а в цьому варіанті — `rich`."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите точную реплику",
+      "prompt": "Послушайте и выберите — друг говорит вам реплику, пока идёт фильм",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-22:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-22:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите точную реплику",
+      "accessibilityLabel": "Послушайте и выберите — друг говорит вам реплику, пока идёт фильм",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-01:session-22:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точную реплику",
+            "testedDimension": "Послушайте и выберите — друг говорит вам реплику, пока идёт фильм",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-01:session-22:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точную реплику",
+            "testedDimension": "Послушайте и выберите — друг говорит вам реплику, пока идёт фильм",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `rich`, а в этом варианте — `famous`.",
               "uk": "У записі останнє слово — `rich`, а в цьому варіанті — `famous`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — друг смотрит фильм рядом и обращается к вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-22:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-22:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — друг смотрит фильм рядом и обращается к вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-22:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг смотрит фильм рядом и обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи You, а не We.",
               "uk": "У записі You, а не We."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-22:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг смотрит фильм рядом и обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи generous, а не famous.",
               "uk": "У записі generous, а не famous."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7990f93493f8353eceb6ea74f2de222ff81ebb9f1946522b270f93449f05e16a"
+  "learnerFingerprint": "63db6b3a09fdbe6893abc244c8db93cae19f69eaa174297f14ebd2279a65fe48"
 }

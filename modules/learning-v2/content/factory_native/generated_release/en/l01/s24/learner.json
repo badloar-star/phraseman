@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — гость на дне открытых дверей говорит с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-24:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-24:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — гость на дне открытых дверей говорит с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-01:session-24:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — гость на дне открытых дверей говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
               "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-01:session-24:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — гость на дне открытых дверей говорит с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `prepared`, а в этом варианте — `lucky`.",
               "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `lucky`."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу о героях спектакля",
+      "prompt": "Послушайте и выберите — вы в театре, рядом гости обсуждают спектакль",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-24:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-24:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу о героях спектакля",
+      "accessibilityLabel": "Послушайте и выберите — вы в театре, рядом гости обсуждают спектакль",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-01:session-24:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу о героях спектакля",
+            "testedDimension": "Послушайте и выберите — вы в театре, рядом гости обсуждают спектакль",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-01:session-24:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу о героях спектакля",
+            "testedDimension": "Послушайте и выберите — вы в театре, рядом гости обсуждают спектакль",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `married`, а в этом варианте — `different`.",
               "uk": "У записі останнє слово — `married`, а в цьому варіанті — `different`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте сравнение двух персонажей",
+      "prompt": "Послушайте и выберите — антракт, гостья в фойе обращается к вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-24:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-24:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте сравнение двух персонажей",
+      "accessibilityLabel": "Послушайте и выберите — антракт, гостья в фойе обращается к вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-24:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте сравнение двух персонажей",
+            "testedDimension": "Послушайте и выберите — антракт, гостья в фойе обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-24:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте сравнение двух персонажей",
+            "testedDimension": "Послушайте и выберите — антракт, гостья в фойе обращается к вам",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `different`, а в этом варианте — `famous`.",
               "uk": "У записі останнє слово — `different`, а в цьому варіанті — `famous`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e7449c82616dcb831f8ef021c5aaeaca6ae60dd3b5060a7eff35e6ba1825b03b"
+  "learnerFingerprint": "f0df5769a0f22a88e1a97fe70ea37e15f6bcb7729e27608c7d3aefc657d5a4a8"
 }

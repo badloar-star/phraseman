@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное слово",
+      "prompt": "Послушайте и выберите — друг звонит вам вечером",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-06:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-06:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное слово",
+      "accessibilityLabel": "Послушайте и выберите — друг звонит вам вечером",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-01:session-06:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное слово",
+            "testedDimension": "Послушайте и выберите — друг звонит вам вечером",
             "feedbackByLocale": {
               "ru": "В записи home, а не hot.",
               "uk": "У записі home, а не hot."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-01:session-06:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное слово",
+            "testedDimension": "Послушайте и выберите — друг звонит вам вечером",
             "feedbackByLocale": {
               "ru": "В записи home, а не here.",
               "uk": "У записі home, а не here."
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное слово",
+      "prompt": "Послушайте и выберите — вечером друг снова набирает ваш номер",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-06:i04:r1",
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-06:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное слово",
+      "accessibilityLabel": "Послушайте и выберите — вечером друг снова набирает ваш номер",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-01:session-06:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное слово",
+            "testedDimension": "Послушайте и выберите — вечером друг снова набирает ваш номер",
             "feedbackByLocale": {
               "ru": "В записи back, а не home.",
               "uk": "У записі back, а не home."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-01:session-06:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное слово",
+            "testedDimension": "Послушайте и выберите — вечером друг снова набирает ваш номер",
             "feedbackByLocale": {
               "ru": "В записи back, а не new.",
               "uk": "У записі back, а не new."
@@ -431,7 +431,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное слово",
+      "prompt": "Послушайте и выберите — друг на связи и ждёт вашего ответа",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-06:i08:r1",
@@ -450,7 +450,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-06:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное слово",
+      "accessibilityLabel": "Послушайте и выберите — друг на связи и ждёт вашего ответа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -480,7 +480,7 @@
           {
             "responseId": "en:lesson-01:session-06:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное слово",
+            "testedDimension": "Послушайте и выберите — друг на связи и ждёт вашего ответа",
             "feedbackByLocale": {
               "ru": "В записи done, а не sorry.",
               "uk": "У записі done, а не sorry."
@@ -489,7 +489,7 @@
           {
             "responseId": "en:lesson-01:session-06:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное слово",
+            "testedDimension": "Послушайте и выберите — друг на связи и ждёт вашего ответа",
             "feedbackByLocale": {
               "ru": "В записи done, а не free.",
               "uk": "У записі done, а не free."
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ca4416a79ad6992866d37084f5e4d0287fa777c93c3572814d4bb27e3be609f1"
+  "learnerFingerprint": "d7ac14c484a23b4c44ba115326b9f825f3bde26ea1f956a617cff1fdc194c159"
 }

@@ -10,10 +10,12 @@ const RELEASE = path.join(ROOT, 'modules/learning-v2/content/factory_native/gene
 const SOURCE = path.join(ROOT, 'content/learning-v2-course/sessions/en');
 
 /** Дыры на 22.10 (передано координатору). Исправил — вычеркни строку; новых сюда не добавлять. */
+// зачем: 7 из 12 исправлены и перенесены 22.10 (вычитка Теории); эти 5 исправлены в фабрике, но ждут озвучки новой фразы —
+// перенос в приложение после звука (scripts/learning_v2_transfer_pending.v1.json)
 const KNOWN_HOLES = new Set<string>([
-  'l01/s03:alone', 'l01/s21:noisy', 'l01/s44:ancient', 'l01/s48:sticky',
-  'l02/s25:absent', 'l02/s54:dramatic',
-  'l03/s03:rug', 'l03/s05:crack', 'l03/s06:bag', 'l03/s07:wardrobe', 'l03/s08:bucket',
+  'l01/s44:ancient', 'l01/s48:sticky',
+  'l02/s54:dramatic',
+  'l03/s08:bucket',
   'l06/s40:doorstep',
 ]);
 

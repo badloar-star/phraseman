@@ -123,8 +123,8 @@
         "uk": "Де not рятує від незручності"
       },
       "bodyByLocale": {
-        "ru": "Вам задали вопрос, а вы не знаете ответа. Молчать неловко, выдумывать\nопасно. `I am not sure` — «я не уверен» — помогает честно сказать, что вы\nне знаете.",
-        "uk": "Вам поставили питання, а ви не знаєте відповіді. Мовчати незручно,\nвигадувати небезпечно. `I am not sure` — «я не впевнений» — допомагає\nчесно сказати, що ви не знаєте."
+        "ru": "Вам задали вопрос, а вы не знаете ответа. Молчать неловко, выдумывать\r\nопасно. `I am not sure` — «я не уверен» — помогает честно сказать, что вы\r\nне знаете.",
+        "uk": "Вам поставили питання, а ви не знаєте відповіді. Мовчати незручно,\r\nвигадувати небезпечно. `I am not sure` — «я не впевнений» — допомагає\r\nчесно сказати, що ви не знаєте."
       },
       "question": {
         "interactionId": "en:lesson-01:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1ec38848544c936db198fb9e8e72c385592b3ceace8c99bee2b7333d8f25be1e"
+  "introFingerprint": "2caaec5964c306b051dba1c2e5eacafc8e0fc6e09bff1e5051887ee6dda7db00"
 }

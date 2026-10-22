@@ -143,7 +143,7 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-21:i02:r1",
-          "text": "It is noisy."
+          "text": "It is empty."
         },
         {
           "responseId": "en:lesson-01:session-21:i02:r2",
@@ -151,7 +151,7 @@
         },
         {
           "responseId": "en:lesson-01:session-21:i02:r3",
-          "text": "It is empty."
+          "text": "It is noisy."
         }
       ],
       "mediaIds": [],
@@ -163,13 +163,13 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-21:i02:audio",
-          "transcript": "It is noisy."
+          "transcript": "It is empty."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-21:i02:r1",
-            "targetText": "It is noisy.",
+            "targetText": "It is empty.",
             "meaningByLocale": null
           },
           {
@@ -179,7 +179,7 @@
           },
           {
             "responseId": "en:lesson-01:session-21:i02:r3",
-            "targetText": "It is empty.",
+            "targetText": "It is noisy.",
             "meaningByLocale": null
           }
         ],
@@ -190,8 +190,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи noisy, а не small.",
-              "uk": "У записі noisy, а не small."
+              "ru": "В записи empty, а не small.",
+              "uk": "У записі empty, а не small."
             }
           },
           {
@@ -199,8 +199,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть почуте",
             "feedbackByLocale": {
-              "ru": "В записи noisy, а не empty.",
-              "uk": "У записі noisy, а не empty."
+              "ru": "В записи empty, а не noisy.",
+              "uk": "У записі empty, а не noisy."
             }
           }
         ],
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c4be7d5464640b4f5476099e40de7bb0f70b90d7558e114c8ef4d0d6d167f0f0"
+  "learnerFingerprint": "88dc7086af4c9e329f40f1591180a7ad7aee07e013082bbae12eca3e8d2ef8df"
 }

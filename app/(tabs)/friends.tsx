@@ -80,7 +80,7 @@ import { devFriendsDemoData, isDevFriendsDemoOn } from '../dev_friends_demo';
 import { isDevOverlaysOff } from '../dev_overlays_off';
 import { acquireInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
-import { isPlusProfile } from '../../components/plus/plus_ring_spec';
+import { isPlusProfile, readPlusUntilMs } from '../../components/plus/plus_ring_spec';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import {
   startFriendsTabSwrPrime,
@@ -205,6 +205,10 @@ interface FriendProfile {
   isPremium: boolean;
   isVip?: boolean;
   isLifetime?: boolean;
+  /** Настоящий Plus (Ядро 22.10): кольцо у друга считает isPlusProfile; вводный доступ сюда не попадает. */
+  isPlus?: boolean | null;
+  /** Срок Plus в мс: 0 = бессрочно, null/нет = Plus нет. */
+  plusUntilMs?: number | null;
   avatar: string;
   frame: string;
   aura?: string;
@@ -398,6 +402,9 @@ function mergePublicFriendProfiles(
     isPremium: primary.isPremium || secondary.isPremium,
     isVip: primary.isVip || secondary.isVip,
     isLifetime: primary.isLifetime || secondary.isLifetime,
+    // зачем: isPlus и срок берём парой из одного источника — иначе срок от старого профиля и флаг от нового дали бы чужой Plus
+    isPlus: (primary.isPlus !== undefined ? primary : secondary).isPlus,
+    plusUntilMs: (primary.isPlus !== undefined ? primary : secondary).plusUntilMs,
     avatar: primary.avatar || secondary.avatar,
     frame: primary.frame || secondary.frame,
     aura: primary.aura ?? secondary.aura,
@@ -423,6 +430,8 @@ function profileFromLeaderboardDoc(uid: string, data: Record<string, unknown>): 
     isPremium: data.isPremium === true,
     isVip: data.isVip === true,
     isLifetime: data.isLifetime === true,
+    isPlus: data.isPlus === true,
+    plusUntilMs: readPlusUntilMs(data.plusUntilMs),
     avatar,
     frame,
     profileCardLevel,
@@ -441,6 +450,8 @@ function profileFromBatchRecord(rec: FriendProfileBatchRecord): FriendProfile {
     isPremium: rec.isPremium,
     isVip: rec.isVip,
     isLifetime: rec.isLifetime,
+    isPlus: rec.isPlus === true,
+    plusUntilMs: readPlusUntilMs(rec.plusUntilMs),
     avatar: rec.avatar,
     frame: rec.frame,
     aura: rec.aura,
@@ -2131,6 +2142,8 @@ export default function FriendsTabScreen() {
       isPremium: profile.isPremium,
       isVip: profile.isVip,
       isLifetime: profile.isLifetime,
+      isPlus: profile.isPlus,
+      plusUntilMs: profile.plusUntilMs,
       avatar: profile.avatar,
       frame: profile.frame,
       aura: profile.aura,

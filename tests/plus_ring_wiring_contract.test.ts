@@ -25,8 +25,12 @@ describe('кольцо Plus: общий компонент', () => {
     expect(hook).not.toContain('isIntroFullAccess');
   });
 
-  it('у других Plus = покупка, VIP или пожизненный Pro (isPlusProfile)', () => {
-    expect(src('components/plus/plus_ring_spec.ts')).toContain('p?.isPremium === true || p?.isVip === true || p?.isLifetime === true');
+  it('у других Plus = isPlus + срок с запасом 72 ч (isPlusProfile), isPremium не читается', () => {
+    const spec = src('components/plus/plus_ring_spec.ts');
+    expect(spec).toContain('p?.isPlus !== true');
+    expect(spec).toContain('PLUS_RENEWAL_GRACE_MS = 72 * 60 * 60 * 1000');
+    const rule = spec.slice(spec.indexOf('export function isPlusProfile'), spec.indexOf('/** Срок Plus из сырого документа'));
+    expect(rule).not.toContain('isPremium');
   });
 
   it('AvatarView принимает plus и рисует оверлей внутри своего контейнера (монета и запасной аватар)', () => {
@@ -74,7 +78,7 @@ describe('кольцо Plus: 7 мест эталона', () => {
 
   it('6 · Наборы сообщества: автор из public_profiles (без нового чтения), кольцо у монеты автора', () => {
     const names = src('app/community_packs/packAuthorNames.ts');
-    expect(names).toContain('isPlusProfile({ isPremium: data.isPremium === true, isVip: data.isVip === true, isLifetime: data.isLifetime === true })');
+    expect(names).toContain('isPlusProfile({ isPlus: data.isPlus === true, plusUntilMs: readPlusUntilMs(data.plusUntilMs) })');
     expect(names).toContain('isPremium: profile.isPremium === true');
     const row = src('components/packs/PackRow.tsx');
     expect(row).toContain('plus={author.isPremium}');

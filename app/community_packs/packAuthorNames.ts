@@ -28,7 +28,7 @@ import {
 import { triLang, type Lang } from '../../constants/i18n';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
-import { isPlusProfile } from '../../components/plus/plus_ring_spec';
+import { isPlusProfile, readPlusUntilMs } from '../../components/plus/plus_ring_spec';
 
 // зачем v2 + короче TTL для косметики (владелец 17.09.2026: «аватарка не
 // показывается правильная, там эмодзи», второе мнение советника): v1 читал
@@ -195,8 +195,8 @@ async function fetchPublicProfile(sid: string): Promise<CommunityAuthorProfile> 
       frame: String(data.frame ?? '').trim().slice(0, 80),
       aura: String(data.aura ?? '').trim().slice(0, 80),
       coinRank: isValidCoinRank(data.coinRank) ? data.coinRank : null,
-      // Plus = покупка / VIP / пожизненный Pro (isPlusProfile); в кэше и профиле поле по-прежнему зовётся isPremium
-      isPremium: isPlusProfile({ isPremium: data.isPremium === true, isVip: data.isVip === true, isLifetime: data.isLifetime === true }),
+      // Plus по правилу Ядра 22.10 (isPlus + срок + запас 72 ч); в кэше и профиле поле по-прежнему зовётся isPremium. Без isPlus в документе кольца нет
+      isPremium: isPlusProfile({ isPlus: data.isPlus === true, plusUntilMs: readPlusUntilMs(data.plusUntilMs) }),
     };
   } catch (e) {
     DebugLogger.warn('packAuthorNames:fetch', `[PACK-COMMENT-AVATAR] чтение public_profiles/${sid} упало: ${e instanceof Error ? e.message : String(e)}`);

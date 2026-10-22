@@ -80,6 +80,9 @@ export interface PlayerInfo {
   isPremium?: boolean;
   isVip?: boolean;
   isLifetime?: boolean;
+  /** Настоящий Plus и срок (Ядро 22.10) — кольцо чужого по isPlusProfile. */
+  isPlus?: boolean | null;
+  plusUntilMs?: number | null;
   /** Retained only for caller compatibility while the retired card system is removed elsewhere. */
   avatar?: string;
   frame?: string;

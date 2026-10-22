@@ -49,6 +49,9 @@ export interface FriendProfileBatchRecord {
   isPremium: boolean;
   isVip: boolean;
   isLifetime: boolean;
+  /** Настоящий Plus и срок (Ядро 22.10); старый ответ сервера без этих полей = кольца нет. */
+  isPlus?: boolean | null;
+  plusUntilMs?: number | null;
   // ── «Вместе» (friends_together): расширение сервера идёт параллельно в этой же
   // фазе — поля читаем tolerant-к-отсутствию (undefined/null → безопасный дефолт),
   // старый ответ callable без этих полей не должен ломать маппинг.

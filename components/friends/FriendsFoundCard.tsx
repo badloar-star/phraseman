@@ -21,6 +21,9 @@ export type FriendsFoundProfile = {
   isPremium: boolean;
   isVip?: boolean;
   isLifetime?: boolean;
+  /** Настоящий Plus и срок (Ядро 22.10) — кольцо по isPlusProfile. */
+  isPlus?: boolean | null;
+  plusUntilMs?: number | null;
   coinRank?: number | null;
 };
 

@@ -131,10 +131,35 @@ export function plusTagColors(isLight: boolean): Readonly<{ bg: string; ink: str
 export const PLUS_RING_A11Y = 'Plus';
 
 /**
- * Plus по публичному профилю другого человека (public_profiles / friends_profiles): покупка, VIP ИЛИ пожизненный Pro.
- * зачем: у человека с «Pro — навсегда» или бессрочной выдачей isPremium=false, а isLifetime=true (комментарий в app/public_profile_snapshot.ts) —
- * без isLifetime он терял бы кольцо в чужих списках. Самому себе кольцо даёт useIsPlus (isPremium || isVip || isPro) — тот же состав.
+ * Запас на продление: 72 часа после срока, пока вебхук магазина не обновил plusUntilMs.
+ * зачем (Ядро cbdecef56, координатор 22.10): подписка продлевается, а срок в профиле обновится только когда придёт вебхук — без запаса
+ * у платящего человека кольцо гасло бы на часы в день продления. Бессрочный Plus (plusUntilMs = 0) запас не нужен.
  */
-export function isPlusProfile(p: Readonly<{ isPremium?: boolean | null; isVip?: boolean | null; isLifetime?: boolean | null }> | null | undefined): boolean {
-  return p?.isPremium === true || p?.isVip === true || p?.isLifetime === true;
+export const PLUS_RENEWAL_GRACE_MS = 72 * 60 * 60 * 1000;
+
+export type PlusProfileFields = Readonly<{
+  /** Настоящий Plus сервера: покупка (в т.ч. пожизненная), выдача админом, VIP. Вводный 72-часовой доступ даёт false. */
+  isPlus?: boolean | null;
+  /** 0 = бессрочно; число — срок в мс; null/нет поля = срока нет, то есть Plus нет. */
+  plusUntilMs?: number | null;
+}>;
+
+/**
+ * Plus по публичному профилю другого человека (public_profiles / friends_profiles).
+ * Правило (Ядро, координатор 22.10): isPlus === true И (plusUntilMs === 0 ИЛИ plusUntilMs + 72 ч > сейчас).
+ * Без поля isPlus кольца нет — НЕ откатываемся на isPremium: у части профилей там устаревшее true (вводный доступ, просроченное).
+ * plusUntilMs = null или нет поля при isPlus=true — срока нет, считаем «Plus нет» (сервер всегда пишет оба поля вместе).
+ * Самому себе кольцо даёт useIsPlus (isPremium || isVip || isPro из PremiumContext) — этот путь не меняется.
+ */
+export function isPlusProfile(p: PlusProfileFields | null | undefined, nowMs: number = Date.now()): boolean {
+  if (p?.isPlus !== true) return false;
+  const until = p.plusUntilMs;
+  if (typeof until !== 'number' || !Number.isFinite(until)) return false;
+  if (until === 0) return true;
+  return until + PLUS_RENEWAL_GRACE_MS > nowMs;
+}
+
+/** Срок Plus из сырого документа: число (0 = бессрочно) как есть, всё остальное — null («Plus нет»). */
+export function readPlusUntilMs(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null;
 }

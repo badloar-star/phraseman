@@ -2,7 +2,6 @@
 // Клиент берёт ТОЛЬКО то, что пришло с сервера (=== true): поля нет — не Plus, ничего не угадываем. Свою строку экран перекрывает живым статусом (useIsPlus).
 import { spireBuildRoomRows, spireDecodeRoomMembers, type SpireRoomSnapshot } from '../modules/spire/room_rows';
 import { spireRivalsByFloor } from '../components/spire/spire_tower_model';
-import { isPlusProfile } from '../components/plus/plus_ring_spec';
 
 const member = (uid: string, extra: Record<string, unknown> = {}) => ({ uid, name: uid.toUpperCase(), steps: 3, reachedAtMs: 1, totalMs: 1000, coinRank: 5, weekCoins: 0, ...extra });
 
@@ -37,17 +36,5 @@ describe('Plus в комнате Пика', () => {
     ]);
     const first = [...rivals.values()][0]!;
     expect(first.map((r) => [r.uid, r.isPremium])).toEqual([['a', true], ['b', false]]);
-  });
-});
-
-describe('isPlusProfile · другие люди', () => {
-  it('покупка, VIP или пожизненный Pro — Plus; пустой профиль, null и false — нет', () => {
-    expect(isPlusProfile({ isPremium: true })).toBe(true);
-    expect(isPlusProfile({ isPremium: false, isVip: true })).toBe(true);
-    expect(isPlusProfile({ isPremium: false, isLifetime: true })).toBe(true);
-    expect(isPlusProfile({ isPremium: false, isVip: false, isLifetime: false })).toBe(false);
-    expect(isPlusProfile({})).toBe(false);
-    expect(isPlusProfile(null)).toBe(false);
-    expect(isPlusProfile(undefined)).toBe(false);
   });
 });

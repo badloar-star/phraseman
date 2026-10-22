@@ -28,7 +28,7 @@ type StaticCopy = Readonly<{
 const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   ru: {
     label: "Новое слово",
-    continue: "Продолжить",
+    continue: "Понятно",
     saving: "Сохраняем…",
     saveFailed: "Не сохранилось. Можно попробовать ещё раз.",
     unavailable: "Озвучка пока недоступна",
@@ -40,7 +40,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   uk: {
     label: "Нове слово",
-    continue: "Продовжити",
+    continue: "Зрозуміло",
     saving: "Зберігаємо…",
     saveFailed: "Не збереглося. Спробуй ще раз.",
     unavailable: "Озвучення поки недоступне",
@@ -52,7 +52,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   es: {
     label: "Palabra nueva",
-    continue: "Continuar",
+    continue: "Entendido",
     saving: "Guardando…",
     saveFailed: "No se guardó. Puedes intentarlo de nuevo.",
     unavailable: "El audio aún no está disponible",
@@ -64,7 +64,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   en: {
     label: "New word",
-    continue: "Continue",
+    continue: "Got it",
     saving: "Saving…",
     saveFailed: "Didn’t save. Try again.",
     unavailable: "Audio is not available yet",
@@ -76,7 +76,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   "pt-BR": {
     label: "Palavra nova",
-    continue: "Continuar",
+    continue: "Entendi",
     saving: "Salvando…",
     saveFailed: "Não foi salva. Você pode tentar de novo.",
     unavailable: "O áudio ainda não está disponível",
@@ -88,7 +88,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   vi: {
     label: "Từ mới",
-    continue: "Tiếp tục",
+    continue: "Đã hiểu",
     saving: "Đang lưu…",
     saveFailed: "Chưa lưu được. Bạn có thể thử lại.",
     unavailable: "Âm thanh hiện chưa có",
@@ -100,7 +100,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   id: {
     label: "Kata baru",
-    continue: "Lanjutkan",
+    continue: "Mengerti",
     saving: "Menyimpan…",
     saveFailed: "Belum tersimpan. Coba lagi.",
     unavailable: "Audio belum tersedia",
@@ -112,7 +112,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   tr: {
     label: "Yeni kelime",
-    continue: "Devam et",
+    continue: "Anladım",
     saving: "Kaydediliyor…",
     saveFailed: "Kaydedilemedi. Yeniden deneyebilirsin.",
     unavailable: "Ses henüz kullanılamıyor",
@@ -124,7 +124,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
   },
   pl: {
     label: "Nowe słowo",
-    continue: "Dalej",
+    continue: "Rozumiem",
     saving: "Zapisywanie…",
     saveFailed: "Nie zapisano. Możesz spróbować ponownie.",
     unavailable: "Nagranie nie jest jeszcze dostępne",

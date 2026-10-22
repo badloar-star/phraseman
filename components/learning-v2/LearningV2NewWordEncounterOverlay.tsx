@@ -29,7 +29,6 @@ import {
   learningV2NewWordAudioEnabledV1,
 } from "../../app/learning_v2_new_word_card_runtime_v1";
 import type { LearningV2InterfaceLocale } from "../../modules/learning-v2/content/generator_course_contract";
-import { learningV2NewWordFlipHintV1 } from "../../modules/learning-v2/modes/mode_copy_v1";
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { useTheme } from "../ThemeContext";
 import { Lv2Cta, Lv2Explain, useLv2Glass } from "./LearningV2Glass";
@@ -130,13 +129,15 @@ export default function LearningV2NewWordEncounterOverlay({
       uk: exactTranslation,
       es: exactTranslation,
       sourceLocales: { [cardLocale]: exactTranslation },
-      transcription: encounter.transcription ?? undefined,
+      // зачем (владелец 22.10): под словом — только перевод (без транскрипции и примера); переворачивать карточку не нужно
+      transcription: exactTranslation,
       categoryId: "saved",
       isSystem: true,
     }),
     [cardLocale, encounter.lexicalItemId, encounter.transcription, exactTranslation, word],
   );
-  const cardHeight = Math.min(LEARNING_V2_OWNER_LAYOUT.word.cardHeight, 210);
+  // зачем (владелец 22.10, 1:1): `.nw .fc { height: 245 }` — высота карточки как в макете, без прежнего потолка 210 (окно прокручивается на малых экранах)
+  const cardHeight = LEARNING_V2_OWNER_LAYOUT.word.cardHeight;
   const flipAnim = useRef(new RNAnimated.Value(0)).current;
   const overlayAnim = useRef(new RNAnimated.Value(0)).current;
   const deleteOpacity = useRef(new RNAnimated.Value(1)).current;
@@ -148,7 +149,6 @@ export default function LearningV2NewWordEncounterOverlay({
   // зачем (эмулятор 17.10, L01 s16: после «Начать проверку» ~3 с серый экран без карточки): мс от рендера карточки до старта анимации входа —
   // если JS-поток занят монтированием занятия, разница видна в [V2-WORD-CARD] entrance_start.
   const renderedAtRef = useRef(Date.now());
-  const hintPulse = useRef(new RNAnimated.Value(1)).current;
   const [continuing, setContinuing] = useState(false);
   const continuingRef = useRef(false);
   const presentedRef = useRef(false);
@@ -195,7 +195,7 @@ export default function LearningV2NewWordEncounterOverlay({
       },
     });
     autoFlipControllerRef.current = controller;
-    controller.arm();
+    // зачем (колонка «Предлагаем»): авто-переворот на 3 с убран — перевод и так на лицевой стороне; карточка по-прежнему переворачивается касанием
     return () => {
       controller.dispose();
       if (autoFlipControllerRef.current === controller) {
@@ -220,36 +220,6 @@ export default function LearningV2NewWordEncounterOverlay({
     entrance.start();
     return () => entrance.stop();
   }, [encounter.lexicalItemId, entranceProgress, reduceMotion]);
-  // зачем (аудит нагрева 2026-08-26): пульс подсказки — RNAnimated.loop без
-  // конца. Оверлей размонтируется при закрытии, но при сворачивании приложения
-  // остаётся смонтированным, и цикл грел UI-поток в кармане. Performance Bible
-  // требует AppState-гард для вечных анимаций; фокус экрана здесь избыточен —
-  // оверлей живёт только поверх активного экрана урока.
-  useEffect(() => {
-    hintPulse.setValue(1);
-    if (reduceMotion || !appActive) return;
-    const pulse = RNAnimated.loop(
-      RNAnimated.sequence([
-        RNAnimated.timing(hintPulse, {
-          toValue: 0,
-          duration: 900,
-          useNativeDriver: true,
-        }),
-        RNAnimated.timing(hintPulse, {
-          toValue: 1,
-          duration: 900,
-          useNativeDriver: true,
-        }),
-      ]),
-      // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
-      { iterations: 3 },
-    );
-    pulse.start();
-    return () => {
-      pulse.stop();
-      hintPulse.setValue(1);
-    };
-  }, [hintPulse, reduceMotion, appActive]);
   const onSpeakFromCardsComponent = useCallback(() => {
     onPlayAudio();
   }, [onPlayAudio]);
@@ -448,20 +418,6 @@ export default function LearningV2NewWordEncounterOverlay({
           {editorialDefinition}
         </Text>
 
-        <RNAnimated.Text
-          style={[
-            styles.flipHint,
-            { color: g.secondary, lineHeight: lh(19) },
-            {
-              opacity: hintPulse.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0.58, 1],
-              }),
-            },
-          ]}
-        >
-          {learningV2NewWordFlipHintV1(locale)}
-        </RNAnimated.Text>
         </ScrollView>
 
         <View style={styles.continueRow}>
@@ -562,8 +518,8 @@ const styles = StyleSheet.create({
   },
   cardBookmark: {
     position: "absolute",
-    right: 12,
-    bottom: 12,
+    right: 14, // зачем: макет — закладка 44×44 в 14 от правого и нижнего краёв карточки
+    bottom: 14,
     zIndex: 5,
     width: 44,
     height: 44,

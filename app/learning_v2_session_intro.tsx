@@ -59,6 +59,9 @@ import {
 import { splitLearningV2IntroTitleByTargetsV1 } from "./learning_v2_intro_title_semantics_v1";
 import { useScaledTextStyles } from '../hooks/useLineScale';
 import { DIAG_ENABLED } from './dev_diag_gate';
+import { LearningV2SayCard, LearningV2SituationCard } from "../components/learning-v2/LearningV2TaskBody";
+import { learningV2TaskBodyCopy } from "../components/learning-v2/learning_v2_task_body_copy";
+import { learningV2IntroSayPartsForPageV1 } from "../modules/learning-v2/runtime/task_prompt_parts_v1";
 import type {
   LearningV2ModeChoiceDiagnosticV1,
   LearningV2ModeTextAnalysisV1,
@@ -315,6 +318,12 @@ function IntroAnswerShake({
   return <Animated.View style={style}>{children}</Animated.View>;
 }
 
+/** «Почему» под карточкой «Скажи так» (`.why`): одна строка 16/22 по центру. */
+function IntroWhy({ text, color }: Readonly<{ text: string; color: string }>) {
+  const sx = useScaledTextStyles(styles);
+  return <Text testID="learning-v2-intro-why" style={[sx.why, { color }]}>{text}</Text>;
+}
+
 export default function LearningV2SessionIntro({
   introScreens,
   lessonId,
@@ -433,6 +442,12 @@ export default function LearningV2SessionIntro({
     titleTargetFragments,
   );
   const isLast = safeIndex === screens.length - 1;
+  // зачем (колонка «Предлагаем»): разбор страницы на «ситуацию / Скажи так / почему» по правилам Learning V2; нет фразы в тексте — прежняя карточка (ничего не выдумываем)
+  const sayParts = useMemo(
+    () => screen ? learningV2IntroSayPartsForPageV1({ pageId: screen.screenId ?? "", body: plainIntroText(screen, lang, studyTarget) ?? "", interfaceLocale: lang }) : null,
+    [screen, lang, studyTarget],
+  );
+  const sayLayout = sayParts !== null && sayParts.phrase !== null;
   const compact = height < 720;
   // зачем: алфавитная развилка «латиница = изучаемый язык» верна только там, где
   // родной язык кириллический. Для es/pt-BR/vi/id/tr/pl родной сам на латинице.
@@ -441,7 +456,7 @@ export default function LearningV2SessionIntro({
   // зачем: встроенный вопрос — контент курса, английского source нет — сужаем
   // на RU, как остальные контентные фолбэки без en в проекте.
   const questionContentLang = lang === "en" ? "ru" : lang;
-  const questionPrompt = question?.promptByLocale[questionContentLang] ?? "";
+  const questionPrompt = (sayLayout ? sayParts?.question : null) ?? question?.promptByLocale[questionContentLang] ?? "";
   const questionChoices = question?.choicesByLocale[questionContentLang] ?? [];
   const questionExplanation = question
     ? (resolveSecondWrongExplanation?.(
@@ -683,6 +698,20 @@ export default function LearningV2SessionIntro({
                 </Text>
               )}
 
+              {sayLayout && sayParts ? (
+                <View onLayout={logIntroLayout('card')} testID="learning-v2-intro-say-layout">
+                  {sayParts.situation ? <LearningV2SituationCard lang={lang} text={sayParts.situation} /> : null}
+                  {sayParts.phrase ? (
+                    <LearningV2SayCard
+                      kicker={learningV2TaskBodyCopy(lang, "sayThis")}
+                      primary={sayParts.phrase.text}
+                      secondary={sayParts.phrase.meaning}
+                      chips={sayParts.parts}
+                    />
+                  ) : null}
+                  {sayParts.why ? <IntroWhy text={sayParts.why} color={g.secondary} /> : null}
+                </View>
+              ) : (
               <View onLayout={logIntroLayout('card')} style={[sx.knowledgeFlow, lv2CardStyle(g)]}>
                 {lines.map((line, lineIndex) => {
                   const text = lineText(line);
@@ -706,6 +735,7 @@ export default function LearningV2SessionIntro({
                   );
                 })}
               </View>
+              )}
 
               {question && (
                 <View ref={runeAwardOriginRef} collapsable={false} style={sx.questionPanel}>
@@ -919,6 +949,8 @@ const styles = StyleSheet.create({
   knowledgeFlow: { marginTop: 20, gap: 14, paddingHorizontal: 18, paddingTop: 18, paddingBottom: 20 },
   readerParagraph: { fontSize: 16, lineHeight: 23, fontWeight: "400" },
   spacer: { height: 4 },
+  // `.why` 16/22 --sec по центру, margin-top 12
+  why: { fontSize: 16, lineHeight: 22, textAlign: "center", marginTop: 12 },
   questionPanel: {
     marginTop: 24,
   },

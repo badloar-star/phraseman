@@ -49,11 +49,12 @@ describe('лента истории «Сегодня»: заголовок ка�
 });
 
 describe('лента истории «Сегодня»: цвета', () => {
-  it('в компоненте нет жёстких цветов, кроме помеченного запасного набора колец', () => {
+  it('в компоненте нет жёстких цветов: кольца — только todayRingColors темы, запасного набора нет', () => {
     const src = readSource('components/home/v2/TodayActivityHistory.tsx');
-    const hex = src.split('\n').filter((l) => /#[0-9A-Fa-f]{6}\b/.test(l) && !l.includes('theme-exempt'));
+    const hex = src.split('\n').filter((l) => /#[0-9A-Fa-f]{6}\b/.test(l));
     expect(hex).toEqual([]);
-    expect(src).toContain('todayRingColors(streakColors)');
+    expect(src).toContain('todayRingColors(useStreakColors())');
+    expect(src).not.toContain('FALLBACK_RING_COLORS');
     expect(src).toContain("liquidGlassTokens(liquidGlassThemeId, { level: 'max'"); // карточка цвета темы уровня «Максимум», как панель сцены
   });
 });

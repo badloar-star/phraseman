@@ -14,7 +14,6 @@ import { todayHistoryCount, todayHistoryDateLabel, todayHistoryDayA11y, todayHis
 
 // зачем (22.10 владелец — восстановить работу 19.10; координатор): жёсткие цвета колец и текста заменены токенами темы — кольца теми же цветами, что кольца дня
 // (todayRingColors), дорожка и текст от цвета текста темы; тексты и даты на 9 языках (today_activity_history_copy).
-const FALLBACK_RING_COLORS = ['#7EF0C8', '#A08CFF', '#F0C551'] as const; // theme-exempt: запасные цвета колец, пока токены темы не готовы (эталон RC)
 const RADII = [27, 20, 13] as const;
 const STROKE = 4;
 const SIZE = 62;
@@ -50,7 +49,7 @@ function ActivityRings({ row, colors, track }: Readonly<{ row: TodayActivityHist
               cy={SIZE / 2}
               r={radius}
               fill="none"
-              stroke={colors[index] ?? FALLBACK_RING_COLORS[index]!}
+              stroke={colors[index] ?? track}
               strokeWidth={STROKE}
               strokeLinecap="round"
               strokeDasharray={length}
@@ -70,8 +69,7 @@ function TodayActivityHistory({ dayKey, tasks }: Props) {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const glass = useShadowGlass();
   const p = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }), [liquidGlassThemeId, liquidGlassAppearance]);
-  const streakColors = useStreakColors(true);
-  const ringColors = streakColors ? todayRingColors(streakColors) : FALLBACK_RING_COLORS;
+  const ringColors = todayRingColors(useStreakColors());
   const track = alphaHex(p.text, 0.16);
   const rows = useMemo(() => rowFromTasks(dayKey, tasks), [dayKey, tasks]);
   const [selectedDayKey, setSelectedDayKey] = useState(dayKey);

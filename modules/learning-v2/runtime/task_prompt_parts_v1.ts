@@ -37,9 +37,9 @@ const INSTRUCTION: Readonly<Record<LearningV2TaskFamilyV1, Readonly<{ icon: Lear
   listen_build_dictation: { icon: "headset", copy: { ru: "Послушай и собери", uk: "Послухай і склади", en: "Listen and build", es: "Escucha y arma", "pt-BR": "Ouça e monte", vi: "Nghe và ghép", id: "Dengar dan susun", tr: "Dinle ve kur", pl: "Posłuchaj i ułóż" } },
   phrase_builder: { icon: "puzzle", copy: { ru: "Собери фразу", uk: "Склади фразу", en: "Build the phrase", es: "Arma la frase", "pt-BR": "Monte a frase", vi: "Ghép câu", id: "Susun frasa", tr: "Cümleyi kur", pl: "Ułóż zdanie" } },
   context_gap_grammar: { icon: "create", copy: { ru: "Вставь слово", uk: "Встав слово", en: "Fill in the word", es: "Completa la palabra", "pt-BR": "Complete a palavra", vi: "Điền từ", id: "Isi katanya", tr: "Kelimeyi yerleştir", pl: "Wstaw słowo" } },
-  speed_match: { icon: "swap", copy: { ru: "Найди пары", uk: "Знайди пари", en: "Match the pairs", es: "Une las parejas", "pt-BR": "Ligue os pares", vi: "Ghép cặp", id: "Cocokkan pasangan", tr: "Eşleri bul", pl: "Połącz pary" } },
-  scripted_repeat_compare: { icon: "mic", copy: { ru: "Скажи вслух", uk: "Скажи вголос", en: "Say it out loud", es: "Dilo en voz alta", "pt-BR": "Diga em voz alta", vi: "Nói to lên", id: "Ucapkan dengan keras", tr: "Sesli söyle", pl: "Powiedz na głos" } },
-  sound_contrast: { icon: "ear", copy: { ru: "Различи звуки", uk: "Розрізни звуки", en: "Tell the sounds apart", es: "Distingue los sonidos", "pt-BR": "Diferencie os sons", vi: "Phân biệt âm", id: "Bedakan bunyinya", tr: "Sesleri ayırt et", pl: "Rozróżnij dźwięki" } },
+  speed_match: { icon: "swap", copy: { ru: "Найди пары", uk: "Знайди пари", en: "Match the pairs", es: "Une las parejas", "pt-BR": "Ligue os pares", vi: "Ghép cặp", id: "Cari pasangan", tr: "Eşleri bul", pl: "Połącz pary" } },
+  scripted_repeat_compare: { icon: "mic", copy: { ru: "Скажи вслух", uk: "Скажи вголос", en: "Say it out loud", es: "Dilo en voz alta", "pt-BR": "Diga em voz alta", vi: "Nói to lên", id: "Ucapkan keras", tr: "Sesli söyle", pl: "Powiedz na głos" } },
+  sound_contrast: { icon: "ear", copy: { ru: "Различи звуки", uk: "Розрізни звуки", en: "Spot the sound", es: "Distingue sonidos", "pt-BR": "Diferencie os sons", vi: "Phân biệt âm", id: "Bedakan bunyinya", tr: "Sesleri ayırt et", pl: "Rozróżnij dźwięki" } },
 };
 
 const GENERIC_GOAL_LABEL_RE = /^(?:соберите(?: фразу)?|складіть(?: фразу)?|скажите(?: вслух| по-английски)?|скажіть(?: уголос| англійською)?|произнесите|вимовте)$/iu;

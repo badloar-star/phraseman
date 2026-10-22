@@ -18,7 +18,7 @@ const TITLES: Readonly<Record<LearningV2TaskTitleKind, Nine>> = {
   listen_build: ['Послушай и собери', 'Послухай і склади', 'Listen and build', 'Escucha y arma', 'Ouça e monte', 'Nghe và ghép', 'Dengarkan dan susun', 'Dinle ve oluştur', 'Posłuchaj i ułóż'],
   build_phrase: ['Собери фразу', 'Склади фразу', 'Build the phrase', 'Arma la frase', 'Monte a frase', 'Ghép câu', 'Susun frasa', 'Cümleyi oluştur', 'Ułóż frazę'],
   fill_gap: ['Вставь слово', 'Встав слово', 'Fill in the word', 'Completa la palabra', 'Complete a palavra', 'Điền từ', 'Isi kata', 'Kelimeyi yerleştir', 'Wstaw słowo'],
-  match_pairs: ['Найди пары', 'Знайди пари', 'Match the pairs', 'Une las parejas', 'Ligue os pares', 'Nối các cặp', 'Cocokkan pasangan', 'Eşleri bul', 'Połącz pary'],
+  match_pairs: ['Найди пары', 'Знайди пари', 'Match the pairs', 'Une las parejas', 'Ligue os pares', 'Nối các cặp', 'Cari pasangan', 'Eşleri bul', 'Połącz pary'],
   speak: ['Скажи вслух', 'Скажи вголос', 'Say it out loud', 'Dilo en voz alta', 'Diga em voz alta', 'Nói thành tiếng', 'Ucapkan dengan lantang', 'Sesli söyle', 'Powiedz na głos'],
 };
 

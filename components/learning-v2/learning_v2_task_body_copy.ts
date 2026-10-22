@@ -8,11 +8,11 @@ import { triLang, type Lang } from '../../constants/i18n';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 
-export type LearningV2TaskBodyCopyKey = 'situation' | 'sayInEnglish' | 'answer' | 'sayThis';
+// зачем: подпись «Скажите по-английски» на экране одна — GOAL_SAY в task_prompt_parts_v1.ts; дубль sayInEnglish с другими vi/id убран (координатор 22.10).
+export type LearningV2TaskBodyCopyKey = 'situation' | 'answer' | 'sayThis';
 
 const COPY: Readonly<Record<LearningV2TaskBodyCopyKey, Nine>> = {
   situation: ['Ситуация', 'Ситуація', 'Situation', 'Situación', 'Situação', 'Tình huống', 'Situasi', 'Durum', 'Sytuacja'],
-  sayInEnglish: ['Скажите по-английски', 'Скажіть англійською', 'Say it in English', 'Dilo en inglés', 'Diga em inglês', 'Hãy nói bằng tiếng Anh', 'Ucapkan dalam bahasa Inggris', 'İngilizce söyle', 'Powiedz po angielsku'],
   answer: ['Ответьте', 'Дайте відповідь', 'Answer', 'Responde', 'Responda', 'Hãy trả lời', 'Jawab', 'Cevap ver', 'Odpowiedz'],
   sayThis: ['Скажи так', 'Скажи так', 'Say it like this', 'Dilo así', 'Diga assim', 'Hãy nói thế này', 'Katakan begini', 'Şöyle söyle', 'Powiedz tak'],
 };

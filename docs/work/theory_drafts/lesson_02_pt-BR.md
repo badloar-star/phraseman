@@ -109,13 +109,13 @@ Em português a pergunta aparece só na voz: «É possível.» — «É possíve
 A pergunta não muda o par «quem — peça». Com I continua am, com he, she, it vai is, com you, we, they vai are. Só muda o lugar: agora a peça vem primeiro.
 
 **examples** 🔊
-| en | pt-BR |
-|---|---|
-| Am I…? | Am I welcome? — Sou bem-vindo? |
-| Are you…? | Are you well? — Você está bem? |
-| Is he / she…? | Is he energetic? — Ele está animado? |
-| Is it…? | Is it shady? — Tem sombra? |
-| Are we / they…? | Are they extra? — Estão sobrando? |
+| en | pt-BR | hi |
+|---|---|---|
+| Am I welcome? | Sou bem-vindo? | Am I |
+| Are you well? | Você está bem? | Are you |
+| Is he energetic? | Ele está animado? | Is he |
+| Is it shady? | Tem sombra? | Is it |
+| Are they extra? | Estão sobrando? | Are they |
 
 **fix**
 - ~~Are it possible?~~ → Is it possible?
@@ -137,10 +137,10 @@ Em português basta «Sim» ou «Não». Em inglês, depois de Yes ou No vem que
 **examples** 🔊
 | en | pt-BR | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | Você está bem? — Sim. | am |
-| Is she carsick? — Yes, she is. | Ela enjoou da viagem? — Sim. | is |
-| Are they unpacked? — No, they are not. | As malas estão desfeitas? — Não. | not |
-| Is it broken? — No, it is not. | Está quebrado? — Não. | not |
+| Are you well? Yes, I am. | Você está bem? — Sim. | am |
+| Is she carsick? Yes, she is. | Ela enjoou da viagem? — Sim. | is |
+| Are they unpacked? No, they are not. | As malas estão desfeitas? — Não. | not |
+| Is it broken? No, it is not. | Está quebrado? — Não. | not |
 
 **tip**
 O «sim» curto não termina em forma curta: Yes, I'm e Yes, she's estão errados. Depois de Yes vem a peça inteira: Yes, I am. Yes, she is.
@@ -160,9 +160,9 @@ Se perguntam Are you…?, estão falando de você. Então, na resposta, você di
 **examples** 🔊
 | en | pt-BR | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | — Tudo bem com você? — Sim. | I am |
-| Are you guilty? — No, I am not. | — Foi você? — Não. | I am |
-| Is he innocent? — Yes, he is. | — Ele é inocente? — Sim. | he is |
+| Are you well? Yes, I am. | — Tudo bem com você? — Sim. | I am |
+| Are you guilty? No, I am not. | — Foi você? — Não. | I am |
+| Is he innocent? Yes, he is. | — Ele é inocente? — Sim. | he is |
 
 **drill · binary**
 - pergunta: Sua amiga pergunta: Are you well? Você está bem. O que responde?
@@ -181,9 +181,9 @@ Yes e No respondem à própria pergunta. Se perguntam Is it broken? e a luminár
 **examples** 🔊
 | en | pt-BR | hi |
 |---|---|---|
-| Is it broken? — No, it's unplugged. | Quebrou? — Não, está fora da tomada. | No |
-| Is it valid? — Yes, it is. | O ingresso vale? — Sim. | Yes |
-| Is it bent? — No, it is not. | Está torta? — Não. | No |
+| Is it broken? No, it's unplugged. | Quebrou? — Não, está fora da tomada. | No |
+| Is it valid? Yes, it is. | O ingresso vale? — Sim. | Yes |
+| Is it bent? No, it is not. | Está torta? — Não. | No |
 
 **fix**
 - ~~Is it broken? — Yes, it's unplugged.~~ → Is it broken? — No, it's unplugged.

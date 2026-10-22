@@ -210,14 +210,14 @@ They — це і люди, і речі. They are tight можна сказати
 Уся система уроку вміщається в одну коротку таблицю. Якщо сумніваєтеся, спершу знайдіть, про кого фраза, а потім візьміть його скріпку.
 
 **examples** 🔊
-| en | uk |
-|---|---|
-| I → am | I am ready. |
-| you → are | You are right. |
-| he / she → is | She is busy. |
-| it → is | It is open. |
-| we → are | We are together. |
-| they → are | They are asleep. |
+| en | uk | hi |
+|---|---|---|
+| I am ready. | I → am | am |
+| You are right. | you → are | are |
+| She is busy. | he / she → is | is |
+| It is open. | it → is | is |
+| We are together. | we → are | are |
+| They are asleep. | they → are | are |
 
 **drill · choice**
 - фраза: `They ___ nearby.`

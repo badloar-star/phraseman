@@ -208,14 +208,14 @@ They is for people and for things. You can say They are tight about new shoes.
 The whole lesson fits into one short table. If you're not sure, first find who the sentence is about, then take their clip.
 
 **examples** 🔊
-| en | example |
-|---|---|
-| I → am | I am ready. |
-| you → are | You are right. |
-| he / she → is | She is busy. |
-| it → is | It is open. |
-| we → are | We are together. |
-| they → are | They are asleep. |
+| en | example | hi |
+|---|---|---|
+| I am ready. | I → am | am |
+| You are right. | you → are | are |
+| She is busy. | he / she → is | is |
+| It is open. | it → is | is |
+| We are together. | we → are | are |
+| They are asleep. | they → are | are |
 
 **drill · choice**
 - sentence: `They ___ nearby.`

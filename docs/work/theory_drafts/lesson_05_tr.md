@@ -237,10 +237,10 @@ Whose…? sorusuna genelde kısa cevap verilir: It is hers. They are mine. It is
 **examples** 🔊
 | en | tr | hi |
 |---|---|---|
-| Whose badge is this? — It is mine. | Bu rozet kimin? — Benim. | mine |
-| Whose pendant is this? — It is hers. | Bu kolye ucu kimin? — Onun. | hers |
-| Whose binoculars are these? — They are mine. | Bu dürbün kimin? — Benim. | mine |
-| Is this pendant yours? — No, it isn't mine. | Bu kolye ucu senin mi? — Hayır, benim değil. | isn't |
+| Whose badge is this? It is mine. | Bu rozet kimin? — Benim. | mine |
+| Whose pendant is this? It is hers. | Bu kolye ucu kimin? — Onun. | hers |
+| Whose binoculars are these? They are mine. | Bu dürbün kimin? — Benim. | mine |
+| Is this pendant yours? No, it isn't mine. | Bu kolye ucu senin mi? — Hayır, benim değil. | isn't |
 
 **fix**
 - ~~It is my.~~ → It is mine.

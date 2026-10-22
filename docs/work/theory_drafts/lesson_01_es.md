@@ -211,14 +211,14 @@ They sirve para personas y para cosas. They are tight se puede decir de unos zap
 Todo el sistema de la lección cabe en una tabla corta. Si dudas, primero mira de quién habla la frase y luego toma su pieza.
 
 **examples** 🔊
-| en | es |
-|---|---|
-| I → am | I am ready. |
-| you → are | You are right. |
-| he / she → is | She is busy. |
-| it → is | It is open. |
-| we → are | We are together. |
-| they → are | They are asleep. |
+| en | es | hi |
+|---|---|---|
+| I am ready. | I → am | am |
+| You are right. | you → are | are |
+| She is busy. | he / she → is | is |
+| It is open. | it → is | is |
+| We are together. | we → are | are |
+| They are asleep. | they → are | are |
 
 **drill · choice**
 - frase: `They ___ nearby.`

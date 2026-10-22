@@ -211,14 +211,14 @@ They serve para pessoas e para coisas. They are tight dá para dizer de sapatos 
 Todo o sistema da lição cabe numa tabela curta. Na dúvida, veja primeiro de quem a frase fala e depois pegue a peça dele.
 
 **examples** 🔊
-| en | pt-BR |
-|---|---|
-| I → am | I am ready. |
-| you → are | You are right. |
-| he / she → is | She is busy. |
-| it → is | It is open. |
-| we → are | We are together. |
-| they → are | They are asleep. |
+| en | pt-BR | hi |
+|---|---|---|
+| I am ready. | I → am | am |
+| You are right. | you → are | are |
+| She is busy. | he / she → is | is |
+| It is open. | it → is | is |
+| We are together. | we → are | are |
+| They are asleep. | they → are | are |
 
 **drill · choice**
 - frase: `They ___ nearby.`

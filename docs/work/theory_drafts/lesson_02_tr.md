@@ -109,13 +109,13 @@ Türkçede soruyu sona eklenen «mı / mi» yapar: «Mümkün mü?». İngilizce
 Soru, «kim — kelime» eşini değiştirmez. I ile yine am, he, she, it ile is, you, we, they ile are. Değişen tek şey yeri: artık o kelime başta durur.
 
 **examples** 🔊
-| en | tr |
-|---|---|
-| Am I…? | Am I welcome? — Burada istenir miyim? |
-| Are you…? | Are you well? — İyi misin? |
-| Is he / she…? | Is he energetic? — O enerjik mi? |
-| Is it…? | Is it shady? — Orada gölge var mı? |
-| Are we / they…? | Are they extra? — Fazlalar mı? |
+| en | tr | hi |
+|---|---|---|
+| Am I welcome? | Burada istenir miyim? | Am I |
+| Are you well? | İyi misin? | Are you |
+| Is he energetic? | O enerjik mi? | Is he |
+| Is it shady? | Orada gölge var mı? | Is it |
+| Are they extra? | Fazlalar mı? | Are they |
 
 **fix**
 - ~~Are it possible?~~ → Is it possible?
@@ -137,10 +137,10 @@ Türkçede «Evet» ya da «Hayır» yeter. İngilizcede kısa cevapta Yes ya da
 **examples** 🔊
 | en | tr | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | İyi misin? — Evet. | am |
-| Is she carsick? — Yes, she is. | Onu araba mı tuttu? — Evet. | is |
-| Are they unpacked? — No, they are not. | Çantalar boşaltıldı mı? — Hayır. | not |
-| Is it broken? — No, it is not. | Bozuk mu? — Hayır. | not |
+| Are you well? Yes, I am. | İyi misin? — Evet. | am |
+| Is she carsick? Yes, she is. | Onu araba mı tuttu? — Evet. | is |
+| Are they unpacked? No, they are not. | Çantalar boşaltıldı mı? — Hayır. | not |
+| Is it broken? No, it is not. | Bozuk mu? — Hayır. | not |
 
 **tip**
 Kısa «evet» kısa biçimle bitmez: Yes, I'm ve Yes, she's yanlıştır. Yes'ten sonra tam kelime gelir: Yes, I am. Yes, she is.
@@ -160,9 +160,9 @@ Are you…? diye soruyorlarsa, konu sensin. O yüzden cevapta I dersin: Yes, I a
 **examples** 🔊
 | en | tr | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | — İyi misin? — Evet. | I am |
-| Are you guilty? — No, I am not. | — Suçlu sen misin? — Hayır. | I am |
-| Is he innocent? — Yes, he is. | — O masum mu? — Evet. | he is |
+| Are you well? Yes, I am. | — İyi misin? — Evet. | I am |
+| Are you guilty? No, I am not. | — Suçlu sen misin? — Hayır. | I am |
+| Is he innocent? Yes, he is. | — O masum mu? — Evet. | he is |
 
 **drill · binary**
 - soru: Arkadaşın soruyor: Are you well? İyisin. Ne dersin?
@@ -181,9 +181,9 @@ Yes ve No sorunun kendisine cevap verir. Is it broken? diye sordular ama lamba s
 **examples** 🔊
 | en | tr | hi |
 |---|---|---|
-| Is it broken? — No, it's unplugged. | Bozuk mu? — Hayır, fişi takılı değil. | No |
-| Is it valid? — Yes, it is. | Bilet geçerli mi? — Evet. | Yes |
-| Is it bent? — No, it is not. | Eğilmiş mi? — Hayır. | No |
+| Is it broken? No, it's unplugged. | Bozuk mu? — Hayır, fişi takılı değil. | No |
+| Is it valid? Yes, it is. | Bilet geçerli mi? — Evet. | Yes |
+| Is it bent? No, it is not. | Eğilmiş mi? — Hayır. | No |
 
 **fix**
 - ~~Is it broken? — Yes, it's unplugged.~~ → Is it broken? — No, it's unplugged.

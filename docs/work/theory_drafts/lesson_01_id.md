@@ -214,14 +214,14 @@ They dipakai untuk orang dan juga benda. Sepatu baru yang sempit pun bisa disebu
 Seluruh sistem pelajaran ini muat dalam satu tabel pendek. Kalau ragu, lihat dulu kalimatnya tentang siapa, lalu ambil kata yang cocok untuknya.
 
 **examples** 🔊
-| en | id |
-|---|---|
-| I → am | I am ready. |
-| you → are | You are right. |
-| he / she → is | She is busy. |
-| it → is | It is open. |
-| we → are | We are together. |
-| they → are | They are asleep. |
+| en | id | hi |
+|---|---|---|
+| I am ready. | I → am | am |
+| You are right. | you → are | are |
+| She is busy. | he / she → is | is |
+| It is open. | it → is | is |
+| We are together. | we → are | are |
+| They are asleep. | they → are | are |
 
 **drill · choice**
 - kalimat: `They ___ nearby.`

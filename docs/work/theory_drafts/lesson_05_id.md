@@ -239,10 +239,10 @@ Untuk Whose…? jawabannya biasanya singkat: It is hers. They are mine. It is my
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Whose badge is this? — It is mine. | Lencana ini punya siapa? — Milikku. | mine |
-| Whose pendant is this? — It is hers. | Liontin ini punya siapa? — Miliknya. | hers |
-| Whose binoculars are these? — They are mine. | Teropong ini punya siapa? — Milikku. | mine |
-| Is this pendant yours? — No, it isn't mine. | Liontin ini milikmu? — Bukan, bukan milikku. | isn't |
+| Whose badge is this? It is mine. | Lencana ini punya siapa? — Milikku. | mine |
+| Whose pendant is this? It is hers. | Liontin ini punya siapa? — Miliknya. | hers |
+| Whose binoculars are these? They are mine. | Teropong ini punya siapa? — Milikku. | mine |
+| Is this pendant yours? No, it isn't mine. | Liontin ini milikmu? — Bukan, bukan milikku. | isn't |
 
 **fix**
 - ~~It is my.~~ → It is mine.

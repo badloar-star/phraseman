@@ -113,13 +113,13 @@
 Питання не змінює пару «хто — скріпка». З I, як і раніше, am, з he, she, it — is, з you, we, they — are. Змінюється лише місце скріпки: тепер вона стоїть першою.
 
 **examples** 🔊
-| en | uk |
-|---|---|
-| Am I…? | Am I welcome? — Мені тут раді? |
-| Are you…? | Are you well? — Ви добре почуваєтеся? |
-| Is he / she…? | Is he energetic? — Він бадьорий? |
-| Is it…? | Is it shady? — Там є тінь? |
-| Are we / they…? | Are they extra? — Вони зайві? |
+| en | uk | hi |
+|---|---|---|
+| Am I welcome? | Мені тут раді? | Am I |
+| Are you well? | Ви добре почуваєтеся? | Are you |
+| Is he energetic? | Він бадьорий? | Is he |
+| Is it shady? | Там є тінь? | Is it |
+| Are they extra? | Вони зайві? | Are they |
 
 **fix**
 - ~~Are it possible?~~ → Is it possible?
@@ -141,10 +141,10 @@
 **examples** 🔊
 | en | uk | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | Ви добре почуваєтеся? — Так. | am |
-| Is she carsick? — Yes, she is. | Її заколисало? — Так. | is |
-| Are they unpacked? — No, they are not. | Сумки розібрані? — Ні. | not |
-| Is it broken? — No, it is not. | Це зламано? — Ні. | not |
+| Are you well? Yes, I am. | Ви добре почуваєтеся? — Так. | am |
+| Is she carsick? Yes, she is. | Її заколисало? — Так. | is |
+| Are they unpacked? No, they are not. | Сумки розібрані? — Ні. | not |
+| Is it broken? No, it is not. | Це зламано? — Ні. | not |
 
 **tip**
 Коротке «так» не можна закінчувати короткою формою: Yes, I'm і Yes, she's — неправильно. Після Yes потрібна повна скріпка: Yes, I am. Yes, she is.
@@ -164,9 +164,9 @@
 **examples** 🔊
 | en | uk | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | — Ви в порядку? — Так. | I am |
-| Are you guilty? — No, I am not. | — Це ви винні? — Ні. | I am |
-| Is he innocent? — Yes, he is. | — Він невинний? — Так. | he is |
+| Are you well? Yes, I am. | — Ви в порядку? — Так. | I am |
+| Are you guilty? No, I am not. | — Це ви винні? — Ні. | I am |
+| Is he innocent? Yes, he is. | — Він невинний? — Так. | he is |
 
 **drill · binary**
 - питання: Подруга питає: Are you well? Вам добре. Що відповісти?
@@ -185,9 +185,9 @@ Yes і No відповідають на саме питання. Якщо спи
 **examples** 🔊
 | en | uk | hi |
 |---|---|---|
-| Is it broken? — No, it's unplugged. | Зламано? — Ні, просто не ввімкнено в розетку. | No |
-| Is it valid? — Yes, it is. | Квиток дійсний? — Так. | Yes |
-| Is it bent? — No, it is not. | Вона погнута? — Ні. | No |
+| Is it broken? No, it's unplugged. | Зламано? — Ні, просто не ввімкнено в розетку. | No |
+| Is it valid? Yes, it is. | Квиток дійсний? — Так. | Yes |
+| Is it bent? No, it is not. | Вона погнута? — Ні. | No |
 
 **fix**
 - ~~Is it broken? — Yes, it's unplugged.~~ → Is it broken? — No, it's unplugged.

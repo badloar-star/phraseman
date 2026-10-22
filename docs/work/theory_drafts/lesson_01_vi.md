@@ -210,14 +210,14 @@ They dùng cho cả người lẫn đồ vật. Đôi giày mới bị chật c�
 Cả hệ thống của bài nằm gọn trong một bảng ngắn. Nếu phân vân, trước tiên xem câu nói về ai, rồi chọn từ đi với người đó.
 
 **examples** 🔊
-| en | vi |
-|---|---|
-| I → am | I am ready. |
-| you → are | You are right. |
-| he / she → is | She is busy. |
-| it → is | It is open. |
-| we → are | We are together. |
-| they → are | They are asleep. |
+| en | vi | hi |
+|---|---|---|
+| I am ready. | I → am | am |
+| You are right. | you → are | are |
+| She is busy. | he / she → is | is |
+| It is open. | it → is | is |
+| We are together. | we → are | are |
+| They are asleep. | they → are | are |
 
 **drill · choice**
 - câu: `They ___ nearby.`

@@ -108,13 +108,13 @@ Tiếng Việt hỏi bằng cách thêm «không?» ở cuối và giữ nguyên
 Câu hỏi không đổi cặp «ai — từ nối». Với I vẫn là am, với he, she, it là is, với you, we, they là are. Chỉ có vị trí thay đổi: giờ từ nối đứng đầu.
 
 **examples** 🔊
-| en | vi |
-|---|---|
-| Am I…? | Am I welcome? — Ở đây có chào đón tôi không? |
-| Are you…? | Are you well? — Bạn có khỏe không? |
-| Is he / she…? | Is he energetic? — Anh ấy có khỏe khoắn không? |
-| Is it…? | Is it shady? — Ở đó có bóng mát không? |
-| Are we / they…? | Are they extra? — Chúng có bị thừa không? |
+| en | vi | hi |
+|---|---|---|
+| Am I welcome? | Ở đây có chào đón tôi không? | Am I |
+| Are you well? | Bạn có khỏe không? | Are you |
+| Is he energetic? | Anh ấy có khỏe khoắn không? | Is he |
+| Is it shady? | Ở đó có bóng mát không? | Is it |
+| Are they extra? | Chúng có bị thừa không? | Are they |
 
 **fix**
 - ~~Are it possible?~~ → Is it possible?
@@ -136,10 +136,10 @@ Tiếng Việt chỉ cần «Có» hay «Không». Trả lời ngắn trong ti�
 **examples** 🔊
 | en | vi | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | Bạn khỏe không? — Có. | am |
-| Is she carsick? — Yes, she is. | Cô ấy bị say xe à? — Ừ. | is |
-| Are they unpacked? — No, they are not. | Túi dỡ ra chưa? — Chưa. | not |
-| Is it broken? — No, it is not. | Hỏng rồi à? — Không. | not |
+| Are you well? Yes, I am. | Bạn khỏe không? — Có. | am |
+| Is she carsick? Yes, she is. | Cô ấy bị say xe à? — Ừ. | is |
+| Are they unpacked? No, they are not. | Túi dỡ ra chưa? — Chưa. | not |
+| Is it broken? No, it is not. | Hỏng rồi à? — Không. | not |
 
 **tip**
 Chữ «có» ngắn không kết thúc bằng dạng gọn: Yes, I'm và Yes, she's là sai. Sau Yes là dạng đầy đủ: Yes, I am. Yes, she is.
@@ -159,9 +159,9 @@ Nếu người ta hỏi Are you…?, họ đang hỏi về bạn. Vậy khi tr�
 **examples** 🔊
 | en | vi | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | — Bạn ổn chứ? — Ổn. | I am |
-| Are you guilty? — No, I am not. | — Bạn làm à? — Không phải tôi. | I am |
-| Is he innocent? — Yes, he is. | — Anh ấy vô tội à? — Đúng. | he is |
+| Are you well? Yes, I am. | — Bạn ổn chứ? — Ổn. | I am |
+| Are you guilty? No, I am not. | — Bạn làm à? — Không phải tôi. | I am |
+| Is he innocent? Yes, he is. | — Anh ấy vô tội à? — Đúng. | he is |
 
 **drill · binary**
 - câu hỏi: Bạn bè hỏi: Are you well? Bạn thấy khỏe. Trả lời thế nào?
@@ -180,9 +180,9 @@ Yes và No trả lời đúng câu được hỏi. Nếu ai đó hỏi Is it bro
 **examples** 🔊
 | en | vi | hi |
 |---|---|---|
-| Is it broken? — No, it's unplugged. | Hỏng à? — Không, chưa cắm điện thôi. | No |
-| Is it valid? — Yes, it is. | Vé còn hạn không? — Còn. | Yes |
-| Is it bent? — No, it is not. | Bị cong à? — Không. | No |
+| Is it broken? No, it's unplugged. | Hỏng à? — Không, chưa cắm điện thôi. | No |
+| Is it valid? Yes, it is. | Vé còn hạn không? — Còn. | Yes |
+| Is it bent? No, it is not. | Bị cong à? — Không. | No |
 
 **fix**
 - ~~Is it broken? — Yes, it's unplugged.~~ → Is it broken? — No, it's unplugged.

@@ -238,10 +238,10 @@ Na Whose…? odpowiada się krótko: It is hers. They are mine. It is my brother
 **examples** 🔊
 | en | pl | hi |
 |---|---|---|
-| Whose badge is this? — It is mine. | Czyj to identyfikator? — Mój. | mine |
-| Whose pendant is this? — It is hers. | Czyj to wisiorek? — Jej. | hers |
-| Whose binoculars are these? — They are mine. | Czyja to lornetka? — Moja. | mine |
-| Is this pendant yours? — No, it isn't mine. | To twój wisiorek? — Nie, nie mój. | isn't |
+| Whose badge is this? It is mine. | Czyj to identyfikator? — Mój. | mine |
+| Whose pendant is this? It is hers. | Czyj to wisiorek? — Jej. | hers |
+| Whose binoculars are these? They are mine. | Czyja to lornetka? — Moja. | mine |
+| Is this pendant yours? No, it isn't mine. | To twój wisiorek? — Nie, nie mój. | isn't |
 
 **fix**
 - ~~It is my.~~ → It is mine.

@@ -109,13 +109,13 @@ Bahasa Indonesia bertanya dengan «apakah» atau nada suara saja, tanpa mengubah
 Pertanyaan tidak mengubah pasangan «siapa — penjepit». Dengan I tetap am, dengan he, she, it pakai is, dengan you, we, they pakai are. Yang berubah hanya letaknya: sekarang penjepit ada di depan.
 
 **examples** 🔊
-| en | id |
-|---|---|
-| Am I…? | Am I welcome? — Apakah aku disambut? |
-| Are you…? | Are you well? — Kamu sehat? |
-| Is he / she…? | Is he energetic? — Dia bersemangat? |
-| Is it…? | Is it shady? — Di sana teduh? |
-| Are we / they…? | Are they extra? — Itu kelebihan? |
+| en | id | hi |
+|---|---|---|
+| Am I welcome? | Apakah aku disambut? | Am I |
+| Are you well? | Kamu sehat? | Are you |
+| Is he energetic? | Dia bersemangat? | Is he |
+| Is it shady? | Di sana teduh? | Is it |
+| Are they extra? | Itu kelebihan? | Are they |
 
 **fix**
 - ~~Are it possible?~~ → Is it possible?
@@ -137,10 +137,10 @@ Dalam bahasa Indonesia cukup «Ya» atau «Tidak». Dalam jawaban pendek bahasa 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | Kamu sehat? — Ya. | am |
-| Is she carsick? — Yes, she is. | Dia mabuk perjalanan? — Ya. | is |
-| Are they unpacked? — No, they are not. | Tasnya sudah dibongkar? — Belum. | not |
-| Is it broken? — No, it is not. | Rusak? — Tidak. | not |
+| Are you well? Yes, I am. | Kamu sehat? — Ya. | am |
+| Is she carsick? Yes, she is. | Dia mabuk perjalanan? — Ya. | is |
+| Are they unpacked? No, they are not. | Tasnya sudah dibongkar? — Belum. | not |
+| Is it broken? No, it is not. | Rusak? — Tidak. | not |
 
 **tip**
 «Ya» yang pendek tidak diakhiri bentuk singkat: Yes, I'm dan Yes, she's salah. Sesudah Yes pakai bentuk lengkap: Yes, I am. Yes, she is.
@@ -160,9 +160,9 @@ Kalau ditanya Are you…?, yang dibicarakan kamu. Jadi dalam jawaban kamu bilang
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | — Kamu baik-baik saja? — Ya. | I am |
-| Are you guilty? — No, I am not. | — Kamu yang salah? — Bukan. | I am |
-| Is he innocent? — Yes, he is. | — Dia tidak bersalah? — Benar. | he is |
+| Are you well? Yes, I am. | — Kamu baik-baik saja? — Ya. | I am |
+| Are you guilty? No, I am not. | — Kamu yang salah? — Bukan. | I am |
+| Is he innocent? Yes, he is. | — Dia tidak bersalah? — Benar. | he is |
 
 **drill · binary**
 - pertanyaan: Temanmu bertanya: Are you well? Kamu sehat. Jawab apa?
@@ -181,9 +181,9 @@ Yes dan No menjawab pertanyaannya langsung. Kalau ditanya Is it broken? padahal 
 **examples** 🔊
 | en | id | hi |
 |---|---|---|
-| Is it broken? — No, it's unplugged. | Rusak? — Tidak, cuma belum dicolok. | No |
-| Is it valid? — Yes, it is. | Tiketnya masih berlaku? — Ya. | Yes |
-| Is it bent? — No, it is not. | Bengkok? — Tidak. | No |
+| Is it broken? No, it's unplugged. | Rusak? — Tidak, cuma belum dicolok. | No |
+| Is it valid? Yes, it is. | Tiketnya masih berlaku? — Ya. | Yes |
+| Is it bent? No, it is not. | Bengkok? — Tidak. | No |
 
 **fix**
 - ~~Is it broken? — Yes, it's unplugged.~~ → Is it broken? — No, it's unplugged.

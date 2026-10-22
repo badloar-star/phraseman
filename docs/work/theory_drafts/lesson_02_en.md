@@ -109,13 +109,13 @@ In many languages you ask a question just with your voice and keep the same orde
 A question doesn't change who goes with which clip. I still takes am, he, she and it take is, you, we and they take are. Only the place changes: now the clip comes first.
 
 **examples** 🔊
-| en | example |
-|---|---|
-| Am I…? | Am I welcome? |
-| Are you…? | Are you well? |
-| Is he / she…? | Is he energetic? |
-| Is it…? | Is it shady? |
-| Are we / they…? | Are they extra? |
+| en | example | hi |
+|---|---|---|
+| Am I welcome? | Am I…? | Am I |
+| Are you well? | Are you…? | Are you |
+| Is he energetic? | Is he / she…? | Is he |
+| Is it shady? | Is it…? | Is it |
+| Are they extra? | Are we / they…? | Are they |
 
 **fix**
 - ~~Are it possible?~~ → Is it possible?
@@ -137,10 +137,10 @@ People usually don't repeat the whole sentence. They say yes or no, then who, th
 **examples** 🔊
 | en | meaning | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | You feel okay. | am |
-| Is she carsick? — Yes, she is. | The car ride made her feel sick. | is |
-| Are they unpacked? — No, they are not. | The bags are still closed. | not |
-| Is it broken? — No, it is not. | It works. | not |
+| Are you well? Yes, I am. | You feel okay. | am |
+| Is she carsick? Yes, she is. | The car ride made her feel sick. | is |
+| Are they unpacked? No, they are not. | The bags are still closed. | not |
+| Is it broken? No, it is not. | It works. | not |
 
 **tip**
 A short «yes» never ends with a short form: Yes, I'm and Yes, she's are wrong. After Yes, use the full clip: Yes, I am. Yes, she is.
@@ -160,9 +160,9 @@ If someone asks Are you…?, they mean you. So in your answer you say I: Yes, I 
 **examples** 🔊
 | en | meaning | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | You feel okay. | I am |
-| Are you guilty? — No, I am not. | It wasn't you. | I am |
-| Is he innocent? — Yes, he is. | He did nothing wrong. | he is |
+| Are you well? Yes, I am. | You feel okay. | I am |
+| Are you guilty? No, I am not. | It wasn't you. | I am |
+| Is he innocent? Yes, he is. | He did nothing wrong. | he is |
 
 **drill · binary**
 - question: Your friend asks: Are you well? You feel fine. What do you say?
@@ -181,9 +181,9 @@ Yes and No answer the question itself. If someone asks Is it broken? and the lam
 **examples** 🔊
 | en | meaning | hi |
 |---|---|---|
-| Is it broken? — No, it's unplugged. | It works, it just isn't plugged in. | No |
-| Is it valid? — Yes, it is. | The ticket still works. | Yes |
-| Is it bent? — No, it is not. | It is straight. | No |
+| Is it broken? No, it's unplugged. | It works, it just isn't plugged in. | No |
+| Is it valid? Yes, it is. | The ticket still works. | Yes |
+| Is it bent? No, it is not. | It is straight. | No |
 
 **fix**
 - ~~Is it broken? — Yes, it's unplugged.~~ → Is it broken? — No, it's unplugged.

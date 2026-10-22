@@ -241,10 +241,10 @@ Who's і whose звучать однаково, але who's — це who is. «
 **examples** 🔊
 | en | uk | hi |
 |---|---|---|
-| Whose badge is this? — It is mine. | Чий це бейдж? — Мій. | mine |
-| Whose pendant is this? — It is hers. | Чия це підвіска? — Її. | hers |
-| Whose binoculars are these? — They are mine. | Чий це бінокль? — Мій. | mine |
-| Is this pendant yours? — No, it isn't mine. | Це твоя підвіска? — Ні, не моя. | isn't |
+| Whose badge is this? It is mine. | Чий це бейдж? — Мій. | mine |
+| Whose pendant is this? It is hers. | Чия це підвіска? — Її. | hers |
+| Whose binoculars are these? They are mine. | Чий це бінокль? — Мій. | mine |
+| Is this pendant yours? No, it isn't mine. | Це твоя підвіска? — Ні, не моя. | isn't |
 
 **fix**
 - ~~It is my.~~ → It is mine.

@@ -211,14 +211,14 @@ They to i ludzie, i rzeczy. They are tight można powiedzieć o nowych butach.
 Cały system lekcji mieści się w krótkiej tabelce. Jeśli masz wątpliwości, najpierw sprawdź, o kim jest zdanie, a potem weź jego słowo.
 
 **examples** 🔊
-| en | pl |
-|---|---|
-| I → am | I am ready. |
-| you → are | You are right. |
-| he / she → is | She is busy. |
-| it → is | It is open. |
-| we → are | We are together. |
-| they → are | They are asleep. |
+| en | pl | hi |
+|---|---|---|
+| I am ready. | I → am | am |
+| You are right. | you → are | are |
+| She is busy. | he / she → is | is |
+| It is open. | it → is | is |
+| We are together. | we → are | are |
+| They are asleep. | they → are | are |
 
 **drill · choice**
 - zdanie: `They ___ nearby.`

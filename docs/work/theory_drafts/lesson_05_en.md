@@ -235,10 +235,10 @@ People usually answer Whose…? briefly: It is hers. They are mine. It is my bro
 **examples** 🔊
 | en | meaning | hi |
 |---|---|---|
-| Whose badge is this? — It is mine. | It belongs to me. | mine |
-| Whose pendant is this? — It is hers. | It belongs to her. | hers |
-| Whose binoculars are these? — They are mine. | They belong to me. | mine |
-| Is this pendant yours? — No, it isn't mine. | It doesn't belong to me. | isn't |
+| Whose badge is this? It is mine. | It belongs to me. | mine |
+| Whose pendant is this? It is hers. | It belongs to her. | hers |
+| Whose binoculars are these? They are mine. | They belong to me. | mine |
+| Is this pendant yours? No, it isn't mine. | It doesn't belong to me. | isn't |
 
 **fix**
 - ~~It is my.~~ → It is mine.

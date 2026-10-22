@@ -120,13 +120,13 @@
 Вопрос не меняет пару «кто — скрепка». С I по-прежнему am, с he, she, it — is, с you, we, they — are. Меняется только место скрепки: теперь она стоит первой.
 
 **examples** 🔊
-| en | ru |
-|---|---|
-| Am I…? | Am I welcome? — Мне тут рады? |
-| Are you…? | Are you well? — Вы хорошо себя чувствуете? |
-| Is he / she…? | Is he energetic? — Он бодрый? |
-| Is it…? | Is it shady? — Там есть тень? |
-| Are we / they…? | Are they extra? — Они лишние? |
+| en | ru | hi |
+|---|---|---|
+| Am I welcome? | Мне тут рады? | Am I |
+| Are you well? | Вы хорошо себя чувствуете? | Are you |
+| Is he energetic? | Он бодрый? | Is he |
+| Is it shady? | Там есть тень? | Is it |
+| Are they extra? | Они лишние? | Are they |
 
 **fix**
 - ~~Are it possible?~~ → Is it possible?
@@ -148,10 +148,10 @@
 **examples** 🔊
 | en | ru | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | Вы хорошо себя чувствуете? — Да. | am |
-| Is she carsick? — Yes, she is. | Её укачало? — Да. | is |
-| Are they unpacked? — No, they are not. | Сумки разобраны? — Нет. | not |
-| Is it broken? — No, it is not. | Это сломано? — Нет. | not |
+| Are you well? Yes, I am. | Вы хорошо себя чувствуете? — Да. | am |
+| Is she carsick? Yes, she is. | Её укачало? — Да. | is |
+| Are they unpacked? No, they are not. | Сумки разобраны? — Нет. | not |
+| Is it broken? No, it is not. | Это сломано? — Нет. | not |
 
 **tip**
 Короткое «да» нельзя заканчивать короткой формой: Yes, I'm и Yes, she's неправильно. После Yes нужна полная скрепка: Yes, I am. Yes, she is.
@@ -171,9 +171,9 @@
 **examples** 🔊
 | en | ru | hi |
 |---|---|---|
-| Are you well? — Yes, I am. | — Вы в порядке? — Да. | I am |
-| Are you guilty? — No, I am not. | — Это вы виноваты? — Нет. | I am |
-| Is he innocent? — Yes, he is. | — Он невиновен? — Да. | he is |
+| Are you well? Yes, I am. | — Вы в порядке? — Да. | I am |
+| Are you guilty? No, I am not. | — Это вы виноваты? — Нет. | I am |
+| Is he innocent? Yes, he is. | — Он невиновен? — Да. | he is |
 
 **drill · binary**
 - вопрос: Подруга спрашивает: Are you well? Вам хорошо. Что ответить?
@@ -192,9 +192,9 @@ Yes и No отвечают на сам вопрос. Если спросили I
 **examples** 🔊
 | en | ru | hi |
 |---|---|---|
-| Is it broken? — No, it's unplugged. | Сломано? — Нет, просто не включено в розетку. | No |
-| Is it valid? — Yes, it is. | Билет действует? — Да. | Yes |
-| Is it bent? — No, it is not. | Она погнута? — Нет. | No |
+| Is it broken? No, it's unplugged. | Сломано? — Нет, просто не включено в розетку. | No |
+| Is it valid? Yes, it is. | Билет действует? — Да. | Yes |
+| Is it bent? No, it is not. | Она погнута? — Нет. | No |
 
 **fix**
 - ~~Is it broken? — Yes, it's unplugged.~~ → Is it broken? — No, it's unplugged.

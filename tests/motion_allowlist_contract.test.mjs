@@ -21,6 +21,7 @@ const ALLOWED = {
   'app/lesson1.tsx': [1, 'мигающий курсор ввода'],
   'app/voice_equalizer.tsx': [1, 'эквалайзер, пока идёт звук'],
   'components/AiTypingBubble.tsx': [2, 'собеседник печатает'],
+  'components/auth/SignInProgressNote.tsx': [1, 'точки «Входим…», пока идёт вход; в фоне стоят (AppState, perf_freeze_contract)'],
   'components/CleanOnboarding.tsx': [2, 'онбординг не трогаем (владелец)'],
   'components/dialogs/glass/DialogueGlassChat.tsx': [1, 'собеседник печатает'],
   'components/learning-v2-lab/ModeDemoPlayer.tsx': [1, 'лаборатория режимов (дев)'],

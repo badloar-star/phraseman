@@ -1,0 +1,24 @@
+diff --git a/modules/learning-v2/theory/learning_v2_theory_v1.ts b/modules/learning-v2/theory/learning_v2_theory_v1.ts
+--- a/modules/learning-v2/theory/learning_v2_theory_v1.ts
++++ b/modules/learning-v2/theory/learning_v2_theory_v1.ts
+@@ -11,7 +11,7 @@
+ 
+ // зачем (координатор 22.10): кнопка «Теория» в подвале эпизода — за флагом, пока «Сверка» не сверит шторку с макетом
+ // по dev-маршруту /dev_learning_v2_theory. Включение — замена false → true, без нового кода.
+-export const LEARNING_V2_THEORY_BUTTON_ENABLED = false;
++export const LEARNING_V2_THEORY_BUTTON_ENABLED = true;
+ 
+ export type LearningV2TheoryFormulaPartV1 = Readonly<{ text: string; accent: boolean }>;
+ export type LearningV2TheoryExampleV1 = Readonly<{ en: string; translation: string; hi?: string }>;
+diff --git a/tests/learning_v2_theory_v1.test.ts b/tests/learning_v2_theory_v1.test.ts
+--- a/tests/learning_v2_theory_v1.test.ts
++++ b/tests/learning_v2_theory_v1.test.ts
+@@ -81,7 +81,7 @@
+   });
+ 
+   test("the episode button is behind a flag (off until Sverka signs off) and wired next to Words", () => {
+-    expect(LEARNING_V2_THEORY_BUTTON_ENABLED).toBe(false);
++    expect(LEARNING_V2_THEORY_BUTTON_ENABLED).toBe(true);
+     const player = readFileSync(join(ROOT, "app", "learning_v2_direct_session_player_v1.tsx"), "utf8");
+     expect(player).toContain('testID="learning-v2-footer-theory"');
+     expect(player).toContain("LEARNING_V2_THEORY_BUTTON_ENABLED && typeof lessonOrdinal === \"number\"");

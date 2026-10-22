@@ -1,5 +1,8 @@
-// Сторож движка входного теста (владелец 21.10, №10): 1 вопрос на тему по порядку; ошибка → ещё 2; засчитано при 2 из 3;
-// стоп на первой незасчитанной; итог — урок N, уроки до него просто открыты.
+// ЗАМОК ВЛАДЕЛЬЦА 21.10 (№10, docs/work/OWNER_DECISIONS_2026-10-21.md стр. 85–91): «1 вопрос на тему по порядку уроков;
+// ошибка → ещё 2 по теме, засчитано при 2 из 3; стоп на первой незасчитанной теме»; «входной тест БЕСПЛАТНО»; «пропущенные —
+// ПРОСТО ОТКРЫТЫ (не засчитаны пройденными, без звёзд)». Реестр docs/work/OWNER_LOCKS.md. Ослабить — только по новому слову
+// владельца. Этот файл держит правила движка; бесплатность, «только открыто», флаг на итоге и выход посередине — сторожа экрана.
+import { PLACEMENT_TEST_EXTRA_QUESTIONS_V1, PLACEMENT_TEST_PASS_OF_THREE_V1 } from '../modules/learning-v2/exam/placement_test_v1';
 import {
   answerPlacementTestV1,
   placementCurrentLessonV1,
@@ -12,6 +15,11 @@ import {
 const run = (lessons: number[], answers: boolean[]) => answers.reduce(answerPlacementTestV1, startPlacementTestV1(lessons));
 
 describe('placement test engine', () => {
+  it('ЗАМОК ВЛАДЕЛЬЦА: после промаха ровно +2 вопроса, зачёт при 2 из 3', () => {
+    expect(PLACEMENT_TEST_EXTRA_QUESTIONS_V1).toBe(2);
+    expect(PLACEMENT_TEST_PASS_OF_THREE_V1).toBe(2);
+  });
+
   it('one question per lesson in order while correct', () => {
     let s = startPlacementTestV1([3, 1, 2, 2]);
     expect(s.lessons).toEqual([1, 2, 3]);

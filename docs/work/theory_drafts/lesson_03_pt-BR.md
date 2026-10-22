@@ -357,3 +357,4 @@ Uma coisa: a ou an pelo primeiro som. Várias: s e sem a. Perto: this / these; l
 | Those flowers are fresh. | Aquelas flores estão frescas. | Those |
 | The mistake is here. | O erro está aqui. | The |
 | It is a red cup. | É uma xícara vermelha. | red |
+| Books are heavy. | Os livros são pesados. *(em geral)* | Books |

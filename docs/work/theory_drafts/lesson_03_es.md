@@ -357,3 +357,4 @@ Una cosa: a o an según el primer sonido. Varias: s y sin a. Cerca: this / these
 | Those flowers are fresh. | Esas flores están frescas. | Those |
 | The mistake is here. | El error está aquí. | The |
 | It is a red cup. | Es una taza roja. | red |
+| Books are heavy. | Los libros pesan. *(en general)* | Books |

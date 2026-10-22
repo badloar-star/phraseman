@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-54:word:stairwell",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stairwell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:stairwell:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stairwell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:stairwell:audio",
+            "transcript": "stairwell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:stairwell:r1",
+              "targetText": "stairwell",
+              "meaningByLocale": {
+                "ru": "лестничная клетка.",
+                "uk": "сходова клітка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stairwell",
+            "definitionByLocale": {
+              "ru": "лестничная клетка.",
+              "uk": "сходова клітка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы ищете лестницу на следующий этаж. Спросите: «Можно мне воспользоваться этой лестничной клеткой?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ищете лестницу на следующий этаж. Спросите: «Можно мне воспользоваться этой лестничной клеткой?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I use this stairwell?",
+          "localizedMeaning": {
+            "ru": "Вы ищете лестницу на следующий этаж. Спросите: «Можно мне воспользоваться этой лестничной клеткой?»",
+            "uk": "Ви шукаєте сходи на наступний поверх. Запитайте: «Можна мені скористатися цією сходовою кліткою?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "use",
+            "this",
+            "stairwell"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i02:r1",
+            "text": "Could I use this stairwell?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i02:r2",
+            "text": "Could you use this stairwell?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i02:r3",
+            "text": "Could we use this stairwell?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i02:audio",
+            "transcript": "Could I use this stairwell?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i02:r1",
+              "targetText": "Could I use this stairwell?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i02:r2",
+              "targetText": "Could you use this stairwell?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i02:r3",
+              "targetText": "Could we use this stairwell?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I use this stairwell?",
+                "uk": "У записі звучить Could I use this stairwell?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I use this stairwell?",
+                "uk": "У записі звучить Could I use this stairwell?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i03:r1",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i03:r2",
+            "text": "uses"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i03:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ this stairwell?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i03:r1",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i03:r2",
+              "text": "uses"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i03:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:word:landing",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — landing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:landing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — landing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:landing:audio",
+            "transcript": "landing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:landing:r1",
+              "targetText": "landing",
+              "meaningByLocale": {
+                "ru": "лестничная площадка.",
+                "uk": "сходовий майданчик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "landing",
+            "definitionByLocale": {
+              "ru": "лестничная площадка.",
+              "uk": "сходовий майданчик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У двери мало места. Спросите: «Можно мне подождать на лестничной площадке?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У двери мало места. Спросите: «Можно мне подождать на лестничной площадке?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I wait on the landing?",
+          "localizedMeaning": {
+            "ru": "У двери мало места. Спросите: «Можно мне подождать на лестничной площадке?»",
+            "uk": "Біля дверей мало місця. Запитайте: «Можна мені почекати на сходовому майданчику?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "wait",
+            "on",
+            "the",
+            "landing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i05:r1",
+            "text": "Could I wait on the landing?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i05:r2",
+            "text": "Could you wait on the landing?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i05:r3",
+            "text": "Could we wait on the landing?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i05:audio",
+            "transcript": "Could I wait on the landing?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i05:r1",
+              "targetText": "Could I wait on the landing?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i05:r2",
+              "targetText": "Could you wait on the landing?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i05:r3",
+              "targetText": "Could we wait on the landing?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I wait on the landing?",
+                "uk": "У записі звучить Could I wait on the landing?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I wait on the landing?",
+                "uk": "У записі звучить Could I wait on the landing?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i06:r1",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i06:r2",
+            "text": "waits"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i06:r3",
+            "text": "waiting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ on the landing?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i06:r1",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i06:r2",
+              "text": "waits"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i06:r3",
+              "text": "waiting"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:word:keyhole",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keyhole",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:keyhole:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keyhole",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:keyhole:audio",
+            "transcript": "keyhole"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:keyhole:r1",
+              "targetText": "keyhole",
+              "meaningByLocale": {
+                "ru": "замочная скважина.",
+                "uk": "замкова щілина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keyhole",
+            "definitionByLocale": {
+              "ru": "замочная скважина.",
+              "uk": "замкова щілина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ключ не входит в замок. Спросите: «Можно мне проверить замочную скважину?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключ не входит в замок. Спросите: «Можно мне проверить замочную скважину?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I check the keyhole?",
+          "localizedMeaning": {
+            "ru": "Ключ не входит в замок. Спросите: «Можно мне проверить замочную скважину?»",
+            "uk": "Ключ не входить у замок. Запитайте: «Можна мені перевірити замкову щілину?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "check",
+            "the",
+            "keyhole"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i08:r1",
+            "text": "Could I check the keyhole?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i08:r2",
+            "text": "Could you check the keyhole?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i08:r3",
+            "text": "Could we check the keyhole?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i08:audio",
+            "transcript": "Could I check the keyhole?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i08:r1",
+              "targetText": "Could I check the keyhole?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i08:r2",
+              "targetText": "Could you check the keyhole?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i08:r3",
+              "targetText": "Could we check the keyhole?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the keyhole?",
+                "uk": "У записі звучить Could I check the keyhole?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the keyhole?",
+                "uk": "У записі звучить Could I check the keyhole?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i09:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i09:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i09:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the keyhole?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i09:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i09:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i09:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:word:knob",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — knob",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:knob:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — knob",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:knob:audio",
+            "transcript": "knob"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:knob:r1",
+              "targetText": "knob",
+              "meaningByLocale": {
+                "ru": "круглая ручка.",
+                "uk": "кругла ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "knob",
+            "definitionByLocale": {
+              "ru": "круглая ручка.",
+              "uk": "кругла ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете, как открывается дверь. Спросите: «Можно мне повернуть эту круглую ручку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, как открывается дверь. Спросите: «Можно мне повернуть эту круглую ручку?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I turn this knob?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, как открывается дверь. Спросите: «Можно мне повернуть эту круглую ручку?»",
+            "uk": "Ви не знаєте, як відчиняються двері. Запитайте: «Можна мені повернути цю круглу ручку?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "turn",
+            "this",
+            "knob"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i11:r1",
+            "text": "Could I turn this knob?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i11:r2",
+            "text": "Could you turn this knob?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i11:r3",
+            "text": "Could we turn this knob?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i11:audio",
+            "transcript": "Could I turn this knob?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i11:r1",
+              "targetText": "Could I turn this knob?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i11:r2",
+              "targetText": "Could you turn this knob?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i11:r3",
+              "targetText": "Could we turn this knob?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn this knob?",
+                "uk": "У записі звучить Could I turn this knob?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn this knob?",
+                "uk": "У записі звучить Could I turn this knob?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i12:r1",
+            "text": "turn"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i12:r2",
+            "text": "turns"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i12:r3",
+            "text": "turning"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ this knob?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i12:r1",
+              "text": "turn"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i12:r2",
+              "text": "turns"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i12:r3",
+              "text": "turning"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-54:i13:p1",
+              "target": "use this stairwell",
+              "meaningByLocale": {
+                "ru": "воспользоваться этой лестничной клеткой",
+                "uk": "скористатися цією сходовою кліткою"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-54:i13:p2",
+              "target": "wait on the landing",
+              "meaningByLocale": {
+                "ru": "подождать на лестничной площадке",
+                "uk": "почекати на сходовому майданчику"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-54:i13:p3",
+              "target": "check the keyhole",
+              "meaningByLocale": {
+                "ru": "проверить замочную скважину",
+                "uk": "перевірити замкову щілину"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-54:i13:p4",
+              "target": "turn this knob",
+              "meaningByLocale": {
+                "ru": "повернуть эту круглую ручку",
+                "uk": "повернути цю круглу ручку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "use this stairwell",
+            "wait on the landing",
+            "check the keyhole",
+            "turn this knob"
+          ],
+          "rightColumn": [
+            "воспользоваться этой лестничной клеткой",
+            "подождать на лестничной площадке",
+            "проверить замочную скважину",
+            "повернуть эту круглую ручку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: её вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: её вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: моя вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: моя вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам воспользоваться этой лестничной клеткой?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам воспользоваться этой лестничной клеткой?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i16:audio",
+            "transcript": "Could we use this stairwell?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we use this stairwell?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам подождать на лестничной площадке?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам подождать на лестничной площадке?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i17:audio",
+            "transcript": "Could we wait on the landing?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we wait on the landing?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-54:word:stairwell",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stairwell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:stairwell:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stairwell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:stairwell:audio",
+            "transcript": "stairwell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:stairwell:r1",
+              "targetText": "stairwell",
+              "meaningByLocale": {
+                "ru": "лестничная клетка.",
+                "uk": "сходова клітка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stairwell",
+            "definitionByLocale": {
+              "ru": "лестничная клетка.",
+              "uk": "сходова клітка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви шукаєте сходи на наступний поверх. Запитайте: «Можна мені скористатися цією сходовою кліткою?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви шукаєте сходи на наступний поверх. Запитайте: «Можна мені скористатися цією сходовою кліткою?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I use this stairwell?",
+          "localizedMeaning": {
+            "ru": "Вы ищете лестницу на следующий этаж. Спросите: «Можно мне воспользоваться этой лестничной клеткой?»",
+            "uk": "Ви шукаєте сходи на наступний поверх. Запитайте: «Можна мені скористатися цією сходовою кліткою?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "use",
+            "this",
+            "stairwell"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i02:r1",
+            "text": "Could I use this stairwell?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i02:r2",
+            "text": "Could you use this stairwell?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i02:r3",
+            "text": "Could we use this stairwell?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i02:audio",
+            "transcript": "Could I use this stairwell?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i02:r1",
+              "targetText": "Could I use this stairwell?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i02:r2",
+              "targetText": "Could you use this stairwell?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i02:r3",
+              "targetText": "Could we use this stairwell?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I use this stairwell?",
+                "uk": "У записі звучить Could I use this stairwell?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I use this stairwell?",
+                "uk": "У записі звучить Could I use this stairwell?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i03:r1",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i03:r2",
+            "text": "uses"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i03:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ this stairwell?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i03:r1",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i03:r2",
+              "text": "uses"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i03:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:word:landing",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — landing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:landing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — landing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:landing:audio",
+            "transcript": "landing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:landing:r1",
+              "targetText": "landing",
+              "meaningByLocale": {
+                "ru": "лестничная площадка.",
+                "uk": "сходовий майданчик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "landing",
+            "definitionByLocale": {
+              "ru": "лестничная площадка.",
+              "uk": "сходовий майданчик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Біля дверей мало місця. Запитайте: «Можна мені почекати на сходовому майданчику?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Біля дверей мало місця. Запитайте: «Можна мені почекати на сходовому майданчику?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I wait on the landing?",
+          "localizedMeaning": {
+            "ru": "У двери мало места. Спросите: «Можно мне подождать на лестничной площадке?»",
+            "uk": "Біля дверей мало місця. Запитайте: «Можна мені почекати на сходовому майданчику?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "wait",
+            "on",
+            "the",
+            "landing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i05:r1",
+            "text": "Could I wait on the landing?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i05:r2",
+            "text": "Could you wait on the landing?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i05:r3",
+            "text": "Could we wait on the landing?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i05:audio",
+            "transcript": "Could I wait on the landing?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i05:r1",
+              "targetText": "Could I wait on the landing?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i05:r2",
+              "targetText": "Could you wait on the landing?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i05:r3",
+              "targetText": "Could we wait on the landing?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I wait on the landing?",
+                "uk": "У записі звучить Could I wait on the landing?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I wait on the landing?",
+                "uk": "У записі звучить Could I wait on the landing?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i06:r1",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i06:r2",
+            "text": "waits"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i06:r3",
+            "text": "waiting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ on the landing?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i06:r1",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i06:r2",
+              "text": "waits"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i06:r3",
+              "text": "waiting"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:word:keyhole",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keyhole",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:keyhole:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keyhole",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:keyhole:audio",
+            "transcript": "keyhole"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:keyhole:r1",
+              "targetText": "keyhole",
+              "meaningByLocale": {
+                "ru": "замочная скважина.",
+                "uk": "замкова щілина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keyhole",
+            "definitionByLocale": {
+              "ru": "замочная скважина.",
+              "uk": "замкова щілина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ключ не входить у замок. Запитайте: «Можна мені перевірити замкову щілину?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ключ не входить у замок. Запитайте: «Можна мені перевірити замкову щілину?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I check the keyhole?",
+          "localizedMeaning": {
+            "ru": "Ключ не входит в замок. Спросите: «Можно мне проверить замочную скважину?»",
+            "uk": "Ключ не входить у замок. Запитайте: «Можна мені перевірити замкову щілину?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "check",
+            "the",
+            "keyhole"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i08:r1",
+            "text": "Could I check the keyhole?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i08:r2",
+            "text": "Could you check the keyhole?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i08:r3",
+            "text": "Could we check the keyhole?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i08:audio",
+            "transcript": "Could I check the keyhole?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i08:r1",
+              "targetText": "Could I check the keyhole?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i08:r2",
+              "targetText": "Could you check the keyhole?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i08:r3",
+              "targetText": "Could we check the keyhole?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the keyhole?",
+                "uk": "У записі звучить Could I check the keyhole?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the keyhole?",
+                "uk": "У записі звучить Could I check the keyhole?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i09:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i09:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i09:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the keyhole?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i09:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i09:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i09:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:word:knob",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — knob",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:word:knob:audio"
+        ],
+        "accessibilityLabel": "Картка слова — knob",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:word:knob:audio",
+            "transcript": "knob"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:word:knob:r1",
+              "targetText": "knob",
+              "meaningByLocale": {
+                "ru": "круглая ручка.",
+                "uk": "кругла ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "knob",
+            "definitionByLocale": {
+              "ru": "круглая ручка.",
+              "uk": "кругла ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте, як відчиняються двері. Запитайте: «Можна мені повернути цю круглу ручку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, як відчиняються двері. Запитайте: «Можна мені повернути цю круглу ручку?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I turn this knob?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, как открывается дверь. Спросите: «Можно мне повернуть эту круглую ручку?»",
+            "uk": "Ви не знаєте, як відчиняються двері. Запитайте: «Можна мені повернути цю круглу ручку?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "turn",
+            "this",
+            "knob"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i11:r1",
+            "text": "Could I turn this knob?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i11:r2",
+            "text": "Could you turn this knob?"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i11:r3",
+            "text": "Could we turn this knob?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i11:audio",
+            "transcript": "Could I turn this knob?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-54:i11:r1",
+              "targetText": "Could I turn this knob?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i11:r2",
+              "targetText": "Could you turn this knob?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i11:r3",
+              "targetText": "Could we turn this knob?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn this knob?",
+                "uk": "У записі звучить Could I turn this knob?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I turn this knob?",
+                "uk": "У записі звучить Could I turn this knob?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-54:i12:r1",
+            "text": "turn"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i12:r2",
+            "text": "turns"
+          },
+          {
+            "responseId": "en:lesson-22:session-54:i12:r3",
+            "text": "turning"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ this knob?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-54:i12:r1",
+              "text": "turn"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i12:r2",
+              "text": "turns"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i12:r3",
+              "text": "turning"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-54:i13:p1",
+              "target": "use this stairwell",
+              "meaningByLocale": {
+                "ru": "воспользоваться этой лестничной клеткой",
+                "uk": "скористатися цією сходовою кліткою"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-54:i13:p2",
+              "target": "wait on the landing",
+              "meaningByLocale": {
+                "ru": "подождать на лестничной площадке",
+                "uk": "почекати на сходовому майданчику"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-54:i13:p3",
+              "target": "check the keyhole",
+              "meaningByLocale": {
+                "ru": "проверить замочную скважину",
+                "uk": "перевірити замкову щілину"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-54:i13:p4",
+              "target": "turn this knob",
+              "meaningByLocale": {
+                "ru": "повернуть эту круглую ручку",
+                "uk": "повернути цю круглу ручку"
+              }
+            }
+          ],
+          "leftColumn": [
+            "use this stairwell",
+            "wait on the landing",
+            "check the keyhole",
+            "turn this knob"
+          ],
+          "rightColumn": [
+            "скористатися цією сходовою кліткою",
+            "почекати на сходовому майданчику",
+            "перевірити замкову щілину",
+            "повернути цю круглу ручку"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: її річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: її річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: моя річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: моя річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам скористатися цією сходовою кліткою?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам скористатися цією сходовою кліткою?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i16:audio",
+            "transcript": "Could we use this stairwell?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we use this stairwell?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам почекати на сходовому майданчику?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам почекати на сходовому майданчику?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-54:i17:audio",
+            "transcript": "Could we wait on the landing?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we wait on the landing?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-54:word:stairwell",
+      "correctText": "stairwell",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i01",
+      "correctText": "Could I use this stairwell?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i02",
+      "correctText": "Could I use this stairwell?",
+      "correctResponseId": "en:lesson-22:session-54:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i03",
+      "correctText": "use",
+      "correctResponseId": "en:lesson-22:session-54:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:word:landing",
+      "correctText": "landing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i04",
+      "correctText": "Could I wait on the landing?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i05",
+      "correctText": "Could I wait on the landing?",
+      "correctResponseId": "en:lesson-22:session-54:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i06",
+      "correctText": "wait",
+      "correctResponseId": "en:lesson-22:session-54:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:word:keyhole",
+      "correctText": "keyhole",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i07",
+      "correctText": "Could I check the keyhole?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i08",
+      "correctText": "Could I check the keyhole?",
+      "correctResponseId": "en:lesson-22:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i09",
+      "correctText": "check",
+      "correctResponseId": "en:lesson-22:session-54:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:word:knob",
+      "correctText": "knob",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i10",
+      "correctText": "Could I turn this knob?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i11",
+      "correctText": "Could I turn this knob?",
+      "correctResponseId": "en:lesson-22:session-54:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i12",
+      "correctText": "turn",
+      "correctResponseId": "en:lesson-22:session-54:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i14",
+      "correctText": "This wash bag is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i15",
+      "correctText": "This eye mask is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i16",
+      "correctText": "Could we use this stairwell?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-54:i17",
+      "correctText": "Could we wait on the landing?",
+      "correctResponseId": null
+    }
+  ]
+}

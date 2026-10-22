@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-53:word:attach-this-label",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — attach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:word:attach-this-label:audio"
+      ],
+      "accessibilityLabel": "Картка слова — attach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:word:attach-this-label:audio",
+          "transcript": "attach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:word:attach-this-label:r1",
+            "targetText": "attach",
+            "meaningByLocale": {
+              "ru": "прикрепить.",
+              "uk": "прикріпити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "attach",
+          "definitionByLocale": {
+            "ru": "прикрепить.",
+            "uk": "прикріпити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На сумці немає імені. Запитайте: «Можна мені прикріпити цю етикетку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На сумці немає імені. Запитайте: «Можна мені прикріпити цю етикетку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I attach this label?",
+        "localizedMeaning": {
+          "ru": "На сумке нет имени. Спросите: «Можно мне прикрепить эту этикетку?»",
+          "uk": "На сумці немає імені. Запитайте: «Можна мені прикріпити цю етикетку?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "attach",
+          "this",
+          "label"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i02:r1",
+          "text": "Could I attach this label?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i02:r2",
+          "text": "Could you attach this label?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i02:r3",
+          "text": "Could we attach this label?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i02:audio",
+          "transcript": "Could I attach this label?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:i02:r1",
+            "targetText": "Could I attach this label?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i02:r2",
+            "targetText": "Could you attach this label?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i02:r3",
+            "targetText": "Could we attach this label?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I attach this label?",
+              "uk": "У записі звучить Could I attach this label?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I attach this label?",
+              "uk": "У записі звучить Could I attach this label?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i03:r1",
+          "text": "attach"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i03:r2",
+          "text": "attaches"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i03:r3",
+          "text": "attaching"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ this label?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-53:i03:r1",
+            "text": "attach"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i03:r2",
+            "text": "attaches"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i03:r3",
+            "text": "attaching"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:word:detach-this-strap",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — detach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:word:detach-this-strap:audio"
+      ],
+      "accessibilityLabel": "Картка слова — detach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:word:detach-this-strap:audio",
+          "transcript": "detach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:word:detach-this-strap:r1",
+            "targetText": "detach",
+            "meaningByLocale": {
+              "ru": "отсоединить.",
+              "uk": "від’єднати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "detach",
+          "definitionByLocale": {
+            "ru": "отсоединить.",
+            "uk": "від’єднати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Знімний ремінь заважає прибрати сумку. Запитайте: «Можна мені від’єднати цей ремінь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Знімний ремінь заважає прибрати сумку. Запитайте: «Можна мені від’єднати цей ремінь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I detach this strap?",
+        "localizedMeaning": {
+          "ru": "Съёмный ремень мешает убрать сумку. Спросите: «Можно мне отсоединить этот ремень?»",
+          "uk": "Знімний ремінь заважає прибрати сумку. Запитайте: «Можна мені від’єднати цей ремінь?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "detach",
+          "this",
+          "strap"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i05:r1",
+          "text": "Could I detach this strap?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i05:r2",
+          "text": "Could you detach this strap?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i05:r3",
+          "text": "Could we detach this strap?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i05:audio",
+          "transcript": "Could I detach this strap?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:i05:r1",
+            "targetText": "Could I detach this strap?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i05:r2",
+            "targetText": "Could you detach this strap?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i05:r3",
+            "targetText": "Could we detach this strap?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I detach this strap?",
+              "uk": "У записі звучить Could I detach this strap?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I detach this strap?",
+              "uk": "У записі звучить Could I detach this strap?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i06:r1",
+          "text": "detach"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i06:r2",
+          "text": "detaches"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i06:r3",
+          "text": "detaching"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ this strap?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-53:i06:r1",
+            "text": "detach"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i06:r2",
+            "text": "detaches"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i06:r3",
+            "text": "detaching"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:word:secure-the-bag",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — secure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:word:secure-the-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — secure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:word:secure-the-bag:audio",
+          "transcript": "secure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:word:secure-the-bag:r1",
+            "targetText": "secure",
+            "meaningByLocale": {
+              "ru": "закрепить.",
+              "uk": "закріпити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "secure",
+          "definitionByLocale": {
+            "ru": "закрепить.",
+            "uk": "закріпити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумка зісковзує з візка. Запитайте: «Можна мені закріпити сумку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка зісковзує з візка. Запитайте: «Можна мені закріпити сумку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I secure the bag?",
+        "localizedMeaning": {
+          "ru": "Сумка съезжает с тележки. Спросите: «Можно мне закрепить сумку?»",
+          "uk": "Сумка зісковзує з візка. Запитайте: «Можна мені закріпити сумку?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "secure",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i08:r1",
+          "text": "Could I secure the bag?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i08:r2",
+          "text": "Could you secure the bag?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i08:r3",
+          "text": "Could we secure the bag?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i08:audio",
+          "transcript": "Could I secure the bag?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:i08:r1",
+            "targetText": "Could I secure the bag?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i08:r2",
+            "targetText": "Could you secure the bag?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i08:r3",
+            "targetText": "Could we secure the bag?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I secure the bag?",
+              "uk": "У записі звучить Could I secure the bag?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I secure the bag?",
+              "uk": "У записі звучить Could I secure the bag?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i09:r1",
+          "text": "secure"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i09:r2",
+          "text": "secures"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i09:r3",
+          "text": "securing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ the bag?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-53:i09:r1",
+            "text": "secure"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i09:r2",
+            "text": "secures"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i09:r3",
+            "text": "securing"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:word:recheck",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — recheck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:word:recheck:audio"
+      ],
+      "accessibilityLabel": "Картка слова — recheck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:word:recheck:audio",
+          "transcript": "recheck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:word:recheck:r1",
+            "targetText": "recheck",
+            "meaningByLocale": {
+              "ru": "проверить ещё раз.",
+              "uk": "перевірити ще раз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recheck",
+          "definitionByLocale": {
+            "ru": "проверить ещё раз.",
+            "uk": "перевірити ще раз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви сумніваєтеся в даті поїздки. Запитайте: «Можна мені перевірити свій квиток ще раз?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви сумніваєтеся в даті поїздки. Запитайте: «Можна мені перевірити свій квиток ще раз?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I recheck my ticket?",
+        "localizedMeaning": {
+          "ru": "Вы сомневаетесь в дате поездки. Спросите: «Можно мне проверить свой билет ещё раз?»",
+          "uk": "Ви сумніваєтеся в даті поїздки. Запитайте: «Можна мені перевірити свій квиток ще раз?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "recheck",
+          "my",
+          "ticket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i11:r1",
+          "text": "Could I recheck my ticket?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i11:r2",
+          "text": "Could you recheck your ticket?"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i11:r3",
+          "text": "Could we recheck our tickets?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i11:audio",
+          "transcript": "Could I recheck my ticket?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-53:i11:r1",
+            "targetText": "Could I recheck my ticket?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i11:r2",
+            "targetText": "Could you recheck your ticket?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i11:r3",
+            "targetText": "Could we recheck our tickets?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I recheck my ticket?",
+              "uk": "У записі звучить Could I recheck my ticket?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I recheck my ticket?",
+              "uk": "У записі звучить Could I recheck my ticket?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-53:i12:r1",
+          "text": "recheck"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i12:r2",
+          "text": "rechecks"
+        },
+        {
+          "responseId": "en:lesson-22:session-53:i12:r3",
+          "text": "rechecking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ my ticket?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-53:i12:r1",
+            "text": "recheck"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i12:r2",
+            "text": "rechecks"
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i12:r3",
+            "text": "rechecking"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-53:i13:p1",
+            "target": "attach this label",
+            "meaningByLocale": {
+              "ru": "прикрепить эту этикетку",
+              "uk": "прикріпити цю етикетку"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-53:i13:p2",
+            "target": "detach this strap",
+            "meaningByLocale": {
+              "ru": "отсоединить этот ремень",
+              "uk": "від’єднати цей ремінь"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-53:i13:p3",
+            "target": "secure the bag",
+            "meaningByLocale": {
+              "ru": "закрепить сумку",
+              "uk": "закріпити сумку"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-53:i13:p4",
+            "target": "recheck my ticket",
+            "meaningByLocale": {
+              "ru": "проверить свой билет ещё раз",
+              "uk": "перевірити свій квиток ще раз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "attach this label",
+          "detach this strap",
+          "secure the bag",
+          "recheck my ticket"
+        ],
+        "rightColumn": [
+          "прикріпити цю етикетку",
+          "від’єднати цей ремінь",
+          "закріпити сумку",
+          "перевірити свій квиток ще раз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: її річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: її річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: моя річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: моя річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам прикріпити цю етикетку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам прикріпити цю етикетку?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i16:audio",
+          "transcript": "Could we attach this label?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we attach this label?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам закріпити сумку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам закріпити сумку?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-53:i17:audio",
+          "transcript": "Could we secure the bag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we secure the bag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "96b4c53be536712990591a2809e22ac9b49cf1eb8f6d6ca9363aba2fca89f9da"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Внутри здания",
+        "uk": "Усередині будівлі"
+      },
+      "bodyByLocale": {
+        "ru": "Stairwell — лестничная клетка: пространство внутри здания, где расположена лестница. Stairs — сами ступени или лестница. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Stairwell — сходова клітка: простір усередині будівлі, де розташовані сходи. Stairs — самі сходи. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-54:intro1:r1",
+              "text": "Could I use this stairwell?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro1:r2",
+              "text": "Could I uses this stairwell?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro1:r3",
+              "text": "Could I using this stairwell?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-54:intro1:r1",
+              "text": "Could I use this stairwell?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro1:r2",
+              "text": "Could I uses this stairwell?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro1:r3",
+              "text": "Could I using this stairwell?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У двери",
+        "uk": "Біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "Landing — лестничная площадка между пролётами или у дверей на этаже. Говорим on the landing. Keyhole — отверстие в замке, куда вставляют ключ. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Landing — сходовий майданчик між маршами або біля дверей на поверсі. Кажемо on the landing. Keyhole — отвір у замку, куди вставляють ключ. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-54:intro2:r1",
+              "text": "Could I wait on the landing?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro2:r2",
+              "text": "Could I waits on the landing?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro2:r3",
+              "text": "Could I waiting on the landing?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-54:intro2:r1",
+              "text": "Could I wait on the landing?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro2:r2",
+              "text": "Could I waits on the landing?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro2:r3",
+              "text": "Could I waiting on the landing?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Круглая ручка",
+        "uk": "Кругла ручка"
+      },
+      "bodyByLocale": {
+        "ru": "Knob — круглая ручка, которую поворачивают: например, на двери. Handle — более общее название ручки. Здесь this knob указывает на ручку перед вами. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Knob — кругла ручка, яку повертають: наприклад, на дверях. Handle — загальніша назва ручки. Тут this knob указує на ручку перед вами. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-54:intro3:r1",
+              "text": "Could I turn this knob?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro3:r2",
+              "text": "Could I turns this knob?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro3:r3",
+              "text": "Could I turning this knob?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-54:intro3:r1",
+              "text": "Could I turn this knob?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro3:r2",
+              "text": "Could I turns this knob?"
+            },
+            {
+              "responseId": "en:lesson-22:session-54:intro3:r3",
+              "text": "Could I turning this knob?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d0a0ecb37d8506a2c48a8a80c728bcf4d17d34d00be2a2216c878410cdbe7e89"
+}

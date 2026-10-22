@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-53:word:attach-this-label",
+    "correctText": "attach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i01",
+    "correctText": "Could I attach this label?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i02",
+    "correctText": "Could I attach this label?",
+    "correctResponseId": "en:lesson-22:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i03",
+    "correctText": "attach",
+    "correctResponseId": "en:lesson-22:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:word:detach-this-strap",
+    "correctText": "detach",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i04",
+    "correctText": "Could I detach this strap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i05",
+    "correctText": "Could I detach this strap?",
+    "correctResponseId": "en:lesson-22:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i06",
+    "correctText": "detach",
+    "correctResponseId": "en:lesson-22:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:word:secure-the-bag",
+    "correctText": "secure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i07",
+    "correctText": "Could I secure the bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i08",
+    "correctText": "Could I secure the bag?",
+    "correctResponseId": "en:lesson-22:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i09",
+    "correctText": "secure",
+    "correctResponseId": "en:lesson-22:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:word:recheck",
+    "correctText": "recheck",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i10",
+    "correctText": "Could I recheck my ticket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i11",
+    "correctText": "Could I recheck my ticket?",
+    "correctResponseId": "en:lesson-22:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i12",
+    "correctText": "recheck",
+    "correctResponseId": "en:lesson-22:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i13",
+    "correctText": "en:lesson-22:session-53:i13:p1=attach this label\nen:lesson-22:session-53:i13:p2=detach this strap\nen:lesson-22:session-53:i13:p3=secure the bag\nen:lesson-22:session-53:i13:p4=recheck my ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i16",
+    "correctText": "Could we attach this label?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-53:i17",
+    "correctText": "Could we secure the bag?",
+    "correctResponseId": null
+  }
+]

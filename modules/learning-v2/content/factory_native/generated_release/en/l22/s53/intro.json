@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прикрепить этикетку",
+        "uk": "Прикріпити етикетку"
+      },
+      "bodyByLocale": {
+        "ru": "Attach — прикрепить: например, этикетку к сумке. Attach this label — прикрепить эту этикетку. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Attach — прикріпити: наприклад, етикетку до сумки. Attach this label — прикріпити цю етикетку. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-53:intro1:r1",
+              "text": "Could I attach this label?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro1:r2",
+              "text": "Could I attaches this label?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro1:r3",
+              "text": "Could I attaching this label?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-53:intro1:r1",
+              "text": "Could I attach this label?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro1:r2",
+              "text": "Could I attaches this label?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro1:r3",
+              "text": "Could I attaching this label?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ремень и сумка",
+        "uk": "Ремінь і сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Detach — отсоединить то, что было прикреплено. Здесь ремень съёмный: вы не рвёте его. Secure как прилагательное уже знакомо; здесь это глагол «закрепить», чтобы вещь не двигалась. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Detach — від’єднати те, що було прикріплено. Тут ремінь знімний: ви не рвете його. Secure як прикметник уже знайоме; тут це дієслово «закріпити», щоб річ не рухалася. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-53:intro2:r1",
+              "text": "Could I detach this strap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro2:r2",
+              "text": "Could I detaches this strap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro2:r3",
+              "text": "Could I detaching this strap?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-53:intro2:r1",
+              "text": "Could I detach this strap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro2:r2",
+              "text": "Could I detaches this strap?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro2:r3",
+              "text": "Could I detaching this strap?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить ещё раз",
+        "uk": "Перевірити ще раз"
+      },
+      "bodyByLocale": {
+        "ru": "Recheck — проверить ещё раз. Check уже знакомо; re- добавляет смысл повторного действия. Вы возвращаетесь к билету, чтобы ещё раз сверить дату. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Recheck — перевірити ще раз. Check уже знайоме; re- додає значення повторної дії. Ви повертаєтеся до квитка, щоб ще раз звірити дату. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-53:intro3:r1",
+              "text": "Could I recheck my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro3:r2",
+              "text": "Could I rechecks my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro3:r3",
+              "text": "Could I rechecking my ticket?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-53:intro3:r1",
+              "text": "Could I recheck my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro3:r2",
+              "text": "Could I rechecks my ticket?"
+            },
+            {
+              "responseId": "en:lesson-22:session-53:intro3:r3",
+              "text": "Could I rechecking my ticket?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "73ef5edc0d6cfe239685c38eb338703387889b074987e212fa877a59e0104998"
+}

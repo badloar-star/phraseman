@@ -3,6 +3,7 @@
 // Проверяем: подпись зелёной кнопки «Забрать» ≥ 4,5, значки (good / warn / bad) ≥ 3 на карточке и фоне — во всех темах, оформлениях и уровнях.
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { paletteContrast } from '../constants/liquidGlassPaletteRoles';
 import { notificationTones } from '../components/notification_center_tones';
@@ -32,7 +33,7 @@ describe('notificationTones', () => {
   });
 
   it('центр уведомлений не держит своих цветов — только роли темы', () => {
-    const code = fs.readFileSync(path.resolve(__dirname, '..', 'components', 'NotificationCenterButton.tsx'), 'utf8')
+    const code = normalizeEol(fs.readFileSync(path.resolve(__dirname, '..', 'components', 'NotificationCenterButton.tsx'), 'utf8'))
       .replace(/\/\*[\s\S]*?\*\//g, '')
       .replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1');
     expect(code.match(/(['"`])#(?:[0-9A-Fa-f]{3,8})\1|rgba?\(\s*\d/g) ?? []).toEqual([]);

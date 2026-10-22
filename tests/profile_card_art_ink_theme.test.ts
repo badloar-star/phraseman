@@ -3,6 +3,7 @@
 // (палитры видов), поэтому проверяем: подпись белой кнопки, белые подписи и сердце «нравится» читаются на всех видах во всех темах.
 import * as fs from 'fs';
 import * as path from 'path';
+import { normalizeEol } from './helpers/read_source';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { paletteContrast } from '../constants/liquidGlassPaletteRoles';
 import { profileCardArtInkForTheme } from '../components/profile-card/profile_card_art_ink';
@@ -57,7 +58,7 @@ describe('profileCardArtInk', () => {
       'components/profile-card/ProfileCardProSheet.tsx',
       'components/PlayerProfileModal.tsx',
     ]) {
-      const code = fs.readFileSync(path.join(root, rel), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1');
+      const code = normalizeEol(fs.readFileSync(path.join(root, rel), 'utf8')).replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1');
       expect({ rel, literals: code.match(/(['"`])#(?:[0-9A-Fa-f]{3,8})\1|rgba?\(\s*\d/g) ?? [] }).toEqual({ rel, literals: [] });
       expect({ rel, exempt: /theme-exempt/.test(code) }).toEqual({ rel, exempt: false });
     }

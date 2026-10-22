@@ -27,7 +27,7 @@ import { plateBoxShadow } from "../v2/ShadowSurface";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learningV2OwnerLayout";
 import { useLineScale } from '../../hooks/useLineScale';
 
-/** Значки и текст на тёмной карточке слова: белые во всех темах (карточка тёмная всегда — токен wordCardGradient). */
+/** Значки и текст на тёмной карточке слова: белые (карточка всегда тёмная — тёмный тон темы, токен wordCardGradient). */
 const FACE_INK = "#FFFFFF"; // theme-exempt: карточка слова тёмная в любой теме
 
 export type LearningV2WindowPointV1 =Readonly<{ x: number; y: number }>;
@@ -280,7 +280,7 @@ export default function LearningV2NewWordEncounterOverlay({
           testID="learning-v2-new-word-compact-card"
           style={styles.cardWrap}
         >
-          {/* зачем (Сверка 22.10, №23 «до бита»; макет `.nw .fc`): лицо — тёмный градиент 160° (токен wordCardGradient, во всех темах), слово 40/800 белое и перевод 16 с α .7 по центру;
+          {/* зачем (Сверка 22.10, №23 «до бита»; макет `.nw .fc`): лицо — тёмный градиент 160° из тона текущей темы (токен wordCardGradient: акцент темы с примесью чёрного; закон владельца 22.10), слово 40/800 белое и перевод 16 с α .7 по центру;
               динамик (круг 38, `.spk`) слева внизу и закладка (круг 44) справа внизу — в 14 от краёв, на плашке белого α .14 */}
           <LinearGradient
             testID="learning-v2-new-word-face"

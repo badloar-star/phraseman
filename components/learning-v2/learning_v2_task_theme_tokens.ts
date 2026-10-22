@@ -48,7 +48,7 @@ export type Lv2TaskTokens = Readonly<{
   ctaInk: string;
   /** п. 8: окно нового слова — карточка темы. */
   windowFill: string;
-  /** п. 9: карточка слова — тёмный градиент 160° во всех темах. */
+  /** п. 9: карточка слова — тёмный градиент 160° из тона текущей темы (акцент с примесью чёрного). */
   wordCardGradient: Readonly<{ colors: readonly [string, string]; angleDeg: number }>;
   /** Экзамен главы, шторка перед стартом: затемнение `.xdim` и тень `.xsh` (chapter-exam-flow.html). */
   examScrim: string;
@@ -95,7 +95,8 @@ export function lv2TaskTokens(g: Lv2Glass): Lv2TaskTokens {
     ctaFill: g.text,
     ctaInk: g.opaqueCard,
     windowFill: g.opaqueCard,
-    wordCardGradient: Object.freeze({ colors: ['#2A2B45', '#17182A'] as const, angleDeg: 160 }), // theme-exempt: карточка слова тёмная во всех темах (.nw .fc)
+    // зачем (закон владельца 22.10: «цвета строго цвета и оттенки ТЕКУЩЕЙ ТЕМЫ»): карточка слова — тёмные тона акцента темы (60 % и 80 % чёрного), а не фиксированный фиолетовый макета; белый текст читается в каждой теме
+    wordCardGradient: Object.freeze({ colors: [lv2Mix(g.accent, '#000000', 0.6), lv2Mix(g.accent, '#000000', 0.8)] as const, angleDeg: 160 }),
     // зачем (координатор 22.10, ratchet цветов): затемнение под шторкой экзамена — токен, а не литерал в экране
     examScrim: light ? 'rgba(23,24,30,0.38)' : 'rgba(0,0,0,0.45)', // theme-exempt: `.xdim` эталона: светлая rgba(23,24,30,.38), тёмная .45 чёрного
     examSheetShadow: EXAM_SHEET_SHADOW,

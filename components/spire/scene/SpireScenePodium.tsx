@@ -8,6 +8,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo } from 'react';
+import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { StyleSheet, Text, View } from 'react-native';
 
 import type { Lang } from '../../../constants/i18n';
@@ -15,16 +16,18 @@ import AvatarView from '../../AvatarView';
 import SpireRankCoin from '../SpireRankCoin';
 import { spireGroupThousands, spireStepsShort } from '../spire_plurals';
 import type { SpireMemberRow, SpireRankByView } from '../spire_room_types';
+import { SPIRE_SCENE_PODIUM } from './spire_scene_layout';
 import { SPIRE_SCENE_BLOCK, SPIRE_SCENE_INK } from './spire_scene_palette';
 
 /** Колонки по порядку на пьедестале: 2-е, 1-е, 3-е место (индексы в тройке лидеров). */
 const ORDER = [1, 0, 2] as const;
-/** Высоты блоков и размер монет по местам 1, 2, 3 (эталон: 124 / 100 / 80; третий выше на 6, чтобы лицо блока вмещало строки 13/17). */
-const BLOCK_H = [124, 100, 86] as const;
-const COIN = [48, 38, 38] as const;
-/** Доля монеты, наезжающая на верх блока (эталон: 22 из 48 и 18 из 38). */
-const COIN_OVERLAP = 0.47;
+// зачем: высоты блоков, монеты и их заход на блок — в spire_scene_layout: по монете первого места считается и низ окна башни
+const BLOCK_H = SPIRE_SCENE_PODIUM.blockH;
+const COIN = SPIRE_SCENE_PODIUM.coin;
+const COIN_OVERLAP = SPIRE_SCENE_PODIUM.coinOverlap;
 const BASE_COIN_RANK = 0;
+/** Рост ника и монет на лице блока: 1,1 — третий блок (86) вмещает место, ник и монеты при любом системном шрифте. */
+export const FACE_MAX_SCALE = 1.1;
 
 type Props = Readonly<{
   lang: Lang;
@@ -38,6 +41,8 @@ type Props = Readonly<{
 }>;
 
 function SpireScenePodium({ lang, top, rankBy, loading, dim }: Props) {
+  // зачем (координатор 22.10, крайние случаи: шрифт 1,3): ник и монеты на блоке растут до 1,1 вместе с межстрочным — лицо третьего блока (86) вмещает строки
+  const ts = useScaledTextStyles(s, FACE_MAX_SCALE);
   return (
     <View testID={loading ? 'spire-scene-podium-skeleton' : 'spire-scene-podium'} style={[s.row, dim ? s.dim : null]}>
       {ORDER.map((placeIndex) => {
@@ -65,10 +70,10 @@ function SpireScenePodium({ lang, top, rankBy, loading, dim }: Props) {
               <View style={s.highlight} />
               {m ? (
                 <View style={[s.face, { paddingTop: overlap + 4 }]}>
-                  <Text style={s.place}>{place}</Text>
-                  <Text style={s.name} numberOfLines={1}>{m.name}</Text>
+                  <Text style={s.place} maxFontSizeMultiplier={1}>{place}</Text>
+                  <Text style={ts.name} numberOfLines={1} maxFontSizeMultiplier={FACE_MAX_SCALE}>{m.name}</Text>
                   <View style={s.scoreRow}>
-                    <Text style={s.score}>{score}</Text>
+                    <Text style={ts.score} maxFontSizeMultiplier={FACE_MAX_SCALE}>{score}</Text>
                     {rankBy === 'coins' ? <AvatarView avatar="" coinRank={BASE_COIN_RANK} size={12} /> : null}
                   </View>
                 </View>

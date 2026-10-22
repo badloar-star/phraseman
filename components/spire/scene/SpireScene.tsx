@@ -6,7 +6,8 @@
 // комната недели — всё ещё как пьедестал»; выбран V2, эталон docs/design/v2-app/peak-scene-v2.html под замком 3ea39f80c):
 // цвета сцены — homeSceneTokensForTheme (всегда уровень «Максимум», как утверждённый эталон), башня — прежний SpireTower в режиме
 // «сцена» (без плиты и окна), тексты и состояние — spire_scene_model. Вид — только из пропсов: что показывать, решает экран.
-// Горизонталь — доли ширины эталона (430), вертикаль — постоянные места эталона (сцена 760 минус строка статуса и вкладки).
+// Горизонталь — доли ширины эталона (430), вертикаль — постоянные места эталона (сцена 760 минус строка статуса и вкладки); окно башни,
+// колонка текста и «своё место» — из расчёта сетки без пересечений на 360–430 dp (spire_scene_layout, координатор 22.10).
 // Кегли — шкала 16/13 (D145: «шрифты 16/13 главнее макета»), заголовки 40/26/22 — как в эталоне.
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -18,6 +19,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import type { Lang } from '../../../constants/i18n';
 import AvatarView from '../../AvatarView';
 import { useEnergyCountdown } from '../../EnergyContext';
+import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { useTheme } from '../../ThemeContext';
 import { homeSceneTokensForTheme } from '../../home/v2/scene/home_scene_tokens';
 import V2Pressable from '../../v2/V2Pressable';
@@ -30,24 +32,23 @@ import type { SpireRival } from '../spire_tower_model';
 import SpireScenePodium from './SpireScenePodium';
 import type { SpireSceneCopy, SpireSceneDecision, SpireSceneRoom } from './spire_scene_model';
 import { setSpireSceneHeaderTint } from './spire_scene_header_tint';
+import { SPIRE_SCENE_BASE_W, SPIRE_SCENE_H, SPIRE_SCENE_PODIUM, spireSceneFrame } from './spire_scene_layout';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
 import { spireScenePromoText, spireSceneText } from './spire_scene_strings';
 
-/** Ширина эталона: горизонтальные места сцены — доли от неё. */
-const BASE_W = 430;
-/** Высота сцены (эталон: сцена 760, из них 112 — строка статуса и вкладки «Сообщества», их рисует экран над сценой). */
-export const SPIRE_SCENE_H = 648;
-const TOWER = Object.freeze({ top: 38, h: 450, w: 240, right: -6 });
 const HALO = Object.freeze({ top: 38, size: 260, right: 12 });
 const COPY_TOP = 12;
 /** «Нет сети» стоит строкой сверху — текст сцены опускается под неё (эталон: 116 → 184). */
 const COPY_TOP_OFFLINE = 76;
-const ME_TOP = 336;
-/** Низ блоков пьедестала (эталон 680 − 112). */
-const PODIUM_BOTTOM = 568;
+/** Низ блока «своё место» (эталон: верх 448 − 112 = 336 плюс три строки 69): длинные строки переносятся вверх, к монетам не опускаются. */
+const ME_BOTTOM = 405;
 /** Строка «Все участники» высотой 44 (касание), текст — на месте эталона (588). */
 const LINK_TOP = 576;
 const BASE_COIN_RANK = 0;
+/** Рост мелких подписей сцены с системным шрифтом (межстрочный растёт так же — useScaledTextStyles). */
+const TEXT_MAX_SCALE = 1.3;
+/** Крупные числа-заголовки сцены («Этаж 4» 40, «7 место» 26) уже крупные и не растут: иначе на 360 dp «Этаж 4» переносится и наезжает на «моё место». */
+const DISPLAY_MAX_SCALE = 1;
 
 type Props = Readonly<{
   lang: Lang;
@@ -75,21 +76,24 @@ type Props = Readonly<{
 /** Живой отсчёт до энергии в заголовке: тикает только этот текст, сцена не перерисовывается. */
 function LiveEnergyTitle({ override }: Readonly<{ override?: string }>) {
   const { formattedTime } = useEnergyCountdown({ visible: override === undefined });
-  return <Text accessibilityRole="header" testID="spire-scene-title" style={s.title}>{override ?? (formattedTime || '—')}</Text>;
+  return <Text accessibilityRole="header" testID="spire-scene-title" maxFontSizeMultiplier={DISPLAY_MAX_SCALE} style={s.title}>{override ?? (formattedTime || '—')}</Text>;
 }
 
 function SpireScene(p: Props) {
-  const { width } = useWindowDimensions();
-  const k = width / BASE_W;
+  const { width, fontScale } = useWindowDimensions();
+  const k = width / SPIRE_SCENE_BASE_W;
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const evening = p.decision.state === 'eve';
   // зачем: владелец 22.10 — сцена всегда как утверждённый эталон (токены уровня «Максимум» при любом положении ползунка)
   const tokens = useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
   const off = p.decision.offlineLine;
   const searching = p.decision.state === 'search';
-  const towerW = Math.round(TOWER.w * k);
-  // зачем: текст не заходит на башню — справа от него остаётся место под номера этажей и монеты соперников (как в эталоне: 184 из 430)
-  const copyW = Math.max(132, Math.round(width - towerW - 6));
+  const guardChars = useMemo(() => spireText(p.lang, 'guard').toUpperCase().length, [p.lang]);
+  // зачем (координатор 22.10: «нужна сетка без пересечений на 360–430 dp»): окно башни, колонка текста и «своё место» — из одного расчёта:
+  // текст кончается левее подписей этажей, ряд первого этажа — над монетой первого места (spire_scene_layout)
+  // зачем (координатор 22.10, крайние случаи 2 · ДИЗАЙН: шрифт 1,3): межстрочный мелких подписей растёт вместе со шрифтом (до 1,3), буквы не срезаются
+  const ts = useScaledTextStyles(s, TEXT_MAX_SCALE);
+  const frame = useMemo(() => spireSceneFrame({ width, fontScale, myFloor: p.myFloor, guardChars }), [width, fontScale, p.myFloor, guardChars]);
   const haloSize = Math.round(HALO.size * k);
   const offText = useMemo(() => {
     const full = spireGameText(p.lang, 'offline');
@@ -129,7 +133,7 @@ function SpireScene(p: Props) {
         {evening ? <Rect x={-40} y={SPIRE_SCENE_H - 200} width={260} height={260} fill="url(#spireSceneEmber)" /> : null}
       </Svg>
       {tokens.scrim ? <LinearGradient pointerEvents="none" colors={[SPIRE_SCENE_INK.clear, SPIRE_SCENE_INK.scrim]} style={s.scrim} /> : null}
-      <View style={[s.tower, { width: towerW, right: TOWER.right, top: TOWER.top }]}>
+      <View style={[s.tower, { width: frame.towerW, left: frame.towerLeft, top: frame.windowTop }]}>
         <SpireTower
           variant="scene"
           lang={p.lang}
@@ -140,24 +144,25 @@ function SpireScene(p: Props) {
           rivalsByFloor={p.rivalsByFloor}
           dimRivals={off}
           tier={p.tier}
-          windowHeight={TOWER.h}
+          windowHeight={frame.windowH}
+          sceneRowsClearBottom={frame.rowsClearBottom}
           onTouchActive={p.onTouchActive}
         />
       </View>
-      <View testID="spire-scene-copy" style={[s.copy, { top: off ? COPY_TOP_OFFLINE : COPY_TOP, width: copyW }]}>
-        <Text style={s.kicker}>{p.copy.kicker}</Text>
-        {p.copy.kicker2 ? <Text style={s.kicker}>{p.copy.kicker2}</Text> : null}
-        {p.copy.liveEnergyTitle ? <LiveEnergyTitle override={p.energyTime} /> : <Text accessibilityRole="header" testID="spire-scene-title" style={s.title}>{p.copy.title}</Text>}
+      <View testID="spire-scene-copy" style={[s.copy, { top: off ? COPY_TOP_OFFLINE : COPY_TOP, width: frame.copyW }]}>
+        <Text style={ts.kicker} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.kicker}</Text>
+        {p.copy.kicker2 ? <Text style={ts.kicker} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.kicker2}</Text> : null}
+        {p.copy.liveEnergyTitle ? <LiveEnergyTitle override={p.energyTime} /> : <Text accessibilityRole="header" testID="spire-scene-title" maxFontSizeMultiplier={DISPLAY_MAX_SCALE} style={s.title}>{p.copy.title}</Text>}
         {p.copy.warm ? (
           <View style={s.warmRow}>
             <Ionicons name="trending-up" size={16} color={SPIRE_SCENE_INK.warm} style={s.warmIcon} />
-            <Text style={s.warm}>{p.copy.warm}</Text>
+            <Text style={ts.warm} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.warm}</Text>
           </View>
         ) : null}
         {p.copy.line ? (
           <View style={s.lineRow}>
             {p.copy.bar !== null ? <View style={s.bar}><View style={[s.barFill, { width: `${Math.round(p.copy.bar * 100)}%` }]} /></View> : null}
-            <Text style={s.line}>{p.copy.line}</Text>
+            <Text style={ts.line} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.line}</Text>
           </View>
         ) : null}
         {p.copy.rewards.length > 0 ? (
@@ -165,35 +170,35 @@ function SpireScene(p: Props) {
             {p.copy.rewards.map((r) => (
               <View key={r} style={s.reward}>
                 <AvatarView avatar="" coinRank={BASE_COIN_RANK} size={20} />
-                <Text style={s.rewardText}>{r}</Text>
+                <Text style={ts.rewardText} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{r}</Text>
               </View>
             ))}
           </View>
         ) : null}
       </View>
-      <View testID="spire-scene-me" style={[s.me, { top: ME_TOP }, off ? s.dim : null]}>
-        <Text style={s.meLabel}>{`${spireText(p.lang, 'roomWeek')} · ${p.tierName}`}</Text>
+      <View testID="spire-scene-me" style={[s.me, { bottom: SPIRE_SCENE_H - ME_BOTTOM, width: frame.copyW }, off ? s.dim : null]}>
+        <Text style={ts.meLabel} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{`${spireText(p.lang, 'roomWeek')} · ${p.tierName}`}</Text>
         {searching ? (
           <>
-            <Text style={s.meValue}>{spireSceneText(p.lang, 'searching')}</Text>
-            <Text style={s.meSub}>{spireSceneText(p.lang, 'yourLevelRoom')}</Text>
+            <Text style={s.meValue} maxFontSizeMultiplier={DISPLAY_MAX_SCALE}>{spireSceneText(p.lang, 'searching')}</Text>
+            <Text style={ts.meSub} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireSceneText(p.lang, 'yourLevelRoom')}</Text>
           </>
         ) : (
           <>
             <View style={s.meValueRow}>
               <SpireRankCoin rank={p.myCoinRank} size={30} plus={p.myPlus} />
-              <Text style={s.meValue}>{p.room.myPlace !== null ? spireSceneText(p.lang, 'place', { n: p.room.myPlace }) : '—'}</Text>
+              <Text style={s.meValue} maxFontSizeMultiplier={DISPLAY_MAX_SCALE}>{p.room.myPlace !== null ? spireSceneText(p.lang, 'place', { n: p.room.myPlace }) : '—'}</Text>
             </View>
             {p.room.placesToPromo !== null && p.room.placesToPromo > 0 ? (
               <View style={s.meSubRow}>
                 <Ionicons name="arrow-up" size={13} color={SPIRE_SCENE_INK.up} />
-                <Text style={s.meSub}>{spireScenePromoText(p.lang, p.room.placesToPromo, false)}</Text>
+                <Text style={ts.meSub} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{spireScenePromoText(p.lang, p.room.placesToPromo, false)}</Text>
               </View>
             ) : null}
           </>
         )}
       </View>
-      <View style={[s.podium, { bottom: SPIRE_SCENE_H - PODIUM_BOTTOM }]}>
+      <View style={[s.podium, { bottom: SPIRE_SCENE_H - SPIRE_SCENE_PODIUM.bottom }]}>
         <SpireScenePodium lang={p.lang} top={p.room.top} rankBy={p.rankBy} loading={searching} dim={off} />
       </View>
       <View style={[s.linkWrap, { top: LINK_TOP }, off ? s.dim : null]}>
@@ -206,14 +211,14 @@ function SpireScene(p: Props) {
           scaleTo={0.98}
           style={s.link}
         >
-          <Text style={s.linkText}>{`${spireText(p.lang, 'allMembers')} `}<Text style={s.linkCount}>{searching ? '…' : String(p.room.count)}</Text></Text>
+          <Text style={ts.linkText} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{`${spireText(p.lang, 'allMembers')} `}<Text style={s.linkCount}>{searching ? '…' : String(p.room.count)}</Text></Text>
           <Ionicons name="chevron-forward" size={18} color={SPIRE_SCENE_INK.label} style={s.linkChevron} />
         </V2Pressable>
       </View>
       {off ? (
         <View testID="spire-scene-offline" style={s.offline} accessibilityLiveRegion="polite">
           <Ionicons name="cloud-offline-outline" size={18} color={SPIRE_SCENE_INK.text} />
-          <Text style={s.offlineText}><Text style={s.offlineBold}>{offText.bold}</Text>{offText.rest}</Text>
+          <Text style={ts.offlineText} maxFontSizeMultiplier={TEXT_MAX_SCALE}><Text style={s.offlineBold}>{offText.bold}</Text>{offText.rest}</Text>
         </View>
       ) : null}
     </View>
@@ -238,9 +243,9 @@ const s = StyleSheet.create({
   barFill: { height: 4, backgroundColor: SPIRE_SCENE_INK.text },
   line: { color: SPIRE_SCENE_INK.line, fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] }, // guard-ok: «ступень 7 из 8» — строка прогресса этажа (эталон V2), не подпись-расшифровка
   rewards: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },
-  reward: { height: 30, borderRadius: 15, paddingLeft: 6, paddingRight: 11, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: SPIRE_SCENE_INK.glass },
-  rewardText: { color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17, fontWeight: '700' },
-  me: { position: 'absolute', left: 20, right: 20 },
+  reward: { minHeight: 30, maxWidth: '100%', borderRadius: 15, paddingLeft: 6, paddingRight: 11, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: SPIRE_SCENE_INK.glass },
+  rewardText: { color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17, fontWeight: '700', flexShrink: 1 },
+  me: { position: 'absolute', left: 20 },
   meLabel: { color: SPIRE_SCENE_INK.label, fontSize: 13, lineHeight: 17 }, // guard-ok: «Комната недели · Гранит» — заголовок блока своего места (эталон V2), не подпись-расшифровка
   meValueRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 2 },
   meValue: { color: SPIRE_SCENE_INK.text, fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -0.4 },

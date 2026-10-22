@@ -145,9 +145,11 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb, scene = fa
         testID="spire-climb"
         onLayout={(e) => logSpireLayout('dock.cta', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height) })}
       >
+        {/* зачем (Пик v2, эталон peak-scene-v2.html `.qbtn .io`; координатор 22.10): на «Сцене» значок ▶ слева от «Играть», как в эталоне */}
+        {scene && !note ? <Ionicons name="play" size={18} color={dis ? off.ink : p.ctaText} /> : null}
         <Text style={[s.ctaText, { color: dis ? off.ink : p.ctaText }]}>{note ? spireGameText(lang, 'retry') : spireText(lang, 'climb')}</Text>
-        {/* зачем (Сверка spire-013, kit.css `.cta .ar`): стрелка у правого края кнопки, текст остаётся по центру */}
-        <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={dis ? off.ink : p.ctaText} /></View>
+        {/* зачем (Сверка spire-013, kit.css `.cta .ar`): стрелка у правого края кнопки, текст остаётся по центру — у прежнего Пика */}
+        {scene ? null : <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-forward" size={20} color={dis ? off.ink : p.ctaText} /></View>}
       </V2Pressable>
     </View>
   );

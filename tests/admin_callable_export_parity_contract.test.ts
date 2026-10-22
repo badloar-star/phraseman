@@ -66,7 +66,6 @@ describe('live admin callable deployment parity', () => {
       'promoCodeDelete',
       'promoCodeUpsert',
     ].sort());
-    expect(deployedFunctions('deploy:admin-audit-security')).toEqual(['adminListAuditLog']);
     expect(deployedFunctions('deploy:admin-refund-center')).toEqual([
       'adminListShardRefunds',
       'firestore:rules',

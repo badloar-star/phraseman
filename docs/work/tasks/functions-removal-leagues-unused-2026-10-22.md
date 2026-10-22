@@ -37,3 +37,69 @@ Owner: Ядро (сессия 1). Решения владельца 22.10 (че�
 ## Rollback
 
 Повторная выкладка из архива исходников или из git до коммита удаления.
+
+## Перекрёстная проверка клиентов (22.10)
+
+Governance-ID: TG-1F5A3758515A
+
+Колонки: приложение HEAD · выпуск 2.0.0 (831d223cb) · admin/ (файлы) · прямой вызов в admin/v2/legacy.html · сайт (knowly-www, web, src) · скрипты. В скриптах — только справочные карты (pm221_server_domain_map, pm233_purchase_ledger_dry_run, identity README), не вызовы.
+
+| Функция | app | 2.0.0 | admin | вызов | сайт | скрипты | Решение |
+|---|---|---|---|---|---|---|---|
+| leagueJoinOrUpdateGroup | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| leagueUpdateMyMember | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| leagueFinalizeCron | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| accountClaimMine | 0 | 0 | 0 | 0 | 0 | 3 | удалить |
+| exchangeCoinsForStars | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| questClaimReward | 0 | 0 | 0 | 0 | 0 | 2 | удалить |
+| reportUserIdea | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| updateUserIdea | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminActivateQuest | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminArchiveQuest | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminCreateAssetJob | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminCreatePlan | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminDeactivateGlobalBroadcasts | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminDeleteQuest | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminDeleteShardSurvey | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminExportReportDocuments | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminExportUnresolvedReports | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminGenerateDirectorDigestAudio | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminGetCoinExchangeCenter | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminGetCosmeticAssetArchive | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminGetDailyBriefing | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminGetDirectorDigest | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminGetPlan | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminListAppMessages | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminListAssetJobs | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminListAuditLog | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminListOpsLog | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminListPlans | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminListReferrals | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminListReportQueue | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminListUserIdeas | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminRunAssetJob | 0 | 0 | 0 | 0 | 0 | 0 | удалить |
+| adminSetCoinExchangeRate | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminSetCosmeticAssetSaleStatus | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminSpinLogs | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminSpinStats | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminUpdateGiftCertificateRecipient | 0 | 0 | 0 | 0 | 0 | 1 | ОСТАВИТЬ (координатор: подарки только что запущены) |
+| adminUpdateReportStatus | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminWriteQuest | 0 | 0 | 0 | 0 | 0 | 1 | удалить |
+| adminEnglishTestAnalytics | 0 | 0 | 1 | 1 | 0 | 0 | удалить; кнопку в legacy.html убирает 9 · САЙТ |
+
+Оставлены вне списка: vipRevokeMine (QA, сторож прав — решение координатора), adminSupportSendReply, adminRelinkProvider, adminRepairAuthLink, adminSearchUsers.
+Итого к удалению: **39** функций.
+
+## Коммит подготовки (22.10)
+
+Governance-ID: TG-48356DD45120
+
+index.ts (экспорты 39 функций), профили deploy:* в functions/package.json, сторожа, файлы Лиг (league_groups.ts, league_finalize_cron.ts, league_residents.ts + 2 теста). Без выкладки. Функции, которых уже нет в коде (квесты, обмен монет, архив косметики, adminEnglishTestAnalytics), — только functions:delete в проде.
+
+## Сторожа под удаление (22.10)
+
+Governance-ID: TG-7F965201361B
+
+- `tests/admin_control_plane_deploy_contract.test.ts` — из ожидаемого списка убраны adminListReferrals, adminSpinStats, adminSpinLogs.
+- `tests/admin_callable_export_parity_contract.test.ts` — убрано ожидание профиля `deploy:admin-audit-security`.
+- `functions/src/admin_director_digest.test.ts`, `functions/src/admin_plans/callables_contract.test.ts` — модули остаются, ожидание экспорта из index.ts заменено на «экспорта нет».

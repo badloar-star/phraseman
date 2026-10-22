@@ -14,7 +14,8 @@ describe('Admin Plans callable seam', () => {
     expect(callables).toContain('export const adminListPlans = onCall(OPTIONS');
     expect(callables).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
     expect(moduleIndex).toContain('adminCreatePlan, adminGetPlan, adminListPlans');
-    expect(rootIndex).toContain("from './admin_plans'");
+    // зачем: владелец 22.10 удалил функции планов из прода (0 вызовов за 30 дней) — модуль остаётся, экспорта быть не должно.
+    expect(rootIndex).not.toMatch(/from ["']\.\/admin_plans["']/);
     expect(callables).not.toMatch(/agent_office|agent_manager|openai|defineSecret/i);
   });
 

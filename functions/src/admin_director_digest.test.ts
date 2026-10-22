@@ -112,9 +112,8 @@ describe('admin director digest', () => {
     expect(source).toContain('secrets: [OPENAI_API_KEY]');
     expect(source).not.toContain("from './admin_daily_digest'");
     expect(source).not.toMatch(/admin_digests|admin_digest_runs|admin_digest_state/);
-    expect(index).toContain(
-      "export { adminGetDirectorDigest } from './admin_director_digest';",
-    );
+    // зачем: владелец 22.10 удалил функцию из прода (0 вызовов за 30 дней) — модуль остаётся, экспорта быть не должно.
+    expect(index).not.toMatch(/export \{ adminGetDirectorDigest \}/);
   });
 
   test.each([1, 3, 7, 28, 90])(

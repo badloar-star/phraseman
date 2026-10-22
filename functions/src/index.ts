@@ -86,7 +86,6 @@ const {
   authRecoveryHint,
 } = require("./auth_identity");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { accountClaimMine } = require("./account_claim");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   authRequestRecoveryCode,
@@ -220,7 +219,6 @@ const {
   submitShardSurvey,
   getActiveShardSurvey,
   adminWriteShardSurvey,
-  adminDeleteShardSurvey,
 } = require("./shard_survey");
 // зачем: D140 (владелец 2026-10-01) — «Задания» (квесты) удалены целиком: 8 функций
 // (questGetActive, questReportProgress, questClaimReward, adminWriteQuest,
@@ -246,10 +244,8 @@ const { mistakePracticeSyncEvents } = require("./mistake_practice_event_sync");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   submitUserIdea,
-  updateUserIdea,
   listPublicUserIdeas,
   getPublicUserIdea,
-  adminListUserIdeas,
   adminDeleteUserIdea,
   adminSetUserIdeaStatus,
   adminDecideUserIdea,
@@ -259,7 +255,6 @@ const {
 const { likeUserIdea, unlikeUserIdea } = require("./user_idea_likes");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
-  reportUserIdea,
   adminRestoreUserIdea,
   adminSetIdeaSubmissionRestriction,
   adminAlertOnUserIdeaReport,
@@ -319,7 +314,6 @@ exports.authStampAnonOwnership = authStampAnonOwnership;
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 exports.authAppleLinkByVerifiedEmail = require("./auth_apple_link").authAppleLinkByVerifiedEmail;
 // зачем (этап 4): аккаунт выдаёт сервер, а не телефон — см. account_claim.ts.
-exports.accountClaimMine = accountClaimMine;
 exports.authRecoveryHint = authRecoveryHint;
 exports.authRequestRecoveryCode = authRequestRecoveryCode;
 exports.authConfirmRecoveryCode = authConfirmRecoveryCode;
@@ -419,24 +413,20 @@ exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.submitShardSurvey = submitShardSurvey;
 exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
-exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
 exports.resolveLearningV2WalletRewardReceipt =
   resolveLearningV2WalletRewardReceipt;
 exports.getLearningV2AccountBinding = getLearningV2AccountBinding;
 exports.grantMistakeCorrectionReward = grantMistakeCorrectionReward;
 exports.mistakePracticeSyncEvents = mistakePracticeSyncEvents;
 exports.submitUserIdea = submitUserIdea;
-exports.updateUserIdea = updateUserIdea;
 exports.listPublicUserIdeas = listPublicUserIdeas;
 exports.getPublicUserIdea = getPublicUserIdea;
 exports.adminDeleteUserIdea = adminDeleteUserIdea;
 exports.adminSetUserIdeaStatus = adminSetUserIdeaStatus;
 exports.likeUserIdea = likeUserIdea;
 exports.unlikeUserIdea = unlikeUserIdea;
-exports.reportUserIdea = reportUserIdea;
 exports.adminRestoreUserIdea = adminRestoreUserIdea;
 exports.adminSetIdeaSubmissionRestriction = adminSetIdeaSubmissionRestriction;
-exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.submitFeedbackEntry = submitFeedbackEntry;
@@ -642,13 +632,7 @@ export { premiumExpiryCron } from "./premium_expiry_cron";
 export {
   adminGenerateDailyDigest,
   adminOpenDailyDigest,
-  adminGetDailyBriefing,
 } from "./admin_daily_digest";
-export {
-  adminListAssetJobs,
-  adminCreateAssetJob,
-  adminRunAssetJob,
-} from "./admin_asset_studio";
 
 // ── Почта поддержки (Gmail IMAP забор + ИИ-черновики + SMTP-отправка), admin ───
 export {
@@ -723,18 +707,7 @@ export { adminGetAnalyticsSnapshot } from "./admin_analytics";
 export { adminGetRevenueCatOverviewMetrics } from "./admin_revenuecat_overview";
 export { adminListShardRefunds } from "./admin_shard_refunds";
 export { adminGetAnalyticsTrends } from "./admin_analytics_trends";
-export { adminGetDirectorDigest } from "./admin_director_digest";
-export { adminGenerateDirectorDigestAudio } from "./admin_director_digest_audio";
 export { adminSearchUsers, adminGetUserProfile } from "./admin_user_profile";
-export {
-  adminExportReportDocuments,
-  adminExportUnresolvedReports,
-  adminListReportQueue,
-  adminUpdateReportStatus,
-} from "./admin_reports_center";
-export { adminListAuditLog } from "./admin_audit_log";
-export { adminListOpsLog } from "./admin_ops_log";
-export { adminCreatePlan, adminGetPlan, adminListPlans } from "./admin_plans";
 // зачем здесь пусто (Р4, снос 2026-08-02): старые слои agent_office и
 // agent_manager удалены целиком — их заменил functions/src/jarvis.
 // Firestore Rules их коллекций СОХРАНЕНЫ намеренно: данные могли остаться,
@@ -773,7 +746,6 @@ export {
 } from "./admin_paywall_ab";
 export { adminGetPaywallVariantStats } from "./admin_paywall_variant_stats";
 export {
-  adminListAppMessages,
   adminCreateAppMessage,
   adminSetAppMessageActive,
   adminUpdateAppMessage,
@@ -795,7 +767,6 @@ export {
   adminDeactivateGlobalBroadcast,
   adminScrubGlobalBroadcastMetadata,
   adminVerifyGlobalBroadcastPrivacyReadiness,
-  adminDeactivateGlobalBroadcasts,
 } from "./admin_global_broadcast";
 export {
   adminCreateContentGenerationJob,
@@ -1098,10 +1069,7 @@ export { giftsToCoinsMigrationReport } from "./gifts_to_coins_report";
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {
   adminRevokeReferralAttribution,
-  adminListReferrals,
   adminGetReferralDashboard,
-  adminSpinStats,
-  adminSpinLogs,
   // зачем: D80/D99 — веса и soft/emergency-управление рулеткой снова в админке.
   adminSetSpinWeights,
   adminSetReferralRouletteEnabled,
@@ -1205,5 +1173,3 @@ export { spendCapBillingKillSwitch } from "./spend_cap_billing_kill_switch";
 export { homePollV2Vote } from "./home_poll_v2_vote";
 // Legacy 1.x league endpoints remain available, but their room writer now
 // strips historic synthetic members and never creates new ones.
-export { leagueJoinOrUpdateGroup, leagueUpdateMyMember } from "./league_groups";
-export { leagueFinalizeCron } from "./league_finalize_cron";

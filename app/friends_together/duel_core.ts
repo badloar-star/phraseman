@@ -11,6 +11,8 @@ export const DUEL_DAILY_LIMIT = 3;
 export const DUEL_ANSWER_WINDOW_MS = 24 * 60 * 60 * 1000;
 /** Больше 15 минут на 5 фраз — значит телефон уснул посреди хода; такие числа не принимаем. */
 export const DUEL_MAX_ELAPSED_MS = 15 * 60 * 1000;
+/** Потолок одной фразы: телефон уснул на фразе — засчитываем 3 минуты, и сумма пяти никогда не выходит за DUEL_MAX_ELAPSED_MS. */
+export const DUEL_PHRASE_MAX_MS = DUEL_MAX_ELAPSED_MS / DUEL_PHRASES;
 
 export type DuelMove = Readonly<{ results: readonly boolean[]; elapsedMs: number }>;
 export type DuelOutcome = 'win' | 'loss' | 'draw';

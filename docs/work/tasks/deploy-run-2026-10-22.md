@@ -97,3 +97,22 @@ Governance-ID: TG-C5EBE54A5A6B
 - Вебхук — отдельной группой.
   - Ревизор ✅ 3.162: накопление с 04.09, окно рефералов 30 дней (a0cf96827) — решение владельца 21.09.
   - Откат -00064-vet.
+
+Governance-ID: TG-69792F7525EF
+
+## Очередь после вебхука
+
+1. Удаление Лиг 1.x и лишних функций, группы A и B.
+   - **Исключено:** `adminSearchUsers`. Его зовёт новая панель «Выдать Plus любому профилю» (9 · САЙТ, legacy.html).
+   - Остаются инструменты поддержки `adminSupportSendReply`, `adminRelinkProvider`, `adminRepairAuthLink`.
+2. Пакет 27: inboxRev, f3e4462fe и коммиты 5 · ВХОД.
+3. `adminGrantAccess` + `adminSearchUsers`: 8c2a5ce21 + 0f5a2ca89, Ревизор ✅ 3.166. 🟡 на потом:
+   - `normalizeAdminAccessInput` стоит раньше проверки прав `actor()`;
+   - кольцо синхронизируется только для kind vip, выдача premium обновит его при запуске приложения.
+
+Governance-ID: TG-610BF65F5794
+
+**Порядок изменён координатором** (владелец: «Да, после Ревизора»):
+- после 30 минут логов вебхука → `adminGrantAccess` + `adminSearchUsers` отдельной группой (8c2a5ce21, 0f5a2ca89, 1efb79375; Ревизор 3.166 ✅);
+- 10 минут логов [ADMIN-PLUS] → сигнал 9 · САЙТ (hosting:admin, knowlywww);
+- потом удаления.

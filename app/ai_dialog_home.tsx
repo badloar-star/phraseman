@@ -16,6 +16,8 @@ import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { safeRouterBack } from './navigation_back';
 import { HubHeaderCollapseProvider, useHubHeaderCollapsed } from '../components/dialogs/hub_header_collapse';
+import DialogsSceneHub from '../components/dialogs/scene/DialogsSceneHub';
+import { DIALOGS_SCENE_V2_ENABLED } from '../components/dialogs/scene/dialogs_scene_flags';
 
 // зачем (dialogs-003, координатор 13.10): состояние «шапка схлопнута, пока открыта категория» живёт в провайдере над экраном — перерисовывается только шапка, список миров нет.
 export default function AiDialogHome() {
@@ -116,10 +118,16 @@ function AiDialogHomeBody() {
     </View>
   );
 
+  // зачем (координатор 22.10, «Сцена» Диалогов за флагом DIALOGS_SCENE_V2_ENABLED): при флаге шапка хаба — сцена на настоящих данных; нет каталога для сцены — прежняя шапка (fallback).
+  // Сцена идёт под статус-бар (свой отступ сверху), поэтому верхний край безопасной зоны у неё снимается. Без флага — прежнее поведение.
+  const scene = DIALOGS_SCENE_V2_ENABLED;
+  const headerSlot = scene ? (
+    <DialogsSceneHub fallback={header} backLabel={backLabel} onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/home' as any); }} />
+  ) : header;
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
-        <DialogsTabContent headerSlot={header} quotaInHeader />
+      <SafeAreaView style={{ flex: 1 }} edges={scene ? ['left', 'right', 'bottom'] : undefined}>
+        <DialogsTabContent headerSlot={headerSlot} quotaInHeader />
       </SafeAreaView>
     </ScreenGradient>
   );

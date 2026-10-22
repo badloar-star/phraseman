@@ -49,7 +49,8 @@ type CatalogueState =
   | Readonly<{ kind: 'unavailable' }>
   | Readonly<{ kind: 'available'; envelope: DialogueV2CatalogueReleaseEnvelope }>;
 
-function dialogueV2WorldHeadings(lang: ReturnType<typeof useLang>['lang']): readonly DialogueV2CatalogueWorld[] {
+// зачем (координатор 22.10, «Сцена» Диалогов): названия миров — одним источником для каталога и сцены
+export function dialogueV2WorldHeadings(lang: ReturnType<typeof useLang>['lang']): readonly DialogueV2CatalogueWorld[] {
   // зачем (владелец 01.10, данные Ядра): названия миров — на языке интерфейса для всех 9 языков;
   // нет в снимке — прежние подписи ниже.
   const fromUi = (id: string, fallback: string): string => dialogueV2UiWorldTitle(lang, id) ?? fallback;

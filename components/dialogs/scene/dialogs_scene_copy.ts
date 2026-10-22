@@ -109,6 +109,37 @@ export function dialogsSceneResetDateLabel(lang: Lang, date: Date): string {
   }
 }
 
+/**
+ * Имя собеседника для «с Милой»: ru/uk/pl ставят имя в творительный (в снимке только именительный «Мила»), остальные языки — как есть.
+ * зачем: «Общение · с Мила» режет глаз; список имён небольшой, правило по окончанию покрывает его (Мила, Марина, Зоя, Ира, Денис, Олег, Сэм, Нико).
+ */
+export function dialogsSceneWhoName(lang: Lang, name: string): string {
+  const n = name.trim();
+  if (n.length < 2) return n;
+  const last = n[n.length - 1];
+  const stem = n.slice(0, -1);
+  if (lang === 'ru') {
+    if (last === 'а') return `${stem}ой`;
+    if (last === 'я') return `${stem}ей`;
+    if (last === 'й') return `${stem}ем`;
+    if (/[бвгджзклмнпрстфхцчшщ]/i.test(last)) return `${n}ом`;
+    return n;
+  }
+  if (lang === 'uk') {
+    if (last === 'а') return `${stem}ою`;
+    if (last === 'я') return `${stem}ею`;
+    if (last === 'й') return `${stem}єм`;
+    if (/[бвгджзклмнпрстфхцчшщ]/i.test(last)) return `${n}ом`;
+    return n;
+  }
+  if (lang === 'pl') {
+    if (last === 'a') return `${stem}ą`;
+    if (/[bcdfghjklmnprstwzł]/i.test(last)) return `${n}em`;
+    return n;
+  }
+  return n;
+}
+
 // ── сборка текстов сцены ──
 export type DialogsSceneDialogInfo = Readonly<{
   /** Название мира («Общение») и значок мира. */
@@ -174,7 +205,8 @@ function withWhoLabel(lang: Lang, who: string): string {
 }
 
 function worldKicker(lang: Lang, d: DialogsSceneDialogInfo | null): string | null {
-  return d ? `${d.world} · ${withWhoLabel(lang, d.who)}` : null;
+  // нет собеседника в снимке — подпись «с …» не выдумываем, остаётся мир
+  return d ? (d.who ? `${d.world} · ${withWhoLabel(lang, d.who)}` : d.world) : null;
 }
 
 export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsSceneCopy {
@@ -203,7 +235,7 @@ export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsScen
     case 'first':
       return {
         ...done, kicker: worldKicker(lang, dialog), kickerIcon: dialog ? dialog.worldIcon : null, title: dialogsSceneText(lang, 'firstTitle'),
-        prog: dialog ? `${dialog.title} · ${dialogsSceneGoalsLabel(lang, dialog.goals)}` : null, cta: dialogsSceneText(lang, 'start'), round: 'mic', roundLabel: dialogsSceneText(lang, 'voiceA11y'),
+        prog: dialog ? (dialog.goals > 0 ? `${dialog.title} · ${dialogsSceneGoalsLabel(lang, dialog.goals)}` : dialog.title) : null, cta: dialogsSceneText(lang, 'start'), round: 'mic', roundLabel: dialogsSceneText(lang, 'voiceA11y'),
       };
     case 'low': {
       const remaining = input.quotaRemaining ?? 0;
@@ -223,14 +255,14 @@ export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsScen
       const f = input.following;
       return {
         ...done, kicker: `${task} · 1/1`, kickerIcon: 'checkmark-circle', title: dialogsSceneText(lang, 'dayDoneTitle'),
-        prog: f ? dialogsSceneText(lang, 'dayDoneNext', { title: f.title, with: withWhoLabel(lang, f.who) }) : null, cta: dialogsSceneText(lang, 'dayDoneCta'),
+        prog: f ? (f.who ? dialogsSceneText(lang, 'dayDoneNext', { title: f.title, with: withWhoLabel(lang, f.who) }) : f.title) : null, cta: dialogsSceneText(lang, 'dayDoneCta'),
       };
     }
     case 'next': {
       const started = dialog !== null && dialog.goalsDone !== null;
       return {
         ...done, kicker: worldKicker(lang, dialog), kickerIcon: dialog ? dialog.worldIcon : null, title: dialog ? dialog.title : dialogsSceneText(lang, 'dialogs'),
-        prog: dialog ? (started ? dialogsSceneGoalsDoneLabel(lang, dialog.goalsDone ?? 0, dialog.goals) : dialogsSceneGoalsLabel(lang, dialog.goals)) : null,
+        prog: dialog && dialog.goals > 0 ? (started ? dialogsSceneGoalsDoneLabel(lang, dialog.goalsDone ?? 0, dialog.goals) : dialogsSceneGoalsLabel(lang, dialog.goals)) : null,
         bar: dialog ? (started && dialog.goals > 0 ? (dialog.goalsDone ?? 0) / dialog.goals : 0) : null,
         cta: started ? dialogsSceneText(lang, 'continue') : dialogsSceneText(lang, 'start'), round: 'mic', roundLabel: dialogsSceneText(lang, 'voiceA11y'),
       };

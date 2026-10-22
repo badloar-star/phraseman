@@ -214,7 +214,7 @@ some ставят, когда говорите, что что-то есть. any
 ## 09 · in, on, under — в, на, под
 
 **body**
-in — внутри: in the sink, in the basement. on — сверху, на поверхности: on the worktop, on the windowsill. under — под: under the doormat. Русское «на» обычно on, «в» — in.
+in — внутри: in the sink (в раковине), in the basement (в подвале). on — сверху, на поверхности: on the worktop (на столешнице), on the windowsill (на подоконнике). under — под: under the doormat (под ковриком). Русское «на» обычно on, «в» — in.
 
 **examples** 🔊
 | en | ru | hi |

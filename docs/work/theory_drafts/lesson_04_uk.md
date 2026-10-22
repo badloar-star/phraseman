@@ -208,7 +208,7 @@ some ставлять, коли кажете, що щось є. any — коли
 ## 09 · in, on, under — у, на, під
 
 **body**
-in — всередині: in the sink, in the basement. on — зверху, на поверхні: on the worktop, on the windowsill. under — під: under the doormat. Українське «на» зазвичай on, «у» — in.
+in — всередині: in the sink (у раковині), in the basement (у підвалі). on — зверху, на поверхні: on the worktop (на стільниці), on the windowsill (на підвіконні). under — під: under the doormat (під килимком). Українське «на» зазвичай on, «у» — in.
 
 **examples** 🔊
 | en | uk | hi |

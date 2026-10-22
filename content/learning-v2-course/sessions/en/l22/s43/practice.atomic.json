@@ -1,0 +1,2353 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-43:word:check-my-messages",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check my messages",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:check-my-messages:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check my messages",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:check-my-messages:audio",
+            "transcript": "check my messages"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:check-my-messages:r1",
+              "targetText": "check my messages",
+              "meaningByLocale": {
+                "ru": "проверить свои сообщения.",
+                "uk": "перевірити свої повідомлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check my messages",
+            "definitionByLocale": {
+              "ru": "проверить свои сообщения.",
+              "uk": "перевірити свої повідомлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы смотрите, кто написал. Скажите: «Я делаю перерыв, чтобы проверить свои сообщения»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы смотрите, кто написал. Скажите: «Я делаю перерыв, чтобы проверить свои сообщения»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I take a break to check my messages.",
+          "localizedMeaning": {
+            "ru": "Вы смотрите, кто написал. Скажите: «Я делаю перерыв, чтобы проверить свои сообщения»",
+            "uk": "Ви дивитеся, хто написав. Скажіть: «Я роблю перерву, щоб перевірити свої повідомлення»"
+          },
+          "orderedTokens": [
+            "I",
+            "take",
+            "a",
+            "break",
+            "to",
+            "check",
+            "my",
+            "messages"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i02:r1",
+            "text": "I take a break to check my messages."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i02:r2",
+            "text": "We take a break to check our messages."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i02:r3",
+            "text": "You take a break to check your messages."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i02:audio",
+            "transcript": "I take a break to check my messages."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i02:r1",
+              "targetText": "I take a break to check my messages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i02:r2",
+              "targetText": "We take a break to check our messages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i02:r3",
+              "targetText": "You take a break to check your messages.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a break to check my messages.",
+                "uk": "У записі звучить I take a break to check my messages."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a break to check my messages.",
+                "uk": "У записі звучить I take a break to check my messages."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i03:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I take a break ___ check my messages.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i03:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i03:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i03:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:word:turn-down-the-volume",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — turn down the volume",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:turn-down-the-volume:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — turn down the volume",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:turn-down-the-volume:audio",
+            "transcript": "turn down the volume"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:turn-down-the-volume:r1",
+              "targetText": "turn down the volume",
+              "meaningByLocale": {
+                "ru": "убавить громкость.",
+                "uk": "зменшити гучність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turn down the volume",
+            "definitionByLocale": {
+              "ru": "убавить громкость.",
+              "uk": "зменшити гучність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Звук слишком громкий. Скажите: «Я использую эту кнопку, чтобы убавить громкость»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Звук слишком громкий. Скажите: «Я использую эту кнопку, чтобы убавить громкость»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use this button to turn down the volume.",
+          "localizedMeaning": {
+            "ru": "Звук слишком громкий. Скажите: «Я использую эту кнопку, чтобы убавить громкость»",
+            "uk": "Звук надто гучний. Скажіть: «Я використовую цю кнопку, щоб зменшити гучність»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "this",
+            "button",
+            "to",
+            "turn",
+            "down",
+            "the",
+            "volume"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i05:r1",
+            "text": "I use this button to turn down the volume."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i05:r2",
+            "text": "We use this button to turn down the volume."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i05:r3",
+            "text": "You use this button to turn down the volume."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i05:audio",
+            "transcript": "I use this button to turn down the volume."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i05:r1",
+              "targetText": "I use this button to turn down the volume.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i05:r2",
+              "targetText": "We use this button to turn down the volume.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i05:r3",
+              "targetText": "You use this button to turn down the volume.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this button to turn down the volume.",
+                "uk": "У записі звучить I use this button to turn down the volume."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this button to turn down the volume.",
+                "uk": "У записі звучить I use this button to turn down the volume."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i06:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use this button ___ turn down the volume.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i06:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i06:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i06:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:word:put-my-phone-on-silent",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — put my phone on silent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:put-my-phone-on-silent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — put my phone on silent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:put-my-phone-on-silent:audio",
+            "transcript": "put my phone on silent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:put-my-phone-on-silent:r1",
+              "targetText": "put my phone on silent",
+              "meaningByLocale": {
+                "ru": "поставить свой телефон на беззвучный режим.",
+                "uk": "увімкнути беззвучний режим на своєму телефоні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "put my phone on silent",
+            "definitionByLocale": {
+              "ru": "поставить свой телефон на беззвучный режим.",
+              "uk": "увімкнути беззвучний режим на своєму телефоні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы убираете звук звонка. Скажите: «Я открываю настройки, чтобы поставить свой телефон на беззвучный режим»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы убираете звук звонка. Скажите: «Я открываю настройки, чтобы поставить свой телефон на беззвучный режим»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I open the settings to put my phone on silent.",
+          "localizedMeaning": {
+            "ru": "Вы убираете звук звонка. Скажите: «Я открываю настройки, чтобы поставить свой телефон на беззвучный режим»",
+            "uk": "Ви прибираєте звук дзвінка. Скажіть: «Я відкриваю налаштування, щоб увімкнути беззвучний режим на своєму телефоні»"
+          },
+          "orderedTokens": [
+            "I",
+            "open",
+            "the",
+            "settings",
+            "to",
+            "put",
+            "my",
+            "phone",
+            "on",
+            "silent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i08:r1",
+            "text": "I open the settings to put my phone on silent."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i08:r2",
+            "text": "We open the settings to put our phone on silent."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i08:r3",
+            "text": "You open the settings to put your phone on silent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i08:audio",
+            "transcript": "I open the settings to put my phone on silent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i08:r1",
+              "targetText": "I open the settings to put my phone on silent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i08:r2",
+              "targetText": "We open the settings to put our phone on silent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i08:r3",
+              "targetText": "You open the settings to put your phone on silent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the settings to put my phone on silent.",
+                "uk": "У записі звучить I open the settings to put my phone on silent."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the settings to put my phone on silent.",
+                "uk": "У записі звучить I open the settings to put my phone on silent."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i09:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I open the settings ___ put my phone on silent.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i09:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i09:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i09:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:word:charge-my-phone",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — charge my phone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:charge-my-phone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — charge my phone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:charge-my-phone:audio",
+            "transcript": "charge my phone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:charge-my-phone:r1",
+              "targetText": "charge my phone",
+              "meaningByLocale": {
+                "ru": "зарядить свой телефон.",
+                "uk": "зарядити свій телефон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charge my phone",
+            "definitionByLocale": {
+              "ru": "зарядить свой телефон.",
+              "uk": "зарядити свій телефон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Батарея почти разряжена. Скажите: «Я использую эту розетку, чтобы зарядить свой телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Батарея почти разряжена. Скажите: «Я использую эту розетку, чтобы зарядить свой телефон»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use this socket to charge my phone.",
+          "localizedMeaning": {
+            "ru": "Батарея почти разряжена. Скажите: «Я использую эту розетку, чтобы зарядить свой телефон»",
+            "uk": "Батарея майже розряджена. Скажіть: «Я використовую цю розетку, щоб зарядити свій телефон»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "this",
+            "socket",
+            "to",
+            "charge",
+            "my",
+            "phone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i11:r1",
+            "text": "I use this socket to charge my phone."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i11:r2",
+            "text": "We use this socket to charge our phone."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i11:r3",
+            "text": "You use this socket to charge your phone."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i11:audio",
+            "transcript": "I use this socket to charge my phone."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i11:r1",
+              "targetText": "I use this socket to charge my phone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i11:r2",
+              "targetText": "We use this socket to charge our phone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i11:r3",
+              "targetText": "You use this socket to charge your phone.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this socket to charge my phone.",
+                "uk": "У записі звучить I use this socket to charge my phone."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this socket to charge my phone.",
+                "uk": "У записі звучить I use this socket to charge my phone."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите слово, которое вводит цель.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i12:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите слово, которое вводит цель.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use this socket ___ charge my phone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i12:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i12:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i12:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Выберите слово, которое вводит цель.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите слово, которое вводит цель.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-43:i13:p1",
+              "target": "check my messages",
+              "meaningByLocale": {
+                "ru": "проверить свои сообщения",
+                "uk": "перевірити свої повідомлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-43:i13:p2",
+              "target": "turn down the volume",
+              "meaningByLocale": {
+                "ru": "убавить громкость",
+                "uk": "зменшити гучність"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-43:i13:p3",
+              "target": "put my phone on silent",
+              "meaningByLocale": {
+                "ru": "поставить свой телефон на беззвучный режим",
+                "uk": "увімкнути беззвучний режим на своєму телефоні"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-43:i13:p4",
+              "target": "charge my phone",
+              "meaningByLocale": {
+                "ru": "зарядить свой телефон",
+                "uk": "зарядити свій телефон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check my messages",
+            "turn down the volume",
+            "put my phone on silent",
+            "charge my phone"
+          ],
+          "rightColumn": [
+            "проверить свои сообщения",
+            "убавить громкость",
+            "поставить свой телефон на беззвучный режим",
+            "зарядить свой телефон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: место у окна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: место у окна",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i14:audio",
+            "transcript": "Could I sit by the window?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I sit by the window?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "sit",
+            "by",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: прогулка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: прогулка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i15:audio",
+            "transcript": "Could I go for a walk?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I go for a walk?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "go",
+            "for",
+            "a",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мне нужно зарядить свой телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мне нужно зарядить свой телефон»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i16:audio",
+            "transcript": "I need to charge my phone."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to charge my phone.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я хочу проверить свои сообщения»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я хочу проверить свои сообщения»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i17:audio",
+            "transcript": "I want to check my messages."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to check my messages.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-43:word:check-my-messages",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check my messages",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:check-my-messages:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check my messages",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:check-my-messages:audio",
+            "transcript": "check my messages"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:check-my-messages:r1",
+              "targetText": "check my messages",
+              "meaningByLocale": {
+                "ru": "проверить свои сообщения.",
+                "uk": "перевірити свої повідомлення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check my messages",
+            "definitionByLocale": {
+              "ru": "проверить свои сообщения.",
+              "uk": "перевірити свої повідомлення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви дивитеся, хто написав. Скажіть: «Я роблю перерву, щоб перевірити свої повідомлення»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви дивитеся, хто написав. Скажіть: «Я роблю перерву, щоб перевірити свої повідомлення»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I take a break to check my messages.",
+          "localizedMeaning": {
+            "ru": "Вы смотрите, кто написал. Скажите: «Я делаю перерыв, чтобы проверить свои сообщения»",
+            "uk": "Ви дивитеся, хто написав. Скажіть: «Я роблю перерву, щоб перевірити свої повідомлення»"
+          },
+          "orderedTokens": [
+            "I",
+            "take",
+            "a",
+            "break",
+            "to",
+            "check",
+            "my",
+            "messages"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i02:r1",
+            "text": "I take a break to check my messages."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i02:r2",
+            "text": "We take a break to check our messages."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i02:r3",
+            "text": "You take a break to check your messages."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i02:audio",
+            "transcript": "I take a break to check my messages."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i02:r1",
+              "targetText": "I take a break to check my messages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i02:r2",
+              "targetText": "We take a break to check our messages.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i02:r3",
+              "targetText": "You take a break to check your messages.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a break to check my messages.",
+                "uk": "У записі звучить I take a break to check my messages."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I take a break to check my messages.",
+                "uk": "У записі звучить I take a break to check my messages."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i03:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I take a break ___ check my messages.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i03:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i03:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i03:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:word:turn-down-the-volume",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — turn down the volume",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:turn-down-the-volume:audio"
+        ],
+        "accessibilityLabel": "Картка слова — turn down the volume",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:turn-down-the-volume:audio",
+            "transcript": "turn down the volume"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:turn-down-the-volume:r1",
+              "targetText": "turn down the volume",
+              "meaningByLocale": {
+                "ru": "убавить громкость.",
+                "uk": "зменшити гучність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "turn down the volume",
+            "definitionByLocale": {
+              "ru": "убавить громкость.",
+              "uk": "зменшити гучність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Звук надто гучний. Скажіть: «Я використовую цю кнопку, щоб зменшити гучність»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Звук надто гучний. Скажіть: «Я використовую цю кнопку, щоб зменшити гучність»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use this button to turn down the volume.",
+          "localizedMeaning": {
+            "ru": "Звук слишком громкий. Скажите: «Я использую эту кнопку, чтобы убавить громкость»",
+            "uk": "Звук надто гучний. Скажіть: «Я використовую цю кнопку, щоб зменшити гучність»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "this",
+            "button",
+            "to",
+            "turn",
+            "down",
+            "the",
+            "volume"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i05:r1",
+            "text": "I use this button to turn down the volume."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i05:r2",
+            "text": "We use this button to turn down the volume."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i05:r3",
+            "text": "You use this button to turn down the volume."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i05:audio",
+            "transcript": "I use this button to turn down the volume."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i05:r1",
+              "targetText": "I use this button to turn down the volume.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i05:r2",
+              "targetText": "We use this button to turn down the volume.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i05:r3",
+              "targetText": "You use this button to turn down the volume.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this button to turn down the volume.",
+                "uk": "У записі звучить I use this button to turn down the volume."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this button to turn down the volume.",
+                "uk": "У записі звучить I use this button to turn down the volume."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i06:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use this button ___ turn down the volume.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i06:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i06:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i06:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:word:put-my-phone-on-silent",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — put my phone on silent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:put-my-phone-on-silent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — put my phone on silent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:put-my-phone-on-silent:audio",
+            "transcript": "put my phone on silent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:put-my-phone-on-silent:r1",
+              "targetText": "put my phone on silent",
+              "meaningByLocale": {
+                "ru": "поставить свой телефон на беззвучный режим.",
+                "uk": "увімкнути беззвучний режим на своєму телефоні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "put my phone on silent",
+            "definitionByLocale": {
+              "ru": "поставить свой телефон на беззвучный режим.",
+              "uk": "увімкнути беззвучний режим на своєму телефоні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви прибираєте звук дзвінка. Скажіть: «Я відкриваю налаштування, щоб увімкнути беззвучний режим на своєму телефоні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прибираєте звук дзвінка. Скажіть: «Я відкриваю налаштування, щоб увімкнути беззвучний режим на своєму телефоні»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I open the settings to put my phone on silent.",
+          "localizedMeaning": {
+            "ru": "Вы убираете звук звонка. Скажите: «Я открываю настройки, чтобы поставить свой телефон на беззвучный режим»",
+            "uk": "Ви прибираєте звук дзвінка. Скажіть: «Я відкриваю налаштування, щоб увімкнути беззвучний режим на своєму телефоні»"
+          },
+          "orderedTokens": [
+            "I",
+            "open",
+            "the",
+            "settings",
+            "to",
+            "put",
+            "my",
+            "phone",
+            "on",
+            "silent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i08:r1",
+            "text": "I open the settings to put my phone on silent."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i08:r2",
+            "text": "We open the settings to put our phone on silent."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i08:r3",
+            "text": "You open the settings to put your phone on silent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i08:audio",
+            "transcript": "I open the settings to put my phone on silent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i08:r1",
+              "targetText": "I open the settings to put my phone on silent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i08:r2",
+              "targetText": "We open the settings to put our phone on silent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i08:r3",
+              "targetText": "You open the settings to put your phone on silent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the settings to put my phone on silent.",
+                "uk": "У записі звучить I open the settings to put my phone on silent."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I open the settings to put my phone on silent.",
+                "uk": "У записі звучить I open the settings to put my phone on silent."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i09:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I open the settings ___ put my phone on silent.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i09:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i09:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i09:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:word:charge-my-phone",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — charge my phone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:word:charge-my-phone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — charge my phone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:word:charge-my-phone:audio",
+            "transcript": "charge my phone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:word:charge-my-phone:r1",
+              "targetText": "charge my phone",
+              "meaningByLocale": {
+                "ru": "зарядить свой телефон.",
+                "uk": "зарядити свій телефон."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "charge my phone",
+            "definitionByLocale": {
+              "ru": "зарядить свой телефон.",
+              "uk": "зарядити свій телефон."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Батарея майже розряджена. Скажіть: «Я використовую цю розетку, щоб зарядити свій телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Батарея майже розряджена. Скажіть: «Я використовую цю розетку, щоб зарядити свій телефон»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I use this socket to charge my phone.",
+          "localizedMeaning": {
+            "ru": "Батарея почти разряжена. Скажите: «Я использую эту розетку, чтобы зарядить свой телефон»",
+            "uk": "Батарея майже розряджена. Скажіть: «Я використовую цю розетку, щоб зарядити свій телефон»"
+          },
+          "orderedTokens": [
+            "I",
+            "use",
+            "this",
+            "socket",
+            "to",
+            "charge",
+            "my",
+            "phone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i11:r1",
+            "text": "I use this socket to charge my phone."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i11:r2",
+            "text": "We use this socket to charge our phone."
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i11:r3",
+            "text": "You use this socket to charge your phone."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i11:audio",
+            "transcript": "I use this socket to charge my phone."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-43:i11:r1",
+              "targetText": "I use this socket to charge my phone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i11:r2",
+              "targetText": "We use this socket to charge our phone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i11:r3",
+              "targetText": "You use this socket to charge your phone.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this socket to charge my phone.",
+                "uk": "У записі звучить I use this socket to charge my phone."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I use this socket to charge my phone.",
+                "uk": "У записі звучить I use this socket to charge my phone."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть слово, яке вводить мету.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-43:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-43:i12:r3",
+            "text": "of"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите слово, которое вводит цель.",
+            "uk": "Виберіть слово, яке вводить мету."
+          },
+          "gappedTargetPhrase": "I use this socket ___ charge my phone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-43:i12:r1",
+              "text": "to"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i12:r2",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i12:r3",
+              "text": "of"
+            }
+          ],
+          "testedDimension": "Виберіть слово, яке вводить мету.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть слово, яке вводить мету.",
+              "feedbackByLocale": {
+                "ru": "Цель выражается через to + начальную форму глагола.",
+                "uk": "Мета виражається через to + початкову форму дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-43:i13:p1",
+              "target": "check my messages",
+              "meaningByLocale": {
+                "ru": "проверить свои сообщения",
+                "uk": "перевірити свої повідомлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-43:i13:p2",
+              "target": "turn down the volume",
+              "meaningByLocale": {
+                "ru": "убавить громкость",
+                "uk": "зменшити гучність"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-43:i13:p3",
+              "target": "put my phone on silent",
+              "meaningByLocale": {
+                "ru": "поставить свой телефон на беззвучный режим",
+                "uk": "увімкнути беззвучний режим на своєму телефоні"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-43:i13:p4",
+              "target": "charge my phone",
+              "meaningByLocale": {
+                "ru": "зарядить свой телефон",
+                "uk": "зарядити свій телефон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check my messages",
+            "turn down the volume",
+            "put my phone on silent",
+            "charge my phone"
+          ],
+          "rightColumn": [
+            "перевірити свої повідомлення",
+            "зменшити гучність",
+            "увімкнути беззвучний режим на своєму телефоні",
+            "зарядити свій телефон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: місце біля вікна",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: місце біля вікна",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i14:audio",
+            "transcript": "Could I sit by the window?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I sit by the window?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "sit",
+            "by",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: прогулянка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: прогулянка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i15:audio",
+            "transcript": "Could I go for a walk?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I go for a walk?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "go",
+            "for",
+            "a",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Мені потрібно зарядити свій телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Мені потрібно зарядити свій телефон»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i16:audio",
+            "transcript": "I need to charge my phone."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need to charge my phone.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я хочу перевірити свої повідомлення»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я хочу перевірити свої повідомлення»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-43:i17:audio",
+            "transcript": "I want to check my messages."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I want to check my messages.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-43:word:check-my-messages",
+      "correctText": "check my messages",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i01",
+      "correctText": "I take a break to check my messages.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i02",
+      "correctText": "I take a break to check my messages.",
+      "correctResponseId": "en:lesson-22:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i03",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:word:turn-down-the-volume",
+      "correctText": "turn down the volume",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i04",
+      "correctText": "I use this button to turn down the volume.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i05",
+      "correctText": "I use this button to turn down the volume.",
+      "correctResponseId": "en:lesson-22:session-43:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i06",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-43:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:word:put-my-phone-on-silent",
+      "correctText": "put my phone on silent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i07",
+      "correctText": "I open the settings to put my phone on silent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i08",
+      "correctText": "I open the settings to put my phone on silent.",
+      "correctResponseId": "en:lesson-22:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i09",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:word:charge-my-phone",
+      "correctText": "charge my phone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i10",
+      "correctText": "I use this socket to charge my phone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i11",
+      "correctText": "I use this socket to charge my phone.",
+      "correctResponseId": "en:lesson-22:session-43:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i12",
+      "correctText": "to",
+      "correctResponseId": "en:lesson-22:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i14",
+      "correctText": "Could I sit by the window?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i15",
+      "correctText": "Could I go for a walk?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i16",
+      "correctText": "I need to charge my phone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-43:i17",
+      "correctText": "I want to check my messages.",
+      "correctResponseId": null
+    }
+  ]
+}

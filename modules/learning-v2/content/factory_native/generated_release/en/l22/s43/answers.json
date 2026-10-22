@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-43:word:check-my-messages",
+    "correctText": "check my messages",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i01",
+    "correctText": "I take a break to check my messages.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i02",
+    "correctText": "I take a break to check my messages.",
+    "correctResponseId": "en:lesson-22:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:word:turn-down-the-volume",
+    "correctText": "turn down the volume",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i04",
+    "correctText": "I use this button to turn down the volume.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i05",
+    "correctText": "I use this button to turn down the volume.",
+    "correctResponseId": "en:lesson-22:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:word:put-my-phone-on-silent",
+    "correctText": "put my phone on silent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i07",
+    "correctText": "I open the settings to put my phone on silent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i08",
+    "correctText": "I open the settings to put my phone on silent.",
+    "correctResponseId": "en:lesson-22:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:word:charge-my-phone",
+    "correctText": "charge my phone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i10",
+    "correctText": "I use this socket to charge my phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i11",
+    "correctText": "I use this socket to charge my phone.",
+    "correctResponseId": "en:lesson-22:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i13",
+    "correctText": "en:lesson-22:session-43:i13:p1=check my messages\nen:lesson-22:session-43:i13:p2=turn down the volume\nen:lesson-22:session-43:i13:p3=put my phone on silent\nen:lesson-22:session-43:i13:p4=charge my phone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i16",
+    "correctText": "I need to charge my phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-43:i17",
+    "correctText": "I want to check my messages.",
+    "correctResponseId": null
+  }
+]

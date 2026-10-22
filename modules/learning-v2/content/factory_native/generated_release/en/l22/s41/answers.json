@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-41:word:make-an-enquiry",
+    "correctText": "make an enquiry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i01",
+    "correctText": "Could I make an enquiry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i02",
+    "correctText": "Could I make an enquiry?",
+    "correctResponseId": "en:lesson-22:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i03",
+    "correctText": "make",
+    "correctResponseId": "en:lesson-22:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:word:leave-my-number",
+    "correctText": "leave my number",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i04",
+    "correctText": "Could I leave my number?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i05",
+    "correctText": "Could I leave my number?",
+    "correctResponseId": "en:lesson-22:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i06",
+    "correctText": "leave",
+    "correctResponseId": "en:lesson-22:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:word:pass-on-a-message",
+    "correctText": "pass on a message",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i07",
+    "correctText": "Could I pass on a message?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i08",
+    "correctText": "Could I pass on a message?",
+    "correctResponseId": "en:lesson-22:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i09",
+    "correctText": "pass",
+    "correctResponseId": "en:lesson-22:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:word:take-a-message",
+    "correctText": "take a message",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i10",
+    "correctText": "Could I take a message?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i11",
+    "correctText": "Could I take a message?",
+    "correctResponseId": "en:lesson-22:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i12",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-22:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i13",
+    "correctText": "en:lesson-22:session-41:i13:p1=make an enquiry\nen:lesson-22:session-41:i13:p2=leave my number\nen:lesson-22:session-41:i13:p3=pass on a message\nen:lesson-22:session-41:i13:p4=take a message",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i16",
+    "correctText": "Could we make an enquiry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-41:i17",
+    "correctText": "Could we pass on a message?",
+    "correctResponseId": null
+  }
+]

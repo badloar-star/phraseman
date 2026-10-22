@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Адрес",
+        "uk": "Адреса"
+      },
+      "bodyByLocale": {
+        "ru": "Check the address — проверить адрес: правильно ли вы его услышали или записали. Это действие, а не просьба изменить адрес. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Check the address — перевірити адресу: чи правильно ви її почули або записали. Це дія, а не прохання змінити адресу. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-42:intro1:r1",
+              "text": "Could I check the address?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro1:r2",
+              "text": "Could I checks the address?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro1:r3",
+              "text": "Could I checking the address?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-42:intro1:r1",
+              "text": "Could I check the address?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro1:r2",
+              "text": "Could I checks the address?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro1:r3",
+              "text": "Could I checking the address?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Номер и время",
+        "uk": "Номер і час"
+      },
+      "bodyByLocale": {
+        "ru": "Repeat the number — повторить номер, например телефонный. Confirm the time — подтвердить уже названное время. Вопрос Could I repeat the number? означает, что повторять будете вы. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Repeat the number — повторити номер, наприклад телефонний. Confirm the time — підтвердити вже названий час. Питання Could I repeat the number? означає, що повторюватимете ви. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-42:intro2:r1",
+              "text": "Could I repeat the number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro2:r2",
+              "text": "Could I repeats the number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro2:r3",
+              "text": "Could I repeating the number?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-42:intro2:r1",
+              "text": "Could I repeat the number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro2:r2",
+              "text": "Could I repeats the number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro2:r3",
+              "text": "Could I repeating the number?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Имя по буквам",
+        "uk": "Ім’я по літерах"
+      },
+      "bodyByLocale": {
+        "ru": "Spell my name — произнести своё имя по буквам. Spell — именно назвать буквы, а не просто сказать имя ещё раз. My меняется вместе с человеком: my name, your name, our names. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Spell my name — вимовити своє ім’я по літерах. Spell — саме назвати літери, а не просто сказати ім’я ще раз. My змінюється разом із людиною: my name, your name, our names. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-42:intro3:r1",
+              "text": "Could I spell my name?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro3:r2",
+              "text": "Could I spells my name?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro3:r3",
+              "text": "Could I spelling my name?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-42:intro3:r1",
+              "text": "Could I spell my name?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro3:r2",
+              "text": "Could I spells my name?"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:intro3:r3",
+              "text": "Could I spelling my name?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c7ce8b3be59088534609dfe03f4f99950b61433663bed98a2bb10dcc4f8ca3a9"
+}

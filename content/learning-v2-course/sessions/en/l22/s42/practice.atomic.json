@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-22:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-22:session-42:word:check-the-address",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — check the address",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:check-the-address:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — check the address",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:check-the-address:audio",
+            "transcript": "check the address"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:check-the-address:r1",
+              "targetText": "check the address",
+              "meaningByLocale": {
+                "ru": "проверить адрес.",
+                "uk": "перевірити адресу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check the address",
+            "definitionByLocale": {
+              "ru": "проверить адрес.",
+              "uk": "перевірити адресу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы сверяете место встречи. Спросите: «Можно мне проверить адрес?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сверяете место встречи. Спросите: «Можно мне проверить адрес?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I check the address?",
+          "localizedMeaning": {
+            "ru": "Вы сверяете место встречи. Спросите: «Можно мне проверить адрес?»",
+            "uk": "Ви звіряєте місце зустрічі. Запитайте: «Можна мені перевірити адресу?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i02:r1",
+            "text": "Could I check the address?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i02:r2",
+            "text": "Could you check the address?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i02:r3",
+            "text": "Could we check the address?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i02:audio",
+            "transcript": "Could I check the address?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i02:r1",
+              "targetText": "Could I check the address?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i02:r2",
+              "targetText": "Could you check the address?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i02:r3",
+              "targetText": "Could we check the address?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the address?",
+                "uk": "У записі звучить Could I check the address?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the address?",
+                "uk": "У записі звучить Could I check the address?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i03:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i03:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i03:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the address?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i03:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i03:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i03:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:word:repeat-the-number",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — repeat the number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:repeat-the-number:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — repeat the number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:repeat-the-number:audio",
+            "transcript": "repeat the number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:repeat-the-number:r1",
+              "targetText": "repeat the number",
+              "meaningByLocale": {
+                "ru": "повторить номер.",
+                "uk": "повторити номер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repeat the number",
+            "definitionByLocale": {
+              "ru": "повторить номер.",
+              "uk": "повторити номер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите повторить записанный номер. Спросите: «Можно мне повторить номер?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите повторить записанный номер. Спросите: «Можно мне повторить номер?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I repeat the number?",
+          "localizedMeaning": {
+            "ru": "Вы хотите повторить записанный номер. Спросите: «Можно мне повторить номер?»",
+            "uk": "Ви хочете повторити записаний номер. Запитайте: «Можна мені повторити номер?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "repeat",
+            "the",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i05:r1",
+            "text": "Could I repeat the number?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i05:r2",
+            "text": "Could you repeat the number?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i05:r3",
+            "text": "Could we repeat the number?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i05:audio",
+            "transcript": "Could I repeat the number?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i05:r1",
+              "targetText": "Could I repeat the number?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i05:r2",
+              "targetText": "Could you repeat the number?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i05:r3",
+              "targetText": "Could we repeat the number?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I repeat the number?",
+                "uk": "У записі звучить Could I repeat the number?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I repeat the number?",
+                "uk": "У записі звучить Could I repeat the number?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i06:r1",
+            "text": "repeat"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i06:r2",
+            "text": "repeats"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i06:r3",
+            "text": "repeating"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the number?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i06:r1",
+              "text": "repeat"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i06:r2",
+              "text": "repeats"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i06:r3",
+              "text": "repeating"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:word:confirm-the-time",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — confirm the time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:confirm-the-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — confirm the time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:confirm-the-time:audio",
+            "transcript": "confirm the time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:confirm-the-time:r1",
+              "targetText": "confirm the time",
+              "meaningByLocale": {
+                "ru": "подтвердить время.",
+                "uk": "підтвердити час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confirm the time",
+            "definitionByLocale": {
+              "ru": "подтвердить время.",
+              "uk": "підтвердити час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы уточняете уже согласованное время. Спросите: «Можно мне подтвердить время?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уточняете уже согласованное время. Спросите: «Можно мне подтвердить время?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I confirm the time?",
+          "localizedMeaning": {
+            "ru": "Вы уточняете уже согласованное время. Спросите: «Можно мне подтвердить время?»",
+            "uk": "Ви уточнюєте вже узгоджений час. Запитайте: «Можна мені підтвердити час?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "confirm",
+            "the",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i08:r1",
+            "text": "Could I confirm the time?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i08:r2",
+            "text": "Could you confirm the time?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i08:r3",
+            "text": "Could we confirm the time?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i08:audio",
+            "transcript": "Could I confirm the time?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i08:r1",
+              "targetText": "Could I confirm the time?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i08:r2",
+              "targetText": "Could you confirm the time?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i08:r3",
+              "targetText": "Could we confirm the time?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I confirm the time?",
+                "uk": "У записі звучить Could I confirm the time?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I confirm the time?",
+                "uk": "У записі звучить Could I confirm the time?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i09:r1",
+            "text": "confirm"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i09:r2",
+            "text": "confirms"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i09:r3",
+            "text": "confirming"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the time?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i09:r1",
+              "text": "confirm"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i09:r2",
+              "text": "confirms"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i09:r3",
+              "text": "confirming"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:word:spell-my-name",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spell my name",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:spell-my-name:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spell my name",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:spell-my-name:audio",
+            "transcript": "spell my name"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:spell-my-name:r1",
+              "targetText": "spell my name",
+              "meaningByLocale": {
+                "ru": "произнести своё имя по буквам.",
+                "uk": "вимовити своє ім’я по літерах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spell my name",
+            "definitionByLocale": {
+              "ru": "произнести своё имя по буквам.",
+              "uk": "вимовити своє ім’я по літерах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваше имя плохо расслышали. Спросите: «Можно мне произнести своё имя по буквам?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваше имя плохо расслышали. Спросите: «Можно мне произнести своё имя по буквам?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I spell my name?",
+          "localizedMeaning": {
+            "ru": "Ваше имя плохо расслышали. Спросите: «Можно мне произнести своё имя по буквам?»",
+            "uk": "Ваше ім’я погано розчули. Запитайте: «Можна мені вимовити своє ім’я по літерах?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "spell",
+            "my",
+            "name"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i11:r1",
+            "text": "Could I spell my name?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i11:r2",
+            "text": "Could you spell your name?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i11:r3",
+            "text": "Could we spell our names?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i11:audio",
+            "transcript": "Could I spell my name?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i11:r1",
+              "targetText": "Could I spell my name?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i11:r2",
+              "targetText": "Could you spell your name?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i11:r3",
+              "targetText": "Could we spell our names?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I spell my name?",
+                "uk": "У записі звучить Could I spell my name?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I spell my name?",
+                "uk": "У записі звучить Could I spell my name?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i12:r1",
+            "text": "spell"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i12:r2",
+            "text": "spells"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i12:r3",
+            "text": "spelling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ my name?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i12:r1",
+              "text": "spell"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i12:r2",
+              "text": "spells"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i12:r3",
+              "text": "spelling"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-42:i13:p1",
+              "target": "check the address",
+              "meaningByLocale": {
+                "ru": "проверить адрес",
+                "uk": "перевірити адресу"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-42:i13:p2",
+              "target": "repeat the number",
+              "meaningByLocale": {
+                "ru": "повторить номер",
+                "uk": "повторити номер"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-42:i13:p3",
+              "target": "confirm the time",
+              "meaningByLocale": {
+                "ru": "подтвердить время",
+                "uk": "підтвердити час"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-42:i13:p4",
+              "target": "spell my name",
+              "meaningByLocale": {
+                "ru": "произнести своё имя по буквам",
+                "uk": "вимовити своє ім’я по літерах"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check the address",
+            "repeat the number",
+            "confirm the time",
+            "spell my name"
+          ],
+          "rightColumn": [
+            "проверить адрес",
+            "повторить номер",
+            "подтвердить время",
+            "произнести своё имя по буквам"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: её вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: её вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: моя вещь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: моя вещь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам проверить адрес?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам проверить адрес?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i16:audio",
+            "transcript": "Could we check the address?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we check the address?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите: «Можно нам подтвердить время?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите: «Можно нам подтвердить время?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i17:audio",
+            "transcript": "Could we confirm the time?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we confirm the time?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-22:session-42:word:check-the-address",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — check the address",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:check-the-address:audio"
+        ],
+        "accessibilityLabel": "Картка слова — check the address",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:check-the-address:audio",
+            "transcript": "check the address"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:check-the-address:r1",
+              "targetText": "check the address",
+              "meaningByLocale": {
+                "ru": "проверить адрес.",
+                "uk": "перевірити адресу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "check the address",
+            "definitionByLocale": {
+              "ru": "проверить адрес.",
+              "uk": "перевірити адресу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви звіряєте місце зустрічі. Запитайте: «Можна мені перевірити адресу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви звіряєте місце зустрічі. Запитайте: «Можна мені перевірити адресу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I check the address?",
+          "localizedMeaning": {
+            "ru": "Вы сверяете место встречи. Спросите: «Можно мне проверить адрес?»",
+            "uk": "Ви звіряєте місце зустрічі. Запитайте: «Можна мені перевірити адресу?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "check",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i02:r1",
+            "text": "Could I check the address?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i02:r2",
+            "text": "Could you check the address?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i02:r3",
+            "text": "Could we check the address?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i02:audio",
+            "transcript": "Could I check the address?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i02:r1",
+              "targetText": "Could I check the address?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i02:r2",
+              "targetText": "Could you check the address?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i02:r3",
+              "targetText": "Could we check the address?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the address?",
+                "uk": "У записі звучить Could I check the address?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I check the address?",
+                "uk": "У записі звучить Could I check the address?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i03:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i03:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i03:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the address?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i03:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i03:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i03:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:word:repeat-the-number",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — repeat the number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:repeat-the-number:audio"
+        ],
+        "accessibilityLabel": "Картка слова — repeat the number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:repeat-the-number:audio",
+            "transcript": "repeat the number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:repeat-the-number:r1",
+              "targetText": "repeat the number",
+              "meaningByLocale": {
+                "ru": "повторить номер.",
+                "uk": "повторити номер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repeat the number",
+            "definitionByLocale": {
+              "ru": "повторить номер.",
+              "uk": "повторити номер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете повторити записаний номер. Запитайте: «Можна мені повторити номер?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете повторити записаний номер. Запитайте: «Можна мені повторити номер?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I repeat the number?",
+          "localizedMeaning": {
+            "ru": "Вы хотите повторить записанный номер. Спросите: «Можно мне повторить номер?»",
+            "uk": "Ви хочете повторити записаний номер. Запитайте: «Можна мені повторити номер?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "repeat",
+            "the",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i05:r1",
+            "text": "Could I repeat the number?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i05:r2",
+            "text": "Could you repeat the number?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i05:r3",
+            "text": "Could we repeat the number?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i05:audio",
+            "transcript": "Could I repeat the number?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i05:r1",
+              "targetText": "Could I repeat the number?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i05:r2",
+              "targetText": "Could you repeat the number?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i05:r3",
+              "targetText": "Could we repeat the number?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I repeat the number?",
+                "uk": "У записі звучить Could I repeat the number?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I repeat the number?",
+                "uk": "У записі звучить Could I repeat the number?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i06:r1",
+            "text": "repeat"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i06:r2",
+            "text": "repeats"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i06:r3",
+            "text": "repeating"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the number?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i06:r1",
+              "text": "repeat"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i06:r2",
+              "text": "repeats"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i06:r3",
+              "text": "repeating"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:word:confirm-the-time",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — confirm the time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:confirm-the-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — confirm the time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:confirm-the-time:audio",
+            "transcript": "confirm the time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:confirm-the-time:r1",
+              "targetText": "confirm the time",
+              "meaningByLocale": {
+                "ru": "подтвердить время.",
+                "uk": "підтвердити час."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confirm the time",
+            "definitionByLocale": {
+              "ru": "подтвердить время.",
+              "uk": "підтвердити час."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви уточнюєте вже узгоджений час. Запитайте: «Можна мені підтвердити час?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви уточнюєте вже узгоджений час. Запитайте: «Можна мені підтвердити час?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I confirm the time?",
+          "localizedMeaning": {
+            "ru": "Вы уточняете уже согласованное время. Спросите: «Можно мне подтвердить время?»",
+            "uk": "Ви уточнюєте вже узгоджений час. Запитайте: «Можна мені підтвердити час?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "confirm",
+            "the",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i08:r1",
+            "text": "Could I confirm the time?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i08:r2",
+            "text": "Could you confirm the time?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i08:r3",
+            "text": "Could we confirm the time?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i08:audio",
+            "transcript": "Could I confirm the time?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i08:r1",
+              "targetText": "Could I confirm the time?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i08:r2",
+              "targetText": "Could you confirm the time?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i08:r3",
+              "targetText": "Could we confirm the time?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I confirm the time?",
+                "uk": "У записі звучить Could I confirm the time?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I confirm the time?",
+                "uk": "У записі звучить Could I confirm the time?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i09:r1",
+            "text": "confirm"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i09:r2",
+            "text": "confirms"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i09:r3",
+            "text": "confirming"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ the time?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i09:r1",
+              "text": "confirm"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i09:r2",
+              "text": "confirms"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i09:r3",
+              "text": "confirming"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:word:spell-my-name",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spell my name",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:word:spell-my-name:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spell my name",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:word:spell-my-name:audio",
+            "transcript": "spell my name"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:word:spell-my-name:r1",
+              "targetText": "spell my name",
+              "meaningByLocale": {
+                "ru": "произнести своё имя по буквам.",
+                "uk": "вимовити своє ім’я по літерах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spell my name",
+            "definitionByLocale": {
+              "ru": "произнести своё имя по буквам.",
+              "uk": "вимовити своє ім’я по літерах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваше ім’я погано розчули. Запитайте: «Можна мені вимовити своє ім’я по літерах?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваше ім’я погано розчули. Запитайте: «Можна мені вимовити своє ім’я по літерах?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Could I spell my name?",
+          "localizedMeaning": {
+            "ru": "Ваше имя плохо расслышали. Спросите: «Можно мне произнести своё имя по буквам?»",
+            "uk": "Ваше ім’я погано розчули. Запитайте: «Можна мені вимовити своє ім’я по літерах?»"
+          },
+          "orderedTokens": [
+            "Could",
+            "I",
+            "spell",
+            "my",
+            "name"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i11:r1",
+            "text": "Could I spell my name?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i11:r2",
+            "text": "Could you spell your name?"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i11:r3",
+            "text": "Could we spell our names?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i11:audio",
+            "transcript": "Could I spell my name?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-22:session-42:i11:r1",
+              "targetText": "Could I spell my name?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i11:r2",
+              "targetText": "Could you spell your name?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i11:r3",
+              "targetText": "Could we spell our names?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I spell my name?",
+                "uk": "У записі звучить Could I spell my name?"
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Could I spell my name?",
+                "uk": "У записі звучить Could I spell my name?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-22:session-42:i12:r1",
+            "text": "spell"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i12:r2",
+            "text": "spells"
+          },
+          {
+            "responseId": "en:lesson-22:session-42:i12:r3",
+            "text": "spelling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола.",
+            "uk": "Виберіть форму дієслова."
+          },
+          "gappedTargetPhrase": "Could I ___ my name?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-22:session-42:i12:r1",
+              "text": "spell"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i12:r2",
+              "text": "spells"
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i12:r3",
+              "text": "spelling"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-22:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-22:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова.",
+              "feedbackByLocale": {
+                "ru": "После could нужна начальная форма глагола.",
+                "uk": "Після could потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вислови з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вислови з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-22:session-42:i13:p1",
+              "target": "check the address",
+              "meaningByLocale": {
+                "ru": "проверить адрес",
+                "uk": "перевірити адресу"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-42:i13:p2",
+              "target": "repeat the number",
+              "meaningByLocale": {
+                "ru": "повторить номер",
+                "uk": "повторити номер"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-42:i13:p3",
+              "target": "confirm the time",
+              "meaningByLocale": {
+                "ru": "подтвердить время",
+                "uk": "підтвердити час"
+              }
+            },
+            {
+              "pairId": "en:lesson-22:session-42:i13:p4",
+              "target": "spell my name",
+              "meaningByLocale": {
+                "ru": "произнести своё имя по буквам",
+                "uk": "вимовити своє ім’я по літерах"
+              }
+            }
+          ],
+          "leftColumn": [
+            "check the address",
+            "repeat the number",
+            "confirm the time",
+            "spell my name"
+          ],
+          "rightColumn": [
+            "перевірити адресу",
+            "повторити номер",
+            "підтвердити час",
+            "вимовити своє ім’я по літерах"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: її річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: її річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i14:audio",
+            "transcript": "This wash bag is hers."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This wash bag is hers.",
+          "orderedTokens": [
+            "This",
+            "wash",
+            "bag",
+            "is",
+            "hers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: моя річ",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: моя річ",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i15:audio",
+            "transcript": "This eye mask is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This eye mask is mine.",
+          "orderedTokens": [
+            "This",
+            "eye",
+            "mask",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам перевірити адресу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам перевірити адресу?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i16:audio",
+            "transcript": "Could we check the address?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we check the address?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-22:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте: «Можна нам підтвердити час?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-22:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте: «Можна нам підтвердити час?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-22:session-42:i17:audio",
+            "transcript": "Could we confirm the time?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we confirm the time?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-22:session-42:word:check-the-address",
+      "correctText": "check the address",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i01",
+      "correctText": "Could I check the address?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i02",
+      "correctText": "Could I check the address?",
+      "correctResponseId": "en:lesson-22:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i03",
+      "correctText": "check",
+      "correctResponseId": "en:lesson-22:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:word:repeat-the-number",
+      "correctText": "repeat the number",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i04",
+      "correctText": "Could I repeat the number?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i05",
+      "correctText": "Could I repeat the number?",
+      "correctResponseId": "en:lesson-22:session-42:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i06",
+      "correctText": "repeat",
+      "correctResponseId": "en:lesson-22:session-42:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:word:confirm-the-time",
+      "correctText": "confirm the time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i07",
+      "correctText": "Could I confirm the time?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i08",
+      "correctText": "Could I confirm the time?",
+      "correctResponseId": "en:lesson-22:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i09",
+      "correctText": "confirm",
+      "correctResponseId": "en:lesson-22:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:word:spell-my-name",
+      "correctText": "spell my name",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i10",
+      "correctText": "Could I spell my name?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i11",
+      "correctText": "Could I spell my name?",
+      "correctResponseId": "en:lesson-22:session-42:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i12",
+      "correctText": "spell",
+      "correctResponseId": "en:lesson-22:session-42:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i14",
+      "correctText": "This wash bag is hers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i15",
+      "correctText": "This eye mask is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i16",
+      "correctText": "Could we check the address?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-42:i17",
+      "correctText": "Could we confirm the time?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "main action + to-infinitive of purpose",
+    "uk": "main action + to-infinitive of purpose"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Высушить бельё",
+        "uk": "Висушити білизну"
+      },
+      "bodyByLocale": {
+        "ru": "Hang out the washing — развесить постиранное бельё сушиться, обычно на улице. The washing здесь бельё, а не действие «мыть». Do the washing уже знакомо: теперь речь о следующем шаге. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Hang out the washing — розвісити випрану білизну сушитися, зазвичай надворі. The washing тут білизна, а не дія «мити». Do the washing уже знайоме: тепер ідеться про наступний крок. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-44:intro1:r1",
+              "text": "I go outside to hang out the washing."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro1:r2",
+              "text": "I go outside for hang out the washing."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro1:r3",
+              "text": "I go outside of hang out the washing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-44:intro1:r1",
+              "text": "I go outside to hang out the washing."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro1:r2",
+              "text": "I go outside for hang out the washing."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro1:r3",
+              "text": "I go outside of hang out the washing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сложить и убрать",
+        "uk": "Скласти й прибрати"
+      },
+      "bodyByLocale": {
+        "ru": "Fold the clothes — аккуратно сложить одежду. Put away the dishes — убрать посуду туда, где она хранится. Это не мыть её: в примере посуда уже чистая. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Fold the clothes — акуратно скласти одяг. Put away the dishes — прибрати посуд туди, де він зберігається. Це не мити його: у прикладі посуд уже чистий. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-44:intro2:r1",
+              "text": "I clear the bed to fold the clothes."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro2:r2",
+              "text": "I clear the bed for fold the clothes."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro2:r3",
+              "text": "I clear the bed of fold the clothes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-44:intro2:r1",
+              "text": "I clear the bed to fold the clothes."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro2:r2",
+              "text": "I clear the bed for fold the clothes."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro2:r3",
+              "text": "I clear the bed of fold the clothes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Протереть стол",
+        "uk": "Витерти стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Wipe the table — протереть стол тряпкой или салфеткой. Clear the table уже знакомо: убрать вещи со стола. После этого можно wipe the table — протереть поверхность. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
+        "uk": "Wipe the table — витерти стіл ганчіркою чи серветкою. Clear the table уже знайоме: прибрати речі зі столу. Після цього можна wipe the table — витерти поверхню. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-44:intro3:r1",
+              "text": "I use a cloth to wipe the table."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro3:r2",
+              "text": "I use a cloth for wipe the table."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro3:r3",
+              "text": "I use a cloth of wipe the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-44:intro3:r1",
+              "text": "I use a cloth to wipe the table."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro3:r2",
+              "text": "I use a cloth for wipe the table."
+            },
+            {
+              "responseId": "en:lesson-22:session-44:intro3:r3",
+              "text": "I use a cloth of wipe the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d6a146d606a843569221f1b8173378abfaee5d2e55afe912f8d4ea2f2761e2dd"
+}

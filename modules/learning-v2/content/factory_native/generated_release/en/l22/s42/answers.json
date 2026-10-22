@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-42:word:check-the-address",
+    "correctText": "check the address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i01",
+    "correctText": "Could I check the address?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i02",
+    "correctText": "Could I check the address?",
+    "correctResponseId": "en:lesson-22:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i03",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-22:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:word:repeat-the-number",
+    "correctText": "repeat the number",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i04",
+    "correctText": "Could I repeat the number?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i05",
+    "correctText": "Could I repeat the number?",
+    "correctResponseId": "en:lesson-22:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i06",
+    "correctText": "repeat",
+    "correctResponseId": "en:lesson-22:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:word:confirm-the-time",
+    "correctText": "confirm the time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i07",
+    "correctText": "Could I confirm the time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i08",
+    "correctText": "Could I confirm the time?",
+    "correctResponseId": "en:lesson-22:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i09",
+    "correctText": "confirm",
+    "correctResponseId": "en:lesson-22:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:word:spell-my-name",
+    "correctText": "spell my name",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i10",
+    "correctText": "Could I spell my name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i11",
+    "correctText": "Could I spell my name?",
+    "correctResponseId": "en:lesson-22:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i12",
+    "correctText": "spell",
+    "correctResponseId": "en:lesson-22:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i13",
+    "correctText": "en:lesson-22:session-42:i13:p1=check the address\nen:lesson-22:session-42:i13:p2=repeat the number\nen:lesson-22:session-42:i13:p3=confirm the time\nen:lesson-22:session-42:i13:p4=spell my name",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i14",
+    "correctText": "This wash bag is hers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i15",
+    "correctText": "This eye mask is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i16",
+    "correctText": "Could we check the address?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-42:i17",
+    "correctText": "Could we confirm the time?",
+    "correctResponseId": null
+  }
+]

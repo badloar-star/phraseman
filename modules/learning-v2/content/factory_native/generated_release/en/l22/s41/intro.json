@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "Could I + base verb?",
+    "uk": "Could I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать информацию",
+        "uk": "Дізнатися інформацію"
+      },
+      "bodyByLocale": {
+        "ru": "Make an enquiry — обратиться за информацией, например спросить о времени работы или наличии мест. Enquiry — обычное британское написание в таком значении; inquiry тоже встречается. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Make an enquiry — звернутися по інформацію, наприклад запитати про години роботи чи наявність місць. Enquiry — звичайне британське написання в такому значенні; inquiry теж трапляється. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-41:intro1:r1",
+              "text": "Could I make an enquiry?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro1:r2",
+              "text": "Could I makes an enquiry?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro1:r3",
+              "text": "Could I making an enquiry?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-41:intro1:r1",
+              "text": "Could I make an enquiry?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro1:r2",
+              "text": "Could I makes an enquiry?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro1:r3",
+              "text": "Could I making an enquiry?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Номер и сообщение",
+        "uk": "Номер і повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Leave my number — оставить свой номер, чтобы с вами связались позже. Pass on a message — передать сообщение от одного человека другому. Leave a message уже знакомо; здесь важна передача чужих слов. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Leave my number — залишити свій номер, щоб із вами зв’язалися пізніше. Pass on a message — передати повідомлення від однієї людини іншій. Leave a message уже знайоме; тут важлива передача чужих слів. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-41:intro2:r1",
+              "text": "Could I leave my number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro2:r2",
+              "text": "Could I leaves my number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro2:r3",
+              "text": "Could I leaving my number?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-41:intro2:r1",
+              "text": "Could I leave my number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro2:r2",
+              "text": "Could I leaves my number?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro2:r3",
+              "text": "Could I leaving my number?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Записать для коллеги",
+        "uk": "Записати для колеги"
+      },
+      "bodyByLocale": {
+        "ru": "Take a message — принять и записать сообщение для отсутствующего человека. Вы предлагаете записать, что нужно передать коллеге. Это отличается от pass on a message: сначала принять, затем передать. Could I + начальная форма глагола — вежливая просьба разрешить вам действие. После could не добавляем -s или -ing: Could I leave early?",
+        "uk": "Take a message — прийняти й записати повідомлення для відсутньої людини. Ви пропонуєте записати, що потрібно передати колезі. Це відрізняється від pass on a message: спочатку прийняти, потім передати. Could I + початкова форма дієслова — ввічливе прохання дозволити вам дію. Після could не додаємо -s чи -ing: Could I leave early?"
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-41:intro3:r1",
+              "text": "Could I take a message?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro3:r2",
+              "text": "Could I takes a message?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro3:r3",
+              "text": "Could I taking a message?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-41:intro3:r1",
+              "text": "Could I take a message?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro3:r2",
+              "text": "Could I takes a message?"
+            },
+            {
+              "responseId": "en:lesson-22:session-41:intro3:r3",
+              "text": "Could I taking a message?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9e813484dc611f70ae165788f3c9abc9b59fb1131139721d660f97c5fb7e9921"
+}

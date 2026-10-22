@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-41:word:make-an-enquiry",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — make an enquiry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:word:make-an-enquiry:audio"
+      ],
+      "accessibilityLabel": "Картка слова — make an enquiry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:word:make-an-enquiry:audio",
+          "transcript": "make an enquiry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:word:make-an-enquiry:r1",
+            "targetText": "make an enquiry",
+            "meaningByLocale": {
+              "ru": "обратиться за информацией.",
+              "uk": "звернутися по інформацію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "make an enquiry",
+          "definitionByLocale": {
+            "ru": "обратиться за информацией.",
+            "uk": "звернутися по інформацію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви телефонуєте дізнатися про послугу. Запитайте: «Можна мені звернутися по інформацію?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви телефонуєте дізнатися про послугу. Запитайте: «Можна мені звернутися по інформацію?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I make an enquiry?",
+        "localizedMeaning": {
+          "ru": "Вы звоните узнать об услуге. Спросите: «Можно мне обратиться за информацией?»",
+          "uk": "Ви телефонуєте дізнатися про послугу. Запитайте: «Можна мені звернутися по інформацію?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "make",
+          "an",
+          "enquiry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i02:r1",
+          "text": "Could I make an enquiry?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i02:r2",
+          "text": "Could you make an enquiry?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i02:r3",
+          "text": "Could we make an enquiry?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i02:audio",
+          "transcript": "Could I make an enquiry?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:i02:r1",
+            "targetText": "Could I make an enquiry?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i02:r2",
+            "targetText": "Could you make an enquiry?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i02:r3",
+            "targetText": "Could we make an enquiry?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I make an enquiry?",
+              "uk": "У записі звучить Could I make an enquiry?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I make an enquiry?",
+              "uk": "У записі звучить Could I make an enquiry?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i03:r1",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i03:r2",
+          "text": "makes"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i03:r3",
+          "text": "making"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ an enquiry?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-41:i03:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i03:r2",
+            "text": "makes"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i03:r3",
+            "text": "making"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:word:leave-my-number",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leave my number",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:word:leave-my-number:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leave my number",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:word:leave-my-number:audio",
+          "transcript": "leave my number"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:word:leave-my-number:r1",
+            "targetText": "leave my number",
+            "meaningByLocale": {
+              "ru": "оставить свой номер.",
+              "uk": "залишити свій номер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leave my number",
+          "definitionByLocale": {
+            "ru": "оставить свой номер.",
+            "uk": "залишити свій номер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівник зараз зайнятий. Запитайте: «Можна мені залишити свій номер?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник зараз зайнятий. Запитайте: «Можна мені залишити свій номер?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I leave my number?",
+        "localizedMeaning": {
+          "ru": "Сотрудник сейчас занят. Спросите: «Можно мне оставить свой номер?»",
+          "uk": "Працівник зараз зайнятий. Запитайте: «Можна мені залишити свій номер?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "leave",
+          "my",
+          "number"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i05:r1",
+          "text": "Could I leave my number?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i05:r2",
+          "text": "Could you leave your number?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i05:r3",
+          "text": "Could we leave our number?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i05:audio",
+          "transcript": "Could I leave my number?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:i05:r1",
+            "targetText": "Could I leave my number?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i05:r2",
+            "targetText": "Could you leave your number?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i05:r3",
+            "targetText": "Could we leave our number?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I leave my number?",
+              "uk": "У записі звучить Could I leave my number?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I leave my number?",
+              "uk": "У записі звучить Could I leave my number?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i06:r1",
+          "text": "leave"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i06:r2",
+          "text": "leaves"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i06:r3",
+          "text": "leaving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ my number?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-41:i06:r1",
+            "text": "leave"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i06:r2",
+            "text": "leaves"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i06:r3",
+            "text": "leaving"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:word:pass-on-a-message",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pass on a message",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:word:pass-on-a-message:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pass on a message",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:word:pass-on-a-message:audio",
+          "transcript": "pass on a message"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:word:pass-on-a-message:r1",
+            "targetText": "pass on a message",
+            "meaningByLocale": {
+              "ru": "передать сообщение.",
+              "uk": "передати повідомлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pass on a message",
+          "definitionByLocale": {
+            "ru": "передать сообщение.",
+            "uk": "передати повідомлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хочете передати слова колеги. Запитайте: «Можна мені передати повідомлення?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хочете передати слова колеги. Запитайте: «Можна мені передати повідомлення?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I pass on a message?",
+        "localizedMeaning": {
+          "ru": "Вы хотите передать слова коллеги. Спросите: «Можно мне передать сообщение?»",
+          "uk": "Ви хочете передати слова колеги. Запитайте: «Можна мені передати повідомлення?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "pass",
+          "on",
+          "a",
+          "message"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i08:r1",
+          "text": "Could I pass on a message?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i08:r2",
+          "text": "Could you pass on a message?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i08:r3",
+          "text": "Could we pass on a message?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i08:audio",
+          "transcript": "Could I pass on a message?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:i08:r1",
+            "targetText": "Could I pass on a message?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i08:r2",
+            "targetText": "Could you pass on a message?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i08:r3",
+            "targetText": "Could we pass on a message?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pass on a message?",
+              "uk": "У записі звучить Could I pass on a message?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I pass on a message?",
+              "uk": "У записі звучить Could I pass on a message?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i09:r1",
+          "text": "pass"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i09:r2",
+          "text": "passes"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i09:r3",
+          "text": "passing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ on a message?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-41:i09:r1",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i09:r2",
+            "text": "passes"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i09:r3",
+            "text": "passing"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:word:take-a-message",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take a message",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:word:take-a-message:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take a message",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:word:take-a-message:audio",
+          "transcript": "take a message"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:word:take-a-message:r1",
+            "targetText": "take a message",
+            "meaningByLocale": {
+              "ru": "записать сообщение для другого человека.",
+              "uk": "записати повідомлення для іншої людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take a message",
+          "definitionByLocale": {
+            "ru": "записать сообщение для другого человека.",
+            "uk": "записати повідомлення для іншої людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колеги немає на місці. Запитайте того, хто телефонує: «Можна мені записати повідомлення?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колеги немає на місці. Запитайте того, хто телефонує: «Можна мені записати повідомлення?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I take a message?",
+        "localizedMeaning": {
+          "ru": "Коллеги нет на месте. Спросите звонящего: «Можно мне записать сообщение?»",
+          "uk": "Колеги немає на місці. Запитайте того, хто телефонує: «Можна мені записати повідомлення?»"
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "take",
+          "a",
+          "message"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i11:r1",
+          "text": "Could I take a message?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i11:r2",
+          "text": "Could you take a message?"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i11:r3",
+          "text": "Could we take a message?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i11:audio",
+          "transcript": "Could I take a message?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-41:i11:r1",
+            "targetText": "Could I take a message?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i11:r2",
+            "targetText": "Could you take a message?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i11:r3",
+            "targetText": "Could we take a message?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I take a message?",
+              "uk": "У записі звучить Could I take a message?"
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I take a message?",
+              "uk": "У записі звучить Could I take a message?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-41:i12:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i12:r2",
+          "text": "takes"
+        },
+        {
+          "responseId": "en:lesson-22:session-41:i12:r3",
+          "text": "taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола.",
+          "uk": "Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Could I ___ a message?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-41:i12:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i12:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i12:r3",
+            "text": "taking"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма глагола.",
+              "uk": "Після could потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вислови з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-41:i13:p1",
+            "target": "make an enquiry",
+            "meaningByLocale": {
+              "ru": "обратиться за информацией",
+              "uk": "звернутися по інформацію"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-41:i13:p2",
+            "target": "leave my number",
+            "meaningByLocale": {
+              "ru": "оставить свой номер",
+              "uk": "залишити свій номер"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-41:i13:p3",
+            "target": "pass on a message",
+            "meaningByLocale": {
+              "ru": "передать сообщение",
+              "uk": "передати повідомлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-41:i13:p4",
+            "target": "take a message",
+            "meaningByLocale": {
+              "ru": "записать сообщение для другого человека",
+              "uk": "записати повідомлення для іншої людини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "make an enquiry",
+          "leave my number",
+          "pass on a message",
+          "take a message"
+        ],
+        "rightColumn": [
+          "звернутися по інформацію",
+          "залишити свій номер",
+          "передати повідомлення",
+          "записати повідомлення для іншої людини"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: її річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: її річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i14:audio",
+          "transcript": "This wash bag is hers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This wash bag is hers.",
+        "orderedTokens": [
+          "This",
+          "wash",
+          "bag",
+          "is",
+          "hers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: моя річ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: моя річ",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i15:audio",
+          "transcript": "This eye mask is mine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This eye mask is mine.",
+        "orderedTokens": [
+          "This",
+          "eye",
+          "mask",
+          "is",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам звернутися по інформацію?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам звернутися по інформацію?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i16:audio",
+          "transcript": "Could we make an enquiry?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we make an enquiry?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Можна нам передати повідомлення?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Можна нам передати повідомлення?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-41:i17:audio",
+          "transcript": "Could we pass on a message?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we pass on a message?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d159856856d89caefa8ed2535a5bb126c5dd07047b93a155527bb4f90ee97aae"
+}

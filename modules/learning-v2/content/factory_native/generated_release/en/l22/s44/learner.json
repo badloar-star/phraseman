@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-44:word:hang-out-the-washing",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hang out the washing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:word:hang-out-the-washing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hang out the washing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:word:hang-out-the-washing:audio",
+          "transcript": "hang out the washing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:word:hang-out-the-washing:r1",
+            "targetText": "hang out the washing",
+            "meaningByLocale": {
+              "ru": "развесить бельё сушиться.",
+              "uk": "розвісити білизну сушитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hang out the washing",
+          "definitionByLocale": {
+            "ru": "развесить бельё сушиться.",
+            "uk": "розвісити білизну сушитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы несёте влажное бельё на улицу. Скажите: «Я выхожу на улицу, чтобы развесить бельё сушиться»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы несёте влажное бельё на улицу. Скажите: «Я выхожу на улицу, чтобы развесить бельё сушиться»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I go outside to hang out the washing.",
+        "localizedMeaning": {
+          "ru": "Вы несёте влажное бельё на улицу. Скажите: «Я выхожу на улицу, чтобы развесить бельё сушиться»",
+          "uk": "Ви несете вологу білизну надвір. Скажіть: «Я виходжу надвір, щоб розвісити білизну сушитися»"
+        },
+        "orderedTokens": [
+          "I",
+          "go",
+          "outside",
+          "to",
+          "hang",
+          "out",
+          "the",
+          "washing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i02:r1",
+          "text": "I go outside to hang out the washing."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i02:r2",
+          "text": "We go outside to hang out the washing."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i02:r3",
+          "text": "You go outside to hang out the washing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i02:audio",
+          "transcript": "I go outside to hang out the washing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:i02:r1",
+            "targetText": "I go outside to hang out the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i02:r2",
+            "targetText": "We go outside to hang out the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i02:r3",
+            "targetText": "You go outside to hang out the washing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I go outside to hang out the washing.",
+              "uk": "У записі звучить I go outside to hang out the washing."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I go outside to hang out the washing.",
+              "uk": "У записі звучить I go outside to hang out the washing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i03:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i03:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I go outside ___ hang out the washing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-44:i03:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i03:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:word:fold-the-clothes",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fold the clothes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:word:fold-the-clothes:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fold the clothes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:word:fold-the-clothes:audio",
+          "transcript": "fold the clothes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:word:fold-the-clothes:r1",
+            "targetText": "fold the clothes",
+            "meaningByLocale": {
+              "ru": "сложить одежду.",
+              "uk": "скласти одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fold the clothes",
+          "definitionByLocale": {
+            "ru": "сложить одежду.",
+            "uk": "скласти одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам нужна свободная поверхность. Скажите: «Я освобождаю кровать, чтобы сложить одежду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам нужна свободная поверхность. Скажите: «Я освобождаю кровать, чтобы сложить одежду»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I clear the bed to fold the clothes.",
+        "localizedMeaning": {
+          "ru": "Вам нужна свободная поверхность. Скажите: «Я освобождаю кровать, чтобы сложить одежду»",
+          "uk": "Вам потрібна вільна поверхня. Скажіть: «Я звільняю ліжко, щоб скласти одяг»"
+        },
+        "orderedTokens": [
+          "I",
+          "clear",
+          "the",
+          "bed",
+          "to",
+          "fold",
+          "the",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i05:r1",
+          "text": "I clear the bed to fold the clothes."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i05:r2",
+          "text": "We clear the bed to fold the clothes."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i05:r3",
+          "text": "You clear the bed to fold the clothes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i05:audio",
+          "transcript": "I clear the bed to fold the clothes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:i05:r1",
+            "targetText": "I clear the bed to fold the clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i05:r2",
+            "targetText": "We clear the bed to fold the clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i05:r3",
+            "targetText": "You clear the bed to fold the clothes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I clear the bed to fold the clothes.",
+              "uk": "У записі звучить I clear the bed to fold the clothes."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I clear the bed to fold the clothes.",
+              "uk": "У записі звучить I clear the bed to fold the clothes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i06:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i06:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i06:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I clear the bed ___ fold the clothes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-44:i06:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i06:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i06:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:word:put-away-the-dishes",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — put away the dishes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:word:put-away-the-dishes:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — put away the dishes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:word:put-away-the-dishes:audio",
+          "transcript": "put away the dishes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:word:put-away-the-dishes:r1",
+            "targetText": "put away the dishes",
+            "meaningByLocale": {
+              "ru": "убрать посуду на место.",
+              "uk": "прибрати посуд на місце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "put away the dishes",
+          "definitionByLocale": {
+            "ru": "убрать посуду на место.",
+            "uk": "прибрати посуд на місце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чистая посуда стоит на столе. Скажите: «Я открываю шкаф, чтобы убрать посуду на место»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чистая посуда стоит на столе. Скажите: «Я открываю шкаф, чтобы убрать посуду на место»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I open the cupboard to put away the dishes.",
+        "localizedMeaning": {
+          "ru": "Чистая посуда стоит на столе. Скажите: «Я открываю шкаф, чтобы убрать посуду на место»",
+          "uk": "Чистий посуд стоїть на столі. Скажіть: «Я відчиняю шафу, щоб прибрати посуд на місце»"
+        },
+        "orderedTokens": [
+          "I",
+          "open",
+          "the",
+          "cupboard",
+          "to",
+          "put",
+          "away",
+          "the",
+          "dishes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i08:r1",
+          "text": "I open the cupboard to put away the dishes."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i08:r2",
+          "text": "We open the cupboard to put away the dishes."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i08:r3",
+          "text": "You open the cupboard to put away the dishes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i08:audio",
+          "transcript": "I open the cupboard to put away the dishes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:i08:r1",
+            "targetText": "I open the cupboard to put away the dishes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i08:r2",
+            "targetText": "We open the cupboard to put away the dishes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i08:r3",
+            "targetText": "You open the cupboard to put away the dishes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I open the cupboard to put away the dishes.",
+              "uk": "У записі звучить I open the cupboard to put away the dishes."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I open the cupboard to put away the dishes.",
+              "uk": "У записі звучить I open the cupboard to put away the dishes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i09:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i09:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I open the cupboard ___ put away the dishes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-44:i09:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i09:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:word:wipe-the-table",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wipe the table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:word:wipe-the-table:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wipe the table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:word:wipe-the-table:audio",
+          "transcript": "wipe the table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:word:wipe-the-table:r1",
+            "targetText": "wipe the table",
+            "meaningByLocale": {
+              "ru": "протереть стол.",
+              "uk": "витерти стіл."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wipe the table",
+          "definitionByLocale": {
+            "ru": "протереть стол.",
+            "uk": "витерти стіл."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На столе крошки и капли. Скажите: «Я использую тряпку, чтобы протереть стол»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столе крошки и капли. Скажите: «Я использую тряпку, чтобы протереть стол»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use a cloth to wipe the table.",
+        "localizedMeaning": {
+          "ru": "На столе крошки и капли. Скажите: «Я использую тряпку, чтобы протереть стол»",
+          "uk": "На столі крихти й краплі. Скажіть: «Я використовую ганчірку, щоб витерти стіл»"
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "a",
+          "cloth",
+          "to",
+          "wipe",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i11:r1",
+          "text": "I use a cloth to wipe the table."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i11:r2",
+          "text": "We use a cloth to wipe the table."
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i11:r3",
+          "text": "You use a cloth to wipe the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i11:audio",
+          "transcript": "I use a cloth to wipe the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-44:i11:r1",
+            "targetText": "I use a cloth to wipe the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i11:r2",
+            "targetText": "We use a cloth to wipe the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i11:r3",
+            "targetText": "You use a cloth to wipe the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use a cloth to wipe the table.",
+              "uk": "У записі звучить I use a cloth to wipe the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use a cloth to wipe the table.",
+              "uk": "У записі звучить I use a cloth to wipe the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите слово, которое вводит цель.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-44:i12:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i12:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-22:session-44:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово, которое вводит цель.",
+          "uk": "Виберіть слово, яке вводить мету."
+        },
+        "gappedTargetPhrase": "I use a cloth ___ wipe the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-44:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i12:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Выберите слово, которое вводит цель.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите слово, которое вводит цель.",
+            "feedbackByLocale": {
+              "ru": "Цель выражается через to + начальную форму глагола.",
+              "uk": "Мета виражається через to + початкову форму дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-44:i13:p1",
+            "target": "hang out the washing",
+            "meaningByLocale": {
+              "ru": "развесить бельё сушиться",
+              "uk": "розвісити білизну сушитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-44:i13:p2",
+            "target": "fold the clothes",
+            "meaningByLocale": {
+              "ru": "сложить одежду",
+              "uk": "скласти одяг"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-44:i13:p3",
+            "target": "put away the dishes",
+            "meaningByLocale": {
+              "ru": "убрать посуду на место",
+              "uk": "прибрати посуд на місце"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-44:i13:p4",
+            "target": "wipe the table",
+            "meaningByLocale": {
+              "ru": "протереть стол",
+              "uk": "витерти стіл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hang out the washing",
+          "fold the clothes",
+          "put away the dishes",
+          "wipe the table"
+        ],
+        "rightColumn": [
+          "развесить бельё сушиться",
+          "сложить одежду",
+          "убрать посуду на место",
+          "протереть стол"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: место у окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: место у окна",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i14:audio",
+          "transcript": "Could I sit by the window?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I sit by the window?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: прогулка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: прогулка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i15:audio",
+          "transcript": "Could I go for a walk?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I go for a walk?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "go",
+          "for",
+          "a",
+          "walk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мне нужно сложить одежду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мне нужно сложить одежду»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i16:audio",
+          "transcript": "I need to fold the clothes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to fold the clothes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я хочу убрать посуду на место»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я хочу убрать посуду на место»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-44:i17:audio",
+          "transcript": "I want to put away the dishes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to put away the dishes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8393c11f5dd0196c3ebbeac14a32fb397b830e32e8b33612527607225eb270e6"
+}

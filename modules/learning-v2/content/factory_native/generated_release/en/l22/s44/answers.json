@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-44:word:hang-out-the-washing",
+    "correctText": "hang out the washing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i01",
+    "correctText": "I go outside to hang out the washing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i02",
+    "correctText": "I go outside to hang out the washing.",
+    "correctResponseId": "en:lesson-22:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i03",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:word:fold-the-clothes",
+    "correctText": "fold the clothes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i04",
+    "correctText": "I clear the bed to fold the clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i05",
+    "correctText": "I clear the bed to fold the clothes.",
+    "correctResponseId": "en:lesson-22:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i06",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:word:put-away-the-dishes",
+    "correctText": "put away the dishes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i07",
+    "correctText": "I open the cupboard to put away the dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i08",
+    "correctText": "I open the cupboard to put away the dishes.",
+    "correctResponseId": "en:lesson-22:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i09",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:word:wipe-the-table",
+    "correctText": "wipe the table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i10",
+    "correctText": "I use a cloth to wipe the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i11",
+    "correctText": "I use a cloth to wipe the table.",
+    "correctResponseId": "en:lesson-22:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-22:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i13",
+    "correctText": "en:lesson-22:session-44:i13:p1=hang out the washing\nen:lesson-22:session-44:i13:p2=fold the clothes\nen:lesson-22:session-44:i13:p3=put away the dishes\nen:lesson-22:session-44:i13:p4=wipe the table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i14",
+    "correctText": "Could I sit by the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i15",
+    "correctText": "Could I go for a walk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i16",
+    "correctText": "I need to fold the clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-44:i17",
+    "correctText": "I want to put away the dishes.",
+    "correctResponseId": null
+  }
+]

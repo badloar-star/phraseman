@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-22:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-22:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-04:intro1:r2": {
+          "ru": "После этого глагола нужна объектная форма местоимения.",
+          "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+        },
+        "en:lesson-22:session-04:intro1:r3": {
+          "ru": "После этого глагола нужна объектная форма местоимения.",
+          "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-04:intro2:r2": {
+          "ru": "После этого глагола нужна объектная форма местоимения.",
+          "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+        },
+        "en:lesson-22:session-04:intro2:r3": {
+          "ru": "После этого глагола нужна объектная форма местоимения.",
+          "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-04:intro3:r2": {
+          "ru": "После этого глагола нужна объектная форма местоимения.",
+          "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+        },
+        "en:lesson-22:session-04:intro3:r3": {
+          "ru": "После этого глагола нужна объектная форма местоимения.",
+          "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c42c98bc83d0e5d66a901b87db8bed24c42d9cbbc7b91cfffa483291409c5292"
+}

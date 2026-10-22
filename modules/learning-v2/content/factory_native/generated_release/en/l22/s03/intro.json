@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "verb + object pronoun",
+    "uk": "verb + object pronoun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Убедить её",
+        "uk": "Переконати її"
+      },
+      "bodyByLocale": {
+        "ru": "Convince — убедить человека, что мысль или объяснение верны. Подруга сомневается, а вы можете привести доводы. Her здесь относится к подруге. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Convince — переконати людину, що думка чи пояснення правильні. Подруга сумнівається, а ви можете навести доводи. Her тут стосується подруги. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-03:intro1:r1",
+              "text": "I can convince her."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro1:r2",
+              "text": "I can convince she."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro1:r3",
+              "text": "I can convince hers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-03:intro1:r1",
+              "text": "I can convince her."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro1:r2",
+              "text": "I can convince she."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro1:r3",
+              "text": "I can convince hers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Правильно понять его",
+        "uk": "Правильно зрозуміти його"
+      },
+      "bodyByLocale": {
+        "ru": "Misunderstand — неправильно понять человека или смысл его слов. В примере him — брат. Dislike — не любить что-то, испытывать неприязнь. I dislike it можно сказать о фильме; it заменяет его название. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Misunderstand — неправильно зрозуміти людину або зміст її слів. У прикладі him — брат. Dislike — не любити щось, відчувати неприязнь. I dislike it можна сказати про фільм; it замінює його назву. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-03:intro2:r1",
+              "text": "I do not want to misunderstand him."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro2:r2",
+              "text": "I do not want to misunderstand he."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro2:r3",
+              "text": "I do not want to misunderstand his."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-03:intro2:r1",
+              "text": "I do not want to misunderstand him."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro2:r2",
+              "text": "I do not want to misunderstand he."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro2:r3",
+              "text": "I do not want to misunderstand his."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Восхищаться ими",
+        "uk": "Захоплюватися ними"
+      },
+      "bodyByLocale": {
+        "ru": "Admire — восхищаться человеком, его качествами или достижениями. I admire them — «я ими восхищаюсь»; them здесь заменяет ваших родителей. Английскому глаголу не нужен предлог перед them. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Admire — захоплюватися людиною, її якостями або досягненнями. I admire them — «я ними захоплююся»; them тут замінює ваших батьків. Англійському дієслову не потрібен прийменник перед them. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-03:intro3:r1",
+              "text": "I admire them."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro3:r2",
+              "text": "I admire they."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro3:r3",
+              "text": "I admire their."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-03:intro3:r1",
+              "text": "I admire them."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro3:r2",
+              "text": "I admire they."
+            },
+            {
+              "responseId": "en:lesson-22:session-03:intro3:r3",
+              "text": "I admire their."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "990cf5f5041b51d954c31cfa2ad4f6144bc2a4156d7bac6bcc78109ef337e15f"
+}

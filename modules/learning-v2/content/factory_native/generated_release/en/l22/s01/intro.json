@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "verb + object pronoun",
+    "uk": "verb + object pronoun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дать ему совет",
+        "uk": "Дати йому пораду"
+      },
+      "bodyByLocale": {
+        "ru": "Advise — дать совет, посоветовать, как поступить. Брат просит вашего совета, и вы можете помочь ему разобраться. Him здесь относится к брату. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Advise — дати пораду, порадити, як діяти. Брат просить вашої поради, і ви можете допомогти йому розібратися. Him тут стосується брата. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-01:intro1:r1",
+              "text": "I can advise him."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro1:r2",
+              "text": "I can advise he."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro1:r3",
+              "text": "I can advise his."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-01:intro1:r1",
+              "text": "I can advise him."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro1:r2",
+              "text": "I can advise he."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro1:r3",
+              "text": "I can advise his."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поздравить её",
+        "uk": "Привітати її"
+      },
+      "bodyByLocale": {
+        "ru": "Congratulate — поздравить с успехом или событием. Her в примере — подруга, которая сдала экзамен. Annoy — раздражать: например, шумом мешать отдыхающим соседям. Them может заменить этих соседей. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Congratulate — привітати з успіхом або подією. Her у прикладі — подруга, яка склала іспит. Annoy — дратувати: наприклад, шумом заважати сусідам, які відпочивають. Them може замінити цих сусідів. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-01:intro2:r1",
+              "text": "I want to congratulate her."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro2:r2",
+              "text": "I want to congratulate she."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro2:r3",
+              "text": "I want to congratulate hers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-01:intro2:r1",
+              "text": "I want to congratulate her."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro2:r2",
+              "text": "I want to congratulate she."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro2:r3",
+              "text": "I want to congratulate hers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не разочаровать тебя",
+        "uk": "Не розчарувати тебе"
+      },
+      "bodyByLocale": {
+        "ru": "Disappoint — разочаровать, не оправдать ожиданий. Вы говорите другу, что не хотите его разочаровать. You — «тебя / вас»; your означает «твой / ваш» перед существительным, например your friend, а не «тебя / вас». Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Disappoint — розчарувати, не виправдати очікувань. Ви кажете другові, що не хочете його розчарувати. You — «тебе / вас»; your означає «твій / ваш» перед іменником, наприклад your friend, а не «тебе / вас». Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-01:intro3:r1",
+              "text": "I do not want to disappoint you."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro3:r2",
+              "text": "I do not want to disappoint your."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro3:r3",
+              "text": "I do not want to disappoint yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-01:intro3:r1",
+              "text": "I do not want to disappoint you."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro3:r2",
+              "text": "I do not want to disappoint your."
+            },
+            {
+              "responseId": "en:lesson-22:session-01:intro3:r3",
+              "text": "I do not want to disappoint yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8598c9a6abfa8638a99a676bd1feb829a4678079ebc7312c5b131c00dae932c5"
+}

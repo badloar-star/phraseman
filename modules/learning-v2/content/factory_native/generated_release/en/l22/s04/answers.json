@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-04:word:support",
+    "correctText": "support",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i01",
+    "correctText": "I want to support her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i02",
+    "correctText": "I want to support her.",
+    "correctResponseId": "en:lesson-22:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i03",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-22:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:word:praise",
+    "correctText": "praise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i04",
+    "correctText": "I want to praise him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i05",
+    "correctText": "I want to praise him.",
+    "correctResponseId": "en:lesson-22:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i06",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-22:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:word:compliment",
+    "correctText": "compliment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i07",
+    "correctText": "I want to compliment you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i08",
+    "correctText": "I want to compliment you.",
+    "correctResponseId": "en:lesson-22:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i09",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-22:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:word:appreciate",
+    "correctText": "appreciate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i10",
+    "correctText": "I appreciate them.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i11",
+    "correctText": "I appreciate them.",
+    "correctResponseId": "en:lesson-22:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i12",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i13",
+    "correctText": "en:lesson-22:session-04:i13:p1=support\nen:lesson-22:session-04:i13:p2=praise\nen:lesson-22:session-04:i13:p3=compliment\nen:lesson-22:session-04:i13:p4=appreciate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i16",
+    "correctText": "I want to support you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-04:i17",
+    "correctText": "I appreciate you.",
+    "correctResponseId": null
+  }
+]

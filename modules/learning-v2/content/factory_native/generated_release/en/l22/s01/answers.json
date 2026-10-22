@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-01:word:advise",
+    "correctText": "advise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i01",
+    "correctText": "I can advise him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i02",
+    "correctText": "I can advise him.",
+    "correctResponseId": "en:lesson-22:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i03",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-22:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:word:congratulate",
+    "correctText": "congratulate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i04",
+    "correctText": "I want to congratulate her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i05",
+    "correctText": "I want to congratulate her.",
+    "correctResponseId": "en:lesson-22:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i06",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-22:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:word:annoy",
+    "correctText": "annoy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i07",
+    "correctText": "I do not want to annoy them.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i08",
+    "correctText": "I do not want to annoy them.",
+    "correctResponseId": "en:lesson-22:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i09",
+    "correctText": "them",
+    "correctResponseId": "en:lesson-22:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:word:disappoint",
+    "correctText": "disappoint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i10",
+    "correctText": "I do not want to disappoint you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i11",
+    "correctText": "I do not want to disappoint you.",
+    "correctResponseId": "en:lesson-22:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i12",
+    "correctText": "you",
+    "correctResponseId": "en:lesson-22:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i13",
+    "correctText": "en:lesson-22:session-01:i13:p1=advise\nen:lesson-22:session-01:i13:p2=congratulate\nen:lesson-22:session-01:i13:p3=annoy\nen:lesson-22:session-01:i13:p4=disappoint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i16",
+    "correctText": "I want to congratulate him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-01:i17",
+    "correctText": "I can advise her.",
+    "correctResponseId": null
+  }
+]

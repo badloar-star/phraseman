@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "verb + object pronoun",
+    "uk": "verb + object pronoun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поддержать её",
+        "uk": "Підтримати її"
+      },
+      "bodyByLocale": {
+        "ru": "Support здесь глагол — поддержать человека словами или действиями. Ранее financial support означало «финансовая поддержка», существительное. В нашем примере подруга начинает дело, а вы хотите ей помочь. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Support тут дієслово — підтримати людину словами чи діями. Раніше financial support означало «фінансова підтримка», іменник. У нашому прикладі подруга починає справу, а ви хочете їй допомогти. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-04:intro1:r1",
+              "text": "I want to support her."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro1:r2",
+              "text": "I want to support she."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro1:r3",
+              "text": "I want to support hers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-04:intro1:r1",
+              "text": "I want to support her."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro1:r2",
+              "text": "I want to support she."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro1:r3",
+              "text": "I want to support hers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Похвалить и сделать комплимент",
+        "uk": "Похвалити й зробити комплімент"
+      },
+      "bodyByLocale": {
+        "ru": "Praise как глагол — похвалить за хороший результат или поступок. Compliment как глагол — сделать человеку комплимент, например о его вкусе или внешнем виде. Существительные praise и compliment вы уже знаете; здесь учимся использовать их как действия с объектом. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Praise як дієслово — похвалити за гарний результат або вчинок. Compliment як дієслово — зробити людині комплімент, наприклад про її смак чи зовнішній вигляд. Іменники praise і compliment ви вже знаєте; тут вчимося використовувати їх як дії з об’єктом. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-04:intro2:r1",
+              "text": "I want to praise him."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro2:r2",
+              "text": "I want to praise he."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro2:r3",
+              "text": "I want to praise his."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-04:intro2:r1",
+              "text": "I want to praise him."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro2:r2",
+              "text": "I want to praise he."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro2:r3",
+              "text": "I want to praise his."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ценить друзей",
+        "uk": "Цінувати друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Appreciate — ценить, понимать важность человека или его помощи. I appreciate them — «я их ценю»; в этой ситуации them — друзья, которые помогают вам. Здесь вы выражаете признательность друзьям. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Appreciate — цінувати, розуміти важливість людини чи її допомоги. I appreciate them — «я їх ціную»; у цій ситуації them — друзі, які допомагають вам. Тут ви висловлюєте вдячність друзям. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-04:intro3:r1",
+              "text": "I appreciate them."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro3:r2",
+              "text": "I appreciate they."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro3:r3",
+              "text": "I appreciate their."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-04:intro3:r1",
+              "text": "I appreciate them."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro3:r2",
+              "text": "I appreciate they."
+            },
+            {
+              "responseId": "en:lesson-22:session-04:intro3:r3",
+              "text": "I appreciate their."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9358766e2fc23371b77aa817d276e4766e464973e6afcb7ed37dea485a9cc0b8"
+}

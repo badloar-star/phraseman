@@ -8239,4 +8239,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"want + to-infinitive; want + person + to-infinitive","uk":"want + to-infinitive; want + person + to-infinitive"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 21","uk":"Англійська · Урок 21"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 1,
+    sourceFingerprint: "5522af7690d1a3b374bb2ca1092f383eddfbc9e4321d0f6c736e317956082a13",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object pronoun","uk":"verb + object pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 2,
+    sourceFingerprint: "b2b6c586c6132d158034f286f15b6b58bbeaf77260a67e8a22c3e89fe542e86c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object pronoun","uk":"verb + object pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 3,
+    sourceFingerprint: "a8c70e17fb37f6781bb6ee2e9a50a45dd91e898c4390f760a01f1632a8fd8c0c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object pronoun","uk":"verb + object pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 4,
+    sourceFingerprint: "691df017992007566a5441516b33d2f0c4b668d654a191b6d96e6e8e740d1e7a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"verb + object pronoun","uk":"verb + object pronoun"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

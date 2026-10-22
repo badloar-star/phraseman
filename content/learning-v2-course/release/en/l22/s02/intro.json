@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "verb + object pronoun",
+    "uk": "verb + object pronoun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Утешить её",
+        "uk": "Втішити її"
+      },
+      "bodyByLocale": {
+        "ru": "Comfort здесь глагол — утешить человека, которому грустно. Это действие: comfort her — утешить её. Ранее comfort встречалось как существительное «комфорт / утешение». Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Comfort тут дієслово — втішити людину, якій сумно. Це дія: comfort her — втішити її. Раніше comfort траплялося як іменник «комфорт / розрада». Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-02:intro1:r1",
+              "text": "I want to comfort her."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro1:r2",
+              "text": "I want to comfort she."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro1:r3",
+              "text": "I want to comfort hers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-02:intro1:r1",
+              "text": "I want to comfort her."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro1:r2",
+              "text": "I want to comfort she."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro1:r3",
+              "text": "I want to comfort hers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Развеселить друзей",
+        "uk": "Розвеселити друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Amuse — развеселить, вызвать улыбку или смех. Them в примере относится к друзьям. Impress — впечатлить, произвести сильное приятное впечатление, например своей работой. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Amuse — розвеселити, викликати усмішку чи сміх. Them у прикладі стосується друзів. Impress — вразити, справити сильне приємне враження, наприклад своєю роботою. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-02:intro2:r1",
+              "text": "This story can amuse them."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro2:r2",
+              "text": "This story can amuse they."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro2:r3",
+              "text": "This story can amuse their."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-02:intro2:r1",
+              "text": "This story can amuse them."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro2:r2",
+              "text": "This story can amuse they."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro2:r3",
+              "text": "This story can amuse their."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не расстроить тебя",
+        "uk": "Не засмутити тебе"
+      },
+      "bodyByLocale": {
+        "ru": "Upset здесь глагол — расстроить кого-то. Не путайте: I am upset — «я расстроен», а I upset you — «я расстраиваю тебя». В примере говорящий не хочет огорчить друга. Когда местоимение обозначает того, на кого направлено действие, нужна объектная форма: he → him, she → her, they → them, I → me, we → us. You и it не меняются. Сравните: He helps — «он помогает»; I help him — «я помогаю ему».",
+        "uk": "Upset тут дієслово — засмутити когось. Не плутайте: I am upset — «я засмучений», а I upset you — «я засмучую тебе». У прикладі мовець не хоче засмутити друга. Коли займенник позначає того, на кого спрямована дія, потрібна об’єктна форма: he → him, she → her, they → them, I → me, we → us. You та it не змінюються. Порівняйте: He helps — «він допомагає»; I help him — «я допомагаю йому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-02:intro3:r1",
+              "text": "I do not want to upset you."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro3:r2",
+              "text": "I do not want to upset your."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro3:r3",
+              "text": "I do not want to upset yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-02:intro3:r1",
+              "text": "I do not want to upset you."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro3:r2",
+              "text": "I do not want to upset your."
+            },
+            {
+              "responseId": "en:lesson-22:session-02:intro3:r3",
+              "text": "I do not want to upset yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aa3558e0db46cf569e221d1965049aaf43fa410448b8fc6c504c549e5d4d90f4"
+}

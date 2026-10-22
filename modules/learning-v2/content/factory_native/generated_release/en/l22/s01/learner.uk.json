@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-01:word:advise",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — advise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:word:advise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — advise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:word:advise:audio",
+          "transcript": "advise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:word:advise:r1",
+            "targetText": "advise",
+            "meaningByLocale": {
+              "ru": "дать совет.",
+              "uk": "дати пораду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "advise",
+          "definitionByLocale": {
+            "ru": "дать совет.",
+            "uk": "дати пораду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваш брат просить поради. Скажіть: «Я можу дати йому пораду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваш брат просить поради. Скажіть: «Я можу дати йому пораду»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can advise him.",
+        "localizedMeaning": {
+          "ru": "Ваш брат просит совета. Скажите: «Я могу дать ему совет»",
+          "uk": "Ваш брат просить поради. Скажіть: «Я можу дати йому пораду»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "advise",
+          "him"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i02:r1",
+          "text": "I can advise him."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i02:r2",
+          "text": "We can advise him."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i02:r3",
+          "text": "They can advise him."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i02:audio",
+          "transcript": "I can advise him."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:i02:r1",
+            "targetText": "I can advise him.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i02:r2",
+            "targetText": "We can advise him.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i02:r3",
+            "targetText": "They can advise him.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can advise him.",
+              "uk": "У записі звучить I can advise him."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can advise him.",
+              "uk": "У записі звучить I can advise him."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i03:r1",
+          "text": "him"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i03:r2",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i03:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "I can advise ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-01:i03:r1",
+            "text": "him"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i03:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i03:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:word:congratulate",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — congratulate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:word:congratulate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — congratulate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:word:congratulate:audio",
+          "transcript": "congratulate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:word:congratulate:r1",
+            "targetText": "congratulate",
+            "meaningByLocale": {
+              "ru": "поздравить.",
+              "uk": "привітати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "congratulate",
+          "definitionByLocale": {
+            "ru": "поздравить.",
+            "uk": "привітати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга склала іспит. Скажіть: «Я хочу її привітати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга склала іспит. Скажіть: «Я хочу її привітати»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to congratulate her.",
+        "localizedMeaning": {
+          "ru": "Подруга сдала экзамен. Скажите: «Я хочу её поздравить»",
+          "uk": "Подруга склала іспит. Скажіть: «Я хочу її привітати»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "congratulate",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i05:r1",
+          "text": "I want to congratulate her."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i05:r2",
+          "text": "We want to congratulate her."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i05:r3",
+          "text": "They want to congratulate her."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i05:audio",
+          "transcript": "I want to congratulate her."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:i05:r1",
+            "targetText": "I want to congratulate her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i05:r2",
+            "targetText": "We want to congratulate her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i05:r3",
+            "targetText": "They want to congratulate her.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to congratulate her.",
+              "uk": "У записі звучить I want to congratulate her."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want to congratulate her.",
+              "uk": "У записі звучить I want to congratulate her."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i06:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i06:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i06:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "I want to congratulate ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-01:i06:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i06:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i06:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:word:annoy",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — annoy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:word:annoy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — annoy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:word:annoy:audio",
+          "transcript": "annoy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:word:annoy:r1",
+            "targetText": "annoy",
+            "meaningByLocale": {
+              "ru": "раздражать.",
+              "uk": "дратувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "annoy",
+          "definitionByLocale": {
+            "ru": "раздражать.",
+            "uk": "дратувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусіди відпочивають. Скажіть: «Я не хочу їх дратувати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусіди відпочивають. Скажіть: «Я не хочу їх дратувати»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to annoy them.",
+        "localizedMeaning": {
+          "ru": "Соседи отдыхают. Скажите: «Я не хочу их раздражать»",
+          "uk": "Сусіди відпочивають. Скажіть: «Я не хочу їх дратувати»"
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "annoy",
+          "them"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i08:r1",
+          "text": "I do not want to annoy them."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i08:r2",
+          "text": "We do not want to annoy them."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i08:r3",
+          "text": "They do not want to annoy them."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i08:audio",
+          "transcript": "I do not want to annoy them."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:i08:r1",
+            "targetText": "I do not want to annoy them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i08:r2",
+            "targetText": "We do not want to annoy them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i08:r3",
+            "targetText": "They do not want to annoy them.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to annoy them.",
+              "uk": "У записі звучить I do not want to annoy them."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to annoy them.",
+              "uk": "У записі звучить I do not want to annoy them."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i09:r1",
+          "text": "them"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i09:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i09:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "I do not want to annoy ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-01:i09:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i09:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i09:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:word:disappoint",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — disappoint",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:word:disappoint:audio"
+      ],
+      "accessibilityLabel": "Картка слова — disappoint",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:word:disappoint:audio",
+          "transcript": "disappoint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:word:disappoint:r1",
+            "targetText": "disappoint",
+            "meaningByLocale": {
+              "ru": "разочаровать.",
+              "uk": "розчарувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disappoint",
+          "definitionByLocale": {
+            "ru": "разочаровать.",
+            "uk": "розчарувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зверніться до друга: «Я не хочу тебе розчарувати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зверніться до друга: «Я не хочу тебе розчарувати»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to disappoint you.",
+        "localizedMeaning": {
+          "ru": "Обратитесь к другу: «Я не хочу тебя разочаровать»",
+          "uk": "Зверніться до друга: «Я не хочу тебе розчарувати»"
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "disappoint",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i11:r1",
+          "text": "I do not want to disappoint you."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i11:r2",
+          "text": "We do not want to disappoint you."
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i11:r3",
+          "text": "They do not want to disappoint you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i11:audio",
+          "transcript": "I do not want to disappoint you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-01:i11:r1",
+            "targetText": "I do not want to disappoint you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i11:r2",
+            "targetText": "We do not want to disappoint you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i11:r3",
+            "targetText": "They do not want to disappoint you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to disappoint you.",
+              "uk": "У записі звучить I do not want to disappoint you."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to disappoint you.",
+              "uk": "У записі звучить I do not want to disappoint you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть займенник для цієї фрази.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-01:i12:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i12:r2",
+          "text": "your"
+        },
+        {
+          "responseId": "en:lesson-22:session-01:i12:r3",
+          "text": "yours"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите местоимение для этой фразы.",
+          "uk": "Виберіть займенник для цієї фрази."
+        },
+        "gappedTargetPhrase": "I do not want to disappoint ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-01:i12:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i12:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i12:r3",
+            "text": "yours"
+          }
+        ],
+        "testedDimension": "Виберіть займенник для цієї фрази.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть займенник для цієї фрази.",
+            "feedbackByLocale": {
+              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "uk": "Після цього дієслова потрібна об’єктна форма займенника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-01:i13:p1",
+            "target": "advise",
+            "meaningByLocale": {
+              "ru": "дать совет",
+              "uk": "дати пораду"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-01:i13:p2",
+            "target": "congratulate",
+            "meaningByLocale": {
+              "ru": "поздравить",
+              "uk": "привітати"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-01:i13:p3",
+            "target": "annoy",
+            "meaningByLocale": {
+              "ru": "раздражать",
+              "uk": "дратувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-01:i13:p4",
+            "target": "disappoint",
+            "meaningByLocale": {
+              "ru": "разочаровать",
+              "uk": "розчарувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "advise",
+          "congratulate",
+          "annoy",
+          "disappoint"
+        ],
+        "rightColumn": [
+          "дати пораду",
+          "привітати",
+          "дратувати",
+          "розчарувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат склав іспит. Скажіть: «Я хочу його привітати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Брат склав іспит. Скажіть: «Я хочу його привітати»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i16:audio",
+          "transcript": "I want to congratulate him."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to congratulate him.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга просить поради. Скажіть: «Я можу дати їй пораду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Подруга просить поради. Скажіть: «Я можу дати їй пораду»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-01:i17:audio",
+          "transcript": "I can advise her."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can advise her.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c705f99a2e3ad97a4b99a2038fc8a412323fffd81bde83601d9471e30946e2a2"
+}

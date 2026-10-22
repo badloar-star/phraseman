@@ -158,7 +158,7 @@ const REQUIRED = 3;
 const ANSWER_FEEDBACK_MS = { correct: 500, wrong: 1500 } as const;
 
 type POS = 'pronouns'|'verbs'|'irregular_verbs'|'adjectives'|'adverbs'|'nouns'|'prepositions'|'conjunctions'|'articles'|'phrases';
-interface Word {
+export interface Word {
   en:string;
   ru:string;
   uk:string;
@@ -3414,7 +3414,11 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 }
 
 // ── СПИСОК ───────────────────────────────────────────────────────────────────
-function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang: Lang; lessonId?: number; onStartTraining?: () => void; }) {
+/**
+ * зачем (владелец 22.10 через координатора: «Слова» в Сезоне открывают слова ЭТОГО урока, вид 1:1 как в основном курсе): список слов основного курса переиспользуется экраном Learning V2
+ * (app/learning_v2_lesson_words.tsx). `flat` — слова одним списком: без заголовков частей речи, без полосы «выучено» (у слов Learning V2 нет счётчика выученного) и без кнопки «сообщить об ошибке» (она про словарь основного курса).
+ */
+export function WordList({ words, learnedCounts, lang, lessonId, onStartTraining, flat = false }: { words:Word[]; learnedCounts:Record<string,number>; lang: Lang; lessonId?: number; onStartTraining?: () => void; flat?: boolean; }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, ds, liquidGlassThemeId } = useTheme();
@@ -3422,7 +3426,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
   // полоса выученного, заголовки групп; озвучка по тапу и «в карточки» сохранены.
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { hPad } = useScreen();
-  const sections = groupByPOS(words, lang);
+  const sections = flat ? [{ title: '', data: words }] : groupByPOS(words, lang);
   const learnedTotal = useMemo(() => words.filter(w => (learnedCounts[w.en] ?? 0) >= REQUIRED).length, [words, learnedCounts]);
 
   // Какое слово СЕЙЧАС звучит — для подсветки на время озвучки. Тап по слову
@@ -3473,7 +3477,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
                 />
               </View>
             ) : null}
-            <ReportErrorButton
+            {flat ? null : <ReportErrorButton
               screen="lesson_words"
               dataId={`wordlist_lesson_${lessonId ?? 0}`}
               dataText={pickTriLang(lang, {
@@ -3488,10 +3492,10 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
               })}
               style={{ alignSelf: 'flex-end', marginHorizontal: hPad, marginTop: ds.spacing.sm }}
               textColor={glass.secondary}
-            />
+            />}
           </View>
         }
-        ListHeaderComponent={
+        ListHeaderComponent={flat ? <View style={{ height: 12 }} /> : (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: hPad, marginTop: 22 }}>
             <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
               <KitProgressFill ratio={words.length > 0 ? learnedTotal / words.length : 0} style={{ backgroundColor: glass.accentGraphic }} />
@@ -3500,8 +3504,8 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
               {`${learnedTotal} / ${words.length} ${pickTriLang(lang, { ru: 'выучено', en: 'learned', uk: 'вивчено', es: 'aprendidas', 'pt-BR': 'aprendidas', vi: 'đã học', id: 'dipelajari', tr: 'öğrenildi', pl: 'poznane' })}`}
             </Text>
           </View>
-        }
-        renderSectionHeader={({ section }) => (
+        )}
+        renderSectionHeader={({ section }) => section.title === '' ? null : (
           <View style={{ paddingHorizontal: hPad + 2, paddingTop: 22, paddingBottom: 10 }}>
             <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 3 }}>
               {section.title}

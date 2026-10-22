@@ -179,9 +179,10 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     onSessionPress(card.lessonOrdinal, card.sessionOrdinal, card.sourceState);
   }, [onSessionPress]);
   const onWords = useCallback(() => {
-    console.log(`${LOG} нажатие → «Слова»`, JSON.stringify({ to: '/flashcards' })); // guard-ok: куда ведёт нажатие
-    router.push('/flashcards' as never);
-  }, [router]);
+    // зачем (владелец 22.10: «„СЛОВА“ НАЖИМАЮ, ОТКРЫВАЕТСЯ РАЗДЕЛ КАРТОЧКИ»): «Слова» открывают слова ЭТОГО урока (экран app/learning_v2_lesson_words.tsx, вид «Слов урока» основного курса), а не раздел «Карточки»; данные — слова урока с телефона
+    console.log('[SEASON-WORDS] нажатие → «Слова»', JSON.stringify({ lesson, to: '/learning_v2_lesson_words' })); // guard-ok: куда ведёт нажатие
+    router.push({ pathname: '/learning_v2_lesson_words', params: { lesson: String(lesson) } } as never);
+  }, [lesson, router]);
   const theory = useMemo(() => (hasLearningV2TheoryV1(lesson, lang) ? loadLearningV2TheoryV1(lesson, lang) : null), [lang, lesson]);
   const theorySection = useMemo(() => {
     const cur = deck.cards[deck.currentIndex];

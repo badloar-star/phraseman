@@ -24,7 +24,9 @@ describe('Сезон во вкладке «Уроки»', () => {
   it('нажатия: эпизод → onSessionPress, «Все уроки» с классическим курсом, «Слова», «Теория»', () => {
     expect(wire).toContain('onSessionPress(card.lessonOrdinal, card.sessionOrdinal, card.sourceState)');
     expect(wire).toContain('onLegacy={props.onLegacyLessons}');
-    expect(wire).toContain("router.push('/flashcards'");
+    // зачем (владелец 22.10): «Слова» — слова ЭТОГО урока (экран Learning V2), а не раздел «Карточки»
+    expect(wire).toContain("pathname: '/learning_v2_lesson_words', params: { lesson: String(lesson) }");
+    expect(wire).not.toContain("router.push('/flashcards'");
     expect(wire).toContain('LearningV2TheorySheet');
   });
   it('журнал [SEASON-WIRE]: вход, урок/глава, источник, каждое нажатие', () => {

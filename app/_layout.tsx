@@ -3739,6 +3739,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           его модалкой, и экран открывался «на пол-экрана» поверх списка уроков. */}
       <Stack.Screen name="combined_lesson_pick" />
       <Stack.Screen name="lesson_words" />
+      {/* зачем (владелец 22.10: «Слова» в Сезоне): слова урока Learning V2 — обычный push-экран, как «Слова урока» основного курса */}
+      <Stack.Screen name="learning_v2_lesson_words" />
       <Stack.Screen name="lesson_irregular_verbs" />
       <Stack.Screen name="lesson_complete" />
 

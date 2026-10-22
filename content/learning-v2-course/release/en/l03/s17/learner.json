@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что курьер говорит о сдаче",
+      "prompt": "Послушайте и выберите — курьер разговаривает с вами у двери",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-17:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-17:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что курьер говорит о сдаче",
+      "accessibilityLabel": "Послушайте и выберите — курьер разговаривает с вами у двери",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-03:session-17:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что курьер говорит о сдаче",
+            "testedDimension": "Послушайте и выберите — курьер разговаривает с вами у двери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `coins`, а в этом варианте — `coin`.",
               "uk": "У записі останнє слово — `coins`, а в цьому варіанті — `coin`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-03:session-17:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что курьер говорит о сдаче",
+            "testedDimension": "Послушайте и выберите — курьер разговаривает с вами у двери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `coins`, а в этом варианте — `tickets`.",
               "uk": "У записі останнє слово — `coins`, а в цьому варіанті — `tickets`."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте брата: он говорит о билетах",
+      "prompt": "Послушайте и выберите — курьер перечисляет, что лежит в посылке",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-17:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-17:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте брата: он говорит о билетах",
+      "accessibilityLabel": "Послушайте и выберите — курьер перечисляет, что лежит в посылке",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-03:session-17:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте брата: он говорит о билетах",
+            "testedDimension": "Послушайте и выберите — курьер перечисляет, что лежит в посылке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-03:session-17:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте брата: он говорит о билетах",
+            "testedDimension": "Послушайте и выберите — курьер перечисляет, что лежит в посылке",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `new`, а в этом варианте — `here`.",
               "uk": "У записі останнє слово — `new`, а в цьому варіанті — `here`."
@@ -979,7 +979,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги",
+      "prompt": "Послушайте и выберите — подруга разглядывает посылку вместе с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-17:i15:r1",
@@ -998,7 +998,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги",
+      "accessibilityLabel": "Послушайте и выберите — подруга разглядывает посылку вместе с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1028,7 +1028,7 @@
           {
             "responseId": "en:lesson-03:session-17:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга разглядывает посылку вместе с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `coins`, а в этом варианте — `cards`.",
               "uk": "У записі останнє слово — `coins`, а в цьому варіанті — `cards`."
@@ -1037,7 +1037,7 @@
           {
             "responseId": "en:lesson-03:session-17:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга разглядывает посылку вместе с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `coins`, а в этом варианте — `pens`.",
               "uk": "У записі останнє слово — `coins`, а в цьому варіанті — `pens`."
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f32e4ec7570cf57c0ff6512f7a9d78a86fc04659d4c527d17e0d2c62eae724db"
+  "learnerFingerprint": "ceed259f422df707d801b5cff5700a08e914a63c123804f60f5c2e7496f25366"
 }

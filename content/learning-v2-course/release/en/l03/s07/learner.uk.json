@@ -144,11 +144,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i02:r1",
-          "text": "It is a wardrobe."
+          "text": "It is a cupboard."
         },
         {
           "responseId": "en:lesson-03:session-07:i02:r2",
-          "text": "It is a cupboard."
+          "text": "It is a wardrobe."
         },
         {
           "responseId": "en:lesson-03:session-07:i02:r3",
@@ -164,18 +164,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i02:audio",
-          "transcript": "It is a wardrobe."
+          "transcript": "It is a cupboard."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-07:i02:r1",
-            "targetText": "It is a wardrobe.",
+            "targetText": "It is a cupboard.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i02:r2",
-            "targetText": "It is a cupboard.",
+            "targetText": "It is a wardrobe.",
             "meaningByLocale": null
           },
           {
@@ -191,8 +191,8 @@
             "correct": false,
             "testedDimension": "Послухайте, що подруга каже про меблі",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.",
-              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `cupboard`."
+              "ru": "В записи последнее слово — `cupboard`, а в этом варианте — `wardrobe`.",
+              "uk": "У записі останнє слово — `cupboard`, а в цьому варіанті — `wardrobe`."
             }
           },
           {
@@ -200,8 +200,8 @@
             "correct": false,
             "testedDimension": "Послухайте, що подруга каже про меблі",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `drawer`.",
-              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `drawer`."
+              "ru": "В записи последнее слово — `cupboard`, а в этом варианте — `drawer`.",
+              "uk": "У записі останнє слово — `cupboard`, а в цьому варіанті — `drawer`."
             }
           }
         ],
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "094510d0f64cfa218917567a95af4f1ea3da06cf1cae474d45d0baad3cc35582"
+  "learnerFingerprint": "c1197f99498aa9458f849b48da41fab2d3e9535a625ca5aa82f8061c948f2b02"
 }

@@ -144,11 +144,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i02:r1",
-          "text": "It is a wardrobe."
+          "text": "It is a cupboard."
         },
         {
           "responseId": "en:lesson-03:session-07:i02:r2",
-          "text": "It is a cupboard."
+          "text": "It is a wardrobe."
         },
         {
           "responseId": "en:lesson-03:session-07:i02:r3",
@@ -164,18 +164,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-07:i02:audio",
-          "transcript": "It is a wardrobe."
+          "transcript": "It is a cupboard."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-07:i02:r1",
-            "targetText": "It is a wardrobe.",
+            "targetText": "It is a cupboard.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-07:i02:r2",
-            "targetText": "It is a cupboard.",
+            "targetText": "It is a wardrobe.",
             "meaningByLocale": null
           },
           {
@@ -191,8 +191,8 @@
             "correct": false,
             "testedDimension": "Послушайте, что подруга говорит о мебели",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.",
-              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `cupboard`."
+              "ru": "В записи последнее слово — `cupboard`, а в этом варианте — `wardrobe`.",
+              "uk": "У записі останнє слово — `cupboard`, а в цьому варіанті — `wardrobe`."
             }
           },
           {
@@ -200,8 +200,8 @@
             "correct": false,
             "testedDimension": "Послушайте, что подруга говорит о мебели",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `drawer`.",
-              "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `drawer`."
+              "ru": "В записи последнее слово — `cupboard`, а в этом варианте — `drawer`.",
+              "uk": "У записі останнє слово — `cupboard`, а в цьому варіанті — `drawer`."
             }
           }
         ],
@@ -639,7 +639,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги",
+      "prompt": "Послушайте и выберите — вы собираете мебель, подруга спрашивает",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i09:r1",
@@ -658,7 +658,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-07:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги",
+      "accessibilityLabel": "Послушайте и выберите — вы собираете мебель, подруга спрашивает",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -688,7 +688,7 @@
           {
             "responseId": "en:lesson-03:session-07:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — вы собираете мебель, подруга спрашивает",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `cupboard`.",
               "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `cupboard`."
@@ -697,7 +697,7 @@
           {
             "responseId": "en:lesson-03:session-07:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — вы собираете мебель, подруга спрашивает",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `wardrobe`, а в этом варианте — `hanger`.",
               "uk": "У записі останнє слово — `wardrobe`, а в цьому варіанті — `hanger`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о вешалке",
+      "prompt": "Послушайте и выберите — очередную деталь вам подаёт подруга",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-07:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о вешалке",
+      "accessibilityLabel": "Послушайте и выберите — очередную деталь вам подаёт подруга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-07:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о вешалке",
+            "testedDimension": "Послушайте и выберите — очередную деталь вам подаёт подруга",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hanger`, а в этом варианте — `drawer`.",
               "uk": "У записі останнє слово — `hanger`, а в цьому варіанті — `drawer`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-07:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о вешалке",
+            "testedDimension": "Послушайте и выберите — очередную деталь вам подаёт подруга",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `hanger`, а в этом варианте — `cupboard`.",
               "uk": "У записі останнє слово — `hanger`, а в цьому варіанті — `cupboard`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "461771d006698efef59234c53335a415aea18bb7a3b01a195e85f053625c2c9f"
+  "learnerFingerprint": "570f2f10795173aff8a4b60daa8ea663918b156346a2009780dc36a476d7bfdb"
 }

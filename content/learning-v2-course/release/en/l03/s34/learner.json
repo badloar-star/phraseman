@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги о полотенцах",
+      "prompt": "Послушайте и выберите — подруга спрашивает вас в магазине текстиля",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-34:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-34:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги о полотенцах",
+      "accessibilityLabel": "Послушайте и выберите — подруга спрашивает вас в магазине текстиля",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-34:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги о полотенцах",
+            "testedDimension": "Послушайте и выберите — подруга спрашивает вас в магазине текстиля",
             "feedbackByLocale": {
               "ru": "В записи `Are those towels` — полотенец несколько, а в этом варианте `Is that towel` — одно.",
               "uk": "У записі `Are those towels` — рушників кілька, а в цьому варіанті `Is that towel` — один."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-34:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги о полотенцах",
+            "testedDimension": "Послушайте и выберите — подруга спрашивает вас в магазине текстиля",
             "feedbackByLocale": {
               "ru": "В записи слово `those` — полотенца далеко, а в этом варианте `these` — рядом.",
               "uk": "У записі слово `those` — рушники далеко, а в цьому варіанті `these` — поруч."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что говорит подруга о пледах",
+      "prompt": "Послушайте и выберите — вы выбираете бельё, подруга говорит рядом",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-34:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-34:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что говорит подруга о пледах",
+      "accessibilityLabel": "Послушайте и выберите — вы выбираете бельё, подруга говорит рядом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-34:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит подруга о пледах",
+            "testedDimension": "Послушайте и выберите — вы выбираете бельё, подруга говорит рядом",
             "feedbackByLocale": {
               "ru": "В записи `Those blankets are` — пледов несколько, а в этом варианте `That blanket is` — один.",
               "uk": "У записі `Those blankets are` — пледів кілька, а в цьому варіанті `That blanket is` — один."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-34:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит подруга о пледах",
+            "testedDimension": "Послушайте и выберите — вы выбираете бельё, подруга говорит рядом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `soft`, а в этом варианте — `big`.",
               "uk": "У записі останнє слово — `soft`, а в цьому варіанті — `big`."
@@ -982,7 +982,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что говорит продавец об одеялах",
+      "prompt": "Послушайте и выберите — продавец стоит у полок в дальнем конце зала",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-34:i15:r1",
@@ -1001,7 +1001,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-34:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что говорит продавец об одеялах",
+      "accessibilityLabel": "Послушайте и выберите — продавец стоит у полок в дальнем конце зала",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1031,7 +1031,7 @@
           {
             "responseId": "en:lesson-03:session-34:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит продавец об одеялах",
+            "testedDimension": "Послушайте и выберите — продавец стоит у полок в дальнем конце зала",
             "feedbackByLocale": {
               "ru": "В записи `Those duvets are` — одеял несколько, а в этом варианте `That duvet is` — одно.",
               "uk": "У записі `Those duvets are` — ковдр кілька, а в цьому варіанті `That duvet is` — одна."
@@ -1040,7 +1040,7 @@
           {
             "responseId": "en:lesson-03:session-34:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит продавец об одеялах",
+            "testedDimension": "Послушайте и выберите — продавец стоит у полок в дальнем конце зала",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `warm`, а в этом варианте — `cheap`.",
               "uk": "У записі останнє слово — `warm`, а в цьому варіанті — `cheap`."
@@ -1173,5 +1173,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b4211e16d0912584d9b0c49606e762c758c466c47b549647e5f2892870ce823e"
+  "learnerFingerprint": "f6f646d9bab4775664293c000486e8b23f63d5a70eb2974095b81e8538e207d0"
 }

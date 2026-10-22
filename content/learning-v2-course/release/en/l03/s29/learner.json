@@ -53,7 +53,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что говорит соседка",
+      "prompt": "Послушайте и выберите — соседка разбирает с вами почту в подъезде",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-29:i02:r1",
@@ -72,7 +72,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-29:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что говорит соседка",
+      "accessibilityLabel": "Послушайте и выберите — соседка разбирает с вами почту в подъезде",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -102,7 +102,7 @@
           {
             "responseId": "en:lesson-03:session-29:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит соседка",
+            "testedDimension": "Послушайте и выберите — соседка разбирает с вами почту в подъезде",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
               "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
@@ -111,7 +111,7 @@
           {
             "responseId": "en:lesson-03:session-29:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит соседка",
+            "testedDimension": "Послушайте и выберите — соседка разбирает с вами почту в подъезде",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `door`, а в этом варианте — `box`.",
               "uk": "У записі останнє слово — `door`, а в цьому варіанті — `box`."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте соседку",
+      "prompt": "Послушайте и выберите — у подъезда соседка смотрит на вещи",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-29:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-29:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте соседку",
+      "accessibilityLabel": "Послушайте и выберите — у подъезда соседка смотрит на вещи",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-29:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте соседку",
+            "testedDimension": "Послушайте и выберите — у подъезда соседка смотрит на вещи",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `This`, а в этом варианте — `That`.",
               "uk": "У записі перше слово — `This`, а в цьому варіанті — `That`."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-29:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте соседку",
+            "testedDimension": "Послушайте и выберите — у подъезда соседка смотрит на вещи",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `parcel`, а в этом варианте — `box`.",
               "uk": "У записі останнє слово — `parcel`, а в цьому варіанті — `box`."
@@ -984,7 +984,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте соседку про марку",
+      "prompt": "Послушайте и выберите — вы разбираете почту, соседка говорит рядом",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-29:i15:r1",
@@ -1003,7 +1003,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-29:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте соседку про марку",
+      "accessibilityLabel": "Послушайте и выберите — вы разбираете почту, соседка говорит рядом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1033,7 +1033,7 @@
           {
             "responseId": "en:lesson-03:session-29:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте соседку про марку",
+            "testedDimension": "Послушайте и выберите — вы разбираете почту, соседка говорит рядом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `small`, а в этом варианте — `big`.",
               "uk": "У записі останнє слово — `small`, а в цьому варіанті — `big`."
@@ -1042,7 +1042,7 @@
           {
             "responseId": "en:lesson-03:session-29:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте соседку про марку",
+            "testedDimension": "Послушайте и выберите — вы разбираете почту, соседка говорит рядом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `small`, а в этом варианте — `heavy`.",
               "uk": "У записі останнє слово — `small`, а в цьому варіанті — `heavy`."
@@ -1175,5 +1175,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34121feded70ed7a22c26d00777f97b1b8ebc03fd2a59eb88fbb22bfcbe5fad0"
+  "learnerFingerprint": "c52c2e2275d8ac316919c92becc7b070e470164c1865029f431cc98fb403fc05"
 }

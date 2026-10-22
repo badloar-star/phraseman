@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что продавец говорит о приборе на столе",
+      "prompt": "Послушайте и выберите — продавец стоит у стола с приборами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-10:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-10:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что продавец говорит о приборе на столе",
+      "accessibilityLabel": "Послушайте и выберите — продавец стоит у стола с приборами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-10:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит о приборе на столе",
+            "testedDimension": "Послушайте и выберите — продавец стоит у стола с приборами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `toaster`, а в этом варианте — `kettle`.",
               "uk": "У записі останнє слово — `toaster`, а в цьому варіанті — `kettle`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-10:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит о приборе на столе",
+            "testedDimension": "Послушайте и выберите — продавец стоит у стола с приборами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `toaster`, а в этом варианте — `oven`.",
               "uk": "У записі останнє слово — `toaster`, а в цьому варіанті — `oven`."
@@ -639,7 +639,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос брата",
+      "prompt": "Послушайте и выберите — сестра спрашивает вас о приборах",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-10:i09:r1",
@@ -658,7 +658,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-10:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос брата",
+      "accessibilityLabel": "Послушайте и выберите — сестра спрашивает вас о приборах",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -688,7 +688,7 @@
           {
             "responseId": "en:lesson-03:session-10:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос брата",
+            "testedDimension": "Послушайте и выберите — сестра спрашивает вас о приборах",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `kettle`.",
               "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `kettle`."
@@ -697,7 +697,7 @@
           {
             "responseId": "en:lesson-03:session-10:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос брата",
+            "testedDimension": "Послушайте и выберите — сестра спрашивает вас о приборах",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `blender`.",
               "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `blender`."
@@ -984,7 +984,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что продавец говорит в конце ряда",
+      "prompt": "Послушайте и выберите — в конце ряда продавец показывает вещь",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-10:i15:r1",
@@ -1003,7 +1003,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-10:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что продавец говорит в конце ряда",
+      "accessibilityLabel": "Послушайте и выберите — в конце ряда продавец показывает вещь",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1033,7 +1033,7 @@
           {
             "responseId": "en:lesson-03:session-10:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит в конце ряда",
+            "testedDimension": "Послушайте и выберите — в конце ряда продавец показывает вещь",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `blender`.",
               "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `blender`."
@@ -1042,7 +1042,7 @@
           {
             "responseId": "en:lesson-03:session-10:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что продавец говорит в конце ряда",
+            "testedDimension": "Послушайте и выберите — в конце ряда продавец показывает вещь",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `vacuum`, а в этом варианте — `oven`.",
               "uk": "У записі останнє слово — `vacuum`, а в цьому варіанті — `oven`."
@@ -1175,5 +1175,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "655eec704eb89e5e0aefc11ba4a9ca5850564fc81299ce5e3ed57cf5462c2206"
+  "learnerFingerprint": "53d584a909afb36e40be2542ec009d5348bcff1e0bf87fb3aa4f623a642bc5c5"
 }

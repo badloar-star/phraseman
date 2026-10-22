@@ -144,7 +144,7 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i02:r1",
-          "text": "It is a bucket."
+          "text": "It is a hammer."
         },
         {
           "responseId": "en:lesson-03:session-08:i02:r2",
@@ -152,7 +152,7 @@
         },
         {
           "responseId": "en:lesson-03:session-08:i02:r3",
-          "text": "It is a hammer."
+          "text": "It is a bucket."
         }
       ],
       "mediaIds": [],
@@ -164,13 +164,13 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-08:i02:audio",
-          "transcript": "It is a bucket."
+          "transcript": "It is a hammer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-08:i02:r1",
-            "targetText": "It is a bucket.",
+            "targetText": "It is a hammer.",
             "meaningByLocale": null
           },
           {
@@ -180,7 +180,7 @@
           },
           {
             "responseId": "en:lesson-03:session-08:i02:r3",
-            "targetText": "It is a hammer.",
+            "targetText": "It is a bucket.",
             "meaningByLocale": null
           }
         ],
@@ -191,8 +191,8 @@
             "correct": false,
             "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
-              "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
+              "ru": "В записи последнее слово — `hammer`, а в этом варианте — `ladder`.",
+              "uk": "У записі останнє слово — `hammer`, а в цьому варіанті — `ladder`."
             }
           },
           {
@@ -200,8 +200,8 @@
             "correct": false,
             "testedDimension": "Послушайте, что подруга говорит о вещах в коридоре",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
-              "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
+              "ru": "В записи последнее слово — `hammer`, а в этом варианте — `bucket`.",
+              "uk": "У записі останнє слово — `hammer`, а в цьому варіанті — `bucket`."
             }
           }
         ],
@@ -639,7 +639,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги",
+      "prompt": "Послушайте и выберите — подруга спрашивает, пока вы сверяете список",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i09:r1",
@@ -658,7 +658,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-08:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги",
+      "accessibilityLabel": "Послушайте и выберите — подруга спрашивает, пока вы сверяете список",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -688,7 +688,7 @@
           {
             "responseId": "en:lesson-03:session-08:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга спрашивает, пока вы сверяете список",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `bucket`, а в этом варианте — `ladder`.",
               "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `ladder`."
@@ -697,7 +697,7 @@
           {
             "responseId": "en:lesson-03:session-08:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга спрашивает, пока вы сверяете список",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `bucket`, а в этом варианте — `hammer`.",
               "uk": "У записі останнє слово — `bucket`, а в цьому варіанті — `hammer`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о полке",
+      "prompt": "Послушайте и выберите — вы достаёте из последней коробки предмет",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-08:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-08:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о полке",
+      "accessibilityLabel": "Послушайте и выберите — вы достаёте из последней коробки предмет",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-08:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о полке",
+            "testedDimension": "Послушайте и выберите — вы достаёте из последней коробки предмет",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `shelf`, а в этом варианте — `hammer`.",
               "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `hammer`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-08:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о полке",
+            "testedDimension": "Послушайте и выберите — вы достаёте из последней коробки предмет",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `shelf`, а в этом варианте — `bucket`.",
               "uk": "У записі останнє слово — `shelf`, а в цьому варіанті — `bucket`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7831f1582b0809ef091887bd57bb21226a035fedc583402ed294e0bbe9adf846"
+  "learnerFingerprint": "87ef5f778db29b050389682cee8cd72234050de44c0afa607db643671a8585f1"
 }

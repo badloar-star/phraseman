@@ -144,7 +144,7 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i02:r1",
-          "text": "It is a crack."
+          "text": "It is a floor."
         },
         {
           "responseId": "en:lesson-03:session-05:i02:r2",
@@ -152,7 +152,7 @@
         },
         {
           "responseId": "en:lesson-03:session-05:i02:r3",
-          "text": "It is a floor."
+          "text": "It is a crack."
         }
       ],
       "mediaIds": [],
@@ -164,13 +164,13 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-05:i02:audio",
-          "transcript": "It is a crack."
+          "transcript": "It is a floor."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-05:i02:r1",
-            "targetText": "It is a crack.",
+            "targetText": "It is a floor.",
             "meaningByLocale": null
           },
           {
@@ -180,7 +180,7 @@
           },
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
-            "targetText": "It is a floor.",
+            "targetText": "It is a crack.",
             "meaningByLocale": null
           }
         ],
@@ -191,8 +191,8 @@
             "correct": false,
             "testedDimension": "Послухайте, що майстер каже про ремонт",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `crack`, а в этом варианте — `wall`.",
-              "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `wall`."
+              "ru": "В записи последнее слово — `floor`, а в этом варианте — `wall`.",
+              "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `wall`."
             }
           },
           {
@@ -200,8 +200,8 @@
             "correct": false,
             "testedDimension": "Послухайте, що майстер каже про ремонт",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `crack`, а в этом варианте — `floor`.",
-              "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `floor`."
+              "ru": "В записи последнее слово — `floor`, а в этом варианте — `crack`.",
+              "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `crack`."
             }
           }
         ],
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "38d82b5277834ab0dea24d363b12d919e140c6c9121b3cfa4086d6a6dbeb74d6"
+  "learnerFingerprint": "11371a881f106d760d7a11b001a2fd509c7c8f6d4b78b6ab3ba0c0404d495ac5"
 }

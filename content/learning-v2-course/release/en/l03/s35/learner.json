@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос соседки о зеркале",
+      "prompt": "Послушайте и выберите — соседка выбирает с вами украшения для стены",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-35:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-35:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос соседки о зеркале",
+      "accessibilityLabel": "Послушайте и выберите — соседка выбирает с вами украшения для стены",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-35:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос соседки о зеркале",
+            "testedDimension": "Послушайте и выберите — соседка выбирает с вами украшения для стены",
             "feedbackByLocale": {
               "ru": "В записи `Is this mirror` — зеркало одно, а в этом варианте `Are these mirrors` — несколько.",
               "uk": "У записі `Is this mirror` — дзеркало одне, а в цьому варіанті `Are these mirrors` — кілька."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-35:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос соседки о зеркале",
+            "testedDimension": "Послушайте и выберите — соседка выбирает с вами украшения для стены",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `big`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `big`, а в цьому варіанті — `old`."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что говорит соседка о снимках",
+      "prompt": "Послушайте и выберите — вы выбираете украшения, соседка говорит",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-35:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-35:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что говорит соседка о снимках",
+      "accessibilityLabel": "Послушайте и выберите — вы выбираете украшения, соседка говорит",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-35:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит соседка о снимках",
+            "testedDimension": "Послушайте и выберите — вы выбираете украшения, соседка говорит",
             "feedbackByLocale": {
               "ru": "В записи `This photo` — снимок один, а в этом варианте `These photos` — несколько.",
               "uk": "У записі `This photo` — знімок один, а в цьому варіанті `These photos` — кілька."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-35:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что говорит соседка о снимках",
+            "testedDimension": "Послушайте и выберите — вы выбираете украшения, соседка говорит",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
               "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос брата об альбоме",
+      "prompt": "Послушайте и выберите — брат листает вещи рядом с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-35:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-35:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос брата об альбоме",
+      "accessibilityLabel": "Послушайте и выберите — брат листает вещи рядом с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-35:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос брата об альбоме",
+            "testedDimension": "Послушайте и выберите — брат листает вещи рядом с вами",
             "feedbackByLocale": {
               "ru": "В записи `Is this album` — альбом один, а в этом варианте `Are these albums` — несколько.",
               "uk": "У записі `Is this album` — альбом один, а в цьому варіанті `Are these albums` — кілька."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-35:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос брата об альбоме",
+            "testedDimension": "Послушайте и выберите — брат листает вещи рядом с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5f660e4259daf4abb1013497f8d41ef147cac45d49492b679746c57d5665f4a9"
+  "learnerFingerprint": "e3beeca865d5a3a08b9b10c5091f7107f035fb70ed7813015d03baa044887e04"
 }

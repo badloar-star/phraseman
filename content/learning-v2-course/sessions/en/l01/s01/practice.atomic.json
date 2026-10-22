@@ -574,7 +574,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте реплику и выберите её смысл",
+        "prompt": "Послушайте и выберите — начальница встречает вас у входа в офис",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i13:r1",
@@ -593,7 +593,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-01:i13:audio"
         ],
-        "accessibilityLabel": "Послушайте реплику и выберите её смысл",
+        "accessibilityLabel": "Послушайте и выберите — начальница встречает вас у входа в офис",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -623,7 +623,7 @@
             {
               "responseId": "en:lesson-01:session-01:i13:r2",
               "correct": false,
-              "testedDimension": "Послушайте реплику и выберите её смысл",
+              "testedDimension": "Послушайте и выберите — начальница встречает вас у входа в офис",
               "feedbackByLocale": {
                 "ru": "I am ready — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
                 "uk": "I am ready — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
@@ -632,7 +632,7 @@
             {
               "responseId": "en:lesson-01:session-01:i13:r3",
               "correct": false,
-              "testedDimension": "Послушайте реплику и выберите её смысл",
+              "testedDimension": "Послушайте и выберите — начальница встречает вас у входа в офис",
               "feedbackByLocale": {
                 "ru": "I am fine — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
                 "uk": "I am fine — «у мене все добре». Це відповідь про самопочуття, не про місце."

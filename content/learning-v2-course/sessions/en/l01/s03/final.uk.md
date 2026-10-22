@@ -97,10 +97,10 @@ I am ___ cold. → **not** · no · am
 <!-- interaction_id: en:lesson-01:session-03:i04; family: word_card -->
 > **sure** — «впевнений / впевнена»: ви не сумніваєтеся. Якщо сумніваєтеся щодо часу зустрічі, скажіть I am not sure.
 
-**9 · Складіть фразу — ви ще в офісі й не самі**
+**9 · Складіть фразу — ви точно знаєте час зустрічі**
 <!-- interaction_id: en:lesson-01:session-03:i10; family: phrase_builder -->
-Плитки: `I` `am` `not` `alone` `sure` → **I am not alone.**
-*(плитка `sure` зайва: «впевнений», але тут ви повідомляєте: «я не сам»)*
+Плитки: `I` `am` `sure` `alone` → **I am sure.**
+*(плитка `alone` зайва: «сам», а тут ви впевнені)*
 
 **10 · Послухайте і складіть — «я не впевнений»**
 <!-- interaction_id: en:lesson-01:session-03:i11; family: listen_build_dictation -->

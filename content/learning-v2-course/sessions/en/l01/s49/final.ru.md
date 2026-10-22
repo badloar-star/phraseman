@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-49:word:rare; family: word_card -->
 > **rare** — редкий, таких мало. It's rare — «Это редкость».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — вы гуляете с другом по ярмарке старых вещей**
 <!-- interaction_id: en:lesson-01:session-49:i02; family: listen_choose -->
 🔊 *It is rare.* → **It is rare.** · It is cheap. · It is useful.
 - It is cheap. — *В записи последнее слово — `rare`, а в этом варианте — `cheap`.*
@@ -109,7 +109,7 @@ He is ___ . → **honest** · cheap · rare
 - cheap — *`cheap` — о цене вещи. Здесь оцениваем человека: `honest`.*
 - rare — *`rare` — «редкий». Здесь нужна честность: `honest`.*
 
-**13 · Послушайте фразу о продавце**
+**13 · Послушайте и выберите — друг на ярмарке отходит от прилавка**
 <!-- interaction_id: en:lesson-01:session-49:i09; family: listen_choose -->
 🔊 *He is honest.* → **He is honest.** · He is polite. · She is honest.
 - He is polite. — *В записи последнее слово — `honest`, а в этом варианте — `polite`.*
@@ -139,7 +139,7 @@ It ___ rare. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Монета одна — `It is`.*
 
-**19 · Послушайте короткую оценку и выберите её**
+**19 · Послушайте и выберите — друг оценивает вещь на ярмарке**
 <!-- interaction_id: en:lesson-01:session-49:i15; family: listen_choose -->
 🔊 *It's secondhand.* → **It's secondhand.** · It's colorful. · It's useless.
 - It's colorful. — *В записи последнее слово — `secondhand`, а в этом варианте — `colorful`.*

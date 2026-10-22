@@ -61,7 +61,7 @@
 Плитки: `locked` `is` `It` `are` → **It is locked.**
 *(плитка `are` лишняя: здесь нужно `is` — `It is locked.`)*
 
-**3 · Послушайте фразу о билетах на поезд и выберите услышанное**
+**3 · Послушайте и выберите — такси у подъезда, вы проверяете билеты**
 <!-- interaction_id: en:lesson-01:session-56:i02; family: listen_choose -->
 🔊 *They are expensive.* → **They are expensive.** · They are cheap. · They are heavy.
 - They are cheap. — *В записи последнее слово — `expensive`, а в этом варианте — `cheap`.*
@@ -105,7 +105,7 @@ It is ___ . → **expired** · familiar · tight
 - familiar — *`familiar` — «знакомый». А у билета вышел срок: `expired`.*
 - tight — *`tight` — «тесный», это об обуви и одежде. О билете с вышедшим сроком говорит `expired`.*
 
-**12 · Послушайте фразу о тёте**
+**12 · Послушайте и выберите — утром отъезда вы говорите о тёте**
 <!-- interaction_id: en:lesson-01:session-56:i09; family: listen_choose -->
 🔊 *She is responsible.* → **She is responsible.** · She is independent. · She is dependent.
 - She is independent. — *В записи последнее слово — `responsible`, а в этом варианте — `independent`.*
@@ -139,7 +139,7 @@ It ___ tight. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Куртка одна, поэтому `It is`.*
 
-**19 · Послушайте короткую фразу и выберите её**
+**19 · Послушайте и выберите — вы проверяете вещи перед выходом из дома**
 <!-- interaction_id: en:lesson-01:session-56:i15; family: listen_choose -->
 🔊 *They're tight.* → **They're tight.** · It's tight. · They're light.
 - It's tight. — *В записи первое слово — `They're`, а в этом варианте — `It's`.*

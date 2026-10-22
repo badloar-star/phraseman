@@ -139,7 +139,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите услышанное",
+        "prompt": "Послушайте и выберите — друг в кафе обсуждает с вами заказ",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-31:i02:r1",
@@ -158,7 +158,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-31:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — друг в кафе обсуждает с вами заказ",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -188,7 +188,7 @@
             {
               "responseId": "en:lesson-01:session-31:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — друг в кафе обсуждает с вами заказ",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `similar`, а в этом варианте — `separate`.",
                 "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `separate`."
@@ -197,7 +197,7 @@
             {
               "responseId": "en:lesson-01:session-31:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — друг в кафе обсуждает с вами заказ",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `similar`, а в этом варианте — `equal`.",
                 "uk": "У записі останнє слово — `similar`, а в цьому варіанті — `equal`."
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Друг спрашивает, чья пицца в центре стола. Послушайте ответ и выберите услышанное",
+        "prompt": "Послушайте и выберите — за обедом друг задаёт вам вопрос о блюде",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-31:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-31:i09:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, чья пицца в центре стола. Послушайте ответ и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — за обедом друг задаёт вам вопрос о блюде",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-01:session-31:i09:r2",
               "correct": false,
-              "testedDimension": "Друг спрашивает, чья пицца в центре стола. Послушайте ответ и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — за обедом друг задаёт вам вопрос о блюде",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `shared`, а в этом варианте — `separate`.",
                 "uk": "У записі останнє слово — `shared`, а в цьому варіанті — `separate`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-01:session-31:i09:r3",
               "correct": false,
-              "testedDimension": "Друг спрашивает, чья пицца в центре стола. Послушайте ответ и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — за обедом друг задаёт вам вопрос о блюде",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `shared`, а в этом варианте — `similar`.",
                 "uk": "У записі останнє слово — `shared`, а в цьому варіанті — `similar`."
@@ -978,7 +978,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите фразу о героине фильма, который обсуждают друзья",
+        "prompt": "Послушайте и выберите — друзья в кафе обсуждают фильм",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-31:i15:r1",
@@ -997,7 +997,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-31:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите фразу о героине фильма, который обсуждают друзья",
+        "accessibilityLabel": "Послушайте и выберите — друзья в кафе обсуждают фильм",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1027,7 +1027,7 @@
             {
               "responseId": "en:lesson-01:session-31:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу о героине фильма, который обсуждают друзья",
+              "testedDimension": "Послушайте и выберите — друзья в кафе обсуждают фильм",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
                 "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -1036,7 +1036,7 @@
             {
               "responseId": "en:lesson-01:session-31:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу о героине фильма, который обсуждают друзья",
+              "testedDimension": "Послушайте и выберите — друзья в кафе обсуждают фильм",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `single`, а в этом варианте — `married`.",
                 "uk": "У записі останнє слово — `single`, а в цьому варіанті — `married`."

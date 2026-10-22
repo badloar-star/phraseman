@@ -62,7 +62,7 @@
 <!-- interaction_id: en:lesson-01:session-02:word:sad; family: word_card -->
 > **sad** — «грустный»: так вы себя чувствуете, когда расстроены.
 
-**4 · Послушайте запись брата и выберите услышанную фразу**
+**4 · Послушайте и выберите — брат наговорил запись, пока вы готовите игры**
 <!-- interaction_id: en:lesson-01:session-02:i02; family: listen_choose; purpose: supported_practice -->
 🔊 *I am sad.*
 - ✅ I am sad.
@@ -110,7 +110,7 @@
 - ❌ ready — *Ready значит «готов»; брат подтверждает, что он здесь.*
 - ❌ happy — *Happy значит «рад»; сестра спрашивает, кто здесь.*
 
-**12 · Послушайте следующую запись брата и выберите произнесённую фразу**
+**12 · Послушайте и выберите — следом приходит вторая запись от брата**
 <!-- interaction_id: en:lesson-01:session-02:i09; family: listen_choose; purpose: retrieval_practice -->
 🔊 *I am happy.*
 - ✅ I am happy.
@@ -146,7 +146,7 @@
 - ❌ tired — *Tired значит «уставший»; брат расстроен из-за отмены встречи.*
 - ❌ fine — *Fine значит «всё хорошо»; брат расстроен из-за отмены встречи.*
 
-**18 · В новой записи брата выберите ровно ту фразу, которую он произносит**
+**18 · Послушайте и выберите — последняя запись брата приходит перед вечером**
 <!-- interaction_id: en:lesson-01:session-02:i15; family: listen_choose; purpose: retrieval_practice -->
 🔊 *I am tired.*
 - ✅ I am tired.

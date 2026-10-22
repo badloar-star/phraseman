@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-03:i01; family: word_card -->
 > **hungry** — «голодный». Живот напоминает о себе, а до обеда ещё час.
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте и выберите — после встречи начальница заглядывает к вам**
 <!-- interaction_id: en:lesson-01:session-03:i02; family: listen_choose -->
 🔊 *hungry*
 - ✅ hungry
@@ -72,7 +72,7 @@
 <!-- interaction_id: en:lesson-01:session-03:i03; family: word_card -->
 > **cold** — «холодно, замёрз». Начальница включила кондиционер слишком сильно.
 
-**4 · Послушайте и выберите слово**
+**4 · Послушайте и выберите — начальница ещё раз обращается к вам**
 <!-- interaction_id: en:lesson-01:session-03:i05; family: listen_choose -->
 🔊 *sure*
 - ✅ sure
@@ -97,10 +97,10 @@ I am ___ cold. → **not** · no · am
 <!-- interaction_id: en:lesson-01:session-03:i04; family: word_card -->
 > **sure** — «уверен / уверена»: вы не сомневаетесь. Если сомневаетесь во времени встречи, скажите I am not sure.
 
-**9 · Соберите фразу — вы всё ещё в офисе и не один**
+**9 · Соберите фразу — вы точно знаете время встречи**
 <!-- interaction_id: en:lesson-01:session-03:i10; family: phrase_builder -->
-Плитки: `I` `am` `not` `alone` `sure` → **I am not alone.**
-*(плитка `sure` лишняя: «уверен», но здесь вы сообщаете: «я не один»)*
+Плитки: `I` `am` `sure` `alone` → **I am sure.**
+*(плитка `alone` лишняя: «один», а здесь вы уверены)*
 
 **10 · Послушайте и соберите — «я не уверен»**
 <!-- interaction_id: en:lesson-01:session-03:i11; family: listen_build_dictation -->
@@ -118,7 +118,7 @@ I ___ not tired. → **am** · is · are
 Соберите: `am` `late` `I` `not` → **I am late.**
 *(плитка `not` лишняя: она дала бы `I am not late` — «я не опоздал». Здесь нужно признать, что вы опоздали.)*
 
-**13 · Послушайте и выберите точную фразу — вы больше не заняты**
+**13 · Послушайте и выберите — вы отвечаете начальнице после встречи**
 <!-- interaction_id: en:lesson-01:session-03:i14; family: listen_choose -->
 🔊 *I am not busy.* → **I am not busy.** · I am busy. · I am not late.
 - I am busy. — *В аудио после am слышно not. Ответ означает «я не занят», а не «я занят».*
@@ -141,7 +141,7 @@ tired — устал · busy — занят · late — опаздываю · re
 <!-- interaction_id: en:lesson-01:session-03:i17:s01; family: scripted_repeat_compare -->
 🎙 **I am not tired.** — послушайте, повторите, сравните.
 
-**18 · Послушайте и выберите точную фразу — вы не голодны**
+**18 · Послушайте и выберите — ответа ждёт начальница, она стоит рядом**
 <!-- interaction_id: en:lesson-01:session-03:i17:s02; family: listen_choose -->
 🔊 *I am not hungry.* → **I am not hungry.** · I am hungry. · I am not cold.
 - I am hungry. — *В аудио после am слышно not. Это «я не голоден», не «я голоден».*

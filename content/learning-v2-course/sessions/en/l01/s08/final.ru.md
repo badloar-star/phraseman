@@ -67,7 +67,7 @@ I am ___. → **calm** · nervous · thirsty
 <!-- interaction_id: en:lesson-01:session-08:word:nervous; family: word_card -->
 > **nervous** — «взволнованный»: вы волнуетесь перед выступлением.
 
-**4 · Послушайте и выберите слово**
+**4 · Послушайте и выберите — вечером вы вспоминаете первый день в офисе**
 <!-- interaction_id: en:lesson-01:session-08:i02; family: listen_choose -->
 🔊 *nervous*
 - ✅ nervous
@@ -113,7 +113,7 @@ I am not ___ . → **hungry** · sure · done
 <!-- interaction_id: en:lesson-01:session-08:word:thirsty; family: word_card -->
 > **thirsty** — «испытывающий жажду»: вы хотите пить.
 
-**13 · Послушайте и выберите слово**
+**13 · Послушайте и выберите — вы перебираете в памяти слова этого дня**
 <!-- interaction_id: en:lesson-01:session-08:i09; family: listen_choose -->
 🔊 *thirsty*
 - ✅ thirsty

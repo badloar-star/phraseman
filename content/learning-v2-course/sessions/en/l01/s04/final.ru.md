@@ -62,7 +62,7 @@ I am right — «Я прав / права», а I am wrong — «Я ошибаю
 <!-- interaction_id: en:lesson-01:session-04:i01; family: word_card -->
 > **early** — «рано». Вы пришли до назначенного времени.
 
-**2 · Послушайте и выберите услышанное слово**
+**2 · Послушайте и выберите — на утренней встрече слово берёт начальница**
 <!-- interaction_id: en:lesson-01:session-04:i02; family: listen_choose -->
 🔊 *early*
 - ✅ early
@@ -73,7 +73,7 @@ I am right — «Я прав / права», а I am wrong — «Я ошибаю
 <!-- interaction_id: en:lesson-01:session-04:i03; family: word_card -->
 > **right** — «прав / права» в I am right. Ваш ответ подтвердился при проверке.
 
-**4 · Послушайте и выберите услышанное слово**
+**4 · Послушайте и выберите — начальница просит вас коротко ответить**
 <!-- interaction_id: en:lesson-01:session-04:i04; family: listen_choose -->
 🔊 *right*
 - ✅ right
@@ -84,7 +84,7 @@ I am right — «Я прав / права», а I am wrong — «Я ошибаю
 <!-- interaction_id: en:lesson-01:session-04:i05; family: word_card -->
 > **wrong** — «не прав / не права» в I am wrong. В начале слова буква `w` не произносится.
 
-**6 · Послушайте и выберите услышанное слово**
+**6 · Послушайте и выберите — вы на утренней встрече, начальница слушает**
 <!-- interaction_id: en:lesson-01:session-04:i06; family: listen_choose -->
 🔊 *wrong*
 - ✅ wrong
@@ -101,7 +101,7 @@ I am right — «Я прав / права», а I am wrong — «Я ошибаю
 <!-- interaction_id: en:lesson-01:session-04:i07; family: word_card -->
 > **free** — «свободен/свободна, не занят/не занята». Вы можете взяться за новое дело.
 
-**9 · Послушайте и выберите услышанное слово**
+**9 · Послушайте и выберите — очередь доходит до вас на утренней встрече**
 <!-- interaction_id: en:lesson-01:session-04:i09; family: listen_choose -->
 🔊 *free*
 - ✅ free
@@ -138,7 +138,7 @@ I ___ wrong. → **am** · not · is
 хотите сказать, что не опоздали.**
 Плитки: `I` `am` `not` `late.` `early` → **I am not late.**
 
-**15 · Послушайте и выберите — что вы сейчас услышали**
+**15 · Послушайте и выберите — начальница подводит итог утренней встречи**
 <!-- interaction_id: en:lesson-01:session-04:i15; family: listen_choose -->
 🔊 *I am not sure.* → **I am not sure.** · I am sure. · I am not free. · I am not tired.
 - I am sure. — *В записи звучит not между am и sure.*

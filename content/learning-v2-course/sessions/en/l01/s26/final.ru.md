@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-26:word:worried; family: word_card -->
 > **worried** — обеспокоенный, встревоженный. She is worried — «Она волнуется»: например, боится потерять паспорт.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — вы с другом ждёте посадки, друг говорит**
 <!-- interaction_id: en:lesson-01:session-26:i02; family: listen_choose -->
 🔊 *They are worried.* → **They are worried.** · We are worried. · They are confused.
 - We are worried. — *В записи первое слово — `They`, а в этом варианте — `We`.*
@@ -109,7 +109,7 @@ You ___ worried. → **are** · am · is
 - am — *После `You` нужна форма `are`.*
 - is — *Вы обращаетесь к ней: `You are`.*
 
-**13 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите — друг в ожидании посадки обращается к вам**
 <!-- interaction_id: en:lesson-01:session-26:i09; family: listen_choose -->
 🔊 *We are confused.* → **We are confused.** · They are confused. · We are surprised.
 - They are confused. — *В записи первое слово — `We`, а в этом варианте — `They`.*
@@ -139,7 +139,7 @@ She is ___ . → **confused** · bored · proud
 - bored — *`bored` — «скучает». Здесь она запуталась: `confused`.*
 - proud — *`proud` — «гордится». Непонимание — `confused`.*
 
-**19 · Послушайте и выберите услышанное**
+**19 · Послушайте и выберите — вы ждёте посадки и слушаете друга**
 <!-- interaction_id: en:lesson-01:session-26:i15; family: listen_choose -->
 🔊 *You are surprised.* → **You are surprised.** · We are surprised. · You are worried.
 - We are surprised. — *В записи первое слово — `You`, а в этом варианте — `We`.*

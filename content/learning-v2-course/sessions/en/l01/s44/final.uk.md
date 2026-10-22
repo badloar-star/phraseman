@@ -67,9 +67,9 @@
 
 **4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-44:i02; family: listen_choose -->
-🔊 *It is ancient.* → **It is ancient.** · It is weird. · He is ancient.
-- It is weird. — *У записі останнє слово — `ancient`, а в цьому варіанті — `weird`.*
-- He is ancient. — *У записі перше слово — `It`, а в цьому варіанті — `He`.*
+🔊 *It is weird.* → **It is weird.** · It is ancient. · He is weird.
+- It is ancient. — *У записі останнє слово — `weird`, а в цьому варіанті — `ancient`.*
+- He is weird. — *У записі перше слово — `It`, а в цьому варіанті — `He`.*
 
 **5 · Картка слова — complicated**
 <!-- interaction_id: en:lesson-01:session-44:word:complicated; family: word_card -->

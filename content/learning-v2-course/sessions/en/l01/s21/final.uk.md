@@ -67,9 +67,9 @@
 
 **4 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-21:i02; family: listen_choose -->
-🔊 *It is noisy.* → **It is noisy.** · It is small. · It is empty.
-- It is small. — *У записі noisy, а не small.*
-- It is empty. — *У записі noisy, а не empty.*
+🔊 *It is empty.* → **It is empty.** · It is small. · It is noisy.
+- It is small. — *У записі empty, а не small.*
+- It is noisy. — *У записі empty, а не noisy.*
 
 **5 · Вставте слово — у кімнаті для відпочинку нікого немає: «Вона порожня»**
 <!-- interaction_id: en:lesson-01:session-21:i03; family: context_gap_grammar -->

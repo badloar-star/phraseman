@@ -63,9 +63,9 @@
 
 **3 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-48:i02; family: listen_choose -->
-🔊 *They are sticky.* → **They are sticky.** · We are sticky. · They are sharp.
-- We are sticky. — *В записи первое слово — `They`, а в этом варианте — `We`.*
-- They are sharp. — *В записи последнее слово — `sticky`, а в этом варианте — `sharp`.*
+🔊 *They are sharp.* → **They are sharp.** · We are sharp. · They are sticky.
+- We are sharp. — *В записи первое слово — `They`, а в этом варианте — `We`.*
+- They are sticky. — *В записи последнее слово — `sharp`, а в этом варианте — `sticky`.*
 
 **4 · Новая стамеска подруги режет дерево, как масло. Дополните фразу о ней**
 <!-- interaction_id: en:lesson-01:session-48:i03; family: context_gap_grammar -->
@@ -109,7 +109,7 @@ It is ___ . → **dangerous** · lovely · handmade
 <!-- interaction_id: en:lesson-01:session-48:word:sticky; family: word_card -->
 > **sticky** — липкий. They're sticky — «Они липкие». О свежем лаке, клее, руках после варенья.
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — подруга в мастерской обращается к вам**
 <!-- interaction_id: en:lesson-01:session-48:i09; family: listen_choose -->
 🔊 *It is lovely.* → **It is lovely.** · She is lovely. · It is sticky.
 - She is lovely. — *В записи первое слово — `It`, а в этом варианте — `She`.*
@@ -139,7 +139,7 @@ They ___ useless. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Маркеров два, поэтому `They are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — друг рассматривает работы в мастерской**
 <!-- interaction_id: en:lesson-01:session-48:i15; family: listen_choose -->
 🔊 *It's sharp.* → **It's sharp.** · They're sharp. · It's sticky.
 - They're sharp. — *В записи первое слово — `It's`, а в этом варианте — `They're`.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-52:word:waterproof; family: word_card -->
 > **waterproof** — непромокаемый, не пропускает воду. It's waterproof — «Он непромокаемый».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — продавец показывает вам рюкзак**
 <!-- interaction_id: en:lesson-01:session-52:i02; family: listen_choose -->
 🔊 *It is waterproof.* → **It is waterproof.** · It is light. · It is cheap.
 - It is light. — *В записи последнее слово — `waterproof`, а в этом варианте — `light`.*
@@ -109,7 +109,7 @@ She is ___ . → **curious** · light · trendy
 - light — *Здесь не о весе. Любопытство — `curious`.*
 - trendy — *`trendy` — «модная». Здесь нужно `curious`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — подруга примеряет рюкзак и говорит**
 <!-- interaction_id: en:lesson-01:session-52:i09; family: listen_choose -->
 🔊 *It's trendy.* → **It's trendy.** · It's light. · She's trendy.
 - It's light. — *В записи последнее слово — `trendy`, а в этом варианте — `light`.*
@@ -139,7 +139,7 @@ It ___ trendy. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Модель одна — `It is`.*
 
-**19 · Послушайте короткую оценку и выберите её**
+**19 · Послушайте и выберите — продавец рассказывает вам о модели рюкзака**
 <!-- interaction_id: en:lesson-01:session-52:i15; family: listen_choose -->
 🔊 *It's adjustable.* → **It's adjustable.** · It's waterproof. · It's expensive.
 - It's waterproof. — *В записи последнее слово — `adjustable`, а в этом варианте — `waterproof`.*

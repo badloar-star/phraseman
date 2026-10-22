@@ -143,15 +143,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-44:i02:r1",
-            "text": "It is ancient."
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i02:r2",
             "text": "It is weird."
           },
           {
+            "responseId": "en:lesson-01:session-44:i02:r2",
+            "text": "It is ancient."
+          },
+          {
             "responseId": "en:lesson-01:session-44:i02:r3",
-            "text": "He is ancient."
+            "text": "He is weird."
           }
         ],
         "mediaIds": [],
@@ -163,23 +163,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-44:i02:audio",
-            "transcript": "It is ancient."
+            "transcript": "It is weird."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-44:i02:r1",
-              "targetText": "It is ancient.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-01:session-44:i02:r2",
               "targetText": "It is weird.",
               "meaningByLocale": null
             },
             {
+              "responseId": "en:lesson-01:session-44:i02:r2",
+              "targetText": "It is ancient.",
+              "meaningByLocale": null
+            },
+            {
               "responseId": "en:lesson-01:session-44:i02:r3",
-              "targetText": "He is ancient.",
+              "targetText": "He is weird.",
               "meaningByLocale": null
             }
           ],
@@ -190,8 +190,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите услышанное",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `ancient`, а в этом варианте — `weird`.",
-                "uk": "У записі останнє слово — `ancient`, а в цьому варіанті — `weird`."
+                "ru": "В записи последнее слово — `weird`, а в этом варианте — `ancient`.",
+                "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `ancient`."
               }
             },
             {
@@ -635,7 +635,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите услышанное",
+        "prompt": "Послушайте и выберите — подруга в музее обращается к вам",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-44:i09:r1",
@@ -654,7 +654,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-44:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — подруга в музее обращается к вам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -684,7 +684,7 @@
             {
               "responseId": "en:lesson-01:session-44:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — подруга в музее обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `weird`, а в этом варианте — `complicated`.",
                 "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `complicated`."
@@ -693,7 +693,7 @@
             {
               "responseId": "en:lesson-01:session-44:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — подруга в музее обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `It's`, а в этом варианте — `I'm`.",
                 "uk": "У записі перше слово — `It's`, а в цьому варіанті — `I'm`."
@@ -976,7 +976,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите короткую фразу",
+        "prompt": "Послушайте и выберите — друзья в музее делятся мнением друг с другом",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-44:i15:r1",
@@ -995,7 +995,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-44:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите короткую фразу",
+        "accessibilityLabel": "Послушайте и выберите — друзья в музее делятся мнением друг с другом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1025,7 +1025,7 @@
             {
               "responseId": "en:lesson-01:session-44:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите короткую фразу",
+              "testedDimension": "Послушайте и выберите — друзья в музее делятся мнением друг с другом",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
                 "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
@@ -1034,7 +1034,7 @@
             {
               "responseId": "en:lesson-01:session-44:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите короткую фразу",
+              "testedDimension": "Послушайте и выберите — друзья в музее делятся мнением друг с другом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `curious`.",
                 "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `curious`."
@@ -1302,15 +1302,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-44:i02:r1",
-            "text": "It is ancient."
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i02:r2",
             "text": "It is weird."
           },
           {
+            "responseId": "en:lesson-01:session-44:i02:r2",
+            "text": "It is ancient."
+          },
+          {
             "responseId": "en:lesson-01:session-44:i02:r3",
-            "text": "He is ancient."
+            "text": "He is weird."
           }
         ],
         "mediaIds": [],
@@ -1322,23 +1322,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-44:i02:audio",
-            "transcript": "It is ancient."
+            "transcript": "It is weird."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-44:i02:r1",
-              "targetText": "It is ancient.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-01:session-44:i02:r2",
               "targetText": "It is weird.",
               "meaningByLocale": null
             },
             {
+              "responseId": "en:lesson-01:session-44:i02:r2",
+              "targetText": "It is ancient.",
+              "meaningByLocale": null
+            },
+            {
               "responseId": "en:lesson-01:session-44:i02:r3",
-              "targetText": "He is ancient.",
+              "targetText": "He is weird.",
               "meaningByLocale": null
             }
           ],
@@ -1349,8 +1349,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть почуте",
               "feedbackByLocale": {
-                "ru": "В записи последнее слово — `ancient`, а в этом варианте — `weird`.",
-                "uk": "У записі останнє слово — `ancient`, а в цьому варіанті — `weird`."
+                "ru": "В записи последнее слово — `weird`, а в этом варианте — `ancient`.",
+                "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `ancient`."
               }
             },
             {
@@ -2339,7 +2339,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-44:i02",
-      "correctText": "It is ancient.",
+      "correctText": "It is weird.",
       "correctResponseId": "en:lesson-01:session-44:i02:r1"
     },
     {

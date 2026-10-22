@@ -67,9 +67,9 @@
 
 **4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-44:i02; family: listen_choose -->
-🔊 *It is ancient.* → **It is ancient.** · It is weird. · He is ancient.
-- It is weird. — *В записи последнее слово — `ancient`, а в этом варианте — `weird`.*
-- He is ancient. — *В записи первое слово — `It`, а в этом варианте — `He`.*
+🔊 *It is weird.* → **It is weird.** · It is ancient. · He is weird.
+- It is ancient. — *В записи последнее слово — `weird`, а в этом варианте — `ancient`.*
+- He is weird. — *В записи первое слово — `It`, а в этом варианте — `He`.*
 
 **5 · Карточка слова — complicated**
 <!-- interaction_id: en:lesson-01:session-44:word:complicated; family: word_card -->
@@ -109,7 +109,7 @@ He is ___ . → **sleepy** · curious · weird
 - curious — *`curious` — «любопытный». Здесь нужно `sleepy`: хочется спать.*
 - weird — *`weird` — «странный». Желание спать — `sleepy`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — подруга в музее обращается к вам**
 <!-- interaction_id: en:lesson-01:session-44:i09; family: listen_choose -->
 🔊 *It's weird.* → **It's weird.** · It's complicated. · I'm weird.
 - It's complicated. — *В записи последнее слово — `weird`, а в этом варианте — `complicated`.*
@@ -139,7 +139,7 @@ They ___ weird. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Приборов два: `They are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — друзья в музее делятся мнением друг с другом**
 <!-- interaction_id: en:lesson-01:session-44:i15; family: listen_choose -->
 🔊 *They're sleepy.* → **They're sleepy.** · We're sleepy. · They're curious.
 - We're sleepy. — *В записи первое слово — `They're`, а в этом варианте — `We're`.*

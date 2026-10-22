@@ -66,7 +66,7 @@
 <!-- interaction_id: en:lesson-01:session-25:word:surprised; family: word_card -->
 > **surprised** — удивлён: произошло то, чего не ожидал. We are surprised — «Мы удивлены». Удивление может быть и приятным, и неприятным.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — после спектакля семья обсуждает выступление**
 <!-- interaction_id: en:lesson-01:session-25:i02; family: listen_choose -->
 🔊 *She is surprised.* → **She is surprised.** · He is surprised. · She is proud.
 - He is surprised. — *В записи первое слово — `She`, а в этом варианте — `He`.*
@@ -107,7 +107,7 @@ I ___ ashamed. → **am** · is · are
 - is — *С `I` нужна форма `am`.*
 - are — *О себе начинаем с `I am`.*
 
-**12 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите — родные делятся впечатлениями о спектакле**
 <!-- interaction_id: en:lesson-01:session-25:i09; family: listen_choose -->
 🔊 *They are surprised.* → **They are surprised.** · We are surprised. · They are proud.
 - We are surprised. — *В записи первое слово — `They`, а в этом варианте — `We`.*
@@ -142,7 +142,7 @@ It ___ different. → **is** · am · are
 - am — *О спектакле здесь говорим `It is`.*
 - are — *После `It` нужна форма `is`.*
 
-**19 · Послушайте и выберите услышанное**
+**19 · Послушайте и выберите — семья после спектакля обсуждает случившееся**
 <!-- interaction_id: en:lesson-01:session-25:i15; family: listen_choose -->
 🔊 *We are disappointed.* → **We are disappointed.** · They are disappointed. · We are surprised.
 - They are disappointed. — *В записи We, а не They.*

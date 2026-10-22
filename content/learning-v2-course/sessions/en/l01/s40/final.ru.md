@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-40:word:frozen; family: word_card -->
 > **frozen** — застыл, завис. She's frozen — «У неё зависла картинка». Ещё так говорят про лёд и замёрзшую воду.
 
-**3 · Послушайте и выберите услышанное**
+**3 · Послушайте и выберите — в воскресенье вы созваниваетесь с братом по видео**
 <!-- interaction_id: en:lesson-01:session-40:i02; family: listen_choose -->
 🔊 *She's frozen.* → **She's frozen.** · He's frozen. · She's ill.
 - He's frozen. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
@@ -97,7 +97,7 @@ I am ___ . → **lonely** · sleepy · ill
 - sleepy — *`sleepy` — «хочется спать». Одиночество — `lonely`.*
 - ill — *`ill` — «болею». Здесь нужно назвать одиночество: `lonely`.*
 
-**10 · Послушайте и выберите услышанное**
+**10 · Послушайте и выберите — подруга во время видеозвонка говорит с вами**
 <!-- interaction_id: en:lesson-01:session-40:i09; family: listen_choose -->
 🔊 *We are afraid.* → **We are afraid.** · They are afraid. · We are brave.
 - They are afraid. — *В записи первое слово — `We`, а в этом варианте — `They`.*
@@ -139,7 +139,7 @@ It ___ freezing. → **is** · am · are
 <!-- interaction_id: en:lesson-01:session-40:word:sunny; family: word_card -->
 > **sunny** — солнечный. It's sunny — «Солнечно». Про погоду говорим It.
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — друг из другого города говорит по видео**
 <!-- interaction_id: en:lesson-01:session-40:i15; family: listen_choose -->
 🔊 *It's freezing.* → **It's freezing.** · It's sunny. · It's okay.
 - It's sunny. — *В записи последнее слово — `freezing`, а в этом варианте — `sunny`.*

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-42:word:chatty; family: word_card -->
 > **chatty** — болтливый, любит поговорить. He's chatty — «Он болтливый». Обычно без злости.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — на встрече жильцов хозяйка говорит о ком-то**
 <!-- interaction_id: en:lesson-01:session-42:i02; family: listen_choose -->
 🔊 *He is chatty.* → **He is chatty.** · She is chatty. · He is polite.
 - She is chatty. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -109,7 +109,7 @@ He is ___ . → **shy** · chatty · nosy
 - chatty — *`chatty` — «болтливый». Брат молчит: `shy`.*
 - nosy — *`nosy` — «лезет в чужие дела». Здесь стеснительность: `shy`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — брат тихо говорит с вами на встрече жильцов**
 <!-- interaction_id: en:lesson-01:session-42:i09; family: listen_choose -->
 🔊 *She's nosy.* → **She's nosy.** · She's polite. · He's nosy.
 - She's polite. — *В записи последнее слово — `nosy`, а в этом варианте — `polite`.*
@@ -139,7 +139,7 @@ They ___ chatty. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Соседей двое: `They are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — хозяйка встречи с пирогом говорит о жильцах**
 <!-- interaction_id: en:lesson-01:session-42:i15; family: listen_choose -->
 🔊 *She's elderly.* → **She's elderly.** · He's elderly. · She's friendly.
 - He's elderly. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*

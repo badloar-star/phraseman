@@ -67,9 +67,9 @@
 
 **4 · Послушайте и выберите услышанное**
 <!-- interaction_id: en:lesson-01:session-21:i02; family: listen_choose -->
-🔊 *It is noisy.* → **It is noisy.** · It is small. · It is empty.
-- It is small. — *В записи noisy, а не small.*
-- It is empty. — *В записи noisy, а не empty.*
+🔊 *It is empty.* → **It is empty.** · It is small. · It is noisy.
+- It is small. — *В записи empty, а не small.*
+- It is noisy. — *В записи empty, а не noisy.*
 
 **5 · Вставьте слово — в комнате для отдыха никого нет: «Она пустая»**
 <!-- interaction_id: en:lesson-01:session-21:i03; family: context_gap_grammar -->
@@ -109,7 +109,7 @@ You ___ upstairs. → **are** · is · am
 - is — *Обращаясь к другу, говорим `You are`.*
 - am — *`am` нужно с `I`. После `You` ставим `are`.*
 
-**13 · Послушайте сообщение о подруге**
+**13 · Послушайте и выберите — друг присылает вам короткое сообщение**
 <!-- interaction_id: en:lesson-01:session-21:i09; family: listen_choose -->
 🔊 *She is inside.* → **She is inside.** · He is inside. · She is outside.
 - He is inside. — *В записи первое слово — `She`, а в этом варианте — `He`.*
@@ -139,7 +139,7 @@ He is ___ . → **outside** · inside · upstairs
 - inside — *`inside` — «внутри». Друг ещё на улице: `outside`.*
 - upstairs — *`upstairs` — «на верхнем этаже». Друг перед входом: `outside`.*
 
-**19 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите — друг в клубе обращается к вам перед концертом**
 <!-- interaction_id: en:lesson-01:session-21:i15; family: listen_choose -->
 🔊 *You are prepared.* → **You are prepared.** · We are prepared. · You are careful.
 - We are prepared. — *В записи первое слово — `You`, а в этом варианте — `We`.*

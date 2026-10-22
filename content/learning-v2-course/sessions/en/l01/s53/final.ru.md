@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-53:word:soggy; family: word_card -->
 > **soggy** — размокший. It's soggy — «Он размок». О хлебе, печенье, хлопьях, которые раскисли от влаги.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — вы собираете корзину на даче друга**
 <!-- interaction_id: en:lesson-01:session-53:i02; family: listen_choose -->
 🔊 *It is soggy.* → **It is soggy.** · They are soggy. · It is full.
 - They are soggy. — *В записи первые слова — `It is`, а в этом варианте — `They are`.*
@@ -109,7 +109,7 @@ It is ___ . → **heavy** · ripe · delicious
 - ripe — *`ripe` — «спелая», это о еде. Корзину еле поднять: `heavy`.*
 - delicious — *`delicious` — «очень вкусная». О весе говорит `heavy`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — друг на даче обращается к вам**
 <!-- interaction_id: en:lesson-01:session-53:i09; family: listen_choose -->
 🔊 *They are juicy.* → **They are juicy.** · We are juicy. · They are ripe.
 - We are juicy. — *В записи первое слово — `They`, а в этом варианте — `We`.*
@@ -139,7 +139,7 @@ They ___ soggy. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Печений два, поэтому `They are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — субботним утром на даче друг делится мнением**
 <!-- interaction_id: en:lesson-01:session-53:i15; family: listen_choose -->
 🔊 *It's delicious.* → **It's delicious.** · They're delicious. · It's juicy.
 - They're delicious. — *В записи первое слово — `It's`, а в этом варианте — `They're`.*

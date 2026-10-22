@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-39:word:hilarious; family: word_card -->
 > **hilarious** — очень смешной, уморительный. He's hilarious — «Он уморительный». Сильнее, чем funny.
 
-**3 · Послушайте и выберите услышанное**
+**3 · Послушайте и выберите — друг выходит на сцену местного кафе**
 <!-- interaction_id: en:lesson-01:session-39:i02; family: listen_choose -->
 🔊 *He is hilarious.* → **He is hilarious.** · She is hilarious. · He is brave.
 - She is hilarious. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -109,7 +109,7 @@ They are ___ . → **separate** · equal · similar
 - equal — *`equal` — «равные». Здесь важно, что выступления отдельные: `separate`.*
 - similar — *`similar` — «похожие». Отдельность передаёт `separate`.*
 
-**13 · Послушайте фразу об отрезках времени**
+**13 · Послушайте и выберите — вы слышите реплику на вечере коротких номеров**
 <!-- interaction_id: en:lesson-01:session-39:i09; family: listen_choose -->
 🔊 *They are equal.* → **They are equal.** · They are similar. · They are separate.
 - They are similar. — *В записи последнее слово — `equal`, а в этом варианте — `similar`.*
@@ -139,7 +139,7 @@ We ___ brave. → **are** · am · is
 - am — *После `We` нужно `are`.*
 - is — *Здесь `We are brave`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — подруга поёт, друзья обсуждают вечер**
 <!-- interaction_id: en:lesson-01:session-39:i15; family: listen_choose -->
 🔊 *They're hilarious.* → **They're hilarious.** · We're hilarious. · They're brave.
 - We're hilarious. — *В записи первое слово — `They're`, а в этом варианте — `We're`.*

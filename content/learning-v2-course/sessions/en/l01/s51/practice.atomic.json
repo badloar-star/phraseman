@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите услышанное",
+        "prompt": "Послушайте и выберите — друг провожает вас в аэропорту",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-51:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-51:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — друг провожает вас в аэропорту",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-01:session-51:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — друг провожает вас в аэропорту",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `overweight`, а в этом варианте — `heavy`.",
                 "uk": "У записі останнє слово — `overweight`, а в цьому варіанті — `heavy`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-01:session-51:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — друг провожает вас в аэропорту",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `overweight`, а в этом варианте — `bulky`.",
                 "uk": "У записі останнє слово — `overweight`, а в цьому варіанті — `bulky`."
@@ -635,7 +635,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите услышанное",
+        "prompt": "Послушайте и выберите — друг в аэропорту обращается к вам",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-51:i09:r1",
@@ -654,7 +654,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-51:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — друг в аэропорту обращается к вам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -684,7 +684,7 @@
             {
               "responseId": "en:lesson-01:session-51:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — друг в аэропорту обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bulky`, а в этом варианте — `heavy`.",
                 "uk": "У записі останнє слово — `bulky`, а в цьому варіанті — `heavy`."
@@ -693,7 +693,7 @@
             {
               "responseId": "en:lesson-01:session-51:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — друг в аэропорту обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `bulky`, а в этом варианте — `stuffed`.",
                 "uk": "У записі останнє слово — `bulky`, а в цьому варіанті — `stuffed`."
@@ -976,7 +976,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте короткую оценку и выберите её",
+        "prompt": "Послушайте и выберите — вы у чемодана, друг говорит с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-51:i15:r1",
@@ -995,7 +995,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-51:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте короткую оценку и выберите её",
+        "accessibilityLabel": "Послушайте и выберите — вы у чемодана, друг говорит с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1025,7 +1025,7 @@
             {
               "responseId": "en:lesson-01:session-51:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте короткую оценку и выберите её",
+              "testedDimension": "Послушайте и выберите — вы у чемодана, друг говорит с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `stuffed`, а в этом варианте — `zipped`.",
                 "uk": "У записі останнє слово — `stuffed`, а в цьому варіанті — `zipped`."
@@ -1034,7 +1034,7 @@
             {
               "responseId": "en:lesson-01:session-51:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте короткую оценку и выберите её",
+              "testedDimension": "Послушайте и выберите — вы у чемодана, друг говорит с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `stuffed`, а в этом варианте — `expensive`.",
                 "uk": "У записі останнє слово — `stuffed`, а в цьому варіанті — `expensive`."

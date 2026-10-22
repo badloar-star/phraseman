@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-19:word:outside; family: word_card -->
 > **outside** — снаружи, на улице. I am outside — «Я снаружи»: например, ждёте перед входом в кафе.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — друг звонит вам, пока вы идёте в кафе**
 <!-- interaction_id: en:lesson-01:session-19:i02; family: listen_choose -->
 🔊 *I am outside.* → **I am outside.** · I am inside. · I am alone.
 - I am inside. — *В записи outside — «снаружи», а не inside — «внутри».*
@@ -109,7 +109,7 @@ They ___ nearby. → **are** · is · am
 - is — *О двух друзьях: `They are`. С `They` форма `is` не подходит.*
 - am — *`am` нужно после `I`. Здесь начало `They`, поэтому `are`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — вы разговариваете с другом по телефону**
 <!-- interaction_id: en:lesson-01:session-19:i09; family: listen_choose -->
 🔊 *You are alone.* → **You are alone.** · We are alone. · You are wrong.
 - We are alone. — *В записи первое слово — `You`, а в этом варианте — `We`.*
@@ -139,7 +139,7 @@ I ___ alone. → **am** · is · are
 - is — *О себе говорим `I am`.*
 - are — *С `I` нужна форма `am`, а не `are`.*
 
-**19 · Послушайте, что подруга говорит о друзьях**
+**19 · Послушайте и выберите — подруга звонит и делится новостью**
 <!-- interaction_id: en:lesson-01:session-19:i15; family: listen_choose -->
 🔊 *They are lucky.* → **They are lucky.** · We are lucky. · They are early.
 - We are lucky. — *В записи первое слово — `They`, а в этом варианте — `We`.*

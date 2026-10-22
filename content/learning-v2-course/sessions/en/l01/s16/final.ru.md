@@ -57,7 +57,7 @@
 Плитки: `kind` `am` `I` `is` → **I am kind.**
 *(плитка `is` лишняя: здесь нужно `am` — `I am kind.`)*
 
-**2 · Послушайте описание координатора и выберите услышанное**
+**2 · Послушайте и выберите — координатор в зале описывает вам человека**
 <!-- interaction_id: en:lesson-01:session-16:i02; family: listen_choose -->
 🔊 *He is short.* → **He is short.** · She is short. · He is old.
 - She is short. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -101,7 +101,7 @@ He ___ smart. → **is** · am · are
 - am — *О координаторе говорим `He is`, а `am` нужно после `I`.*
 - are — *Здесь начало `He`, поэтому нужно `is`.*
 
-**11 · Послушайте и выберите фразу о подруге**
+**11 · Послушайте и выберите — вы расставляете вещи, подруга говорит о ком-то**
 <!-- interaction_id: en:lesson-01:session-16:i09; family: listen_choose -->
 🔊 *She is quiet.* → **She is quiet.** · He is quiet. · She is calm.
 - He is quiet. — *В записи первое слово — `She`, а в этом варианте — `He`.*
@@ -139,7 +139,7 @@ It is ___ . → **closed** · open · clean
 - open — *Open — «открыт», но вход закрыт: closed.*
 - clean — *Clean описывает чистоту. Нужно сообщить, что вход закрыт.*
 
-**19 · Послушайте описание пола после уборки**
+**19 · Послушайте и выберите — координатор осматривает зал перед встречей**
 <!-- interaction_id: en:lesson-01:session-16:i15; family: listen_choose -->
 🔊 *It is wet.* → **It is wet.** · It is dry. · It is clean.
 - It is dry. — *В записи wet, а не dry.*

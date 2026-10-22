@@ -52,7 +52,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите слово",
+        "prompt": "Послушайте и выберите — после встречи начальница заглядывает к вам",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i02:r1",
@@ -71,7 +71,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите слово",
+        "accessibilityLabel": "Послушайте и выберите — после встречи начальница заглядывает к вам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -101,7 +101,7 @@
             {
               "responseId": "en:lesson-01:session-03:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — после встречи начальница заглядывает к вам",
               "feedbackByLocale": {
                 "ru": "В записи hungry — «голодный», а tired означает «уставший».",
                 "uk": "У записі hungry — «голодний», а tired означає «стомлений»."
@@ -110,7 +110,7 @@
             {
               "responseId": "en:lesson-01:session-03:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — после встречи начальница заглядывает к вам",
               "feedbackByLocale": {
                 "ru": "В записи hungry — «голодный», а happy означает «рад».",
                 "uk": "У записі hungry — «голодний», а happy означає «радий»."
@@ -171,7 +171,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите слово",
+        "prompt": "Послушайте и выберите — начальница ещё раз обращается к вам",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i05:r1",
@@ -190,7 +190,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i05:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите слово",
+        "accessibilityLabel": "Послушайте и выберите — начальница ещё раз обращается к вам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -220,7 +220,7 @@
             {
               "responseId": "en:lesson-01:session-03:i05:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — начальница ещё раз обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи sure — «уверен», а cold означает «холодно».",
                 "uk": "У записі sure — «впевнений», а cold означає «холодно»."
@@ -229,7 +229,7 @@
             {
               "responseId": "en:lesson-01:session-03:i05:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — начальница ещё раз обращается к вам",
               "feedbackByLocale": {
                 "ru": "В записи sure — «уверен», а hungry означает «голодный».",
                 "uk": "У записі sure — «впевнений», а hungry означає «голодний»."
@@ -465,35 +465,34 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — вы всё ещё в офисе и не один",
+        "prompt": "Соберите фразу — вы точно знаете время встречи",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — вы всё ещё в офисе и не один",
+        "accessibilityLabel": "Соберите фразу — вы точно знаете время встречи",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am not alone.",
+          "targetPhrase": "I am sure.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — вы всё ещё в офисе и не один",
-            "uk": "Складіть фразу — ви ще в офісі й не самі"
+            "ru": "Соберите фразу — вы точно знаете время встречи",
+            "uk": "Складіть фразу — ви точно знаєте час зустрічі"
           },
           "orderedTokens": [
             "I",
             "am",
-            "not",
-            "alone"
+            "sure"
           ],
           "authoredDistractorTokens": [
-            "sure"
+            "alone"
           ],
           "slotFeedback": [
             {
               "responseId": "en:lesson-01:session-03:i10:tile:d1",
               "correct": false,
-              "testedDimension": "Соберите фразу — вы всё ещё в офисе и не один",
+              "testedDimension": "Соберите фразу — вы точно знаете время встречи",
               "feedbackByLocale": {
-                "ru": "«уверен», но здесь вы сообщаете: «я не один»",
-                "uk": "«впевнений», але тут ви повідомляєте: «я не сам»"
+                "ru": "«один», а здесь вы уверены",
+                "uk": "«сам», а тут ви впевнені"
               }
             }
           ],
@@ -671,7 +670,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите точную фразу — вы больше не заняты",
+        "prompt": "Послушайте и выберите — вы отвечаете начальнице после встречи",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i14:r1",
@@ -690,7 +689,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите точную фразу — вы больше не заняты",
+        "accessibilityLabel": "Послушайте и выберите — вы отвечаете начальнице после встречи",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -720,7 +719,7 @@
             {
               "responseId": "en:lesson-01:session-03:i14:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите точную фразу — вы больше не заняты",
+              "testedDimension": "Послушайте и выберите — вы отвечаете начальнице после встречи",
               "feedbackByLocale": {
                 "ru": "В аудио после am слышно not. Ответ означает «я не занят», а не «я занят».",
                 "uk": "В аудіо після am чути not. Відповідь означає «я не зайнятий», а не «я зайнятий»."
@@ -729,7 +728,7 @@
             {
               "responseId": "en:lesson-01:session-03:i14:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите точную фразу — вы больше не заняты",
+              "testedDimension": "Послушайте и выберите — вы отвечаете начальнице после встречи",
               "feedbackByLocale": {
                 "ru": "В аудио последнее слово busy, не late: речь о занятости, не об опоздании.",
                 "uk": "В аудіо останнє слово busy, не late: йдеться про зайнятість, а не про запізнення."
@@ -930,7 +929,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите точную фразу — вы не голодны",
+        "prompt": "Послушайте и выберите — ответа ждёт начальница, она стоит рядом",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i17:s02:r1",
@@ -949,7 +948,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i17:s02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите точную фразу — вы не голодны",
+        "accessibilityLabel": "Послушайте и выберите — ответа ждёт начальница, она стоит рядом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -979,7 +978,7 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите точную фразу — вы не голодны",
+              "testedDimension": "Послушайте и выберите — ответа ждёт начальница, она стоит рядом",
               "feedbackByLocale": {
                 "ru": "В аудио после am слышно not. Это «я не голоден», не «я голоден».",
                 "uk": "В аудіо після am чути not. Це «я не голодний», а не «я голодний»."
@@ -988,7 +987,7 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите точную фразу — вы не голодны",
+              "testedDimension": "Послушайте и выберите — ответа ждёт начальница, она стоит рядом",
               "feedbackByLocale": {
                 "ru": "Последнее слово hungry, не cold: речь о еде, а не о температуре.",
                 "uk": "Останнє слово hungry, не cold: йдеться про їжу, а не про температуру."
@@ -1584,35 +1583,34 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — ви ще в офісі й не самі",
+        "prompt": "Складіть фразу — ви точно знаєте час зустрічі",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — ви ще в офісі й не самі",
+        "accessibilityLabel": "Складіть фразу — ви точно знаєте час зустрічі",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am not alone.",
+          "targetPhrase": "I am sure.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — вы всё ещё в офисе и не один",
-            "uk": "Складіть фразу — ви ще в офісі й не самі"
+            "ru": "Соберите фразу — вы точно знаете время встречи",
+            "uk": "Складіть фразу — ви точно знаєте час зустрічі"
           },
           "orderedTokens": [
             "I",
             "am",
-            "not",
-            "alone"
+            "sure"
           ],
           "authoredDistractorTokens": [
-            "sure"
+            "alone"
           ],
           "slotFeedback": [
             {
               "responseId": "en:lesson-01:session-03:i10:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — ви ще в офісі й не самі",
+              "testedDimension": "Складіть фразу — ви точно знаєте час зустрічі",
               "feedbackByLocale": {
-                "ru": "«уверен», но здесь вы сообщаете: «я не один»",
-                "uk": "«впевнений», але тут ви повідомляєте: «я не сам»"
+                "ru": "«один», а здесь вы уверены",
+                "uk": "«сам», а тут ви впевнені"
               }
             }
           ],
@@ -2284,7 +2282,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-03:i10",
-      "correctText": "I am not alone.",
+      "correctText": "I am sure.",
       "correctResponseId": null
     },
     {

@@ -52,7 +52,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите слово",
+        "prompt": "Послушайте и выберите — наставница на офисной кухне говорит с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i02:r1",
@@ -71,7 +71,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-05:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите слово",
+        "accessibilityLabel": "Послушайте и выберите — наставница на офисной кухне говорит с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -101,7 +101,7 @@
             {
               "responseId": "en:lesson-01:session-05:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — наставница на офисной кухне говорит с вами",
               "feedbackByLocale": {
                 "ru": "В записи hot, а не cold.",
                 "uk": "У записі hot, а не cold."
@@ -110,7 +110,7 @@
             {
               "responseId": "en:lesson-01:session-05:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — наставница на офисной кухне говорит с вами",
               "feedbackByLocale": {
                 "ru": "В записи hot, а не tired.",
                 "uk": "У записі hot, а не tired."
@@ -203,7 +203,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите слово",
+        "prompt": "Послушайте и выберите — во второй день наставница знакомит вас с коллегами",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i06:r1",
@@ -222,7 +222,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-05:i06:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите слово",
+        "accessibilityLabel": "Послушайте и выберите — во второй день наставница знакомит вас с коллегами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -252,7 +252,7 @@
             {
               "responseId": "en:lesson-01:session-05:i06:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — во второй день наставница знакомит вас с коллегами",
               "feedbackByLocale": {
                 "ru": "В записи lost, а не hot.",
                 "uk": "У записі lost, а не hot."
@@ -261,7 +261,7 @@
             {
               "responseId": "en:lesson-01:session-05:i06:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — во второй день наставница знакомит вас с коллегами",
               "feedbackByLocale": {
                 "ru": "В записи lost, а не early.",
                 "uk": "У записі lost, а не early."
@@ -322,7 +322,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите слово",
+        "prompt": "Послушайте и выберите — коллеги вокруг, наставница ждёт вашего ответа",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-05:i08:r1",
@@ -341,7 +341,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-05:i08:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите слово",
+        "accessibilityLabel": "Послушайте и выберите — коллеги вокруг, наставница ждёт вашего ответа",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -371,7 +371,7 @@
             {
               "responseId": "en:lesson-01:session-05:i08:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — коллеги вокруг, наставница ждёт вашего ответа",
               "feedbackByLocale": {
                 "ru": "В записи sick, а не fine.",
                 "uk": "У записі sick, а не fine."
@@ -380,7 +380,7 @@
             {
               "responseId": "en:lesson-01:session-05:i08:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите слово",
+              "testedDimension": "Послушайте и выберите — коллеги вокруг, наставница ждёт вашего ответа",
               "feedbackByLocale": {
                 "ru": "В записи sick, а не sad.",
                 "uk": "У записі sick, а не sad."

@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-35:word:contagious; family: word_card -->
 > **contagious** — заразный, болезнь может передаться другим. He's contagious — «Он заразный».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — друг отвечает на ваше сообщение об отмене**
 <!-- interaction_id: en:lesson-01:session-35:i02; family: listen_choose -->
 🔊 *He is contagious.* → **He is contagious.** · She is contagious. · He is ill.
 - She is contagious. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -105,7 +105,7 @@ He is ___ . → **asleep** · awake · available
 <!-- interaction_id: en:lesson-01:session-35:word:hoarse; family: word_card -->
 > **hoarse** — охрипший, голос сел. She's hoarse — «Она охрипла»: говорит еле слышно.
 
-**12 · Послушайте и выберите услышанное**
+**12 · Послушайте и выберите — сестра отвечает вам по телефону**
 <!-- interaction_id: en:lesson-01:session-35:i09; family: listen_choose -->
 🔊 *She's hoarse.* → **She's hoarse.** · He's hoarse. · She's ill.
 - He's hoarse. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
@@ -139,7 +139,7 @@ You ___ ill. → **are** · am · is
 - am — *С `You` нужно `are`.*
 - is — *Даже к одному другу обращаемся `You are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — вы договариваетесь с друзьями созвониться позже**
 <!-- interaction_id: en:lesson-01:session-35:i15; family: listen_choose -->
 🔊 *They're ill.* → **They're ill.** · We're ill. · They're asleep.
 - We're ill. — *В записи первое слово — `They're`, а в этом варианте — `We're`.*

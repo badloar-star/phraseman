@@ -143,7 +143,7 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-21:i02:r1",
-            "text": "It is noisy."
+            "text": "It is empty."
           },
           {
             "responseId": "en:lesson-01:session-21:i02:r2",
@@ -151,7 +151,7 @@
           },
           {
             "responseId": "en:lesson-01:session-21:i02:r3",
-            "text": "It is empty."
+            "text": "It is noisy."
           }
         ],
         "mediaIds": [],
@@ -163,13 +163,13 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-21:i02:audio",
-            "transcript": "It is noisy."
+            "transcript": "It is empty."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-21:i02:r1",
-              "targetText": "It is noisy.",
+              "targetText": "It is empty.",
               "meaningByLocale": null
             },
             {
@@ -179,7 +179,7 @@
             },
             {
               "responseId": "en:lesson-01:session-21:i02:r3",
-              "targetText": "It is empty.",
+              "targetText": "It is noisy.",
               "meaningByLocale": null
             }
           ],
@@ -190,8 +190,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите услышанное",
               "feedbackByLocale": {
-                "ru": "В записи noisy, а не small.",
-                "uk": "У записі noisy, а не small."
+                "ru": "В записи empty, а не small.",
+                "uk": "У записі empty, а не small."
               }
             },
             {
@@ -199,8 +199,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите услышанное",
               "feedbackByLocale": {
-                "ru": "В записи noisy, а не empty.",
-                "uk": "У записі noisy, а не empty."
+                "ru": "В записи empty, а не noisy.",
+                "uk": "У записі empty, а не noisy."
               }
             }
           ],
@@ -636,7 +636,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте сообщение о подруге",
+        "prompt": "Послушайте и выберите — друг присылает вам короткое сообщение",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-21:i09:r1",
@@ -655,7 +655,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-21:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте сообщение о подруге",
+        "accessibilityLabel": "Послушайте и выберите — друг присылает вам короткое сообщение",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -685,7 +685,7 @@
             {
               "responseId": "en:lesson-01:session-21:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте сообщение о подруге",
+              "testedDimension": "Послушайте и выберите — друг присылает вам короткое сообщение",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
                 "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -694,7 +694,7 @@
             {
               "responseId": "en:lesson-01:session-21:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте сообщение о подруге",
+              "testedDimension": "Послушайте и выберите — друг присылает вам короткое сообщение",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `inside`, а в этом варианте — `outside`.",
                 "uk": "У записі останнє слово — `inside`, а в цьому варіанті — `outside`."
@@ -978,7 +978,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите фразу",
+        "prompt": "Послушайте и выберите — друг в клубе обращается к вам перед концертом",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-21:i15:r1",
@@ -997,7 +997,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-21:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите фразу",
+        "accessibilityLabel": "Послушайте и выберите — друг в клубе обращается к вам перед концертом",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1027,7 +1027,7 @@
             {
               "responseId": "en:lesson-01:session-21:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу",
+              "testedDimension": "Послушайте и выберите — друг в клубе обращается к вам перед концертом",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
                 "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -1036,7 +1036,7 @@
             {
               "responseId": "en:lesson-01:session-21:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу",
+              "testedDimension": "Послушайте и выберите — друг в клубе обращается к вам перед концертом",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `prepared`, а в этом варианте — `careful`.",
                 "uk": "У записі останнє слово — `prepared`, а в цьому варіанті — `careful`."
@@ -1304,7 +1304,7 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-21:i02:r1",
-            "text": "It is noisy."
+            "text": "It is empty."
           },
           {
             "responseId": "en:lesson-01:session-21:i02:r2",
@@ -1312,7 +1312,7 @@
           },
           {
             "responseId": "en:lesson-01:session-21:i02:r3",
-            "text": "It is empty."
+            "text": "It is noisy."
           }
         ],
         "mediaIds": [],
@@ -1324,13 +1324,13 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-21:i02:audio",
-            "transcript": "It is noisy."
+            "transcript": "It is empty."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-01:session-21:i02:r1",
-              "targetText": "It is noisy.",
+              "targetText": "It is empty.",
               "meaningByLocale": null
             },
             {
@@ -1340,7 +1340,7 @@
             },
             {
               "responseId": "en:lesson-01:session-21:i02:r3",
-              "targetText": "It is empty.",
+              "targetText": "It is noisy.",
               "meaningByLocale": null
             }
           ],
@@ -1351,8 +1351,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть почуте",
               "feedbackByLocale": {
-                "ru": "В записи noisy, а не small.",
-                "uk": "У записі noisy, а не small."
+                "ru": "В записи empty, а не small.",
+                "uk": "У записі empty, а не small."
               }
             },
             {
@@ -1360,8 +1360,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть почуте",
               "feedbackByLocale": {
-                "ru": "В записи noisy, а не empty.",
-                "uk": "У записі noisy, а не empty."
+                "ru": "В записи empty, а не noisy.",
+                "uk": "У записі empty, а не noisy."
               }
             }
           ],
@@ -2343,7 +2343,7 @@
     },
     {
       "interactionId": "en:lesson-01:session-21:i02",
-      "correctText": "It is noisy.",
+      "correctText": "It is empty.",
       "correctResponseId": "en:lesson-01:session-21:i02:r1"
     },
     {

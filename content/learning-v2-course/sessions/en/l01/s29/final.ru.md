@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-29:word:foreign; family: word_card -->
 > **foreign** — иностранный, из другой страны. It is foreign — «Он иностранный». Слово говорит о происхождении, а не о качестве.
 
-**4 · Послушайте и выберите описание фильма**
+**4 · Послушайте и выберите — подруга выбирает с вами фильм на фестивале**
 <!-- interaction_id: en:lesson-01:session-29:i02; family: listen_choose -->
 🔊 *It is foreign.* → **It is foreign.** · It is local. · It is popular.
 - It is local. — *В записи последнее слово — `foreign`, а в этом варианте — `local`.*
@@ -109,7 +109,7 @@ They ___ popular. → **are** · is · am
 - is — *О двух фильмах говорим `They are`.*
 - am — *После `They` нужно `are`; `am` ставим с `I`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — вы выбираете с подругой показ на фестивале**
 <!-- interaction_id: en:lesson-01:session-29:i09; family: listen_choose -->
 🔊 *You are online.* → **You are online.** · We are online. · You are local.
 - We are online. — *В записи первое слово — `You`, а в этом варианте — `We`.*
@@ -139,7 +139,7 @@ It ___ foreign. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Речь об одном фильме: `It is`.*
 
-**19 · Послушайте и выберите услышанное**
+**19 · Послушайте и выберите — на городском фестивале подруга делится мнением**
 <!-- interaction_id: en:lesson-01:session-29:i15; family: listen_choose -->
 🔊 *She is popular.* → **She is popular.** · She is local. · He is popular.
 - She is local. — *В записи последнее слово — `popular`, а в этом варианте — `local`.*

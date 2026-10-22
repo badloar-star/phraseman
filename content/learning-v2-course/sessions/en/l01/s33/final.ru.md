@@ -57,7 +57,7 @@
 Плитки: `okay` `I'm` `He's` → **I'm okay.**
 *(плитка `He's` лишняя: здесь нужно `I'm` — `I'm okay.`)*
 
-**2 · Послушайте и выберите услышанное**
+**2 · Послушайте и выберите — вы репетируете сценку, подруга делится мыслью**
 <!-- interaction_id: en:lesson-01:session-33:i02; family: listen_choose -->
 🔊 *She's proud.* → **She's proud.** · He's proud. · She's ashamed.
 - He's proud. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
@@ -97,7 +97,7 @@ ___ awful. → **It's** · I'm · They're
 - I'm — *Это о себе. Про звук — `It's`.*
 - They're — *Это «они». Звук здесь один — `It's`.*
 
-**10 · Послушайте и выберите услышанное**
+**10 · Послушайте и выберите — после репетиции друзья делятся впечатлениями**
 <!-- interaction_id: en:lesson-01:session-33:i09; family: listen_choose -->
 🔊 *They're surprised.* → **They're surprised.** · We're surprised. · They're ashamed.
 - We're surprised. — *В записи первое слово — `They're`, а в этом варианте — `We're`.*
@@ -135,7 +135,7 @@ ___ okay. → **You're** · We're · She's
 <!-- interaction_id: en:lesson-01:session-33:word:amazing; family: word_card -->
 > **amazing** — потрясающий, удивительный. It's amazing — «Это потрясающе». Сильнее, чем great.
 
-**18 · Зал аплодирует стоя. Послушайте, что говорит подруга, и выберите услышанное**
+**18 · Послушайте и выберите — подруга после сценки обращается к вам**
 <!-- interaction_id: en:lesson-01:session-33:i15; family: listen_choose -->
 🔊 *It's amazing.* → **It's amazing.** · It's awful. · He's amazing.
 - It's awful. — *В записи последнее слово — `amazing`, а в этом варианте — `awful`.*

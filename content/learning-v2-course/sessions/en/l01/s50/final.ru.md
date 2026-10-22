@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-50:word:perfect; family: word_card -->
 > **perfect** — идеальный, лучше не найти. It's perfect — «Идеально».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — продавщица в магазине обращается к вам**
 <!-- interaction_id: en:lesson-01:session-50:i02; family: listen_choose -->
 🔊 *It is perfect.* → **It is perfect.** · It is expensive. · It is useful.
 - It is expensive. — *В записи последнее слово — `perfect`, а в этом варианте — `expensive`.*
@@ -109,7 +109,7 @@ She is ___ . → **polite** · expensive · perfect
 - expensive — *Это о высокой цене, а нужна вежливость: `polite`.*
 - perfect — *`perfect` — «идеальная». Здесь оцениваем вежливость: `polite`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — друг выбирает подарок и высказывается**
 <!-- interaction_id: en:lesson-01:session-50:i09; family: listen_choose -->
 🔊 *It's elegant.* → **It's elegant.** · It's expensive. · She's elegant.
 - It's expensive. — *В записи последнее слово — `elegant`, а в этом варианте — `expensive`.*
@@ -139,7 +139,7 @@ It ___ perfect. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Шарф один — `It is`.*
 
-**19 · Послушайте короткую оценку и выберите её**
+**19 · Послушайте и выберите — друг и продавщица обсуждают покупку с вами**
 <!-- interaction_id: en:lesson-01:session-50:i15; family: listen_choose -->
 🔊 *They're wrapped.* → **They're wrapped.** · It's wrapped. · They're perfect.
 - It's wrapped. — *В записи первое слово — `They're`, а в этом варианте — `It's`.*

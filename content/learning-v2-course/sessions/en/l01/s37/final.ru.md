@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-37:word:homesick; family: word_card -->
 > **homesick** — скучает по дому. I'm homesick — «Я скучаю по дому». Это тоска по родным местам и своим людям.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — в первый вечер в новом городе вам звонит друг**
 <!-- interaction_id: en:lesson-01:session-37:i02; family: listen_choose -->
 🔊 *She is homesick.* → **She is homesick.** · He is homesick. · She is lonely.
 - He is homesick. — *В записи первое слово — `She`, а в этом варианте — `He`.*
@@ -109,7 +109,7 @@ It is ___ . → **local** · lonely · foreign
 - lonely — *`lonely` описывает одиночество. Здесь нужно «местный»: `local`.*
 - foreign — *`foreign` — «иностранный». Здесь клуб местный: `local`.*
 
-**13 · Послушайте описание встречи**
+**13 · Послушайте и выберите — вы разговариваете с другом вечером**
 <!-- interaction_id: en:lesson-01:session-37:i09; family: listen_choose -->
 🔊 *It is online.* → **It is online.** · It is local. · It is foreign.
 - It is local. — *В записи последнее слово — `online`, а в этом варианте — `local`.*
@@ -139,7 +139,7 @@ You ___ lonely. → **are** · am · is
 - am — *После `You` нужно `are`.*
 - is — *К одному другу тоже обращаемся `You are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — вы показываете другу новую квартиру по видео**
 <!-- interaction_id: en:lesson-01:session-37:i15; family: listen_choose -->
 🔊 *It's cozy.* → **It's cozy.** · It's messy. · It's local.
 - It's messy. — *В записи последнее слово — `cozy`, а в этом варианте — `messy`.*

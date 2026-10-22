@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-18:word:sleepy; family: word_card -->
 > **sleepy** — сонный, желающий спать. We are sleepy — «Мы сонные».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — друг говорит с вами на вокзале**
 <!-- interaction_id: en:lesson-01:session-18:i02; family: listen_choose -->
 🔊 *We are sleepy.* → **We are sleepy.** · You are sleepy. · We are early.
 - You are sleepy. — *В записи We, а не You.*
@@ -105,7 +105,7 @@ You ___ right. → **are** · is · am
 - is — *Обращаясь к другу, говорим `You are`.*
 - am — *`am` ставим с `I`, а здесь начало `You`.*
 
-**12 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите — на вокзале речь заходит о ком-то из знакомых**
 <!-- interaction_id: en:lesson-01:session-18:i09; family: listen_choose -->
 🔊 *He is lucky.* → **He is lucky.** · She is lucky. · He is wrong.
 - She is lucky. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -139,7 +139,7 @@ We are ___ . → **safe** · wrong · early
 <!-- interaction_id: en:lesson-01:session-18:word:funny; family: word_card -->
 > **funny** — смешной, забавный: вызывает смех. She is funny — «Она смешная»: например, попутчица весело рассказывает истории.
 
-**19 · Послушайте фразу о попутчице и выберите услышанное**
+**19 · Послушайте и выберите — в ожидании поезда вы говорите о попутчиках**
 <!-- interaction_id: en:lesson-01:session-18:i15; family: listen_choose -->
 🔊 *She is funny.* → **She is funny.** · He is funny. · She is kind.
 - He is funny. — *В записи первое слово — `She`, а в этом варианте — `He`.*

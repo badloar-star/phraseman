@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-45:word:packed; family: word_card -->
 > **packed** — упакован, сложен в коробки. They're packed — «Они упакованы». О себе: I'm packed — «Я собрался».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — вы помогаете другу собрать вещи перед машиной**
 <!-- interaction_id: en:lesson-01:session-45:i02; family: listen_choose -->
 🔊 *They are packed.* → **They are packed.** · We are packed. · They are empty.
 - We are packed. — *В записи первое слово — `They`, а в этом варианте — `We`.*
@@ -109,7 +109,7 @@ He is ___ . → **lonely** · spacious · packed
 - spacious — *`spacious` — «просторный», это про комнату. О грусти без друзей — `lonely`.*
 - packed — *`packed` — «собрался, упакован». Чувство одиночества — `lonely`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — друг говорит с вами, пока вы носите коробки**
 <!-- interaction_id: en:lesson-01:session-45:i09; family: listen_choose -->
 🔊 *It is sturdy.* → **It is sturdy.** · He is sturdy. · It is heavy.
 - He is sturdy. — *В записи первое слово — `It`, а в этом варианте — `He`.*
@@ -139,7 +139,7 @@ They ___ sturdy. → **are** · am · is
 - am — *После `They` нужно `are`.*
 - is — *Табуреток две, поэтому `They are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — друг оглядывает комнату перед отъездом**
 <!-- interaction_id: en:lesson-01:session-45:i15; family: listen_choose -->
 🔊 *We're packed.* → **We're packed.** · They're packed. · We're ready.
 - They're packed. — *В записи первое слово — `We're`, а в этом варианте — `They're`.*

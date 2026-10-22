@@ -61,7 +61,7 @@
 Плитки: `welcome` `are` `You` `am` → **You are welcome.**
 *(плитка `am` лишняя: здесь нужно `are` — `You are welcome.`)*
 
-**3 · Послушайте и выберите фразу хозяина**
+**3 · Послушайте и выберите — хозяин гостевого дома говорит с вами**
 <!-- interaction_id: en:lesson-01:session-17:i02; family: listen_choose -->
 🔊 *You are safe.* → **You are safe.** · We are safe. · You are right.
 - We are safe. — *В записи первое слово — `You`, а в этом варианте — `We`.*
@@ -105,7 +105,7 @@ You ___ tall. → **are** · am · is
 - am — *С `You` используем `are`; `am` нужно, когда говорим `I am`.*
 - is — *`is` подходит к `He`, а вы говорите самому другу: `You are`.*
 
-**12 · Послушайте и выберите услышанное**
+**12 · Послушайте и выберите — друг заходит в гостевой дом после дождя**
 <!-- interaction_id: en:lesson-01:session-17:i09; family: listen_choose -->
 🔊 *They are welcome.* → **They are welcome.** · You are welcome. · They are ready.
 - You are welcome. — *В записи первое слово — `They`, а в этом варианте — `You`.*
@@ -139,7 +139,7 @@ You are ___ . → **safe** · young · short
 - young — *`young` — «молодой». Сейчас речь об отсутствии опасности: `safe`.*
 - short — *`short` здесь описывает рост. Отсутствие опасности — `safe`.*
 
-**19 · Послушайте и выберите фразу гостей, которым удобно в новых креслах**
+**19 · Послушайте и выберите — гости заходят в гостевой дом, звучит реплика**
 <!-- interaction_id: en:lesson-01:session-17:i15; family: listen_choose -->
 🔊 *We are comfortable.* → **We are comfortable.** · They are comfortable. · We are grateful.
 - They are comfortable. — *В записи We, а не They.*

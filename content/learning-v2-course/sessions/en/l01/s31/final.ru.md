@@ -65,7 +65,7 @@ separate — «отдельный». У вас два отдельных счё�
 <!-- interaction_id: en:lesson-01:session-31:word:similar; family: word_card -->
 > **similar** — похожий, но не во всём одинаковый. They are similar — «Они похожи».
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — друг в кафе обсуждает с вами заказ**
 <!-- interaction_id: en:lesson-01:session-31:i02; family: listen_choose -->
 🔊 *They are similar.* → **They are similar.** · They are separate. · They are equal.
 - They are separate. — *В записи последнее слово — `similar`, а в этом варианте — `separate`.*
@@ -109,7 +109,7 @@ They are ___ . → **separate** · equal · similar
 <!-- interaction_id: en:lesson-01:session-31:word:shared; family: word_card -->
 > **shared** — общий, на всех. It is shared — «Это общее»: одно блюдо, которое едят все за столом.
 
-**13 · Друг спрашивает, чья пицца в центре стола. Послушайте ответ и выберите услышанное**
+**13 · Послушайте и выберите — за обедом друг задаёт вам вопрос о блюде**
 <!-- interaction_id: en:lesson-01:session-31:i09; family: listen_choose -->
 🔊 *It is shared.* → **It is shared.** · It is separate. · It is similar.
 - It is separate. — *В записи последнее слово — `shared`, а в этом варианте — `separate`.*
@@ -139,7 +139,7 @@ They ___ similar. → **are** · is · am
 - is — *После `They` нужно `are`.*
 - am — *`am` нужно с `I`, а здесь `They are`.*
 
-**19 · Послушайте и выберите фразу о героине фильма, который обсуждают друзья**
+**19 · Послушайте и выберите — друзья в кафе обсуждают фильм**
 <!-- interaction_id: en:lesson-01:session-31:i15; family: listen_choose -->
 🔊 *She is single.* → **She is single.** · He is single. · She is married.
 - He is single. — *В записи первое слово — `She`, а в этом варианте — `He`.*

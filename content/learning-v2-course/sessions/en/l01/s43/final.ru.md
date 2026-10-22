@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-01:session-43:word:stuck; family: word_card -->
 > **stuck** — застрял, не может двигаться дальше. He's stuck — «Он застрял»: в пробке, в лифте, в двери.
 
-**3 · Послушайте и выберите услышанное**
+**3 · Послушайте и выберите — вы с подругой ждёте друга у кинотеатра**
 <!-- interaction_id: en:lesson-01:session-43:i02; family: listen_choose -->
 🔊 *He is stuck.* → **He is stuck.** · She is stuck. · He is late.
 - She is stuck. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -109,7 +109,7 @@ She is ___ . → **ill** · patient · annoyed
 - patient — *`patient` — «терпеливая». О болезни — `ill`.*
 - annoyed — *`annoyed` — «раздражена». Здесь нужно `ill`: болеет.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — подруга у кинотеатра обращается к вам**
 <!-- interaction_id: en:lesson-01:session-43:i09; family: listen_choose -->
 🔊 *She's annoyed.* → **She's annoyed.** · He's annoyed. · She's patient.
 - He's annoyed. — *В записи первое слово — `She's`, а в этом варианте — `He's`.*
@@ -139,7 +139,7 @@ You ___ patient. → **are** · am · is
 - am — *После `You` нужно `are`.*
 - is — *К одному человеку тоже обращаемся `You are`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — вы читаете сообщение друга перед сеансом**
 <!-- interaction_id: en:lesson-01:session-43:i15; family: listen_choose -->
 🔊 *They're stuck.* → **They're stuck.** · We're stuck. · They're late.
 - We're stuck. — *В записи первое слово — `They're`, а в этом варианте — `We're`.*

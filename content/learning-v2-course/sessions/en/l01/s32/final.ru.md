@@ -57,7 +57,7 @@
 Плитки: `proud` `are` `We` `is` → **We are proud.**
 *(плитка `is` лишняя: здесь нужно `are` — `We are proud.`)*
 
-**2 · Послушайте и выберите услышанное**
+**2 · Послушайте и выберите — вы развешиваете снимки, друг говорит с вами**
 <!-- interaction_id: en:lesson-01:session-32:i02; family: listen_choose -->
 🔊 *He is worried.* → **He is worried.** · She is worried. · He is surprised.
 - She is worried. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -105,7 +105,7 @@ They ___ equal. → **are** · am · is
 <!-- interaction_id: en:lesson-01:session-32:word:tiny; family: word_card -->
 > **tiny** — крошечный, совсем маленький. It is tiny — «Он крошечный». Сильнее, чем знакомое small.
 
-**12 · Подпись под снимком напечатана таким мелким шрифтом, что её почти не видно. Послушайте и выберите услышанное**
+**12 · Послушайте и выберите — перед открытием вы проверяете подписи под снимками**
 <!-- interaction_id: en:lesson-01:session-32:i09; family: listen_choose -->
 🔊 *It is tiny.* → **It is tiny.** · It is huge. · It is blurry.
 - It is huge. — *В записи последнее слово — `tiny`, а в этом варианте — `huge`.*
@@ -135,7 +135,7 @@ She is ___ . → **worried** · bored · proud
 - bored — *`bored` — «скучает». Здесь она тревожится: `worried`.*
 - proud — *`proud` — «гордится». Здесь нужно назвать тревогу: `worried`.*
 
-**18 · Послушайте и выберите фразу о фотографиях**
+**18 · Послушайте и выберите — друг оценивает развешанные фотографии**
 <!-- interaction_id: en:lesson-01:session-32:i15; family: listen_choose -->
 🔊 *They are similar.* → **They are similar.** · They are equal. · They are separate.
 - They are equal. — *В записи последнее слово — `similar`, а в этом варианте — `equal`.*

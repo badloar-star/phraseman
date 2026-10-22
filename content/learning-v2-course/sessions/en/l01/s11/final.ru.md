@@ -56,7 +56,7 @@
 <!-- interaction_id: en:lesson-01:session-11:i01; family: word_card -->
 > **rude** — грубый, невежливый. You are not rude — «Ты не грубишь».
 
-**2 · Послушайте и выберите**
+**2 · Послушайте и выберите — собеседник на встрече отвечает вам**
 <!-- interaction_id: en:lesson-01:session-11:i02; family: listen_choose -->
 🔊 *rude* → **rude** · kind · quiet
 - kind — *В записи звучит rude, а не kind.*
@@ -66,7 +66,7 @@
 <!-- interaction_id: en:lesson-01:session-11:i03; family: word_card -->
 > **lazy** — ленивый. You are not lazy — «Ты не ленивый / не ленивая». Отдых и усталость сами по себе не означают лень.
 
-**4 · Послушайте и выберите**
+**4 · Послушайте и выберите — коллега говорит с вами о делах**
 <!-- interaction_id: en:lesson-01:session-11:i04; family: listen_choose -->
 🔊 *lazy* → **lazy** · rude · busy
 - rude — *В записи звучит lazy, а не rude.*
@@ -80,7 +80,7 @@
 <!-- interaction_id: en:lesson-01:session-11:i06; family: word_card -->
 > **slow** — медленный. You are not slow — «Ты не медленный / не медленная».
 
-**7 · Послушайте и выберите**
+**7 · Послушайте и выберите — другой собеседник высказывается о работе**
 <!-- interaction_id: en:lesson-01:session-11:i07; family: listen_choose -->
 🔊 *slow* → **slow** · fast · wrong
 - fast — *В записи звучит slow, а не fast.*
@@ -96,7 +96,7 @@ You are not ___ . → **wrong** · busy · tired
 <!-- interaction_id: en:lesson-01:session-11:i09; family: word_card -->
 > **careful** — осторожный, внимательный: человек старается не допустить ошибки или повреждения. You are careful — «Ты осторожный / осторожная». Пример: бережно переносите хрупкую вазу.
 
-**10 · Послушайте и выберите**
+**10 · Послушайте и выберите — ещё один собеседник говорит о ваших делах**
 <!-- interaction_id: en:lesson-01:session-11:i10; family: listen_choose -->
 🔊 *careful* → **careful** · patient · calm
 - patient — *В записи звучит careful, а не patient.*

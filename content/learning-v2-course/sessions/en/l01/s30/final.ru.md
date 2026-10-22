@@ -65,7 +65,7 @@ dead — «мёртв». He is dead — «Он мёртв», то есть он 
 <!-- interaction_id: en:lesson-01:session-30:word:missing; family: word_card -->
 > **missing** — пропал, нет там, где должен быть. She is missing — «Она пропала». Про вещь: It is missing.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — друг смотрит с вами детектив и спрашивает**
 <!-- interaction_id: en:lesson-01:session-30:i02; family: listen_choose -->
 🔊 *She is missing.* → **She is missing.** · He is missing. · She is alive.
 - He is missing. — *В записи первое слово — `She`, а в этом варианте — `He`.*
@@ -105,7 +105,7 @@ I ___ alive. → **am** · is · are
 - is — *О себе герой говорит `I am`.*
 - are — *После `I` нужна форма `am`.*
 
-**12 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите — вы объясняете другу сюжет детектива**
 <!-- interaction_id: en:lesson-01:session-30:i09; family: listen_choose -->
 🔊 *He is dead.* → **He is dead.** · She is dead. · He is missing.
 - She is dead. — *В записи первое слово — `He`, а в этом варианте — `She`.*
@@ -139,7 +139,7 @@ She is ___ . → **missing** · dead · famous
 - dead — *Нет сведений, что она умерла. Она пропала: `missing`.*
 - famous — *`famous` — «знаменитая». Здесь речь об исчезновении: `missing`.*
 
-**19 · Послушайте и выберите услышанное**
+**19 · Послушайте и выберите — друг в середине детектива обращается к вам**
 <!-- interaction_id: en:lesson-01:session-30:i15; family: listen_choose -->
 🔊 *You are alive.* → **You are alive.** · We are alive. · You are famous.
 - We are alive. — *В записи первое слово — `You`, а в этом варианте — `We`.*

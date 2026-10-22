@@ -96,7 +96,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите услышанное",
+        "prompt": "Послушайте и выберите — вы идёте по лесному маршруту с друзьями",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-20:i02:r1",
@@ -115,7 +115,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-20:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — вы идёте по лесному маршруту с друзьями",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -145,7 +145,7 @@
             {
               "responseId": "en:lesson-01:session-20:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — вы идёте по лесному маршруту с друзьями",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
                 "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -154,7 +154,7 @@
             {
               "responseId": "en:lesson-01:session-20:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — вы идёте по лесному маршруту с друзьями",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `lost`, а в этом варианте — `prepared`.",
                 "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `prepared`."
@@ -593,7 +593,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте фразу туриста и выберите услышанное",
+        "prompt": "Послушайте и выберите — на маршруте вы слышите реплику туриста",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-20:i09:r1",
@@ -612,7 +612,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-20:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте фразу туриста и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — на маршруте вы слышите реплику туриста",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -642,7 +642,7 @@
             {
               "responseId": "en:lesson-01:session-20:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте фразу туриста и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — на маршруте вы слышите реплику туриста",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `lost`, а в этом варианте — `alone`.",
                 "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `alone`."
@@ -651,7 +651,7 @@
             {
               "responseId": "en:lesson-01:session-20:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте фразу туриста и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — на маршруте вы слышите реплику туриста",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `lost`, а в этом варианте — `prepared`.",
                 "uk": "У записі останнє слово — `lost`, а в цьому варіанті — `prepared`."
@@ -978,7 +978,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте фразу о громком туристе",
+        "prompt": "Послушайте и выберите — один турист на лесной тропе говорит с вами",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-20:i15:r1",
@@ -997,7 +997,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-20:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте фразу о громком туристе",
+        "accessibilityLabel": "Послушайте и выберите — один турист на лесной тропе говорит с вами",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1027,7 +1027,7 @@
             {
               "responseId": "en:lesson-01:session-20:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте фразу о громком туристе",
+              "testedDimension": "Послушайте и выберите — один турист на лесной тропе говорит с вами",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
                 "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -1036,7 +1036,7 @@
             {
               "responseId": "en:lesson-01:session-20:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте фразу о громком туристе",
+              "testedDimension": "Послушайте и выберите — один турист на лесной тропе говорит с вами",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `loud`, а в этом варианте — `careful`.",
                 "uk": "У записі останнє слово — `loud`, а в цьому варіанті — `careful`."

@@ -56,7 +56,7 @@
 <!-- interaction_id: en:lesson-01:session-05:i01; family: word_card -->
 > **hot** — «жарко, мне жарко». Вы сидите рядом с горячей батареей.
 
-**2 · Послушайте и выберите слово**
+**2 · Послушайте и выберите — наставница на офисной кухне говорит с вами**
 <!-- interaction_id: en:lesson-01:session-05:i02; family: listen_choose -->
 🔊 *hot*
 - ✅ hot
@@ -71,7 +71,7 @@
 <!-- interaction_id: en:lesson-01:session-05:i05; family: word_card -->
 > **lost** — «заблудился / заблудилась»: вы не можете найти дорогу.
 
-**5 · Послушайте и выберите слово**
+**5 · Послушайте и выберите — во второй день наставница знакомит вас с коллегами**
 <!-- interaction_id: en:lesson-01:session-05:i06; family: listen_choose -->
 🔊 *lost*
 - ✅ lost
@@ -82,7 +82,7 @@
 <!-- interaction_id: en:lesson-01:session-05:i03; family: word_card -->
 > **sick** — «болею». Так можно написать коллеге, если сегодня остаетесь дома из-за болезни.
 
-**7 · Послушайте и выберите слово**
+**7 · Послушайте и выберите — коллеги вокруг, наставница ждёт вашего ответа**
 <!-- interaction_id: en:lesson-01:session-05:i08; family: listen_choose -->
 🔊 *sick*
 - ✅ sick

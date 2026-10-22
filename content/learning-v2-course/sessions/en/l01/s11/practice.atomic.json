@@ -52,7 +52,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите — собеседник на встрече отвечает вам",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-11:i02:r1",
@@ -71,7 +71,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-11:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите — собеседник на встрече отвечает вам",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -101,7 +101,7 @@
             {
               "responseId": "en:lesson-01:session-11:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — собеседник на встрече отвечает вам",
               "feedbackByLocale": {
                 "ru": "В записи звучит rude, а не kind.",
                 "uk": "У записі звучить rude, а не kind."
@@ -110,7 +110,7 @@
             {
               "responseId": "en:lesson-01:session-11:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — собеседник на встрече отвечает вам",
               "feedbackByLocale": {
                 "ru": "В записи звучит rude, а не quiet.",
                 "uk": "У записі звучить rude, а не quiet."
@@ -171,7 +171,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите — коллега говорит с вами о делах",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-11:i04:r1",
@@ -190,7 +190,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-11:i04:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите — коллега говорит с вами о делах",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -220,7 +220,7 @@
             {
               "responseId": "en:lesson-01:session-11:i04:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — коллега говорит с вами о делах",
               "feedbackByLocale": {
                 "ru": "В записи звучит lazy, а не rude.",
                 "uk": "У записі звучить lazy, а не rude."
@@ -229,7 +229,7 @@
             {
               "responseId": "en:lesson-01:session-11:i04:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — коллега говорит с вами о делах",
               "feedbackByLocale": {
                 "ru": "В записи звучит lazy, а не busy.",
                 "uk": "У записі звучить lazy, а не busy."
@@ -323,7 +323,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите — другой собеседник высказывается о работе",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-11:i07:r1",
@@ -342,7 +342,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-11:i07:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите — другой собеседник высказывается о работе",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -372,7 +372,7 @@
             {
               "responseId": "en:lesson-01:session-11:i07:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — другой собеседник высказывается о работе",
               "feedbackByLocale": {
                 "ru": "В записи звучит slow, а не fast.",
                 "uk": "У записі звучить slow, а не fast."
@@ -381,7 +381,7 @@
             {
               "responseId": "en:lesson-01:session-11:i07:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — другой собеседник высказывается о работе",
               "feedbackByLocale": {
                 "ru": "В записи звучит slow, а не wrong.",
                 "uk": "У записі звучить slow, а не wrong."
@@ -511,7 +511,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Послушайте и выберите — ещё один собеседник говорит о ваших делах",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-11:i10:r1",
@@ -530,7 +530,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-11:i10:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Послушайте и выберите — ещё один собеседник говорит о ваших делах",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -560,7 +560,7 @@
             {
               "responseId": "en:lesson-01:session-11:i10:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — ещё один собеседник говорит о ваших делах",
               "feedbackByLocale": {
                 "ru": "В записи звучит careful, а не patient.",
                 "uk": "У записі звучить careful, а не patient."
@@ -569,7 +569,7 @@
             {
               "responseId": "en:lesson-01:session-11:i10:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Послушайте и выберите — ещё один собеседник говорит о ваших делах",
               "feedbackByLocale": {
                 "ru": "В записи звучит careful, а не calm.",
                 "uk": "У записі звучить careful, а не calm."

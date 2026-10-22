@@ -63,9 +63,9 @@
 
 **3 · Послухайте й виберіть почуте**
 <!-- interaction_id: en:lesson-01:session-48:i02; family: listen_choose -->
-🔊 *They are sticky.* → **They are sticky.** · We are sticky. · They are sharp.
-- We are sticky. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
-- They are sharp. — *У записі останнє слово — `sticky`, а в цьому варіанті — `sharp`.*
+🔊 *They are sharp.* → **They are sharp.** · We are sharp. · They are sticky.
+- We are sharp. — *У записі перше слово — `They`, а в цьому варіанті — `We`.*
+- They are sticky. — *У записі останнє слово — `sharp`, а в цьому варіанті — `sticky`.*
 
 **4 · Нова стамеска подруги ріже дерево, як масло. Доповніть фразу про неї**
 <!-- interaction_id: en:lesson-01:session-48:i03; family: context_gap_grammar -->

@@ -53,7 +53,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте описание координатора и выберите услышанное",
+        "prompt": "Послушайте и выберите — координатор в зале описывает вам человека",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-16:i02:r1",
@@ -72,7 +72,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-16:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте описание координатора и выберите услышанное",
+        "accessibilityLabel": "Послушайте и выберите — координатор в зале описывает вам человека",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -102,7 +102,7 @@
             {
               "responseId": "en:lesson-01:session-16:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте описание координатора и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — координатор в зале описывает вам человека",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
                 "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -111,7 +111,7 @@
             {
               "responseId": "en:lesson-01:session-16:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте описание координатора и выберите услышанное",
+              "testedDimension": "Послушайте и выберите — координатор в зале описывает вам человека",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `short`, а в этом варианте — `old`.",
                 "uk": "У записі останнє слово — `short`, а в цьому варіанті — `old`."
@@ -550,7 +550,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите фразу о подруге",
+        "prompt": "Послушайте и выберите — вы расставляете вещи, подруга говорит о ком-то",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-16:i09:r1",
@@ -569,7 +569,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-16:i09:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите фразу о подруге",
+        "accessibilityLabel": "Послушайте и выберите — вы расставляете вещи, подруга говорит о ком-то",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -599,7 +599,7 @@
             {
               "responseId": "en:lesson-01:session-16:i09:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу о подруге",
+              "testedDimension": "Послушайте и выберите — вы расставляете вещи, подруга говорит о ком-то",
               "feedbackByLocale": {
                 "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
                 "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -608,7 +608,7 @@
             {
               "responseId": "en:lesson-01:session-16:i09:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу о подруге",
+              "testedDimension": "Послушайте и выберите — вы расставляете вещи, подруга говорит о ком-то",
               "feedbackByLocale": {
                 "ru": "В записи последнее слово — `quiet`, а в этом варианте — `calm`.",
                 "uk": "У записі останнє слово — `quiet`, а в цьому варіанті — `calm`."
@@ -978,7 +978,7 @@
         "purpose": "independent_check",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте описание пола после уборки",
+        "prompt": "Послушайте и выберите — координатор осматривает зал перед встречей",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-16:i15:r1",
@@ -997,7 +997,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-16:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте описание пола после уборки",
+        "accessibilityLabel": "Послушайте и выберите — координатор осматривает зал перед встречей",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1027,7 +1027,7 @@
             {
               "responseId": "en:lesson-01:session-16:i15:r2",
               "correct": false,
-              "testedDimension": "Послушайте описание пола после уборки",
+              "testedDimension": "Послушайте и выберите — координатор осматривает зал перед встречей",
               "feedbackByLocale": {
                 "ru": "В записи wet, а не dry.",
                 "uk": "У записі wet, а не dry."
@@ -1036,7 +1036,7 @@
             {
               "responseId": "en:lesson-01:session-16:i15:r3",
               "correct": false,
-              "testedDimension": "Послушайте описание пола после уборки",
+              "testedDimension": "Послушайте и выберите — координатор осматривает зал перед встречей",
               "feedbackByLocale": {
                 "ru": "В записи wet, а не clean.",
                 "uk": "У записі wet, а не clean."

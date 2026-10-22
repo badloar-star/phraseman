@@ -65,7 +65,7 @@
 <!-- interaction_id: en:lesson-01:session-46:word:tangled; family: word_card -->
 > **tangled** — запутанный, перепутался. They're tangled — «Они запутались». О проводах, нитках, волосах.
 
-**4 · Послушайте и выберите услышанное**
+**4 · Послушайте и выберите — вы с другом собираете сумки перед поездкой**
 <!-- interaction_id: en:lesson-01:session-46:i02; family: listen_choose -->
 🔊 *They are tangled.* → **They are tangled.** · We are tangled. · They are useless.
 - We are tangled. — *В записи первое слово — `They`, а в этом варианте — `We`.*
@@ -109,7 +109,7 @@ It is ___ . → **weak** · useless · charged
 - useless — *Сообщение ушло, значит, сигнал помог. Здесь нужна слабость: `weak`.*
 - charged — *`charged` — «заряжен», это про батарею. Слабый сигнал — `weak`.*
 
-**13 · Послушайте и выберите услышанное**
+**13 · Послушайте и выберите — друг рядом с вами перед отъездом к морю**
 <!-- interaction_id: en:lesson-01:session-46:i09; family: listen_choose -->
 🔊 *It is charged.* → **It is charged.** · He is charged. · It is loose.
 - He is charged. — *В записи первое слово — `It`, а в этом варианте — `He`.*
@@ -139,7 +139,7 @@ It ___ loose. → **is** · am · are
 - am — *После `It` нужно `is`.*
 - are — *Ножка одна, поэтому `It is`.*
 
-**19 · Послушайте и выберите короткую фразу**
+**19 · Послушайте и выберите — вечером перед поездкой друг делится мнением**
 <!-- interaction_id: en:lesson-01:session-46:i15; family: listen_choose -->
 🔊 *It's useless.* → **It's useless.** · They're useless. · It's useful.
 - They're useless. — *В записи первое слово — `It's`, а в этом варианте — `They're`.*

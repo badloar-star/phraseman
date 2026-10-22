@@ -16,7 +16,11 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Image } from 'expo-image';
 import ScreenGradient from '../components/ScreenGradient';
+import { coinRankDisplaySource } from '../components/coins/coin_rank_display';
+import { PlusAvatarRing } from '../components/plus/PlusAvatarRing';
+import { STORY_RING_SLOT } from '../components/stories/story_ring_constants';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import SeasonCourse from '../components/learning-v2/season/SeasonCourse';
@@ -33,6 +37,8 @@ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 import { getDevAppearance, setDevAppearance } from './dev_appearance_override';
 
 const noop = (): void => undefined;
+/** Ранг монеты-аватара в превью (как у dev-входа Главной). */
+const PREVIEW_COIN_RANK = 5;
 
 function Inner() {
   const params = useLocalSearchParams<{ state?: string; theme?: string }>();
@@ -53,6 +59,13 @@ function Inner() {
   const episodeInfo = useCallback((card: Parameters<typeof seasonPreviewEpisodeInfo>[1]) => seasonPreviewEpisodeInfo(lang, card, setup.newcomer), [lang, setup.newcomer]);
   const resumeLine = useMemo(() => seasonPreviewResumeLine(lang, setup.deck, setup.newcomer), [lang, setup.deck, setup.newcomer]);
   const theme = (wanted ?? (isDark ? 'dark' : 'light'));
+  // зачем (Сверка 22.10, ss_side_*; эталон: справа в шапке аватар с ромбом Plus): мок-аватар из того же источника, что у Главной; в бою аватар приходит от хозяина экрана (avatarSlot), без новых чтений
+  const coinSource = useMemo(() => coinRankDisplaySource(PREVIEW_COIN_RANK, STORY_RING_SLOT), []);
+  const avatar = useMemo(() => (
+    <PlusAvatarRing plus size={STORY_RING_SLOT}>
+      <Image testID="dev-season-avatar" accessible={false} source={coinSource} style={s.avatar} contentFit="contain" />
+    </PlusAvatarRing>
+  ), [coinSource]);
 
   useEffect(() => {
     console.log(`[DEV-STATE] season_preview route state=${state} fromParam=${String(params.state ?? 'нет→cover')} theme=${theme} fromParam=${String(params.theme ?? 'нет→приложение')} newcomer=${String(setup.newcomer)} cards=${setup.deck.cards.length} current=${setup.deck.currentIndex} selected=${setup.initialState.selectedIndex} expanded=${String(setup.initialState.expandedIndex)} fan=${String(setup.initialState.fanChapter)}`); // guard-ok: dev-маршрут, в релизе не открывается (Redirect на Главную)
@@ -77,6 +90,7 @@ function Inner() {
             episodeInfo={episodeInfo}
             chapterInfo={seasonPreviewChapterInfo}
             topPadding={0}
+            avatarSlot={avatar}
             bottomPadding={140}
             reducedMotion={false}
             initialState={setup.initialState}
@@ -100,4 +114,5 @@ export default function DevSeasonPreviewRoute() {
 
 const s = StyleSheet.create({
   root: { flex: 1 },
+  avatar: { width: STORY_RING_SLOT, height: STORY_RING_SLOT },
 });

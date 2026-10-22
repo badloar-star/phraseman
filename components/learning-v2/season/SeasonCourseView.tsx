@@ -219,7 +219,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 function ActionChip({ icon, label, onPress, testID }: Readonly<{ icon: IonName; label: string; onPress: () => void; testID: string }>) {
   const g = useLv2Glass();
   return (
-    <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={testID} style={({ pressed }) => [styles.chip, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.72 : 1 }]}>
+    <Pressable hitSlop={8} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} testID={testID} style={({ pressed }) => [styles.chip, { opacity: pressed ? 0.72 : 1 }]}>
       <Ionicons name={icon} size={16} color={g.text} />
       <Text style={[styles.chipText, { color: g.text }]}>{label}</Text>
     </Pressable>
@@ -254,8 +254,9 @@ const styles = StyleSheet.create({
   caption: { alignItems: 'center', marginTop: 6, paddingHorizontal: 20 },
   captionKicker: { fontSize: 16, lineHeight: 21, textAlign: 'center' },
   captionTitle: { marginTop: 2, fontSize: 19, lineHeight: 24, fontWeight: '700', textAlign: 'center' },
-  actions: { flexDirection: 'row', justifyContent: 'center', gap: 10, marginTop: 14, paddingHorizontal: 20, flexWrap: 'wrap' },
-  chip: { height: 34, paddingHorizontal: 12, borderRadius: 17, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  // зачем (Сверка 22.10, ss_side_7/9; эталон course-hybrid-1-4): действия — текст со значком без подложки, разнесены по ширине; высота 40 остаётся зоной нажатия
+  actions: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 14, paddingHorizontal: 8, flexWrap: 'wrap' },
+  chip: { height: 40, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6 },
   chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
 });
 

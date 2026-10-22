@@ -7,19 +7,19 @@
 // (buildLearningV2CourseAccordionMapFromPreparedProgressV1) → колода (buildSeasonDeck); названия занятий, сцены глав и арки — из session_titles_v1.generated
 // (написаны только по-русски и только для написанных уроков — на других языках и там, где названия нет, подпись «Эпизод N», выдумок нет);
 // нажатия ведут туда же, что у старой карты: эпизод → onSessionPress (окно запуска/замок/Plus решает вкладка), «Урок N»/«Начать с другого места» → список
-// «Все уроки» (в нём остаётся «Классический курс»), «Слова» → колоды, «Теория» → шторка теории урока.
+// «Все уроки» (в нём остаётся «Классический курс»), «Слова» → слова урока, «Теория» → шторка теории урока. 22.10 (владелец, макет lesson-hub-final.html): под обложкой три плитки
+// «Все главы» (список глав внутри Сезона) / «Все уроки» / «Классический курс» (onLegacyLessons); списки — полноэкранные с общей кнопкой «назад» (ScreenBackButton).
 // Нет в лёгком индексе (не выдумываем): фраза с переводом на карте эпизода, слова эпизода, число и номер задания — карта показывает название занятия.
 // Журнал [SEASON-WIRE]: вход, урок, глава, источник данных, куда ведёт каждое нажатие.
 // ════════════════════════════════════════════════════════════════════════════
 import { useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { learningV2ChapterExamHrefV1, learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
 import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
 import { pickInitialLessonOrdinal } from '../../../app/learning_v2_last_lesson';
 import { getStableId, peekStableId } from '../../../app/stable_id';
-import { triLang } from '../../../constants/i18n';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../../../modules/learning-v2/content/course_topology_v1';
 import { learningV2ChapterSceneV1, learningV2LessonArcV1, learningV2SessionTitleV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
@@ -27,23 +27,21 @@ import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
 import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
 import { useEnergy } from '../../EnergyContext';
-import PressableHybrid from '../../PressableHybrid';
 import { usePremium } from '../../PremiumContext';
 import { useTheme } from '../../ThemeContext';
 import { useTabTopBleedInset } from '../../tab_top_bleed';
-import BackGlyph from '../../v2/BackGlyph';
 import { learningV2ChapterIonIcon } from '../icons/learningV2IonIcons';
 import LearningV2AllLessonsList, { type AllLessonsRow } from '../LearningV2AllLessonsList';
 import type LearningV2ChaptersCourse from '../LearningV2ChaptersCourse';
-import { useLv2Glass } from '../LearningV2Glass';
 import { LEARNING_V2_CHAPTER_EXAM_MINUTES_V1, learningV2ChapterExamEpisodeRangeV1 } from '../LearningV2ChapterExamSheet';
 import { learningV2ChapterExamCopy, learningV2ChapterExamPassFrom } from '../learning_v2_chapter_exam_copy';
 import LearningV2TheorySheet from '../LearningV2TheorySheet';
 import type { SeasonExamPanel } from './SeasonExpandedCard';
 import SeasonCourse from './SeasonCourse';
-import SeasonLegacyCard from './SeasonLegacyCard';
+import { SeasonListHeader } from './SeasonPickScreens';
 import type { SeasonChapterInfo, SeasonEpisodeInfo } from './SeasonCourseView';
 import { seasonEpisodeLabel, seasonText } from './season_copy';
+import { seasonCardText } from './season_copy_card';
 import { buildSeasonDeck, type SeasonEpisodeCard } from './season_course_model';
 import { SEASON_CHAPTER_EXAM_ENABLED, SEASON_CHAPTER_EXAM_START_ENABLED } from './season_flags';
 
@@ -59,7 +57,6 @@ function currentLessonOrdinal(currentSessionId: string | null): number {
 function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   const { lang, scopeKey, preparedProgress, completedSessionIds, onSessionPress, isSessionMaterialAvailable, titles, onExpandedLesson } = props;
   const router = useRouter();
-  const g = useLv2Glass();
   const { isDark } = useTheme();
   // зачем (владелец 22.10: высота сцен 46 % для всех, фон до самого верха; схема eab9aa35d): страница «Уроки» полноэкранная — обложка идёт под часы, шапка отступает на высоту зоны часов
   const bleed = useTabTopBleedInset();
@@ -223,25 +220,19 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     router.push(href as never);
   }, [lesson, router]);
   const { onLegacyLessons } = props;
-  const onLegacyCard = useCallback(() => {
-    console.log(`${LOG} нажатие → «Ваши прошлые уроки»`, JSON.stringify({ done: props.legacyProgress?.done ?? null, total: props.legacyProgress?.total ?? null, to: 'onLegacyLessons(классический курс)' })); // guard-ok: куда ведёт нажатие
+  // зачем (владелец 22.10): «Классический курс» — отдельная плитка под обложкой, а не карточка «Ваши прошлые уроки»; ведёт туда же (onLegacyLessons)
+  const onClassic = useCallback(() => {
+    console.log(`${LOG} нажатие → «Классический курс»`, JSON.stringify({ done: props.legacyProgress?.done ?? null, total: props.legacyProgress?.total ?? null, to: 'onLegacyLessons(классический курс)' })); // guard-ok: куда ведёт нажатие
     onLegacyLessons();
   }, [onLegacyLessons, props.legacyProgress]);
-  const onChapterPicker = useCallback(() => {
-    console.log(`${LOG} нажатие → выбор главы`, JSON.stringify({ lesson, to: 'отдельного экрана нет: главы листает веер «Вся глава»' })); // guard-ok: куда ведёт нажатие
-  }, [lesson]);
   const onNotFromStart = useCallback(() => openLessonsList('not_from_start'), [openLessonsList]);
   const onLessonPicker = useCallback(() => openLessonsList('lesson_pill'), [openLessonsList]);
+  const onAllLessonsButton = useCallback(() => openLessonsList('tile_all_lessons'), [openLessonsList]);
 
   if (allLessonsOpen) {
     return (
       <View testID="season-all-lessons" style={styles.root}>
-        <View style={[styles.header, { paddingTop: props.topPadding ?? 0 }]}>
-          <PressableHybrid variant="icon" accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => setAllLessonsOpen(false)} style={styles.back} contentStyle={styles.backContent}>
-            <BackGlyph size={24} color={g.text} />
-          </PressableHybrid>
-          <Text style={[styles.headerTitle, { color: g.text }]}>{triLang(lang, { ru: 'Все уроки', en: 'All lessons', uk: 'Усі уроки', es: 'Todas las lecciones', 'pt-BR': 'Todas as lições', vi: 'Tất cả bài học', id: 'Semua pelajaran', tr: 'Tüm dersler', pl: 'Wszystkie lekcje' })}</Text>
-        </View>
+        <SeasonListHeader screen="season_all_lessons" kicker={null} title={seasonCardText(lang, 'allLessons')} onBack={() => setAllLessonsOpen(false)} testID="season-all-lessons-header" />
         <LearningV2AllLessonsList
           lang={lang}
           rows={allLessonRows}
@@ -281,10 +272,11 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         onPrimary={onPrimary}
         onNotFromStart={onNotFromStart}
         onLessonPicker={onLessonPicker}
-        onChapterPicker={onChapterPicker}
+        onAllLessons={onAllLessonsButton}
+        onClassic={onClassic}
+        classicLabel={props.legacyLessonsLabel}
         onWords={onWords}
         onTheory={onTheory}
-        legacyCard={props.legacyProgress ? <SeasonLegacyCard lang={lang} progress={props.legacyProgress} onPress={onLegacyCard} /> : null}
         examInfo={SEASON_CHAPTER_EXAM_ENABLED ? examInfo : undefined}
         onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}
         onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}
@@ -296,10 +288,6 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, minHeight: 56 },
-  back: { width: 44, height: 44 },
-  backContent: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  headerTitle: { fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
 });
 
 export default memo(SeasonCourseConnected);

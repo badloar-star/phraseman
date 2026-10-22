@@ -2,8 +2,9 @@
 // SeasonCourseView.tsx — экран «Обучение» Learning V2 по гибриду «Сезон и карусель карт» (эталон course-hybrid-1-4.html, «Способ 2»).
 //
 // зачем (владелец 21.10): обложка главы-сезона с «Продолжить эпизод N» (или «Начать с эпизода 1» + «Не хочу с начала» у новичка), под ней выбор
-// главы и карусель карт эпизодов; подпись выбранного эпизода и нижний ряд «Вся глава · Слова · Теория». Здесь — фаза 2: «в процессе» и «новичок».
-// Раскрытая карта, закрытый эпизод, «Вся глава» веером и экзамен — фаза 3 (события onCardOpen / onWholeChapter уже выведены наружу).
+// главы и карусель карт эпизодов; подпись выбранного эпизода. Здесь — фаза 2: «в процессе» и «новичок».
+// Раскрытая карта, закрытый эпизод и экзамен — фаза 3 (событие onCardOpen выведено наружу).
+// 22.10 (владелец, макет lesson-hub-final.html): веер и чипы глав убраны; под обложкой — три плитки «Все главы / Все уроки / Классический курс» (SeasonNavTiles), списки — SeasonPickScreens.
 // Компонент — чистая вёрстка и движение: данные курса (названия, фразы, сцены, слова) приходят пропсами от родителя, чтобы экран не привязывался
 // к файлам контента, которые ведёт Codex; прогресс — готовая колода (season_course_model) из уже посчитанного снимка, новых чтений Firebase нет.
 // ════════════════════════════════════════════════════════════════════════════
@@ -16,11 +17,13 @@ import type { Lang } from '../../../constants/i18n';
 import { LinearGradient } from '../../SafeLinearGradient';
 import { useLv2Glass } from '../LearningV2Glass';
 import SeasonCarousel from './SeasonCarousel';
+import SeasonNavTiles from './SeasonNavTiles';
 import SeasonCardFace from './SeasonCardFace';
 import { hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
+import { seasonCardText } from './season_copy_card';
 import {
-  seasonChapterOfIndex, seasonChapterProgress, type SeasonDeck, type SeasonEpisodeCard,
+  seasonChapterProgress, type SeasonDeck, type SeasonEpisodeCard,
 } from './season_course_model';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
@@ -70,8 +73,6 @@ export type SeasonCourseViewProps = Readonly<{
   topPadding: number;
   /** Высота зоны часов, если страница полноэкранная (TabTopBleedContext): обложка идёт от самого верха экрана и занимает 392 dp целиком. 0/не задано — как раньше. */
   topBleed?: number;
-  /** Карточка под обложкой (например «Ваши прошлые уроки»); нет — ничего не рисуется. */
-  legacyCard?: React.ReactNode;
   bottomPadding: number;
   avatarSlot?: React.ReactNode;
   reducedMotion: boolean;
@@ -83,8 +84,12 @@ export type SeasonCourseViewProps = Readonly<{
   /** Поставить карусель на карту: родитель меняет seq, чтобы вернуться на ту же карту повторно («К эпизоду N», возврат из веера). */
   focus?: Readonly<{ index: number; seq: number }>;
   onLessonPicker: () => void;
-  onChapterPicker: () => void;
-  onWholeChapter: () => void;
+  // зачем (владелец 22.10, макет lesson-hub-final.html): веер «Вся глава» и чипы глав убраны; вместо них три явные кнопки под обложкой — «Все главы», «Все уроки», «Классический курс»
+  onAllChapters: () => void;
+  onAllLessons: () => void;
+  onClassic: () => void;
+  /** Подпись кнопки классического курса (приходит от вкладки «Уроки»); нет — слово из словаря Сезона. */
+  classicLabel?: string;
   onWords: () => void;
   onTheory: () => void;
 }>;
@@ -112,7 +117,6 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   const heroArt = seasonThemedArt(themeHue, heroChapter, 0, theme);
 
   const selectedCard = deck.cards[selected] ?? currentCard;
-  const selectedChapter = selectedCard ? seasonChapterOfIndex(deck, selected) : null;
   const sectionInfo = props.chapterInfo(selectedCard ? selectedCard.chapterOrdinal : heroChapter);
   const progress = selectedCard ? seasonChapterProgress(deck, selectedCard.chapterOrdinal) : { done: 0, total: 0 };
 
@@ -195,16 +199,22 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         </View>
       </View>
 
-      {props.legacyCard ?? null}
+      <SeasonNavTiles
+        allChaptersLabel={seasonCardText(lang, 'allChapters')}
+        allLessonsLabel={seasonCardText(lang, 'allLessons')}
+        classicLabel={props.classicLabel ?? seasonCardText(lang, 'classicCourse')}
+        onAllChapters={props.onAllChapters}
+        onAllLessons={props.onAllLessons}
+        onClassic={props.onClassic}
+      />
 
       <View style={styles.section}>
-        <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onChapterPicker} outerStyle={styles.sectionLeft} testID="season-chapter-picker">
+        <View style={styles.sectionLeft} testID="season-chapter-title">
           <Text style={[styles.sectionKicker, { color: g.secondary }]}>{seasonText(lang, 'chapterOf', { n: selectedCard?.chapterOrdinal ?? 1, m: props.chapterCount })}</Text>
           <View style={styles.sectionTitleRow}>
             <Text style={[styles.sectionTitle, { color: g.text }]} numberOfLines={2}>{sectionInfo.scene}</Text>
-            <Ionicons name="chevron-down" size={14} color={g.secondary} />
           </View>
-        </V2Pressable>
+        </View>
         <Text style={[styles.sectionRight, { color: g.secondary }]}>{seasonText(lang, 'doneOf', { k: progress.done, n: progress.total })}</Text>
       </View>
 
@@ -225,13 +235,12 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <Text style={[styles.captionTitle, { color: g.text }]} numberOfLines={3}>{caption.title}</Text>
       </View>
 
-      <View style={styles.actions}>
-        {selectedChapter ? (
-          <ActionChip icon="copy-outline" label={seasonText(lang, 'wholeChapter')} onPress={props.onWholeChapter} testID="season-whole-chapter" />
-        ) : null}
-        {tall ? null : <ActionChip icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} testID="season-words" />}
-        {tall ? null : <ActionChip icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} testID="season-theory" />}
-      </View>
+      {tall ? null : (
+        <View style={styles.actions}>
+          <ActionChip icon="albums-outline" label={seasonText(lang, 'words')} onPress={props.onWords} testID="season-words" />
+          <ActionChip icon="book-outline" label={seasonText(lang, 'theory')} onPress={props.onTheory} testID="season-theory" />
+        </View>
+      )}
     </ScrollView>
   );
 }

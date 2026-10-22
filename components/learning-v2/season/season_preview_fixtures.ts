@@ -11,6 +11,7 @@ import {
   learningV2CourseSessionIdV1, learningV2CourseSessionRoleV1,
 } from '../../../modules/learning-v2/content/course_topology_v1';
 import type { LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
+import type { SeasonListScreen } from './SeasonCourse';
 import type { SeasonChapterInfo } from './SeasonCourseView';
 import { seasonText } from './season_copy';
 import { seasonTasksLabel } from './season_copy_card';
@@ -20,7 +21,7 @@ import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
 /** Колода превью: карта «Экзамен главы» есть, только когда экзамен включён флагом (иначе её нет и на экране). */
 const buildSeasonDeck = (rows: readonly LearningV2CourseAccordionRowV1[]): SeasonDeck => buildDeck(rows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED });
 
-export const SEASON_PREVIEW_STATES = ['cover', 'newcomer', 'carousel', 'locked_open', 'chapter_picker', 'exam_card', 'exam_open'] as const;
+export const SEASON_PREVIEW_STATES = ['cover', 'newcomer', 'carousel', 'locked_open', 'chapters_list', 'chapter_episodes', 'exam_card', 'exam_open'] as const;
 export type SeasonPreviewState = (typeof SEASON_PREVIEW_STATES)[number];
 
 export function isSeasonPreviewState(value: unknown): value is SeasonPreviewState {
@@ -101,8 +102,8 @@ export type SeasonPreviewInitialState = Readonly<{
   selectedIndex: number;
   /** Раскрытая карта (поверх экрана) или null. */
   expandedIndex: number | null;
-  /** Открытый веер «Вся глава» или null. */
-  fanChapter: number | null;
+  /** Открытый полноэкранный список («Все главы» / «Эпизоды главы») или null — хаб. */
+  screen: SeasonListScreen;
 }>;
 
 export type SeasonPreviewSetup = Readonly<{
@@ -118,26 +119,28 @@ export function seasonPreviewSetup(state: SeasonPreviewState): SeasonPreviewSetu
   const idx14 = seasonPreviewEpisodeIndex(14);
   switch (state) {
     case 'cover':
-      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx12, expandedIndex: null, fanChapter: null } };
+      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx12, expandedIndex: null, screen: null } };
     case 'newcomer': {
       const deck = buildSeasonDeck(seasonPreviewRows(0)); // phone 6
-      return { deck, newcomer: true, initialState: { selectedIndex: deck.currentIndex, expandedIndex: null, fanChapter: null } };
+      return { deck, newcomer: true, initialState: { selectedIndex: deck.currentIndex, expandedIndex: null, screen: null } };
     }
     case 'carousel': // phone 7: карусель сдвинута на закрытый эпизод 14
-      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx14, expandedIndex: null, fanChapter: null } };
+      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx14, expandedIndex: null, screen: null } };
     case 'locked_open': // тап по закрытому эпизоду: раскрытая закрытая карта
-      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx14, expandedIndex: idx14, fanChapter: null } };
-    case 'chapter_picker': // phone 8: «Вся глава» веером, глава 2, выбран эпизод 12
-      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx12, expandedIndex: null, fanChapter: 2 } };
+      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx14, expandedIndex: idx14, screen: null } };
+    case 'chapters_list': // макет lesson-hub-final.html, кадр 2: «Все главы»
+      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx12, expandedIndex: null, screen: { kind: 'chapters' } } };
+    case 'chapter_episodes': // макет lesson-hub-final.html, кадр 3: эпизоды главы 2
+      return { deck: inProgress, newcomer: false, initialState: { selectedIndex: idx12, expandedIndex: null, screen: { kind: 'episodes', chapter: 2 } } };
     case 'exam_card': { // phone 9: эталон — «3 из 8» в главе 2 (пройдены 1–11), эпизод 16 закрыт 🔒, карусель на карте «Экзамен главы 2»
       // зачем (Сверка 22.10, ss_side_9: «✓» у 16 в приложении, «🔒» в макете): мок проходил все 16 эпизодов, а эталон — 11; данные мока приведены к эталону
       const deck = buildSeasonDeck(seasonPreviewRows(11));
-      return { deck, newcomer: false, initialState: { selectedIndex: seasonPreviewExamIndex(2), expandedIndex: null, fanChapter: null } };
+      return { deck, newcomer: false, initialState: { selectedIndex: seasonPreviewExamIndex(2), expandedIndex: null, screen: null } };
     }
     case 'exam_open': {
       const deck = buildSeasonDeck(seasonPreviewRows(11));
       const exam = seasonPreviewExamIndex(2);
-      return { deck, newcomer: false, initialState: { selectedIndex: exam, expandedIndex: exam, fanChapter: null } };
+      return { deck, newcomer: false, initialState: { selectedIndex: exam, expandedIndex: exam, screen: null } };
     }
   }
 }

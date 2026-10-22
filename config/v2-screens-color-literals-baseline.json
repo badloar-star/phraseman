@@ -29,7 +29,6 @@
     "components/dialogs/scene/DialogsScenePanel.tsx": 4,
     "components/dialogs/scene/dialogs_scene_tokens.ts": 2,
     "components/learning-v2/season/SeasonCardFace.tsx": 6,
-    "components/learning-v2/season/SeasonChapterFan.tsx": 7,
     "components/learning-v2/season/SeasonCourseView.tsx": 8,
     "components/learning-v2/season/SeasonExpandedCard.tsx": 9,
     "components/learning-v2/LearningV2ChapterExamResult.tsx": 2,

@@ -56,7 +56,7 @@ async function main(): Promise<void> {
   // сеть — только импорты и вызовы (комментарий вправе говорить «без чтений Firebase»)
   assert.doesNotMatch(view, /from ['"][^'"]*(firebase|firestore)[^'"]*['"]|\bfetch\(|getDoc\(|getDocs\(/i, "экран не ходит в сеть");
   // события наружу для следующих фаз
-  for (const name of ["onCardOpen", "onWholeChapter", "onChapterPicker", "onLessonPicker", "onNotFromStart"]) assert.ok(view.includes(name), `нет события ${name}`);
+  for (const name of ["onCardOpen", "onAllChapters", "onAllLessons", "onClassic", "onLessonPicker", "onNotFromStart"]) assert.ok(view.includes(name), `нет события ${name}`);
 
   console.log("SEASON VIEW CONTRACT: PASS");
 }

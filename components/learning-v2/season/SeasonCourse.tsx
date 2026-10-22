@@ -1,15 +1,15 @@
 // ════════════════════════════════════════════════════════════════════════════
-// SeasonCourse.tsx — экран «Обучение» целиком: карусель (SeasonCourseView) + раскрытая карта (SeasonExpandedCard) + «Вся глава» веером (SeasonChapterFan).
+// SeasonCourse.tsx — экран «Обучение» целиком: карусель (SeasonCourseView) + раскрытая карта (SeasonExpandedCard) + полноэкранные списки «Все главы» / «Эпизоды главы» (SeasonPickScreens).
 //
 // зачем (владелец 21.10, «Способ 2», фаза 3): держит состояние экрана — какая карта раскрыта, показан ли веер и какая глава в нём, куда сфокусировать
-// карусель после «К эпизоду N» или возврата из веера. Данные курса и действия приходят пропсами (как у SeasonCourseView): экран не читает сеть и контент Codex.
+// карусель после «К эпизоду N» или возврата из списка. 22.10 (владелец, макет lesson-hub-final.html): веер «Вся глава» заменён двумя полноэкранными списками. Данные курса и действия приходят пропсами (как у SeasonCourseView): экран не читает сеть и контент Codex.
 // Экзамен главы: карта и раскрытая карта рисуются, а действия «Сдать экзамен» и «Открыть экзаменом главы» — только при SEASON_CHAPTER_EXAM_ENABLED (по умолчанию выключен,
 // логики экзамена в коде ещё нет, её сделает Learning V2).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import SeasonChapterFan, { type SeasonFanCard, type SeasonFanChapterPill } from './SeasonChapterFan';
+import { SeasonChapterEpisodesScreen, SeasonChaptersScreen } from './SeasonPickScreens';
 import SeasonCourseView, { type SeasonCourseViewProps } from './SeasonCourseView';
 import SeasonExpandedCard, { type SeasonExamPanel, type SeasonExpandedAction } from './SeasonExpandedCard';
 import { hexHue, seasonThemedArt } from './season_art';
@@ -17,16 +17,21 @@ import { useLv2Glass } from '../LearningV2Glass';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
-import { seasonChapterOfIndex, seasonChapterProgress, seasonUnlockAfter, type SeasonEpisodeCard } from './season_course_model';
+import { seasonUnlockAfter, type SeasonEpisodeCard } from './season_course_model';
 
-export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onWholeChapter' | 'focus' | 'onSelectedChange'> & Readonly<{
+const LOG = '[SEASON-WIRE]';
+
+/** Какой полноэкранный список открыт поверх хаба (null — хаб). */
+export type SeasonListScreen = null | Readonly<{ kind: 'chapters' }> | Readonly<{ kind: 'episodes'; chapter: number }>;
+
+export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onAllChapters' | 'focus' | 'onSelectedChange'> & Readonly<{
   /** Действия экзамена главы: вызываются только при включённом флаге. */
   onStartExam?: (chapterOrdinal: number) => void;
   onOpenByExam?: (chapterOrdinal: number) => void;
   /** Окно экзамена: описание, факты, цена ⚡1 / строка Plus по главе (данные Learning V2). */
   examInfo?: (chapterOrdinal: number) => Readonly<{ description: string | null; panel: SeasonExamPanel }> | null;
-  /** Только превью/Сверка (dev_season_preview): стартовая карта, раскрытая карта и открытый веер. В бою не передаётся. */
-  initialState?: Readonly<{ selectedIndex: number; expandedIndex: number | null; fanChapter: number | null }>;
+  /** Только превью/Сверка (dev_season_preview): стартовая карта, раскрытая карта и открытый список. В бою не передаётся. */
+  initialState?: Readonly<{ selectedIndex: number; expandedIndex: number | null; screen: SeasonListScreen }>;
 }>;
 
 function SeasonCourse(props: SeasonCourseProps) {
@@ -36,7 +41,7 @@ function SeasonCourse(props: SeasonCourseProps) {
   const startIndex = start ? start.selectedIndex : deck.currentIndex;
   const [selected, setSelected] = useState(startIndex);
   const [expanded, setExpanded] = useState<number | null>(start ? start.expandedIndex : null);
-  const [fanChapter, setFanChapter] = useState<number | null>(start ? start.fanChapter : null);
+  const [screen, setScreen] = useState<SeasonListScreen>(start ? start.screen : null);
   const [focus, setFocus] = useState<Readonly<{ index: number; seq: number }>>({ index: startIndex, seq: 0 });
 
   const refocus = useCallback((index: number) => {
@@ -91,78 +96,64 @@ function SeasonCourse(props: SeasonCourseProps) {
     };
   }, [artFor, dark, deck, expanded, lang, props, refocus]);
 
-  // ── веер «Вся глава» ──
-  const fan = useMemo(() => {
-    if (fanChapter === null) return null;
-    const span = deck.chapters.find((c) => c.chapterOrdinal === fanChapter);
-    if (!span) return null;
-    const cards: SeasonFanCard[] = deck.cards.slice(span.firstIndex, span.lastIndex + 1).map((card) => ({
-      key: card.id,
-      kind: card.kind,
-      state: card.state,
-      ordinal: card.sessionOrdinal,
-      art: artFor(card.chapterOrdinal, card.sessionOrdinal),
-      phrase: card.kind === 'exam' ? seasonText(lang, 'exam') : props.episodeInfo(card as SeasonEpisodeCard).phrase,
-    }));
-    // пилюли глав: пройденные — с галочкой, выбранная в веере — «включена», достигнутая, но не выбранная — обычная, дальние — с замком
-    const progressChapter = deck.cards[deck.currentIndex]?.chapterOrdinal ?? 1;
-    const pills: SeasonFanChapterPill[] = deck.chapters.map((c) => ({
-      ordinal: c.chapterOrdinal,
-      label: seasonCardText(lang, 'chapterShort', { n: c.chapterOrdinal }),
-      state: c.chapterOrdinal === fanChapter ? 'current' : c.chapterOrdinal < progressChapter ? 'done' : c.chapterOrdinal === progressChapter ? 'open' : 'locked',
-    }));
-    return { span, cards, pills };
-  }, [artFor, deck, fanChapter, lang, props]);
+  // ── полноэкранные списки: «Все главы» и «Эпизоды главы» ──
+  const currentCard = deck.cards[deck.currentIndex];
+  const currentEpisode = currentCard && currentCard.kind === 'episode' ? currentCard : null;
+  // «Продолжить эпизод N» внизу списков — тот же главный путь, что на обложке (экран Learning V2 решает вкладка)
+  const listPrimary = useMemo(() => (currentEpisode
+    ? {
+      label: props.newcomer ? seasonText(lang, 'startEpisode', { n: currentEpisode.sessionOrdinal }) : seasonText(lang, 'continueEpisode', { n: currentEpisode.sessionOrdinal }),
+      onPress: () => { console.log(`${LOG} нажатие → «Продолжить» из списка`, JSON.stringify({ lesson: lessonOrdinal, session: currentEpisode.sessionOrdinal })); setScreen(null); props.onPrimary(currentEpisode); }, // guard-ok: куда ведёт нажатие
+    }
+    : null), [currentEpisode, lang, lessonOrdinal, props]);
+  const openChapters = useCallback(() => {
+    console.log(`${LOG} нажатие → «Все главы»`, JSON.stringify({ lesson: lessonOrdinal, chapters: deck.chapters.length })); // guard-ok: куда ведёт нажатие
+    setScreen({ kind: 'chapters' });
+  }, [deck.chapters.length, lessonOrdinal]);
+  const closeList = useCallback((from: string) => {
+    console.log(`${LOG} «назад» из списка`, JSON.stringify({ from, to: 'хаб', carouselIndex: selected })); // guard-ok: куда ведёт нажатие
+    setScreen(null);
+    refocus(selected);
+  }, [refocus, selected]);
+  // нажатие по строке эпизода/экзамена: хаб встаёт на эту карту и раскрывает её — как нажатие по карте в карусели (там же «Открыть экзаменом», «К эпизоду N»)
+  const pickCardFromList = useCallback((index: number) => {
+    const card = deck.cards[index];
+    console.log(`${LOG} нажатие → карта из списка`, JSON.stringify({ index, kind: card ? card.kind : null, session: card ? card.sessionOrdinal : null, state: card ? card.state : null })); // guard-ok: куда ведёт нажатие
+    setScreen(null);
+    refocus(index);
+    setExpanded(index);
+  }, [deck.cards, refocus]);
 
-  const [fanSelected, setFanSelected] = useState(() => {
-    // веер открыт со старта (превью): выбранная карта — стартовая, в пределах своей главы
-    const span = start && start.fanChapter !== null ? deck.chapters.find((c) => c.chapterOrdinal === start.fanChapter) : undefined;
-    return span ? Math.max(0, Math.min(startIndex - span.firstIndex, span.lastIndex - span.firstIndex)) : 0;
-  });
-  const openFan = useCallback(() => {
-    const chapter = seasonChapterOfIndex(deck, selected);
-    if (!chapter) return;
-    setFanChapter(chapter.chapterOrdinal);
-    setFanSelected(Math.max(0, Math.min(selected - chapter.firstIndex, chapter.lastIndex - chapter.firstIndex)));
-  }, [deck, selected]);
-  const pickFanChapter = useCallback((ordinal: number) => {
-    const span = deck.chapters.find((c) => c.chapterOrdinal === ordinal);
-    if (!span) return;
-    setFanChapter(ordinal);
-    const currentInChapter = deck.currentIndex >= span.firstIndex && deck.currentIndex <= span.lastIndex;
-    setFanSelected(currentInChapter ? deck.currentIndex - span.firstIndex : 0);
-  }, [deck]);
-
-  if (fan && fanChapter !== null) {
-    const card = deck.cards[fan.span.firstIndex + fanSelected];
-    const info = card && card.kind === 'episode' ? props.episodeInfo(card) : null;
-    const progress = seasonChapterProgress(deck, fanChapter);
-    const chapterInfo = props.chapterInfo(fanChapter);
-    const primary = card && card.kind === 'episode' && card.state !== 'locked'
-      ? { label: card.state === 'current' ? seasonText(lang, 'continueEpisode', { n: card.sessionOrdinal }) : seasonCardText(lang, 'repeatEpisode', { n: card.sessionOrdinal }), onPress: () => { setFanChapter(null); props.onPrimary(card); } }
-      : null;
+  if (screen && screen.kind === 'chapters') {
     return (
-      <ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }} showsVerticalScrollIndicator={false}>
-        <SeasonChapterFan
-          dark={dark}
-          lessonTitle={seasonText(lang, 'lesson', { n: lessonOrdinal })}
-          topPadding={props.topPadding}
-          avatarSlot={props.avatarSlot}
-          sectionKicker={seasonText(lang, 'chapterOf', { n: fanChapter, m: props.chapterCount })}
-          sectionTitle={chapterInfo.scene}
-          sectionRight={seasonText(lang, 'doneOf', { k: progress.done, n: progress.total })}
-          pills={fan.pills}
-          onPickChapter={pickFanChapter}
-          onPickChapterTitle={props.onChapterPicker}
-          cards={fan.cards}
-          selected={fanSelected}
-          onSelect={setFanSelected}
-          onReturn={(index) => { const target = fan.span.firstIndex + index; setFanChapter(null); refocus(target); }}
-          selKicker={card ? (card.kind === 'exam' ? seasonText(lang, 'exam') : [seasonEpisodeLabel(lang, card.sessionOrdinal), info?.taskLine].filter(Boolean).join(', ')) : ''}
-          selTitle={info ? info.title : card ? seasonText(lang, 'exam') : ''}
-          primary={primary}
-        />
-      </ScrollView>
+      <SeasonChaptersScreen
+        lang={lang}
+        deck={deck}
+        lessonOrdinal={lessonOrdinal}
+        lessonTitle={props.lessonTitle}
+        chapterScene={(chapter) => props.chapterInfo(chapter).scene}
+        bottomPadding={props.bottomPadding}
+        primary={listPrimary}
+        onBack={() => closeList('chapters')}
+        onPickChapter={(chapter) => { console.log(`${LOG} нажатие → эпизоды главы`, JSON.stringify({ chapter })); setScreen({ kind: 'episodes', chapter }); }} // guard-ok: куда ведёт нажатие
+      />
+    );
+  }
+  if (screen && screen.kind === 'episodes') {
+    return (
+      <SeasonChapterEpisodesScreen
+        lang={lang}
+        deck={deck}
+        chapterOrdinal={screen.chapter}
+        chapterCount={props.chapterCount}
+        chapterScene={props.chapterInfo(screen.chapter).scene}
+        episodeInfo={props.episodeInfo}
+        bottomPadding={props.bottomPadding}
+        primary={listPrimary}
+        // «назад» из эпизодов ведёт к списку глав (там главу и выбирали)
+        onBack={() => { console.log(`${LOG} «назад» из списка`, JSON.stringify({ from: 'episodes', to: 'главы' })); setScreen({ kind: 'chapters' }); }} // guard-ok: куда ведёт нажатие
+        onPickCard={pickCardFromList}
+      />
     );
   }
 
@@ -173,7 +164,7 @@ function SeasonCourse(props: SeasonCourseProps) {
         focus={focus}
         onSelectedChange={setSelected}
         onCardOpen={setExpanded}
-        onWholeChapter={openFan}
+        onAllChapters={openChapters}
       />
       {expandedProps ? <SeasonExpandedCard {...expandedProps} /> : null}
     </View>

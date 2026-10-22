@@ -16,6 +16,11 @@ export const SEASON_CARD_COPY = {
   chapterShort: ['Глава {n}', 'Розділ {n}', 'Chapter {n}', 'Capítulo {n}', 'Capítulo {n}', 'Chương {n}', 'Bab {n}', 'Ünite {n}', 'Rozdział {n}'],
   preview: ['просмотр', 'перегляд', 'preview', 'vista previa', 'prévia', 'xem trước', 'pratinjau', 'önizleme', 'podgląd'],
   closeCard: ['Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'],
+  // зачем (владелец 22.10, макет lesson-hub-final.html): три явные кнопки под обложкой и подписи списков; русский — слова макета, остальные языки — предложение, ⚠ ЖДУТ РЕВЬЮ «Переводчика» (10)
+  allChapters: ['Все главы', 'Усі розділи', 'All chapters', 'Todos los capítulos', 'Todos os capítulos', 'Tất cả chương', 'Semua bab', 'Tüm üniteler', 'Wszystkie rozdziały'],
+  allLessons: ['Все уроки', 'Усі уроки', 'All lessons', 'Todas las lecciones', 'Todas as lições', 'Tất cả bài học', 'Semua pelajaran', 'Tüm dersler', 'Wszystkie lekcje'],
+  classicCourse: ['Классический курс', 'Класичний курс', 'Classic course', 'Curso clásico', 'Curso clássico', 'Khóa học cổ điển', 'Kursus klasik', 'Klasik kurs', 'Kurs klasyczny'],
+  nextTag: ['Дальше', 'Далі', 'Next', 'Siguiente', 'Próximo', 'Tiếp theo', 'Berikutnya', 'Sıradaki', 'Dalej'],
 } as const satisfies Record<string, Nine>;
 
 export type SeasonCardCopyKey = keyof typeof SEASON_CARD_COPY;
@@ -36,5 +41,18 @@ export function seasonTasksLabel(lang: Lang, n: number): string {
   if (lang === 'uk') return `${n} ${slavic('завдання', 'завдання', 'завдань')}`;
   if (lang === 'pl') return `${n} ${n === 1 ? 'zadanie' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'zadania' : 'zadań'}`;
   const word = triLang(lang, { ru: '', uk: '', en: n === 1 ? 'task' : 'tasks', es: n === 1 ? 'tarea' : 'tareas', 'pt-BR': n === 1 ? 'tarefa' : 'tarefas', vi: 'bài', id: 'tugas', tr: 'görev', pl: '' });
+  return `${n} ${word}`;
+}
+
+/** «8 эпизодов»: русский, украинский и польский склоняют по числу; остальные языки — одна форма. Формы — предложение для «Переводчика» (10). */
+export function seasonEpisodesCountLabel(lang: Lang, n: number): string {
+  const a = n % 10;
+  const b = n % 100;
+  const few = a >= 2 && a <= 4 && (b < 12 || b > 14);
+  const one = a === 1 && b !== 11;
+  if (lang === 'ru') return `${n} ${one ? 'эпизод' : few ? 'эпизода' : 'эпизодов'}`;
+  if (lang === 'uk') return `${n} ${one ? 'епізод' : few ? 'епізоди' : 'епізодів'}`;
+  if (lang === 'pl') return `${n} ${n === 1 ? 'odcinek' : few ? 'odcinki' : 'odcinków'}`;
+  const word = triLang(lang, { ru: '', uk: '', en: n === 1 ? 'episode' : 'episodes', es: n === 1 ? 'episodio' : 'episodios', 'pt-BR': n === 1 ? 'episódio' : 'episódios', vi: 'tập', id: 'episode', tr: 'bölüm', pl: '' });
   return `${n} ${word}`;
 }

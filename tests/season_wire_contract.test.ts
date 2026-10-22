@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 // зачем (Ф4, владелец 22.10 «ПОЧЕМУ РАЗДЕЛ УРОКИ ЕЩЁ НЕ СДЕЛАН?»; координатор): «Сезон и карусель» подключён во вкладку «Уроки» под флагом, на реальных данных,
 // классический курс остаётся достижимым, нажатия ведут туда же, что у старой карты, журнал [SEASON-WIRE] на месте.
 import { readSource } from './helpers/read_source';
@@ -87,27 +89,64 @@ describe('Сезон: обложка 46 % от самого верха (влад
 
 describe('Сезон: чипы «Слова / Теория» внутри обложки (scenes-compact, вариант 2)', () => {
   const view2 = readSource('components/learning-v2/season/SeasonCourseView.tsx');
-  it('на полноэкранной обложке чипы под кнопкой, внизу остаётся только «Вся глава»', () => {
+  it('на полноэкранной обложке чипы под кнопкой, под каруселью чипов нет (веера «Вся глава» больше нет)', () => {
     expect(view2).toContain('const tall = props.topBleed !== undefined && props.topBleed > 0;');
     expect(view2).toContain('<HeroChip icon="albums-outline"');
-    expect(view2).toContain('{tall ? null : <ActionChip icon="albums-outline"');
+    expect(view2).toContain('{tall ? null : (');
+    expect(view2).toContain('<ActionChip icon="albums-outline"');
     expect(view2).toMatch(/heroChip: \{ height: 34, paddingHorizontal: 12, borderRadius: 17/);
   });
 });
 
-describe('Сезон: карточка «Ваши прошлые уроки» (обращения 22.10)', () => {
-  const lessonsSrc = readSource('app/(tabs)/lessons.tsx');
-  const card = readSource('components/learning-v2/season/SeasonLegacyCard.tsx');
-  it('карточка видна только при прогрессе в классическом курсе и ведёт в классический список', () => {
-    expect(lessonsSrc).toContain('return started > 0 && total > 0 ? { done, total, ratio: sum / (total * 50) } : null;');
-    expect(lessonsSrc).toContain('legacyProgress={legacyProgress}');
-    expect(wire).toContain('legacyCard={props.legacyProgress ? <SeasonLegacyCard');
-    expect(wire).toContain('onLegacyLessons();');
+describe('Сезон: хаб урока — три плитки и полноэкранные списки (владелец 22.10, макет lesson-hub-final.html)', () => {
+  const view3 = readSource('components/learning-v2/season/SeasonCourseView.tsx');
+  const course = readSource('components/learning-v2/season/SeasonCourse.tsx');
+  const tiles = readSource('components/learning-v2/season/SeasonNavTiles.tsx');
+  const picks = readSource('components/learning-v2/season/SeasonPickScreens.tsx');
+  const copy = readSource('components/learning-v2/season/season_copy_card.ts');
+  it('сторож «нет веера и чипов глав»: ни «Вся глава», ни скрытого меню по заголовку главы, файла веера нет', () => {
+    for (const src of [view3, course, wire]) {
+      expect(src).not.toContain('onWholeChapter');
+      expect(src).not.toContain('SeasonChapterFan');
+      expect(src).not.toContain('season-whole-chapter');
+      expect(src).not.toContain('season-chapter-picker');
+      expect(src).not.toContain('onChapterPicker');
+    }
+    expect(fs.existsSync(path.join(__dirname, '..', 'components/learning-v2/season/SeasonChapterFan.tsx'))).toBe(false);
   });
-  it('карточка: тексты на 9 языках, нажатие через V2Pressable, прогресс-полоса, без обводок', () => {
-    for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) expect(card).toContain(`${lang}:`);
-    expect(card).toContain('<V2Pressable');
-    expect(card).toContain('testID="season-legacy-card"');
-    expect(card).not.toMatch(/borderWidth|borderColor/);
+  it('сторож «три кнопки есть»: «Все главы», «Все уроки», «Классический курс» под обложкой, подписи на 9 языках', () => {
+    expect(view3).toContain('<SeasonNavTiles');
+    for (const key of ['allChaptersLabel', 'allLessonsLabel', 'classicLabel']) expect(view3).toContain(key);
+    for (const id of ['season-all-chapters', 'season-all-lessons-button', 'season-classic-course']) expect(tiles).toContain(`testID="${id}"`);
+    for (const key of ['allChapters', 'allLessons', 'classicCourse']) {
+      const line = copy.split('\n').find((l) => l.trim().startsWith(`${key}:`)) ?? '';
+      expect(line.match(/'[^']+'/g)?.length).toBe(9);
+    }
+    expect(tiles).not.toMatch(/borderWidth|borderColor/);
+  });
+  it('нажатия: «Все главы» → список глав, «Все уроки» → список уроков, «Классический курс» → классика; журнал [SEASON-WIRE]', () => {
+    expect(course).toContain('onAllChapters={openChapters}');
+    expect(course).toContain('<SeasonChaptersScreen');
+    expect(course).toContain('<SeasonChapterEpisodesScreen');
+    expect(wire).toContain('onAllLessons={onAllLessonsButton}');
+    expect(wire).toContain('onClassic={onClassic}');
+    expect(wire).toContain('classicLabel={props.legacyLessonsLabel}');
+    expect(wire).toContain('onLegacyLessons();');
+    for (const key of ['нажатие → «Все главы»', 'нажатие → «Классический курс»', 'нажатие → эпизоды главы', 'нажатие → карта из списка']) expect(wire + course).toContain(key);
+  });
+  it('списки поверх шапки вкладки: общая кнопка «назад» (ScreenBackButton) во всех трёх, строки через V2Pressable, без обводок', () => {
+    expect(picks).toContain('<ScreenBackButton');
+    expect(picks).toContain('export const SeasonListHeader');
+    expect(wire).toContain('<SeasonListHeader');
+    expect(wire).not.toContain('BackGlyph');
+    expect(picks).toContain('<V2Pressable');
+    expect(picks).not.toMatch(/borderWidth|borderColor/);
+    expect(picks).not.toContain('adjustsFontSizeToFit');
+    expect(picks).not.toContain('ActivityIndicator');
+  });
+  it('карточка «Ваши прошлые уроки» с хаба ушла: «Классический курс» — плитка и строка в «Все уроки»', () => {
+    expect(wire).not.toContain('SeasonLegacyCard');
+    expect(wire).not.toContain('legacyCard=');
+    expect(wire).toContain('onLegacy={props.onLegacyLessons}');
   });
 });

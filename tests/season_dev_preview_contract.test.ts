@@ -16,7 +16,7 @@ const read = (rel: string): string => readFileSync(rel, "utf8").replace(/\r\n/g,
 
 async function main(): Promise<void> {
   // ── состояния ──
-  assert.deepEqual([...SEASON_PREVIEW_STATES], ["cover", "newcomer", "carousel", "locked_open", "chapter_picker", "exam_card", "exam_open"]);
+  assert.deepEqual([...SEASON_PREVIEW_STATES], ["cover", "newcomer", "carousel", "locked_open", "chapters_list", "chapter_episodes", "exam_card", "exam_open"]);
   assert.ok(isSeasonPreviewState("exam_card"));
   assert.ok(!isSeasonPreviewState("lobby"));
   assert.ok(!isSeasonPreviewState(undefined));
@@ -48,9 +48,12 @@ async function main(): Promise<void> {
   const lockedOpen = seasonPreviewSetup("locked_open");
   assert.equal(lockedOpen.initialState.expandedIndex, lockedOpen.initialState.selectedIndex, "закрытая карта раскрыта");
 
-  const fan = seasonPreviewSetup("chapter_picker");
-  assert.equal(fan.initialState.fanChapter, 2, "«Вся глава»: глава 2");
-  assert.equal(fan.initialState.expandedIndex, null);
+  const chapters = seasonPreviewSetup("chapters_list");
+  assert.deepEqual(chapters.initialState.screen, { kind: "chapters" }, "«Все главы»");
+  assert.equal(chapters.initialState.expandedIndex, null);
+  const episodes = seasonPreviewSetup("chapter_episodes");
+  assert.deepEqual(episodes.initialState.screen, { kind: "episodes", chapter: 2 }, "эпизоды главы 2");
+  assert.equal(episodes.initialState.expandedIndex, null);
 
   const exam = seasonPreviewSetup("exam_card");
   const examCard = exam.deck.cards[exam.initialState.selectedIndex];

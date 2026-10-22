@@ -3,9 +3,9 @@
 //
 // зачем (координатор 21.10, Сверка): состояния экрана снимаются по ссылке рядом с эталоном course-hybrid-1-4.html / chapter-exam-season.html, а боевая вкладка
 // «Уроки» не подменяется и боевой прогресс не трогается:
-//   /dev_season_preview?state=cover | newcomer | carousel | locked_open | chapter_picker | exam_card | exam_open &theme=dark|light
+//   /dev_season_preview?state=cover | newcomer | carousel | locked_open | chapters_list | chapter_episodes | exam_card | exam_open &theme=dark|light
 //   cover — «в процессе» (эпизод 12, phone 5); newcomer — «Начать с эпизода 1» + «Не хочу с начала» (phone 6); carousel — карусель на закрытом эпизоде 14 (phone 7);
-//   locked_open — раскрытая закрытая карта; chapter_picker — «Вся глава» веером, глава 2 (phone 8); exam_card — карусель на карте «Экзамен главы 2» (phone 9);
+//   locked_open — раскрытая закрытая карта; chapters_list — полноэкранный список «Все главы»; chapter_episodes — эпизоды главы 2 (макет lesson-hub-final.html); exam_card — карусель на карте «Экзамен главы 2» (phone 9);
 //   exam_open — раскрытая карта экзамена (кнопки «Сдать экзамен» нет: SEASON_CHAPTER_EXAM_ENABLED=false). По умолчанию state=cover, theme — как сейчас в приложении.
 // Экран — тот же SeasonCourse, что пойдёт в бой; прогресс — моки в тех же строках курса (components/learning-v2/season/season_preview_fixtures.ts). Тема меняется
 // ТОЛЬКО в памяти процесса (app/dev_appearance_override.ts): сохранённый выбор темы и облако не тронуты; уходя с экрана, возвращаем прежнее.
@@ -68,7 +68,7 @@ function Inner() {
   ), [coinSource]);
 
   useEffect(() => {
-    console.log(`[DEV-STATE] season_preview route state=${state} fromParam=${String(params.state ?? 'нет→cover')} theme=${theme} fromParam=${String(params.theme ?? 'нет→приложение')} newcomer=${String(setup.newcomer)} cards=${setup.deck.cards.length} current=${setup.deck.currentIndex} selected=${setup.initialState.selectedIndex} expanded=${String(setup.initialState.expandedIndex)} fan=${String(setup.initialState.fanChapter)}`); // guard-ok: dev-маршрут, в релизе не открывается (Redirect на Главную)
+    console.log(`[DEV-STATE] season_preview route state=${state} fromParam=${String(params.state ?? 'нет→cover')} theme=${theme} fromParam=${String(params.theme ?? 'нет→приложение')} newcomer=${String(setup.newcomer)} cards=${setup.deck.cards.length} current=${setup.deck.currentIndex} selected=${setup.initialState.selectedIndex} expanded=${String(setup.initialState.expandedIndex)} screen=${JSON.stringify(setup.initialState.screen)}`); // guard-ok: dev-маршрут, в релизе не открывается (Redirect на Главную)
   }, [state, params.state, params.theme, theme, setup]);
 
   return (
@@ -97,7 +97,8 @@ function Inner() {
             onPrimary={noop}
             onNotFromStart={noop}
             onLessonPicker={noop}
-            onChapterPicker={noop}
+            onAllLessons={noop}
+            onClassic={noop}
             onWords={noop}
             onTheory={noop}
           />

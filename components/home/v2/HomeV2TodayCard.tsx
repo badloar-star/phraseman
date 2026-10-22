@@ -71,7 +71,6 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);
-  // зачем: экран «Сегодня» с кольцами живёт за moments_v3 — без флага ссылки нет, Главная как была (лёгкий хук флага, кольца карточка не грузит)
   const ringsScreenOn = useMomentsV3Enabled();
   const seeAllShown = ringsScreenOn ? seeAll : null;
   return (

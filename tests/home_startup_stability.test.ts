@@ -21,23 +21,25 @@ describe('home startup stability', () => {
     expect(home).not.toContain('buildHomeLeagueChest');
   });
 
-  it('keeps the independent survey cache primed and exposes a standalone Home offer', () => {
+  // зачем (22.10, владелец: «опрос СНОВА отдельно на Главной — какого»; восстановлена работа 19.10): отдельного блока опроса
+  // на Главной нет — опрос дня (Poll V2) живёт строкой «Сегодня» и открывается шторкой; прежняя анкета-строка (Q90,
+  // useHomeSurveyEntry + SurveySheetModal) с Главной снята. Кэш анкет по-прежнему прогревается при старте приложения.
+  it('keeps the survey cache primed at startup and shows the poll only as a Today row with a sheet', () => {
     const cache = read('app/survey_offer_cache.ts');
     const rootLayout = read('app/_layout.tsx');
     const home = read('app/(tabs)/home.tsx');
 
     expect(cache).toContain('primeSurveyOfferCacheFromStorage');
-    // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
     expect(rootLayout).toMatch(/primeSurveyOfferCacheFromStorage\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
-    // Q90 (01.10): опрос — строка в «Сегодня», загрузка вынесена в хук с кэшем 6 ч.
-    const hook = read('hooks/use_home_survey_entry.ts');
-    const entry = read('app/home_survey_entry.ts');
-    expect(home).toContain('const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);');
-    expect(hook).toContain("import { loadHomeSurvey, markHomeSurveyCompleted, peekHomeSurvey } from '../app/home_survey_entry';");
-    expect(entry).toContain('fetchActiveSurveyWithRetry');
-    // зачем (координатор 05.10): окно опроса грузится лениво — модуль тот же, вычисляется не вместе с чанком Главной.
-    expect(home).toContain("const loadSurveySheetModal = () => import('../../components/survey/SurveySheetModal');");
-    expect(home).toContain('const SurveySheetModal = lazy(loadSurveySheetModal);');
+    // Опрос — модель в Главной, строка «Сегодня» и шторка; без отдельной карточки на экране.
+    expect(home).toContain('const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });');
+    expect(home).toContain('surveyRow={homePollV2.phase !== \'hidden\' ? {');
+    expect(home).toContain('testID="home-poll-v2-sheet"');
+    expect(home).toContain('<HomePollV2Card model={homePollV2} lang={lang} onFinished={closeHomePollV2} />');
+    expect(home).not.toMatch(/<HomePollV2Card lang=\{lang\} active=/u);
+    // Прежняя анкета-строка с Главной снята.
+    expect(home).not.toContain('useHomeSurveyEntry(');
+    expect(home).not.toContain('SurveySheetModal');
     expect(home).not.toContain("pathname: '/survey_screen'");
   });
 });

@@ -29,7 +29,6 @@ const REGION = 'us-central1';
 const ANSWERS_PREFIX = 'home_polls_v2_answers_v1';
 export const HOME_POLL_V2_VOTE_TIMEOUT_MS = 10_000;
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 // Runtime copy lives under app/: content/ is intentionally excluded by Watchman,
 // Metro and .easignore. A contract test keeps it equal to the authoring source.
 const CATALOG = parseHomePollV2Catalog(require('./home_polls_v2.json'));
@@ -59,6 +58,7 @@ type QueuedHomePollV2Vote = Readonly<{
 
 let memory: HomePollV2Snapshot | null = null;
 const votesInFlight = new Set<string>();
+const ownerStorageMutationTails = new Map<string, Promise<void>>();
 
 const answersKey = (ownerId: string, setId: string) => `${ANSWERS_PREFIX}::${ownerId || 'anon'}::${setId}`;
 const queueKey = (ownerId: string) => `home_polls_v2_queue_v1::${ownerId}`;
@@ -127,12 +127,61 @@ async function writeQueue(ownerId: string, queue: readonly QueuedHomePollV2Vote[
   }
 }
 
+async function withOwnerStorageMutation<T>(ownerId: string, work: () => Promise<T>): Promise<T> {
+  const previous = ownerStorageMutationTails.get(ownerId) ?? Promise.resolve();
+  let release!: () => void;
+  const current = new Promise<void>((resolve) => { release = resolve; });
+  ownerStorageMutationTails.set(ownerId, current);
+  await previous;
+  try {
+    return await work();
+  } finally {
+    release();
+    if (ownerStorageMutationTails.get(ownerId) === current) ownerStorageMutationTails.delete(ownerId);
+  }
+}
+
+function isSameQueuedVote(left: QueuedHomePollV2Vote, right: QueuedHomePollV2Vote): boolean {
+  return left.setId === right.setId
+    && left.questionId === right.questionId
+    && left.optionId === right.optionId
+    && left.dateKey === right.dateKey
+    && left.queuedAtMs === right.queuedAtMs;
+}
+
+async function mergeAnswer(
+  ownerId: string,
+  set: HomePollV2Set,
+  questionId: string,
+  answer: HomePollV2Answer,
+): Promise<Record<string, HomePollV2Answer>> {
+  return withOwnerStorageMutation(ownerId, async () => {
+    const latest = await readAnswers(ownerId, set);
+    const merged = { ...latest, [questionId]: answer };
+    await writeAnswers(ownerId, set.id, merged);
+    return merged;
+  });
+}
+
+async function readQueueSnapshot(ownerId: string): Promise<QueuedHomePollV2Vote[]> {
+  return withOwnerStorageMutation(ownerId, () => readQueue(ownerId));
+}
+
+async function removeQueuedVote(ownerId: string, vote: QueuedHomePollV2Vote): Promise<boolean> {
+  return withOwnerStorageMutation(ownerId, async () => {
+    const latest = await readQueue(ownerId);
+    return writeQueue(ownerId, latest.filter((row) => !isSameQueuedVote(row, vote)));
+  });
+}
+
 async function enqueueVote(ownerId: string, vote: QueuedHomePollV2Vote): Promise<boolean> {
-  const queue = await readQueue(ownerId);
-  const withoutSameQuestion = queue.filter((row) => !(row.setId === vote.setId && row.questionId === vote.questionId));
-  const stored = await writeQueue(ownerId, [...withoutSameQuestion, vote]);
-  log('queue:stored', { setId: vote.setId, questionId: vote.questionId, size: withoutSameQuestion.length + 1 });
-  return stored;
+  return withOwnerStorageMutation(ownerId, async () => {
+    const queue = await readQueue(ownerId);
+    const withoutSameQuestion = queue.filter((row) => !(row.setId === vote.setId && row.questionId === vote.questionId));
+    const stored = await writeQueue(ownerId, [...withoutSameQuestion, vote]);
+    log('queue:stored', { setId: vote.setId, questionId: vote.questionId, size: withoutSameQuestion.length + 1 });
+    return stored;
+  });
 }
 
 async function callVote(stableId: string, vote: QueuedHomePollV2Vote): Promise<{
@@ -175,8 +224,12 @@ export async function loadTodayHomePollV2(dateKey: string = getLocalDayKey()): P
 
 function classifyVoteError(error: unknown): HomePollV2VoteErrorReason {
   const err = error as { code?: unknown; message?: unknown };
-  const text = `${String(err?.code ?? '')} ${String(err?.message ?? '')}`.toLowerCase();
-  if (text.includes('not_votable') || text.includes('option_invalid') || text.includes('question_invalid') || text.includes('set_closed') || text.includes('set_not_found')) return 'closed';
+  const code = String(err?.code ?? '').toLowerCase();
+  const text = String(err?.message ?? '').toLowerCase();
+  // A Firebase transport `not-found` also means an absent deployed callable.
+  // It is never proof that a vote reached the business handler, so retain it.
+  if (code.includes('not-found')) return 'unknown';
+  if (text.includes('home_poll_set_not_votable') || text.includes('home_poll_option_invalid') || text.includes('home_poll_question_invalid') || text.includes('home_poll_set_closed')) return 'closed';
   if (text.includes('unavailable') || text.includes('network') || text.includes('deadline') || text.includes('callable_timeout') || text.includes('timed out')) return 'offline';
   return 'unknown';
 }
@@ -188,7 +241,8 @@ function classifyVoteError(error: unknown): HomePollV2VoteErrorReason {
 export async function submitHomePollV2Vote(snapshot: HomePollV2Snapshot, questionId: string, optionId: string): Promise<HomePollV2VoteOutcome> {
   const { set, dateKey } = snapshot;
   const accountToken = captureAccountGeneration();
-  const flightKey = `${set?.id ?? 'none'}::${questionId}`;
+  const stableId = snapshot.ownerId;
+  const flightKey = `${stableId || 'none'}::${accountToken.generation}::${set?.id ?? 'none'}::${questionId}`;
   log('vote:in', { setId: set?.id ?? null, questionId, optionId, inFlight: votesInFlight.has(flightKey) });
   if (!set) {
     log('vote:early_exit', { reason: 'no_set' });
@@ -209,11 +263,18 @@ export async function submitHomePollV2Vote(snapshot: HomePollV2Snapshot, questio
   }
   votesInFlight.add(flightKey);
   const startedAt = Date.now();
-  const stableId = snapshot.ownerId;
   let queuedVote: QueuedHomePollV2Vote | null = null;
   let queueStored = false;
   try {
     queuedVote = { setId: set.id, questionId, optionId, dateKey, queuedAtMs: Date.now() };
+    const optimisticAnswer: HomePollV2Answer = {
+      optionId,
+      counts: normalizeHomePollV2Counts({}, question.options.map((option) => option.id)),
+    };
+    const optimisticAnswers = await mergeAnswer(stableId, set, questionId, optimisticAnswer);
+    if (isCurrentAccountGeneration(accountToken, stableId)) {
+      memory = { ...snapshot, ownerId: stableId, answers: optimisticAnswers, questionIndex: nextUnansweredQuestionIndex(set, optimisticAnswers) };
+    }
     queueStored = await enqueueVote(stableId, queuedVote);
     if (!isCurrentAccountGeneration(accountToken, stableId)) {
       log('vote:early_exit', { reason: 'account_changed_after_queue', ms: Date.now() - startedAt });
@@ -236,10 +297,8 @@ export async function submitHomePollV2Vote(snapshot: HomePollV2Snapshot, questio
       counts: normalizeHomePollV2Counts(data?.counts, ids),
     };
     const ownerId = stableId;
-    const base = memory && memory.ownerId === ownerId && memory.set?.id === set.id ? memory.answers : snapshot.answers;
-    const answers = { ...base, [questionId]: answer };
-    await writeAnswers(ownerId, set.id, answers);
-    await writeQueue(ownerId, (await readQueue(ownerId)).filter((row) => !(row.setId === set.id && row.questionId === questionId)));
+    const answers = await mergeAnswer(ownerId, set, questionId, answer);
+    await removeQueuedVote(ownerId, queuedVote);
     if (!isCurrentAccountGeneration(accountToken, ownerId)) {
       log('vote:late_ui_result_ignored', { setId: set.id, questionId, ms: Date.now() - startedAt });
       return { ok: false, reason: 'unknown' };
@@ -251,7 +310,7 @@ export async function submitHomePollV2Vote(snapshot: HomePollV2Snapshot, questio
     const reason = classifyVoteError(error);
     log('vote:failed', { setId: set.id, questionId, reason, code: String((error as { code?: unknown })?.code ?? ''), ms: Date.now() - startedAt });
     if (reason === 'closed' && isCurrentAccountGeneration(accountToken, stableId) && queuedVote) {
-      await writeQueue(stableId, (await readQueue(stableId)).filter((row) => !(row.setId === set.id && row.questionId === questionId)));
+      await removeQueuedVote(stableId, queuedVote);
     }
     return { ok: false, reason, queued: reason !== 'closed' && queueStored && Boolean(stableId && queuedVote) };
   } finally {
@@ -265,15 +324,13 @@ export async function flushHomePollV2Queue(snapshot: HomePollV2Snapshot): Promis
   const accountToken = captureAccountGeneration();
   const stableId = snapshot.ownerId;
   if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return snapshot;
-  const queue = await readQueue(stableId);
+  const queue = await readQueueSnapshot(stableId);
   if (queue.length === 0) return snapshot;
-  let remaining = [...queue];
-  let answers = { ...snapshot.answers };
   for (const vote of queue) {
     const voteSet = CATALOG.find((row) => row?.id === vote.setId) ?? null;
     const question = voteSet?.questions.find((row) => row.id === vote.questionId);
     if (!voteSet || !question) {
-      remaining = remaining.filter((row) => row !== vote);
+      await removeQueuedVote(stableId, vote);
       continue;
     }
     try {
@@ -283,25 +340,18 @@ export async function flushHomePollV2Queue(snapshot: HomePollV2Snapshot): Promis
         optionId: data.status === 'accepted' ? vote.optionId : null,
         counts: normalizeHomePollV2Counts(data.counts, question.options.map((option) => option.id)),
       };
-      if (voteSet.id === snapshot.set?.id) {
-        answers[vote.questionId] = answer;
-      } else {
-        const historicalAnswers = await readAnswers(stableId, voteSet);
-        if (!isCurrentAccountGeneration(accountToken, stableId)) return snapshot;
-        await writeAnswers(stableId, voteSet.id, { ...historicalAnswers, [vote.questionId]: answer });
-      }
-      remaining = remaining.filter((row) => row !== vote);
+      await mergeAnswer(stableId, voteSet, vote.questionId, answer);
+      await removeQueuedVote(stableId, vote);
       log('queue:flushed', { setId: vote.setId, questionId: vote.questionId, status: data.status });
     } catch (error) {
       if (!isCurrentAccountGeneration(accountToken, stableId)) return snapshot;
-      if (classifyVoteError(error) === 'closed') remaining = remaining.filter((row) => row !== vote);
+      if (classifyVoteError(error) === 'closed') await removeQueuedVote(stableId, vote);
       else break;
     }
   }
   if (!isCurrentAccountGeneration(accountToken, stableId)) return snapshot;
-  await writeQueue(stableId, remaining);
   if (!snapshot.set) return snapshot;
-  await writeAnswers(stableId, snapshot.set.id, answers);
+  const answers = await withOwnerStorageMutation(stableId, () => readAnswers(stableId, snapshot.set!));
   if (!isCurrentAccountGeneration(accountToken, stableId)) return snapshot;
   const next = { ...snapshot, ownerId: stableId, answers, questionIndex: nextUnansweredQuestionIndex(snapshot.set, answers) };
   memory = next;
@@ -312,6 +362,7 @@ export async function flushHomePollV2Queue(snapshot: HomePollV2Snapshot): Promis
 export function __resetHomePollV2ForTests(): void {
   memory = null;
   votesInFlight.clear();
+  ownerStorageMutationTails.clear();
 }
 
 /** Только для тестов и dev: размер каталога (сколько наборов в бандле). */

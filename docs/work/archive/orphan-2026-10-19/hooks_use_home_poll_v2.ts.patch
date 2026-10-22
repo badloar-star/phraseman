@@ -1,0 +1,239 @@
+diff --git a/hooks/use_home_poll_v2.ts b/hooks/use_home_poll_v2.ts
+index 35b01af73..67964530a 100644
+--- a/hooks/use_home_poll_v2.ts
++++ b/hooks/use_home_poll_v2.ts
+@@ -1,10 +1,7 @@
+ // ═══ useHomePollV2 — модель карточки «Опрос» на Главной (для Дизайна) ═════════
+-// зачем (владелец 18.10, макет home-polls-v2.html): «нажми вариант — покажутся проценты, затем „Дальше“; после последнего
+-// вопроса — „Спасибо“, и карточка исчезает до следующего опроса». Хук отдаёт всё, что нужно нарисовать, — без сети при показе.
+-//
+-// Optimistic UI: тап сразу отмечает выбранный вариант (phase 'sending'); сервер присылает счётчики → 'result' с процентами.
+-// Сбой → выбор снят, phase снова 'question', причина в error (только 'offline' даёт человеку текст «нет связи» — правило
+-// владельца; остальное тихо). Двойной тап — второй игнорируется. Поздний ответ после смены вопроса не перетирает экран.
++// зачем (владелец 19.10): опрос — строго optimistic. Выбор немедленно ведёт к
++// следующему вопросу, локально сохраняется и ставится в очередь; сеть никогда не
++// меняет ход опроса и не показывает промежуточный статус.
+ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+ import NetInfo from '@react-native-community/netinfo';
+ 
+@@ -14,24 +11,22 @@ import {
+   subscribeAccountGeneration,
+   type AccountGenerationToken,
+ } from '../app/account_generation';
+-import { dailyPollPercents } from '../app/daily_poll/daily_poll_model';
+ import {
+   loadTodayHomePollV2,
+   flushHomePollV2Queue,
+   POLLS_V2_LOG,
+   submitHomePollV2Vote,
+   type HomePollV2Snapshot,
+-  type HomePollV2VoteErrorReason,
+ } from '../app/home_polls/home_polls_v2_client';
+-import { pickHomePollV2Text, type HomePollV2Answer } from '../app/home_polls/home_polls_v2_model';
++import { pickHomePollV2Text, normalizeHomePollV2Counts } from '../app/home_polls/home_polls_v2_model';
+ import type { HomePollV2Fixture } from '../app/home_polls/home_polls_v2_fixture';
+ 
+-export type HomePollV2Phase = 'hidden' | 'question' | 'sending' | 'result' | 'thanks';
++export type HomePollV2Phase = 'hidden' | 'question' | 'thanks';
+ 
+ export type HomePollV2CardOption = Readonly<{
+   id: string;
+   label: string;
+-  /** Процент (0–100, сумма ровно 100) — только в фазе 'result'; иначе null. */
++  /** В strict optimistic flow результаты не показываются. */
+   percent: number | null;
+   selected: boolean;
+ }>;
+@@ -44,13 +39,12 @@ export type HomePollV2CardModel = Readonly<{
+   total: number;
+   question: string;
+   options: readonly HomePollV2CardOption[];
+-  /** Сколько человек ответили на этот вопрос (после ответа); null — до ответа. */
++  /** В strict optimistic flow результаты не показываются. */
+   voteCount: number | null;
+   isLastQuestion: boolean;
+-  /** Причина последнего сбоя голоса; 'offline' — единственная, о которой говорим человеку. */
+-  error: HomePollV2VoteErrorReason | null;
++  error: null;
+   choose: (optionId: string) => void;
+-  /** «Дальше» после процентов; на последнем вопросе ведёт к «Спасибо». */
++  /** Совместимость модели: переход происходит сразу по выбору. */
+   next: () => void;
+   /** Закрыть «Спасибо» (или скрыть карточку) до следующего набора. */
+   dismiss: () => void;
+@@ -62,14 +56,9 @@ export function useHomePollV2({ lang, active = true, fixture = null }: Options):
+   // Do not synchronously reuse the previous account's memory snapshot. The local
+   // owner must resolve before any answer/choice is shown after an account switch.
+   const [snapshot, setSnapshot] = useState<HomePollV2Snapshot | null>(() => fixture?.snapshot ?? null);
+-  const [pending, setPending] = useState<{ questionId: string; optionId: string } | null>(null);
+-  const [queuedChoice, setQueuedChoice] = useState<{ questionId: string; optionId: string } | null>(null);
+-  const [shownAnswer, setShownAnswer] = useState<{ questionId: string; answer: HomePollV2Answer } | null>(null);
+   const [thanks, setThanks] = useState(false);
+   const [dismissed, setDismissed] = useState(false);
+-  const [error, setError] = useState<HomePollV2VoteErrorReason | null>(null);
+-  const questionRef = useRef<string | null>(null);
+-  const busyRef = useRef(false);
++  const answeredQuestionIdsRef = useRef(new Set<string>());
+   const [accountGeneration, setAccountGeneration] = useState<AccountGenerationToken>(() => captureAccountGeneration());
+ 
+   useEffect(() => {
+@@ -77,15 +66,10 @@ export function useHomePollV2({ lang, active = true, fixture = null }: Options):
+     const applyGeneration = (token: AccountGenerationToken) => {
+       // Clear synchronously with the account-generation notification so no
+       // previous-owner answer or optimistic choice survives a transition.
+-      questionRef.current = null;
+-      busyRef.current = false;
++      answeredQuestionIdsRef.current.clear();
+       setSnapshot(null);
+-      setPending(null);
+-      setQueuedChoice(null);
+-      setShownAnswer(null);
+       setThanks(false);
+       setDismissed(false);
+-      setError(null);
+       setAccountGeneration(token);
+     };
+     const subscription = subscribeAccountGeneration(applyGeneration);
+@@ -118,79 +102,52 @@ export function useHomePollV2({ lang, active = true, fixture = null }: Options):
+       const token = captureAccountGeneration();
+       void flushHomePollV2Queue(snapshot).then((next) => {
+         if (cancelled || !isCurrentAccountGeneration(token, next.ownerId)) return;
+-        setSnapshot(next);
+-        if (queuedChoice) {
+-          const answer = next.answers[queuedChoice.questionId];
+-          if (answer) {
+-            setShownAnswer({ questionId: queuedChoice.questionId, answer });
+-            setQueuedChoice(null);
+-          }
+-        }
+       });
+     };
++    flush();
+     const unsubscribe = NetInfo.addEventListener((state) => {
+       if (state.isConnected && state.isInternetReachable !== false) flush();
+     });
+     return () => { cancelled = true; unsubscribe(); };
+-  }, [active, fixture, queuedChoice, snapshot]);
++  }, [active, fixture, snapshot]);
+ 
+   const set = snapshot?.set ?? null;
+-  // Пока человек смотрит проценты, остаёмся на отвеченном вопросе — сдвиг только по «Дальше».
+-  const questionIndex = shownAnswer && set
+-    ? set.questions.findIndex((q) => q.id === shownAnswer.questionId)
+-    : snapshot?.questionIndex ?? null;
++  const questionIndex = snapshot?.questionIndex ?? null;
+   const question = set && questionIndex !== null && questionIndex >= 0 ? set.questions[questionIndex] : null;
+-  questionRef.current = question?.id ?? null;
+ 
+   const choose = useCallback((optionId: string) => {
+     if (!snapshot || !question) return;
+-    if (busyRef.current || pending || queuedChoice || shownAnswer) {
+-      console.log(`${POLLS_V2_LOG} card:choose_ignored ${JSON.stringify({ reason: busyRef.current || pending ? 'sending' : queuedChoice ? 'queued' : 'showing_result', questionId: question.id })}`); // guard-ok: ранний выход
++    if (answeredQuestionIdsRef.current.has(question.id)) {
++      console.log(`${POLLS_V2_LOG} card:choose_ignored ${JSON.stringify({ reason: 'already_chosen', questionId: question.id })}`); // guard-ok: двойной тап
+       return;
+     }
+     const questionId = question.id;
+     const token = fixture ? null : captureAccountGeneration();
+     if (token && !isCurrentAccountGeneration(token, snapshot.ownerId)) return;
+-    busyRef.current = true;
+-    setError(null);
+-    setPending({ questionId, optionId });
++    answeredQuestionIdsRef.current.add(questionId);
++    const optimisticAnswers = {
++      ...snapshot.answers,
++      [questionId]: {
++        optionId,
++        counts: normalizeHomePollV2Counts({}, question.options.map((option) => option.id)),
++      },
++    };
++    const nextIndex = set?.questions.findIndex((item) => !optimisticAnswers[item.id]) ?? -1;
++    setSnapshot((previous) => previous ? {
++      ...previous,
++      answers: optimisticAnswers,
++      questionIndex: nextIndex < 0 ? null : nextIndex,
++    } : previous);
++    if (nextIndex < 0) setThanks(true);
+     const submit = fixture ? fixture.vote(questionId, optionId) : submitHomePollV2Vote(snapshot, questionId, optionId);
+     void submit.then((outcome) => {
+-      if ((token && !isCurrentAccountGeneration(token, snapshot.ownerId)) || questionRef.current !== questionId) {
+-        console.log(`${POLLS_V2_LOG} card:late_answer_ignored ${JSON.stringify({ questionId })}`); // guard-ok: поздний ответ
+-        return;
+-      }
+-      setPending(null);
+-      busyRef.current = false;
+-      if (!outcome.ok) {
+-        if (outcome.queued) {
+-          setQueuedChoice({ questionId, optionId });
+-          setError(null);
+-        } else {
+-          setError(outcome.reason);
+-        }
+-        return;
++      if (!outcome.ok && !outcome.queued) {
++        console.warn(`${POLLS_V2_LOG} vote:not_queued ${JSON.stringify({ questionId, reason: outcome.reason })}`); // guard-ok: диагностика фоновой доставки без текста/uid
+       }
+-      setShownAnswer({ questionId, answer: outcome.answer });
+-      setSnapshot((prev) => (prev ? {
+-        ...prev,
+-        answers: { ...prev.answers, [questionId]: outcome.answer },
+-      } : prev));
+     });
+-  }, [fixture, pending, question, queuedChoice, shownAnswer, snapshot]);
++  }, [fixture, question, set, snapshot]);
+ 
+-  const next = useCallback(() => {
+-    if (!set || !shownAnswer) return;
+-    const answers = snapshot?.answers ?? {};
+-    const nextIndex = set.questions.findIndex((q) => !answers[q.id]);
+-    setShownAnswer(null);
+-    if (nextIndex < 0) {
+-      setThanks(true);
+-      setSnapshot((prev) => (prev ? { ...prev, questionIndex: null } : prev));
+-      return;
+-    }
+-    setSnapshot((prev) => (prev ? { ...prev, questionIndex: nextIndex } : prev));
+-  }, [set, shownAnswer, snapshot]);
++  const next = useCallback(() => {}, []);
+ 
+   const dismiss = useCallback(() => setDismissed(true), []);
+ 
+@@ -211,16 +168,9 @@ export function useHomePollV2({ lang, active = true, fixture = null }: Options):
+       dismiss,
+     };
+     if (dismissed || !set || !question) return hiddenModel;
+-    const ids = question.options.map((o) => o.id);
+-    const answer = shownAnswer?.questionId === question.id ? shownAnswer.answer : null;
+-    const percents = answer ? dailyPollPercents(answer.counts, ids) : null;
+-    const voteCount = answer ? ids.reduce((sum, id) => sum + (answer.counts[id] ?? 0), 0) : null;
+-    const selectedId = answer?.optionId
+-      ?? (pending?.questionId === question.id ? pending.optionId : null)
+-      ?? (queuedChoice?.questionId === question.id ? queuedChoice.optionId : null);
+     const index = set.questions.indexOf(question);
+     return {
+-      phase: answer ? 'result' : pending || queuedChoice ? 'sending' : 'question',
++      phase: 'question',
+       setId: set.id,
+       step: index + 1,
+       total,
+@@ -228,15 +178,15 @@ export function useHomePollV2({ lang, active = true, fixture = null }: Options):
+       options: question.options.map((o) => ({
+         id: o.id,
+         label: pickHomePollV2Text(o.text, lang),
+-        percent: percents ? percents[o.id] ?? 0 : null,
+-        selected: selectedId === o.id,
++        percent: null,
++        selected: false,
+       })),
+-      voteCount,
++      voteCount: null,
+       isLastQuestion: index === total - 1,
+-      error,
++      error: null,
+       choose,
+       next,
+       dismiss,
+     };
+-  }, [choose, dismiss, dismissed, error, lang, next, pending, question, queuedChoice, set, shownAnswer, thanks]);
++  }, [choose, dismiss, dismissed, lang, next, question, set, thanks]);
+ }

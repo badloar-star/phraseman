@@ -34,11 +34,18 @@ describe('home polls v2 bundled content and application wiring', () => {
     expect(catalog.reduce((sum, set) => sum + (set?.questions.length ?? 0), 0)).toBe(228);
   });
 
-  it('mounts the v2 card on Home and never fetches poll text for display', () => {
+  it('replaces the Today poll entry with the v2 sheet and never fetches poll text for display', () => {
     const home = read('app/(tabs)/home.tsx');
     const client = read('app/home_polls/home_polls_v2_client.ts');
-    expect(home).toContain("import HomePollV2Card from '../../components/home/HomePollV2Card'");
-    expect(home).toContain('<HomePollV2Card lang={lang} active={homeRuntimeActive} />');
+    expect(home).toContain("import { useHomePollV2 } from '../../hooks/use_home_poll_v2'");
+    expect(home).toContain('const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });');
+    expect(home).toContain('surveyRow={homePollV2.phase !== \'hidden\' ? {');
+    expect(home).toContain('onPress: () => setHomePollV2Open(true)');
+    expect(home).toContain('<HybridSheetShell');
+    expect(home).toContain('testID="home-poll-v2-sheet"');
+    expect(home).toContain('<HomePollV2Card model={homePollV2}');
+    expect(home).not.toContain('<HomePollV2Card lang={lang} active={homeRuntimeActive} />');
+    expect(home).not.toContain('useHomeSurveyEntry(');
     expect(client).toContain("require('./home_polls_v2.json')");
     expect(client).not.toMatch(/collection\(['"]home_polls_v2/);
   });
@@ -50,7 +57,7 @@ describe('home polls v2 bundled content and application wiring', () => {
     expect(client).toContain('flushHomePollV2Queue');
     expect(client).toContain('for (const vote of queue)');
     expect(client).not.toContain('row.dateKey === snapshot.dateKey');
-    expect(hook).toContain('busyRef.current');
+    expect(hook).toContain('answeredQuestionIdsRef.current');
   });
 
   it('invalidates local poll state on account-generation changes and rejects late owner responses', () => {
@@ -58,7 +65,7 @@ describe('home polls v2 bundled content and application wiring', () => {
     const hook = read('hooks/use_home_poll_v2.ts');
     expect(hook).toContain('subscribeAccountGeneration');
     expect(hook).toContain('setSnapshot(null)');
-    expect(hook).toContain('setQueuedChoice(null)');
+    expect(hook).toContain('answeredQuestionIdsRef.current.clear()');
     expect(client).toContain('isCurrentAccountGeneration');
   });
 
@@ -68,12 +75,21 @@ describe('home polls v2 bundled content and application wiring', () => {
     expect(client).toContain("data.status === 'accepted' ? vote.optionId : null");
   });
 
-  it('shows counts only in the result phase and includes the admin set summary', () => {
+  it('keeps aggregate counts out of the optimistic card while retaining the admin set summary', () => {
     const card = read('components/home/HomePollV2Card.tsx');
     const admin = read('admin/v2/legacy.html');
-    expect(card).toContain("model.phase === 'result'");
+    expect(card).not.toContain("model.phase === 'result'");
     expect(card).toContain('accessibilityRole="button"');
     expect(admin).toContain("collection(db, 'home_polls_v2')");
     expect(admin).toContain('Итоги по вопросам');
+  });
+
+  it('never shows transport state or an offline claim in the strict optimistic flow', () => {
+    const card = read('components/home/HomePollV2Card.tsx');
+    expect(card).not.toContain("model.phase === 'sending'");
+    expect(card).not.toContain('Отправляем…');
+    expect(card).not.toContain('Sending…');
+    expect(card).not.toContain('Отправим, когда появится связь');
+    expect(card).not.toContain('We’ll send it when you’re online');
   });
 });

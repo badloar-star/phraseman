@@ -1,0 +1,439 @@
+diff --git a/app/learning-v2/session/[id].tsx b/app/learning-v2/session/[id].tsx
+index 89e2200b8..c8c7c69de 100644
+--- a/app/learning-v2/session/[id].tsx
++++ b/app/learning-v2/session/[id].tsx
+@@ -4,7 +4,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
+ import { KitGlassLayer } from "../../../components/v2/KitLiquidGlass";
+ import { nestedBoxShadow } from "../../../components/v2/ShadowSurface";
+ import * as Crypto from "expo-crypto";
+-import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
+ import { LinearGradient } from "../../../components/SafeLinearGradient";
+ import ReportErrorButton from "../../../components/ReportErrorButton";
+ import { useLang } from "../../../components/LangContext";
+@@ -27,6 +26,9 @@ const consumeLearningV2CourseSessionReadyHandoffV3: ReleasedSessionClientV3["con
+   (require("../../../app/learning_v2_course_released_session_client_v3") as ReleasedSessionClientV3)
+     .consumeLearningV2CourseSessionReadyHandoffV3(input);
+ import { resolveLearningV2SessionRouteCoordinatesV1 } from "../../../app/learning_v2_session_route_coordinates_v1";
++import { recordHomeContinueV2 } from "../../../app/home_continue_mark";
++import { rememberLearningV2LastLesson } from "../../../app/learning_v2_last_lesson";
++import type { RuntimeStudyTarget } from "../../../app/target_storage_keys";
+ import SessionAttemptsHud from "../../../components/session_attempts/SessionAttemptsHud";
+ import { Redirect, useLocalSearchParams, useRouter } from "expo-router";
+ import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from "../../learning_v2_visibility_switch";
+@@ -72,10 +74,8 @@ import {
+   ensureLearningV2CompletionBackgroundSchedulerInstalled,
+   enterLearningV2InteractiveSurface,
+ } from "../../../app/learning_v2_completion_background_scheduler";
+-import {
+-  learningV2Lesson1AudioSource,
+-  learningV2Lesson1FamilyUsesAudio,
+-} from "../../../app/learning_v2_lesson1_audio_assets";
++import { useAudio } from "../../../hooks/use-audio";
++import { studySpeechLocale } from "../../../app/study_speech_locale";
+ import { buildLearningV2SessionResultRouteParams } from "../../../app/learning_v2_session_result_handoff";
+ import { learningV2SessionCopy } from "../../../app/learning_v2_session_copy";
+ import {
+@@ -108,11 +108,6 @@ import {
+ import { useRuntimeActive } from "../../../hooks/use_runtime_active";
+ import { projectRequiredTaskStars } from "../../../modules/learning-v2/contracts/course_economy";
+ import { sanitizeLearningV2LearnerPromptV1 } from "../../../modules/learning-v2/content/learner_prompt_hygiene_v1";
+-import {
+-  claimSpokenAudio,
+-  type SpokenAudioClaim,
+-  whenSpokenAudioReady,
+-} from "../../../modules/audio/audio_runtime_arbiter";
+ import { createLesson1LocalProgressStore } from "../../../modules/learning-v2/progress/lesson1_local_progress";
+ import {
+   deriveLocalOfflineProgressAccountScopeHash,
+@@ -216,7 +211,6 @@ const normalize = (value: string) =>
+     .trim();
+ const first = (value: string | string[] | undefined) =>
+   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+-const LOCAL_AUDIO_START_WATCHDOG_MS = 2_000;
+ 
+ function LearningV2LegacySessionScreen() {
+   const router = useRouter();
+@@ -342,11 +336,7 @@ function LearningV2LegacySessionScreen() {
+   const sessionStarsRef = useRef(0);
+   const transitionLatchRef = useRef(false);
+   const finishingRef = useRef(false);
+-  const audioRequestEpochRef = useRef(0);
+-  const audioAttemptPendingRef = useRef(false);
+-  const audioPlaybackOwnedRef = useRef(false);
+-  const spokenAudioClaimRef = useRef<SpokenAudioClaim | null>(null);
+-  const audioWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
++  const { speak: speakLessonAudio, stop: stopLessonAudio } = useAudio();
+   const networkIntentRef = useRef<LearningV2SessionNetworkIntent | null>(null);
+   const localCommitCompletedRef = useRef(false);
+   const voiceLongPressRef = useRef(false);
+@@ -382,31 +372,10 @@ function LearningV2LegacySessionScreen() {
+     [payload],
+   );
+   const item = card ? itemById.get(card.contentItemId) : undefined;
+-  const localAudioSource = item
+-    ? learningV2Lesson1AudioSource(item.contentItemId)
+-    : null;
+-  // зачем: useAudioPlayerStatus подписан на нативное playbackStatusUpdate,
+-  // которое по дефолту (updateInterval=500мс) тикает каждые 500мс, пока
+-  // играет звук — это setState в этом компоненте без React.memo, то есть
+-  // перерисовка всего экрана 2 раза в секунду на всё время воспроизведения.
+-  // Ниже читаются только localAudioStatus.playing/didJustFinish (булевы) —
+-  // currentTime/duration не используются, поэтому тик не несёт полезных
+-  // данных. onIsPlayingChanged/didJustFinish по-прежнему приходят мгновенно
+-  // из нативных слушателей независимо от таймера.
+-  const localAudioPlayer = useAudioPlayer(localAudioSource, {
+-    downloadFirst: false,
+-    updateInterval: 60_000,
+-  });
+-  const localAudioStatus = useAudioPlayerStatus(localAudioPlayer);
+-  const [failedAudioCardId, setFailedAudioCardId] = useState<string | null>(
+-    null,
+-  );
+   const mode = (releasedPackageTask?.family ??
+     card?.family ??
+     "phrase_builder") as ModeKey;
+   const meta = MODE_META[mode] ?? MODE_META.phrase_builder;
+-  const legacyUsesLocalAudio = learningV2Lesson1FamilyUsesAudio(mode);
+-  const audioPlaybackFailed = failedAudioCardId === currentTaskId;
+   const auxiliaryTask =
+     releasedPackageTask || card
+       ? (auxiliaryMount.runtime?.resolveTaskBySlot(cardIndex + 1) ?? null)
+@@ -423,12 +392,9 @@ function LearningV2LegacySessionScreen() {
+   // зачем (D47/PM-205, владелец): скачивания озвучки V2 нет, поэтому у выпущенного
+   // задания нет своего файла звука — вместо мёртвой цепочки прогрева (ушла целиком)
+   // экран сразу показывает фразу текстом; звук даёт стартовый пакет и TTS телефона.
+-  const usesLocalAudio = releasedPackageTask
++  const usesSpeechAudio = releasedPackageTask
+     ? releasedPackageTask.learner.audioTargetIds.length > 0
+-    : legacyUsesLocalAudio;
+-  const audioUnavailable = releasedPackageTask
+-    ? true
+-    : localAudioSource === null || audioPlaybackFailed;
++    : mode === "listen_choose" || mode === "listen_build_dictation" || mode === "scripted_repeat_compare" || mode === "sound_contrast";
+   const auxiliaryActions = useLearningV2ActivityActionSessionV1({
+     runtime: releasedAuxiliaryTask ? auxiliaryMount.runtime : null,
+     task: releasedAuxiliaryTask,
+@@ -487,46 +453,13 @@ function LearningV2LegacySessionScreen() {
+   );
+   controlReleasedVoiceRef.current = controlReleasedVoice;
+ 
+-  const invalidateAudioAttempt = useCallback(() => {
+-    audioRequestEpochRef.current += 1;
+-    audioAttemptPendingRef.current = false;
+-    if (audioWatchdogRef.current !== null) {
+-      clearTimeout(audioWatchdogRef.current);
+-      audioWatchdogRef.current = null;
+-    }
+-  }, []);
+-  const confirmAudioPlaybackStarted = useCallback(() => {
+-    if (!audioAttemptPendingRef.current) return;
+-    audioAttemptPendingRef.current = false;
+-    if (audioWatchdogRef.current !== null) {
+-      clearTimeout(audioWatchdogRef.current);
+-      audioWatchdogRef.current = null;
+-    }
+-  }, []);
+-  const stopAudioAttempt = useCallback(() => {
+-    invalidateAudioAttempt();
+-    spokenAudioClaimRef.current?.release();
+-    spokenAudioClaimRef.current = null;
+-    audioPlaybackOwnedRef.current = false;
+-    try {
+-      localAudioPlayer.pause();
+-    } catch (e) {
+-      // released local player
+-      DebugLogger.error('[id]:stopAudioAttempt', e instanceof Error ? e : new Error(String(e)), 'warning');
+-    }
+-  }, [invalidateAudioAttempt, localAudioPlayer]);
+-
+-  const stopLocalAudioPlayback = useCallback(() => {
+-    stopAudioAttempt();
+-  }, [stopAudioAttempt]);
+-
+   const stopAttemptMediaBeforeRecovery = useCallback(() => {
+-    stopLocalAudioPlayback();
++    stopLessonAudio();
+     if (voiceRecording) {
+       void controlReleasedVoice("stop", "tap");
+     }
+     setVoiceRecording(false);
+-  }, [controlReleasedVoice, stopLocalAudioPlayback, voiceRecording]);
++  }, [controlReleasedVoice, stopLessonAudio, voiceRecording]);
+ 
+   useEffect(
+     () => () => {
+@@ -549,22 +482,9 @@ function LearningV2LegacySessionScreen() {
+     setCorrectResponseDisplay(null);
+   }, [cardIndex, progress, reducedMotion]);
+   useEffect(() => {
+-    stopAudioAttempt();
+-    return stopAudioAttempt;
+-  }, [card?.cardId, localAudioSource, stopAudioAttempt]);
+-  useEffect(() => {
+-    if (!audioAttemptPendingRef.current) return;
+-    // Only a playing status can be attributed safely to the current command.
+-    // didJustFinish may be a delayed event from the previous playback.
+-    if (!localAudioStatus.playing) return;
+-    confirmAudioPlaybackStarted();
+-  }, [confirmAudioPlaybackStarted, localAudioStatus.playing]);
+-  useEffect(() => {
+-    if (!localAudioStatus.didJustFinish) return;
+-    spokenAudioClaimRef.current?.release();
+-    spokenAudioClaimRef.current = null;
+-    audioPlaybackOwnedRef.current = false;
+-  }, [localAudioStatus.didJustFinish]);
++    stopLessonAudio();
++    return stopLessonAudio;
++  }, [card?.cardId, stopLessonAudio]);
+   useLayoutEffect(() => {
+     if (ordinal < 1) return;
+     ensureLearningV2CompletionBackgroundSchedulerInstalled();
+@@ -892,82 +812,17 @@ function LearningV2LegacySessionScreen() {
+     ? releasedPackageTask.inputMode === "scripted_speech"
+     : mode === "scripted_repeat_compare";
+ 
+-  const playLocalAudio = () => {
++  const playLessonSpeech = () => {
+     void hapticTap();
+-    if (releasedPackageTask) {
+-      // зачем: у выпущенного задания своего файла звука нет (D47) — слышимой
+-      // отдачи нет, подаём тот же сигнал ошибки, что был при отказе плеера.
+-      void hapticError();
+-      return;
+-    }
+-    if (localAudioSource === null || audioPlaybackFailed) {
+-      return;
+-    }
+-    invalidateAudioAttempt();
+-    try {
+-      localAudioPlayer.pause();
+-    } catch (e) {
+-      // stale hook player
+-      DebugLogger.error('[id]:playLocalAudio', e instanceof Error ? e : new Error(String(e)), 'warning');
+-    }
+-    setFailedAudioCardId(null);
+-    const claim = claimSpokenAudio(stopAudioAttempt, 'learning-v2:session-audio');
+-    if (!claim) return;
+-    spokenAudioClaimRef.current = claim;
+-    const requestEpoch = audioRequestEpochRef.current;
+-    audioAttemptPendingRef.current = true;
+-    audioWatchdogRef.current = setTimeout(() => {
+-      if (
+-        audioRequestEpochRef.current !== requestEpoch ||
+-        !audioAttemptPendingRef.current
+-      )
+-        return;
+-      stopAudioAttempt();
+-      setFailedAudioCardId(currentTaskId);
+-      void hapticError();
+-    }, LOCAL_AUDIO_START_WATCHDOG_MS);
+-    void whenSpokenAudioReady(claim)
+-      .then((audioReady) => {
+-        if (!audioReady || !claim.isCurrent()) {
+-          // зачем (аудит 2026-09-15): раньше причина отказа нигде не печаталась —
+-          // человек жал «озвучить» и не слышал НИЧЕГО без следа в журнале.
+-          console.warn('[AUDIO-LEASE] lesson:audio-skip', JSON.stringify({
+-            reason: !audioReady ? 'audio_not_ready' : 'claim_superseded',
+-            taskId: currentTaskId,
+-          })); // guard-ok: только отказ воспроизведения
+-          stopAudioAttempt();
+-          return;
+-        }
+-        return localAudioPlayer.seekTo(0);
+-      })
+-      .then(() => {
+-        if (
+-          !claim.isCurrent() ||
+-          audioRequestEpochRef.current !== requestEpoch ||
+-          !audioAttemptPendingRef.current
+-        ) {
+-          // зачем (аудит 2026-09-15): здесь был выход БЕЗ stopAudioAttempt() —
+-          // единственного места, где освобождается аренда голоса. Осиротевшая
+-          // аренда держала счётчик поднятым навсегда: озвучка по всему
+-          // приложению замолкала, эффекты глушились как «идёт речь», и лечил
+-          // это только перезапуск. Ровно на это жаловались пользователи.
+-          stopAudioAttempt();
+-          return;
+-        }
+-        audioPlaybackOwnedRef.current = true;
+-        localAudioPlayer.play();
+-        // didJustFinish may be stale from the previous playback. Only an already
+-        // playing player can synchronously acknowledge this new replay.
+-        if (localAudioStatus.playing) {
+-          confirmAudioPlaybackStarted();
+-        }
+-      })
+-      .catch(() => {
+-        if (audioRequestEpochRef.current !== requestEpoch) return;
+-        stopAudioAttempt();
+-        setFailedAudioCardId(currentTaskId);
+-        void hapticError();
+-      });
++    const speechText = releasedAuxiliaryTask?.action.save.targetText
++      ?? item?.target.text
++      ?? releasedPackageTask?.learner.prompt
++      ?? "";
++    if (!speechText.trim()) return;
++    speakLessonAudio(speechText, undefined, {
++      language: studySpeechLocale(studyTarget, "learning_v2_legacy"),
++      systemTtsOnly: true,
++    });
+   };
+ 
+   const choose = (answer: string) => {
+@@ -1232,7 +1087,7 @@ function LearningV2LegacySessionScreen() {
+       void finish();
+       return;
+     }
+-    stopAudioAttempt();
++    stopLessonAudio();
+     setCardIndex((value) => value + 1);
+     setWrongExplanation(null);
+     setResult("idle");
+@@ -1263,7 +1118,7 @@ function LearningV2LegacySessionScreen() {
+       void finish();
+       return;
+     }
+-    stopAudioAttempt();
++    stopLessonAudio();
+     setCardIndex((value) => value + 1);
+     setWrongExplanation(null);
+     setResult("idle");
+@@ -1318,7 +1173,7 @@ function LearningV2LegacySessionScreen() {
+     return <Redirect href={"/learning-v2/course" as never} />;
+   }
+   const closeSession = () => {
+-    stopAudioAttempt();
++    stopLessonAudio();
+     // зачем: без этого маркера трекер навигации (navigation_back.ts) кладёт
+     // /learning-v2/course ПОВЕРХ ещё не вытесненной записи этой сессии (тот же
+     // раздел lessons), и следующий тап «назад» на карте открывает закрытую
+@@ -1526,18 +1381,12 @@ function LearningV2LegacySessionScreen() {
+           }
+           style={styles.heroCard}
+         >
+-          {usesLocalAudio && (
++          {usesSpeechAudio && (
+             <Pressable
+               accessibilityRole="button"
+-              accessibilityLabel={
+-                audioUnavailable ? copy.showPhrase : copy.listenOffline
+-              }
+-              accessibilityHint={
+-                audioUnavailable
+-                  ? copy.audioUnavailableHint
+-                  : copy.audioOfflineHint
+-              }
+-              onPress={playLocalAudio}
++              accessibilityLabel={copy.listenOffline}
++              accessibilityHint={copy.audioOfflineHint}
++              onPress={playLessonSpeech}
+               style={({ pressed }) => [
+                 styles.audioOrb,
+                 pressed && styles.pressed,
+@@ -1548,32 +1397,18 @@ function LearningV2LegacySessionScreen() {
+                 style={styles.audioOrbGradient}
+               >
+                 <Ionicons
+-                  name={audioUnavailable ? "eye-outline" : "volume-high"}
++                  name="volume-high"
+                   size={30}
+                   color="#07110A"
+                 />
+               </LinearGradient>
+             </Pressable>
+           )}
+-          {audioUnavailable && usesLocalAudio && (
+-            <View accessibilityLiveRegion="polite" style={styles.audioFallback}>
+-              <Text style={styles.audioFallbackMessage}>
+-                {localAudioSource === null
+-                  ? copy.localAudioUnavailable
+-                  : copy.localAudioFailed}
+-              </Text>
+-              <Text style={styles.supportText}>
+-                {sanitizeLearningV2LearnerPromptV1(
+-                  releasedPackageTask?.learner.prompt ?? item?.target.text ?? "",
+-                )}
+-              </Text>
+-            </View>
+-          )}
+           <Text style={styles.prompt}>{prompt}</Text>
+           {!releasedPackageTask &&
+             card?.support !== "none" &&
+             mode !== "listen_choose" &&
+-            !(usesLocalAudio && audioUnavailable) && (
++            (
+               <Text style={styles.supportText}>{item?.target.text}</Text>
+             )}
+           {isRepeat && (
+@@ -2266,7 +2101,7 @@ function LearningV2SessionScreen() {
+   }>();
+   const directMode = studyTarget === "en" || first(params.runtimeMode) === "direct_v1";
+   const content = directMode
+-    ? <LearningV2DirectSessionPlayerV1 />
++    ? <LearningV2DirectSessionArrival />
+     : <LearningV2LegacySessionScreen />;
+   return (
+     <LearningV2SessionEnergyGate key={first(params.id) ?? "learning-v2-session"} directMode={directMode}>
+@@ -2275,6 +2110,61 @@ function LearningV2SessionScreen() {
+   );
+ }
+ 
++/**
++ * Записывает «Продолжить» только после коммита настоящего экрана занятия.
++ * Подготовка материала и закрытие модалки в Lessons ещё могут закончиться без
++ * перехода, поэтому они намеренно не меняют Главную.
++ */
++function LearningV2DirectSessionArrival() {
++  const { studyTarget } = useStudyTarget();
++  const params = useLocalSearchParams<{
++    id?: string | string[];
++    previewMode?: string | string[];
++    lessonOrdinal?: string | string[];
++    sessionOrdinal?: string | string[];
++    releaseEnvironment?: string | string[];
++    releaseSeasonId?: string | string[];
++    runKind?: string | string[];
++  }>();
++  const recordedRouteRef = useRef<string | null>(null);
++  const sessionId = first(params.id);
++  const previewMode = first(params.previewMode);
++  const isAuthoringPreview = __DEV__ &&
++    (previewMode === "authoring_v1" || previewMode === "dev_unlocked_drafts_v1");
++  const coordinates = resolveLearningV2SessionRouteCoordinatesV1({
++    id: sessionId,
++    lessonOrdinal: first(params.lessonOrdinal),
++    sessionOrdinal: first(params.sessionOrdinal),
++  });
++
++  useEffect(() => {
++    if (isAuthoringPreview || !coordinates) return;
++    const routeKey = `${studyTarget}:${sessionId}:${coordinates.lessonOrdinal}:${coordinates.sessionOrdinal}:${first(params.runKind) ?? "initial"}`;
++    if (recordedRouteRef.current === routeKey) return;
++    recordedRouteRef.current = routeKey;
++    // useEffect runs after this route has committed; cancelled preparation never gets here.
++    rememberLearningV2LastLesson(studyTarget as RuntimeStudyTarget, coordinates.lessonOrdinal, "session_arrival");
++    recordHomeContinueV2(studyTarget as RuntimeStudyTarget, {
++      lessonOrdinal: coordinates.lessonOrdinal,
++      sessionOrdinal: coordinates.sessionOrdinal,
++      sessionId,
++      route: {
++        id: sessionId,
++        runtimeMode: "direct_v1",
++        previewOrigin: "course",
++        lessonOrdinal: String(coordinates.lessonOrdinal),
++        sessionOrdinal: String(coordinates.sessionOrdinal),
++        releaseEnvironment: first(params.releaseEnvironment) || "production",
++        releaseSeasonId: first(params.releaseSeasonId) || "learning-v2",
++        runKind: first(params.runKind) === "repeat" ? "repeat" : "initial",
++      },
++      atMs: Date.now(),
++    });
++  }, [coordinates, isAuthoringPreview, params.releaseEnvironment, params.releaseSeasonId, params.runKind, sessionId, studyTarget]);
++
++  return <LearningV2DirectSessionPlayerV1 />;
++}
++
+ // зачем («Тень» 12.10): устаревший экран на фиксированной тёмной палитре без токенов темы — обводки сняты, плашки отделяет тень тех же чисел спеки
+ const LEGACY_PLATE_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: 16, blurRadius: 28, spreadDistance: -14, color: "rgba(0,0,0,0.75)" }]; // theme-exempt: фиксированная тёмная палитра экрана, тень плашки спеки
+ const LEGACY_NESTED_SHADOW: BoxShadowValue[] = [{ offsetX: 0, offsetY: 6, blurRadius: 12, spreadDistance: -6, color: "rgba(0,0,0,0.6)" }]; // theme-exempt: фиксированная тёмная палитра экрана, тень вложенного спеки

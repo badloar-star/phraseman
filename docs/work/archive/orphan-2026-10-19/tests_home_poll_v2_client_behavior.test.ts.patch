@@ -1,0 +1,135 @@
+diff --git a/tests/home_poll_v2_client_behavior.test.ts b/tests/home_poll_v2_client_behavior.test.ts
+index d0b8511fd..dd973b999 100644
+--- a/tests/home_poll_v2_client_behavior.test.ts
++++ b/tests/home_poll_v2_client_behavior.test.ts
+@@ -56,6 +56,111 @@ beforeEach(async () => {
+ });
+ 
+ describe('home polls v2 client persistence boundaries', () => {
++  it('keeps an optimistic answer and one durable retry row after a network failure', async () => {
++    mockVoteCallable.mockRejectedValueOnce(Object.assign(new Error('network unavailable'), { code: 'functions/unavailable' }));
++    const snapshot = await loadTodayHomePollV2('2026-10-21');
++
++    await expect(submitHomePollV2Vote(snapshot, 'q1', 'o2')).resolves.toEqual({
++      ok: false,
++      reason: 'offline',
++      queued: true,
++    });
++
++    expect(await readJson(answersKey('owner-a', 'p2-001'))).toEqual({
++      q1: { optionId: 'o2', counts: { o1: 0, o2: 0, o3: 0, o4: 0 } },
++    });
++    expect(await readJson<Array<Record<string, unknown>>>(queueKey('owner-a'))).toEqual([
++      expect.objectContaining({ setId: 'p2-001', questionId: 'q1', optionId: 'o2' }),
++    ]);
++  });
++
++  it('keeps every optimistic answer and retry row when two questions are submitted concurrently', async () => {
++    mockVoteCallable.mockRejectedValue(Object.assign(new Error('network unavailable'), { code: 'functions/unavailable' }));
++    const snapshot = await loadTodayHomePollV2('2026-10-21');
++
++    await Promise.all([
++      submitHomePollV2Vote(snapshot, 'q1', 'o1'),
++      submitHomePollV2Vote(snapshot, 'q2', 'o2'),
++    ]);
++
++    expect(await readJson(answersKey('owner-a', 'p2-001'))).toEqual({
++      q1: { optionId: 'o1', counts: { o1: 0, o2: 0, o3: 0, o4: 0 } },
++      q2: { optionId: 'o2', counts: { o1: 0, o2: 0, o3: 0, o4: 0 } },
++    });
++    expect(await readJson<Array<Record<string, unknown>>>(queueKey('owner-a'))).toEqual([
++      expect.objectContaining({ setId: 'p2-001', questionId: 'q1', optionId: 'o1' }),
++      expect.objectContaining({ setId: 'p2-001', questionId: 'q2', optionId: 'o2' }),
++    ]);
++  });
++
++  it('does not erase an answer queued while an earlier queue row is flushing', async () => {
++    await AsyncStorage.setItem(queueKey('owner-a'), JSON.stringify([{
++      setId: 'p2-001',
++      questionId: 'q1',
++      optionId: 'o1',
++      dateKey: '2026-10-21',
++      queuedAtMs: 1,
++    }]));
++    let resolveFlush!: (value: { data: unknown }) => void;
++    mockVoteCallable
++      .mockImplementationOnce(() => new Promise((resolve) => { resolveFlush = resolve; }))
++      .mockRejectedValueOnce(Object.assign(new Error('network unavailable'), { code: 'functions/unavailable' }));
++    const snapshot = await loadTodayHomePollV2('2026-10-21');
++
++    const flushing = flushHomePollV2Queue(snapshot);
++    for (let attempt = 0; attempt < 20 && mockVoteCallable.mock.calls.length === 0; attempt += 1) {
++      await Promise.resolve();
++    }
++    await submitHomePollV2Vote(snapshot, 'q2', 'o2');
++    resolveFlush({
++      data: { status: 'accepted', counts: { o1: 7, o2: 2, o3: 0, o4: 0 }, voteCount: 9 },
++    });
++    const flushed = await flushing;
++
++    expect(flushed.answers).toEqual({
++      q1: { optionId: 'o1', counts: { o1: 7, o2: 2, o3: 0, o4: 0 } },
++      q2: { optionId: 'o2', counts: { o1: 0, o2: 0, o3: 0, o4: 0 } },
++    });
++    expect(await readJson<Array<Record<string, unknown>>>(queueKey('owner-a'))).toEqual([
++      expect.objectContaining({ setId: 'p2-001', questionId: 'q2', optionId: 'o2' }),
++    ]);
++  });
++
++  it('does not let owner A in-flight state block owner B from answering the same question', async () => {
++    let resolveOwnerA!: (value: { data: unknown }) => void;
++    mockVoteCallable
++      .mockImplementationOnce(() => new Promise((resolve) => { resolveOwnerA = resolve; }))
++      .mockResolvedValueOnce({
++        data: { status: 'accepted', counts: { o1: 0, o2: 3, o3: 0, o4: 0 }, voteCount: 3 },
++      });
++    const snapshotA = await loadTodayHomePollV2('2026-10-21');
++    const pendingA = submitHomePollV2Vote(snapshotA, 'q1', 'o1');
++    for (let attempt = 0; attempt < 20 && mockVoteCallable.mock.calls.length === 0; attempt += 1) {
++      await Promise.resolve();
++    }
++
++    switchOwner('owner-b');
++    const snapshotB = await loadTodayHomePollV2('2026-10-21');
++    await expect(submitHomePollV2Vote(snapshotB, 'q1', 'o2')).resolves.toMatchObject({ ok: true });
++    expect(mockVoteCallable).toHaveBeenCalledTimes(2);
++
++    resolveOwnerA({
++      data: { status: 'accepted', counts: { o1: 1, o2: 0, o3: 0, o4: 0 }, voteCount: 1 },
++    });
++    await expect(pendingA).resolves.toMatchObject({ ok: false, queued: true });
++  });
++
++  it('does not delete a queued vote when a transport not-found error mentions a missing set', async () => {
++    mockVoteCallable.mockRejectedValueOnce(Object.assign(new Error('set_not_found'), { code: 'functions/not-found' }));
++    const snapshot = await loadTodayHomePollV2('2026-10-21');
++
++    await expect(submitHomePollV2Vote(snapshot, 'q1', 'o3')).resolves.toMatchObject({ ok: false, queued: true });
++
++    expect(await readJson<Array<Record<string, unknown>>>(queueKey('owner-a'))).toEqual([
++      expect.objectContaining({ setId: 'p2-001', questionId: 'q1', optionId: 'o3' }),
++    ]);
++  });
++
+   it('flushes a vote queued on day D after day D+1 selects a different set', async () => {
+     mockVoteCallable
+       .mockRejectedValueOnce(Object.assign(new Error('network unavailable'), { code: 'functions/unavailable' }))
+@@ -87,6 +192,7 @@ describe('home polls v2 client persistence boundaries', () => {
+     expect(await readJson(answersKey('owner-a', 'p2-001'))).toEqual({
+       q1: { optionId: 'o1', counts: { o1: 4, o2: 2, o3: 1, o4: 0 } },
+     });
++    expect(mockVoteCallable).toHaveBeenCalledTimes(2);
+     expect(await AsyncStorage.getItem(queueKey('owner-a'))).toBeNull();
+   });
+ 
+@@ -109,7 +215,9 @@ describe('home polls v2 client persistence boundaries', () => {
+     });
+ 
+     await expect(pending).resolves.toEqual({ ok: false, reason: 'unknown', queued: true });
+-    expect(await AsyncStorage.getItem(answersKey('owner-a', 'p2-001'))).toBeNull();
++    expect(await readJson(answersKey('owner-a', 'p2-001'))).toEqual({
++      q1: { optionId: 'o2', counts: { o1: 0, o2: 0, o3: 0, o4: 0 } },
++    });
+     expect(await AsyncStorage.getItem(answersKey('owner-b', 'p2-001'))).toBeNull();
+     expect(await readJson<Array<Record<string, unknown>>>(queueKey('owner-a'))).toEqual([
+       expect.objectContaining({

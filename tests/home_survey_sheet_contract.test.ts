@@ -4,9 +4,9 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
-// зачем (Q90, координатор 01.10): опрос на Главной 2.0 — строка в «Сегодня»; сама цепочка
-// (загрузка, область запуска, закрытие по смене аккаунта/дня) живёт в хуке, а Главная
-// монтирует шторку только пока опрос открыт. Сторож охраняет эту границу.
+// Legacy survey delivery stays available through its scoped route. Home itself now
+// owns the bundled V2 poll entry, so this guard prevents the old survey sheet from
+// reclaiming the Today row.
 describe('Home-owned survey entry (Today row + sheet)', () => {
   const home = read('app/(tabs)/home.tsx');
   const hook = read('hooks/use_home_survey_entry.ts');
@@ -15,23 +15,20 @@ describe('Home-owned survey entry (Today row + sheet)', () => {
   const route = read('app/survey_screen.tsx');
   const layout = read('app/_layout.tsx');
 
-  test('Home owns no survey chain: one hook call, one sheet mounted only while open', () => {
-    expect(home.match(/useHomeSurveyEntry\(lang, homeRuntimeActive\)/g)).toHaveLength(1);
+  test('Home no longer mounts the legacy survey chain', () => {
+    expect(home).not.toContain('useHomeSurveyEntry(');
     expect(home).not.toContain('fetchActiveSurveyWithRetry(');
     expect(home).not.toContain('setSurveyOffer');
     expect(home).not.toContain('openSurveyLaunch');
-    expect(home.match(/<SurveySheetModal\b/g)).toHaveLength(1);
-    expect(home).toContain('{homeSurvey.launch ? (');
-    expect(home).toContain('launch={homeSurvey.launch}');
-    expect(home).toContain('onClose={homeSurvey.closeSurvey}');
-    expect(home).toContain('onDurablyReconciled={homeSurvey.onDurablyReconciled}');
+    expect(home).not.toContain('<SurveySheetModal');
     // никакого обхода через роут и prime
     expect(home).not.toContain('primeSurvey(');
     expect(home).not.toContain("pathname: '/survey_screen'");
   });
 
-  test('the row lives in the Today card, only when a survey exists', () => {
-    expect(home).toContain('surveyRow={homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : null}');
+  test('the Today card retains its row surface for the replacement poll', () => {
+    expect(home).toContain("surveyRow={homePollV2.phase !== 'hidden' ? {");
+    expect(home).toContain('onPress: () => setHomePollV2Open(true)');
     expect(todayCard).toContain('surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void }> | null;');
     expect(todayCard).toContain('{surveyRow ? (');
     expect(todayCard).toContain('testID="home-v2-today-survey"');

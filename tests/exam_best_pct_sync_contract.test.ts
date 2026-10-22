@@ -23,7 +23,10 @@ describe('zero-cost exam best-pct sync wiring', () => {
 
   test('boot coordinators pass only synchronous safety guards', () => {
     const source = read('app/_layout.tsx');
-    expect(source.match(/restoreFromCloudWithRecoveryDetails\(coldExamBestPctRestoreOptions\)/g)).toHaveLength(1);
+    // зачем (правило владельца 18.10, a62796ede: вход и выход без ошибок): кроме холодного восстановления есть ровно один
+    // тихий повтор в фоне (5 с, 30 с, 2 мин) — он берёт те же защитные опции, а не свои.
+    expect(source.match(/restoreFromCloudWithRecoveryDetails\(coldExamBestPctRestoreOptions\)/g)).toHaveLength(2);
+    expect(source).toContain('attempt: () => restoreFromCloudWithRecoveryDetails(coldExamBestPctRestoreOptions),');
     expect(source).toContain('restore: restoreCloudForBoot');
     // зачем (10.10): после снятия App Check (4a1c787b4) обёртка стала стрелкой без тела — тот же вызов.
     expect(source).toContain('restore: () => restoreCloudForBoot()');

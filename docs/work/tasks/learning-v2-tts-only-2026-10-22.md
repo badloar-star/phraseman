@@ -40,3 +40,7 @@ tsc через слот; тесты звука/TTS/занятий; сторож�
 git revert коммита возвращает записи первым источником.
 
 Governance-ID: TG-ACC8778CE729
+
+Governance-ID: TG-2AAD85B3ABA6
+Governance-ID: TG-D3BAE8C492E1
+Governance-ID: TG-34E226E9CD75

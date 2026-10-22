@@ -208,7 +208,6 @@ import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { touchStreakForToday } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
-import { seedLearningV2BootstrapAudioCacheV1 } from './learning_v2_bootstrap_audio_seed_v1';
 import { setupNotificationTapHandler } from './notification_tap_handler';
 // зачем (10.10): статический импорт './notifications' тянул весь каталог расписаний в первый кадр старта
 // (сторож startup_notifications_lazy). Обе функции запроса разрешения нужны только в конце онбординга —
@@ -451,12 +450,6 @@ let splashEarlyHideDone = false;
 // зачем (пакет 11:54, прогон 1: гейт снял сплеш +6863, ранний путь снял ещё раз +6936): прежний гейт тоже отмечает,
 // что уже снял сплеш, — ранний путь тогда не зовёт hideAsync повторно.
 let splashGateHideDone = false;
-/**
- * Пауза посева озвучки Learning V2 после кадра Главной: позже премаунта вкладок (+0,5…≈5 с) и прогрева звуков
- * (+4,5 с, 7 шагов по 300 мс) — см. зачем у вызова seedLearningV2BootstrapAudioCacheV1.
- */
-const V2_AUDIO_SEED_AFTER_PAINT_DELAY_MS = 8_000;
-
 function whenNativeSplashHidden(ceilingMs: number): Promise<'hidden' | 'ceiling'> {
   return Promise.race([
     nativeSplashHidden.then(() => 'hidden' as const),
@@ -2464,7 +2457,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       Platform.OS === 'web' && typeof window !== 'undefined'
         ? window.location.pathname
         : '';
-    if (!shouldRunFullAppBootstrap(Platform.OS, __DEV__, pathname)) return;
+    if (!shouldRunFullAppBootstrap(Platform.OS, __DEV__, pathname)) {
+      // The local course preview has no full bootstrap to release its splash.
+      // Reveal the mounted player while retaining the font/theme readiness gates.
+      setReady(true);
+      return;
+    }
 
     // The normal reveal timer is armed only after crash-recovery proves that no
     // deleted account identity/data can reappear beneath the startup shell.
@@ -3164,36 +3162,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // Главной — ждём сам кадр (HOME-PAINT), потолок 15 с, чтобы посев не потерялся.
       // зачем (координатор 14.10, п.2): звуки V2 — после первого кадра Главной; флаг выключен → ни файла, ни импорта движка (modules/sound_v2/sound_v2_boot.ts)
       runAfterHomeFirstFrame('sound_v2_boot', () => import('../modules/sound_v2/sound_v2_boot').then(({ bootSoundV2 }) => bootSoundV2()));
-      runAfterHomeFirstFrame('v2_audio_seed', () => Promise.all([
-        whenHomePainted(15_000),
-        whenNativeSplashHidden(15_000),
-      ]).then(([paintWait, splashWait]) => new Promise<readonly [typeof paintWait, typeof splashWait]>((resolve) => {
-        // зачем (координатор 13.10; профили Сверки sfx1–3, scripts/cpu_stacks.py): посев при КАЖДОМ запуске заново считает
-        // sha256 тел в JS и сверяет кэш — ≈1,0–1,2 с работы потока (resolvePrepared… 550–640 мс, …RemoteAudioFilesForContentHashes
-        // 390–490 мс с ленивой загрузкой модуля) ровно в окне премаунта вкладок и прогрева звуков (+5…+12 с). Занятию посев
-        // заранее не нужен (готовит озвучку само), поэтому ещё пауза после кадра Главной и конец взаимодействий.
-        const delayStartedAt = Date.now();
-        setTimeout(() => {
-          InteractionManager.runAfterInteractions(() => {
-            console.log(`[V2-AUDIO-SEED] start paint=${paintWait} splash=${splashWait} delayedMs=${Date.now() - delayStartedAt}`);
-            resolve([paintWait, splashWait] as const);
-          });
-        }, V2_AUDIO_SEED_AFTER_PAINT_DELAY_MS);
-      })).then(([paintWait, splashWait]) => {
-        const endAudioSeedStep = coldStartStep(`after_home.v2_audio_seed[${paintWait},${splashWait}]`, '_layout');
-        const seedStartedAt = Date.now();
-        return seedLearningV2BootstrapAudioCacheV1().catch((error) => {
-          if (__DEV__) {
-            console.log('[V2-AUDIO-SEED] failed', JSON.stringify({ reason: String(error) }));
-          }
-          DebugLogger.warn('[V2-AUDIO-SEED]', `bootstrap seed failed: ${String(error)}`);
-          return 'failed' as const;
-        }).then((outcome) => {
-          console.log(`[V2-AUDIO-SEED] end outcome=${outcome === 'failed' ? 'failed' : 'ok'} ms=${Date.now() - seedStartedAt}`);
-          endAudioSeedStep(outcome === 'failed' ? 'failed' : 'ok');
-        });
-      }), { holdDuringOnboarding: true });
-
+      // зачем (19.10, подтверждено владельцем 22.10: «аудио убрали и сменили на TTS»): посева записей Learning V2 после кадра
+      // Главной больше нет — занятия говорят голосом телефона, записи не нужны (минус ≈1 с работы потока при каждом запуске).
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');
       setReady(true);

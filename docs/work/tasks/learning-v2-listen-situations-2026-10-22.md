@@ -74,3 +74,11 @@ Governance-ID: TG-C844B64F8685
 оставить без карточки? В макете №23 ситуация показана у фразы, а не у слова.
 
 Governance-ID: TG-C46D5F6C529B
+
+Governance-ID: TG-CF05AD76E5D0
+
+Governance-ID: TG-14AFC8D9953A
+
+Governance-ID: TG-3B205EF483E9
+
+Governance-ID: TG-F0C0265308D2

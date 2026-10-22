@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 
-import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from "../constants/liquidGlassThemePalette";
+import { LIQUID_GLASS_THEME_IDS, getActiveLiquidGlassVariant, liquidGlassTokens, setActiveLiquidGlassVariant } from "../constants/liquidGlassThemePalette";
 import {
-  HOME_SCENE_MIN_WHITE_CONTRAST, HOME_SCENE_SEAM_MIN, HOME_SCENE_TWILIGHT_THEME_ID, homeSceneThemeTokens,
+  HOME_SCENE_MIN_WHITE_CONTRAST, HOME_SCENE_SEAM_MIN, HOME_SCENE_THEME_LEVEL, HOME_SCENE_TWILIGHT_THEME_ID, homeSceneThemeTokens, homeSceneTokensForTheme,
 } from "../components/home/v2/scene/home_scene_tokens";
 
 // зачем (координатор 22.10; владелец после ползунков «сцена темнее» выбрал «как сейчас» — эталон home-scene-states.html под замком f2e478486):
@@ -99,6 +99,25 @@ async function main(): Promise<void> {
   assert.deepEqual(hx(inkEve.sceneTop), round(fromOklch(0.30, 0.09, 285)), "«Сумерки» вечером: oklch(.30 .09 285)");
   assert.deepEqual(rgbaNums(inkEve.eveningGlow), rgbaNums(rgba(fromOklch(0.58, 0.17, 25), 0.75)), "«Сумерки» вечером: свет oklch(.58 .17 25 / .75)");
   assert.equal(homeSceneThemeTokens({ themeId: "marine", appearance: "dark", theme: liquidGlassTokens("marine", { level: "max", appearance: "dark" }) }, true).eveningGlow, "rgba(214,92,70,0.62)");
+
+  // ── владелец 22.10: «Сцена всегда как в макете» — при любом положении ползунка сцена = эталон («Спокойно» = «Максимум») ──
+  assert.equal(HOME_SCENE_THEME_LEVEL, "max");
+  const before = getActiveLiquidGlassVariant();
+  try {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const ap of ["dark", "light"] as const) {
+        for (const evening of [false, true]) {
+          const etalon = homeSceneThemeTokens({ themeId: id, appearance: ap, theme: liquidGlassTokens(id, { level: "max", appearance: ap }) }, evening);
+          for (const level of ["calm", "accent", "max"] as const) {
+            setActiveLiquidGlassVariant({ level, appearance: ap });
+            assert.deepEqual(homeSceneTokensForTheme(id, ap, evening), etalon, `${id}/${ap}${evening ? "/вечер" : ""}: на ползунке «${level}» сцена ≠ эталону`);
+          }
+        }
+      }
+    }
+  } finally {
+    setActiveLiquidGlassVariant(before);
+  }
 }
 
 if (typeof test === "function") {

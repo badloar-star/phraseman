@@ -9,6 +9,7 @@
 // homeSceneThemeTokens (ниже) — цвета Главной по утверждённому эталону home-scene-states.html из токенов темы; homeSceneTokens(accent)
 // остаётся для «Сегодня» (TodaySceneView), пока тот экран не перейдёт на токены темы.
 // ═══════════════════════════════════════════════════════════════════════════
+import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import { alphaHex, mixHex } from '../../../../constants/v2Style';
 
 export type HomeSceneTokens = Readonly<{
@@ -78,8 +79,8 @@ export function homeSceneTokens(accent: string, evening = false): HomeSceneToken
 //   свет — bgGlow[0] темы (нет — accentGlow), без чёрного затемнения низа; вечер — те же цвета, тёплый свет справа и угли снизу слева;
 //   светлое «Сумерки» (ink) — числа home-new-concepts.html A как есть; остальные светлые — та же глубина OKLCH (L .47 → .28),
 //   оттенок и насыщенность — от акцента темы. Шов сцены с карточкой (контраст низа и opaqueCard) — для журнала и стража (≥ 1,34).
-// Токены — текущего уровня темы (как у «Сцены» «Диалогов»); эталон снят на «Максимуме»: снимок тем страницы = liquidGlassTokens(id,
-// { level: 'max' }) без расхождений (сверка 22.10). Чистый модуль без React — сторож tests/home_scene_theme_tokens.test.ts.
+// Эталон снят на «Максимуме»: снимок тем страницы = liquidGlassTokens(id, { level: 'max' }) без расхождений (сверка 22.10); сцена всегда
+// берёт этот уровень — homeSceneTokensForTheme. Чистый модуль без React — сторож tests/home_scene_theme_tokens.test.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 
 /** Поля токенов темы, из которых эталон собирает сцену (подмножество GlassTokens). */
@@ -211,4 +212,15 @@ export function homeSceneThemeTokens(input: HomeSceneThemeInput, evening = false
   return done(top, bot, rgbaOf(homeSceneFromOklch(0.66, Math.min(C, 0.14), (H + 18) % 360), 0.9),
     homeSceneFromOklch(0.30, Math.min(C, 0.09), H), homeSceneFromOklch(0.14, Math.min(C, 0.05), H), EVENING_GLOW, true,
     ratioRgb(bot, rgbOf(t.opaqueCard) ?? [255, 255, 255]));
+}
+
+/** Уровень темы, токенами которого рисуется сцена (эталон снят на нём). */
+export const HOME_SCENE_THEME_LEVEL = 'max' as const;
+
+/**
+ * Цвета «Сцены» выбранной темы и оформления — всегда токенами уровня «Максимум».
+ * зачем: владелец 22.10 — сцена всегда как утверждённый эталон; ползунок «Спокойно/Акцент/Максимум» меняет только остальной фон и карточки.
+ */
+export function homeSceneTokensForTheme(themeId: string, appearance: 'dark' | 'light', evening = false): HomeSceneStageTokens {
+  return homeSceneThemeTokens({ themeId, appearance, theme: liquidGlassTokens(themeId, { level: HOME_SCENE_THEME_LEVEL, appearance }) }, evening);
 }

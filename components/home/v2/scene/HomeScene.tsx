@@ -16,7 +16,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
-import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import type { Lang } from '../../../../constants/i18n';
 import { V2 } from '../../../../constants/v2Style';
 import { useTheme } from '../../../ThemeContext';
@@ -26,7 +25,7 @@ import { resolveHomeSceneArt } from './home_scene_art';
 import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput } from './home_scene_copy';
 import { homeSceneAllReleasedDone, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
-import { homeSceneThemeTokens, type HomeSceneStageTokens } from './home_scene_tokens';
+import { homeSceneTokensForTheme, type HomeSceneStageTokens } from './home_scene_tokens';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
 
@@ -173,13 +172,12 @@ export type HomeSceneViewProps = Readonly<{
 }>;
 
 /**
- * Цвета «Сцены» выбранной темы по эталону home-scene-states.html (под замком): токены текущего уровня и оформления темы — как у «Сцены»
- * «Диалогов»; dev-вход берёт те же цвета для полосы под часами.
+ * Цвета «Сцены» выбранной темы по эталону home-scene-states.html (под замком): всегда токены уровня «Максимум» в оформлении темы
+ * (владелец 22.10 — сцена всегда как эталон, ползунок её не меняет); dev-вход берёт те же цвета для полосы под часами.
  */
 export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
-  const theme = liquidGlassTokens(liquidGlassThemeId);
-  return useMemo(() => homeSceneThemeTokens({ themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, theme }, evening), [liquidGlassThemeId, liquidGlassAppearance, theme, evening]);
+  return useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
 }
 
 /** «Сцена» по готовому решению: цвета, картинка, тексты, шапка и строка «Нет сети» поверх. */

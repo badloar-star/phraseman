@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-26:word:thermal",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — thermal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:word:thermal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thermal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:word:thermal:audio",
+          "transcript": "thermal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:word:thermal:r1",
+            "targetText": "thermal",
+            "meaningByLocale": {
+              "ru": "сохраняющий тепло.",
+              "uk": "такий, що зберігає тепло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thermal",
+          "definitionByLocale": {
+            "ru": "сохраняющий тепло.",
+            "uk": "такий, що зберігає тепло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте шкарпетки для холоду. Скажіть: «Я хочу ті, що зберігають тепло»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте шкарпетки для холоду. Скажіть: «Я хочу ті, що зберігають тепло»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the thermal ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете носки для холода. Скажите: «Я хочу те, которые сохраняют тепло»",
+          "uk": "Ви обираєте шкарпетки для холоду. Скажіть: «Я хочу ті, що зберігають тепло»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "thermal",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i02:r1",
+          "text": "I want the thermal ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i02:r2",
+          "text": "We want the thermal ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i02:r3",
+          "text": "You want the thermal ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i02:audio",
+          "transcript": "I want the thermal ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:i02:r1",
+            "targetText": "I want the thermal ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i02:r2",
+            "targetText": "We want the thermal ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i02:r3",
+            "targetText": "You want the thermal ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the thermal ones.",
+              "uk": "У записі звучить I want the thermal ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the thermal ones.",
+              "uk": "У записі звучить I want the thermal ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте шкарпетки для холоду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i03:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i03:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i03:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте шкарпетки для холоду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете носки для холода.",
+          "uk": "Ви обираєте шкарпетки для холоду."
+        },
+        "gappedTargetPhrase": "I want the thermal ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-26:i03:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i03:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i03:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви обираєте шкарпетки для холоду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте шкарпетки для холоду.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте шкарпетки для холоду.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:word:padded",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — padded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:word:padded:audio"
+      ],
+      "accessibilityLabel": "Картка слова — padded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:word:padded:audio",
+          "transcript": "padded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:word:padded:r1",
+            "targetText": "padded",
+            "meaningByLocale": {
+              "ru": "с мягкой набивкой.",
+              "uk": "із м’якою набивкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "padded",
+          "definitionByLocale": {
+            "ru": "с мягкой набивкой.",
+            "uk": "із м’якою набивкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте одну куртку з утеплювальною набивкою. Скажіть: «Я віддаю перевагу тій, що з м’якою набивкою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну куртку з утеплювальною набивкою. Скажіть: «Я віддаю перевагу тій, що з м’якою набивкою»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I prefer the padded one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете одну куртку с утепляющей набивкой. Скажите: «Я предпочитаю ту, которая с мягкой набивкой»",
+          "uk": "Ви обираєте одну куртку з утеплювальною набивкою. Скажіть: «Я віддаю перевагу тій, що з м’якою набивкою»"
+        },
+        "orderedTokens": [
+          "I",
+          "prefer",
+          "the",
+          "padded",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i05:r1",
+          "text": "I prefer the padded one."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i05:r2",
+          "text": "We prefer the padded one."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i05:r3",
+          "text": "You prefer the padded one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i05:audio",
+          "transcript": "I prefer the padded one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:i05:r1",
+            "targetText": "I prefer the padded one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i05:r2",
+            "targetText": "We prefer the padded one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i05:r3",
+            "targetText": "You prefer the padded one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the padded one.",
+              "uk": "У записі звучить I prefer the padded one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the padded one.",
+              "uk": "У записі звучить I prefer the padded one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте одну куртку з утеплювальною набивкою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i06:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i06:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i06:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну куртку з утеплювальною набивкою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете одну куртку с утепляющей набивкой.",
+          "uk": "Ви обираєте одну куртку з утеплювальною набивкою."
+        },
+        "gappedTargetPhrase": "I prefer the padded ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-26:i06:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i06:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i06:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви обираєте одну куртку з утеплювальною набивкою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну куртку з утеплювальною набивкою.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну куртку з утеплювальною набивкою.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:word:non-slip",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — non-slip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:word:non-slip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — non-slip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:word:non-slip:audio",
+          "transcript": "non-slip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:word:non-slip:r1",
+            "targetText": "non-slip",
+            "meaningByLocale": {
+              "ru": "нескользящий.",
+              "uk": "нековзний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "non-slip",
+          "definitionByLocale": {
+            "ru": "нескользящий.",
+            "uk": "нековзний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте один килимок для ванної. Скажіть: «Я хочу той, що нековзний»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте один килимок для ванної. Скажіть: «Я хочу той, що нековзний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the non-slip one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете один коврик для ванной. Скажите: «Я хочу тот, который нескользящий»",
+          "uk": "Ви обираєте один килимок для ванної. Скажіть: «Я хочу той, що нековзний»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "non-slip",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i08:r1",
+          "text": "I want the non-slip one."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i08:r2",
+          "text": "We want the non-slip one."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i08:r3",
+          "text": "You want the non-slip one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i08:audio",
+          "transcript": "I want the non-slip one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:i08:r1",
+            "targetText": "I want the non-slip one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i08:r2",
+            "targetText": "We want the non-slip one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i08:r3",
+            "targetText": "You want the non-slip one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the non-slip one.",
+              "uk": "У записі звучить I want the non-slip one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the non-slip one.",
+              "uk": "У записі звучить I want the non-slip one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте один килимок для ванної.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i09:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i09:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i09:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте один килимок для ванної.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете один коврик для ванной.",
+          "uk": "Ви обираєте один килимок для ванної."
+        },
+        "gappedTargetPhrase": "I want the non-slip ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-26:i09:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i09:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i09:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви обираєте один килимок для ванної.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте один килимок для ванної.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте один килимок для ванної.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:word:cushioned",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cushioned",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:word:cushioned:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cushioned",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:word:cushioned:audio",
+          "transcript": "cushioned"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:word:cushioned:r1",
+            "targetText": "cushioned",
+            "meaningByLocale": {
+              "ru": "с мягкой подкладкой.",
+              "uk": "із м’якою підкладкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cushioned",
+          "definitionByLocale": {
+            "ru": "с мягкой подкладкой.",
+            "uk": "із м’якою підкладкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте туфлі з м’якою внутрішньою підкладкою. Скажіть: «Мені подобаються ті, що з м’якою підкладкою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте туфлі з м’якою внутрішньою підкладкою. Скажіть: «Мені подобаються ті, що з м’якою підкладкою»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the cushioned ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете туфли с мягкой внутренней подкладкой. Скажите: «Мне нравятся те, которые с мягкой подкладкой»",
+          "uk": "Ви обираєте туфлі з м’якою внутрішньою підкладкою. Скажіть: «Мені подобаються ті, що з м’якою підкладкою»"
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "cushioned",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i11:r1",
+          "text": "I like the cushioned ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i11:r2",
+          "text": "We like the cushioned ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i11:r3",
+          "text": "You like the cushioned ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i11:audio",
+          "transcript": "I like the cushioned ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-26:i11:r1",
+            "targetText": "I like the cushioned ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i11:r2",
+            "targetText": "We like the cushioned ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i11:r3",
+            "targetText": "You like the cushioned ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the cushioned ones.",
+              "uk": "У записі звучить I like the cushioned ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the cushioned ones.",
+              "uk": "У записі звучить I like the cushioned ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте туфлі з м’якою внутрішньою підкладкою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-26:i12:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i12:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-26:i12:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте туфлі з м’якою внутрішньою підкладкою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете туфли с мягкой внутренней подкладкой.",
+          "uk": "Ви обираєте туфлі з м’якою внутрішньою підкладкою."
+        },
+        "gappedTargetPhrase": "I like the cushioned ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-26:i12:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i12:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i12:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви обираєте туфлі з м’якою внутрішньою підкладкою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте туфлі з м’якою внутрішньою підкладкою.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте туфлі з м’якою внутрішньою підкладкою.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-26:i13:p1",
+            "target": "thermal",
+            "meaningByLocale": {
+              "ru": "сохраняющий тепло",
+              "uk": "такий, що зберігає тепло"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-26:i13:p2",
+            "target": "padded",
+            "meaningByLocale": {
+              "ru": "с мягкой набивкой",
+              "uk": "із м’якою набивкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-26:i13:p3",
+            "target": "non-slip",
+            "meaningByLocale": {
+              "ru": "нескользящий",
+              "uk": "нековзний"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-26:i13:p4",
+            "target": "cushioned",
+            "meaningByLocale": {
+              "ru": "с мягкой подкладкой",
+              "uk": "із м’якою підкладкою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "thermal",
+          "padded",
+          "non-slip",
+          "cushioned"
+        ],
+        "rightColumn": [
+          "такий, що зберігає тепло",
+          "із м’якою набивкою",
+          "нековзний",
+          "із м’якою підкладкою"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте одні нековзні капці. Скажіть: «Я віддаю перевагу тим, що нековзні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i16:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте одні нековзні капці. Скажіть: «Я віддаю перевагу тим, що нековзні»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i16:audio",
+          "transcript": "I prefer the non-slip ones."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I prefer the non-slip ones.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте одну подушку з м’якою набивкою. Скажіть: «Я хочу ту, що з м’якою набивкою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте одну подушку з м’якою набивкою. Скажіть: «Я хочу ту, що з м’якою набивкою»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-26:i17:audio",
+          "transcript": "I want the padded one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want the padded one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b5c5a719b9256671b8e429f0f2948b6ffa6ab253440257af58f46aff226f45ce"
+}

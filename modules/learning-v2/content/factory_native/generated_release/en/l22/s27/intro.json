@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "determiner|adjective + one|ones",
+    "uk": "determiner|adjective + one|ones"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тарелки для посудомойки",
+        "uk": "Тарілки для посудомийки"
+      },
+      "bodyByLocale": {
+        "ru": "Dishwasher-safe — пригодный для мытья в посудомоечной машине. Это описание на упаковке посуды. В примере несколько тарелок, поэтому ones заменяет plates. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Dishwasher-safe — придатний для миття в посудомийній машині. Це опис на пакованні посуду. У прикладі кілька тарілок, тому ones замінює plates. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-27:intro1:r1",
+              "text": "I want the dishwasher-safe ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro1:r2",
+              "text": "I want the dishwasher-safe one."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro1:r3",
+              "text": "I want the dishwasher-safe them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-27:intro1:r1",
+              "text": "I want the dishwasher-safe ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro1:r2",
+              "text": "I want the dishwasher-safe one."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro1:r3",
+              "text": "I want the dishwasher-safe them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Миска и свитер",
+        "uk": "Миска й светр"
+      },
+      "bodyByLocale": {
+        "ru": "Microwave-safe — пригодный для микроволновой печи. Machine-washable — пригодный для машинной стирки, например свитер. Это разные свойства: первое относится к посуде для разогрева, второе — к вещам, которые стирают. В обоих примерах выбираем одну вещь. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Microwave-safe — придатний для мікрохвильової печі. Machine-washable — придатний для машинного прання, наприклад светр. Це різні властивості: перше стосується посуду для розігрівання, друге — речей, які перуть. В обох прикладах обираємо одну річ. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-27:intro2:r1",
+              "text": "I prefer the microwave-safe one."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro2:r2",
+              "text": "I prefer the microwave-safe ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro2:r3",
+              "text": "I prefer the microwave-safe it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-27:intro2:r1",
+              "text": "I prefer the microwave-safe one."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro2:r2",
+              "text": "I prefer the microwave-safe ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro2:r3",
+              "text": "I prefer the microwave-safe it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полотенца",
+        "uk": "Рушники"
+      },
+      "bodyByLocale": {
+        "ru": "Absorbent — хорошо впитывающий влагу. Так описывают полотенца, губки или салфетки. В примере речь о нескольких полотенцах: towels → ones. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Absorbent — такий, що добре вбирає вологу. Так описують рушники, губки чи серветки. У прикладі йдеться про кілька рушників: towels → ones. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-27:intro3:r1",
+              "text": "I like the absorbent ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro3:r2",
+              "text": "I like the absorbent one."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro3:r3",
+              "text": "I like the absorbent them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-27:intro3:r1",
+              "text": "I like the absorbent ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro3:r2",
+              "text": "I like the absorbent one."
+            },
+            {
+              "responseId": "en:lesson-22:session-27:intro3:r3",
+              "text": "I like the absorbent them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6b5147edd215a31bcf15d52022b9d837c765a0a2b3afeb4c1deec5563f5c4fe3"
+}

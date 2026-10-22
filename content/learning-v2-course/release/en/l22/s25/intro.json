@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "determiner|adjective + one|ones",
+    "uk": "determiner|adjective + one|ones"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Куртка с капюшоном",
+        "uk": "Куртка з капюшоном"
+      },
+      "bodyByLocale": {
+        "ru": "Hooded — с капюшоном. Вы выбираете одну куртку и хотите именно куртку с капюшоном: the hooded one. One заменяет jacket. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Hooded — із капюшоном. Ви обираєте одну куртку й хочете саме куртку з капюшоном: the hooded one. One замінює jacket. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-25:intro1:r1",
+              "text": "I want the hooded one."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro1:r2",
+              "text": "I want the hooded ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro1:r3",
+              "text": "I want the hooded it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-25:intro1:r1",
+              "text": "I want the hooded one."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro1:r2",
+              "text": "I want the hooded ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro1:r3",
+              "text": "I want the hooded it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узор и свободный покрой",
+        "uk": "Візерунок і вільний крій"
+      },
+      "bodyByLocale": {
+        "ru": "Patterned — с узором, не однотонный. Узор может быть разным; striped — полосатый — уже знакомый частный случай. Вы выбираете шторы, то есть несколько предметов: the patterned ones. Loose-fitting — свободного покроя: рубашка не облегает тело. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Patterned — із візерунком, не однотонний. Візерунок може бути різним; striped — смугастий — уже знайомий окремий випадок. Ви обираєте штори, тобто кілька предметів: the patterned ones. Loose-fitting — вільного крою: сорочка не облягає тіло. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-25:intro2:r1",
+              "text": "I like the patterned ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro2:r2",
+              "text": "I like the patterned one."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro2:r3",
+              "text": "I like the patterned them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-25:intro2:r1",
+              "text": "I like the patterned ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro2:r2",
+              "text": "I like the patterned one."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro2:r3",
+              "text": "I like the patterned them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Облегающие джинсы",
+        "uk": "Обтислі джинси"
+      },
+      "bodyByLocale": {
+        "ru": "Tight-fitting — облегающий, плотно сидящий по фигуре. Это описание покроя, а не обязательно ошибка размера. Jeans — слово во множественном числе, поэтому говорим the tight-fitting ones, даже когда выбираем одну пару джинсов. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Tight-fitting — обтислий, такий, що щільно облягає фігуру. Це опис крою, а не обов’язково помилка розміру. Jeans — слово у множині, тому кажемо the tight-fitting ones, навіть коли обираємо одну пару джинсів. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-25:intro3:r1",
+              "text": "I do not want the tight-fitting ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro3:r2",
+              "text": "I do not want the tight-fitting one."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro3:r3",
+              "text": "I do not want the tight-fitting them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-25:intro3:r1",
+              "text": "I do not want the tight-fitting ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro3:r2",
+              "text": "I do not want the tight-fitting one."
+            },
+            {
+              "responseId": "en:lesson-22:session-25:intro3:r3",
+              "text": "I do not want the tight-fitting them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8b71660fcb62362e79891c7756d18a7031b0a74db6cca2cca2cab4752fce4968"
+}

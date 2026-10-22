@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-25:word:hooded",
+    "correctText": "hooded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i01",
+    "correctText": "I want the hooded one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i02",
+    "correctText": "I want the hooded one.",
+    "correctResponseId": "en:lesson-22:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i03",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:word:patterned",
+    "correctText": "patterned",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i04",
+    "correctText": "I like the patterned ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i05",
+    "correctText": "I like the patterned ones.",
+    "correctResponseId": "en:lesson-22:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i06",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:word:loose-fitting",
+    "correctText": "loose-fitting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i07",
+    "correctText": "I prefer the loose-fitting one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i08",
+    "correctText": "I prefer the loose-fitting one.",
+    "correctResponseId": "en:lesson-22:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i09",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:word:tight-fitting",
+    "correctText": "tight-fitting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i10",
+    "correctText": "I do not want the tight-fitting ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i11",
+    "correctText": "I do not want the tight-fitting ones.",
+    "correctResponseId": "en:lesson-22:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i12",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i13",
+    "correctText": "en:lesson-22:session-25:i13:p1=hooded\nen:lesson-22:session-25:i13:p2=patterned\nen:lesson-22:session-25:i13:p3=loose-fitting\nen:lesson-22:session-25:i13:p4=tight-fitting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i16",
+    "correctText": "I prefer the patterned one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-25:i17",
+    "correctText": "I want the loose-fitting ones.",
+    "correctResponseId": null
+  }
+]

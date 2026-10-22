@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-22:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-22:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-26:intro1:r2": {
+          "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+          "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+        },
+        "en:lesson-22:session-26:intro1:r3": {
+          "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+          "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-26:intro2:r2": {
+          "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+          "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+        },
+        "en:lesson-22:session-26:intro2:r3": {
+          "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+          "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-22:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-22:session-26:intro3:r2": {
+          "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+          "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+        },
+        "en:lesson-22:session-26:intro3:r3": {
+          "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+          "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a3412bda275afa751cb5623e78b9061222274703ba0e8e8f6c692ab52a6c2520"
+}

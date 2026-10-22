@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-28:word:ready-to-eat",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ready-to-eat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:word:ready-to-eat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ready-to-eat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:word:ready-to-eat:audio",
+          "transcript": "ready-to-eat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:word:ready-to-eat:r1",
+            "targetText": "ready-to-eat",
+            "meaningByLocale": {
+              "ru": "готовый к употреблению.",
+              "uk": "готовий до споживання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ready-to-eat",
+          "definitionByLocale": {
+            "ru": "готовый к употреблению.",
+            "uk": "готовий до споживання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте один салат, який уже можна їсти. Скажіть: «Я хочу той, що готовий до споживання»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте один салат, який уже можна їсти. Скажіть: «Я хочу той, що готовий до споживання»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the ready-to-eat one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете один салат, который уже можно есть. Скажите: «Я хочу тот, который готов к употреблению»",
+          "uk": "Ви обираєте один салат, який уже можна їсти. Скажіть: «Я хочу той, що готовий до споживання»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "ready-to-eat",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i02:r1",
+          "text": "I want the ready-to-eat one."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i02:r2",
+          "text": "We want the ready-to-eat one."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i02:r3",
+          "text": "You want the ready-to-eat one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i02:audio",
+          "transcript": "I want the ready-to-eat one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:i02:r1",
+            "targetText": "I want the ready-to-eat one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i02:r2",
+            "targetText": "We want the ready-to-eat one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i02:r3",
+            "targetText": "You want the ready-to-eat one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the ready-to-eat one.",
+              "uk": "У записі звучить I want the ready-to-eat one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the ready-to-eat one.",
+              "uk": "У записі звучить I want the ready-to-eat one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте один салат, який уже можна їсти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i03:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i03:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i03:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте один салат, який уже можна їсти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете один салат, который уже можно есть.",
+          "uk": "Ви обираєте один салат, який уже можна їсти."
+        },
+        "gappedTargetPhrase": "I want the ready-to-eat ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-28:i03:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i03:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i03:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви обираєте один салат, який уже можна їсти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте один салат, який уже можна їсти.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте один салат, який уже можна їсти.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:word:freshly-baked",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — freshly baked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:word:freshly-baked:audio"
+      ],
+      "accessibilityLabel": "Картка слова — freshly baked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:word:freshly-baked:audio",
+          "transcript": "freshly baked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:word:freshly-baked:r1",
+            "targetText": "freshly baked",
+            "meaningByLocale": {
+              "ru": "свежевыпеченный.",
+              "uk": "щойно спечений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freshly baked",
+          "definitionByLocale": {
+            "ru": "свежевыпеченный.",
+            "uk": "щойно спечений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте кілька булочок зі свіжої випічки. Скажіть: «Мені подобаються ті, що щойно спечені»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте кілька булочок зі свіжої випічки. Скажіть: «Мені подобаються ті, що щойно спечені»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the freshly baked ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете несколько булочек из свежей выпечки. Скажите: «Мне нравятся те, которые свежевыпеченные»",
+          "uk": "Ви обираєте кілька булочок зі свіжої випічки. Скажіть: «Мені подобаються ті, що щойно спечені»"
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "freshly",
+          "baked",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i05:r1",
+          "text": "I like the freshly baked ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i05:r2",
+          "text": "We like the freshly baked ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i05:r3",
+          "text": "You like the freshly baked ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i05:audio",
+          "transcript": "I like the freshly baked ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:i05:r1",
+            "targetText": "I like the freshly baked ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i05:r2",
+            "targetText": "We like the freshly baked ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i05:r3",
+            "targetText": "You like the freshly baked ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the freshly baked ones.",
+              "uk": "У записі звучить I like the freshly baked ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the freshly baked ones.",
+              "uk": "У записі звучить I like the freshly baked ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте кілька булочок зі свіжої випічки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i06:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i06:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i06:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте кілька булочок зі свіжої випічки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете несколько булочек из свежей выпечки.",
+          "uk": "Ви обираєте кілька булочок зі свіжої випічки."
+        },
+        "gappedTargetPhrase": "I like the freshly baked ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-28:i06:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i06:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i06:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви обираєте кілька булочок зі свіжої випічки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте кілька булочок зі свіжої випічки.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте кілька булочок зі свіжої випічки.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:word:pre-cooked",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pre-cooked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:word:pre-cooked:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pre-cooked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:word:pre-cooked:audio",
+          "transcript": "pre-cooked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:word:pre-cooked:r1",
+            "targetText": "pre-cooked",
+            "meaningByLocale": {
+              "ru": "предварительно приготовленный.",
+              "uk": "попередньо приготований."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pre-cooked",
+          "definitionByLocale": {
+            "ru": "предварительно приготовленный.",
+            "uk": "попередньо приготований."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте сосиски, які вже приготував виробник. Скажіть: «Я віддаю перевагу тим, що попередньо приготовані»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте сосиски, які вже приготував виробник. Скажіть: «Я віддаю перевагу тим, що попередньо приготовані»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I prefer the pre-cooked ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете сосиски, которые уже приготовлены производителем. Скажите: «Я предпочитаю те, которые предварительно приготовлены»",
+          "uk": "Ви обираєте сосиски, які вже приготував виробник. Скажіть: «Я віддаю перевагу тим, що попередньо приготовані»"
+        },
+        "orderedTokens": [
+          "I",
+          "prefer",
+          "the",
+          "pre-cooked",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i08:r1",
+          "text": "I prefer the pre-cooked ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i08:r2",
+          "text": "We prefer the pre-cooked ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i08:r3",
+          "text": "You prefer the pre-cooked ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i08:audio",
+          "transcript": "I prefer the pre-cooked ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:i08:r1",
+            "targetText": "I prefer the pre-cooked ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i08:r2",
+            "targetText": "We prefer the pre-cooked ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i08:r3",
+            "targetText": "You prefer the pre-cooked ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the pre-cooked ones.",
+              "uk": "У записі звучить I prefer the pre-cooked ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the pre-cooked ones.",
+              "uk": "У записі звучить I prefer the pre-cooked ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте сосиски, які вже приготував виробник.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i09:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i09:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i09:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте сосиски, які вже приготував виробник.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете сосиски, которые уже приготовлены производителем.",
+          "uk": "Ви обираєте сосиски, які вже приготував виробник."
+        },
+        "gappedTargetPhrase": "I prefer the pre-cooked ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-28:i09:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i09:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i09:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви обираєте сосиски, які вже приготував виробник.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте сосиски, які вже приготував виробник.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте сосиски, які вже приготував виробник.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:word:pre-sliced",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pre-sliced",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:word:pre-sliced:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pre-sliced",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:word:pre-sliced:audio",
+          "transcript": "pre-sliced"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:word:pre-sliced:r1",
+            "targetText": "pre-sliced",
+            "meaningByLocale": {
+              "ru": "заранее нарезанный.",
+              "uk": "заздалегідь нарізаний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pre-sliced",
+          "definitionByLocale": {
+            "ru": "заранее нарезанный.",
+            "uk": "заздалегідь нарізаний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте одну хлібину, уже нарізану скибками. Скажіть: «Я хочу ту, що заздалегідь нарізана»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну хлібину, уже нарізану скибками. Скажіть: «Я хочу ту, що заздалегідь нарізана»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the pre-sliced one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете одну буханку хлеба, уже нарезанную ломтиками. Скажите: «Я хочу ту, которая заранее нарезана»",
+          "uk": "Ви обираєте одну хлібину, уже нарізану скибками. Скажіть: «Я хочу ту, що заздалегідь нарізана»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "pre-sliced",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i11:r1",
+          "text": "I want the pre-sliced one."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i11:r2",
+          "text": "We want the pre-sliced one."
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i11:r3",
+          "text": "You want the pre-sliced one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i11:audio",
+          "transcript": "I want the pre-sliced one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-28:i11:r1",
+            "targetText": "I want the pre-sliced one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i11:r2",
+            "targetText": "We want the pre-sliced one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i11:r3",
+            "targetText": "You want the pre-sliced one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the pre-sliced one.",
+              "uk": "У записі звучить I want the pre-sliced one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the pre-sliced one.",
+              "uk": "У записі звучить I want the pre-sliced one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте одну хлібину, уже нарізану скибками.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-28:i12:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i12:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-28:i12:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну хлібину, уже нарізану скибками.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете одну буханку хлеба, уже нарезанную ломтиками.",
+          "uk": "Ви обираєте одну хлібину, уже нарізану скибками."
+        },
+        "gappedTargetPhrase": "I want the pre-sliced ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-28:i12:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i12:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i12:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви обираєте одну хлібину, уже нарізану скибками.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну хлібину, уже нарізану скибками.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну хлібину, уже нарізану скибками.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-28:i13:p1",
+            "target": "ready-to-eat",
+            "meaningByLocale": {
+              "ru": "готовый к употреблению",
+              "uk": "готовий до споживання"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-28:i13:p2",
+            "target": "freshly baked",
+            "meaningByLocale": {
+              "ru": "свежевыпеченный",
+              "uk": "щойно спечений"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-28:i13:p3",
+            "target": "pre-cooked",
+            "meaningByLocale": {
+              "ru": "предварительно приготовленный",
+              "uk": "попередньо приготований"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-28:i13:p4",
+            "target": "pre-sliced",
+            "meaningByLocale": {
+              "ru": "заранее нарезанный",
+              "uk": "заздалегідь нарізаний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ready-to-eat",
+          "freshly baked",
+          "pre-cooked",
+          "pre-sliced"
+        ],
+        "rightColumn": [
+          "готовий до споживання",
+          "щойно спечений",
+          "попередньо приготований",
+          "заздалегідь нарізаний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте одну щойно спечену хлібину. Скажіть: «Я віддаю перевагу тій, що щойно спечена»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте одну щойно спечену хлібину. Скажіть: «Я віддаю перевагу тій, що щойно спечена»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i16:audio",
+          "transcript": "I prefer the freshly baked one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I prefer the freshly baked one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-28:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте кілька готових салатів. Скажіть: «Мені подобаються ті, що готові до споживання»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте кілька готових салатів. Скажіть: «Мені подобаються ті, що готові до споживання»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-28:i17:audio",
+          "transcript": "I like the ready-to-eat ones."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I like the ready-to-eat ones.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7ba93e13051458c5d17c82e1a5fb53b73789f0f2607190bb877493b8d01cfa2a"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-26:word:thermal",
+    "correctText": "thermal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i01",
+    "correctText": "I want the thermal ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i02",
+    "correctText": "I want the thermal ones.",
+    "correctResponseId": "en:lesson-22:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i03",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:word:padded",
+    "correctText": "padded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i04",
+    "correctText": "I prefer the padded one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i05",
+    "correctText": "I prefer the padded one.",
+    "correctResponseId": "en:lesson-22:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i06",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:word:non-slip",
+    "correctText": "non-slip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i07",
+    "correctText": "I want the non-slip one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i08",
+    "correctText": "I want the non-slip one.",
+    "correctResponseId": "en:lesson-22:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i09",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:word:cushioned",
+    "correctText": "cushioned",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i10",
+    "correctText": "I like the cushioned ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i11",
+    "correctText": "I like the cushioned ones.",
+    "correctResponseId": "en:lesson-22:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i12",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i13",
+    "correctText": "en:lesson-22:session-26:i13:p1=thermal\nen:lesson-22:session-26:i13:p2=padded\nen:lesson-22:session-26:i13:p3=non-slip\nen:lesson-22:session-26:i13:p4=cushioned",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i16",
+    "correctText": "I prefer the non-slip ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-26:i17",
+    "correctText": "I want the padded one.",
+    "correctResponseId": null
+  }
+]

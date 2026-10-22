@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-27:word:dishwasher-safe",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dishwasher-safe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:word:dishwasher-safe:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dishwasher-safe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:word:dishwasher-safe:audio",
+          "transcript": "dishwasher-safe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:word:dishwasher-safe:r1",
+            "targetText": "dishwasher-safe",
+            "meaningByLocale": {
+              "ru": "пригодный для мытья в посудомоечной машине.",
+              "uk": "придатний для миття в посудомийній машині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dishwasher-safe",
+          "definitionByLocale": {
+            "ru": "пригодный для мытья в посудомоечной машине.",
+            "uk": "придатний для миття в посудомийній машині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте тарілки для посудомийної машини. Скажіть: «Я хочу ті, які можна мити в посудомийній машині»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте тарілки для посудомийної машини. Скажіть: «Я хочу ті, які можна мити в посудомийній машині»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the dishwasher-safe ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете тарелки для посудомоечной машины. Скажите: «Я хочу те, которые можно мыть в посудомоечной машине»",
+          "uk": "Ви обираєте тарілки для посудомийної машини. Скажіть: «Я хочу ті, які можна мити в посудомийній машині»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "dishwasher-safe",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i02:r1",
+          "text": "I want the dishwasher-safe ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i02:r2",
+          "text": "We want the dishwasher-safe ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i02:r3",
+          "text": "You want the dishwasher-safe ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i02:audio",
+          "transcript": "I want the dishwasher-safe ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:i02:r1",
+            "targetText": "I want the dishwasher-safe ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i02:r2",
+            "targetText": "We want the dishwasher-safe ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i02:r3",
+            "targetText": "You want the dishwasher-safe ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the dishwasher-safe ones.",
+              "uk": "У записі звучить I want the dishwasher-safe ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the dishwasher-safe ones.",
+              "uk": "У записі звучить I want the dishwasher-safe ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте тарілки для посудомийної машини.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i03:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i03:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i03:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте тарілки для посудомийної машини.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете тарелки для посудомоечной машины.",
+          "uk": "Ви обираєте тарілки для посудомийної машини."
+        },
+        "gappedTargetPhrase": "I want the dishwasher-safe ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-27:i03:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i03:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i03:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви обираєте тарілки для посудомийної машини.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте тарілки для посудомийної машини.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте тарілки для посудомийної машини.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:word:microwave-safe",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — microwave-safe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:word:microwave-safe:audio"
+      ],
+      "accessibilityLabel": "Картка слова — microwave-safe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:word:microwave-safe:audio",
+          "transcript": "microwave-safe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:word:microwave-safe:r1",
+            "targetText": "microwave-safe",
+            "meaningByLocale": {
+              "ru": "пригодный для микроволновой печи.",
+              "uk": "придатний для мікрохвильової печі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "microwave-safe",
+          "definitionByLocale": {
+            "ru": "пригодный для микроволновой печи.",
+            "uk": "придатний для мікрохвильової печі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте одну миску для мікрохвильової печі. Скажіть: «Я віддаю перевагу тій, яку можна використовувати в мікрохвильовій печі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну миску для мікрохвильової печі. Скажіть: «Я віддаю перевагу тій, яку можна використовувати в мікрохвильовій печі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I prefer the microwave-safe one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете одну миску для микроволновой печи. Скажите: «Я предпочитаю ту, которую можно использовать в микроволновой печи»",
+          "uk": "Ви обираєте одну миску для мікрохвильової печі. Скажіть: «Я віддаю перевагу тій, яку можна використовувати в мікрохвильовій печі»"
+        },
+        "orderedTokens": [
+          "I",
+          "prefer",
+          "the",
+          "microwave-safe",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i05:r1",
+          "text": "I prefer the microwave-safe one."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i05:r2",
+          "text": "We prefer the microwave-safe one."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i05:r3",
+          "text": "You prefer the microwave-safe one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i05:audio",
+          "transcript": "I prefer the microwave-safe one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:i05:r1",
+            "targetText": "I prefer the microwave-safe one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i05:r2",
+            "targetText": "We prefer the microwave-safe one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i05:r3",
+            "targetText": "You prefer the microwave-safe one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the microwave-safe one.",
+              "uk": "У записі звучить I prefer the microwave-safe one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the microwave-safe one.",
+              "uk": "У записі звучить I prefer the microwave-safe one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте одну миску для мікрохвильової печі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i06:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i06:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i06:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну миску для мікрохвильової печі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете одну миску для микроволновой печи.",
+          "uk": "Ви обираєте одну миску для мікрохвильової печі."
+        },
+        "gappedTargetPhrase": "I prefer the microwave-safe ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-27:i06:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i06:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i06:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви обираєте одну миску для мікрохвильової печі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну миску для мікрохвильової печі.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну миску для мікрохвильової печі.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:word:machine-washable",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — machine-washable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:word:machine-washable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — machine-washable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:word:machine-washable:audio",
+          "transcript": "machine-washable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:word:machine-washable:r1",
+            "targetText": "machine-washable",
+            "meaningByLocale": {
+              "ru": "пригодный для машинной стирки.",
+              "uk": "придатний для машинного прання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "machine-washable",
+          "definitionByLocale": {
+            "ru": "пригодный для машинной стирки.",
+            "uk": "придатний для машинного прання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте один светр для машинного прання. Скажіть: «Я хочу той, який можна прати в машині»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте один светр для машинного прання. Скажіть: «Я хочу той, який можна прати в машині»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the machine-washable one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете один свитер для машинной стирки. Скажите: «Я хочу тот, который можно стирать в машине»",
+          "uk": "Ви обираєте один светр для машинного прання. Скажіть: «Я хочу той, який можна прати в машині»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "machine-washable",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i08:r1",
+          "text": "I want the machine-washable one."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i08:r2",
+          "text": "We want the machine-washable one."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i08:r3",
+          "text": "You want the machine-washable one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i08:audio",
+          "transcript": "I want the machine-washable one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:i08:r1",
+            "targetText": "I want the machine-washable one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i08:r2",
+            "targetText": "We want the machine-washable one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i08:r3",
+            "targetText": "You want the machine-washable one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the machine-washable one.",
+              "uk": "У записі звучить I want the machine-washable one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the machine-washable one.",
+              "uk": "У записі звучить I want the machine-washable one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте один светр для машинного прання.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i09:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i09:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i09:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте один светр для машинного прання.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете один свитер для машинной стирки.",
+          "uk": "Ви обираєте один светр для машинного прання."
+        },
+        "gappedTargetPhrase": "I want the machine-washable ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-27:i09:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i09:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i09:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви обираєте один светр для машинного прання.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте один светр для машинного прання.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте один светр для машинного прання.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:word:absorbent",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — absorbent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:word:absorbent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — absorbent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:word:absorbent:audio",
+          "transcript": "absorbent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:word:absorbent:r1",
+            "targetText": "absorbent",
+            "meaningByLocale": {
+              "ru": "хорошо впитывающий влагу.",
+              "uk": "такий, що добре вбирає вологу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "absorbent",
+          "definitionByLocale": {
+            "ru": "хорошо впитывающий влагу.",
+            "uk": "такий, що добре вбирає вологу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте рушники, які добре вбирають вологу. Скажіть: «Мені подобаються ті, які добре вбирають вологу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте рушники, які добре вбирають вологу. Скажіть: «Мені подобаються ті, які добре вбирають вологу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the absorbent ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете полотенца, которые хорошо впитывают влагу. Скажите: «Мне нравятся те, которые хорошо впитывают влагу»",
+          "uk": "Ви обираєте рушники, які добре вбирають вологу. Скажіть: «Мені подобаються ті, які добре вбирають вологу»"
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "absorbent",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i11:r1",
+          "text": "I like the absorbent ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i11:r2",
+          "text": "We like the absorbent ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i11:r3",
+          "text": "You like the absorbent ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i11:audio",
+          "transcript": "I like the absorbent ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-27:i11:r1",
+            "targetText": "I like the absorbent ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i11:r2",
+            "targetText": "We like the absorbent ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i11:r3",
+            "targetText": "You like the absorbent ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the absorbent ones.",
+              "uk": "У записі звучить I like the absorbent ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the absorbent ones.",
+              "uk": "У записі звучить I like the absorbent ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте рушники, які добре вбирають вологу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-27:i12:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i12:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-27:i12:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте рушники, які добре вбирають вологу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете полотенца, которые хорошо впитывают влагу.",
+          "uk": "Ви обираєте рушники, які добре вбирають вологу."
+        },
+        "gappedTargetPhrase": "I like the absorbent ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-27:i12:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i12:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i12:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви обираєте рушники, які добре вбирають вологу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте рушники, які добре вбирають вологу.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте рушники, які добре вбирають вологу.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-27:i13:p1",
+            "target": "dishwasher-safe",
+            "meaningByLocale": {
+              "ru": "пригодный для мытья в посудомоечной машине",
+              "uk": "придатний для миття в посудомийній машині"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-27:i13:p2",
+            "target": "microwave-safe",
+            "meaningByLocale": {
+              "ru": "пригодный для микроволновой печи",
+              "uk": "придатний для мікрохвильової печі"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-27:i13:p3",
+            "target": "machine-washable",
+            "meaningByLocale": {
+              "ru": "пригодный для машинной стирки",
+              "uk": "придатний для машинного прання"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-27:i13:p4",
+            "target": "absorbent",
+            "meaningByLocale": {
+              "ru": "хорошо впитывающий влагу",
+              "uk": "такий, що добре вбирає вологу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dishwasher-safe",
+          "microwave-safe",
+          "machine-washable",
+          "absorbent"
+        ],
+        "rightColumn": [
+          "придатний для миття в посудомийній машині",
+          "придатний для мікрохвильової печі",
+          "придатний для машинного прання",
+          "такий, що добре вбирає вологу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте одну вбиральну губку. Скажіть: «Я хочу ту, яка добре вбирає вологу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте одну вбиральну губку. Скажіть: «Я хочу ту, яка добре вбирає вологу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i16:audio",
+          "transcript": "I want the absorbent one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want the absorbent one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте кілька мисок для мікрохвильової печі. Скажіть: «Мені подобаються ті, які можна використовувати в мікрохвильовій печі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте кілька мисок для мікрохвильової печі. Скажіть: «Мені подобаються ті, які можна використовувати в мікрохвильовій печі»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-27:i17:audio",
+          "transcript": "I like the microwave-safe ones."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I like the microwave-safe ones.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d6b97a7daa0477f9dfeb7d4c0f0a1830a25253d17b65a712fd0fead83350a488"
+}

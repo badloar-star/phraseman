@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-22:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "determiner|adjective + one|ones",
+    "uk": "determiner|adjective + one|ones"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-22:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тёплые носки",
+        "uk": "Теплі шкарпетки"
+      },
+      "bodyByLocale": {
+        "ru": "Thermal в описании одежды — сохраняющий тепло, например thermal socks для холодной погоды. Выбираем носки: socks стоит во множественном числе, поэтому the thermal ones. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Thermal в описі одягу — такий, що зберігає тепло, наприклад thermal socks для холодної погоди. Обираємо шкарпетки: socks стоїть у множині, тому the thermal ones. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-26:intro1:r1",
+              "text": "I want the thermal ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro1:r2",
+              "text": "I want the thermal one."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro1:r3",
+              "text": "I want the thermal them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-26:intro1:r1",
+              "text": "I want the thermal ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro1:r2",
+              "text": "I want the thermal one."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro1:r3",
+              "text": "I want the thermal them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-22:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мягкая куртка и коврик",
+        "uk": "М’яка куртка й килимок"
+      },
+      "bodyByLocale": {
+        "ru": "Padded — с мягкой набивкой, например куртка с утепляющим слоем. Non-slip — нескользящий, например коврик с поверхностью, которая меньше скользит. В примерах куртка и коврик по одному: one. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Padded — із м’якою набивкою, наприклад куртка з утеплювальним шаром. Non-slip — нековзний, наприклад килимок із поверхнею, яка менше ковзає. У прикладах куртка й килимок по одному: one. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-26:intro2:r1",
+              "text": "I prefer the padded one."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro2:r2",
+              "text": "I prefer the padded ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro2:r3",
+              "text": "I prefer the padded it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-26:intro2:r1",
+              "text": "I prefer the padded one."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro2:r2",
+              "text": "I prefer the padded ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro2:r3",
+              "text": "I prefer the padded it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-22:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мягкая подкладка",
+        "uk": "М’яка підкладка"
+      },
+      "bodyByLocale": {
+        "ru": "Cushioned — с мягкой подкладкой или слоем, который смягчает давление. В примере выбираем обувь с мягкой опорой для стопы. Shoes — множественное число, поэтому the cushioned ones. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
+        "uk": "Cushioned — із м’якою підкладкою або шаром, який пом’якшує тиск. У прикладі обираємо взуття з м’якою опорою для стопи. Shoes — множина, тому the cushioned ones. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-22:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-22:session-26:intro3:r1",
+              "text": "I like the cushioned ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro3:r2",
+              "text": "I like the cushioned one."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro3:r3",
+              "text": "I like the cushioned them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-22:session-26:intro3:r1",
+              "text": "I like the cushioned ones."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro3:r2",
+              "text": "I like the cushioned one."
+            },
+            {
+              "responseId": "en:lesson-22:session-26:intro3:r3",
+              "text": "I like the cushioned them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "56b0effc10adb5f3891df9b76615f50293271518205da41bfb6cb2faea1475e6"
+}

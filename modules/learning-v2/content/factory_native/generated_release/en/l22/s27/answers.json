@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-27:word:dishwasher-safe",
+    "correctText": "dishwasher-safe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i01",
+    "correctText": "I want the dishwasher-safe ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i02",
+    "correctText": "I want the dishwasher-safe ones.",
+    "correctResponseId": "en:lesson-22:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i03",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:word:microwave-safe",
+    "correctText": "microwave-safe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i04",
+    "correctText": "I prefer the microwave-safe one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i05",
+    "correctText": "I prefer the microwave-safe one.",
+    "correctResponseId": "en:lesson-22:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i06",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:word:machine-washable",
+    "correctText": "machine-washable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i07",
+    "correctText": "I want the machine-washable one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i08",
+    "correctText": "I want the machine-washable one.",
+    "correctResponseId": "en:lesson-22:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i09",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:word:absorbent",
+    "correctText": "absorbent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i10",
+    "correctText": "I like the absorbent ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i11",
+    "correctText": "I like the absorbent ones.",
+    "correctResponseId": "en:lesson-22:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i12",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i13",
+    "correctText": "en:lesson-22:session-27:i13:p1=dishwasher-safe\nen:lesson-22:session-27:i13:p2=microwave-safe\nen:lesson-22:session-27:i13:p3=machine-washable\nen:lesson-22:session-27:i13:p4=absorbent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i16",
+    "correctText": "I want the absorbent one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-27:i17",
+    "correctText": "I like the microwave-safe ones.",
+    "correctResponseId": null
+  }
+]

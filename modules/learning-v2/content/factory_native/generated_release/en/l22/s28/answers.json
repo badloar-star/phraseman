@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-22:session-28:word:ready-to-eat",
+    "correctText": "ready-to-eat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i01",
+    "correctText": "I want the ready-to-eat one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i02",
+    "correctText": "I want the ready-to-eat one.",
+    "correctResponseId": "en:lesson-22:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i03",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:word:freshly-baked",
+    "correctText": "freshly baked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i04",
+    "correctText": "I like the freshly baked ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i05",
+    "correctText": "I like the freshly baked ones.",
+    "correctResponseId": "en:lesson-22:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i06",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:word:pre-cooked",
+    "correctText": "pre-cooked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i07",
+    "correctText": "I prefer the pre-cooked ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i08",
+    "correctText": "I prefer the pre-cooked ones.",
+    "correctResponseId": "en:lesson-22:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i09",
+    "correctText": "ones",
+    "correctResponseId": "en:lesson-22:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:word:pre-sliced",
+    "correctText": "pre-sliced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i10",
+    "correctText": "I want the pre-sliced one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i11",
+    "correctText": "I want the pre-sliced one.",
+    "correctResponseId": "en:lesson-22:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i12",
+    "correctText": "one",
+    "correctResponseId": "en:lesson-22:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i13",
+    "correctText": "en:lesson-22:session-28:i13:p1=ready-to-eat\nen:lesson-22:session-28:i13:p2=freshly baked\nen:lesson-22:session-28:i13:p3=pre-cooked\nen:lesson-22:session-28:i13:p4=pre-sliced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i14",
+    "correctText": "I want to change the subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i15",
+    "correctText": "I want to raise a glass to Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i16",
+    "correctText": "I prefer the freshly baked one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-22:session-28:i17",
+    "correctText": "I like the ready-to-eat ones.",
+    "correctResponseId": null
+  }
+]

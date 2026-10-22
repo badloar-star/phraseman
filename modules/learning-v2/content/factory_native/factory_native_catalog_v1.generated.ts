@@ -8407,4 +8407,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"main action + to-infinitive of purpose","uk":"main action + to-infinitive of purpose"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 25,
+    sourceFingerprint: "9fc3cec201f0697bfd493fbfe9a95707376df38b74d48c31ba02a2d8f04fce33",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"determiner|adjective + one|ones","uk":"determiner|adjective + one|ones"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 26,
+    sourceFingerprint: "39917bed4f7f1079fce2bb822181ec3cb9bd9e0e306810b034807cabc3295f9f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"determiner|adjective + one|ones","uk":"determiner|adjective + one|ones"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 27,
+    sourceFingerprint: "bf1b1496df514c3a8ba067e745bcb29172d0d2f94df6bb980b60ce98ce961456",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"determiner|adjective + one|ones","uk":"determiner|adjective + one|ones"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 22, sessionOrdinal: 28,
+    sourceFingerprint: "86f468adc6e8a4f7f82b35ce83bd2d5d2b80f0c48ac4e89eaf8d99293607173e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"determiner|adjective + one|ones","uk":"determiner|adjective + one|ones"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 22","uk":"Англійська · Урок 22"}),
+  }),
 ]);

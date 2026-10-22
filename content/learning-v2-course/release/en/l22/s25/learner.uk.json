@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-22:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-22:session-25:word:hooded",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hooded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:word:hooded:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hooded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:word:hooded:audio",
+          "transcript": "hooded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:word:hooded:r1",
+            "targetText": "hooded",
+            "meaningByLocale": {
+              "ru": "с капюшоном.",
+              "uk": "із капюшоном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hooded",
+          "definitionByLocale": {
+            "ru": "с капюшоном.",
+            "uk": "із капюшоном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте одну куртку з кількох. Скажіть: «Я хочу ту, що з капюшоном»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну куртку з кількох. Скажіть: «Я хочу ту, що з капюшоном»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want the hooded one.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете одну куртку из нескольких. Скажите: «Я хочу ту, которая с капюшоном»",
+          "uk": "Ви обираєте одну куртку з кількох. Скажіть: «Я хочу ту, що з капюшоном»"
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "the",
+          "hooded",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i02:r1",
+          "text": "I want the hooded one."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i02:r2",
+          "text": "We want the hooded one."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i02:r3",
+          "text": "You want the hooded one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i02:audio",
+          "transcript": "I want the hooded one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:i02:r1",
+            "targetText": "I want the hooded one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i02:r2",
+            "targetText": "We want the hooded one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i02:r3",
+            "targetText": "You want the hooded one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the hooded one.",
+              "uk": "У записі звучить I want the hooded one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I want the hooded one.",
+              "uk": "У записі звучить I want the hooded one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте одну куртку з кількох.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i03:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i03:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i03:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте одну куртку з кількох.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете одну куртку из нескольких.",
+          "uk": "Ви обираєте одну куртку з кількох."
+        },
+        "gappedTargetPhrase": "I want the hooded ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-25:i03:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i03:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i03:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви обираєте одну куртку з кількох.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну куртку з кількох.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте одну куртку з кількох.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:word:patterned",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — patterned",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:word:patterned:audio"
+      ],
+      "accessibilityLabel": "Картка слова — patterned",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:word:patterned:audio",
+          "transcript": "patterned"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:word:patterned:r1",
+            "targetText": "patterned",
+            "meaningByLocale": {
+              "ru": "с узором.",
+              "uk": "із візерунком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "patterned",
+          "definitionByLocale": {
+            "ru": "с узором.",
+            "uk": "із візерунком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обираєте штори. Скажіть: «Мені подобаються ті, що з візерунком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте штори. Скажіть: «Мені подобаються ті, що з візерунком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the patterned ones.",
+        "localizedMeaning": {
+          "ru": "Вы выбираете шторы. Скажите: «Мне нравятся те, которые с узором»",
+          "uk": "Ви обираєте штори. Скажіть: «Мені подобаються ті, що з візерунком»"
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "patterned",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i05:r1",
+          "text": "I like the patterned ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i05:r2",
+          "text": "We like the patterned ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i05:r3",
+          "text": "You like the patterned ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i05:audio",
+          "transcript": "I like the patterned ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:i05:r1",
+            "targetText": "I like the patterned ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i05:r2",
+            "targetText": "We like the patterned ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i05:r3",
+            "targetText": "You like the patterned ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the patterned ones.",
+              "uk": "У записі звучить I like the patterned ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the patterned ones.",
+              "uk": "У записі звучить I like the patterned ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обираєте штори.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i06:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i06:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i06:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обираєте штори.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбираете шторы.",
+          "uk": "Ви обираєте штори."
+        },
+        "gappedTargetPhrase": "I like the patterned ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-25:i06:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i06:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i06:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви обираєте штори.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви обираєте штори.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви обираєте штори.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:word:loose-fitting",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loose-fitting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:word:loose-fitting:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loose-fitting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:word:loose-fitting:audio",
+          "transcript": "loose-fitting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:word:loose-fitting:r1",
+            "targetText": "loose-fitting",
+            "meaningByLocale": {
+              "ru": "свободного покроя.",
+              "uk": "вільного крою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loose-fitting",
+          "definitionByLocale": {
+            "ru": "свободного покроя.",
+            "uk": "вільного крою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви порівнюєте сорочки й обираєте одну. Скажіть: «Я віддаю перевагу тій, що вільного крою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви порівнюєте сорочки й обираєте одну. Скажіть: «Я віддаю перевагу тій, що вільного крою»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I prefer the loose-fitting one.",
+        "localizedMeaning": {
+          "ru": "Вы сравниваете рубашки и выбираете одну. Скажите: «Я предпочитаю ту, которая свободного покроя»",
+          "uk": "Ви порівнюєте сорочки й обираєте одну. Скажіть: «Я віддаю перевагу тій, що вільного крою»"
+        },
+        "orderedTokens": [
+          "I",
+          "prefer",
+          "the",
+          "loose-fitting",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i08:r1",
+          "text": "I prefer the loose-fitting one."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i08:r2",
+          "text": "We prefer the loose-fitting one."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i08:r3",
+          "text": "You prefer the loose-fitting one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i08:audio",
+          "transcript": "I prefer the loose-fitting one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:i08:r1",
+            "targetText": "I prefer the loose-fitting one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i08:r2",
+            "targetText": "We prefer the loose-fitting one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i08:r3",
+            "targetText": "You prefer the loose-fitting one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the loose-fitting one.",
+              "uk": "У записі звучить I prefer the loose-fitting one."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I prefer the loose-fitting one.",
+              "uk": "У записі звучить I prefer the loose-fitting one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви порівнюєте сорочки й обираєте одну.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i09:r1",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i09:r2",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i09:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви порівнюєте сорочки й обираєте одну.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сравниваете рубашки и выбираете одну.",
+          "uk": "Ви порівнюєте сорочки й обираєте одну."
+        },
+        "gappedTargetPhrase": "I prefer the loose-fitting ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-25:i09:r1",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i09:r2",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i09:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Ви порівнюєте сорочки й обираєте одну.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви порівнюєте сорочки й обираєте одну.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви порівнюєте сорочки й обираєте одну.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:word:tight-fitting",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tight-fitting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:word:tight-fitting:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tight-fitting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:word:tight-fitting:audio",
+          "transcript": "tight-fitting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:word:tight-fitting:r1",
+            "targetText": "tight-fitting",
+            "meaningByLocale": {
+              "ru": "облегающий.",
+              "uk": "обтислий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tight-fitting",
+          "definitionByLocale": {
+            "ru": "облегающий.",
+            "uk": "обтислий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви порівнюєте джинси. Скажіть: «Я не хочу ті, що обтислі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви порівнюєте джинси. Скажіть: «Я не хочу ті, що обтислі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want the tight-fitting ones.",
+        "localizedMeaning": {
+          "ru": "Вы сравниваете джинсы. Скажите: «Я не хочу те, которые облегающие»",
+          "uk": "Ви порівнюєте джинси. Скажіть: «Я не хочу ті, що обтислі»"
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "the",
+          "tight-fitting",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i11:r1",
+          "text": "I do not want the tight-fitting ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i11:r2",
+          "text": "We do not want the tight-fitting ones."
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i11:r3",
+          "text": "You do not want the tight-fitting ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i11:audio",
+          "transcript": "I do not want the tight-fitting ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-22:session-25:i11:r1",
+            "targetText": "I do not want the tight-fitting ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i11:r2",
+            "targetText": "We do not want the tight-fitting ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i11:r3",
+            "targetText": "You do not want the tight-fitting ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want the tight-fitting ones.",
+              "uk": "У записі звучить I do not want the tight-fitting ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want the tight-fitting ones.",
+              "uk": "У записі звучить I do not want the tight-fitting ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви порівнюєте джинси.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-22:session-25:i12:r1",
+          "text": "ones"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i12:r2",
+          "text": "one"
+        },
+        {
+          "responseId": "en:lesson-22:session-25:i12:r3",
+          "text": "them"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви порівнюєте джинси.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сравниваете джинсы.",
+          "uk": "Ви порівнюєте джинси."
+        },
+        "gappedTargetPhrase": "I do not want the tight-fitting ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-22:session-25:i12:r1",
+            "text": "ones"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i12:r2",
+            "text": "one"
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i12:r3",
+            "text": "them"
+          }
+        ],
+        "testedDimension": "Ви порівнюєте джинси.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-22:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви порівнюєте джинси.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          },
+          {
+            "responseId": "en:lesson-22:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви порівнюєте джинси.",
+            "feedbackByLocale": {
+              "ru": "В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.",
+              "uk": "У цій ситуації назву речі замінюємо one для однини або ones для множини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-22:session-25:i13:p1",
+            "target": "hooded",
+            "meaningByLocale": {
+              "ru": "с капюшоном",
+              "uk": "із капюшоном"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-25:i13:p2",
+            "target": "patterned",
+            "meaningByLocale": {
+              "ru": "с узором",
+              "uk": "із візерунком"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-25:i13:p3",
+            "target": "loose-fitting",
+            "meaningByLocale": {
+              "ru": "свободного покроя",
+              "uk": "вільного крою"
+            }
+          },
+          {
+            "pairId": "en:lesson-22:session-25:i13:p4",
+            "target": "tight-fitting",
+            "meaningByLocale": {
+              "ru": "облегающий",
+              "uk": "обтислий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hooded",
+          "patterned",
+          "loose-fitting",
+          "tight-fitting"
+        ],
+        "rightColumn": [
+          "із капюшоном",
+          "із візерунком",
+          "вільного крою",
+          "обтислий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: розмова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: розмова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i14:audio",
+          "transcript": "I want to change the subject."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to change the subject.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "change",
+          "the",
+          "subject"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: свято",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: свято",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i15:audio",
+          "transcript": "I want to raise a glass to Anna."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I want to raise a glass to Anna.",
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "raise",
+          "a",
+          "glass",
+          "to",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте одну сорочку з візерунком. Скажіть: «Я віддаю перевагу тій, що з візерунком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте одну сорочку з візерунком. Скажіть: «Я віддаю перевагу тій, що з візерунком»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i16:audio",
+          "transcript": "I prefer the patterned one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I prefer the patterned one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-22:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви обираєте джинси вільного крою. Скажіть: «Я хочу ті, що вільного крою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-22:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Ви обираєте джинси вільного крою. Скажіть: «Я хочу ті, що вільного крою»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-22:session-25:i17:audio",
+          "transcript": "I want the loose-fitting ones."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want the loose-fitting ones.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1a1acdb7eac9644773e122898205a581e38629af89b79ebc031f63846b94946f"
+}

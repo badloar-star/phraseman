@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
@@ -12,6 +12,9 @@ import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import HomeScenePlateShadow from './scene/HomeScenePlateShadow';
 import HomeV2SeeAllButton from './HomeV2SeeAllButton';
+import { useTheme } from '../../ThemeContext';
+import { homeSceneTokensForTheme } from './scene/home_scene_tokens';
+import { todayRingsOnCard } from './today_scene/today_scene_ring_look';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
   lesson: 'book-outline',
@@ -79,6 +82,10 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
   const ringsScreenOn = useMomentsV3Enabled();
   const seeAllShown = ringsScreenOn ? seeAll : null;
   const g = useShadowGlass();
+  // зачем (координатор 22.10, разбор цветов 4 · ТЕМЫ 5a4f9d8f0): галочка выполненного задания на «Сцене» — цвет его кольца на карточке
+  // (≥ 3:1 к плашке), как на экране «Сегодня»; свои doneColors (экран «Сегодня») и ветка без «Сцены» — как прежде
+  const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const sceneTicks = useMemo(() => todayRingsOnCard(homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance).todayRing, g), [liquidGlassThemeId, liquidGlassAppearance, g]);
   if (scene && title !== null) {
     return (
       <View testID="home-v2-today" style={s.sceneCard}>
@@ -99,7 +106,7 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
           <Text style={[s.sceneCount, { color: g.secondary }]}>{scene.count}</Text>
         </V2Pressable>
         {tasks.map((task, index) => {
-          const doneColor = doneColors?.[index] ?? g.good;
+          const doneColor = doneColors?.[index] ?? sceneTicks[index] ?? g.good;
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
           return (
             <V2Pressable

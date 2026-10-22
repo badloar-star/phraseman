@@ -49,3 +49,11 @@ No architecture change.
 ## Rollback
 
 `git revert <коммит>`.
+
+## Дополнение: черновики 8 · МОМЕНТЫ в `app/friends_together/pair_copy.ts` (закоммичен, чужих правок нет)
+
+- `pairDoneFriendAlsoToday` (строка «{Имя}: занятие сегодня тоже сделано») tr: «{name} **da** bugün çalıştı» — частица «da/de»
+  подстраивается под последнюю гласную имени («Ali da», но «Ayşe de»), а здесь всегда «da». → **«{name}: bugün o da çalıştı»**
+  (частица после «o» — всегда верна). Остальные 8 языков — верны.
+- `pairQueuedToast` en: «{name}: we’ll nudge as soon as you’re online» — без дополнения. → **«{name}: we’ll nudge them as soon as you’re back online»**.
+  Остальные 8 языков — верны (имя без склонения, как и задумано).

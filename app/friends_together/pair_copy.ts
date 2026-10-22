@@ -98,7 +98,7 @@ export function pairDoneTitle(lang: Lang, streak: number): string {
 /** Финал занятия, первый ряд: «Ирина тоже сегодня занималась» (род неизвестен — «(ась)»). */
 export function pairDoneFriendAlsoToday(lang: Lang, friendName: string): string {
   // зачем (Переводчик 21.10, «без рода»): черновик ru/uk/pl в том же духе — отдан Переводчику на сверку
-  return pick(lang, L(`${friendName}: занятие сегодня тоже сделано`, `${friendName}: заняття сьогодні теж зроблено`, `${friendName} studied today too`, `${friendName} también estudió hoy`, `${friendName} também estudou hoje`, `${friendName} cũng đã học hôm nay`, `${friendName} juga belajar hari ini`, `${friendName} da bugün çalıştı`, `${friendName}: dziś też nauka zrobiona`));
+  return pick(lang, L(`${friendName}: занятие сегодня тоже сделано`, `${friendName}: заняття сьогодні теж зроблено`, `${friendName} studied today too`, `${friendName} también estudió hoy`, `${friendName} também estudou hoje`, `${friendName} cũng đã học hôm nay`, `${friendName} juga belajar hari ini`, `${friendName}: bugün o da çalıştı`, `${friendName}: dziś też nauka zrobiona`));
 }
 
 /** Финал занятия, второй ряд: «Марк ещё не занимался(ась)». */
@@ -145,7 +145,7 @@ export function pairQueuedToast(friendName: string): Readonly<{ ru: string; uk: 
   return {
     ru: `${friendName}: позовём, как только будет сеть`,
     uk: `${friendName}: покличемо, щойно буде мережа`,
-    en: `${friendName}: we’ll nudge as soon as you’re online`,
+    en: `${friendName}: we’ll nudge them as soon as you’re back online`,
     es: `${friendName}: avisaremos en cuanto haya conexión`,
     ptBr: `${friendName}: vamos chamar assim que houver conexão`,
     vi: `${friendName}: sẽ rủ ngay khi có mạng`,

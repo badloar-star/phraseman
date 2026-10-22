@@ -64,12 +64,12 @@ const LEGAL_FILES = [
   // and is otherwise retained only as described in Retention») — верна при любом состоянии TTL; «two days» вернём после релиза и TTL.
   // 18.10 (координатор, «защита от накрутки счёта»): §4 — один абзац про счётчики против злоупотреблений и расходов: смена ника,
   // проверка имени, запросы к платному ИИ (диалоги, разбор, перевод, озвучка); хэш учётки или IP, сам IP не хранится; окно час/сутки.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'ca3dc2107c23e1c789e65e8fe065d7facde5218d7ce7b791d0f41b0ba5bed9b5'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '35dac380ae2c558eb7166bd1069a8e5f606b63b63861421ad7f407357bc1fd6a'],
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '7d055c9fb07d174d2a962949585328e7cbffa8bb960a9a06c80255746bae306f'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'c41b7b7a4ae0301a5fe4184342d62219fbb9ff93df0582bdbab83c7556d4989b'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
-  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],
-  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '63525c720991af31c182f7d7eaae73b14b04687730fc6796ad527ba10a1c2ee2'],
+  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3'],
+  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '2f9471c0d85d199ad13f2cfcf17e8df1c377762e7c394008fb8f66840cbec51c'],
 ];
 
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');

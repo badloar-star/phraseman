@@ -82,7 +82,7 @@ svg.i.s16 { width: 16px; height: 16px; } svg.i.s18 { width: 18px; height: 18px; 
 #video-promo { scroll-margin-top: 100px; padding-top: clamp(8px, 2vw, 24px); }
 #video-promo .vp-card { max-width: 720px; margin-inline: auto; position: relative; isolation: isolate; overflow: hidden; display: grid; gap: 20px;
   padding: clamp(22px, 4vw, 36px); border-radius: 28px; background: var(--card); border: 1px solid var(--edge); box-shadow: var(--shadow); }
-#video-promo .vp-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(60% 80% at 100% 0%, color-mix(in srgb, var(--fill) 22%, transparent), transparent 70%); }
+#video-promo .vp-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(55% 75% at 100% 0%, var(--smoke), transparent 72%); } /* как у формы поддержки: верно в обеих темах */
 #video-promo h2 { margin: 0; font-size: clamp(30px, 4.4vw, 44px); line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
 #video-promo .vp-lead { margin: -8px 0 0; font-size: 17px; line-height: 1.5; color: var(--sec); text-wrap: pretty; }
 #video-promo .vp-until { display: inline-flex; align-items: center; gap: 8px; justify-self: start; padding: 8px 14px; border-radius: 999px; background: var(--control); font-size: 14px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }

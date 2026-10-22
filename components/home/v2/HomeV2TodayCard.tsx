@@ -81,11 +81,19 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
   if (scene && title !== null) {
     return (
       <View testID="home-v2-today" style={[s.sceneCard, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}>
-        <View style={s.sceneHead}>
+        {/* зачем (Сверка home4; макет: серого круглого чипа › в шапке нет): шапка «Сегодня · N из M» — одна нажимаемая строка, ведёт на экран «Сегодня» (кольца дня) */}
+        <V2Pressable
+          testID="home-v2-today-see-all"
+          accessibilityRole="button"
+          accessibilityLabel={`${title}. ${scene.count}${seeAllShown ? `. ${seeAllShown.label}` : ''}`}
+          disabled={!seeAllShown}
+          onPress={() => latestRef.current.seeAll?.onPress()}
+          scaleTo={0.99}
+          style={s.sceneHead}
+        >
           <Text accessibilityRole="header" style={[s.sceneTitle, { color: g.text }]}>{title}</Text>
           <Text style={[s.sceneCount, { color: g.secondary }]}>{scene.count}</Text>
-          {seeAllShown ? <HomeV2SeeAllButton testID="home-v2-today-see-all" label={seeAllShown.label} onPress={() => latestRef.current.seeAll?.onPress()} rowHeight={17} /> : null}
-        </View>
+        </V2Pressable>
         {tasks.map((task, index) => {
           const doneColor = doneColors?.[index] ?? g.good;
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;

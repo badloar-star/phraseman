@@ -21,7 +21,9 @@ import { useScaledTextStyles } from '../../../../hooks/useLineScale';
 import { useEnergyCountdown } from '../../../EnergyContext';
 import { ThemedArtLayers } from '../../../theme/ThemedArtLayers';
 import V2Pressable from '../../../v2/V2Pressable';
+import { useTabPillTop } from '../../../../hooks/use-tab-content-bottom-pad';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
+import { homeSceneStageHeight } from './home_scene_fit';
 import type { HomeSceneState } from './home_scene_state';
 import type { HomeSceneStageTokens } from './home_scene_tokens';
 
@@ -85,9 +87,11 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
-  const { fontScale, height: windowH } = useWindowDimensions();
+  const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
+  const pillTop = useTabPillTop();
   // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана вместе со строкой статуса
-  const stageH = Math.round(windowH * HOME_SCENE_SCREEN_SHARE);
+  // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
+  const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
   const heroBounded = fontScale > HERO_BOUND_FONT_SCALE;
   const pressCta = () => {
     if (pending) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'pending_skeleton', state })); return; } // guard-ok: ранний выход называет причину

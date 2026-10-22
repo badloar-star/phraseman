@@ -60,6 +60,7 @@ import { V2, V2_TYPE } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import { V2IconTile } from './v2/V2Glass';
 import { useHomePlateStyle } from './home/v2/homePlate';
+import { HOME_SCENE_V2_ENABLED } from './home/v2/scene/home_scene_flag';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
@@ -112,6 +113,8 @@ function DailyPhraseCard({
   // зачем: homeV2 наследует поведение homeAdditional (пульс, видимость, intro),
   // но рисуется своим телом по референсу 2.0.
   const homeV2 = variant === 'homeV2';
+  // зачем (Ревизор 22.10): новый вид «Фразы дня» (scenes-compact в.2) — только со «Сценой» Главной; выпускная Главная без флага остаётся прежней 1:1
+  const sceneLook = homeV2 && HOME_SCENE_V2_ENABLED;
   const homeAdditional = variant === 'homeAdditional' || homeV2;
   const v2 = useV2Palette();
   const v2Glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
@@ -667,15 +670,15 @@ function DailyPhraseCard({
         >
           {/* зачем: владелец 24.09 — арт не должен читаться отдельным блоком от иконки;
               картинка сама служит иконкой-цитатой, без второго графического слоя. */}
-          <Image source={phraseArt} style={styles.v2Art} contentFit="contain" accessible={false} />
-          <View style={styles.v2Copy}>
-            <Text style={[styles.v2Kicker, { color: v2.textSecondary }]}>{title}</Text>
-            <Text style={[styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>
-            {cardLiteral ? (
+          <Image source={phraseArt} style={sceneLook ? styles.v2ArtScene : styles.v2Art} contentFit="contain" accessible={false} />
+          <View style={sceneLook ? styles.v2CopyScene : styles.v2Copy}>
+            <Text style={[sceneLook ? styles.v2KickerScene : styles.v2Kicker, { color: v2.textSecondary }]}>{sceneLook ? title : title.toUpperCase()}</Text>
+            <Text style={[sceneLook ? styles.v2PhraseScene : styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>
+            {cardLiteral && !sceneLook ? (
               <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{cardLiteral}</Text>
             ) : null}
           </View>
-          <Ionicons name="chevron-forward" size={18} color={v2.textSecondary} accessible={false} />
+          {sceneLook ? <Ionicons name="chevron-forward" size={18} color={v2.textSecondary} accessible={false} /> : null}
           {/* зачем (владелец через координатора 18.10): на карточке «Фраза дня» нет ни звезды (сохранить), ни «Озвучить» — они есть, когда фразу открывают (шторка). Карточка целиком нажимается и открывает фразу. */}
         </Pressable>
         ) : (
@@ -1083,14 +1086,18 @@ const styles = StyleSheet.create({
     gap: 12,
     overflow: 'hidden',
   },
-  // зачем (владелец 22.10, scenes-compact в.2 `.pod`; снимок Сверки home3): картинка слева 52×52 в потоке, подпись обычным регистром, справа шеврон — карточка с картинкой, как в макете
-  v2Art: { width: 52, height: 52 },
+  v2Art: { position: 'absolute', right: 8, top: 4, width: 72, height: 72 },
+  // зачем (владелец 22.10, scenes-compact в.2 `.pod`; снимок Сверки home3): со «Сценой» Главной картинка слева 52×52 в потоке, подпись обычным регистром, справа шеврон — карточка с картинкой, как в макете; без «Сцены» прежний вид 1:1 (Ревизор: выпускная Главная не меняется)
+  v2ArtScene: { width: 52, height: 52 },
   v2Quote: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   v2QuoteMark: { fontSize: 30, lineHeight: 36, fontWeight: '800', marginTop: 6 },
   // зачем (18.10): кнопок справа от текста больше нет — запас под арт (72 + 8 справа) вместо 122; minHeight карточки 80 держит высоту ровной
-  v2Copy: { flex: 1, minWidth: 0 },
-  v2Kicker: { fontSize: 13, lineHeight: 17 },
-  v2Phrase: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 2 },
+  v2Copy: { flex: 1, minWidth: 0, paddingRight: 80 },
+  v2CopyScene: { flex: 1, minWidth: 0 },
+  v2Kicker: { ...V2_TYPE.overline },
+  v2KickerScene: { fontSize: 13, lineHeight: 17 },
+  v2Phrase: { fontSize: 19, lineHeight: 23, fontWeight: '800', letterSpacing: -0.3, marginTop: 2 },
+  v2PhraseScene: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 2 },
   v2Translation: { ...V2_TYPE.body, marginTop: 1 },
   placeholder: {
     minHeight: 88,

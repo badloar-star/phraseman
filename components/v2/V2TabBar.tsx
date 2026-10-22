@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  Text,
   Animated,
   PanResponder,
   PixelRatio,
@@ -16,6 +17,7 @@ import { BlurView } from 'expo-blur';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
+import { HOME_SCENE_V2_ENABLED } from '../home/v2/scene/home_scene_flag';
 import { hapticTap } from '../../hooks/use-haptics';
 import { alphaHex } from '../../constants/v2Style';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -392,8 +394,9 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
             >
               {/* зачем (владелец 29.09): таббар без подписей — только крупные иконки по центру капсулы;
                   название вкладки остаётся в accessibilityLabel для TalkBack/VoiceOver. */}
-              <Animated.View style={pressedIdx === i ? { transform: [{ scale: iconPressScale }] } : null}>
-                <Ionicons name={on ? item.activeIcon : item.icon} size={ICON_SIZE} color={color} />
+              <Animated.View style={[HOME_SCENE_V2_ENABLED ? s.tabStack : null, pressedIdx === i ? { transform: [{ scale: iconPressScale }] } : null]}>
+                <Ionicons name={on ? item.activeIcon : item.icon} size={HOME_SCENE_V2_ENABLED ? 22 : ICON_SIZE} color={color} />
+                {HOME_SCENE_V2_ENABLED ? <Text numberOfLines={1} maxFontSizeMultiplier={1} style={[s.tabLabel, { color }]}>{item.label}</Text> : null}
                 {item.badge ? (
                   <View
                     testID={`tab-${item.key}-badge`}
@@ -440,5 +443,8 @@ const s = StyleSheet.create({
   capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' }, // theme-exempt: яркая вспышка плашки при нажатии — белая в любой теме
   row: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', paddingHorizontal: PAD },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  // зачем (Сверка home4, scenes-compact `.tb div`: значок 22, подпись 11/600, зазор 3): со «Сценой» у вкладок есть подписи; без неё таббар прежний (владелец 29.09, только иконки)
+  tabStack: { alignItems: 'center', gap: 3 },
+  tabLabel: { fontSize: 11, lineHeight: 14, fontWeight: '600' }, // typo-exempt: подпись вкладки по CSS макета (11/600)
   badge: { position: 'absolute', top: -1, right: -3, width: 12, height: 12, borderRadius: 6, borderWidth: 2 }, // shadow-ok: кольцо-вырез значка непрочитанного на иконке вкладки, не контейнер
 });

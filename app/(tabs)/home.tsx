@@ -575,6 +575,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (D49, PM-259): живые задания дня вместо заглушки — прогресс, done и монеты
     // считает modules/today-tasks; хук стоит до раннего return (правила хуков).
     const todayTasks = useTodayTasks(lang, studyTarget);
+    // зачем (Сверка home4, «в приложении нет строки урока (0 из 2)»; сперва логи): какой набор дня пришёл и что осталось в карточке «Сегодня» — набор дня = 3 типа из 6, детерминированно от (владелец, день) (D49, selectTodayTaskKinds),
+    // поэтому урока в наборе может не быть, а видео со «Сценой» убрано из карточки
+    const todayKindsKey = todayTasks.tasks.map((task) => `${task.kind}:${task.progress}/${task.target}${task.done ? '✓' : ''}`).join(',');
+    useEffect(() => {
+      console.log('[HOME-TODAY]', JSON.stringify({ dayKinds: todayKindsKey, scene: HOME_SCENE_V2_ENABLED, shown: todayTasks.tasks.filter((task) => !HOME_SCENE_V2_ENABLED || task.kind !== 'video').map((task) => task.kind), lessonInDay: todayTasks.tasks.some((task) => task.kind === 'lesson'), rule: 'D49: 3 типа из пула, детерминированно от (владелец, день)' })); // guard-ok: одна строка на смену набора
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: строка на смену набора, не на каждый рендер
+    }, [todayKindsKey]);
     // зачем (владелец 11.10): плитка «Шпиль» — за тем же замком, что и вкладка (флаг + интерфейс ru/uk).
     const spireTabEnabled = useSpireTabEnabled();
     // зачем D129/D130: какие разделы видны для языка обучения — только из таблицы

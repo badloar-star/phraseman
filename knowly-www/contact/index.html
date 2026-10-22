@@ -82,19 +82,19 @@ window.I18N = {
     'c.topic.support': 'Support', 'c.topic.feedback': 'Feedback', 'c.topic.legal': 'Legal question', 'c.topic.other': 'Other',
     'c.msg': 'Message *', 'c.msg.ph': 'Describe your question or idea (at least 10 characters)',
     'c.send': 'Send',
-    'vp.entry': 'Video promo — 2 years of Plus',
+    'vp.entry': 'Make a video, get 2 years of Plus',
     'vp.title': 'Two years of Plus for your video',
     'vp.lead': 'Tell people what you like about Phraseman and get 24 months of Plus.',
-    'vp.until': '📅 The promotion runs until 31 December 2026 inclusive',
-    'vp.s1': 'Record a video of at least 45 seconds. Name Phraseman, show your favourite feature and say how it helps you. A screen recording with your voice is fine — you don’t have to show your face.',
-    'vp.s2': 'Publish it on your public page on Instagram, TikTok, Facebook, YouTube or Threads. In the description: Phraseman, the hashtag #Phraseman and the link knowlyapps.com/download/.',
-    'vp.s3': 'In the video and the description, say that you get Plus for taking part.',
-    'vp.s4': 'Send the link to your post and your Phraseman username using the form below. After a check we’ll add two years of Plus.',
+    'vp.until': '📅 The offer runs until 31 December 2026, inclusive',
+    'vp.s1': 'Record a video at least 45 seconds long. Mention Phraseman by name, show your favourite feature and say how it helps you. A screen recording with your voice over it is fine — no need to show your face.',
+    'vp.s2': 'Post it on your public Instagram, TikTok, Facebook, YouTube or Threads account. In the caption, mention Phraseman and add #Phraseman and the link knowlyapps.com/download/.',
+    'vp.s3': 'Say in both the video and the caption that you’re getting Plus for taking part.',
+    'vp.s4': 'Send us the link to your post and your Phraseman username using the form below. Once we’ve checked it, we’ll add two years of Plus.',
     'vp.example': '🎬 Example video',
-    'vp.fine': 'Followers, views and likes don’t matter. Use your own words about what you have really tried. If you already pay for Plus, we’ll add two years to your remaining period.',
+    'vp.fine': 'Follower, view and like counts don’t matter. Talk in your own words about what you’ve actually tried. If you already have paid Plus, we’ll add two years on top of the time you have left.',
     'vp.f.url': 'Link to your post *', 'vp.f.user': 'Your Phraseman username *', 'vp.f.email': 'Email for our reply (optional)',
-    'vp.f.disclosed': 'I said in the video and the description that I get Plus for taking part', 'vp.f.send': 'Send',
-    'vp.done.t': 'Got it!', 'vp.done.p': 'We’ll check your post and add two years of Plus to your profile.',
+    'vp.f.disclosed': 'I’ve said in the video and the caption that I’m getting Plus for taking part', 'vp.f.send': 'Send',
+    'vp.done.t': 'Got it!', 'vp.done.p': 'We’ll check your post and add two years of Plus to your account.',
     'footer.about': 'About the app', 'footer.privacy': 'Privacy', 'footer.terms': 'Terms', 'footer.deletion': 'Data deletion'
   }
 };
@@ -170,7 +170,7 @@ window.I18N = {
         console.warn('[CONTACT] отправка не удалась:', err && err.message);
         say('err',
           'Не удалось отправить. Попробуй позже или напиши на почту.',
-          'Could not send. Try again later or write to our email.');
+          'Couldn’t send it. Try again later or email us.');
       } finally {
         if (btn) {
           btn.disabled = false;
@@ -246,7 +246,7 @@ window.I18N = {
       var v = urlEl.value.trim();
       var n = v ? networkOf(v) : null;
       netEl.className = 'vp-net' + (v && !n ? ' bad' : '');
-      netEl.textContent = !v ? '' : n ? '✓ ' + n : (isEn() ? 'Instagram, TikTok, Facebook, YouTube or Threads post link' : 'нужна ссылка на пост в Instagram, TikTok, Facebook, YouTube или Threads');
+      netEl.textContent = !v ? '' : n ? '✓ ' + n : (isEn() ? 'needs a link to a post on Instagram, TikTok, Facebook, YouTube or Threads' : 'нужна ссылка на пост в Instagram, TikTok, Facebook, YouTube или Threads');
       return n;
     }
     urlEl.addEventListener('input', showNet);
@@ -267,9 +267,9 @@ window.I18N = {
       var disclosed = document.getElementById('vp-disclosed').checked;
       if (!showNet()) { say('Вставьте ссылку на саму публикацию в Instagram, TikTok, Facebook, YouTube или Threads.', 'Paste the link to the post itself on Instagram, TikTok, Facebook, YouTube or Threads.'); urlEl.focus(); return; }
       if (username.length < 2) { say('Укажите свой username в Phraseman.', 'Enter your Phraseman username.'); document.getElementById('vp-user').focus(); return; }
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Проверьте почту — или оставьте поле пустым.', 'Check the email — or leave it empty.'); document.getElementById('vp-email').focus(); return; }
-      if (!disclosed) { say('Отметьте, что обозначили участие в акции.', 'Confirm that you disclosed taking part in the promotion.'); return; }
-      if (!cfg.contactEndpoint) { console.warn(LOG, 'no contactEndpoint'); say('Не получилось отправить. Напишите на support.phraseman@gmail.com', 'Could not send. Please write to support.phraseman@gmail.com'); return; }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Проверьте почту — или оставьте поле пустым.', 'Check your email address — or leave the field empty.'); document.getElementById('vp-email').focus(); return; }
+      if (!disclosed) { say('Отметьте, что обозначили участие в акции.', 'Please confirm that you’ve said you’re getting Plus for taking part.'); return; }
+      if (!cfg.contactEndpoint) { console.warn(LOG, 'no contactEndpoint'); say('Не получилось отправить. Напишите на support.phraseman@gmail.com', 'Couldn’t send it. Please write to support.phraseman@gmail.com'); return; }
       var btn = form.querySelector('button[type="submit"]'); var label = btn.firstElementChild; var idle = label.textContent;
       sending = true; btn.disabled = true; label.textContent = isEn() ? 'Sending…' : 'Отправляем…';
       var t0 = Date.now();
@@ -281,9 +281,9 @@ window.I18N = {
         var json = {}; try { json = await res.json(); } catch (_) { console.warn(LOG, 'empty response body'); }
         console.log(LOG, JSON.stringify({ step: 'response', status: res.status, error: json.error || null, ms: Date.now() - t0 }));
         if (!res.ok) {
-          if (json.error === 'rate_limited') say('Слишком много заявок подряд. Попробуйте позже.', 'Too many requests in a row. Please try again later.');
-          else if (json.error === 'invalid_post_url') say('Ссылка не похожа на публикацию в одной из пяти соцсетей.', 'The link does not look like a post on one of the five networks.');
-          else say('Не получилось отправить. Попробуйте позже или напишите на почту.', 'Could not send. Try again later or write to our email.');
+          if (json.error === 'rate_limited') say('Слишком много заявок подряд. Попробуйте позже.', 'That’s a lot of submissions in a row. Please try again a bit later.');
+          else if (json.error === 'invalid_post_url') say('Ссылка не похожа на публикацию в одной из пяти соцсетей.', 'That link doesn’t look like a post on one of the five networks above.');
+          else say('Не получилось отправить. Попробуйте позже или напишите на почту.', 'Couldn’t send it. Try again later or email us.');
           return;
         }
         form.hidden = true;

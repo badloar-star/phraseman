@@ -699,13 +699,12 @@ const speedMatchVocabularyPayload: LearningV2ModeNativePayloadV1 = Object.freeze
       meaningByLocale: word.meaning,
     })),
   ),
+  // зачем (координатор 22.10, вариант б): пара fine снята — fine вводится в занятии 2; в наборе пар её и не было (висячий id)
   leftColumn: Object.freeze([
     "e01-s01-pair-e01-s01-word-ready",
     "e01-s01-pair-e01-s01-word-here",
-    "e01-s01-pair-e01-s01-word-fine",
   ]),
   rightColumn: Object.freeze([
-    "e01-s01-pair-e01-s01-word-fine",
     "e01-s01-pair-e01-s01-word-ready",
     "e01-s01-pair-e01-s01-word-here",
   ]),

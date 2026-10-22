@@ -3,7 +3,6 @@ import type {
   EpisodeSourcePhrase,
   EpisodeSourcePhraseLocalizedDetails,
 } from './episode_01_source_v1';
-import { EPISODE_01_SESSION_02_LEGACY_FINE_PHRASE } from './episode_01_session_02_affirmative_phrases_v1';
 
 type TrapType = NonNullable<EpisodeSourceDistractor['trapType']>;
 
@@ -394,7 +393,8 @@ const SESSION_01_BASE_PHRASES: readonly EpisodeSourcePhrase[] = Object.freeze([
   },
 ]);
 
+// зачем (координатор 22.10, вариант б): унаследованная фраза «I am fine» убрана из занятия 1 — fine честно вводится в занятии 2
+// (карточка и фраза там); в занятии 1 его не объявляли, и сторож new_word_before_phrase справедливо краснел. Практика её не брала.
 export const EPISODE_01_SESSION_01_WORD_FIRST_PHRASES: readonly EpisodeSourcePhrase[] = Object.freeze([
   ...SESSION_01_BASE_PHRASES,
-  Object.freeze({ ...EPISODE_01_SESSION_02_LEGACY_FINE_PHRASE, id: 'e01-s01-word-first-i-am-fine' }),
 ]);

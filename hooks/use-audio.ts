@@ -71,6 +71,12 @@ export type SpeakOpts = {
   onDone?: () => void;
   onStopped?: () => void;
   onError?: (e: Error) => void;
+  /**
+   * Граница слова в речи голоса телефона (iOS willSpeakRange, Android onRangeStart): позиция в произносимом тексте и его длина.
+   * зачем (владелец 22.10, кольцо кнопки звука «строго по длине аудио»): по границам слов кольцо идёт в темп настоящей речи.
+   * Приходит не на всех движках — вызывающий обязан работать и без него.
+   */
+  onBoundary?: (event: Readonly<{ charIndex: number; charLength: number; textLength: number }>) => void;
 };
 
 const UK_MARKERS = /[іїєґІЇЄҐ]/;
@@ -537,6 +543,10 @@ export function useAudio() {
               settleSpeech();
               opts?.onStopped?.();
             },
+            // зачем (кольцо звука): позиция — в произносимом тексте (spokenText), поэтому вместе с ней отдаём и его длину
+            ...(opts?.onBoundary
+              ? { onBoundary: (event: { charIndex: number; charLength: number }) => opts.onBoundary?.({ charIndex: event.charIndex, charLength: event.charLength, textLength: spokenText.length }) }
+              : {}),
             onError: requestedVoice
               ? (e: Error) => {
                   if (!voicePlaybackPolicy.canStart(voicePolicyToken)) {

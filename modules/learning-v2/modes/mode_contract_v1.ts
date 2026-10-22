@@ -25,6 +25,7 @@ import type { LearningV2ActivityFamilyCode } from "../telemetry";
 import type {
   LearningV2InterfaceLocale,
 } from "../content/generator_course_contract";
+import type { SharedValue } from "react-native-reanimated";
 import type { LearningV2LearnerModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
 import type { LearningV2ModeLearnerFeedbackV1 } from "./mode_feedback_v1";
 
@@ -94,6 +95,12 @@ export interface LearningV2ModeCommonPropsV1 {
   readonly onPlaySlowPhraseAudio: (() => void) | null;
   /** Real player/TTS lifecycle. Motion may never pretend that audio plays. */
   readonly referenceAudioState: LearningV2ReferenceAudioStateV1;
+  /**
+   * Ход кольца кнопки звука по настоящей речи голоса телефона (0…1, читается на UI-потоке); ведёт плеер по onStart / границам
+   * слов / onDone (runtime/speech_ring_clock_v1). Нет — кольцо идёт по оценке длины фразы.
+   * зачем (владелец 22.10): «кружочек должен заполняться строго по длине аудио».
+   */
+  readonly referenceSpeechProgress?: SharedValue<number> | null;
   /** Завершение режима, чей ответ не сводится к одному обычному option. */
   readonly onModeNativeComplete: (responseId: string) => void;
   /** Accessibility fallback for Repeat & Compare. The visible phone control is

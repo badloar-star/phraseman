@@ -25,6 +25,7 @@ import Animated, {
   withSequence,
   withSpring,
   withTiming,
+  type SharedValue,
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
 import { LearningV2AudioReplayPressableV1 } from "./audio_replay_pressable_v1";
@@ -60,6 +61,7 @@ const RING_LEN = 2 * Math.PI * RING_RADIUS;
 function DictationRingButtonV1({
   playing,
   fillMs,
+  speechProgress,
   hasPlayedOnce,
   reducedMotion,
   disabled,
@@ -71,6 +73,8 @@ function DictationRingButtonV1({
 }: {
   readonly playing: boolean;
   readonly fillMs: number;
+  /** Кольцо по настоящей речи (плеер); null — по оценке fillMs. */
+  readonly speechProgress: SharedValue<number> | null;
   readonly hasPlayedOnce: boolean;
   readonly reducedMotion: boolean;
   readonly disabled: boolean;
@@ -84,6 +88,8 @@ function DictationRingButtonV1({
   const plateShadow = lv2TaskTokens(useLv2Glass()).taskPlateShadow;
   const progress = useSharedValue(0);
   useEffect(() => {
+    // зачем (владелец 22.10, «строго по длине аудио»): есть ход настоящей речи — кольцо ведёт он, оценка длины не нужна
+    if (speechProgress) return;
     if (!playing) {
       // зачем (learning-v2.html ld, ring: 1): прослушанная фраза — полное кольцо, не сброс в ноль.
       progress.value = withTiming(hasPlayedOnce ? 1 : 0, { duration: reducedMotion ? 1 : 120 });
@@ -91,9 +97,15 @@ function DictationRingButtonV1({
     }
     progress.value = 0;
     progress.value = withTiming(1, { duration: fillMs, easing: Easing.linear });
-  }, [fillMs, hasPlayedOnce, playing, progress, reducedMotion]);
+  }, [fillMs, hasPlayedOnce, playing, progress, reducedMotion, speechProgress]);
+  // зачем (кольцо по речи): ход речи живёт в плеере и переживает смену задания — эта кнопка показывает его только с
+  // первого своего проигрыша, иначе новое задание на миг показало бы полное кольцо прошлой фразы.
+  const heard = useSharedValue(0);
+  useEffect(() => {
+    if (playing) heard.value = 1;
+  }, [heard, playing]);
   const ringProps = useAnimatedProps(() => ({
-    strokeDashoffset: RING_LEN * (1 - progress.value),
+    strokeDashoffset: RING_LEN * (1 - (speechProgress ? (heard.value > 0 ? speechProgress.value : 0) : progress.value)),
   }));
   return (
     <View style={[styles.ringWrap, compact && { width: 80, height: 80 }]}>
@@ -290,6 +302,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
       <DictationRingButtonV1
         playing={playing}
         fillMs={learningV2RingFillMsForPhraseV1(modePayload?.family === "listen_build_dictation" ? modePayload.hiddenTargetPhrase : null)}
+        speechProgress={props.referenceSpeechProgress ?? null}
         hasPlayedOnce={hasPlayedOnce}
         reducedMotion={reducedMotion}
         disabled={!onPlayFullPhraseAudio}

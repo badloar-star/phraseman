@@ -28,6 +28,7 @@ import Animated, {
   withRepeat,
   withSequence,
   withTiming,
+  type SharedValue,
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
 
@@ -59,6 +60,7 @@ const RING_LEN = 2 * Math.PI * RING_RADIUS;
 function ListenChoosePlayButtonV1({
   playing,
   fillMs,
+  speechProgress,
   hasPlayedOnce,
   reducedMotion,
   disabled,
@@ -70,6 +72,8 @@ function ListenChoosePlayButtonV1({
 }: {
   readonly playing: boolean;
   readonly fillMs: number;
+  /** Кольцо по настоящей речи (плеер); null — по оценке fillMs. */
+  readonly speechProgress: SharedValue<number> | null;
   readonly hasPlayedOnce: boolean;
   readonly reducedMotion: boolean;
   readonly disabled: boolean;
@@ -96,6 +100,8 @@ function ListenChoosePlayButtonV1({
   // из фона, пользователь увидел бы перезапуск кольца с нуля под звук,
   // играющий с середины.
   useEffect(() => {
+    // зачем (владелец 22.10, «строго по длине аудио»): есть ход настоящей речи — кольцо ведёт он, оценка длины не нужна
+    if (speechProgress) return;
     if (playing) {
       progress.value = 0;
       progress.value = withTiming(1, {
@@ -106,7 +112,7 @@ function ListenChoosePlayButtonV1({
       // зачем (learning-v2.html lc-3…5, ring: 1): прослушанная фраза — полное кольцо, а не сброс в ноль.
       progress.value = withTiming(hasPlayedOnce ? 1 : 0, { duration: reducedMotion ? 1 : 120 });
     }
-  }, [fillMs, hasPlayedOnce, playing, reducedMotion, progress]);
+  }, [fillMs, hasPlayedOnce, playing, reducedMotion, progress, speechProgress]);
 
   // Пульс — единственная ВЕЧНАЯ анимация здесь, только она подчиняется
   // runtimeActive и гаснет при уходе с экрана либо сворачивании приложения.
@@ -128,8 +134,14 @@ function ListenChoosePlayButtonV1({
     };
   }, [playing, runtimeActive, reducedMotion, pulse]);
 
+  // зачем (кольцо по речи): ход речи живёт в плеере и переживает смену задания — эта кнопка показывает его только с
+  // первого своего проигрыша, иначе новое задание на миг показало бы полное кольцо прошлой фразы.
+  const heard = useSharedValue(0);
+  useEffect(() => {
+    if (playing) heard.value = 1;
+  }, [heard, playing]);
   const ringProps = useAnimatedProps(() => ({
-    strokeDashoffset: RING_LEN * (1 - progress.value),
+    strokeDashoffset: RING_LEN * (1 - (speechProgress ? (heard.value > 0 ? speechProgress.value : 0) : progress.value)),
   }));
   const btnStyle = useAnimatedStyle(() => ({
     transform: [{ scale: pulse.value }],
@@ -318,6 +330,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
       <ListenChoosePlayButtonV1
         playing={playing}
         fillMs={learningV2RingFillMsForPhraseV1(modePayload?.family === "listen_choose" ? modePayload.referenceAudio?.transcript : null)}
+        speechProgress={props.referenceSpeechProgress ?? null}
         hasPlayedOnce={hasPlayedOnce}
         reducedMotion={reducedMotion}
         disabled={!onPlayFullPhraseAudio}

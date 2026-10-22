@@ -30,6 +30,7 @@ import {
   View,
 } from "react-native";
 import Animated, {
+  cancelAnimation,
   Easing,
   FadeInDown,
   SlideInRight,
@@ -191,6 +192,13 @@ import {
   createLearningV2PreviewSpeechGenerationGuardV1,
   learningV2PreviewSpeechWatchdogMsV1,
 } from "./learning_v2_preview_speech_watchdog_v1";
+import {
+  SPEECH_RING_CALIBRATION_V1,
+  speechRingBoundaryPlanV1,
+  speechRingDonePlanV1,
+  speechRingStartPlanV1,
+  type SpeechRingEstimateV1,
+} from "../modules/learning-v2/runtime/speech_ring_clock_v1";
 import {
   learningV2SessionAbandonEvent,
   learningV2SessionCompleteEvent,
@@ -428,6 +436,26 @@ function runFrom(
     evaluatorCapsuleChild: material.evaluatorCapsuleChild,
     auxiliaryChild: material.auxiliaryChild,
   });
+}
+
+/** Один проигрыш фразы с кольцом: номер запроса голоса, что сказано и как шло — для плана кольца и журнала [AUDIO-RING]. */
+type SpeechRingRunV1 = Readonly<{
+  generation: number;
+  key: string;
+  text: string;
+  rate: number | undefined;
+  requestedAtMs: number;
+  startedAtMs: number | null;
+  estimate: SpeechRingEstimateV1 | null;
+  boundaries: number;
+}>;
+type SpeechRingEndV1 = "done" | "stopped" | "error" | "watchdog" | "cancelled" | "superseded";
+type SpeechRingBoundaryEventV1 = Readonly<{ charIndex: number; charLength: number; textLength: number }>;
+
+const ringValue3 = (value: number): number => Math.round(value * 1000) / 1000;
+
+function logSpeechRing(phase: string, payload: Readonly<Record<string, unknown>>): void {
+  if (__DEV__) console.log("[AUDIO-RING]", JSON.stringify({ phase, ...payload })); // guard-ok: ход кольца звука фразы (только разработка)
 }
 
 export default function LearningV2DirectSessionPlayerV1() {
@@ -804,8 +832,100 @@ export default function LearningV2DirectSessionPlayerV1() {
   const previewSpeechGuardRef = useRef(
     createLearningV2PreviewSpeechGenerationGuardV1(),
   );
+  // зачем (владелец 22.10: «Кружочек должен заполняться строго по длине аудио, а не сначала медленно, а потом аудио закончилось —
+  // и он резко дозаполнился»): кольцо кнопки фразы ведёт сама речь голоса — старт по onStart, темп по границам слов, плавное
+  // доведение не дольше 150 мс по onDone (runtime/speech_ring_clock_v1). Ход живёт на UI-потоке (SharedValue + withTiming):
+  // React на кадрах не перерисовывается. У кольца свой номер проигрыша — поздние колбэки прежней фразы его не двигают.
+  const referenceSpeechProgress = useSharedValue(0);
+  const speechRingRunRef = useRef<SpeechRingRunV1 | null>(null);
+  const startSpeechRing = useCallback((generation: number) => {
+    const run = speechRingRunRef.current;
+    if (!run || run.generation !== generation) {
+      logSpeechRing("start_skip", { reason: run ? "other_run" : "no_run", generation, current: run?.generation ?? null });
+      return;
+    }
+    if (run.startedAtMs !== null) {
+      logSpeechRing("start_skip", { reason: "already_started", key: run.key });
+      return;
+    }
+    const nowMs = Date.now();
+    const estimate = SPEECH_RING_CALIBRATION_V1.estimate(run.text, run.rate);
+    const plan = speechRingStartPlanV1(estimate.ms);
+    speechRingRunRef.current = { ...run, startedAtMs: nowMs, estimate };
+    referenceSpeechProgress.value = 0;
+    referenceSpeechProgress.value = withTiming(plan.target, { duration: plan.durationMs, easing: Easing.linear });
+    logSpeechRing("start", {
+      key: run.key,
+      latencyMs: nowMs - run.requestedAtMs,
+      estimateMs: estimate.ms,
+      source: estimate.source,
+      planMs: plan.durationMs,
+    });
+  }, [referenceSpeechProgress]);
+  const moveSpeechRing = useCallback((generation: number, event: SpeechRingBoundaryEventV1) => {
+    const run = speechRingRunRef.current;
+    if (!run || run.generation !== generation || run.startedAtMs === null) {
+      logSpeechRing("boundary_skip", {
+        reason: !run ? "no_run" : run.generation !== generation ? "other_run" : "not_started",
+        charIndex: event.charIndex,
+      });
+      return;
+    }
+    const elapsedMs = Date.now() - run.startedAtMs;
+    const ring = referenceSpeechProgress.value;
+    const plan = speechRingBoundaryPlanV1({ charIndex: event.charIndex, textLength: event.textLength, elapsedMs, current: ring });
+    speechRingRunRef.current = { ...run, boundaries: run.boundaries + 1 };
+    if (plan) referenceSpeechProgress.value = withTiming(plan.target, { duration: plan.durationMs, easing: Easing.linear });
+    logSpeechRing("boundary", {
+      key: run.key,
+      n: run.boundaries + 1,
+      charIndex: event.charIndex,
+      textLength: event.textLength,
+      spokenPct: event.textLength > 0 ? Math.round((event.charIndex / event.textLength) * 100) : null,
+      elapsedMs,
+      ring: ringValue3(ring),
+      planMs: plan?.durationMs ?? null,
+      decision: plan ? "retime" : "keep_plan",
+    });
+  }, [referenceSpeechProgress]);
+  const endSpeechRing = useCallback((generation: number, how: SpeechRingEndV1) => {
+    const run = speechRingRunRef.current;
+    if (!run || run.generation !== generation) {
+      // поздний колбэк прежней фразы: кольцо уже принадлежит новому проигрышу или закрыто
+      logSpeechRing("end_skip", { how, reason: run ? "other_run" : "no_run", generation, current: run?.generation ?? null });
+      return;
+    }
+    speechRingRunRef.current = null;
+    const ringAtEnd = referenceSpeechProgress.value;
+    // Голос так и не заговорил: кольцо остаётся как было до нажатия (пустое до первой фразы, полное после прослушанной);
+    // застывшее на середине от прерванной фразы — доводим, её начало уже прозвучало.
+    if (run.startedAtMs === null && how !== "done" && (ringAtEnd <= 0 || ringAtEnd >= 1)) {
+      logSpeechRing("end", { key: run.key, how, started: false, ringAtEnd: ringValue3(ringAtEnd), decision: "keep" });
+      return;
+    }
+    const plan = speechRingDonePlanV1(ringAtEnd);
+    referenceSpeechProgress.value = withTiming(plan.target, { duration: plan.durationMs, easing: Easing.out(Easing.cubic) });
+    const actualMs = run.startedAtMs === null ? null : Date.now() - run.startedAtMs;
+    const recorded = how === "done" && actualMs !== null
+      ? SPEECH_RING_CALIBRATION_V1.record(run.text, run.rate, actualMs)
+      : false;
+    logSpeechRing("end", {
+      key: run.key,
+      how,
+      chars: run.text.length,
+      rate: run.rate ?? 1,
+      estimateMs: run.estimate?.ms ?? null,
+      source: run.estimate?.source ?? null,
+      actualMs,
+      errorPct: run.estimate && actualMs ? Math.round(((run.estimate.ms - actualMs) / actualMs) * 100) : null,
+      boundaries: run.boundaries,
+      ringAtEnd: ringValue3(ringAtEnd),
+      finishMs: plan.durationMs,
+      recorded,
+    });
+  }, [referenceSpeechProgress]);
   const speakPreviewText = useCallback(
-    (text: string | null | undefined, key: string, rate?: number) => {
+    (text: string | null | undefined, key: string, rate?: number, drivesRing = false) => {
       const normalized = text?.trim();
       if (!allowsDeviceSpeech || !normalized) {
         // guard-ok: ранний выход пишет причину
@@ -835,6 +955,33 @@ export default function LearningV2DirectSessionPlayerV1() {
       setPreviewSpeechKey(null);
       stopPreviewAudio();
       const request = previewSpeechGuardRef.current.begin(key);
+      // Кольцо: новый проигрыш фразы сменяет прежний — кольцо замирает до старта голоса и пойдёт с нуля;
+      // любой другой звук закрывает прежний проигрыш фразы (он прервался).
+      const previousRing = speechRingRunRef.current;
+      if (drivesRing) {
+        if (previousRing) {
+          cancelAnimation(referenceSpeechProgress);
+          logSpeechRing("superseded", {
+            key: previousRing.key,
+            by: key,
+            ring: ringValue3(referenceSpeechProgress.value),
+            decision: "hold_until_start",
+          });
+        }
+        speechRingRunRef.current = {
+          generation: request.generation,
+          key,
+          text: normalized,
+          rate,
+          requestedAtMs: ttsStartedAtMs,
+          startedAtMs: null,
+          estimate: null,
+          boundaries: 0,
+        };
+        logSpeechRing("request", { key, chars: normalized.length, rate: rate ?? 1, ringFrom: ringValue3(referenceSpeechProgress.value) });
+      } else if (previousRing) {
+        endSpeechRing(previousRing.generation, "superseded");
+      }
       const clear = () => {
         if (!previewSpeechGuardRef.current.clear(request)) return;
         if (previewSpeechWatchdogRef.current !== null) {
@@ -848,7 +995,10 @@ export default function LearningV2DirectSessionPlayerV1() {
       // while request identity prevents a late callback from an older replay
       // of the same text from changing the current button state.
       previewSpeechWatchdogRef.current = setTimeout(
-        clear,
+        () => {
+          if (drivesRing) endSpeechRing(request.generation, "watchdog");
+          clear();
+        },
         learningV2PreviewSpeechWatchdogMsV1(normalized),
       );
       speakPreviewAudio(normalized, rate, {
@@ -859,22 +1009,29 @@ export default function LearningV2DirectSessionPlayerV1() {
           if (previewSpeechGuardRef.current.isCurrent(request)) {
             setPreviewSpeechKey(key);
           }
+          if (drivesRing) startSpeechRing(request.generation);
         },
+        onBoundary: drivesRing
+          ? (event: SpeechRingBoundaryEventV1) => moveSpeechRing(request.generation, event)
+          : undefined,
         onDone: () => {
           logTts("done");
+          if (drivesRing) endSpeechRing(request.generation, "done");
           clear();
         },
         onStopped: () => {
           logTts("stopped");
+          if (drivesRing) endSpeechRing(request.generation, "stopped");
           clear();
         },
         onError: (error: Error) => {
           logTts("error", { error: error.message });
+          if (drivesRing) endSpeechRing(request.generation, "error");
           clear();
         },
       });
     },
-    [allowsDeviceSpeech, speakPreviewAudio, stopPreviewAudio],
+    [allowsDeviceSpeech, endSpeechRing, moveSpeechRing, referenceSpeechProgress, speakPreviewAudio, startSpeechRing, stopPreviewAudio],
   );
 
   useEffect(
@@ -895,8 +1052,11 @@ export default function LearningV2DirectSessionPlayerV1() {
       previewSpeechWatchdogRef.current = null;
     }
     setPreviewSpeechKey(null);
+    // зачем (кольцо звука): после отмены поздний onStopped уже не «текущий» — закрываем проигрыш фразы здесь, иначе кольцо застынет
+    const ringRun = speechRingRunRef.current;
+    if (ringRun) endSpeechRing(ringRun.generation, "cancelled");
     stopPreviewAudio();
-  }, [stopPreviewAudio]);
+  }, [endSpeechRing, stopPreviewAudio]);
 
   useEffect(
     () => () => {
@@ -1369,6 +1529,8 @@ export default function LearningV2DirectSessionPlayerV1() {
       speakPreviewText(
         previewPracticeSpeechText,
         `practice:${practice.interactionId}`,
+        undefined,
+        true, // кольцо кнопки фразы идёт по этой речи
       );
   }, [
     practice,
@@ -3261,6 +3423,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 explanation={wrongExplanation}
                 learnerFeedback={learnerFeedback}
                 referenceAudioState={referenceAudioState}
+                referenceSpeechProgress={referenceSpeechProgress}
                 onPick={(responseId) => {
                   voiceCancelRef.current();
                   playSelectableAudio(responseId);

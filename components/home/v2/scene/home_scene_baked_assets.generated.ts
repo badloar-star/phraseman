@@ -135,6 +135,8 @@ export function homeTabbarCapMasks(accentCap: string): Readonly<{ color: number;
   return HOME_TABBAR_CAP[key] ?? null;
 }
 /** Тень капсулы таб-бара (пилюля 360×66; растянуть на ширину капсулы + 2·margin; tintColor: светлые темы — palette.shadowTint, тёмные — чёрный; альфа тени подбирается снимком «до/после», ориентир Material ≈ 0,19–0,30). На тёмных темах с цветным фоном (уровень Максимум) тень различима до ~10/255, поэтому маска общая. */
+/** Та же тень с вырезом капсулы (для полупрозрачной капсулы). */
+export const HOME_TABBAR_SHADOW_CUTOUT = { source: require('../../../../assets/images/v2scene/tabbar_shadow_cutout.webp'), width: 436, height: 142, margin: 38, offsetY: 8 } as const;
 export const HOME_TABBAR_SHADOW = { source: require('../../../../assets/images/v2scene/tabbar_shadow.webp'), width: 436, height: 142, margin: 38, offsetY: 8 } as const;
 
 export type HomeSceneShadowMask = Readonly<{ source: number; width: number; height: number; margin: number; offsetY: number }>;
@@ -143,7 +145,7 @@ export type HomeSceneShadowMask = Readonly<{ source: number; width: number; heig
  * Рисовать: Image позади плиты, разместить на (−margin) от каждого края плиты, растянуть на (ширина плиты + 2·margin) × (высота + 2·margin), tintColor = токен
  * (dark/light → g.plateShadow, lightSoft → g.plateShadowSoft); тёмная тема — один слой dark, светлая — light + lightSoft.
  */
-export const HOME_SCENE_SHADOW_MASKS: Readonly<Record<'tile' | 'today' | 'phrase', Readonly<Record<'dark' | 'light' | 'lightSoft', HomeSceneShadowMask>>>> = Object.freeze({
+export const HOME_SCENE_SHADOW_MASKS: Readonly<Record<'tile' | 'today' | 'phrase' | 'phraseCutout', Readonly<Record<'dark' | 'light' | 'lightSoft', HomeSceneShadowMask>>>> = Object.freeze({
   tile: Object.freeze({
     dark: { source: require('../../../../assets/images/v2scene/shadow_tile_dark.webp'), width: 174, height: 180, margin: 44, offsetY: 16 },
     light: { source: require('../../../../assets/images/v2scene/shadow_tile_light.webp'), width: 164, height: 170, margin: 39, offsetY: 14 },
@@ -158,5 +160,10 @@ export const HOME_SCENE_SHADOW_MASKS: Readonly<Record<'tile' | 'today' | 'phrase
     dark: { source: require('../../../../assets/images/v2scene/shadow_phrase_dark.webp'), width: 446, height: 168, margin: 44, offsetY: 16 },
     light: { source: require('../../../../assets/images/v2scene/shadow_phrase_light.webp'), width: 436, height: 158, margin: 39, offsetY: 14 },
     lightSoft: { source: require('../../../../assets/images/v2scene/shadow_phrase_lightSoft.webp'), width: 370, height: 92, margin: 6, offsetY: 1 },
+  }),
+  phraseCutout: Object.freeze({
+    dark: { source: require('../../../../assets/images/v2scene/shadow_phrase_dark_cutout.webp'), width: 446, height: 168, margin: 44, offsetY: 16 },
+    light: { source: require('../../../../assets/images/v2scene/shadow_phrase_light_cutout.webp'), width: 436, height: 158, margin: 39, offsetY: 14 },
+    lightSoft: { source: require('../../../../assets/images/v2scene/shadow_phrase_lightSoft_cutout.webp'), width: 370, height: 92, margin: 6, offsetY: 1 },
   }),
 });

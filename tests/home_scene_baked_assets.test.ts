@@ -89,7 +89,7 @@ describe('Запечённые ассеты сцены Главной', () => {
       expect(img.data[3]!).toBeLessThan(6);
       n += 1;
     }
-    expect(n).toBe(9);
+    expect(n).toBe(12); // tile/today/phrase × 3 слоя + phraseCutout × 3 слоя
   });
   it('таб-бар: маски плашки по классам прозрачности accentCap совпадают с градиентом SVG для ВСЕХ тем × оформлений × уровней (≤ 3/255)', async () => {
     const bad: string[] = [];
@@ -129,5 +129,36 @@ describe('Запечённые ассеты сцены Главной', () => {
   it('таб-бар: маска тени капсулы есть и описана в таблице (общая для светлых и тёмных тем: на тёмных цветных фонах уровня «Максимум» тень различима до ~10/255)', () => {
     expect(fs.existsSync(path.join(DIR, 'tabbar_shadow.webp'))).toBe(true);
     expect(TABLE).toContain('HOME_TABBAR_SHADOW');
+  });
+  it('маски с вырезом плиты («Фраза дня» и капсула таб-бара): под плитой альфа 0, снаружи тень на месте', async () => {
+    // зачем (3 · МАКЕТЫ, homePlateFill 50 %, приказ владельца 11.10): плита полупрозрачная — обычная маска просвечивает сквозь неё и плита темнеет
+    const block = /phraseCutout: Object\.freeze\(\{([\s\S]*?)\}\),/.exec(TABLE)?.[1] ?? '';
+    const entries = [...block.matchAll(/(\w+): \{ source: require\('[^']*\/(shadow_phrase_\w+\.webp)'\), width: (\d+), height: (\d+), margin: (\d+)/g)];
+    expect(entries.length).toBe(3);
+    // скругление плиты: «Фраза дня» r18, капсула таб-бара r33 (внутри скруглённой фигуры, а не прямоугольника)
+    const files: [string, number, number, number, number][] = entries.map((m) => [m[2]!, Number(m[3]), Number(m[4]), Number(m[5]), 18]);
+    const tab = /HOME_TABBAR_SHADOW_CUTOUT = \{ source: require\('[^']*\/(tabbar_shadow_cutout\.webp)'\), width: (\d+), height: (\d+), margin: (\d+)/.exec(TABLE);
+    expect(tab).not.toBeNull();
+    files.push([tab![1]!, Number(tab![2]), Number(tab![3]), Number(tab![4]), 33]);
+    for (const [file, w, h, margin, radius] of files) {
+      const img = await decode(file);
+      expect([file, img.width, img.height]).toEqual([file, w, h]);
+      let inside = 0;
+      let outside = 0;
+      // внутри плиты (отступ 2 px от её края, чтобы не считать сглаженный край) альфа 0
+      const hw = (w - margin * 2) / 2;
+      const hh = (h - margin * 2) / 2;
+      for (let y = 0; y < h; y += 1) {
+        for (let x = 0; x < w; x += 1) {
+          const qx = Math.abs(x + 0.5 - w / 2) - (hw - radius);
+          const qy = Math.abs(y + 0.5 - h / 2) - (hh - radius);
+          const d = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - radius;
+          if (d < -2) inside = Math.max(inside, img.data[(y * w + x) * 4 + 3]!);
+        }
+      }
+      for (let i = 3; i < img.data.length; i += 4) outside = Math.max(outside, img.data[i]!);
+      expect([file, inside]).toEqual([file, 0]);
+      expect(outside).toBeGreaterThan(2); // тень вне плиты не вырезана целиком
+    }
   });
 });

@@ -111,7 +111,8 @@ function blur(src: Float32Array, w: number, h: number, sigma: number): Float32Ar
 }
 
 type ShadowEntry = { file: string; width: number; height: number; margin: number; offsetY: number };
-async function makeShadow(fileName: string, plate: { w: number; h: number; r: number }, layer: ShadowLayer): Promise<ShadowEntry> {
+// cutout: вырез плиты — альфа × (1 − форма самой плиты БЕЗ сдвига и spread); нужен полупрозрачным плитам (homePlateFill 50 %, приказ владельца 11.10), сквозь которые иначе просвечивает тень и плита темнеет
+async function makeShadow(fileName: string, plate: { w: number; h: number; r: number }, layer: ShadowLayer, cutout = false): Promise<ShadowEntry> {
   const sigma = layer.blur / 2;
   const margin = Math.max(2, Math.ceil(sigma * 3 + Math.abs(layer.offsetY) + Math.max(0, layer.spread)) + Math.min(0, layer.spread));
   const W = plate.w + margin * 2;
@@ -126,6 +127,12 @@ async function makeShadow(fileName: string, plate: { w: number; h: number; r: nu
     shape[y * W + x] = Math.min(1, Math.max(0, 0.5 - d));
   }
   const mask = blur(shape, W, H, sigma);
+  if (cutout) {
+    for (let y = 0; y < H; y += 1) for (let x = 0; x < W; x += 1) {
+      const d = sdRoundRect(x + 0.5, y + 0.5, W / 2, H / 2, plate.w / 2, plate.h / 2, plate.r);
+      mask[y * W + x] = mask[y * W + x]! * (1 - Math.min(1, Math.max(0, 0.5 - d)));
+    }
+  }
   const rgba = new Uint8Array(W * H * 4);
   for (let i = 0; i < W * H; i += 1) { rgba[i * 4] = 255; rgba[i * 4 + 1] = 255; rgba[i * 4 + 2] = 255; rgba[i * 4 + 3] = Math.round(255 * Math.min(1, mask[i]!)); }
   await webp(fileName, rgba, W, H);
@@ -137,6 +144,9 @@ for (const cls of CLASSES) {
   shadowTable[cls.name] = {};
   for (const layer of LAYERS) shadowTable[cls.name]![layer.name] = await makeShadow(`shadow_${cls.name}_${layer.name}.webp`, cls, layer);
 }
+// класс phraseCutout: те же маски «Фразы дня» с вырезом плиты (плита полупрозрачная)
+shadowTable.phraseCutout = {};
+for (const layer of LAYERS) shadowTable.phraseCutout[layer.name] = await makeShadow(`shadow_phrase_${layer.name}_cutout.webp`, CLASSES[2], layer, true);
 
 // ── (г) таб-бар: плашка активной вкладки и тень капсулы (пункт 5 плана) ──
 // Плашка: две белые маски (под цвет темы и белый блик) вместо SVG-радиала; без скругления — его даёт родитель (borderRadius 18 с обрезкой).
@@ -158,6 +168,8 @@ for (const cls of CAP_ALPHA_CLASSES) {
 }
 // Тень капсулы (общая маска для светлых и тёмных тем): пилюля 360×66 r33, приближение к Material (сдвиг 8, размытие 20).
 const tabbarShadow = await makeShadow('tabbar_shadow.webp', { w: 360, h: 66, r: 33 }, { name: 'tabbarLight', offsetY: 8, blur: 20, spread: 0 });
+// та же тень с вырезом капсулы (если капсула полупрозрачная и тень просвечивает)
+const tabbarShadowCutout = await makeShadow('tabbar_shadow_cutout.webp', { w: 360, h: 66, r: 33 }, { name: 'tabbarLight', offsetY: 8, blur: 20, spread: 0 }, true);
 
 // ── таблица ──
 const rel = (f: string): string => `../../../../assets/images/v2scene/${f}`;
@@ -203,6 +215,8 @@ export function homeTabbarCapMasks(accentCap: string): Readonly<{ color: number;
   return HOME_TABBAR_CAP[key] ?? null;
 }
 /** Тень капсулы таб-бара (пилюля 360×66; растянуть на ширину капсулы + 2·margin; tintColor: светлые темы — palette.shadowTint, тёмные — чёрный; альфа тени подбирается снимком «до/после», ориентир Material ≈ 0,19–0,30). На тёмных темах с цветным фоном (уровень Максимум) тень различима до ~10/255, поэтому маска общая. */
+/** Та же тень с вырезом капсулы (для полупрозрачной капсулы). */
+export const HOME_TABBAR_SHADOW_CUTOUT = { source: require('${rel('tabbar_shadow_cutout.webp')}'), width: ${tabbarShadowCutout.width}, height: ${tabbarShadowCutout.height}, margin: ${tabbarShadowCutout.margin}, offsetY: ${tabbarShadowCutout.offsetY} } as const;
 export const HOME_TABBAR_SHADOW = { source: require('${rel('tabbar_shadow.webp')}'), width: ${tabbarShadow.width}, height: ${tabbarShadow.height}, margin: ${tabbarShadow.margin}, offsetY: ${tabbarShadow.offsetY} } as const;
 
 export type HomeSceneShadowMask = Readonly<{ source: number; width: number; height: number; margin: number; offsetY: number }>;
@@ -211,7 +225,7 @@ export type HomeSceneShadowMask = Readonly<{ source: number; width: number; heig
  * Рисовать: Image позади плиты, разместить на (−margin) от каждого края плиты, растянуть на (ширина плиты + 2·margin) × (высота + 2·margin), tintColor = токен
  * (dark/light → g.plateShadow, lightSoft → g.plateShadowSoft); тёмная тема — один слой dark, светлая — light + lightSoft.
  */
-export const HOME_SCENE_SHADOW_MASKS: Readonly<Record<'tile' | 'today' | 'phrase', Readonly<Record<'dark' | 'light' | 'lightSoft', HomeSceneShadowMask>>>> = Object.freeze({
+export const HOME_SCENE_SHADOW_MASKS: Readonly<Record<'tile' | 'today' | 'phrase' | 'phraseCutout', Readonly<Record<'dark' | 'light' | 'lightSoft', HomeSceneShadowMask>>>> = Object.freeze({
 ${Object.entries(shadowTable).map(([cls, layers]) => `  ${cls}: Object.freeze({
 ${Object.entries(layers).map(([ln, m]) => `    ${ln}: { source: require('${rel(m.file)}'), width: ${m.width}, height: ${m.height}, margin: ${m.margin}, offsetY: ${m.offsetY} },`).join('\n')}
   }),`).join('\n')}

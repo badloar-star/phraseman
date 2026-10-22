@@ -8,7 +8,7 @@
 // Двойной тап защищён выше (useSpireGame: один старт за раз) и здесь (busy).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import type { Lang } from '../../constants/i18n';
@@ -24,6 +24,7 @@ import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
 import { logSpireDock, logSpireLayout, roundLayout } from './spire_layout_log';
 import SpireNoEnergySheet from './moments/SpireNoEnergySheet';
+import { spireSceneText } from './scene/spire_scene_strings';
 
 type Props = Readonly<{
   lang: Lang;
@@ -33,9 +34,15 @@ type Props = Readonly<{
   premium: boolean;
   block: SpireStartBlock;
   onClimb: () => void;
+  /** зачем (Пик v2, эталон peak-scene-v2.html): на «Сцене» без энергии — «Играть через 6:40»; по умолчанию — прежняя подпись. */
+  scene?: boolean;
+  /** «Сцена», подбор комнаты: кнопка ждёт и показывает «Ищем комнату…» с крутилкой. */
+  searching?: boolean;
+  /** Только dev-вход «Сцены»: энергия из моков вместо настоящей (zero — нет энергии, time — «6:40»). */
+  previewEnergy?: Readonly<{ zero: boolean; time: string }>;
 }>;
 
-function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
+function SpireClimbDock({ lang, ready, busy, premium, block, onClimb, scene = false, searching = false, previewEnergy }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   // зачем (координатор 15.10, spire-gap-010; эталон kit.css `.cta.dis`: background var(--disabled), текст var(--disabled-ink)): неактивная кнопка — токены ОТКЛЮЧЁННОЙ заливки и подписи темы
   // (читаемая светлая серая, правило «кнопки не сливаются»), а не control + приглушённый текст, который на тёмном слипался с фоном
@@ -43,8 +50,12 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
   const off = useMemo(() => { const g = liquidGlassTokens(liquidGlassThemeId); return { fill: g.buttonFillDisabled, ink: g.buttonInkDisabled }; }, [liquidGlassThemeId]);
   const router = useRouter();
   const { energy, bonusEnergy, isUnlimited, energyReady } = useEnergy();
-  const noEnergy = !premium && !isUnlimited && energyReady && energy + bonusEnergy < 1;
-  const { formattedTime } = useEnergyCountdown({ visible: noEnergy });
+  const realNoEnergy = !premium && !isUnlimited && energyReady && energy + bonusEnergy < 1;
+  // зачем (dev-вход «Сцены» Пика): энергия из моков — только когда её подали; в боевом пути previewEnergy нет
+  const noEnergy = previewEnergy ? previewEnergy.zero : realNoEnergy;
+  const { formattedTime } = useEnergyCountdown({ visible: noEnergy && !previewEnergy });
+  const timeText = previewEnergy ? previewEnergy.time : formattedTime;
+  const energyLabel = scene ? spireSceneText(lang, 'playIn', { t: timeText || '—' }) : spireGameText(lang, 'energyIn', { t: timeText || '—' });
   // зачем (координатор 15.10, m22 по эталону v3): «Поднимайся без ожидания с Plus ›» открывает шторку над доком, а не сразу пейвол.
   // «Попробовать Plus» в шторке ведёт в прежний пейвол с той же атрибуцией (no_energy / spire_no_energy) — путь покупки не тронут.
   const [noEnergySheet, setNoEnergySheet] = useState(false);
@@ -77,10 +88,10 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
           accessible
           accessibilityRole="button"
           accessibilityState={{ disabled: true }}
-          accessibilityLabel={spireGameText(lang, 'energyIn', { t: formattedTime || '—' })}
+          accessibilityLabel={energyLabel}
         >
           <Ionicons name="flash" size={18} color={off.ink} />
-          <Text style={[s.ctaText, { color: off.ink }]}>{spireGameText(lang, 'energyIn', { t: formattedTime || '—' })}</Text>
+          <Text style={[s.ctaText, { color: off.ink }]}>{energyLabel}</Text>
         </View>
         <V2Pressable onPress={openPlus} accessibilityRole="link" style={s.plus} testID="spire-dock-plus">
           <Text style={[s.plusText, { color: p.textSecondary }]}>
@@ -89,6 +100,18 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
           <Ionicons name="chevron-forward" size={16} color={p.textSecondary} />
         </V2Pressable>
         <SpireNoEnergySheet lang={lang} visible={noEnergySheet} onPlus={sheetToPaywall} onClose={closeSheet} />
+      </View>
+    );
+  }
+
+  if (scene && searching) {
+    // зачем (эталон V2, «ищем комнату»): кнопка ждёт подбора комнаты — без строки причины, с крутилкой; нажать нечего, пока комната не пришла
+    return (
+      <View testID="spire-dock-searching">
+        <View style={[s.cta, s.waiting, { backgroundColor: p.cta }]} accessible accessibilityRole="button" accessibilityState={{ disabled: true, busy: true }} accessibilityLabel={spireSceneText(lang, 'searchingRoom')}>
+          <ActivityIndicator size="small" color={p.ctaText} />
+          <Text style={[s.ctaText, { color: p.ctaText }]}>{spireSceneText(lang, 'searchingRoom')}</Text>
+        </View>
       </View>
     );
   }
@@ -134,6 +157,8 @@ const s = StyleSheet.create({
   cta: { minHeight: V2.cta.height, borderRadius: V2.cta.radius, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaText: { fontSize: 16, fontWeight: '700' },
   arrow: { position: 'absolute', right: 22 },
+  // «Ищем комнату…»: та же кнопка, приглушённая на 18 % (эталон .pk2-wait)
+  waiting: { opacity: 0.82 },
   plus: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   plusText: { fontSize: 16, fontWeight: '700' },
   note: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginBottom: 10 },

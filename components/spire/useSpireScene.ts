@@ -24,6 +24,12 @@ export type SpireScene = Readonly<{
   shadow: string;
 }>;
 
+/**
+ * зачем (Пик v2, эталон peak-scene-v2.html: башня — герой «Сцены», а сцена всегда тёмная при любой теме): цвета окна башни на «Сцене» —
+ * те же, что у единого рендера макетов (docs/design/v2-app/spire-tower-render.js, сцена 'dark').
+ */
+export const SPIRE_SCENE_TOWER: SpireScene = Object.freeze({ light: false, num: '#B8B9BD', numMine: '#FFFFFF', cloudsLabel: '#B8B9BD', tone: '#FFFFFF', star: '#FFFFFF', shadow: 'rgba(0,0,0,0.55)' }); // theme-exempt: сцена всегда тёмная, цвета эталона
+
 export function useSpireScene(): SpireScene {
   const { liquidGlassThemeId } = useTheme();
   return useMemo(() => {

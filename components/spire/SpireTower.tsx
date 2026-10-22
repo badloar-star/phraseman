@@ -16,7 +16,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useSpirePalette } from './useSpirePalette';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
-import { useSpireScene } from './useSpireScene';
+import { SPIRE_SCENE_TOWER, useSpireScene } from './useSpireScene';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { getDevSpireScrollOverride, getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import SpireRankCoin from './SpireRankCoin';
@@ -53,6 +53,11 @@ type Props = Readonly<{
   windowHeight?: number;
   /** Палец в окне башни (true) / отпущен (false): экран на это время не отдаёт жест странице и обновлению потягиванием. */
   onTouchActive?: (active: boolean) => void;
+  /**
+   * зачем (Пик v2, владелец 22.10; эталон peak-scene-v2.html): 'scene' — башня герой «Сцены»: без плиты окна, тени, скругления и затухания
+   * у верха, подписи этажей светлые (сцена всегда тёмная). По умолчанию — прежнее окно.
+   */
+  variant?: 'window' | 'scene';
 }>;
 
 const RIVAL = 22;
@@ -66,7 +71,7 @@ const RIVAL_BIG_FONT = 1.15;
  * Соперники слева от этажа (floorSvg макета): до двух кружков внахлёст и «+N».
  * зачем: монета ранга участника (владелец 13.10), неизвестный ранг — базовая монета, не буква. Слой RN поверх SVG, без касаний (тап по этажу проходит насквозь).
  */
-const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth, singleCoin }: Readonly<{ rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean; renderWidth: number; singleCoin: boolean }>) {
+const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth, singleCoin, extraColor }: Readonly<{ extraColor?: string; rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean; renderWidth: number; singleCoin: boolean }>) {
   const p = useSpirePalette();
   const items: React.ReactNode[] = [];
   for (const fl of SPIRE_TOWER_GEOM.floors) {
@@ -85,7 +90,7 @@ const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth,
             <SpireRankCoin rank={m.coinRank} size={RIVAL * scale} plus={m.isPremium} plusKind="flat" />
           </View>
         ))}
-        {extra > 0 ? <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra, { color: p.textSecondary }]}>{`+${extra}`}</Text> : null}
+        {extra > 0 ? <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra, { color: extraColor ?? p.textSecondary }]}>{`+${extra}`}</Text> : null}
       </View>,
     );
   }
@@ -123,7 +128,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window' }: Props) {
   const p = useSpirePalette();
   const myIsPlus = useIsPlus(); // зачем (владелец 21.10, реестр №6): мой маркер на башне — с кольцом, если у меня Plus
   const g = useShadowGlass();
@@ -270,7 +275,9 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не просыпается зря
   // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются
   // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): небо, звёзды, облака, земля и подписи — из токенов темы; башня — наряд лиги
-  const scene = useSpireScene();
+  const themeScene = useSpireScene();
+  const sceneMode = variant === 'scene';
+  const scene = sceneMode ? SPIRE_SCENE_TOWER : themeScene;
   const label = useMemo(
     () => `${spireText(lang, 'floor')} ${selected}`,
     [lang, selected],
@@ -285,9 +292,9 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
 
   return (
     // зачем (владелец 12.10, стиль «Тень»): окно башни без кромки; тень — на внешней обёртке, обрезка содержимого — на внутреннем окне.
-    <View style={[s.shadowWrap, { boxShadow: plateBoxShadow(g) }]}>
+    <View style={sceneMode ? null : [s.shadowWrap, { boxShadow: plateBoxShadow(g) }]}>
     <View
-      style={[s.window, { height: windowHeight, backgroundColor: g.plateFillFrom }]}
+      style={[s.window, { height: windowHeight, backgroundColor: sceneMode ? 'transparent' : g.plateFillFrom }, sceneMode ? s.windowScene : null]}
       onLayout={onLayout}
       accessible
       accessibilityRole="adjustable"
@@ -317,7 +324,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
             <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-                <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} />
+                <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={sceneMode ? SPIRE_SCENE_TOWER.num : undefined} />
               </View>
             ) : null}
             {myFloor !== null ? (
@@ -333,7 +340,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
           </View>
         ) : null}
       </ScrollView>
-      {fadeTop ? (
+      {fadeTop && !sceneMode ? (
         <LinearGradient
           pointerEvents="none"
           testID="spire-tower-top-fade"
@@ -353,6 +360,8 @@ const s = StyleSheet.create({
   // Тонкая (1px) полупрозрачная кромка окна, как .tview в макете; толстых рамок нет.
   shadowWrap: { borderRadius: 22 },
   window: { height: WINDOW_HEIGHT, borderRadius: 22, overflow: 'hidden' },
+  // «Сцена»: окно без скругления — башня стоит прямо на свету сцены
+  windowScene: { borderRadius: 0 },
   topFade: { position: 'absolute', left: 0, right: 0, top: 0, height: TOP_FADE_H },
   rivals: { position: 'absolute', flexDirection: 'row', alignItems: 'center' },
   rivalExtra: { marginLeft: 5, fontSize: 13, fontWeight: '700' },

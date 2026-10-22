@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже вчителька про стіну",
+      "prompt": "Послухайте й виберіть — учителька показує вам сусідні будівлі",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-37:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-37:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже вчителька про стіну",
+      "accessibilityLabel": "Послухайте й виберіть — учителька показує вам сусідні будівлі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-37:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже вчителька про стіну",
+            "testedDimension": "Послухайте й виберіть — учителька показує вам сусідні будівлі",
             "feedbackByLocale": {
               "ru": "В записи `That wall` — стена одна, а в этом варианте `Those walls` — несколько.",
               "uk": "У записі `That wall` — стіна одна, а в цьому варіанті `Those walls` — кілька."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-37:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже вчителька про стіну",
+            "testedDimension": "Послухайте й виберіть — учителька показує вам сусідні будівлі",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `That` (далеко), а в этом варианте — `This` (рядом).",
               "uk": "У записі перше слово — `That` (далеко), а в цьому варіанті — `This` (поруч)."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже брат про будівлю",
+      "prompt": "Послухайте й виберіть — брат оглядає навчальний центр разом із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-37:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-37:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже брат про будівлю",
+      "accessibilityLabel": "Послухайте й виберіть — брат оглядає навчальний центр разом із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-37:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже брат про будівлю",
+            "testedDimension": "Послухайте й виберіть — брат оглядає навчальний центр разом із вами",
             "feedbackByLocale": {
               "ru": "В записи `This building` — здание одно, а в этом варианте `These buildings` — несколько.",
               "uk": "У записі `This building` — будівля одна, а в цьому варіанті `These buildings` — кілька."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-37:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже брат про будівлю",
+            "testedDimension": "Послухайте й виберіть — брат оглядає навчальний центр разом із вами",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `This` (рядом), а в этом варианте — `That` (далеко).",
               "uk": "У записі перше слово — `This` (поруч), а в цьому варіанті — `That` (далеко)."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання брата про вихід",
+      "prompt": "Послухайте й виберіть — оглядаючи будівлі, брат ставить запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-37:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання брата про вихід",
+      "accessibilityLabel": "Послухайте й виберіть — оглядаючи будівлі, брат ставить запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-37:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання брата про вихід",
+            "testedDimension": "Послухайте й виберіть — оглядаючи будівлі, брат ставить запитання",
             "feedbackByLocale": {
               "ru": "В записи `Is that exit` — выход один, а в этом варианте `Are those exits` — несколько.",
               "uk": "У записі `Is that exit` — вихід один, а в цьому варіанті `Are those exits` — кілька."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-37:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання брата про вихід",
+            "testedDimension": "Послухайте й виберіть — оглядаючи будівлі, брат ставить запитання",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
               "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "723ed87e926dd30046d6afb336893c151dc5daa05d07fb7dcf77291e9b355408"
+  "learnerFingerprint": "7947c38fdb1352884d890e52595fec2fcc84d7f61bff00e17a707188f12d1cc1"
 }

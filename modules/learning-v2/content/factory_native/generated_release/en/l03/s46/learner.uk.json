@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте брата й виберіть фразу",
+      "prompt": "Послухайте й виберіть — брат оглядає з вами куплений будинок",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-46:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-46:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте брата й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть — брат оглядає з вами куплений будинок",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-46:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте брата й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — брат оглядає з вами куплений будинок",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
               "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-46:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте брата й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — брат оглядає з вами куплений будинок",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `open`, а в этом варианте — `closed`.",
               "uk": "У записі останнє слово — `open`, а в цьому варіанті — `closed`."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже брат",
+      "prompt": "Послухайте й виберіть — будинком попереду вас іде брат",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-46:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-46:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже брат",
+      "accessibilityLabel": "Послухайте й виберіть — будинком попереду вас іде брат",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-46:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже брат",
+            "testedDimension": "Послухайте й виберіть — будинком попереду вас іде брат",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
               "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-46:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже брат",
+            "testedDimension": "Послухайте й виберіть — будинком попереду вас іде брат",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `old`, а в этом варианте — `new`.",
               "uk": "У записі останнє слово — `old`, а в цьому варіанті — `new`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже сусідка",
+      "prompt": "Послухайте й виберіть — сусідка оглядає будинок разом із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-46:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-46:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже сусідка",
+      "accessibilityLabel": "Послухайте й виберіть — сусідка оглядає будинок разом із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-46:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже сусідка",
+            "testedDimension": "Послухайте й виберіть — сусідка оглядає будинок разом із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `narrow`, а в этом варианте — `steep`.",
               "uk": "У записі останнє слово — `narrow`, а в цьому варіанті — `steep`."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-46:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже сусідка",
+            "testedDimension": "Послухайте й виберіть — сусідка оглядає будинок разом із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `narrow`, а в этом варианте — `wide`.",
               "uk": "У записі останнє слово — `narrow`, а в цьому варіанті — `wide`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7d951782dfd6ef9f104fd34853c945bc4ee170658db3069db9437fcaf51a84b6"
+  "learnerFingerprint": "0241474175939e4f1aa071439241f8b602f638d0f669d5a0973937ad6d5d70dc"
 }

@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що майстер каже про ремонт",
+      "prompt": "Послухайте й виберіть — майстер ходить кімнатою і показує вам",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-05:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що майстер каже про ремонт",
+      "accessibilityLabel": "Послухайте й виберіть — майстер ходить кімнатою і показує вам",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-05:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що майстер каже про ремонт",
+            "testedDimension": "Послухайте й виберіть — майстер ходить кімнатою і показує вам",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `floor`, а в этом варианте — `wall`.",
               "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `wall`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-05:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що майстер каже про ремонт",
+            "testedDimension": "Послухайте й виберіть — майстер ходить кімнатою і показує вам",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `floor`, а в этом варианте — `crack`.",
               "uk": "У записі останнє слово — `floor`, а в цьому варіанті — `crack`."
@@ -639,7 +639,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання майстра",
+      "prompt": "Послухайте й виберіть — у кімнаті майстер ставить вам запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i09:r1",
@@ -658,7 +658,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-05:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання майстра",
+      "accessibilityLabel": "Послухайте й виберіть — у кімнаті майстер ставить вам запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -688,7 +688,7 @@
           {
             "responseId": "en:lesson-03:session-05:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання майстра",
+            "testedDimension": "Послухайте й виберіть — у кімнаті майстер ставить вам запитання",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `wall`, а в этом варианте — `crack`.",
               "uk": "У записі останнє слово — `wall`, а в цьому варіанті — `crack`."
@@ -697,7 +697,7 @@
           {
             "responseId": "en:lesson-03:session-05:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання майстра",
+            "testedDimension": "Послухайте й виберіть — у кімнаті майстер ставить вам запитання",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `wall`, а в этом варианте — `floor`.",
               "uk": "У записі останнє слово — `wall`, а в цьому варіанті — `floor`."
@@ -985,7 +985,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що майстер каже про тріщину",
+      "prompt": "Послухайте й виберіть — ви йдете за майстром кімнатою",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-05:i15:r1",
@@ -1004,7 +1004,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-05:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що майстер каже про тріщину",
+      "accessibilityLabel": "Послухайте й виберіть — ви йдете за майстром кімнатою",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-03:session-05:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що майстер каже про тріщину",
+            "testedDimension": "Послухайте й виберіть — ви йдете за майстром кімнатою",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `crack`, а в этом варианте — `wall`.",
               "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `wall`."
@@ -1043,7 +1043,7 @@
           {
             "responseId": "en:lesson-03:session-05:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що майстер каже про тріщину",
+            "testedDimension": "Послухайте й виберіть — ви йдете за майстром кімнатою",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `crack`, а в этом варианте — `ceiling`.",
               "uk": "У записі останнє слово — `crack`, а в цьому варіанті — `ceiling`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "11371a881f106d760d7a11b001a2fd509c7c8f6d4b78b6ab3ba0c0404d495ac5"
+  "learnerFingerprint": "f7ff98c97d63816140cff45f0b63ab34ab4ad54b295b0ce42a566190ef499c55"
 }

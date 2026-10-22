@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що касир каже про рядок на екрані",
+      "prompt": "Послухайте й виберіть — касир звіряє ваш кошик і папери",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-16:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-16:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте, що касир каже про рядок на екрані",
+      "accessibilityLabel": "Послухайте й виберіть — касир звіряє ваш кошик і папери",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-16:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що касир каже про рядок на екрані",
+            "testedDimension": "Послухайте й виберіть — касир звіряє ваш кошик і папери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `discount`, а в этом варианте — `invoice`.",
               "uk": "У записі останнє слово — `discount`, а в цьому варіанті — `invoice`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-16:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що касир каже про рядок на екрані",
+            "testedDimension": "Послухайте й виберіть — касир звіряє ваш кошик і папери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `discount`, а в этом варианте — `vase`.",
               "uk": "У записі останнє слово — `discount`, а в цьому варіанті — `vase`."
@@ -638,7 +638,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання сестри",
+      "prompt": "Послухайте й виберіть — біля каси сестра ставить запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-16:i09:r1",
@@ -657,7 +657,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-16:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання сестри",
+      "accessibilityLabel": "Послухайте й виберіть — біля каси сестра ставить запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -687,7 +687,7 @@
           {
             "responseId": "en:lesson-03:session-16:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри",
+            "testedDimension": "Послухайте й виберіть — біля каси сестра ставить запитання",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `warranty`, а в этом варианте — `address`.",
               "uk": "У записі останнє слово — `warranty`, а в цьому варіанті — `address`."
@@ -696,7 +696,7 @@
           {
             "responseId": "en:lesson-03:session-16:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання сестри",
+            "testedDimension": "Послухайте й виберіть — біля каси сестра ставить запитання",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `warranty`, а в этом варианте — `discount`.",
               "uk": "У записі останнє слово — `warranty`, а в цьому варіанті — `discount`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже касир",
+      "prompt": "Послухайте й виберіть — касир простягає вам папери",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-16:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-16:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже касир",
+      "accessibilityLabel": "Послухайте й виберіть — касир простягає вам папери",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-16:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже касир",
+            "testedDimension": "Послухайте й виберіть — касир простягає вам папери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `address`, а в этом варианте — `warranty`.",
               "uk": "У записі останнє слово — `address`, а в цьому варіанті — `warranty`."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-16:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже касир",
+            "testedDimension": "Послухайте й виберіть — касир простягає вам папери",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `address`, а в этом варианте — `discount`.",
               "uk": "У записі останнє слово — `address`, а в цьому варіанті — `discount`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "670e35c1f384e19c29da2312f372bbbc5b65c6351fd24b6f5bf4b3e1e12cfe91"
+  "learnerFingerprint": "4998e2548fcf66e66c0594558d62cfb1c16324b394b1653620c3e9446c4e2e92"
 }

@@ -316,7 +316,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що продавець каже про сорочку",
+      "prompt": "Послухайте й виберіть — продавець показує вам речі з малюнком",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-54:i05:r1",
@@ -335,7 +335,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-54:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, що продавець каже про сорочку",
+      "accessibilityLabel": "Послухайте й виберіть — продавець показує вам речі з малюнком",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -365,7 +365,7 @@
           {
             "responseId": "en:lesson-03:session-54:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про сорочку",
+            "testedDimension": "Послухайте й виберіть — продавець показує вам речі з малюнком",
             "feedbackByLocale": {
               "ru": "В записи рисунок — `striped`, а в этом варианте — `checked`.",
               "uk": "У записі малюнок — `striped`, а в цьому варіанті — `checked`."
@@ -374,7 +374,7 @@
           {
             "responseId": "en:lesson-03:session-54:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про сорочку",
+            "testedDimension": "Послухайте й виберіть — продавець показує вам речі з малюнком",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
@@ -748,7 +748,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання подруги",
+      "prompt": "Послухайте й виберіть — подруга обирає з вами речі з малюнком",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-54:i11:r1",
@@ -767,7 +767,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-54:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання подруги",
+      "accessibilityLabel": "Послухайте й виберіть — подруга обирає з вами речі з малюнком",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -797,7 +797,7 @@
           {
             "responseId": "en:lesson-03:session-54:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга обирає з вами речі з малюнком",
             "feedbackByLocale": {
               "ru": "В записи рисунок — `striped`, а в этом варианте — `checked`.",
               "uk": "У записі малюнок — `striped`, а в цьому варіанті — `checked`."
@@ -806,7 +806,7 @@
           {
             "responseId": "en:lesson-03:session-54:i11:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги",
+            "testedDimension": "Послухайте й виберіть — подруга обирає з вами речі з малюнком",
             "feedbackByLocale": {
               "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
               "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
@@ -1136,5 +1136,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b463f7f4a43c3043c59ca688e5dee388ea42fe57dedcf3edc5bf807ee2420aa5"
+  "learnerFingerprint": "80f1934e201b64e1e07bb45b46e5d8ccb23c0219e5ce02f83843152743ab6308"
 }

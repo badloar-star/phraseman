@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання подруги про персики",
+      "prompt": "Послухайте й виберіть — подруга обирає фрукти поруч із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-38:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання подруги про персики",
+      "accessibilityLabel": "Послухайте й виберіть — подруга обирає фрукти поруч із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-38:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги про персики",
+            "testedDimension": "Послухайте й виберіть — подруга обирає фрукти поруч із вами",
             "feedbackByLocale": {
               "ru": "В записи `Are those peaches` — персиков несколько, а в этом варианте `Is that peach` — один.",
               "uk": "У записі `Are those peaches` — персиків кілька, а в цьому варіанті `Is that peach` — один."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-38:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання подруги про персики",
+            "testedDimension": "Послухайте й виберіть — подруга обирає фрукти поруч із вами",
             "feedbackByLocale": {
               "ru": "В записи слово `those` — персики далеко, а в этом варианте `these` — рядом.",
               "uk": "У записі слово `those` — персики далеко, а в цьому варіанті `these` — поруч."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже подруга про яблука",
+      "prompt": "Послухайте й виберіть — на ринку подруга звертається до вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-38:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже подруга про яблука",
+      "accessibilityLabel": "Послухайте й виберіть — на ринку подруга звертається до вас",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-38:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про яблука",
+            "testedDimension": "Послухайте й виберіть — на ринку подруга звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи `Those apples` — яблок несколько, а в этом варианте `That apple` — одно.",
               "uk": "У записі `Those apples` — яблук кілька, а в цьому варіанті `That apple` — одне."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-38:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже подруга про яблука",
+            "testedDimension": "Послухайте й виберіть — на ринку подруга звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cheap`, а в этом варианте — `old`.",
               "uk": "У записі останнє слово — `cheap`, а в цьому варіанті — `old`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже продавець про апельсин",
+      "prompt": "Послухайте й виберіть — продавець чекає за прилавком із фруктами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-38:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-38:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже продавець про апельсин",
+      "accessibilityLabel": "Послухайте й виберіть — продавець чекає за прилавком із фруктами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-38:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець про апельсин",
+            "testedDimension": "Послухайте й виберіть — продавець чекає за прилавком із фруктами",
             "feedbackByLocale": {
               "ru": "В записи `This is an` — апельсин один, а в этом варианте `These are` — несколько.",
               "uk": "У записі `This is an` — апельсин один, а в цьому варіанті `These are` — кілька."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-38:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець про апельсин",
+            "testedDimension": "Послухайте й виберіть — продавець чекає за прилавком із фруктами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `orange`, а в этом варианте — `apple`.",
               "uk": "У записі останнє слово — `orange`, а в цьому варіанті — `apple`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e9149e9ef3b20b6bfb247ed097267a4aff8049e3fec726af706021bdcba5b5a4"
+  "learnerFingerprint": "983b1e11993e4843856351fa9264952eaf08bccce1ebe16ce16f031b7884f4db"
 }

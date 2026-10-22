@@ -54,7 +54,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте й виберіть — ви показуєте, що в покупках зламано",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-42:i02:r1",
@@ -73,7 +73,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-42:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть — ви показуєте, що в покупках зламано",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -103,7 +103,7 @@
           {
             "responseId": "en:lesson-03:session-42:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — ви показуєте, що в покупках зламано",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
               "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
@@ -112,7 +112,7 @@
           {
             "responseId": "en:lesson-03:session-42:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — ви показуєте, що в покупках зламано",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `closed`, а в этом варианте — `open`.",
               "uk": "У записі останнє слово — `closed`, а в цьому варіанті — `open`."
@@ -553,7 +553,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже сусідка",
+      "prompt": "Послухайте й виберіть — сусідка оглядає покупку разом із вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-42:i09:r1",
@@ -572,7 +572,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-42:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже сусідка",
+      "accessibilityLabel": "Послухайте й виберіть — сусідка оглядає покупку разом із вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -602,7 +602,7 @@
           {
             "responseId": "en:lesson-03:session-42:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже сусідка",
+            "testedDimension": "Послухайте й виберіть — сусідка оглядає покупку разом із вами",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
               "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
@@ -611,7 +611,7 @@
           {
             "responseId": "en:lesson-03:session-42:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже сусідка",
+            "testedDimension": "Послухайте й виберіть — сусідка оглядає покупку разом із вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `broken`, а в этом варианте — `loose`.",
               "uk": "У записі останнє слово — `broken`, а в цьому варіанті — `loose`."
@@ -983,7 +983,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що каже продавець",
+      "prompt": "Послухайте й виберіть — продавець оглядає вашу покупку",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-42:i15:r1",
@@ -1002,7 +1002,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-42:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що каже продавець",
+      "accessibilityLabel": "Послухайте й виберіть — продавець оглядає вашу покупку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1032,7 +1032,7 @@
           {
             "responseId": "en:lesson-03:session-42:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець",
+            "testedDimension": "Послухайте й виберіть — продавець оглядає вашу покупку",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `The`, а в этом варианте — `A`.",
               "uk": "У записі перше слово — `The`, а в цьому варіанті — `A`."
@@ -1041,7 +1041,7 @@
           {
             "responseId": "en:lesson-03:session-42:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що каже продавець",
+            "testedDimension": "Послухайте й виберіть — продавець оглядає вашу покупку",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `loose`, а в этом варианте — `tight`.",
               "uk": "У записі останнє слово — `loose`, а в цьому варіанті — `tight`."
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a082dcf47f0bd0cfddc1c3e24b9f9b7bad63fc37bb89896f82683c5eef00c504"
+  "learnerFingerprint": "3d41a4976f912f2bf23122910d0a8659d883eacae8139e08e7c8cbd8cb9a2d8d"
 }

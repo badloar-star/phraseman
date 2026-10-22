@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о мебели",
+      "prompt": "Послушайте и выберите — подруга держит детали будущей мебели",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-07:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-07:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о мебели",
+      "accessibilityLabel": "Послушайте и выберите — подруга держит детали будущей мебели",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о мебели",
+            "testedDimension": "Послушайте и выберите — подруга держит детали будущей мебели",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cupboard`, а в этом варианте — `wardrobe`.",
               "uk": "У записі останнє слово — `cupboard`, а в цьому варіанті — `wardrobe`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о мебели",
+            "testedDimension": "Послушайте и выберите — подруга держит детали будущей мебели",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cupboard`, а в этом варианте — `drawer`.",
               "uk": "У записі останнє слово — `cupboard`, а в цьому варіанті — `drawer`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "570f2f10795173aff8a4b60daa8ea663918b156346a2009780dc36a476d7bfdb"
+  "learnerFingerprint": "1da7fe73110bc7b3d9f545d00e4fce31780ba67f26d45680c19bc59c3e2978e9"
 }

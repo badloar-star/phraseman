@@ -140,7 +140,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что консультант говорит о товарах",
+      "prompt": "Послушайте и выберите — консультант подходит к вам у полки",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-06:i02:r1",
@@ -159,7 +159,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-06:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что консультант говорит о товарах",
+      "accessibilityLabel": "Послушайте и выберите — консультант подходит к вам у полки",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -189,7 +189,7 @@
           {
             "responseId": "en:lesson-03:session-06:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что консультант говорит о товарах",
+            "testedDimension": "Послушайте и выберите — консультант подходит к вам у полки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `tag`, а в этом варианте — `bag`.",
               "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `bag`."
@@ -198,7 +198,7 @@
           {
             "responseId": "en:lesson-03:session-06:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что консультант говорит о товарах",
+            "testedDimension": "Послушайте и выберите — консультант подходит к вам у полки",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `tag`, а в этом варианте — `basket`.",
               "uk": "У записі останнє слово — `tag`, а в цьому варіанті — `basket`."
@@ -1176,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5dfc456b69378965ffab02e2f50f04b8d5e4eb769f081466da4c25fc54f6b582"
+  "learnerFingerprint": "d868a5900f61ae279b332ebfc9b5897a011ff21f106c8eb647e1899535ab223b"
 }

@@ -316,7 +316,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що продавець каже про килимки",
+      "prompt": "Послухайте й виберіть — продавець показує вам останні дрібниці",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-56:i05:r1",
@@ -335,7 +335,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-56:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, що продавець каже про килимки",
+      "accessibilityLabel": "Послухайте й виберіть — продавець показує вам останні дрібниці",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -365,7 +365,7 @@
           {
             "responseId": "en:lesson-03:session-56:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про килимки",
+            "testedDimension": "Послухайте й виберіть — продавець показує вам останні дрібниці",
             "feedbackByLocale": {
               "ru": "В записи `Those are` и несколько ковриков, а в этом варианте `That is a` и один коврик.",
               "uk": "У записі `Those are` і кілька килимків, а в цьому варіанті `That is a` і один килимок."
@@ -374,7 +374,7 @@
           {
             "responseId": "en:lesson-03:session-56:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що продавець каже про килимки",
+            "testedDimension": "Послухайте й виберіть — продавець показує вам останні дрібниці",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `mats`, а в этом варианте — `trays`.",
               "uk": "У записі останнє слово — `mats`, а в цьому варіанті — `trays`."
@@ -748,7 +748,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання продавця",
+      "prompt": "Послухайте й виберіть — біля полиці продавець ставить вам запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-56:i11:r1",
@@ -767,7 +767,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-56:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання продавця",
+      "accessibilityLabel": "Послухайте й виберіть — біля полиці продавець ставить вам запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -797,7 +797,7 @@
           {
             "responseId": "en:lesson-03:session-56:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання продавця",
+            "testedDimension": "Послухайте й виберіть — біля полиці продавець ставить вам запитання",
             "feedbackByLocale": {
               "ru": "В записи после Is первое слово — `that` (далеко), а в этом варианте — `this` (рядом).",
               "uk": "У записі після Is перше слово — `that` (далеко), а в цьому варіанті — `this` (поруч)."
@@ -806,7 +806,7 @@
           {
             "responseId": "en:lesson-03:session-56:i11:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання продавця",
+            "testedDimension": "Послухайте й виберіть — біля полиці продавець ставить вам запитання",
             "feedbackByLocale": {
               "ru": "В записи цвет — `black`, а в этом варианте — `white`.",
               "uk": "У записі колір — `black`, а в цьому варіанті — `white`."
@@ -1135,5 +1135,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b0e5818f0ac9309157a83c076ff20ff356eaf828ea5e6d4daf3608a553fb3f8f"
+  "learnerFingerprint": "d5bcda85f32774cdfe1871d7be740c9caee870aa1da0c5969901d9c2f4742f27"
 }

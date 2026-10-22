@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — друг телефонує вам, поки ви йдете до кафе",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-19:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-19:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — друг телефонує вам, поки ви йдете до кафе",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-19:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — друг телефонує вам, поки ви йдете до кафе",
             "feedbackByLocale": {
               "ru": "В записи outside — «снаружи», а не inside — «внутри».",
               "uk": "У записі outside — «надворі», а не inside — «всередині»."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-19:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — друг телефонує вам, поки ви йдете до кафе",
             "feedbackByLocale": {
               "ru": "В записи outside, а не alone.",
               "uk": "У записі outside, а не alone."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — ви розмовляєте з другом телефоном",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-19:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-19:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — ви розмовляєте з другом телефоном",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-01:session-19:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — ви розмовляєте з другом телефоном",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `You`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `You`, а в цьому варіанті — `We`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-01:session-19:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — ви розмовляєте з другом телефоном",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `alone`, а в этом варианте — `wrong`.",
               "uk": "У записі останнє слово — `alone`, а в цьому варіанті — `wrong`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що подруга каже про друзів",
+      "prompt": "Послухайте й виберіть — подруга телефонує й ділиться новиною",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-19:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-19:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що подруга каже про друзів",
+      "accessibilityLabel": "Послухайте й виберіть — подруга телефонує й ділиться новиною",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-19:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про друзів",
+            "testedDimension": "Послухайте й виберіть — подруга телефонує й ділиться новиною",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They`, а в этом варианте — `We`.",
               "uk": "У записі перше слово — `They`, а в цьому варіанті — `We`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-19:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що подруга каже про друзів",
+            "testedDimension": "Послухайте й виберіть — подруга телефонує й ділиться новиною",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `lucky`, а в этом варианте — `early`.",
               "uk": "У записі останнє слово — `lucky`, а в цьому варіанті — `early`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "855058ccf3c9d561d2991fb03868b2af9d5495a435ad410765450b5bd1f1a395"
+  "learnerFingerprint": "5089cbf06f79daa128d62791529caf3d707b1182c2057d8e2039f9d0996ebda5"
 }

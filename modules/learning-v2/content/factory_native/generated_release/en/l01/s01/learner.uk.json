@@ -1561,7 +1561,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте репліку та виберіть її зміст",
+      "prompt": "Послухайте й виберіть — начальниця зустрічає вас біля входу в офіс",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-01:i13:r1",
@@ -1580,7 +1580,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-01:i13:audio"
       ],
-      "accessibilityLabel": "Послухайте репліку та виберіть її зміст",
+      "accessibilityLabel": "Послухайте й виберіть — начальниця зустрічає вас біля входу в офіс",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1610,7 +1610,7 @@
           {
             "responseId": "en:lesson-01:session-01:i13:r2",
             "correct": false,
-            "testedDimension": "Послухайте репліку та виберіть її зміст",
+            "testedDimension": "Послухайте й виберіть — начальниця зустрічає вас біля входу в офіс",
             "feedbackByLocale": {
               "ru": "I am ready — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
               "uk": "I am ready — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
@@ -1759,7 +1759,7 @@
           {
             "responseId": "en:lesson-01:session-01:i13:r3",
             "correct": false,
-            "testedDimension": "Послухайте репліку та виберіть її зміст",
+            "testedDimension": "Послухайте й виберіть — начальниця зустрічає вас біля входу в офіс",
             "feedbackByLocale": {
               "ru": "I am fine — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
               "uk": "I am fine — «у мене все добре». Це відповідь про самопочуття, не про місце."
@@ -4122,5 +4122,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4724a1fb17c4aa5216c2f95182710e9fd2eebd246710b1696588f6485d42b8f0"
+  "learnerFingerprint": "acdfec61ea564da25e0e8a72c0e1d4e6dce277a70b5ffd25aa75e2e422c0595b"
 }

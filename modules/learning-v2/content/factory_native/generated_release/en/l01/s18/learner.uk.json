@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — друг говорить з вами на вокзалі",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-18:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-18:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — друг говорить з вами на вокзалі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-18:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — друг говорить з вами на вокзалі",
             "feedbackByLocale": {
               "ru": "В записи We, а не You.",
               "uk": "У записі We, а не You."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-18:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — друг говорить з вами на вокзалі",
             "feedbackByLocale": {
               "ru": "В записи sleepy, а не early.",
               "uk": "У записі sleepy, а не early."
@@ -593,7 +593,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте й виберіть — на вокзалі мова заходить про когось зі знайомих",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-18:i09:r1",
@@ -612,7 +612,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-18:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть — на вокзалі мова заходить про когось зі знайомих",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -642,7 +642,7 @@
           {
             "responseId": "en:lesson-01:session-18:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — на вокзалі мова заходить про когось зі знайомих",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `He`, а в этом варианте — `She`.",
               "uk": "У записі перше слово — `He`, а в цьому варіанті — `She`."
@@ -651,7 +651,7 @@
           {
             "responseId": "en:lesson-01:session-18:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть — на вокзалі мова заходить про когось зі знайомих",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `lucky`, а в этом варианте — `wrong`.",
               "uk": "У записі останнє слово — `lucky`, а в цьому варіанті — `wrong`."
@@ -978,7 +978,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте фразу про попутницю й виберіть почуте",
+      "prompt": "Послухайте й виберіть — чекаючи на потяг, ви говорите про попутників",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-18:i15:r1",
@@ -997,7 +997,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-18:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте фразу про попутницю й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — чекаючи на потяг, ви говорите про попутників",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1027,7 +1027,7 @@
           {
             "responseId": "en:lesson-01:session-18:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте фразу про попутницю й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — чекаючи на потяг, ви говорите про попутників",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -1036,7 +1036,7 @@
           {
             "responseId": "en:lesson-01:session-18:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте фразу про попутницю й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — чекаючи на потяг, ви говорите про попутників",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `funny`, а в этом варианте — `kind`.",
               "uk": "У записі останнє слово — `funny`, а в цьому варіанті — `kind`."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1bb0bf3ff842526e91e41b6e0d180024c7385d7bf9ea4b0ca73b76cd31b4723b"
+  "learnerFingerprint": "3d745b29945d1393ee7674479181293a8541ab1c3c45b1b30d7ce029280aeb20"
 }

@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть — колега проводжає вас до виходу після роботи",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-07:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть — колега проводжає вас до виходу після роботи",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-01:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — колега проводжає вас до виходу після роботи",
             "feedbackByLocale": {
               "ru": "В записи glad, а не sad.",
               "uk": "У записі glad, а не sad."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-01:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — колега проводжає вас до виходу після роботи",
             "feedbackByLocale": {
               "ru": "В записи glad, а не done.",
               "uk": "У записі glad, а не done."
@@ -258,7 +258,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть — біля виходу колега ставить вам запитання",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i06:r1",
@@ -277,7 +277,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-07:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть — біля виходу колега ставить вам запитання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -307,7 +307,7 @@
           {
             "responseId": "en:lesson-01:session-07:i06:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — біля виходу колега ставить вам запитання",
             "feedbackByLocale": {
               "ru": "В записи scared, а не glad.",
               "uk": "У записі scared, а не glad."
@@ -316,7 +316,7 @@
           {
             "responseId": "en:lesson-01:session-07:i06:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — біля виходу колега ставить вам запитання",
             "feedbackByLocale": {
               "ru": "В записи scared, а не full.",
               "uk": "У записі scared, а не full."
@@ -983,5 +983,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b122c23ce90b8fe7802d8fc8da6a163fabab5e7c27386241a1d0d3536e9da32f"
+  "learnerFingerprint": "9fca56b875f38276c59725add05f9f452f25a1fb5e8631821766f0e93006d760"
 }

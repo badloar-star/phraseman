@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть — увечері ви згадуєте перший день в офісі",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i02:r1",
@@ -183,7 +183,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-08:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть — увечері ви згадуєте перший день в офісі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -213,7 +213,7 @@
           {
             "responseId": "en:lesson-01:session-08:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — увечері ви згадуєте перший день в офісі",
             "feedbackByLocale": {
               "ru": "В записи nervous, а не calm.",
               "uk": "У записі nervous, а не calm."
@@ -222,7 +222,7 @@
           {
             "responseId": "en:lesson-01:session-08:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — увечері ви згадуєте перший день в офісі",
             "feedbackByLocale": {
               "ru": "В записи nervous, а не excited.",
               "uk": "У записі nervous, а не excited."
@@ -650,7 +650,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть — ви перебираєте в пам’яті слова цього дня",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i09:r1",
@@ -669,7 +669,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-08:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть — ви перебираєте в пам’яті слова цього дня",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -699,7 +699,7 @@
           {
             "responseId": "en:lesson-01:session-08:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — ви перебираєте в пам’яті слова цього дня",
             "feedbackByLocale": {
               "ru": "В записи thirsty, а не hungry.",
               "uk": "У записі thirsty, а не hungry."
@@ -708,7 +708,7 @@
           {
             "responseId": "en:lesson-01:session-08:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть — ви перебираєте в пам’яті слова цього дня",
             "feedbackByLocale": {
               "ru": "В записи thirsty, а не tired.",
               "uk": "У записі thirsty, а не tired."
@@ -1271,5 +1271,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dcbb464c1486d60a86950bab8f197cbdec9578b02d3be6d582cdf74ae28cdedc"
+  "learnerFingerprint": "f4d1628a3e9e2dc7dfd70ab7e6c533c3ea9b452958d578183aaad6472eb61928"
 }

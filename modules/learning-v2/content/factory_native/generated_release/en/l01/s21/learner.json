@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите услышанное",
+      "prompt": "Послушайте и выберите — друг заглядывает в зал клуба перед концертом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-21:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-21:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите услышанное",
+      "accessibilityLabel": "Послушайте и выберите — друг заглядывает в зал клуба перед концертом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-21:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг заглядывает в зал клуба перед концертом",
             "feedbackByLocale": {
               "ru": "В записи empty, а не small.",
               "uk": "У записі empty, а не small."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-21:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите услышанное",
+            "testedDimension": "Послушайте и выберите — друг заглядывает в зал клуба перед концертом",
             "feedbackByLocale": {
               "ru": "В записи empty, а не noisy.",
               "uk": "У записі empty, а не noisy."
@@ -1169,5 +1169,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "26da10e83a5c8e65bf9debe1035bdd4661c3af488a943c09e8cd3786ba393cb4"
+  "learnerFingerprint": "31f828947181f3eb8988e0e6fd4e14f2acdecf95d0d263403f8c5b18ddd8a551"
 }

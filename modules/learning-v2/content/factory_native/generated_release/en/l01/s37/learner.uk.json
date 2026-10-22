@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — першого вечора в новому місті вам телефонує друг",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-37:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-37:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — першого вечора в новому місті вам телефонує друг",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-01:session-37:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — першого вечора в новому місті вам телефонує друг",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `She`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `She`, а в цьому варіанті — `He`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-01:session-37:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — першого вечора в новому місті вам телефонує друг",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `homesick`, а в этом варианте — `lonely`.",
               "uk": "У записі останнє слово — `homesick`, а в цьому варіанті — `lonely`."
@@ -636,7 +636,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте опис зустрічі",
+      "prompt": "Послухайте й виберіть — ви розмовляєте з другом увечері",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-37:i09:r1",
@@ -655,7 +655,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-37:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте опис зустрічі",
+      "accessibilityLabel": "Послухайте й виберіть — ви розмовляєте з другом увечері",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -685,7 +685,7 @@
           {
             "responseId": "en:lesson-01:session-37:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте опис зустрічі",
+            "testedDimension": "Послухайте й виберіть — ви розмовляєте з другом увечері",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `online`, а в этом варианте — `local`.",
               "uk": "У записі останнє слово — `online`, а в цьому варіанті — `local`."
@@ -694,7 +694,7 @@
           {
             "responseId": "en:lesson-01:session-37:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте опис зустрічі",
+            "testedDimension": "Послухайте й виберіть — ви розмовляєте з другом увечері",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `online`, а в этом варианте — `foreign`.",
               "uk": "У записі останнє слово — `online`, а в цьому варіанті — `foreign`."
@@ -977,7 +977,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть коротку фразу",
+      "prompt": "Послухайте й виберіть — ви показуєте другові нову квартиру по відео",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-37:i15:r1",
@@ -996,7 +996,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+      "accessibilityLabel": "Послухайте й виберіть — ви показуєте другові нову квартиру по відео",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1026,7 +1026,7 @@
           {
             "responseId": "en:lesson-01:session-37:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "testedDimension": "Послухайте й виберіть — ви показуєте другові нову квартиру по відео",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cozy`, а в этом варианте — `messy`.",
               "uk": "У записі останнє слово — `cozy`, а в цьому варіанті — `messy`."
@@ -1035,7 +1035,7 @@
           {
             "responseId": "en:lesson-01:session-37:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "testedDimension": "Послухайте й виберіть — ви показуєте другові нову квартиру по відео",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `cozy`, а в этом варианте — `local`.",
               "uk": "У записі останнє слово — `cozy`, а в цьому варіанті — `local`."
@@ -1168,5 +1168,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dfaed7e00b2ee282d7d89d006156b4379391ac58dc5a85e79b82ecbe6e1b228c"
+  "learnerFingerprint": "d510879d62dc9a9f7000728a4ef12bc2d5f9d28028b813a73c07a3aec0fe24fe"
 }

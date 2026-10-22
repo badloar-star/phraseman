@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте слово",
+      "prompt": "Послухайте й виберіть — на ранковій зустрічі слово бере начальниця",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте слово",
+      "accessibilityLabel": "Послухайте й виберіть — на ранковій зустрічі слово бере начальниця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -101,7 +101,7 @@
           {
             "responseId": "en:lesson-01:session-04:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — на ранковій зустрічі слово бере начальниця",
             "feedbackByLocale": {
               "ru": "В записи звучит early, а не late.",
               "uk": "У записі звучить early, а не late."
@@ -110,7 +110,7 @@
           {
             "responseId": "en:lesson-01:session-04:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — на ранковій зустрічі слово бере начальниця",
             "feedbackByLocale": {
               "ru": "В записи звучит early, а не ready.",
               "uk": "У записі звучить early, а не ready."
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте слово",
+      "prompt": "Послухайте й виберіть — начальниця просить вас коротко відповісти",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i04:r1",
@@ -190,7 +190,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i04:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте слово",
+      "accessibilityLabel": "Послухайте й виберіть — начальниця просить вас коротко відповісти",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -220,7 +220,7 @@
           {
             "responseId": "en:lesson-01:session-04:i04:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — начальниця просить вас коротко відповісти",
             "feedbackByLocale": {
               "ru": "В записи звучит right, а не early.",
               "uk": "У записі звучить right, а не early."
@@ -229,7 +229,7 @@
           {
             "responseId": "en:lesson-01:session-04:i04:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — начальниця просить вас коротко відповісти",
             "feedbackByLocale": {
               "ru": "В записи звучит right, а не cold.",
               "uk": "У записі звучить right, а не cold."
@@ -290,7 +290,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте слово",
+      "prompt": "Послухайте й виберіть — ви на ранковій зустрічі, начальниця слухає",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i06:r1",
@@ -309,7 +309,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте слово",
+      "accessibilityLabel": "Послухайте й виберіть — ви на ранковій зустрічі, начальниця слухає",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -339,7 +339,7 @@
           {
             "responseId": "en:lesson-01:session-04:i06:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — ви на ранковій зустрічі, начальниця слухає",
             "feedbackByLocale": {
               "ru": "В записи звучит wrong, а не right.",
               "uk": "У записі звучить wrong, а не right."
@@ -348,7 +348,7 @@
           {
             "responseId": "en:lesson-01:session-04:i06:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — ви на ранковій зустрічі, начальниця слухає",
             "feedbackByLocale": {
               "ru": "В записи звучит wrong, а не alone.",
               "uk": "У записі звучить wrong, а не alone."
@@ -461,7 +461,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте слово",
+      "prompt": "Послухайте й виберіть — черга доходить до вас на ранковій зустрічі",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i09:r1",
@@ -480,7 +480,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте слово",
+      "accessibilityLabel": "Послухайте й виберіть — черга доходить до вас на ранковій зустрічі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -510,7 +510,7 @@
           {
             "responseId": "en:lesson-01:session-04:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — черга доходить до вас на ранковій зустрічі",
             "feedbackByLocale": {
               "ru": "В записи звучит free, а не busy.",
               "uk": "У записі звучить free, а не busy."
@@ -519,7 +519,7 @@
           {
             "responseId": "en:lesson-01:session-04:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте слово",
+            "testedDimension": "Послухайте й виберіть — черга доходить до вас на ранковій зустрічі",
             "feedbackByLocale": {
               "ru": "В записи звучит free, а не sure.",
               "uk": "У записі звучить free, а не sure."
@@ -813,7 +813,7 @@
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть — що ви щойно почули",
+      "prompt": "Послухайте й виберіть — начальниця підбиває підсумок ранкової зустрічі",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i15:r1",
@@ -836,7 +836,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть — що ви щойно почули",
+      "accessibilityLabel": "Послухайте й виберіть — начальниця підбиває підсумок ранкової зустрічі",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -871,7 +871,7 @@
           {
             "responseId": "en:lesson-01:session-04:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — що ви щойно почули",
+            "testedDimension": "Послухайте й виберіть — начальниця підбиває підсумок ранкової зустрічі",
             "feedbackByLocale": {
               "ru": "В записи звучит not между am и sure.",
               "uk": "У записі звучить not між am і sure."
@@ -880,7 +880,7 @@
           {
             "responseId": "en:lesson-01:session-04:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — що ви щойно почули",
+            "testedDimension": "Послухайте й виберіть — начальниця підбиває підсумок ранкової зустрічі",
             "feedbackByLocale": {
               "ru": "Вы услышали not, но последнее слово — sure, не free.",
               "uk": "Ви почули not, але останнє слово — sure, не free."
@@ -889,7 +889,7 @@
           {
             "responseId": "en:lesson-01:session-04:i15:r4",
             "correct": false,
-            "testedDimension": "Послухайте і виберіть — що ви щойно почули",
+            "testedDimension": "Послухайте й виберіть — начальниця підбиває підсумок ранкової зустрічі",
             "feedbackByLocale": {
               "ru": "В записи sure, а не tired: говорящий сомневается, а не отрицает усталость.",
               "uk": "У записі sure, а не tired: мовець сумнівається, а не заперечує втому."
@@ -1244,5 +1244,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a3f80027242987dc9d19fc7cc482f8c2566ca8a0e43425aa628626649b3e6cd4"
+  "learnerFingerprint": "205a3aa62770de4f9fa6b035cc3c5ec1cc02f993c5dfad09f46a4cefea93a6bb"
 }

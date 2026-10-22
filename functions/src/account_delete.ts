@@ -225,6 +225,8 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'premium_dialog_billing', field: 'authUid', values: 'auth' },
   { collection: 'spire_task_report_reservations', field: 'stableUid', values: 'stable' },
   { collection: 'friend_pairs', field: 'uids', values: 'stable', op: 'array-contains' },
+  // зачем («Дуэль на 5 фраз», 22.10): дуэль хранит uid и ходы обоих игроков — стираем вместе с аккаунтом любого из них.
+  { collection: 'friend_duels', field: 'uids', values: 'stable', op: 'array-contains' },
   // Free-form feedback can contain personal data. Both the stable product
   // identity and the current Firebase Auth identity are queryable so deletion
   // remains complete across account linking and retries.
@@ -294,6 +296,8 @@ const COLLECTION_GROUP_QUERY_SPECS: AccountDeleteCollectionGroupSpec[] = [
   { collectionGroup: 'idea_reports', field: 'authorUid', values: 'stable' },
   { collectionGroup: 'user_idea_report_rate_limits', field: 'stableUid', values: 'stable' },
   { collectionGroup: 'friend_gifts_received', field: 'fromUid', values: 'stable' },
+  // зачем («Урок вместе», 22.10): приглашения удалённого лежат у друзей (users/{друг}/friend_lesson_invites) — по отправителю.
+  { collectionGroup: 'friend_lesson_invites', field: 'fromUid', values: 'stable' },
   { collectionGroup: 'friend_gifts_sent', field: 'toUid', values: 'stable' },
   { collectionGroup: 'friend_gift_history', field: 'peerUid', values: 'stable' },
   { collectionGroup: 'friend_quest_meta', field: 'peerUid', values: 'stable' },

@@ -35,6 +35,8 @@ const APPROVED_REASONS: Readonly<Record<string, readonly [Status, string]>> = {
   account_merge_in: ['active', '8T: перенос баланса при слиянии аккаунтов (не источник, пара с account_merge_out)'],
   // зачем: D195 (владелец 15.10) — старые бонусы (опыт, жемчуг, вращения) → монеты один раз на человека, только серверные поля
   legacy_bonus: ['active', 'D195: конвертация старых бонусов (functions/src/legacy_bonus_convert.ts), один раз, потолок 6000'],
+  // зачем: «Урок вместе» (условие владельца «+2 не чаще 1 раза в день на пару, только сервер»); ECONOMY.md — координатор, 0273fc93e
+  friends_lesson_together: ['active', '№43-М, владелец 21.10: «Урок вместе» +2 обоим, раз в день на пару, только сервер (friendsLessonTogetherClaim), grant'],
   // историческое: писателей в коде нет, причина остаётся в типе для чтения старых журналов
   arena_match: ['retired_history', 'Арена удалена (D54/D74/D83)'],
   arena_mastery: ['retired_history', 'Арена удалена'],

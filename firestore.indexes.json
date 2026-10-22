@@ -1650,6 +1650,16 @@
       ]
     },
     {
+      "collectionGroup": "friend_lesson_invites",
+      "fieldPath": "fromUid",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
       "collectionGroup": "friend_gifts_sent",
       "fieldPath": "toUid",
       "indexes": [

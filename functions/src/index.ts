@@ -1025,6 +1025,11 @@ export { friendsGetProfiles } from "./friends_profiles";
 // «Позвать» — вкладка Друзья, за флагом
 // friends_together_enabled на клиенте.
 export { friendsNudge } from "./friends_together";
+// «Дуэль на 5 фраз» и «Урок вместе» (владелец 21.10) — за remote_config bools.friends_together_enabled;
+// выкладка только по «да» владельца. Claim «Урока вместе» отвечает completion_reader_not_wired, пока Learning V2
+// не отдаст помощник чтения засчитанного занятия.
+export { friendsDuelChallenge, friendsDuelMove, friendsDuelDecline } from "./friends_duel";
+export { friendsLessonInvite, friendsLessonTogetherClaim } from "./friends_lesson_together";
 export { publicProfileProjectMine } from "./public_profile_projection";
 // Визитка «Про» (2026-09-30): свой текст до 80 символов — только через сервер.
 export { profileCardBioSetMine } from "./profile_card_bio";

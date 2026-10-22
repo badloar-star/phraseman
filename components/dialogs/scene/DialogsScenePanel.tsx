@@ -11,6 +11,7 @@ import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { alphaHex } from '../../../constants/v2Style';
+import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
 import V2Pressable from '../../v2/V2Pressable';
 import { DIALOGS_SCENE_PANEL_OVERLAP } from './DialogsSceneStage';
@@ -58,6 +59,7 @@ export type DialogsScenePanelProps = Readonly<{
 
 function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; onPress: () => void }>) {
   const g = useLv2Glass();
+  const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом
   const current = card.status === 'current';
   return (
     <V2Pressable
@@ -111,6 +113,7 @@ export type DialogsScenePlusRow = Readonly<{ icon: IonName; label: string }>;
 /** Панель состояния «лимит»: вместо каталога — три строки про Plus (эталон `.plus-row`). */
 export const DialogsScenePlusPanel = memo(function DialogsScenePlusPanel({ rows }: Readonly<{ rows: readonly DialogsScenePlusRow[] }>) {
   const g = useLv2Glass();
+  const s = useScaledTextStyles(baseStyles);
   return (
     <View testID="dialogs-scene-plus-panel" style={[s.panel, { backgroundColor: g.opaqueCard, boxShadow: `0 26px 50px -22px ${g.isLight ? g.shadowTint : 'rgba(0,0,0,0.62)'}` /* theme-exempt: тень панели тёмного оформления, эталон --shc */ }]}>
       {rows.map((r) => (
@@ -125,6 +128,7 @@ export const DialogsScenePlusPanel = memo(function DialogsScenePlusPanel({ rows 
 
 function DialogsScenePanel(p: DialogsScenePanelProps) {
   const g = useLv2Glass();
+  const s = useScaledTextStyles(baseStyles);
   return (
     <View testID="dialogs-scene-panel" style={[s.panel, p.inset ? s.panelInset : null, { backgroundColor: g.opaqueCard, boxShadow: `0 26px 50px -22px ${g.isLight ? g.shadowTint : 'rgba(0,0,0,0.62)'}` /* theme-exempt: тень панели тёмного оформления, эталон --shc */ }]}>
       <View style={s.head}>
@@ -154,23 +158,23 @@ function DialogsScenePanel(p: DialogsScenePanelProps) {
   );
 }
 
-const s = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   // зачем: панель наезжает на сцену (.dpanel margin −38 16 0) и лежит выше неё
   panel: { zIndex: 3, marginTop: -DIALOGS_SCENE_PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, padding: 16 },
   panelInset: { marginTop: 16, marginHorizontal: 0 },
   cardLocked: { opacity: 0.62 },
-  more: { height: 44, borderRadius: 22, marginTop: 12, alignItems: 'center', justifyContent: 'center' },
+  more: { minHeight: 44, paddingVertical: 6, paddingHorizontal: 16, borderRadius: 22, marginTop: 12, alignItems: 'center', justifyContent: 'center' },
   head: { flexDirection: 'row', alignItems: 'baseline', gap: 8 },
-  headTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
+  headTitle: { flexShrink: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
   headCount: { marginLeft: 'auto', fontSize: 16, lineHeight: 21, fontVariant: ['tabular-nums'] },
   worlds: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 },
-  chip: { height: 34, borderRadius: 17, paddingHorizontal: 14, alignItems: 'center', justifyContent: 'center' },
-  chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  chip: { minHeight: 34, paddingVertical: 4, maxWidth: '100%', borderRadius: 17, paddingHorizontal: 14, alignItems: 'center', justifyContent: 'center' },
+  chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   cards: { gap: 10, marginTop: 12 },
   card: { borderRadius: 22, paddingVertical: 14, paddingLeft: 16, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 12 },
   cardMain: { flex: 1, minWidth: 0, gap: 4 },
   worldRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  world: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  world: { flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700' },
   cardTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   small: { fontSize: 13, lineHeight: 17 },
   bold: { fontWeight: '700' },

@@ -12,11 +12,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo, useCallback, useRef } from 'react';
-import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { renderWindowEpoch, useRenderCause } from '../../../../app/render_cause_probe';
+import { useScaledTextStyles } from '../../../../hooks/useLineScale';
 import { useEnergyCountdown } from '../../../EnergyContext';
 import { ThemedArtLayers } from '../../../theme/ThemedArtLayers';
 import V2Pressable from '../../../v2/V2Pressable';
@@ -35,6 +36,10 @@ const HEADER_TOP = 12;
 /** Эталон: шапка на 56, герой на 92 — между ними 36. */
 const HERO_BELOW_HEADER = 92 - 56;
 const HERO_TOP = HEADER_TOP + HERO_BELOW_HEADER;
+/** Высота места под шапку внутри сцены (topSpace): герой в слоте свободного места начинается ниже неё, поэтому поднимается на разницу. */
+const TOP_SPACE = 64;
+/** Системный шрифт крупнее этого: текст сцены вырастает, и герой вписывается в свободное место над ним (а не наезжает на текст). */
+const HERO_BOUND_FONT_SCALE = 1.15;
 const HERO_PAD = 13;
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 
@@ -74,6 +79,9 @@ export default function HomeSceneStage(props: Props) {
 const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
+  const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
+  const { fontScale } = useWindowDimensions();
+  const heroBounded = fontScale > HERO_BOUND_FONT_SCALE;
   const pressCta = () => {
     if (pending) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'pending_skeleton', state })); return; } // guard-ok: ранний выход называет причину
     if (busy) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'busy_launching', state })); return; } // guard-ok
@@ -105,14 +113,17 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         <Rect x="58%" y={HERO_TOP + 4} width={220} height={220} fill="url(#sceneHalo)" />
         {evening ? <Rect x={-40} y={HOME_SCENE_STAGE_MIN_HEIGHT - 200} width={260} height={260} fill="url(#sceneEmber)" /> : null}
       </Svg>
-      {art ? (
-        <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[s.hero, artDim ? s.heroDim : null]}>
-          <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition="center" />
-        </Animated.View>
-      ) : null}
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
       {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
       <View style={s.topSpace} />
+      {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота, поверх текста допустимо), крупный — не выше свободного места */}
+      <View style={s.heroSpace} pointerEvents="none">
+        {art ? (
+          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[heroBounded ? s.heroBounded : s.hero, artDim ? s.heroDim : null]}>
+            <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
+          </Animated.View>
+        ) : null}
+      </View>
       <View style={s.body}>
         {pending ? (
           <>
@@ -180,16 +191,18 @@ function LiveEnergyText({ build, style, testID, header = false }: Readonly<{ bui
   return <Text testID={testID} accessibilityRole={header ? 'header' : undefined} style={style}>{build(minutes)}</Text>;
 }
 
-const s = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   // зачем: сцена во всю ширину экрана, скругление только снизу — как .a-stage (0 0 36 36)
   stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden', justifyContent: 'space-between' },
   // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
-  hero: { position: 'absolute', right: -26, top: HERO_TOP, width: HERO, height: HERO, padding: HERO_PAD, opacity: 0.96 },
+  heroSpace: { flex: 1 },
+  hero: { position: 'absolute', right: -26, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO, padding: HERO_PAD, opacity: 0.96 },
+  heroBounded: { position: 'absolute', right: -26, top: HERO_TOP - TOP_SPACE, bottom: 4, width: HERO, maxHeight: HERO, padding: HERO_PAD, opacity: 0.96 },
   heroDim: { opacity: 0.55 },
-  heroImage: { width: HERO - HERO_PAD * 2, height: HERO - HERO_PAD * 2 },
+  heroImage: { width: '100%', height: '100%' },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   // зачем: место под шапку — сама шапка лежит поверх сцены из контейнера HomeScene
-  topSpace: { height: 64 },
+  topSpace: { height: TOP_SPACE },
   // зачем: текст сцены у нижнего края (.a-body bottom 58) — место под панель «Сегодня», которая наезжает на 38
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 58 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета): подписи сцены — 13/17, крупные строки и кнопка — 16/21
@@ -201,12 +214,12 @@ const s = StyleSheet.create({
   bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.28)', overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: '#FFFFFF' },
   line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] },
-  cta: { marginTop: 16, height: 54, borderRadius: 27, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
+  cta: { marginTop: 16, minHeight: 54, paddingVertical: 8, borderRadius: 27, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
   ctaBusy: { opacity: 0.72 },
-  ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },
-  chip: { height: 36, borderRadius: 18, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(255,255,255,0.14)' }, // аудит контраста 22.10: чип 14 % вместо 16 % — текст на нём ≥ 4,5 в светлых sage/grad_aurora
-  chipText: { color: '#FFFFFF', fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  chip: { minHeight: 36, paddingVertical: 4, maxWidth: '100%', borderRadius: 18, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(255,255,255,0.14)' }, // аудит контраста 22.10: чип 14 % вместо 16 % — текст на нём ≥ 4,5 в светлых sage/grad_aurora
+  chipText: { color: '#FFFFFF', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   note: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17, marginTop: 12 },
   skel: { borderRadius: 8, backgroundColor: 'rgba(255,255,255,0.18)' },
 });

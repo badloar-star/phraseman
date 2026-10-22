@@ -60,7 +60,9 @@ describe('герой сцены', () => {
     expect(stage).toContain('const HEADER_TOP = 12;');
     expect(stage).toContain('const HERO_BELOW_HEADER = 92 - 56;');
     expect(stage).toContain('const HERO_TOP = HEADER_TOP + HERO_BELOW_HEADER;');
-    expect(stage).toMatch(/hero: \{ position: 'absolute', right: -26, top: HERO_TOP,/);
+    // герой лежит в слоте свободного места под шапкой (heroSpace): относительно слота верх = HERO_TOP минус высота места под шапку (TOP_SPACE) — в координатах сцены те же 48
+    expect(stage).toContain('const TOP_SPACE = 64;');
+    expect(stage).toMatch(/hero: \{ position: 'absolute', right: -26, top: HERO_TOP - TOP_SPACE,/);
   });
 
   it('верх шапки в HomeScene совпадает с HEADER_TOP', () => {

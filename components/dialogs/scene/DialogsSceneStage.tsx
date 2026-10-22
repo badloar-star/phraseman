@@ -17,6 +17,7 @@ import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { alphaHex } from '../../../constants/v2Style';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
+import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import V2Pressable from '../../v2/V2Pressable';
 import DialogsSceneBackdrop from './DialogsSceneBackdrop';
 import type { DialogsSceneCopy } from './dialogs_scene_copy';
@@ -55,6 +56,7 @@ export type DialogsSceneStageProps = Readonly<{
 function DialogsSceneStage(p: DialogsSceneStageProps) {
   const { colors: c, copy, state } = p;
   const reduceMotion = useReducedMotion();
+  const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом
   const pressCta = () => {
     if (copy.ctaDisabled) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'cta_disabled', state })); return; } // guard-ok: ранний выход называет причину
     console.log(LOG, 'cta', JSON.stringify({ state, label: copy.cta })); // guard-ok: одна строка на тап
@@ -152,7 +154,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
   );
 }
 
-const s = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   // зачем: сцена во всю ширину, скругление только снизу — как .sc (0 0 36 36); minHeight, а не height — крупный шрифт растит сцену
   stage: { minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 36, borderBottomRightRadius: 36, overflow: 'hidden' },
   flex: { flex: 1 },
@@ -162,7 +164,7 @@ const s = StyleSheet.create({
   heroDim: { opacity: 0.55 },
   heroImage: { width: '100%', height: '100%' },
   top: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 20 },
-  pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  pill: { minHeight: 36, paddingVertical: 4, paddingHorizontal: 12, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // зачем: текст сцены у нижнего края (.sc-body bottom 56) — место под панель, которая наезжает на 38
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 56 },
@@ -181,7 +183,7 @@ const s = StyleSheet.create({
   barFill: { height: 4 },
   prog: { fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] },
   ctaRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 16 },
-  cta: { height: 54, borderRadius: 27, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  cta: { minHeight: 54, paddingVertical: 8, borderRadius: 27, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaOff: { opacity: 0.45 },
   ctaText: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   round: { width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center' },

@@ -213,7 +213,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [tokens.sceneTop, p.statusTint]);
   const art = useMemo(() => resolveHomeSceneArt(decision.state, p.artTone), [decision.state, p.artTone]);
   useEffect(() => {
-    console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)), seam: Number(tokens.seam.toFixed(2)), scrim: tokens.scrim })); // guard-ok: одна строка на смену героя
+    console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, hero512: art.hero512, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)), seam: Number(tokens.seam.toFixed(2)), scrim: tokens.scrim })); // guard-ok: одна строка на смену героя
   }, [art, decision.state, p.artTone, tokens.whiteContrastTop, tokens.seam, tokens.scrim]);
   const copyInput = useMemo<HomeSceneCopyInput>(() => ({
     lang: p.lang, state: decision.state, zeroEnergyNote: decision.zeroEnergyNote, badge: p.place.badge, episode: p.place.episode, title: p.place.title,

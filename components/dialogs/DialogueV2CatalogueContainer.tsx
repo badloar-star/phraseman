@@ -83,7 +83,7 @@ function catalogueCopy(lang: ReturnType<typeof useLang>['lang']): Readonly<{
     // зачем (макет dialogs.html A4): строка ранга под названием закрытого диалога, 9 языков.
     lockedAtRank: (rank: number) => triLang(lang, {
       ru: `Откроется на ранге\u00A0${rank}`, uk: `Відкриється на ранзі\u00A0${rank}`, en: `Unlocks at rank\u00A0${rank}`,
-      es: `Se desbloquea en el rango\u00A0${rank}`, 'pt-BR': `Desbloqueia no nível\u00A0${rank}`, vi: `Mở ở hạng\u00A0${rank}`,
+      es: `Se desbloquea en el rango\u00A0${rank}`, 'pt-BR': `Desbloqueia no rank\u00A0${rank}`, vi: `Mở ở hạng\u00A0${rank}`,
       id: `Terbuka di peringkat\u00A0${rank}`, tr: `${rank}.\u00A0rütbede açılır`, pl: `Odblokuje się na randze\u00A0${rank}`,
       fr: `Se débloque au rang\u00A0${rank}`, de: `Wird ab Rang\u00A0${rank} freigeschaltet`,
     }),

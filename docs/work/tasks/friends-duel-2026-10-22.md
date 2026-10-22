@@ -43,7 +43,8 @@
 2. `friendsDuelMove` {stableId, duelId, move: {results: boolean[5], elapsedMs}, requestId}
    → {ok, outcome: 'win'|'loss'|'draw', mine: {correct, elapsedMs}, theirs: {correct, elapsedMs, results}}.
    Только адресат, только до срока, один раз (повтор того же requestId — тот же ответ). Вызвавшему — уведомление «Итог дуэли».
-3. `friendsDuelDecline` {duelId} → {ok}. Вызвавшему — тихая строка «X не принял(а) дуэль».
+3. `friendsDuelDecline` {duelId, requestId} → {ok}. Вызвавшему — тихая строка «X не принял(а) дуэль». Повтор того же
+   requestId — тот же ответ ok (отказ без сети досылается, координатор 22.10).
 4. Ошибки — подстрокой: `limit`, `open_duel`, `not_friends`, `expired`, `already_moved`, `not_invited`, `disabled`.
 5. Срок — лениво (см. Firebase): строку «не ответил за сутки» вызвавший видит, когда его телефон или любой вызов по дуэли
    замечает просрочку; плановой функции нет.
@@ -80,7 +81,9 @@ eventId уникальный. Старые duel_invite / duel_state — Арен
   theirs {correct, elapsedMs, results[5]}, phraseIds[5]} → маркер-кубок; тап по нему или по строке «Сообщений» —
   экран итога из самой строки (0 чтений).
 - **duel_declined** (вызвавшему): {duelId} — тихая строка, текст сервера.
-- friendsDuelDecline {duelId} → {ok}; ошибки expired / not_invited / already_moved. «Принять» — без запроса: ход уходит
+- friendsDuelDecline {duelId, requestId} → {ok}; ошибки expired / not_invited / already_moved / disabled. Отказ, как ход,
+  сначала на телефон: нет сети — ждёт в очереди досылки и уходит при следующем заходе во «Друзей» тем же requestId
+  (координатор 22.10: вызвавший видит отказ, а не «не ответил за сутки»). «Принять» — без запроса: ход уходит
   в friendsDuelMove. Строка вызова гаснет, когда ход сыгран; вышел посреди хода — щит остаётся.
 - Итог или отказ снимает «дуэль уже идёт» в журнале вызовов на телефоне. «Реванш» — новый вызов от нажавшего.
 

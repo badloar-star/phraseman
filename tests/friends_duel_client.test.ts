@@ -2,6 +2,7 @@
  * duel_client — «Дуэль на 5 фраз» (идея 3; контракт docs/work/tasks/friends-duel-2026-10-22.md, поправки 1 · ЯДРО 22.10).
  * Сторож: ход ложится на телефон ДО запроса и уходит тем же requestId; нет сети или вход не готов — ход остаётся и досылается;
  * сервер отказал (лимит, уже идёт дуэль, срок вышел) — ход убираем; кривой ход или кривой ответ сервера не принимаем.
+ * Отказ от вызова (координатор 22.10) — та же очередь и тот же requestId: без сети он не теряется и уходит при следующем заходе.
  */
 const mockStorage: Record<string, string> = {};
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -104,19 +105,31 @@ describe('ход в ответ на вызов', () => {
 });
 
 describe('отказ от вызова', () => {
-  it('один запрос с номером дуэли, без повторов; ошибки сервера — подстрокой', async () => {
-    mockResponses.friendsDuelDecline = [ok({ ok: true }), fail('deadline-exceeded expired'), fail('unavailable')];
+  it('уходит с номером дуэли и requestId; окончательные ответы сервера убирают его с телефона', async () => {
+    mockResponses.friendsDuelDecline = [ok({ ok: true }), fail('deadline-exceeded expired'), fail('failed-precondition not_invited')];
     await expect(submitDuelDecline('d-1')).resolves.toEqual({ ok: true });
-    expect(mockCalls[0]).toEqual({ name: 'friendsDuelDecline', payload: { duelId: 'd-1' } });
-    await expect(submitDuelDecline('d-1')).resolves.toEqual({ ok: false, reason: 'expired' });
-    await expect(submitDuelDecline('d-1')).resolves.toEqual({ ok: false, reason: 'network' });
+    expect(mockCalls[0]).toEqual({ name: 'friendsDuelDecline', payload: { duelId: 'd-1', requestId: expect.stringMatching(/^fdl_/u) } });
+    await expect(submitDuelDecline('d-2')).resolves.toEqual({ ok: false, reason: 'expired' });
+    await expect(submitDuelDecline('d-3')).resolves.toEqual({ ok: false, reason: 'not_invited' });
     expect(mockCalls).toHaveLength(3);
     expect(await readPendingDuels()).toEqual([]);
   });
 
-  it('без номера дуэли — не отправляем', async () => {
+  it('нет сети — отказ ждёт на телефоне и досылается тем же requestId', async () => {
+    mockResponses.friendsDuelDecline = [fail('unavailable')];
+    await expect(submitDuelDecline('d-1')).resolves.toEqual({ ok: false, reason: 'network' });
+    const [pending] = await readPendingDuels();
+    expect(pending).toMatchObject({ kind: 'decline', duelId: 'd-1' });
+    mockResponses.friendsDuelDecline = [ok({ ok: true })];
+    await expect(flushPendingDuels()).resolves.toEqual({ sent: 1, dropped: 0, left: 0 });
+    expect(mockCalls[1]?.payload.requestId).toBe(mockCalls[0]?.payload.requestId);
+    expect(await readPendingDuels()).toEqual([]);
+  });
+
+  it('без номера дуэли — не отправляем и в очередь не кладём', async () => {
     await expect(submitDuelDecline('')).resolves.toEqual({ ok: false, reason: 'invalid' });
     expect(mockCalls).toHaveLength(0);
+    expect(await readPendingDuels()).toEqual([]);
   });
 });
 
@@ -130,6 +143,27 @@ describe('досылка', () => {
     mockResponses.friendsDuelMove = [fail('expired')];
     await expect(flushPendingDuels()).resolves.toEqual({ sent: 0, dropped: 1, left: 1 });
     expect((await readPendingDuels()).map((p) => p.kind)).toEqual(['challenge']);
+  });
+
+  it('отказ досылается вместе с ходами; срок вышел — убираем только его', async () => {
+    mockResponses.friendsDuelMove = [fail('unavailable')];
+    mockResponses.friendsDuelDecline = [fail('unavailable')];
+    await submitDuelMove({ duelId: 'd-9', move });
+    await submitDuelDecline('d-7');
+    expect((await readPendingDuels()).map((p) => p.kind)).toEqual(['move', 'decline']);
+    mockResponses.friendsDuelMove = [fail('unavailable')];
+    mockResponses.friendsDuelDecline = [fail('deadline-exceeded expired')];
+    await expect(flushPendingDuels()).resolves.toEqual({ sent: 0, dropped: 1, left: 1 });
+    expect((await readPendingDuels()).map((p) => p.kind)).toEqual(['move']);
+  });
+
+  it('кривые записи на телефоне не досылаем (отказ без номера дуэли, ход без хода)', async () => {
+    mockStorage['friends_duel_pending_v1::me-1'] = JSON.stringify([
+      { kind: 'decline', requestId: 'fdl_x', createdAtMs: Date.now() },
+      { kind: 'move', duelId: 'd-1', requestId: 'fdl_y', createdAtMs: Date.now() },
+      { kind: 'decline', duelId: 'd-5', requestId: 'fdl_z', createdAtMs: Date.now() },
+    ]);
+    expect((await readPendingDuels()).map((p) => p.requestId)).toEqual(['fdl_z']);
   });
 
   it('ход старше суток не досылаем', async () => {

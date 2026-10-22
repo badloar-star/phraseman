@@ -6,9 +6,11 @@
  *   ошибки подстрокой: limit / open_duel / not_friends / disabled.
  * - friendsDuelMove {stableId, duelId, move, requestId} → {ok, outcome, mine, theirs{correct, elapsedMs, results}};
  *   ошибки: expired / already_moved / not_invited / disabled.
+ * - friendsDuelDecline {duelId, requestId} → {ok}; ошибки: expired / not_invited / already_moved / disabled.
  * - Один ход — одна запись на сервере. Ход сначала ложится на телефон (AsyncStorage, своё на аккаунт), потом уходит в сеть:
  *   телефон убили посреди запроса или нет сети — ход не потерян и уйдёт тем же requestId (сервер узнаёт повтор, второго
- *   хода не будет). Чтений Firestore нет, слушателей нет.
+ *   хода не будет). Отказ от вызова — так же (координатор 22.10): без сети он ждёт в той же очереди и уходит при следующем
+ *   заходе во «Друзей», вызвавший увидит отказ, а не «не ответил за сутки». Чтений Firestore нет, слушателей нет.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
@@ -35,9 +37,13 @@ export type DuelMoveResult =
   | Readonly<{ ok: true; outcome: DuelOutcome; mine: DuelSideScore; theirs: DuelSideScore & Readonly<{ results: readonly boolean[] }> }>
   | Readonly<{ ok: false; reason: DuelMoveReason }>;
 
+export type DuelDeclineReason = 'network' | 'expired' | 'not_invited' | 'already_moved' | 'disabled' | 'invalid';
+export type DuelDeclineResult = Readonly<{ ok: true }> | Readonly<{ ok: false; reason: DuelDeclineReason }>;
+
 export type PendingDuel =
   | Readonly<{ kind: 'challenge'; friendUid: string; phraseIds: readonly string[]; move: DuelMove; requestId: string; createdAtMs: number }>
-  | Readonly<{ kind: 'move'; duelId: string; move: DuelMove; requestId: string; createdAtMs: number }>;
+  | Readonly<{ kind: 'move'; duelId: string; move: DuelMove; requestId: string; createdAtMs: number }>
+  | Readonly<{ kind: 'decline'; duelId: string; requestId: string; createdAtMs: number }>;
 
 const log = (line: string): void => { console.log(`[FRIENDS-DUEL] ${line}`); }; // guard-ok: журнал дуэли, одна строка на шаг
 const errText = (e: unknown): string => (e instanceof Error ? e.message : String((e as { message?: unknown })?.message ?? e));
@@ -59,7 +65,8 @@ function classifyChallengeError(error: unknown): DuelChallengeReason {
   return 'network';
 }
 
-function classifyMoveError(error: unknown): DuelMoveReason {
+/** Ход в ответ и отказ отвечают одними и теми же ошибками сервера. */
+function classifyMoveError(error: unknown): 'disabled' | 'expired' | 'already_moved' | 'not_invited' | 'network' {
   const text = errorHaystack(error);
   if (text.includes('disabled')) return 'disabled';
   if (text.includes('expired')) return 'expired';
@@ -69,7 +76,8 @@ function classifyMoveError(error: unknown): DuelMoveReason {
 }
 
 /** Досылать позже: нет сети или вход ещё не готов (без сети анонимный вход тоже не проходит). Остальное — окончательный ответ. */
-const keepForRetry = (reason: DuelChallengeReason | DuelMoveReason): boolean => reason === 'network' || reason === 'no_sender';
+const keepForRetry = (reason: DuelChallengeReason | DuelMoveReason | DuelDeclineReason): boolean =>
+  reason === 'network' || reason === 'no_sender';
 
 const isPhraseIds = (ids: unknown): ids is readonly string[] =>
   Array.isArray(ids) && ids.length === DUEL_PHRASES && new Set(ids).size === DUEL_PHRASES
@@ -78,9 +86,13 @@ const isPhraseIds = (ids: unknown): ids is readonly string[] =>
 function isPending(value: unknown): value is PendingDuel {
   if (!value || typeof value !== 'object') return false;
   const v = value as Record<string, unknown>;
-  if (typeof v.requestId !== 'string' || typeof v.createdAtMs !== 'number' || !isValidDuelMove(v.move)) return false;
+  if (typeof v.requestId !== 'string' || typeof v.createdAtMs !== 'number') return false;
+  const hasDuelId = typeof v.duelId === 'string' && v.duelId.length > 0;
+  // отказ — без хода: только номер дуэли
+  if (v.kind === 'decline') return hasDuelId;
+  if (!isValidDuelMove(v.move)) return false;
   if (v.kind === 'challenge') return typeof v.friendUid === 'string' && v.friendUid.length > 0 && isPhraseIds(v.phraseIds);
-  return v.kind === 'move' && typeof v.duelId === 'string' && v.duelId.length > 0;
+  return v.kind === 'move' && hasDuelId;
 }
 
 async function readPendingRaw(scope: string): Promise<PendingDuel[]> {
@@ -245,42 +257,55 @@ export async function submitDuelMove(input: Readonly<{ duelId: string; move: Due
   return result;
 }
 
-export type DuelDeclineReason = 'network' | 'expired' | 'not_invited' | 'already_moved' | 'disabled' | 'invalid';
-
-/**
- * «Отказаться» от вызова. Шторка и маркер уже закрыты (Optimistic UI) — это только сеть, один запрос без повторов:
- * не дошёл — дуэль сама закроется по сроку (сервер закрывает лениво), вызвавший увидит «не ответил за сутки».
- */
-export async function submitDuelDecline(duelId: string): Promise<Readonly<{ ok: true }> | Readonly<{ ok: false; reason: DuelDeclineReason }>> {
-  if (!duelId) {
-    log('decline:refuse reason=invalid duel=none');
-    return { ok: false, reason: 'invalid' };
-  }
+/** Только сеть: один запрос отказа. Повтор — тем же requestId: сервер узнаёт уже принятый отказ и отвечает ok. */
+async function callDecline(entry: Extract<PendingDuel, { kind: 'decline' }>): Promise<DuelDeclineResult> {
   const startedAt = Date.now();
   try {
-    await httpsCallable<{ duelId: string }, unknown>(getFunctions(getApp(), REGION), 'friendsDuelDecline')({ duelId });
-    log(`decline:ok duel=${maskUid(duelId)} ms=${Date.now() - startedAt}`);
+    await httpsCallable<{ duelId: string; requestId: string }, unknown>(getFunctions(getApp(), REGION), 'friendsDuelDecline')({
+      duelId: entry.duelId,
+      requestId: entry.requestId,
+    });
+    log(`decline:ok request=${entry.requestId} duel=${maskUid(entry.duelId)} ms=${Date.now() - startedAt}`);
     return { ok: true };
   } catch (error) {
-    const text = errorHaystack(error);
-    const reason: DuelDeclineReason = text.includes('disabled') ? 'disabled'
-      : text.includes('expired') ? 'expired'
-        : text.includes('already_moved') ? 'already_moved'
-          : text.includes('not_invited') ? 'not_invited'
-            : 'network';
-    log(`decline:error duel=${maskUid(duelId)} reason=${reason} ms=${Date.now() - startedAt} raw="${errText(error).slice(0, 160)}"`);
+    const reason = classifyMoveError(error);
+    log(`decline:error request=${entry.requestId} duel=${maskUid(entry.duelId)} reason=${reason} ms=${Date.now() - startedAt} raw="${errText(error).slice(0, 160)}"`);
     return { ok: false, reason };
   }
 }
 
-/** Дослать отложенные ходы (при входе во «Друзей»). По одному запросу на ход, без повторов внутри одного захода. */
+/**
+ * «Отказаться» от вызова. Шторка и маркер уже закрыты (Optimistic UI). Отказ, как и ход, сначала на телефон, потом в сеть:
+ * нет сети — ждёт в очереди и уходит при следующем заходе во «Друзей» тем же requestId (координатор 22.10: вызвавший должен
+ * увидеть отказ, а не «не ответил за сутки»). Срок вышел, ход уже был, приглашения нет — окончательно, убираем.
+ */
+export async function submitDuelDecline(duelId: string): Promise<DuelDeclineResult> {
+  if (!duelId) {
+    log('decline:refuse reason=invalid duel=none');
+    return { ok: false, reason: 'invalid' };
+  }
+  const entry: PendingDuel = { kind: 'decline', duelId, requestId: makeDuelRequestId(), createdAtMs: Date.now() };
+  await rememberPending(entry);
+  const result = await callDecline(entry);
+  if (result.ok || !keepForRetry(result.reason)) await forgetPending(entry.requestId);
+  else log(`decline:queued request=${entry.requestId} duel=${maskUid(duelId)} reason=${result.reason} → дошлём при следующем заходе во «Друзей»`);
+  return result;
+}
+
+async function sendPending(entry: PendingDuel): Promise<DuelChallengeResult | DuelMoveResult | DuelDeclineResult> {
+  if (entry.kind === 'challenge') return callChallenge(entry);
+  if (entry.kind === 'move') return callMove(entry);
+  return callDecline(entry);
+}
+
+/** Дослать отложенные ходы и отказы (при входе во «Друзей»). По одному запросу на запись, без повторов внутри одного захода. */
 export async function flushPendingDuels(): Promise<Readonly<{ sent: number; dropped: number; left: number }>> {
   const pending = await readPendingDuels();
   if (pending.length === 0) return { sent: 0, dropped: 0, left: 0 };
   let sent = 0;
   let dropped = 0;
   for (const entry of pending) {
-    const result = entry.kind === 'challenge' ? await callChallenge(entry) : await callMove(entry);
+    const result = await sendPending(entry);
     if (!result.ok && keepForRetry(result.reason)) continue;
     if (result.ok) sent += 1;
     else dropped += 1;

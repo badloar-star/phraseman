@@ -262,6 +262,8 @@ async function flushPendingAppMessageVisibility(
       const stateRef = db.collection('users').doc(ownerUid).collection(APP_MESSAGE_STATES_COLLECTION).doc(operation.messageId);
       let applied = false;
       await db.runTransaction(async (transaction: any) => {
+        // зачем (Ревизор 3.168): транзакцию повторяют; повтор с ранним выходом не должен унести «применено» от прошлой попытки.
+        applied = false;
         const stateSnap = await transaction.get(stateRef);
         const serverRevision = toMs(stateSnap?.exists ? stateSnap.data?.()?.visibilityRevision : 0, 0);
         if (serverRevision > operation.revision) return;

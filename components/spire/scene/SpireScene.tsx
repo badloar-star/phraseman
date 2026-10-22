@@ -17,12 +17,14 @@ import Svg, { Circle, Defs, RadialGradient, Rect, Stop } from 'react-native-svg'
 
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import type { Lang } from '../../../constants/i18n';
+import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { spireSkinForTier } from '../../../modules/spire/tower_skins';
 import { useEnergyCountdown } from '../../EnergyContext';
 import type { PlayerInfo } from '../../PlayerProfileModal';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { useTheme } from '../../ThemeContext';
 import { homeSceneTokensForTheme } from '../../home/v2/scene/home_scene_tokens';
+import { homeSceneWarmTone } from '../../home/v2/scene/home_scene_warm_tone';
 import V2Pressable from '../../v2/V2Pressable';
 import SpireRankCoin from '../SpireRankCoin';
 import SpireTower from '../SpireTower';
@@ -127,6 +129,12 @@ function SpireScene(p: Props) {
   }, [p.lang]);
   const glow = evening ? tokens.eveningGlow : tokens.sceneGlow;
   const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.55), [tokens.sceneGlow]);
+  // зачем (владелец 22.10: «цвета строго оттенками текущей темы»; сцена всегда на «Максимуме»): акцент темы — для тёплой строки и наряда башни
+  const sceneAccent = useMemo(() => liquidGlassTokens(liquidGlassThemeId, { level: 'max', appearance: liquidGlassAppearance }).accent, [liquidGlassThemeId, liquidGlassAppearance]);
+  // строка «N мест до повышения» — тёплый тон сцены, как на Главной (был свой #FFD0C4; ≥ 4,5 во всех темах — аудит scene_contrast_audit)
+  const warmColor = homeSceneWarmTone(sceneAccent).flame;
+  // наряд башни (владелец 22.10: «башню перекрашиваем в оттенки темы») — из акцента темы и цветов сцены
+  const themeColors = useMemo(() => ({ accent: sceneAccent, sceneTop: tokens.sceneTop, sceneBottom: tokens.sceneBottom }), [sceneAccent, tokens.sceneTop, tokens.sceneBottom]);
   // зачем (эталон: сцена уходит под вкладки и под часы): пока «Пик» на экране — верхний цвет сцены шапке «Сообщества» и полосе статуса
   useEffect(() => {
     if (!p.headerTint) return undefined;
@@ -207,6 +215,7 @@ function SpireScene(p: Props) {
             onPressMore={p.onOpenAll}
             onPressMe={onPressMe}
             markerGlow={tokens.sceneGlow}
+            themeColors={themeColors}
           />
         </View>
         <View testID="spire-scene-copy" style={[s.copy, { top: off ? COPY_TOP_OFFLINE : COPY_TOP, width: frame.copyW }]}>
@@ -215,8 +224,8 @@ function SpireScene(p: Props) {
           {p.copy.liveEnergyTitle ? <LiveEnergyTitle override={p.energyTime} /> : <Text accessibilityRole="header" testID="spire-scene-title" maxFontSizeMultiplier={DISPLAY_MAX_SCALE} style={s.title}>{p.copy.title}</Text>}
           {p.copy.warm ? (
             <View style={s.warmRow}>
-              <Ionicons name="trending-up" size={16} color={SPIRE_SCENE_INK.warm} style={s.warmIcon} />
-              <Text style={ts.warm} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.warm}</Text>
+              <Ionicons name="trending-up" size={16} color={warmColor} style={s.warmIcon} />
+              <Text style={[ts.warm, { color: warmColor }]} maxFontSizeMultiplier={TEXT_MAX_SCALE}>{p.copy.warm}</Text>
             </View>
           ) : null}
           {p.copy.line ? (
@@ -293,7 +302,7 @@ const s = StyleSheet.create({
   title: { color: SPIRE_SCENE_INK.text, fontSize: 40, lineHeight: 44, fontWeight: '700', letterSpacing: -0.8, marginTop: 4 },
   warmRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 8 },
   warmIcon: { marginTop: 2 },
-  warm: { color: SPIRE_SCENE_INK.warm, fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   bar: { width: 48, height: 4, borderRadius: 2, backgroundColor: SPIRE_SCENE_INK.barTrack, overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: SPIRE_SCENE_INK.text },

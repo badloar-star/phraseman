@@ -10,7 +10,7 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 
 describe('Шпиль: монеты рангов вместо букв', () => {
   const PLACES: ReadonlyArray<readonly [string, string]> = [
-    ['components/spire/SpireTower.tsx', 'соперники у этажей'],
+    ['components/spire/SpireTowerRivals.tsx', 'соперники у этажей'],
     ['components/spire/SpireFloorInfo.tsx', 'кто на этаже'],
     ['components/spire/SpireAllMembers.tsx', 'все участники'],
     ['components/spire/SpirePodium.tsx', 'пьедестал'],

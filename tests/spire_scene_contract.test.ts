@@ -198,14 +198,22 @@ async function main(): Promise<void> {
   assert.ok(!scene.includes("spireSceneHalo") && !scene.includes("HALO."), "за башней нет отдельного ореола — фон сцены единый");
   assert.ok(scene.includes("{SCENE_STARS.map(([x, y, r, o], i) => <Circle") && scene.includes("cx={x * width} cy={y * frame.sceneH}"), "звёзды — по всей сцене до краёв");
   assert.ok(scene.includes("const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.55), [tokens.sceneGlow]);"), "звёзды — светлый оттенок свечения темы");
-  assert.ok(scene.includes("markerGlow={tokens.sceneGlow}") && tower.includes("plus={false} /> : null}") && tower.includes("const MARKER_SCENE_SIZE = 44;"), "своя монета на сцене — без колец, ×1,1, свечение темы");
+  // зачем (владелец 22.10: «башню перекрашиваем в оттенки темы»; «цвета строго оттенками текущей темы»)
+  assert.ok(scene.includes("themeColors={themeColors}") && scene.includes("const themeColors = useMemo(() => ({ accent: sceneAccent, sceneTop: tokens.sceneTop, sceneBottom: tokens.sceneBottom })"), "сцена передаёт башне цвета темы: акцент «Максимума» и цвета сцены");
+  assert.ok(tower.includes("sceneMode && themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)"), "на «Сцене» наряд башни — в оттенках темы, вне её — прежний наряд лиги");
+  assert.ok(scene.includes("const warmColor = homeSceneWarmTone(sceneAccent).flame;") && scene.includes("color={warmColor} style={s.warmIcon}") && scene.includes("<Text style={[ts.warm, { color: warmColor }]}"), "строка «N мест до повышения» — тёплый тон сцены в оттенке темы, как на Главной");
+  const inkPalette = read("components/spire/scene/spire_scene_palette.ts");
+  assert.ok(!/#(?!FFFFFF)[0-9A-Fa-f]{6}/.test(inkPalette) && !/rgba\((?!255,255,255,|0,0,0,)/.test(inkPalette) && !scene.includes("SPIRE_SCENE_INK.warm"), "свет сцены Пика — только белый и чёрный: цветных литералов (персик, мята) нет, цвет — от темы");
+  const marker = read("components/spire/SpireTowerMarker.tsx");
+  const rivals = read("components/spire/SpireTowerRivals.tsx");
+  assert.ok(scene.includes("markerGlow={tokens.sceneGlow}") && marker.includes("plus={false} /> : null}") && marker.includes("const MARKER_SCENE_SIZE = 44;"), "своя монета на сцене — без колец, ×1,1, свечение темы");
   assert.ok(tower.includes("sceneClean={sceneMode} />") && towerSvg.includes("{!sceneClean && (scene ? scene.star !== null : true) ? STARS.map(") && towerSvg.includes("textTooSmall || hideWords || sceneClean ? null"), "башня на сцене без своего неба: без звёзд, облаков и «НАД ОБЛАКАМИ»");
-  assert.ok(tower.includes("logSpireLayout('tower:render', { drawn: width > 0"), "журнал: нарисована ли башня на сцене и почему");
+  assert.ok(tower.includes("logSpireLayout('tower:render', { skin: skin.id, themed: themeColors ? 'yes' : 'no', drawn: width > 0"), "журнал: наряд башни, в цветах ли темы, нарисована ли и почему");
   assert.ok(read("components/spire/scene/spire_scene_header.tsx").includes("<View style={[styles.tabs, tabsInset]}"), "рисованные вкладки сдвигаются вместе с настоящими под общую «назад»");
-  assert.ok(tower.includes("hitSlop={Math.max(0, Math.ceil((RIVAL_TAP - size) / 2))}") && tower.includes("const RIVAL_TAP = 44;"), "монета соперника — кнопка с зоной касания ≥ 44");
+  assert.ok(rivals.includes("hitSlop={Math.max(0, Math.ceil((RIVAL_TAP - size) / 2))}") && rivals.includes("const RIVAL_TAP = 44;"), "монета соперника — кнопка с зоной касания ≥ 44");
   assert.ok(tower.includes("pointerEvents={onPressRival ? 'box-none' : 'none'}"), "без обработчиков (прежнее окно) ряды по-прежнему не ловят касания");
   assert.ok(tower.includes("sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0}"), "ряды соперников на «Сцене» — по расчёту сетки");
-  assert.ok(tower.includes("if (fl.f <= hiddenBelow) continue;"), "ряды под монетами пьедестала не рисуются");
+  assert.ok(rivals.includes("if (fl.f <= hiddenBelow) continue;"), "ряды под монетами пьедестала не рисуются");
   const podium = read("components/spire/scene/SpireScenePodium.tsx");
   assert.ok(podium.includes("const BLOCK_H = SPIRE_SCENE_PODIUM.blockH;") && podium.includes("const COIN = SPIRE_SCENE_PODIUM.coin;"), "размеры пьедестала — из того же расчёта, что окно башни");
   assert.ok(!route.includes("headerTint"), "dev-вход не красит настоящую шапку");

@@ -55,8 +55,12 @@ describe('окно башни — по теме, башня — по наряд�
     expect(read('components/spire/SpireTour.tsx')).toContain('scene={scene}');
   });
 
-  it('светлая тема: рамка выбранного этажа и кольцо моей монеты берутся из цвета текста темы, тёмная без изменений', () => {
+  it('рамка выбранного этажа в светлой теме — цвет текста темы; метка «Ты здесь» — главная заливка темы (cta / ctaText), как маркер моментов', () => {
     expect(read('components/spire/SpireTowerSvg.tsx')).toContain('stroke={scene && scene.light ? scene.numMine : TOWER_ART.white80}');
-    expect(read('components/spire/SpireTower.tsx')).toContain('scene.light ? { backgroundColor: scene.numMine } : null');
+    expect(read('components/spire/SpireTower.tsx')).toContain('cta={p.cta} ctaText={p.ctaText}');
+    const marker = read('components/spire/SpireTowerMarker.tsx');
+    expect(marker).toContain('<View style={[s.ring, { backgroundColor: cta }]}>');
+    expect(marker).toContain('<View style={[s.inner, { backgroundColor: ctaText }]}>');
+    expect(marker.split('\n').filter((l) => !l.trim().startsWith('//')).join('\n')).not.toMatch(/#[0-9A-Fa-f]{6}/); // в коде — без литералов (история — в шапке)
   });
 });

@@ -175,7 +175,7 @@ test('owner 30.09: rivals on the tower and «who is on this floor» come from th
   const tower = read('components/spire/SpireTower.tsx');
   const info = read('components/spire/SpireFloorInfo.tsx');
   assert.ok(home.includes('spireRivalsByFloor(game.rows)'), 'rivals are derived from the cached room rows');
-  assert.ok(tower.includes('RivalsLayer') && tower.includes('`+${extra}`'), 'up to two rivals and «+N» left of the floor');
+  assert.ok(tower.includes('<RivalsLayer ') && read('components/spire/SpireTowerRivals.tsx').includes('`+${extra}`'), 'up to two rivals and «+N» left of the floor');
   assert.ok(info.includes('testID="spire-floor-who"'), 'floor card shows who is on it');
   for (const src of [tower, info]) assert.ok(!/firestore|spireSync|fetch\(/.test(src), 'no reads for rivals');
 });

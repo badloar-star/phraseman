@@ -126,8 +126,8 @@ function Inner() {
           <View style={[s.tabsRow, { backgroundColor: sceneTop, paddingTop: insets.top, height: TABS_H + insets.top }]} testID="dev-spire-scene-tabs">
             {tabViews}
             <View style={s.energy}>
-              <Ionicons name="flash" size={16} color={!plus && setup.energy <= 0 ? SPIRE_SCENE_INK.warm : SPIRE_SCENE_INK.text} />
-              <Text style={[s.energyText, { color: !plus && setup.energy <= 0 ? SPIRE_SCENE_INK.warm : SPIRE_SCENE_INK.text }]}>{energyText}</Text>
+              <Ionicons name="flash" size={16} color={!plus && setup.energy <= 0 ? SPIRE_SCENE_INK.muted : SPIRE_SCENE_INK.text} />
+              <Text style={[s.energyText, { color: !plus && setup.energy <= 0 ? SPIRE_SCENE_INK.muted : SPIRE_SCENE_INK.text }]}>{energyText}</Text>
             </View>
           </View>
           {/* key: смена состояния, Plus или темы пересоздаёт сцену — как новый показ Пика (башня снова у своего этажа) */}

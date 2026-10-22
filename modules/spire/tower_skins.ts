@@ -193,6 +193,44 @@ if (SPIRE_LEAGUE_SKINS.length !== SPIRE_TIER_COUNT) {
   throw new Error(`[SPIRE-SKINS] нарядов ${SPIRE_LEAGUE_SKINS.length}, лиг ${SPIRE_TIER_COUNT}`);
 }
 
+// ───────────────────────── наряд в оттенках темы (владелец 22.10) ─────────────────────────
+/** Цвета темы для наряда башни на «Сцене» Пика: акцент темы и верх / низ сцены (homeSceneTokensForTheme), все #RRGGBB. */
+export type SpireTowerThemeColors = Readonly<{ accent: string; sceneTop: string; sceneBottom: string }>;
+/**
+ * Правило перекраски (владелец 22.10: «башню перекрашиваем в оттенки темы, монеты-ранги — металл»; сравнение —
+ * docs/design/v2-app/peak-tower-theme-shades.html): light — камень светлым оттенком акцента (освещённая сторона светлее фона сцены,
+ * края темнее), металл и окна — светлые оттенки акцента; dark — тёмный камень тона темы со светлой отделкой.
+ */
+export type SpireTowerThemeRule = 'light' | 'dark';
+export const SPIRE_TOWER_THEME_RULE: SpireTowerThemeRule = 'light';
+const HEX6 = /^#[0-9a-f]{6}$/i;
+
+/** Строка лиги с цветами темы: форма навершия, ободки, фактура и блеск — от лиги, цвет — от темы. */
+export function spireThemedLeagueSpec(L: SpireLeagueSpec, t: SpireTowerThemeColors, rule: SpireTowerThemeRule = SPIRE_TOWER_THEME_RULE): SpireLeagueSpec {
+  if (rule === 'light') {
+    return {
+      ...L, stone: lighten(mixHex(t.sceneTop, t.accent, 0.5), 0.22), edge: lighten(t.accent, 0.6), metal: lighten(mixHex(t.accent, t.sceneTop, 0.2), 0.42),
+      gem: lighten(t.accent, 0.3), pennant: L.pennant ? mixHex(t.accent, t.sceneBottom, 0.35) : undefined, lit: lighten(t.accent, 0.84), sky: t.sceneBottom,
+    };
+  }
+  return {
+    ...L, stone: mixHex(darken(t.sceneBottom, 0.45), t.accent, 0.14), edge: lighten(t.accent, 0.62), metal: lighten(t.accent, 0.4),
+    gem: lighten(t.accent, 0.35), pennant: L.pennant ? lighten(t.accent, 0.1) : undefined, lit: lighten(t.accent, 0.86), sky: t.sceneBottom,
+  };
+}
+
+/**
+ * Наряд лиги в оттенках темы. Без лиги — прежний «Оникс без деталей» (без фактуры, металла и навершия), но цвета тоже от темы.
+ * Цвета не #RRGGBB — обычный наряд лиги: тема не сломает башню.
+ */
+export function spireThemedSkinForTier(tier: unknown, t: SpireTowerThemeColors, rule: SpireTowerThemeRule = SPIRE_TOWER_THEME_RULE): SpireTowerSkin {
+  if (!HEX6.test(t.accent) || !HEX6.test(t.sceneTop) || !HEX6.test(t.sceneBottom)) return spireSkinForTier(tier);
+  const hasTier = typeof tier === 'number' && Number.isFinite(tier);
+  const skin = skinFromLeague(spireThemedLeagueSpec(SPIRE_LEAGUE_SPECS[hasTier ? clampSpireTierIndex(tier) : 0], t, rule));
+  if (hasTier && SPIRE_LEAGUE_SKINS_ENABLED) return skin;
+  return Object.freeze<SpireTowerSkin>({ ...skin, id: 'default', premium: false, tex: null, rim: 'none', finial: 'plain', spec: 0, pennant: null });
+}
+
 /** Наряд по лиге игрока. Нет лиги (null/не число) или выключатель — Оникс прежнего вида; tier вне 0..11 прижимается. */
 export function spireSkinForTier(tier: unknown, enabled: boolean = SPIRE_LEAGUE_SKINS_ENABLED): SpireTowerSkin {
   if (!enabled || typeof tier !== 'number' || !Number.isFinite(tier)) return SPIRE_DEFAULT_SKIN;

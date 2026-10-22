@@ -33,19 +33,21 @@ describe('Пик: плиты подиума вмещают цифру места
 
 describe('Пик: «+N» соперников не заходит на тело башни', () => {
   const tower = read('components/spire/SpireTower.tsx');
+  // зачем (координатор 22.10, сторож «файл Пика ≤ 400 строк»): слой соперников вынесен из SpireTower дословно
+  const rivals = read('components/spire/SpireTowerRivals.tsx');
 
   it('ряд монет и «+N» привязан правым краем в 10 единицах левее тела этажа, а не левым с запасом 22', () => {
-    expect(tower).toContain('right: renderWidth - (fl.x0 - RIVAL_GAP) * scale');
-    expect(tower).toContain('const RIVAL_GAP = 10;');
-    expect(tower).not.toContain('(extra ? 22 : 0)');
-    expect(tower).not.toContain('left: ax * scale');
+    expect(rivals).toContain('right: renderWidth - (fl.x0 - RIVAL_GAP) * scale');
+    expect(rivals).toContain('const RIVAL_GAP = 10;');
+    expect(rivals).not.toContain('(extra ? 22 : 0)');
+    expect(rivals).not.toContain('left: ax * scale');
   });
 
   it('на крупном шрифте (≥ 1.15) у башни одна монета и «+N»; текст «+N» с потолком роста шрифта', () => {
-    expect(tower).toContain('const RIVAL_BIG_FONT = 1.15;');
-    expect(tower).toContain('const shown = Math.min(list.length, singleCoin ? 1 : RIVAL_SHOWN);');
+    expect(rivals).toContain('const RIVAL_BIG_FONT = 1.15;');
+    expect(rivals).toContain('const shown = Math.min(list.length, singleCoin ? 1 : RIVAL_SHOWN);');
     expect(tower).toContain('singleCoin={fontScale >= RIVAL_BIG_FONT}');
-    expect(tower).toContain('<Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra');
+    expect(rivals).toContain('<Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra');
   });
 
   it('геометрия: ряд из двух монет + «+20» при шрифте 1.0 и 1.3 умещается левее тела башни, не доходя до подписи этажа', () => {

@@ -4,8 +4,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {
-  SPIRE_DEFAULT_SKIN, SPIRE_LEAGUE_SKINS, SPIRE_LEAGUE_SKINS_ENABLED, SPIRE_LEAGUE_SPECS, mixHex, spireSkinForTier,
+  SPIRE_DEFAULT_SKIN, SPIRE_LEAGUE_SKINS, SPIRE_LEAGUE_SKINS_ENABLED, SPIRE_LEAGUE_SPECS, SPIRE_TOWER_THEME_RULE, mixHex, spireSkinForTier,
+  spireThemedSkinForTier,
 } from '../modules/spire/tower_skins';
+import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { SPIRE_TIER_COUNT, SPIRE_TIER_NAMES } from '../modules/spire/tier_names';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
@@ -116,8 +119,47 @@ describe('наряды башни Шпиля', () => {
   it('экран Шпиля передаёт лигу в башню; SpireTower выбирает наряд мемо по лиге, с dev-подменой для Сверки', () => {
     expect(home).toContain('tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null}'); // в кадре spireWeek= лига — новая лига карточки, иначе лига игрока
     expect(tower).toContain('getDevSpireTierOverride()');
-    expect(tower).toContain('const skin = useMemo(() => spireSkinForTier(devTier ?? tier), [devTier, tier]);');
+    expect(tower).toContain('const skin = useMemo(() => (sceneMode && themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)), [devTier, tier, sceneMode, themeColors]);');
     expect(tower).toContain('skin={skin}');
+  });
+
+  // зачем (владелец 22.10: «башню перекрашиваем в оттенки темы, монеты-ранги — металл»; сравнение docs/design/v2-app/peak-tower-theme-shades.html)
+  it('«Сцена» Пика: наряд в оттенках темы — цвет от темы, форма навершия, ободки, фактура и блеск от лиги', () => {
+    const t = { accent: '#5CCFEB', sceneTop: '#1C5B6C', sceneBottom: '#1A494B' }; // marine, тёмное оформление, «Максимум»
+    const league = spireSkinForTier(7);
+    const themed = spireThemedSkinForTier(7, t);
+    expect(SPIRE_TOWER_THEME_RULE).toBe('light');
+    expect([themed.id, themed.premium, themed.tex, themed.rim, themed.finial, themed.spec, themed.glowR]).toEqual([league.id, true, league.tex, league.rim, league.finial, league.spec, league.glowR]);
+    expect(themed.cyl[2]).toBe(mixHex(mixHex(t.sceneTop, t.accent, 0.5), '#ffffff', 0.22)); // правило A: камень — светлый оттенок акцента
+    expect(themed.edge).toBe(mixHex(t.accent, '#ffffff', 0.6));
+    expect(themed.lit).toBe(mixHex(t.accent, '#ffffff', 0.84));
+    expect(themed.sky[0]).toBe(t.sceneBottom);
+    expect(themed.pennant).toBe(mixHex(t.accent, t.sceneBottom, 0.35)); // флаг Аметиста остаётся, цвет — от темы
+    expect(themed.cyl).not.toEqual(league.cyl);
+    expect(themed.metal).not.toBe(league.metal);
+    for (const c of [...themed.cyl, ...themed.cylG, ...themed.corn, ...themed.cone, themed.lit, themed.edge, themed.metal, themed.gem, themed.winSill]) expect(c).toMatch(HEX);
+    const dark = spireThemedSkinForTier(7, t, 'dark');
+    expect(dark.cyl[2]).toBe(mixHex(mixHex(t.sceneBottom, '#000000', 0.45), t.accent, 0.14)); // правило B: тёмный камень тона темы
+    expect(dark.light).toBe(false);
+    const plain = spireThemedSkinForTier(null, t);
+    expect([plain.id, plain.premium, plain.tex, plain.rim, plain.finial, plain.pennant, plain.spec]).toEqual(['default', false, null, 'none', 'plain', null, 0]);
+    expect(plain.cyl).not.toEqual(SPIRE_DEFAULT_SKIN.cyl); // и без лиги цвета — от темы
+    expect(Object.isFrozen(themed) && Object.isFrozen(plain)).toBe(true);
+    expect(spireThemedSkinForTier(7, { ...t, accent: 'rgba(92,207,235,1)' })).toBe(league); // не #RRGGBB — наряд лиги, башня не ломается
+    expect(spireThemedSkinForTier(null, { ...t, sceneTop: '' })).toBe(SPIRE_DEFAULT_SKIN);
+  });
+
+  it('все темы каталога × тёмное и светлое оформление: цвета для наряда — #RRGGBB, башня перекрашена', () => {
+    const misses: string[] = [];
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const appearance of ['dark', 'light'] as const) {
+        const s = homeSceneTokensForTheme(id, appearance, false);
+        const t = { accent: liquidGlassTokens(id, { level: 'max', appearance }).accent, sceneTop: s.sceneTop, sceneBottom: s.sceneBottom };
+        if (![t.accent, t.sceneTop, t.sceneBottom].every((c) => HEX.test(c)) || spireThemedSkinForTier(3, t) === spireSkinForTier(3)) misses.push(`${id}:${appearance}`);
+      }
+    }
+    expect(LIQUID_GLASS_THEME_IDS.length).toBeGreaterThanOrEqual(20);
+    expect(misses).toEqual([]);
   });
 
   it('dev-подмена лиги: параметр ссылки, заглушка в стор-сборке, только __DEV__', () => {

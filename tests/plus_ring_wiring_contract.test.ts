@@ -57,8 +57,8 @@ describe('кольцо Plus: 7 мест эталона', () => {
   });
 
   it('3 · Пик, жители на башне: плоское кольцо без значка у соперников, у стопки на этаже и у моего маркера', () => {
-    expect(src('components/spire/SpireTower.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
-    expect(src('components/spire/SpireTower.tsx')).toContain('plus={myIsPlus} plusKind="flat"');
+    expect(src('components/spire/SpireTowerRivals.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
+    expect(src('components/spire/SpireTowerMarker.tsx')).toContain('plus={myIsPlus} plusKind="flat"');
     expect(src('components/spire/SpireFloorInfo.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
   });
 

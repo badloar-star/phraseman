@@ -11,8 +11,6 @@ export const SPIRE_SCENE_INK = Object.freeze({
   line: 'rgba(255,255,255,0.88)',
   label: 'rgba(255,255,255,0.8)',
   muted: 'rgba(255,255,255,0.78)',
-  warm: '#FFD0C4',
-  up: '#A6F0C6',
   barTrack: 'rgba(255,255,255,0.28)',
   glass: 'rgba(255,255,255,0.16)',
   halo: 'rgba(255,255,255,0.22)',

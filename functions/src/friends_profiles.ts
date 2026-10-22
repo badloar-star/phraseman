@@ -50,6 +50,10 @@ export interface FriendPublicProfile {
   isPremium: boolean;
   isVip: boolean;
   isLifetime: boolean;
+  /** Настоящий Plus из public_profiles (cbdecef56). null = проекция не писала поле — кольца нет. */
+  isPlus: boolean | null;
+  /** Срок Plus: 0 — бессрочно, иначе мс; null — Plus нет или поле не записано. */
+  plusUntilMs: number | null;
   /** «Вместе» (§3.1): последний известный локальный день активности. null = нет данных. */
   lastActiveDate: string | null;
   /** «Вместе»: кодек активных дней для daysTogether(). null = нет данных. */
@@ -102,6 +106,11 @@ function numOrNull(v: unknown): number | null {
   if (v === null || v === undefined) return null;
   const n = Number(v);
   return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : null;
+}
+
+/** Срок Plus из проекции: только конечное неотрицательное целое число (0 — бессрочно); всё прочее — null. */
+function plusUntilMsOrNull(value: unknown): number | null {
+  return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? value : null;
 }
 
 function coinRankOrNull(value: unknown): number | null {
@@ -260,6 +269,11 @@ export function buildFriendProfile(
     isPremium: source.isPremium === true || source.courseIsPremium === true,
     isVip: source.isVip === true || source.courseIsVip === true,
     isLifetime: source.isLifetime === true || source.courseIsLifetime === true,
+    // зачем (координатор 22.10, клиент кольца 4 · ТЕМЫ 49677b5c4): кольцо Plus у друзей из batch. Берём ТОЛЬКО из
+    // public_profiles — его пишет проекция/вебхук (isRealPlusActive, без вводного доступа). leaderboard этих полей
+    // не несёт: там null, и кольца нет. Это дешевле, чем откатываться на isPremium с вводным доступом. 0 новых чтений.
+    isPlus: typeof publicProfileData?.isPlus === 'boolean' ? publicProfileData.isPlus : null,
+    plusUntilMs: plusUntilMsOrNull(publicProfileData?.plusUntilMs),
     lastActiveDate: together.lastActiveDate,
     activeDays: together.activeDays,
     friendsPush: together.friendsPush,

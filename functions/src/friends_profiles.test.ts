@@ -66,6 +66,33 @@ describe('friendsGetProfiles reads', () => {
     expect(result).toEqual({ ok: true, profiles: { 'one-sided': null, hidden: null, deleted: null, stranger: null } });
   });
 
+  it('returns isPlus/plusUntilMs from public_profiles for the Plus ring, without extra reads', async () => {
+    // зачем (координатор 22.10): клиент кольца (4 · ТЕМЫ 49677b5c4) ждёт эти поля в каждой записи batch.
+    const rows: Record<string, Row> = {
+      ...friendRows('caller-d4', 'plus-forever'),
+      ...friendRows('caller-d4', 'plus-term'),
+      ...friendRows('caller-d4', 'no-plus'),
+      ...friendRows('caller-d4', 'old-profile'),
+      ...friendRows('caller-d4', 'bad-term'),
+    };
+    rows['public_profiles/plus-forever'] = { name: 'A', isPlus: true, plusUntilMs: 0 };
+    rows['public_profiles/plus-term'] = { name: 'B', isPlus: true, plusUntilMs: 1_800_000_000_000 };
+    rows['public_profiles/no-plus'] = { name: 'C', isPlus: false, plusUntilMs: null, isPremium: true };
+    rows['public_profiles/bad-term'] = { name: 'E', isPlus: 'yes', plusUntilMs: -5 };
+    const { db, reads } = makeDb(rows);
+    const result = await runFriendsGetProfiles(db, 'caller-d4', ['plus-forever', 'plus-term', 'no-plus', 'old-profile', 'bad-term']);
+
+    expect(result.profiles['plus-forever']).toMatchObject({ isPlus: true, plusUntilMs: 0 });
+    expect(result.profiles['plus-term']).toMatchObject({ isPlus: true, plusUntilMs: 1_800_000_000_000 });
+    // isPremium (вводный доступ) кольца не даёт: берём только isPlus.
+    expect(result.profiles['no-plus']).toMatchObject({ isPlus: false, plusUntilMs: null, isPremium: true });
+    // Профиль до проекции cbdecef56 — полей нет: null, кольца нет.
+    expect(result.profiles['old-profile']).toMatchObject({ isPlus: null, plusUntilMs: null });
+    expect(result.profiles['bad-term']).toMatchObject({ isPlus: null, plusUntilMs: null });
+    // 4 чтения проверки дружбы + 1 публичный профиль на каждого — новых чтений нет.
+    expect(reads).toHaveLength(5 * 5);
+  });
+
   it('the caller own profile still reads its user doc and deletion marker itself', async () => {
     const { db, reads } = makeDb({ 'users/caller-d3': { progress: {} }, 'public_profiles/caller-d3': { name: 'Я' } });
     const result = await runFriendsGetProfiles(db, 'caller-d3', ['caller-d3']);

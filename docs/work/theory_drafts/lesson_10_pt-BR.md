@@ -30,6 +30,9 @@ Nesta lição você junta o que já sabe e aprende a escolher: «normalmente com
 **body**
 Se é hábito, a forma da lição 6: I often travel abroad. Se acontece agora ou só por um tempo — nesta viagem, hoje —, a forma da lição 9: We are staying at the seaside — «estamos ficando na praia».
 
+**formula**
+`normalmente: quem + ação (he / she + s)` · `agora: quem + am / is / are + ação + ing`
+
 **examples** 🔊
 | en | pt-BR | hi |
 |---|---|---|

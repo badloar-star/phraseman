@@ -30,6 +30,9 @@ In this lesson you put together what you already know and learn to choose: «I u
 **body**
 If it's a habit, use the form from lesson 6: I often travel abroad. If it's happening now or only for a while — on this trip, today — use the form from lesson 9: We are staying at the seaside.
 
+**formula**
+`usually: who + action (he / she + s)` · `now: who + am / is / are + action + ing`
+
 **examples** 🔊
 | en | meaning | hi |
 |---|---|---|

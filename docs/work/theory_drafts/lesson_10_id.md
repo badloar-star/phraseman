@@ -31,6 +31,9 @@ Di pelajaran ini kamu menggabungkan yang sudah kamu tahu dan belajar memilih: «
 **body**
 Kalau kebiasaan — bentuk dari pelajaran 6: I often travel abroad. Kalau sedang terjadi atau hanya untuk sementara — di perjalanan ini, hari ini — bentuk dari pelajaran 9: We are staying at the seaside — «kami sedang menginap di pantai».
 
+**formula**
+`biasanya: siapa + kegiatan (he / she + s)` · `sedang: siapa + am / is / are + kegiatan + ing`
+
 **examples** 🔊
 | en | id | hi |
 |---|---|---|

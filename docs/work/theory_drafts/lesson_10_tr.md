@@ -30,6 +30,9 @@ Bu derste bildiklerini bir araya getirip seçmeyi öğreniyorsun: «genelde kons
 **body**
 Alışkanlıksa 6. dersteki biçim: I often travel abroad. Şu an ya da sadece bir süreliğine oluyorsa — bu gezide, bugün — 9. dersteki biçim: We are staying at the seaside — «(şu an) deniz kenarında kalıyoruz».
 
+**formula**
+`genelde: kim + eylem (he / she + s)` · `şu an: kim + am / is / are + eylem + ing`
+
 **examples** 🔊
 | en | tr | hi |
 |---|---|---|

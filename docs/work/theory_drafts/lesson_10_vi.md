@@ -30,6 +30,9 @@ Trong bài này bạn ghép lại những gì đã biết và học cách chọn
 **body**
 Nếu là thói quen — dạng ở bài 6: I often travel abroad. Nếu đang xảy ra hoặc chỉ trong một thời gian — chuyến đi này, hôm nay — dạng ở bài 9: We are staying at the seaside — «chúng tôi đang ở biển».
 
+**formula**
+`thường: ai + hành động (he / she + s)` · `đang: ai + am / is / are + hành động + ing`
+
 **examples** 🔊
 | en | vi | hi |
 |---|---|---|

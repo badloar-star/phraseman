@@ -29,6 +29,9 @@ W tej lekcji łączysz to, co już znasz, i uczysz się wybierać: «zwykle kupu
 **body**
 Po polsku «kupuję» to i «zwykle», i «dzisiaj». Po angielsku nie: nawyk — forma z lekcji 6: I often travel abroad. Teraz albo tylko na jakiś czas — forma z lekcji 9: We are staying at the seaside — «(teraz) mieszkamy nad morzem».
 
+**formula**
+`zwykle: kto + czynność (he / she + s)` · `teraz: kto + am / is / are + czynność + ing`
+
 **examples** 🔊
 | en | pl | hi |
 |---|---|---|

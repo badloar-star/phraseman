@@ -14,7 +14,8 @@ const REGISTRY = path.join(ROOT, 'docs/work/OWNER_LOCKS.md');
 const MARK = 'ЗАМОК ВЛАДЕЛЬЦА';
 // «ставит …» и сторож без пометки допустимы только до конца 22.10 по Киеву (UTC+3) — потом красный.
 const GRACE_UNTIL_MS = Date.parse('2026-10-23T00:00:00+03:00');
-const TEST_EXT = ['.test.ts', '.test.tsx', '.test.cjs', '.test.mjs', '.test.js', '.probe.ts'];
+// зачем: сторожем бывает и гейт `tests/<имя>_gate.ts` (гоняется через tsx) — он тоже файл-сторож
+const TEST_EXT = ['.test.ts', '.test.tsx', '.test.cjs', '.test.mjs', '.test.js', '.probe.ts', '_gate.ts'];
 const SEARCH_DIRS = ['tests', 'functions/src'];
 
 // Храповик: сторожа, уже попавшие в реестр. Удалить строку из реестра можно только вместе со строкой здесь — это видно в ревью.
@@ -57,7 +58,7 @@ function guardNames(cell) {
 
 function resolveGuard(name) {
   if (fs.existsSync(path.join(ROOT, name)) && TEST_EXT.some((ext) => name.endsWith(ext))) return name;
-  const base = path.basename(name).replace(/\.(test|probe)\.[cm]?[jt]sx?$/, '');
+  const base = path.basename(name).replace(/\.(test|probe)\.[cm]?[jt]sx?$/, '').replace(/_gate(\.ts)?$/, '');
   for (const dir of SEARCH_DIRS) {
     for (const ext of TEST_EXT) {
       const rel = `${dir}/${base}${ext}`;

@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что друг говорит о подруге",
+      "prompt": "Послушайте и выберите — друг ждёт вас с подругой у входа на фестиваль",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-23:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-23:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что друг говорит о подруге",
+      "accessibilityLabel": "Послушайте и выберите — друг ждёт вас с подругой у входа на фестиваль",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-23:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит о подруге",
+            "testedDimension": "Послушайте и выберите — друг ждёт вас с подругой у входа на фестиваль",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `married`, а в этом варианте — `single`.",
               "uk": "У записі останнє слово — `married`, а в цьому варіанті — `single`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-23:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что друг говорит о подруге",
+            "testedDimension": "Послушайте и выберите — друг ждёт вас с подругой у входа на фестиваль",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `married`, а в этом варианте — `silent`.",
               "uk": "У записі останнє слово — `married`, а в цьому варіанті — `silent`."
@@ -594,7 +594,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что подруга говорит о французском фильме",
+      "prompt": "Послушайте и выберите — подруга выбирает с вами фильм на фестивале",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-23:i09:r1",
@@ -613,7 +613,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-23:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что подруга говорит о французском фильме",
+      "accessibilityLabel": "Послушайте и выберите — подруга выбирает с вами фильм на фестивале",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -643,7 +643,7 @@
           {
             "responseId": "en:lesson-02:session-23:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о французском фильме",
+            "testedDimension": "Послушайте и выберите — подруга выбирает с вами фильм на фестивале",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `subtitled`, а в этом варианте — `silent`.",
               "uk": "У записі останнє слово — `subtitled`, а в цьому варіанті — `silent`."
@@ -652,7 +652,7 @@
           {
             "responseId": "en:lesson-02:session-23:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что подруга говорит о французском фильме",
+            "testedDimension": "Послушайте и выберите — подруга выбирает с вами фильм на фестивале",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `subtitled`, а в этом варианте — `touching`.",
               "uk": "У записі останнє слово — `subtitled`, а в цьому варіанті — `touching`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос друга о билетах",
+      "prompt": "Послушайте и выберите — на входе фестиваля друг разглядывает билеты",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-23:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-23:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос друга о билетах",
+      "accessibilityLabel": "Послушайте и выберите — на входе фестиваля друг разглядывает билеты",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-23:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос друга о билетах",
+            "testedDimension": "Послушайте и выберите — на входе фестиваля друг разглядывает билеты",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `different`, а в этом варианте — `valid`.",
               "uk": "У записі останнє слово — `different`, а в цьому варіанті — `valid`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-23:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос друга о билетах",
+            "testedDimension": "Послушайте и выберите — на входе фестиваля друг разглядывает билеты",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `different`, а в этом варианте — `silent`.",
               "uk": "У записі останнє слово — `different`, а в цьому варіанті — `silent`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2bf1f64d1dd37c3cd2a46550a4172066e9748c4d260596359ba6d905bd7c544e"
+  "learnerFingerprint": "a58d08dbf97ad6a0007c37c6be13db6a59eafdf65216a68ffa2774986611ec5c"
 }

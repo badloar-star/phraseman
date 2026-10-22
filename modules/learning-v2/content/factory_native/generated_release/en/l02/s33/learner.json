@@ -139,7 +139,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте фразу о подруге",
+      "prompt": "Послушайте и выберите — друг гуляет с вами по парку в воскресенье",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i02:r1",
@@ -158,7 +158,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-33:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте фразу о подруге",
+      "accessibilityLabel": "Послушайте и выберите — друг гуляет с вами по парку в воскресенье",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -188,7 +188,7 @@
           {
             "responseId": "en:lesson-02:session-33:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте фразу о подруге",
+            "testedDimension": "Послушайте и выберите — друг гуляет с вами по парку в воскресенье",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `fit`, а в этом варианте — `tired`.",
               "uk": "У записі останнє слово — `fit`, а в цьому варіанті — `tired`."
@@ -197,7 +197,7 @@
           {
             "responseId": "en:lesson-02:session-33:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте фразу о подруге",
+            "testedDimension": "Послушайте и выберите — друг гуляет с вами по парку в воскресенье",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `fit`, а в этом варианте — `awake`.",
               "uk": "У записі останнє слово — `fit`, а в цьому варіанті — `awake`."
@@ -637,7 +637,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте и выберите — на дорожке парка вас догоняет друг",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i09:r1",
@@ -656,7 +656,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-33:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте и выберите — на дорожке парка вас догоняет друг",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -686,7 +686,7 @@
           {
             "responseId": "en:lesson-02:session-33:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — на дорожке парка вас догоняет друг",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `breathless`, а в этом варианте — `energetic`.",
               "uk": "У записі останнє слово — `breathless`, а в цьому варіанті — `energetic`."
@@ -695,7 +695,7 @@
           {
             "responseId": "en:lesson-02:session-33:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — на дорожке парка вас догоняет друг",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `breathless`, а в этом варианте — `awake`.",
               "uk": "У записі останнє слово — `breathless`, а в цьому варіанті — `awake`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос",
+      "prompt": "Послушайте и выберите — вы с другом отдыхаете в парке на траве",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-33:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос",
+      "accessibilityLabel": "Послушайте и выберите — вы с другом отдыхаете в парке на траве",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-33:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — вы с другом отдыхаете в парке на траве",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `active`, а в этом варианте — `fit`.",
               "uk": "У записі останнє слово — `active`, а в цьому варіанті — `fit`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-33:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос",
+            "testedDimension": "Послушайте и выберите — вы с другом отдыхаете в парке на траве",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `active`, а в этом варианте — `energetic`.",
               "uk": "У записі останнє слово — `active`, а в цьому варіанті — `energetic`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "72c4b2d4a247b4b9d802f84db023276746335106693dd1e55a17ce6a6c94425e"
+  "learnerFingerprint": "15d3e8e2ab45343c141eb94db9cb95f6727f78dbc262f7332681406a3f9a1717"
 }

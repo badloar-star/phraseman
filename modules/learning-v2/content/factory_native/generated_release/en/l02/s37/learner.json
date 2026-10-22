@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что диктор говорит о завтрашней погоде",
+      "prompt": "Послушайте и выберите — утром вы слушаете прогноз перед поездкой за город",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-37:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что диктор говорит о завтрашней погоде",
+      "accessibilityLabel": "Послушайте и выберите — утром вы слушаете прогноз перед поездкой за город",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-37:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что диктор говорит о завтрашней погоде",
+            "testedDimension": "Послушайте и выберите — утром вы слушаете прогноз перед поездкой за город",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `windy`, а в этом варианте — `cold`.",
               "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `cold`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-37:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что диктор говорит о завтрашней погоде",
+            "testedDimension": "Послушайте и выберите — утром вы слушаете прогноз перед поездкой за город",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `windy`, а в этом варианте — `wet`.",
               "uk": "У записі останнє слово — `windy`, а в цьому варіанті — `wet`."
@@ -594,7 +594,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что брат говорит о дороге",
+      "prompt": "Послушайте и выберите — брат звонит вам с трассы",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i09:r1",
@@ -613,7 +613,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-37:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что брат говорит о дороге",
+      "accessibilityLabel": "Послушайте и выберите — брат звонит вам с трассы",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -643,7 +643,7 @@
           {
             "responseId": "en:lesson-02:session-37:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что брат говорит о дороге",
+            "testedDimension": "Послушайте и выберите — брат звонит вам с трассы",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `icy`, а в этом варианте — `foggy`.",
               "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `foggy`."
@@ -652,7 +652,7 @@
           {
             "responseId": "en:lesson-02:session-37:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что брат говорит о дороге",
+            "testedDimension": "Послушайте и выберите — брат звонит вам с трассы",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `icy`, а в этом варианте — `stormy`.",
               "uk": "У записі останнє слово — `icy`, а в цьому варіанті — `stormy`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос подруги",
+      "prompt": "Послушайте и выберите — подруга стоит у окна перед поездкой",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-37:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-37:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос подруги",
+      "accessibilityLabel": "Послушайте и выберите — подруга стоит у окна перед поездкой",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-37:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга стоит у окна перед поездкой",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `quiet`.",
               "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `quiet`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-37:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос подруги",
+            "testedDimension": "Послушайте и выберите — подруга стоит у окна перед поездкой",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `gloomy`, а в этом варианте — `cold`.",
               "uk": "У записі останнє слово — `gloomy`, а в цьому варіанті — `cold`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "43e903d3ff36a4dd02367536171b6f7c04105ee3ddcfecd0a9f3d9c5a23281a6"
+  "learnerFingerprint": "af66c57878a5cb84e8b0ad04ea69c169b99a629148fc01a5bd79913fdf8d19ad"
 }

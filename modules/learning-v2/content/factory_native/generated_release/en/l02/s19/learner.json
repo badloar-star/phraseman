@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос мамы о брате",
+      "prompt": "Послушайте и выберите — мама зовёт всех на кухню за час до гостей",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-19:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос мамы о брате",
+      "accessibilityLabel": "Послушайте и выберите — мама зовёт всех на кухню за час до гостей",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-19:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос мамы о брате",
+            "testedDimension": "Послушайте и выберите — мама зовёт всех на кухню за час до гостей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `alone`, а в этом варианте — `nearby`.",
               "uk": "У записі останнє слово — `alone`, а в цьому варіанті — `nearby`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-19:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос мамы о брате",
+            "testedDimension": "Послушайте и выберите — мама зовёт всех на кухню за час до гостей",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `alone`, а в этом варианте — `guilty`.",
               "uk": "У записі останнє слово — `alone`, а в цьому варіанті — `guilty`."
@@ -551,7 +551,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что мама говорит о брате и сестре",
+      "prompt": "Послушайте и выберите — у почти пустой тарелки мама разговаривает с вами",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i09:r1",
@@ -570,7 +570,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-19:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что мама говорит о брате и сестре",
+      "accessibilityLabel": "Послушайте и выберите — у почти пустой тарелки мама разговаривает с вами",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -600,7 +600,7 @@
           {
             "responseId": "en:lesson-02:session-19:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что мама говорит о брате и сестре",
+            "testedDimension": "Послушайте и выберите — у почти пустой тарелки мама разговаривает с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `together`, а в этом варианте — `nearby`.",
               "uk": "У записі останнє слово — `together`, а в цьому варіанті — `nearby`."
@@ -609,7 +609,7 @@
           {
             "responseId": "en:lesson-02:session-19:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что мама говорит о брате и сестре",
+            "testedDimension": "Послушайте и выберите — у почти пустой тарелки мама разговаривает с вами",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `together`, а в этом варианте — `guilty`.",
               "uk": "У записі останнє слово — `together`, а в цьому варіанті — `guilty`."
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Мама открывает коробку с запасным печеньем. Послушайте, что она говорит",
+      "prompt": "Послушайте и выберите — мама заходит с вами на кухню",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-19:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-19:i15:audio"
       ],
-      "accessibilityLabel": "Мама открывает коробку с запасным печеньем. Послушайте, что она говорит",
+      "accessibilityLabel": "Послушайте и выберите — мама заходит с вами на кухню",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-19:i15:r2",
             "correct": false,
-            "testedDimension": "Мама открывает коробку с запасным печеньем. Послушайте, что она говорит",
+            "testedDimension": "Послушайте и выберите — мама заходит с вами на кухню",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `gone`, а в этом варианте — `together`.",
               "uk": "У записі останнє слово — `gone`, а в цьому варіанті — `together`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-19:i15:r3",
             "correct": false,
-            "testedDimension": "Мама открывает коробку с запасным печеньем. Послушайте, что она говорит",
+            "testedDimension": "Послушайте и выберите — мама заходит с вами на кухню",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `gone`, а в этом варианте — `nearby`.",
               "uk": "У записі останнє слово — `gone`, а в цьому варіанті — `nearby`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d5cfd26c2000709d2d51900d1692c88e092c72e7a1637064c235f358639aa02b"
+  "learnerFingerprint": "26e1747df1f6630b3d04660a55ae36473614e038407ade3a1ecb89fa57307308"
 }
